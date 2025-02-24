@@ -5446,17 +5446,18 @@ import { dataSharePredicates } from '@kit.ArkData';
 async function example() {
   try {
     console.info('setSubTitle');
-    let helper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
     let albumFetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: new dataSharePredicates.DataSharePredicates()
     };
-    let albumFetchResult = await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> =
+      await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
     if (albumFetchResult.getCount() === 0) {
       console.error(TAG, 'No album');
       return;
     }
-    let highlightAlbum = await albumFetchResult.getFirstObject();
+    let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     albumFetchResult.close();
     let changeHighlightAlbumRequest: photoAccessHelper.HighlightAlbum = new photoAccessHelper.HighlightAlbum(highlightAlbum);
     changeHighlightAlbumRequest.setSubTitle(this.input);
@@ -5505,17 +5506,18 @@ import { dataSharePredicates } from '@kit.ArkData';
 async function example() {
   try {
     console.info('deleteHighlightAlbums');
-    let helper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
     let albumFetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: new dataSharePredicates.DataSharePredicates()
     };
-    let albumFetchResult = await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> =
+      await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
     if (albumFetchResult.getCount() === 0) {
       console.error(TAG, 'No album');
       return;
     }
-    let highlightAlbum = await albumFetchResult.getFirstObject();
+    let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     albumFetchResult.close();
     photoAccessHelper.HighlightAlbum.deleteHighlightAlbums(getContext(this), [highlightAlbum]);
     console.info('deleteHighlightAlbums success');
@@ -5576,7 +5578,8 @@ async function example() {
   }
   let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
   albumFetchResult.close();
-  let changeRequest = new photoAccessHelper.MediaAnalysisAlbumChangeRequest(highlightAlbum);
+  let changeRequest: photoAccessHelper.MediaAnalysisAlbumChangeRequest =
+    new photoAccessHelper.MediaAnalysisAlbumChangeRequest(highlightAlbum);
 }
 ```
 
@@ -5632,7 +5635,7 @@ async function example() {
     }
     let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     albumFetchResult.close();
-    let predicates = new dataSharePredicates.DataSharePredicates();
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
     const fetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
@@ -5644,7 +5647,8 @@ async function example() {
     for (let i = 0; i < assets.length; i++) {
       indexes.push(i);
     }
-    let changeRequest = new photoAccessHelper.MediaAnalysisAlbumChangeRequest(highlightAlbum);
+    let changeRequest: photoAccessHelper.MediaAnalysisAlbumChangeRequest =
+      new photoAccessHelper.MediaAnalysisAlbumChangeRequest(highlightAlbum);
     changeRequest.setOrderPosition(assets, indexes);
     await helper.applyChanges(changeRequest);
     console.info(TAG, `setOrderPosition ${indexes}`);
@@ -5705,7 +5709,7 @@ async function example() {
   }
   let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
   albumFetchResult.close();
-  let analysisAlbum = new photoAccessHelper.AnalysisAlbum(highlightAlbum);
+  let analysisAlbum: photoAccessHelper.AnalysisAlbum = new photoAccessHelper.AnalysisAlbum(highlightAlbum);
 }
 ```
 
@@ -5718,7 +5722,7 @@ getOrderPosition(assets: Array&lt;PhotoAsset&gt;): Promise&lt;Array&lt;number&gt
 
 **系统接口**：此接口为系统接口。
 
-**需要权限**：ohos.permission.WRITE\_IMAGEVIDEO
+**需要权限**：ohos.permission.READ\_IMAGEVIDEO
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -5767,7 +5771,7 @@ async function example() {
     let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     albumFetchResult.close();
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-    let analysisAlbum = new photoAccessHelper.AnalysisAlbum(highlightAlbum);
+    let analysisAlbum: photoAccessHelper.AnalysisAlbum = new photoAccessHelper.AnalysisAlbum(highlightAlbum);
     const fetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
