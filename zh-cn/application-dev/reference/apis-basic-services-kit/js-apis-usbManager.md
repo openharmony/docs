@@ -891,7 +891,7 @@ USB设备消息传输通道，用于确定设备。
 | bRequest  | number                                        | 是   |请求类型。          |
 | wValue | number                                           | 是   |请求参数。          |
 | wIndex   | number                                         | 是   |请求参数value对应的索引值。            |
-| wLength   | number                                        | 是   |请求数据的长度 |
+| wLength   | number                                        | 是   |请求数据的长度。 |
 | data    | Uint8Array                                      | 是   |用于写入或读取的缓冲区。     |
 
 ## USBRequestTargetType
