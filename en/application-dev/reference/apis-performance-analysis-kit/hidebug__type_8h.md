@@ -23,7 +23,7 @@ Defines the structs of the HiDebug module.
 
 | Name| Description|
 | -------- | -------- |
-| struct  [HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md) | Defines the CPU usage of all threads of an application.|
+| struct  [HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md) | Defines the CPU usage of all threads in an application.|
 | struct  [HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md) | Defines the system memory information.|
 | struct  [HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md) | Defines the local memory information of an application.|
 | struct  [HiDebug_MemoryLimit](_hi_debug___memory_limit.md) | Defines the memory limit of an application.|
@@ -82,7 +82,7 @@ Defines the structs of the HiDebug module.
 
 ### Enums
 
-| Name| Description|
-| -------- | -------- |
-| [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode-1) {<br>HIDEBUG_SUCCESS = 0,<br>HIDEBUG_INVALID_ARGUMENT = 401,<br>HIDEBUG_TRACE_CAPTURED_ALREADY = 11400102,<br>HIDEBUG_NO_PERMISSION = 11400103,<br>HIDEBUG_TRACE_ABNORMAL = 11400104,<br>HIDEBUG_NO_TRACE_RUNNING = 11400105<br>} | Enumerates the error codes.|
+| Name| Description      |
+| -------- |----------|
+| [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode-1) {<br>HIDEBUG_SUCCESS = 0,<br>HIDEBUG_INVALID_ARGUMENT = 401,<br>HIDEBUG_TRACE_CAPTURED_ALREADY = 11400102,<br>HIDEBUG_NO_PERMISSION = 11400103,<br>HIDEBUG_TRACE_ABNORMAL = 11400104,<br>HIDEBUG_NO_TRACE_RUNNING = 11400105<br>} | Enumerates the error codes used in the HiDebug module.  |
 | [HiDebug_TraceFlag](_hi_debug.md#hidebug_traceflag-1) {<br>HIDEBUG_TRACE_FLAG_MAIN_THREAD = 1, HIDEBUG_TRACE_FLAG_ALL_THREADS = 2<br>} | Enumerates the thread tracing types.|
