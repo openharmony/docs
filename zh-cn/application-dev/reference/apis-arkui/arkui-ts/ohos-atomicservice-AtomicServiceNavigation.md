@@ -60,9 +60,9 @@ AtomicServiceNavigation({
 | navDestinationBuilder | [NavDestinationBuilder](#navdestinationbuilder) | 否 | @BuilderParam | 创建[NavDestination](ts-basic-components-navdestination.md)组件所需要的Builder数据。 |
 | navBarWidthRange | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 否 | @Prop |设置导航栏最小和最大宽度（双栏模式下生效）。|
 | minContentWidth | [Dimension](ts-types.md#dimension10) | 否 | @Prop | 设置导航栏内容区最小宽度（双栏模式下生效）。|
-| sideBarOptions | [sideBarOptions](#sidebaroptions16) | 否 | @Prop | 侧边栏的功能选项。|
-| sideBarContent | Callback\<void\> | 否 | @BuildParam | 侧边栏的内容。|
-| menus | [CustomBuilder](ts-types.md#custombuilder8) \| Array\<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)\> | 否 | @BuildParam | 宽屏场景下用户自定义插入的布局样式。|
+| sideBarOptions<sup>16+</sup> | [sideBarOptions](#sidebaroptions16) | 否 | @Prop | 侧边栏的功能选项。|
+| sideBarContent<sup>16+</sup> | Callback\<void\> | 否 | @BuilderParam | 侧边栏的内容。|
+| menus<sup>16+</sup> | [CustomBuilder](ts-types.md#custombuilder8) \| Array\<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)\> | 否 | @BuildParam | 宽屏场景下用户自定义插入的布局样式。默认为空，不显示任何样式。 |
 | stateChangeCallback | Callback\<boolean\> | 否 | - | 导航栏显示状态切换时触发该回调。|
 | modeChangeCallback | Callback\<[NavigationMode](ts-basic-components-navigation.md#navigationmode9枚举说明)\> | 否 | - | 当Navigation首次显示或者单双栏状态发生变化时触发该回调。|
 
@@ -78,7 +78,7 @@ AtomicServiceNavigation({
 | isBlurEnabled | boolean | 否 | 标题栏是否模糊，默认为true。 |
 | barStyle | [BarStyle](ts-basic-components-navigation.md#barstyle12枚举说明)  | 否 | 标题栏样式属性设置。 |
 | titleBarType | [TitleBarType](#titlebartype16) | 否 | 设置标题栏类型。 |
-| titleIcon | [Resource](ts-types.md#resource) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 设置标题栏的图标。 |
+| titleIcon | [Resource](ts-types.md#resource) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 设置标题栏的图标。默认值为$r('sys.color.ohos_id_color_titlebar_icon')。 |
 
 ## GradientBackground<sup>16+</sup>
 供开发者设置品牌渐变色。
@@ -170,9 +170,9 @@ type NavDestinationBuilder = (name: string, param?: Object) => void
 
 | 参数名 | 类型 | 必填 | 描述 |
 | --------------- | ------ | ---- | ---------- |
-| sideBarBackground | [ResourceColor](ts-types.md#resourcecolor) | 否 | 侧边栏显示隐藏回调。 |
+| sideBarBackground | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置侧边栏的背景颜色。默认为$r('sys.color.ohos_id_color_sub_background')。 |
 | onChange | Callback\<boolean\> | 否 | 侧边栏显示隐藏回调。 |
-| sideBarIcon | [Resource](ts-types.md#resource) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 侧边栏里的返回名称。 |
+| sideBarIcon | [Resource](ts-types.md#resource) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 侧边栏里的返回图标。默认值为$r('sys.symbol.open_sidebar')。 |
 
 ## 示例
 
@@ -310,14 +310,14 @@ export struct PageTwo {
 }
 ```
 
+![](figures/AtomicServiceNavigationDemo02.jpg)
+
 ### 示例2（抽屉模式，宽屏场景下插入自定义布局）
 
 设备宽屏场景（宽度大于600vp）下设置抽屉模式，用户在标题栏插入自定义布局。
 
-![](figures/AtomicServiceNavigationDemo02.jpg)
-
 ```ts
-import { AtomicServiceNavigation, TitleBarType } from '@ohos.atomicservice.AtomicServiceNavigation'
+import { AtomicServiceNavigation, TitleBarType } from '@kit.ArkUI';
 import { AtomicServiceTabs, TabBarOptions, TabBarPosition } from '@kit.ArkUI';
 
 @Entry
@@ -459,7 +459,7 @@ export struct PageTwo {
 设置边栏：背景色与内容样式。
 
 ```ts
-import { AtomicServiceNavigation, TitleBarType } from '@ohos.atomicservice.AtomicServiceNavigation'
+import { AtomicServiceNavigation, TitleBarType } from '@kit.ArkUI';
 import { AtomicServiceTabs, TabBarOptions, TabBarPosition } from '@kit.ArkUI';
 
 @Entry
