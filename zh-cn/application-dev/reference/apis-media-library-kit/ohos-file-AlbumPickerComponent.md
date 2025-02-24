@@ -17,7 +17,7 @@ import { EmptyAreaClickCallback } from '@ohos.file.AlbumPickerComponent';
 
 ## 属性
 
-支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)。
+支持[通用属性](../apis-arkui/arkui-ts/ts-component-general-attributes.md)。
 
 ## AlbumPickerComponent
 

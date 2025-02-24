@@ -21,7 +21,7 @@ import { ComposeListItem } from "@kit.ArkUI"
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)
 
 
 ## ComposeListItem
@@ -119,7 +119,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 | onChange | (value:&nbsp;boolean)=&gt;void | 否 | 右侧Switch/CheckBox/Radio选中状态改变时触发回调。<br> value为true时，表示从未选中变为选中。<br> value为false时，表示从选中变为未选中。 |
 
 ## 事件
-支持[通用事件](ts-universal-events-click.md)
+支持[通用事件](ts-component-general-events.md)
 
 ## 示例
 该示例实现了带有主标题、副标题、描述、右侧按钮及文本的简单列表项。

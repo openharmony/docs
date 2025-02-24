@@ -138,7 +138,7 @@ enableSecure(isSecure: boolean)
 
 ## 事件
 
-从API version 12开始，type为SURFACE或TEXTURE时，支持[通用事件](ts-universal-events-click.md)。
+从API version 12开始，type为SURFACE或TEXTURE时，支持[通用事件](ts-component-general-events.md)。
 
 > **说明：** 
 >

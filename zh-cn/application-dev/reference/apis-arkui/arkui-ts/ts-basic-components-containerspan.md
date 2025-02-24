@@ -56,7 +56,7 @@ attributeModifier(modifier: AttributeModifier\<ContainerSpanAttribute>)
 
 ## 事件
 
-不支持[通用事件](ts-universal-events-click.md)。
+不支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 ### 示例1（设置背景样式）

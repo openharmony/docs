@@ -18,7 +18,7 @@ import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from
 
 ## 属性
 
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)
 
 ## InterstitialDialogAction
 
@@ -123,7 +123,7 @@ closeDialog(): void
 | OFFSET_FOR_NONE | 1 | 不存在菜单栏情况下与窗口底部的距离。<br>设置后弹框距离底部44vp。 |
 
 ## 事件
-不支持[通用事件](ts-universal-events-click.md)
+不支持[通用事件](ts-component-general-events.md)
 
 ## 示例
 

@@ -43,7 +43,7 @@ TextArea(value?: TextAreaOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)，还支持以下属性：
 
 >  **说明：**
 >
@@ -817,7 +817,7 @@ stopBackPress(isStopped: Optional\<boolean>)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onChange
 
