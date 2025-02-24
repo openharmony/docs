@@ -1031,6 +1031,7 @@ INPUT_OCCUPIED_BY_SYSTEM 该快捷键已被系统占用，可以通过接口[OH_
 
 INPUT_OCCUPIED_BY_OTHER 已被抢占订阅。
 
+
 ### OH_Input_AddInputEventInterceptor()
 
 ```
