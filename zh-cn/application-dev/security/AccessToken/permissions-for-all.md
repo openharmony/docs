@@ -393,11 +393,21 @@
 
 **授权方式**：system_grant
 
-**起始版本**：16
+**起始版本**：15
 
 ## ohos.permission.USE_FRAUD_CALL_LOG_PICKER
 
 允许应用使用诈骗通话记录选择器，获取通话记录内容。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**起始版本**：15
+
+## ohos.permission.USE_FRAUD_APP_PICKER
+
+允许应用使用诈骗应用选择器，获取应用信息。
 
 **权限级别**：system_basic
 
@@ -481,7 +491,7 @@
 
 **起始版本**：15
 
-### ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
+## ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
 
 允许设备管理应用管理个人设备限制策略。
 
@@ -494,9 +504,24 @@
 
 **起始版本**：15
 
-### ohos.permission.START_PROVISIONING_MESSAGE
+## ohos.permission.START_PROVISIONING_MESSAGE
 
 允许应用启动设备管理业务部署流程，将该应用激活为个人设备管理应用。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：15
+
+## ohos.permission.ACCESS_DISK_PHY_INFO
+
+允许应用获取硬盘的硬件信息。
+
+仅面向金融证券类应用开放，用于证券、股票交易。
 
 **权限级别**：system_basic
 

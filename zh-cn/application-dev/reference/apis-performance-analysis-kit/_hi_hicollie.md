@@ -2,17 +2,15 @@
 
 ## 概述
 
-提供检测业务线程卡死或卡顿的能力。请注意：要在非业务线程中调用
+提供检测业务线程卡死或卡顿的能力。请注意：要在非业务线程中调用。
 
-本模块函数可用于： （1）注册应用业务线程卡死的周期性检测任务； （2）注册应用业务线程卡顿检测的回调函数； （3）上报应用业务线程卡死事件。
+本模块函数可用于：（1）注册应用业务线程卡死的周期性检测任务；（2）注册应用业务线程卡顿检测的回调函数；（3）上报应用业务线程卡死事件。
 
 **系统能力：** SystemCapability.HiviewDFX.HiCollie
 
 **起始版本：** 12
 
-
 ## 汇总
-
 
 ### 文件
 
@@ -31,11 +29,11 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| typedef enum [HiCollie_ErrorCode](#hicollie_errorcode)[HiCollie_ErrorCode](#hicollie_errorcode) | 错误码定义  |
-| typedef void(\* [OH_HiCollie_Task](#oh_hicollie_task)) (void) | 在业务线程卡死检测中，通过实现该函数来检测业务线程是否卡住。 HiCollie将在独立线程中每3秒调用一次该函数。 例如：该函数可实现向业务线程发送消息。在业务线程接收到消息之后，设置一个标记，通过检查这个标记，可以知道业务线程是否卡住。  |
-| typedef void(\* [OH_HiCollie_BeginFunc](#oh_hicollie_beginfunc)) (const char \*eventName) | 事件处理前调用该函数。在卡顿检测中, 通过实现该函数来记录业务线程处理事件的开始时间。  |
-| typedef void(\* [OH_HiCollie_EndFunc](#oh_hicollie_endfunc)) (const char \*eventName) | 事件处理后调用该函数。在卡顿检测中, 通过实现该函数来检测业务线程处理事件是否卡顿。 通过检查处理事件的执行时间，HiCollie将知道每个事件的持续时间。如果超过预设阈值(150ms~450ms)，将报告jank事件。  |
-| typedef struct [HiCollie_DetectionParam](_hi_hicollie___detection_param.md)[HiCollie_DetectionParam](#hicollie_detectionparam) | 用于检测业务线程卡顿的参数。 请注意，这些参数对API 12无效，仅用于扩展。  |
+| typedef enum [HiCollie_ErrorCode](#hicollie_errorcode)[HiCollie_ErrorCode](#hicollie_errorcode) | 错误码定义。  |
+| typedef void(\* [OH_HiCollie_Task](#oh_hicollie_task)) (void) | 在业务线程卡死检测中，通过实现该函数来检测业务线程是否卡住。 HiCollie将在独立线程中每3秒调用一次该函数。例如：该函数可实现向业务线程发送消息。在业务线程接收到消息之后，设置一个标记，通过检查这个标记，可以知道业务线程是否卡住。  |
+| typedef void(\* [OH_HiCollie_BeginFunc](#oh_hicollie_beginfunc)) (const char \*eventName) | 事件处理前调用该函数。在卡顿检测中，通过实现该函数来记录业务线程处理事件的开始时间。  |
+| typedef void(\* [OH_HiCollie_EndFunc](#oh_hicollie_endfunc)) (const char \*eventName) | 事件处理后调用该函数。在卡顿检测中，通过实现该函数来检测业务线程处理事件是否卡顿。通过检查处理事件的执行时间，HiCollie将知道每个事件的持续时间。如果超过预设阈值(150ms~450ms)，将报告jank事件。  |
+| typedef struct [HiCollie_DetectionParam](_hi_hicollie___detection_param.md)[HiCollie_DetectionParam](#hicollie_detectionparam) | 用于检测业务线程卡顿的参数。请注意，这些参数对API 12无效，仅用于扩展。  |
 | typedef void(\* [OH_HiCollie_Callback](#oh_hicollie_callback)) (void \*) | 启动函数执行超时检测。  |
 | typedef enum [HiCollie_Flag](#hicollie_flag)[HiCollie_Flag](#hicollie_flag) | 定义函数执行超时时发生的动作。  |
 | typedef struct [HiCollie_SetTimerParam](_hi_hicollie___set_timer_param.md)[HiCollie_SetTimerParam](#hicollie_settimerparam) | 定义OH_HiCollie_SetTimer函数的输入参数。  |
@@ -44,7 +42,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [HiCollie_ErrorCode](#hicollie_errorcode) {<br/>HICOLLIE_SUCCESS = 0, HICOLLIE_INVALID_ARGUMENT = 401, HICOLLIE_WRONG_THREAD_CONTEXT = 29800001, HICOLLIE_REMOTE_FAILED = 29800002,<br/>HICOLLIE_INVALID_TIMER_NAME = 29800003, HICOLLIE_INVALID_TIMEOUT_VALUE = 29800004, HICOLLIE_WRONG_PROCESS_CONTEXT = 29800005, HICOLLIE_WRONG_TIMER_ID_OUTPUT_PARAM = 29800006<br/>} | 错误码定义  |
+| [HiCollie_ErrorCode](#hicollie_errorcode) {<br/>HICOLLIE_SUCCESS = 0, HICOLLIE_INVALID_ARGUMENT = 401, HICOLLIE_WRONG_THREAD_CONTEXT = 29800001, HICOLLIE_REMOTE_FAILED = 29800002,<br/>HICOLLIE_INVALID_TIMER_NAME = 29800003, HICOLLIE_INVALID_TIMEOUT_VALUE = 29800004, HICOLLIE_WRONG_PROCESS_CONTEXT = 29800005, HICOLLIE_WRONG_TIMER_ID_OUTPUT_PARAM = 29800006<br/>} | 错误码定义。  |
 | [HiCollie_Flag](#hicollie_flag) { HICOLLIE_FLAG_DEFAULT = (~0), **HICOLLIE_FLAG_NOOP** = (0), **HICOLLIE_FLAG_LOG** = (1 &lt;&lt; 0), **HICOLLIE_FLAG_RECOVERY** = (1 &lt;&lt; 1) } | 定义函数执行超时时发生的动作。  |
 
 ### 函数
@@ -77,7 +75,6 @@ typedef enum HiCollie_ErrorCode HiCollie_ErrorCode
 ```
 
 **描述**
-
 错误码定义。
 
 **起始版本：** 12
@@ -112,7 +109,7 @@ typedef void (*OH_HiCollie_BeginFunc)(const char* eventName)
 ```
 
 **描述**
-事件处理前调用该函数。在卡顿检测中, 通过实现该函数来记录业务线程处理事件的开始时间。
+事件处理前调用该函数。在卡顿检测中，通过实现该函数来记录业务线程处理事件的开始时间。
 
 **起始版本：** 12
 
@@ -140,7 +137,7 @@ typedef void(* OH_HiCollie_EndFunc) (const char *eventName)
 ```
 
 **描述**
-事件处理后调用该函数。在卡顿检测中, 通过实现该函数来检测业务线程处理事件是否卡顿。 通过检查处理事件的执行时间，HiCollie将知道每个事件的持续时间。如果超过预设阈值(150ms~450ms)，将报告jank事件。
+事件处理后调用该函数。在卡顿检测中，通过实现该函数来检测业务线程处理事件是否卡顿。通过检查处理事件的执行时间，HiCollie将知道每个事件的持续时间。如果超过预设阈值(150ms~450ms)，将报告jank事件。
 
 **起始版本：** 12
 
@@ -157,7 +154,7 @@ typedef void(* OH_HiCollie_Task) (void)
 ```
 
 **描述**
-在业务线程卡死检测中，通过实现该函数来检测业务线程是否卡住。 HiCollie将在独立线程中每3秒调用一次该函数。 例如：该函数可实现向业务线程发送消息。在业务线程接收到消息之后，设置一个标记，通过检查这个标记，可以知道业务线程是否卡住。
+在业务线程卡死检测中，通过实现该函数来检测业务线程是否卡住。 HiCollie将在独立线程中每3秒调用一次该函数。例如：该函数可实现向业务线程发送消息。在业务线程接收到消息之后，设置一个标记，通过检查这个标记，可以知道业务线程是否卡住。
 
 **起始版本：** 12
 
@@ -170,16 +167,16 @@ enum HiCollie_ErrorCode
 ```
 
 **描述**
-错误码定义
+错误码定义。
 
 **起始版本：** 12
 
 | 枚举值 | 描述 |
 | -------- | -------- |
-| HICOLLIE_SUCCESS  | 成功。&nbsp;&nbsp; |
-| HICOLLIE_INVALID_ARGUMENT  | 无效参数，可能的原因： 1.参数传值问题 2.参数类型问题。&nbsp;&nbsp; |
-| HICOLLIE_WRONG_THREAD_CONTEXT  | 检测的线程错误：在业务线程中调用。&nbsp;&nbsp; |
-| HICOLLIE_REMOTE_FAILED  | 远程调用错误。&nbsp;&nbsp; |
+| HICOLLIE_SUCCESS  | 成功。|
+| HICOLLIE_INVALID_ARGUMENT  | 无效参数。可能的原因：1. 参数传值问题；2. 参数类型问题。|
+| HICOLLIE_WRONG_THREAD_CONTEXT  | 检测的线程错误：在业务线程中调用。|
+| HICOLLIE_REMOTE_FAILED  | 远程调用错误。 |
 | HICOLLIE_INVALID_TIMER_NAME  | 无效的函数执行超时检测器名称。<br/>**起始版本：** 16 |
 | HICOLLIE_INVALID_TIMEOUT_VALUE  | 无效的函数执行超时时间阈值。<br/>**起始版本：** 16 |
 | HICOLLIE_WRONG_PROCESS_CONTEXT  | 函数执行超时检测接入进程错误。<br/>**起始版本：** 16 |
@@ -243,7 +240,9 @@ HiCollie_ErrorCode OH_HiCollie_Init_JankDetection (OH_HiCollie_BeginFunc * begin
 
 **返回：**
 
-HICOLLIE_SUCCESS 0 - 成功。 HICOLLIE_INVALID_ARGUMENT 401 - 开始函数和结束函数两者都必须有值或为空，否则将返回该错误值。 HICOLLIE_WRONG_THREAD_CONTEXT 29800001 - 调用线程错误。无法从主线程调用该函数。
+HICOLLIE_SUCCESS 0 - 成功。
+HICOLLIE_INVALID_ARGUMENT 401 - 开始函数和结束函数两者都必须有值或为空，否则将返回该错误值。
+HICOLLIE_WRONG_THREAD_CONTEXT 29800001 - 调用线程错误。无法从主线程调用该函数。
 
 ### OH_HiCollie_Init_StuckDetection()
 
@@ -285,7 +284,7 @@ HiCollie_ErrorCode OH_HiCollie_Report (bool * isSixSecond)
 
 **返回：**
 
-HICOLLIE_SUCCESS 0 - 成功。 HICOLLIE_INVALID_ARGUMENT 401 - 开始函数和结束函数两者都必须有值或为空，否则将返回该错误值。 HICOLLIE_WRONG_THREAD_CONTEXT 29800001 - 调用线程错误。无法从主线程调用该函数。 HICOLLIE_REMOTE_FAILED 29800002 - 远程调用错误。
+HICOLLIE_SUCCESS 0 - 成功。HICOLLIE_INVALID_ARGUMENT 401 - 开始函数和结束函数两者都必须有值或为空，否则将返回该错误值。HICOLLIE_WRONG_THREAD_CONTEXT 29800001 - 调用线程错误。无法从主线程调用该函数。HICOLLIE_REMOTE_FAILED 29800002 - 远程调用错误。
 
 ### OH_HiCollie_SetTimer()
 

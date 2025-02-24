@@ -34,7 +34,7 @@ Panel(show: boolean)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### type
 
@@ -232,7 +232,7 @@ showCloseIcon(value: boolean)
 | WRAP_CONTENT | 类型为CUSTOM时，自适应内容高度。 |
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onChange
 

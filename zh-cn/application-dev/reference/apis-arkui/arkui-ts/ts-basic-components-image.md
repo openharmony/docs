@@ -87,7 +87,7 @@ Image新增[imageAIOptions](ts-image-common.md#imageaioptions)参数，为组件
 
 ## 属性
 
-属性的详细使用指导请参考[添加属性](../../../ui/arkts-graphics-display.md#添加属性)。除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+属性的详细使用指导请参考[添加属性](../../../ui/arkts-graphics-display.md#添加属性)。除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 > **说明：**
 >
@@ -131,15 +131,17 @@ objectFit(value: ImageFit)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------- |
 | value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 图片的填充效果。<br/>默认值：ImageFit.Cover |
 
-### imageMatrix<sup>16+</sup>
+### imageMatrix<sup>15+</sup>
 
 imageMatrix(matrix: ImageMatrix)
 
 设置图片的变换矩阵。svg类型图源不支持该属性。
 
-设置resizable属性时，该属性设置不生效。
+设置resizable、objectRepeat、orientation属性时，该属性设置不生效。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+该属性只针对图源做处理，不会触发Image组件的回调事件。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -269,7 +271,7 @@ fitOriginalSize(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                             |
 | ------ | ------- | ---- | ------------------------------------------------ |
-| value  | boolean | 是   | 图片的显示尺寸是否跟随图源尺寸<br/>默认值：false <br/>**说明：**<br/>当不设置fitOriginalSize或者设置fitOriginalSize为false时，组件显示大小不跟随图源大小。<br/> 当设置fitOriginalSize为true时，组件显示大小跟随图源大小。 |
+| value  | boolean | 是   | 图片的显示尺寸是否跟随图源尺寸。<br/>默认值：false <br/>**说明：**<br/>当不设置fitOriginalSize或者设置fitOriginalSize为false时，组件显示大小不跟随图源大小。<br/> 当设置fitOriginalSize为true时，组件显示大小跟随图源大小。 |
 
 ### fillColor
 
@@ -289,7 +291,7 @@ fillColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明           |
 | ------ | ------------------------------------------ | ---- | -------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置填充颜色。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置填充颜色。  <br/>**说明：**<br/> 默认不对组件进行填充。当传入异常值时，系统将使用默认的主题色：浅色模式下为黑色，深色模式下为白色。|
 
 ### fillColor<sup>15+</sup>
 
@@ -309,7 +311,7 @@ fillColor(value: ResourceColor|ColorContent)
 
 | 参数名 | 类型                                       | 必填 | 说明           |
 | ------ | ------------------------------------------ | ---- | -------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor)\|[ColorContent](#colorcontent15) | 是   | 设置填充颜色。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor)\|[ColorContent](#colorcontent15) | 是   | 设置填充颜色。 <br/>**说明：**<br/> 默认不对组件进行填充。当传入异常值时，系统将使用默认的主题色：浅色模式下为黑色，深色模式下为白色。 |
 
 ### autoResize
 
@@ -421,7 +423,7 @@ enableAnalyzer(enable:&nbsp;boolean)
 
 不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。
 
-分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)进行分析，目前仅支持[RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7)类型，使用方式见[示例4](#示例4)。
+分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)进行分析，目前仅支持[RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7)类型，使用方式见[示例4](#示例4开启图像ai分析)。
 
 alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支持分析，隐私遮罩属性[obscured](ts-universal-attributes-obscured.md)打开时不支持分析。
 
@@ -499,7 +501,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| value  | [DynamicRangeMode](#dynamicrangemode12-1) | 是   | 图像显示的动态范围。<br/>默认值：dynamicRangeMode.Standard |
+| value  | [DynamicRangeMode](#dynamicrangemode12枚举说明) | 是   | 图像显示的动态范围。<br/>默认值：dynamicRangeMode.Standard |
 
 ### orientation<sup>14+</sup>
 
@@ -587,7 +589,7 @@ orientation(orientation: ImageRotateOrientation)
 
 ![edgewidths](figures/edgewidths.png)
 
-## DynamicRangeMode<sup>12+</sup>
+## DynamicRangeMode<sup>12+</sup>枚举说明
 
 期望展示的图像动态范围。
 
@@ -686,7 +688,7 @@ type DrawingLattice = Lattice
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onComplete
 
@@ -1514,3 +1516,49 @@ struct Index {
 ```
 
 ![objectRepeatExample](figures/objectRepeatExample.png)
+
+### 示例15（设置SVG图片的填充颜色）
+
+该示例通过[fillColor](#fillcolor15)为SVG图片设置不同颜色的填充效果。
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Text("不设置fillColor")
+      Image($r("app.media.svgExample"))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+      Text("fillColor传入ColorContent.ORIGIN")
+      Image($r("app.media.svgExample"))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+        .fillColor(ColorContent.ORIGIN)
+      Text("fillColor传入Color.Blue")
+      Image($r("app.media.svgExample"))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+        .fillColor(Color.Blue)
+      Text("fillColor传入undefined")
+      Image($r("app.media.svgExample"))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+        .fillColor(undefined)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![fillColorExample](figures/fillColorExample.png)

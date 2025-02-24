@@ -49,11 +49,11 @@ RemoteWindow(target: WindowAnimationTarget)
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)。
+支持[通用属性](ts-component-general-attributes.md)。
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 RemoteWindow需要接收由[windowAnimationManager](../js-apis-windowAnimationManager-sys.md)设置的WindowAnimationController对象传入对应窗口WindowAnimationTarget对象，可以创建一个RemoteWindowExample.ets作为示例组件将RemoteWindow组件和传入的WindowAnimationTarget对象关联封装起来。

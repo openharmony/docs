@@ -15,6 +15,14 @@ import { uiExtension } from '@kit.ArkUI'
 
 ## WindowProxy
 
+### 属性
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                                 | 类型                  | 只读 | 可选 | 说明                                                                                                     |
+| ------------------------------------| -------------------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------ |
+| properties<sup>14+</sup>            | [WindowProxyProperties](#windowproxyproperties14) |  否  |  否  | 组件（EmbeddedComponent或UIExtensionComponent）的信息。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。<br/>**约束：** 由于架构约束，不建议在[onSessionCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate)阶段同步获取该值，建议在收到[on('windowSizeChange')](../apis-arkui/js-apis-arkui-uiExtension.md#onwindowsizechange)回调之后获取。                                                                            |
+
 ### getWindowAvoidArea
 
 getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
@@ -304,36 +312,6 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-### properties<sup>14+</sup>
-
-properties: WindowProxyProperties
-
-宿主应用窗口和组件（EmbeddedComponent或UIExtensionComponent）的信息。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-| 参数名     | 类型                                 | 说明                             |
-| ---------- | ------------------------------------ | -------------------------------- |
-| properties | [WindowProxyProperties](#windowproxyproperties14) | 组件（EmbeddedComponent或UIExtensionComponent）以及宿主窗口的信息。 |
-
-**示例**
-
-```ts
-// ExtensionProvider.ts
-import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
-
-export default class EntryAbility extends EmbeddedUIExtensionAbility {
-  onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    const extensionWindow = session.getUIExtensionWindowProxy();
-    // 获取组件（EmbeddedComponent或UIExtensionComponent）位置和尺寸信息
-    const rect = extensionWindow.properties.uiExtensionHostWindowProxyRect;
-    console.log(`Rect Info: ${JSON.stringify(rect)}`);
-  }
-}
-```
-
 ### createSubWindowWithOptions
 
 createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptions): Promise&lt;window.Window&gt;
@@ -505,7 +483,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 ## WindowProxyProperties<sup>14+</sup>
 
-用于表示宿主应用窗口和组件（EmbeddedComponent或UIExtensionComponent）的信息。
+用于表示组件的相关信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

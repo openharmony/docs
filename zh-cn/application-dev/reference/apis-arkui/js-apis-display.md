@@ -86,8 +86,8 @@ import { display } from '@kit.ArkUI';
 | FOLD_DISPLAY_MODE_COORDINATION | 4 | 表示设备当前双屏协同显示。|
 
 >**说明：**<br>
->&bullet; 对于大屏内折产品，内屏显示状态为FOLD_DISPLAY_MODE_FULL，外屏显示状态为FOLD_DISPLAY_MODE_MAIN。<br>
->&bullet; 对于小屏内折产品，内屏显示状态为FOLD_DISPLAY_MODE_MAIN，外屏显示状态为FOLD_DISPLAY_MODE_SUB。
+>&bullet; 对于内外屏均可作为主屏幕使用的折叠产品，内屏显示状态为FOLD_DISPLAY_MODE_FULL，外屏显示状态为FOLD_DISPLAY_MODE_MAIN。<br>
+>&bullet; 对于外屏只有简单的辅助显示作用的折叠产品，内屏显示状态为FOLD_DISPLAY_MODE_MAIN，外屏显示状态为FOLD_DISPLAY_MODE_SUB。
 
 ## FoldCreaseRegion<sup>10+</sup>
 
@@ -966,7 +966,7 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getDefaultDisplaySync()](#displaygetdefaultdisplaysync9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[getDefaultDisplaySync()](#displaygetdefaultdisplaysync9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1001,7 +1001,7 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getDefaultDisplaySync()](#displaygetdefaultdisplaysync9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[getDefaultDisplaySync()](#displaygetdefaultdisplaysync9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1034,7 +1034,7 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getAllDisplays()](#displaygetalldisplays9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[getAllDisplays()](#displaygetalldisplays9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1067,7 +1067,7 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getAllDisplays()](#displaygetalldisplays9-1)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[getAllDisplays()](#displaygetalldisplays9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 

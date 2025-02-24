@@ -138,7 +138,7 @@ enableSecure(isSecure: boolean)
 
 ## 事件
 
-从API version 12开始，type为SURFACE或TEXTURE时，支持[通用事件](ts-universal-events-click.md)。
+从API version 12开始，type为SURFACE或TEXTURE时，支持[通用事件](ts-component-general-events.md)。
 
 > **说明：** 
 >
@@ -378,7 +378,7 @@ onSurfaceDestroyed(surfaceId: string): void
 
 startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
-配置AI分析并启动AI分析功能，使用前需先[使能](#enableanalyzer12)图像AI分析能力。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>若该方法尚未执行完毕，此时重复调用，则会触发错误回调。
+配置AI分析并启动AI分析功能，使用前需先[启用图像AI分析能力](#enableanalyzer12)。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>若该方法尚未执行完毕，此时重复调用，则会触发错误回调。
 
 > **说明：**
 > 

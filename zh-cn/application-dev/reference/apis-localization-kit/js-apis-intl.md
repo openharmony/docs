@@ -1,7 +1,7 @@
 # @ohos.intl (国际化-Intl)
 
 本模块提供基础的应用国际化能力，包括时间日期格式化、数字格式化、排序等，相关接口在ECMA 402标准中定义。
-[I18N模块](js-apis-i18n.md)提供其他非ECMA 402定义的国际化接口，与本模块共同使用可提供完整地国际化支持能力。 
+[I18N模块](js-apis-i18n.md)提供其他非ECMA 402定义的国际化接口，与本模块共同使用可提供完整地国际化支持能力。
 
 >  **说明：**
 >
@@ -32,24 +32,16 @@ import { intl } from '@kit.LocalizationKit';
 
 | 名称              | 类型      | 必填   | 说明                                       |
 | --------------- | ------- | -------- | ---------------------------------------- |
-| language        | string  | 是    | 与区域设置相关的语言，如：zh。                    |
-| script          | string  | 是    | 区域语言的书写方式（脚本），如：Hans。                          |
-| region          | string  | 是    | 与区域设置相关的国家或地区，如：CN。                         |
+| language        | string  | 是    | 与区域设置相关的语言，如：zh。取值遵循ISO&nbsp;639标准。 |
+| script          | string  | 是    | 区域语言的书写方式（脚本），如：Hans。取值遵循Unicode&nbsp;ISO&nbsp;15924标准。 |
+| region          | string  | 是    | 与区域设置相关的国家或地区，如：CN。取值遵循ISO&nbsp;3166标准。 |
 | baseName        | string  | 是    | Locale的基本信息，由语言、脚本、国家或地区组成，如：zh-Hans-CN。  |
-| caseFirst       | string  | 是    | 区域的排序规则是否考虑大小写，<br>取值包括："upper",&nbsp;"lower",&nbsp;"false"。 |
-| calendar        | string  | 是    | 区域的日历信息，<br>取值包括："buddhist",&nbsp;"chinese",&nbsp;"coptic","dangi",&nbsp;"ethioaa",&nbsp;"ethiopic",&nbsp;"gregory",&nbsp;"hebrew",&nbsp;"indian",&nbsp;"islamic",&nbsp;"islamic-umalqura",&nbsp;"islamic-tbla",&nbsp;"islamic-civil",&nbsp;"islamic-rgsa",&nbsp;"iso8601",&nbsp;"japanese",&nbsp;"persian",&nbsp;"roc",&nbsp;"islamicc"。 |
-| collation       | string  | 是    | 区域的排序规则，<br>取值包括："big5han",&nbsp;"compat",&nbsp;"dict",&nbsp;"direct",&nbsp;"ducet",&nbsp;"eor",&nbsp;"gb2312",&nbsp;"phonebk",&nbsp;"phonetic",&nbsp;"pinyin",&nbsp;"reformed",&nbsp;"searchjl",&nbsp;"stroke",&nbsp;"trad",&nbsp;"unihan",&nbsp;"zhuyin"。 |
-| hourCycle       | string  | 是    | 区域的时制信息，<br>取值包括："h12",&nbsp;"h23",&nbsp;"h11",&nbsp;"h24"。 |
-| numberingSystem | string  | 是    | 区域使用的数字系统，<br>取值包括："adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
+| caseFirst       | string  | 是    | 区域的排序规则是否考虑大小写，取值包括：<br>"upper",&nbsp;"lower",&nbsp;"false"。<br>不同取值表示的含义请参考[本地习惯排序表1](../../internationalization/i18n-sorting-local.md)。 |
+| calendar        | string  | 是    | 区域的日历信息，取值包括：<br>"buddhist",&nbsp;"chinese",&nbsp;"coptic","dangi",&nbsp;"ethioaa",&nbsp;"ethiopic",&nbsp;"gregory",&nbsp;"hebrew",&nbsp;"indian",&nbsp;"islamic",&nbsp;"islamic-umalqura",&nbsp;"islamic-tbla",&nbsp;"islamic-civil",&nbsp;"islamic-rgsa",&nbsp;"iso8601",&nbsp;"japanese",&nbsp;"persian",&nbsp;"roc",&nbsp;"islamicc"。<br>不同取值表示的含义请参考[设置日历和历法表1](../../internationalization/i18n-calendar.md)。 |
+| collation       | string  | 是    | 区域的排序规则，取值包括：<br>"big5han",&nbsp;"compat",&nbsp;"dict",&nbsp;"direct",&nbsp;"ducet",&nbsp;"eor",&nbsp;"gb2312",&nbsp;"phonebk",&nbsp;"phonetic",&nbsp;"pinyin",&nbsp;"reformed",&nbsp;"searchjl",&nbsp;"stroke",&nbsp;"trad",&nbsp;"unihan",&nbsp;"zhuyin"。<br>不同取值表示的含义请参考[本地习惯排序表1](../../internationalization/i18n-sorting-local.md)。 |
+| hourCycle       | string  | 是    | 区域的时制信息，取值包括：<br>"h11"、"h12"、"h23"、"h24"。<br>不同取值的显示效果可参考[时间日期国际化表5](../../internationalization/i18n-time-date.md)。 |
+| numberingSystem | string  | 是    | 区域使用的数字系统，取值包括：<br>"adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
 | numeric         | boolean | 是    | 是否对数字字符进行特殊的排序规则处理。<br>默认值：false。                      |
-
->  **说明：**
->
->  - caseFirst、collation：不同取值表示的含义请参考[本地习惯排序表1](../../internationalization/i18n-sorting-local.md)。
->
->  - calendar：不同取值表示的含义请参考[设置日历和历法表1](../../internationalization/i18n-calendar.md)。
->
->  - hourCycle：不同取值的显示效果可参考[时间日期国际化表5](../../internationalization/i18n-time-date.md)。
 
 ### constructor<sup>8+</sup>
 
@@ -63,7 +55,7 @@ constructor()
 
 **系统能力**：SystemCapability.Global.I18n
 
-**示例：** 
+**示例：**
   ```ts
   // 默认构造函数使用系统当前locale创建
   let locale = new intl.Locale();
@@ -83,14 +75,14 @@ constructor(locale: string, options?: LocaleOptions)
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string                           | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。<br>locale可填写组成部分中的一个或多个。|
 | options             | [LocaleOptions](#localeoptions) | 否    | 创建区域对象的选项。 |
 
-**示例：** 
+**示例：**
   ```ts
   // 创建 "zh-CN" Locale对象
   let locale = new intl.Locale("zh-CN");
@@ -110,13 +102,13 @@ toString(): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明          |
 | ------ | ----------- |
 | string | 区域对象的字符串。 |
 
-**示例：** 
+**示例：**
   ```ts
   // 创建 "en-GB" Locale对象
   let locale = new intl.Locale("en-GB");
@@ -135,13 +127,13 @@ maximize(): Locale
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型                | 说明         |
 | ----------------- | ---------- |
 | [Locale](#locale) | 补充完脚本、国家或地区信息后的区域对象。 |
 
-**示例：** 
+**示例：**
   ```ts
   // 创建 "zh" Locale对象
   let locale = new intl.Locale("zh");
@@ -169,13 +161,13 @@ minimize(): Locale
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型                | 说明         |
 | ----------------- | ---------- |
 | [Locale](#locale) | 删除完脚本、国家或地区信息后的区域对象。 |
 
-**示例：** 
+**示例：**
   ```ts
   // 创建 "zh-Hans-CN" Locale对象
   let locale = new intl.Locale("zh-Hans-CN");
@@ -202,12 +194,12 @@ minimize(): Locale
 
 | 名称              | 类型      | 必填   |  说明                                       |
 | --------------- | ------- | ---- |---------------------------------------- |
-| calendar        | string  | 否   |日历参数，<br>取值包括："buddhist", "chinese", "coptic", "dangi", "ethioaa", "ethiopic", "gregory", "hebrew", "indian", "islamic", "islamic-umalqura", "islamic-tbla", "islamic-civil", "islamic-rgsa", "iso8601", "japanese", "persian", "roc", "islamicc"。 |
-| collation       | string  | 否     |排序参数，<br>取值包括："big5han", "compat", "dict", "direct", "ducet", "emoji", "eor", "gb2312", "phonebk", "phonetic", "pinyin", "reformed	", "search", "searchjl", "standard", "stroke", "trad", "unihan", "zhuyin"。 |
-| hourCycle       | string  | 否     |时制格式，<br>取值包括："h11",&nbsp;"h12",&nbsp;"h23",&nbsp;"h24"。 |
-| numberingSystem | string  | 否     |数字系统，<br>取值包括："adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
+| calendar        | string  | 否   |日历参数，取值包括：<br>"buddhist", "chinese", "coptic", "dangi", "ethioaa", "ethiopic", "gregory", "hebrew", "indian", "islamic", "islamic-umalqura", "islamic-tbla", "islamic-civil", "islamic-rgsa", "iso8601", "japanese", "persian", "roc", "islamicc"。 |
+| collation       | string  | 否     |排序参数，取值包括：<br>"big5han", "compat", "dict", "direct", "ducet", "emoji", "eor", "gb2312", "phonebk", "phonetic", "pinyin", "reformed	", "search", "searchjl", "standard", "stroke", "trad", "unihan", "zhuyin"。 |
+| hourCycle       | string  | 否     |时制格式，取值包括：<br>"h11",&nbsp;"h12",&nbsp;"h23",&nbsp;"h24"。 |
+| numberingSystem | string  | 否     |数字系统，取值包括：<br>"adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
 | numeric         | boolean | 否     | 是否对数字字符进行特殊的排序规则处理。默认值：false。                               |
-| caseFirst       | string  | 否     | 表示大写、小写的排序顺序，<br>取值范围："upper",&nbsp;"lower",&nbsp;"false"。 |
+| caseFirst       | string  | 否     | 表示大写、小写的排序顺序，取值范围：<br>"upper",&nbsp;"lower",&nbsp;"false"。 |
 
 >  **说明：**
 >
@@ -231,7 +223,7 @@ constructor()
 
 **系统能力**：SystemCapability.Global.I18n
 
-**示例：** 
+**示例：**
   ```ts
   // 使用系统当前locale创建DateTimeFormat对象
   let datefmt= new intl.DateTimeFormat();
@@ -249,14 +241,14 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名                  | 类型                                   | 必填   | 说明                           |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。<br>locale可填写组成部分中的一个或多个。 |
 | options              | [DateTimeOptions](#datetimeoptions) | 否    | 创建时间、日期格式化对象时可设置的配置项。<br>若所有选项均未设置时，year、month、day三个属性的默认值为numeric。 |
 
-**示例：** 
+**示例：**
   ```ts
   // 使用 "zh-CN" locale创建DateTimeFormat对象，日期风格为full，时间风格为medium
   let datefmt= new intl.DateTimeFormat("zh-CN", { dateStyle: 'full', timeStyle: 'medium' });
@@ -277,19 +269,19 @@ format(date: Date): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型   | 必填   | 说明      |
 | ---- | ---- | ---- | ------- |
 | date | Date | 是    | 时间、日期。说明：月份从0开始计数，如0表示一月。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明           |
 | ------ | ------------ |
 | string | 格式化后的时间、日期字符串。 |
 
-**示例：** 
+**示例：**
   ```ts
   let date = new Date(2021, 11, 17, 3, 24, 0); // 时间日期为2021.12.17 03:24:00
   // 使用 en-GB locale创建DateTimeFormat对象
@@ -313,20 +305,20 @@ formatRange(startDate: Date, endDate: Date): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名       | 类型   | 必填   | 说明       |
 | --------- | ---- | ---- | -------- |
 | startDate | Date | 是    | 时间、日期的开始。说明：月份从0开始计数，如0表示一月。|
 | endDate   | Date | 是    | 时间、日期的结束。说明：月份从0开始计数，如0表示一月。|
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明             |
 | ------ | -------------- |
 | string | 格式化后的时间段、日期段字符串。 |
 
-**示例：** 
+**示例：**
   ```ts
   let startDate = new Date(2021, 11, 17, 3, 24, 0); // 时间日期为2021.12.17 03:24:00
   let endDate = new Date(2021, 11, 18, 3, 24, 0);
@@ -339,7 +331,7 @@ formatRange(startDate: Date, endDate: Date): string
 
 resolvedOptions(): DateTimeOptions
 
-获取创建时间、日期格式化对象时设置的配置项。  
+获取创建时间、日期格式化对象时设置的配置项。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -347,13 +339,13 @@ resolvedOptions(): DateTimeOptions
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型                                   | 说明                            |
 | ------------------------------------ | ----------------------------- |
 | [DateTimeOptions](#datetimeoptions) | 时间、日期格式化对象设置的配置项。 |
 
-**示例：** 
+**示例：**
   ```ts
   let datefmt = new intl.DateTimeFormat("en-GB", { dateStyle: 'full', timeStyle: 'medium' });
   // 返回DateTimeFormat对象的配置项
@@ -375,31 +367,25 @@ resolvedOptions(): DateTimeOptions
 
 | 名称              | 类型      | 必填   | 说明                                       |
 | --------------- | ------- | ---- |  ---------------------------------------- |
-| locale          | string  | 否    |区域参数，&nbsp;如：zh-Hans-CN。                 |
-| dateStyle       | string  | 否     |日期显示格式，<br>取值包括："long",&nbsp;"short",&nbsp;"medium",&nbsp;"full",&nbsp;"auto"。 |
-| timeStyle       | string  | 否     |时间显示格式，<br>取值包括："long",&nbsp;"short",&nbsp;"medium",&nbsp;"full",&nbsp;"auto"。 |
-| hourCycle       | string  | 否     |时制格式，<br>取值包括："h11",&nbsp;"h12",&nbsp;"h23",&nbsp;"h24"。 |
-| timeZone        | string  | 否     |使用的时区（合法的IANA时区ID）。                      |
-| numberingSystem | string  | 否     |数字系统，<br>取值包括："adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
-| hour12          | boolean | 否     | 是否使用12小时制，<br>若hour12和hourCycle未设置且系统24小时开关打开时，hour12属性的默认值为false。         |
-| weekday         | string  | 否     | 工作日的显示格式，<br>取值包括："long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。 |
-| era             | string  | 否     | 时代的显示格式，<br>取值包括："long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。 |
-| year            | string  | 否     | 年份的显示格式，<br>取值包括："numeric",&nbsp;"2-digit"。  |
-| month           | string  | 否    | 月份的显示格式，<br>取值包括："numeric",&nbsp;"2-digit",&nbsp;"long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。 |
-| day             | string  | 否     | 日期的显示格式，<br>取值包括："numeric",&nbsp;"2-digit"。  |
-| hour            | string  | 否     | 小时的显示格式，<br>取值包括："numeric",&nbsp;"2-digit"。  |
-| minute          | string  | 否     | 分钟的显示格式，<br>取值包括："numeric",&nbsp;"2-digit"。  |
-| second          | string  | 否     | 秒钟的显示格式，<br>取值包括："numeric",&nbsp;"2-digit"。  |
-| timeZoneName    | string  | 否     | 时区名称的本地化表示, <br>取值包括："long",&nbsp;"short",&nbsp;"auto"。   |
-| dayPeriod       | string  | 否     | 时段的显示格式，<br>取值包括："long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。 |
-| localeMatcher   | string  | 否     | 要使用的区域匹配算法，<br>取值包括："lookup",&nbsp;"best&nbsp;fit"。 |
-| formatMatcher   | string  | 否     | 要使用的格式匹配算法，<br>取值包括："basic",&nbsp;"best&nbsp;fit"。 |
-
->  **说明：**
->
->  - dateStyle、timeStyle、weekday、year：不同取值的显示效果请参考[时间日期国际化表1](../../internationalization/i18n-time-date.md)。
->
->  - 不同常用场景下各参数的取值请参考[时间日期国际化开发实例](../../internationalization/i18n-time-date.md)。
+| locale          | string  | 否    |区域参数，&nbsp;如：zh-Hans-CN。           |
+| dateStyle       | string  | 否     |日期显示格式，取值包括：<br>"long",&nbsp;"short",&nbsp;"medium",&nbsp;"full",&nbsp;"auto"。<br>不同取值的显示效果请参考[时间日期国际化表1](../../internationalization/i18n-time-date.md)。 |
+| timeStyle       | string  | 否     |时间显示格式，取值包括：<br>"long",&nbsp;"short",&nbsp;"medium",&nbsp;"full",&nbsp;"auto"。<br>不同取值的显示效果请参考[时间日期国际化表2](../../internationalization/i18n-time-date.md)。 |
+| hourCycle       | string  | 否     |时制格式，取值包括：<br>"h11",&nbsp;"h12",&nbsp;"h23",&nbsp;"h24"。<br>不同取值的显示效果请参考[时间日期国际化表5](../../internationalization/i18n-time-date.md)。 |
+| timeZone        | string  | 否     |使用的时区，取值为合法的IANA时区ID。                      |
+| numberingSystem | string  | 否     |数字系统，取值包括：<br>"adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
+| hour12          | boolean | 否     | 是否使用12小时制，<br>同时设置hour12和hourCycle时，hourCycle不生效。<br>若hour12和hourCycle未设置且系统24小时开关打开时，hour12属性的默认值为false。|
+| weekday         | string  | 否     | 工作日的显示格式，取值包括：<br>"long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。<br>不同取值的显示效果请参考[时间日期国际化表4](../../internationalization/i18n-time-date.md)。 |
+| era             | string  | 否     | 时代的显示格式，取值包括：<br>"long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。<br>不同取值的显示效果请参考[时间日期国际化表9](../../internationalization/i18n-time-date.md)。 |
+| year            | string  | 否     | 年份的显示格式，取值包括：<br>"numeric",&nbsp;"2-digit"。<br>不同取值的显示效果请参考[时间日期国际化表3](../../internationalization/i18n-time-date.md)。  |
+| month           | string  | 否    | 月份的显示格式，取值包括：<br>"numeric",&nbsp;"2-digit",&nbsp;"long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。<br>不同取值的显示效果请参考[时间日期国际化表6](../../internationalization/i18n-time-date.md)。 |
+| day             | string  | 否     | 日期的显示格式，取值包括：<br>"numeric",&nbsp;"2-digit"。  |
+| hour            | string  | 否     | 小时的显示格式，取值包括：<br>"numeric",&nbsp;"2-digit"。  |
+| minute          | string  | 否     | 分钟的显示格式，取值包括：<br>"numeric",&nbsp;"2-digit"。  |
+| second          | string  | 否     | 秒钟的显示格式，取值包括：<br>"numeric",&nbsp;"2-digit"。  |
+| timeZoneName    | string  | 否     | 时区名称的本地化表示，取值包括：<br>"long",&nbsp;"short",&nbsp;"auto"。<br>不同取值的显示效果请参考[时间日期国际化表7](../../internationalization/i18n-time-date.md)。   |
+| dayPeriod       | string  | 否     | 时段的显示格式，取值包括：<br>"long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。<br>不同取值的显示效果请参考[时间日期国际化表8](../../internationalization/i18n-time-date.md)。 |
+| localeMatcher   | string  | 否     | 要使用的区域匹配算法，取值包括：<br>"lookup"：精确匹配；<br>"best&nbsp;fit"：最佳匹配。 |
+| formatMatcher   | string  | 否     | 要使用的格式匹配算法，取值包括：<br>"basic"：精确匹配；<br>"best&nbsp;fit"：最佳匹配。 |
 
 ## NumberFormat
 
@@ -413,7 +399,7 @@ constructor()
 
 **系统能力**：SystemCapability.Global.I18n
 
-**示例：** 
+**示例：**
   ```ts
   // 使用系统当前locale创建NumberFormat对象
   let numfmt = new intl.NumberFormat();
@@ -430,14 +416,14 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;    | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。 |
 | options              | [NumberOptions](#numberoptions) | 否    | 创建数字格式化对象时可设置的配置项。               |
 
-**示例：** 
+**示例：**
   ```ts
   // 使用 en-GB locale创建NumberFormat对象，style设置为decimal，notation设置为scientific
   let numfmt = new intl.NumberFormat("en-GB", {style:'decimal', notation:"scientific"});
@@ -453,20 +439,20 @@ format(number: number): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明   |
 | ------ | ------ | ---- | ---- |
 | number | number | 是    | 数字对象。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明         |
 | ------ | ---------- |
 | string | 格式化后的数字字符串。 |
 
 
-**示例：** 
+**示例：**
   ```ts
   // 使用 ["en-GB", "zh"] locale列表创建NumberFormat对象，因为en-GB为合法LocaleID，因此使用en-GB创建NumberFormat对象
   let numfmt : intl.NumberFormat = new intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
@@ -490,21 +476,21 @@ formatRange(startRange: number, endRange: number): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明   |
 | ------ | ------ | ---- | ---- |
 | startRange | number | 是    | 开始数字。 |
 | endRange | number | 是    | 结束数字。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明         |
 | ------ | ---------- |
 | string | 格式化后的数字范围字符串。 |
 
 
-**示例：** 
+**示例：**
   ```ts
   let numfmt : intl.NumberFormat = new intl.NumberFormat("en-US", {style:'unit', unit:"meter"});
   let formattedRange : string = numfmt.formatRange(0, 3); // formattedRange: 0–3 m
@@ -521,14 +507,14 @@ resolvedOptions(): NumberOptions
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型                               | 说明                          |
 | -------------------------------- | --------------------------- |
 | [NumberOptions](#numberoptions) | 创建数字格式化对象时设置的配置项。 |
 
 
-**示例：** 
+**示例：**
   ```ts
   let numfmt = new intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
   // 获取NumberFormat对象配置项
@@ -554,12 +540,12 @@ resolvedOptions(): NumberOptions
 | unit                     | string  | 否    | 单位名称，如："meter"，"inch"，“hectare”等。<br>从API version 16开始新增支持的组合单位有： "beat-per-minute", "body-weight-per-second", "breath-per-minute", "foot-per-hour", "jump-rope-per-minute", "meter-per-hour", "milliliter-per-minute-per-kilogram", "rotation-per-minute", "step-per-minute", "stroke-per-minute"。       |
 | unitDisplay              | string  | 否    | 单位的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。<br>默认值为short。 |
 | unitUsage<sup>8+</sup>   | string  | 否    | 单位的使用场景，取值包括："default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel",&nbsp;"elapsed-time-second",&nbsp;"size-file-byte",&nbsp;"size-shortfile-byte"。<br>默认值为default。 |
-| signDisplay              | string  | 否    | 数字符号的显示格式，取值包括："auto",&nbsp;"never",&nbsp;"always",&nbsp;"expectZero"。<br>默认值为auto。 |
+| signDisplay              | string  | 否    | 数字符号的显示格式，取值包括：<br>"auto"：自动判断是否显示正负符号;<br>"never"：不显示正负号;<br>"always"：总是显示正负号;<br>"exceptZero"：除了0都显示正负号。<br>默认值为auto。 |
 | compactDisplay           | string  | 否    | 紧凑型的显示格式，取值包括："long",&nbsp;"short"。<br>默认值为short。      |
 | notation                 | string  | 否    | 数字的格式化规格，取值包括："standard",&nbsp;"scientific",&nbsp;"engineering",&nbsp;"compact"。<br>默认值为standard。 |
 | localeMatcher            | string  | 否    | 要使用的区域匹配算法，取值包括："lookup",&nbsp;"best&nbsp;fit"。<br>默认值为best fit。 |
 | style                    | string  | 否    | 数字的显示格式，取值包括："decimal",&nbsp;"currency",&nbsp;"percent",&nbsp;"unit"。<br>默认值为decimal。 |
-| numberingSystem          | string  | 否    | 数字系统，取值包括："adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。numberingSystem属性默认值为locale的默认数字系统。 |
+| numberingSystem          | string  | 否    | 数字系统，取值包括：<br>"adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。numberingSystem属性默认值为locale的默认数字系统。 |
 | useGrouping              | boolean | 否    | 是否分组显示。useGrouping属性默认值为auto。                                  |
 | minimumIntegerDigits     | number  | 否    | 表示要使用的最小整数位数，取值范围：1~21。<br>minimumIntegerDigits属性默认值为1。                  |
 | minimumFractionDigits    | number  | 否    | 表示要使用的最小分数位数，取值范围：0~20。<br>minimumFractionDigits属性默认值为0。                  |
@@ -568,7 +554,7 @@ resolvedOptions(): NumberOptions
 | maximumSignificantDigits | number  | 否    | 表示要使用的最大有效位数，取值范围：1~21。<br>maximumSignificantDigits属性默认值为21。                  |
 | roundingPriority<sup>16+</sup>   | string  | 否    | 最大分数位数和最大有效位数同时设置时的舍入优先级，取值包括："auto",&nbsp;"morePrecision"&nbsp;取最大分数位数,&nbsp;"lessPrecision"&nbsp;取最大有效位数。<br>roundingPriority默认值为auto。                  |
 | roundingIncrement<sup>16+</sup>  | number  | 否    | 表示舍入增量，取值范围：1，2，5，10，20，25，50，100，200，250，500，1000，2000，2500，5000。<br>roundingIncrement属性默认值为1。                  |
-| roundingMode<sup>16+</sup>       | string  | 否    | 表示舍入模式，取值包括："ceil",&nbsp;"floor",&nbsp;"expand",&nbsp;"trunc",&nbsp;"halfCeil",&nbsp;"halfFloor",&nbsp;"halfExpand",&nbsp;"halfTrunc",&nbsp;"halfEven"。<br>roundingMode属性默认值为halfExpand。                  |
+| roundingMode<sup>16+</sup>       | string  | 否    | 表示舍入模式，取值包括：<br>"ceil"：向上取整；<br>"floor"：向下取整；<br>"expand"：远离零取整；"trunc"：向零取整；<br>"halfCeil"：半向上取整，大于等于增量的一半时向上取整，小于增量的一半时向下取整；<br>"halfFloor"：半向下取整，大于增量的一半时向上取整，小于等于增量的一半时向下取整；<br>"halfExpand"：半远离零取整，大于等于增量的一半时远离零取整，小于增量的一半时向零取整；<br>"halfTrunc"：半向零取整，大于增量的一半时远离零取整，小于等于增量的一半时向零取整；<br>"halfEven"：半向偶数取整，大于半增量的一半时 远离零取整，小于增量的一半时向零取整，等于增量的一半时向最近的偶数位舍入。<br>roundingMode属性默认值为halfExpand。 |
 
 >  **说明：**
 >
@@ -586,7 +572,7 @@ constructor()
 
 **系统能力**：SystemCapability.Global.I18n
 
-**示例：** 
+**示例：**
   ```ts
   // 使用系统locale创建Collator对象
   let collator = new intl.Collator();
@@ -603,14 +589,14 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名                  | 类型                                   | 必填   | 说明                           |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。  |
 | options              | [CollatorOptions](#collatoroptions8) | 否    | 创建排序对象时可设置的配置项。       |
 
-**示例：** 
+**示例：**
   ```ts
   // 使用 zh-CN locale创建Collator对象，localeMatcher设置为lookup，usage设置为sort
   let collator = new intl.Collator("zh-CN", {localeMatcher: "lookup", usage: "sort"});
@@ -627,20 +613,20 @@ compare(first: string, second: string): number
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型     | 必填   | 说明           |
 | ------ | ------ | ---- | ------------ |
 | first  | string | 是    | 进行比较第一个字符串。  |
 | second | string | 是    | 进行比较的第二个字符串。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
 | number | 比较结果。<br>- number为负数时，表示first排序在second之前；<br>- number为0时，表示first与second排序相同；<br>- number为正数，表示first排序在second之后。 |
 
-**示例：** 
+**示例：**
   ```ts
   // 使用en-GB locale创建Collator对象
   let collator = new intl.Collator("en-GB");
@@ -659,13 +645,13 @@ resolvedOptions(): CollatorOptions
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型                                   | 说明                |
 | ------------------------------------ | ----------------- |
 | [CollatorOptions](#collatoroptions8) | 返回排序对象的属性。 |
 
-**示例：** 
+**示例：**
   ```ts
   let collator = new intl.Collator("zh-Hans", { usage: 'sort', ignorePunctuation: true });
   // 获取Collator对象的配置项
@@ -677,7 +663,7 @@ resolvedOptions(): CollatorOptions
 
 ## CollatorOptions<sup>8+</sup>
 
-创建排序对象时可设置的配置项。  
+创建排序对象时可设置的配置项。
 
 从API9中，CollatorOptions中的属性改为可选。
 
@@ -698,7 +684,7 @@ resolvedOptions(): CollatorOptions
 
 >  **说明：**
 >
->  - usage、sensitivity、collation、caseFirst不同取值代表的含义请参考[本地习惯排序](../../internationalization/i18n-sorting-local.md)。
+>  - CollatorOptions中属性的不同取值代表的含义请参考[本地习惯排序](../../internationalization/i18n-sorting-local.md)。
 
 
 ## PluralRules<sup>8+</sup>
@@ -713,7 +699,7 @@ constructor()
 
 **系统能力**：SystemCapability.Global.I18n
 
-**示例：** 
+**示例：**
   ```ts
   // 使用系统locale创建PluralRules对象
   let pluralRules = new intl.PluralRules();
@@ -730,14 +716,14 @@ constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名                  | 类型                                       | 必填   | 说明                           |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;            | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。 |
 | options              | [PluralRulesOptions](#pluralrulesoptions8) | 否    | 创建单复数对象时设置的配置项。       |
 
-**示例：** 
+**示例：**
   ```ts
   // 使用 zh-CN locale创建PluralRules对象，localeMatcher设置为lookup，type设置为cardinal
   let pluralRules= new intl.PluralRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
@@ -753,19 +739,19 @@ select(n: number): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型     | 必填   | 说明           |
 | ---- | ------ | ---- | ------------ |
 | n    | number | 是    | 待获取单复数类别的数字。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
 | string | 单复数类别，取值包括："zero"，"one"，"two",&nbsp;"few",&nbsp;"many",&nbsp;"others"。 <br>不同取值代表的含义请参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。|
 
-**示例：** 
+**示例：**
   ```ts
   // 使用 zh-Hans locale创建PluralRules对象
   let zhPluralRules = new intl.PluralRules("zh-Hans");
@@ -810,7 +796,7 @@ constructor()
 
 **系统能力**：SystemCapability.Global.I18n
 
-**示例：** 
+**示例：**
   ```ts
   // 使用系统locale创建RelativeTimeFormat对象
   let relativetimefmt = new intl.RelativeTimeFormat();
@@ -827,14 +813,14 @@ constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatIn
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名                  | 类型                                       | 必填   | 说明                           |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;            | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。 |
 | options              | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions8) | 否    | 创建相对时间格式化对象时可配置的选项。     |
 
-**示例：** 
+**示例：**
   ```ts
   // 使用 zh-CN locale创建RelativeTimeFormat对象，localeMatcher设置为lookup，numeric设置为always，style设置为long
   let relativeTimeFormat = new intl.RelativeTimeFormat("zh-CN", {"localeMatcher": "lookup", "numeric": "always", "style": "long"});
@@ -851,20 +837,20 @@ format(value: number, unit: string): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名   | 类型     | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
 | value | number | 是    | 相对时间格式化的数值。                              |
 | unit  | string | 是    | 相对时间格式化的单位，<br>取值包括："year",&nbsp;"quarter",&nbsp;"month",&nbsp;"week",&nbsp;"day",&nbsp;"hour",&nbsp;"minute",&nbsp;"second"。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型     | 说明         |
 | ------ | ---------- |
 | string | 格式化后的相对时间。 |
 
-**示例：** 
+**示例：**
   ```ts
   // 使用 zh-CN locale创建RelativeTimeFormat对象
   let relativetimefmt = new intl.RelativeTimeFormat("zh-CN");
@@ -883,20 +869,20 @@ formatToParts(value: number, unit: string): Array&lt;object&gt;
 
 **系统能力**：SystemCapability.Global.I18n
 
-**参数：** 
+**参数：**
 
 | 参数名   | 类型     | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
 | value | number | 是    | 相对时间格式化的数值。                              |
 | unit  | string | 是    | 相对时间格式化的单位，<br>取值包括："year",&nbsp;"quarter",&nbsp;"month",&nbsp;"week",&nbsp;"day",&nbsp;"hour",&nbsp;"minute",&nbsp;"second"。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型                  | 说明                          |
 | ------------------- | --------------------------- |
 | Array&lt;object&gt; | 相对时间格式的对象数组。 |
 
-**示例：** 
+**示例：**
   ```ts
   // 使用 en locale创建RelativeTimeFormat对象，numeric设置为auto
   let relativetimefmt = new intl.RelativeTimeFormat("en", {"numeric": "auto"});
@@ -914,13 +900,13 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 
 **系统能力**：SystemCapability.Global.I18n
 
-**返回值：** 
+**返回值：**
 
 | 类型                                       | 说明                                |
 | ---------------------------------------- | --------------------------------- |
 | [RelativeTimeFormatResolvedOptions](#relativetimeformatresolvedoptions8) | RelativeTimeFormat&nbsp;对象的格式化选项。 |
 
-**示例：** 
+**示例：**
   ```ts
   // 使用 en-GB locale创建RelativeTimeFormat对象
   let relativetimefmt= new intl.RelativeTimeFormat("en-GB", { style: "short" });
@@ -963,4 +949,8 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 | locale          | string | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。             |
 | numeric         | string | 是    | 输出消息的格式，取值包括："always",&nbsp;"auto"。      |
 | style           | string | 是    | 国际化消息的长度，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
-| numberingSystem | string | 是    | 使用的数字系统。                                 |
+| numberingSystem | string | 是    | 使用的数字系统，取值包括：<br>"adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
+
+> **说明**
+>
+> numeric、style不同参数取值显示的效果，请参考[相对时间格式化选项](../../internationalization/i18n-time-date.md#相对时间格式化)。

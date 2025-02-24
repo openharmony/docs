@@ -3871,7 +3871,7 @@ function testGetActiveProfile(videoOutput: camera.VideoOutput): camera.Profile |
   return activeProfile;
 }
 ```
-### isMirrorSupported<sup>16+</sup>
+### isMirrorSupported<sup>15+</sup>
 
 isMirrorSupported(): boolean
 
@@ -3893,12 +3893,12 @@ function testIsMirrorSupported(videoOutput: camera.VideoOutput): boolean {
   return isSupported;
 }
 ```
-### enableMirror<sup>16+</sup>
+### enableMirror<sup>15+</sup>
 
 enableMirror(enabled: boolean): void
 
 启用/关闭镜像录像。
-- 调用该接口前，需要通过[isMirrorSupported](#ismirrorsupported16)查询是否支录像镜像功能。
+- 调用该接口前，需要通过[isMirrorSupported](#ismirrorsupported15)查询是否支录像镜像功能。
 
 - 启用/关闭录像镜像后，需要通过[getVideoRotation](#getvideorotation12)以及[updateRotation](../apis-media-kit/js-apis-media.md#updaterotation12)更新旋转角度。
 

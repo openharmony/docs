@@ -733,6 +733,18 @@
 
 **起始版本**：9
 
+### ohos.permission.PERMISSION_RECORD_TOGGLE
+
+允许应用设置权限使用记录开关。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.CAPTURE_SCREEN
 
 允许应用截取屏幕图像。
@@ -4465,6 +4477,18 @@
 
 **起始版本**：15
 
+### ohos.permission.ACCESS_VIRTUAL_SCREEN
+
+允许应用管控虚拟屏。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.GET_PAGE_INFO
 
 允许系统应用获取指定应用页面信息。
@@ -4530,6 +4554,18 @@
 
 **起始版本**：16
 
+### ohos.permission.ACCESS_CUSTOM_RINGTONE
+
+允许应用访问铃音库。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -4586,7 +4622,7 @@
 
 ### ohos.permission.MANAGE_DEVICE_AUTH_CRED
 
-允许应用调用设备认证华为账号凭据管理应用接口。
+允许应用调用设备认证账号凭据管理应用接口。
 
 **权限级别**：system_basic
 

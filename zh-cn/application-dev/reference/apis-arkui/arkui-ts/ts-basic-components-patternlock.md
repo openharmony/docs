@@ -26,7 +26,7 @@ PatternLock(controller?: PatternLockController)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### sideLength
 
@@ -71,7 +71,7 @@ backgroundColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                                       |
 | ------ | ------------------------------------------ | ---- | ---------------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 背景颜色 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 背景颜色。 |
 
 ### regularColor
 
@@ -197,15 +197,15 @@ activateCircleStyle(options: Optional\<CircleStyleOptions\>)
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否 | 背景圆环颜色。 <br/>默认值：与pathColor值相同 |
 | radius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 背景圆环的半径。<br/>默认值：circleRadius的11/6 |
 | enableWaveEffect | boolean | 否 | 波浪效果开关。<br/>默认值：true |
-| enableForeground<sup>14+</sup> | boolean | 否 | 背景圆环是否在前景显示。<br/>默认值：true |
+| enableForeground<sup>15+</sup> | boolean | 否 | 背景圆环是否在前景显示。<br/>默认值：false，背景圆环不在前景显示。 |
 
-### skipUnselectedPoint<sup>14+</sup>
+### skipUnselectedPoint<sup>15+</sup>
 
 skipUnselectedPoint(skipped: boolean)
 
 设置未选中的宫格圆点在密码路径经过时是否自动选中。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -213,11 +213,11 @@ skipUnselectedPoint(skipped: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| skipped  | boolean | 是   | 未选中的宫格圆点在密码路径经过时是否自动选中。默认值：false|
+| skipped  | boolean | 是   | 未选中的宫格圆点在密码路径经过时是否自动选中。默认值：false，自动选中密码路径经过的宫格圆点。|
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onPatternComplete
 

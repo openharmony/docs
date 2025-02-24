@@ -49,7 +49,7 @@ run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
   | 28800003 | An error occurred while running the startup tasks. |
   | 28800004 | Running startup tasks timeout. |
 
-**示例：**：
+**示例：**
 
 ```ts
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
@@ -90,7 +90,7 @@ removeAllStartupTaskResults(): void
 
 **系统能力**：SystemCapability.Ability.AppStartup
 
-**示例：**：
+**示例：**
 
 ```ts
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
@@ -149,7 +149,7 @@ getStartupTaskResult(startupTask: string): Object
   | ------- | -------------------------------- |
   | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
-**示例：**：
+**示例：**
 
 ```ts
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
@@ -208,7 +208,7 @@ isStartupTaskInitialized(startupTask: string): boolean
   | ------- | -------------------------------- |
   | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
-**示例：**：
+**示例：**
 
 ```ts
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
@@ -275,7 +275,7 @@ removeStartupTaskResult(startupTask: string): void
   | ------- | -------------------------------- |
   | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
-**示例：**：
+**示例：**
 
 ```ts
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';

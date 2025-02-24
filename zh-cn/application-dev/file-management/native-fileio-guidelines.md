@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-FileIO模块提供了文件基础操作能力。
+FileIO模块提供了部分文件基础操作能力，其他能力请参考[libc标准库](../reference/native-lib/musl.md)/[标准C++库](../reference/native-lib/cpp.md)。
 
 ## 基本概念
 
@@ -14,7 +14,7 @@ FileIO模块提供了文件基础操作能力。
 
 ## 接口说明
 
-接口的详细说明，请参考[API参考](../reference/apis-core-file-kit/_file_i_o.md)
+接口的详细说明，请参考[FileIO](../reference/apis-core-file-kit/_file_i_o.md)。
 
 | 接口名称 | 描述 |
 | -------- | -------- |

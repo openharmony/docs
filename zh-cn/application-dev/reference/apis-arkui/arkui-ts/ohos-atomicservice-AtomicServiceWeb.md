@@ -23,7 +23,7 @@ import { AtomicServiceWeb } from '@kit.ArkUI';
 
 ## 属性
 
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)
 
 ## AtomicServiceWeb
 
@@ -63,7 +63,7 @@ AtomicServiceWeb({
 | mixedMode            | [MixedMode](../../apis-arkweb/ts-basic-components-web.md#mixedmode枚举说明)                                          | 否  | @Prop       | 设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。                                                    |
 | darkMode             | [WebDarkMode](../../apis-arkweb/ts-basic-components-web.md#webdarkmode9枚举说明)                                     | 否  | @Prop       | 设置Web深色模式，默认关闭。                                                                                                      |
 | forceDarkAccess      | boolean                                                                                                          | 否  | @Prop       | 设置网页是否开启强制深色模式。默认关闭。该属性仅在darkMode开启深色模式时生效。                                                                          |
-| nestedScroll<sup>16+</sup>      | [NestedScrollOptions](../../apis-arkui/arkui-ts/ts-container-scrollable-common.md#nestedscrolloptions10对象说明) \| [NestedScrollOptionsExt](../../apis-arkweb/ts-basic-components-web.md#nestedscrolloptionsext14对象说明) | 否  | @Prop       | 设置嵌套滚动选项。                                                                          |
+| nestedScroll<sup>15+</sup>      | [NestedScrollOptions](../../apis-arkui/arkui-ts/ts-container-scrollable-common.md#nestedscrolloptions10对象说明) \| [NestedScrollOptionsExt](../../apis-arkweb/ts-basic-components-web.md#nestedscrolloptionsext14对象说明) | 否  | @Prop       | 设置嵌套滚动选项。                                                                          |
 | onMessage            | Callback\<[OnMessageEvent](#onmessageevent)\>                                                                    | 否  | -           | H5页面通过JS SDK的postMessage()发送消息后，Web组件对应的页面返回或销毁时，触发该回调。                                                              |
 | onErrorReceive       | Callback\<[OnErrorReceiveEvent](#onerrorreceiveevent)\>                                                          | 否  | -           | 网页加载遇到错误时触发该回调。出于性能考虑，建议此回调中尽量执行简单逻辑。在无网络的情况下，触发此回调。                                                                 |
 | onHttpErrorReceive   | Callback\<[OnHttpErrorReceiveEvent](#onhttperrorreceiveevent)\>                                                  | 否  | -           | 网页加载资源遇到的HTTP错误（响应码>=400)时触发该回调。                                                                                     |
@@ -446,7 +446,7 @@ type OnLoadInterceptCallback = (event: OnLoadInterceptEvent) => boolean
 
 ## 事件
 
-不支持[通用事件](ts-universal-events-click.md)
+不支持[通用事件](ts-component-general-events.md)
 
 ## 示例
 

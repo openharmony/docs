@@ -451,6 +451,24 @@ accessibilityUseSamePage(pageMode: AccessibilitySamePageMode)
 | SEMI_SILENT | 0    | UEA中如果是首次加载页面或者UEA页面的根节点发送的page事件会被忽略。 |
 | FULL_SILENT | 1    | UEA忽略所有的page事件。                                      |
 
+## accessibilityScrollTriggerable<sup>16+</sup>
+
+accessibilityScrollTriggerable(isTriggerable: boolean)
+
+无障碍节点是否需要支持屏幕朗读滚动操作，即屏幕朗读在焦点切换时，若容器内当前页面无可聚焦的组件时，会发起一次自动滚动的操作。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名         |  类型    | 必填 | 说明                                                         |
+| -------------- | ------- | ---- | ------------------------------------------------------------ |
+| isTriggerable  | boolean | 是   | 用于表示组件是否支持该能力。<br/>支持的值为：<br/>true：屏幕朗读焦点切换而容器内当前页面无可聚焦的组件时，需要自动滚动操作。<br/>false：屏幕朗读焦点切换而容器内当前页面无可聚焦的组件时，不需要自动滚动操作。<br/>undefined：还原默认值。<br/>默认值：true。<br/>**说明：**<br/>1. 该属性不影响原先无障碍节点属性中的scrollable。<br/>2. 组件最终在屏幕朗读下的滚动逻辑由屏幕朗读最终根据该属性和组件是否支持scroll来决定。<br/>3. 该属性为通用属性，所有基础组件均可配置。建议配置的滚动组件类型，如List，Grid，Scroll，Waterflow，Swiper等。|
+
 ## 示例1（设置无障碍文本和无障碍说明）
 
 该示例主要演示accessibilityText无障碍文本和accessibilityDescription无障碍说明的播报内容。
@@ -524,4 +542,4 @@ struct Focus {
 }
 ```
 
-## 
+##

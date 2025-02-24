@@ -4,37 +4,38 @@
 
 ### JSVM_Status
 
-Defines an enum for the execution statuses of a JSVM-API call.
+Defines an enum for the execution statuses returned by a JSVM-API call.
 
 Each time a JSVM-API function is called, **JSVM_Status** is returned indicating the execution result.
 
 ```c++
-typedef enum {
-    JSVM_OK,
-    JSVM_INVALID_ARG,
-    JSVM_OBJECT_EXPECTED,
-    JSVM_STRING_EXPECTED,
-    JSVM_NAME_EXPECTED,
-    JSVM_FUNCTION_EXPECTED,
-    JSVM_NUMBER_EXPECTED,
-    JSVM_BOOL_EXPECTED,
-    JSVM_ARRAY_EXPECTED,
-    JSVM_GENERIC_FAILURE,
-    JSVM_PENDING_EXCEPTION,
-    JSVM_CENCELLED,
-    JSVM_ESCAPE_CALLED_TWICE,
-    JSVM_HANDLE_SCOPE_MISMATCH,
-    JSVM_CALLBACK_SCOPE_MISMATCH,
-    JSVM_QUEUE_FULL,
-    JSVM_CLOSING,
-    JSVM_BIGINT_EXPECTED,
-    JSVM_DATA_EXPECTED,
-    JSVM_CALLBACK_SCOPE_MISMATCH,
-    JSVM_DETACHABLE_ARRAYBUFFER_EXPECTED,
-    JSVM_WOULD_DEADLOCK,  /* unused */
-    JSVM_NO_EXTERNAL_BUFFERS_ALLOWED,
-    JSVM_CANNOT_RUN_JS
-} JSVM_Status;
+    typedef enum {
+        JSVM_OK,                              /* Successful. */
+        JSVM_INVALID_ARG,                     /* Invalid parameters. */
+        JSVM_OBJECT_EXPECTED,                 /* An object is expected. */
+        JSVM_STRING_EXPECTED,                 /* A string is expected. */
+        JSVM_NAME_EXPECTED,                   /* A name is expected. */
+        JSVM_FUNCTION_EXPECTED,               /* A function is expected. */
+        JSVM_NUMBER_EXPECTED,                 /* A number is expected. */
+        JSVM_BOOL_EXPECTED,                   /* A Boolean value is expected. */
+        JSVM_ARRAY_EXPECTED,                  /* An array is expected. */
+        JSVM_GENERIC_FAILURE,                 /* Generic failure. */
+        JSVM_PENDING_EXCEPTION,               /* Pending exception. */
+        JSVM_CENCELLED,                       /* Cancelled. */
+        JSVM_ESCAPE_CALLED_TWICE,             /* Escape is called twice. */
+        JSVM_HANDLE_SCOPE_MISMATCH,           /* Handle scope does not match. */
+        JSVM_CALLBACK_SCOPE_MISMATCH,         /* Callback scope does not match. */
+        JSVM_QUEUE_FULL,                      /* The queue is full. */
+        JSVM_CLOSING,                         /* Closing. */
+        JSVM_BIGINT_EXPECTED,                 /* A Bigint value is expected. */
+        JSVM_DATA_EXPECTED,                   /* A date is expected. */
+        JSVM_ARRAYBUFFER_EXPECTED,            /* An ArrayBuffer is expected. */
+        JSVM_DETACHABLE_ARRAYBUFFER_EXPECTED, /* A detachable ArrayBuffer is expected. */
+        JSVM_WOULD_DEADLOCK,                  /* About to deadlock. */
+        JSVM_NO_EXTERNAL_BUFFERS_ALLOWED,     /* External buffers are not allowed. */
+        JSVM_CANNOT_RUN_JS,                   /* JS cannot be executed. */
+        JSVM_JIT_MODE_EXPECTD,                /* JIT mode is expected. */
+    } JSVM_Status;
 ```
 
 ### JSVM_ExtendedErrorInfo
@@ -127,9 +128,9 @@ typedef enum {
 
 Defines a struct that represents the type of the elements in **options** of **OH_JSVM_CompileScriptWithOptions**.
 
-The struct consists of:
-- **id** identifies a compilation option.
-- **content** specifies a compilation option.
+The struct consists of the following parameters:
+- **id**: identifies a compilation option.
+- **content**: specifies a compilation option.
 
 **id** and **content** together define a compilation option.
 
@@ -384,9 +385,65 @@ Before executing JS code, you need to create a avaScript virtual machine (JSVM) 
 | OH_JSVM_OpenHandleScope| Opens a handle scope. **JSVM_Value** within the scope will not be garbage-collected.|
 | OH_JSVM_CloseHandleScope| Closes a handle scope.|
 
-Example:
-Create a JSVM instance and then destroy it.
+##### Using **JSVM_InitOptions**
+You can use **JSVM_InitOptions** to initialize VM platforms with different capabilities.
 
+Example 1: Initialize a JSVM in normal mode.
+```c++
+static void NormalInit(bool &vmInit) {
+    if (!vmInit) {
+        // The JSVM only needs to be initialized once.
+        JSVM_InitOptions initOptions;
+        memset(&initOptions, 0, sizeof(initOptions));
+        OH_JSVM_Init(&initOptions);
+        vmInit = true;
+    }
+}
+```
+
+Example 2: Initialize a JSVM with low memory usage.
+```c++
+static void LowMemoryInit(bool &vmInit) {
+    if (!vmInit) {
+        // The JSVM only needs to be initialized once.
+        JSVM_InitOptions initOptions;
+        initOptions.argc = 4;
+        const char* argv[4];
+        argv[1] = "--incremental-marking-hard-trigger=40";
+        argv[2] = "--min-semi-space-size=4";
+        argv[3] = "--max-semi-space-size=1";
+        initOptions.argv = const_cast<char**>(argv);
+        OH_JSVM_Init(&initOptions);
+        vmInit = true;
+    }
+}
+```
+
+Example 3: Initialize a JSVM with a low GC triggering frequency.
+```c++
+static void LowGCFrequencyInit(bool &vmInit) {
+    if (!vmInit) {
+        // The JSVM only needs to be initialized once.
+        JSVM_InitOptions initOptions;
+        initOptions.argc = 4;
+        const char* argv[4];
+        argv[1] = "--incremental-marking-hard-trigger=80";
+        argv[2] = "--min-semi-space-size=16";
+        argv[3] = "--max-semi-space-size=16";
+        initOptions.argv = const_cast<char**>(argv);
+        OH_JSVM_Init(&initOptions);
+        vmInit = true;
+    }
+}
+```
+
+Execution result:
+The preceding three interfaces can be used to initialize JSVMs with different capabilities. After initialization, a JSVM instance can be created to run JS scripts. Among the three interfaces:
+Calling **LowGCFrequencyInit** allows for fewer GCs than calling **NormalInit**. Calling **LowMemoryInit** allows for less memory usage than calling **NormalInit**.
+
+##### Creating a JSVM Instance
+
+Example: Create and destroy a JSVM instance (including the execution context).
 ```c++
 bool VM_INIT = false;
 
@@ -417,13 +474,11 @@ static JSVM_Value Add(JSVM_Env env, JSVM_CallbackInfo info) {
 
 static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_callback_info _info) {
     std::thread t([]() {
-        if (!VM_INIT) {
-            // The JSVM only needs to be initialized once.
-            JSVM_InitOptions initOptions;
-            memset(&initOptions, 0, sizeof(initOptions));
-            OH_JSVM_Init(&initOptions);
-            VM_INIT = true;
-        }
+        // Initialized a JSVM with the required capability based on service requirements.
+        // 1. Call NormalInit to initialize the default JSVM.
+        // 2. Call LowMemoryInit to initialize a JSVM with low memory usage.
+        // 3. Call LowGCFrequencyInit to initialize a JSVM with a low GC triggering frequency.
+        NormalInit(VM_INIT);
         // Create a VM instance and open the VM scope.
         JSVM_VM vm;
         JSVM_CreateVMOptions options;
@@ -501,7 +556,8 @@ Compile and run JS code.
 | OH_JSVM_CreateCodeCache         | Creates a code cache for the compiled script.                                                                 |
 | OH_JSVM_RunScript               | Runs a compile script.                                                                            |
 
-Example:
+#### Example
+
 Compile and run JS code (create a VM, register native functions, execute JS code, and destroy the VM).
 
 ```c++
@@ -803,7 +859,7 @@ JSVM-API provides APIs for compiling the WebAssembly (Wasm) bytecode, optimizing
 
 #### Example
 
-For details, see [Working with Wasm Using JSVM-API](use-jsvm-about-wasm.md).
+See [Working with Wasm Using JSVM-API](use-jsvm-about-wasm.md).
 
 ### Exception Handling
 
@@ -828,8 +884,8 @@ Capture, throw, and clear JS exceptions as required.
 | OH_JSVM_ThrowSyntaxError| Throws a JS syntax error.|
 | OH_JSVM_CreateSyntaxError| Creates a JS syntax error and returns it.|
 
-Example:
-The following walks you through on how to Create, judge, and throw a JS type error.
+#### Example
+Create, judge, and throw a JS type error.
 
 ```c++
 JSVM_Value code = nullptr;
@@ -843,7 +899,7 @@ OH_JSVM_IsError(env, error, &isError);
 OH_JSVM_ThrowTypeError(env, nullptr, "type error1");
 ```
 
-Call OH_JSVM_GetAndClearLastException to log the exception information as a string to the console.
+Call **OH_JSVM_GetAndClearLastException** to log the exception information as a string to the console.
 
 ```c++
 if (status != JSVM_OK) // An exception occurs when the execution fails.
@@ -889,7 +945,7 @@ However, in many cases, you may need to adjust the lifecycle to be shorter or lo
 | OH_JSVM_OpenEscapableHandleScope| Opens an escapable handle scope. Before this scope is closed, the object created within the scope has the same lifecycle as its parent scope.|
 | OH_JSVM_CloseEscapableHandleScope| Closes an escapable handle scope.|
 | OH_JSVM_EscapeHandle| Promotes a handle to a JS object so that it is valid for the lifetime of the outer scope.|
-| OH_JSVM_CreateReference| Creates a new reference with the specified reference count to the value passed in. The reference allows objects to be used and shared in different contexts and effectively tracks the lifecycle of the object.|
+| OH_JSVM_CreateReference| Creates a new reference with the specified reference count to the value passed in. The reference allows objects to be used and shared in different contexts and effectively monitors the lifecycle of the object.|
 | OH_JSVM_DeleteReference| Release the reference created by **OH_JSVM_CreateReference**. This allows objects to be correctly released and reclaimed when they are no longer required, avoiding memory leaks.|
 | OH_JSVM_ReferenceRef| Increments the reference count of the reference created by **OH_JSVM_CreateReference** so that the object referenced will not be released.|
 | OH_JSVM_ReferenceUnref| Decrements the reference count of the reference created by **OH_JSVM_CreateReference** so that the object can be correctly released and reclaimed when it is not referenced.|
@@ -897,7 +953,8 @@ However, in many cases, you may need to adjust the lifecycle to be shorter or lo
 | OH_JSVM_RetainScript | Retains a **JSVM_Script** persistently so that it can be used out of the current scope.|
 | OH_JSVM_ReleaseScript | Releases a **JSVM_Script** that is persistently retained. The released **JSVM_Script** will no longer be used and must be left empty.|
 
-Example:
+#### Example
+
 Use a handle scope to protect an object created within the scope from being reclaimed.
 
 ```c++
@@ -998,7 +1055,8 @@ Create JS object types and basic types.
 |OH_JSVM_CreateRegExp | Creates a JS regular expression object based on the given string.|
 |OH_JSVM_CreateSet | Creates a JS **Set** object.|
 
-Example:
+#### Example
+
 Create a JS array of the specified length.
 
 ```c++
@@ -1073,7 +1131,7 @@ OH_JSVM_CreateSet(env, &value);
 
 #### When to Use
 
-Obtaining C types or JS type information from JS types.
+Obtain C types or JS type information from JS types.
 
 #### Available APIs
 | API| Description|
@@ -1101,8 +1159,9 @@ Obtaining C types or JS type information from JS types.
 |OH_JSVM_GetNull | Obtains the JS **null** object.|
 |OH_JSVM_GetUndefined | Obtains the JS **Undefined** object.|
 
-Example:
-Creates a JS BigInt object from a C Int64 object and obtain the C Int64_t primitive equivalent.
+#### Example
+
+Create a JS BigInt object from a C Int64 object and obtain the C Int64_t primitive equivalent.
 
 ```c++
 int64_t testValue = INT64_MAX;
@@ -1147,7 +1206,7 @@ size_t arrayBufferLength = 0;
 OH_JSVM_GetArraybufferInfo(env, retArrayBuffer, &tmpArrayBufferPtr, &arrayBufferLength);
 ```
 
-Creates a JS string object from a UTF8-encoded C string and obtain the C string.
+Create a JS string object from a UTF8-encoded C string and obtain the C string.
 
 ```c++
 const char *testStringStr = "testString";
@@ -1201,7 +1260,8 @@ Perform abstract operations on JS values.
 |OH_JSVM_DetachArraybuffer | Calls the **Detach()** operation of an **ArrayBuffer** object.|
 |OH_JSVM_IsDetachedArraybuffer | Checks whether an **ArrayBuffer** object has been detached.|
 
-Example:
+#### Example
+
 Check whether a JS value is of the array type.
 
 ```c++
@@ -1211,7 +1271,7 @@ bool isArray = false;
 OH_JSVM_IsArray(env, array, &isArray);
 ```
 
-Converts a JS int32 value to a string.
+Convert a JS int32 value to a string.
 
 ```c++
 int32_t num = 123;
@@ -1228,7 +1288,7 @@ OH_JSVM_GetValueStringUtf8(env, stringValue, buffer, bufferSize, &copied);
 // buffer:"123";
 ```
 
-Converts a JS boolean value to a bigint.
+Convert a JS boolean value to a bigint.
 
 ```c++
 JSVM_Value boolValue;
@@ -1264,7 +1324,7 @@ OH_JSVM_Equals(env, lhs, rhs, &isEquals); // The value of isEquals is true.
 OH_JSVM_CloseHandleScope(env, handleScope);
 ```
 
-Checks whether the JS value is a constructor.
+Check whether the JS value is a constructor.
 
 ```c++
 JSVM_Value SayHello(JSVM_Env env, JSVM_CallbackInfo info)
@@ -1280,7 +1340,7 @@ bool isConstructor = false;
 OH_JSVM_IsConstructor(env, value, &isConstructor); // The value of isConstructor is true.
 ```
 
-Checks whether the JS value is of the map type.
+Check whether the JS value is of the map type.
 
 ```c++
 JSVM_Value value = nullptr;
@@ -1289,7 +1349,7 @@ bool isMap = false;
 OH_JSVM_IsMap(env, value, &isMap); // The value of isMap is true.
 ```
 
-Checks whether the JS value is a **Set()** instance.
+Check whether the JS value is a **Set()** instance.
 
 ```c++
 JSVM_Value value;
@@ -1298,7 +1358,7 @@ bool isSet = false;
 OH_JSVM_IsSet(env, value, &isSet); // The value of isSet is true.
 ```
 
-Checks whether the JS value is a regular expression.
+Check whether the JS value is a regular expression.
 
 ```c++
 JSVM_Value value = nullptr;
@@ -1339,7 +1399,8 @@ Set, get, delete, and check properties of JS objects.
 |OH_JSVM_ObjectSetPrototypeOf | Sets a prototype for a given object.|
 |OH_JSVM_ObjectGetPrototypeOf | Obtains the prototype of a JS object.|
 
-Example:
+#### Example
+
 Set, get, delete, and check properties of a JS object.
 
 ```c++
@@ -1420,7 +1481,8 @@ Call back JS code into native code and call JS functions from native code.
 |OH_JSVM_NewInstance | Creates an instance based on the given constructor.|
 |OH_JSVM_CreateFunctionWithScript | Creates a JS function object based on the given function body and parameter list.|
 
-Example:
+#### Example
+
 Create a JS function.
 
 ```c++
@@ -1499,8 +1561,10 @@ Wrap native classes and instances so that the class constructor and methods can 
 |OH_JSVM_CheckObjectTypeTag | Check whether a tag matches the tag type of an object.|
 |OH_JSVM_AddFinalizer | Add a **JSVM_Finalize** callback to a JS object. The callback will be invoked to release the native object when the JS object is garbage-collected.|
 |OH_JSVM_DefineClassWithPropertyHandler | Defines a JS class with the given class name, constructor, property, and callback handler, and calls it as a function callback. The property operations include getter, setter, deleter, and enumerator.|
+|OH_JSVM_DefineClassWithOptions | Defines a JS class with the given class name, constructor, properties, callback handler, and parent class. The **DefineClassOptions** parameter specifies whether to set a property proxy for the defined class, reserve the internal-field slot, and set a callback when the class is called as a function. |
 
-Example:
+#### Example
+
 Wrap a native object in a JS object.
 
 ```c++
@@ -1575,7 +1639,7 @@ static napi_value TestWrap(napi_env env1, napi_callback_info info)
 }
 ```
 
-Example:
+
 Wrap a native object and register a listener for property access operations.
 
 ```c++
@@ -1978,6 +2042,9 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
     return nullptr;
 }
 ```
+Set a parent class and register a listener for property access operations.
+
+See [Working with Classes Using JSVM-API](use-jsvm-about-class.md).
 
 ### Version Management
 
@@ -1991,7 +2058,8 @@ Obtain version information.
 |OH_JSVM_GetVersion| Obtains the latest JSVM API version supported by the JSVM runtime.|
 |OH_JSVM_GetVMInfo| Obtains the VM information.|
 
-Example:
+#### Example
+
 Obtain version information.
 
 ```c++
@@ -2018,7 +2086,8 @@ Perform memory management.
 
 > Using a backing store is a critical operation. You must ensure correct use of memory and exercise caution when using it. For details, see the following example.
 
-Example:
+#### Example
+
 Perform memory management. 
 
 ```c++
@@ -2120,7 +2189,8 @@ Perform operations related to promises.
 |OH_JSVM_RejectDeferred| Rejects a JS promise by using the **deferred** object associated with it.|
 |OH_JSVM_IsPromise| Checks whether a promise object is a native promise object.|
 
-Example:
+#### Example
+
 Perform operations related to promises.
 
 ```c++
@@ -2162,7 +2232,8 @@ Perform JSON operations.
 |OH_JSVM_JsonParse| Parses a JSON string and returns the parsed value.|
 |OH_JSVM_JsonStringify| Converts a JS object into a JSON string and returns the converted string.|
 
-Example:
+#### Example
+
 Parse JSON strings.
 
 ```c++
@@ -2185,8 +2256,9 @@ Create and use a VM startup snapshot.
 |OH_JSVM_CreateSnapshot| Creates a VM startup snapshot.|
 |OH_JSVM_CreateEnvFromSnapshot| Creates a JSVM environment from a startup snapshot.|
 
-Example:
-[Working with VM Snapshots Using JSVM-API](use-jsvm-create-snapshot.md)
+#### Example
+
+See [Working with VM Snapshots Using JSVM-API](use-jsvm-create-snapshot.md).
 
 ### Checking Input Parameters
 
@@ -2197,9 +2269,10 @@ Check whether the input parameters are callable.
 #### Available APIs
 | API| Description|
 | -------- | -------- |
-|OH_JSVM_IsCallable| Checks whether input parameters are callable.|
+|OH_JSVM_IsCallable| Checks whether the input parameters are callable. |
 
-Example:
+#### Example
+
 Check whether input parameters are callable.
 
 ```c++
@@ -2280,7 +2353,8 @@ Perform lock operations.
 |OH_JSVM_AcquireLock| Obtains a lock.|
 |OH_JSVM_ReleaseLock| Releases a lock.|
 
-Example:
+#### Example
+
 Obtain and release a lock.
 
 ```c++
@@ -2382,7 +2456,8 @@ Set and obtain the data associated with a JSVM instance.
 |OH_JSVM_SetInstanceData| Sets data to be associated with a JSVM instance.|
 |OH_JSVM_GetInstanceData| Obtains the data associated with a JSVM instance.|
 
-Example:
+#### Example
+
 Set and obtain the data associated with a JSVM instance.
 
 ```c++
@@ -2477,5 +2552,6 @@ Start the running of a task queue in a JSVM and check whether there are micro ta
 |OH_JSVM_PumpMessageLoop| Starts running a task queue.|
 |OH_JSVM_PerformMicrotaskCheckpoint| Executes micro tasks in a task queue.|
 
-Example:
-[Working with Task Queues Using JSVM-API](use-jsvm-execute_tasks.md)
+#### Example
+
+See [Working with Task Queues Using JSVM-API](use-jsvm-execute_tasks.md).

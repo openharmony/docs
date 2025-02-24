@@ -295,7 +295,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 | deviceType    | [DeviceType](#devicetype)       | 是    | 否    | 当前设备类型。   |
 
 
-## RawFileDescriptor<sup>8+</sup>
+## RawFileDescriptor<sup>9+</sup>
 
 type RawFileDescriptor = _RawFileDescriptor
 
@@ -4702,7 +4702,7 @@ getRawFdSync(path: string): RawFileDescriptor
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| [RawFileDescriptor](#rawfiledescriptor8) | rawfile文件所在hap的descriptor信息。 |
+| [RawFileDescriptor](#rawfiledescriptor9) | rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
@@ -4741,7 +4741,7 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | 是    | rawfile文件路径。                      |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 返回获取的rawfile文件所在hap的descriptor信息。 |
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | 是    | 返回获取的rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
@@ -4794,7 +4794,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件所在hap的descriptor信息。 |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
@@ -6021,7 +6021,7 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | 是    | rawfile文件路径。                      |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor。 |
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor。 |
 
 **示例：** 
   ```ts
@@ -6060,7 +6060,7 @@ getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件descriptor。 |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | rawfile文件descriptor。 |
 
 **示例：** 
   ```ts

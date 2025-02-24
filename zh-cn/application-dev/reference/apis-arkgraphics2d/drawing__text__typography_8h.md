@@ -88,7 +88,7 @@
 | -------- | -------- |
 | [OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \* [OH_Drawing_CreateTypographyStyle](_drawing.md#oh_drawing_createtypographystyle) (void) | 创建指向OH_Drawing_TypographyStyle对象的指针。  | 
 | void [OH_Drawing_DestroyTypographyStyle](_drawing.md#oh_drawing_destroytypographystyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*) | 释放被OH_Drawing_TypographyStyle对象占据的内存。  | 
-| void [OH_Drawing_SetTypographyTextDirection](_drawing.md#oh_drawing_settypographytextdirection) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | 设置文本方向。  | 
+| void [OH_Drawing_SetTypographyTextDirection](_drawing.md#oh_drawing_settypographytextdirection) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | 设置指定排版样式中的文本方向。  | 
 | void [OH_Drawing_SetTypographyTextAlign](_drawing.md#oh_drawing_settypographytextalign) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | 设置文本对齐方式。  | 
 | int [OH_Drawing_TypographyGetEffectiveAlignment](_drawing.md#oh_drawing_typographygeteffectivealignment) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style) | 获取文字对齐方式。  | 
 | void [OH_Drawing_SetTypographyTextMaxLines](_drawing.md#oh_drawing_settypographytextmaxlines) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | 设置文本最大行数。  | 
@@ -107,13 +107,13 @@
 | void [OH_Drawing_SetTextStyleFontFamilies](_drawing.md#oh_drawing_settextstylefontfamilies) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int, const char \*fontFamilies[]) | 设置指定文本样式的字体家族类型。  |
 | void [OH_Drawing_SetTextStyleFontStyle](_drawing.md#oh_drawing_settextstylefontstyle) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 为指定文本样式设置字体样式。  |
 | void [OH_Drawing_SetTextStyleLocale](_drawing.md#oh_drawing_settextstylelocale) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, const char \*) | 设置文本语言环境。  |
-| void [OH_Drawing_SetTextStyleForegroundBrush](_drawing.md#oh_drawing_settextstyleforegroundbrush) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*) | 设置前景色画刷。  | 
+| void [OH_Drawing_SetTextStyleForegroundBrush](_drawing.md#oh_drawing_settextstyleforegroundbrush) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*) | 设置指定文本样式中的前景色画刷。  | 
 | void [OH_Drawing_TextStyleGetForegroundBrush](_drawing.md#oh_drawing_textstylegetforegroundbrush) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*) | 返回设置的前景色画刷。  | 
-| void [OH_Drawing_SetTextStyleForegroundPen](_drawing.md#oh_drawing_settextstyleforegroundpen) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*) | 设置前景色画笔。  | 
+| void [OH_Drawing_SetTextStyleForegroundPen](_drawing.md#oh_drawing_settextstyleforegroundpen) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*) | 设置指定文本样式中的前景色画笔。  | 
 | void [OH_Drawing_TextStyleGetForegroundPen](_drawing.md#oh_drawing_textstylegetforegroundpen) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*) | 返回设置的前景色画笔。  | 
-| void [OH_Drawing_SetTextStyleBackgroundBrush](_drawing.md#oh_drawing_settextstylebackgroundbrush) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*) | 设置背景色画刷。  | 
+| void [OH_Drawing_SetTextStyleBackgroundBrush](_drawing.md#oh_drawing_settextstylebackgroundbrush) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*) | 设置指定文本样式中的背景色画刷。  | 
 | void [OH_Drawing_TextStyleGetBackgroundBrush](_drawing.md#oh_drawing_textstylegetbackgroundbrush) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*) | 返回设置的背景色画刷。  | 
-| void [OH_Drawing_SetTextStyleBackgroundPen](_drawing.md#oh_drawing_settextstylebackgroundpen) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*) | 设置背景色画笔。  | 
+| void [OH_Drawing_SetTextStyleBackgroundPen](_drawing.md#oh_drawing_settextstylebackgroundpen) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*) | 设置指定文本样式中的背景色画笔。  | 
 | void [OH_Drawing_TextStyleGetBackgroundPen](_drawing.md#oh_drawing_textstylegetbackgroundpen) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*) | 返回设置的背景色画笔。  | 
 | [OH_Drawing_TypographyCreate](_drawing.md#oh_drawing_typographycreate) \* [OH_Drawing_CreateTypographyHandler](_drawing.md#oh_drawing_createtypographyhandler) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, [OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection) \*) | 创建指向OH_Drawing_TypographyCreate对象的指针。  | 
 | void [OH_Drawing_DestroyTypographyHandler](_drawing.md#oh_drawing_destroytypographyhandler) ([OH_Drawing_TypographyCreate](_drawing.md#oh_drawing_typographycreate) \*) | 释放被OH_Drawing_TypographyCreate对象占据的内存。  | 
@@ -166,8 +166,8 @@
 | double [OH_Drawing_TypographyGetLineWidth](_drawing.md#oh_drawing_typographygetlinewidth) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, int) | 获取指定行的行宽，该接口需要在[OH_Drawing_TypographyLayout](_drawing.md#oh_drawing_typographylayout)接口调用之后调用。  | 
 | void [OH_Drawing_SetTypographyTextSplitRatio](_drawing.md#oh_drawing_settypographytextsplitratio) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style, float textSplitRatio) | 设置文本划分比率。  | 
 | bool [OH_Drawing_TypographyIsLineUnlimited](_drawing.md#oh_drawing_typographyislineunlimited) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style) | 获取文本是否有最大行数限制。  | 
-| bool [OH_Drawing_TypographyIsEllipsized](_drawing.md#oh_drawing_typographyisellipsized) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style) | 获取文本是否配置省略号。  | 
-| void [OH_Drawing_SetTypographyTextLocale](_drawing.md#oh_drawing_settypographytextlocale) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style, const char \*locale) | 设置段落语言环境。 |
+| bool [OH_Drawing_TypographyIsEllipsized](_drawing.md#oh_drawing_typographyisellipsized) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style) | 获取指定排版样式是否配置省略号。  | 
+| void [OH_Drawing_SetTypographyTextLocale](_drawing.md#oh_drawing_settypographytextlocale) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style, const char \*locale) | 设置指定排版样式的语言环境。 |
 | bool [OH_Drawing_TextStyleGetFontMetrics](_drawing.md#oh_drawing_textstylegetfontmetrics) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) \*) | 获取文本字体属性。  | 
 | void [OH_Drawing_SetTypographyTextStyle](_drawing.md#oh_drawing_settypographytextstyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 设置排版样式。  | 
 | [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) \* [OH_Drawing_CreateFontDescriptor](_drawing.md#oh_drawing_createfontdescriptor) (void) | 构造字体描述对象，用于描述系统字体详细信息。  | 
@@ -242,7 +242,7 @@
 | void [OH_Drawing_TypographyStyleSetHintsEnabled](_drawing.md#oh_drawing_typographystylesethintsenabled) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style, bool hintsEnabled) | 设置文本是否启用字形轮廓自动调整。字形轮廓自动调整用于在渲染小字号文本时改善其可读性和外观。  | 
 | void [OH_Drawing_TypographyMarkDirty](_drawing.md#oh_drawing_typographymarkdirty) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*) | 将排版标记为脏数据，用于初始化排版状态。  | 
 | int32_t [OH_Drawing_TypographyGetUnresolvedGlyphsCount](_drawing.md#oh_drawing_typographygetunresolvedglyphscount) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*) | 获取文本中尚未解析的字形的数量，该接口需要在[OH_Drawing_TypographyLayout](_drawing.md#oh_drawing_typographylayout)接口调用并生效之后调用。  | 
-| void [OH_Drawing_TypographyUpdateFontSize](_drawing.md#oh_drawing_typographyupdatefontsize) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, size_t from, size_t to, float fontSize) | 更新文本中的字体大小。  | 
+| void [OH_Drawing_TypographyUpdateFontSize](_drawing.md#oh_drawing_typographyupdatefontsize) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, size_t from, size_t to, float fontSize) | 更新排版对象中的字体大小。  | 
 | bool [OH_Drawing_TypographyTextGetLineStyle](_drawing.md#oh_drawing_typographytextgetlinestyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*) | 获取文本排版是否启用行样式。  | 
 | [OH_Drawing_FontWeight](_drawing.md#oh_drawing_fontweight) [OH_Drawing_TypographyTextlineStyleGetFontWeight](_drawing.md#oh_drawing_typographytextlinestylegetfontweight) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*) | 获取排版样式中支柱样式字重。  |
 | [OH_Drawing_FontStyle](_drawing.md#oh_drawing_fontstyle) [OH_Drawing_TypographyTextlineStyleGetFontStyle](_drawing.md#oh_drawing_typographytextlinestylegetfontstyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*) | 获取文本排版样式中支柱样式的字体样式。  |
@@ -255,7 +255,7 @@
 | double [OH_Drawing_TypographyTextlineStyleGetSpacingScale](_drawing.md#oh_drawing_typographytextlinestylegetspacingscale) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*) | 获取文本排版行样式间距比例。  | 
 | bool [OH_Drawing_TypographyTextlineGetStyleOnly](_drawing.md#oh_drawing_typographytextlinegetstyleonly) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*) | 获取文本排版是否仅启用行样式。  | 
 | [OH_Drawing_TextAlign](_drawing.md#oh_drawing_textalign) [OH_Drawing_TypographyGetTextAlign](_drawing.md#oh_drawing_typographygettextalign) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*) | 获取文本对齐方式。  | 
-| [OH_Drawing_TextDirection](_drawing.md#oh_drawing_textdirection) [OH_Drawing_TypographyGetTextDirection](_drawing.md#oh_drawing_typographygettextdirection) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*) | 获取文本方向。  | 
+| [OH_Drawing_TextDirection](_drawing.md#oh_drawing_textdirection) [OH_Drawing_TypographyGetTextDirection](_drawing.md#oh_drawing_typographygettextdirection) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*) | 获取指定排版样式中的文本方向。  | 
 | size_t [OH_Drawing_TypographyGetTextMaxLines](_drawing.md#oh_drawing_typographygettextmaxlines) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*) | 获取文本的最大行数。  | 
 | char \* [OH_Drawing_TypographyGetTextEllipsis](_drawing.md#oh_drawing_typographygettextellipsis) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*) | 获取指定排版样式设置的省略号文本。 |
 | void [OH_Drawing_TypographyDestroyEllipsis](_drawing.md#oh_drawing_typographydestroyellipsis) (char \*ellipsis) | 释放省略号名称列表占用的内存。  | 

@@ -41,16 +41,16 @@ VideoDecoder模块提供用于视频解码的接口。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_Prepare](#oh_videodecoder_prepare) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 准备解码器的内部资源。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_Start](#oh_videodecoder_start) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 调用OH_VideoDecoder_Prepare接口成功后调用此接口启动解码器。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_Stop](#oh_videodecoder_stop) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 停止解码器，释放输入输出buffer。  | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_Flush](#oh_videodecoder_flush) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 清除解码器中缓存的输入和输出数据及参数集如H264格式的PPS/SPS。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_Flush](#oh_videodecoder_flush) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 清除解码器中缓存的输入和输出数据及参数集如H.264格式的PPS/SPS。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_Reset](#oh_videodecoder_reset) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 重置解码器，解码器回到初始化状态。  | 
 | [OH_AVFormat](_core.md#oh_avformat) \* [OH_VideoDecoder_GetOutputDescription](#oh_videodecoder_getoutputdescription) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 获取解码器输出数据的OH_AVFormat信息。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_SetParameter](#oh_videodecoder_setparameter) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, [OH_AVFormat](_core.md#oh_avformat) \*format) | 设置解码器的动态参数。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_PushInputData](#oh_videodecoder_pushinputdata) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) attr) | 将填充数据的输入缓冲区提交给视频解码器。（API11废弃）   | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_RenderOutputData](#oh_videodecoder_renderoutputdata) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出buffer返回给解码器，并通知解码器完成在输出surface上渲染Buffer中包含的解码数据。（API11废弃）   |
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_RenderOutputData](#oh_videodecoder_renderoutputdata) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出buffer返回给解码器，并通知解码器完成在输出surface上渲染buffer中包含的解码数据。（API11废弃）   |
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_FreeOutputData](#oh_videodecoder_freeoutputdata) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出缓冲区返回到解码器。（API11废弃）   | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_PushInputBuffer](#oh_videodecoder_pushinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 通知视频解码器已对index对应的缓冲区完成输入数据的填充。   | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_RenderOutputBuffer](#oh_videodecoder_renderoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将index对应的输出缓冲返回给解码器，缓冲中携带解码输出数据，并通知解码器完成在输出surface上渲染，输出缓冲包含解码数据。  |
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_RenderOutputBufferAtTime](#oh_videodecoder_renderoutputbufferattime) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index, int64_t renderTimestampNs) | 将index对应的输出缓冲返回给解码器，缓冲中携带解码输出数据，并通知解码器在调用者指定的时间内完成在输出surface上渲染，输出缓冲包含解码数据。  |
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_RenderOutputBufferAtTime](#oh_videodecoder_renderoutputbufferattime) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index, int64_t renderTimestampNs) | 将index对应的输出缓冲返回给解码器，缓冲中携带解码输出数据，并通知解码器在开发者指定的时间内完成在输出surface上渲染，输出缓冲包含解码数据。  |
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_FreeOutputBuffer](#oh_videodecoder_freeoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出缓冲区返回到解码器。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_IsValid](#oh_videodecoder_isvalid) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, bool \*isValid) | 检查当前解码实例是否有效。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_SetDecryptionConfig](#oh_videodecoder_setdecryptionconfig) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, MediaKeySession \*mediaKeySession, bool secureVideoPath) | 设置解密配置。  | 
@@ -206,7 +206,7 @@ AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 OH_AVErrCode OH_VideoDecoder_Flush (OH_AVCodec *codec)
 ```
 **描述**
-清除解码器中缓存的输入和输出数据及参数集如H264格式的PPS/SPS。调用此接口后，以前通过异步回调上报的所有缓冲区index都将失效，请确保不要访问这些index对应的缓冲区。
+清除解码器中缓存的输入和输出数据及参数集如H.264格式的PPS/SPS。调用此接口后，以前通过异步回调上报的所有缓冲区index都将失效，请确保不要访问这些index对应的缓冲区。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
 
@@ -243,7 +243,7 @@ OH_AVErrCode OH_VideoDecoder_FreeOutputBuffer (OH_AVCodec *codec, uint32_t index
 **描述**
 将处理后的输出缓冲区返回到解码器。用户使用完需要及时调用此接口释放输出缓存区，否则会阻塞解码流程。
 
-详情请参见：[视频解码](../../media/avcodec/video-decoding.md) “Surface模式的步骤-13或Buffer模式步骤-10”。
+详情请参见：[视频解码](../../media/avcodec/video-decoding.md) “Surface模式的步骤-12或Buffer模式步骤-10”。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
 
@@ -284,7 +284,7 @@ OH_AVFormat* OH_VideoDecoder_GetOutputDescription (OH_AVCodec *codec)
 **描述**
 获取解码器输出数据的OH_AVFormat信息，请参阅[OH_AVFormat](_core.md#oh_avformat)。 
 
-需要注意的是，指向的OH_AVFormat实例在生命周期结束时需要调用者通过调用接口[OH_AVFormat_Destroy](_core.md#oh_avformat_destroy)释放。
+需要注意的是，指向的OH_AVFormat实例在生命周期结束时需要开发者通过调用接口[OH_AVFormat_Destroy](_core.md#oh_avformat_destroy)释放。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
 
@@ -318,7 +318,7 @@ OH_AVErrCode OH_VideoDecoder_IsValid (OH_AVCodec *codec, bool *isValid )
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向视频解码实例的指针。  | 
-| isValid | 输出参数。指向布尔类型的指针，如果解码器实例有效，则为true，如果解码器实例无效，则为false。建议调用者将isValid初始化为false。  | 
+| isValid | 输出参数。指向布尔类型的指针，如果解码器实例有效，则为true，如果解码器实例无效，则为false。建议开发者将isValid初始化为false。  | 
 
 **返回：**
 
@@ -377,8 +377,8 @@ OH_AVErrCode OH_VideoDecoder_PushInputBuffer (OH_AVCodec *codec, uint32_t index 
 
 输入回调将报告可用的输入缓冲区和相应的index值，请参阅[OH_AVCodecOnNeedInputBuffer](_codec_base.md#oh_avcodeconneedinputbuffer)。 一旦具有指定index的缓冲区提交到视频解码器，则无法再次访问缓冲区，直到再次收到输入回调，报告具有相同index的缓冲区可用。
 
-此外，对于某些解码器，需要在开始时向解码器输入编解码特定数据，以初始化解码器的解码过程，如H264格式的PPS/SPS数据。
-调用者可以使用该接口把解码需要的参数集如H264格式的PPS/SPS传递给解码器，该参数集可以单独送入解码器也可以和要解码的数据一起传入。
+此外，对于某些解码器，需要在开始时向解码器输入编解码特定数据，以初始化解码器的解码过程，如H.264格式的PPS/SPS数据。
+开发者可以使用该接口把解码需要的参数集如H.264格式的PPS/SPS传递给解码器，该参数集可以单独送入解码器也可以和要解码的数据一起传入。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
 
@@ -426,7 +426,7 @@ OH_AVErrCode OH_VideoDecoder_RegisterCallback (OH_AVCodec *codec, OH_AVCodecCall
 | -------- | -------- |
 | codec | 指向视频解码器实例的指针。  | 
 | callback | 所有回调函数的集合，请参见[OH_AVCodecCallback](_o_h___a_v_codec_callback.md)。  | 
-| userData | 调用者执行回调所依赖的数据。  | 
+| userData | 开发者执行回调所依赖的数据。  | 
 
 **返回：**
 
@@ -489,10 +489,10 @@ AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
 OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_t index, int64_t renderTimestampNs);
 ```
 **描述**
-将index对应的输出缓冲返回给解码器，缓冲中携带解码输出数据，并通知解码器在调用者指定的时间内完成在输出surface上渲染，输出缓冲包含解码数据。
+将index对应的输出缓冲返回给解码器，缓冲中携带解码输出数据，并通知解码器在开发者指定的时间内完成在输出surface上渲染，输出缓冲包含解码数据。
 如果之前没有配置输出surface，则调用此接口仅将指定index对应的输出缓冲区返回给解码器。
 
-调用者可以使用时间戳在特定时间（在VSYNC或者缓冲区时间戳之后）渲染缓冲区。若要在指定的时间戳显示，时间戳需要合理接近系统时间，有几点需要注意：
+开发者可以使用时间戳在特定时间（在VSYNC或者缓冲区时间戳之后）渲染缓冲区。若要在指定的时间戳显示，时间戳需要合理接近系统时间，有几点需要注意：
 1. 缓冲区是按照顺序处理的，因此可能会阻塞后续缓冲区在surface上的显示，如果想要对用户的一些行为做出反应，例如停止或者快进快退视频，这一点很重要。
 2. 如果多个缓冲区被发送到surface要在同一个VSYNC上渲染，那么最后一个将会被显示，其他的将被丢弃。
 3. 如果时间戳与当前的系统时间不是“合理接近”，surface将会忽略时间戳，并在可行的最早时间里显示buffer。在此模式下不会丢弃帧。
@@ -575,8 +575,8 @@ OH_AVErrCode OH_VideoDecoder_SetDecryptionConfig (OH_AVCodec *codec, MediaKeySes
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向视频解码实例的指针。  | 
-| mediaKeySession | 指向带有解密功能的DRM会话实例的指针，请参阅**MediaKeySession**。  | 
+| codec | 指向视频解码实例的指针。  |
+| mediaKeySession | 指向带有解密功能的DRM会话实例的指针，请参阅[MediaKeySession](../../reference/apis-drm-kit/native__mediakeysession_8h.md)。  | 
 | secureVideoPath | 安全视频通路。指定安全视频通路为true，非安全视频通路为false。在[Surface模式](../../media/avcodec/video-decoding.md#surface模式)下，既支持安全视频通路，也支持非安全视频通路。在[Buffer模式](../../media/avcodec/video-decoding.md#buffer模式)下，仅支持非安全视频通路。  |
 
 **返回：**
@@ -594,7 +594,7 @@ AV_ERR_OPERATE_NOT_PERMIT：
 AV_ERR_INVALID_VAL：
    
     1. 输入的codec指针为非解码器实例或为空指针；
-    2. mediaKeySession为nullptr或无效。
+    2. mediaKeySession为NULL或无效。
 
 AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
 
@@ -784,7 +784,7 @@ OH_AVErrCode OH_VideoDecoder_SetCallback (OH_AVCodec *codec, OH_AVCodecAsyncCall
 | -------- | -------- |
 | codec | 指向视频解码实例的指针。  | 
 | callback | 所有回调函数的集合，请参阅[OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md)。  | 
-| userData | 调用者执行回调所依赖的数据。  | 
+| userData | 开发者执行回调所依赖的数据。  | 
 
 **返回：**
 
@@ -809,7 +809,7 @@ AV_ERR_INVALID_STATE：本接口必须在OH_VideoDecoder_Prepare接口前调用�
 OH_AVErrCode OH_VideoDecoder_RenderOutputData (OH_AVCodec *codec, uint32_t index )
 ```
 **描述**
-将处理后的输出buffer返回给解码器，并通知解码器完成在输出surface上渲染Buffer中包含的解码数据。
+将处理后的输出buffer返回给解码器，并通知解码器完成在输出surface上渲染buffer中包含的解码数据。
 
 如果之前没有配置输出surface，则调用此接口仅将指定index对应的输出缓冲区返回给解码器。
 
@@ -855,7 +855,7 @@ OH_AVErrCode OH_VideoDecoder_PushInputData (OH_AVCodec *codec, uint32_t index, O
 
 输入回调将报告可用的输入缓冲区和相应的index值，请参阅[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)。 一旦具有指定index的缓冲区提交到视频解码器，则无法再次访问缓冲区，直到再次收到输入回调，报告具有相同index的缓冲区可用。
 
-此外，对于某些解码器，需要在开始时向解码器输入编解码特定数据，以初始化解码器的解码过程，如H264格式的PPS/SPS数据。
+此外，对于某些解码器，需要在开始时向解码器输入编解码特定数据，以初始化解码器的解码过程，如H.264格式的PPS/SPS数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
 

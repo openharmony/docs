@@ -47,7 +47,7 @@ RelativeContainer()
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持如下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持如下属性：
 
 ### guideLine<sup>12+</sup>
 

@@ -21,7 +21,7 @@ import { SplitLayout } from '@kit.ArkUI'
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)
 
 
 ## SplitLayout
@@ -43,7 +43,7 @@ SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, t
 | container | ()&nbsp;=&gt;&nbsp;void | 是 | @BuilderParam | 容器内组件。 |
 
 ## 事件
-不支持[通用事件](ts-universal-events-click.md)
+不支持[通用事件](ts-component-general-events.md)
 
 ## 示例
 该示例通过SplitLayout实现了页面布局，并具备自适应能力。

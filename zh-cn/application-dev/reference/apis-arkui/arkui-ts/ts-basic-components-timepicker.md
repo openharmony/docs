@@ -36,8 +36,8 @@ TimePicker(options?: TimePickerOptions)
 | -------------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | selected             | Date                                            | 否   | 设置选中项的时间。<br/>默认值：当前系统时间<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | format<sup>11+</sup> | [TimePickerFormat](#timepickerformat11枚举说明) | 否   | 指定需要显示的TimePicker的格式。<br/>默认值：TimePickerFormat.HOUR_MINUTE <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| start<sup>16+</sup>  | Date | 否   | 指定时间选择组件的起始时间。<br/>默认值：Date(0, 0, 0, 0, 0, 0)，仅生效设置日期的小时和分钟。<br/>设定了start和end的场景下，loop不生效。 <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
-| end<sup>16+</sup>    | Date | 否   | 指定时间选择组件的结束时间。<br/>默认值：Date(0, 0, 0, 23, 59, 59)，仅生效设置日期的小时和分钟。<br/>设定了start和end的场景下，loop不生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| start<sup>16+</sup>  | Date | 否   | 指定时间选择组件的起始时间。<br/>默认值：Date(0, 0, 0, 0, 0, 0)，仅生效设置日期的小时和分钟。<br/>设定了start、end，且为非默认值的场景下，loop不生效。 <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| end<sup>16+</sup>    | Date | 否   | 指定时间选择组件的结束时间。<br/>默认值：Date(0, 0, 0, 23, 59, 59)，仅生效设置日期的小时和分钟。<br/>设定了start、end，且为非默认值的场景下，loop不生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## TimePickerFormat<sup>11+</sup>枚举说明
 
@@ -63,7 +63,7 @@ TimePicker(options?: TimePickerOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### useMilitaryTime
 
@@ -285,6 +285,17 @@ enableHapticFeedback(enable: Optional\<boolean>)
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
 | enable  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否支持触控反馈。<br/>当enable的值为undefined时，默认值：true，true表示开启触控反馈，false表示不开启触控反馈。<br/>设置为true后是否生效，还取决于系统的硬件是否支持。 |
 
+>  **说明：**
+>
+>  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+>  ```json
+>  "requestPermissions": [
+>  {
+>   "name": "ohos.permission.VIBRATE",
+>  }
+>  ]
+>  ```
+
 ### enableCascade<sup>16+</sup>
 
 enableCascade(enable: boolean)
@@ -310,7 +321,7 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 | 参数名   | 参数类型                                     | 必填   | 参数描述                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
-| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity)> | 是    | 表冠灵敏度。                     |
+| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity16)> | 是    | 表冠灵敏度。                     |
 
 >  **说明：**
 >
@@ -318,7 +329,7 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onChange
 
