@@ -388,7 +388,7 @@ export default class EntryAbility extends UIAbility {
         autoSync: false,
         // kvStoreType不填时，默认创建多设备协同数据库
         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-        // 多设备协同数据库：kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
+        // 多设备协同数据库：kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION
         securityLevel: distributedKVStore.SecurityLevel.S3
       }
     }
@@ -407,7 +407,7 @@ export default class EntryAbility extends UIAbility {
         autoSync: false,
         // kvStoreType不填时，默认创建多设备协同数据库
         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-        // 多设备协同数据库：kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
+        // 多设备协同数据库：kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION
         securityLevel: distributedKVStore.SecurityLevel.S3
       }
     }
