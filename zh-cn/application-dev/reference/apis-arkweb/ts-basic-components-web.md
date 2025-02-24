@@ -4397,7 +4397,49 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { cert } from '@kit.DeviceCertificateKit';
   
+  function LogCertInfo(certChainData : Array<Uint8Array> | undefined) {
+    if (!(certChainData instanceof Array)) {
+      console.log('failed, cert chain data type is not array');
+      return;
+    }
+
+    for (let i = 0; i < certChainData.length; i++) {
+      let encodeBlobData: cert.EncodingBlob = {
+        data: certChainData[i],
+        encodingFormat: cert.EncodingFormat.FORMAT_DER
+      }
+      cert.createX509Cert(encodeBlobData, (error, x509Cert) => {
+        if (error) {
+          console.error('Index : ' + i + ',createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+        } else {
+          console.log('createX509Cert success');
+          console.log(ParseX509CertInfo(x509Cert));
+        }
+      });
+    }
+    return;
+  }
+  
+  function Uint8ArrayToString(dataArray: Uint8Array) {
+    let dataString = '';
+    for (let i = 0; i < dataArray.length; i++) {
+      dataString += String.fromCharCode(dataArray[i]);
+    }
+    return dataString;
+  }
+
+  function ParseX509CertInfo(x509Cert: cert.X509Cert) {
+    let res: string = 'getCertificate success, '
+      + 'issuer name = '
+      + Uint8ArrayToString(x509Cert.getIssuerName().data) + ', subject name = '
+      + Uint8ArrayToString(x509Cert.getSubjectName().data) + ', valid start = '
+      + x509Cert.getNotBeforeTime()
+      + ', valid end = ' + x509Cert.getNotAfterTime();
+    return res;
+  }
+
   @Entry
   @Component
   struct WebComponent {
@@ -4407,6 +4449,7 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onSslErrorEventReceive((event) => {
+            LogCertInfo(event.certChainData);
             AlertDialog.show({
               title: 'onSslErrorEventReceive',
               message: 'text',
@@ -10057,6 +10100,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | -------------- | ---- | ---- | ---------------------------------------- |
 | handler | [SslErrorHandler](#sslerrorhandler9) | 是 | 通知Web组件用户操作行为。 |
 | error   | [SslError](#sslerror9枚举说明)           | 是 | 错误码。           |
+| certChainData<sup>15+</sup>   | Array<Uint8Array\>           | 否 | 证书链数据。           |
 
 ## OnClientAuthenticationEvent<sup>12+</sup>
 
