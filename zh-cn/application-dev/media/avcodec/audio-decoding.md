@@ -300,7 +300,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    
 8. （可选）调用OH_AVCencInfo_SetAVBuffer()，设置cencInfo。
 
-    若当前播放的节目是DRM加密节目，且由上层应用做媒体解封装，则须调用OH_AVCencInfo_SetAVBuffer()将cencInfo设置给AVBuffer，以实现AVBuffer中媒体数据的解密。
+    若当前播放的节目是DRM加密节目，且由上层应用做[媒体解封装](audio-video-demuxer.md#媒体数据解析)，则须调用OH_AVCencInfo_SetAVBuffer()将cencInfo设置给AVBuffer，以实现AVBuffer中媒体数据的解密。
 
     添加头文件：
 

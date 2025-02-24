@@ -326,7 +326,7 @@ struct Index {
 
 ## 设置节点通用属性和事件回调
 
-FrameNode提供了[commonAttribute](../reference/apis-arkui/js-apis-arkui-frameNode.md#commonattribute12)和[commonEvent](../reference/apis-arkui/js-apis-arkui-frameNode.md#commonevent12)两个对象用于对设置节点的[通用属性](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)和[设置事件回调](../reference/apis-arkui/arkui-ts/ts-uicommonevent.md)。
+FrameNode提供了[commonAttribute](../reference/apis-arkui/js-apis-arkui-frameNode.md#commonattribute12)和[commonEvent](../reference/apis-arkui/js-apis-arkui-frameNode.md#commonevent12)两个对象用于对设置节点的[通用属性](../reference/apis-arkui/arkui-ts/ts-component-general-attributes.md)和[设置事件回调](../reference/apis-arkui/arkui-ts/ts-uicommonevent.md)。
 
 > **说明：**
 > 

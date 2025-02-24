@@ -1457,6 +1457,18 @@
 
 **起始版本**：7
 
+### ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
+
+允许应用管理Wi-Fi的连接。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
 ### ohos.permission.MANAGE_WIFI_CONNECTION
 
 允许应用管理Wi-Fi的连接。
@@ -4131,6 +4143,18 @@
 
 **起始版本**：15
 
+### ohos.permission.ACCESS_ACCOUNT_SERVICE_EXTENSION_ABILITY
+
+允许系统应用调用账号ServiceExtensionAbility所提供的服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
 ### ohos.permission.STORAGE_MANAGER_CRYPT
 
 允许系统应用和系统服务调用接口完成加解密操作。
@@ -4201,7 +4225,7 @@
 
 ### ohos.permission.MANAGE_DEVICE_AUTH_CRED
 
-允许应用调用设备认证华为账号凭据管理应用接口。
+允许应用调用设备认证账号凭据管理应用接口。
 
 **权限级别**：system_basic
 
@@ -4712,3 +4736,15 @@
 **ACL使能**：true
 
 **起始版本**：14
+
+### ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
+
+允许应用发起录屏的时候，不弹出隐私授权弹窗。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15

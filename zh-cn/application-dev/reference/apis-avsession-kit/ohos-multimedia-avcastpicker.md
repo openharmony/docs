@@ -29,7 +29,7 @@ AVCastPicker()
 
 ## 属性
 
-除支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](../apis-arkui/arkui-ts/ts-component-general-attributes.md)外，还支持以下属性：
 
 | 名称 | 参数类型 | 必填 | 装饰器修饰类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -43,7 +43,7 @@ AVCastPicker()
 
 ## 事件
 
-支持[通用事件](../apis-arkui/arkui-ts/ts-universal-events-click.md)。
+支持[通用事件](../apis-arkui/arkui-ts/ts-component-general-events.md)。
 
 ## 示例
 

@@ -391,7 +391,27 @@ Allows an application to set pinned windows.
 
 **Valid since**: 13
 
-### ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
+## ohos.permission.USE_FRAUD_MESSAGES_PICKER
+
+Allows an application to use the scam message Picker to obtain SMS messages.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
+## ohos.permission.USE_FRAUD_CALL_LOG_PICKER
+
+Allows an application to use the scam call log Picker to obtain call logs.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
+## ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
 
 Allows an application to have its system JS engine to apply for anonymous executable memory with the MAP_FORT identifier.
 
@@ -430,7 +450,7 @@ Allows an application to start the device management service deployment process,
 **Valid since**: 15
 
 <!--Del-->
-### ohos.permission.PRELOAD_FILE
+## ohos.permission.PRELOAD_FILE
 
 Allows an application to preload files to improve file opening speed.
 
@@ -452,5 +472,38 @@ The configured icon and label information can be displayed in the Task Center an
 **Permission level**: normal
 
 **Authorization mode**: system_grant
+
+**Valid since**: 15
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
+### ohos.permission.NDK_START_SELF_UI_ABILITY
+
+Allows an application to start its UIAbility by using C API.
+
+Currently, this permission is available only to 2-in-1 device applications.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
+## ohos.permission.ACCESS_DISK_PHY_INFO
+
+Allows an application to obtain the disk hardware information.
+
+This permission is available only to securities applications for securities and stock trading.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 15

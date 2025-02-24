@@ -749,13 +749,13 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 201      | Permission denied     |
+| 201      | Permission denied.     |
 | 401      | The parameter check failed. |
 | 801      | Capability not supported. |
 | 5400101  | No memory. |
 | 5400102  | Operation not allowed.|
-| 5400103  | I/O error             |
-| 5400104  | Time out              |
+| 5400103  | I/O error.             |
+| 5400104  | Time out.              |
 | 5400105  | Service died.         |
 | 5400106  | Unsupported format.     |
 | 5411001  | IO can not find host.    |
@@ -4343,7 +4343,7 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   |录像资源的回调类型，支持的事件：'photoAssetAvailable'。 |
-| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | 是 | 系统创建的资源文件对应的PhotoAsset对象|
+| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | 是 | 系统创建的资源文件对应的PhotoAsset对象。|
 
 **错误码：**
 
@@ -4400,6 +4400,7 @@ off(type: 'photoAssetAvailable', callback?: Callback<photoAccessHelper.PhotoAsse
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 录音配置变化的回调类型，支持的事件：'photoAssetAvailable'。 |
+| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | 否 | 系统创建的资源文件对应的PhotoAsset对象。|
 
 **示例：**
 
@@ -4439,8 +4440,8 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
-| state  | [AVRecorderState](#avrecorderstate9) | 必填 | 当前播放状态。     |
-| reason | [StateChangeReason](#statechangereason9) | 必填 | 当前播放状态的切换原因。 |
+| state  | [AVRecorderState](#avrecorderstate9) | 必填 | 当前录制状态。     |
+| reason | [StateChangeReason](#statechangereason9) | 必填 | 当前录制状态的切换原因。 |
 
 ## AVRecorderConfig<sup>9+</sup>
 

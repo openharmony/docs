@@ -19,5 +19,5 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| char \* [value](image.md#value) = nullptr | 定义图像源属性键值字符串头地址 | 
-| size_t [size](image.md#size-77) = 0 | 定义图像源属性键值字符串大小 | 
+| char \* [value](image.md#value) = nullptr | 定义图像源属性键值字符串头地址。 |
+| size_t [size](image.md#size-77) = 0 | 定义图像源属性键值字符串大小。 |

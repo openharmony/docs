@@ -1409,18 +1409,6 @@ Allows an application to read wallpaper files.
 
 **Valid since**: 7
 
-### ohos.permission.GET_WIFI_CONFIG
-
-Allows an application to obtain the Wi-Fi configuration.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 8
-
 ### ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
 Allows an application to grant sensitive permissions to other applications.
@@ -1504,6 +1492,18 @@ Allows an application to modify security settings.
 **Enable via ACL**: true
 
 **Valid since**: 7
+
+### ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
+
+Allows an application to manage Wi-Fi connections.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
 
 ### ohos.permission.MANAGE_WIFI_CONNECTION
 
@@ -1756,18 +1756,6 @@ Allows an application to set the system time zone.
 **Enable via ACL**: true
 
 **Valid since**: 7
-
-### ohos.permission.SET_WIFI_CONFIG
-
-Allows an application to configure Wi-Fi information.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 8
 
 ### ohos.permission.START_ABILIIES_FROM_BACKGROUND
 
@@ -4227,6 +4215,18 @@ After the script address is configured, other applications can read and parse th
 
 **Valid since**: 15
 
+### ohos.permission.ACCESS_ACCOUNT_SERVICE_EXTENSION_ABILITY
+
+Allows a system application to invoke the services provided by the account ServiceExtensionAbility.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：15
+
 ### ohos.permission.STORAGE_MANAGER_CRYPT
 
 Allows a system application or system service to call APIs to perform encryption and decryption.
@@ -4808,3 +4808,15 @@ With this permission, the application can perform operations such as taking scre
 **Enable via ACL**: true
 
 **Valid since**: 14
+
+### ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
+
+Allows an application to initiate screen recording without displaying the user authorization dialog box.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15

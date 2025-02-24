@@ -139,7 +139,10 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 | 名称 | 值 | 说明 |
 |----------------|---|---|
-| FLAG_INSTALLED|  0x00000001 | 表示指定用户安装应用的状态，1表示指定用户安装了，0表示未安装。|
+| FLAG_INSTALLED|  0x00000001 | 表示指定用户安装应用的状态为已安装状态。 |
+| FLAG_OTHER_INSTALLED<sup>15+</sup>|  0x00000010 | 表示除指定用户外，其他用户的应用安装状态为已安装。|
+| FLAG_PREINSTALLED_APP<sup>15+</sup>|  0x00000020 | 表示应用的预置属性为预置应用。|
+| FLAG_PREINSTALLED_APP_UPDATE<sup>15+</sup>|  0x00000040 | 表示该预置应用的更新状态为已更新。|
 
 ## bundleManager.getBundleInfo<sup>14+</sup>
 

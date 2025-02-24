@@ -34,7 +34,7 @@ Understanding these concepts helps you securely and effectively manipulate JS ob
 | OH_JSVM_CloseEscapableHandleScope    | Closes an escapable handle scope.|
 | OH_JSVM_EscapeHandle         | Promotes a handle to a JS object so that it is valid for the lifetime of the outer scope.|
 | OH_JSVM_CreateReference      | Creates a reference with the specified reference count to the value passed in. The reference allows objects to be used and shared in different contexts and helps effective track of the object lifecycle.|
-| OH_JSVM_DeleteReference      | Releases the reference created by **OH_JSVM_CreateReference**. This allows objects to be correctly released and reclaimed when they are no longer required, avoiding memory leaks.|
+| OH_JSVM_DeleteReference      | Deletes the reference created by **OH_JSVM_CreateReference**. This allows objects to be correctly released and reclaimed when they are no longer required, avoiding memory leaks.|
 | OH_JSVM_ReferenceRef         | Increments the reference count of the reference created by **OH_JSVM_CreateReference** so that the object referenced will not be released.|
 | OH_JSVM_ReferenceUnref       | Decrements the reference count of the reference created by **OH_JSVM_CreateReference** so that the object can be correctly released and reclaimed when it is not referenced.|
 | OH_JSVM_GetReferenceValue   | Obtains the object referenced by **OH_JSVM_CreateReference**. |
@@ -42,38 +42,20 @@ Understanding these concepts helps you securely and effectively manipulate JS ob
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to lifecycle management APIs.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in lifecycle management.
 
-### OH_JSVM_OpenHandleScope, OH_JSVM_CloseHandleScope
+### OH_JSVM_OpenHandleScope and OH_JSVM_CloseHandleScope
 
-Use **OH_JSVM_OpenHandleScope** to open a handle scope. Use **OH_JSVM_CloseHandleScope** to close a handle scope. Properly managing JS handle scopes can prevent GC problems.
+Call **OH_JSVM_OpenHandleScope** to open a handle scope. Call **OH_JSVM_CloseHandleScope** to close a handle scope. Properly managing JS handle scopes can prevent GC problems.
 
 CPP code:
 
 ```cpp
-// hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// Register the HandleScopeTest, HandleScope, and HandleScopeFor callbacks.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = HandleScopeTest},
-    {.data = nullptr, .callback = HandleScope},
-    {.data = nullptr, .callback = HandleScopeFor},
-};
-static JSVM_CallbackStruct *method = param;
-// Expose the HandleScopeTest, HandleScope, and HandleScopeFor callbacks to JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"handleScopeTest", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-    {"handleScope", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-    {"handleScopeFor", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-static int DIFF_VALUE_HUNDRED_THOUSAND = 100000;
 // Define OH_JSVM_OpenHandleScope and OH_JSVM_CloseHandleScope.
-static JSVM_Value HandleScopeFor(JSVM_Env env, JSVM_CallbackInfo info)
-{
+static JSVM_Value HandleScopeFor(JSVM_Env env, JSVM_CallbackInfo info) {
     // When JSVM-API is frequently called to create JS objects in the for loop, use handle_scope to release resources in a timely manner when they are no longer required.
     // In the following example, the lifecycle of the local variable res ends at the end of each loop. To prevent memory leaks, scope is used to release the JS object in a timely manner.
+    constexpr uint32_t DIFF_VALUE_HUNDRED_THOUSAND = 10000;
     JSVM_Value checked = nullptr;
     for (int i = 0; i < DIFF_VALUE_HUNDRED_THOUSAND; i++) {
         JSVM_HandleScope scope = nullptr;
@@ -95,123 +77,33 @@ static JSVM_Value HandleScopeFor(JSVM_Env env, JSVM_CallbackInfo info)
     return checked;
 }
 
-static JSVM_Value HandleScopeTest(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    // NOTE
-    // In the following code, obj is created within the handle scope, which is later closed by OH_JSVM_OpenHandleScope.
-    // After the handle scope is closed, results can still be returned normally
-    // because the results are returned as the return values of functions,
-    // instead of using obj outside the handle scope.
-    // Call OH_JSVM_OpenHandleScope to create a handle scope.
-    JSVM_HandleScope scope = nullptr;
-    JSVM_Status status = OH_JSVM_OpenHandleScope(env, &scope);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_OpenHandleScope: failed");
-        return nullptr;
-    }
-    // Create an object within the handle scope.
-    JSVM_Value obj = nullptr;
-    OH_JSVM_CreateObject(env, &obj);
-    // Add properties to the object.
-    JSVM_Value value = nullptr;
-    OH_JSVM_CreateStringUtf8(env, "test handleScope", JSVM_AUTO_LENGTH, &value);
-    OH_JSVM_SetNamedProperty(env, obj, "name", value);
-    // Close the handle scope. Then, the object handles created within the scope are automatically released.
-    status = OH_JSVM_CloseHandleScope(env, scope);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_CloseHandleScope: failed");
-        return nullptr;
-    }
-    OH_LOG_INFO(LOG_APP, "JSVM HandleScopeTest: success");
-    return obj;
-}
+// Register the HandleScopeFor callback.
+static JSVM_CallbackStruct param[] = {
+    {.callback = HandleScopeFor, .data = nullptr},
+};
 
-static JSVM_Value HandleScope(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    // Call OH_JSVM_OpenHandleScope to create a handle scope.
-    JSVM_HandleScope scope = nullptr;
-    JSVM_Status status = OH_JSVM_OpenHandleScope(env, &scope);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_OpenHandleScope: failed");
-        return nullptr;
-    }
-    // Create an object within the handle scope.
-    JSVM_Value obj = nullptr;
-    OH_JSVM_CreateObject(env, &obj);
-    // Add properties to the object.
-    JSVM_Value value = nullptr;
-    OH_JSVM_CreateStringUtf8(env, "handleScope", JSVM_AUTO_LENGTH, &value);
-    OH_JSVM_SetNamedProperty(env, obj, "name", value);
-    // Close the handle scope. Then, the object handles created within the scope are automatically released.
-    status = OH_JSVM_CloseHandleScope(env, scope);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_CloseHandleScope: failed");
-        return nullptr;
-    }
-    // After the handle scope is closed, add properties to the object. The previously set property 'name' becomes invalid.
-    OH_JSVM_CreateStringUtf8(env, "001", JSVM_AUTO_LENGTH, &value);
-    OH_JSVM_SetNamedProperty(env, obj, "id", value);
-    // The property 'name' is invalid.
-    bool result = true;
-    OH_JSVM_CreateStringUtf8(env, "name", JSVM_AUTO_LENGTH, &value);
-    OH_JSVM_HasProperty(env, obj, value, &result);
-    if (!result) {
-        OH_LOG_INFO(LOG_APP, "JSVM HandleScope: success");
-    }
-    return obj;
-}
+static JSVM_CallbackStruct *method = param;
+// Alias for the HandleScopeFor method, which can be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"HandleScopeFor", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+const char *srcCallNative = "HandleScopeFor()";
 ```
 
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-try {
-  let script: string = `handleScopeTest()`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM handleScopeTest: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM handleScopeTest error: %{public}s', error.message);
-}
-try {
-  let script: string = `handleScope()`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM handleScope: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM handleScope error: %{public}s', error.message);
-}
-try {
-  let script: string = `handleScopeFor()`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM handleScopeFor: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM handleScopeFor error: %{public}s', error.message);
-}
+Expected result:
+```
+JSVM HandleScopeFor: success
 ```
 
-### OH_JSVM_OpenEscapableHandleScope, OH_JSVM_CloseEscapableHandleScope, OH_JSVM_EscapeHandle
+### OH_JSVM_OpenEscapableHandleScope, OH_JSVM_CloseEscapableHandleScope, and OH_JSVM_EscapeHandle
 
-Use **OH_JSVM_OpenEscapableHandleScope** to create an escapeable handle scope, which allows the declared values in the scope to be returned to the parent scope. Use **OH_JSVM_CloseEscapableHandleScope** to close an escapeable handle scope. Use **OH_JSVM_EscapeHandle** to promote the lifecycle of a JS object so that it is valid for the lifetime of the outer scope.
-These APIs are helpful for managing ArkTS objects more flexibly in C/C++, especially when passing cross-scope values.
+Call **OH_JSVM_OpenEscapableHandleScope** to create an escapeable handle scope, which allows the declared values in a scope to be returned to its parent scope. <br>Call **OH_JSVM_CloseEscapableHandleScope** to close the created scope.<br>Call **OH_JSVM_EscapeHandle** to promote the lifecycle of the passed-in JS object to its parent scope.
+These APIs are helpful for managing JS objects more flexibly in C/C++, especially when passing cross-scope values.
 
 CPP code:
 
 ```cpp
-// hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// Define the EscapableHandleScopeTest callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = EscapableHandleScopeTest},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named escapableHandleScopeTest and associate it with a callback. This allows the EscapableHandleScopeTest callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"escapableHandleScopeTest", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_OpenEscapableHandleScope, OH_JSVM_CloseEscapableHandleScope, and OH_JSVM_EscapeHandle.
 static JSVM_Value EscapableHandleScopeTest(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -238,118 +130,69 @@ static JSVM_Value EscapableHandleScopeTest(JSVM_Env env, JSVM_CallbackInfo info)
         OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_CloseEscapableHandleScope: failed");
         return nullptr;
     }
-    // Use escapedObj outside the scope. Since escapedObj has escaped, the property can be set successfully and obtained from ArkTs.
-    OH_JSVM_CreateStringUtf8(env, "001", JSVM_AUTO_LENGTH, &value);
-    OH_JSVM_SetNamedProperty(env, obj, "id", value);
+    // Here, escapedObj can be used in the outer scope.
     bool result = false;
-    OH_JSVM_CreateStringUtf8(env, "id", JSVM_AUTO_LENGTH, &value);
-    OH_JSVM_HasProperty(env, obj, value, &result);
+    OH_JSVM_CreateStringUtf8(env, "name", JSVM_AUTO_LENGTH, &value);
+    OH_JSVM_HasProperty(env, escapedObj, value, &result);
     if (result) {
         OH_LOG_INFO(LOG_APP, "JSVM EscapableHandleScopeTest: success");
     }
     return escapedObj;
 }
+
+// Define the EscapableHandleScopeTest callback.
+static JSVM_CallbackStruct param[] = {
+    {.callback = EscapableHandleScopeTest, .data = nullptr},
+};
+static JSVM_CallbackStruct *method = param;
+// Alias for the escapableHandleScopeTest method, which can be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"escapableHandleScopeTest", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+const char *srcCallNative = "escapableHandleScopeTest()";
 ```
 
- 
+Expected result:
 
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-try {
-  let script: string = `escapableHandleScopeTest()`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM escapableHandleScopeTest: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM escapableHandleScopeTest error: %{public}s', error.message);
-}
+```
+JSVM EscapableHandleScopeTest: success
 ```
 
-### OH_JSVM_CreateReference, OH_JSVM_DeleteReference
+### OH_JSVM_CreateReference, OH_JSVM_DeleteReference, and OH_JSVM_GetReferenceValue
 
-Use **OH_JSVM_CreateReference** to create a reference for an object to extend its lifespan. The caller needs to manage the reference lifespan. Use **OH_JSVM_DeleteReference** to delete a reference.
+Call **OH_JSVM_CreateReference** to create a reference for a JS variable to extend its lifecycle.
+Call **OH_JSVM_GetReferenceValue** to obtain the JS variable associated with the reference.
+Call **OH_JSVM_DeleteReference** to delete the reference.
 
-### OH_JSVM_ReferenceRef, OH_JSVM_ReferenceUnref
+The caller must manage the reference lifecycle. During the reference validity period, the JS variable will not be garbage-collected.
 
-Use **OH_JSVM_ReferenceRef** to increment the reference count of a reference and use **OH_JSVM_ReferenceUnref** to decrement the reference count of a reference, and return the new count value.
+### OH_JSVM_ReferenceRef and OH_JSVM_ReferenceUnref
 
-### OH_JSVM_GetReferenceValue
-
-Use **OH_JSVM_GetReferenceValue** to obtain the JS object associated with the reference.
-
-### OH_JSVM_AddFinalizer
-
-Use **OH_JSVM_AddFinalizer** to add a **JSVM_Finalize** callback, which will be called when the JS object is garbage-collected.
+Call **OH_JSVM_ReferenceRef** to increment the reference count of a reference and call **OH_JSVM_ReferenceUnref** to decrement the reference count of a reference, and return the new count value. 
+When the reference count is **0**:
+- For the JS types that can be set as weak references (objects, functions, and external variables), the reference will be set as a weak reference. The associated variable will be garbage-collected when the GC mechanism deems it necessary. After the variable is garbage-collected, calling **OH_JSVM_GetReferenceValue** will return JS **NULL**. 
+- For the JS types that cannot be set as weak references, the reference will be cleared and calling **OH_JSVM_GetReferenceValue** will return JS **NULL**.
 
 CPP code:
 
 ```cpp
-// hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// Register the CreateReference, UseReference, and DeleteReference callbacks.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateReference},
-    {.data = nullptr, .callback = UseReference},
-    {.data = nullptr, .callback = DeleteReference},
-};
-static JSVM_CallbackStruct *method = param;
-// Expose the CreateReference, UseReference, and DeleteReference callbacks to JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createReference", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-    {"useReference", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-    {"deleteReference", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-// Define OH_JSVM_CreateReference and OH_JSVM_AddFinalizer.
-static JSVM_Value CreateReference(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    JSVM_Ref g_ref = nullptr;
-    JSVM_Value obj = nullptr;
-    OH_JSVM_CreateObject(env, &obj);
-    JSVM_Value value = nullptr;
-    OH_JSVM_CreateStringUtf8(env, "CreateReference", JSVM_AUTO_LENGTH, &value);
-    // Add a property to the object.
-    OH_JSVM_SetNamedProperty(env, obj, "name", value);
-    // Create a reference to the JS object.
-    JSVM_Status status = OH_JSVM_CreateReference(env, obj, 1, &g_ref);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_CreateReference: failed");
-        return nullptr;
-    }
-    JSVM_Finalize jSVM_Finalize = nullptr;
-    OH_JSVM_AddFinalizer(env, obj, nullptr, jSVM_Finalize, nullptr, &g_ref);
-    // Increment the reference count and return the new reference count.
-    uint32_t result;
-    OH_JSVM_ReferenceRef(env, g_ref, &result);
-    OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_ReferenceRef, count = %{public}d.", result);
-    if (result != 2) {
-        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_ReferenceRef: failed");
-        return nullptr;
-    }
-    OH_LOG_INFO(LOG_APP, "JSVM CreateReference success");
-    return obj;
-}
-// Define OH_JSVM_ReferenceRef and OH_JSVM_GetReferenceValue.
 static JSVM_Value UseReference(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    JSVM_Ref g_ref = nullptr;
+    // Create a JS object.
     JSVM_Value obj = nullptr;
     OH_JSVM_CreateObject(env, &obj);
     JSVM_Value value = nullptr;
     OH_JSVM_CreateStringUtf8(env, "UseReference", JSVM_AUTO_LENGTH, &value);
-    // Add a property to the object.
     OH_JSVM_SetNamedProperty(env, obj, "name", value);
+    
+    JSVM_Ref g_ref = nullptr;
     // Create a reference to the JS object.
     JSVM_Status status = OH_JSVM_CreateReference(env, obj, 1, &g_ref);
     if (status != JSVM_OK) {
         return nullptr;
     }
-    JSVM_Finalize jSVM_Finalize = nullptr;
-    OH_JSVM_AddFinalizer(env, obj, nullptr, jSVM_Finalize, nullptr, &g_ref);
+
     // Increment the reference count and return the new reference count.
     uint32_t result;
     OH_JSVM_ReferenceRef(env, g_ref, &result);
@@ -358,42 +201,7 @@ static JSVM_Value UseReference(JSVM_Env env, JSVM_CallbackInfo info)
         OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_ReferenceRef: failed");
         return nullptr;
     }
-    JSVM_Value object = nullptr;
-    // Call OH_JSVM_GetReferenceValue to obtain the referenced JS object.
-    status = OH_JSVM_GetReferenceValue(env, g_ref, &object);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_GetReferenceValue: failed");
-        return nullptr;
-    }
-    // Return the obtained object.
-    OH_LOG_INFO(LOG_APP, "JSVM UseReference success");
-    return object;
-}
-// Define OH_JSVM_ReferenceUnref and OH_JSVM_DeleteReference.
-static JSVM_Value DeleteReference(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    JSVM_Ref g_ref = nullptr;
-    JSVM_Value obj = nullptr;
-    OH_JSVM_CreateObject(env, &obj);
-    JSVM_Value value = nullptr;
-    OH_JSVM_CreateStringUtf8(env, "DeleteReference", JSVM_AUTO_LENGTH, &value);
-    // Add a property to the object.
-    OH_JSVM_SetNamedProperty(env, obj, "name", value);
-    // Create a reference to the JS object.
-    JSVM_Status status = OH_JSVM_CreateReference(env, obj, 1, &g_ref);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_CreateReference: failed");
-        return nullptr;
-    }
-    JSVM_Finalize jSVM_Finalize = nullptr;
-    OH_JSVM_AddFinalizer(env, obj, nullptr, jSVM_Finalize, nullptr, &g_ref);
-    // Increment the reference count and return the new reference count.
-    uint32_t result;
-    OH_JSVM_ReferenceRef(env, g_ref, &result);
-    OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_ReferenceRef, count = %{public}d.", result);
-    if (result != 2) {
-        return nullptr;
-    }
+
     // Decrement the reference count and return the new reference count.
     uint32_t num;
     OH_JSVM_ReferenceUnref(env, g_ref, &num);
@@ -401,44 +209,90 @@ static JSVM_Value DeleteReference(JSVM_Env env, JSVM_CallbackInfo info)
     if (num != 1) {
         return nullptr;
     }
-    // Call OH_JSVM_DeleteReference to delete the reference to the JS object.
+
+    JSVM_Value object = nullptr;
+    // Call OH_JSVM_GetReferenceValue to obtain the referenced JS object.
+    status = OH_JSVM_GetReferenceValue(env, g_ref, &object);
+    if (status != JSVM_OK) {
+        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_GetReferenceValue: failed");
+        return nullptr;
+    }
+
+    // When the reference is no longer required, call OH_JSVM_DeleteReference to delete it.
     status = OH_JSVM_DeleteReference(env, g_ref);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_DeleteReference: failed");
         return nullptr;
     }
-    JSVM_Value returnResult = nullptr;
-    OH_JSVM_CreateStringUtf8(env, "OH_JSVM_DeleteReference success", JSVM_AUTO_LENGTH, &returnResult);
-    OH_LOG_INFO(LOG_APP, "JSVM DeleteReference success");
-    return returnResult;
+
+    // Return the obtained object.
+    OH_LOG_INFO(LOG_APP, "JSVM UseReference success");
+    return object;
+}
+
+// Register the CreateReference, UseReference, and DeleteReference callbacks.
+static JSVM_CallbackStruct param[] = {
+    {.callback = UseReference, .data = nullptr},
+};
+static JSVM_CallbackStruct *method = param;
+// Aliases for the CreateReference, UseReference, and DeleteReference methods, which cal be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"useReference", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+const char *srcCallNative = "useReference()";
+```
+
+Expected result:
+
+```
+JSVM OH_JSVM_ReferenceRef, count = 2.
+JSVM OH_JSVM_ReferenceUnref, count = 1.
+JSVM UseReference success
+```
+
+### OH_JSVM_AddFinalizer
+Call **OH_JSVM_AddFinalizer** to add the **JSVM_Finalize** callback to a JS object. The callback will be invoked when the JS object is garbage-collected. **OH_JSVM_AddFinalizer** is usually used to release the native object associated with a JS object. If the input parameter is not a JS object, the call will fail and return an error code.
+The Finalizer method cannot be canceled after being registered. If it is not executed before **OH_JSVM_DestroyEnv** is called, it will be executed when **OH_JVSM_DestroyEnv** is called.
+
+CPP code:
+
+```cpp
+static int AddFinalizer(JSVM_VM vm, JSVM_Env env) {
+    // Open the handle scope.
+    JSVM_HandleScope handleScope;
+    CHECK_RET(OH_JSVM_OpenHandleScope(env, &handleScope));
+    // Create an object and set a callback.
+    JSVM_Value obj;
+    CHECK_RET(OH_JSVM_CreateObject(env, &obj));
+    CHECK_RET(OH_JSVM_AddFinalizer(
+        env, obj, nullptr,
+        [](JSVM_Env env, void *data, void *hint) -> void {
+            // Finalizer method, which can be used to clear the native object.
+            OH_LOG_INFO(LOG_APP, "JSVM: finalizer called.");
+        },
+        nullptr, nullptr));
+    OH_LOG_INFO(LOG_APP, "JSVM: finalizer added.");
+    // Close the handle scope to trigger GC. The Finalizer callback will be called during GC.
+    CHECK_RET(OH_JSVM_CloseHandleScope(env, handleScope));
+    OH_LOG_INFO(LOG_APP, "JSVM: before call gc.");
+    CHECK_RET(OH_JSVM_MemoryPressureNotification(env, JSVM_MemoryPressureLevel::JSVM_MEMORY_PRESSURE_LEVEL_CRITICAL));
+    OH_LOG_INFO(LOG_APP, "JSVM: after call gc.");
+
+    return 0;
+}
+
+static void RunDemo(JSVM_VM vm, JSVM_Env env) {
+    if (AddFinalizer(vm, env) != 0) {
+        OH_LOG_INFO(LOG_APP, "Run PromiseRegisterHandler failed");
+    }
 }
 ```
 
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-try {
-  let script: string = `createReference();`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createReference: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createReference error: %{public}s', error.message);
-}
-try {
-  let script: string = `useReference();`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM useReference: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM useReference error: %{public}s', error.message);
-}
-try {
-  let script: string = `deleteReference();`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM deleteReference: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM deleteReference error: %{public}s', error.message);
-}
+Expected result:
+```
+JSVM: finalizer added.
+JSVM: before call gc.
+JSVM: finalizer called.
+JSVM: after call gc.
 ```
