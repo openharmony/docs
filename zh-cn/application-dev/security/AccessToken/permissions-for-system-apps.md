@@ -4838,7 +4838,7 @@
 
 **起始版本**：16
 
-### ohos.permission. ACCESS_APP_CLONE_DIR
+### ohos.permission.ACCESS_APP_CLONE_DIR
 
 允许系统应用访问从其他设备复制的安装文件路径。
 
