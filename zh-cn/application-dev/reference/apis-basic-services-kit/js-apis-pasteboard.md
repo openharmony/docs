@@ -548,7 +548,7 @@ cancel(): void
 
 ```ts
 import { AbilityConstant, UIAbility, Want} from '@kit.AbilityKit'
-import { BusinessError pasteboard } from '@kit.BasicServicesKit';
+import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
     async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
@@ -568,7 +568,7 @@ export default class EntryAbility extends UIAbility {
     		progressIndicator: pasteData.ProgressIndicator.DEFAULT,
     		progressListener: ProgressListener
 		}
-		systemPasteboard.getDataWithProgress().then((pasteData: pasteboard.PasteData) => {
+		systemPasteboard.getDataWithProgress(params).then((pasteData: pasteboard.PasteData) => {
     		let text: string = pasteData.getPrimaryText();
 		}).catch((err: BusinessError) => {
     		console.error('Failed to get PasteData. Cause: ' + err.message);
@@ -2995,7 +2995,7 @@ getDataWithProgress(params: GetDataParams): Promise&lt;PasteData&gt;
 
 ```ts
 import { AbilityConstant, UIAbility, Want} from '@kit.AbilityKit'
-import { BusinessError pasteboard } from '@kit.BasicServicesKit';
+import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
     async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
@@ -3013,7 +3013,7 @@ export default class EntryAbility extends UIAbility {
     		progressIndicator: pasteData.ProgressIndicator.DEFAULT,
     		progressListener: ProgressListener
 		}
-		systemPasteboard.getDataWithProgress().then((pasteData: pasteboard.PasteData) => {
+		systemPasteboard.getDataWithProgress(params).then((pasteData: pasteboard.PasteData) => {
     		let text: string = pasteData.getPrimaryText();
 		}).catch((err: BusinessError) => {
     		console.error('Failed to get PasteData. Cause: ' + err.message);
