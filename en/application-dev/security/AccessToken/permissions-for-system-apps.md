@@ -4510,6 +4510,18 @@ After the script address is configured, other applications can read and parse th
 
 **Valid since**: 15
 
+### ohos.permission.ACCESS_VIRTUAL_SCREEN
+
+Allows an application to manage virtual screens.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.GET_PAGE_INFO
 
 Allows a system application to obtain the page information of a specified application.
