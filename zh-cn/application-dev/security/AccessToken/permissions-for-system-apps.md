@@ -733,6 +733,18 @@
 
 **起始版本**：9
 
+### ohos.permission.PERMISSION_RECORD_TOGGLE
+
+允许应用设置权限使用记录开关。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.CAPTURE_SCREEN
 
 允许应用截取屏幕图像。
