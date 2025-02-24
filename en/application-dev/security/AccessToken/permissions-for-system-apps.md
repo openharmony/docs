@@ -4563,6 +4563,18 @@ peripherals connected to the host via a USB bus and:
 
 **Valid since**: 16
 
+### ohos.permission.ACCESS_CUSTOM_RINGTONE
+
+Allows an application to access the RBT library.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
