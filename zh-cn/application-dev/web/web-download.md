@@ -291,3 +291,83 @@ export namespace  downloadUtil {
 
 }
 ```
+
+使用DocumentViewPicker()接口获取公共安装目录路径，将该路径设置为下载路径。
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { picker, fileUri } from  '@kit.CoreFileKit';
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // 使用DocumentViewPicker()接口获取当前示例的运行路径，将该路径设置为下载路径
+              getDownloadPathFromPicker().then((downloadPath) => {
+                webDownloadItem.start(downloadPath + '/' + webDownloadItem.getSuggestedFileName());
+              });
+
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
+              // 下载任务的唯一标识。
+              console.log("download update guid: " + webDownloadItem.getGuid());
+              // 下载的进度。
+              console.log("download update guid: " + webDownloadItem.getPercentComplete());
+              // 当前的下载速度。
+              console.log("download update speed: " + webDownloadItem.getCurrentSpeed())
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // 下载任务失败的错误码。
+              console.log("download failed guid: " + webDownloadItem.getLastErrorCode());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+    }
+  }
+
+}
+function getDownloadPathFromPicker(): Promise<string> {
+  return new Promise<string>(resolve => {
+    try {
+      const documentSaveOptions = new picker.DocumentSaveOptions();
+      documentSaveOptions.pickerMode = picker.DocumentPickerMode.DOWNLOAD
+      const documentPicker = new picker.DocumentViewPicker();
+      documentPicker.save(documentSaveOptions).then(async (documentSaveResult: Array<string>) => {
+        if (documentSaveResult.length <= 0) {
+          resolve('');
+          return;
+        }
+        const uriString = documentSaveResult[0];
+        if (!uriString) {
+          resolve('');
+          return;
+        }
+        const uri = new fileUri.FileUri(uriString);
+        resolve(uri.path);
+      }).catch((err: BusinessError) => {
+        console.error(`ErrorCode: ${err.code},  Message: ${err.message}`);
+        resolve('');
+      });
+    } catch (error) {
+      resolve('');
+    }
+  })
+}
+```
