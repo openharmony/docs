@@ -123,6 +123,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
       编辑"napi_init.cpp"文件，定义OnTrigger类型观察者相关方法：
     
       ```c++
+      //定义一变量，用来缓存创建的观察者的指针。
+      static HiAppEvent_Watcher *systemEventWatcher;
+
       // 开发者可以自行实现获取已监听到事件的回调函数，其中events指针指向内容仅在该函数内有效。
       static void OnTake(const char *const *events, uint32_t eventLen) {
           Json::Reader reader(Json::Features::strictMode());
