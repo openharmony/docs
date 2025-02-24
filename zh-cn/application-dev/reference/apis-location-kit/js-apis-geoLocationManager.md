@@ -499,7 +499,6 @@ on(type: 'locationChange', request: LocationRequest | ContinuousLocationRequest,
 |801 | Capability not supported. Failed to call ${geoLocationManager.on('locationChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
-|3301200 | Failed to obtain the geographical location.                                       |
 
 **示例**
 
@@ -560,7 +559,6 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 |801 | Capability not supported. Failed to call ${geoLocationManager.off('locationChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
-|3301200 | Failed to obtain the geographical location.                                       |
 
 **示例**
 
@@ -796,7 +794,6 @@ on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callb
 |801 | Capability not supported. Failed to call ${geoLocationManager.on('cachedGnssLocationsChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
-|3301200 | Failed to obtain the geographical location.                                       |
 
 **示例**
 
@@ -843,7 +840,6 @@ off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&
 |801 | Capability not supported. Failed to call ${geoLocationManager.off('cachedGnssLocationsChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
-|3301200 | Failed to obtain the geographical location.                                       |
 
 **示例**
 

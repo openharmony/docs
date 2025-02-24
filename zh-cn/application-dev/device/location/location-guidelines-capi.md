@@ -44,6 +44,7 @@
    #include "LocationKit/oh_location.h"
    #include "LocationKit/oh_location_type.h"
    #include "hilog/log.h"
+   #include <stdlib.h>
    ```
 
 5. 调用获取位置接口之前需要先判断位置开关是否打开。
@@ -70,13 +71,13 @@
     }
     EXTERN_C_END
    ```
-   如果位置开关未开启，可以拉起全局开关设置弹框，引导用户打开位置开关，具体可参考[拉起全局开关设置弹框](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestglobalswitch12)。
 
 6. 定位位置变化。
 
     ```c
     // 定义一个请求参数
     struct Location_RequestConfig *g_requestConfig = NULL;
+    void *mydata = NULL;
 
     // 定义一个回调函数用来接收位置信息
     void reportLocation(Location_Info* location, void* userData)
@@ -84,7 +85,7 @@
         Location_BasicInfo baseInfo = OH_LocationInfo_GetBasicInfo(location);
         char additionalInfo[1024] = "";
         Location_ResultCode result = OH_LocationInfo_GetAdditionalInfo(location, additionalInfo, sizeof(additionalInfo));
-        if (userData == "mydata") {
+        if (mydata == userdata) {
             OH_LOG_INFO(LOG_APP, "userData is mydata");
         }
         return;
@@ -98,8 +99,8 @@
         }
         OH_LocationRequestConfig_SetUseScene(g_requestConfig, LOCATION_USE_SCENE_NAVIGATION);
         OH_LocationRequestConfig_SetInterval(g_requestConfig, 1);
-        void *userdata = (void *)"mydata"; // 用户自定义任意类型，callback 透传返回
-        OH_LocationRequestConfig_SetCallback(g_requestConfig, reportLocation, userdata);
+        mydata = (void *)malloc(sizeof("mydata")); // 用户自定义任意类型，callback 透传返回
+        OH_LocationRequestConfig_SetCallback(g_requestConfig, reportLocation, mydata);
         OH_Location_StartLocating(g_requestConfig);
         int32_t ret = 0;
         napi_value result = NULL;
@@ -115,6 +116,8 @@
             OH_Location_DestroyRequestConfig(g_requestConfig);
             g_requestConfig = NULL;
         }
+        free(mydata);
+        mydata = NULL;
         int32_t ret = 0;
         napi_value result = NULL;
         napi_create_int32(env, ret, &result);
