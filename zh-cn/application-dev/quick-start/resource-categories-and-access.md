@@ -243,7 +243,7 @@ resources
 |   |   |---plural.json
 ```
 ### 示例
-string1字符串被标记为不需要翻译，string2字符串被标记为需要翻译且翻译已验证：
+如下的string1字符串被标记为不需要翻译，string2字符串被标记为需要翻译且翻译已验证：
 
 ```json
 {
