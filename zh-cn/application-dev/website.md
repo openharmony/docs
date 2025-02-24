@@ -1494,6 +1494,8 @@
         - 录制<!--media-recording-c-->
           - [使用AVRecorder录制音频(C/C++)](media/media/using-ndk-avrecorder-for-audio-recording.md)
           - [使用AVRecorder录制视频(C/C++)](media/media/using-ndk-avrecorder-for-video-recording.md)
+          - [使用AVScreenCapture录屏取码流(C/C++)](media/media/using-avscreencapture-for-buffer.md)
+          - [使用AVScreenCapture录屏写文件(C/C++)](media/media/using-avscreencapture-for-file.md)
     - Media Library Kit（媒体文件管理服务）<!--medialibrary-kit-->
       - [Media Library Kit 简介](media/medialibrary/photoAccessHelper-overview.md)
       - [使用Picker选择媒体库资源](media/medialibrary/photoAccessHelper-photoviewpicker.md)
