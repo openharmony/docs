@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.gestureEvent (手势输入事件)
+# @ohos.multimodalInput.gestureEvent (手势事件)
 
 设备上报的手势事件。
 
