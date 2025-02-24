@@ -231,7 +231,7 @@ getChild(index: number): FrameNode | null
 
 getFirstChild(): FrameNode | null
 
-获取当前FrameNode的第一个子节点
+获取当前FrameNode的第一个子节点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

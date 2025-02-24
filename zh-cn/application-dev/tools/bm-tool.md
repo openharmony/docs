@@ -1022,18 +1022,23 @@ Error: bundle manager service is died.
 
 **可能原因**
 
-系统出现未知的异常，导致系统服务重启。
+系统出现未知的异常，导致包管理服务已停止或者异常退出。
 
 **处理步骤**
 
-1.查询设备/data/log/faultlog/faultlogger/目录下是否存在crash文件。
+1. 重启手机后再次尝试安装应用。
 
-2.crash文件中是否包含foundation字样的文件。
-
-3.请多次重试安装，如果还是报同样的错误，观察是否会多出包含foundation字样的crash文件生成。
-
-4.若多次重试都无法解决，请导出crash文件和日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
-
+2. 重复上述步骤3到5次后依旧安装失败，请查询设备的/data/log/faultlog/faultlogger/目录下是否存在包含foundation字样的crash文件。
+```
+hdc shell
+cd /data/log/faultlog/faultlogger/
+ls -ls
+```
+3. 导出crash文件和日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+```
+hdc file recv /data/log/faultlog/faultlogger/
+hdc file recv /data/log/hilog/
+```
 
 ### 9568393 验证代码签名失败
 **错误信息**
@@ -1052,24 +1057,7 @@ Error: verify code signature failed.
 
 1. 安装最新版本DevEco Studio，重新签名。
 
-
-### 9568257 验证pkcs7文件失败
-**错误信息**
-
-Error: fail to verify pkcs7 file.
-
-**错误描述**
-
-验证pkcs7文件失败。
-
-**可能原因**
-
-应用当前使用的签名不符合HarmonyOS应用签名要求，通常是由于当前使用的是OpenHarmony应用的签名，应该替换为HarmonyOS应用的签名。
-
-**处理步骤**
-
-1. 在为应用/服务签名时勾选“Support HarmonyOS”,完成HarmonyOS应用签名后再次启动调试或运行应用。
-![示例图](figures/zh-cn_image_9868257_1.png)
+<!--RP3--><!--RP3End-->
 
 ### 9568401 调试包仅支持运行在开发者模式设备
 **错误信息**
