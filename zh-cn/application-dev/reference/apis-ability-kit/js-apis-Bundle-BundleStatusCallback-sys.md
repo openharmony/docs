@@ -1,6 +1,6 @@
 # BundleStatusCallback (系统接口)
 
-应用状态发生变化时回调的信息，通过接口[innerBundleManager.on](js-apis-Bundle-InnerBundleManager-sys.md)获取。
+应用状态发生变化时回调的信息，通过接口[innerBundleManager.on](js-apis-Bundle-InnerBundleManager-sys.md#innerbundlemanagerondeprecated)获取。
 
 > **说明：**
 >
@@ -13,7 +13,7 @@
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework。
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 监听类型   | 注册回调                                          | 说明                                   |
 | ------ | --------------------------------------------- | -------------------------------------- |
