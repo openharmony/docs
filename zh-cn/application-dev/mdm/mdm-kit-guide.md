@@ -74,8 +74,10 @@
 由于MDM接口需要在激活企业设备管理扩展能力后使用，调试时需通过hdc命令来激活/解除激活扩展能力，命令如下：
 
 ```bash
-# 激活
+# 激活为超级设备管理应用
 hdc shell edm enable-admin -n 包名 -a 企业设备管理扩展能力类名
+# 激活为BYOD设备管理应用
+hdc shell edm enable-admin -n 包名 -a 企业设备管理扩展能力类名 -t byod
 # 解除激活
 hdc shell edm disable-admin -n 包名
 ```
@@ -85,5 +87,5 @@ hdc shell edm disable-admin -n 包名
 > 正式使用时，在同一设备上只能能激活一个超级设备管理应用。
 >
 > <!--RP5--><!--RP5End-->
- 
+
 <!--RP6--><!--RP6End-->
