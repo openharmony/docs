@@ -20,7 +20,7 @@ import { systemManager } from '@kit.MDMKit';
 
 setNTPServer(admin: Want, server: string): void
 
-指定设备管理应用设置NTP时间服务器。
+设置NTP时间服务器。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -66,7 +66,7 @@ try {
 
 getNTPServer(admin: Want): string
 
-指定设备管理应用获取NTP时间服务器信息。
+获取NTP时间服务器信息。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -117,7 +117,7 @@ try {
 
 setOtaUpdatePolicy(admin: Want, policy: OtaUpdatePolicy): void
 
-指定设备管理应用设置升级策略。内网升级场景下，需要先调用[systemManager.notifyUpdatePackages](#systemmanagernotifyupdatepackages)接口通知系统更新包，再调用该接口设置升级策略。
+设置升级策略。内网升级场景下，需要先调用[systemManager.notifyUpdatePackages](#systemmanagernotifyupdatepackages)接口通知系统更新包，再调用该接口设置升级策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -216,7 +216,7 @@ try {
 
 getOtaUpdatePolicy(admin: Want): OtaUpdatePolicy
 
-指定设备管理应用查询升级策略。
+查询升级策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -224,9 +224,9 @@ getOtaUpdatePolicy(admin: Want): OtaUpdatePolicy
 
 **参数：**
 
-| 参数名 | 类型                                                    | 必填 | 说明               |
-| ------ | ------------------------------------------------------- | ---- | ------------------ |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业管理扩展组件。 |
+| 参数名 | 类型                                                    | 必填 | 说明                   |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 

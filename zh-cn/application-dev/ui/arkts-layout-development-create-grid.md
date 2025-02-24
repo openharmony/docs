@@ -54,7 +54,7 @@ rowsTemplate和columnsTemplate属性值是一个由多个空格和'数字+fr'间
 
 ```ts
 Grid() {
-  ...
+  // ...
 }
 .rowsTemplate('1fr 1fr 1fr')
 .columnsTemplate('1fr 2fr 1fr')
@@ -119,7 +119,7 @@ Grid(undefined, this.layoutOptions) {
 
 ```ts
 Grid() {
-  ...
+  // ...
 }
 .maxCount(3)
 .layoutDirection(GridDirection.Row)
@@ -147,22 +147,22 @@ Grid组件可以通过二维布局的方式显示一组GridItem子组件。
 Grid() {
   GridItem() {
     Text('会议')
-      ...
+      // ...
   }
 
   GridItem() {
     Text('签到')
-      ...
+      // ...
   }
 
   GridItem() {
     Text('投票')
-      ...
+      // ...
   }
 
   GridItem() {
     Text('打印')
-      ...
+      // ...
   }
 }
 .rowsTemplate('1fr 1fr')
@@ -208,7 +208,7 @@ struct OfficeService {
 
 ```ts
 Grid() {
-  ...
+  // ...
 }
 .columnsGap(10)
 .rowsGap(15)

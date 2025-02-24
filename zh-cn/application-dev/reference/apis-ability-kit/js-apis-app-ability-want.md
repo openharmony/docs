@@ -22,7 +22,7 @@ import { Want } from '@kit.AbilityKit';
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
 | deviceId    | string               | 否   | 表示运行指定Ability的设备ID。如果未设置该字段，则表明指定本设备。                                |
 | bundleName   | string               | 否   | 表示待启动Ability所在的应用Bundle名称。 |
-| moduleName | string | 否 | 表示待启动的Ability所属的模块名称。 |
+| moduleName | string | 否 | 表示待启动的Ability所属的模块名称。<br/>**说明：**<br/> 若待启动的Ability所属的模块为[HAR](../../quick-start/har-package.md)，则moduleName需为依赖该HAR的[HAP](../../quick-start/hap-package.md)/[HSP](../../quick-start/in-app-hsp.md)的moduleName。 |
 | abilityName  | string               | 否   | 表示待启动Ability名称。如果在Want中该字段同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。AbilityName需要在一个应用的范围内保证唯一。 |
 | action | string               | 否   | 表示要执行的通用操作（如：查看、分享、应用详情）。在隐式Want中，您可以定义该字段，配合uri或parameters来表示对数据要执行的操作。隐式Want定义及匹配规则请参见[显式Want与隐式Want匹配规则](../../application-models/explicit-implicit-want-mappings.md)。             |
 | entities | Array\<string> | 否 | 表示目标Ability额外的类别信息（如：浏览器、视频播放器）。在隐式Want中是对action字段的补充。在隐式Want中，您可以定义该字段，来过滤匹配Ability类型。 |

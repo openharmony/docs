@@ -70,7 +70,7 @@ adminManager.disableAdmin(wantTemp, 100).catch((err: BusinessError) => {
 
 subscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): void
 
-指定的设备管理应用订阅系统管理事件。
+订阅系统管理事件。
 
 **需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -82,10 +82,10 @@ subscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): voi
 
 **参数：**
 
-| 参数名        | 类型                                                    | 必填 | 说明               |
-| ------------- | ------------------------------------------------------- | ---- | ------------------ |
-| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业管理扩展组件。 |
-| managedEvents | Array\<[ManagedEvent](#managedevent)>                   | 是   | 订阅事件数组。     |
+| 参数名        | 类型                                                    | 必填 | 说明                   |
+| ------------- | ------------------------------------------------------- | ---- | ---------------------- |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| managedEvents | Array\<[ManagedEvent](#managedevent)>                   | 是   | 订阅事件数组。         |
 
 **错误码**：
 
@@ -120,7 +120,7 @@ try {
 
 unsubscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): void
 
-指定的设备管理应用取消订阅系统管理事件。
+取消订阅系统管理事件。
 
 **需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -132,10 +132,10 @@ unsubscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): v
 
 **参数：**
 
-| 参数名        | 类型                                                    | 必填 | 说明               |
-| ------------- | ------------------------------------------------------- | ---- | ------------------ |
-| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业管理扩展组件。 |
-| managedEvents | Array\<[ManagedEvent](#managedevent)>                   | 是   | 取消订阅事件数组。 |
+| 参数名        | 类型                                                    | 必填 | 说明                   |
+| ------------- | ------------------------------------------------------- | ---- | ---------------------- |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| managedEvents | Array\<[ManagedEvent](#managedevent)>                   | 是   | 取消订阅事件数组。     |
 
 **错误码**：
 

@@ -1,5 +1,3 @@
-
-
 # @ohos.enterprise.securityManager（安全管理）
 
 本模块提供设备安全管理的能力，包括查询安全补丁状态、查询文件加密状态等。
@@ -22,7 +20,7 @@ import { securityManager } from '@kit.MDMKit';
 
 uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 
-指定设备管理应用卸载用户证书，使用Promise异步回调。
+卸载用户证书，使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -74,7 +72,7 @@ securityManager.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
 
 installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt;
 
-指定设备管理应用安装用户证书，使用Promise异步回调。
+安装用户证书，使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -186,7 +184,7 @@ try {
 
 setPasswordPolicy(admin: Want, policy: PasswordPolicy): void
 
-指定设备管理应用设置设备口令策略。
+设置设备口令策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -236,7 +234,7 @@ try {
 
 getPasswordPolicy(admin: Want): PasswordPolicy
 
-指定设备管理应用获取设备口令策略。
+获取设备口令策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -286,7 +284,7 @@ try {
 
 setAppClipboardPolicy(admin: Want, tokenId: number, policy: ClipboardPolicy): void
 
-指定设备管理应用设置设备剪贴板策略。
+设置设备剪贴板策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -332,7 +330,7 @@ try {
 
 getAppClipboardPolicy(admin: Want, tokenId?: number): string
 
-指定设备管理应用获取设备剪贴板策略。
+获取设备剪贴板策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 

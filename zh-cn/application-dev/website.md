@@ -738,6 +738,7 @@
               - [卡片定点刷新](form/arkts-ui-widget-update-by-time-point.md)
               <!--Del-->
               - [卡片代理刷新](form/arkts-ui-widget-update-by-proxy.md)
+              - [卡片使用方主动请求刷新卡片内容（仅对系统应用开放）](form/arkts-ui-widget-content-update.md)
               <!--DelEnd-->
               - [刷新本地图片和网络图片](form/arkts-ui-widget-image-update.md)
               - [根据卡片状态刷新不同内容](form/arkts-ui-widget-update-by-status.md)
@@ -1461,7 +1462,7 @@
           - [画布的获取与绘制结果的显示（ArkTS）](graphics/canvas-get-result-draw-arkts.md)
           - [画布的获取与绘制结果的显示（C/C++）](graphics/canvas-get-result-draw-c.md)
         - 画布操作及状态<!--canvas-operation-state-->
-          - [画布操作及状态（ArkTS）](graphics/canvas-operation-state-arkts.md)
+          - [画布操作及状态处理（ArkTS）](graphics/canvas-operation-state-arkts.md)
           - [画布操作及状态处理（C/C++）](graphics/canvas-operation-state-c.md)
         - 绘制效果<!--drawing-effect-->
           - [绘制效果概述](graphics/drawing-effect-overview.md)
@@ -1654,8 +1655,6 @@
         - [OpenMP应用构建和运行指南](napi/openmp-guideline.md)
       - 资源管理<!--resource-management-->
         - [Rawfile开发指导](napi/rawfile-guidelines.md)
-      - 网络管理<!--network-management-->
-        - [NetConnection开发指导](napi/native-netmanager-guidelines.md)
       - 线程调度<!--thread-scheduling-->
         - [QOS开发指导](napi/qos-guidelines.md)
       - 内存管理<!--memory-management-->

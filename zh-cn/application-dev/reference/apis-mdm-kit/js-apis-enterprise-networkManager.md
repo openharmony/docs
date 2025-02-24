@@ -21,7 +21,7 @@ import { networkManager } from '@kit.MDMKit';
 
 getAllNetworkInterfacesSync(admin: Want): Array&lt;string&gt;
 
-指定设备管理应用获取所有激活的网络接口。
+获取所有激活的有线网络接口。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -72,7 +72,7 @@ try {
 
 getIpAddressSync(admin: Want, networkInterface: string): string
 
-指定设备管理应用根据网络接口获取设备IP地址。
+根据网络接口获取设备IP地址。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -84,7 +84,7 @@ getIpAddressSync(admin: Want, networkInterface: string): string
 | 参数名           | 类型                                                    | 必填 | 说明           |
 | ---------------- | ------------------------------------------------------- | ---- | -------------- |
 | admin            | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| networkInterface | string                                                  | 是   | 指定网络接口，通过[getAllNetworkInterfacesSync](#networkmanagergetallnetworkinterfacessync)接口获取。 |
+| networkInterface | string                                                  | 是   | 指定网络接口。 |
 
 **返回值：**
 
@@ -124,7 +124,7 @@ try {
 
 getMacSync(admin: Want, networkInterface: string): string
 
-指定设备管理应用根据网络接口获取设备MAC地址。
+根据网络接口获取设备MAC地址。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -136,7 +136,7 @@ getMacSync(admin: Want, networkInterface: string): string
 | 参数名           | 类型                                                    | 必填 | 说明           |
 | ---------------- | ------------------------------------------------------- | ---- | -------------- |
 | admin            | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| networkInterface | string                                                  | 是   | 指定网络接口，通过[getAllNetworkInterfacesSync](#networkmanagergetallnetworkinterfacessync)接口获取。 |
+| networkInterface | string                                                  | 是   | 指定网络接口。 |
 
 **返回值：**
 
@@ -176,7 +176,7 @@ try {
 
 isNetworkInterfaceDisabledSync(admin: Want, networkInterface: string): boolean
 
-指定设备管理应用查询指定网络接口是否被禁用。
+查询指定网络接口是否被禁用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -188,7 +188,7 @@ isNetworkInterfaceDisabledSync(admin: Want, networkInterface: string): boolean
 | 参数名           | 类型                                                    | 必填 | 说明           |
 | ---------------- | ------------------------------------------------------- | ---- | -------------- |
 | admin            | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| networkInterface | string                                                  | 是   | 指定网络接口，通过[getAllNetworkInterfacesSync](#networkmanagergetallnetworkinterfacessync)接口获取。 |
+| networkInterface | string                                                  | 是   | 指定网络接口。 |
 
 **返回值：**
 
@@ -228,7 +228,7 @@ try {
 
 setNetworkInterfaceDisabledSync(admin: Want, networkInterface: string, isDisabled: boolean): void
 
-指定设备管理应用禁止设备使用指定网络。
+禁止设备使用指定网络接口。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -237,11 +237,11 @@ setNetworkInterfaceDisabledSync(admin: Want, networkInterface: string, isDisable
 
 **参数：**
 
-| 参数名           | 类型                                                    | 必填 | 说明                                                         |
-| ---------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin            | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
-| networkInterface | string                                                  | 是   | 指定网络接口，通过[getAllNetworkInterfacesSync](#networkmanagergetallnetworkinterfacessync)接口获取。 |
-| isDisabled       | boolean                                                 | 是   | true表示禁用该网络接口，false表示开启该网络接口。            |
+| 参数名           | 类型                                                    | 必填 | 说明                                              |
+| ---------------- | ------------------------------------------------------- | ---- | ------------------------------------------------- |
+| admin            | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                            |
+| networkInterface | string                                                  | 是   | 指定网络接口。                                    |
+| isDisabled       | boolean                                                 | 是   | true表示禁用该网络接口，false表示开启该网络接口。 |
 
 **错误码**：
 
@@ -276,7 +276,7 @@ try {
 
 setGlobalProxySync(admin: Want, httpProxy: connection.HttpProxy): void
 
-指定设备管理应用设置网络全局代理。
+设置网络全局代理。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -330,7 +330,7 @@ try {
 
 getGlobalProxySync(admin: Want): connection.HttpProxy
 
-指定设备管理应用获取网络全局代理。
+获取网络全局代理。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -383,7 +383,7 @@ try {
 
 addFirewallRule(admin: Want, firewallRule: FirewallRule): void
 
-指定设备管理应用为设备添加防火墙过滤规则。<br/>
+为设备添加防火墙过滤规则。<br/>
 添加了[Action](#action)为ALLOW规则后，将会默认添加DENY规则，不在ALLOW规则之内的网络数据包将会被丢弃或拦截。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
@@ -436,7 +436,7 @@ networkManager.addFirewallRule(wantTemp, firewallRule);
 
 removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
 
-指定设备管理应用移除设备防火墙过滤规则。<br/>
+移除设备防火墙过滤规则。<br/>
 移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addFirewallRule](#networkmanageraddfirewallrule)添加的默认DENY规则清空。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
@@ -492,7 +492,7 @@ networkManager.removeFirewallRule(wantTemp);
 
 getFirewallRules(admin: Want): Array\<FirewallRule>
 
-指定设备管理应用查询防火墙过滤规则。
+查询设备防火墙过滤规则。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -539,7 +539,7 @@ firewallRule = networkManager.getFirewallRules(wantTemp);
 
 addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
 
-指定设备管理应用为设备添加域名过滤规则。<br/>
+为设备添加域名过滤规则。<br/>
 添加了[Action](#action)为ALLOW规则后，将会默认添加DENY规则，不在ALLOW规则之内的域名解析数据包将会被丢弃或拦截。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
@@ -587,7 +587,7 @@ networkManager.addDomainFilterRule(wantTemp, domainFilterRule);
 
 removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
 
-指定设备管理应用移除设备域名过滤规则。<br/>
+移除设备域名过滤规则。<br/>
 移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addDomainFilterRule](#networkmanageradddomainfilterrule)添加的默认DENY规则清空。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
@@ -638,7 +638,7 @@ networkManager.removeDomainFilterRule(wantTemp);
 
 getDomainFilterRules(admin: Want): Array\<DomainFilterRule>
 
-指定设备管理应用查询域名过滤规则。
+查询设备域名过滤规则。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 

@@ -22,7 +22,7 @@ import { wifiManager } from '@kit.MDMKit';
 
 isWifiActiveSync(admin: Want): boolean
 
-指定设备管理应用查询Wi-Fi开启状态。
+查询设备Wi-Fi开启状态。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -74,7 +74,7 @@ try {
 
 setWifiProfileSync(admin: Want, profile: WifiProfile): void
 
-指定设备管理应用为设备配置Wi-Fi，使连接到指定网络。
+为设备配置Wi-Fi，使连接到指定网络。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 

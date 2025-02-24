@@ -947,7 +947,7 @@ if (status != JSVM_OK) // 当执行失败出现异常时
 | OH_JSVM_OpenEscapableHandleScope| 打开一个新的scope逃逸handle scope，在关闭该scope之前创建的对象与父作用域有相同的生命周期 |
 | OH_JSVM_CloseEscapableHandleScope| 关闭一个scope，在此scope范围外创建的对象不受父作用域保护 |
 | OH_JSVM_EscapeHandle| 将 JavaScript 对象的句柄提升到外部作用域，确保在外部作用域中可以持续地使用该对象 |
-| OH_JSVM_CreateReference| 以指定的引用计数为JavaScript对象创建一个新的引用，该引用将指向传入的对象，引用允许在不同的上下文中使用和共享对象，并且可以有效地跟踪对象的生命周期 |
+| OH_JSVM_CreateReference| 以指定的引用计数为JavaScript对象创建一个新的引用，该引用将指向传入的对象，引用允许在不同的上下文中使用和共享对象，并且可以有效地监测对象的生命周期 |
 | OH_JSVM_DeleteReference| 释放由 OH_JSVM_CreateReference 创建的引用，确保对象在不再被使用时能够被正确地释放和回收，避免内存泄漏 |
 | OH_JSVM_ReferenceRef| 增加由OH_JSVM_CreateReference 创建的引用的引用计数，以确保对象在有引用时不会被提前释放 |
 | OH_JSVM_ReferenceUnref| 减少由OH_JSVM_CreateReference 创建的引用的引用计数，以确保没有任何引用指向该对象时能正确地释放和回收 |
