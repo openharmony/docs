@@ -7235,7 +7235,7 @@ try {
 
 createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;Window&gt;
 
-创建主窗口或子窗口下的子窗口，使用Promise异步回调。
+创建主窗口、子窗口或悬浮窗下的子窗口，使用Promise异步回调。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
