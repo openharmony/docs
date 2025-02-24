@@ -347,6 +347,7 @@ In the preceding example:
 ![navigation-freeze.gif](figures/navigation-freeze.gif)
 
 ## Constraints
+
 As shown in the following example, the custom node [BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md) is used in **FreezeBuildNode**. **BuilderNode **can dynamically mount components using commands and component freezing strongly depends on the parent-child relationship to determine whether it is enabled. In this case, if the parent component is frozen and **BuilderNode** is enabled at the middle level of the component tree, the child component of the **BuilderNode** cannot be frozen.
 
 ```

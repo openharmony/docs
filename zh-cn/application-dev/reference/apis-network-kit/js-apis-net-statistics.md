@@ -802,4 +802,4 @@ type NetBearType = connection.NetBearType
 
 |       类型       |            说明             |
 | ---------------- | --------------------------- |
-| connection.NetBearType | 枚举网络类型。    |
+| [connection.NetBearType](js-apis-net-connection.md#netbeartype) | 枚举网络类型。    |

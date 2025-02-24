@@ -20,7 +20,7 @@
 | [OH_Drawing_FontWeight](_drawing.md#oh_drawing_fontweight) [weight](#weight) | 计算支柱时使用的字体粗细  | 
 | [OH_Drawing_FontStyle](_drawing.md#oh_drawing_fontstyle) [style](#style) | 计算支柱时使用的字体格式  | 
 | double [size](#size) | 逻辑像素中的上升加下降的大小  | 
-| double [heightScale](#heightscale) | 行高  | 
+| double [heightScale](#heightscale) | 行高缩放系数  | 
 | bool [heightOverride](#heightoverride) | 是否启用高度覆盖，true表示启用，false表示不启用  | 
 | bool [halfLeading](#halfleading) | 半行距是否启用，true表示启用，false表示不启用  | 
 | double [leading](#leading) | 以自定义行距应用于支柱的行距  | 
@@ -92,7 +92,7 @@ double OH_Drawing_StrutStyle::heightScale
 
 **描述**
 
-行高
+行高缩放系数
 
 
 ### leading

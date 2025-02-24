@@ -18,13 +18,8 @@ The relational database (RDB) store manages data based on relational models. The
 | Name| Description|
 | -------- | -------- |
 | [oh_cursor.h](oh__cursor_8h.md) | Defines APIs for accessing the result set obtained by querying an RDB store.<br>**File to include**: <database/rdb/oh_cursor.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
-| [oh_data_value.h](oh__data__value_8h.md) | Defines APIs and enums related to a single data value.<br>**File to include**: <database/rdb/oh_data_value.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
-| [oh_data_values.h](oh__data__values_8h.md) | Defines APIs and enums related to multiple data values.<br>**File to include**: <database/rdb/oh_data_values.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
-| [oh_data_values_buckets.h](oh__data__values__buckets_8h.md) | Defines structs, APIs, and enums related to stored data values.<br>**File to include**: <database/rdb/oh_data_values_buckets.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
 | [oh_predicates.h](oh__predicates_8h.md) | Defines the predicates for RDB stores.<br>**File to include**: <database/rdb/oh_predicates.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
-| [oh_rdb_transaction.h](oh__rdb__transaction_8h.md) | Defines APIs and enums related to database transactions.<br>**File to include**: <database/rdb/oh_rdb_transaction.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
 | [oh_value_object.h](oh__value__object_8h.md) | Defines the APIs for type conversion.<br>**File to include**: <database/rdb/oh_value_object.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
-| [oh_values_bucket.h](oh__values__bucket_8h.md) | Defines the types of the key and value in a key-value (KV) pair.<br>**File to include**: <database/rdb/oh_values_bucket.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
 | [relational_store.h](relational__store_8h.md) | Defines APIs for managing an RDB store. The APIs not marked as supporting vector stores support only RDB stores.<br>**File to include**: <database/rdb/relational_store.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
 | [relational_store_error_code.h](relational__store__error__code_8h.md) | Defines the error codes used for RDB stores.<br>**File to include**: <database/rdb/relational_store_error_code.h><br>**Library**: libnative_rdb_ndk.z.so|
 

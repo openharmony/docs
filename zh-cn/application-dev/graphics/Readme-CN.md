@@ -1,18 +1,39 @@
 # ArkGraphics 2D（方舟2D图形服务）
 
 - [ArkGraphics 2D简介](arkgraphics2D-introduction.md)
-- 使用可变帧率能力定制不同内容的绘制帧率
+- 使用可变帧率能力定制不同内容的绘制帧率<!--displaysync-->
   - [可变帧率简介](displaysync-overview.md)
   - [请求动画绘制帧率](displaysync-animation.md)
   - [请求UI绘制帧率](displaysync-ui.md)
   - [请求自绘制内容绘制帧率](displaysync-xcomponent.md)
   - [NativeDisplaySoloist开发指导 (C/C++)](displaysoloist-native-guidelines.md)
 - [过度绘制调试使用指导](overdraw-dfx-guidelines.md)
-- [使用Drawing实现图形绘制与显示](drawing-js-guidelines.md)
+- 图形绘制与显示<!--graphic-drawing-and-display-->
+  - [图形绘制与显示开发概述](graphic-drawing-overview.md)
+  - 画布的获取与绘制结果的显示<!--canvas-get-result-draw-->
+    - [画布的获取与绘制结果的显示（ArkTS）](canvas-get-result-draw-arkts.md)
+    - [画布的获取与绘制结果的显示（C/C++）](canvas-get-result-draw-c.md)
+  - 画布操作及状态<!--canvas-operation-state-->
+    - [画布操作及状态处理（ArkTS）](canvas-operation-state-arkts.md)
+    - [画布操作及状态处理（C/C++）](canvas-operation-state-c.md)
+  - 绘制效果<!--drawing-effect-->
+    - [绘制效果概述](drawing-effect-overview.md)
+    - [基础绘制效果（ArkTS）](basic-drawing-effect-arkts.md)
+    - [复杂绘制效果（ArkTS）](complex-drawing-effect-arkts.md)
+    - [基础绘制效果（C/C++）](basic-drawing-effect-c.md)
+    - [复杂绘制效果（C/C++）](complex-drawing-effect-c.md)
+  - 图元绘制<!--primitive-drawing-->
+    - [图元绘制概述](primitive-drawing-overview.md)
+    - [几何形状绘制（ArkTS）](geometric-shape-drawing-arkts.md)
+    - [图片绘制（ArkTS）](pixelmap-drawing-arkts.md)
+    - [字块绘制（ArkTS）](textblock-drawing-arkts.md)
+    - [几何形状绘制（C/C++）](geometric-shape-drawing-c.md)
+    - [图片绘制（C/C++）](pixelmap-drawing-c.md)
+    - [字块绘制（C/C++）](textblock-drawing-c.md)
 - [使用Text模块实现文本显示](text-js-guidelines.md)
-- [使用Drawing实现图形绘制与显示 (C/C++)](drawing-guidelines.md)
+- [使用主题字体（C/C++）](theme-font-c.md)
 - [NativeBuffer开发指导 (C/C++)](native-buffer-guidelines.md)
 - [NativeImage开发指导 (C/C++)](native-image-guidelines.md)
 - [NativeVsync开发指导 (C/C++)](native-vsync-guidelines.md)
 - [NativeWindow开发指导 (C/C++)](native-window-guidelines.md)
-
+- [图形开发术语](graphic-term.md)

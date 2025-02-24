@@ -103,7 +103,7 @@ openCertificateManagerDialog(context: common.Context, pageType: CertificateDialo
 
 **示例**：
 ```ts
-import certificateManagerDialog from '@ohos.security.certManagerDialog';
+import { certificateManagerDialog } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
@@ -165,7 +165,7 @@ openInstallCertificateDialog(context: common.Context, certType: CertificateType,
 
 **示例**：
 ```ts
-import certificateManagerDialog from '@ohos.security.certManagerDialog';
+import { certificateManagerDialog } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 

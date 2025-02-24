@@ -51,9 +51,9 @@
 >
 >  - 如果svg描述中指定了相应的长宽，和image组件本身的长宽效果如下：
 >
->  1. 如果image组件本身的长宽小于svg中的长宽，svg会被裁切，仅显示左上角部分。
+>    1. 如果image组件本身的长宽小于svg中的长宽，svg会被裁切，仅显示左上角部分。
 >
->  2. 如果image组件本身的长宽大于svg中的长宽，svg会被放置在image组件的左上角，image组件其他部分显示空白。
+>    2. 如果image组件本身的长宽大于svg中的长宽，svg会被放置在image组件的左上角，image组件其他部分显示空白。
 >
 >  - 图片设置svg图源时，支持的标签范围有限，目前支持的svg标签包括svg、rect、circle、ellipse、path、line、polyline、polygon、animate、animateMotion、animateTransform。
 

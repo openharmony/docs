@@ -808,7 +808,7 @@ typedef Drm_ErrCode(* MediaKeySession_KeyChangeCallback) (DRM_KeysInfo *keysInfo
 | 名称 | 描述 | 
 | -------- | -------- |
 | keysInfo | 密钥信息。 | 
-| newKeysAvailable | 新密钥是否可用 | 
+| newKeysAvailable | 新密钥是否可用。 |
 
 **返回：**
 
@@ -969,11 +969,11 @@ enum DRM_CertificateStatus
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| CERT_STATUS_PROVISIONED | 设备已安装设备DRM证书 | 
-| CERT_STATUS_NOT_PROVISIONED | 设备未安装设备DRM证书或证书状态异常 | 
-| CERT_STATUS_EXPIRED | 设备DRM证书过期 | 
-| CERT_STATUS_INVALID | 设备DRM证书无效 | 
-| CERT_STATUS_UNAVAILABLE | 设备DRM证书不可用 | 
+| CERT_STATUS_PROVISIONED | 设备已安装设备DRM证书。 |
+| CERT_STATUS_NOT_PROVISIONED | 设备未安装设备DRM证书或证书状态异常。 |
+| CERT_STATUS_EXPIRED | 设备DRM证书过期。 |
+| CERT_STATUS_INVALID | 设备DRM证书无效。 |
+| CERT_STATUS_UNAVAILABLE | 设备DRM证书不可用。 |
 
 
 ### DRM_ContentProtectionLevel
@@ -992,11 +992,11 @@ enum DRM_ContentProtectionLevel
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| CONTENT_PROTECTION_LEVEL_UNKNOWN | 未知/默认安全级别 | 
-| CONTENT_PROTECTION_LEVEL_SW_CRYPTO | 软件安全级别 | 
-| CONTENT_PROTECTION_LEVEL_HW_CRYPTO | 硬件安全级别 | 
-| CONTENT_PROTECTION_LEVEL_ENHANCED_HW_CRYPTO | 硬件增强级别 | 
-| CONTENT_PROTECTION_LEVEL_MAX | 最大安全级别 | 
+| CONTENT_PROTECTION_LEVEL_UNKNOWN | 未知/默认安全级别。 |
+| CONTENT_PROTECTION_LEVEL_SW_CRYPTO | 软件安全级别。|
+| CONTENT_PROTECTION_LEVEL_HW_CRYPTO | 硬件安全级别。 |
+| CONTENT_PROTECTION_LEVEL_ENHANCED_HW_CRYPTO | 硬件增强级别。 |
+| CONTENT_PROTECTION_LEVEL_MAX | 最大安全级别。 |
 
 
 ### Drm_ErrCode
@@ -1045,12 +1045,12 @@ enum DRM_EventType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| EVENT_DRM_BASE | DRM基础事件 | 
-| EVENT_PROVISION_REQUIRED | 设备DRM证书请求事件 | 
-| EVENT_KEY_REQUIRED | 密钥请求事件 | 
-| EVENT_KEY_EXPIRED | 密钥过期事件 | 
-| EVENT_VENDOR_DEFINED | DRM解决方案自定义事件 | 
-| EVENT_EXPIRATION_UPDATE | 密钥过期更新事件 | 
+| EVENT_DRM_BASE | DRM基础事件。 |
+| EVENT_PROVISION_REQUIRED | 设备DRM证书请求事件。 |
+| EVENT_KEY_REQUIRED | 密钥请求事件。 |
+| EVENT_KEY_EXPIRED | 密钥过期事件。 |
+| EVENT_VENDOR_DEFINED | DRM解决方案自定义事件。 |
+| EVENT_EXPIRATION_UPDATE | 密钥过期更新事件。 |
 
 
 ### DRM_MediaKeyRequestType
@@ -1069,12 +1069,12 @@ enum DRM_MediaKeyRequestType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| MEDIA_KEY_REQUEST_TYPE_UNKNOWN | 未知请求类型 | 
-| MEDIA_KEY_REQUEST_TYPE_INITIAL | 初始化请求 | 
-| MEDIA_KEY_REQUEST_TYPE_RENEWAL | 续订请求 | 
-| MEDIA_KEY_REQUEST_TYPE_RELEASE | 释放请求 | 
-| MEDIA_KEY_REQUEST_TYPE_NONE | 无请求 | 
-| MEDIA_KEY_REQUEST_TYPE_UPDATE | 更新请求 | 
+| MEDIA_KEY_REQUEST_TYPE_UNKNOWN | 未知请求类型。 |
+| MEDIA_KEY_REQUEST_TYPE_INITIAL | 初始化请求。 |
+| MEDIA_KEY_REQUEST_TYPE_RENEWAL | 续订请求。 |
+| MEDIA_KEY_REQUEST_TYPE_RELEASE | 释放请求。 |
+| MEDIA_KEY_REQUEST_TYPE_NONE | 无请求。 |
+| MEDIA_KEY_REQUEST_TYPE_UPDATE | 更新请求。 |
 
 
 ### DRM_MediaKeyType
@@ -1093,8 +1093,8 @@ enum DRM_MediaKeyType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| MEDIA_KEY_TYPE_OFFLINE | 离线 | 
-| MEDIA_KEY_TYPE_ONLINE | 在线 | 
+| MEDIA_KEY_TYPE_OFFLINE | 离线。 |
+| MEDIA_KEY_TYPE_ONLINE | 在线。 |
 
 
 ### DRM_OfflineMediaKeyStatus
@@ -1113,9 +1113,9 @@ enum DRM_OfflineMediaKeyStatus
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OFFLINE_MEDIA_KEY_STATUS_UNKNOWN | 未知状态 | 
-| OFFLINE_MEDIA_KEY_STATUS_USABLE | 可用状态 | 
-| OFFLINE_MEDIA_KEY_STATUS_INACTIVE | 失活状态 | 
+| OFFLINE_MEDIA_KEY_STATUS_UNKNOWN | 未知状态。 |
+| OFFLINE_MEDIA_KEY_STATUS_USABLE | 可用状态。 |
+| OFFLINE_MEDIA_KEY_STATUS_INACTIVE | 失活状态。 |
 
 
 ## 函数说明
@@ -1918,7 +1918,7 @@ Drm_ErrCode OH_MediaKeySystem_ProcessKeySystemResponse (MediaKeySystem *mediaKey
 | -------- | -------- |
 | mediaKeySystem | MediaKeySystem实例。 | 
 | response | 设备DRM证书请求响应。 | 
-| responseLen | 设备DRM证书请求响应长度. | 
+| responseLen | 设备DRM证书请求响应长度。 |
 
 **返回：**
 
@@ -2123,7 +2123,7 @@ uint8_t DRM_OfflineMediakeyIdArray::ids[MAX_OFFLINE_MEDIA_KEY_ID_COUNT][MAX_OFFL
 
 **描述**
 
-离线媒体密钥标识集合
+离线媒体密钥标识集合。
 
 
 ### idsCount
@@ -2134,7 +2134,7 @@ uint32_t DRM_OfflineMediakeyIdArray::idsCount
 
 **描述**
 
-离线媒体密钥标识数量
+离线媒体密钥标识数量。
 
 
 ### idsLen
@@ -2145,7 +2145,7 @@ int32_t DRM_OfflineMediakeyIdArray::idsLen[MAX_OFFLINE_MEDIA_KEY_ID_COUNT]
 
 **描述**
 
-离线媒体密钥标识长度集合
+离线媒体密钥标识长度集合。
 
 
 ### initData
@@ -2285,7 +2285,7 @@ DRM_PsshInfo DRM_MediaKeySystemInfo::psshInfo[MAX_PSSH_INFO_COUNT]
 
 **描述**
 
-DRM信息中PSSH（Protected System Specific Header）信息的数组.
+DRM信息中PSSH（Protected System Specific Header）信息的数组。
 
 
 ### statisticsCount

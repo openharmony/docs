@@ -1,6 +1,6 @@
 # ApplicationContext
 
-ApplicationContext模块继承自[Context](js-apis-inner-application-context.md)，提供开发者应用级别的的上下文的能力，包括提供注册及取消注册应用内组件生命周期的监听接口。
+ApplicationContext模块继承自[Context](js-apis-inner-application-context.md)，提供开发者应用级别的上下文的能力，包括提供注册及取消注册应用内组件生命周期的监听接口。
 
 > **说明：**
 >
@@ -436,7 +436,11 @@ export default class MyAbility extends UIAbility {
 
 off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
-取消当前应用注册的前后台变化的全部监听。使用callback异步回调。仅支持主线程调用。
+取消对应用前后台切换事件的监听。使用callback异步回调。仅支持主线程调用。
+
+> **说明：**
+>
+> 使用该接口前，需要先使用[ApplicationContext.on('applicationStateChange')](#applicationcontextonapplicationstatechange10)注册事件监听。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -447,7 +451,7 @@ off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
 | type   | 'applicationStateChange' | 是   | 取消监听事件的类型。 |
-| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 否   | 回调函数。可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
+| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 否   | 回调函数。取值可以为使用ApplicationContext.on('applicationStateChange')方法定义的callback回调，也可以为空。<br/>-&nbsp;如果传入已定义的回调，则取消该监听。 <br/>-&nbsp;如果未传入参数，则取消当前应用对所有前后台切换事件的监听。  |
 
 **错误码**：
 
@@ -459,6 +463,8 @@ off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): 
 
 **示例：**
 
+假定已使用[ApplicationContext.on('applicationStateChange')](#applicationcontextonapplicationstatechange10)方法注册名为applicationStateChangeCallback回调，下面示例展示如何取消对应的事件监听。
+
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -467,7 +473,9 @@ export default class MyAbility extends UIAbility {
   onDestroy() {
     let applicationContext = this.context.getApplicationContext();
     try {
-      applicationContext.off('applicationStateChange');
+      // 本例中的callback字段取值为ApplicationStateChangeCallback，需要替换为实际值。
+      // 如果callback字段不传入参数，则取消当前应用对所有前后台切换事件的监听。
+      applicationContext.off('applicationStateChange', applicationStateChangeCallback);
     } catch (paramError) {
       console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
@@ -887,7 +895,7 @@ restartApp(want: Want): void
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000063 | The target to restart does not belong to the current application or is not a UIAbility. |
-| 16000064 | Restart too frequently. Try again at least 10s later. |
+| 16000064 | Restart too frequently. Try again at least 3s later. |
 
 **示例：**
 

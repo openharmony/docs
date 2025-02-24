@@ -12,7 +12,7 @@ This section describes how to switch from explicit Want mode to linking mode.
 1. Install the application on your device. In the [module.json5 file](../quick-start/module-configuration-file.md) of the UIAbility, configure **entities**, **actions**, and **uri** under **skills**.
     - The **actions** field must contain **ohos.want.action.viewData**.
     - The **entities** field must contain **entity.system.browsable**.
-    - The **uris** field must contain an element whose **scheme** is **https**. **domainVerify** must be set to **true**. For details about the URI matching rules, see [Matching Rules of uri](explicit-implicit-want-mappings.md#matching-rules-of-uri). If **domainVerify** is set to **true**, domain name verification is enabled. In this case, the target application must pass domain name verification during App Linking. For details about how to configure the App Linking domain name, see [Using App Linking for Application Redirection](app-linking-startup.md).
+    - The **uris** field must contain an element whose **scheme** is **https**. **domainVerify** must be set to **true**. For details about the URI matching rules, see [Matching Rules of uri](explicit-implicit-want-mappings.md#matching-rules-of-uri). If **domainVerify** is set to **true**, domain name verification is enabled. In this case, the target application must pass domain name verification during App Linking. For details about how to configure the App Linking domain name, see App Linking.
 
     ```json
     {
@@ -47,8 +47,6 @@ This section describes how to switch from explicit Want mode to linking mode.
 2. Call [openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12) to trigger redirection. The redirected-to link and [options](../reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md) must be passed in, but the bundle name, module name, and ability name are not required. The system matches the application that meets the skills configuration based on the link.
     - If **appLinkingOnly** in **options** is set to **true**, the target application must pass domain name verification (Internet connection required). A unique matching item or an unmatched result will be returned.
     - If **appLinkingOnly** in **options** is set to **false**, the system preferentially attempts to start the target application in App Linking mode. If no matching application is found, the system starts the application in Deep Linking mode.
-
-    For details, see [Using App Linking for Application Redirection](app-linking-startup.md).
 
     ```ts
     import { common } from '@kit.AbilityKit';
@@ -113,7 +111,7 @@ This section describes how to switch from explicit Want mode to linking mode.
 
     - The **actions** field must contain **ohos.want.action.viewData**.
     - The **entities** field must contain **entity.system.browsable**.
-    - The **uris** field must contain an element whose **scheme** is **https**. **domainVerify** must be set to **true**. For details about the URI matching rules, see [Matching Rules of uri](explicit-implicit-want-mappings.md#matching-rules-of-uri). If **domainVerify** is set to **true**, domain name verification is enabled. In this case, the target application must pass domain name verification during App Linking. For details about how to configure the App Linking domain name, see [Using App Linking for Application Redirection](app-linking-startup.md).
+    - The **uris** field must contain an element whose **scheme** is **https**. **domainVerify** must be set to **true**. For details about the URI matching rules, see [Matching Rules of uri](explicit-implicit-want-mappings.md#matching-rules-of-uri). If **domainVerify** is set to **true**, domain name verification is enabled. In this case, the target application must pass domain name verification during App Linking. For details about how to configure the App Linking domain name, see App Linking.
 
     ```json
     {
@@ -148,8 +146,6 @@ This section describes how to switch from explicit Want mode to linking mode.
 2. Call [openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12) to trigger redirection. The redirected-to link and [options](../reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md) must be passed in, but the bundle name, module name, and ability name are not required. The system matches the application that meets the skills configuration based on the link. **AbilityResult** is transferred to the callback function through input parameters and returned to the caller application when the ability is terminated. The startup success or failure result is returned through a promise.
     - If **appLinkingOnly** in **options** is set to **true**, the target application must pass domain name verification (Internet connection required). A unique matching item or an unmatched result will be returned.
     - If **appLinkingOnly** in **options** is set to **false**, the system preferentially attempts to start the target application in App Linking mode. If no matching application is found, the system starts the application in Deep Linking mode.
-
-    For details, see [Using App Linking for Application Redirection](app-linking-startup.md).
 
     ```ts
     import { common } from '@kit.AbilityKit';

@@ -1007,11 +1007,14 @@ Invalid wantAgent object.
 
 **可能原因**
 
-传入接口的wantAgent对象无效。
+1. 传入接口的wantAgent对象无效。
+2. 三方应用设置其他应用的Ability。
+3. 其它内部通信错误。
 
 **处理步骤**
 
-检查传入接口的wantAgent对象。
+1. 检查传入接口的wantAgent对象是否存在。
+2. 检查调用方是否为三方应用。不支持三方应用设置其他应用的Ability。
 
 ## 16000152 未找到wantAgent对象
 

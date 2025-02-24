@@ -1214,7 +1214,7 @@
         - HiDebug<!--hidebug-->
           - [Using HiDebug (ArkTS)](dfx/hidebug-guidelines-arkts.md)
           - [Using HiDebug (C/C++)](dfx/hidebug-guidelines-ndk.md)
-        - HiCollie
+        - HiCollie<!--hicollie-->
           - [Using HiCollie (C/C++)](dfx/hicollie-guidelines-ndk.md)
         - Error Management<!--error-manager-->
           - [Development of Error Manager](dfx/errormanager-guidelines.md)

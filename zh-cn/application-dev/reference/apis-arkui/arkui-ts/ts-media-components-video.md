@@ -188,7 +188,7 @@ analyzerConfig(config: ImageAnalyzerConfig)
 
 ### onStart
 
-onStart(event:()&nbsp;=&gt;&nbsp;void)
+onStart(event: () => void)
 
 播放时触发该事件。
 
@@ -198,7 +198,7 @@ onStart(event:()&nbsp;=&gt;&nbsp;void)
 
 ### onPause
 
-onPause(event:()&nbsp;=&gt;&nbsp;void)
+onPause(event: () => void)
 
 暂停时触发该事件。
 
@@ -208,7 +208,7 @@ onPause(event:()&nbsp;=&gt;&nbsp;void)
 
 ### onFinish
 
-onFinish(event:()&nbsp;=&gt;&nbsp;void)
+onFinish(event: () => void)
 
 播放结束时触发该事件。
 
@@ -218,7 +218,7 @@ onFinish(event:()&nbsp;=&gt;&nbsp;void)
 
 ### onError
 
-onError(event:()&nbsp;=&gt;&nbsp;void)
+onError(event: () => void)
 
 播放失败时触发该事件。
 
@@ -238,7 +238,7 @@ onStop(event: Callback&lt;void&gt;)
 
 ### onPrepared
 
-onPrepared(callback:(event:&nbsp;{&nbsp;duration:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
+onPrepared(callback: (event: { duration: number }) => void)
 
 视频准备完成时触发该事件。
 
@@ -254,7 +254,7 @@ onPrepared(callback:(event:&nbsp;{&nbsp;duration:&nbsp;number&nbsp;})&nbsp;=&gt;
 
 ### onSeeking
 
-onSeeking(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
+onSeeking(callback: (event: { time: number }) => void)
 
 操作进度条过程时上报时间信息。
 
@@ -270,7 +270,7 @@ onSeeking(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp
 
 ### onSeeked
 
-onSeeked(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
+onSeeked(callback: (event: { time: number }) => void)
 
 操作进度条完成后，上报播放时间信息。
 
@@ -286,7 +286,7 @@ onSeeked(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;
 
 ### onUpdate
 
-onUpdate(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
+onUpdate(callback: (event: { time: number }) => void)
 
 播放进度变化时触发该事件。
 
@@ -302,7 +302,7 @@ onUpdate(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;
 
 ### onFullscreenChange
 
-onFullscreenChange(callback:(event:&nbsp;{&nbsp;fullscreen:&nbsp;boolean&nbsp;})&nbsp;=&gt;&nbsp;void)
+onFullscreenChange(callback: (event: { fullscreen: boolean }) => void)
 
 在全屏播放与非全屏播放状态之间切换时触发该事件。
 
@@ -517,6 +517,11 @@ struct VideoCreateComponent {
             console.info('onUpdate is ' + e.time)
           }
         })
+        .onFullscreenChange((e?: FullscreenObject) => {
+          if (e != undefined) {
+            console.info('onFullscreenChange is ' + e.fullscreen)
+          }
+        })
 
       Row() {
         Button('src').onClick(() => {
@@ -569,6 +574,10 @@ interface DurationObject {
 
 interface TimeObject {
   time: number;
+}
+
+interface FullscreenObject {
+  fullscreen: boolean;
 }
 ```
 
@@ -635,6 +644,7 @@ struct ImageAnalyzerExample {
 以下示例展示了如何使Video组件能够播放拖入的视频。
 
 ```ts
+// xxx.ets
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 
 @Entry

@@ -36,7 +36,7 @@ The **Pasteboard** module supports copying and pasting multiple types of data, i
 | Name| Description|
 | -------- | -------- |
 | [Pasteboard_NotifyType](#pasteboard_notifytype) { NOTIFY_LOCAL_DATA_CHANGE = 1, NOTIFY_REMOTE_DATA_CHANGE = 2 } | Enumerates the data change types of the pasteboard. |
-| [PASTEBOARD_ErrCode](#pasteboard_errcode) {<br>ERR_OK = 0, ERR_PERMISSION_ERROR = 201, ERR_INVALID_PARAMETER = 401, ERR_DEVICE_NOT_SUPPORTED = 801,<br>ERR_INNER_ERROR = 12900000, ERR_BUSY = 12900003<br>} | Enumerates the error codes. |
+| [PASTEBOARD_ErrCode](#pasteboard_errcode) {<br/>ERR_OK = 0, ERR_PERMISSION_ERROR = 201, ERR_INVALID_PARAMETER = 401, ERR_DEVICE_NOT_SUPPORTED = 801,<br/>ERR_INNER_ERROR = 12900000, ERR_BUSY = 12900003<br/>} | Enumerates the error codes. |
 
 
 ### Functions
@@ -57,7 +57,7 @@ The **Pasteboard** module supports copying and pasting multiple types of data, i
 | OH_UdmfData \* [OH_Pasteboard_GetData](#oh_pasteboard_getdata) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, int \*status) | Obtains data from the pasteboard. |
 | int [OH_Pasteboard_SetData](#oh_pasteboard_setdata) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, OH_UdmfData \*data) | Writes the unified data object to the pasteboard. |
 | int [OH_Pasteboard_ClearData](#oh_pasteboard_cleardata) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard) | Clears data from the pasteboard. |
-| char ** [OH_Pasteboard_GetMimeTypes](#oh_pasteboard_getmimetypes) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, unsigned int *count) | Obtains the MIME type from the pasteboard.  | 
+| char ** [OH_Pasteboard_GetMimeTypes](#oh_pasteboard_getmimetypes) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, unsigned int *count) | Obtains the MIME type from the pasteboard. |
 
 
 ## Type Description
@@ -146,7 +146,6 @@ typedef enum Pasteboard_NotifyType Pasteboard_NotifyType
 Enumerates the data change types of the pasteboard.
 
 **Since**: 13
-
 
 ## Enum Description
 
@@ -596,8 +595,8 @@ Obtains the MIME type from the pasteboard.
 
 | Name| Description|
 | -------- | -------- |
-| pasteboard | Pointer to an [OH_Pasteboard](#oh_pasteboard) instance.  | 
-| count | Pointer to the number of uniform data types obtained.  | 
+| pasteboard | Pointer to an [OH_Pasteboard](#oh_pasteboard) instance. |
+| count | Pointer to the number of uniform data types obtained. |
 
 **Returns**
 
@@ -610,3 +609,4 @@ The **pasteboard** object saves only the latest result and the historical result
 **See**
 
 [OH_Pasteboard](#oh_pasteboard)
+

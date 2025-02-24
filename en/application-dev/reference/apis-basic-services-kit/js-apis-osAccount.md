@@ -451,7 +451,7 @@ Checks whether this system account is a test account. This API uses a promise to
     console.log('checkOsAccountTestable exception: ' + JSON.stringify(err));
   }
   ```
-  
+
 ### isOsAccountUnlocked<sup>11+</sup>
 
 isOsAccountUnlocked(): Promise&lt;boolean&gt;
@@ -2810,7 +2810,7 @@ Represents information about a system account.
 
 ## DomainAccountInfo<sup>8+</sup>
 
-Represents information about a domain account.
+Represents the domain account information.
 
 **System capability**: SystemCapability.Account.OsAccount
 

@@ -591,7 +591,7 @@ Registers an event for the specified node.
 | node | Target node. | 
 | eventType | Type of the event to register. | 
 | targetId | Custom event ID, which is passed in the callback of [ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) when the event is triggered. | 
-| userData | Custom event parameter, which is passed in the callback of [ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) when the event is triggered. | 
+| userData | Custom event parameter, which is passed in the callback of [ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) when the event is triggered. |
 
 **Returns**
 
@@ -659,6 +659,7 @@ void(* ArkUI_NativeNodeAPI_1::unregisterNodeEventReceiver) ()
 **Description**
 
 Unregisters this event receiver.
+
 
 ### removeChild
 

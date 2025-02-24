@@ -603,10 +603,10 @@ netFirewall.getInterceptedRecords(100, interceptRecordParam).then((result: netFi
 
 **系统能力**：SystemCapability.Communication.NetManager.NetFirewall
 
-| 名称                  | 值   | 说明                   |
-| --------------------- | ---- | ---------- ----------- |
-| ORDER_BY_RULE_NAME    | 1    | 根据防火墙规则名排序。 |
-| ORDER_BY_RECORD_TIME  | 100  | 根据记录时间排序。     |
+| 名称       | 值   | 说明                           |
+| ---------- | ---- | ------------------------------ |
+| ORDER_BY_RULE_NAME  | 1    | 根据防火墙规则名排序。 |
+| ORDER_BY_RECORD_TIME | 100  | 根据记录时间排序。 |
 
 ## NetFirewallOrderType
 

@@ -270,6 +270,3 @@ struct TimePickerDialogExample {
   }
 }
 ```
-
-![TimetPickerDialog](figures/TimePickerDialog_HoverMode.gif)
-

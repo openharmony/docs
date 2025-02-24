@@ -83,8 +83,8 @@ import { worker } from '@kit.ArkTS';
 // 场景1： worker文件所在路径："entry/src/main/ets/workers/worker.ets"
 const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
 
-// 场景2： worker文件所在路径："phone/src/main/ets/ThreadFile/workers/worker.ets"
-const workerStageModel02 = new worker.ThreadWorker('phone/ets/ThreadFile/workers/worker.ets');
+// 场景2： worker文件所在路径："testworkers/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStageModel02 = new worker.ThreadWorker('testworkers/ets/ThreadFile/workers/worker.ets');
 ```
 
 
@@ -430,6 +430,7 @@ registerGlobalCallObject(instanceName: string, globalCallObject: Object): void
 
 **示例：**
 ```ts
+//Index.ets
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 class TestObj {
   private message : string = "this is a message from TestObj"
@@ -444,6 +445,31 @@ let registerObj = new TestObj();
 // 在ThreadWorker实例上注册registerObj
 workerInstance.registerGlobalCallObject("myObj", registerObj);
 workerInstance.postMessage("start worker")
+```
+
+```ts
+// worker.ets
+import { worker, MessageEvents } from '@kit.ArkTS';
+
+const workerPort = worker.workerPort;
+workerPort.onmessage = (e: MessageEvents): void => {
+  try {
+    // 调用方法无入参
+    let res : string = workerPort.callGlobalCallObjectMethod("myObj", "getMessage", 0) as string;
+    console.info("worker:", res) // worker: this is a message from TestObj
+  } catch (error) {
+    // 异常处理
+    console.error("worker: error code is " + error.code + " error message is " + error.message);
+  }
+  try {
+    // 调用方法有入参
+    let res : string = workerPort.callGlobalCallObjectMethod("myObj", "getMessageWithInput", 0, "hello there!") as string;
+    console.info("worker:", res) //worker: this is a message from TestObj with input: hello there!
+  } catch (error) {
+    // 异常处理
+    console.error("worker: error code is " + error.code + " error message is " + error.message);
+  }
+}
 ```
 
 ### unregisterGlobalCallObject<sup>11+</sup>
@@ -1247,6 +1273,24 @@ Worker线程调用注册在宿主线程上某个对象的指定方法，调用�
 
 **示例：**
 ```ts
+//Index.ets
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
+class TestObj {
+  private message : string = "this is a message from TestObj"
+  public getMessage() : string {
+    return this.message;
+  }
+  public getMessageWithInput(str : string) : string {
+    return this.message + " with input: " + str;
+  }
+}
+let registerObj = new TestObj();
+// 在ThreadWorker实例上注册registerObj
+workerInstance.registerGlobalCallObject("myObj", registerObj);
+workerInstance.postMessage("start worker")
+```
+
+```ts
 // worker.ets
 import { worker, MessageEvents } from '@kit.ArkTS';
 
@@ -1544,8 +1588,8 @@ import { worker } from '@kit.ArkTS';
 // 场景1： worker文件所在路径："entry/src/main/ets/workers/worker.ets"
 const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
 
-// 场景2： worker文件所在路径："phone/src/main/ets/ThreadFile/workers/worker.ets"
-const workerStageModel02 = new worker.ThreadWorker('phone/ets/ThreadFile/workers/worker.ets');
+// 场景2： worker文件所在路径："testworkers/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStageModel02 = new worker.ThreadWorker('testworkers/ets/ThreadFile/workers/worker.ets');
 ```
 
 ### postMessage<sup>(deprecated)</sup>

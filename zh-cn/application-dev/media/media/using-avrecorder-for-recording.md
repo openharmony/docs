@@ -53,13 +53,13 @@
    import { BusinessError } from '@kit.BasicServicesKit';
 
    // 状态上报回调函数
-   avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
+   this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
      console.log(`current state is ${state}`);
      // 用户可以在此补充状态发生切换后想要进行的动作
    })
 
    // 错误上报回调函数
-   avRecorder.on('error', (err: BusinessError) => {
+   this.avRecorder.on('error', (err: BusinessError) => {
      console.error(`avRecorder failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -79,6 +79,7 @@
    ```ts
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
 
    let avProfile: media.AVRecorderProfile = {
      audioBitrate: 100000, // 音频比特率
@@ -90,16 +91,16 @@
   
    const context: Context = getContext(this); // 参考应用文件访问与管理
    let filePath: string = context.filesDir + '/example.mp3';
-   let audioFile: fs.File = fs.openSync(filePath, OpenMode.READ_WRITE | OpenMode.CREATE);
-   let fileFd = this.audioFile.fd; // 获取文件fd
-
+   let audioFile: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+   let fileFd: number = this.audioFile.fd; // 获取文件fd
+    
    let avConfig: media.AVRecorderConfig = {
      audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // 音频输入源，这里设置为麦克风
      profile: avProfile,
      url: 'fd://' + fileFd.toString(), // 参考应用文件访问与管理中的开发示例获取创建的音频文件fd填入此处
    };
-   
-   avRecorder.prepare(avConfig).then(() => {
+    
+   this.avRecorder.prepare(avConfig).then(() => {
      console.log('Invoke prepare succeeded.');
    }, (err: BusinessError) => {
      console.error(`Invoke prepare failed, code is ${err.code}, message is ${err.message}`);
@@ -155,6 +156,7 @@
 ```ts
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 export class AudioRecorderDemo {
   private avRecorder: media.AVRecorder | undefined = undefined;
@@ -177,7 +179,7 @@ export class AudioRecorderDemo {
   async createAndSetFd(): Promise<void> {
       const context: Context = getContext(this);
       const path: string = context.filesDir + '/example.mp3'; // 文件沙箱路径，文件后缀名应与封装格式对应
-      const audioFile: fs.File = fs.openSync(path, OpenMode.READ_WRITE | OpenMode.CREATE);
+      const audioFile: fs.File = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
       this.avConfig.url = 'fd://' + audioFile.fd; // 更新url
       this.filePath = path;
   }

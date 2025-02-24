@@ -47,7 +47,7 @@ run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
   | 28800003 | An error occurred while running the startup tasks. |
   | 28800004 | Running startup tasks timeout. |
 
-**示例：**：
+**示例：**
 
 ```ts
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
@@ -86,7 +86,7 @@ removeAllStartupTaskResults(): void
 
 **系统能力**：SystemCapability.Ability.AppStartup
 
-**示例：**：
+**示例：**
 
 ```ts
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
@@ -129,13 +129,13 @@ getStartupTaskResult(startupTask: string): Object
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | 是 | 启动任务实现[StartupTask](./js-apis-app-appstartup-startupTask.md)接口的文件名，所有启动任务都需要实现[StartupTask](./js-apis-app-appstartup-startupTask.md)接口的方法。 |
+  | startupTask | string | 是 | 启动任务实现[StartupTask](./js-apis-app-appstartup-startupTask.md)接口的文件名或so文件名，所有启动任务都需要实现[StartupTask](./js-apis-app-appstartup-startupTask.md)接口的方法。 |
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Object | 指定启动任务的结果。 |
+  | Object | 输入为启动任务名时，返回指定的启动任务结果。<br/> 输入为so文件名时，返回undefined。 |
 
 **错误码：**
 
@@ -145,7 +145,7 @@ getStartupTaskResult(startupTask: string): Object
   | ------- | -------------------------------- |
   | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
-**示例：**：
+**示例：**
 
 ```ts
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
@@ -188,13 +188,13 @@ isStartupTaskInitialized(startupTask: string): boolean
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | 是 | 启动任务实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称。 |
+  | startupTask | string | 是 | 启动任务实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称或so文件名称。 |
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | 返回布尔值，true表示该启动任务已执行完成，false表示该启动任务尚未执行完成。 |
+  | boolean | 返回布尔值，true表示该启动任务或so预加载任务已执行完成，false表示该启动任务或so预加载任务尚未执行完成。 |
 
 **错误码：**
 
@@ -204,7 +204,7 @@ isStartupTaskInitialized(startupTask: string): boolean
   | ------- | -------------------------------- |
   | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
-**示例：**：
+**示例：**
 
 ```ts
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
@@ -251,7 +251,7 @@ removeStartupTaskResult(startupTask: string): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | 是 | 启动任务所实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称。 |
+  | startupTask | string | 是 | 启动任务所实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称或so文件名。 |
   
 **错误码：**
 
@@ -261,7 +261,7 @@ removeStartupTaskResult(startupTask: string): void
   | ------- | -------------------------------- |
   | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
-**示例：**：
+**示例：**
 
 ```ts
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';

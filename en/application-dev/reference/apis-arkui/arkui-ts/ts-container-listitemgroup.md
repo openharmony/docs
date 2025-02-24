@@ -48,7 +48,7 @@ ListItemGroup(options?: ListItemGroupOptions)
 
 ### divider
 
-divider(value: [ListDividerOptions](ts-container-list.md#listdivideroptions14) | null)
+divider(value: {strokeWidth: Length; color?: ResourceColor; startMargin?: Length; endMargin?: Length;} | null,)
 
 Sets the style of the divider for the list items. By default, there is no divider.
 
@@ -64,7 +64,7 @@ When a list item has [polymorphic styles](ts-universal-attributes-polymorphic-st
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ListDividerOptions](ts-container-list.md#listdivideroptions14) \| null | Yes  | Style of the divider for the list items.<br> Default value: **null**|
+| value  | {<br>strokeWidth: [Length](ts-types.md#length),<br>color?:[ResourceColor](ts-types.md#resourcecolor),<br>startMargin?: [Length](ts-types.md#length),<br>endMargin?: [Length](ts-types.md#length)<br>} \| null | Yes  | Style of the divider for the list items.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br> Default value: **0x08000000**<br>- **startMargin**: distance between the divider and the start edge of the list.<br>Default value: **0**, in vp<br>- **endMargin**: distance between the divider and the end edge of the list.<br>Default value: **0**, in vp|
 
 ### childrenMainSize<sup>12+</sup>
 
@@ -370,4 +370,4 @@ struct ListItemGroupExample {
 }
 ```
 
-![en-us_image_listitemgroup_example03](figures/en-us_image_listitemgroup_example03.gif)
+

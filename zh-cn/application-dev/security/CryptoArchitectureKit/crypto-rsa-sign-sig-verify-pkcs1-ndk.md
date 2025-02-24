@@ -6,7 +6,7 @@
 
 ## 在CMake脚本中链接相关动态库
 ```txt
-   target_link_libraries(entry PUBLIC libohcrypto.so)
+target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 ## 开发步骤
@@ -30,6 +30,7 @@
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_asym_key.h"
+#include "CryptoArchitectureKit/crypto_signature.h"
 
 static bool doTestRsaSignature()
 {
@@ -42,7 +43,7 @@ static bool doTestRsaSignature()
       0x8c, 0xa7, 0x63, 0x7f, 0x26, 0x89, 0x8f, 0xf0, 0xfa, 0xa7, 0x51, 0xbd, 0x9c, 0x69, 0x17, 0xf3,
       0xd1, 0xb5, 0xc7, 0x12, 0xbf, 0xcf, 0x91, 0x25, 0x82, 0x23, 0x6b, 0xd6, 0x64, 0x52, 0x77, 0x93,
       0x01, 0x9d, 0x70, 0xa3, 0xf4, 0x92, 0x16, 0xec, 0x3f, 0xa7, 0x3c, 0x83, 0x8d, 0x40, 0x41, 0xfc,
-   };
+   }; // 待验证数据，仅供参考
    Crypto_DataBlob msgBlob = {
       .data = reinterpret_cast<uint8_t *>(plainText),
       .len = sizeof(plainText)
@@ -65,7 +66,7 @@ static bool doTestRsaSignature()
       0x6a, 0x51, 0x64, 0x6a, 0x54, 0x41, 0x67, 0x4d, 0x42, 0x41, 0x41, 0x45, 0x3d, 0x0a, 0x2d, 0x2d,
       0x2d, 0x2d, 0x2d, 0x45, 0x4e, 0x44, 0x20, 0x52, 0x53, 0x41, 0x20, 0x50, 0x55, 0x42, 0x4c, 0x49,
       0x43, 0x20, 0x4b, 0x45, 0x59, 0x2d, 0x2d, 0x2d, 0x2d, 0x2d, 0x0a,
-   };
+   }; // 公钥DER编码数据，仅供参考
 
    Crypto_DataBlob keyBlob = {
       .data = reinterpret_cast<uint8_t *>(pubKeyText),
@@ -81,7 +82,7 @@ static bool doTestRsaSignature()
       0xf1, 0x36, 0x78, 0xbd, 0xba, 0x37, 0x3b, 0x5b, 0xb0, 0x8e, 0xb3, 0x4a, 0x9b, 0x1b, 0x0c, 0xfa,
       0xfa, 0xc7, 0x9f, 0xb1, 0x35, 0x48, 0x82, 0x73, 0xf8, 0x6b, 0xd4, 0x76, 0x33, 0x5c, 0xed, 0x9c,
       0xd8, 0x4b, 0xc9, 0x92, 0xa0, 0x3f, 0x6e, 0xba, 0x78, 0x2e, 0x80, 0x78, 0x1e, 0x74, 0xa0, 0x47,
-   };
+   }; // 签名数据，仅供参考
 
    Crypto_DataBlob signBlob = {
       .data = reinterpret_cast<uint8_t *>(signText),
@@ -90,30 +91,30 @@ static bool doTestRsaSignature()
    
    // keypair
    OH_Crypto_ErrCode ret = CRYPTO_SUCCESS;
-   ret = OH_CryptoAsymKeyGenerator_Create((const char *)"RSA2048", &keyCtx);
+   ret = OH_CryptoAsymKeyGenerator_Create((const char *)"RSA2048", &keyCtx); // 创建非对称密钥生成器
    if (ret != CRYPTO_SUCCESS) {
       return false;
    }
-   ret = OH_CryptoAsymKeyGenerator_Convert(keyCtx, CRYPTO_PEM, &keyBlob, nullptr, &keyPair);
+   ret = OH_CryptoAsymKeyGenerator_Convert(keyCtx, CRYPTO_PEM, &keyBlob, nullptr, &keyPair); // 将PEM格式的公钥编码数据转换为OH_CryptoKeyPair
    if (ret != CRYPTO_SUCCESS) {
       OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
       return false;
    }
-   OH_CryptoPubKey *pubKey = OH_CryptoKeyPair_GetPubKey(keyPair);
+   OH_CryptoPubKey *pubKey = OH_CryptoKeyPair_GetPubKey(keyPair); // 获取公钥
    // verify
-   ret = OH_CryptoVerify_Create((const char *)"RSA1024|PKCS1|SHA256", &verify);
+   ret = OH_CryptoVerify_Create((const char *)"RSA1024|PKCS1|SHA256", &verify); // 创建Verify实例
    if (ret != CRYPTO_SUCCESS) {
       OH_CryptoVerify_Destroy(verify);
       OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
       return false;
    }
-   ret = OH_CryptoVerify_Init(verify, pubKey);
+   ret = OH_CryptoVerify_Init(verify, pubKey); // 使用公钥初始化Verify实例
    if (ret != CRYPTO_SUCCESS) {
       OH_CryptoVerify_Destroy(verify);
       OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
       return false;
    }
-   bool res = OH_CryptoVerify_Final(verify, &msgBlob, &signBlob);
+   bool res = OH_CryptoVerify_Final(verify, &msgBlob, &signBlob); // 对数据进行验签
    if (res != true) {
       OH_CryptoVerify_Destroy(verify);
       OH_CryptoAsymKeyGenerator_Destroy(keyCtx);

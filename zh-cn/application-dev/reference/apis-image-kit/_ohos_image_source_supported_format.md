@@ -19,5 +19,5 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| char \* [format](image.md#format) = nullptr | 图像源支持的格式字符串头地址 | 
-| size_t [size](image.md#size-57) = 0 | 图像源支持的格式字符串大小 | 
+| char \* [format](image.md#format) = nullptr | 图像源支持的格式字符串头地址。 |
+| size_t [size](image.md#size-57) = 0 | 图像源支持的格式字符串大小。 |

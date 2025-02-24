@@ -22,7 +22,7 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
 }
 ```
 
-## AutoFillExtensionContext.reloadInModal<sup>12+</sup>
+## AutoFillExtensionContext.reloadInModal<sup>13+</sup>
 
 reloadInModal(customData: CustomData): Promise\<void>
 

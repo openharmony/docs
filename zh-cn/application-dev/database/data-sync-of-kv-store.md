@@ -50,7 +50,7 @@
 
 ![kvStore](figures/kvStore.jpg)
 
-如图所示，通过put、delete接口触发自动同步，将分布式数据通过通信适配层发送给对端设备，实现分布式数据的自动同步；
+如图所示，通过put、delete接口触发自动同步，将分布式数据通过通信适配层发送给对端设备，实现分布式数据的自动同步。
 
 手动同步则是手动调用sync接口触发同步，将分布式数据通过通信适配层发送给对端设备。
 
@@ -325,18 +325,18 @@
 
 针对键值型数据库开发，有以下相关实例可供参考：
 
-- [分布式组网认证（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DistributedAppDev/DistributedAuthentication)
+- [分布式组网认证（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.2-Release/code/SystemFeature/DistributedAppDev/DistributedAuthentication)
 
-- [分布式数据管理（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/Kvstore)
+- [分布式数据管理（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.2-Release/code/SuperFeature/DistributedAppDev/Kvstore)
 
-- [分布式音乐播放（JS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer)
+- [分布式音乐播放（JS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.2-Release/code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer)
 
-- [分布式音乐播放（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/ArkTSDistributedMusicPlayer)
+- [分布式音乐播放（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.2-Release/code/SuperFeature/DistributedAppDev/ArkTSDistributedMusicPlayer)
 
-- [分布式计算器（JS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributeCalc)
+- [分布式计算器（JS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.2-Release/code/SuperFeature/DistributedAppDev/DistributeCalc)
 
-- [分布式计算器（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc)
+- [分布式计算器（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.2-Release/code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc)
 
-- [分布式五子棋（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/DistributedDataGobang)
+- [分布式五子棋（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.2-Release/code/Solutions/Game/DistributedDataGobang)
 
 - [分布式手写板（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/DistributeDraw)

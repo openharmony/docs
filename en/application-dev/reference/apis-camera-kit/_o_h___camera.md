@@ -93,6 +93,7 @@ You can refer to the corresponding development guide and samples based on your d
 | typedef enum [Camera_VideoStabilizationMode](#camera_videostabilizationmode) [Camera_VideoStabilizationMode](#camera_videostabilizationmode) | Defines an enum for the video stabilization modes.| 
 | typedef enum [Camera_ImageRotation](#camera_imagerotation) [Camera_ImageRotation](#camera_imagerotation) | Defines an enum for the image rotation angles.| 
 | typedef enum [Camera_QualityLevel](#camera_qualitylevel) [Camera_QualityLevel](#camera_qualitylevel) | Defines an enum for the image quality levels.| 
+| typedef enum [Camera_QualityPrioritization](#camera_qualityprioritization) [Camera_QualityPrioritization](#camera_qualitylevel) | Defines an enum for the priority levels for video recording quality.| 
 | typedef enum [Camera_MetadataObjectType](#camera_metadataobjecttype) [Camera_MetadataObjectType](#camera_metadataobjecttype) | Defines an enum for the metadata object types.| 
 | typedef enum [Camera_TorchMode](#camera_torchmode) [Camera_TorchMode](#camera_torchmode) | Defines an enum for the flashlight modes.| 
 | typedef enum [Camera_SmoothZoomMode](#camera_smoothzoommode) [Camera_SmoothZoomMode](#camera_smoothzoommode) | Defines an enum for the smooth zoom modes.| 
@@ -155,6 +156,7 @@ You can refer to the corresponding development guide and samples based on your d
 | typedef void(\* [OH_VideoOutput_OnFrameEnd](#oh_videooutput_onframeend)) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, int32_t frameCount) | Defines the callback defined in the [VideoOutput_Callbacks](_video_output___callbacks.md) struct and used to report video output frame end events.| 
 | typedef void(\* [OH_VideoOutput_OnError](#oh_videooutput_onerror)) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [Camera_ErrorCode](#camera_errorcode) errorCode) | Defines the callback defined in the [VideoOutput_Callbacks](_video_output___callbacks.md) struct and used to report video output errors.| 
 | typedef struct [VideoOutput_Callbacks](_video_output___callbacks.md) [VideoOutput_Callbacks](#videooutput_callbacks) | Defines a struct for the callbacks related to video output.| 
+| typedef struct [Camera_QualityPrioritization ](#camera_qualityprioritization) [Camera_QualityPrioritization](#camera_qualityprioritization) | Defines a struct for the priority level for video recording quality.| 
 
 
 ### Enums
@@ -175,6 +177,7 @@ You can refer to the corresponding development guide and samples based on your d
 | [Camera_VideoStabilizationMode](#camera_videostabilizationmode) {<br>STABILIZATION_MODE_OFF = 0,<br>STABILIZATION_MODE_LOW = 1,<br>STABILIZATION_MODE_MIDDLE = 2,<br>STABILIZATION_MODE_HIGH = 3,<br>STABILIZATION_MODE_AUTO = 4<br>} | Enumerates the video stabilization modes.| 
 | [Camera_ImageRotation](#camera_imagerotation) {<br>IAMGE_ROTATION_0 = 0,<br>IAMGE_ROTATION_90 = 90,<br>IAMGE_ROTATION_180 = 180,<br>IAMGE_ROTATION_270 = 270 } | Enumerates the image rotation angles.| 
 | [Camera_QualityLevel](#camera_qualitylevel) {<br>QUALITY_LEVEL_HIGH = 0,<br>QUALITY_LEVEL_MEDIUM = 1,<br>QUALITY_LEVEL_LOW = 2 } | Enumerates the image quality levels.| 
+| [Camera_QualityPrioritization](#camera_qualityprioritization) {<br>HIGH_QUALITY  = 0,<br>POWER_BALANCE  = 1} | Enumerates the priority levels for video recording quality.| 
 | [Camera_MetadataObjectType](#camera_metadataobjecttype) { FACE_DETECTION = 0 } | Enumerates the metadata object types.| 
 | [Camera_TorchMode](#camera_torchmode) { OFF = 0, ON = 1, AUTO = 2 } | Enumerates the flashlight modes.| 
 | [Camera_SmoothZoomMode](#camera_smoothzoommode) { NORMAL = 0 } | Enumerates the smooth zoom modes.| 
@@ -334,7 +337,7 @@ You can refer to the corresponding development guide and samples based on your d
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_DeleteFrameRates](#oh_videooutput_deleteframerates) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [Camera_FrameRateRange](_camera___frame_rate_range.md) \*frameRateRange) | Deletes the frame rate list.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_SetFrameRate](#oh_videooutput_setframerate) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, int32_t minFps, int32_t maxFps) | Sets the frame rates for a **VideoOutput** instance.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_GetActiveFrameRate](#oh_videooutput_getactiveframerate) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [Camera_FrameRateRange](_camera___frame_rate_range.md) \*frameRateRange) | Obtains the active frame rates of a **VideoOutput** instance.| 
-
+| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_SetQualityPrioritization](#oh_capturesession_setqualityprioritization) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_QualityPrioritization](#camera_qualityprioritization) qualityPrioritization) | Sets the priority level for video recording quality.| 
 
 ## Type Description
 
@@ -752,6 +755,19 @@ typedef enum Camera_QualityLevel Camera_QualityLevel
 Defines an enum for the image quality levels.
 
 **Since**: 11
+
+
+### Camera_QualityPrioritization
+
+```
+typedef enum Camera_QualityPrioritization Camera_QualityPrioritization
+```
+
+**Description**
+
+Defines an enum for the priority levels for video recording quality.
+
+**Since**: 14
 
 
 ### Camera_Rect
@@ -1635,7 +1651,7 @@ Enumerates the camera error codes.
 | CAMERA_DEVICE_DISABLED | The camera is disabled for security reasons.| 
 | CAMERA_DEVICE_PREEMPTED | The camera is preempted.| 
 | CAMERA_UNRESOLVED_CONFLICTS_WITH_CURRENT_CONFIGURATIONS | The configuration conflicts with the current configuration.<br>**Since**: 12| 
-| CAMERA_SERVICE_FATAL_ERROR | A fatal error occurs in the camera service.| 
+| CAMERA_SERVICE_FATAL_ERROR | A fatal error occurs in the camera service, for example, no camera permission, camera service restart, or abnormal cross-process invocation.| 
 
 
 ### Camera_ExposureMode
@@ -1788,7 +1804,7 @@ Enumerates the camera positions.
 
 | Value| Description| 
 | -------- | -------- |
-| CAMERA_POSITION_UNSPECIFIED | Unspecified position.| 
+| CAMERA_POSITION_UNSPECIFIED | A camera that does not have a fixed orientation relative to the device screen.| 
 | CAMERA_POSITION_BACK | Rear camera.| 
 | CAMERA_POSITION_FRONT | Front camera.| 
 
@@ -1850,6 +1866,22 @@ Enumerates the image quality levels.
 | QUALITY_LEVEL_MEDIUM | Medium image quality.| 
 | QUALITY_LEVEL_LOW | Low image quality.| 
 
+### Camera_QualityPrioritization
+
+```
+enum Camera_QualityPrioritization
+```
+
+**Description**
+
+Enumerates the priority levels for video recording quality.
+
+**Since**: 14
+
+| Value       | Description                |
+| ------------- | -------------------- |
+| HIGH_QUALITY  | Prioritizes high-quality video recording.        |
+| POWER_BALANCE | Prioritizes video recording quality while balancing power consumption.|
 
 ### Camera_SceneMode
 
@@ -1943,7 +1975,7 @@ Enumerates the camera types.
 | CAMERA_TYPE_DEFAULT | Default camera type.| 
 | CAMERA_TYPE_WIDE_ANGLE | Wide camera.| 
 | CAMERA_TYPE_ULTRA_WIDE | Ultra wide camera.| 
-| CAMERA_TYPE_TELEPHOTO | Telephone camera.| 
+| CAMERA_TYPE_TELEPHOTO | Telephoto camera.| 
 | CAMERA_TYPE_TRUE_DEPTH | Camera with depth of field information.| 
 
 
@@ -3791,7 +3823,7 @@ Obtains the supported color spaces.
 | -------- | -------- |
 | session | Pointer to the target [Camera_CaptureSession](#camera_capturesession) instance.| 
 | colorSpace | Double pointer to the list of color spaces, which are defined in [OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace-1), if the function is successfully called.| 
-| size | Pointer to the size of the list of color spaces.| 
+| size | Pointer to the size of the list of color spaces, which are defined in [OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace-1), if the function is successfully called.| 
 
 **Returns**
 
@@ -4545,6 +4577,40 @@ Sets the metering point, which is the center point of the metering rectangle.
 | -------- | -------- |
 | session | Pointer to the target [Camera_CaptureSession](#camera_capturesession) instance.| 
 | point | Target metering point, which is defined in the [Camera_Point](_camera___point.md) struct.| 
+
+**Returns**
+
+In [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful.
+
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+- **CAMERA_SESSION_NOT_CONFIG**: The capture session is not configured.
+
+
+### OH_CaptureSession_SetQualityPrioritization()
+
+```
+Camera_ErrorCode OH_CaptureSession_SetQualityPrioritization(Camera_CaptureSession* session, Camera_QualityPrioritization qualityPrioritization)
+```
+
+**Description**
+
+Sets the priority level for video recording quality.
+
+> **NOTE**
+>
+> The default value is **HIGH_QUALITY**. Switching to **POWER_BALANCE** will compromise video recording quality to achieve lower power usage. The extent of power conservation achieved varies depending on the platform.
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| session | Pointer to the target [Camera_CaptureSession](#camera_capturesession) instance.| 
+| qualityPrioritization | Quality priority to set. The default value is [Camera_QualityPrioritization](#camera_qualityprioritization).| 
 
 **Returns**
 

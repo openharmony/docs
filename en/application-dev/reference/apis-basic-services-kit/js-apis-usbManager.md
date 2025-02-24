@@ -90,8 +90,11 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 Connects to the USB device based on the device information returned by **getDevices()**.
 
-Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and device information, and then call [usbManager.getDevices](#usbmanagergetdevices) to request the device access permission.
+Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and device information, and then call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission.
 
+> **NOTE** 
+>
+> The total amount for each bulk data transfer (including pipe, endpoint, buffer, and timeout) should be less than 200 KB.
 **System capability**: SystemCapability.USB.USBManager
 
 **Parameters**
@@ -406,7 +409,7 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 Sets a USB interface.
 
-Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and interfaces, call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission, call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter, and call [usbManager.connectDevice](#usbmanagerconnectdevice) to claim a USB interface.
+Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and interfaces, call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission, call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter, and call [usbManager.claimInterface](#usbmanagerclaiminterface) to claim a USB interface.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -675,7 +678,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 Performs bulk transfer.
 
-Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and endpoints, call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission, call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter, and call [usbManager.claimInterface](#usbmanagerclaiminterface) to claim a USB interface.
+Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and endpoints, call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission, call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter, and call **usb.bulkTransfer** to claim a USB interface.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -703,6 +706,10 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | Promise&lt;number&gt; | Promise used to return the result, which is the size of the transmitted or received data block if the transfer is successful, or **-1** if an exception has occurred.|
 
 **Example**
+
+> **NOTE**
+>
+> The following sample code is only a basic process for calling the **bulkTransfer** API. In actual calling, you must comply with the device-related protocols to ensure correct data transmission and device compatibility.
 
 ```ts
 // Call usbManager.getDevices to obtain a data set. Then, obtain a USB device and its access permission.
@@ -772,6 +779,262 @@ usbManager.requestRight(devicesList[0].name);
 let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
 let ret: number = usbManager.closePipe(devicepipe);
 console.log(`closePipe = ${ret}`);
+```
+
+## usbManager.hasAccessoryRight<sup>14+</sup>
+
+hasAccessoryRight(accessory: USBAccessory): boolean
+
+Checks whether the application has the permission to access the USB accessory.
+
+You need to call [usbManager.getAccessoryList](#usbmanagergetaccessorylist14) to obtain the accessory list and use [USBAccessory](#usbaccessory14) as a parameter.
+
+**System capability**: SystemCapability.USB.USBManager
+
+**Parameters**
+
+| Name   | Type        | Mandatory| Description                                 |
+| --------- | ------------ | ---- | ------------------------------------- |
+| accessory | [USBAccessory](#usbaccessory14) | Yes  | USB accessory.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
+| 14400005 | Database operation exception.                                |
+| 14401001 | The target USBAccessory not matched.                         |
+
+**Return value**
+
+| Type   | Description                         |
+| ------- | ----------------------------- |
+| boolean | The value **true** indicates that the application has the permission to access the USB accessory; **false** indicates the opposite.|
+
+**Example**
+
+```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
+try {
+  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
+  let flag = usbManager.hasAccessoryRight(accList[0])
+  hilog.info(0, 'testTag ui', `hasAccessoryRight success, ret:${flag}`)
+} catch (error) {
+  hilog.info(0, 'testTag ui', `hasAccessoryRight error ${error.code}, message is ${error.message}`)
+}
+```
+
+## usbManager.requestAccessoryRight<sup>14+</sup>
+
+requestAccessoryRight(accessory: USBAccessory): Promise&lt;boolean&gt;
+
+Requests the permission to access a USB accessory for a specified application.
+
+You need to call [usbManager.getAccessoryList](#usbmanagergetaccessorylist14) to obtain the accessory list and use [USBAccessory](#usbaccessory14) as a parameter.
+
+**System capability**: SystemCapability.USB.USBManager
+
+**Parameters**
+
+| Name   | Type        | Mandatory| Description                                 |
+| --------- | ------------ | ---- | ------------------------------------- |
+| accessory | [USBAccessory](#usbaccessory14) | Yes  | USB accessory.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
+| 14400005 | Database operation exception.                                |
+| 14401001 | The target USBAccessory not matched.                         |
+
+**Return value**
+
+| Type            | Description                         |
+| ---------------- | ----------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the application result. The value **true** indicates that the permission application is successful; **false** indicates the opposite.|
+
+**Example**
+
+```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
+try {
+  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
+  let flag = await usbManager.requestAccessoryRight(accList[0])
+  hilog.info(0, 'testTag ui', `requestAccessoryRight success, ret:${flag}`)
+} catch (error) {
+  hilog.info(0, 'testTag ui', `requestAccessoryRight error ${error.code}, message is ${error.message}`)
+}
+```
+
+## usbManager.cancelAccessoryRight<sup>14+</sup>
+
+cancelAccessoryRight(accessory: USBAccessory): void;
+
+Cancels the permission of the current application to access USB accessories.
+
+You need to call [usbManager.getAccessoryList](#usbmanagergetaccessorylist14) to obtain the accessory list and use [USBAccessory](#usbaccessory14) as a parameter.
+
+**System capability**: SystemCapability.USB.USBManager
+
+**Parameters**
+
+| Name   | Type        | Mandatory| Description                                 |
+| --------- | ------------ | ---- | ------------------------------------- |
+| accessory | [USBAccessory](#usbaccessory14) | Yes  | USB accessory.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
+| 14400005 | Database operation exception.                                |
+| 14401001 | The target USBAccessory not matched.                         |
+
+**Example**
+
+```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
+try {
+  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
+  let flag = await usbManager.requestAccessoryRight(accList[0])
+  usbManager.cancelAccessoryRight(accList[0])
+  hilog.info(0, 'testTag ui', `cancelAccessoryRight success`)
+} catch (error) {
+  hilog.info(0, 'testTag ui', `cancelAccessoryRight error ${error.code}, message is ${error.message}`)
+}
+```
+
+## usbManager.getAccessoryList<sup>14+</sup>
+
+getAccessoryList(): Array<Readonly&lt;USBAccessory&gt;>
+
+Obtains the list of USB accessories connected to the host.
+
+**System capability**: SystemCapability.USB.USBManager
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
+
+**Return value**
+
+| Type                         | Description                                              |
+| ----------------------------- | -------------------------------------------------- |
+| Array<Readonly&lt;USBAccessory&gt;> | List of USB accessories (read-only). Currently, only one USB accessory is contained in the list.|
+
+**Example**
+
+```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
+try {
+  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
+  hilog.info(0, 'testTag ui', `getAccessoryList success, accList: ${JSON.stringify(accList)}`)
+} catch (error) {
+  hilog.info(0, 'testTag ui', `getAccessoryList error ${error.code}, message is ${error.message}`)
+}
+```
+
+## usbManager.openAccessory<sup>14+</sup>
+
+openAccessory(accessory: USBAccessory): USBAccessoryHandle;
+
+Obtains the accessory handle and opens the accessory file descriptor.
+
+You need to call [usbManager.getAccessoryList](#usbmanagergetaccessorylist14) to obtain the accessory list and use [USBAccessory](#usbaccessory14) as a parameter.
+
+**System capability**: SystemCapability.USB.USBManager
+
+**Parameters**
+
+| Name   | Type        | Mandatory| Description                                 |
+| --------- | ------------ | ---- | ------------------------------------- |
+| accessory | [USBAccessory](#usbaccessory14) | Yes  | USB accessory.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 14400001 | Permission denied. Call requestAccessoryRight to get the right first. |
+| 14400004 | Service exception. Possible causes: No accessory is plugged in. |
+| 14401001 | The target USBAccessory not matched.                         |
+| 14401002 | Failed to open the native accessory node.                    |
+| 14401003 | Cannot reopen the accessory.                                 |
+
+**Return value**
+
+| Type              | Description       |
+| ------------------ | ----------- |
+| [USBAccessoryHandle](#usbaccessoryhandle14) | USB accessory handle.|
+
+**Example**
+
+```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
+try {
+  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
+  let flag = await usbManager.requestAccessoryRight(accList[0])
+  let handle = usbManager.openAccessory(accList[0])
+  hilog.info(0, 'testTag ui', `openAccessory success`)
+} catch (error) {
+  hilog.info(0, 'testTag ui', `openAccessory error ${error.code}, message is ${error.message}`)
+}
+```
+
+## usbManager.closeAccessory<sup>14+</sup>
+
+closeAccessory(accessoryHandle: USBAccessoryHandle): void;
+
+Closes the accessory file descriptor.
+
+You need to call [usbManager.openAccessory](#usbmanageropenaccessory14) to obtain the accessory list and use [USBAccessoryHandle](#usbaccessoryhandle14) as a parameter.
+
+**System capability**: SystemCapability.USB.USBManager
+
+**Parameters**
+
+| Name         | Type              | Mandatory| Description                                  |
+| --------------- | ------------------ | ---- | -------------------------------------- |
+| accessoryHandle | [USBAccessoryHandle](#usbaccessoryhandle14) | Yes  | USB accessory handle.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
+
+**Example**
+
+```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
+try {
+  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
+  let flag = await usbManager.requestAccessoryRight(accList[0])
+  let handle = usbManager.openAccessory(accList[0])
+  usbManager.closeAccessory(handle)
+  hilog.info(0, 'testTag ui', `closeAccessory success`)
+} catch (error) {
+  hilog.info(0, 'testTag ui', `closeAccessory error ${error.code}, message is ${error.message}`)
+}
 ```
 
 ## USBEndpoint
@@ -921,3 +1184,27 @@ Enumerates request directions.
 | --------------------------- | ---- | ------------------------ |
 | USB_REQUEST_DIR_TO_DEVICE   | 0    | Request for writing data from the host to the device.|
 | USB_REQUEST_DIR_FROM_DEVICE | 0x80 | Request for reading data from the device to the host.|
+
+## USBAccessory<sup>14+</sup>
+
+Describes the USB accessory information.
+
+**System capability**: SystemCapability.USB.USBManager
+
+| Name        | Type  | Mandatory| Description            |
+| ------------ | ------ | ---- | ---------------- |
+| manufacturer | string | Yes  | Manufacturer of an accessory.|
+| product      | string | Yes  | Product type of an accessory.|
+| description  | string | Yes  | Description of an accessory.    |
+| version      | string | Yes  | Version of an accessory.    |
+| serialNumber | string | Yes  | SN of an accessory.    |
+
+## USBAccessoryHandle<sup>14+</sup>
+
+USB accessory handle.
+
+**System capability**: SystemCapability.USB.USBManager
+
+| Name       | Type  | Mandatory| Description                                     |
+| ----------- | ------ | ---- | ----------------------------------------- |
+| accessoryFd | number | Yes  | Accessory file descriptor. A valid **accessoryFd** is a positive integer.|

@@ -26,6 +26,7 @@ These concepts are important in exception and error handling. Properly using met
 | OH_JSVM_IsError              | Checks whether the given **JSVM_Value** indicates an error.|
 | OH_JSVM_GetAndClearLastException    | Obtains and clears the last JS exception.|
 | OH_JSVM_IsExceptionPending   | Checks whether there is any pending exception.|
+| OH_JSVM_GetLastErrorInfo     | Obtains the last error information.|
 
 ## Example
 
@@ -33,11 +34,11 @@ If you are just starting out with JSVM-API, see [JSVM-API Development Process](u
 
 ### OH_JSVM_Throw
 
-Use **OH_JSVM_Throw** to throw a JS error object so that the error can be captured and handled.
+Call **OH_JSVM_Throw** to throw a JS error object. You can use this API to throw a JS error that indicates an error or unexpected behavior occurred in the native code so that exception can be captured and handled. For details about the example, see the example of **OH_JSVM_CreateError**.
 
 ### OH_JSVM_CreateError
 
-Use **OH_JSVM_CreateError** to create a JS error object with text information.
+Call **OH_JSVM_CreateError** to create a JS error object with text information.
 
 CPP code:
 
@@ -82,7 +83,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmCreateThrowError},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named jsVmCreateThrowError and associate it with a callback. This allows the JsVmCreateThrowError callback to be called from JS.
+// Alias for the JsVmCreateThrowError method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmCreateThrowError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -96,7 +97,7 @@ JSVM error message: HasError, error code: -1
 
 ### OH_JSVM_ThrowError
 
-Use **OH_JSVM_ThrowError** to throw a JS **Error** object with text information.
+Call **OH_JSVM_ThrowError** to throw a JS **Error** object with text information.
 
 CPP code:
 
@@ -130,7 +131,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmThrowError},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named jsVmThrowError and associate it with a callback. This allows the JsVmThrowError callback to be called from JS.
+// Alias for the JsVmThrowError method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmThrowError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -146,7 +147,7 @@ JSVM error message: self defined error message, error code: self defined error c
 
 ### OH_JSVM_ThrowTypeError
 
-Use **OH_JSVM_CreateTypeError** to create a JS **TypeError** object with text information.
+Call **OH_JSVM_CreateTypeError** to create a JS **TypeError** object with text information.
 
 CPP code:
 
@@ -179,7 +180,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmThrowTypeError},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named jsVmThrowTypeError and associate it with a callback. This allows the JsVmThrowTypeError callback to be called from JS.
+// Alias for the JsVmThrowTypeError method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmThrowTypeError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -195,7 +196,7 @@ JSVM error message: self defined error message, error code: self defined error c
 
 ### OH_JSVM_ThrowRangeError
 
-Use **OH_JSVM_CreateRangeError** to create a JS **RangeError** with text information.
+Call **OH_JSVM_CreateRangeError** to create a JS **RangeError** with text information.
 
 CPP code:
 
@@ -224,7 +225,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmThrowRangeError},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named jsVmThrowRangeError and associate it with a callback. This allows the JsVmThrowRangeError callback to be called from JS.
+// Alias for the JsVmThrowRangeError method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmThrowRangeError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -240,7 +241,7 @@ JSVM error message: Expected two numbers as arguments, error code: OH_JSVM_Throw
 
 ### OH_JSVM_ThrowSyntaxError
 
-Use **OH_JSVM_ThrowSyntaxError** to create and throw a JS **SyntaxError** object with text information.
+Call **OH_JSVM_ThrowSyntaxError** to create and throw a JS **SyntaxError** object with text information.
 
 CPP code:
 
@@ -273,7 +274,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmThrowSyntaxError},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named jsVmThrowSyntaxError and associate it with a callback. This allows the JsVmThrowSyntaxError callback to be called from JS.
+// Alias for the JsVmThrowSyntaxError method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmThrowSyntaxError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -288,7 +289,7 @@ JSVM error message: throw syntax error, error code: JsVmThrowSyntaxError
 
 ### OH_JSVM_IsError
 
-Use **OH_JSVM_IsError** to check whether the given **JSVM_Value** represents an error object.
+Call **OH_JSVM_IsError** to check whether the given **JSVM_Value** represents an error object.
 
 CPP code:
 
@@ -318,7 +319,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmIsError},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named OH_JSVM_IsError and associate it with a callback. This allows the JsVmIsError callback to be called from JS.
+// Alias for the JsVmIsError method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmIsError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -333,7 +334,7 @@ JSVM API call OH_JSVM_IsError success, result is 1
 
 ### OH_JSVM_CreateTypeError
 
-Use **OH_JSVM_CreateTypeError** to create a JS **TypeError** object with text information.
+Call **OH_JSVM_CreateTypeError** to create a JS **TypeError** object with text information.
 
 CPP code:
 
@@ -361,7 +362,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmCreateTypeError},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named jsVmCreateTypeError and associate it with a callback. This allows the JsVmCreateTypeError callback to be called from JS.
+// Alias for the JsVmCreateTypeError method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmCreateTypeError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -376,7 +377,7 @@ JSVM API Create TypeError SUCCESS
 
 ### OH_JSVM_CreateRangeError
 
-Use **OH_JSVM_CreateRangeError** to create a JS **RangeError** with text information.
+Call **OH_JSVM_CreateRangeError** to create a JS **RangeError** with text information.
 
 CPP code:
 
@@ -404,7 +405,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmCreateRangeError},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named jsVmCreateRangeError and associate it with a callback. This allows the JsVmCreateRangeError callback to be called from JS.
+// Alias for the JsVmCreateRangeError method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmCreateRangeError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -418,7 +419,7 @@ JSVM API CreateRangeError SUCCESS
 ```
 ### OH_JSVM_CreateSyntaxError
 
-Use **OH_JSVM_CreateSyntaxError** to create and throw a JS **SyntaxError** object with text information.
+Call **OH_JSVM_CreateSyntaxError** to create and throw a JS **SyntaxError** object with text information.
 
 CPP code:
 
@@ -446,7 +447,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmCreateSyntaxError},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named jsVmCreateThrowError and associate it with a callback. This allows the JsVmCreateThrowError callback to be called from JS.
+// Alias for the JsVmCreateThrowError method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmCreateSyntaxError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -461,7 +462,7 @@ JSVM API CreateSyntaxError SUCCESS
 
 ### OH_JSVM_GetAndClearLastException
 
-Use **OH_JSVM_GetAndClearLastException** to obtain and clear the latest exception.
+Call **OH_JSVM_GetAndClearLastException** to obtain and clear the latest exception.
 
 CPP code:
 
@@ -486,7 +487,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmGetAndClearLastException},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named jsVmGetAndClearLastException and associate it with a callback. This allows the JsVmGetAndClearLastException callback to be called from JS.
+// Alias for the JsVmGetAndClearLastException method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmGetAndClearLastException", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -501,7 +502,7 @@ JSVM API OH_JSVM_GetAndClearLastException SUCCESS
 
 ### OH_JSVM_IsExceptionPending
 
-Use **OH_JSVM_IsExceptionPending** to check whether there is any pending exception.
+Call **OH_JSVM_IsExceptionPending** to check whether there is any pending exception.
 
 CPP code:
 
@@ -538,7 +539,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmIsExceptionPending},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named jsVmIsExceptionPending and associate it with a callback. This allows the JsVmIsExceptionPending callback to be called from JS.
+// Alias for the JsVmIsExceptionPending method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmIsExceptionPending", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -553,7 +554,7 @@ JSVM API OH_JSVM_IsExceptionPending: SUCCESS
 
 ### OH_JSVM_GetLastErrorInfo
 
-Use **OH_JSVM_GetLastErrorInfo** to obtain the last error information (the return value is not **JSVM_OK**), including the error code, error message, and stack information. This API can also be used for suspended JS errors.
+Call **OH_JSVM_GetLastErrorInfo** to obtain the last error information (the return value is not **JSVM_OK**), including the error code, error message, and stack information. This API can also be used for suspended JS errors.
 Note that the errors triggered by APIs such as **OH_JSVM_ThrowError** will not be captured by the APIs unless the return value is not **JSVM_OK**.
 
 CPP code:
@@ -589,7 +590,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmGetLastErrorInfo},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named jsVmGetLastErrorInfo and associate it with a callback. This allows the JsVmGetLastErrorInfo callback to be called from JS.
+// Alias for the JsVmGetLastErrorInfo method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmGetLastErrorInfo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };

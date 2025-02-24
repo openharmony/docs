@@ -3,9 +3,9 @@
 在使用Web组件加载H5页面时，经常会有长列表、视频等场景。由于Web目前最高只有60帧，想要更加流畅的体验，必须要将原生组件放到Web上。
 
 在什么场景下应该在Web上使用原生组件：
-- 需要高性能，流畅体验。如长列表，视频等场景
-- 需要使用原生组件功能
-- 原生组件已经实现，复用以减少开发成本
+- 需要高性能，流畅体验。如长列表，视频等场景。
+- 需要使用原生组件功能。
+- 原生组件已经实现，复用以减少开发成本。
 
 目前要实现在Web上使用原生组件有两种方案：  
 方案一：直接将组件堆叠到H5页面上。  
@@ -168,7 +168,7 @@ export struct SearchComponent {
         hiTraceMeter.finishTrace('START_WEB_WEB', 2002);
       })
     ```
-2. 此时，样式和组件需要单独通过js和css文件进行控制，这里仅展示js主要代码
+2. 此时，样式和组件需要单独通过js和css文件进行控制，这里仅展示js主要代码。
 
     ```javascript
     let h5Port; // 获取应用侧的端口
@@ -417,7 +417,8 @@ H5的分析：
 ![alt text](./figures/webview-render-app-components_4.png)  
 非同层渲染的分析：
 - 在应用侧，红蓝线之间为测量和计算布局，图片加载被延后到了蓝线之外。  
-- 在render_service侧，蓝线之后每一帧ReceiveVsync的耗时大幅增加。  
+- 在render_service侧，蓝线之后每一帧ReceiveVsync的耗时大幅增加。
+  
 **图五：非同层渲染情况下的单帧放大图**  
 ![alt text](./figures/webview-render-app-components_6.png)  
 从图五可以明显的看到，其中的RSUniRender::Process耗时比起其他帧大幅增加，说明是应用侧组件层叠导致render_service侧的绘任务过重。 

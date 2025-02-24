@@ -70,7 +70,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                         |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | 是   | 配置虚拟键盘抬起时页面的避让模式。<br />默认值：KeyboardAvoidMode.OFFSET，键盘抬起时默认页面避让模式为上抬模式。 |
+| value  | [KeyboardAvoidMode](../js-apis-arkui-UIContext.md#keyboardavoidmode11) | 是   | 配置虚拟键盘抬起时页面的避让模式。<br />默认值：KeyboardAvoidMode.OFFSET，键盘抬起时默认页面避让模式为上抬模式。 |
 
 >  **说明：**
 >
@@ -92,7 +92,7 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 
 | 名称                                                 | 说明                               |
 | ---------------------------------------------------- | ---------------------------------- |
-| [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | 返回虚拟键盘抬起时的页面避让模式。 |
+| [KeyboardAvoidMode](../js-apis-arkui-UIContext.md#keyboardavoidmode11) | 返回虚拟键盘抬起时的页面避让模式。 |
 
 ## 示例
 

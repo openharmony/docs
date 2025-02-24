@@ -42,7 +42,7 @@ Sets whether to clip this component based on the given shape.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | boolean \| [CircleAttribute](ts-drawing-components-circle.md) \| [EllipseAttribute](ts-drawing-components-ellipse.md) \| [PathAttribute](ts-drawing-components-path.md) \| [RectAttribute](ts-drawing-components-rect.md) | Yes  | Clip mode. If the value is a shape, the component is clipped based on the specified shape. If the value is of the Boolean type, it specifies whether to clip the component based on the edge contour of the parent container.<br>Default value: **false**|
+| value  | boolean \| [CircleAttribute](ts-drawing-components-circle.md) \| [EllipseAttribute](ts-drawing-components-ellipse.md) \| [PathAttribute](ts-drawing-components-path.md) \| [RectAttribute](ts-drawing-components-rect.md) | Yes  | Clip mode. If the value is a shape attribute, the component is clipped based on the specified shape. If the value is of the Boolean type, it specifies whether to clip the component based on the boundaries of the parent container.<br>Default value: **false**<br>**NOTE**<br>If the value is a shape attribute, the clipped area can still respond to bound gesture events. If the value is of the Boolean type, the clipped area will not respond to bound gesture events.|
 
 ## clipShape<sup>12+</sup>
 
@@ -60,13 +60,13 @@ Clips this component based on the given shape.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [CircleShape](../js-apis-arkui-shape.md#circleshape) \| [EllipseShape](../js-apis-arkui-shape.md#ellipseshape) \| [PathShape](../js-apis-arkui-shape.md#pathshape) \| [RectShape](../js-apis-arkui-shape.md#rectshape) | Yes  | Shape that the component to be clipped into.|
+| value  | [CircleShape](../js-apis-arkui-shape.md#circleshape) \| [EllipseShape](../js-apis-arkui-shape.md#ellipseshape) \| [PathShape](../js-apis-arkui-shape.md#pathshape) \| [RectShape](../js-apis-arkui-shape.md#rectshape) | Yes  | Shape that the component to be clipped into.<br>**NOTE**<br>The clipped area remains responsive to bound gesture events.|
 
 ## mask<sup>12+</sup>
 
 mask(value: ProgressMask)
 
-Adds a mask of the specified shape to the component.
+Adds a mask to the component to indicate the progress.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -193,7 +193,7 @@ Sets whether to enable the breathing animation when the progress indicator is fu
 
 ## Example
 
-### Example 1
+### Example 1: Using Different Clipping Attributes
 
 ```ts
 // xxx.ets
@@ -232,7 +232,7 @@ struct ClipAndMaskExample {
 
 ![clipAndMask](figures/clipAndMask.PNG)
 
-### Example 2
+### Example 2: Clipping and Masking with Animation
 
 ```ts
 @Entry
@@ -243,10 +243,11 @@ struct ProgressMaskExample {
   @State value: number = 10.0;
   @State enableBreathingAnimation: boolean = false;
   @State progress: ProgressMask = new ProgressMask(10.0, 100.0, Color.Gray);
+
   build() {
     Column({ space: 15 }) {
       Text('progress mask').fontSize(12).width('75%').fontColor('#DCDCDC')
-      // Add a 280px x 280px progress mask to the image.
+      // Add a 280 px x 280 px progress mask to the image.
       Image($r('app.media.testImg'))
         .width('500px').height('280px')
         .mask(this.progress)
@@ -275,7 +276,7 @@ struct ProgressMaskExample {
           }
           this.progressflag1 = !this.progressflag1
         }).width(200).height(50).margin(20)
-      
+
       // Enable or disable the breathing animation.
       Button('enableBreathingAnimation:' + this.enableBreathingAnimation)
         .onClick((event?: ClickEvent) => {

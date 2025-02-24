@@ -1,12 +1,14 @@
-# \@LocalBuilder Decorator: Maintaining the Parent-Child Relationship Between Component and State Management
+# \@LocalBuilder decorator: Maintaining the Parent-Child Relationship Between Component and State Management
 
 When use @Builder to pass data, the parent-child relationship of components is considered. After **bind(this)** is used, the parent-child relationship of components is inconsistent with that of state management. As a result, the @LocalBuilder decorator is used to fix the inconsistency. @LocalBuilder has the same features as local @Builder and provides a better determination of the parent-child relationship of components and state management.
 
+Before reading this topic, you are advised to read [\@Builder](./arkts-builder.md).
 
 > **NOTE**
 >
 > This decorator is supported since API version 12.
 >
+> 
 
 ## How to Use
 
@@ -59,6 +61,7 @@ For @LocalBuilder functions, parameters can be passed [by value](#by-value-param
 ### By-Reference Parameter Passing
 
 In by-reference parameter passing, state variables can be passed, and the change of these state variables causes the UI re-rendering in the \@LocalBuilder decorated method.
+If the child component calls the @LocalBuilder function of the parent component and the input parameters are changed, the UI in the \@LocalBuilder method is not re-rendered.
 
 Use scenario:
 
@@ -140,6 +143,100 @@ struct Parent {
 }
 ```
 
+The child component references the @LocalBuilder function of the parent component with a state variable as the parameter. The change of the state variable does not trigger the UI re-render in the @LocalBuilder method because the function decorated by @Localbuilder is bound to the parent component and only the current component and its child components are re-rendered. Therefore, the re-render of the parent component cannot be triggered. If @Builder is used, the UI can be re-rendered. The reason is that @Builder has the pointer of the **this** keyword changed. In this case, the function is bound to the child component, and the UI can be re-rendered.
+
+Use scenario:
+
+The **Child** component passes the @State decorated **label** value to the @Builder and @LocalBuilder functions of the **Parent** component. In the @Builder decorated function, **this** points to **Child** and parameter changes trigger UI re-render, while in the @LocalBuilder decorated function, **this** points to **Parent** and UI re-render cannot be triggered.
+
+
+```ts
+class LayoutSize {
+  size:number = 0;
+}
+
+@Entry
+@Component
+struct Parent {
+  label:string = 'parent';
+  @State layoutSize:LayoutSize = {size:0};
+
+  @LocalBuilder
+  // @Builder
+  componentBuilder($$:LayoutSize) {
+    Text(`${'this :'+this.label}`);
+    Text(`${'size :'+$$.size}`);
+  }
+
+  build() {
+    Column() {
+      Child({contentBuilder: this.componentBuilder });
+    }
+  }
+}
+
+@Component
+struct Child {
+  label:string = 'child';
+  @BuilderParam contentBuilder:((layoutSize: LayoutSize) => void);
+  @State layoutSize:LayoutSize = {size:0};
+
+  build() {
+    Column() {
+      this.contentBuilder({size: this.layoutSize.size});
+      Button("add child size").onClick(()=>{
+        this.layoutSize.size += 1;
+      })
+    }
+  }
+}
+```
+
+Use scenario:
+
+The **Child** component passes the @State decorated **label** value of the **Parent** component referenced by @Link to the @Builder and @LocalBuilder functions of the **Parent** component. In the @Builder decorated function, **this** points to **Child** and parameter changes trigger UI re-render, while in the @LocalBuilder decorated function, **this** points to **Parent** and UI re-render cannot be triggered.
+
+```ts
+class LayoutSize {
+  size:number = 0;
+}
+
+@Entry
+@Component
+struct Parent {
+  label:string = 'parent';
+  @State layoutSize:LayoutSize = {size:0};
+
+  @LocalBuilder
+  // @Builder
+  componentBuilder($$:LayoutSize) {
+    Text(`${'this :'+this.label}`);
+    Text(`${'size :'+$$.size}`);
+  }
+
+  build() {
+    Column() {
+      Child({contentBuilder: this.componentBuilder,layoutSize:this.layoutSize});
+    }
+  }
+}
+
+@Component
+struct Child {
+  label:string = 'child';
+  @BuilderParam contentBuilder:((layoutSize: LayoutSize) => void);
+  @Link layoutSize:LayoutSize;
+
+  build() {
+    Column() {
+      this.contentBuilder({size: this.layoutSize.size});
+      Button("add child size").onClick(()=>{
+        this.layoutSize.size += 1;
+      })
+    }
+  }
+}
+```
 
 ### By-Value Parameter Passing
 
@@ -173,7 +270,7 @@ struct Parent {
 
 ## Differences Between @LocalBuilder and @Builder
 
-When the **componentBuilder** function is decorated by @Builder, the **Child** component is displayed. When the **componentBuilder** function is decorated by @LocalBuilder, **Parent** component is displayed.
+When the **componentBuilder** function is decorated by @Builder, the **Child** component is displayed. When the **componentBuilder** function is decorated by @LocalBuilder, the **Parent** component is displayed.
 
 **NOTE**
 

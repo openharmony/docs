@@ -129,6 +129,10 @@ test(a2);
 * `obfuscation.txt`  
 不同于以上两种开发者可自行修改的配置文件，`obfuscation.txt`是在编译构建HAR时根据`consumer-rules.txt`和依赖模块的混淆规则文件自动生成的文件，它作为一种编译产物存在于发布的HAR包中，用于在其他应用使用该发布包时应用相应的混淆规则。obfuscation.txt内容的生成逻辑请参考[混淆规则合并策略](#混淆规则合并策略)。
 
+  > **说明**：
+  >
+  > 针对三方库中`obfuscation.txt`文件，只有在模块的`oh-package.json5`文件中依赖三方库时，三方库中的`obfuscation.txt`文件才会生效；如果在工程的`oh-package.json5`文件中进行依赖，则三方库的`obfuscation.txt`文件不会生效。
+
 下表简要总结了三种配置文件的差异：
 
 | 配置文件（示例） | 配置类型 |  是否可修改配置  |  是否影响本模块的混淆  |  是否影响其他模块的混淆  |
@@ -318,61 +322,6 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 编译生成的源码文件中的注释默认会被全部删除，不支持配置保留。  
 可通过`keep-comments`配置来保留编译生成的声明文件中的JsDoc注释。
 
-#### -print-kept-names *filepath*
-
-该选项支持输出未混淆名单和全量白名单。其中，*filepath*为可选参数。
-
-当*filepath*参数缺省时，未混淆名单（keptNames.json）和全量白名单（whitelist.json）默认输出到缓存路径`build/default/cache/{...}/release/obfuscation`中。
-
-当*filepath*配置参数时，未混淆名单还会输出到该参数指定的路径中。其中，*filepath*仅支持相对路径，相对路径的起始位置为混淆配置文件的当前目录。*filepath*参数中的文件名请以`.json`为后缀。
-
-全量白名单（whitelist.json）包含本次模块编译流程中收集到的全部白名单，分为以下七种：
-
-(1)'sdk'：表示系统api。
-
-(2)'lang'：表示语言中的关键字。
-
-(3)'conf'：表示用户配置的保留选项中的白名单。
-
-(4)'struct'：表示ArkUI的struct中的属性。
-
-(5)'exported'：表示被导出的名称及其属性。
-
-(6)'strProp'：表示字符串属性。
-
-(7)'enum'：表示enum中的成员。
-
-未混淆名单（keptNames.json）中包含未混淆的名称及未混淆的原因。其中，未混淆原因有以下七种：与sdk白名单重名、与语言白名单重名、与用户配置白名单重名、与struct白名单重名、与导出白名单重名、与字符串属性白名单重名（未开启字符串属性混淆的情况下）以及与enum白名单重名。
-
-**注意**：
-
-1.在编译har模块且开启属性混淆的情况下，'enum'白名单将收集enum中的成员名称。
-
-例如：
-
-```
-enum Test {
-  member1,
-  member2
-}
-```
-
-enum白名单内容为['member1', 'member2']。这是由于历史版本的har模块的编译中间产物为js文件，在js文件中enum类型会转换为一个立即执行函数，而enum成员会被转化为一个字符串属性和一个字符串常量。因此，为了保证开启属性混淆的情况下功能正常，需要将enum成员名称收集为白名单。在编译新版字节码har模块时，此特性仍然被保留。
-
-2.在编译hap/hsp/字节码har模块且开启属性混淆的情况下，当enum的成员被初始化时，'enum'白名单收集初始化表达式中包含的变量名称。
-
-例如：
-
-```
-let outdoor = 1;
-enum Test {
-  member1,
-  member2 = outdoor + member1 + 2
-}
-```
-
-其中，编译hap/hsp模块的情况下，enum白名单内容为['outdoor', 'member1']；编译字节码har模块的情况下，enum白名单内容为['outdoor', 'member1', 'member2']。
-
 ### 保留选项
 
 #### -keep-property-name *[,identifiers,...]*
@@ -486,7 +435,7 @@ const valueBucket: ValuesBucket = {
 class A {
   // 1.成员变量装饰器
   @CustomDecoarter
-  propetyName: string = ""   // propetyName 需要被保留
+  propertyName: string = ""   // propertyName 需要被保留
   // 2.成员方法装饰器
   @MethodDecoarter
   methodName1(){} // methodName1 需要被保留
@@ -1036,6 +985,47 @@ let jsonObj = jsonStr.i
 代码里使用了数据库字段，混淆时该SQL语句中字段名称被混淆，但数据库中字段为原始名称，从而导致报错。
 
 **解决方案：** 使用`-keep-property-name`选项将使用到的数据库字段配置到白名单。
+
+**案例三：使用Record<string, Object>作为对象的类型时，该对象里的属性被混淆，导致功能异常**
+
+**问题现象：**
+
+`parameters`的类型为`Record<string, Object>`，在开启属性混淆后，`parameters`对象中的属性`linkSource`被混淆，进而导致功能异常。示例如下：
+
+```
+// 混淆前
+import { Want } from '@kit.AbilityKit';
+let petalMapWant: Want = {
+  bundleName: 'com.example.myapplication',
+  uri: 'maps://',
+  parameters: {
+    linkSource: 'com.other.app'
+  }
+}
+
+// 混淆后
+import type Want from "@ohos:app.ability.Want";
+let petalMapWant: Want = {
+    bundleName: 'com.example.myapplication',
+    uri: 'maps://',
+    parameters: {
+        i: 'com.other.app'
+    }
+};
+```
+
+**问题原因：**
+
+在这个示例中，所创建的对象的内容需要传递给系统来加载某个页面，因此对象中的属性名称不能被混淆，否则会造成功能异常。示例中`parameters`的类型为`Record<string, Object>`，这只是一个表示以字符串为键的对象的泛型定义，并没有详细描述其内部结构和属性类型。因此，混淆工具无法识别该对象内部哪些属性不应被混淆，从而可能导致内部属性名`linkSource`被混淆。
+
+**解决方案：**
+
+将混淆后会出现问题的属性名配置到属性白名单中，示例如下：
+
+```
+-keep-property-name
+linkSource
+```
 
 #### 同时开启-enable-export-obfuscation和-enable-toplevel-obfuscation选项可能出现的问题
 

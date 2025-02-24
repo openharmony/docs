@@ -201,14 +201,14 @@ Applies a linear gradient foreground blur effect to the component.
 
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | number                                                       | Yes  | Blur radius. A larger value indicates a higher blur degree. If the value is 0, the content is not blurred.<br>Value range: [0, 60]<br>Linear gradient blur consists of two parts: **fractionStops** and **direction**.|
+| value   | number                                                       | Yes  | Blur radius. A larger value indicates a higher blur degree. If the value is 0, the content is not blurred.<br>Value range: [0, 1000]<br>Linear gradient blur consists of two parts: **fractionStops** and **direction**.|
 | options | [LinearGradientBlurOptions](#lineargradientbluroptions12) | Yes  | Linear gradient blur effect.                                      |
 
 ## renderGroup<sup>10+</sup>
 
 renderGroup(value: boolean)
 
-Sets whether the component and its child components are rendered off the screen and then drawn together with its parent.
+Sets whether the component and its child components are rendered off the screen as a whole before being blended with its parent.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -218,7 +218,7 @@ Sets whether the component and its child components are rendered off the screen 
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether the component and its child components are rendered off the screen and then drawn together with its parent. If the opacity of the component is not 1, the drawing effect may vary depending on the value.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether the component and its child components are rendered off the screen as a whole before being blended with its parent. If the opacity of the component is not 1, the drawing effect may vary depending on the value.<br>Default value: **false**|
 
 ## blendMode<sup>11+</sup> 
 
@@ -347,6 +347,8 @@ Applies a system bar effect to the component, which means to invert colors based
 
 ## ShadowType<sup>10+<sup>
 
+Enumerates the shadow types.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -370,7 +372,7 @@ Provides the shadow attributes, including the blur radius, color, and offset alo
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | radius  | number \| [Resource](ts-types.md#resource) | Yes   | Blur radius of the shadow.<br>Value range: [0, +∞)<br>Unit: px<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.<br>To use a value in the vp unit, call [vp2px](ts-pixel-units.md#pixel-unit-conversion) to convert it into px.<br>If **radius** is of the Resource type, its value must be of the number type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | type<sup>10+</sup> | [ShadowType<sup>10+</sup>](#shadowtype10)  |      No   | Shadow type.<br>Default value: **COLOR**<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
-| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy<sup>10+</sup> ](ts-types.md#coloringstrategy10) | No   | Color of the shadow.<br>The default color is black.<br>**NOTE**<br>Since API version 11, this API supports **ColoringStrategy**, which cannot be used with ArkTS widgets or the [textShadow](ts-basic-components-text.md#textshadow10) attribute.<br>With **ColoringStrategy**, the average color or primary color can be obtained, and the obtained color is applied to the shadow drawing area.<br>The **'average'** string can be used to trigger the mode for obtaining the average color, and the **'primary'** string for obtaining the primary color.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy<sup>10+</sup> ](ts-appendix-enums.md#coloringstrategy10) | No   | Color of the shadow.<br>The default color is black.<br>**NOTE**<br>Since API version 11, this API supports **ColoringStrategy**, which cannot be used with ArkTS widgets or the [textShadow](ts-basic-components-text.md#textshadow10) attribute.<br>With **ColoringStrategy**, the average color or primary color can be obtained, and the obtained color is applied to the shadow drawing area.<br>The **'average'** string can be used to trigger the mode for obtaining the average color, and the **'primary'** string for obtaining the primary color.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | offsetX | number \| [Resource](ts-types.md#resource) | No   | Offset of the shadow along the x-axis.<br>Default value: **0**<br>Unit: px<br>**NOTE**<br>To use a value in the vp unit, call [vp2px](ts-pixel-units.md#pixel-unit-conversion) to convert it into px.<br>If **offsetX** is of the Resource type, its value must be of the number type.<br> **Atomic service API**: This API can be used in atomic services since API version 11.|
 | offsetY | number \| [Resource](ts-types.md#resource) | No   | Offset of the shadow along the y-axis.<br>Default value: **0**<br>Unit: px<br>**NOTE**<br>To use a value in the vp unit, call [vp2px](ts-pixel-units.md#pixel-unit-conversion) to convert it into px.<br>If **offsetY** is of the Resource type, its value must be of the number type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | fill<sup>11+</sup>     | boolean                                    | No   | Whether to fill the inside of the component with shadow.<br>The default value is **false**.<br>**NOTE**<br>This attribute does not take effect in [textShadow](ts-basic-components-text.md#textshadow10).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -486,9 +488,7 @@ Sets whether to freeze the component. A frozen component can no longer be change
 
 ## Example
 
-
-
-### Example 1
+### Example 1: Setting Different Image Attributes
 This example applies different image effects.
 ```ts
 // xxx.ets
@@ -502,14 +502,25 @@ struct ImageEffectsExample {
       Image($r('app.media.image'))
         .width('90%')
         .height(30)
-        .shadow({ radius: 10, color: Color.Green, offsetX: 20, offsetY: 20 })
+        .shadow({
+          radius: 10,
+          color: Color.Green,
+          offsetX: 20,
+          offsetY: 20
+        })
 
       // Add the internal shadow effect.
       Text('shadow').fontSize(15).fontColor(0xCCCCCC).width('90%')
       Image($r('app.media.image'))
         .width('90%')
         .height(30)
-        .shadow({ radius: 5, color: Color.Green, offsetX: 20, offsetY: 20,fill:true }).opacity(0.5)
+        .shadow({
+          radius: 5,
+          color: Color.Green,
+          offsetX: 20,
+          offsetY: 20,
+          fill: true
+        }).opacity(0.5)
 
       // Apply the grayscale effect. The grayscale value ranges from 0 to 1. The closer the grayscale value is to 1, the more obvious the grayscale effect is.
       Text('grayscale').fontSize(15).fontColor(0xCCCCCC).width('90%')
@@ -555,40 +566,44 @@ struct ImageEffectsExample {
 ![imageeffect](figures/imageeffect.png)
 
 
-### Example 2
+### Example 2: Applying a Linear Gradient Blur Effect
 
-This example applies a linear gradient blur effect to a component.
+This example demonstrates how to apply a linear gradient blur effect on a component using **linearGradientBlur**.
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct ImageExample1 {
-  private_resource1:Resource = $r('app.media.testlinearGradientBlurOrigin')
+  private_resource1: Resource = $r('app.media.testlinearGradientBlurOrigin')
   @State image_src: Resource = this.private_resource1
+
   build() {
     Column() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
         Row({ space: 5 }) {
           Image(this.image_src)
-            .linearGradientBlur(60, { fractionStops: [[0,0],[0,0.33],[1,0.66],[1,1]], direction: GradientDirection.Bottom })
+            .linearGradientBlur(60,
+              { fractionStops: [[0, 0], [0, 0.33], [1, 0.66], [1, 1]], direction: GradientDirection.Bottom })
         }
       }
     }
   }
 }
-
 ```
 
 ![testlinearGradientBlur](figures/testlinearGradientBlur.png)
 
-### Example 3
-This example shows how to use **renderGroup**:
+### Example 3: Setting Offscreen Rendering Effect
+
+This example demonstrates how to use **renderGroup** to set whether to render a component offscreen before blending it with its parent component.
+
 ```ts
 // xxx.ets
 @Component
 struct Component1 {
   @Prop renderGroupValue: boolean;
+
   build() {
     Row() {
       Row() {
@@ -612,14 +627,15 @@ struct Component1 {
     .opacity(1)
   }
 }
+
 @Entry
 @Component
 struct RenderGroupExample {
   build() {
     Column() {
-      Component1({renderGroupValue: true})
+      Component1({ renderGroupValue: true })
         .margin(20)
-      Component1({renderGroupValue: false})
+      Component1({ renderGroupValue: false })
         .margin(20)
     }
     .width("100%")
@@ -631,8 +647,10 @@ struct RenderGroupExample {
 
 ![renderGroup](figures/renderGroup.png)
 
-### Example 4
-This example shows how to use **blendMode** alone:
+### Example 4: Blending the Current Component Content with Canvas Content
+
+This example demonstrates how to blend the current component content with the canvas content below using **blendMode**.
+
 ```ts
 // xxx.ets
 @Entry
@@ -656,7 +674,7 @@ struct Index {
           .fill(Color.Blue)
           .position({ x: 150, y: 50 })
       }
-      .blendMode(BlendMode.OVERLAY,BlendApplyType.OFFSCREEN)
+      .blendMode(BlendMode.OVERLAY, BlendApplyType.OFFSCREEN)
       .alignItems(VerticalAlign.Center)
       .height(300)
       .width('100%')
@@ -673,45 +691,48 @@ struct Index {
 ![en-us_image_effect_blendMode2](figures/en-us_image_effect_blendMode.png)
 <br>**blendMode** can be used with offscreen rendering to produce different effects.
 
-### Example 5
-This example shows how to use **InvertOptions**:
+### Example 5: Inverting the Foreground Color
+
+This example demonstrates how to invert the foreground color using **InvertOptions**.
+
 ```ts
 // xxx.ets
- @Entry
- @Component
- struct Index {
-   build() {
+@Entry
+@Component
+struct Index {
+  build() {
     Stack() {
       Column()
-        Stack(){
-          Image($r('app.media.r')).width('100%')
-         Column(){
-           Column().width("100%").height(30).invert({
-             low:0,
-             high:1,
-             threshold:0.5,
-             thresholdRange:0.2
-           })
-           Column().width("100%").height(30).invert({
-             low:0.2,
-             high:0.5,
-             threshold:0.3,
-             thresholdRange:0.2
-           })
-         }
+      Stack() {
+        Image($r('app.media.r')).width('100%')
+        Column() {
+          Column().width("100%").height(30).invert({
+            low: 0,
+            high: 1,
+            threshold: 0.5,
+            thresholdRange: 0.2
+          })
+          Column().width("100%").height(30).invert({
+            low: 0.2,
+            high: 0.5,
+            threshold: 0.3,
+            thresholdRange: 0.2
+          })
         }
-        .width('100%')
-        .height('100%')
+      }
+      .width('100%')
+      .height('100%')
     }
   }
- }
-
+}
 ```
 
 ![testDestinationIn_lockDemo](figures/testInvertOptions.png)
 
-### Example 6
-This example shows how to use **UseShadowBatching** with **shadow** to ensure that shadows at the same layer do not overlap:
+### Example 6: Setting Non-Overlapping Same-Layer Shadows
+
+This example demonstrates how to implement non-overlapping shadows at the same layer using **useShadowBatching** with **shadow**.
+
 ```ts
 // xxx.ets
 @Entry
@@ -722,14 +743,39 @@ struct UseShadowBatchingExample {
       Column({ space: 10 }) {
         Stack() {
 
-        }.width('90%').height(50).margin({ top: 5 }).backgroundColor(0xFFE4C4)
-        .shadow({ radius: 120, color: Color.Green, offsetX: 0, offsetY: 0 })
-        .align(Alignment.TopStart).shadow({ radius: 120, color: Color.Green, offsetX: 0, offsetY: 0 })
+        }
+        .width('90%')
+        .height(50)
+        .margin({ top: 5 })
+        .backgroundColor(0xFFE4C4)
+        .shadow({
+          radius: 120,
+          color: Color.Green,
+          offsetX: 0,
+          offsetY: 0
+        })
+        .align(Alignment.TopStart)
+        .shadow({
+          radius: 120,
+          color: Color.Green,
+          offsetX: 0,
+          offsetY: 0
+        })
 
         Stack() {
 
-        }.width('90%').height(50).margin({ top: 5 }).backgroundColor(0xFFE4C4)
-        .align(Alignment.TopStart).shadow({ radius: 120, color: Color.Red, offsetX: 0, offsetY: 0 })
+        }
+        .width('90%')
+        .height(50)
+        .margin({ top: 5 })
+        .backgroundColor(0xFFE4C4)
+        .align(Alignment.TopStart)
+        .shadow({
+          radius: 120,
+          color: Color.Red,
+          offsetX: 0,
+          offsetY: 0
+        })
         .width('90%')
         .backgroundColor(Color.White)
 
@@ -744,7 +790,12 @@ struct UseShadowBatchingExample {
         .height(150)
         .borderRadius(10)
         .backgroundColor(0xf56c6c)
-        .shadow({ radius: 300, color: Color.Yellow, offsetX: 0, offsetY: 0 })
+        .shadow({
+          radius: 300,
+          color: Color.Yellow,
+          offsetX: 0,
+          offsetY: 0
+        })
 
         Column() {
           Text()
@@ -757,8 +808,13 @@ struct UseShadowBatchingExample {
         .height(150)
         .backgroundColor(0x67C23A)
         .borderRadius(10)
-        .translate({ y: -50})
-        .shadow({ radius: 220, color: Color.Blue, offsetX: 0, offsetY: 0 })
+        .translate({ y: -50 })
+        .shadow({
+          radius: 220,
+          color: Color.Blue,
+          offsetX: 0,
+          offsetY: 0
+        })
       }
       .useShadowBatching(true)
     }
@@ -769,9 +825,9 @@ struct UseShadowBatchingExample {
 
 ![testUseShadowBatchingDemo](figures/testUseShadowBatching.png)
 
-### Example 7
+### Example 7: Applying a Spherical Effect to a Component
 
-This example applies a spherical effect to a component.
+This example demonstrates how to apply a spherical effect to a component using **sphericalEffect**.
 
 ```ts
 // xxx.ets
@@ -796,7 +852,6 @@ struct SphericalEffectExample {
     }.alignContent(Alignment.Center).width("100%").height("100%")
   }
 }
-
 ```
 
 Below is how the component looks with the spherical effect applied.
@@ -807,9 +862,9 @@ Below is how the component looks without the spherical effect applied.
 
 ![textInputSpherical2](figures/textInputSpherical2.png)
 
-### Example 8
+### Example 8: Applying a Light Up Effect to a Component
 
-This example applies a light up effect to a component.
+This example demonstrates how to apply a light up effect to a component using **lightUpEffect**.
 
 ```ts
 // xxx.ets
@@ -843,9 +898,9 @@ Below is how the component looks without the light up effect applied.
 
 ![textLightUp1](figures/textLightUp1.png)
 
-### Example 9
+### Example 9: Applying a Pixel Stretch Effect to a Component
 
-This example applies a pixel stretch effect to a component.
+This example demonstrates how to apply a pixel stretch effect to a component using **pixelStretchEffect**.
 
 ```ts
 // xxx.ets
@@ -861,11 +916,15 @@ struct PixelStretchExample {
         .padding(10)
         .clip(false)
         .width('50%')
-        .pixelStretchEffect({top:10,left:10,right:10,bottom:10 })
+        .pixelStretchEffect({
+          top: 10,
+          left: 10,
+          right: 10,
+          bottom: 10
+        })
     }.alignContent(Alignment.Center).width("100%").height("100%")
   }
 }
-
 ```
 
 Below is how the component looks with the pixel stretch effect applied.
@@ -877,9 +936,9 @@ Below is how the component looks without the pixel stretch effect applied.
 ![textPixelStretch2](figures/textPixelStretch2.png)
 
 
-### Example 10
+### Example 10: Applying a System Bar Effect to a Component
 
-This example applies a system bar effect to a component.
+This example demonstrates how to apply a system bar effect to a component using **systemBarEffect**.
 
 ```ts
 // xxx.ets
@@ -888,17 +947,18 @@ This example applies a system bar effect to a component.
 struct Index {
   build() {
     Column() {
-      Stack(){
+      Stack() {
         Image($r('app.media.testImage')).width('100%').height('100%')
-         Column().width(150).height(10)
+        Column()
+          .width(150)
+          .height(10)
           .systemBarEffect()
-           .border({radius:5})
-           .margin({bottom:80})
+          .border({ radius: 5 })
+          .margin({ bottom: 80 })
       }.alignContent(Alignment.Center)
     }
   }
 }
-
 ```
 
 Below is how the component looks with the system bar effect applied.

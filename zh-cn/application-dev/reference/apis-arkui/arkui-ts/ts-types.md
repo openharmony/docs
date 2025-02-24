@@ -287,10 +287,10 @@
 
 | 名称   | 类型     | 必填   | 说明                          |
 | ---- | ------ | ---- | --------------------------- |
-| top    | [Dimension](#dimension10) | 否    | 相对顶边的偏移量 |
-| bottom    | [Dimension](#dimension10) | 否    | 相对底边的偏移量 |
-| left    | [Dimension](#dimension10) | 否    | 相对左边的偏移量 |
-| right    | [Dimension](#dimension10) | 否    | 相对右边的偏移量 |
+| top    | [Dimension](#dimension10) | 否    | 相对顶边的偏移量。 |
+| bottom    | [Dimension](#dimension10) | 否    | 相对底边的偏移量。 |
+| left    | [Dimension](#dimension10) | 否    | 相对左边的偏移量。 |
+| right    | [Dimension](#dimension10) | 否    | 相对右边的偏移量。 |
 
 ## LocalizedEdges<sup>12+</sup>
 
@@ -496,18 +496,16 @@
 | START  | 前部区域。 |
 | END    | 尾部区域。 |
 
-## KeyboardAvoidMode<sup>11+</sup>
+## KeyboardAvoidMode<sup>12+</sup>枚举说明
 
-配置键盘避让时页面的避让模式。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 描述       |
-| ------ | ---------- |
-| OFFSET | 上抬模式。 |
-| RESIZE | 压缩模式。 |
-| OFFSET_WITH_CARET<sup>14+</sup> | 上抬模式，输入框光标位置发生变化时候也会触发避让。|
-| RESIZE_WITH_CARET<sup>14+</sup> | 压缩模式，输入框光标位置发生变化时候也会触发避让。|
+| 名称    | 值   | 说明                                             |
+| ------- | ---- | ------------------------------------------------ |
+| DEFAULT | 0    | 默认避让软键盘并在到达极限高度之后进行高度压缩。 |
+| NONE    | 1    | 不避让软键盘。                                   |
 
 ## LayoutSafeAreaType<sup>12+</sup>
 

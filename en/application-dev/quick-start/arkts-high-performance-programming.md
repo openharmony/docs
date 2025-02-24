@@ -3,7 +3,7 @@
 ## Overview
 
 
-This topic provides suggestions on performant programming applied in performance-sensitive scenarios, helping you develop performant applications. Performant programming practices stand for some methods and suggestions for writing performant code, which are drawn from real-world development. During service implementation, follow these methods and suggestions as appropriate. For details, see [ArkTS Coding Style Guide](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/OpenHarmony-ArkTS-coding-style-guide.md).
+This topic provides suggestions on performant programming applied in performance-sensitive scenarios, helping you develop performant applications. This section outlines some methods and suggestions for writing performant code, which are drawn from real-world development. During service implementation, follow these methods and suggestions as appropriate. For details about ArkTS coding standards, see [ArkTS Coding Style Guide](./arkts-coding-style-guide.md).
 
 ## Declaration and Expression
 

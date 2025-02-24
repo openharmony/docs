@@ -540,7 +540,7 @@ struct ChipPage {
 
 ```ts
 // xxx.ets
-import { Chip, SymbolGlyphModifier } from '@kit.ArkUI';
+import { Chip } from '@kit.ArkUI';
 
 @Builder
 function DefaultFunction(): void {

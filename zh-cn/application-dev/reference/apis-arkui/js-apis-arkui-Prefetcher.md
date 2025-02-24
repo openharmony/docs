@@ -173,7 +173,7 @@ cancel?(index: number): Promise\<void\> | void;
 
 ## 示例
 
-下面示例展示了Prefetcher配合LazyForEach实现的懒加载效果。
+下面示例展示了Prefetcher的预加载能力。该示例采用分页的方式，配合LazyForEach实现懒加载效果，并通过添加延时来模拟加载过程。
 
 ```typescript
 import { BasicPrefetcher, IDataSourcePrefetching } from '@kit.ArkUI';
@@ -184,17 +184,27 @@ const ITEMS_ON_SCREEN = 8;
 @Entry
 @Component
 struct PrefetcherDemoComponent {
-  private readonly dataSource = new MyDataSource(2000, 500);
+  private page: number = 1;
+  private pageSize: number = 50;
+  private breakPoint: number = 25;
+  private readonly fetchDelayMs: number = 500;
+  private readonly dataSource = new MyDataSource(this.page, this.pageSize, this.fetchDelayMs);
   private readonly prefetcher = new BasicPrefetcher(this.dataSource);
 
   build() {
     Column() {
       List() {
-        LazyForEach(this.dataSource, (item: PictureItem) => {
+        LazyForEach(this.dataSource, (item: PictureItem, index: number) => {
           ListItem() {
             PictureItemComponent({ info: item })
               .height(`${100 / ITEMS_ON_SCREEN}%`)
           }
+          .onAppear(() => {
+            if (index >= this.breakPoint) {
+              this.dataSource.getHttpData(++this.page, this.pageSize);
+              this.breakPoint = this.dataSource.totalCount() - this.pageSize / 2;
+            }
+          })
         }, (item: PictureItem) => item.title)
       }
       .onScrollIndex((start: number, end: number) => {
@@ -240,14 +250,12 @@ class MyDataSource implements IDataSourcePrefetching {
   private readonly items: PictureItem[];
   private readonly fetchDelayMs: number;
   private readonly fetches: Map<ItemIndex, TimerId> = new Map();
+  private readonly listeners: DataChangeListener[] = [];
 
-  constructor(numItems: number, fetchDelayMs: number) {
+  constructor(pageNum: number, pageSize: number, fetchDelayMs: number) {
     this.items = [];
     this.fetchDelayMs = fetchDelayMs;
-    for (let i = 0; i < numItems; i++) {
-      const item = new PictureItem(getRandomColor(), `Item ${i}`)
-      this.items.push(item);
-    }
+    this.getHttpData(pageNum, pageSize);
   }
 
   async prefetch(index: number): Promise<void> {
@@ -278,6 +286,31 @@ class MyDataSource implements IDataSourcePrefetching {
     }
   }
 
+  // 模拟分页方式加载数据
+  getHttpData(pageNum: number, pageSize:number): void {
+    const newItems: PictureItem[] = [];
+    for (let i = (pageNum - 1) * pageSize; i < pageNum * pageSize; i++) {
+      const item = new PictureItem(getRandomColor(), `Item ${i}`);
+      newItems.push(item);
+    }
+    const startIndex = this.items.length;
+    this.items.splice(startIndex, 0, ...newItems);
+    this.notifyBatchUpdate([
+      {
+        type: DataOperationType.ADD,
+        index: startIndex,
+        count: newItems.length,
+        key: newItems.map((item) => item.title)
+      }
+    ]);
+  }
+
+  private notifyBatchUpdate(operations: DataOperation[]) {
+    this.listeners.forEach((listener: DataChangeListener) => {
+      listener.onDatasetChange(operations);
+    });
+  }
+
   totalCount(): number {
     return this.items.length;
   }
@@ -286,10 +319,17 @@ class MyDataSource implements IDataSourcePrefetching {
     return this.items[index];
   }
 
-  registerDataChangeListener(_: DataChangeListener): void {
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener);
+    }
   }
 
-  unregisterDataChangeListener(_: DataChangeListener): void {
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1);
+    }
   }
 }
 
@@ -348,3 +388,11 @@ function create10x10Bitmap(color: number): ArrayBuffer {
   return buffer;
 }
 ```
+
+演示效果如下：
+
+![Prefetcher-Demo](./figures/prefetcher-demo.gif)
+
+## 补充说明
+
+开发者也可使用OpenHarmony三方库[@netteam/prefetcher](https://ohpm.openharmony.cn/#/cn/detail/@netteam%2Fprefetcher)开发预加载功能。该三方库提供了更多的接口，可以更加便捷有效地实现数据预加载。

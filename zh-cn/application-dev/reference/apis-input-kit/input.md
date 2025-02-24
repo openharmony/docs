@@ -916,7 +916,7 @@ Input_Result OH_Input_AddAxisEventMonitor (InputEvent_AxisEventType axisEventTyp
 | 名称 | 描述 | 
 | -------- | -------- |
 | axisEventType | 要监听的轴事件类型，轴事件类型定义在[InputEvent_AxisEventType](#inputevent_axiseventtype)中。  | 
-| callback | 回调函数，用于接收指定类型的轴事件  | 
+| callback | 回调函数，用于接收指定类型的轴事件。  | 
 
 **Permission：**
 

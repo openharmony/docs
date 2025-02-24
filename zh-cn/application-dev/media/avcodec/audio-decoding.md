@@ -22,6 +22,7 @@
 ## 开发指导
 
 详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_audio_codec.md)。
+
 参考以下示例代码，完成音频解码的全流程，包括：创建解码器、设置解码参数（采样率/码率/声道数等）、开始、刷新、重置、销毁资源。
 
 在应用开发过程中，开发者应按一定顺序调用方法，执行对应操作，否则系统可能会抛出异常或生成其他未定义的行为。具体顺序可参考下列开发步骤及对应说明。
@@ -60,7 +61,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```cpp
     //c++标准库命名空间
     using namespace std;
-    // 通过 codecname 创建解码器
+    // 通过 codec name 创建解码器
     OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_MPEG, false);
     const char *name = OH_AVCapability_GetName(capability);
     OH_AVCodec *audioDec_ = OH_AudioCodec_CreateByName(name);
@@ -91,7 +92,8 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ADecBufferSignal *signal_;
     ```
    
-3. 调用OH_AudioCodec_RegisterCallback()注册回调函数。  
+3. 调用OH_AudioCodec_RegisterCallback()注册回调函数。
+
    注册回调函数指针集合OH_AVCodecCallback，包括：
 
     - OH_AVCodecOnError：解码器运行错误。
@@ -100,6 +102,9 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     - OH_AVCodecOnNewOutputBuffer：运行过程中产生了新的输出数据，即解码完成。
 
    开发者可以通过处理该回调报告的信息，确保解码器正常运转。
+
+   > **注意：**
+   > 回调中不建议进行耗时操作。
 
     ```cpp
     // OH_AVCodecOnError回调函数的实现
@@ -147,7 +152,13 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-4. （可选）OH_AudioCodec_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第4步)后，通过此接口进行解密配置。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。此接口需在Prepare前调用。
+4. （可选）OH_AudioCodec_SetDecryptionConfig设置解密配置。
+
+    当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第4步)后，通过此接口进行解密配置。
+
+    DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。
+
+    此接口需在Prepare前调用。
 
     添加头文件:
 
@@ -193,6 +204,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```
 
 5. 调用OH_AudioCodec_Configure()配置解码器。
+
    配置选项key值说明：
 
    |             key              |       描述       |                AAC                 | Flac |               Vorbis               | MPEG |       G711mu        |          AMR(amrnb、amrwb)         | APE |
@@ -208,6 +220,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    | OH_MD_KEY_CODEC_CONFIG          | 编解码器特定数据 |                可选                 |  -   |   必须（和上述ID和Setup二选一）    |  -   |           -            |                -                 | 可选 |
    
    各音频解码类型参数范围说明：
+
    | 音频解码类型 |                                          采样率(Hz)                                              | 声道数 |
    | ----------- | ----------------------------------------------------------------------------------------------  | :----: |
    | AAC         | 8000、11025、12000、16000、22050、24000、32000、44100、48000、64000、88200、96000                 |  1~8   |
@@ -275,7 +288,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    
 8. （可选）调用OH_AVCencInfo_SetAVBuffer()，设置cencInfo。
 
-    若当前播放的节目是DRM加密节目，且由上层应用做媒体解封装，则须调用OH_AVCencInfo_SetAVBuffer()将cencInfo设置给AVBuffer，以实现AVBuffer中媒体数据的解密。
+    若当前播放的节目是DRM加密节目，且由上层应用做[媒体解封装](audio-video-demuxer.md#媒体数据解析)，则须调用OH_AVCencInfo_SetAVBuffer()将cencInfo设置给AVBuffer，以实现AVBuffer中媒体数据的解密。
 
     添加头文件：
 
@@ -344,7 +357,9 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    
 9. 调用OH_AudioCodec_PushInputBuffer()，写入待解码的数据。
 
-   如果是结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS。
+   需开发者填充完整的输入数据后调用。
+
+   如果是结束，需要对flags标识成AVCODEC_BUFFER_FLAGS_EOS。
 
     ```c++
     uint32_t index = signal_->inQueue_.front();
@@ -375,7 +390,9 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
    
-10. 调用OH_AudioCodec_FreeOutputBuffer()，输出解码后的PCM码流。
+10. 调用OH_AudioCodec_FreeOutputBuffer()，释放解码后的数据。
+
+    在取走解码PCM码流后，就应及时调用OH_AudioCodec_FreeOutputBuffer()进行释放。
 
     <!--RP3-->
     ```c++
@@ -400,12 +417,15 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     <!--RP3End-->
 
 11. （可选）调用OH_AudioCodec_Flush()刷新解码器。
-   调用OH_AudioCodec_Flush()后，解码器仍处于运行态，但会将当前队列清空，将已解码的数据释放。
-   此时需要调用OH_AudioCodec_Start()重新开始解码。
-   使用情况：
 
-    * 在文件EOS之后，需要调用刷新
-    * 在执行过程中遇到可继续执行的错误时（即OH_AudioCodec_IsValid 为true）调用
+    调用OH_AudioCodec_Flush()后，解码器仍处于运行态，但会将当前队列清空，将已解码的数据释放。
+
+    此时需要调用OH_AudioCodec_Start()重新开始解码。
+
+    使用情况：
+
+    * 在文件EOS之后，需要调用刷新。
+    * 在执行过程中遇到可继续执行的错误时（即OH_AudioCodec_IsValid 为true）调用。
 
     ```c++
     // 刷新解码器 audioDec_
@@ -421,6 +441,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```
 
 12. （可选）调用OH_AudioCodec_Reset()重置解码器。
+
     调用OH_AudioCodec_Reset()后，解码器回到初始化的状态，需要调用OH_AudioCodec_Configure()重新配置，然后调用OH_AudioCodec_Start()重新开始解码。
 
     ```c++
@@ -437,6 +458,8 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```
 
 13. 调用OH_AudioCodec_Stop()停止解码器。
+
+    停止后，可以通过调用OH_AudioCodec_Start()重新进入已启动状态（started），但需要注意的是，如果编解码器之前已输入数据，则需要重新输入编解码器数据。
 
     ```c++
     // 终止解码器 audioDec_

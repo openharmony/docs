@@ -3,7 +3,7 @@
 
 ## 概述
 
-纸张大小信息.
+纸张大小信息。
 
 **起始版本：** 12
 
@@ -17,10 +17,10 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| char \* [id](#id) | 纸张id.  | 
-| char \* [name](#name) | 纸张名称.  | 
-| uint32_t [width](#width) | 纸张宽度.  | 
-| uint32_t [height](#height) | 纸张高度.  | 
+| char \* [id](#id) | 纸张id。  | 
+| char \* [name](#name) | 纸张名称。  | 
+| uint32_t [width](#width) | 纸张宽度。  | 
+| uint32_t [height](#height) | 纸张高度。  | 
 
 
 ## 结构体成员变量说明
@@ -32,7 +32,7 @@
 uint32_t Print_PageSize::height
 ```
 **描述**
-纸张高度.
+纸张高度。
 
 
 ### id
@@ -41,7 +41,7 @@ uint32_t Print_PageSize::height
 char* Print_PageSize::id
 ```
 **描述**
-纸张id.
+纸张id。
 
 
 ### name
@@ -50,7 +50,7 @@ char* Print_PageSize::id
 char* Print_PageSize::name
 ```
 **描述**
-纸张名称.
+纸张名称。
 
 
 ### width
@@ -59,4 +59,4 @@ char* Print_PageSize::name
 uint32_t Print_PageSize::width
 ```
 **描述**
-纸张宽度.
+纸张宽度。

@@ -99,9 +99,9 @@ CommonModifier, ColumnModifier, ColumnSplitModifier, RowModifier, RowSplitModifi
 6. If you use **attributeModifier** to set attributes multiple times, all the set attributes take effect, and those attributes that are set multiple times take effect based on the configuration sequence.  
 
 ## Example
-### Example 1
+### Example 1: Binding a Component to a Modifier
 
-For details about how to use the attribute modifier with state management V2, see [Modifier and makeObserved](../../../quick-start/arkts-v1-v2-migration.md#modifier).
+This example demonstrates how to implement a pressed state effect for a **Button** component by binding it to a modifier. For details about how to use the attribute modifier with state management V2, see [[Modifier and makeObserved](../../../quick-start/arkts-v1-v2-migration.md#modifier).
 
 ```ts
 // xxx.ets
@@ -171,8 +171,10 @@ struct attributePressedDemo {
 ```
 ![attributeModifier_ifelse](figures/attributeModifier_ifelse.gif)
 
-### Example 2
-The custom modifier does not support change observation for @State decorated variables.
+### Example 2: Understanding Custom Modifiers Do Not Support State Data Changes
+
+This example shows how to set the width of a custom modifier using state data. Custom modifiers do not support observing changes in data decorated with the @State decorator. Therefore, the width does not change when the button is clicked.
+
 ```ts
 import { CommonModifier } from "@kit.ArkUI"
 
@@ -219,9 +221,12 @@ struct Index {
   }
 }
 ```
-![attributeModifier2](figures/attributeModifier2.gif)  
-### Example 3
+![attributeModifier2](figures/attributeModifier2.gif)
+
+### Example 3: Combining Modifier and Custom Modifier Attributes
+
 In this example, the custom modifier sets the **width** and **height** attributes, and the **borderStyle** and **borderWidth** attributes are set through a button click. In this case, all the four attributes take effect when the button is clicked.
+
 ```ts
 import { CommonModifier } from "@kit.ArkUI"
 
@@ -278,4 +283,3 @@ struct Index {
 }
 ```
 ![attributeModifier](figures/attributeModifier.gif)
-<!--no_check-->

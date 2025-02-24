@@ -2,8 +2,7 @@
 
 ## 场景介绍
 
-为了解码Surface模式的正常创建，在XComponent尚未创建或OpenGL后处理（NativeImage）尚未初始化的情况下，
-可以创建一个空的surface，以确保视频解码器能够正常创建和运行。
+为了解码Surface模式的正常创建，在XComponent尚未创建或OpenGL后处理（NativeImage）尚未初始化的情况下，可以创建一个空的surface，以确保视频解码器能够正常创建和运行。
 
 
 ## 开发步骤
@@ -21,7 +20,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 > **说明：**
 >
-> 上述'sample'字样仅为示例，此处由调用者根据实际工程目录自定义。
+> 上述'sample'字样仅为示例，此处由开发者根据实际工程目录自定义。
 >
 
 **头文件**
@@ -82,7 +81,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     
     static void context()
     {
-      // 调用者自定义的上下文信息
+      // 开发者自定义的上下文信息
     }
 
     // 设置回调监听者
@@ -96,7 +95,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     > **说明：**
     >
-    > 在此示例中，回调函数的实现仅仅是将buffer取出来并释放，调用者可以根据业务需求自行拓展。
+    > 在此示例中，回调函数的实现仅仅是将buffer取出来并释放，开发者可以根据业务需求自行拓展。
     >
 
 5. 配置解码器。
@@ -141,7 +140,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 9. 销毁OH_NativeImage实例。
    
-   在调用OH_VideoDecoder_Destroy接口后，调用OH_NativeImage_Destroy接口销毁OH_NativeImage实例
+   在调用OH_VideoDecoder_Destroy接口后，调用OH_NativeImage_Destroy接口销毁OH_NativeImage实例。
    ```c++
    // 销毁OH_NativeImage实例
    OH_NativeImage_Destroy(&image);

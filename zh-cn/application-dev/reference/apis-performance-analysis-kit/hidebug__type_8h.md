@@ -82,7 +82,7 @@ HiDebug模块代码结构体定义。
 
 ### 枚举
 
-| 名称 | 描述 |
-| -------- | -------- |
-| [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode-1) {<br/>HIDEBUG_SUCCESS = 0,<br/>HIDEBUG_INVALID_ARGUMENT = 401,<br/>HIDEBUG_TRACE_CAPTURED_ALREADY = 11400102,<br/>HIDEBUG_NO_PERMISSION = 11400103,<br/>HIDEBUG_TRACE_ABNORMAL = 11400104,<br/>HIDEBUG_NO_TRACE_RUNNING = 11400105<br/>} | 错误码定义 |
+| 名称 | 描述       |
+| -------- |----------|
+| [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode-1) {<br/>HIDEBUG_SUCCESS = 0,<br/>HIDEBUG_INVALID_ARGUMENT = 401,<br/>HIDEBUG_TRACE_CAPTURED_ALREADY = 11400102,<br/>HIDEBUG_NO_PERMISSION = 11400103,<br/>HIDEBUG_TRACE_ABNORMAL = 11400104,<br/>HIDEBUG_NO_TRACE_RUNNING = 11400105<br/>} | 错误码定义。   |
 | [HiDebug_TraceFlag](_hi_debug.md#hidebug_traceflag-1) {<br/>HIDEBUG_TRACE_FLAG_MAIN_THREAD = 1, HIDEBUG_TRACE_FLAG_ALL_THREADS = 2<br/>} | 采集trace线程的类型。 |

@@ -102,7 +102,7 @@ try {
 
 表示的Resource资源信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
 

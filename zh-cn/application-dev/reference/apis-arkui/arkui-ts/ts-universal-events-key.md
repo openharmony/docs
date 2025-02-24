@@ -81,7 +81,9 @@ onKeyPreIme(event: Callback<KeyEvent, boolean>): T
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 
-## 示例1（触发onKeyEvent回调）
+## 示例
+
+### 示例1（触发onKeyEvent回调）
 
 该示例通过按钮设置了按键事件，按钮获焦时可触发onKeyEvent回调。
 
@@ -115,7 +117,7 @@ struct KeyEventExample {
 
  ![keyEvent](figures/keyEvent.gif) 
 
-## 示例2（获取uniCode码值）
+### 示例2（获取uniCode码值）
 
 该示例通过key事件获取到所按按键的unicode码值。
 
@@ -156,3 +158,38 @@ struct KeyEventExample {
 ```
 
 ![keyEvent](figures/keyEvent_unicode.gif) 
+
+### 示例3（触发onKeyPreIme回调）
+
+该示例使用onKeyPreIme屏蔽在输入框中使用方向左键。
+
+```ts
+import { KeyCode } from '@kit.InputKit';
+
+@Entry
+@Component
+struct PreImeEventExample {
+  @State buttonText: string = '';
+  @State buttonType: string = '';
+  @State columnText: string = '';
+  @State columnType: string = '';
+
+  build() {
+    Column() {
+      Search({
+        placeholder: "Search..."
+      })
+        .width("80%")
+        .height("40vp")
+        .border({ radius:"20vp" })
+        .onKeyPreIme((event:KeyEvent) => {
+          // 使用方向左键不生效
+          if (event.keyCode == KeyCode.KEYCODE_DPAD_LEFT) {
+            return true;
+          }
+          return false;
+        })
+    }
+  }
+}
+```

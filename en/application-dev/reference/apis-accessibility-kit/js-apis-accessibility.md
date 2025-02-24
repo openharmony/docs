@@ -47,7 +47,7 @@ Provides information about an accessibility application.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-### Attributes
+### Properties
 
 | Name                            | Type                                      | Readable  | Writable  | Description              |
 | ------------------------------ | ---------------------------------------- | ---- | ---- | ---------------- |
@@ -172,7 +172,7 @@ Implements configuration management for captions. Before calling any API of **Ca
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
-### Attributes
+### Properties
 
 | Name     | Type                              | Readable  | Writable  | Description         |
 | ------- | -------------------------------- | ---- | ---- | ----------- |
@@ -342,7 +342,7 @@ Describes a GUI change event.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-### Attributes
+### Properties
 
 | Name              | Type                                   | Mandatory | Description                   |
 | ---------------- | ------------------------------------- |-----|-----------------------|
@@ -721,7 +721,7 @@ Enables listening for the enabled status changes of the accessibility applicatio
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                  | Yes  | Listening type, which is set to **'accessibilityStateChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | Yes  | Callback used to return the result. The returned result indicates the global enabled status of the accessibility application.|
+| callback | Callback&lt;boolean&gt; | Yes  | Callback invoked when the enabled status of accessibility application changes. The returned result indicates the global enabled status of the accessibility application.|
 
 **Error codes**
 
@@ -754,7 +754,7 @@ Enables listening for the enabled status changes of the touch guide mode. This A
 | Name     | Type                     | Mandatory  | Description                                      |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | type     | string                  | Yes   | Listening type, which is set to **'touchGuideStateChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | Yes   | Callback used to return the result.          |
+| callback | Callback&lt;boolean&gt; | Yes   | Callback invoked when the enabled status of touch guide mode changes.          |
 
 **Error codes**
 

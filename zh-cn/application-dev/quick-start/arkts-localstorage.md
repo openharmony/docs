@@ -180,18 +180,18 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 
 1. \@LocalStorageProp/\@LocalStorageLink的参数必须为string类型，否则编译期会报错。
 
-```ts
-let storage = new LocalStorage();
-storage.setOrCreate('PropA', 48);
+    ```ts
+    let storage = new LocalStorage();
+    storage.setOrCreate('PropA', 48);
 
-// 错误写法，编译报错
-@LocalStorageProp() localStorageProp: number = 1;
-@LocalStorageLink() localStorageLink: number = 2;
+    // 错误写法，编译报错
+    @LocalStorageProp() localStorageProp: number = 1;
+    @LocalStorageLink() localStorageLink: number = 2;
 
-// 正确写法
-@LocalStorageProp('PropA') localStorageProp: number = 1;
-@LocalStorageLink('PropA') localStorageLink: number = 2;
-```
+    // 正确写法
+    @LocalStorageProp('PropA') localStorageProp: number = 1;
+    @LocalStorageLink('PropA') localStorageLink: number = 2;
+    ```
 
 2. \@StorageProp与\@StorageLink不支持装饰Function类型的变量，框架会抛出运行时错误。
 
@@ -639,91 +639,91 @@ struct Child {
 
 1. 当自定义组件没有定义属性时，可以只传入一个LocalStorage实例作为入参。
 
-```ts
-let localStorage1: LocalStorage = new LocalStorage();
-localStorage1.setOrCreate('PropA', 'PropA');
+    ```ts
+    let localStorage1: LocalStorage = new LocalStorage();
+    localStorage1.setOrCreate('PropA', 'PropA');
 
-let localStorage2: LocalStorage = new LocalStorage();
-localStorage2.setOrCreate('PropB', 'PropB');
+    let localStorage2: LocalStorage = new LocalStorage();
+    localStorage2.setOrCreate('PropB', 'PropB');
 
-@Entry(localStorage1)
-@Component
-struct Index {
-  // 'PropA'，和localStorage1中'PropA'的双向同步
-  @LocalStorageLink('PropA') PropA: string = 'Hello World';
-  @State count: number = 0;
+    @Entry(localStorage1)
+    @Component
+    struct Index {
+      // 'PropA'，和localStorage1中'PropA'的双向同步
+      @LocalStorageLink('PropA') PropA: string = 'Hello World';
+      @State count: number = 0;
 
-  build() {
-    Row() {
-      Column() {
-        Text(this.PropA)
+      build() {
+        Row() {
+          Column() {
+            Text(this.PropA)
+              .fontSize(50)
+              .fontWeight(FontWeight.Bold)
+            // 使用LocalStorage 实例localStorage2
+            Child(localStorage2)
+          }
+          .width('100%')
+        }
+        .height('100%')
+      }
+    }
+
+
+    @Component
+    struct Child {
+      build() {
+        Text("hello")
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        // 使用LocalStorage 实例localStorage2
-        Child(localStorage2)
       }
-      .width('100%')
     }
-    .height('100%')
-  }
-}
-
-
-@Component
-struct Child {
-  build() {
-    Text("hello")
-      .fontSize(50)
-      .fontWeight(FontWeight.Bold)
-  }
-}
-```
+    ```
 
 2. 当定义的属性不需要从父组件初始化变量时，第一个参数需要传{}。
 
-```ts
-let localStorage1: LocalStorage = new LocalStorage();
-localStorage1.setOrCreate('PropA', 'PropA');
+    ```ts
+    let localStorage1: LocalStorage = new LocalStorage();
+    localStorage1.setOrCreate('PropA', 'PropA');
 
-let localStorage2: LocalStorage = new LocalStorage();
-localStorage2.setOrCreate('PropB', 'PropB');
+    let localStorage2: LocalStorage = new LocalStorage();
+    localStorage2.setOrCreate('PropB', 'PropB');
 
-@Entry(localStorage1)
-@Component
-struct Index {
-  // 'PropA'，和localStorage1中'PropA'的双向同步
-  @LocalStorageLink('PropA') PropA: string = 'Hello World';
-  @State count: number = 0;
+    @Entry(localStorage1)
+    @Component
+    struct Index {
+      // 'PropA'，和localStorage1中'PropA'的双向同步
+      @LocalStorageLink('PropA') PropA: string = 'Hello World';
+      @State count: number = 0;
 
-  build() {
-    Row() {
-      Column() {
-        Text(this.PropA)
+      build() {
+        Row() {
+          Column() {
+            Text(this.PropA)
+              .fontSize(50)
+              .fontWeight(FontWeight.Bold)
+            // 使用LocalStorage 实例localStorage2
+            Child({}, localStorage2)
+          }
+          .width('100%')
+        }
+        .height('100%')
+      }
+    }
+
+
+    @Component
+    struct Child {
+      @State count: number = 5;
+      // 'Hello World'，和localStorage2中'PropB'的双向同步，如果localStorage2中没有'PropB'，则使用默认值'Hello World'
+      @LocalStorageLink('PropB') PropB: string = 'Hello World';
+
+      build() {
+        Text(this.PropB)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        // 使用LocalStorage 实例localStorage2
-        Child({}, localStorage2)
       }
-      .width('100%')
     }
-    .height('100%')
-  }
-}
-
-
-@Component
-struct Child {
-  @State count: number = 5;
-  // 'Hello World'，和localStorage2中'PropB'的双向同步，如果localStorage2中没有'PropB'，则使用默认值'Hello World'
-  @LocalStorageLink('PropB') PropB: string = 'Hello World';
-
-  build() {
-    Text(this.PropB)
-      .fontSize(50)
-      .fontWeight(FontWeight.Bold)
-  }
-}
-```
+    ```
 
 
 ### Navigation组件和LocalStorage联合使用

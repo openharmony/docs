@@ -22,7 +22,7 @@ The **NotificationRequest** module provides APIs for defining the notification r
 | representativeBundle<sup>12+</sup> | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | No| Yes| Information about the proxied bundle.<br>**System API**: This is a system API.|
 | notificationControlFlags<sup>12+</sup>       | number                                                   |   No | Yes | Notification mode control.<br>This API can be used to reduce the notification modes of the current notification. This parameter is obtained by performing the bitwise OR operation with the enumeration of [NotificationControlFlagStatus](js-apis-notificationManager-sys.md#notificationcontrolflagstatus12).<br>**System API**: This is a system API.           |
 | unifiedGroupInfo<sup>12+</sup>       | [UnifiedGroupInfo](#unifiedgroupinfo12) |   No | Yes |Intelligent notification unification information.<br>**System API**: This is a system API.|
-| creatorInstanceKey<sup>12+</sup>       | number |   Yes | Yes | Creator instance key.<br>**System API**: This is a system API.|
+| creatorInstanceKey<sup>12+</sup> | number |   Yes | Yes | Creator instance key.<br>**System API**: This is a system API.|
 | agentBundle<sup>12+</sup>       | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) |   Yes | Yes | Information about the agent bundle for creating notifications.<br>**System API**: This is a system API.|
 
 ## DistributedOptions<sup>8+</sup>
