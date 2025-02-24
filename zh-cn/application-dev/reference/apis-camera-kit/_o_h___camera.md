@@ -893,7 +893,7 @@ typedef struct Camera_VideoOutput Camera_VideoOutput
 
 **描述**
 
-录像输出对象
+录像输出对象。
 
 可以使用[OH_CameraManager_CreateVideoOutput](#oh_cameramanager_createvideooutput)方法创建指针。
 
