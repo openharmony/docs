@@ -19,7 +19,6 @@ In the hot startup, the code cache can be used for optimization.
 ### Reducing Overheads of the JSVM Layer
 
 Some of the overheads in the JSVM layer are generated from compilation. You can adjust the options passed in when JSVM-API is called to reduce the compilation overhead of the JS engine in the main thread.
-
 In the following example, the **eagerCompile** parameter specifies the compilation behavior. You can enable this option in the startup scenarios to optimize the compilation effect.
 
 ```cpp
@@ -64,52 +63,49 @@ To use a code cache without compromising the cold startup speed in the native la
 
 You can use either of the following methods to achieve this purpose:
 
-- Start another thread to complete the code compilation and create a code cache. In this way, you can enable **eagerCompile** for code cache creation and disable it for cold startup. This approach decouples the code cache creation and the application running, and you do not need to consider the time when the code cache is created. However, the peak resource usage during the application running may increase. 
+- Start another thread to complete the code compilation and create a code cache. In this way, you can enable **eagerCompile** for code cache creation and disable it for cold startup. This approach decouples the code cache creation and the application running, and you do not need to consider the time when the code cache is created. However, the peak resource usage during the application running may increase. The pseudo-code of this process is as follows:
 
-  The pseudo-code of this process is as follows:
+```
+async_create_code_cache() {
+  compile_with_eager_compile();
+  create_code_cache();
+  save_code_cache();
+}
 
-  ```
-  async_create_code_cache() {
-    compile_with_eager_compile();
-    create_code_cache();
-    save_code_cache();
-  }
-  
-  ...
-  
-  if (has_code_cache) {
-    evaluate_script_with_code_cache();
-  } else {
-    start_thread(async_create_code_cache());
-    evaluate_script_without_code_cache();
-  }
-  ```
+...
 
-- After all the paths are executed in the startup, start a new thread to create a code cache. In this way, you can create a cache with sufficient code without enabling **eagerCompile** while maintaining the hot startup performance. This approach will not increase the peak resource usage or affect the I/O. However, the time for generating the code cache is restricted. 
+if (has_code_cache) {
+  evaluate_script_with_code_cache();
+} else {
+  start_thread(async_create_code_cache());
+  evaluate_script_without_code_cache();
+}
+```
 
-  The pseudo-code of this process is as follows:
 
-  ```
-  async_create_code_cache() {
-    compile_with_out_eager_compile();
-    create_code_cache();
-    save_code_cache();
-  }
-  
-  ...
-  
-  if (has_code_cache) {
-    evaluate_script_with_code_cache();
-  } else {
-    evaluate_script_without_code_cache();
-  }
-  
-  ...
-  
-  if (script_run_completed) {
-    start_thread(async_create_code_cache());
-  }
-  ```
+- After all the paths are executed in the startup, start a new thread to create a code cache. In this way, you can create a cache with sufficient code without enabling **eagerCompile** while maintaining the hot startup performance. This approach will not increase the peak resource usage or affect the I/O. However, the time for generating the code cache is restricted. The pseudo-code of this process is as follows:
+
+```
+async_create_code_cache() {
+  compile_with_out_eager_compile();
+  create_code_cache();
+  save_code_cache();
+}
+
+...
+
+if (has_code_cache) {
+  evaluate_script_with_code_cache();
+} else {
+  evaluate_script_without_code_cache();
+}
+
+...
+
+if (script_run_completed) {
+  start_thread(async_create_code_cache());
+}
+```
 
 
 ### Using Performant JSVM-API 
@@ -123,40 +119,37 @@ To determine the native type of an object, it is inefficient to use **OH_JSVM_Ty
 - Example (not recommended):
 
 
-  ```cpp
-  bool Test::IsFunction() const {
-      HandleScopeInit(*env);
-      JSVM_Value jsvmValue;
-      ObjectWrappingGet(*env, jsvmRef, jsvmValue);
-      // Type judgment starts
-      bool result;
-      JSVM_ValueType valueType;
-      OH_JSVM_TypeOf(*env, jsvmValue, &valueType);
-      OH_JSVM_CloseHandleScope(*env, scope);
-      result = (valueType == JSVM_FUNCTION)
-      // Type judgment ends.
-      return result;
-  }
-  ```
+```cpp
+bool Test::IsFunction() const {
+    HandleScopeInit(*env);
+    JSVM_Value jsvmValue;
+    ObjectWrappingGet(*env, jsvmRef, jsvmValue);
+    // Type judgment starts.
+    bool result;
+    JSVM_ValueType valueType;
+    OH_JSVM_TypeOf(*env, jsvmValue, &valueType);
+    OH_JSVM_CloseHandleScope(*env, scope);
+    // Type judgment ends.
+    return valueType == JSVM_FUNCTION;
+}
+```
 
 - Example (recommended):
 
 
-  ```cpp
-  bool Test::IsFunction() const {
-      HandleScopeInit(*env);
-      JSVM_Value jsvmValue;
-      ObjectWrappingGet(*env, jsvmRef, jsvmValue);
-      // Type judgment starts.
-      bool result;
-      OH_JSVM_IsFunction(*env, jsvmValue, &result); // Check whether the object type is function.
-      OH_JSVM_CloseHandleScope(*env, scope);
-      // Type judgment ends.
-      return result;
-  }
-  ```
-
-
+```cpp
+bool Test::IsFunction() const {
+    HandleScopeInit(*env);
+    JSVM_Value jsvmValue;
+    ObjectWrappingGet(*env, jsvmRef, jsvmValue);
+    // Type judgment starts.
+    bool result = false;
+    OH_JSVM_IsFunction(*env, jsvmValue, &result); // Check whether the object type is function.
+    OH_JSVM_CloseHandleScope(*env, scope);
+    // Type judgment ends.
+    return result;
+}
+```
 
 The following optimization decreases the code execution time by 150 ms, accounting for about 5% of the performance benefits of an applet.
 
@@ -170,35 +163,35 @@ If the object already has the value, you can directly create a reference to the 
 
 - Example (not recommended):
 
-  ```cpp
-  // Open a handle scope.
-  JSVM_HandleScope scope;
-  OH_JSVM_OpenHandleScope(*env, &scope);
-  // Obtain JSVM_Value.
-  JSVM_Value jsvmValue;
-  OH_JSVM_GetNull(*env, &jsvmValue);
-  // Create and store reference for JSVM_Value.
-  JSVM_Value wrappingObject;
-  OH_JSVM_CreateObject(*env, &wrappingObject);
-  OH_JSVM_SetElement(*env, wrappingObject, 1, jsvmValue);
-  OH_JSVM_CreateReference(*env, wrappingObject, 1, &result->p_member->jsvmRef);
-  // Close the handle scope.
-  OH_JSVM_CloseHandleScope(*env, scope);
-  ```
+```cpp
+// (1) Open a handle scope.
+JSVM_HandleScope scope;
+OH_JSVM_OpenHandleScope(*env, &scope);
+// (2) Obtain JSVM_Value.
+JSVM_Value jsvmValue;
+OH_JSVM_GetNull(*env, &jsvmValue);
+// (3) Create a Reference for JSVM_Value and save it.
+JSVM_Value wrappingObject;
+OH_JSVM_CreateObject(*env, &wrappingObject);
+OH_JSVM_SetElement(*env, wrappingObject, 1, jsvmValue);
+OH_JSVM_CreateReference(*env, wrappingObject, 1, &result->p_member->jsvmRef);
+// (4) Close the handle scope.
+OH_JSVM_CloseHandleScope(*env, scope);
+```
 
 - Example (recommended):
 
-  ```cpp
-  // Open a handle scope.
-  JSVM_HandleScope scope;
-  OH_JSVM_OpenHandleScope(*env, &scope);
-  // Obtain JSVM_Value.
-  JSVM_Value jsvmValue;
-  OH_JSVM_GetNull(*env, &jsvmValue);
-  // Create and store reference for JSVM_Value.
-  OH_JSVM_CreateReference(*env, jsvmValue, 1, &result->p_member->jsvmRef); // Create a reference to an object of any type, making your code simpler and more performant.
-  // Close the handle scope.
-  OH_JSVM_CloseHandleScope(*env, scope);
-  ```
+```cpp
+// (1) Open a handle scope.
+JSVM_HandleScope scope;
+OH_JSVM_OpenHandleScope(*env, &scope);
+// (2) Obtain JSVM_Value.
+JSVM_Value jsvmValue;
+OH_JSVM_GetNull(*env, &jsvmValue);
+// (3) Create a Reference for JSVM_Value and save it.
+OH_JSVM_CreateReference(*env, jsvmValue, 1, &result->p_member->jsvmRef); // Create a reference to an object of any type, making your code simpler and more performant.
+// (4) Close the handle scope.
+OH_JSVM_CloseHandleScope(*env, scope);
+```
 
-This optimization also helps reduce the number of API calls for another applet and decreases the code execution time by 100+ ms, accounting for about 3% of the performance benefits. 
+This optimization also helps reduce the number of API calls for another applet and decreases the code execution time by 100+ ms, accounting for about 3% of the performance benefits.

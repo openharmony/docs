@@ -8,18 +8,28 @@ RichEditor是支持图文混排和文本交互式编辑的组件，通常用于�
 使用RichEditor(value: [RichEditorOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditoroptions))接口创建非属性字符串构建的RichEditor组件，一般用于展示简单的图文信息，例如展示联系人的信息，也可以用于内容要求格式统一的场景，例如一些代码编辑器。
 
 ```ts
-controller: RichEditorController = new RichEditorController();
-options: RichEditorOptions = { controller: this.controller };
+@Entry
+@Component
+struct create_rich_editor {
+  controller: RichEditorController = new RichEditorController()
+  options: RichEditorOptions = { controller: this.controller }
 
-RichEditor(this.options)
-  .onReady(() => {
-    this.controller.addTextSpan('创建不使用属性字符串构建的RichEditor组件。', {
-      style: {
-        fontColor: Color.Black,
-        fontSize: 15
-      }
-    })
-  })
+  build() {
+    Column() {
+      Column() {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addTextSpan('创建不使用属性字符串构建的RichEditor组件。', {
+              style: {
+                fontColor: Color.Black,
+                fontSize: 15
+              }
+            })
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
 ```
 ![alt text](figures/richeditor_image_options.gif)
 

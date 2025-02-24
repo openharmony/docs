@@ -351,10 +351,10 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 | napi_has_element | Checks whether the given **Object** has an element at the specified index.|
 | napi_delete_element | Deletes the element at the specified index of the given **Object**.|
 | napi_create_typedarray | Creates a JS **TypedArray** from an existing **ArrayBuffer**.|
-| napi_is_typedarray | Checks whether a JS value is an **TypeArray** object.|
+| napi_is_typedarray | Checks whether a JS value is a **TypeArray** object.|
 | napi_get_typedarray_info | Obtains the properties of a **TypedArray**.|
 | napi_create_dataview | Creates a JS **DataView** from an existing **ArrayBuffer**.|
-| napi_is_dataview | Checks whether a JS value is an **DataView** object.|
+| napi_is_dataview | Checks whether a JS value is a **DataView** object.|
 | napi_get_dataview_info | Obtains the properties of a **DataView**.|
 
 ### Primitives
@@ -393,6 +393,23 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 | napi_instanceof | Checks whether the given object is an instance of the specified constructor.|
 | napi_type_tag_object | Associates the value of the tag pointer with a JS object.|
 | napi_check_object_type_tag | Checks whether a tag pointer is associated with a JS object.|
+| napi_create_symbol | Creates a JS **Symbol** object.|
+| napi_create_external | Creates a JS external object, which can be used to pass custom data structs or objects in C/C++ to JS so that it can be accessible from JS.|
+| napi_get_value_external | Obtains the JS data from the external object created by **napi_create_external**. This API can be used to pass data between JS and C/C++.|
+
+### Basic Data Types
+
+| API| Description|
+| -------- | -------- |
+| napi_create_int32 | Creates a JS number from a C int32 value.|
+| napi_create_uint32 | Creates a JS number from a C uint32 value.|
+| napi_create_int64 | Creates a JS number from a C int64 value.|
+| napi_create_double | Creates a JS number from a C double value.|
+| napi_get_value_int32 | Obtains the C int32 equivalent of a JS number.|
+| napi_get_value_uint32 | Obtains the C uint32 equivalent of a JS number.|
+| napi_get_value_int64 | Obtains the C int64 equivalent of a JS number.|
+| napi_get_value_double | Obtains the C double equivalent of a JS number.|
+|napi_get_value_bool|Obtains the C bool equivalent of a JS Boolean value.|
 
 ### BigInt
 
@@ -458,12 +475,6 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 | napi_open_callback_scope | Opens a callback scope. The capabilities related to **async_hook** are not supported.|
 | napi_close_callback_scope | Closes the callback scope. The capabilities related to **async_hook** are not supported.|
 
-### Comparing JS Values
-
-| API| Description|
-| -------- | -------- |
-| napi_strict_equals | Checks whether two JS values are strictly equal.|
-
 ### UV
 
 | API| Description|
@@ -479,7 +490,7 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 
 ### Extended Capabilities
 
-[Node-API extended symbols](../reference/native-lib/napi.md#node-api-extended-symbols)
+[Node-API Extended Symbols](../reference/native-lib/napi.md#node-api-extended-symbols)
 
 | API| Description|
 | -------- | -------- |
@@ -499,7 +510,7 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 | napi_delete_serialization_data | Deletes serialized data.|
 | napi_call_threadsafe_function_with_priority|Calls a task with the specified priority and enqueuing mode into the ArkTS main thread.|
 | napi_is_sendable|Checks whether the given JS value is sendable.|
-| napi_define_sendable_class|Create a **sendable** class.|
+| napi_define_sendable_class|Creates a **sendable** class.|
 | napi_create_sendable_object_with_properties | Creates a sendable object with the given **napi_property_descriptor**.|
 | napi_create_sendable_array | Creates a sendable array.|
 | napi_create_sendable_array_with_length | Creates a sendable array of the specified length.|
@@ -722,10 +733,12 @@ napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void**
 | API| Description|
 | -------- | -------- |
 | napi_create_ark_runtime | Creates an ArkTS runtime environment.|
-| napi_destroy_ark_runtime | Destroys the ArkTS runtime environment.|
+| napi_destroy_ark_runtime | Destroys an ArkTS runtime environment.|
 
 ### Other Utilities
 
 | API| Description|
 | -------- | -------- |
+| napi_get_version | Obtains the latest Node-API version supported by the node runtime.|
 | node_api_get_module_file_name | Obtains the absolute path of the module to be loaded.|
+| napi_strict_equals | Compares whether two values are strictly equal, that is, whether they are of the same type and have the same value.|
