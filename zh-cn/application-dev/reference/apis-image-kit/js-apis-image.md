@@ -591,6 +591,8 @@ async function CreateUnpremultipliedPixelMap() {
 
 在调用PixelMap的方法前，需要先通过[image.createPixelMap](#imagecreatepixelmap8)构建一个PixelMap对象。
 
+开发原子化服务请通过[ImageSoure](#imagesource)构建PixelMap对象。
+
 ### 属性
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
