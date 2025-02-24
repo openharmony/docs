@@ -75,7 +75,6 @@ typedef enum HiCollie_ErrorCode HiCollie_ErrorCode
 ```
 
 **描述**
-
 错误码定义。
 
 **起始版本：** 12
@@ -168,7 +167,7 @@ enum HiCollie_ErrorCode
 ```
 
 **描述**
-错误码定义
+错误码定义。
 
 **起始版本：** 12
 
