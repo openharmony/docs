@@ -139,8 +139,6 @@ imageMatrix(matrix: ImageMatrix)
 
 该属性只针对图源做处理，不会触发Image组件的回调事件。
 
-**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
