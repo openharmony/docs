@@ -187,7 +187,7 @@ struct MenuItemHeightPercent {
   MyMenu() {
     Menu() {
       MenuItem({ content: "菜单选项" })
-        .height('100%')
+        .height('50%')
     }
   }
 }
@@ -195,7 +195,7 @@ struct MenuItemHeightPercent {
 
 | 变更前 | 变更后 |
 |---------|---------|
-|  ![变更前](figures/MenuItemHeightPercent_before.jpeg)       |  ![变更后](figures/MenuItemHeightPercent_after.jpeg)       |
+|  ![变更前](figures/MenuItemHeightPercent_before.png)       |  ![变更后](figures/MenuItemHeightPercent_after.png)       |
 
 **起始API Level**
 
