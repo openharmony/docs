@@ -32,6 +32,7 @@
                 - [Sendable对象简介](arkts-sendable.md)
                 - [Sendable使用规则与约束](sendable-constraints.md)
                 - [异步锁](arkts-async-lock-introduction.md)
+                - [异步等待](arkts-condition-variable-introduction.md)
                 - [ASON解析与生成](ason-parsing-generation.md)
                 - [共享容器](arkts-collections-introduction.md)
                 - [共享模块](arkts-sendable-module.md)
