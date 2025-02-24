@@ -1863,7 +1863,7 @@ function callback(err: BusinessError, pixelMap: image.PixelMap): void {
       return;
   }
   // 显示或保存pixelMap。
-  // do something。
+  // do something.
 }
 
 async function registerQuickThumbnail(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<void> {

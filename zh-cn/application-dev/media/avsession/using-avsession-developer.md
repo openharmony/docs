@@ -150,7 +150,7 @@
            abilityName: 'MainAbility'
          }
        ],
-       // OperationType.START_ABILITIES。
+       // OperationType.START_ABILITIES
        operationType: 2,
        requestCode: 0,
        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
