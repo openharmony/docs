@@ -21,7 +21,7 @@ import { ComposeListItem } from "@kit.ArkUI"
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)
 
 
 ## ComposeListItem
@@ -131,7 +131,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 | accessibilityLevel<sup>16+</sup>       | string                                                    | 否 | 右侧Switch/CheckBox/Radio的无障碍重要性。用于控制当前项是否可被无障碍辅助服务所识别。<br/>支持的值为：<br/>"auto"：当前组件会转换"no"。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。              |
 
 ## 事件
-支持[通用事件](ts-universal-events-click.md)
+支持[通用事件](ts-component-general-events.md)
 
 ## 示例
 

@@ -23,7 +23,7 @@ import { FullScreenLaunchComponent } from '@kit.ArkUI'
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)
 
 ## FullScreenLaunchComponent
 
@@ -46,7 +46,7 @@ FullScreenLaunchComponent({ content: Callback\<void>, appId: string, options?: A
 | options | [AtomicServiceOptions](../../apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md) | 否 | - | 拉起原子化服务参数。 |
 
 ## 事件
-不支持[通用事件](ts-universal-events-click.md)，仅支持以下事件。
+不支持[通用事件](ts-component-general-events.md)，仅支持以下事件。
 
 ### onError<sup>16+<sup>
 

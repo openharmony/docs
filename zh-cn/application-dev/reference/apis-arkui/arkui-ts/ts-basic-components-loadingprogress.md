@@ -28,7 +28,7 @@ LoadingProgress()
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### color
 
@@ -83,7 +83,7 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](ts-component-general-events.md)。
 
 ## LoadingProgressConfiguration<sup>12+</sup>对象说明
 
