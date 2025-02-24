@@ -4838,6 +4838,18 @@
 
 **起始版本**：16
 
+### ohos.permission. ACCESS_APP_CLONE_DIR
+
+允许系统应用访问从其他设备复制的安装文件路径。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：false
+
+**起始版本**：16
+
 ## user_grant，允许ACL跨级申请
 
 以下权限的授权方式均为user_grant（用户授权），且允许通过ACL的方式申请。
