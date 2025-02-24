@@ -203,7 +203,7 @@ setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
 | 参数名   | 类型                                       | 必填   | 说明                                    |
 | ----- | ---------------------------------------- | ---- | ------------------------------------- |
-| options | [OverlayManagerOptions](#overlaymanageroptions15) | 否    | OverlayManager参数。|
+| options | [OverlayManagerOptions](#overlaymanageroptions15) | 是  | OverlayManager参数。|
 
 **返回值：** 
 
