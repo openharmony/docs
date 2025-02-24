@@ -26,14 +26,14 @@ Polygon(options?: PolygonOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [PolygonOptions](ts-drawing-components-polygon.md#polygonoptions14对象说明) | 否 | Polygon绘制区域。 |
+| options | [PolygonOptions](ts-drawing-components-polygon.md#polygonoptions16对象说明) | 否 | Polygon绘制区域。 |
 
-## PolygonOptions<sup>14+</sup>对象说明
+## PolygonOptions<sup>16+</sup>对象说明
 用于描述Polygon绘制区域。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -44,7 +44,7 @@ Polygon(options?: PolygonOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### points
 

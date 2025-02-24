@@ -32,7 +32,7 @@ SymbolGlyph(value?: Resource)
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)，不支持文本通用属性，仅支持以下特有属性：
+支持[通用属性](ts-component-general-attributes.md)，不支持文本通用属性，仅支持以下特有属性：
 
 ### fontColor
 
@@ -173,6 +173,38 @@ symbolEffect(symbolEffect: SymbolEffect, triggerValue?: number)
 >  **说明：**
 >
 >  动效属性，仅支持使用effectStrategy属性或单个symbolEffect属性，不支持多种动效属性混合使用。
+
+### minFontScale<sup>16+</sup>
+
+minFontScale(scale: Optional\<number | Resource>)
+
+设置SymbolGlyph组件最小的字体缩放倍数。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------ | ---- | ---- | ----- |
+| scale  |[Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)>  | 否   | SymbolGlyph组件最小的字体缩放倍数。<br/>取值范围：[0, 1]。<br/>设置为0，缩放最小。<br/>**说明：** <br/>设置的值小于0时，按值为0处理，设置的值大于1，按值为1处理，异常值默认不生效。   |
+
+### maxFontScale<sup>16+</sup>
+
+maxFontScale(scale: Optional\<number | Resource>)
+
+设置SymbolGlyph组件最大的字体缩放倍数。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------ | ---- | ---- | ----- |
+| scale  |[Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)>  | 否   | SymbolGlyph组件最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理，异常值默认不生效。 |
 
 ## ScaleSymbolEffect<sup>12+</sup>
 
@@ -475,7 +507,7 @@ PulseSymbolEffect的构造函数，脉冲动效。
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 

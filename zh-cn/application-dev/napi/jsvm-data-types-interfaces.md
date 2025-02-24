@@ -1,15 +1,12 @@
-# JSVM-API支持的数据类型和接口
+# JSVM-API 支持的数据类型和接口
 
-##JSVM -
-    API的数据类型
+## JSVM-API 的数据类型
 
-    ## #JSVM_Status
+### `JSVM_Status`
 
-    是一个枚举数据类型，表示JSVM -
-    API接口返回的状态信息。
+    是一个枚举数据类型，表示 JSVM-API 接口返回的状态信息。
 
-        每当调用一个JSVM -
-    API函数，都会返回该值，表示操作成功与否的相关信息。
+    每当调用一个 JSVM-API 函数，都会返回该值，表示操作成功与否的相关信息。
 
 ```c++
     typedef enum {
@@ -24,14 +21,14 @@
         JSVM_ARRAY_EXPECTED,                  /* 期待传入数组类型 */
         JSVM_GENERIC_FAILURE,                 /* 泛型失败状态 */
         JSVM_PENDING_EXCEPTION,               /* 挂起异常状态 */
-        JSVM_CENCELLED,                       /* 取消状态 */
+        JSVM_CANCELLED,                       /* 取消状态 */
         JSVM_ESCAPE_CALLED_TWICE,             /* 转义调用了2次 */
         JSVM_HANDLE_SCOPE_MISMATCH,           /* 句柄作用域不匹配 */
         JSVM_CALLBACK_SCOPE_MISMATCH,         /* 回调作用域不匹配 */
         JSVM_QUEUE_FULL,                      /* 队列满 */
         JSVM_CLOSING,                         /* 关闭中 */
         JSVM_BIGINT_EXPECTED,                 /* 期望传入Bigint类型 */
-        JSVM_DATA_EXPECTED,                   /* 期望传入日期类型 */
+        JSVM_DATE_EXPECTED,                   /* 期望传入日期类型 */
         JSVM_ARRAYBUFFER_EXPECTED,            /* 期望传入ArrayBuffer类型 */
         JSVM_DETACHABLE_ARRAYBUFFER_EXPECTED, /* 可分离的数组缓冲区预期状态 */
         JSVM_WOULD_DEADLOCK,                  /* 将死锁状态 */
@@ -97,7 +94,7 @@ typedef enum {
     JSVM_UINT8_ARRAY,
     JSVM_UINT8_CLAMPED_ARRAY,
     JSVM_INT16_ARRAY,
-    JAVM_UINT16_ARRAY,
+    JSVM_UINT16_ARRAY,
     JSVM_INT32_ARRAY,
     JSVM_UINT32_ARRAY,
     JSVM_FLOAT32_ARRAY,
@@ -240,7 +237,7 @@ JSVM-API包含以下内存管理类型：
 
 **JSVM_HandleScope**
 
-JSVM_HandleScope数据类型是用来管理JavaScript对象的生命周期的。它允许JavaScript对象在一定范围内保持活动状态，以便在JavaScript代码中使用。在创建JSVM_HandleScope时，所有在该范围内创建的JavaScript对象都会保持活动状态，直到结束。这样可以避免在JavaScript代码中使用已经被释放的对象，从而提高代码的可靠性和性能
+JSVM_HandleScope数据类型是用来管理JavaScript对象的生命周期的。它允许JavaScript对象在一定范围内保持活动状态，以便在JavaScript代码中使用。在创建JSVM_HandleScope时，所有在该范围内创建的JavaScript对象都会保持活动状态，直到结束。这样可以避免在JavaScript代码中使用已经被释放的对象，从而提高代码的可靠性和性能。
 
 **JSVM_EscapableHandleScope**
 
@@ -951,7 +948,7 @@ if (status != JSVM_OK) // 当执行失败出现异常时
 | OH_JSVM_OpenEscapableHandleScope| 打开一个新的scope逃逸handle scope，在关闭该scope之前创建的对象与父作用域有相同的生命周期 |
 | OH_JSVM_CloseEscapableHandleScope| 关闭一个scope，在此scope范围外创建的对象不受父作用域保护 |
 | OH_JSVM_EscapeHandle| 将 JavaScript 对象的句柄提升到外部作用域，确保在外部作用域中可以持续地使用该对象 |
-| OH_JSVM_CreateReference| 以指定的引用计数为JavaScript对象创建一个新的引用，该引用将指向传入的对象，引用允许在不同的上下文中使用和共享对象，并且可以有效地跟踪对象的生命周期 |
+| OH_JSVM_CreateReference| 以指定的引用计数为JavaScript对象创建一个新的引用，该引用将指向传入的对象，引用允许在不同的上下文中使用和共享对象，并且可以有效地监测对象的生命周期 |
 | OH_JSVM_DeleteReference| 释放由 OH_JSVM_CreateReference 创建的引用，确保对象在不再被使用时能够被正确地释放和回收，避免内存泄漏 |
 | OH_JSVM_ReferenceRef| 增加由OH_JSVM_CreateReference 创建的引用的引用计数，以确保对象在有引用时不会被提前释放 |
 | OH_JSVM_ReferenceUnref| 减少由OH_JSVM_CreateReference 创建的引用的引用计数，以确保没有任何引用指向该对象时能正确地释放和回收 |
@@ -2078,9 +2075,9 @@ OH_JSVM_GetVersion(env, &versionId);
 | ------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | OH_JSVM_AdjustExternalMemory                | 将因JavaScript对象而保持活跃的外部分配的内存大小及时通知给底层虚拟机，虚拟机后续触发GC时，就会综合内外内存状态来判断是否进行全局GC。即增大外部内存分配，则会增大触发全局GC的概率；反之减少。 |
 | OH_JSVM_MemoryPressureNotification          | 通知虚拟机系统内存压力层级，并有选择地触发垃圾回收。                                                                             |
-| OH_JSVM_AllocateArrayBufferBackingStoreData | 申请一块 BackingStore 内存 |
-| OH_JSVM_FreeArrayBufferBackingStoreData | 释放 BackingStore 内存 |
-| OH_JSVM_CreateArrayBufferFromBackingStoreData | 基于申请的 BackingStore 内存创建 array buffer |
+| OH_JSVM_AllocateArrayBufferBackingStoreData | 申请一块 BackingStore 内存。 |
+| OH_JSVM_FreeArrayBufferBackingStoreData | 释放 BackingStore 内存。 |
+| OH_JSVM_CreateArrayBufferFromBackingStoreData | 基于申请的 BackingStore 内存创建 array buffer。 |
 
 > BackingStore 的使用属于高危操作，需要使用者自身保证内存的正确使用，请参考下方的正确示例，谨慎使用。
 

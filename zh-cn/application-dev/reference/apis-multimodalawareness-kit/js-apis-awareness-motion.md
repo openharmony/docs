@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 16开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 15开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
@@ -21,6 +21,7 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 
 | 名称                | 值   | 说明                   |
 | ------------------- | ---- | ---------------------- |
+| UNKNOWN_STATUS  | 0    | 表示未识别。 |
 | LEFT_HAND_OPERATED  | 1    | 表示触控操作手是左手。 |
 | RIGHT_HAND_OPERATED | 2    | 表示触控操作手是右手。 |
 

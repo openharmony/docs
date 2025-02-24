@@ -6,8 +6,8 @@
 
 开发者可以通过hiappevent接口订阅主线程超时事件, 获取维测信息。
 
-- [订阅主线程超时事件(ArkTS)](hiappevent-watcher-mainthreadjank-events-arkts.md)
-- [订阅主线程超时事件(C/C++)](hiappevent-watcher-mainthreadjank-events-ndk.md)
+- [订阅主线程超时事件(ArkTS)](hiappevent-watcher-mainthreadjank-events-arkts.md)；
+- [订阅主线程超时事件(C/C++)](hiappevent-watcher-mainthreadjank-events-ndk.md)。
 
 ## 主线程超时事件默认时间规格
 
@@ -15,9 +15,17 @@
 
 1. 启动时间
 
-    主线程超时采样栈(150ms < 主线程处理时长 < 450ms)。**同一个应用的PID一个生命周期仅会触发一次主线程超时事件采样栈。开发者选项打开, 一小时一次。应用启动10s内不进行检测**
-  
-    主线程超时采样Trace(主线程处理时长 > 450ms)。**同一个应用的UID一天仅会触发一次主线程超时事件采样trace。开发者使用nolog版本, 开发者选项关闭状态, 可以使能主线程超时检测抓取trace的功能。**
+    主线程超时采样栈(150ms < 主线程处理时长 < 450ms)。**同一个应用的PID一个生命周期仅会触发一次主线程超时事件采样栈。开发者选项打开, 一小时一次。应用启动10s内不进行检测。**
+
+    主线程超时采样Trace（主线程处理时长 > 450ms）。**同一个应用的UID一天仅会触发一次主线程超时事件采样trace。**
+
+    > **注意：**
+    >
+    > 启动主线程超时检测抓取trace的功能的前提：**开发者使用nolog版本，开发者模式处于关闭状态**；
+    >
+    > log和nolog版本：在手机中，点击设置——搜索关键字“关于本机”——软件版本进行查看。log版本会以log结尾；
+    >
+    > 关闭开发者模式后，可能无法使用DevEco Studio。因此，可以提前安装应用，再关闭开发者模式。
 
 2. 抓栈时间
 
@@ -39,11 +47,11 @@
 
    主线程超时抓Trace调用录制函数后, 每隔150ms检测主线程是否再次发生超时事件(检测次数 = 20), 其中, 只要在20个间隔检测时, 有一次主线程事件超时150ms, 3s检测结束后落盘trace。
 
-   (1) 20次检测均未发生主线程超时150ms事件
+   (1) 20次检测均未发生主线程超时150ms事件。
 
    ![抓trace示例](figures/dump-trace1.PNG)
 
-   (2) 20次检测至少有一次发生主线程超时150ms事件
+   (2) 20次检测至少有一次发生主线程超时150ms事件。
 
    ![抓trace示例](figures/dump-trace2.PNG)
 
@@ -121,11 +129,11 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
     一般情况, 栈文件的大小为7-10KB, trace大小为1-5M。应用沙箱内的watchdog目录最大保存10M内容, 超出后, 需要用户手动清理文件。目录地址: /data/app/el2/100/log/应用bundle name/watchdog。
 
-2. 事件里如何获取日志：
+2. 事件里如何获取日志
 
     从external_logs中获取日志路径。
 
-3. 抓栈功能目前只支持ARM64架构, 抓栈结果为解析后的混合栈信息, 包含native帧和JS帧
+3. 抓栈功能目前只支持ARM64架构, 抓栈结果为解析后的混合栈信息, 包含native帧和JS帧。
 
    抓栈结果部分示例如下：
 
@@ -187,20 +195,20 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
     导入trace文件后页面解读: 从上往下主要展示时间轴、cpu使用率、cpu使用情况、进程间通讯数据的方法调用情况、进程、线程和方法调用情况, 由此可以在事件维度上对这些数据进行直观展示。
 
-    更多对trace文件使用的介绍可以参考: [web端加载trace说明](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_systemtrace.md)
+    更多对trace文件使用的介绍可以参考: [web端加载trace说明](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_systemtrace.md)。
 
 ## 事件params属性描述
 
-    | 名称    | 类型   | 说明                       |
-    | ------- | ------ | ------------------------- |
-    | time     | number | 事件触发时间, 单位为毫秒。 |
-    | bundle_version | string | 应用版本。 |
-    | bundle_name | string | 应用名称。 |
-    | pid | number | 应用的进程id。|
-    | uid | number | 应用的用户id。 |
-    | begin_time | number | 主线程任务开始时间。 |
-    | end_time | number | 主线程任务结束时间。 |
-    | external_log| string[] | 主线程超时日志文件路径。**为避免目录空间超限（限制参考log_over_limit）, 导致新生成的日志文件写入失败, 日志文件处理完后请及时删除。** |
-    | log_over_limit| boolean | 生成的主线程超时日志文件与已存在的日志文件总大小是否超过10M上限。true表示超过上限, 日志写入失败；false表示未超过上限。|
-    | app_start_jiffies_time| number | 开发者可以获取主线程超时事件时，任务执行的开始时间。**触发采样栈, 打印开始时间信息。**|
-    | heaviest_stack| string | 生成的主线程超时日志文件中, 打印多次的调用栈。**触发采样栈, 打印多次的调用栈信息。**|
+| 名称    | 类型   | 说明                       |
+| ------- | ------ | ------------------------- |
+| time     | number | 事件触发时间, 单位为毫秒。 |
+| bundle_version | string | 应用版本。 |
+| bundle_name | string | 应用名称。 |
+| pid | number | 应用的进程id。|
+| uid | number | 应用的用户id。 |
+| begin_time | number | 主线程任务开始时间。 |
+| end_time | number | 主线程任务结束时间。 |
+| external_log| string[] | 主线程超时日志文件路径。**为避免目录空间超限（限制参考log_over_limit）, 导致新生成的日志文件写入失败, 日志文件处理完后请及时删除。** |
+| log_over_limit| boolean | 生成的主线程超时日志文件与已存在的日志文件总大小是否超过10M上限。true表示超过上限, 日志写入失败；false表示未超过上限。|
+| app_start_jiffies_time| number | 开发者可以获取主线程超时事件时，任务执行的开始时间。**触发采样栈, 打印开始时间信息。**|
+| heaviest_stack| string | 生成的主线程超时日志文件中, 打印多次的调用栈。**触发采样栈, 打印多次的调用栈信息。**|

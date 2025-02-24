@@ -36,7 +36,7 @@ Menu()
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### fontSize<sup>(deprecated)</sup>
 
@@ -99,7 +99,7 @@ radius(value: Dimension | BorderRadiuses)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9) | 是   | Menu边框圆角半径。<br/>默认值：2in1设备上默认值为8vp，其他设备上默认值为20vp。<br/> <br/> 从API version 12开始，当水平方向两个圆角半径之和的最大值大于菜单宽度，或垂直方向两个圆角半径之和的最大值大于菜单高度时，菜单四个圆角均采用菜单默认圆角半径值。 |
+| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9) | 是   | Menu边框圆角半径。<br/>默认值：2in1设备上默认值为8vp，其他设备上默认值为20vp。<br/> 从API version 12开始，当水平方向两个圆角半径之和的最大值大于菜单宽度，或垂直方向两个圆角半径之和的最大值大于菜单高度时，菜单四个圆角均采用菜单默认圆角半径值。 |
 
 ### menuItemDivider<sup>12+</sup>
 
@@ -159,11 +159,11 @@ Menu子菜单展开样式枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 说明                                       |
-| --------------- | ------------------------------------------ |
-| SIDE_EXPAND     | 默认展开样式, 子菜单位于同一平面侧边展开。 |
-| EMBEDDED_EXPAND | 直接展开样式, 子菜单嵌于主菜单内展开。     |
-| STACK_EXPAND    | 堆叠样式, 子菜单浮于主菜单上方展开。       |
+| 名称            | 值 | 说明                                       |
+| --------------- | - | ------------------------------------------ |
+| SIDE_EXPAND     | 0 | 默认展开样式, 子菜单位于同一平面侧边展开。 |
+| EMBEDDED_EXPAND | 1 | 直接展开样式, 子菜单嵌于主菜单内展开。     |
+| STACK_EXPAND    | 2 | 堆叠样式, 子菜单浮于主菜单上方展开。       |
 
 ## 示例
 

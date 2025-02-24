@@ -72,8 +72,8 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 | cameraType                      | [CameraType](#cameratype)           | 是   | 否  | 相机类型。    |
 | connectionType                  | [ConnectionType](#connectiontype)   | 是   | 否  | 相机连接类型。 |
 | cameraOrientation<sup>12+</sup> | number                              | 是   | 否  | 镜头的安装角度，不会随着屏幕旋转而改变，取值范围为0°-360°。 |
-| hostDeviceName<sup>16+</sup>    | string                              | 是   | 否  | 远端设备名称。 |
-| hostDeviceType<sup>16+</sup>    | [HostDeviceType](#hostdevicetype16) | 是   | 否  | 远端设备类型。 |
+| hostDeviceName<sup>15+</sup>    | string                              | 是   | 否  | 远端设备名称。 |
+| hostDeviceType<sup>15+</sup>    | [HostDeviceType](#hostdevicetype15) | 是   | 否  | 远端设备类型。 |
 
 ## CameraPosition
 
@@ -116,7 +116,7 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 | CAMERA_CONNECTION_USB_PLUGIN | 1    | USB连接的相机。 |
 | CAMERA_CONNECTION_REMOTE     | 2    | 远程连接的相机。 |
 
-## HostDeviceType<sup>16+</sup>
+## HostDeviceType<sup>15+</sup>
 
 枚举，远端相机设备类型。
 
@@ -3871,7 +3871,7 @@ function testGetActiveProfile(videoOutput: camera.VideoOutput): camera.Profile |
   return activeProfile;
 }
 ```
-### isMirrorSupported<sup>16+</sup>
+### isMirrorSupported<sup>15+</sup>
 
 isMirrorSupported(): boolean
 
@@ -3893,12 +3893,12 @@ function testIsMirrorSupported(videoOutput: camera.VideoOutput): boolean {
   return isSupported;
 }
 ```
-### enableMirror<sup>16+</sup>
+### enableMirror<sup>15+</sup>
 
 enableMirror(enabled: boolean): void
 
 启用/关闭镜像录像。
-- 调用该接口前，需要通过[isMirrorSupported](#ismirrorsupported16)查询是否支录像镜像功能。
+- 调用该接口前，需要通过[isMirrorSupported](#ismirrorsupported15)查询是否支录像镜像功能。
 
 - 启用/关闭录像镜像后，需要通过[getVideoRotation](#getvideorotation12)以及[updateRotation](../apis-media-kit/js-apis-media.md#updaterotation12)更新旋转角度。
 

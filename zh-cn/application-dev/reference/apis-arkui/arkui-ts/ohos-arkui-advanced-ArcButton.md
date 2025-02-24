@@ -1,6 +1,6 @@
 #  ArcButton
 
-弧形按钮组件用于穿戴设备圆形屏幕使用。为手表用户提供强调、普通、警告等样式按钮。
+弧形按钮组件用于圆形屏幕使用。为手表用户提供强调、普通、警告等样式按钮。
 
 > **说明：**
 >
@@ -23,7 +23,7 @@ import {
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)
 
 ## 事件
 通用事件支持[点击事件](ts-universal-events-click.md)和[触摸事件](ts-universal-events-touch.md)。
@@ -117,7 +117,7 @@ ArcButton({options:ArcButtonOptions})
 | NORMAL   | 0    | 正常状态。 |
 | PRESSED  | 1    | 按压状态。 |
 | DISABLED | 2    | 禁用状态。 |
-
+| CUSTOM   | 4    | 用户自定义样式。 |
 
 
 ## 示例

@@ -23,6 +23,8 @@
 | off(type: 'globalUnhandledRejectionDetected', observer?: GlobalObserver): void | 取消以前注册的callback监听。（**推荐使用**）  |
 | on(type: 'loopObserver', timeout: number, observer: LoopObserver): void<sup>12+</sup> | 注册主线程消息处理耗时监听器，当系统监测到应用主线程事件处理超时时会回调该监听。只能在主线程调用，多次注册后，后一次的注册会覆盖前一次的。  |
 | off(type: 'loopObserver', observer?: LoopObserver): void<sup>12+</sup> | 解除应用主线程消息处理耗时监听。  |
+| on(type: 'freeze', observer: FreezeObserver): void<sup>16+</sup> | 注册应用主线程freeze监听。只能在主线程调用，多次注册后，后一次的注册会覆盖前一次的。  |
+| off(type: 'freeze', observer?: FreezeObserver): void<sup>16+</sup> | 取消以前注册的应用主线程freeze监听。只能在主线程调用。  |
 
 当采用callback作为异步回调时，可以在callback中进行下一步处理。当采用Promise对象返回时，可以在Promise对象中类似地处理接口返回值。具体结果码说明见[解除注册结果码](#解除注册结果码)。
 
@@ -219,6 +221,63 @@ export default class EntryAbility extends UIAbility {
     onDestroy() {
         console.log("[Demo] EntryAbility onDestroy");
         errorManager.off("globalUnhandledRejectionDetected", errorFunc);
+    }
+
+    onWindowStageCreate(windowStage: window.WindowStage) {
+        // Main window is created, set main page for this ability
+        console.log("[Demo] EntryAbility onWindowStageCreate");
+
+        windowStage.loadContent("pages/index", (err, data) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+        });
+    }
+
+    onWindowStageDestroy() {
+        // Main window is destroyed, release UI related resources
+        console.log("[Demo] EntryAbility onWindowStageDestroy");
+    }
+
+    onForeground() {
+        // Ability has brought to foreground
+        console.log("[Demo] EntryAbility onForeground");
+    }
+
+    onBackground() {
+        // Ability has back to background
+        console.log("[Demo] EntryAbility onBackground");
+    }
+};
+```
+
+### 主线程监听freeze
+
+```ts
+import { AbilityConstant, errorManager, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import process from '@ohos.process';
+
+// Define freezeCallback
+function freezeCallback() {
+    console.log("freezecallback");
+}
+
+
+let abilityWant: Want;
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        console.log("[Demo] EntryAbility onCreate");
+        errorManager.on("freeze", freezeCallback);
+        abilityWant = want;
+    }
+
+    onDestroy() {
+        console.log("[Demo] EntryAbility onDestroy");
+        errorManager.off("freeze", freezeCallback);
     }
 
     onWindowStageCreate(windowStage: window.WindowStage) {

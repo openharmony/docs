@@ -64,7 +64,7 @@
 | typedef struct [ArkUI_SwiperIndicator](_ark_u_i___native_module.md#arkui_swiperindicator) [ArkUI_SwiperIndicator](_ark_u_i___native_module.md#arkui_swiperindicator) | 定义 Swiper 组件的导航指示器风格。  | 
 | typedef struct [ArkUI_StyledString_Descriptor](_ark_u_i___native_module.md#arkui_styledstring_descriptor) [ArkUI_StyledString_Descriptor](_ark_u_i___native_module.md#arkui_styledstring_descriptor) | 定义文本组件支持的属性字符串的数据对象。  | 
 | typedef struct [ArkUI_SnapshotOptions ](_ark_u_i___node_component_snapshot.md#ArkUI_SnapshotOptions) [ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) | 组件截图参数。  | 
-
+| typedef struct [ArkUI_VisibleAreaEventOptions ](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) [ArkUI_VisibleAreaEventOptions](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) | 可见区域变化监听的参数。| 
 
 ### 枚举
 
@@ -359,3 +359,9 @@
 | ArkUI_SnapshotOptions* [OH_ArkUI_CreateSnapshotOptions](_ark_u_i___node_component_snapshot.md#OH_ArkUI_CreateSnapshotOptions) () |  创建快照选项。  | 
 | void [OH_ArkUI_DestroySnapshotOptions](_ark_u_i___node_component_snapshot.md#OH_ArkUI_DestroySnapshotOptions) ([ArkUI_SnapshotOptions](_ark_u_i___node_component_snapshot#ArkUI_SnapshotOptions)* snapshotOptions) | 销毁快照选项。  | 
 | int32_t [OH_ArkUI_ActiveChildrenInfo_GetCount](_ark_u_i___node_component_snapshot.md#OH_ArkUI_SnapshotOptions_SetScale) ([ArkUI_SnapshotOptions](_ark_u_i___node_component_snapshot#ArkUI_SnapshotOptions)* snapshotOptions, float scale) | 设置快照选项的缩放比例。  | 
+| [ArkUI_VisibleAreaEventOptions](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) \* [OH_ArkUI_VisibleAreaEventOptions_Create](_ark_u_i___native_module.md#oh_arkui_visibleareaeventoptions_create) (void) | 创建可见区域变化监听的参数。  | 
+| void [OH_ArkUI_VisibleAreaEventOptions_Dispose](_ark_u_i___native_module.md#oh_arkui_visibleareaeventoptions_dispose) (ArkUI_VisibleAreaEventOptions \*option) | 销毁可见区域变化监听的参数。  | 
+| int32_t [OH_ArkUI_VisibleAreaEventOptions_SetRatios](_ark_u_i___native_module.md#oh_arkui_visibleareaeventoptions_setratios) ([ArkUI_VisibleAreaEventOptions](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) \*option, float\* value, int32_t size) | 设置阈值数组。  | 
+| int32_t [OH_ArkUI_VisibleAreaEventOptions_SetExpectedUpdateInterval](_ark_u_i___native_module.md#oh_arkui_visibleareaeventoptions_setexpectedupdateinterval) ([ArkUI_VisibleAreaEventOptions](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) \*option, int32_t value) | 设置预期更新间隔，单位为ms。定义了开发者期望的更新间隔。 |
+| int32_t [OH_ArkUI_VisibleAreaEventOptions_GetRatios](_ark_u_i___native_module.md#oh_arkui_visibleareaeventoptions_getratios) ([ArkUI_VisibleAreaEventOptions](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) \*option, float\* value, int32_t\* size) | 获取阈值数组。  | 
+| int32_t [OH_ArkUI_VisibleAreaEventOptions_GetExpectedUpdateInterval](_ark_u_i___native_module.md#oh_arkui_visibleareaeventoptions_getexpectedupdateinterval) ([ArkUI_VisibleAreaEventOptions](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) \*option,) |  获取预期更新间隔。 | 

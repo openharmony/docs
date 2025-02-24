@@ -19,7 +19,7 @@ import { DownloadFileButton } from '@kit.ArkUI'
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)。
+支持[通用属性](ts-component-general-attributes.md)。
 
 ## DownloadFileButton
 
@@ -31,10 +31,10 @@ import { DownloadFileButton } from '@kit.ArkUI'
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
-| 名称           | 类型                                                         | 必填 | 装饰器类型 | 说明                             |
-| -------------- | ------------------------------------------------------------ | ---- | ---------- | -------------------------------- |
-| contentOptions | [DownloadContentOptions](#downloadcontentoptions) | 否   | @State     | 创建包含指定元素内容的下载按钮。 |
-| styleOptions   | [DownloadStyleOptions](#downloadstyleoptions) | 否   | @State     | 创建包含指定元素样式的下载按钮。 |
+| 名称           | 类型                                              | 必填 | 装饰器类型 | 说明                             |
+| -------------- | ------------------------------------------------- | ---- | ---------- | -------------------------------- |
+| contentOptions | [DownloadContentOptions](#downloadcontentoptions) | 是   | @State     | 创建包含指定元素内容的下载按钮。 |
+| styleOptions   | [DownloadStyleOptions](#downloadstyleoptions)     | 是   | @State     | 创建包含指定元素样式的下载按钮。 |
 
 ## DownloadContentOptions
 
@@ -120,7 +120,7 @@ import { DownloadFileButton } from '@kit.ArkUI'
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](ts-component-general-events.md)。
 
 ##  示例
 

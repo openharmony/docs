@@ -768,6 +768,10 @@ struct Index {
 
 ## 焦点样式
 
+> **说明：**
+>
+> 最终绘制焦点态的组件的[zIndex](../reference/apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex)默认会被抬升至INT_MAX，如果该组件已经配置了zIndex，则不做zIndex调整。该组件不再绘制焦点态时，例如组件失焦或是退出走焦态，zIndex恢复为默认层级。
+>
 
 ```ts
 focusBox(style: FocusBoxStyle)
@@ -971,16 +975,16 @@ tabIndex配置在容器上时，如果容器中的所有组件都没有获焦过
 struct TabIndexExample2 {
   build() {
     Column() {
-      Button('Focus Button1')
+      Button('Button1')
         .width(140)
         .height(45)
         .margin(5).tabIndex(1)
       Column() {
-        Button('Button1')
+        Button('Button2')
           .width(140)
           .height(45)
           .margin(5)
-        Button('Button2')
+        Button('Button3')
           .width(140)
           .height(45)
           .margin(5)

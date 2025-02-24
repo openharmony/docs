@@ -23,13 +23,13 @@
 
 时域分层码流可以在GOP内继续细分为独立的一个或多个时域图像组（Temporal Group Of Pictures, 简称TGOP），每一个TGOP由一个基本层和后续的一个或多个增强层组合而成，如上述4层时域分层码流结构中的帧0到帧7是一个TGOP。
 
-- **基本层（Base Layer, 简称BL）：** 是GOP中的最底层（L0）。在时域分层中，该层用最低帧率进行编码。
+- **基本层（Base Layer，简称BL）：** 是GOP中的最底层（L0）。在时域分层中，该层用最低帧率进行编码。
 
-- **增强层（Enhance Layer简称EL）：** 是BL之上的层级，由低到高可以分为多层（L1,L2,L3）。在时域分层中，最低层的EL依据BL获得的编码信息，进一步编码帧率更高的层级，更高层的EL会依据BL或低层EL，来编码比低层更高帧率的视频。
+- **增强层（Enhance Layer，简称EL）：** 是BL之上的层级，由低到高可以分为多层（L1、L2、L3）。在时域分层中，最低层的EL依据BL获得的编码信息，进一步编码帧率更高的层级，更高层的EL会依据BL或低层EL，来编码比低层更高帧率的视频。
 
 ### 如何实现时域分层码流结构
 
-时域分层码流结构的实现是依靠参考关系逐帧指定实现的，参考帧按在解码图像缓存区（Decoded Picture Buffer，简称DPB）驻留的时长分为短期参考帧和长期参考帧。
+时域分层码流结构的实现是依靠参考关系逐帧指定实现的，参考帧根据在解码图像缓存区（Decoded Picture Buffer，简称DPB）驻留的时长分为短期参考帧和长期参考帧。
 
 - **短期参考帧（Short-Term Reference，简称STR）：** 是不能长期驻留在DPB中的参考帧，更新方式是先进先出，如果DPB满，旧的短期参考帧会被移出DPB。
 
@@ -56,7 +56,7 @@
 
   参考帧仅在GOP内有效，刷新I帧后，DPB随之清空，参考帧也会被清空，因此参考关系的指定受I帧刷新位置影响很大。
 
-  使能时域分层能力后，若需要通过`OH_MD_KEY_REQUEST_I_FRAME`临时请求I帧，应使用生效时机确定的随帧通路配置方式准确告知框架I帧刷新位置以避免参考关系错乱，参考随帧通路配置相关指导，避免使用生效时机不确定的`OH_VideoEncoder_SetParameter`方式。
+  使能时域分层能力后，若需要通过`OH_MD_KEY_REQUEST_I_FRAME`临时请求I帧，应使用生效时机确定的随帧通路配置方式准确告知框架I帧刷新位置以避免参考关系错乱，参考随帧通路配置相关指导，避免使用生效时机不确定的`OH_VideoEncoder_SetParameter`方式。详情请参考[视频编码Surface模式](video-encoding.md#surface模式)"步骤-4：调用OH_VideoEncoder_RegisterParameterCallback()在Configur接口之前注册随帧通路回调。"。
 
 - 支持`OH_AVBuffer`回调通路，不支持`OH_AVMemory`回调通路。
 
@@ -86,7 +86,9 @@
 
 - **全局时域分层编码TGOP参考模式参数：** 可选配置，影响非关键帧参考模式。包括相邻参考`ADJACENT_REFERENCE`、跨帧参考`JUMP_REFERENCE` 和均匀分层`UNIFORMLY_SCALED_REFERENCE`。相邻参考相对跨帧参考拥有更好的压缩性能，跨帧参考相对相邻参考拥有更好的丢帧自由度，均匀分层模式丢帧后的码流分布更均匀，如不配置则使用默认值。
 
-    > **说明**：均匀分层模式当前只支持TGOP为2或4。
+    > **说明：**
+    > 均匀分层模式当前只支持TGOP为2或4。
+    >
 
 使用举例1：TGOP=4，相邻参考模式。
 
@@ -102,14 +104,14 @@
 
 ### 开发指导
 
-基础编码流程请参考[视频编码开发指导](video-encoding.md)，下面仅针与基础视频编码过程中存在的区别做具体说明。
+基础编码流程请参考[视频编码开发指导](video-encoding.md)，下面仅针对与基础视频编码过程中存在的区别做具体说明。
 
 1. 在初始阶段创建编码实例时，校验当前视频编码器是否支持全局时域可分层特性。
 
     ```c++
-    // 1.1 获取对应视频编码器能力句柄，此处以H.264为例
+    // 1.1 获取对应视频编码器能力实例，此处以H.264为例。
     OH_AVCapability *cap = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
-    // 1.2 通过特性能力查询接口校验是否支持全局时域可分层特性
+    // 1.2 通过特性能力查询接口校验是否支持全局时域可分层特性。
     bool isSupported = OH_AVCapability_IsFeatureSupported(cap, VIDEO_ENCODER_TEMPORAL_SCALABILITY);
     ```
 
@@ -119,19 +121,19 @@
 
     ```c++
     constexpr int32_t TGOP_SIZE = 3; 
-    // 2.1 创建配置用临时AVFormat
+    // 2.1 创建配置用临时AVFormat。
     OH_AVFormat *format = OH_AVFormat_Create();
-    // 2.2 填充使能参数键值对
+    // 2.2 填充使能参数键值对。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY, 1);
-    // 2.3 (可选)填充TGOP大小和TGOP内参考模式键值对
+    // 2.3 (可选)填充TGOP大小和TGOP内参考模式键值对。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE, TGOP_SIZE);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE, ADJACENT_REFERENCE);
-    // 2.4 参数配置
+    // 2.4 参数配置。
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
-    // 2.5 配置完成后销毁临时AVFormat
+    // 2.5 配置完成后销毁临时AVFormat。
     OH_AVFormat_Destroy(format);
     ```
 
@@ -143,23 +145,23 @@
 
     ```c++
     uint32_t outPoc = 0;
-    // 通过输出回调中有效帧数，获取TGOP内相对位置，对照配置确认层级
+    // 通过输出回调中有效帧数，获取TGOP内相对位置，对照配置确认层级。
     static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
-        // 注：若涉及复杂处理流程，建议相关
+        // 注：若涉及复杂处理流程，建议相关。
         struct OH_AVCodecBufferAttr attr;
         (void)buffer->GetBufferAttr(attr);
-        // 刷新I帧后POC归零
+        // 刷新I帧后POC归零。
         if (attr.flags & AVCODEC_BUFFER_FLAG_KEY_FRAME) {
             outPoc = 0;
         }
-        // 没有帧码流只有XPS的输出需要跳过
+        // 只有XPS的输出需要跳过。
         if (attr.flags != AVCODEC_BUFFER_FLAG_CODEC_DATA) {
             int32_t tGopInner = outPoc % TGOP_SIZE;
             if (tGopInner == 0) {
-                // 时域关键帧，后续传输、解码流程不可丢弃
+                // 时域关键帧，后续传输、解码流程不可丢弃。
             } else {
-                // 时域非关键帧，后续传输、解码流程可以丢弃
+                // 时域非关键帧，后续传输、解码流程可以丢弃。
             }
             outPoc++;
         }
@@ -182,7 +184,7 @@
 | OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR  | 当前帧标记为LTR帧 |
 | OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR   | 当前帧参考的LTR帧的POC号  |
 
-- **长期参考帧个数参数：** 在配置阶段配置，应小于等于查询到的最大支持数目，查询方式详见开发指导。
+- **长期参考帧个数参数：** 在配置阶段配置，应小于等于查询到的最大支持数目，查询方式详见下文开发指导“步骤-3”。
 - **当前帧标记为LTR帧：** BL层标记为LTR，被跳跃参考的EL层也标记为LTR。
 - **当前帧参考的LTR帧的POC号：** 如当前帧需要跳跃参考前面已被标记为LTR帧的POC号。
 
@@ -195,7 +197,7 @@
     | 配置\POC | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 |
     | -------- |---|---|---|---|---|---|---|---|---|---|----|----|----|----|----|----|----|
     | MARK_LTR | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0  | 0  | 1  | 0  | 0  | 0  | 1  |
-    | USE_LTR  | \ | \ | 0 | \ | 0 | \ | 4 | \ | 0 | \ | 8  | \  | 8  | \  | 12 | 0  | 8  |
+    | USE_LTR  | \ | \ | 0 | \ | 0 | \ | 4 | \ | 0 | \ | 8  | \  | 8  | \  | 12 | \  | 8  |
 
 ### 开发指导
 
@@ -207,16 +209,16 @@
     constexpr int32_t NEEDED_LTR_COUNT = 5;
     bool isSupported = false;
     int32_t supportedLTRCount = 0;
-    // 1.1 获取对应编码器能力句柄，此处以H.264为例
+    // 1.1 获取对应编码器能力实例，此处以H.264为例。
     OH_AVCapability *cap = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
-    // 1.2 通过特性能力查询接口校验是否支持LTR特性
+    // 1.2 通过特性能力查询接口校验是否支持LTR特性。
     isSupported = OH_AVCapability_IsFeatureSupported(cap, VIDEO_ENCODER_LONG_TERM_REFERENCE);
-    // 1.3 确定支持的LTR数目
+    // 1.3 确定支持的LTR数目。
     if (isSupported) {
         OH_AVFormat *properties = OH_AVCapability_GetFeatureProperties(cap, VIDEO_ENCODER_LONG_TERM_REFERENCE);
         OH_AVFormat_GetIntValue(properties, OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT, &supportedLTRCount);
         OH_AVFormat_Destroy(properties);
-        // 1.4 判断LTR是否满足结构需求
+        // 1.4 判断LTR是否满足结构需求。
         isSupported = supportedLTRCount >= NEEDED_LTR_COUNT;
     }
     ```
@@ -228,35 +230,35 @@
     Buffer输入模式示例：
 
     ```c++
-    // 2.1 编码输入回调OH_AVCodecOnNeedInputBuffer实现
+    // 2.1 编码输入回调OH_AVCodecOnNeedInputBuffer实现。
     static void OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
-        // 输入帧buffer对应的index，送入InIndexQueue队列
-        // 输入帧的数据buffer送入InBufferQueue队列
+        // 输入帧buffer对应的index，送入InIndexQueue队列。
+        // 输入帧的数据buffer送入InBufferQueue队列。
         // 数据处理，请参考:
-        // - 写入编码码流
-        // - 通知编码器码流结束
-        // - 随帧参数写入
+        // - 写入编码码流。
+        // - 通知编码器码流结束。
+        // - 随帧参数写入。
         OH_AVFormat *format = OH_AVBuffer_GetParameter(buffer);
         OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR, 1);
         OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR, 4);
         OH_AVBuffer_SetParameter(buffer, format);
         OH_AVFormat_Destroy(format);
-        // 通知编码器buffer输入完成
+        // 通知编码器buffer输入完成。
         OH_VideoEncoder_PushInputBuffer(codec, index);
     }
 
-    // 2.2 编码输出回调OH_AVCodecOnNewOutputBuffer实现
+    // 2.2 编码输出回调OH_AVCodecOnNewOutputBuffer实现。
     static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
-        // 完成帧buffer对应的index，送入outIndexQueue队列
-        // 完成帧的数据buffer送入outBufferQueue队列
+        // 完成帧buffer对应的index，送入outIndexQueue队列。
+        // 完成帧的数据buffer送入outBufferQueue队列。
         // 数据处理，请参考:
-        // - 释放编码帧
-        // - 记录POC和LTR生效情况
+        // - 释放编码帧。
+        // - 记录POC和LTR生效情况。
     }
 
-    // 2.3 注册数据回调
+    // 2.3 注册数据回调。
     OH_AVCodecCallback cb;
     cb.onNeedInputBuffer = OnNeedInputBuffer;
     cb.onNewOutputBuffer = OnNewOutputBuffer;
@@ -266,36 +268,36 @@
     Surface输入模式示例：
 
     ```c++
-    // 2.1 编码输入参数回调OH_VideoEncoder_OnNeedInputParameter实现
+    // 2.1 编码输入参数回调OH_VideoEncoder_OnNeedInputParameter实现。
     static void OnNeedInputParameter(OH_AVCodec *codec, uint32_t index, OH_AVFormat *parameter, void *userData)
     {
-        // 输入帧buffer对应的index，送入InIndexQueue队列
-        // 输入帧的数据avformat送入InFormatQueue队列
+        // 输入帧buffer对应的index，送入InIndexQueue队列。
+        // 输入帧的数据avformat送入InFormatQueue队列。
         // 数据处理，请参考:
-        // - 写入编码码流
-        // - 通知编码器码流结束
-        // - 随帧参数写入
+        // - 写入编码码流。
+        // - 通知编码器码流结束。
+        // - 随帧参数写入。
         OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR, 1);
         OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR, 4);
-        // 通知编码器随帧参数配置输入完成
+        // 通知编码器随帧参数配置输入完成。
         OH_VideoEncoder_PushInputParameter(codec, index);
     }
 
     // 2.2 编码输出回调OH_AVCodecOnNewOutputBuffer实现
     static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
-        // 完成帧buffer对应的index，送入outIndexQueue队列
-        // 完成帧的数据buffer送入outBufferQueue队列
+        // 完成帧buffer对应的index，送入outIndexQueue队列。
+        // 完成帧的数据buffer送入outBufferQueue队列。
         // 数据处理，请参考:
-        // - 释放编码帧
-        // - 记录POC和LTR生效情况
+        // - 释放编码帧。
+        // - 记录POC和LTR生效情况。
     }
 
-    // 2.3 注册数据回调
+    // 2.3 注册数据回调。
     OH_AVCodecCallback cb;
     cb.onNewOutputBuffer = OnNewOutputBuffer;
     OH_VideoEncoder_RegisterCallback(codec, cb, nullptr);
-    // 2.4 注册随帧参数回调
+    // 2.4 注册随帧参数回调。
     OH_VideoEncoder_OnNeedInputParameter inParaCb = OnNeedInputParameter;
     OH_VideoEncoder_RegisterParameterCallback(codec, inParaCb, nullptr);
     ```
@@ -304,16 +306,16 @@
 
     ```c++
     constexpr int32_t TGOP_SIZE = 3;
-    // 3.1 创建配置用临时AVFormat
+    // 3.1 创建配置用临时AVFormat。
     OH_AVFormat *format = OH_AVFormat_Create();
-    // 3.2 填充使能LTR个数键值对
+    // 3.2 填充使能LTR个数键值对。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT, NEEDED_LTR_COUNT);
-    // 3.3 参数配置
+    // 3.3 参数配置。
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
-    // 3.4 配置完成后销毁临时AVFormat
+    // 3.4 配置完成后销毁临时AVFormat。
     OH_AVFormat_Destroy(format);
     ```
 
@@ -321,7 +323,7 @@
 
     同全局时域分层特性。
 
-    因在输入轮转有配置LTR参数，也可在输入轮转中中记录，输出轮转中找到对应的输入参数。
+    因在输入轮转有配置LTR参数，也可在输入轮转中记录，输出轮转中找到对应的输入参数。
 
 5. （可选）在运行阶段输出轮转中，使用步骤4获取的时域层级信息，自适应传输或自适应解码。
 

@@ -19,7 +19,7 @@ import { FenceExtensionAbility } from '@kit.LocationKit';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [FenceExtensionContext](js-apis-app-ability-FenceExtensionContext-sys.md) | 是 | 否 | 围栏服务上下文。 |
+| context | [FenceExtensionContext](js-apis-app-ability-FenceExtensionContext.md) | 是 | 否 | 围栏服务上下文。 |
 
 ## FenceExtensionAbility.onFenceStatusChange
 

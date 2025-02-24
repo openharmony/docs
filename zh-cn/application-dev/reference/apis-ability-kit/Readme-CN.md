@@ -63,6 +63,7 @@
     - [@ohos.app.ability.appRecovery (appRecovery)](js-apis-app-ability-appRecovery.md)
     - [@ohos.app.ability.Configuration (Configuration)](js-apis-app-ability-configuration.md)
     - [@ohos.app.ability.ConfigurationConstant (ConfigurationConstant)](js-apis-app-ability-configurationConstant.md)
+    - [@ohos.app.ability.continueManager (continueManager)](js-apis-app-ability-continueManager.md)
     - [@ohos.app.ability.dataUriUtils (DataUriUtils模块)](js-apis-app-ability-dataUriUtils.md)
     - [@ohos.app.ability.dialogRequest (dialogRequest模块)](js-apis-app-ability-dialogRequest.md)
     - [@ohos.app.ability.errorManager (ErrorManager)](js-apis-app-ability-errorManager.md)
@@ -158,6 +159,7 @@
       - [ContinueCallback(系统接口)](js-apis-inner-application-continueCallback-sys.md)
       - [ContinueDeviceInfo(系统接口)](js-apis-inner-application-continueDeviceInfo-sys.md)
       - [ContinueMissionInfo(系统接口)](js-apis-inner-application-continueMissionInfo-sys.md)
+      - [CustomData (系统接口)](js-apis-inner-application-customData-sys.md)
       - [ExtensionRunningInfo(系统接口)](js-apis-inner-application-extensionRunningInfo-sys.md)
       - [MissionCallbacks(系统接口)](js-apis-inner-application-missionCallbacks-sys.md)
       - [MissionDeviceInfo(系统接口)](js-apis-inner-application-missionDeviceInfo-sys.md)
@@ -165,8 +167,11 @@
       - [MissionListener(系统接口)](js-apis-inner-application-missionListener-sys.md)
       - [MissionParameter(系统接口)](js-apis-inner-application-missionParameter-sys.md)
       - [MissionSnapshot(系统接口)](js-apis-inner-application-missionSnapshot-sys.md)
-      - [MissionSnapshot(系统接口)](js-apis-inner-application-pageNodeInfo-sys.md)
+      - [MultiAppMode (系统接口)](js-apis-inner-application-multiAppMode-sys.md)
       - [PageNodeInfo(系统接口)](js-apis-inner-application-pageNodeInfo-sys.md)
+      - [RunningAppClone (系统接口)](js-apis-inner-application-runningAppClone-sys.md)
+      - [RunningMultiAppInfo (系统接口)](js-apis-inner-application-runningMultiAppInfo-sys.md)
+      - [RunningMultiInstanceInfo (系统接口)](js-apis-inner-application-runningMultiInstanceInfo-sys.md)
       - [ServiceExtensionContext(系统接口)](js-apis-inner-application-serviceExtensionContext-sys.md)
       - [UIServiceExtensionContext(系统接口)](js-apis-inner-application-uiserviceExtensionContext-sys.md)
       - [UIServiceHostProxy(系统接口)](js-apis-inner-application-uiservicehostproxy-sys.md)
@@ -208,6 +213,9 @@
     - wantAgent<!--wantagent-->
       - [triggerInfo](js-apis-inner-wantAgent-triggerInfo.md)
       - [wantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)
+      <!--Del-->
+      - [TriggerInfo(系统接口)](js-apis-inner-wantAgent-triggerInfo-sys.md)
+      <!--DelEnd-->
   - 已停止维护的接口<!--ability-arkts-dep-->
     - [@ohos.ability.dataUriUtils (DataUriUtils模块)](js-apis-ability-dataUriUtils.md)
     - [@ohos.ability.errorCode (ErrorCode)](js-apis-ability-errorCode.md)

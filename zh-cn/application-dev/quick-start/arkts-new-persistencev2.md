@@ -1,25 +1,25 @@
 # PersistenceV2: 持久化储存UI状态
 
-为了增强状态管理框架对持久化存储UI的能力，开发者可以使用PersistenceV2存储持久化的数据。AppStorageV2是运行时内存，但是在应用退出再次启动后，依然能保存选定的结果，是应用开发中十分常见的现象，这就需要用到PersistenceV2。
+为了增强状态管理框架对持久化存储UI的能力，开发者可以使用PersistenceV2存储持久化的数据。
 
 PersistenceV2是应用程序中的可选单例对象。此对象的作用是持久化存储UI相关的数据，以确保这些属性在应用程序重新启动时的值与应用程序关闭时的值相同。
 
 PersistenceV2提供状态变量持久化能力，开发者可以通过connect或者globalConnect绑定同一个key，在状态变量变换和应用冷启动时，实现持久化能力。
 
-在阅读本文当前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)，[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)，配合阅读：[PersistentV2-API文档](../reference/apis-arkui/js-apis-StateManagement.md)。
+在阅读本文档前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)，[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)，配合阅读：[PersistentV2-API文档](../reference/apis-arkui/js-apis-StateManagement.md#persistencev2)。
 
 >**说明：**
 >
 >PersistenceV2从API version 12开始支持。
 >
->globalConnect从API version 16开始支持，行为和connect保持一致，唯一的区别为connect的底层存储路径为module级别的路径，而globalConnect的底层存储路径为应用级别，详细区别见使用场景[在不同的module中使用connect和globalConnect](arkts-new-persistencev2.md#在不同的module中使用connect和globalConnect)。
+>globalConnect从API version 16开始支持，行为和connect保持一致，唯一的区别为connect的底层存储路径为module级别的路径，而globalConnect的底层存储路径为应用级别，详细区别见使用场景[在不同的module中使用connect和globalConnect](#在不同的module中使用connect和globalconnect)。
 
 
 ## 概述
 
 PersistenceV2是在应用UI启动时会被创建的单例。它的目的是为了提供应用状态数据的中心存储，这些状态数据在应用级别都是可访问的。数据通过唯一的键字符串值访问。不同于AppStorageV2，PersistenceV2还将最新数据储存在设备磁盘上（持久化）。这意味着，应用退出再次启动后，依然能保存选定的结果。
 
-对于与PersistenceV2关联的[\@ObservedV2](arkts-new-observedV2-and-trace.md)对象，该对象的[\@Trace](arkts-new-observedV2-and-trace.md)属性的变化，会触发**整个关联对象的自动持久化**；非[\@Trace](arkts-new-observedV2-and-trace.md)属性的变化则不会，如有必要，可调用PersistenceV2 API手动持久化。
+对于与PersistenceV2关联的[\@ObservedV2](./arkts-new-observedV2-and-trace.md)对象，该对象的[\@Trace](./arkts-new-observedV2-and-trace.md)属性的变化，会触发**整个关联对象的自动持久化**；非[\@Trace](./arkts-new-observedV2-and-trace.md)属性的变化则不会，如有必要，可调用PersistenceV2 API手动持久化。
 
 PersistenceV2可以和UI组件同步，且可以在应用业务逻辑中被访问。
 
@@ -52,7 +52,7 @@ static connect<T extends object>(
 >
 >4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的。
 >
->5、关联[\@Observed](arkts-observed-and-objectlink.md)对象时，由于该类型的name属性未定义，需要指定key或者自定义name属性。
+>5、关联[\@Observed](./arkts-observed-and-objectlink.md)对象时，由于该类型的name属性未定义，需要指定key或者自定义name属性。
 >
 >6、数据存储路径为module级别，即哪个module调用了connect，数据副本存入对应module的持久化文件中。如果多个module使用相同的key，则数据为最先使用connect的module，并且PersistenceV2中的数据也会存入最先使用connect的module里。
 >
@@ -99,7 +99,7 @@ class ConnectOptions<T extends object> {
 >
 > 4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的。
 >
-> 5、关联[\@Observed](arkts-observed-and-objectlink.md)对象时，因为该类型的name属性未定义，需要指定key或者自定义name属性。
+> 5、关联[\@Observed](./arkts-observed-and-objectlink.md)对象时，因为该类型的name属性未定义，需要指定key或者自定义name属性。
 >
 > 6、数据的存储为应用级别的路径，不同module使用相同的key和相同的加密分区进行globalConnect，存储的数据副本应用仅有一份。
 >
@@ -152,7 +152,7 @@ static save<T>(keyOrType: string | TypeConstructorWithArgs<T>): void;
 
 >**说明：**
 >
->由于非[\@Trace](arkts-new-observedV2-and-trace.md)的数据改变不会触发PersistenceV2的自动持久化，如有必要，可调用该接口持久化对应key的数据。
+>由于非[\@Trace](./arkts-new-observedV2-and-trace.md)的数据改变不会触发PersistenceV2的自动持久化，如有必要，可调用该接口持久化对应key的数据。
 >
 >手动持久化当前内存中不处于connect状态的key是无意义的。
 
@@ -187,7 +187,7 @@ static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
 
 6、不支持循环引用的对象。
 
-7、只有[\@Trace](arkts-new-observedV2-and-trace.md)的数据改变会触发自动持久化，如V1状态变量、[\@Observed](arkts-observed-and-objectlink.md)对象、普通数据的改变不会触发持久化。
+7、只有[\@Trace](./arkts-new-observedV2-and-trace.md)的数据改变会触发自动持久化，如V1状态变量、[\@Observed](./arkts-observed-and-objectlink.md)对象、普通数据的改变不会触发持久化。
 
 8、不宜大量持久化数据，可能会导致页面卡顿。
 
@@ -197,8 +197,29 @@ static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
 
 ### 在两个页面之间存储数据
 
+数据页面
+```ts
+// Sample.ets
+import { Type } from '@kit.ArkUI';
+
+// 数据中心
+@ObservedV2
+class SampleChild {
+  @Trace p1: number = 0;
+  p2: number = 10;
+}
+
+@ObservedV2
+export class Sample {
+  // 对于复杂对象需要@Type修饰，确保序列化成功
+  @Type(SampleChild)
+  @Trace f: SampleChild = new SampleChild();
+}
+```
+
 页面1
 ```ts
+// Page1.ets
 import { PersistenceV2 } from '@kit.ArkUI';
 import { Sample } from '../Sample';
 
@@ -266,6 +287,7 @@ struct Page1 {
 
 页面2
 ```ts
+// Page2.ets
 import { PersistenceV2 } from '@kit.ArkUI';
 import { Sample } from '../Sample';
 
@@ -328,25 +350,6 @@ struct Page2 {
       }
     }
   ]
-}
-```
-
-数据页面
-```ts
-import { Type } from '@kit.ArkUI';
-
-// 数据中心
-@ObservedV2
-class SampleChild {
-  @Trace p1: number = 0;
-  p2: number = 10;
-}
-
-@ObservedV2
-export class Sample {
-  // 对于复杂对象需要@Type修饰，确保序列化成功
-  @Type(SampleChild)
-  @Trace f: SampleChild = new SampleChild();
 }
 ```
 

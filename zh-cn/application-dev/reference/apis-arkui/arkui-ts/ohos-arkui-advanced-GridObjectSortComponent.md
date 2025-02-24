@@ -21,7 +21,7 @@ import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortCom
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)
+支持[通用属性](ts-component-general-attributes.md)
 
 ## GridObjectSortComponent
 
@@ -83,7 +83,7 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 ##  事件
 
-不支持[通用事件](ts-universal-events-click.md)。
+不支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 网格对象的编辑排序组件基础用法，涉及对组件配置信息初始化，数据初始化，保存、取消方法的使用。

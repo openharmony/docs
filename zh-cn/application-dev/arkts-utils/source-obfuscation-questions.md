@@ -9,7 +9,7 @@
     2. [-enable-property-obfuscation](source-obfuscation.md#-enable-property-obfuscation)为属性混淆开关，配置白名单的主要场景为网络数据访问、json字段访问、动态属性访问、调用so库接口等不能混淆场景，需要使用[-keep-property-name](source-obfuscation.md#-keep-property-name)来保留指定的属性名称。
     3. [-enable-export-obfuscation](source-obfuscation.md#-enable-export-obfuscation)为导出名称混淆，一般与`-enable-toplevel-obfuscation`和`-enable-property-obfuscation`选项配合使用；配置白名单的主要场景为模块对外接口不能混淆，需要使用[-keep-global-name](source-obfuscation.md#-keep-global-name)来指定保留导出/导入名称。
     4. [-enable-filename-obfuscation](source-obfuscation.md#-enable-filename-obfuscation)为文件名混淆，配置白名单的主要场景为动态import或运行时直接加载的文件路径，需要使用[-keep-file-name](source-obfuscation.md#-keep-file-name)来保留这些文件路径及名称。
-3. 参考[常见报错案例](#常见报错案例)，若是相似场景可参考对应的解决方法快速解决。
+3. 参考下文常见报错案例，若是相似场景可参考对应的解决方法快速解决。
 4. 若常见案例中未找到相似案例，建议依据各项配置功能正向定位（若不需要相应功能，可删除对应配置项）。
 5. 应用运行时崩溃分析方法：
     1.打开应用运行日志或者点击DevEco Studio中出现的Crash弹窗，找到运行时崩溃栈。
@@ -42,39 +42,25 @@
 -compact
 ```
 
-## 常见报错案例
+## 属性混淆的问题
 
-### 开启-enable-property-obfuscation选项可能出现的问题
+### 数据库相关的字段，开启属性混淆时报错
 
-**案例一：报错内容为 Cannot read property 'xxx' of undefined**
-
-```
-// 混淆前
-const jsonData = ('./1.json')
-let jsonStr = JSON.parse(jsonData)
-let jsonObj = jsonStr.jsonProperty
-
-// 混淆后
-const jsonData = ('./1.json')
-let jsonStr = JSON.parse(jsonData)
-let jsonObj = jsonStr.i
-```
-
-开启属性混淆后，"jsonProperty" 被混淆成随机字符 "i"，但json文件中为原始名称，从而导致值为undefined。
-
-**解决方案：** 使用`-keep-property-name`选项将json文件里的字段配置到白名单。
-
-**案例二：使用了数据库相关的字段，开启属性混淆后，出现报错**
+**问题现象**
 
 报错内容为 `table Account has no column named a23 in 'INSET INTO Account(a23)'`。
 
+**问题原因**
+
 代码里使用了数据库字段，混淆时该SQL语句中字段名称被混淆，但数据库中字段为原始名称，从而导致报错。
 
-**解决方案：** 使用`-keep-property-name`选项将使用到的数据库字段配置到白名单。
+**解决方案** 
 
-**案例三：使用Record<string, Object>作为对象的类型时，该对象里的属性被混淆，导致功能异常**
+使用`-keep-property-name`选项将使用到的数据库字段配置到白名单。
 
-**问题现象：**
+### 使用Record<string, Object>作为对象的类型时，属性被混淆
+
+**问题现象**
 
 `parameters`的类型为`Record<string, Object>`，在开启属性混淆后，`parameters`对象中的属性`linkSource`被混淆，进而导致功能异常。示例如下：
 
@@ -88,7 +74,9 @@ let petalMapWant: Want = {
     linkSource: 'com.other.app'
   }
 }
+```
 
+```
 // 混淆后
 import type Want from "@ohos:app.ability.Want";
 let petalMapWant: Want = {
@@ -100,11 +88,11 @@ let petalMapWant: Want = {
 };
 ```
 
-**问题原因：**
+**问题原因**
 
 在这个示例中，所创建的对象的内容需要传递给系统来加载某个页面，因此对象中的属性名称不能被混淆，否则会造成功能异常。示例中`parameters`的类型为`Record<string, Object>`，这只是一个表示以字符串为键的对象的泛型定义，并没有详细描述其内部结构和属性类型。因此，混淆工具无法识别该对象内部哪些属性不应被混淆，从而可能导致内部属性名`linkSource`被混淆。
 
-**解决方案：**
+**解决方案**
 
 将混淆后会出现问题的属性名配置到属性白名单中，示例如下：
 
@@ -113,142 +101,7 @@ let petalMapWant: Want = {
 linkSource
 ```
 
-### 同时开启-enable-export-obfuscation和-enable-toplevel-obfuscation选项可能出现的问题
-
-**当开启这两个选项时，主模块调用其他模块方法时涉及的方法名称混淆情况如下：**
-
-| 主模块 | 依赖模块 | 导入与导出的名称混淆情况 |
-| ------- | ------- | ----------------------------|
-| HAP/HSP | HSP     | HSP和主模块是独立编译的，混淆后名称会不一致，因此都需要配置白名单 |
-| HAP/HSP | 本地HAR | 本地HAR与主模块一起编译，混淆后名称一致 |
-| HAP/HSP | 三方库  | 三方库中导出的名称及其属性会被收集到白名单，因此导入和导出时都不会被混淆 |
-
-HSP需要将给其他模块用的方法配置到白名单中。因为主模块里也需要配置相同的白名单，所以推荐将HSP配置了白名单的混淆文件(假设名称为hsp-white-list.txt)添加到依赖它的模块的混淆配置项里，即下图files字段里。
-
-![obfuscation-config](figures/obfuscation-config.png)
-
-**案例一：动态导入某个类，类定义的地方被混淆，导入类名时却没有混淆，导致报错**
-
-```
-// 混淆前
-export class Test1 {}
-
-let mytest = (await import('./file')).Test1
-
-// 混淆后
-export class w1 {}
-
-let mytest = (await import('./file')).Test1
-```
-
-导出的类 "Test1" 是一个顶层作用域名，当 "Test1" 被动态使用时，它是一个属性。因为没有开启`-enable-property-obfuscation`选项，所以名称混淆了，但属性没有混淆。
-
-**解决方案：** 使用`-keep-global-name`选项将 "Test1" 配置到白名单。
-
-**案例二：在使用namespace中的方法时，该方法定义的地方被混淆了，但使用的地方却没有被混淆，导致报错**
-
-```
-// 混淆前
-export namespace ns1 {
-  export class person1 {}
-}
-
-import {ns1} from './file1'
-let person1 = new ns1.person1()
-
-// 混淆后
-export namespace a3 {
-  export class b2 {}
-}
-
-import {a3} from './file1'
-let person1 = new a3.person1()
-```
-
-namespace里的 "person1" 属于export元素，当通过 "ns1.person1" 调用时，它被视为一个属性。由于未开`-enable-property-obfuscation`选项，导致在使用时未对其进行混淆。
-
-**解决方案：**
-
-1. 开启`-enable-property-obfuscation`选项。
-2. 将namespace里导出的方法使用`-keep-global-name`选项添加到白名单。
-
-**案例三：使用了`declare global`，混淆后报语法错误**
-
-```
-// 混淆前
-declare global {
-  var age : string
-}
-
-// 混淆后
-declare a2 {
-  var b2 : string
-}
-```
-
-报错内容为 `SyntaxError: Unexpected token`。
-
-**解决方案：** 使用`-keep-global-name`选项将`__global`配置到白名单中。
-
-### 未开启-enable-string-property-obfuscation混淆选项，字符串字面量属性名却被混淆，导致字符串字面量属性名的值为undefined
-
-```
-person["age"] = 22; // 混淆前
-
-person["b"] = 22; // 混淆后
-```
-
-**解决方案：**
-
-1. 确认是否有依赖的HAR开启了字符串属性名混淆，若开启了，则会影响主工程，需将其关闭。
-2. 若不能关闭`-enable-string-property-obfuscation`选项，将属性名配置到白名单中。
-3. 若依赖的HAR未开启字符串属性名混淆，同时SDK版本小于4.1.5.3，请更新SDK。
-
-### 开启-enable-filename-obfuscation选项后，可能会出现的问题
-
-**案例一：报错为 Error Failed to get a resolved OhmUrl for 'D:code/MyApplication/f12/library1/pages/d.ets' imported by 'undefined'**
-
-工程的目录结构如下图所示，模块library1的外层还有目录 "directory"，开启文件名混淆后，"directory" 被混淆为f12，导致路径找不到。
-
-![directory-offuscation](figures/directory-obfuscation.png)
-
-**解决方案：**
-
-1. 如果工程的目录结构和报错内容都相似，请将SDK更新至最低5.0.0.26版本。
-2. 使用`-keep-file-name`将模块外层的目录名 "directory" 配置到白名单中。
-
-**案例二：报错为 Cannot find module 'ets/appability/AppAbility' which is application Entry Point**
-
-由于系统会在应用运行时加载ability文件，用户需要手动配置相应的白名单，防止指定文件被混淆，导致运行失败。
-
-**解决方案：** 使用`-keep-file-name`选项，将`src/main/module.json5`文件中，'srcEntry'字段所对应的路径配置到白名单中。
-
-```
--keep-file-name
-appability
-AppAbility
-```
-
-### 使用-keep-global-name选项配置白名单时，可能会出现的问题
-
-报错内容为 `Cannot read properties of undefined (reading 'has')`。
-
-**解决方案：** 将SDK更新至最低4.1.6.3版本。
-
-### HAP与HSP依赖相同的本地源码HAR模块，可能会出现的问题
-
-* 若开启文件名混淆，会出现以下问题：
-  * 问题一：单例功能异常问题。原因是HAP与HSP独立执行构建与混淆流程，本地源码HAR模块在HAP与HSP的包中可能会出现相同的文件名被混淆成不同文件名的情况。
-  * 问题二：接口调用失败问题。原因是HAP与HSP独立执行构建与混淆流程，本地源码HAR模块在HAP与HSP的包中可能会出现不同的文件名被混淆成相同的文件名的情况。
-* 若开启`-enable-export-obfuscation`和`-enable-toplevel-obfuscation`选项，在应用运行时会出现加载接口失败的问题。
-原因是HAP与HSP独立执行构建与混淆流程，本地源码HAR模块中暴露的接口在HAP与HSP中被混淆成不同的名称。
-
-**解决方案：**
-
-1. 将HAP与HSP共同依赖的本地源码HAR改造为[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section179161312181613)，这样此HAR在被依赖时不会被二次混淆。
-2. 将HAP与HSP共同依赖的本地源码HAR以[release模式构建打包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section19788284410)，这样此HAR在被依赖时，其文件名与对外接口不会被混淆。
-
-### 同时开启-enable-property-obfuscation和-keep选项可能会出现的问题
+### 跨文件调用某属性，该属性在一个文件中保留，在另一个文件中被混淆
 
 **问题现象**
 
@@ -280,8 +133,11 @@ const person: MyInfo = {
     city1: "shanghai"
   }
 }
+```
 
-// 混淆后，file1.ts的代码被保留
+```
+// 混淆后
+// file1.ts的代码被保留
 // file2.ts
 import { MyInfo } from './file1';
 const person: MyInfo = {
@@ -303,7 +159,7 @@ const person: MyInfo = {
 ```
 // file1.ts
 export interface AddressType {
-  city1: string
+  city1: string;
 }
 export interface MyInfo {
   age: number;
@@ -317,3 +173,153 @@ export interface MyInfo {
 -keep-property-name
 city1
 ```
+
+### 未开启-enable-string-property-obfuscation，字符串字面量属性名却被混淆
+
+**问题现象**
+
+```
+// 混淆前
+person["age"] = 22;
+```
+
+```
+// 混淆后
+person["b"] = 22;
+```
+
+**问题原因**
+
+主工程的依赖模块中开启了开启了字符串属性名混淆，其混淆规则导出合并至主模块中。
+
+**解决方案**
+
+方案一：确认是否有依赖的模块开启了字符串属性名混淆，若开启了，则会影响主工程，需将其关闭。   
+方案二：若工程复杂无法找到开启了该混淆配置选项的模块，可以将属性名直接配置到白名单中。
+
+## 导入导出名称不一致的问题
+
+### 动态导入某个类，类的定义处被混淆，调用处未被混淆
+
+**问题现象**
+
+当不开启`-enable-property-obfuscation`，动态导入某个类时，类的定义处被混淆，调用处未被混淆，导致调用处报错。
+
+```
+// 混淆前
+// file1.ts
+export class Test1 {}
+// file2.ts
+let mytest = (await import('./file1')).Test1;
+```
+
+```
+// 混淆后
+// file1.ts
+export class w1 {}
+// file2.ts
+let mytest = (await import('./file1')).Test1;
+```
+
+**问题原因**
+
+导出的类 "Test1" 是一个顶层作用域名，当 "Test1" 被动态使用时，它是一个属性。因为没有开启`-enable-property-obfuscation`选项，所以名称混淆了，但属性没有混淆。
+
+**解决方案**
+
+使用`-keep-global-name`选项将 "Test1" 配置到白名单。
+
+### 导出namespace中的方法时，该方法定义处被混淆，调用处未被混淆
+
+**问题现象**
+
+当未开启`-enable-property-obfuscation`选项，导出namespace中的方法时，该方法定义处被混淆，调用处未被混淆，导致调用处报错。
+
+```
+// 混淆前
+//file1.ts
+export namespace ns1 {
+  export class person1 {}
+}
+//file2.ts
+import {ns1} from './file1';
+let person1 = new ns1.person1();
+```
+
+```
+// 混淆后
+//file1.ts
+export namespace a3 {
+  export class b2 {}
+}
+//file2.ts
+import {a3} from './file1';
+let person1 = new a3.person1();
+```
+
+**问题原因**
+
+namespace里的 "person1" 属于export元素，当通过 "ns1.person1" 调用时，它被视为一个属性。由于未开`-enable-property-obfuscation`选项，导致在使用时未对其进行混淆。
+
+**解决方案**
+
+方案一：开启`-enable-property-obfuscation`选项。   
+方案二：将namespace里导出的方法使用`-keep-global-name`选项添加到白名单。
+
+## 模块间相互依赖的问题
+
+### 主模块依赖HSP模块时，HSP模块导出接口被错误混淆问题
+
+**问题现象**
+
+主模块中，使用的HSP导出接口被错误的混淆。
+
+```
+//混淆前
+import { MyHspClass } from "myhsp";
+new MyHspClass().myHspMethod();
+```
+
+```
+//混淆后
+import { t } from "@normalized:N&myhsp&&myhsp/Index&";
+new t().a1();
+```
+
+**问题原因**
+
+当开启-enable-export-obfuscation和-enable-toplevel-obfuscation时，主模块调用其他模块方法时涉及的方法名称混淆情况如下：
+
+| 主模块 | 依赖模块 | 导入与导出的名称混淆情况 |
+| ------- | ------- | ----------------------------|
+| HAP/HSP | HSP     | HSP和主模块是独立编译的，混淆后名称会不一致，因此都需要配置白名单。 |
+| HAP/HSP | 本地HAR | 本地HAR与主模块一起编译，混淆后名称一致。 |
+| HAP/HSP | 三方库  | 三方库中导出的名称及其属性会被收集到白名单，因此导入和导出时都不会被混淆。 |
+
+**解决方案**
+
+为了让其他模块能够正常调用HSP模块的方法，需要在混淆配置中添加白名单。由于主模块和HSP模块需要保持相同的白名单配置，建议采用以下步骤：
+
+1. 在HSP模块的混淆配置文件（如 hsp-white-list.txt）中添加白名单。
+2. 在依赖HSP的其他模块的混淆配置中，通过files字段引入该配置文件。
+这样可以确保白名单配置的一致性，避免重复维护。配置方法参考下图：
+
+![obfuscation-config](figures/obfuscation-config.png)
+
+### HAP与HSP依赖相同的本地源码HAR模块，单例功能异常/接口调用失败
+
+**问题现象**
+
+* 若开启文件名混淆，会出现以下问题：
+  * 问题一：单例功能异常问题。原因是HAP与HSP独立执行构建与混淆流程，本地源码HAR模块在HAP与HSP的包中可能会出现相同的文件名被混淆成不同文件名的情况。
+  * 问题二：接口调用失败问题。原因是HAP与HSP独立执行构建与混淆流程，本地源码HAR模块在HAP与HSP的包中可能会出现不同的文件名被混淆成相同的文件名的情况。
+* 若开启`-enable-export-obfuscation`和`-enable-toplevel-obfuscation`选项，在应用运行时会出现加载接口失败的问题。
+
+**问题原因**
+
+HAP与HSP独立执行构建与混淆流程，本地源码HAR模块中暴露的接口在HAP与HSP中被混淆成不同的名称。
+
+**解决方案**
+
+方案一：将HAP与HSP共同依赖的本地源码HAR改造为[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section179161312181613)，这样此HAR在被依赖时不会被二次混淆。    
+方案二：将HAP与HSP共同依赖的本地源码HAR以[release模式构建打包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section19788284410)，这样此HAR在被依赖时，其文件名与对外接口不会被混淆。

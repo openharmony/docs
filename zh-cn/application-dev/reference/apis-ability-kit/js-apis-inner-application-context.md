@@ -283,13 +283,13 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## Context.createDisplayContext<sup>16+</sup>
+## Context.createDisplayContext<sup>15+</sup>
 
 createDisplayContext(displayId: number): Context
 
 根据指定的物理屏幕ID创建应用上下文，以便于获取和使用其他带有屏幕信息（包括屏幕密度[ScreenDensity](../apis-localization-kit/js-apis-resource-manager.md#screendensity)和屏幕方向[Direction](../apis-localization-kit/js-apis-resource-manager.md#direction)）的应用上下文。
 
-**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

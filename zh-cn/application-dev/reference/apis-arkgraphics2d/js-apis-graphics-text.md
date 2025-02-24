@@ -2478,7 +2478,7 @@ enumerateCaretOffsets(callback: CaretOffsetsCallback): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -| - | - | - |
-| callback | [CaretOffsetsCallback](#caretoffsetscallback16) | 是 | 用户自定义函数。将文本行中枚举的每个字符偏移量、索引值作为参数的回调方法 |
+| callback | [CaretOffsetsCallback](#caretoffsetscallback16) | 是 | 用户自定义函数。将文本行中枚举的每个字符偏移量、索引值作为参数的回调方法。 |
 
 **错误码：**
 

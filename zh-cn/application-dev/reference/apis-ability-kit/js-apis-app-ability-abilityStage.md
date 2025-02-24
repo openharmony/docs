@@ -230,7 +230,9 @@ onPrepareTermination(): AbilityConstant.PrepareTermination
 
 > **说明：**
 >
-> 仅当应用正常退出时会调用该接口。如果应用被强制结束，则不会调用该接口。
+> - 仅当应用正常退出时会调用该接口。如果应用被强制关闭，则不会调用该接口。
+> 
+> - 当[AbilityStage.onPrepareTerminationAsync](#abilitystageonprepareterminationasync15)实现时，本回调函数将不执行。 
 
 **需要权限**：ohos.permission.PREPARE_APP_TERMINATE
 
@@ -252,6 +254,43 @@ import { AbilityConstant, AbilityStage } from '@kit.AbilityKit';
 class MyAbilityStage extends AbilityStage {
   onPrepareTermination(): AbilityConstant.PrepareTermination {
     console.info('MyAbilityStage.onPrepareTermination is called');
+    return AbilityConstant.PrepareTermination.CANCEL;
+  }
+}
+```
+
+## AbilityStage.onPrepareTerminationAsync<sup>15+<sup>
+
+onPrepareTerminationAsync(): Promise\<AbilityConstant.PrepareTermination>
+
+当应用被用户关闭时调用，可用于询问用户选择立即执行操作还是取消操作。使用Promise异步回调。当前仅在2in1设备上生效。
+
+> **说明：**
+>
+> - 仅当应用正常退出时会调用该接口。如果应用被强制关闭，则不会调用该接口。
+>
+> - 若异步回调内发生crash，按超时处理，执行等待超过10秒未响应，应用将被强制关闭。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 | 
+| -------- | -------- |
+| Promise\<[AbilityConstant.PrepareTermination](js-apis-app-ability-abilityConstant.md#preparetermination15)> | Promise对象，返回用户的选择结果。 | 
+
+**示例：**
+
+```ts
+import { AbilityConstant, AbilityStage } from '@kit.AbilityKit';
+
+class MyAbilityStage extends AbilityStage {
+  async onPrepareTerminationAsync(): Promise<AbilityConstant.PrepareTermination> {
+    await new Promise<AbilityConstant.PrepareTermination>((res, rej) => {
+      setTimeout(res, 3000); // 延时3秒后执行
+    });
     return AbilityConstant.PrepareTermination.CANCEL;
   }
 }

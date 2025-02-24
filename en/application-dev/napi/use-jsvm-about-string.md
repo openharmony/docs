@@ -1,4 +1,4 @@
-# Creating and Obtaining String Values Using JSVM-API
+# Working with Strings Using JSVM-API
 
 ## Introduction
 
@@ -30,7 +30,7 @@ If you are just starting out with JSVM-API, see [JSVM-API Development Process](u
 
 ### OH_JSVM_GetValueStringUtf8
 
-Use **OH_JSVM_GetValueStringUtf8** to convert a JS string into a UTF-8-encoded string.
+Call **OH_JSVM_GetValueStringUtf8** to convert a JS string into a UTF-8-encoded string.
 
 CPP code:
 
@@ -52,12 +52,14 @@ static JSVM_Value GetValueStringUtf8(JSVM_Env env, JSVM_CallbackInfo info)
     status = OH_JSVM_GetValueStringUtf8(env, args[0], buf, length + 1, &length);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetValueStringUtf8 fail");
+        free(buf);
         return nullptr;
     } else {
         OH_LOG_INFO(LOG_APP, "JSVM GetValueStringUtf8 success: %{public}s", buf);
     }
     JSVM_Value result = nullptr;
     OH_JSVM_CreateStringUtf8(env, buf, length, &result);
+    free(buf);
     return result;
 }
 // Register the GetValueStringUtf8 callback.
@@ -65,7 +67,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetValueStringUtf8},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getValueStringUtf8 and associate it with a callback. This allows the GetValueStringUtf8 callback to be called from JS.
+// Alias for the GetValueStringUtf8 method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getValueStringUtf8", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -79,15 +81,13 @@ const char *srcCallNative = R"JS(
 
 **Expected output**
 
-```ts
-JSVM GetValueStringUtf8 success: aaBC+-$%^Hello 123
-```
+![GetValueStringUtf8](figures/jsvm_about_string_GetValueStringUtf8.png)
 
 **NOTE**<br>The call fails if the input parameter **arg** of **getValueStringUtf8()** is not of the string type.
 
 ### OH_JSVM_CreateStringUtf8
 
-Use **OH_JSVM_CreateStringUtf8** to create a JS string from a UTF8-encoded C string.
+Call **OH_JSVM_CreateStringUtf8** to create a JS string from a UTF8-encoded C string.
 
 CPP code:
 
@@ -117,7 +117,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateStringUtf8},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named createStringUtf8 and associate it with a callback. This allows the CreateStringUtf8 callback to be called from JS.
+// Alias for the CreateStringUtf8 method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"createStringUtf8", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -130,14 +130,11 @@ const char *srcCallNative = R"JS(
 
 **Expected output**
 
-
-```ts
-JSVM CreateStringUtf8 success: Hello, World!, successes to create UTF-8 string!
-```
+![CreateStringUtf8](figures/jsvm_about_string_CreateStringUtf8.png)
 
 ### OH_JSVM_GetValueStringUtf16
 
-Use **OH_JSVM_GetValueStringUtf16** to convert a JS string into a UTF-16-encoded string.
+Call **OH_JSVM_GetValueStringUtf16** to convert a JS string into a UTF-16-encoded string.
 
 CPP code:
 
@@ -182,7 +179,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetValueStringUtf16},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getValueStringUtf16 and associate it with a callback. This allows the GetValueStringUtf16 callback to be called from JS.
+// Alias for the GetValueStringUtf16 method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getValueStringUtf16", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -196,15 +193,13 @@ const char *srcCallNative = R"JS(
 
 **Expected output**
 
-```ts
-JSVM GetValueStringUtf16 success: ahello.
-```
+![GetValueStringUtf16](figures/jsvm_about_string_GetValueStringUtf16.png)
 
 **NOTE**<br>The call fails if the input parameter **arg** of **getValueStringUtf16()** is not of the string type.
 
 ### OH_JSVM_CreateStringUtf16
 
-Use **OH_JSVM_GetValueStringUtf16** to create a JS string from a UTF16-encoded C string.
+Call **OH_JSVM_GetValueStringUtf16** to create a JS string from a UTF16-encoded C string.
 
 CPP code:
 
@@ -241,7 +236,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateStringUtf16},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named createStringUtf16 and associate it with a callback. This allows the CreateStringUtf16 callback to be called from JS.
+// Alias for the CreateStringUtf16 method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"createStringUtf16", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -254,13 +249,11 @@ const char *srcCallNative = R"JS(
 
 **Expected output**
 
-```ts
-JSVM CreateStringUtf16 success: Hello, World!, successes to create UTF-16 string!
-```
+![CreateStringUtf16](figures/jsvm_about_string_CreateStringUtf16.png)
 
 ### OH_JSVM_GetValueStringLatin1
 
-Use **OH_JSVM_GetValueStringLatin1** to convert a JS string into an ISO-8859-1-encoded string.
+Call **OH_JSVM_GetValueStringLatin1** to convert a JS string into an ISO-8859-1-encoded string.
 
 CPP code:
 
@@ -295,7 +288,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetValueStringLatin1},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getValueStringLatin1 and associate it with a callback. This allows the GetValueStringLatin1 callback to be called from JS.
+// Alias for the GetValueStringLatin1 method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getValueStringLatin1", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -309,16 +302,14 @@ const char *srcCallNative = R"JS(
 
 **Expected output**
 
-```ts
-// The ISO-8859-1 encoding does not support Chinese characters. If Chinese characters are passed in, garbled characters will be displayed.
-JSVM GetValueStringLatin1 success: - 
-```
+The ISO-8859-1 encoding does not support Chinese characters. If Chinese characters are passed in, garbled characters will be displayed.
+![GetValueStringLatin1](figures/jsvm_about_string_GetValueStringLatin1.png)
 
 **NOTE**<br>The call fails if the input parameter **arg** of **getValueStringLatin1()** is not of the string type.
 
 ### OH_JSVM_CreateStringLatin1
 
-Use **OH_JSVM_CreateStringLatin1** to create a JS string from an ISO-8859-1-encoded C string.
+Call **OH_JSVM_CreateStringLatin1** to create a JS string from an ISO-8859-1-encoded C string.
 
 CPP code:
 
@@ -352,7 +343,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateStringLatin1},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named createStringLatin1 and associate it with a callback. This allows the CreateStringLatin1 callback to be called from JS.
+// Alias for the CreateStringLatin1 method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"createStringLatin1", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -365,7 +356,5 @@ const char *srcCallNative = R"JS(
 
 **Expected output**
 
-```ts
-JSVM CreateStringLatin1 success: Hello, World! éçñ, successes to create Latin1 string!
-```
+![CreateStringLatin1](figures/jsvm_about_string_CreateStringLatin1.png)
 <!--no_check-->

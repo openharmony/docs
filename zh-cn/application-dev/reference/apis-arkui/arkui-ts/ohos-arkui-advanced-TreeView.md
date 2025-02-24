@@ -24,7 +24,7 @@ import { TreeView } from "@kit.ArkUI"
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)。
+不支持[通用属性](ts-component-general-attributes.md)。
 
 ## TreeView
 
@@ -265,7 +265,7 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 | childIndex | number | 否 | 子索引。 |
 
 ## 事件
-不支持[通用事件](ts-universal-events-click.md)。
+不支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 
@@ -281,7 +281,7 @@ import { TreeController, TreeListener, TreeListenerManager, TreeListenType, Node
 struct TreeViewDemo {
   private treeController: TreeController = new TreeController();
   private treeListener: TreeListener = TreeListenerManager.getInstance().getTreeListener();
-  @State clickNodeId: number = 0;
+  @State clickId: number = 0;
 
   aboutToDisappear(): void {
     this.treeListener.off(TreeListenType.NODE_CLICK, undefined);
@@ -311,16 +311,16 @@ struct TreeViewDemo {
 
   aboutToAppear(): void {
     this.treeListener.on(TreeListenType.NODE_CLICK, (callbackParam: CallbackParam) => {
-      this.clickNodeId = callbackParam.currentNodeId;
+      this.clickId = callbackParam.currentNodeId;
     })
     this.treeListener.on(TreeListenType.NODE_ADD, (callbackParam: CallbackParam) => {
-      this.clickNodeId = callbackParam.currentNodeId;
+      this.clickId = callbackParam.currentNodeId;
     })
     this.treeListener.on(TreeListenType.NODE_DELETE, (callbackParam: CallbackParam) => {
-      this.clickNodeId = callbackParam.currentNodeId;
+      this.clickId = callbackParam.currentNodeId;
     })
     this.treeListener.once(TreeListenType.NODE_MOVE, (callbackParam: CallbackParam) => {
-      this.clickNodeId = callbackParam.currentNodeId;
+      this.clickId = callbackParam.currentNodeId;
     })
 
     let normalResource: Resource = $r('sys.media.ohos_ic_normal_white_grid_folder');
@@ -358,7 +358,7 @@ struct TreeViewDemo {
         Row() {
           Divider().vertical(true).strokeWidth(2).color(0x000000).lineCap(LineCapStyle.Round)
           Column({ space: 30 }) {
-            Text('ClickNodeId=' + this.clickNodeId).fontSize('16fp')
+            Text('ClickId=' + this.clickId).fontSize('16fp')
             Button('Add', { type: ButtonType.Normal, stateEffect: true })
               .borderRadius(8).backgroundColor(0x317aff).width(90)
               .onClick((event: ClickEvent) => {

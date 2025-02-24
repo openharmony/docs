@@ -3542,7 +3542,7 @@ inputMethodSetting.displayOptionalInputMethod().then(() => {
 })
 ```
 
-### getInputMethodState<sup>16+</sup>
+### getInputMethodState<sup>15+</sup>
 
 getInputMethodState(): Promise&lt;EnabledState&gt;
 

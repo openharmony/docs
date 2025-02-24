@@ -3100,47 +3100,6 @@ blurOnKeyboardHideMode(mode: BlurOnKeyboardHideMode)
 </html>
 ```
 
-### enableSmoothDragResize<sup>16+</sup>
-
-enableSmoothDragResize(mode: boolean)
-
-
-设置是否开启Web组件窗口拖拽缩放优化能力，默认关闭。开启后在2in1上Web窗口拖拽放大时减少白块面积。
-
-> **说明：**
->
-> 不支持全量展开（WebLayoutMode.FIT_CONTENT）和同步模式（RenderMode.SYNC_RENDER）。
-> 
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名  | 类型 | 必填 | 说明           |
-| ------- | -------- | ---- | ------------------ |
-| mode | boolean  | 是   | 是否开启Web拖拽放大优化。默认值：false。 |
-
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .enableSmoothDragResize(true)
-      }
-    }
-  }
-  ```
-
 ### enableFollowSystemFontWeight<sup>16+</sup>
 
 enableFollowSystemFontWeight(follow: boolean)
@@ -3178,7 +3137,7 @@ enableFollowSystemFontWeight(follow: boolean)
   }
   ```
 
-### optimizeParserBudget<sup>16+</sup>
+### optimizeParserBudget<sup>15+</sup>
 
 optimizeParserBudget(optimizeParserBudget: boolean)
 
@@ -8173,7 +8132,7 @@ setGestureEventResult(result: boolean): void
 
 请参考[onNativeEmbedGestureEvent事件](#onnativeembedgestureevent11)。
 
-### setGestureEventResult<sup>12+</sup>
+### setGestureEventResult<sup>14+</sup>
 
 设置手势事件消费结果。
 
