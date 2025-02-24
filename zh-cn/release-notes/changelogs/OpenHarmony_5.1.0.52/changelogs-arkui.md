@@ -170,29 +170,6 @@ UX规范变更。
   
 - 变更后：MenuItem高度设置百分比，菜单项文本垂直方向居中对齐。
 
-```ts
-@Entry
-@Component
-struct MenuItemHeightPercent {
-  build() {
-    Row() {
-      Column() {
-        Button("click to show menu")
-          .bindMenu(this.MyMenu)
-      }.width('100%')
-    }.height('100%')
-  }
-
-  @Builder
-  MyMenu() {
-    Menu() {
-      MenuItem({ content: "菜单选项" })
-        .height('50%')
-    }
-  }
-}
-```
-
 | 变更前 | 变更后 |
 |---------|---------|
 |  ![变更前](figures/MenuItemHeightPercent_before.png)       |  ![变更后](figures/MenuItemHeightPercent_after.png)       |
