@@ -4857,6 +4857,18 @@ Allows a system application to set the launch reason when starting another appli
 
 **Valid since**: 16
 
+### ohos.permission.ACCESS_USER_ACCOUNT_INFO
+
+Allows a system application to access user account information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: false
+
+**Valid since**: 16
+
 ## user_grant Permissions (Available via ACL)
 
 The following lists the user_grant permissions that can be requested via the ACL.
