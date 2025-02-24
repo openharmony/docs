@@ -27,6 +27,6 @@ ExtensionAbility信息，三方应用可以通过[bundleManager.getBundleInfoFor
 | enabled              | boolean                                                      | 是   | 否   | ExtensionAbility是否可用。                           |
 | readPermission       | string                                                       | 是   | 否   | 读取ExtensionAbility数据所需的权限。                 |
 | writePermission      | string                                                       | 是   | 否   | 向ExtensionAbility写数据所需的权限。                 |
-| extensionAbilityTypeName<sup>11</sup>      | string                                 | 是   | 否   | ExtensionAbility的类型名称。                 |
+| extensionAbilityTypeName<sup>11+</sup>      | string                                 | 是   | 否   | ExtensionAbility的类型名称。                 |
 | skills<sup>12+</sup>             | Array\<[Skill](js-apis-bundleManager-skill.md)>                                                 | 是   | 否   | ExtensionAbility的Skills信息。        |
 | appIndex<sup>12+</sup>    | number    | 是   | 否   | 应用包的分身索引标识，仅在分身应用中生效。 |

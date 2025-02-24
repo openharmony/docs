@@ -7,7 +7,7 @@ OverlayModuleInfo信息，三方应用可以通过[overlay.getOverlayModuleInfo]
 
 ## OverlayModuleInfo
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                  | 类型                                                | 只读 | 可选 | 说明                                            |
 | --------------------- | ---------------------------------------------------| ---- | ---- | ---------------------------------------------- |
