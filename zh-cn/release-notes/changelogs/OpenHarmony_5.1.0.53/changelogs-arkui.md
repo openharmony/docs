@@ -49,7 +49,7 @@
 | native_node.h      | ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW |
 | native_node.h      | ARKUI_NODE_CUSTOM_EVENT_ON_OVERLAY_DRAW    |
 
-**适配方案**
+**适配指导**
 
 可通过在页面跳转时，将BuilderNode从缓存池中移除来保持节点的行为不变，示例代码如下：
 
