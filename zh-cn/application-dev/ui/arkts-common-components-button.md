@@ -9,7 +9,7 @@ Button是按钮组件，通常用于响应用户的点击操作，其类型包�
 Button通过调用接口来创建，接口调用有以下两种形式：
 
 
-- 创建不包含子组件的按钮。
+- 通过label和[ButtonOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#buttonoptions对象说明)创建不包含子组件的按钮。以ButtonOptions中的type和stateEffect为例。
 
   ```ts
   Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
@@ -28,7 +28,7 @@ Button通过调用接口来创建，接口调用有以下两种形式：
   ![zh-cn_image_0000001562820757](figures/zh-cn_image_0000001562820757.png)
 
 
-- 创建包含子组件的按钮。
+- 通过[ButtonOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#buttonoptions对象说明)创建包含子组件的按钮。以ButtonOptions中的type和stateEffect为例。
 
   ```ts
   Button(options?: {type?: ButtonType, stateEffect?: boolean})

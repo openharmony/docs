@@ -28,11 +28,11 @@ JSVM-API provides APIs for implementing asynchronous operations. An asynchronous
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following only demonstrates the C++ and ArkTS code related to promises.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to promise development.
 
 ### OH_JSVM_IsPromise
 
-Use **OH_JSVM_IsPromise** to check whether the given **JSVM_Value** is a **Promise** object.
+Call **OH_JSVM_IsPromise** to check whether the given **JSVM_Value** is a **Promise** object.
 
 CPP code:
 
@@ -46,7 +46,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = IsPromise},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named isPromise and associate it with a callback. This allows the IsPromise callback to be called from JS.
+// Alias for the IsPromise method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"isPromise", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -89,11 +89,11 @@ try {
 
 ### OH_JSVM_CreatePromise
 
-Use **OH_JSVM_CreatePromise** to create a **Promise** object.
+Call **OH_JSVM_CreatePromise** to create a **Promise** object.
 
-### OH_JSVM_ResolveDeferred & OH_JSVM_RejectDeferred
+### OH_JSVM_ResolveDeferred and OH_JSVM_RejectDeferred
 
-Use **OH_JSVM_ResolveDeferred** to change the promise state from **pending** to **fulfilled**, and use **OH_JSVM_RejectDeferred** to change the promise state from **pending** to **rejected**.
+Call **OH_JSVM_ResolveDeferred** to change the promise state from **pending** to **fulfilled**, and call **OH_JSVM_RejectDeferred** to change the promise state from **pending** to **rejected**.
 
 CPP code:
 
@@ -108,7 +108,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = ResolveRejectDeferred},
 };
 static JSVM_CallbackStruct *method = param;
-// Set property descriptor named createPromise and resolveRejectDeferred and associate them with a callback each. This allows the CreatePromise and ResolveRejectDeferred callbacks to be called from JS.
+// Aliases for the CreatePromise and ResolveRejectDeferred methods to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"createPromise", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
     {"resolveRejectDeferred", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
