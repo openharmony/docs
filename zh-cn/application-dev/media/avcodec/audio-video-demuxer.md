@@ -180,13 +180,13 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
    5.1 获取文件用户自定义属性（可选，若用户无需获取自定义属性，可跳过此步）。
    ```c++
-   // 从文件 source 获取用户自定义属性信息
+   // 从文件 source 获取用户自定义属性信息。
    OH_AVFormat *customMetadataFormat = OH_AVSource_GetCustomMetadataFormat(source);
    if (customMetadataFormat == nullptr) {
       printf("get custom metadata format failed");
       return;
    }
-   // 用户自定义已知的key，对应为string类型（int和float类型类似）
+   // 用户自定义已知的key，对应为string类型（int和float类型类似）。
    const char *key1 = "com.openharmony.custom.meta.string";
    std::string value1;
    if (!OH_AVFormat_GetStringValue(customMetadataFormat, key1, &value1)) {
