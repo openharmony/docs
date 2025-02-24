@@ -20,7 +20,7 @@ import { dialogSession } from '@kit.AbilityKit';
 
 提供会话组件信息，包括包名、模块名、组件名等信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -53,7 +53,7 @@ getDialogSessionInfo(dialogSessionId: string): [DialogSessionInfo](#dialogsessio
 
 根据dialogSessionId获取会话信息。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -99,7 +99,7 @@ sendDialogResult(dialogSessionId: string, targetWant: Want, isAllowed: boolean, 
 
 发送用户请求。使用callback异步回调。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -163,7 +163,7 @@ sendDialogResult(dialogSessionId: string, targetWant: Want, isAllowed: boolean):
 
 发送用户请求。使用Promise异步回调。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

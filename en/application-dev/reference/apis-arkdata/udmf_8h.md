@@ -52,6 +52,8 @@ Defines the APIs, data structs, and enums for accessing the UDMF.
 
 | Name| Description| 
 | -------- | -------- |
+| int [OH_UdmfRecord_AddContentForm](_u_d_m_f.md#oh_udmfrecord_addcontentform) ([OH_UdmfRecord](_u_d_m_f.md#oh_udmfrecord) \*pThis, [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*contentForm) | Adds data of the [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) type to an [OH_UdmfRecord](_u_d_m_f.md#oh_udmfrecord) instance.| 
+| int [OH_UdmfRecord_GetContentForm](_u_d_m_f.md#oh_udmfrecord_getcontentform) ([OH_UdmfRecord](_u_d_m_f.md#oh_udmfrecord) \*pThis, [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*contentForm) | Obtains data of the [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) type from an [OH_UdmfRecord](_u_d_m_f.md#oh_udmfrecord) instance.| 
 | [OH_UdmfData](_u_d_m_f.md#oh_udmfdata) \* [OH_UdmfData_Create](_u_d_m_f.md#oh_udmfdata_create) () | Creates an [OH_UdmfData](_u_d_m_f.md#oh_udmfdata) instance and a pointer to it. If this pointer is no longer required, use [OH_UdmfData_Destroy](_u_d_m_f.md#oh_udmfdata_destroy) to destroy it. Otherwise, memory leaks may occur.| 
 | void [OH_UdmfData_Destroy](_u_d_m_f.md#oh_udmfdata_destroy) ([OH_UdmfData](_u_d_m_f.md#oh_udmfdata) \*pThis) | Destroys an [OH_UdmfData](_u_d_m_f.md#oh_udmfdata) instance.| 
 | int [OH_UdmfData_AddRecord](_u_d_m_f.md#oh_udmfdata_addrecord) ([OH_UdmfData](_u_d_m_f.md#oh_udmfdata) \*pThis, [OH_UdmfRecord](_u_d_m_f.md#oh_udmfrecord) \*record) | Adds an [OH_UdmfRecord](_u_d_m_f.md#oh_udmfrecord) to an [OH_UdmfData](_u_d_m_f.md#oh_udmfdata) instance.| 

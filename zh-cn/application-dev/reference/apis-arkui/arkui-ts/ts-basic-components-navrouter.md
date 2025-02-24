@@ -44,11 +44,11 @@ NavRouter(value: RouteInfo)
 
 | 参数名     | 类型                                | 必填   | 说明          |
 | ------- | ----------------------------------- | ---- | ------------- |
-| value   | [RouteInfo](#routeinfo10对象说明) | 是    | 路由信息 |
+| value   | [RouteInfo](#routeinfo10对象说明) | 是    | 路由信息。 |
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### mode<sup>10+</sup>
 
@@ -64,7 +64,7 @@ mode(mode: NavRouteMode)
 
 | 参数名                           | 类型                                     | 必填                                   | 说明                                       |
 | ----------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| mode                  | [NavRouteMode](#navroutemode枚举说明)                                  | 是                                 | 指定点击NavRouter跳转到NavDestination页面时，使用的路由模式。<br/>默认值：NavRouteMode.PUSH_WITH_RECREATE |
+| mode                  | [NavRouteMode](#navroutemode10枚举说明)                                  | 是                                 | 指定点击NavRouter跳转到NavDestination页面时，使用的路由模式。<br/>默认值：NavRouteMode.PUSH_WITH_RECREATE |
 
 ## RouteInfo<sup>10+</sup>对象说明
 
@@ -77,7 +77,7 @@ mode(mode: NavRouteMode)
 | name             | string            | 是   | 点击NavRouter跳转到的NavDestination页面的名称。 |
 | param             | unknown            | 否   | 点击NavRouter跳转到NavDestination页面时，传递的参数。 |
 
-## NavRouteMode枚举说明
+## NavRouteMode<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

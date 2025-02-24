@@ -54,4 +54,6 @@ chainAnimationOptions(value: ChainAnimationOptions)
 | conductivity | number                                   | 否    | 设置链式联动动效传导系数。取值范围[0,1]，数值越大，动效传导范围越远。<br/>默认为0.7。 |
 | intensity    | number                                   | 否    | 设置链式联动动效效果强度。取值范围[0,1]，数值越大，动效效果越明显。<br/>默认为0.3。 |
 | edgeEffect   | [ChainEdgeEffect](#chainedgeeffect10枚举说明) | 否    | 设置链式联动动效边缘效果。<br/>默认为ChainEdgeEffect.DEFAULT。 |
+| stiffness    | number                                   | 否    | 设置链式联动动效效果刚度。<br/>默认为228。 |
+| damping      | number                                   | 否    | 设置链式联动动效效果阻尼。<br/>默认为30。 |
 

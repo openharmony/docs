@@ -1,4 +1,4 @@
-# Asset Store Kit
+# Asset Store Kit (Asset Store Service)
 
 - [Introduction to Asset Store Kit](asset-store-kit-overview.md)
 - Scenarios
@@ -10,6 +10,7 @@
   - [Updating an Asset (ArkTS)](asset-js-update.md)
   - [Querying Assets (ArkTS)](asset-js-query.md)
   - [Querying Assets Used for User Authentication (ArkTS)](asset-js-query-auth.md)
+  - [Managing Assets in a Group (ArkTS)](asset-js-group-access-control.md)
   <!--Del-->
   - [Performing Asset Operations in Specified User Space (for System Applications Only) (ArkTS)](asset-as-user-sys.md)
   <!--DelEnd-->
@@ -18,3 +19,4 @@
   - [Removing Assets (C/C++)](asset-native-remove.md)
   - [Updating an Asset (C/C++)](asset-native-update.md)
   - [Querying Assets (C/C++)](asset-native-query.md)
+  - [Managing Assets in a Group (C/C++)](asset-native-group-access-control.md)

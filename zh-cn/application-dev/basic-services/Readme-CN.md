@@ -7,3 +7,4 @@
 - [升级服务](update/Readme-CN.md)
 - [剪贴板服务](pasteboard/Readme-CN.md)
 - [上传下载](request/Readme-CN.md)
+- [压缩与解压](compress/Readme-CN.md)

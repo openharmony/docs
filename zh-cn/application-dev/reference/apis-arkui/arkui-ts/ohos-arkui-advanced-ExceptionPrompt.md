@@ -22,7 +22,7 @@ import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
 
 ## 属性
 
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)
 
 ## ExceptionPrompt
 
@@ -53,7 +53,8 @@ PromptOptions定义options的类型。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 指定当前异常提示的异常图标式样。 |
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 指定当前异常提示的异常图标样式。 |
+| symbolStyle<sup>16+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 指定当前异常提示的异常Symbol图标样式，优先级大于icon。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | tip | [ResourceStr](ts-types.md#resourcestr) | 否 | 指定当前异常提示的文字提示内容。<br />支持默认内置四种状态文字资源如下：<br />1.无网络状态：显示网络未连接：引用ohos_network_not_connected。<br />2.网络差状态：显示网络连接不稳定，请点击重试：引用ohos_network_connected_unstable。<br />3.连不上服务器状态：显示无法连接到服务器，请点击重试：引用ohos_unstable_connect_server。<br />4.有网但是获取不到内容状态：显示无法获取位置，请点击重试：引用ohos_custom_network_tips_left。 |
 | marginType | [MarginType](#margintype) | 是 | 指定当前异常提示的边距样式 。 |
 | actionText | [ResourceStr](ts-types.md#resourcestr) | 否 | 指定当前异常提示的右侧图标按钮的文字内容。 |
@@ -74,7 +75,7 @@ MarginType定义marginType的类型。
 | FIT_MARGIN | 1 | 可适配边距：<br /> 边距1：引用ohos_id_max_padding_start。<br /> 边距2：引用ohos_id_max_padding_end。 |
 
 ## 事件
-支持[通用事件](ts-universal-events-click.md)
+支持[通用事件](ts-component-general-events.md)
 
 ## 示例
 ### 示例1（设置异常提示）
@@ -137,7 +138,7 @@ struct CustomDialogExample {
   };
   confirm: () => void = () => {
   };
-  controller: CustomDialogController;
+  controller?: CustomDialogController;
 
   // 若尝试在CustomDialog中传入多个其他的Controller，以实现在CustomDialog中打开另一个或另一些CustomDialog，
   // 那么此处需要将指向自己的controller放在最后
@@ -154,13 +155,13 @@ struct CustomDialogExample {
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button('cancel')
           .onClick(() => {
-            this.controller.close();
+            this.controller?.close();
             this.cancel();
           }).backgroundColor(0xffffff).fontColor(Color.Black)
         Button('confirm')
           .onClick(() => {
             this.inputValue = this.textValue;
-            this.controller.close();
+            this.controller?.close();
             this.confirm();
           }).backgroundColor(0xffffff).fontColor(Color.Red)
       }.margin({ bottom: 10 })
@@ -241,3 +242,43 @@ struct Index1 {
 ```
 
 ![ExceptionPrompt2](figures/ExceptionPrompt2.gif)
+
+### 示例3（设置Symbol类型图标）
+
+该示例通过设置PromptOptions的属性symbolStyle，展示了自定义Symbol类型图标。
+
+```ts
+import { ExceptionPrompt, MarginType, SymbolGlyphModifier } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      ExceptionPrompt({
+        options: {
+          icon: $r('sys.symbol.house'),
+          tip: '异常提示异常提示异常提示异常提示异常提示',
+          marginType: MarginType.DEFAULT_MARGIN,
+          actionText: '设置网络设置网络设置网络设置网络设置网络',
+          marginTop: 80,
+          isShown: true,
+        },
+      })
+      ExceptionPrompt({
+        options: {
+          icon: $r('sys.symbol.house'),
+          symbolStyle: new SymbolGlyphModifier($r('sys.symbol.bell')).fontColor([Color.Red]),
+          tip: '异常提示异常提示异常提示异常提示异常提示',
+          marginType: MarginType.DEFAULT_MARGIN,
+          actionText: '设置网络设置网络设置网络设置网络设置网络',
+          marginTop: 80,
+          isShown: true,
+        },
+      })
+    }
+  }
+}
+```
+
+![ExceptionPrompt1](figures/ExceptionPrompt3.png)

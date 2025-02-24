@@ -143,7 +143,7 @@ createDataShareHelper(context: Context, uri: string, options?: DataShareHelperOp
 | ------- | ------------------------------------------------- | ---- | ------------------------------ |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | 是   | 应用的上下文环境。             |
 | uri     | string                                            | 是   | 要连接的服务端应用的路径。 |
-| options<sup>10+</sup> | [DataShareHelperOptions](#datasharehelperoptions10) | 否 | 可选配置。从API version 10开始支持此参数，如果不设置，则表示[DataShareHelper](#datasharehelper)不在代理模式下，且非静默访问时的等待拉起时间为2秒。 |
+| options<sup>10+</sup> | [DataShareHelperOptions](#datasharehelperoptions10) | 否 | 可选配置。从API version 10开始支持此参数，如果不设置，则表示[DataShareHelper](#datasharehelper)不在代理模式下，且非静默访问时的等待拉起时间为2秒。如果URI为datashareproxy开头，必填options中的isProxy项，否则会返回错误。 |
 
 **返回值：**
 
@@ -403,7 +403,7 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 
 | 名称       | 类型                                                         | 必填 | 说明           |
 | ---------- | ------------------------------------------------------------ | ---- | -------------- |
-| type       | [ChangeType](#changetype12)      | 是   | 通知变更的类型 |
+| type       | [ChangeType](#changetype12)      | 是   | 通知变更的类型。 |
 | uri        | string                                                       | 是   | 指定uri。      |
 | values     | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt;| 是   | 更新的数据。   |
 

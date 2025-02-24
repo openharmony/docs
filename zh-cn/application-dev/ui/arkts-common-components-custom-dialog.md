@@ -22,8 +22,7 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
        Column() {
          Text('我是内容')
            .fontSize(20)
-           .margin({ top: 10, bottom: 10 })
-       }
+       }.height(60).justifyContent(FlexAlign.Center)
      }
    }
    ```
@@ -237,16 +236,17 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
    @Component
    struct Index2 {
      @State message: string = '点击返回';
+
      build() {
        Column() {
          Button(this.message)
-           .fontSize(50)
-           .fontWeight(FontWeight.Bold).onClick(() => {
-           this.getUIContext().getRouter().back({
-             url: 'pages/Index',
-             params: {
-               info: 'Hello World'
-             }
+           .type(ButtonType.Capsule)
+           .onClick(() => {
+              this.getUIContext().getRouter().back({
+                url: 'pages/Index',
+                params: {
+                info: 'Hello World'
+              }
            });
          })
        }.width('100%').height('100%').margin({ top: 20 })

@@ -33,23 +33,22 @@
 
 | 名称        | 说明                              |
 | --------- | ------------------------------- |
-| Contain   | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Cover     | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Auto      | 图像会根据其自身尺寸和组件的尺寸进行适当缩放，以在保持比例的同时填充视图。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Fill      | 不保持宽高比进行放大缩小，使得图片充满显示边界。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| ScaleDown | 保持宽高比显示，图片缩小或者保持不变。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| None      | 保持原有尺寸显示。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| TOP_START<sup>12+</sup> | 图像显示在Image组件的顶部起始端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| TOP<sup>12+</sup>       | 图像显示在Image组件的顶部横向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| TOP_END<sup>12+</sup>   | 图像显示在Image组件的顶部尾端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| START<sup>12+</sup>     | 图像显示在Image组件的起始端纵向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| CENTER<sup>12+</sup>    | 图像显示在Image组件的横向和纵向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| END<sup>12+</sup>       | 图像显示在Image组件的尾端纵向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| BOTTOM_START<sup>12+</sup> | 图像显示在Image组件的底部起始端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| BOTTOM<sup>12+</sup>    | 图像显示在Image组件的底部横向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| BOTTOM_END<sup>12+</sup>| 图像显示在Image组件的底部尾端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| MATRIX<sup>16+</sup>| 配合[imageMatrix](ts-basic-components-image.md#imagematrix16)使用，使图像在Image组件自定义位置显示，保持原有尺寸显示。不支持svg图源。<br/>**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
-
+| Contain   | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples01](figures/image_fit_contain.png) |
+| Cover     | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples02](figures/image_fit_cover.png) |
+| Auto      | 图像会根据其自身尺寸和组件的尺寸进行适当缩放，以在保持比例的同时填充视图。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples03](figures/image_fit_auto.png) |
+| Fill      | 不保持宽高比进行放大缩小，使得图片充满显示边界。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples04](figures/image_fit_fill.png) |
+| ScaleDown | 保持宽高比显示，图片缩小或者保持不变。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples05](figures/image_fit_scaleDown.png) |
+| None      | 保持原有尺寸显示。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples06](figures/image_fit_none.png) |
+| TOP_START<sup>12+</sup> | 图像显示在Image组件的顶部起始端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples07](figures/image_fit_top_start.png) |
+| TOP<sup>12+</sup>       | 图像显示在Image组件的顶部横向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples08](figures/image_fit_top.png)  |
+| TOP_END<sup>12+</sup>   | 图像显示在Image组件的顶部尾端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples09](figures/image_fit_top_end.png) |
+| START<sup>12+</sup>     | 图像显示在Image组件的起始端纵向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples10](figures/image_fit_start.png) |
+| CENTER<sup>12+</sup>    | 图像显示在Image组件的横向和纵向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples11](figures/image_fit_center.png) |
+| END<sup>12+</sup>       | 图像显示在Image组件的尾端纵向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples12](figures/image_fit_end.png) |
+| BOTTOM_START<sup>12+</sup> | 图像显示在Image组件的底部起始端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples13](figures/image_fit_bottom_start.png) |
+| BOTTOM<sup>12+</sup>    | 图像显示在Image组件的底部横向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples14](figures/image_fit_bottom.png) |
+| BOTTOM_END<sup>12+</sup>| 图像显示在Image组件的底部尾端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples15](figures/image_fit_bottom_end.png) |
+| MATRIX<sup>15+</sup>| 配合[imageMatrix](ts-basic-components-image.md#imagematrix15)使用，使图像在Image组件自定义位置显示，保持原有尺寸显示。不支持svg图源。<br/>**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## BorderStyle
 
@@ -278,13 +277,13 @@
 
 | 名称   | 说明   |
 | ---- | ---- |
-| Mon  | 星期一  |
-| Tue  | 星期二  |
-| Wed  | 星期三  |
-| Thur | 星期四  |
-| Fri  | 星期五  |
-| Sat  | 星期六  |
-| Sun  | 星期日  |
+| Mon  | 星期一。  |
+| Tue  | 星期二。  |
+| Wed  | 星期三。  |
+| Thur | 星期四。  |
+| Fri  | 星期五。  |
+| Sat  | 星期六。  |
+| Sun  | 星期日。  |
 
 ## Direction
 
@@ -381,8 +380,8 @@
 
 | 名称   | 说明             |
 | ---- | -------------- |
-| FILL | 缩放当前子组件以填充满父组件 |
-| FIT  | 缩放当前子组件以自适应父组件 |
+| FILL | 缩放当前子组件以填充满父组件。 |
+| FIT  | 缩放当前子组件以自适应父组件。 |
 
 ## Visibility
 
@@ -837,7 +836,7 @@
 | INLINE  | 内联输入风格。文本选中底板高度与输入框高度相同。<br/>内联输入是在有明显的编辑态/非编辑态的区分场景下使用，例如：文件列表视图中的重命名。<br/>不支持showError属性。<br/>内联模式下，不支持拖入文本。 |
 
 
-## Nullable<sup>11+</sup>
+## Nullable\<T><sup>11+</sup>
 
 Nullable\<T> {
 
@@ -1080,7 +1079,7 @@ Nullable\<T> {
 
 ## HeightBreakpoint<sup>13+</sup>
 
-表示窗口不同高宽比阈值下对应的高度断点枚举值。通过[getWindowHeightBreakpoint](../js-apis-arkui-UIContext.md#getwindowheightbreakpoint13)返回
+表示窗口不同高宽比阈值下对应的高度断点枚举值。通过[getWindowHeightBreakpoint](../js-apis-arkui-UIContext.md#getwindowheightbreakpoint13)返回。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1092,11 +1091,11 @@ Nullable\<T> {
 | HEIGHT_MD | 1   | 窗口高宽比大于等于0.8，且小于1.2。 |
 | HEIGHT_LG | 2   | 窗口高宽比大于等于1.2。 |
 
-## PageFlipMode<sup>14+</sup>
+## PageFlipMode<sup>15+</sup>
 
 表示鼠标滚轮翻页模式。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1132,7 +1131,52 @@ Nullable\<T> {
 | RESIZE_COVER_TOP_LEFT       | 保持动画终态内容的宽高比进行缩小或放大，使内容的两边都恰好大于或等于组件两边。当内容宽方向有剩余时，内容与组件保持左侧对齐，显示内容的左侧部分。当内容高方向有剩余时，内容与组件保持顶部对齐，显示内容的顶侧部分。   ![renderfit_resize_cover_top_left](figures/renderfit_resize_cover_top_left.png) |
 | RESIZE_COVER_BOTTOM_RIGHT   | 保持动画终态内容的宽高比进行缩小或放大，使内容的两边都恰好大于或等于组件两边。当内容宽方向有剩余时，内容与组件保持右侧对齐，显示内容的右侧部分。当内容高方向有剩余时，内容与组件保持底部对齐，显示内容的底侧部分。   ![renderfit_resize_cover_bottom_right](figures/renderfit_resize_cover_bottom_right.png) |
 
+
 > **说明：**
 >
 > - 示意图中，蓝色区域表示内容，橙黄色区域表示节点大小。
 > - 不同的内容填充方式在宽高动画过程中效果不一致，开发者需要选择合适的内容填充方式以实现需要的动画效果。
+
+## CrownAction<sup>16+</sup>
+
+旋转表冠动作。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+|名称	            | 值 | 描述                                   |
+|-------------------| -- | ------------------------------------- |
+| BEGIN             | 0  | 表冠开始转动。                          |
+| UPDATE	        | 1  | 表冠转动中。                            |
+| END	            | 2  | 表冠停止转动。                          |
+
+## CrownSensitivity<sup>16+</sup>
+
+旋转表冠灵敏度。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 值  | 描述                                      |
+| -------------- | -- | ---------------------------------------- |
+| LOW 	         | 0   | 低灵敏度。                                 |
+| MEDIUM         | 1   | 中灵敏度。                                 |
+| HIGH 	         | 2   | 高灵敏度。                                 |
+
+## AxisAction<sup>16+</sup>
+
+定义轴事件的轴动作类型。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 值   | 说明                               |
+| ------- | ---- | ---------------------------------- |
+| NONE   | 0    | 无轴事件。 |
+| BEGIN  | 1    | 轴事件开始。 |
+| UPDATE | 2    | 轴事件触发中。 |
+| END    | 3    | 轴事件结束。 |
+| CANCEL | 4    | 轴事件取消。 |

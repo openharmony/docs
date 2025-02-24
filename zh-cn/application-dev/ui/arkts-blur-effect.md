@@ -33,7 +33,7 @@ struct BlurEffectsExample {
         .fontSize(20)
         .fontColor(Color.White)
         .textAlign(TextAlign.Center)
-        .backdropBlur(10) // 对背景进行模糊
+        .backdropBlur(10)// 对背景进行模糊
         .backgroundImage($r('app.media.share'))
         .backgroundImageSize({ width: 400, height: 300 })
     }
@@ -62,7 +62,7 @@ struct Index1 {
 
   aboutToAppear() {
     this.text = "按住屏幕上下滑动\n" + "当前手指所在y轴位置 ： " + this.y +
-    "\n" + "当前图片模糊程度为 : " + this.radius;
+      "\n" + "当前图片模糊程度为 : " + this.radius;
   }
 
   build() {
@@ -74,14 +74,14 @@ struct Index1 {
         .fontFamily("cursive")
         .fontStyle(FontStyle.Italic)
       Image($r("app.media.wall"))
-        .blur(this.radius) // 使用blur接口为照片组件添加内容模糊效果
+        .blur(this.radius)// 使用blur接口为照片组件添加内容模糊效果
         .height('100%')
         .width("100%")
         .objectFit(ImageFit.Cover)
     }.height('100%')
     .width("100%")
     .onTouch((event?: TouchEvent) => {
-      if(event){
+      if (event) {
         if (event.type === TouchType.Move) {
           this.y = Number(event.touches[0].y.toString()).toString();
           this.radius = Number(this.y) / 10; // 根据跟手过程中的滑动距离修改模糊半径，配合模糊接口，形成跟手模糊效果
@@ -92,7 +92,7 @@ struct Index1 {
         }
       }
       this.text = "按住屏幕上下滑动\n" + "当前手指所在y轴位置 ： " + this.y +
-      "\n" + "当前图片模糊程度为 : " + this.radius;
+        "\n" + "当前图片模糊程度为 : " + this.radius;
     })
   }
 }

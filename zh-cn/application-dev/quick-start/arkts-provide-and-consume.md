@@ -164,12 +164,12 @@ struct Parent {
 ### 框架行为
 
 1. 初始渲染：
-   1. \@Provide装饰的变量会以map的形式，传递给当前\@Provide所属组件的所有子组件；
-   2. 子组件中如果使用\@Consume变量，则会在map中查找是否有该变量名/alias（别名）对应的\@Provide的变量，如果查找不到，框架会抛出JS ERROR；
+   1. \@Provide装饰的变量会以map的形式，传递给当前\@Provide所属组件的所有子组件。
+   2. 子组件中如果使用\@Consume变量，则会在map中查找是否有该变量名/alias（别名）对应的\@Provide的变量，如果查找不到，框架会抛出JS ERROR。
    3. 在初始化\@Consume变量时，和\@State/\@Link的流程类似，\@Consume变量会在map中查找到对应的\@Provide变量进行保存，并把自己注册给\@Provide。
 
 2. 当\@Provide装饰的数据变化时：
-   1. 通过初始渲染的步骤可知，子组件\@Consume已把自己注册给父组件。父组件\@Provide变量变更后，会遍历更新所有依赖它的系统组件（elementid）和状态变量（\@Consume）；
+   1. 通过初始渲染的步骤可知，子组件\@Consume已把自己注册给父组件。父组件\@Provide变量变更后，会遍历更新所有依赖它的系统组件（elementid）和状态变量（\@Consume）。
    2. 通知\@Consume更新后，子组件所有依赖\@Consume的系统组件（elementId）都会被通知更新。以此实现\@Provide对\@Consume状态数据同步。
 
 3. 当\@Consume装饰的数据变化时：
@@ -616,7 +616,7 @@ struct GrandParent {
 ```
 
 在上面的示例中：
-- GrandParent声明了@Provide("reviewVotes") reviewVotes: number = 40
+- GrandParent声明了@Provide("reviewVotes") reviewVotes: number = 40。
 - Parent是GrandParent的子组件，声明@Provide为allowOverride，重写父组件GrandParent的@Provide("reviewVotes") reviewVotes: number = 40。如果不设置allowOverride，则会抛出运行时报错，提示@Provide重复定义。Child同理。
 - GrandSon在初始化@Consume的时候，@Consume装饰的变量通过相同的属性名绑定其最近的祖先的@Provide装饰的变量。
 - GrandSon查找到相同属性名的@Provide在祖先Child中，所以@Consume("reviewVotes") reviewVotes: number初始化数值为10。如果Child中没有定义与@Consume同名的@Provide，则继续向上寻找Parent中的同名@Provide值为20，以此类推。

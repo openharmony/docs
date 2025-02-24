@@ -379,17 +379,20 @@ updateConfiguration(): void
 
 **示例：**
 ```ts
-import { NodeController, FrameNode, ComponentContent, typeNode } from '@kit.ArkUI';
-import { AbilityConstant, Configuration, EnvironmentCallback } from '@kit.AbilityKit';
+import { NodeController, FrameNode, ComponentContent } from '@kit.ArkUI';
+import { AbilityConstant, Configuration, EnvironmentCallback, ConfigurationConstant } from '@kit.AbilityKit';
 
 @Builder
 function buildText() {
   Column() {
-    Text('hello')
-      .width(50)
-      .height(50)
-      .fontColor($r(`app.color.text_color`))
-  }.backgroundColor($r(`app.color.start_window_background`))
+    Text('Hello')
+      .fontSize(36)
+      .fontWeight(FontWeight.Bold)
+  }
+  .backgroundColor($r('sys.color.ohos_id_color_background'))
+  .width('100%')
+  .alignItems(HorizontalAlign.Center)
+  .padding(16)
 }
 
 const componentContentMap: Array<ComponentContent<[Object]>> = new Array();
@@ -438,6 +441,9 @@ struct FrameNodeTypeTest {
     }
     // 注册监听回调
     this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
+    // 设置应用深浅色跟随系统
+    this.getUIContext()
+      .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
     this.myNodeController.createNode(this.getUIContext());
   }
 
@@ -447,8 +453,18 @@ struct FrameNodeTypeTest {
   }
 
   build() {
-    Row() {
+    Column({ space: 16 }) {
       NodeContainer(this.myNodeController);
+      Button('切换深色')
+        .onClick(() => {
+          this.getUIContext()
+            .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
+        })
+      Button('设置浅色')
+        .onClick(() => {
+          this.getUIContext()
+            .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT);
+        })
     }
   }
 }

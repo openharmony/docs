@@ -1,25 +1,25 @@
 # Crypto Architecture Kit（加解密算法框架服务）
 
-- ArkTS API
+- ArkTS API<!--crypto-architecture-arkts-->
   - [@ohos.security.cryptoFramework (加解密算法库框架)](js-apis-cryptoFramework.md)
-  - 已停止维护的接口
+  - 已停止维护的接口<!--crypto-architecture-arkts-dep-->
     - [@system.cipher (加密算法)](js-apis-system-cipher.md)
-- C API
-  - 模块
+- C API<!--crypto-architecture-c-->
+  - 模块<!--crypto-architecture-module-->
     - [CryptoAsymKeyApi](_crypto_asym_key_api.md)
     - [CryptoCommonApi](_crypto_common_api.md)
     - [CryptoDigestApi](_crypto_digest_api.md)
     - [CryptoSignatureApi](_crypto_signature_api.md)
     - [CryptoSymCipherApi](_crypto_sym_cipher_api.md)
     - [CryptoSymKeyApi](_crypto_sym_key_api.md)
-  - 头文件
+  - 头文件<!--crypto-architecture-headerfile-->
     - [crypto_asym_key.h](crypto__asym__key_8h.md)
     - [crypto_common.h](crypto__common_8h.md)
     - [crypto_digest.h](crypto__digest_8h.md)
     - [crypto_signature.h](crypto__signature_8h.md)
     - [crypto_sym_cipher.h](crypto__sym__cipher_8h.md)
     - [crypto_sym_key.h](crypto__sym__key_8h.md)
-  - 结构体
+  - 结构体<!--crypto-architecture-struct-->
     - [Crypto_DataBlob](_crypto___data_blob.md)
-- 错误码
+- 错误码<!--crypto-architecture-arkts-errcode-->
   - [crypto framework错误码](errorcode-crypto-framework.md)

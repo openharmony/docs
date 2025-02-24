@@ -22,7 +22,7 @@ Sets the alignment mode of the component content in the drawing area.
 
 | Name| Type                                       | Mandatory| Description                                                        |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Alignment](ts-appendix-enums.md#alignment) | Yes  | Sets the alignment mode of the component content in the drawing area.<br>This attribute is available only in the following components: **Stack**, **Button**, **StepperItem**,**FolderStack**, **Marquee**, **Text**, **TextArea**, and **TextInput**. For details about the alignment results of text-related components (the last four aforementioned components), see [textAlign](ts-basic-components-text.md#attributes).<br>If the component does not support the **textAlign** attribute, horizontal alignment cannot be set for text.<br>Default value: **Alignment.Center**<br>**NOTE**<br>In the **Stack** component, this attribute has the same effect as **alignContent**, which means that it sets the alignment mode of child components in the container.|
+| value  | [Alignment](ts-appendix-enums.md#alignment) | Yes  | Sets the alignment mode of the component content in the drawing area.<br>This attribute is available only in the following components: **Stack**, **Button**, **StepperItem**,**FolderStack**, **Marquee**, **Text**, **TextArea**, and **TextInput**. For details about the alignment results of text-related components (the last four aforementioned components), see [textAlign](ts-basic-components-text.md#textalign).<br>If the component does not support the **textAlign** attribute, horizontal alignment cannot be set for text.<br>Default value: **Alignment.Center**<br>**NOTE**<br>In the **Stack** component, this attribute has the same effect as **alignContent**, which means that it sets the alignment mode of child components in the container.|
 
 ## direction
 
@@ -180,6 +180,13 @@ Sets the alignment rules in the relative container. This API is valid only when 
 
 ## Bias
 
+Defines the offset of the component under the anchor constraints.
+<br>In the horizontal direction, the value of **Bias** is the ratio of the distance from the component to the left anchor D<sub>start</sub> to the total distance between the component and the horizontal anchors D<sub>start</sub> + D<sub>end</sub>. In a mirrored language layout, D<sub>start</sub> is the distance from the component to the right anchor. The width of the component is represented by D<sub>width</sub>.
+<br>![bias_horizontal_example.png](figures/bias_horizontal_example.png)
+<br>Similarly, in the vertical direction, the value of **Bias** is the ratio of the distance from the component to the top anchor D<sub>top</sub> to the total distance between the component and the vertical anchors D<sub>top</sub> + D<sub>bottom</sub>. The height of the component is represented by D<sub>height</sub>.
+<br>![bias_vertical_example.png](figures/bias_vertical_example.png)
+
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name  | Type                                      | Mandatory  | Description                                      |
@@ -191,7 +198,8 @@ Sets the alignment rules in the relative container. This API is valid only when 
 
 chainMode(direction: Axis, style: ChainStyle)
 
-Sets the parameters of the chain in which the component is the head. This parameter has effect only when the parent container is [RelativeContainer](ts-container-relativecontainer.md).
+Sets the parameters of the chain in which the component is the head. This parameter has effect only when the parent container is [RelativeContainer](ts-container-relativecontainer.md). The chain head is the first component in the chain that satisfies the [chain formation rules](ts-container-relativecontainer.md#rules) (starting from the left in the horizontal direction, or from the right in a mirrored language layout; starting from the top in the vertical direction).
+For details, see [RelativeContainer Example 7](ts-container-relativecontainer.md#example-7-creating-chains).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -212,13 +220,32 @@ Enumerates the chain styles.
 
 | Name         | Description                                                        |
 | ------------- | ------------------------------------------------------------ |
-| SPREAD        | Child components are evenly distributed among constraint anchors. For details, see [Example 7 in RelativeContainer](ts-container-relativecontainer.md#example-7).|
-| SPREAD_INSIDE | All child components except the first and last ones are evenly distributed among constraint anchors. For details, see [Example 7 in RelativeContainer](ts-container-relativecontainer.md#example-7).|
-| PACKED        | There is no gap between child components in the chain. For details, see [Example 7 in RelativeContainer](ts-container-relativecontainer.md#example-7).|
+| SPREAD        | Child components are evenly distributed among constraint anchors. For details, see [RelativeContainer Example 7](ts-container-relativecontainer.md#example-7-creating-chains).|
+| SPREAD_INSIDE | All child components except the first and last ones are evenly distributed among constraint anchors. For details, see [RelativeContainer Example 7](ts-container-relativecontainer.md#example-7-creating-chains).|
+| PACKED        | There is no gap between child components in the chain. For details, see [RelativeContainer Example 7](ts-container-relativecontainer.md#example-7-creating-chains).|
+
+## chainWeight<sup>14+</sup>
+
+chainWeight(chainWeight: ChainWeightOptions)
+
+Sets the weight of the component in a chain, which is used to re-lay out components that form the chain. This API has effect only when the parent container is [RelativeContainer](ts-container-relativecontainer.md).
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**Parameters**
+
+| Name| Type                                       | Mandatory| Description                    |
+| ------ | ------------------------------------------- | ---- | ------------------------ |
+| chainWeight  | [ChainWeightOptions](ts-types.md#chainweightoptions14) | Yes  | Layout weight of the component in the horizontal or vertical direction. The component with **chainWeight** set will have its size in the horizontal or vertical direction allocated according to the set weights. The allocation ignores the component's intrinsic size and enables the component to adaptively fill the remaining space.|
 
 ## Example
 
-### Example 1
+### Example 1: Setting the Alignment Mode and Main Axis Layout
+
+This example demonstrates setting the alignment mode of content within a component and the layout of child components along the main axis of the parent container.
+
 ```ts
 // xxx.ets
 @Entry
@@ -267,7 +294,10 @@ struct PositionExample1 {
 
 ![align.png](figures/align.png)
 
-### Example 2
+### Example 2: Setting the Position Offset
+
+This example demonstrates position offsets based on the parent component, relative positioning, and anchors.
+
 ```ts
 // xxx.ets
 @Entry
@@ -353,7 +383,10 @@ struct PositionExample2 {
 
 ![position.png](figures/position.png)
 
-### Example 3
+### Example 3: Setting the Absolute Positioning and Relative Offset
+
+This example demonstrates how to use **position** to set absolute positioning, which determines the position of child components relative to the parent component. It also shows how to use **offset** to set relative offsets, which moves components from their original layout positions.
+
 ```ts
 // xxx.ets
 @Entry
@@ -392,12 +425,12 @@ struct Example3 {
 
 ![position.png](figures/position2.jpeg)
 
-### Example 4
+### Example 4: Implementing a Mirror Effect
+
+This example demonstrates how to implement a mirroring effect using **position**, **offset**, and **markAnchor** sequentially. The yellow blocks indicate the original effect, and the pink blocks indicate the mirroring effect.
+
 ```ts
-// xxx.ets 
-// The mirror mode is supported.
-// The example shows the configuration effects of the **position**, **offset**, and **markAnchor** attributes, from top to bottom.
-// The yellow blocks indicate the original effect, and the pink blocks indicate the mirror effect.
+// xxx.ets
 import { LengthMetrics } from '@kit.ArkUI';
 @Entry
 @Component

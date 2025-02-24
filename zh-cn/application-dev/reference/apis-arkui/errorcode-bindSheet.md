@@ -89,7 +89,7 @@ The node of targetId is not in the component tree.
 
 **可能原因**
 
-指定的targetId对应的节点未挂载在节点树上
+指定的targetId对应的节点未挂载在节点树上。
 
 **处理步骤**
 

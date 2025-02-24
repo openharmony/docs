@@ -9,13 +9,14 @@ Node-API provides APIs for adding and removing cleanup hooks, which are called t
 Before using Node-API to add or remove cleanup hooks, understand the following concepts:
 
 - Resource management<br>In ArkTS, you need to manage system resources, such as memory, file handles, and network connections. Properly creating, using, and releasing these resources during the lifecycle of the Node-API module can prevent resource leaks and application breakdown. Resource management usually includes initializing resources, clearing resources when required, and performing necessary operations when clearing resources, such as closing a file or disconnecting from the network.
-- Hook function<br>A hook function is a callback that is automatically executed at the specified time or upon a specific event. When an environment or a process exits, not all the resources can be automatically reclaimed immediately. In the context of the Node-API module, the cleanup hooks are a supplement that ensures release of all the resources occupied.
+- Hook function<br>A hook function is a callback that is automatically executed at the specified time or upon a specific event. When an environment or a process exits, not all the resources can be automatically reclaimed immediately. In the context of a Node-API module, the cleanup hooks are a supplement that ensures release of all the resources occupied.
 
 So far, you've learnt resource management in ArkTS and cleanup hook functions. Read on to learn the Node-API interfaces that you can use to perform resource management with cleanup hooks.
 
 ## Available APIs
 
 The following table lists the APIs for using different types of cleanup hooks.  
+
 | API| Description|
 | -------- | -------- |
 | napi_add_env_cleanup_hook | Adds an environment cleanup hook function, which will be called when the Node-API environment exits.|
@@ -29,11 +30,13 @@ If you are just starting out with Node-API, see [Node-API Development Process](u
 
 ### napi_add_env_cleanup_hook
 
-Use **napi_add_env_cleanup_hook** to add an environment cleanup hook function, which will be executed when the environment exits. This ensures that resources are released before the environment is destroyed.
+Call **napi_add_env_cleanup_hook** to add an environment cleanup hook function, which will be executed when the environment exits. This ensures that resources are released before the environment is destroyed.
+
+Note that **napi_add_env_cleanup_hook** does not support binding multiple callbacks to the same **arg**. If **env** is destroyed but the **cleanup** callback has not been executed, you can locate the failed calls with "AddCleanupHook Failed, data cannot register multiple times." on HiLog if the ArkTS runtime [multi-thread check] (../dfx/cppcrash-guidelines.md#tool-2-ark-multi-thread-check) is enabled.
 
 ### napi_remove_env_cleanup_hook
 
-Use **napi_remove_env_cleanup_hook** to remove the previously added environment cleanup hook function. You may need to use this API when an addon is uninstalled or resources are reallocated.
+Call **napi_remove_env_cleanup_hook** to remove the previously added environment cleanup hook function. You may need to use this API when an addon is uninstalled or resources are reallocated.
 
 CPP code:
 
@@ -81,7 +84,7 @@ static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info info)
         napi_throw_error(env, nullptr, "Test Node-API napi_add_env_cleanup_hook failed.");
         return nullptr;
     }
-    // Add the environment cleanup hook function. The hook function is not removed here to make it called to simulate some cleanup operations, such as releasing resources and closing files, when the Javas environment is destroyed.
+    // Add the environment cleanup hook function. The hook function is not removed here to make it called to simulate some cleanup operations, such as releasing resources and closing files, when the Java environment is destroyed.
     status = napi_add_env_cleanup_hook(env, Cleanup, &hookParameter);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Test Node-API napi_add_env_cleanup_hook failed.");
@@ -138,11 +141,11 @@ For details about the worker development, see [Worker Introduction](../arkts-uti
 
 ### napi_add_async_cleanup_hook
 
-Use **napi_add_async_cleanup_hook** to add an async cleanup hook function, which will be executed asynchronously when the environment exits. Unlike a sync hook, an async hook allows a longer operation without blocking the process exit.
+Call **napi_add_async_cleanup_hook** to add an async cleanup hook function, which will be executed asynchronously when the environment exits. Unlike a sync hook, an async hook allows a longer operation without blocking the process exit.
 
 ### napi_remove_async_cleanup_hook
 
-Use **napi_remove_async_cleanup_hook** to remove an async cleanup hook function that is no longer required.
+Call **napi_remove_async_cleanup_hook** to remove an async cleanup hook function that is no longer required.
 
 CPP code:
 

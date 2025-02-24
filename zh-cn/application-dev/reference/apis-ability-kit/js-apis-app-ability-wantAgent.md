@@ -21,7 +21,7 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
 三方应用只能设置自己应用的Ability。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -103,7 +103,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 三方应用只能设置自己应用的Ability。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -184,7 +184,7 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 
 获取WantAgent实例的包名（callback形式）。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -277,7 +277,7 @@ getBundleName(agent: WantAgent): Promise\<string\>
 
 获取WantAgent实例的包名（Promise形式）。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -370,7 +370,7 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 
 获取WantAgent实例的用户ID（callback形式）。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -463,7 +463,7 @@ getUid(agent: WantAgent): Promise\<number\>
 
 获取WantAgent实例的用户ID（Promise形式）。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -557,7 +557,7 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 
 取消WantAgent实例（callback形式）。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -650,7 +650,7 @@ cancel(agent: WantAgent): Promise\<void\>
 
 取消WantAgent实例（Promise形式）。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -744,7 +744,7 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<Co
 
 主动激发WantAgent实例（callback形式）。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -808,29 +808,33 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: WantAgent) {
   if (err) {
-    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    console.info(`getWantAgent failed, code: ${err.code}, message: ${err.message}`);
   } else {
     wantAgentData = data;
   }
   //trigger回调
   let triggerCallback = (err: BusinessError, data: wantAgent.CompleteData) => {
     if (err) {
-      console.error(`getUid failed! ${err.code} ${err.message}`);
+      console.error(`trigger failed, code: ${err.code}, message: ${err.message}`);
     } else {
-      console.info(`getUid ok! ${JSON.stringify(data)}`);
+      console.info(`trigger success, data: ${JSON.stringify(data)}`);
     }
   }
   try {
     wantAgent.trigger(wantAgentData, triggerInfo, triggerCallback);
   } catch (err) {
-    console.error(`getUid failed! ${err.code} ${err.message}`);
+    let code = (err as BusinessError).code;
+    let msg = (err as BusinessError).message;
+    console.error(`trigger failed, code: ${code}, message: ${msg}.`);
   }
 }
 
 try {
   wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch (err) {
-  console.error(`getWantAgent failed! ${(err as BusinessError).code} ${(err as BusinessError).message}`);
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`getWantAgent failed, code: ${code}, message: ${msg}.`);
 }
 ```
 
@@ -840,7 +844,7 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 
 判断两个WantAgent实例是否相等（Callback形式）,以此来判断是否是来自同一应用的相同操作。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -934,7 +938,7 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
 判断两个WantAgent实例是否相等（Promise形式）,以此来判断是否是来自同一应用的相同操作。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1029,7 +1033,7 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void
 
 获取一个WantAgent的OperationType信息（callback形式）。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1123,7 +1127,7 @@ getOperationType(agent: WantAgent): Promise\<number>
 
 获取一个WantAgent的OperationType信息（Promise形式）。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1218,7 +1222,7 @@ try {
 
 表示使用WantAgent类型的枚举。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1241,7 +1245,7 @@ try {
 
 表示操作WantAgent类型的枚举。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1259,7 +1263,7 @@ try {
 
 表示主动激发WantAgent返回的数据。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1270,4 +1274,32 @@ try {
 | finalCode      | number                          | 否 | 否   | 触发wantAgent的请求代码。 |
 | finalData      | string                          | 否 | 否   | 公共事件收集的最终数据。  |
 | extraInfo      | Record\<string, Object>            | 否 |是   | 额外数据。               |
+
+## TriggerInfo
+
+type TriggerInfo = _TriggerInfo
+
+TriggerInfo对象。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md) | TriggerInfo对象。 |
+
+## WantAgentInfo
+
+type WantAgentInfo = _WantAgentInfo
+
+WantAgentInfo对象。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | WantAgentInfo对象。 |
 

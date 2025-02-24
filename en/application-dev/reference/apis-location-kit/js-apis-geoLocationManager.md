@@ -2353,10 +2353,10 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 |201 | Permission verification failed. The application does not have the permission required to call the API.                 |
-|801 | Capability not supported.Failed to call function due to limited device capabilities.          |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getCurrentWifiBssidForLocating()} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
-|3301900 | Failed to obtain the hotpot MAC address because the Wi-Fi is not connected. |
+|3301900 | Failed to obtain the BSSID of the Wi-Fi hotspot. The Wi-Fi network is not connected. |
 
 **Example**
 

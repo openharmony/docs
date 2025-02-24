@@ -38,29 +38,39 @@ To specify anchors, you must set IDs for the **RelativeContainer** component and
 - The ID of the **RelativeContainer** parent component is **__container__**.
 
   ```ts
-  let AlignRus:Record<string,Record<string,string|VerticalAlign|HorizontalAlign>> = {
+  let AlignRus: Record<string, Record<string, string | VerticalAlign | HorizontalAlign>> = {
     'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
     'left': { 'anchor': '__container__', 'align': HorizontalAlign.Start }
   }
-  let AlignRue:Record<string,Record<string,string|VerticalAlign|HorizontalAlign>> = {
+  let AlignRue: Record<string, Record<string, string | VerticalAlign | HorizontalAlign>> = {
     'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
     'right': { 'anchor': '__container__', 'align': HorizontalAlign.End }
   }
-  let Mleft:Record<string,number> = { 'left': 20 }
-  let BWC:Record<string,number|string> = { 'width': 2, 'color': '#6699FF' }
- 
+  let Mleft: Record<string, number> = { 'left': 20 }
+  let BWC: Record<string, number | string> = { 'width': 2, 'color': '#6699FF' }
+  
   @Entry
   @Component
   struct Index {
     build() {
       RelativeContainer() {
-        Row(){Text('row1')}.justifyContent(FlexAlign.Center).width(100).height(100)
-        .backgroundColor("#FF3333")
+        Row() {
+          Text('row1')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#a3cf62')
         .alignRules(AlignRus)
         .id("row1")
-
-        Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100).height(100)
-        .backgroundColor("#FFCC00")
+  
+        Row() {
+          Text('row2')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#00ae9d')
         .alignRules(AlignRue)
         .id("row2")
       }.width(300).height(300)
@@ -75,29 +85,39 @@ To specify anchors, you must set IDs for the **RelativeContainer** component and
 - Example of using a sibling element as the anchor:
 
   ```ts
-  let AlignRus:Record<string,Record<string,string|VerticalAlign|HorizontalAlign>> = {
+  let AlignRus: Record<string, Record<string, string | VerticalAlign | HorizontalAlign>> = {
     'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
     'left': { 'anchor': '__container__', 'align': HorizontalAlign.Start }
   }
-  let RelConB:Record<string,Record<string,string|VerticalAlign|HorizontalAlign>> = {
+  let RelConB: Record<string, Record<string, string | VerticalAlign | HorizontalAlign>> = {
     'top': { 'anchor': 'row1', 'align': VerticalAlign.Bottom },
-    'left' : { 'anchor': 'row1', 'align': HorizontalAlign.Start }
+    'left': { 'anchor': 'row1', 'align': HorizontalAlign.Start }
   }
-  let Mleft:Record<string,number> = { 'left': 20 }
-  let BWC:Record<string,number|string> = { 'width': 2, 'color': '#6699FF' }
-
+  let Mleft: Record<string, number> = { 'left': 20 }
+  let BWC: Record<string, number | string> = { 'width': 2, 'color': '#6699FF' }
+  
   @Entry
   @Component
   struct Index {
     build() {
       RelativeContainer() {
-        Row(){Text('row1')}.justifyContent(FlexAlign.Center).width(100).height(100)
-        .backgroundColor("#FF3333")
+        Row() {
+          Text('row1')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#00ae9d')
         .alignRules(AlignRus)
         .id("row1")
-
-        Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100).height(100)
-        .backgroundColor("#FFCC00")
+  
+        Row() {
+          Text('row2')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#a3cf62')
         .alignRules(RelConB)
         .id("row2")
       }.width(300).height(300)
@@ -119,40 +139,40 @@ To specify anchors, you must set IDs for the **RelativeContainer** component and
       Row() {
         RelativeContainer() {
           Row(){Text('row1')}.justifyContent(FlexAlign.Center).width(100).height(100)
-            .backgroundColor('#ff3339ff')
-            .alignRules({
-              top: {anchor: "__container__", align: VerticalAlign.Top},
-              left: {anchor: "__container__", align: HorizontalAlign.Start}
-            })
-            .id("row1")
+          .backgroundColor('#a3cf62')
+          .alignRules({
+            top: {anchor: "__container__", align: VerticalAlign.Top},
+            left: {anchor: "__container__", align: HorizontalAlign.Start}
+          })
+          .id("row1")
 
           Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100)
-            .backgroundColor('#ff298e1e')
-            .alignRules({
-              top: {anchor: "__container__", align: VerticalAlign.Top},
-              right: {anchor: "__container__", align: HorizontalAlign.End},
-              bottom: {anchor: "row1", align: VerticalAlign.Center},
-            })
-            .id("row2")
+          .backgroundColor('#00ae9d')
+          .alignRules({
+            top: {anchor: "__container__", align: VerticalAlign.Top},
+            right: {anchor: "__container__", align: HorizontalAlign.End},
+            bottom: {anchor: "row1", align: VerticalAlign.Center},
+          })
+          .id("row2")
 
           Row(){Text('row3')}.justifyContent(FlexAlign.Center).height(100)
-            .backgroundColor('#ffff6a33')
-            .alignRules({
-              top: {anchor: "row1", align: VerticalAlign.Bottom},
-              left: {anchor: "row1", align: HorizontalAlign.Start},
-              right: {anchor: "row2", align: HorizontalAlign.Start}
-            })
-            .id("row3")
+          .backgroundColor('#0a59f7')
+          .alignRules({
+            top: {anchor: "row1", align: VerticalAlign.Bottom},
+            left: {anchor: "row1", align: HorizontalAlign.Start},
+            right: {anchor: "row2", align: HorizontalAlign.Start}
+          })
+          .id("row3")
 
           Row(){Text('row4')}.justifyContent(FlexAlign.Center)
-            .backgroundColor('#ffff33fd')
-            .alignRules({
-              top: {anchor: "row3", align: VerticalAlign.Bottom},
-              left: {anchor: "row1", align: HorizontalAlign.Center},
-              right: {anchor: "row2", align: HorizontalAlign.End},
-              bottom: {anchor: "__container__", align: VerticalAlign.Bottom}
-            })
-            .id("row4")
+          .backgroundColor('#2ca9e0')
+          .alignRules({
+            top: {anchor: "row3", align: VerticalAlign.Bottom},
+            left: {anchor: "row1", align: HorizontalAlign.Center},
+            right: {anchor: "row2", align: HorizontalAlign.End},
+            bottom: {anchor: "__container__", align: VerticalAlign.Bottom}
+          })
+          .id("row4")
         }
         .width(300).height(300)
         .margin({left: 50})
@@ -181,97 +201,119 @@ Alignment modes in the vertical direction can be top, center, or bottom, achieve
 After being aligned relative to the anchor, a child component may be still not at its target position. In this case, you can set the offset.
 
   ```ts
-  @Entry
-  @Component
-  struct Index {
-    build() {
-      Row() {
-        RelativeContainer() {
-          Row(){Text('row1')}.justifyContent(FlexAlign.Center).width(100).height(100)
-            .backgroundColor("#FF3333")
-            .alignRules({
-              top: {anchor: "__container__", align: VerticalAlign.Top},
-              left: {anchor: "__container__", align: HorizontalAlign.Start}
-            })
-            .id("row1")
-
-          Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100)
-            .backgroundColor("#FFCC00")
-            .alignRules({
-              top: {anchor: "__container__", align: VerticalAlign.Top},
-              right: {anchor: "__container__", align: HorizontalAlign.End},
-              bottom: {anchor: "row1", align: VerticalAlign.Center},
-            })
-            .offset({
-              x:-40,
-              y:-20
-            })
-            .id("row2")
-
-          Row(){Text('row3')}.justifyContent(FlexAlign.Center).height(100)
-            .backgroundColor("#FF6633")
-            .alignRules({
-              top: {anchor: "row1", align: VerticalAlign.Bottom},
-              left: {anchor: "row1", align: HorizontalAlign.End},
-              right: {anchor: "row2", align: HorizontalAlign.Start}
-            })
-            .offset({
-              x:-10,
-              y:-20
-            })
-            .id("row3")
-
-          Row(){Text('row4')}.justifyContent(FlexAlign.Center)
-            .backgroundColor("#FF9966")
-            .alignRules({
-              top: {anchor: "row3", align: VerticalAlign.Bottom},
-              bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
-              left: {anchor: "__container__", align: HorizontalAlign.Start},
-              right: {anchor: "row1", align: HorizontalAlign.End}
-            })
-            .offset({
-              x:-10,
-              y:-30
-            })
-            .id("row4")
-
-          Row(){Text('row5')}.justifyContent(FlexAlign.Center)
-            .backgroundColor("#FF66FF")
-            .alignRules({
-              top: {anchor: "row3", align: VerticalAlign.Bottom},
-              bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
-              left: {anchor: "row2", align: HorizontalAlign.Start},
-              right: {anchor: "row2", align: HorizontalAlign.End}
-            })
-            .offset({
-              x:10,
-              y:20
-            })
-            .id("row5")
-
-          Row(){Text('row6')}.justifyContent(FlexAlign.Center)
-            .backgroundColor('#ff33ffb5')
-            .alignRules({
-              top: {anchor: "row3", align: VerticalAlign.Bottom},
-              bottom: {anchor: "row4", align: VerticalAlign.Bottom},
-              left: {anchor: "row3", align: HorizontalAlign.Start},
-              right: {anchor: "row3", align: HorizontalAlign.End}
-            })
-            .offset({
-              x:-15,
-              y:10
-            })
-            .backgroundImagePosition(Alignment.Bottom)
-            .backgroundImageSize(ImageSize.Cover)
-            .id("row6")
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      RelativeContainer() {
+        Row() {
+          Text('row1')
         }
-        .width(300).height(300)
-        .margin({left: 50})
-        .border({width:2, color: "#6699FF"})
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#a3cf62')
+        .alignRules({
+          top: { anchor: "__container__", align: VerticalAlign.Top },
+          left: { anchor: "__container__", align: HorizontalAlign.Start }
+        })
+        .id("row1")
+
+        Row() {
+          Text('row2')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .backgroundColor('#00ae9d')
+        .alignRules({
+          top: { anchor: "__container__", align: VerticalAlign.Top },
+          right: { anchor: "__container__", align: HorizontalAlign.End },
+          bottom: { anchor: "row1", align: VerticalAlign.Center },
+        })
+        .offset({
+          x: -40,
+          y: -20
+        })
+        .id("row2")
+
+        Row() {
+          Text('row3')
+        }
+        .justifyContent(FlexAlign.Center)
+        .height(100)
+        .backgroundColor('#0a59f7')
+        .alignRules({
+          top: { anchor: "row1", align: VerticalAlign.Bottom },
+          left: { anchor: "row1", align: HorizontalAlign.End },
+          right: { anchor: "row2", align: HorizontalAlign.Start }
+        })
+        .offset({
+          x: -10,
+          y: -20
+        })
+        .id("row3")
+
+        Row() {
+          Text('row4')
+        }
+        .justifyContent(FlexAlign.Center)
+        .backgroundColor('#2ca9e0')
+        .alignRules({
+          top: { anchor: "row3", align: VerticalAlign.Bottom },
+          bottom: { anchor: "__container__", align: VerticalAlign.Bottom },
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          right: { anchor: "row1", align: HorizontalAlign.End }
+        })
+        .offset({
+          x: -10,
+          y: -30
+        })
+        .id("row4")
+
+        Row() {
+          Text('row5')
+        }
+        .justifyContent(FlexAlign.Center)
+        .backgroundColor('#30c9f7')
+        .alignRules({
+          top: { anchor: "row3", align: VerticalAlign.Bottom },
+          bottom: { anchor: "__container__", align: VerticalAlign.Bottom },
+          left: { anchor: "row2", align: HorizontalAlign.Start },
+          right: { anchor: "row2", align: HorizontalAlign.End }
+        })
+        .offset({
+          x: 10,
+          y: 20
+        })
+        .id("row5")
+
+        Row() {
+          Text('row6')
+        }
+        .justifyContent(FlexAlign.Center)
+        .backgroundColor('#ff33ffb5')
+        .alignRules({
+          top: { anchor: "row3", align: VerticalAlign.Bottom },
+          bottom: { anchor: "row4", align: VerticalAlign.Bottom },
+          left: { anchor: "row3", align: HorizontalAlign.Start },
+          right: { anchor: "row3", align: HorizontalAlign.End }
+        })
+        .offset({
+          x: -15,
+          y: 10
+        })
+        .backgroundImagePosition(Alignment.Bottom)
+        .backgroundImageSize(ImageSize.Cover)
+        .id("row6")
       }
-      .height('100%')
+      .width(300).height(300)
+      .margin({ left: 50 })
+      .border({ width: 2, color: "#6699FF" })
     }
+    .height('100%')
   }
+}
   ```
   ![Simplify-Component-Layout](figures/arkts-simplify-component-layout-image2.png)
 
@@ -280,65 +322,72 @@ After being aligned relative to the anchor, a child component may be still not a
 You can set components in multiple layout components, such as **Row**, **Column**, **Flex**, and **Stack**, to be aligned based on the relative layout rules.
 
   ```ts
-  @Entry
-  @Component
-  struct Index {
-    @State value: number = 0
-    build() {
-      Row() {
+@Entry
+@Component
+struct Index {
+  @State value: number = 0
 
-        RelativeContainer() {
-          Row().width(100).height(100)
-            .backgroundColor('#ff33ffcc')
-            .alignRules({
-              top: {anchor: "__container__", align: VerticalAlign.Top},
-              left: {anchor: "__container__", align: HorizontalAlign.Start}
-            })
-            .id("row1")
+  build() {
+    Row() {
 
-          Column().width('50%').height(30).backgroundColor(0xAFEEEE)
-            .alignRules({
-              top: {anchor: "__container__", align: VerticalAlign.Top},
-              left: {anchor: "__container__", align: HorizontalAlign.Center}
-            }).id("row2")
-
-          Flex({ direction: FlexDirection.Row }) {
-            Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)
-            Text('2').width('20%').height(50).backgroundColor(0xD2B48C)
-            Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
-            Text('4').width('20%').height(50).backgroundColor(0xD2B48C)
-          }
-          .padding(10)
-          .backgroundColor('#ffedafaf')
+      RelativeContainer() {
+        Row()
+          .width(100)
+          .height(100)
+          .backgroundColor('#a3cf62')
           .alignRules({
-            top: {anchor: "row2", align: VerticalAlign.Bottom},
-            left: {anchor: "__container__", align: HorizontalAlign.Start},
-            bottom: {anchor: "__container__", align: VerticalAlign.Center},
-            right: {anchor: "row2", align: HorizontalAlign.Center}
+            top: { anchor: "__container__", align: VerticalAlign.Top },
+            left: { anchor: "__container__", align: HorizontalAlign.Start }
           })
-          .id("row3")
+          .id("row1")
 
-          Stack({ alignContent: Alignment.Bottom }) {
-            Text('First child, show in bottom').width('90%').height('100%').backgroundColor(0xd2cab3).align(Alignment.Top)
-            Text('Second child, show in top').width('70%').height('60%').backgroundColor(0xc1cbac).align(Alignment.Top)
-          }
-          .margin({ top: 5 })
+        Column()
+          .width('50%')
+          .height(30)
+          .backgroundColor('#00ae9d')
           .alignRules({
-            top: {anchor: "row3", align: VerticalAlign.Bottom},
-            left: {anchor: "__container__", align: HorizontalAlign.Start},
-            bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
-            right: {anchor: "row3", align: HorizontalAlign.End}
+            top: { anchor: "__container__", align: VerticalAlign.Top },
+            left: { anchor: "__container__", align: HorizontalAlign.Center }
           })
-          .id("row4")
+          .id("row2")
 
+        Flex({ direction: FlexDirection.Row }) {
+          Text('1').width('20%').height(50).backgroundColor('#0a59f7')
+          Text('2').width('20%').height(50).backgroundColor('#2ca9e0')
+          Text('3').width('20%').height(50).backgroundColor('#0a59f7')
+          Text('4').width('20%').height(50).backgroundColor('#2ca9e0')
         }
-        .width(300).height(300)
-        .margin({left: 50})
-        .border({width:2, color: "#6699FF"})
+        .padding(10)
+        .backgroundColor('#30c9f7')
+        .alignRules({
+          top: { anchor: "row2", align: VerticalAlign.Bottom },
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          bottom: { anchor: "__container__", align: VerticalAlign.Center },
+          right: { anchor: "row2", align: HorizontalAlign.Center }
+        })
+        .id("row3")
+
+        Stack({ alignContent: Alignment.Bottom }) {
+          Text('First child, show in bottom').width('90%').height('100%').backgroundColor('#a3cf62').align(Alignment.Top)
+          Text('Second child, show in top').width('70%').height('60%').backgroundColor('#00ae9d').align(Alignment.Top)
+        }
+        .margin({ top: 5 })
+        .alignRules({
+          top: { anchor: "row3", align: VerticalAlign.Bottom },
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          bottom: { anchor: "__container__", align: VerticalAlign.Bottom },
+          right: { anchor: "row3", align: HorizontalAlign.End }
+        })
+        .id("row4")
+
       }
-      .height('100%')
+      .width(300).height(300)
+      .margin({ left: 50 })
+      .border({ width: 2, color: "#6699FF" })
     }
+    .height('100%')
   }
+}
   ```
   ![Simplify-Component-Layout](figures/arkts-simplify-component-layout-image3.png)
 
@@ -347,77 +396,96 @@ You can set components in multiple layout components, such as **Row**, **Column*
 The size of a child component is not affected by the relative layout rules. If two or more **alignRule** values are set for a child component in one direction, avoid setting the size in this direction. Otherwise, the component size determined by **alignRule** may conflict with the size you set.
 
   ```ts
-  @Entry
-  @Component
-  struct Index {
-    build() {
-      Row() {
-        RelativeContainer() {
-          Row(){Text('row1')}.justifyContent(FlexAlign.Center)
-            .width(100).height(100)
-            .backgroundColor("#FF3333")
-            .alignRules({
-              top: {anchor: "__container__", align: VerticalAlign.Top},
-              left: {anchor: "__container__", align: HorizontalAlign.Start}
-            })
-            .id("row1")
-
-          Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100)
-            .backgroundColor("#FFCC00")
-            .alignRules({
-              top: {anchor: "__container__", align: VerticalAlign.Top},
-              right: {anchor: "__container__", align: HorizontalAlign.End},
-              bottom: {anchor: "row1", align: VerticalAlign.Center},
-            })
-            .id("row2")
-
-          Row(){Text('row3')}.justifyContent(FlexAlign.Center).height(100)
-            .backgroundColor("#FF6633")
-            .alignRules({
-              top: {anchor: "row1", align: VerticalAlign.Bottom},
-              left: {anchor: "row1", align: HorizontalAlign.End},
-              right: {anchor: "row2", align: HorizontalAlign.Start}
-            })
-            .id("row3")
-
-          Row(){Text('row4')}.justifyContent(FlexAlign.Center)
-            .backgroundColor("#FF9966")
-            .alignRules({
-              top: {anchor: "row3", align: VerticalAlign.Bottom},
-              bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
-              left: {anchor: "__container__", align: HorizontalAlign.Start},
-              right: {anchor: "row1", align: HorizontalAlign.End}
-            })
-            .id("row4")
-
-          Row(){Text('row5')}.justifyContent(FlexAlign.Center)
-            .backgroundColor("#FF66FF")
-            .alignRules({
-              top: {anchor: "row3", align: VerticalAlign.Bottom},
-              bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
-              left: {anchor: "row2", align: HorizontalAlign.Start},
-              right: {anchor: "row2", align: HorizontalAlign.End}
-            })
-            .id("row5")
-
-          Row(){Text('row6')}.justifyContent(FlexAlign.Center)
-            .backgroundColor('#ff33ffb5')
-            .alignRules({
-              top: {anchor: "row3", align: VerticalAlign.Bottom},
-              bottom: {anchor: "row4", align: VerticalAlign.Bottom},
-              left: {anchor: "row3", align: HorizontalAlign.Start},
-              right: {anchor: "row3", align: HorizontalAlign.End}
-            })
-            .id("row6")
-            .backgroundImagePosition(Alignment.Bottom)
-            .backgroundImageSize(ImageSize.Cover)
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      RelativeContainer() {
+        Row() {
+          Text('row1')
         }
-        .width(300).height(300)
-        .margin({left: 50})
-        .border({width:2, color: "#6699FF"})
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .height(100)
+        .backgroundColor('#a3cf62')
+        .alignRules({
+          top: { anchor: "__container__", align: VerticalAlign.Top },
+          left: { anchor: "__container__", align: HorizontalAlign.Start }
+        })
+        .id("row1")
+
+        Row() {
+          Text('row2')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(100)
+        .backgroundColor('#00ae9d')
+        .alignRules({
+          top: { anchor: "__container__", align: VerticalAlign.Top },
+          right: { anchor: "__container__", align: HorizontalAlign.End },
+          bottom: { anchor: "row1", align: VerticalAlign.Center },
+        })
+        .id("row2")
+
+        Row() {
+          Text('row3')
+        }
+        .justifyContent(FlexAlign.Center)
+        .height(100)
+        .backgroundColor('#0a59f7')
+        .alignRules({
+          top: { anchor: "row1", align: VerticalAlign.Bottom },
+          left: { anchor: "row1", align: HorizontalAlign.End },
+          right: { anchor: "row2", align: HorizontalAlign.Start }
+        })
+        .id("row3")
+
+        Row() {
+          Text('row4')
+        }.justifyContent(FlexAlign.Center)
+        .backgroundColor('#2ca9e0')
+        .alignRules({
+          top: { anchor: "row3", align: VerticalAlign.Bottom },
+          bottom: { anchor: "__container__", align: VerticalAlign.Bottom },
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          right: { anchor: "row1", align: HorizontalAlign.End }
+        })
+        .id("row4")
+
+        Row() {
+          Text('row5')
+        }.justifyContent(FlexAlign.Center)
+        .backgroundColor('#30c9f7')
+        .alignRules({
+          top: { anchor: "row3", align: VerticalAlign.Bottom },
+          bottom: { anchor: "__container__", align: VerticalAlign.Bottom },
+          left: { anchor: "row2", align: HorizontalAlign.Start },
+          right: { anchor: "row2", align: HorizontalAlign.End }
+        })
+        .id("row5")
+
+        Row() {
+          Text('row6')
+        }
+        .justifyContent(FlexAlign.Center)
+        .backgroundColor('#ff33ffb5')
+        .alignRules({
+          top: { anchor: "row3", align: VerticalAlign.Bottom },
+          bottom: { anchor: "row4", align: VerticalAlign.Bottom },
+          left: { anchor: "row3", align: HorizontalAlign.Start },
+          right: { anchor: "row3", align: HorizontalAlign.End }
+        })
+        .id("row6")
+        .backgroundImagePosition(Alignment.Bottom)
+        .backgroundImageSize(ImageSize.Cover)
       }
-      .height('100%')
+      .width(300).height(300)
+      .margin({ left: 50 })
+      .border({ width: 2, color: "#6699FF" })
     }
+    .height('100%')
   }
+}
   ```
   ![Simplify-Component-Layout](figures/arkts-simplify-component-layout-image4.png)

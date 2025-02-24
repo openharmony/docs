@@ -16,13 +16,13 @@ A Harmony Shared Package (HSP) is a dynamic shared package that can contain code
 
 ## Constraints
 
-- An HSP must be installed and run with the HAP that depends on it. It cannot be installed or run independently on a device. The version of an HSP must be the same as that of the HAP.
-- An HSP does not support the declaration of the [ExtensionAbility](../application-models/extensionability-overview.md) component in the configuration file, but supports the [UIAbility](../application-models/uiability-overview.md) component.
+- An HSP must be installed and run with the HAP that depends on it. It cannot be installed or run independently on a device. The HAP version must be later than or equal to the HSP version.
+- HSP supports the declaration of the [ExtensionAbility](../application-models/extensionability-overview.md) and [UIAbility](../application-models/uiability-overview.md) components in the configuration file, however, ExtensionAbility or UIAbility with entry capabilities (that is, entity.system.home and ohos.want.action.home are configured for the **skill** tag) is not supported.
 - An HSP can depend on other HARs or HSPs, but does not support cyclic dependency or dependency transfer.
 
 
 ## Creating an HSP
-Create an HSP module in DevEco Studio. For details, see <!--RP1-->[Creating an HSP Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hsp-V5#section7717162312546)<!--RP1End-->. The following describes how to create an HSP module named **library**. The basic project directory structure is as follows:
+Create an HSP module in DevEco Studio. For details, see [Creating an HSP Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-hsp-V13#section7717162312546). The following describes how to create an HSP module named **library**. The basic project directory structure is as follows:
 ```
 MyApplication
 ├── library
@@ -164,7 +164,7 @@ export { ResManager } from './src/main/ets/ResManager';
 You can reference APIs in an HSP and implement page redirection in the HSP through page routing.
 
 ### Referencing APIs
-To use HSP APIs, you need to configure the dependency on HSP APIs in **oh-package.json5**. For details, see <!--RP2-->[Referencing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-har-import-V5)<!--RP2End-->.
+To use HSP APIs, you need to configure the dependency on them in the **oh-package.json5** file. For details, see [Referencing a Shared Package](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-har-import-V13).
 You can then call the external APIs of the HSP in the same way as calling the APIs in the HAR. In this example, the external APIs are the following ones exported from **library**:
 
 ```ts

@@ -16,13 +16,23 @@ AbilityStage类提供在HAP加载的时候，通知开发者，可以在此进�
 import { AbilityStage } from '@kit.AbilityKit';
 ```
 
+## 属性
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| context  | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | 否 | 否 | AbilityStage上下文。 |
+
 ## AbilityStage.onCreate
 
 onCreate(): void
 
 当应用创建时调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -45,7 +55,7 @@ onAcceptWant(want: Want): string
 
 启动一个specified ability时触发的事件。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -114,7 +124,7 @@ onConfigurationUpdate(newConfig: Configuration): void
 
 环境变化通知接口，发生全局配置变更时回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -142,7 +152,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 当系统已决定调整内存时调用。例如，当该功能在后台运行时，没有足够的内存来运行尽可能多的后台进程时可以使用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -170,7 +180,7 @@ context: AbilityStageContext
 
 指示AbilityStage的上下文。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -196,7 +206,7 @@ onDestroy(): void
 
 当应用销毁时调用, 此方法将在正常的调度生命周期中调用, 当应用程序异常退出或被终止时，将不会调用此方法。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -212,13 +222,21 @@ class MyAbilityStage extends AbilityStage {
 }
 ```
 
-## AbilityStage.onPrepareTermination<sup>16+<sup>
+## AbilityStage.onPrepareTermination<sup>15+<sup>
 
 onPrepareTermination(): AbilityConstant.PrepareTermination
 
-当应用将被强制结束时调用，可用于询问用户选择立即执行操作还是取消操作。当前仅在2in1设备上生效。
+当应用被用户关闭时调用，可用于询问用户选择立即执行操作还是取消操作。当前仅在2in1设备上生效。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+> **说明：**
+>
+> - 仅当应用正常退出时会调用该接口。如果应用被强制关闭，则不会调用该接口。
+> 
+> - 当[AbilityStage.onPrepareTerminationAsync](#abilitystageonprepareterminationasync15)实现时，本回调函数将不执行。 
+
+**需要权限**：ohos.permission.PREPARE_APP_TERMINATE
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -226,7 +244,7 @@ onPrepareTermination(): AbilityConstant.PrepareTermination
 
 | 类型 | 说明 | 
 | -------- | -------- |
-| [AbilityConstant.PrepareTermination](js-apis-app-ability-abilityConstant.md#preparetermination16) | 用于返回用户的选择结果。 | 
+| [AbilityConstant.PrepareTermination](js-apis-app-ability-abilityConstant.md#preparetermination15) | 用于返回用户的选择结果。 | 
 
 **示例：**
 
@@ -236,6 +254,43 @@ import { AbilityConstant, AbilityStage } from '@kit.AbilityKit';
 class MyAbilityStage extends AbilityStage {
   onPrepareTermination(): AbilityConstant.PrepareTermination {
     console.info('MyAbilityStage.onPrepareTermination is called');
+    return AbilityConstant.PrepareTermination.CANCEL;
+  }
+}
+```
+
+## AbilityStage.onPrepareTerminationAsync<sup>15+<sup>
+
+onPrepareTerminationAsync(): Promise\<AbilityConstant.PrepareTermination>
+
+当应用被用户关闭时调用，可用于询问用户选择立即执行操作还是取消操作。使用Promise异步回调。当前仅在2in1设备上生效。
+
+> **说明：**
+>
+> - 仅当应用正常退出时会调用该接口。如果应用被强制关闭，则不会调用该接口。
+>
+> - 若异步回调内发生crash，按超时处理，执行等待超过10秒未响应，应用将被强制关闭。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 | 
+| -------- | -------- |
+| Promise\<[AbilityConstant.PrepareTermination](js-apis-app-ability-abilityConstant.md#preparetermination15)> | Promise对象，返回用户的选择结果。 | 
+
+**示例：**
+
+```ts
+import { AbilityConstant, AbilityStage } from '@kit.AbilityKit';
+
+class MyAbilityStage extends AbilityStage {
+  async onPrepareTerminationAsync(): Promise<AbilityConstant.PrepareTermination> {
+    await new Promise<AbilityConstant.PrepareTermination>((res, rej) => {
+      setTimeout(res, 3000); // 延时3秒后执行
+    });
     return AbilityConstant.PrepareTermination.CANCEL;
   }
 }

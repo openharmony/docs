@@ -303,7 +303,7 @@ Registers an event processing callback to listen for different events on the wri
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event    | string   | Yes| Type of the event. The following events are supported:| `'drain' `\|`'error'` \|  <br>\- **'close'**: triggered when the call of [end()](#end) is complete and the write operation ends.<br>\- **'drain'**: triggered when the data in the buffer of the writable stream reaches **writableHighWatermark**.<br>\- **'error'**: triggered when an exception occurs in the writable stream.<br>\- **'finish'**: triggered when all data in the buffer is written to the target.|
+| event    | string   | Yes| Type of the event. The following events are supported:| `'drain' `\|`'error'` \|  <br>\- **'close'**: triggered when the call of [end()](#end) is complete and the write operation ends.<br>\- **'drain'**: triggered when the data in the buffer of the writable stream is cleared.<br>\- **'error'**: triggered when an exception occurs in the writable stream.<br>\- **'finish'**: triggered when all data in the buffer is written to the target.|
 | callback | Callback\<[emitter.EventData](../apis-basic-services-kit/js-apis-emitter.md#eventdata)\> | Yes| Callback function used to return the event data.|
 
 **Error codes**
@@ -350,7 +350,7 @@ Unregisters an event processing callback used to listen for different events on 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event    | string   | Yes| Type of the event. The following events are supported:| `'drain' `\|`'error'` \|  <br>\- **'close'**: triggered when the call of [end()](#end) is complete and the write operation ends.<br>\- **'drain'**: triggered when the data in the buffer of the writable stream reaches **writableHighWatermark**.<br>\- **'error'**: triggered when an exception occurs in the writable stream.<br>\- **'finish'**: triggered when all data in the buffer is written to the target.|
+| event    | string   | Yes| Type of the event. The following events are supported:| `'drain' `\|`'error'` \|  <br>\- **'close'**: triggered when the call of [end()](#end) is complete and the write operation ends.<br>\- **'drain'**: triggered when the data in the buffer of the writable stream is cleared.<br>\- **'error'**: triggered when an exception occurs in the writable stream.<br>\- **'finish'**: triggered when all data in the buffer is written to the target.|
 | callback | Callback\<[emitter.EventData](../apis-basic-services-kit/js-apis-emitter.md#eventdata)\>   | No| Callback function.|
 
 **Error codes**
@@ -658,7 +658,7 @@ console.info('Readable data is', dataChunk); // Readable data is test
 
 resume(): Readable
 
-Resumes an explicitly paused readable stream.
+Resumes an explicitly paused readable stream. You can use **isPaused** to check whether the stream is in flowing mode.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -684,14 +684,14 @@ class TestReadable extends stream.Readable {
 
 let readableStream = new TestReadable();
 readableStream.resume();
-console.info("Readable test resume", readableStream.isPaused()); // Readable test resume false
+console.info("Readable test resume", !readableStream.isPaused()); // After a successful switching, the log "Readable test resume true" is displayed.
 ```
 
 ### pause
 
 pause(): Readable
 
-Pauses the readable stream in flowing mode.
+Pauses the readable stream in flowing mode. You can use **isPaused** to check whether the stream is paused.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -923,6 +923,7 @@ readable.unpipe(writable);
 readable.on('data', () => {
   console.info("Readable test unpipe data event called");
 });
+// After successful detaching, the data event is not triggered and "Readable test unpipe data event called" is not printed.
 ```
 
 ### on
@@ -974,7 +975,7 @@ readable.on('error', () => {
 
 off(event: string, callback?: Callback<emitter.EventData>): void
 
-Unregisters an event processing callback used to listen for different events on the writable stream.
+Unregisters an event processing callback used to listen for different events on the readable stream.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1017,6 +1018,7 @@ readable.setEncoding('utf8');
 readable.on('readable', read);
 readable.off('readable');
 readable.push('test');
+// After off is used to unregister the listening of the readable stream events, the read function is not called and "read() called" is not printed.
 ```
 
 ### doInitialize
@@ -1155,7 +1157,7 @@ console.info("Readable push test", readable.readableLength); // Readable push te
 ## Duplex
 
 A stream that is both readable and writable. A duplex stream allows data to be transmitted in two directions, that is, data can be read and written.
-The **Duplex** class inherits from [Readable](# readable) and supports all the APIs in **Readable**.
+The **Duplex** class inherits from [Readable](#readable) and supports all the APIs in **Readable**.
 
 ### Attributes
 

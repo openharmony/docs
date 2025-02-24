@@ -81,7 +81,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 | 参数名        | 类型                    | 必填   | 说明         |
 | ---------- | --------------------- | ---- | ---------- |
 | work       | [WorkInfo](#workinfo) | 是    | 要停止或移除的延迟任务。 |
-| needCancel | boolean               | 否    | 是否需要移除的任务。<br>- true表示停止并移除，false表示只停止不移除。默认为false。|
+| needCancel | boolean               | 否    | 是否需要移除任务。<br>true表示停止并移除，false表示只停止不移除。默认为false。|
 
 **错误码**：
 
@@ -249,7 +249,7 @@ obtainAllWorks(callback : AsyncCallback&lt;Array&lt;WorkInfo&gt;&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |

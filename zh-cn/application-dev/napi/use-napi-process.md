@@ -207,7 +207,7 @@ struct Index {
 
 ### 注册建议
 
-- nm_register_func对应的函数（如上述Init函数）需要加上static，防止与其他so里的符号冲突；
+- nm_register_func对应的函数（如上述Init函数）需要加上static，防止与其他so里的符号冲突。
 
 - 模块注册的入口，即使用__attribute__((constructor))修饰的函数的函数名（如上述RegisterDemoModule函数）需要确保不与其它模块重复。
 
@@ -217,5 +217,7 @@ struct Index {
 每个引擎实例对应一个JS线程，实例上的对象不能跨线程操作，否则会引起应用crash。使用时需要遵循如下原则：
 
 - Node-API接口只能在JS线程使用。
-
 - Native接口入参env与特定JS线程绑定只能在创建时的线程使用。
+- 使用Node-API接口创建的数据需在env完全销毁前进行释放，避免内存泄漏。此外，在napi_env销毁后访问/使用这些数据，可能会导致进程崩溃。
+
+部分常见错误用法已增加维测手段覆盖，详见[使用Node-API接口产生的异常日志/崩溃分析](use-napi-about-crash.md)。

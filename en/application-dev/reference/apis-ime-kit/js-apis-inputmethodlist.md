@@ -42,9 +42,9 @@ Implements a dialog box showing the input method list.
 
 | Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| defaultSelected<sup>11+</sup>  | number | Yes| Yes| Optional. Default selected pattern.|
-| patterns<sup>11+</sup>    | Array<[Pattern](#pattern)> | Yes| Yes| Mandatory. Resource of the pattern option.|
-| action<sup>9+</sup> | function | Yes| Yes| Mandatory. Callback invoked when the pattern option changes.|
+| defaultSelected<sup>11+</sup>  | number | No| Yes| Optional. Default selected pattern.|
+| patterns<sup>11+</sup>    | Array<[Pattern](#pattern)> | No| No| Mandatory. Resource of the pattern option.|
+| action<sup>9+</sup> | function | No| No| Mandatory. Callback invoked when the pattern option changes.|
 
 ## Pattern
 
@@ -52,8 +52,8 @@ Implements a dialog box showing the input method list.
 
 | Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| icon<sup>11+</sup>  | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | Yes| Yes| Mandatory. Default icon.|
-| selectedIcon<sup>11+</sup>    | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | Yes| Yes| Mandatory. Icon for the selected option.|
+| icon<sup>11+</sup>  | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | No| No| Mandatory. Default icon.|
+| selectedIcon<sup>11+</sup>    | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | No| No| Mandatory. Icon for the selected option.|
 
 ##  Events
 

@@ -42,7 +42,7 @@ When used in horizontal layout, the list can contain one or more scrollable rows
 ![en-us_image_0000001511421344](figures/en-us_image_0000001511421344.png)
 
 
-**Grid** and **WaterFlow** can also achieve single-column and multi-column layouts. If the layout requires columns of equal width and does not need to span rows or columns, **List** is preferred over **Grid** and WaterFlow.
+While **Grid** and **WaterFlow** can also create single-column and multi-column layouts, there are scenarios where the **List** is the more suitable choice. Specifically, if your layout design requires columns of equal width and items do not need to span rows or columns, opt for the **List**.
 
 ### Constraints
 
@@ -236,8 +236,8 @@ class Contact {
 @Component
 struct SimpleContacts {
   private contacts: Array<object> = [
-    new Contact('Tom', $r ("app.media.iconA")),
-    new Contact('Tracy', $r ("app.media.iconB")),
+    new Contact('Tom', $r("app.media.iconA")),
+    new Contact('Tracy', $r("app.media.iconB")),
   ]
 
   build() {

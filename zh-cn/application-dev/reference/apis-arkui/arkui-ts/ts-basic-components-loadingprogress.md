@@ -28,7 +28,7 @@ LoadingProgress()
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### color
 
@@ -83,7 +83,7 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](ts-component-general-events.md)。
 
 ## LoadingProgressConfiguration<sup>12+</sup>对象说明
 
@@ -142,9 +142,7 @@ struct LoadingProgressExample {
 该示例通过contentModifier接口，实现了定制内容区的功能，并通过enableLoading接口实现了通过按钮切换是否显示LoadingProgress的效果。
 
 ```ts
-//该示例实现了自定义LoadingProgress的功能，实现了通过按钮切换是否显示LoadingProgress。点击按钮，config.enableLoading切换为false, 不显示LoadingProgress。
 // xxx.ets
-import { hilog } from '@kit.PerformanceAnalysisKit'
 import { promptAction } from '@kit.ArkUI'
 
 class MyLoadingProgressStyle implements ContentModifier<LoadingProgressConfiguration> {
@@ -159,7 +157,8 @@ class MyLoadingProgressStyle implements ContentModifier<LoadingProgressConfigura
   }
 }
 
-let arr1: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]
+let arr1: string[] =
+  ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]
 let arr2: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 @Builder
@@ -190,7 +189,7 @@ function buildLoadingProgress(config: LoadingProgressConfiguration) {
     Row() {
       Column() {
         Gauge({
-          value: (config.contentModifier as MyLoadingProgressStyle).enableLoading?50:30, min: 11, max: 100
+          value: (config.contentModifier as MyLoadingProgressStyle).enableLoading ? 50 : 30, min: 11, max: 100
         }) {
           Column() {
             Text('60')
@@ -206,7 +205,6 @@ function buildLoadingProgress(config: LoadingProgressConfiguration) {
               .maxLines(1)
           }.width('100%').height('100%')
         }
-
         .colors(((config.contentModifier as MyLoadingProgressStyle).enableLoading) ? Color.Grey : 0x2577e3)
         .width(200)
         .strokeWidth(18)
@@ -240,7 +238,10 @@ function buildLoadingProgress(config: LoadingProgressConfiguration) {
       .width('100%')
       .friction(0.6)
 
-      .lanes({ minLength: (config.contentModifier as MyLoadingProgressStyle).enableLoading?40:80, maxLength: (config.contentModifier as MyLoadingProgressStyle).enableLoading?40:80 })
+      .lanes({
+        minLength: (config.contentModifier as MyLoadingProgressStyle).enableLoading ? 40 : 80,
+        maxLength: (config.contentModifier as MyLoadingProgressStyle).enableLoading ? 40 : 80
+      })
       .scrollBar(BarState.Off)
     }
 

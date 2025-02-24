@@ -232,7 +232,7 @@ class Info {
   @Trace myId: number;   		// Observable.
   name: string;           		// Not observable.
   @Track trackId: number = 1; 	// As a decorator of V1, @Track cannot be used in @ObservedV2. Otherwise, an error is reported during compilation. Remove @Track to eliminate the error.
-    
+  
   constructor(id?: number, name?: string) {
     this.myId = id || 0;
     this.name = name || 'aaa';
@@ -240,28 +240,28 @@ class Info {
 }
 
 @Observed
-class message extends Info {      // Classes inherited from @ObservedV2 cannot be decorated by Observed. Otherwise, an error is reported during compilation. Remove @Observed to eliminate the error.
+class message extends Info {	// Classes inherited from @ObservedV2 cannot be decorated by Observed. Otherwise, an error is reported during compilation. Remove @Observed to eliminate the error.
 }
 
-class MessageInfo extends Info {  // Classes inherited from @ObservedV2 cannot be decorated by the decorator of V1. Otherwise, an error is reported during compilation. Remove decorator to eliminate the error.
+class MessageInfo extends Info {
 }
 
 @Entry
 @Component
 struct Index {
-  info1: Info = new Info();                             // @ObservedV2 decorated class can be used in V1, and @Trace decorated class is observable.
-  @State info2: Info = new Info();                      // @ObservedV2 decorated class cannot be decorated by the decorator of V1. Otherwise, an error is reported during compilation. Remove decorator to eliminate the error.
+  info1: Info = new Info();                      // @ObservedV2 decorated class can be used in V1, and @Trace decorated class is observable.
+  @State info2: Info = new Info();               // @ObservedV2 decorated class cannot be decorated by the decorator of V1. Otherwise, an error is reported during compilation. Remove @State to eliminate the error.
 
-  @State messageInfo: MessageInfo = new MessageInfo();  // Classes inherited from @ObservedV2 cannot be decorated by the decorator of V1. Otherwise, an error is reported during compilation. Remove decorator to eliminate the error.
+  @State messageInfo: MessageInfo = new MessageInfo();  // Classes inherited from @ObservedV2 cannot be decorated by the decorator of V1. Otherwise, an error is reported during runtime. Remove @State to eliminate the error.
   build() {
     Column() {
-      Text(`info1: ${this.info1.name}`)                 // name is not decorated by @Trace and is not observable.
+      Text(`info1 name: ${this.info1.name}`)            // name is not decorated by @Trace and is not observable.
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
           this.info1.name += 'b';
         })
-      Text ('info1: ${this.info1.name}') // myId is decorated by @Trace and is observable.
+      Text(`info1 id: ${this.info1.myId}`)              // myId is decorated by @Trace and is observable.
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -269,7 +269,7 @@ struct Index {
         })
       Divider()
         .color(Color.Blue)
-      Text(`info2: ${this.info2.myId}`)
+      Text(`info2 id: ${this.info2.myId}`)
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -277,9 +277,9 @@ struct Index {
         })
       Divider()
         .color(Color.Blue)
-      Text(`messageInfo: ${this.messageInfo.myId}`)   // When the class inherited from @ObservedV2 is decorated by the decorator of V1, a crash occurs during runtime.
+      Text(`messageInfo id: ${this.messageInfo.myId}`) // A crash occurs during runtime when the class inherited from @ObservedV2 is decorated by the decorators of V1. Remove @State to eliminate the error.
         .fontSize(50)
-        .fontWeight(FontWeight.Bold) 
+        .fontWeight(FontWeight.Bold)
         .onClick(() => {
           this.messageInfo.myId += 1;
         })
@@ -324,17 +324,16 @@ class MessageInfo extends Info {
 struct Index {
   info1: Info = new Info();             // @Observed decorated class can be used in V2.
   @Local info2: Info = new Info();      // @Observe decorated class cannot be decorated by the decorator of V2. Otherwise, an error is reported during compilation. Remove @Local to eliminate the error.
-  // Classes inherited from @ObservedV2 are decorated by the decorator of V2, but the class properties cannot be observed by the intra-component decorator of V2. Therefore, you are not advised to use the @Observed decorated classes in V2.
   @Local messageInfo: MessageInfo = new MessageInfo(); 
   build() {
     Column() {
-      Text(`info1: ${this.info1.name}`)
+      Text(`info1 name: ${this.info1.name}`)
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
           this.info1.name += 'b';
         })
-      Text(`info1: ${this.info1.name}`)
+      Text(`info1 id: ${this.info1.myId}`)
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -342,7 +341,7 @@ struct Index {
         })
       Divider()
         .color(Color.Blue)
-      Text(`info2: ${this.info2.myId}`)
+      Text(`info2 id: ${this.info2.myId}`)
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -350,8 +349,8 @@ struct Index {
         })
       Divider()
         .color(Color.Blue)
-      // Classes inherited from @ObservedV2 are decorated by the decorator of V2, but the class properties cannot be observed by the intra-component decorator of V2. Therefore, you are not advised to use the @Observed decorated classes in V2.
-      Text(`messageInfo: ${this.messageInfo.myId}`)   
+      // Classes inherited from @ObservedV2 are decorated by the decorator of V2, but the class properties cannot be observed by the decorator of V2. Therefore, you are not advised to use the @Observed decorated classes in V2.
+      Text(`messageInfo id: ${this.messageInfo.myId}`)   
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -697,7 +696,7 @@ struct Child {
         })
       Divider()
         .color(Color.Blue)
-      ForEach(Array.from(this.set.values()), (item: number) => {  // Display set.
+      ForEach(Array.from(this.setMap.values()), (item: number) => {  // Display set.
         Text(`${item}`)
           .fontSize(30)
       })
@@ -728,7 +727,7 @@ struct Index {
         message: this.message,
         undefineVal: this.undefineVal,
         info: this.info,
-        set: this.set
+        setMap: this.set
       })
     }
     .height('100%')
@@ -840,7 +839,7 @@ When the state variables of V2 are passed to a custom component of V1, constrain
 
 ### Summary
 
-According to the detailed analysis of the mixed use of V1 and V2, when the code of V1 is used in V2, that is, components or classes of V1 are passed to V2, most capabilities of V1 are disabled in V2. When the code of V2 is used in V1, that is, components or classes of V2 are passed to V1, some functions are available, for example, \@ObserveV2 and \@Trace. This is also the most helpful way to observe the V1 nested class data. Therefore, during code development, you are not advised to use V1 and V2 together for mixed development. However, you can gradually migrate the code of V1 to V2 to steadily replace the function code of V1. In addition, you are not advised to use the code of V1 in V2.
+According to the detailed analysis of the mixed use of V1 and V2, when the code of V1 is used in V2, that is, components or classes of V1 are passed to V2, most capabilities of V1 are disabled in V2. When the code of V2 is used in V1, that is, components or classes of V2 are passed to V1, some functions are available, for example, \@ObservedV2 and \@Trace. This is also the most helpful way to observe the V1 nested class data. Therefore, during code development, you are not advised to use V1 and V2 together for mixed development. However, you can gradually migrate the code of V1 to V2 to steadily replace the function code of V1. In addition, you are not advised to use the code of V1 in V2.
 
 ## Supplementary Scenarios
 

@@ -25,13 +25,13 @@ Toggle(options: ToggleOptions)
 
 | 参数名 | 类型 | 必填   | 说明           |
 | ---- | ---------- | -----| -------------- |
-| options | [ToggleOptions](#toggleoptions14对象说明) | 是   | Toggle的信息。 |
+| options | [ToggleOptions](#toggleoptions16对象说明) | 是   | Toggle的信息。 |
 
-## ToggleOptions<sup>14+</sup>对象说明
+## ToggleOptions<sup>16+</sup>对象说明
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -56,7 +56,7 @@ Toggle(options: ToggleOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### selectedColor
 
@@ -141,7 +141,7 @@ contentModifier(modifier: ContentModifier\<ToggleConfiguration>)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onChange
 
@@ -290,7 +290,7 @@ struct ToggleExample {
 
 ![toggle](figures/toggleSwitchStyle.gif)
 
-### 示例3（自定义Togge样式）
+### 示例3（自定义Toggle样式）
 
 该示例实现了自定义Toggle样式的功能。自定义样式实现了通过按钮切换圆形颜色的功能：点击蓝圆按钮，圆形背景变蓝色，点击黄圆按钮，圆形背景变黄色。
 

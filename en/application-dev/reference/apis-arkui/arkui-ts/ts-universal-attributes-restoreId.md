@@ -33,6 +33,8 @@ Sets the ID of the component used for device matching during hopping.
 
 ## Example
 
+This example demonstrates how to use **restoreId** to set the ID of the **List** component for device matching during hopping.
+
 ```ts
 // xxx.ets
 @Entry

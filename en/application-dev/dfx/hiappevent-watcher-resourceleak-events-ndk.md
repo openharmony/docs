@@ -218,7 +218,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    ```
 
 7. In the **entry/src/main/ets/pages/index.ets** file, add the **memoryleak** button and construct a scenario for triggering a resource leak event in **onClick()**.
-   In this case, use [hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12) to set the memory limit to trigger a memory leak event, and enable **System resource leak log** in **Developer options**. The sample code is as follows:
+   In this case, use [hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12) to set the memory limit to trigger a memory leak event, and enable **System resource leak log** in **Developer options**. (Restart the device to enable or disable this function.) The sample code is as follows:
 
    ```ts
     import hidebug from "@ohos.hidebug";
@@ -226,23 +226,24 @@ For details about how to use the APIs (such as parameter usage restrictions and 
     @Entry
     @Component
     struct Index {
-    @State leakedArray: string[][] = [];
+      @State leakedArray: string[][] = [];
 
-    build() {
-      Column() {
-        Row() {
-          Column() {
-            Button("pss leak")
-              .onClick(() => {
-                hidebug.setAppResourceLimit("pss_memory", 1024, true);
-                for (let i = 0; i < 20 * 1024; i++) {
-                  this.leakedArray.push(new Array(1).fill("leak"));
-                }
-              })
+      build() {
+        Column() {
+          Row() {
+            Column() {
+              Button("pss leak")
+                .onClick(() => {
+                  hidebug.setAppResourceLimit("pss_memory", 1024, true);
+                  for (let i = 0; i < 20 * 1024; i++) {
+                    this.leakedArray.push(new Array(1).fill("leak"));
+                  }
+                })
+            }
           }
+          .height('100%')
+          .width('100%')
         }
-        .height('100%')
-        .width('100%')
       }
     }
    ```

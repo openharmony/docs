@@ -384,6 +384,90 @@ type AccessibilityFocusCallback = (isFocus: boolean) => void
 | XCOMPONENT | 123 | 自定义渲染。 |
 | ROLE_NONE | 124 | NULL。 |
 
+## accessibilityNextFocusId<sup>16+</sup>
+
+accessibilityNextFocusId(nextId: string)
+
+指定走焦过程中组件的下一个焦点。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| nextId | string | 是   | 定义下一个要聚焦的组件ID。若设置的accessibilityNextFocusId不存在，则设置无效。 |
+
+## accessibilityDefaultFocus<sup>16+</sup>
+
+accessibilityDefaultFocus(focus: boolean)
+
+设置屏幕朗读当前页默认首焦点。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| focus  | boolean | 是   | 设置屏幕朗读当前页默认首焦点。值为true则表示该组件为当前页默认首焦点，值为false或其他值无效。 |
+
+## accessibilityUseSamePage<sup>16+</sup>
+
+accessibilityUseSamePage(pageMode: AccessibilitySamePageMode)
+
+针对UIExtensionComponent等子树场景中可能出现的跳焦问题，可以通过设置accessibilityUseSamePage属性来解决。由于UEApage事件和宿主page事件发送时序的问题，可能会导致焦点从当前组件移动到另一个组件，这种现象即为"跳焦"。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                             |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
+| pageMode | [AccessibilitySamePageMode](#accessibilitysamepagemode16枚举说明) | 是   | 当前UIExtensionComponent和宿主应用的同page模式。 |
+
+## AccessibilitySamePageMode<sup>16+</sup>枚举说明
+
+当前UIExtensionComponent和宿主应用的同page模式。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称        | 值   | 说明                                                         |
+| ----------- | ---- | ------------------------------------------------------------ |
+| SEMI_SILENT | 0    | UEA中如果是首次加载页面或者UEA页面的根节点发送的page事件会被忽略。 |
+| FULL_SILENT | 1    | UEA忽略所有的page事件。                                      |
+
+## accessibilityScrollTriggerable<sup>16+</sup>
+
+accessibilityScrollTriggerable(isTriggerable: boolean)
+
+无障碍节点是否需要支持屏幕朗读滚动操作，即屏幕朗读在焦点切换时，若容器内当前页面无可聚焦的组件时，会发起一次自动滚动的操作。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名         |  类型    | 必填 | 说明                                                         |
+| -------------- | ------- | ---- | ------------------------------------------------------------ |
+| isTriggerable  | boolean | 是   | 用于表示组件是否支持该能力。<br/>支持的值为：<br/>true：屏幕朗读焦点切换而容器内当前页面无可聚焦的组件时，需要自动滚动操作。<br/>false：屏幕朗读焦点切换而容器内当前页面无可聚焦的组件时，不需要自动滚动操作。<br/>undefined：还原默认值。<br/>默认值：true。<br/>**说明：**<br/>1. 该属性不影响原先无障碍节点属性中的scrollable。<br/>2. 组件最终在屏幕朗读下的滚动逻辑由屏幕朗读最终根据该属性和组件是否支持scroll来决定。<br/>3. 该属性为通用属性，所有基础组件均可配置。建议配置的滚动组件类型，如List，Grid，Scroll，Waterflow，Swiper等。|
 
 ## 示例1（设置无障碍文本和无障碍说明）
 
@@ -458,4 +542,4 @@ struct Focus {
 }
 ```
 
-## 
+##

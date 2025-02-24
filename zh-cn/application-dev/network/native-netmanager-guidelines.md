@@ -24,6 +24,8 @@ NetConnection常用接口如下表所示，详细的接口说明请参考[NetCon
 | OHOS_NetConn_UnregisterDnsResolver(void) | 去注册自定义dns解析器。<br/>**弃用：** 从API version 13开始废弃。<br/>**替代：** 推荐使用OH_NetConn_UnregisterDnsResolver。|
 | OH_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver) | 注册自定义dns解析器。 |
 | OH_NetConn_UnregisterDnsResolver(void) | 去注册自定义dns解析器。|
+| OH_NetConn_SetPacUrl(const char \*pacUrl) | 设置系统级代理自动配置(PAC)脚本地址。 |
+| OH_NetConn_GetPacUrl(char \*pacUrl) | 获取系统级代理自动配置(PAC)脚本地址。 |
 
 ## 网络管理接口开发示例
 

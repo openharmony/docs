@@ -17,9 +17,9 @@ import { abilityManager } from '@kit.AbilityKit';
 
 用户操作的断言调试结果，该类型为枚举。
 
-**系统接口**: 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -33,11 +33,11 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 通过传入修改的配置项来更新配置（callback形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.UPDATE_CONFIGURATION
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
  
 **参数**：
 
@@ -93,11 +93,11 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 通过修改配置来更新配置（Promise形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.UPDATE_CONFIGURATION
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -156,11 +156,11 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 获取UIAbility运行相关信息（callback形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.GET_RUNNING_INFO
+**需要权限**：ohos.permission.GET_RUNNING_INFO
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -205,11 +205,11 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 
 获取关于运行扩展能力的信息（callback形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.GET_RUNNING_INFO
+**需要权限**：ohos.permission.GET_RUNNING_INFO
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -257,11 +257,11 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 
 获取关于运行扩展能力的信息（Promise形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.GET_RUNNING_INFO
+**需要权限**：ohos.permission.GET_RUNNING_INFO
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -312,9 +312,9 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void
 
 获取窗口焦点的ability接口（callback形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -353,9 +353,9 @@ getTopAbility(): Promise\<ElementName>
 
 获取窗口焦点的ability接口（Promise形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
@@ -391,9 +391,9 @@ acquireShareData(missionId: number, callback: AsyncCallback\<Record\<string, Obj
 
 系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（callback形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -439,9 +439,9 @@ acquireShareData(missionId: number): Promise\<Record\<string, Object>>
 
 系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（Promise形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -494,7 +494,7 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: Asyn
 
 **系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -557,7 +557,7 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void
 
 **系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -619,7 +619,7 @@ on(type: 'abilityForegroundState', observer: AbilityForegroundStateObserver): vo
 
 注册Ability的启动和退出的观测器。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -630,7 +630,7 @@ on(type: 'abilityForegroundState', observer: AbilityForegroundStateObserver): vo
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 调用接口类型，固定填'abilityForegroundState'字符串。 |
-| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys) | 是 | Ability状态观测器，用于观测Ability的启动和退出。 |
+| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys.md) | 是 | Ability状态观测器，用于观测Ability的启动和退出。 |
 
 **错误码**：
 
@@ -669,7 +669,7 @@ off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): 
 
 取消注册Ability启动和退出的观测器。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -680,7 +680,7 @@ off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 调用接口类型，固定填'abilityForegroundState'字符串。 |
-| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys) | 否 | Ability状态观测器，用于观测Ability的启动和退出。如果未配置该参数，则取消当前应用注册的所有observer。如果配置了该参数，则取消该observer。 |
+| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys.md) | 否 | Ability状态观测器，用于观测Ability的启动和退出。如果未配置该参数，则取消当前应用注册的所有observer。如果配置了该参数，则取消该observer。 |
 
 **错误码**：
 
@@ -984,9 +984,9 @@ try {
 
 嵌入式拉起原子化服务的规则。
 
-**系统接口**: 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | ---------| ---- | ---- | --------- |

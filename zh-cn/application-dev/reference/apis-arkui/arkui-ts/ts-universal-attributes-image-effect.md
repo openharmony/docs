@@ -450,8 +450,8 @@ blendMode(value: BlendMode, type?: BlendApplyType)
 
 | 参数名 | 类型                                | 必填 | 说明                                                         |
 | ------ | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BlendMode](#blendmode11枚举说明)   | 是   | 混合模式。<br/>默认值：BlendMode.NONE                        |
-| type   | [BlendApplyType](#blendapplytype11) | 否   | blendMode实现方式是否离屏。<br/>默认值：BlendApplyType.FAST<br/>**说明：**<br/>1. 设置BlendApplyType.FAST时，不离屏。<br/>2. 设置BlendApplyType.OFFSCREEN时，会创建当前组件大小的离屏画布，再将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。 |
+| value  | [BlendMode](#blendmode11枚举说明)   | 是   | 混合模式。<br/>默认值：BlendMode.NONE<br/>**说明：**<br/>混合模式设置为BlendMode.NONE时，blend效果实际为默认的BlendMode.SRC_OVER，且BlendApplyType不生效。 |
+| type   | [BlendApplyType](#blendapplytype11枚举说明) | 否   | blendMode实现方式是否离屏。<br/>默认值：BlendApplyType.FAST<br/>**说明：**<br/>1. 设置BlendApplyType.FAST时，不离屏。<br/>2. 设置BlendApplyType.OFFSCREEN时，会创建当前组件大小的离屏画布，再将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。使用该实现方式时，将导致[linearGradientBlur<sup>12+</sup>](#lineargradientblur12)，[backgroundEffect](ts-universal-attributes-background.md#backgroundeffect11)，[brightness](#brightness)等需要截屏的接口无法截取到正确的画面。 |
 
 ## blendMode<sup>16+</sup> 
 
@@ -469,10 +469,10 @@ blendMode(mode: Optional\<BlendMode>, type?: BlendApplyType)
 
 | 参数名 | 类型                            | 必填 | 说明                                                         |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-| mode | Optional\<[BlendMode](#blendmode11枚举说明)> | 是   | 混合模式。<br/>默认值：BlendMode.NONE<br/>当mode的值为undefined时，恢复为内容不进行混合的效果。 |
-| type   | [BlendApplyType](#blendapplytype11)  |    否    | blendMode实现方式是否离屏。<br/>默认值：BlendApplyType.FAST<br/>**说明：**<br/>1. 设置BlendApplyType.FAST时，不离屏。<br/>2. 设置BlendApplyType.OFFSCREEN时，会创建当前组件大小的离屏画布，再将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。     |
+| mode | Optional\<[BlendMode](#blendmode11枚举说明)> | 是   | 混合模式。<br/>默认值：BlendMode.NONE<br/>当mode的值为undefined时，恢复为内容不进行混合的效果。<br/>**说明：**<br/>混合模式设置为BlendMode.NONE时，blend效果实际为默认的BlendMode.SRC_OVER，且BlendApplyType不生效。 |
+| type   | [BlendApplyType](#blendapplytype11枚举说明)  |    否    | blendMode实现方式是否离屏。<br/>默认值：BlendApplyType.FAST<br/>**说明：**<br/>1. 设置BlendApplyType.FAST时，不离屏。<br/>2. 设置BlendApplyType.OFFSCREEN时，会创建当前组件大小的离屏画布，再将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。使用该实现方式时，将导致[linearGradientBlur<sup>12+</sup>](#lineargradientblur12)，[backgroundEffect](ts-universal-attributes-background.md#backgroundeffect11)，[brightness](#brightness)等需要截屏的接口无法截取到正确的画面。|
 
-## BlendApplyType<sup>11+</sup>
+## BlendApplyType<sup>11+</sup>枚举说明
 
 指示如何将指定的混合模式应用于视图的内容。
 
@@ -553,7 +553,7 @@ sphericalEffect(effect: Optional\<number>)
 
 | 参数名 | 类型              | 必填 | 说明                                                         |
 | ------ | ----------------- | ---- | ------------------------------------------------------------ |
-| effect | Optional\<number> | 是   | 设置组件的图像球面化程度。<br/>取值范围：[0,1]。<br/>**说明：**<br/>1. 如果value等于0则图像保持原样，如果value等于1则图像为完全球面化效果。在0和1之间，数值越大，则球面化程度越高。<br/>`effecte < 0 `或者` effect > 1`为异常情况，`effect < 0`按0处理，`effect > 1`按1处理。<br/>2. 组件阴影和外描边不支持球面效果。<br/>3. 设置effect大于0时，组件冻屏不更新并且把组件内容绘制到透明离屏buffer上，如果要更新组件属性则需要把effect设置为0。<br/>当effect的值为undefined时，恢复为图像球面化程度为0的效果。 |
+| effect | Optional\<number> | 是   | 设置组件的图像球面化程度。<br/>取值范围：[0,1]。<br/>**说明：**<br/>1. 如果value等于0则图像保持原样，如果value等于1则图像为完全球面化效果。在0和1之间，数值越大，则球面化程度越高。<br/>`effect < 0 `或者` effect > 1`为异常情况，`effect < 0`按0处理，`effect > 1`按1处理。<br/>2. 组件阴影和外描边不支持球面效果。<br/>3. 设置effect大于0时，组件冻屏不更新并且把组件内容绘制到透明离屏buffer上，如果要更新组件属性则需要把effect设置为0。<br/>当effect的值为undefined时，恢复为图像球面化程度为0的效果。 |
 
 ## lightUpEffect<sup>12+</sup> 
 
@@ -644,7 +644,9 @@ systemBarEffect()
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-## ShadowType<sup>10+<sup>
+## ShadowType<sup>10+<sup>枚举说明
+
+阴影类型。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -668,7 +670,7 @@ systemBarEffect()
 | 名称      | 类型                                       | 必填   | 说明                                       |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | radius  | number \| [Resource](ts-types.md#resource) | 是    | 阴影模糊半径。<br/>取值范围：[0, +∞)<br/>单位：px<br/>**说明：**  <br/>设置小于0的值时，按值为0处理。<br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果radius为Resource类型，则传入的值需为number类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| type<sup>10+</sup> | [ShadowType<sup>10+</sup>](#shadowtype10)  |      否    | 阴影类型。<br/>默认为COLOR。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| type<sup>10+</sup> | [ShadowType<sup>10+</sup>](#shadowtype10枚举说明)  |      否    | 阴影类型。<br/>默认为COLOR。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
 | color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy<sup>10+</sup> ](ts-appendix-enums.md#coloringstrategy10) | 否    | 阴影的颜色。<br/>默认为黑色。 <br/>**说明：** <br/>从API version 11开始，该接口支持使用ColoringStrategy实现智能取色，智能取色功能不支持在ArkTS卡片、[textShadow](ts-basic-components-text.md#textshadow10)中使用。<br/>当前仅支持平均取色和主色取色，智能取色区域为shadow绘制区域。<br/>支持使用'average'字符串触发智能平均取色模式，支持使用'primary'字符串触发智能主色模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | offsetX | number \| [Resource](ts-types.md#resource) | 否    | 阴影的X轴偏移量。<br/>默认值：0<br/>单位：px<br/>**说明：** <br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果offsetX为Resource类型，则传入的值需为number类型。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | offsetY | number \| [Resource](ts-types.md#resource) | 否    | 阴影的Y轴偏移量。<br/>默认值：0<br/>单位：px<br/>**说明：** <br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果offsetY为Resource类型，则传入的值需为number类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
@@ -767,6 +769,19 @@ FractionStop = [ number, number ]
 | threshold      | number | 是    | 灰度阈值。                                  |
 | thresholdRange | number | 是    | 阈值范围。<br/>**说明：**<br/>灰度阈值上下偏移thresholdRange构成阈值区间，背景颜色灰度值在区间内取值由high线性渐变到low。|
 
+## BackgroundImageOptions<sup>16+</sup>
+
+定义背景图选项。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称            |  类型                                           | 必填  | 说明                                                     |
+| -------------- | ------------------------------------------------| ----- | --------------------------------------------------------|
+| syncLoad       | boolean                                         | 否    | 设置背景图片的同步或异步加载模式。<br/>默认值：false        |
+| repeat         | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | 否    | 设置背景图片的重复样式。                                   |
+
 ## freeze<sup>12+</sup>
 
 freeze(value: boolean)
@@ -815,14 +830,25 @@ struct ImageEffectsExample {
       Image($r('app.media.image'))
         .width('90%')
         .height(30)
-        .shadow({ radius: 10, color: Color.Green, offsetX: 20, offsetY: 20 })
+        .shadow({
+          radius: 10,
+          color: Color.Green,
+          offsetX: 20,
+          offsetY: 20
+        })
 
       // 添加内部阴影效果
       Text('shadow').fontSize(15).fontColor(0xCCCCCC).width('90%')
       Image($r('app.media.image'))
         .width('90%')
         .height(30)
-        .shadow({ radius: 5, color: Color.Green, offsetX: 20, offsetY: 20,fill:true }).opacity(0.5)
+        .shadow({
+          radius: 5,
+          color: Color.Green,
+          offsetX: 20,
+          offsetY: 20,
+          fill: true
+        }).opacity(0.5)
 
       // 灰度效果0~1，越接近1，灰度越明显
       Text('grayscale').fontSize(15).fontColor(0xCCCCCC).width('90%')
@@ -877,20 +903,21 @@ struct ImageEffectsExample {
 @Entry
 @Component
 struct ImageExample1 {
-  private_resource1:Resource = $r('app.media.testlinearGradientBlurOrigin')
+  private_resource1: Resource = $r('app.media.testlinearGradientBlurOrigin')
   @State image_src: Resource = this.private_resource1
+
   build() {
     Column() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
         Row({ space: 5 }) {
           Image(this.image_src)
-            .linearGradientBlur(60, { fractionStops: [[0,0],[0,0.33],[1,0.66],[1,1]], direction: GradientDirection.Bottom })
+            .linearGradientBlur(60,
+              { fractionStops: [[0, 0], [0, 0.33], [1, 0.66], [1, 1]], direction: GradientDirection.Bottom })
         }
       }
     }
   }
 }
-
 ```
 
 ![testlinearGradientBlur](figures/testlinearGradientBlur.png)
@@ -904,6 +931,7 @@ struct ImageExample1 {
 @Component
 struct Component1 {
   @Prop renderGroupValue: boolean;
+
   build() {
     Row() {
       Row() {
@@ -927,14 +955,15 @@ struct Component1 {
     .opacity(1)
   }
 }
+
 @Entry
 @Component
 struct RenderGroupExample {
   build() {
     Column() {
-      Component1({renderGroupValue: true})
+      Component1({ renderGroupValue: true })
         .margin(20)
-      Component1({renderGroupValue: false})
+      Component1({ renderGroupValue: false })
         .margin(20)
     }
     .width("100%")
@@ -973,7 +1002,7 @@ struct Index {
           .fill(Color.Blue)
           .position({ x: 150, y: 50 })
       }
-      .blendMode(BlendMode.OVERLAY,BlendApplyType.OFFSCREEN)
+      .blendMode(BlendMode.OVERLAY, BlendApplyType.OFFSCREEN)
       .alignItems(VerticalAlign.Center)
       .height(300)
       .width('100%')
@@ -996,35 +1025,34 @@ struct Index {
 
 ```ts
 // xxx.ets
- @Entry
- @Component
- struct Index {
-   build() {
+@Entry
+@Component
+struct Index {
+  build() {
     Stack() {
       Column()
-        Stack(){
-          Image($r('app.media.r')).width('100%')
-         Column(){
-           Column().width("100%").height(30).invert({
-             low:0,
-             high:1,
-             threshold:0.5,
-             thresholdRange:0.2
-           })
-           Column().width("100%").height(30).invert({
-             low:0.2,
-             high:0.5,
-             threshold:0.3,
-             thresholdRange:0.2
-           })
-         }
+      Stack() {
+        Image($r('app.media.r')).width('100%')
+        Column() {
+          Column().width("100%").height(30).invert({
+            low: 0,
+            high: 1,
+            threshold: 0.5,
+            thresholdRange: 0.2
+          })
+          Column().width("100%").height(30).invert({
+            low: 0.2,
+            high: 0.5,
+            threshold: 0.3,
+            thresholdRange: 0.2
+          })
         }
-        .width('100%')
-        .height('100%')
+      }
+      .width('100%')
+      .height('100%')
     }
   }
- }
-
+}
 ```
 
 ![testDestinationIn_lockDemo](figures/testInvertOptions.png)
@@ -1043,14 +1071,39 @@ struct UseShadowBatchingExample {
       Column({ space: 10 }) {
         Stack() {
 
-        }.width('90%').height(50).margin({ top: 5 }).backgroundColor(0xFFE4C4)
-        .shadow({ radius: 120, color: Color.Green, offsetX: 0, offsetY: 0 })
-        .align(Alignment.TopStart).shadow({ radius: 120, color: Color.Green, offsetX: 0, offsetY: 0 })
+        }
+        .width('90%')
+        .height(50)
+        .margin({ top: 5 })
+        .backgroundColor(0xFFE4C4)
+        .shadow({
+          radius: 120,
+          color: Color.Green,
+          offsetX: 0,
+          offsetY: 0
+        })
+        .align(Alignment.TopStart)
+        .shadow({
+          radius: 120,
+          color: Color.Green,
+          offsetX: 0,
+          offsetY: 0
+        })
 
         Stack() {
 
-        }.width('90%').height(50).margin({ top: 5 }).backgroundColor(0xFFE4C4)
-        .align(Alignment.TopStart).shadow({ radius: 120, color: Color.Red, offsetX: 0, offsetY: 0 })
+        }
+        .width('90%')
+        .height(50)
+        .margin({ top: 5 })
+        .backgroundColor(0xFFE4C4)
+        .align(Alignment.TopStart)
+        .shadow({
+          radius: 120,
+          color: Color.Red,
+          offsetX: 0,
+          offsetY: 0
+        })
         .width('90%')
         .backgroundColor(Color.White)
 
@@ -1065,7 +1118,12 @@ struct UseShadowBatchingExample {
         .height(150)
         .borderRadius(10)
         .backgroundColor(0xf56c6c)
-        .shadow({ radius: 300, color: Color.Yellow, offsetX: 0, offsetY: 0 })
+        .shadow({
+          radius: 300,
+          color: Color.Yellow,
+          offsetX: 0,
+          offsetY: 0
+        })
 
         Column() {
           Text()
@@ -1078,8 +1136,13 @@ struct UseShadowBatchingExample {
         .height(150)
         .backgroundColor(0x67C23A)
         .borderRadius(10)
-        .translate({ y: -50})
-        .shadow({ radius: 220, color: Color.Blue, offsetX: 0, offsetY: 0 })
+        .translate({ y: -50 })
+        .shadow({
+          radius: 220,
+          color: Color.Blue,
+          offsetX: 0,
+          offsetY: 0
+        })
       }
       .useShadowBatching(true)
     }
@@ -1101,7 +1164,7 @@ struct UseShadowBatchingExample {
 struct SphericalEffectExample {
   build() {
     Stack() {
-      TextInput({ placeholder: "请输入变化范围百分比（[0%,100%]）"})
+      TextInput({ placeholder: "请输入变化范围百分比（[0%,100%]）" })
         .width('50%')
         .height(35)
         .type(InputType.Number)
@@ -1117,7 +1180,6 @@ struct SphericalEffectExample {
     }.alignContent(Alignment.Center).width("100%").height("100%")
   }
 }
-
 ```
 
 效果图如下：
@@ -1182,11 +1244,15 @@ struct PixelStretchExample {
         .padding(10)
         .clip(false)
         .width('50%')
-        .pixelStretchEffect({top:10,left:10,right:10,bottom:10 })
+        .pixelStretchEffect({
+          top: 10,
+          left: 10,
+          right: 10,
+          bottom: 10
+        })
     }.alignContent(Alignment.Center).width("100%").height("100%")
   }
 }
-
 ```
 
 效果图如下：
@@ -1209,17 +1275,18 @@ struct PixelStretchExample {
 struct Index {
   build() {
     Column() {
-      Stack(){
+      Stack() {
         Image($r('app.media.testImage')).width('100%').height('100%')
-         Column().width(150).height(10)
+        Column()
+          .width(150)
+          .height(10)
           .systemBarEffect()
-           .border({radius:5})
-           .margin({bottom:80})
+          .border({ radius: 5 })
+          .margin({ bottom: 80 })
       }.alignContent(Alignment.Center)
     }
   }
 }
-
 ```
 
 效果图如下：

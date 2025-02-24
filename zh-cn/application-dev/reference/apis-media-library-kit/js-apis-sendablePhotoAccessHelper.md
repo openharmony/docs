@@ -1,6 +1,6 @@
 # @ohos.file.sendablePhotoAccessHelper (基于Sendable对象的相册管理模块)
 
-该模块基于Sendable对象，提供相册管理模块能力，包括创建相册以及访问、修改相册中的媒体数据信息等。
+该模块基于[Sendable](../../arkts-utils/arkts-sendable.md)对象，提供相册管理模块能力，包括创建相册以及访问、修改相册中的媒体数据信息等。
 
 > **说明：**
 >
@@ -226,7 +226,7 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
 | 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
@@ -627,6 +627,7 @@ commitModify(): Promise&lt;void&gt;
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('commitModifyDemo');

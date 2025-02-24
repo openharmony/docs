@@ -4,9 +4,9 @@
 
 >  **说明：**
 >
-> - 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
->  
-> - popup弹窗的显示状态在onStateChange事件回调中反馈，其显隐与组件的创建或销毁无强对应关系。
+>  - 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  - popup弹窗的显示状态在onStateChange事件回调中反馈，其显隐与组件的创建或销毁无强对应关系。
 
 ## bindPopup
 
@@ -22,12 +22,12 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| show   | boolean                                                      | 是   | 弹窗显示状态，默认值为false，隐藏弹窗。popup弹窗必须等待页面全部构建完成才能展示，因此show不能在页面构建中设置为true，否则会导致popup弹窗显示位置及形状错误。该参数支持[!!语法](../../../quick-start/arkts-new-binding.md#组件参数双向绑定)双向绑定变量。 |
+| show   | boolean                                                      | 是   | 弹窗显示状态，默认值为false，隐藏弹窗。popup弹窗必须等待页面全部构建完成才能展示，因此show不能在页面构建中设置为true，否则会导致popup弹窗显示位置及形状错误。该参数从API Version 13开始支持[!!语法](../../../quick-start/arkts-new-binding.md#内置组件参数双向绑定)双向绑定变量。 |
 | popup  | [PopupOptions](#popupoptions类型说明)&nbsp;\|&nbsp;[CustomPopupOptions](#custompopupoptions8类型说明)<sup>8+</sup> | 是   | 配置弹出弹窗的参数。                                         |
 
 ## PopupOptions类型说明
 
-| 名称                                  | 类型                                                         | 必填 | 描述                                                         |
+| 名称                                  | 类型                                                         | 必填 | 说明                                                      |
 | ------------------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | message                               | string                                                       | 是   | 弹窗信息内容。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                               |
 | placementOnTop<sup>(deprecated)</sup> | boolean                                                      | 否   | 是否在组件上方显示，默认值为false。<br />**说明：**<br />从 API version 10 开始废弃，建议使用`placement`替代。 |
@@ -44,7 +44,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | enableArrow<sup>10+</sup>             | boolean                                                      | 否   | 设置是否显示箭头。<br/>默认值：true<br/>**说明：** <br/>当页面可用空间无法让气泡完全避让时，气泡会覆盖到组件上并且不显示箭头。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | popupColor<sup>11+</sup>              | [Color](ts-appendix-enums.md#color) &nbsp;\|&nbsp;string&nbsp;\|&nbsp;number&nbsp; \|&nbsp; [Resource](ts-types.md#resource) | 否   | 提示气泡的颜色。如需去除模糊背景填充效果，需将backgroundBlurStyle设置为BlurStyle.NONE。<br/>默认值：透明色[TRANSPARENT](ts-appendix-enums.md#color)加模糊背景填充效果[COMPONENT_ULTRA_THICK](ts-universal-attributes-background.md#blurstyle9)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | autoCancel<sup>11+</sup>              | boolean                                                      | 否   | 页面有操作时，是否自动关闭气泡。<br/>默认值：true <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。           |
-| width<sup>11+</sup>                   | [Dimension](ts-types.md#dimension10)                         | 否   | 弹窗宽度。<br />**说明：**<br />showInSubWindow=true时最大高度为设备屏幕高度，showInSubWindow=false时最大高度为应用窗口高度。高度限定逻辑=最大高度-状态栏高度（没有时高度为0）-dock栏高度（没有时高度为0）-40VP-40VP。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| width<sup>11+</sup>                   | [Dimension](ts-types.md#dimension10)                         | 否   | 弹窗宽度。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | arrowPointPosition<sup>11+</sup>      | [ArrowPointPosition](ts-appendix-enums.md#arrowpointposition11) | 否   | 气泡尖角相对于父组件显示位置，气泡尖角在垂直和水平方向上有 ”Start“、”Center“、”End“三个位置点可选。以上所有位置点均位于父组件区域的范围内，不会超出父组件的边界范围。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | arrowWidth<sup>11+</sup>             | [Dimension](ts-types.md#dimension10)                  | 否   | 设置箭头宽度。若所设置的箭头宽度超过所在边的长度减去两倍的气泡圆角大小，则不绘制气泡箭头。<br/>默认值：16<br/>单位：vp<br/>**说明：**<br />不支持设置百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                          |
 | arrowHeight<sup>11+</sup>             | [Dimension](ts-types.md#dimension10)                  | 否   | 设置箭头高度。<br/>默认值：8<br/>单位：vp<br/>**说明：**<br />不支持设置百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                          |
@@ -52,14 +52,18 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | shadow<sup>11+</sup>             | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)    | 否   | 设置气泡阴影。<br/>默认值：ShadowStyle.OUTER_DEFAULT_MD <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 设置气泡模糊背景参数。<br />默认值：BlurStyle.COMPONENT_ULTRA_THICK<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否 | 自定义设置popup弹窗显示和退出的动画效果。<br/>**说明：**<br/>1.如果不设置，则使用默认的显示/退出动效。<br/>2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/>3.退出动效中按back键，不会打断退出动效，退出动效继续执行，back键不被响应。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| onWillDismiss<sup>12+</sup>           | boolean\|(dismissPopupAction: [DismissPopupAction](#dismisspopupaction12类型说明)) => void                                                                               | 否   | 设置popup交互式关闭拦截开关及拦截回调函数，默认值为true，popup响应点击、左滑/右滑、三键back。<br />1.当为boolean类型时，如果设置为false，则不响应点击、左滑/右滑、三键back或键盘ESC退出事件，仅当设置“弹窗显示状态”参数show值为false时才退出；如果设置为true，则正常响应退出事件；<br />2.如果设置为函数类型，则拦截退出事件且执行回调函数。<br />**说明：**<br />在onWillDismiss回调中，不能再做onWillDismiss拦截。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| onWillDismiss<sup>12+</sup>           | boolean \| Callback\<([DismissPopupAction](#dismisspopupaction12类型说明))> | 否   | 设置popup交互式关闭拦截开关及拦截回调函数，默认值为true，popup响应点击、左滑/右滑、三键back。<br />1.当为boolean类型时，如果设置为false，则不响应点击、左滑/右滑、三键back或键盘ESC退出事件，仅当设置“弹窗显示状态”参数show值为false时才退出；如果设置为true，则正常响应退出事件；<br />2.如果设置为函数类型，则拦截退出事件且执行回调函数。<br />**说明：**<br />在onWillDismiss回调中，不能再做onWillDismiss拦截。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | followTransformOfTarget<sup>13+</sup>          | boolean | 否   | 气泡绑定的宿主组件或其宿主组件的父容器添加了旋转、缩放等变换时，气泡是否能显示在对应变化后的位置上。<br/>默认值：false <br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| keyboardAvoidMode<sup>15+</sup>          | [KeyboardAvoidMode](ts-types.md#keyboardavoidmode12枚举说明) | 否   | 气泡是否避让软键盘，默认不避让。设置为避让后，气泡显示空间不足时，由原先居中覆盖父组件的方式改为平移覆盖父组件，且气泡箭头不指向宿主时，不再显示箭头。<br/>默认值：KeyboardAvoidMode.NONE <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+|  enableHoverMode<sup>16+</sup>| boolean  | 否   | Popup组件是否响应悬停态变化。如果Popup的点击位置在悬停态折痕区域，Popup组件不会响应悬停态。默认值：false，Popup组件不响应悬停态变化。<br />**说明：** <br />enableHoverMode为 false，未设置或者值为非法值时，Popup组件不会响应悬停态，enableHoverMode为true时，响应悬停态。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## PopupMessageOptions<sup>10+</sup>类型说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称      | 类型                                       | 必填 | 描述                                                         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 类型                                       | 必填 |说明                                                       |
 | --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | textColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置弹窗信息文本颜色。                                       |
 | font      | [Font](ts-types.md#font)                   | 否   | 设置弹窗信息字体属性。<br/>**说明：** <br/>不支持设置family。 |
@@ -68,22 +72,27 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称    | 类型                                      | 必填 | 描述                                                            |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                      | 必填 | 说明                                                       |
 | ------- | ----------------------------------------- | ---- | --------------------------------------------------------------- |
 | dismiss | function                                  | 是   | popup关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。 |
 | reason  | [DismissReason](#dismissreason12枚举说明) | 是   | 关闭原因，返回本次拦截popup消失的事件原因。                       |
 
 ## DismissReason<sup>12+</sup>枚举说明
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 参数描述           |
+| 名称          | 说明        |
 | ------------- | ------------------ |
 | PRESS_BACK    | 点击Back键。       |
 | TOUCH_OUTSIDE | 点击组件外部区域。 |
 
 ## CustomPopupOptions<sup>8+</sup>类型说明
 
-| 名称                           | 类型                                       | 必填   | 描述                                       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                           | 类型                                       | 必填   | 说明                                       |
 | ---------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | builder                      | [CustomBuilder](ts-types.md#custombuilder8) | 是    | 提示气泡内容的构造器。<br />**说明：**<br />popup为通用属性，自定义popup中不支持再次弹出popup。对builder下的第一层容器组件不支持使用position属性，如果使用将导致气泡不显示。builder中若使用自定义组件，自定义组件的aboutToAppear和aboutToDisappear生命周期与popup弹窗的显隐无关，不能使用其生命周期判断popup弹窗的显隐。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                              |
 | placement                    | [Placement](ts-appendix-enums.md#placement8) | 否    | 气泡组件优先显示的位置，当前位置显示不下时，会自动调整位置。<br/>默认值：Placement.Bottom<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -97,7 +106,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | mask<sup>10+</sup>           | boolean&nbsp;\|&nbsp;{ color : [ResourceColor](ts-types.md#resourcecolor) }| 否    | 设置气泡是否有遮罩层及遮罩颜色。如果设置为false，则没有遮罩层；如果设置为true，则设置有遮罩层并且颜色为透明色；如果设置为Color，则为遮罩层的颜色。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | targetSpace<sup>10+</sup>    | [Length](ts-types.md#length)             | 否    | 设置popup与目标的间隙。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                           |
 | offset<sup>10+</sup>         | [Position](ts-types.md#position)                            | 否   | 设置popup组件相对于placement设置的显示位置的偏移。<br />**说明：**<br />不支持设置百分比。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| width<sup>11+</sup> | [Dimension](ts-types.md#dimension10) | 否 | 弹窗宽度。<br />**说明：**<br />showInSubWindow=true时最大高度为设备屏幕高度，showInSubWindow=false时最大高度为应用窗口高度。高度限定逻辑=最大高度-状态栏高度（没有时高度为0）-dock栏高度（没有时高度为0）-40VP-40VP。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| width<sup>11+</sup> | [Dimension](ts-types.md#dimension10) | 否 | 弹窗宽度。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | arrowPointPosition<sup>11+</sup> | [ArrowPointPosition](ts-appendix-enums.md#arrowpointposition11) | 否 | 气泡尖角相对于父组件显示位置，气泡尖角在垂直和水平方向上有 ”Start“、”Center“、”End“三个位置点可选。以上所有位置点均位于父组件区域的范围内，不会超出父组件的边界范围。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | arrowWidth<sup>11+</sup>             | [Dimension](ts-types.md#dimension10)                                                      | 否   | 设置箭头宽度。若所设置的箭头宽度超过所在边的长度减去两倍的气泡圆角大小，则不绘制气泡箭头。<br/>默认值：16<br/>单位：vp<br />**说明：**<br />不支持设置百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                          |
 | arrowHeight<sup>11+</sup>             | [Dimension](ts-types.md#dimension10)                  | 否   | 设置箭头高度。<br/>默认值：8<br/>单位：vp<br />**说明：**<br />不支持设置百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                          |
@@ -106,8 +115,10 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 设置气泡模糊背景参数。<br />默认值：BlurStyle.COMPONENT_ULTRA_THICK <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | focusable<sup>11+</sup> | boolean | 否 | 设置气泡弹出后是否获焦。<br />默认值：false <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否 | 自定义设置popup弹窗显示和退出的动画效果。<br/>**说明：**<br/>如果不设置，则使用默认的显示/退出动效。<br/>2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/>3.退出动效中按back键，不会打断退出动效，退出动效继续执行，back键不被响应。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| onWillDismiss<sup>12+</sup>           | boolean\|(dismissPopupAction: [DismissPopupAction](#dismisspopupaction12类型说明)) => void                                                                               | 否   | 设置popup交互式关闭拦截开关及拦截回调函数，默认值为true，popup响应点击、左滑/右滑、三键back。<br />1.当为boolean类型时，如果设置为false，则不响应点击、左滑/右滑、三键back或键盘ESC退出事件，仅当设置“弹窗显示状态”参数show值为false时才退出；如果设置为true，则正常响应退出事件；<br />2.如果设置为函数类型，则拦截退出事件且执行回调函数。<br />**说明：**<br />在onWillDismiss回调中，不能再做onWillDismiss拦截。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| onWillDismiss<sup>12+</sup>           | boolean \| Callback\<([DismissPopupAction](#dismisspopupaction12类型说明))> | 否   | 设置popup交互式关闭拦截开关及拦截回调函数，默认值为true，popup响应点击、左滑/右滑、三键back。<br />1.当为boolean类型时，如果设置为false，则不响应点击、左滑/右滑、三键back或键盘ESC退出事件，仅当设置“弹窗显示状态”参数show值为false时才退出；如果设置为true，则正常响应退出事件；<br />2.如果设置为函数类型，则拦截退出事件且执行回调函数。<br />**说明：**<br />在onWillDismiss回调中，不能再做onWillDismiss拦截。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | followTransformOfTarget<sup>13+</sup>          | boolean | 否   | 气泡绑定的宿主组件或其宿主组件的父容器添加了旋转、缩放等变换时，气泡是否能显示在对应变化后的位置上。<br/>默认值：false <br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| keyboardAvoidMode<sup>15+</sup>          | [KeyboardAvoidMode](ts-types.md#keyboardavoidmode12枚举说明) | 否   | 气泡是否避让软键盘，默认不避让。设置为避让后，气泡显示空间不足时，由原先居中覆盖父组件的方式改为平移覆盖父组件，且气泡箭头不指向宿主时，不再显示箭头。<br/>默认值：KeyboardAvoidMode.NONE <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+|enableHoverMode<sup>16+</sup>  | boolean  | 否   |  Popup组件是否响应悬停态变化。如果Popup的点击位置在悬停态折痕区域，Popup组件不会响应悬停态。默认值：false，Popup组件不响应悬停态变化。<br />**说明：** <br />enableHoverMode为false，未设置或者值为非法值时，Popup组件不会响应悬停态，enableHoverMode为true时，响应悬停态。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## PopupCommonOptions<sup>16+</sup>类型说明
 
@@ -129,7 +140,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | mask           | boolean&nbsp;\|&nbsp;[PopupMaskType](#popupmasktype16类型说明) | 否    | 设置气泡是否有遮罩层及遮罩颜色。如果设置为false，则没有遮罩层；如果设置为true，则设置有遮罩层并且颜色为透明色；如果设置为Color，则为遮罩层的颜色。 |
 | targetSpace    | [Length](ts-types.md#length)             | 否    | 设置popup与目标的间隙。 |
 | offset         | [Position](ts-types.md#position)                            | 否   | 设置popup组件相对于placement设置的显示位置的偏移。<br />**说明：**<br />不支持设置百分比。 |
-| width | [Dimension](ts-types.md#dimension10) | 否 | 弹窗宽度。<br />**说明：**<br />showInSubWindow=true时最大高度为设备屏幕高度，showInSubWindow=false时最大高度为应用窗口高度。高度限定逻辑=最大高度-状态栏高度（没有时高度为0）-dock栏高度（没有时高度为0）-40VP-40VP。 |
+| width | [Dimension](ts-types.md#dimension10) | 否 | 弹窗宽度。 |
 | arrowPointPosition | [ArrowPointPosition](ts-appendix-enums.md#arrowpointposition11) | 否 | 气泡尖角相对于父组件显示位置，气泡尖角在垂直和水平方向上有 ”Start“、”Center“、”End“三个位置点可选。以上所有位置点均位于父组件区域的范围内，不会超出父组件的边界范围。 |
 | arrowWidth             | [Dimension](ts-types.md#dimension10)                                                      | 否   | 设置箭头宽度。若所设置的箭头宽度超过所在边的长度减去两倍的气泡圆角大小，则不绘制气泡箭头。<br/>默认值：16<br/>单位：vp<br />**说明：**<br />不支持设置百分比。 |
 | arrowHeight             | [Dimension](ts-types.md#dimension10)                  | 否   | 设置箭头高度。<br/>默认值：8<br/>单位：vp<br />**说明：**<br />不支持设置百分比。 |
@@ -138,7 +149,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | backgroundBlurStyle | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 设置气泡模糊背景参数。<br />默认值：BlurStyle.COMPONENT_ULTRA_THICK |
 | focusable | boolean | 否 | 设置气泡弹出后是否获焦。<br />默认值：false<br />**说明：**<br />不支持通过[updatePopup](../js-apis-arkui-UIContext.md#updatepopup16)进行更新。 |
 | transition | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否 | 自定义设置popup弹窗显示和退出的动画效果。<br/>**说明：**<br/>1.如果不设置，则使用默认的显示/退出动效。<br/>2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/>3.退出动效中按back键，不会打断退出动效，退出动效继续执行，back键不被响应。<br/>4.不支持通过[updatePopup](../js-apis-arkui-UIContext.md#updatepopup16)进行更新。 |
-| onWillDismiss           | boolean\|Callback<[DismissPopupAction](#dismisspopupaction12类型说明)> | 否   | 设置popup交互式关闭拦截开关及拦截回调函数，默认值为true，popup响应点击、左滑/右滑、三键back。<br />1.当为boolean类型时，如果设置为false，则不响应点击、左滑/右滑、三键back或键盘ESC退出事件，仅当设置“弹窗显示状态”参数show值为false时才退出；如果设置为true，则正常响应退出事件；<br />2.如果设置为函数类型，则拦截退出事件且执行回调函数。<br />**说明：**<br />1.在onWillDismiss回调中，不能再做onWillDismiss拦截。<br />2.不支持通过[updatePopup](../js-apis-arkui-UIContext.md#updatepopup16)进行更新 |
+| onWillDismiss           | boolean\|Callback<[DismissPopupAction](#dismisspopupaction12类型说明)> | 否   | 设置popup交互式关闭拦截开关及拦截回调函数，默认值为true，popup响应点击、左滑/右滑、三键back。<br />1.当为boolean类型时，如果设置为false，则不响应点击、左滑/右滑、三键back或键盘ESC退出事件，仅当设置“弹窗显示状态”参数show值为false时才退出；如果设置为true，则正常响应退出事件；<br />2.如果设置为函数类型，则拦截退出事件且执行回调函数。<br />**说明：**<br />1.在onWillDismiss回调中，不能再做onWillDismiss拦截。<br />2.不支持通过[updatePopup](../js-apis-arkui-UIContext.md#updatepopup16)进行更新。 |
 | followTransformOfTarget          | boolean | 否   | 气泡绑定的宿主组件或其宿主组件的父容器添加了旋转、缩放等变换时，气泡是否能显示在对应变化后的位置上。<br/>默认值：false |
 
 ## PopupStateChangeParam<sup>16+</sup>类型说明
@@ -173,7 +184,7 @@ type PopupStateChangeCallback = (event: PopupStateChangeParam) => void;
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   void           |    弹窗状态变化事件回调 |
+|   void           |   弹窗状态变化事件回调。 |
 
 ## PopupMaskType<sup>16+</sup>类型说明
 
@@ -220,6 +231,8 @@ struct PopupExample {
           message: 'This is a popup with PopupOptions',
           placementOnTop: true,
           showInSubWindow:false,
+          // 设置气泡避让软键盘
+          keyboardAvoidMode: KeyboardAvoidMode.DEFAULT,
           primaryButton: {
             value: 'confirm',
             action: () => {
@@ -256,6 +269,8 @@ struct PopupExample {
           mask: {color:'#33000000'},
           popupColor: Color.Yellow,
           enableArrow: true,
+          // 设置气泡避让软键盘
+          keyboardAvoidMode: KeyboardAvoidMode.DEFAULT,
           showInSubWindow: false,
           onStateChange: (e) => {
             if (!e.isVisible) {

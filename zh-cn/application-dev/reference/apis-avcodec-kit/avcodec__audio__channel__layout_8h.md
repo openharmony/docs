@@ -3,7 +3,7 @@
 
 ## 概述
 
-声明用于音频编解码的枚举。
+音频编解码枚举的声明。
 
 **库：** libnative_media_codecbase.so
 

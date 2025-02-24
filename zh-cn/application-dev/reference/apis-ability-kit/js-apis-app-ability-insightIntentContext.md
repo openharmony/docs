@@ -22,7 +22,7 @@ startAbility(want: Want, callback: AsyncCallback\<void\>): void
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -53,7 +53,6 @@ startAbility(want: Want, callback: AsyncCallback\<void\>): void
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16000061 | Operation not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
@@ -104,7 +103,7 @@ startAbility(want: Want): Promise\<void\>
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -140,7 +139,6 @@ startAbility(want: Want): Promise\<void\>
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16000061 | Operation not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。

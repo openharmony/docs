@@ -12,13 +12,13 @@
 
 > 从API version 9开始不再维护，建议使用[bundleManager-PermissionDef](js-apis-bundleManager-permissionDef-sys.md)替代。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+ **系统能力:** SystemCapability.BundleManager.BundleFramework
 
  **系统接口：**  此接口为系统接口。
 
 | 名称           | 类型   | 只读 | 可选 | 说明           |
 | -------------- | ------ | ---- | ---- | -------------- |
 | permissionName | string | 否   | 否   | 权限名称。   |
-| grantMode      | number | 否   | 否   | 权限的授予模式，0表示安装后系统自动授予该权限，1表示使用时动态申请，用户授权后方可使用。 |
+| grantMode      | number | 否   | 否   | 权限的授予模式。0表示安装后系统自动授予该权限，1表示使用时动态申请，用户授权后方可使用。 |
 | labelId        | number | 否   | 否   | 权限的标签ID。   |
 | descriptionId  | number | 否   | 否   | 描述权限的ID。   |

@@ -6,7 +6,7 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 
 Worker的上下文对象和UI主线程的上下文对象是不同的，Worker线程不支持UI操作。
 
-Worker使用过程中的相关注意点请查[Worker注意事项](../../arkts-utils/worker-introduction.md#worker注意事项)
+Worker使用过程中的相关注意点请查[Worker注意事项](../../arkts-utils/worker-introduction.md#worker注意事项)。
 
 > **说明：**<br/>
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -39,7 +39,7 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 | type | 'classic' \| 'module' | 是   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
 | name | string   | 是   | 是 | Worker的名称，默认值为 undefined 。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。|
 | shared | boolean | 是   | 是 | 表示Worker共享功能，此接口暂不支持。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| priority<sup>16+</sup> | [ThreadWorkerPriority](#threadworkerpriority16) | 是   | 是 | 表示Worker线程优先级，默认值为 undefined 。 <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
+| priority<sup>16+</sup> | [ThreadWorkerPriority](#threadworkerpriority16) | 是   | 是 | 表示Worker线程优先级。 <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 
 
 ## ThreadWorkerPriority<sup>16+</sup>
@@ -101,8 +101,8 @@ import { worker } from '@kit.ArkTS';
 // 场景1： worker文件所在路径："entry/src/main/ets/workers/worker.ets"
 const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
 
-// 场景2： worker文件所在路径："phone/src/main/ets/ThreadFile/workers/worker.ets"
-const workerStageModel02 = new worker.ThreadWorker('phone/ets/ThreadFile/workers/worker.ets');
+// 场景2： worker文件所在路径："testworkers/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStageModel02 = new worker.ThreadWorker('testworkers/ets/ThreadFile/workers/worker.ets');
 ```
 
 
@@ -191,7 +191,7 @@ struct Index {
               console.log("main thread terminate");
             }
 
-            workerInstance.onerror = (err: ErrorEvent) => {
+            workerInstance.onAllErrors = (err: ErrorEvent) => {
               console.log("main error message " + err.message);
             }
           })
@@ -448,6 +448,7 @@ registerGlobalCallObject(instanceName: string, globalCallObject: Object): void
 
 **示例：**
 ```ts
+//Index.ets
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 class TestObj {
   private message : string = "this is a message from TestObj"
@@ -462,6 +463,31 @@ let registerObj = new TestObj();
 // 在ThreadWorker实例上注册registerObj
 workerInstance.registerGlobalCallObject("myObj", registerObj);
 workerInstance.postMessage("start worker")
+```
+
+```ts
+// worker.ets
+import { worker, MessageEvents } from '@kit.ArkTS';
+
+const workerPort = worker.workerPort;
+workerPort.onmessage = (e: MessageEvents): void => {
+  try {
+    // 调用方法无入参
+    let res : string = workerPort.callGlobalCallObjectMethod("myObj", "getMessage", 0) as string;
+    console.info("worker:", res) // worker: this is a message from TestObj
+  } catch (error) {
+    // 异常处理
+    console.error("worker: error code is " + error.code + " error message is " + error.message);
+  }
+  try {
+    // 调用方法有入参
+    let res : string = workerPort.callGlobalCallObjectMethod("myObj", "getMessageWithInput", 0, "hello there!") as string;
+    console.info("worker:", res) //worker: this is a message from TestObj with input: hello there!
+  } catch (error) {
+    // 异常处理
+    console.error("worker: error code is " + error.code + " error message is " + error.message);
+  }
+}
 ```
 
 ### unregisterGlobalCallObject<sup>11+</sup>
@@ -604,6 +630,37 @@ workerInstance.onerror = (err: ErrorEvent) => {
 }
 ```
 
+### onAllErrors<sup>16+</sup>
+
+onAllErrors?: ErrorCallback
+
+回调函数。表示Worker线程生命周期内发生异常被调用的事件处理程序，处理程序在宿主线程中执行。<br/>
+[onerror](#onerror9)仅捕获[onmessage](#onmessage9)回调中同步方法产生的异常，无法捕获多线程回调产生的异常和模块化相关异常，且onerror捕获异常后Worker线程进入销毁流程，不可以继续使用。<br/>
+onAllErrors可以捕获Worker线程的onmessage回调、timer回调以及文件执行等流程产生的全局异常，且onAllErrors捕获异常后Worker线程仍存活可以继续使用。推荐使用onAllErrors代替onerror。
+
+**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | -------------------------------------------- |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
+
+**示例：**
+
+```ts
+import { worker, ErrorEvent } from '@kit.ArkTS';
+
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
+workerInstance.onAllErrors = (err: ErrorEvent) => {
+  console.log("onAllErrors" + err.message);
+}
+```
 
 ### onmessage<sup>9+</sup>
 
@@ -1265,6 +1322,24 @@ Worker线程调用注册在宿主线程上某个对象的指定方法，调用�
 
 **示例：**
 ```ts
+//Index.ets
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
+class TestObj {
+  private message : string = "this is a message from TestObj"
+  public getMessage() : string {
+    return this.message;
+  }
+  public getMessageWithInput(str : string) : string {
+    return this.message + " with input: " + str;
+  }
+}
+let registerObj = new TestObj();
+// 在ThreadWorker实例上注册registerObj
+workerInstance.registerGlobalCallObject("myObj", registerObj);
+workerInstance.postMessage("start worker")
+```
+
+```ts
 // worker.ets
 import { worker, MessageEvents } from '@kit.ArkTS';
 
@@ -1524,6 +1599,22 @@ type MessageType = 'message' | 'messageerror';
 | 'message'  | 表示消息类型为message，值固定为'message'字符串。 |
 | 'messageerror'  | 表示消息类型为messageerror，值固定为'messageerror'字符串。 |
 
+## ErrorCallback<sup>16+</sup>
+
+type ErrorCallback = (err: ErrorEvent) => void
+
+表示异常回调类型。
+
+**原子化服务API：** 从API version 16 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名    | 类型                            | 必填 | 说明                                                         |
+| --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| err | ErrorEvent                          | 是   | 错误事件类，用于表示Worker执行过程中出现异常的详细信息。 |
+
 ## Worker<sup>(deprecated)</sup>
 
 使用以下方法前，均需先构造Worker实例，Worker类继承[EventTarget](#eventtargetdeprecated)。
@@ -1562,8 +1653,8 @@ import { worker } from '@kit.ArkTS';
 // 场景1： worker文件所在路径："entry/src/main/ets/workers/worker.ets"
 const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
 
-// 场景2： worker文件所在路径："phone/src/main/ets/ThreadFile/workers/worker.ets"
-const workerStageModel02 = new worker.ThreadWorker('phone/ets/ThreadFile/workers/worker.ets');
+// 场景2： worker文件所在路径："testworkers/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStageModel02 = new worker.ThreadWorker('testworkers/ets/ThreadFile/workers/worker.ets');
 ```
 
 ### postMessage<sup>(deprecated)</sup>
@@ -2446,7 +2537,7 @@ workerPort.onerror = (err: ErrorEvent) => {
   }
 ```
 ### Stage模型
-> 此处以API version 12的工程为例。
+> 此处以API version 16的工程为例。
 ```ts
 // Index.ets
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
@@ -2480,7 +2571,7 @@ struct Index {
               console.log("main thread terminate");
             }
 
-            workerInstance.onerror = (err: ErrorEvent) => {
+            workerInstance.onAllErrors = (err: ErrorEvent) => {
               console.log("main error message " + err.message);
             }
           })

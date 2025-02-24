@@ -13,34 +13,34 @@ Invalid parameter.
 
 **Description**
 
-Invalid parameter values are detected.
+Invalid parameters are specified.
 
 **Possible Causes**
 
-- The value of **account** is empty or exceeds 1024 characters.
+1. The value of **account** is empty or exceeds 1024 characters.
 
-- The account type is incorrect.
+2. The account type is incorrect.
 
-- The **aeskey** or **iv** is invalid.
+3. The **aeskey** or **iv** is invalid.
 
-- The authorization expiration time is earlier than the system time.
+4. The authorization expiration time is earlier than the system time.
 
-- **Fd** is less than **0**.
+5. **Fd** is less than **0**.
 
-- The value of **tokenid** is **0**.
+6. The value of **tokenid** is **0**.
 
-- The bundle name is empty.
+7. The bundle name is empty.
 
-- The value of **appindex** is less than **0**.
+8. The value of **appindex** is less than **0**.
 
-- The value of **userId** is less than **0**.
+9. The value of **userId** is less than **0**.
 
 **Solution**
 
-Check that all the parameters are set correctly.
+Set parameters correctly.
 
 
-## 19100002 Encryption/Decryption Error
+## 19100002 Encryption and Decryption Error
 
 **Error Message**
 
@@ -52,9 +52,9 @@ An error occurs in encryption or decryption.
 
 **Possible Causes**
 
-- The number of active encryption/decryption tasks is greater than 100.
+1. The number of active encryption and decryption tasks is greater than 100.
 
-- Duplicate encryption/decryption tasks are performed.
+2. Duplicate encryption/decryption tasks are performed.
 
 **Solution**
 
@@ -73,7 +73,7 @@ The encryption or decryption timed out.
 
 **Possible Causes**
 
-The DLP file encryption/decryption task is not complete within 10 seconds.
+It takes more than 10 seconds to encrypt or decrypt a DLP file.
 
 **Solution**
 
@@ -92,9 +92,9 @@ An error occurs in the credential service.
 
 **Possible Causes**
 
-- The DLP credential service does not exist.
+1. The DLP credential service does not exist.
 
-- The DLP credential service is abnormal.
+2. The DLP credential service is abnormal.
 
 **Solution**
 
@@ -105,7 +105,7 @@ Wait for a while and try again, or restart the device.
 
 **Error Message**
 
-Credential server error.
+Credential authentication server error.
 
 **Description**
 
@@ -113,9 +113,9 @@ The credential authentication server is abnormal.
 
 **Possible Causes**
 
-- The credential authentication server cannot be connected.
+1. The credential authentication server cannot be connected.
 
-- The credential authentication server does not exist.
+2. The credential authentication server does not exist.
 
 **Solution**
 
@@ -130,11 +130,11 @@ No permission to call this API, which is available only for DLP sandbox applicat
 
 **Description**
 
-The caller is not a DLP sandbox application and cannot call the API.
+The caller is not a DLP sandbox application.
 
 **Possible Causes**
 
-The API must be called by a DLP sandbox application.
+The caller is not a DLP sandbox application.
 
 **Solution**
 
@@ -149,7 +149,7 @@ No permission to call this API, which is available only for non-DLP sandbox appl
 
 **Description**
 
-The caller is a DLP sandbox application and cannot call the API.
+The caller cannot be a DLP sandbox application.
 
 **Possible Causes**
 
@@ -191,13 +191,13 @@ The operation on the DLP file fails.
 
 **Possible Causes**
 
-- The user is not an authorized user.
+1. The user is not an authorized user.
 
-- The sandbox application fails to be installed.
+2. The sandbox application fails to be installed.
 
-- The link file is not associated.
+3. The link file is not associated.
 
-- The number of opened DLP files reaches 1000.
+4. The number of opened DLP files reaches 1000.
 
 **Solution**
 
@@ -218,13 +218,13 @@ The DLP file is read-only.
 
 **Possible Causes**
 
-- You cannot modify the permission on a DLP file that is read-only.
+1. You cannot modify the permission on a DLP file, which is read-only.
 
-- You cannot write a DLP file that is read-only.
+2. You cannot write a DLP file, which is read-only.
 
 **Solution**
 
-Check the permission on the file.
+1. Check the permission on the file.
 
 
 ## 19100011 System Service Abnormal
@@ -239,15 +239,15 @@ The system service is abnormal.
 
 **Possible Causes**
 
-- The DLP permission service fails to start.
+1. The DLP permission service fails to start.
 
-- The RPC object of the DLP permission service cannot be obtained.
+2. The RPC object of the DLP permission service cannot be obtained.
 
-- The service, on which the DLP permission service depends, fails to start.
+3. The service, on which the DLP permission service depends, fails to start.
 
-- The IPC data fails to be read or written.
+4. The IPC data fails to be read or written.
 
-- The service is not initialized.
+5. The service is not initialized.
 
 **Solution**
 
@@ -296,11 +296,11 @@ Account not logged in.
 
 **Description**
 
-The user has not logged in with the account.
+You have not logged in with an account.
 
 **Solution**
 
-Log in with the account.
+Log in using your account.
 
 
 ## 19100015 Upgrade Required
@@ -367,7 +367,7 @@ The application is not in the authorized application list.
 Set the authorized application list.
 
 
-## 19100019 DLP File Expired
+## 19100019 DLP File Has Expired
 
 **Error Message**
 

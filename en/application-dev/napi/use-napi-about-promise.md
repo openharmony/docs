@@ -20,6 +20,7 @@ Node-API provides APIs for implementing asynchronous operations for time-consumi
 ## Available APIs
 
 The following table lists the APIs for implementing asynchronous operations using ArkTS promises.   
+
 | API| Description|
 | -------- | -------- |
 | napi_is_promise | Checks whether a **napi_value** is a **Promise** object.|
@@ -29,11 +30,11 @@ The following table lists the APIs for implementing asynchronous operations usin
 
 ## Example
 
-If you are just starting out with Node-API, see [Node-API Development Process](use-napi-process.md). The following demonstrates only the C++ and ArkTS code related to promises.
+If you are just starting out with Node-API, see [Node-API Development Process](use-napi-process.md). The following demonstrates only the C++ and ArkTS code related to promise development.
 
 ### napi_is_promise
 
-Use **napi_is_promise** to check whether the given **napi_value** is a **Promise** object.
+Call **napi_is_promise** to check whether the given **napi_value** is a **Promise** object.
 
 CPP code:
 
@@ -82,7 +83,7 @@ hilog.info(0x0000, 'Node-API', 'napi_is_promise string %{public}s', testNapi.isP
 
 ### napi_create_promise
 
-Use **napi_create_promise** to create a **Promise** object.
+Call **napi_create_promise** to create a **Promise** object.
 
 When using this API, observe to the following:
 
@@ -109,7 +110,9 @@ napi_value NapiPromiseDemo(napi_env env, napi_callback_info)
 
 ### napi_resolve_deferred & napi_reject_deferred
 
-Use **napi_resolve_deferred** to change the promise state from **pending** to **fulfilled**, and use **napi_reject_deferred** to change the promise state from **pending** to **rejected**.
+Call **napi_resolve_deferred** to change the promise state from **pending** to **fulfilled**, and call **napi_reject_deferred** to change the promise state from **pending** to **rejected**.
+
+To ensure execution of microtasks, the ArkTS runtime will trigger a microtask execution when fulfilling a promise using Node-API.
 
 CPP code:
 

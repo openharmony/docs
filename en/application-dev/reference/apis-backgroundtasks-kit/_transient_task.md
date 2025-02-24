@@ -11,42 +11,42 @@ The TransientTask module provides C APIs for transient tasks.
 
 ### Files
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [transient_task_api.h](transient__task__api_8h.md) | Declares the APIs for requesting, querying, and canceling transient tasks. |
-| [transient_task_type.h](transient__task__type_8h.md) | Declares the error codes and structs of a transient task. |
+| [transient_task_api.h](transient__task__api_8h.md) | Declares the APIs for requesting, querying, and canceling transient tasks. | 
+| [transient_task_type.h](transient__task__type_8h.md) | Declares the error codes and structs of a transient task. | 
 
 
 ### Structs
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md) | Defines a struct for the returned information about a transient task. |
+| struct&nbsp;&nbsp;[TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md) | Defines a struct for the returned information about a transient task. | 
 
 
 ### Types
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| typedef enum [TransientTask_ErrorCode](#transienttask_errorcode)[TransientTask_ErrorCode](#transienttask_errorcode) | Defines an enum for the error codes available for a transient task. |
-| typedef struct [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md)[TransientTask_DelaySuspendInfo](#transienttask_delaysuspendinfo) | Defines a struct for the returned information about a transient task. |
-| typedef void(\* [TransientTask_Callback](#transienttask_callback)) (void) | Defines a callback for transient task timeout. |
+| typedef enum [TransientTask_ErrorCode](#transienttask_errorcode) [TransientTask_ErrorCode](#transienttask_errorcode) | Defines an enum for the error codes available for a transient task. | 
+| typedef struct [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md) [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md)| Defines a struct for the returned information about a transient task. | 
+| typedef void(\* [TransientTask_Callback](#transienttask_callback)) (void) | Defines a callback for transient task timeout. | 
 
 
 ### Enums
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [TransientTask_ErrorCode](#transienttask_errorcode) {<br>ERR_TRANSIENT_TASK_OK = 0, ERR_TRANSIENT_TASK_INVALID_PARAM = 401, ERR_TRANSIENT_TASK_PARCEL_FAILED = 9800002, ERR_TRANSIENT_TASK_TRANSACTION_FAILED = 9800003,<br>ERR_TRANSIENT_TASK_SYS_NOT_READY = 9800004, ERR_TRANSIENT_TASK_CLIENT_INFO_VERIFICATION_FAILED = 9900001, ERR_TRANSIENT_TASK_SERVICE_VERIFICATION_FAILED = 9900002<br>} | Enumerates the error codes available for a transient task. |
+| [TransientTask_ErrorCode](#transienttask_errorcode) {<br>ERR_TRANSIENT_TASK_OK = 0, ERR_TRANSIENT_TASK_INVALID_PARAM = 401, ERR_TRANSIENT_TASK_PARCEL_FAILED = 9800002, ERR_TRANSIENT_TASK_TRANSACTION_FAILED = 9800003,<br>ERR_TRANSIENT_TASK_SYS_NOT_READY = 9800004, ERR_TRANSIENT_TASK_CLIENT_INFO_VERIFICATION_FAILED = 9900001, ERR_TRANSIENT_TASK_SERVICE_VERIFICATION_FAILED = 9900002<br>} | Enumerates the error codes available for a transient task. | 
 
 
 ### Functions
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| int32_t [OH_BackgroundTaskManager_RequestSuspendDelay](#oh_backgroundtaskmanager_requestsuspenddelay) (const char \*reason, [TransientTask_Callback](#transienttask_callback) callback, [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md) \*info) | Requests a transient task. |
-| int32_t [OH_BackgroundTaskManager_GetRemainingDelayTime](#oh_backgroundtaskmanager_getremainingdelaytime) (int32_t requestId, int32_t \*delayTime) | Obtains the remaining time of a transient task. |
-| int32_t [OH_BackgroundTaskManager_CancelSuspendDelay](#oh_backgroundtaskmanager_cancelsuspenddelay) (int32_t requestId) | Cancels a transient task. |
+| int32_t [OH_BackgroundTaskManager_RequestSuspendDelay](#oh_backgroundtaskmanager_requestsuspenddelay) (const char \*reason, [TransientTask_Callback](#transienttask_callback) callback, [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md) \*info) | Requests a transient task. | 
+| int32_t [OH_BackgroundTaskManager_GetRemainingDelayTime](#oh_backgroundtaskmanager_getremainingdelaytime) (int32_t requestId, int32_t \*delayTime) | Obtains the remaining time of a transient task. | 
+| int32_t [OH_BackgroundTaskManager_CancelSuspendDelay](#oh_backgroundtaskmanager_cancelsuspenddelay) (int32_t requestId) | Cancels a transient task. | 
 
 
 ## Type Description
@@ -67,7 +67,7 @@ Defines a callback for transient task timeout.
 ### TransientTask_DelaySuspendInfo
 
 ```
-typedef struct TransientTask_DelaySuspendInfoTransientTask_DelaySuspendInfo
+typedef struct TransientTask_DelaySuspendInfo TransientTask_DelaySuspendInfo
 ```
 **Description**
 
@@ -79,7 +79,7 @@ Defines a struct for the returned information about a transient task.
 ### TransientTask_ErrorCode
 
 ```
-typedef enum TransientTask_ErrorCodeTransientTask_ErrorCode
+typedef enum TransientTask_ErrorCode TransientTask_ErrorCode
 ```
 **Description**
 
@@ -102,15 +102,15 @@ Enumerates the error codes available for a transient task.
 
 **Since**: 13
 
-| Value| Description|
+| Value| Description| 
 | -------- | -------- |
-| ERR_TRANSIENT_TASK_OK  | \@error The operation is successful.&nbsp;&nbsp; |
-| ERR_TRANSIENT_TASK_INVALID_PARAM  | \@error The input parameter is incorrect. For example, the parameter is a null pointer.&nbsp;&nbsp; |
-| ERR_TRANSIENT_TASK_PARCEL_FAILED  | \@error Parcel read/write operation failed. &nbsp;&nbsp; |
-| ERR_TRANSIENT_TASK_TRANSACTION_FAILED  | \@error IPC failed.&nbsp;&nbsp; |
-| ERR_TRANSIENT_TASK_SYS_NOT_READY  | \@error The system service fails.&nbsp;&nbsp; |
-| ERR_TRANSIENT_TASK_CLIENT_INFO_VERIFICATION_FAILED  | \@error Failed to verify the client information of the transient task.&nbsp;&nbsp; |
-| ERR_TRANSIENT_TASK_SERVICE_VERIFICATION_FAILED  | \@error Failed to verify the server information of the transient task.&nbsp;&nbsp; |
+| ERR_TRANSIENT_TASK_OK  | \@error The operation is successful.&nbsp;&nbsp; | 
+| ERR_TRANSIENT_TASK_INVALID_PARAM  | \@error The input parameter is incorrect. For example, the parameter is a null pointer.&nbsp;&nbsp; | 
+| ERR_TRANSIENT_TASK_PARCEL_FAILED  | \@error Parcel read/write operation failed. &nbsp;&nbsp; | 
+| ERR_TRANSIENT_TASK_TRANSACTION_FAILED  | \@error IPC failed.&nbsp;&nbsp; | 
+| ERR_TRANSIENT_TASK_SYS_NOT_READY  | \@error The system service fails.&nbsp;&nbsp; | 
+| ERR_TRANSIENT_TASK_CLIENT_INFO_VERIFICATION_FAILED  | \@error Failed to verify the client information of the transient task.&nbsp;&nbsp; | 
+| ERR_TRANSIENT_TASK_SERVICE_VERIFICATION_FAILED  | \@error Failed to verify the server information of the transient task.&nbsp;&nbsp; | 
 
 
 ## Function Description
@@ -131,9 +131,9 @@ Cancels a transient task.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| requestId | Request ID of the transient task. |
+| requestId | Request ID of the transient task. | 
 
 **Returns**
 
@@ -169,10 +169,10 @@ Obtains the remaining time of a transient task.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| requestId | Request ID of the transient task. |
-| time | Pointer to the remaining time. |
+| requestId | Request ID of the transient task. | 
+| time | Pointer to the remaining time. | 
 
 **Returns**
 
@@ -208,11 +208,11 @@ Requests a transient task.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| reason | Pointer to the reason for requesting the transient task. |
-| callback | Callback used to notify the application that the transient task is about to time out. Generally, the callback is invoked 6 seconds before the timeout. |
-| delaySuspendInfo | Pointer to the information about the transient task. |
+| reason | Pointer to the reason for requesting the transient task. | 
+| callback | Callback used to notify the application that the transient task is about to time out. Generally, the callback is invoked 6 seconds before the timeout. | 
+| delaySuspendInfo | Pointer to the information about the transient task. | 
 
 **Returns**
 

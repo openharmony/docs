@@ -47,18 +47,27 @@ import { display } from '@kit.ArkUI';
 
 ## FoldStatus<sup>10+</sup>
 
-当前可折叠设备的折叠状态枚举。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+当前可折叠设备的折叠状态枚举。如果是双折轴设备，则在充电口朝下的状态下，从右到左分别是折轴一和折轴二。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| FOLD_STATUS_UNKNOWN | 0 | 表示设备当前折叠状态未知。|
-| FOLD_STATUS_EXPANDED | 1 | 表示设备当前折叠状态为完全展开。|
-| FOLD_STATUS_FOLDED | 2 | 表示设备当前折叠状态为折叠。|
-| FOLD_STATUS_HALF_FOLDED | 3 | 表示设备当前折叠状态为半折叠。半折叠指完全展开和折叠之间的状态。|
+| FOLD_STATUS_UNKNOWN<sup>12+</sup> | 0 | 表示设备当前折叠状态未知。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_EXPANDED<sup>12+</sup> | 1 | 表示设备当前折叠状态为完全展开。如果是双折轴设备，则表示折轴一折叠状态为完全展开，折轴二折叠状态为折叠。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_FOLDED<sup>12+</sup> | 2 | 表示设备当前折叠状态为折叠。如果是双折轴设备，则表示折轴一折叠状态为折叠，折轴二折叠状态为折叠。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_HALF_FOLDED<sup>12+</sup> | 3 | 表示设备当前折叠状态为半折叠。半折叠指完全展开和折叠之间的状态。如果是双折轴设备，则表示折轴一折叠状态为半折叠，折轴二折叠状态为折叠。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_EXPANDED_WITH_SECOND_EXPANDED<sup>15+</sup> | 11 | 表示双折轴设备折轴一折叠状态为完全展开，折轴二折叠状态为完全展开。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_EXPANDED_WITH_SECOND_HALF_FOLDED<sup>15+</sup> | 21 | 表示双折轴设备折轴一折叠状态为完全展开，折轴二折叠状态为半折叠。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_FOLDED_WITH_SECOND_EXPANDED<sup>15+</sup> | 12 | 表示双折轴设备折轴一折叠状态为折叠，折轴二折叠状态为完全展开。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_FOLDED_WITH_SECOND_HALF_FOLDED<sup>15+</sup> | 22 | 表示双折轴设备折轴一折叠状态为折叠，折轴二折叠状态为半折叠。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_HALF_FOLDED_WITH_SECOND_EXPANDED<sup>15+</sup> | 13 | 表示双折轴设备折轴一折叠状态为半折叠，折轴二折叠状态为完全展开。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_HALF_FOLDED_WITH_SECOND_HALF_FOLDED<sup>15+</sup> | 23 | 表示双折轴设备折轴一折叠状态为半折叠，折轴二折叠状态为半折叠。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+
+>**说明：**<br>
+> 只有一个折轴的产品包含FOLD_STATUS_EXPANDED、FOLD_STATUS_FOLDED、FOLD_STATUS_HALF_FOLDED三种折叠状态。
+> 具有两个折轴的产品包含上表所示九种折叠状态。<br>
+> FOLD_STATUS_UNKNOWN是一种不可用的折叠状态。
 
 ## FoldDisplayMode<sup>10+</sup>
 
@@ -77,8 +86,8 @@ import { display } from '@kit.ArkUI';
 | FOLD_DISPLAY_MODE_COORDINATION | 4 | 表示设备当前双屏协同显示。|
 
 >**说明：**<br>
->&bullet; 对于大屏内折产品，内屏显示状态为FOLD_DISPLAY_MODE_FULL，外屏显示状态为FOLD_DISPLAY_MODE_MAIN。<br>
->&bullet; 对于小屏内折产品，内屏显示状态为FOLD_DISPLAY_MODE_MAIN，外屏显示状态为FOLD_DISPLAY_MODE_SUB。
+>&bullet; 对于内外屏均可作为主屏幕使用的折叠产品，内屏显示状态为FOLD_DISPLAY_MODE_FULL，外屏显示状态为FOLD_DISPLAY_MODE_MAIN。<br>
+>&bullet; 对于外屏只有简单的辅助显示作用的折叠产品，内屏显示状态为FOLD_DISPLAY_MODE_MAIN，外屏显示状态为FOLD_DISPLAY_MODE_SUB。
 
 ## FoldCreaseRegion<sup>10+</sup>
 
@@ -133,7 +142,7 @@ import { display } from '@kit.ArkUI';
 
 | 名称                        | 类型      | 可读 | 可写 | 说明               |
 | --------------------------- | ------------- | ---- | ---- | ------------------ |
-| boundingRects                | Array\<[Rect](#rect9)> | 是   | 否   | 挖孔、刘海等区域的边界矩形。 |
+| boundingRects                | Array\<[Rect](#rect9)> | 是   | 否   | 挖孔、刘海等区域的边界矩形。如果没有挖孔、刘海等区域，数组返回为空。 |
 | waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfalldisplayarearects9) | 是 | 否 | 瀑布屏曲面部分显示区域。 |
 
 ## DisplayPhysicalResolution<sup>12+</sup>
@@ -168,9 +177,9 @@ getDisplayByIdSync(displayId: number): Display
 
 根据displayId获取对应的display对象。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -454,7 +463,7 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
-| callback | Callback&lt;number&gt; | 否 | 需要取消注册的回调函数。若无此参数，则取消注册当前type类型事件监听的所有回调函数。 |
+| callback | Callback&lt;number&gt; | 否 | 需要取消注册的回调函数。返回监听到的显示设备的id，该参数应为整数。若无此参数，则取消注册当前type类型事件监听的所有回调函数。 |
 
 **错误码：**
 
@@ -612,8 +621,7 @@ on(type: 'foldStatusChange', callback: Callback&lt;FoldStatus&gt;): void
 
 开启折叠设备折叠状态变化的监听。
 
-本接口监听设备物理折叠状态的变化，[display.on('foldDispla
-yModeChange')](#displayonfolddisplaymodechange10)则监听屏幕显示模式的变化。
+本接口监听设备物理折叠状态的变化，[display.on('foldDisplayModeChange')](#displayonfolddisplaymodechange10)则监听屏幕显示模式的变化。
 
 两者存在差异，时序上物理折叠状态变化在前，底层会根据物理折叠状态匹配屏幕显示模式状态。
 
@@ -669,7 +677,7 @@ off(type: 'foldStatusChange', callback?: Callback&lt;FoldStatus&gt;): void
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | 是   | 监听事件，固定为'foldStatusChange'，表示折叠设备折叠状态发生变化。 |
-| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | 否   | 需要取消注册的回调函数。若无此参数，则取消注册折叠状态变化监听的所有回调函数。 |
+| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | 否   | 需要取消注册的回调函数。表示折叠设备折叠状态。若无此参数，则取消注册折叠状态变化监听的所有回调函数。 |
 
 **错误码：**
 
@@ -698,7 +706,7 @@ display.off('foldStatusChange', callback);
 
 on(type: 'foldAngleChange', callback: Callback&lt;Array&lt;number&gt;&gt;): void
 
-开启折叠设备折叠角度变化的监听。
+开启折叠设备折叠角度变化的监听。如果是双折轴设备，则有两个角度值；在充电口朝下的状态下，从右到左分别是折轴一和折轴二。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -709,7 +717,7 @@ on(type: 'foldAngleChange', callback: Callback&lt;Array&lt;number&gt;&gt;): void
 | 参数名   | 类型                                      | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | 是 | 监听事件，固定为'foldAngleChange'，表示折叠设备折叠角度发生变化。|
-| callback | Callback&lt;Array&lt;number&gt;&gt; | 是 | 回调函数。表示折叠设备屏幕折叠角度值（0度~180度）。|
+| callback | Callback&lt;Array&lt;number&gt;&gt; | 是 | 回调函数。表示折叠设备屏幕折叠角度值（0度~180度）。如果是双折轴设备，则数组返回两个角度值，第一个值是折轴一的折叠角度值，第二个值是折轴二的折叠角度值。|
 
 **错误码：**
 
@@ -746,7 +754,7 @@ off(type: 'foldAngleChange', callback?: Callback&lt;Array&lt;number&gt;&gt;): vo
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                    | 是  | 监听事件，固定为'foldAngleChange'表示折叠设备折叠角度发生变化。|
-| callback | Callback&lt;Array&lt;number&gt;&gt; | 否  | 需要取消注册的回调函数。若无此参数，则取消注册折叠角度变化监听的所有回调函数。|
+| callback | Callback&lt;Array&lt;number&gt;&gt; | 否  | 需要取消注册的回调函数。表示折叠设备屏幕折叠角度值（0度~180度）。若无此参数，则取消注册折叠角度变化监听的所有回调函数。|
 
 **错误码：**
 
@@ -815,7 +823,7 @@ off(type: 'captureStatusChange', callback?: Callback&lt;boolean&gt;): void
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | 是 | 监听事件，固定为'captureStatusChange'表示设备截屏、投屏、录屏状态发生变化。|
-| callback | Callback&lt;boolean&gt; | 否 | 需要取消注册的回调函数。若无此参数，则取消注册截屏、投屏、录屏状态变化监听的所有回调函数。|
+| callback | Callback&lt;boolean&gt; | 否 | 需要取消注册的回调函数。表示设备截屏、投屏、录屏状态发生变化。true表示设备开始截屏、投屏或者录屏，false表示结束截屏、投屏、录屏。若无此参数，则取消注册截屏、投屏、录屏状态变化监听的所有回调函数。|
 
 **错误码：**
 
@@ -924,7 +932,7 @@ off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): 
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | 是   | 监听事件，固定为'foldDisplayModeChange'，表示折叠设备屏幕显示模式发生变化。 |
-| callback | Callback&lt;[FoldDisplayMode](#folddisplaymode10)&gt; | 否   | 需要取消注册的回调函数。若无此参数，则取消注册屏幕显示模式变化监听的所有回调函数。 |
+| callback | Callback&lt;[FoldDisplayMode](#folddisplaymode10)&gt; | 否   | 需要取消注册的回调函数。表示折叠设备屏幕显示模式。若无此参数，则取消注册屏幕显示模式变化监听的所有回调函数。 |
 
 **错误码：**
 
@@ -958,7 +966,7 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getDefaultDisplaySync()](#displaygetdefaultdisplaysync9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[getDefaultDisplaySync()](#displaygetdefaultdisplaysync9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -993,7 +1001,7 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getDefaultDisplaySync()](#displaygetdefaultdisplaysync9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[getDefaultDisplaySync()](#displaygetdefaultdisplaysync9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1026,7 +1034,7 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getAllDisplays()](#displaygetalldisplays9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[getAllDisplays()](#displaygetalldisplays9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1059,7 +1067,7 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getAllDisplays()](#displaygetalldisplays9-1)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[getAllDisplays()](#displaygetalldisplays9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1248,8 +1256,8 @@ on(type: 'availableAreaChange', callback: Callback&lt;Rect&gt;): void
 
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | 是   | 监听事件，固定为'availableAreaChange'，表示屏幕可用区域变更。 |
-| callback | Callback&lt;[Rect](#rect9)&gt; | 是   | 回调函数，返回改变后的可用区域。 |
+| type     | string                                   | 是   | 监听事件。固定为'availableAreaChange'，表示屏幕可用区域变更。 |
+| callback | Callback&lt;[Rect](#rect9)&gt; | 是   | 回调函数。返回改变后的可用区域。 |
 
 **错误码：**
 
@@ -1294,7 +1302,7 @@ off(type: 'availableAreaChange', callback?: Callback&lt;Rect&gt;): void
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | 是   | 监听事件，固定为'availableAreaChange'，表示屏幕可用区域变更。 |
-| callback | Callback&lt;[Rect](#rect9)&gt; | 否   | 回调函数，已经注册的回调函数，不填默认删除所有回调 |
+| callback | Callback&lt;[Rect](#rect9)&gt; | 否   | 需要取消注册的回调函数。返回改变后的可用区域。若无此参数，则取消注册屏幕可用区域变化监听的所有回调函数。 |
 
 **错误码：**
 

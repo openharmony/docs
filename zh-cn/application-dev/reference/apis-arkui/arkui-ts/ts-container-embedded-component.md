@@ -31,11 +31,11 @@ EmbeddedComponent(loader: Want, type: EmbeddedType)
 | 参数名                | 类型                          | 必填 |说明   |
 | --------------------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
 | loader                | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 要加载的EmbeddedUIExtensionAbility。 |
-| type                  | [EmbeddedType](ts-appendix-enums.md#embeddedtype)                              | 是   | 提供方的类型。                       |
+| type                  | [EmbeddedType](ts-appendix-enums.md#embeddedtype12)                              | 是   | 提供方的类型。                       |
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)。
+支持[通用属性](ts-component-general-attributes.md)。
 
 > **说明：**
 >
@@ -108,14 +108,13 @@ onError(callback: ErrorCallback)
 | code | number                                                     | 是   | 被拉起EmbeddedUIExtensionAbility退出时返回的结果码。 |
 | want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 否 | 被拉起EmbeddedUIExtensionAbility退出时返回的数据。   |
 
-## 示例
+## 示例（加载EmbeddedComponent）
 
-本示例展示EmbeddedComponent组件和EmbeddedUIExtensionAbility的基础使用方式，示例应用的`bundleName`为"com.example.embeddeddemo", 被拉起的`EmbeddedUIExtensionAbility`为"ExampleEmbeddedAbility".
+本示例展示`EmbeddedComponent`组件和`EmbeddedUIExtensionAbility`的基础使用方式，示例应用的`bundleName`为"com.example.embeddeddemo", 同应用下被拉起的`EmbeddedUIExtensionAbility`为"ExampleEmbeddedAbility"。本示例仅支持在拥有多进程权限的设备上运行，如2in1。
 
-- 示例应用中的EntryAbility(UIAbility)加载首页文件：`pages/Index.ets`，其中内容如下：
+- 示例应用中的`EntryAbility(UIAbility)`加载首页文件`ets/pages/Index.ets`，其中内容如下：
 
   ```ts
-  // pages/Index.ets -- UIAbility启动时加载此页面
   import { Want } from '@kit.AbilityKit';
 
   @Entry
@@ -134,10 +133,12 @@ onError(callback: ErrorCallback)
           EmbeddedComponent(this.want, EmbeddedType.EMBEDDED_UI_EXTENSION)
             .width('100%')
             .height('90%')
-            .onTerminated((info)=>{
+            .onTerminated((info) => {
+              // 点击extension页面内的terminateSelfWithResult按钮后触发onTerminated回调，文本框显示如下信息
               this.message = 'Termination: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
             })
-            .onError((error)=>{
+            .onError((error) => {
+              // 失败或异常触发onError回调，文本框显示如下报错内容
               this.message = 'Error: code = ' + error.code;
             })
         }
@@ -148,14 +149,14 @@ onError(callback: ErrorCallback)
   }
   ```
 
-- EmbeddedComponent拉起的EmbeddedUIExtensionAbility在`ets/extensionAbility/ExampleEmbeddedAbility`文件中实现，内容如下：
+- `EmbeddedComponent`拉起的`ExampleEmbeddedAbility(EmbeddedUIExtensionAbility)`在`ets/extensionAbility/ExampleEmbeddedAbility.ets`文件中实现，内容如下：
 
   ```ts
   import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
   const TAG: string = '[ExampleEmbeddedAbility]'
+
   export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
-    
     onCreate() {
       console.log(TAG, `onCreate`);
     }
@@ -178,6 +179,7 @@ onError(callback: ErrorCallback)
         'session': session
       };
       let storage: LocalStorage = new LocalStorage(param);
+      // 加载pages/extension.ets页面内容
       session.loadContent('pages/extension', storage);
     }
 
@@ -187,7 +189,7 @@ onError(callback: ErrorCallback)
   }
   ```
 
-- EmbeddedUIExtensionAbility的入口页面文件`pages/extension.ets`内容如下：
+- `ExampleEmbeddedAbility(EmbeddedUIExtensionAbility)`的入口页面文件`ets/pages/extension.ets`内容如下，同时需要在`resources/base/profile/main_pages.json`文件中配置该页面路径：
 
   ```ts
   import { UIExtensionContentSession } from '@kit.AbilityKit';
@@ -206,19 +208,21 @@ onError(callback: ErrorCallback)
           .fontSize(20)
           .fontWeight(FontWeight.Bold)
         Button("terminateSelfWithResult").fontSize(20).onClick(() => {
+          // 点击按钮后调用terminateSelfWithResult退出
           this.session?.terminateSelfWithResult({
             resultCode: 1,
             want: {
               bundleName: "com.example.embeddeddemo",
               abilityName: "ExampleEmbeddedAbility",
-            }});
+            }
+          });
         })
       }.width('100%').height('100%')
     }
   }
   ```
 
-- 最后，示例应用的`module.json5`中的"extensionAbilities"中需要增加一项，具体内容如下：
+- 在`module.json5`配置文件的"extensionAbilities"标签下增加`ExampleEmbeddedAbility`配置，其type类型为`embeddedUI`，具体内容如下：
   ```json
   {
     "name": "ExampleEmbeddedAbility",

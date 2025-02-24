@@ -113,7 +113,7 @@ struct Index {
 
 #### 并发函数返回Promise
 
-并发函数中返回Promise的表现需关注，其中并发同步函数会处理返回该Promise并返回结果，如下例所示。
+并发函数中返回Promise的表现需关注，如下例所示，其中testPromise、testPromise1等并发同步函数会处理该Promise并返回结果。
 
 示例：
 
@@ -323,7 +323,7 @@ export class MyTestB {
 
 #### 并发异步函数中使用Promise
 
-并发异步函数中如果使用Promise，建议搭配await使用捕获Promise中可能发生的异常。推荐使用示例如下。
+并发异步函数中如果使用Promise，建议搭配await使用。这样TaskPool会捕获Promise中可能发生的异常。推荐使用示例如下。
 
 示例：
 

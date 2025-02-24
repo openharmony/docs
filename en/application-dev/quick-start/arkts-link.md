@@ -3,6 +3,7 @@
 
 An \@Link decorated variable creates two-way synchronization with a variable of its parent component.
 
+Before reading this topic, you are advised to understand the basic usage of [\@State](./arkts-state.md).
 
 > **NOTE**
 >
@@ -20,7 +21,7 @@ An \@Link decorated variable in a child component shares the same value with a v
 | \@Link Decorator                         | Description                                                  |
 | ---------------------------------------- | ------------------------------------------------------------ |
 | Decorator parameters                     | None.                                                        |
-| Synchronization type                     | Two-way:<br>from an \@State, \@StorageLink, or \@Link decorated variable in the parent component to this variable; and the other way around. |
+| Synchronization type                     | Two-way:<br>The state variable in the parent component can be synchronized with the child component \@Link in a two-way manner. When one of them changes, the other can sense the change. |
 | Allowed variable types                   | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Union Type @Link](#union-type-link).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Link a: string \| undefined = undefined**. |
 | Initial value for the decorated variable | Forbidden.                                                   |
 
@@ -115,7 +116,7 @@ An \@Link decorated variable shares the lifecycle of its owning component.
 
 To understand the value initialization and update mechanism of the \@Link decorated variable, it is necessary to consider the parent component and the initial render and update process of the child component that owns the \@Link decorated variable (in this example, the \@State decorated variable in the parent component is used).
 
-1. Initial render: The execution of the parent component's **build()** function creates a instance of the child component. The initialization process is as follows:
+1. Initial render: The execution of the parent component's **build()** function creates an instance of the child component. The initialization process is as follows:
    1. An \@State decorated variable of the parent component must be specified to initialize the child component's \@Link decorated variable. The child component's \@Link decorated variable value and its source variable are kept in sync (two-way data synchronization).
    2. The \@State state variable wrapper class of the parent component is passed to the child component through the build function. After obtaining the \@State state variable of the parent component, the \@Link wrapper class of the child component registers the **this** pointer to the current \@Link wrapper class with the \@State variable of the parent component.
 
@@ -478,7 +479,7 @@ struct Child {
 
 @Entry
 @Component
-struct MapSample2 {
+struct MapSample {
   @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
 
   build() {
@@ -532,7 +533,7 @@ struct Child {
 
 @Entry
 @Component
-struct SetSample1 {
+struct SetSample {
   @State message: Set<number> = new Set([0, 1, 2, 3, 4])
 
   build() {
@@ -612,7 +613,7 @@ struct Child {
           this.name = "Bob"
         })
 
-      Button('Child change animal to undefined')
+      Button('Child change name to undefined')
         .onClick(() => {
           this.name = undefined
         })
@@ -656,11 +657,11 @@ When using \@Link to decorate a state variable in a child component, ensure that
 
 ```ts
 @Observed
-class ClassA {
-  public c: number = 0;
+class Info {
+  public age: number = 0;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(age: number) {
+    this.age = age;
   }
 }
 
@@ -676,43 +677,43 @@ struct LinkChild {
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA = new ClassA(1);
+  @State info: Info = new Info(1);
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum.c}`)
+      Text(`Parent testNum ${this.info.age}`)
         .onClick(() => {
-          this.testNum.c += 1;
+          this.info.age += 1;
         })
       // The type of the @Link decorated variable must be the same as that of the @State decorated data source.
-      LinkChild({ testNum: this.testNum.c })
+      LinkChild({ testNum: this.info.age })
     }
   }
 }
 ```
 
-In the example, the type of **\@Link testNum: number** and the initialization from the parent component **LinkChild ({testNum:this.testNum.c})** are incorrect. The data source of \@Link must be a decorated state variable. The \@Link decorated variables must be of the same type as the data source, for example, \@Link: T and \@State: T. Therefore, the value should be changed to **\@Link testNum: ClassA**, and the initialization from the parent component should be **LinkChild({testNum: this.testNum})**.
+In the example, the type of **\@Link testNum: number** and the initialization from the parent component **LinkChild({testNum:this.info.age})** are incorrect. The data source of \@Link must be a decorated state variable. The \@Link decorated variables must be of the same type as the data source, for example, \@Link: T and \@State: T. Therefore, the value should be changed to **\@Link testNum: Info**, and the initialization from the parent component should be **LinkChild({testNum: this.info})**.
 
 [Correct Example]
 
 ```ts
 @Observed
-class ClassA {
-  public c: number = 0;
+class Info {
+  public age: number = 0;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(age: number) {
+    this.age = age;
   }
 }
 
 @Component
 struct LinkChild {
-  @Link testNum: ClassA;
+  @Link testNum: Info;
 
   build() {
-    Text(`LinkChild testNum ${this.testNum?.c}`)
+    Text(`LinkChild testNum ${this.testNum?.age}`)
       .onClick(() => {
-        this.testNum.c += 1;
+        this.testNum.age += 1;
       })
   }
 }
@@ -720,16 +721,16 @@ struct LinkChild {
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA = new ClassA(1);
+  @State info: Info = new Info(1);
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum.c}`)
+      Text(`Parent testNum ${this.info.age}`)
         .onClick(() => {
-          this.testNum.c += 1;
+          this.info.age += 1;
         })
       // The type of the @Link decorated variable must be the same as that of the @State decorated data source.
-      LinkChild({ testNum: this.testNum })
+      LinkChild({ testNum: this.info })
     }
   }
 }
@@ -859,69 +860,4 @@ struct Child {
 }
 ```
 
-### An Error Is Reported During \@Link Initialization When \@State Is Defined after build()
-
-When the \@State decorated variable is defined after the **build** function to initialize the \@Link decorated variable, the \@State decorated variable is identified as a constant. However, the \@Link decorated variable cannot be initialized by a constant. As a result, an error is reported during compilation.
-
-[Incorrect Example]
-
-```ts
-@Entry
-@Component
-struct Index {
-  build() {
-    Column() {
-      child({ count: this.count })
-      Button(`click times: ${this.count}`)
-        .onClick(() => {
-          this.count += 1;
-        })
-    }
-  }
-  // Define the @State variable after the build function.
-  @State count: number = 0;
-}
-
-@Component
-struct child {
-  @Link count: number;
-
-  build() {
-    Text(`cout: ${this.count}`).fontSize(30)
-  }
-}
-```
-
-![State-After-Build](figures/State-After-Build.png)
-
-The correct format is to define the \@State variable before the build function.
-
-[Correct Example]
-
-```ts
-@Entry
-@Component
-struct Index {
-  @State count: number = 0;
-
-  build() {
-    Column() {
-      child({ count: this.count })
-      Button(`click times: ${this.count}`)
-        .onClick(() => {
-          this.count += 1;
-        })
-    }
-  }
-}
-
-@Component
-struct child {
-  @Link count: number;
-
-  build() {
-    Text(`cout: ${this.count}`).fontSize(30)
-  }
-}
-```
-
+<!--no_check-->

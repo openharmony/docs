@@ -26,7 +26,7 @@
 
 **情况三：设置HTTP请求头信息播放**
 
-当服务器需要校验HTTP请求头信息时，可通过[createMediaSourceWithUrl](../../reference/apis-media-kit/js-apis-media.md#createmediasourcewithurl12)设置HTTP请求头信息。
+当服务器需要校验HTTP请求头信息时，可通过[createMediaSourceWithUrl](../../reference/apis-media-kit/js-apis-media.md#mediacreatemediasourcewithurl12)设置HTTP请求头信息。
 ```ts
   // 创建avPlayer实例对象
   let avPlayer: media.AVPlayer = await media.createAVPlayer();

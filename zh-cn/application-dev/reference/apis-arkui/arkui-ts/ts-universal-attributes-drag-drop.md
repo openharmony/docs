@@ -66,6 +66,23 @@ dragPreview(value: CustomBuilder | DragItemInfo | string)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo说明) \| string<sup>12+</sup> | 是   | 设置组件拖拽过程中的预览图，仅在onDragStart拖拽方式中有效。<br/>当组件支持拖拽并同时设置[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)的预览图时，则长按浮起的预览图以[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)设置的预览图为准。开发者在[onDragStart](ts-universal-events-drag-drop.md#onDragStart)中返回的背板图优先级低于[dragPreview](ts-universal-attributes-drag-drop.md#dragPreview11)设置的预览图，当设置了[dragPreview](ts-universal-attributes-drag-drop.md#dragPreview11)预览图时，拖拽过程中的背板图使用[dragPreview](ts-universal-attributes-drag-drop.md#dragPreview11)预览图。由于[CustomBuilder](ts-types.md#custombuilder8)需要离线渲染之后才能使用，因此存在一定的性能开销和时延，推荐优先使用 [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo说明)中的[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)方式。<br/> 当传入类型为string的id时，则将id对应组件的截图作为预览图。如果id对应的组件无法查找到，或者id对应的组件Visibility属性设置成none/hidden，则对组件自身进行截图作为拖拽预览图。目前截图不含有亮度、阴影、模糊和旋转等视觉效果。<br/>默认值：空<br/> |
 
+## dragPreview<sup>16+</sup>
+
+dragPreview(preview: CustomBuilder | DragItemInfo | string, config?: PreviewConfiguration):T
+
+自定义组件拖拽过程中的预览图，仅用于设置浮起效果或者禁用浮起效果。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| preview  | [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo说明) \| string | 是   | 设置组件拖拽过程中的预览图，仅在onDragStart拖拽方式中有效。<br/>当组件支持拖拽并同时设置[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)的预览图时，则长按浮起的预览图以[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)设置的预览图为准。开发者在[onDragStart](ts-universal-events-drag-drop.md#ondragstart)中返回的背板图优先级低于[dragPreview](ts-universal-attributes-drag-drop.md#dragpreview11)设置的预览图，当设置了[dragPreview](ts-universal-attributes-drag-drop.md#dragpreview11)预览图时，拖拽过程中的背板图使用[dragPreview](ts-universal-attributes-drag-drop.md#dragpreview11)预览图。由于[CustomBuilder](ts-types.md#custombuilder8)需要离线渲染之后才能使用，因此存在一定的性能开销和时延，推荐优先使用 [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo说明)中的[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)方式。<br/> 当传入类型为string的id时，则将id对应组件的截图作为预览图。如果id对应的组件无法查找到，或者id对应的组件Visibility属性设置成none/hidden，则对组件自身进行截图作为拖拽预览图。目前截图不含有亮度、阴影、模糊和旋转等视觉效果。<br/>默认值：空 |
+| config | [PreviewConfiguration](ts-universal-events-drag-drop.md#previewconfiguration16) | 是 | 对自定义拖拽过程中的预览图进行配置。<br/>只对[dragPreview](#dragpreview11)中的预览生效。<br/>默认值：空 |
+
 ## dragPreviewOptions<sup>11+</sup>
 
 dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
@@ -104,6 +121,7 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 | ENABLE_DEFAULT_SHADOW<sup>12+</sup> | 3 | 启用非文本类组件默认阴影效果。 |
 | ENABLE_DEFAULT_RADIUS<sup>12+</sup> | 4 | 启用非文本类组件统一圆角效果，默认值12vp。当应用自身设置的圆角值大于默认值或modifier设置的圆角时，则显示应用自定义圆角效果。 |
 | ENABLE_DRAG_ITEM_GRAY_EFFECT<sup>16+</sup> | 5 | 启用支持原拖拽对象灰显（透明度）效果，对文本内容拖拽不生效。用户拖起时原对象显示灰显效果，释放时原对象恢复原有效果。开启默认灰显效果后，不建议在拖拽开始后自行修改透明度，如果开发者在拖拽发起后自行修改应用透明度，则灰显效果将被覆盖，且在结束拖拽时无法正确恢复原始透明度效果。 |
+| ENABLE_MULTI_TILE_EFFECT<sup>16+</sup> | 6 | 启用支持多选对象鼠标拖拽不聚拢效果，当满足多选的情况下isMultiSelectionEnabled为true且生效时该参数才生效。不聚拢效果优先级高于[dragPreview](#dragpreview11)。不支持二次拖拽、圆角和缩放设置。 |
 
 ## DragInteractionOptions<sup>12+</sup>
 
@@ -113,6 +131,9 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 | -------- | -------- | -------- | -------- |
 | isMultiSelectionEnabled | boolean | 否 | 表示拖拽过程中背板图是否支持多选聚拢效果。该参数只在[Grid](ts-container-grid.md)和[List](ts-container-list.md)组件中的[GridItem](ts-container-griditem.md)组件和[ListItem](ts-container-listitem.md)组件生效。<br/>当一个item组件设置为多选拖拽时，该组件的子组件不可拖拽。聚拢组件预览图设置的优先级为[dragPreview](#dragpreview11)中的string，dragPreview中的PixelMap，组件自截图，不支持dragPreview中的Builder形式。<br/>不支持组件绑定[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12)中参数存在isShown的模式。<br/>默认值：false<br/> |
 | defaultAnimationBeforeLifting | boolean | 否 | 表示是否启用长按浮起阶段组件自身的默认点按效果（缩小）。<br/>默认值：false <br/> |
+| enableEdgeAutoScroll<sup>16+</sup> | boolean | 否 | 设置在拖拽至可滚动组件边缘时是否触发自动滚屏。<br />默认值：true，触发自动滚屏。 |
+| enableHapticFeedback<sup>16+</sup> | boolean | 否 | 表示拖拽时是否启用震动。仅在存在蒙层的预览（通过[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12)）场景生效。<br/>默认值：false |
+| isLiftingDisabled<sup>16+</sup> | boolean | 否 | 表示长按拖拽时，是否禁用浮起效果。<br/>如果设置为true，当组件支持拖拽并同时设置[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)时，仅弹出配置的自定义菜单预览。 <br/>默认值：false |
 
 ## 示例
 ### 示例1（允许拖拽和落入）
@@ -639,3 +660,149 @@ struct ImageDrag {
 ```
 
 ![imageDrag.gif](figures/imageDrag.gif)
+
+### 示例8（设置图片拖拽震动）
+该示例通过设置enableHapticFeedback实现图片拖拽的震动效果。
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DragPreviewDemo{
+  @Builder MenuBuilder() {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Text("menu item 1")
+        .fontSize(15)
+        .width(100)
+        .height(40)
+        .textAlign(TextAlign.Center)
+        .fontColor(Color.Black)
+        .backgroundColor(Color.Pink)
+      Divider()
+        .height(5)
+      Text("menu item 2")
+        .fontSize(15)
+        .width(100)
+        .height(40)
+        .textAlign(TextAlign.Center)
+        .fontColor(Color.Black)
+        .backgroundColor(Color.Pink)
+    }
+    .width(100)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Image($r('app.media.app_icon'))
+          .width("30%")
+          .draggable(true)
+          .dragPreviewOptions({}, {isMultiSelectionEnabled:true, defaultAnimationBeforeLifting:true, enableHapticFeedback: true})
+          .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
+          .onDragStart(() => {
+            console.log("Image onDragStart")
+          })
+      }
+      .width("100%")
+    }
+    .height("100%")
+  }
+}
+```
+
+### 示例9（自定义预览图）
+该示例通过配置onlyForLifting实现自定义预览图，仅用于浮起效果以及配置isLiftingDisabled实现禁用浮起效果。
+```ts
+// xxx.ets
+@Entry
+@Component
+struct LiftingExampleDemo {
+  @Builder
+  dragPreviewBuilder() {
+    Column() {
+      Text("dragPreview builder")
+        .width(150)
+        .height(50)
+        .fontSize(20)
+        .borderRadius(10)
+        .textAlign(TextAlign.Center)
+        .fontColor(Color.Black)
+        .backgroundColor(Color.Green)
+    }
+  }
+  @Builder
+  MenuBuilder() {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Text("menu 1")
+        .fontSize(25)
+        .width(200)
+        .height(60)
+        .textAlign(TextAlign.Center)
+        .fontColor(Color.Black)
+        .backgroundColor(Color.Green)
+      Divider()
+        .height(5)
+      Text("menu 2")
+        .fontSize(25)
+        .width(200)
+        .height(60)
+        .textAlign(TextAlign.Center)
+        .fontColor(Color.Black)
+        .backgroundColor(Color.Green)
+    }
+    .width(100)
+  }
+  build() {
+    Column() {
+      Column() {
+        Text("禁用浮起效果")
+          .fontSize(30)
+          .height(30)
+          .backgroundColor('#FFFFFF')
+          .margin({ top: 30 })
+        Image($r('app.media.startIcon'))
+          .width("40%")
+          .draggable(true)
+          .margin({ top: 15 })
+          .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
+          .onDragStart(() => {
+          })
+          .dragPreviewOptions({}, {
+            isLiftingDisabled: true
+          })
+          .dragPreview(this.dragPreviewBuilder, {
+            onlyForLifting: true,
+            delayCreating: true
+          })
+      }.width("%")
+      Column() {
+        Text("仅用于浮起效果")
+          .fontSize(30)
+          .height(30)
+          .backgroundColor('#FFFFFF')
+          .margin({ top: 80 })
+        Image($r('app.media.startIcon'))
+          .width("40%")
+          .draggable(true)
+          .margin({ top: 15 })
+          .onDragStart(() => {
+          })
+          .dragPreviewOptions({}, {
+            isLiftingDisabled: false
+          })
+          .dragPreview(this.dragPreviewBuilder, {
+            onlyForLifting: true,
+            delayCreating: true
+          })
+      }.width("100%")
+    }.height("100%")
+  }
+}
+```
+
+自定义预览图用于浮起效果。
+
+![onlyForLifting.gif](figures/onlyForLifting.gif)
+
+自定义预览图禁用浮起效果。
+
+![isLiftingDisabled.gif](figures/isLiftingDisabled.gif)

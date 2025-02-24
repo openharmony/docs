@@ -39,7 +39,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 ### viewPort
 
-viewPort(value: { x?: number | string; y?: number | string; width?: number | string; height?: number | string })
+viewPort(value: ViewportRect)
 
 Sets the viewport of the shape.
 
@@ -53,13 +53,29 @@ Sets the viewport of the shape.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | {<br>x?: number \| string,<br>y?: number \| string,<br>width?: number \| string,<br>height?: number \| string<br>} | Yes| Viewport of the shape.<br>Default value: **{ x:0, y:0, width:0, height:0 } **|
+| value | [ViewportRect](ts-drawing-components-shape.md#viewportrect14) | Yes| Options of the viewport.|
+
+## ViewportRect<sup>14+</sup>
+Describes the options of the viewport.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| x | string \| number | No| Horizontal coordinate of the start point of the viewport.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
+| y | string \| number | No| Vertical coordinate of the start point of the viewport.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
+| width | string \| number | No| Width of the viewport.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
+| height | string \| number | No| Height of the viewport.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
 
 ### fill
 
 fill(value: ResourceColor)
 
-Sets the color of the fill area. An invalid value is handled as the default value.
+Sets the color of the fill area. An invalid value is handled as the default value. If this attribute and the universal attribute **foregroundColor** are both set, whichever is set later takes effect.
 
 **Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
@@ -125,7 +141,7 @@ Sets the stroke dashes. An invalid value is handled as the default value.
 
 | Name| Type            | Mandatory| Description                     |
 | ------ | ---------------- | ---- | ------------------------- |
-| value  | Array&lt;any&gt; | Yes  | Stroke dashes.<br>Default value: **[]**|
+| value  | Array&lt;any&gt; | Yes  | Stroke dashes.<br>Default value: **[]**<br>Default unit: vp|
 
 ### strokeDashOffset
 
@@ -143,7 +159,7 @@ Sets the offset of the start point for drawing the stroke. An invalid value is h
 
 | Name| Type                      | Mandatory| Description                                |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number \| string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**|
+| value  | number \| string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**<br>Default unit: vp|
 
 ### strokeLineCap
 
@@ -223,7 +239,7 @@ Sets the stroke opacity. The value range is [0.0, 1.0]. If the value passed in i
 
 strokeWidth(value: number | string)
 
-Sets the stroke width. If of the string type, this parameter cannot be set in percentage. A percentage is processed as 1px.
+Sets the stroke width. If of the string type, this attribute cannot be set in percentage. A percentage is processed as 1 px.
 
 **Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
@@ -235,7 +251,7 @@ Sets the stroke width. If of the string type, this parameter cannot be set in pe
 
 | Name| Type                        | Mandatory| Description                    |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | number \| string | Yes  | Stroke width.<br>Default value: **1**|
+| value  | number \| string | Yes  | Stroke width.<br>Default value: **1**<br>Default unit: vp|
 
 ### antiAlias
 
@@ -276,6 +292,8 @@ Sets the mesh effect.
 | row    | number              | Yes  | Number of rows in the mesh matrix.                                              |
 
 ## Example
+
+This example demonstrates how to use the **Shape** component to draw rectangles, ellipses, and lines.
 
 ```ts
 // xxx.ets

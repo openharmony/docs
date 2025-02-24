@@ -295,7 +295,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 | deviceType    | [DeviceType](#devicetype)       | 是    | 否    | 当前设备类型。   |
 
 
-## RawFileDescriptor<sup>8+</sup>
+## RawFileDescriptor<sup>9+</sup>
 
 type RawFileDescriptor = _RawFileDescriptor
 
@@ -396,7 +396,7 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`<br>说明：%%转义为%; %数字`$d`表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数|
+| ...args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。|
 
 **返回值：**
 
@@ -499,7 +499,7 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`<br>说明：%%转义为%; %数字`$d`表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数|
+| ...args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。|
 
 **返回值：**
 
@@ -598,7 +598,7 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`<br>说明：%%转义为%; %数字`$d`表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数|
+| ...args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。|
 
 **返回值：**
 
@@ -1141,7 +1141,7 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
@@ -4702,7 +4702,7 @@ getRawFdSync(path: string): RawFileDescriptor
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| [RawFileDescriptor](#rawfiledescriptor8) | rawfile文件所在hap的descriptor信息。 |
+| [RawFileDescriptor](#rawfiledescriptor9) | rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
@@ -4741,7 +4741,7 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | 是    | rawfile文件路径。                      |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 返回获取的rawfile文件所在hap的descriptor信息。 |
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | 是    | 返回获取的rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
@@ -4794,7 +4794,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件所在hap的descriptor信息。 |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
@@ -5521,7 +5521,7 @@ getOverrideConfiguration() : Configuration
 
 | 类型                            | 说明             |
 | ------------------------------- | ---------------- |
-| [Configuration](#configuration) | 差异化资源的配置 |
+| [Configuration](#configuration) | 差异化资源的配置。 |
 
 **示例：**
 
@@ -5773,13 +5773,13 @@ getMedia(resId: number): Promise&lt;Uint8Array&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
 | 类型                        | 说明             |
 | ------------------------- | -------------- |
-| Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容 |
+| Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容。 |
 
 **示例：** 
   ```ts
@@ -5809,8 +5809,8 @@ getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名      | 类型                          | 必填   | 说明                       |
 | -------- | --------------------------- | ---- | ------------------------ |
-| resId    | number                      | 是    | 资源ID值                    |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
+| resId    | number                      | 是    | 资源ID值。                    |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码。 |
 
 **示例：** 
   ```ts
@@ -5840,13 +5840,13 @@ getMediaBase64(resId: number): Promise&lt;string&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
 | 类型                    | 说明                   |
 | --------------------- | -------------------- |
-| Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码 |
+| Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码。 |
 
 **示例：** 
   ```ts
@@ -5880,14 +5880,14 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
-| num   | number | 是    | 数量值   |
+| resId | number | 是    | 资源ID值。 |
+| num   | number | 是    | 数量值。   |
 
 **返回值：**
 
 | 类型                    | 说明                        |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | 根据提供的数量获取对应ID字符串表示的单复数字符串 |
+| Promise&lt;string&gt; | 根据提供的数量获取对应ID字符串表示的单复数字符串。 |
 
 **示例：** 
   ```ts
@@ -5921,9 +5921,9 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 
 | 参数名      | 类型                          | 必填   | 说明                              |
 | -------- | --------------------------- | ---- | ------------------------------- |
-| resId    | number                      | 是    | 资源ID值                           |
-| num      | number                      | 是    | 数量值                             |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据指定数量获取指定ID字符串表示的单复数字符串 |
+| resId    | number                      | 是    | 资源ID值。                           |
+| num      | number                      | 是    | 数量值。                             |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据指定数量获取指定ID字符串表示的单复数字符串。 |
 
 **示例：** 
   ```ts
@@ -5953,8 +5953,8 @@ getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 | 参数名      | 类型                              | 必填   | 说明                      |
 | -------- | ------------------------------- | ---- | ----------------------- |
-| path     | string                          | 是    | rawfile文件路径             |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的rawfile文件内容 |
+| path     | string                          | 是    | rawfile文件路径。             |
+| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的rawfile文件内容。 |
 
 **示例：** 
   ```ts
@@ -5984,13 +5984,13 @@ getRawFile(path: string): Promise&lt;Uint8Array&gt;
 
 | 参数名  | 类型     | 必填   | 说明          |
 | ---- | ------ | ---- | ----------- |
-| path | string | 是    | rawfile文件路径 |
+| path | string | 是    | rawfile文件路径。 |
 
 **返回值：**
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| Promise&lt;Uint8Array&gt; | rawfile文件内容 |
+| Promise&lt;Uint8Array&gt; | rawfile文件内容。 |
 
 **示例：** 
   ```ts
@@ -6020,8 +6020,8 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
 
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
-| path     | string                                   | 是    | rawfile文件路径                      |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor |
+| path     | string                                   | 是    | rawfile文件路径。                      |
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor。 |
 
 **示例：** 
   ```ts
@@ -6054,13 +6054,13 @@ getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
 | 参数名  | 类型     | 必填   | 说明          |
 | ---- | ------ | ---- | ----------- |
-| path | string | 是    | rawfile文件路径 |
+| path | string | 是    | rawfile文件路径。 |
 
 **返回值：**
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件descriptor |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | rawfile文件descriptor。 |
 
 **示例：** 
   ```ts
@@ -6093,8 +6093,8 @@ closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名      | 类型                        | 必填   | 说明          |
 | -------- | ------------------------- | ---- | ----------- |
-| path     | string                    | 是    | rawfile文件路径 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 异步回调        |
+| path     | string                    | 是    | rawfile文件路径。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 异步回调。        |
 
 **示例：** 
   ```ts
@@ -6121,13 +6121,13 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
 | 参数名  | 类型     | 必填   | 说明          |
 | ---- | ------ | ---- | ----------- |
-| path | string | 是    | rawfile文件路径 |
+| path | string | 是    | rawfile文件路径。 |
 
 **返回值：**
 
 | 类型                  | 说明   |
 | ------------------- | ---- |
-| Promise&lt;void&gt; | 无返回值 |
+| Promise&lt;void&gt; | 无返回值。 |
 
 **示例：** 
   ```ts

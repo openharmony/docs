@@ -15,7 +15,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [raw_dir.h](raw__dir_8h.md) | 提供rawfile目录相关功能 | 
+| [raw_dir.h](raw__dir_8h.md) | 提供rawfile目录相关功能。 | 
 | [raw_file.h](raw__file_8h.md) | 提供rawfile文件相关功能，功能包括搜索、读取和关闭。 | 
 | [raw_file_manager.h](raw__file__manager_8h.md) | 提供资源管理rawfile相关功能，可以使用ResourceManager打开rawfile进行后续相关操作，像搜索和读取等。 | 
 
@@ -32,10 +32,10 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [RawDir](#rawdir)[RawDir](#rawdir) | 提供对rawfile目录的访问。 | 
-| typedef struct [RawFile](#rawfile)[RawFile](#rawfile) | 提供对rawfile的访问功能。 | 
-| typedef struct [RawFile64](#rawfile64)[RawFile64](#rawfile64) | 提供对较大rawfile的访问功能。 | 
-| typedef struct [NativeResourceManager](#nativeresourcemanager)[NativeResourceManager](#nativeresourcemanager) | 代表native侧的ResourceManager。 | 
+| typedef struct [RawDir](#rawdir) [RawDir](#rawdir) | 提供对rawfile目录的访问。 | 
+| typedef struct [RawFile](#rawfile) [RawFile](#rawfile) | 提供对rawfile的访问功能。 | 
+| typedef struct [RawFile64](#rawfile64) [RawFile64](#rawfile64) | 提供对较大rawfile的访问功能。 | 
+| typedef struct [NativeResourceManager](#nativeresourcemanager) [NativeResourceManager](#nativeresourcemanager) | 代表native侧的ResourceManager。 | 
 
 
 ### 函数
@@ -59,7 +59,7 @@
 | int64_t [OH_ResourceManager_GetRawFileRemainingLength64](#oh_resourcemanager_getrawfileremaininglength64) (const [RawFile64](#rawfile64) \*rawFile) | 获取较大rawfile的剩余长度，单位为int64_t。 | 
 | void [OH_ResourceManager_CloseRawFile64](#oh_resourcemanager_closerawfile64) ([RawFile64](#rawfile64) \*rawFile) | 关闭已打开的[RawFile64](#rawfile64) 以及释放所有相关联的资源。 | 
 | int64_t [OH_ResourceManager_GetRawFileOffset64](#oh_resourcemanager_getrawfileoffset64) (const [RawFile64](#rawfile64) \*rawFile) | 获取较大rawfile文件的偏移量，单位为int64_t。 | 
-| bool [OH_ResourceManager_GetRawFileDescriptor64](#oh_resourcemanager_getrawfiledescriptor64) (const [RawFile64](#rawfile64) \*rawFile, [RawFileDescriptor64](_raw_file_descriptor64.md) \*descriptor) | 基于偏移量(单位为int64_t)和文件长度(单位为int64_t)打开较大的rawfile，并获取e文件描述符。 | 
+| bool [OH_ResourceManager_GetRawFileDescriptor64](#oh_resourcemanager_getrawfiledescriptor64) (const [RawFile64](#rawfile64) \*rawFile, [RawFileDescriptor64](_raw_file_descriptor64.md) \*descriptor) | 基于偏移量(单位为int64_t)和文件长度(单位为int64_t)打开较大的rawfile，并获取文件描述符。 | 
 | bool [OH_ResourceManager_ReleaseRawFileDescriptor64](#oh_resourcemanager_releaserawfiledescriptor64) (const [RawFileDescriptor64](_raw_file_descriptor64.md) \*descriptor) | 关闭rawfile文件描述符。 | 
 | [NativeResourceManager](#nativeresourcemanager) \* [OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager) (napi_env env, napi_value jsResMgr) | 基于JavaScipt侧的ResourceManager获取native侧的ResourceManager，用来完成rawfile相关功能。 | 
 | void [OH_ResourceManager_ReleaseNativeResourceManager](#oh_resourcemanager_releasenativeresourcemanager) ([NativeResourceManager](#nativeresourcemanager) \*resMgr) | 释放native侧ResourceManager。 | 
@@ -75,14 +75,14 @@
 ### NativeResourceManager
 
 ```
-typedef struct NativeResourceManagerNativeResourceManager
+typedef struct NativeResourceManager NativeResourceManager
 ```
 
 **描述**
 
 代表native侧的ResourceManager。
 
-此类封装了JavaScript resource manager的native实现 **ResourceManager**指针可以通过调用[OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager)方法获取。
+此类封装了JavaScript resource manager的native实现， **ResourceManager**指针可以通过调用[OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager)方法获取。
 
 **起始版本：** 8
 
@@ -90,7 +90,7 @@ typedef struct NativeResourceManagerNativeResourceManager
 ### RawDir
 
 ```
-typedef struct RawDirRawDir
+typedef struct RawDir RawDir
 ```
 
 **描述**
@@ -103,7 +103,7 @@ typedef struct RawDirRawDir
 ### RawFile
 
 ```
-typedef struct RawFileRawFile
+typedef struct RawFile RawFile
 ```
 
 **描述**
@@ -116,7 +116,7 @@ typedef struct RawFileRawFile
 ### RawFile64
 
 ```
-typedef struct RawFile64RawFile64
+typedef struct RawFile64 RawFile64
 ```
 
 **描述**
@@ -261,7 +261,7 @@ bool OH_ResourceManager_GetRawFileDescriptor64 (const RawFile64 * rawFile, RawFi
 
 **描述**
 
-基于偏移量(单位为int64_t)和文件长度(单位为int64_t)打开较大的rawfile，并获取e文件描述符。
+基于偏移量(单位为int64_t)和文件长度(单位为int64_t)打开较大的rawfile，并获取文件描述符。
 
 打开的文件描述符被用于读取rawfile。
 
@@ -272,7 +272,7 @@ bool OH_ResourceManager_GetRawFileDescriptor64 (const RawFile64 * rawFile, RawFi
 | 名称 | 描述 | 
 | -------- | -------- |
 | rawFile | 表示指向[RawFile64](#rawfile64)的指针。 | 
-| 显示rawfile文件描述符，以及在HAP包中的起始位置和长度。 |  | 
+| descriptor | 显示rawfile文件描述符，以及在HAP包中的起始位置和长度。 | 
 
 **返回：**
 
@@ -287,7 +287,9 @@ const char* OH_ResourceManager_GetRawFileName (RawDir * rawDir, int index )
 
 **描述**
 
-通过索引获取rawfile文件名称，可以使用此方法遍历rawfile目录。
+通过索引获取rawfile文件名称。
+
+可以使用此方法遍历rawfile目录。
 
 **起始版本：** 8
 
@@ -463,7 +465,7 @@ NativeResourceManager* OH_ResourceManager_InitNativeResourceManager (napi_env en
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| env | 表示JavaScipt Native Interface (napi)环境指针。 | 
+| env | 表示JavaScript Native Interface (napi)环境指针。 | 
 | jsResMgr | 表示JavaScipt resource manager。 | 
 
 **返回：**
@@ -603,7 +605,7 @@ int OH_ResourceManager_ReadRawFile (const RawFile * rawFile, void * buf, size_t 
 | -------- | -------- |
 | rawFile | 表示指向[RawFile](#rawfile)的指针。 | 
 | buf | 用于接收读取数据的缓冲区指针。 | 
-| length | 读取数据的字节长度 | 
+| length | 读取数据的字节长度。 | 
 
 **返回：**
 
@@ -722,11 +724,11 @@ int OH_ResourceManager_SeekRawFile (const RawFile * rawFile, long offset, int wh
 | -------- | -------- |
 | rawFile | 表示指向[RawFile](#rawfile)的指针。 | 
 | offset | 表示指定的偏移量。 | 
-| whence | 读写位置，有以下场景:<br/>0: 读写位置为文件起始位置加上offset<br/>1: 读写位置为当前位置加上offset<br/>2: 读写位置为文件末尾加上offset | 
+| whence | 读写位置，有以下场景:<br/>0: 读写位置为文件起始位置加上offset.<br/>1: 读写位置为当前位置加上offset。<br/>2: 读写位置为文件末尾加上offset。 | 
 
 **返回：**
 
-如果搜索成功返回(int) 0，如果发生错误返回 (int) -1。
+如果搜索成功返回0，如果发生错误返回-1。
 
 
 ### OH_ResourceManager_SeekRawFile64()
@@ -747,8 +749,8 @@ int OH_ResourceManager_SeekRawFile64 (const RawFile64 * rawFile, int64_t offset,
 | -------- | -------- |
 | rawFile | 表示指向[RawFile64](#rawfile64)的指针。 | 
 | offset | 表示指定的偏移量。 | 
-| whence | 读写位置，有以下场景:<br/>0: 读写位置为文件起始位置加上offset<br/>1: 读写位置为当前位置加上offset<br/>2: 读写位置为文件末尾加上offset | 
+| whence | 读写位置，有以下场景:<br/>0: 读写位置为文件起始位置加上offset。<br/>1: 读写位置为当前位置加上offset。<br/>2: 读写位置为文件末尾加上offset。 | 
 
 **返回：**
 
-如果搜索成功返回 (int) 0，如果发生错误返回 (int) -1。
+如果搜索成功返回0，如果发生错误返回-1。

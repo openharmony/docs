@@ -2,13 +2,13 @@
 
 ## When to Use
 
-The **NativeVSync** module is used to obtain virtual synchronization (VSync) signals from the system. It provides APIs for creating and destroying an **OH_NativeVSync** instance and setting the VSync callback function, which is triggered when a VSync signal arrives.
+The NativeVSync module is used to obtain virtual synchronization (VSync) signals from the system. It provides APIs for creating and destroying an **OH_NativeVSync** instance and setting the VSync callback function, which is triggered when a VSync signal arrives.
 
 ## Available APIs
 
 | API| Description| 
 | -------- | -------- |
-| OH_NativeVSync_Create (const char \*name, unsigned int length) | Creates an **OH_NativeVSync** instance. A new **OH_NativeVSync** instance is created each time this API is called.| 
+| OH_NativeVSync_Create (const char \*name, unsigned int length) | Creates an **OH_NativeVSync** instance. A new **OH_NativeVSync** instance is created each time this API is called. This function must be used in pair with **OH_NativeVSync_Destroy**. Otherwise, memory leak occurs.|
 | OH_NativeVSync_Destroy (OH_NativeVSync \*nativeVsync) | Destroys an **OH_NativeVSync** instance.| 
 | OH_NativeVSync_FrameCallback (long long timestamp, void \*data) | Sets a callback function. **timestamp** indicates the timestamp, and **data** indicates a pointer to the input parameters of the callback function.| 
 | OH_NativeVSync_RequestFrame (OH_NativeVSync \*nativeVsync, OH_NativeVSync_FrameCallback callback, void \*data) | Requests the next VSync signal. When the signal arrives, a callback function is invoked.| 
@@ -17,7 +17,7 @@ For details about the APIs, see [native_vsync](../reference/apis-arkgraphics2d/_
 
 ## How to Develop
 
-The following steps describe how to use the native APIs provided by **NativeVSync** to create and destroy an **OH_NativeVSync** instance and set the VSync callback function.
+The following steps describe how to use the native APIs provided by NativeVSync to create and destroy an **OH_NativeVSync** instance and set the VSync callback function.
 
 **Adding Dynamic Link Libraries**
 

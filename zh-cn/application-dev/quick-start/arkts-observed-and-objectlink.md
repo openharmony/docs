@@ -1,7 +1,7 @@
 # \@Observed装饰器和\@ObjectLink装饰器：嵌套类对象属性变化
 
 
-上文所述的装饰器仅能观察到第一层的变化，但是在实际应用开发中，应用会根据开发需要，封装自己的数据模型。对于多层嵌套的情况，比如二维数组，或者数组项class，或者class的属性是class，他们的第二层的属性变化是无法观察到的。这就引出了\@Observed/\@ObjectLink装饰器。
+上文所述的装饰器（包括[\@State](./arkts-state.md)、[\@Prop](./arkts-prop.md)、[\@Link](./arkts-link.md)、[\@Provide和\@Consume](./arkts-provide-and-consume.md)装饰器）仅能观察到第一层的变化，但是在实际应用开发中，应用会根据开发需要，封装自己的数据模型。对于多层嵌套的情况，比如二维数组，或者数组项class，或者class的属性是class，他们的第二层的属性变化是无法观察到的。这就引出了\@Observed/\@ObjectLink装饰器。
 
 \@Observed/\@ObjectLink配套使用是用于嵌套场景的观察，主要是为了弥补装饰器仅能观察一层的能力限制，开发者最好对装饰器的基本观察能力有一定的了解，再来对比阅读该文档。建议提前阅读：[\@State](./arkts-state.md)的基本用法。
 
@@ -15,7 +15,7 @@
 
 \@ObjectLink和\@Observed类装饰器用于在涉及嵌套对象或数组的场景中进行双向数据同步：
 
-- 使用new创建被\@Observed装饰的类，可以被观察到属性的变化；
+- 使用new创建被\@Observed装饰的类，可以被观察到属性的变化。
 
 - 子组件中\@ObjectLink装饰器装饰的状态变量用于接收\@Observed装饰的类的实例，和父组件中对应的状态变量建立双向数据绑定。这个实例可以是数组中的被\@Observed装饰的项，或者是class object中的属性，这个属性同样也需要被\@Observed装饰。
 
@@ -26,12 +26,12 @@
 
 | \@Observed类装饰器 | 说明                                |
 | -------------- | --------------------------------- |
-| 装饰器参数          | 无                                 |
+| 装饰器参数          | 无。                                 |
 | 类装饰器           | 装饰class。需要放在class的定义前，使用new创建类对象。 |
 
 | \@ObjectLink变量装饰器 | 说明                                       |
 | ----------------- | ---------------------------------------- |
-| 装饰器参数             | 无                                        |
+| 装饰器参数             | 无。                                       |
 | 允许装饰的变量类型         | 必须为被\@Observed装饰的class实例，必须指定类型。<br/>\@ObjectLink不支持简单类型，如果开发者需要使用简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date、[Array](#二维数组)的class实例，API11及以上支持继承[Map](#继承map类)、[Set](#继承set类)的class实例。示例见[观察变化](#观察变化)。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性是可以改变的，但是变量的分配是不允许的，也就是说这个装饰器装饰变量是只读的，不能被改变。 |
 | 被装饰变量的初始值         | 不允许。                                     |
 
@@ -49,7 +49,7 @@ this.objLink= ...
 >
 > \@ObjectLink装饰的变量不能被赋值，如果要使用赋值操作，请使用[@Prop](arkts-prop.md)。
 >
-> - \@Prop装饰的变量和数据源的关系是是单向同步，\@Prop装饰的变量在本地拷贝了数据源，所以它允许本地更改，如果父组件中的数据源有更新，\@Prop装饰的变量本地的修改将被覆盖；
+> - \@Prop装饰的变量和数据源的关系是是单向同步，\@Prop装饰的变量在本地拷贝了数据源，所以它允许本地更改，如果父组件中的数据源有更新，\@Prop装饰的变量本地的修改将被覆盖。
 >
 > - \@ObjectLink装饰的变量和数据源的关系是双向同步，\@ObjectLink装饰的变量相当于指向数据源的指针。禁止对\@ObjectLink装饰的变量赋值，如果一旦发生\@ObjectLink装饰的变量的赋值，则同步链将被打断。因为\@ObjectLink装饰的变量通过数据源（Object）引用来初始化。对于实现双向数据同步的@ObjectLink，赋值相当于更新父组件中的数组项或者class的属性，TypeScript/JavaScript不能实现，会发生运行时报错。
 
@@ -341,148 +341,156 @@ struct Parent {
 
 ## 使用场景
 
-
-### 嵌套对象
-
-> **说明：**
->
-> NextID是用来在[ForEach循环渲染](./arkts-rendering-control-foreach.md)过程中，为每个数组元素生成一个唯一且持久的键值，用于标识对应的组件。
-
+### 继承对象
 
 ```ts
-// objectLinkNestedObjects.ets
-let NextID: number = 1;
-
 @Observed
-class Bag {
-  public id: number;
-  public size: number;
+class Animal {
+  name: string;
+  age: number;
 
-  constructor(size: number) {
-    this.id = NextID++;
-    this.size = size;
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
   }
 }
 
 @Observed
-class User {
-  public bag: Bag;
+class Dog extends Animal {
+  kinds: string;
 
-  constructor(bag: Bag) {
-    this.bag = bag;
+  constructor(name: string, age: number, kinds: string) {
+    super(name, age);
+    this.kinds = kinds;
   }
 }
 
-@Observed
-class Book {
-  public bookName: BookName;
-
-  constructor(bookName: BookName) {
-    this.bookName = bookName;
-  }
-}
-
-@Observed
-class BookName extends Bag {
-  public nameSize: number;
-
-  constructor(nameSize: number) {
-    // 调用父类方法对nameSize进行处理
-    super(nameSize);
-    this.nameSize = nameSize;
-  }
-}
-
+@Entry
 @Component
-struct Son {
-  label: string = 'Son';
-  @ObjectLink bag: Bag;
+struct Index {
+  @State dog: Dog = new Dog('Molly', 2, 'Husky');
+
+  @Styles
+  pressedStyles() {
+    .backgroundColor('#ffd5d5d5')
+  }
+
+  @Styles
+  normalStyles() {
+    .backgroundColor('#ffffff')
+  }
 
   build() {
     Column() {
-      Text(`Son [${this.label}] this.bag.size = ${this.bag.size}`)
-        .fontColor('#ffffffff')
-        .backgroundColor('#ff3d9dba')
+      Text(`${this.dog.name}`)
         .width(320)
-        .height(50)
-        .borderRadius(25)
         .margin(10)
+        .fontSize(30)
         .textAlign(TextAlign.Center)
-      Button(`Son: this.bag.size add 1`)
-        .width(320)
-        .backgroundColor('#ff17a98d')
-        .margin(10)
+        .stateStyles({
+          pressed: this.pressedStyles,
+          normal: this.normalStyles
+        })
         .onClick(() => {
-          this.bag.size += 1;
+          this.dog.name = 'DouDou';
+        })
+
+      Text(`${this.dog.age}`)
+        .width(320)
+        .margin(10)
+        .fontSize(30)
+        .textAlign(TextAlign.Center)
+        .stateStyles({
+          pressed: this.pressedStyles,
+          normal: this.normalStyles
+        })
+        .onClick(() => {
+          this.dog.age = 3;
+        })
+
+      Text(`${this.dog.kinds}`)
+        .width(320)
+        .margin(10)
+        .fontSize(30)
+        .textAlign(TextAlign.Center)
+        .stateStyles({
+          pressed: this.pressedStyles,
+          normal: this.normalStyles
+        })
+        .onClick(() => {
+          this.dog.kinds = 'Samoyed';
         })
     }
   }
 }
+```
+
+![Observed_ObjectLink_inheritance_object](figures/Observed_ObjectLink_inheritance_object.gif)
+
+上述示例中，Dog类中的部分属性（name、age）继承自Animal类，直接修改\@State装饰的变量dog中的属性name和age可以正常触发UI刷新。
+
+### 嵌套对象
+
+```ts
+@Observed
+class Book {
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+@Observed
+class Bag {
+  book: Book;
+
+  constructor(book: Book) {
+    this.book = book;
+  }
+}
 
 @Component
-struct Father {
-  label: string = 'Father';
-  @ObjectLink bookName: BookName;
+struct BookCard {
+  @ObjectLink book: Book;
 
   build() {
-    Row() {
-      Column() {
-        Text(`Father [${this.label}] this.bookName.size = ${this.bookName.size}`)
-          .fontColor('#ffffffff')
-          .backgroundColor('#ff3d9dba')
-          .width(320)
-          .height(50)
-          .borderRadius(25)
-          .margin(10)
-          .textAlign(TextAlign.Center)
-        Button(`Father: this.bookName.size add 1`)
-          .width(320)
-          .backgroundColor('#ff17a98d')
-          .margin(10)
-          .onClick(() => {
-            this.bookName.size += 1;
-            console.log('this.bookName.size:' + this.bookName.size);
-          })
-      }
-      .width(320)
+    Column() {
+      Text(`BookCard: ${this.book.name}`) // 可以观察到name的变化
+        .width(320)
+        .margin(10)
+        .textAlign(TextAlign.Center)
+
+      Button('change book.name')
+        .width(320)
+        .margin(10)
+        .onClick(() => {
+          this.book.name = 'C++';
+        })
     }
   }
 }
 
 @Entry
 @Component
-struct GrandFather {
-  @State user: User = new User(new Bag(0));
-  @State child: Book = new Book(new BookName(0));
+struct Index {
+  @State bag: Bag = new Bag(new Book('JS'));
 
   build() {
     Column() {
-      Son({ label: 'Son #1', bag: this.user.bag })
+      Text(`Index: ${this.bag.book.name}`) // 无法观察到name的变化
         .width(320)
-      Father({ label: 'Father #3', bookName: this.child.bookName })
+        .margin(10)
+        .textAlign(TextAlign.Center)
+
+      Button('change bag.book.name')
         .width(320)
-      Button(`GrandFather: this.child.bookName.size add 10`)
-        .width(320)
-        .backgroundColor('#ff17a98d')
         .margin(10)
         .onClick(() => {
-          this.child.bookName.size += 10;
-          console.log('this.child.bookName.size:' + this.child.bookName.size);
+          this.bag.book.name = 'TS';
         })
-      Button(`GrandFather: this.user.bag = new Bag(10)`)
-        .width(320)
-        .backgroundColor('#ff17a98d')
-        .margin(10)
-        .onClick(() => {
-          this.user.bag = new Bag(10);
-        })
-      Button(`GrandFather: this.user = new User(new Bag(20))`)
-        .width(320)
-        .backgroundColor('#ff17a98d')
-        .margin(10)
-        .onClick(() => {
-          this.user = new User(new Bag(20));
-        })
+
+      BookCard({ book: this.bag.book })
     }
   }
 }
@@ -490,29 +498,15 @@ struct GrandFather {
 
 ![Observed_ObjectLink_nested_object](figures/Observed_ObjectLink_nested_object.gif)
 
-被@Observed装饰的BookName类，可以观测到继承基类的属性的变化。
-
-
-GrandFather中的事件句柄：
-
-
-- this.user.bag = new Bag(10) 和this.user = new User(new Bag(20))： 对@State装饰的变量user和其属性的修改。
-
-- this.child.bookName.size += ... ：该变化属于第二层的变化，@State无法观察到第二层的变化，但是Bag被\@Observed装饰，Bag的属性size的变化可以被\@ObjectLink观察到。
-
-
-Father中的事件句柄：
-
-
-- this.bookName.size += 1：对\@ObjectLink变量size的修改，将触发Text组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
-
-- \@ObjectLink变量是只读的，this.bookName = new bookName(...)是不允许的，因为一旦赋值操作发生，指向数据源的引用将被重置，同步将被打断。
-
+上述示例中，Index组件中的Text组件不刷新，因为该变化属于第二层的变化，\@State无法观察到第二层的变化。但是Bag被\@Observed装饰，Bag的属性name可以被\@ObjectLink观察到，所以无论点击哪个Button，BookCard组件中的Text组件都会刷新。
 
 ### 对象数组
 
 对象数组是一种常用的数据结构。以下示例展示了数组对象的用法。
 
+> **说明：**
+>
+> NextID是用来在[ForEach循环渲染](./arkts-rendering-control-foreach.md)过程中，为每个数组元素生成一个唯一且持久的键值，用于标识对应的组件。
 
 ```ts
 let NextID: number = 1;
@@ -623,36 +617,36 @@ struct Parent {
 
 ```ts
 @Observed
-class StringArray extends Array<string> {
+class ObservedArray<T> extends Array<T> {
+  constructor(args: T[]) {
+    super(...args);
+  }
 }
 ```
 
-使用new StringArray()来构造StringArray的实例，new运算符使得\@Observed生效，\@Observed观察到StringArray的属性变化。
+声明一个继承自Array的类ObservedArray\<T\>并使用new操作符创建ObservedArray\<string\>的实例。通过new操作符创建的ObservedArray的实例可以观察到属性变化。
 
-声明一个从Array扩展的类class StringArray extends Array&lt;string&gt; {}，并创建StringArray的实例。\@Observed装饰的类需要使用new运算符来构建class实例。
-
+在下面的示例中，展示了如何利用\@Observed观察二维数组的变化。
 
 ```ts
 @Observed
-class StringArray extends Array<string> {
+class ObservedArray<T> extends Array<T> {
+  constructor(args: T[]) {
+    super(...args);
+  }
 }
 
 @Component
-struct ItemPage {
-  @ObjectLink itemArr: StringArray;
+struct Item {
+  @ObjectLink itemArr: ObservedArray<string>;
 
   build() {
     Row() {
-      Text('ItemPage')
-        .width(100).height(100)
-
-      ForEach(this.itemArr,
-        (item: string | Resource) => {
-          Text(item)
-            .width(100).height(100)
-        },
-        (item: string) => item
-      )
+      ForEach(this.itemArr, (item: string, index: number) => {
+        Text(`${index}: ${item}`)
+          .width(100)
+          .height(100)
+      }, (item: string) => item)
     }
   }
 }
@@ -660,39 +654,38 @@ struct ItemPage {
 @Entry
 @Component
 struct IndexPage {
-  @State arr: Array<StringArray> = [new StringArray(), new StringArray(), new StringArray()];
+  @State arr: Array<ObservedArray<string>> = [new ObservedArray<string>(['apple']), new ObservedArray<string>(['banana']), new ObservedArray<string>(['orange'])];
 
   build() {
     Column() {
-      ItemPage({ itemArr: this.arr[0] })
-      ItemPage({ itemArr: this.arr[1] })
-      ItemPage({ itemArr: this.arr[2] })
-      Divider()
-
-
-      ForEach(this.arr,
-        (itemArr: StringArray) => {
-          ItemPage({ itemArr: itemArr })
-        },
-        (itemArr: StringArray) => itemArr[0]
-      )
+      ForEach(this.arr, (itemArr: ObservedArray<string>) => {
+        Item({ itemArr: itemArr })
+      })
 
       Divider()
 
-      Button('update')
+      Button('push two-dimensional array item')
+        .margin(10)
         .onClick(() => {
-          console.error('Update all items in arr');
-          if ((this.arr[0] as StringArray)[0] !== undefined) {
-            // 正常情况下需要有一个真实的ID来与ForEach一起使用，但此处没有
-            // 因此需要确保推送的字符串是唯一的。
-            this.arr[0].push(`${this.arr[0].slice(-1).pop()}${this.arr[0].slice(-1).pop()}`);
-            this.arr[1].push(`${this.arr[1].slice(-1).pop()}${this.arr[1].slice(-1).pop()}`);
-            this.arr[2].push(`${this.arr[2].slice(-1).pop()}${this.arr[2].slice(-1).pop()}`);
-          } else {
-            this.arr[0].push('Hello');
-            this.arr[1].push('World');
-            this.arr[2].push('!');
-          }
+          this.arr[0].push('strawberry');
+        })
+
+      Button('push array item')
+        .margin(10)
+        .onClick(() => {
+          this.arr.push(new ObservedArray<string>(['pear']));
+        })
+
+      Button('change two-dimensional array first item')
+        .margin(10)
+        .onClick(() => {
+          this.arr[0][0] = 'APPLE';
+        })
+
+      Button('change array first item')
+        .margin(10)
+        .onClick(() => {
+          this.arr[0] = new ObservedArray<string>(['watermelon']);
         })
     }
   }

@@ -92,8 +92,6 @@ SDK提供的开放能力以Kit维度呈现给开发者。开发者可按Kit查�
 
 - 系统支持可变帧率，提供API供业务接入。
 
-- 支持HDR Vivid视频的渲染与显示。
-
 - 图形NDK能力增强，支持为NativeImage添加OnFrameAvailableListener回调，支持为NativeWindow设置色域，新增支持opengles扩展接口，Drawing能力进一步完善等。
 
 - 支持录屏不录制特定窗口，以及隐私窗口录制成全黑帧画面的能力。

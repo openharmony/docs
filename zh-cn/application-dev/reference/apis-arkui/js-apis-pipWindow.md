@@ -222,13 +222,40 @@ promise.then((data : PiPWindow.PiPController) => {
 | 名称                  | 类型                                                                         | 必填  | 说明                                                                                                                                                                                                                                                                                                                                        |
 |---------------------|----------------------------------------------------------------------------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | context             | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 表示上下文环境。                                                                                                                                                                                                                                                                                                                                  |
-| componentController | [XComponentController](arkui-ts/ts-basic-components-xcomponent.md)         | 是   | 表示原始[XComponent](arkui-ts/ts-basic-components-xcomponent.md)控制器。                                                                                                                                                                                                                                                                      |
+| componentController | [XComponentController](arkui-ts/ts-basic-components-xcomponent.md#xcomponentcontroller) | 是   | 表示原始[XComponent](arkui-ts/ts-basic-components-xcomponent.md)控制器。                                                                                                                                                                                                                                                                      |
 | navigationId        | string                                                                     | 否   | 当前page导航id。<br/>1、UIAbility使用[Navigation](arkui-ts/ts-basic-components-navigation.md)管理页面，需要设置Navigation控件的id属性，并将该id设置给画中画控制器，确保还原场景下能够从画中画窗口恢复到原页面。<br/>2、UIAbility使用[Router](js-apis-router.md)管理页面时，无需设置navigationId。<br/>3、UIAbility只有单页面时，无需设置navigationId，还原场景下也能够从画中画窗口恢复到原页面。 |
 | templateType        | [PiPTemplateType](#piptemplatetype)                                        | 否   | 模板类型，用以区分视频播放、视频通话或视频会议。                                                                                                                                                                                                                                                                                                                  |
 | contentWidth        | number                                                                     | 否   | 原始内容宽度，单位为px。用于确定画中画窗口比例。当[使用typeNode的方式](#pipwindowcreate12)创建PiPController时，不传值则默认为1920。当[不使用typeNode的方式](#pipwindowcreate)创建PiPController时，不传值则默认为[XComponent](arkui-ts/ts-basic-components-xcomponent.md)组件的宽度。                                                                 |
 | contentHeight       | number                                                                     | 否   | 原始内容高度，单位为px。用于确定画中画窗口比例。用于确定画中画窗口比例。当[使用typeNode的方式](#pipwindowcreate12)创建PiPController时，不传值则默认为1080。当[不使用typeNode的方式](#pipwindowcreate)创建PiPController时，不传值则默认为[XComponent](arkui-ts/ts-basic-components-xcomponent.md)组件的高度。                                                                 |
 | controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                               | 否   | 画中画控制面板的可选控件组列表，应用可以对此进行配置以决定是否显示。如果应用没有配置，面板将显示基础控件（如视频播放控件组的播放/暂停控件）；如果应用选择配置，则最多可以选择三个控件。从API version 12开始支持此参数。                                                                                                                                                                                                                                                 |
 | customUIController<sup>12+</sup>      | [NodeController](js-apis-arkui-nodeController.md)           | 否   | 用于实现在画中画界面内容上方展示自定义UI功能。从API version 12开始支持此参数。                                                                                                                                                                                                                                                                                           |
+
+## PiPWindowSize<sup>15+</sup>
+
+画中画窗口大小。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称   | 类型 | 可读 | 可写 | 说明       |
+| ------ | -------- | ---- | ---- | ---------- |
+| width  | number   | 是   | 否   | 窗口宽度，单位为px，该参数应为正整数，不大于屏幕宽。 |
+| height | number   | 是   | 否   | 窗口高度，单位为px，该参数应为正整数，不大于屏幕高。 |
+| scale  | number   | 是   | 否   | 窗口缩放比，显示大小相对于width和height的缩放比，该参数为浮点数，取值范围大于0.0，小于等于1.0。等于1表示与width和height一样大。 |
+
+## PiPWindowInfo<sup>15+</sup>
+
+画中画窗口信息。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称   | 类型 | 可读 | 可写 | 说明       |
+| ------ | -------- | ---- | ---- | ---------- |
+| windowId  | number   | 是   | 否   | 画中画窗口ID。 |
+| size  | [PiPWindowSize](#pipwindowsize15)  | 是   | 否   | 画中画窗口大小。 |
 
 ## PiPTemplateType
 
@@ -333,7 +360,7 @@ type PiPControlGroup = VideoPlayControlGroup | VideoCallControlGroup | VideoMeet
 
 | 名称                   | 值   | 说明                    |
 |----------------------|-----|-----------------------|
-| VIDEO_PLAY_PAUSE     | 401   |   播放/暂停直播控件组   |
+| VIDEO_PLAY_PAUSE     | 401   |   播放/暂停直播控件组。 |
 | MUTE_SWITCH         | 402   | 静音控件组。            |
 
 ## PiPActionEventType
@@ -660,6 +687,52 @@ let status: PiPWindow.PiPControlStatus = PiPWindow.PiPControlStatus.PLAY; // 视
 pipController.updatePiPControlStatus(controlType, status);
 ```
 
+### updateContentNode<sup>16+</sup>
+updateContentNode(contentNode: typeNode.XComponent): Promise&lt;void&gt;
+
+更新画中画节点内容。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名          | 类型                                       | 必填        | 说明                                                                                                                                                                                                                                     |
+|--------------|------------------------------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| contentNode       | [typeNode.XComponent](js-apis-arkui-frameNode.md#xcomponent12)    | 是         | 用于渲染画中画窗口中的内容。该参数不能为空。|
+
+**返回值：**
+
+| 类型                   | 说明                  |
+|----------------------|---------------------|
+| Promise&lt;void&gt;  | 无返回结果的Promise对象。    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                                        |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 401   | Params error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed |
+| 801   | Capability not supported.Failed to call the API due to limited device capabilities.                                                       |
+| 1300014    | PiP internal error.                                    |
+
+**示例：**
+
+```ts
+import { typeNode, UIContext } from '@kit.ArkUI';
+
+let context: UIContext | undefined = undefined; // 可传入UIContext或在布局中通过this.getUIContext()为context赋有效值
+
+try {
+  let contentNode = typeNode.createNode(context, "XComponent");
+  pipcontroller.updateContentNode(contentNode);
+} catch (exception) {
+  console.error(`Failed to update content node. Cause: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### setPiPControlEnabled<sup>12+</sup>
 setPiPControlEnabled(controlType: PiPControlType, enabled: boolean): void
 
@@ -690,6 +763,46 @@ setPiPControlEnabled(controlType: PiPControlType, enabled: boolean): void
 let controlType: PiPWindow.PiPControlType = PiPWindow.PiPControlType.VIDEO_PLAY_PAUSE; // 视频播放控制面板中播放/暂停控件。
 let enabled: boolean = false; // 视频播放控制面板中播放/暂停控件为禁用状态。
 pipController.setPiPControlEnabled(controlType, enabled);
+```
+### getPiPWindowInfo<sup>15+</sup>
+getPiPWindowInfo(): Promise&lt;[PiPWindowInfo](#pipwindowinfo15)&gt;
+
+获取画中画窗口信息。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                   | 说明                  |
+|----------------------|---------------------|
+| Promise&lt;[PiPWindowInfo](#pipwindowinfo15)&gt;  | Promise对象，返回当前画中画窗口信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                                                                                        |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 801   | Capability not supported. Failed to call the API due to limited device capabilities.                                                       |
+| 1300014    | PiP internal error.                                    |
+
+**示例：**
+
+```ts
+let pipWindowInfo: PiPWindow.PiPWindowInfo | undefined = undefined;
+try {
+  let promise : Promise<PiPWindow.PiPWindowInfo> = pipController.getPiPWindowInfo();
+  promise.then((data) => {
+    pipWindowInfo = data;
+    console.info('Success in get pip window info. Info: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get pip window info. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to get pip window info. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### on('stateChange')
@@ -901,4 +1014,93 @@ off(type: 'controlEvent', callback?: Callback&lt;ControlEventParam&gt;): void
 
 ```ts
 pipController.off('controlEvent', () => {});
+```
+
+### on('pipWindowSizeChange')<sup>15+</sup>
+
+on(type: 'pipWindowSizeChange', callback: Callback&lt;PiPWindowSize&gt;): void
+
+开启画中画窗口尺寸变化事件的监听。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名      | 类型                                          | 必填    | 说明                                                |
+|----------|---------------------------------------------|-------|---------------------------------------------------|
+| type     | string                                      | 是     | 监听事件，固定为'pipWindowSizeChange'，即画中画窗口尺寸变化事件。 |
+| callback | Callback<[PiPWindowSize](#pipwindowsize15)> | 是     | 回调函数。返回当前画中画窗口的尺寸。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801   | Capability not supported.Failed to call the API due to limited device capabilities.                                                       |
+| 1300014    | PiP internal error.                                    |    
+
+**示例：**
+
+```ts
+try {
+  pipcontroller.on('pipWindowSizeChange', (size: PiPWindow.PiPWindowSize) => {
+    console.info('Succeeded in enabling the listener for pip window size changes. size: ' + JSON.stringify(size));
+  });
+} catch (exception) {
+  console.error(`Failed to enable the listener for pip window size changes. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### off('pipWindowSizeChange')<sup>15+</sup>
+
+off(type: 'pipWindowSizeChange', callback?: Callback&lt;PiPWindowSize&gt;): void
+
+关闭画中画窗口尺寸变化事件的监听。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名      | 类型         | 必填 | 说明                                                                  |
+|----------|------------|----|---------------------------------------------------------------------|
+| type     | string     | 是  | 监听事件，固定为'pipWindowSizeChange'，即画中画窗口尺寸变化事件。                         |
+| callback | Callback<[PiPWindowSize](#pipwindowsize15)> | 否  | 回调函数。返回当前画中画窗口的尺寸。如果传入参数，则关闭该监听。如果未传入参数，解除type为'pipWindowSizeChange'的所有回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801   | Capability not supported.Failed to call the API due to limited device capabilities.                                                       |
+| 1300014    | PiP internal error.                                    |    
+
+**示例：**
+
+```ts
+const callback = (size: PiPWindow.PiPWindowSize) => {
+  // ...
+}
+try {
+  // 通过on接口开启监听
+  pipcontroller.on('pipWindowSizeChange', callback);
+} catch (exception) {
+  console.error(`Failed to enable the listener for pip window size changes. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+
+try {
+  // 关闭指定callback的监听
+  pipcontroller.off('pipWindowSizeChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  pipcontroller.off('pipWindowSizeChange');
+} catch (exception) {
+  console.error(`Failed to disable the listener for pip window size changes. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```

@@ -25,7 +25,7 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md) | 表示应用信息。 |
-| [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md) | 表示应用入口的信息 |
+| [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md) | 表示应用入口的信息。 |
 
 
 
@@ -83,7 +83,7 @@ char* OH_NativeBundle_GetAppIdentifier()
 
 **描述**
 
-获取自身应用的appIdentifier信息。appIdentifier指应用的唯一标识，由云端统一分配。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。
+获取自身应用的appIdentifier信息。appIdentifier指应用的唯一标识，是AppGallery Connect创建应用时分配的APP ID，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。
 
 **起始版本：** 11
 
@@ -115,7 +115,7 @@ char* OH_NativeBundle_GetCompatibleDeviceType()
 
 **描述**
 
-获取自身应用适用的设备类型。
+获取当前应用适用的设备类型。用于将手机应用分发到平板/2in1设备时，合理适配布局和字体大小。
 
 **起始版本：** 14
 

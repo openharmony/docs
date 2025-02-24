@@ -26,7 +26,7 @@ For details, see [SaveButton](../../reference/apis-arkui/arkui-ts/ts-security-co
 3. Call [MediaAssetChangeRequest.createAssetRequest](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createassetrequest11) to create an asset change request with **PhotoSubtype** set to **MOVING_PHOTO**.
 4. Call [MediaAssetChangeRequest.addResource](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11) to set the image and video of the moving photo.
    
-   In the following example, the image and video of the moving photo are specified by the application sandbox **fileUri**s.
+   In the following example, the image and video of the moving photo are specified by **fileUri** of the [application file](../../file-management/app-file-access.md) in the application sandbox.
    
    You can also specify the assets in **ArrayBuffer**. For details, see [MediaAssetChangeRequest.addResource(type: ResourceType, data: ArrayBuffer)](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11-1).
 
@@ -87,13 +87,13 @@ struct Index {
 
 - Use **Picker** to obtain a moving photo object from the media library.
 
-- You can also construct a local moving photo object by passing in the application sandbox URIs of the image and video of the moving photo.
+- Create a local moving photo object of the application by passing **fileUri** of an [application file](../../file-management/app-file-access.md) in the application sandbox.
 
 After obtaining a moving photo object, you can use [MovingPhotoView](movingphotoview-guidelines.md) to play it.
 
-### Obtaining a Moving Photo object from the Media Library
+### Obtaining a Moving Photo Object from the Media Library
 
-1. Use **Picker** to select the URI of the Moving photo.
+1. Select the [URI of a media file](../../file-management/user-file-uri-intro.md#media-file-uri) by using **Picker**.
 2. Call [PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-1) and [FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1) to obtain the photo asset corresponding to the URI.
 3. Call [MediaAssetManager.requestMovingPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestmovingphoto12) to obtain the moving photo object.
 

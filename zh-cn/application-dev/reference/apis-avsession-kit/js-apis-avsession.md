@@ -131,6 +131,20 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 | TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。 |
 | TYPE_DLNA<sup>12+</sup>      | 4    | DLNA协议。表示媒体正在其他设备上展示。 |
 
+## DistributedSessionType<sup>16+</sup>
+
+远端分布式设备支持的会话类型。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+| 名称                                     | 值 | 说明                        |
+|----------------------------------------|---|---------------------------|
+| TYPE_SESSION_REMOTE      | 0 | 远端设备会话。       |
+| TYPE_SESSION_MIGRATE_IN  | 1 | 迁移至本端的设备会话。 |
+| TYPE_SESSION_MIGRATE_OUT | 2 | 迁移至远端的设备会话。 |
+
 ## AVSessionType<sup>10+<sup>
 
 type AVSessionType = 'audio' | 'video' | 'voice_call' | 'video_call'
@@ -8069,6 +8083,7 @@ select(options?: AVCastPickerOptions): Promise\<void>
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function avCastPicker(context: common.Context) {
@@ -8112,11 +8127,15 @@ on(type: 'pickerStateChange', callback: Callback<AVCastPickerState\>) : void
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { AVCastPickerState } from '@kit.AVSessionKit';
 
-avCastPicker.on('pickerStateChange', (state: AVCastPickerState) => {
-  console.info(`picker state change : ${state}`);
-});
+async function onPickerStateChange(context: common.Context) {
+  let avCastPicker = new avSession.AVCastPickerHelper(context);
+  avCastPicker.on('pickerStateChange', (state: AVCastPickerState) => {
+    console.info(`picker state change : ${state}`);
+  });
+}
 ```
 
 ### off('pickerStateChange')<sup>14+</sup>
@@ -8148,7 +8167,12 @@ off(type: 'pickerStateChange', callback?: Callback<AVCastPickerState\>) : void
 **示例：**
 
 ```ts
-avCastPicker.off('pickerStateChange');
+import { common } from '@kit.AbilityKit';
+
+async function onPickerStateChange(context: common.Context) {
+  let avCastPicker = new avSession.AVCastPickerHelper(context);
+  avCastPicker.off('pickerStateChange');
+}
 ```
 
 ## AVSessionErrorCode<sup>10+</sup>

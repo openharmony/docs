@@ -34,6 +34,8 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
@@ -41,8 +43,6 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -96,6 +96,8 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
@@ -103,8 +105,6 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -159,6 +159,8 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
@@ -166,8 +168,6 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -213,14 +213,14 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -280,13 +280,13 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
 | 16500050 | IPC connection error. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 

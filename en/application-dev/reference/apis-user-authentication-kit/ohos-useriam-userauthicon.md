@@ -91,7 +91,7 @@ struct Index {
             console.info('The user clicked the icon.');
           },
           onAuthResult: (result: userAuth.UserAuthResult) => {
-            console.info('Get user auth result, result = ' + JSON.stringify(result));
+            console.info(`Get user auth result, result = ${JSON.stringify(result)}`);
           }
         })
       }

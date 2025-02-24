@@ -69,7 +69,7 @@ struct WebComponent {
 
 ## WebMessagePort
 
-Implements a WebMessagePort object to send and receive messages. The message of the [WebMessageType](#webmessagetype10)/[WebMessage](#webmessage) type can be sent to the HTML5 side.
+Implements a **WebMessagePort** object to send and receive messages. The message of the [WebMessageType](#webmessagetype10)/[WebMessage](#webmessage) type can be sent to the HTML5 side.
 
 ### Properties
 
@@ -600,7 +600,7 @@ Constructor used to create a **WebviewController** object.
 > 
 > When a valid string is passed in, **new webview.WebviewController("xxx")** can be used to distinguish multiple instances and invoke the methods of the corresponding instance.
 > 
-> When an empty parameter is passed in, such as **new webview.WebviewController("")** or **new webview.WebviewController(undefined)**, the parameter is meaningless that multiple instances cannot be distinguished and **undefined** is returned. You need to check whether the returned value is normal.
+> When an empty parameter is passed in, such as **new webview.WebviewController("")** or **new webview.WebviewController(undefined)**, the parameter is meaningless that multiple instances cannot be distinguished and **undefined** is returned. You need to check whether the return value is normal.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -643,6 +643,14 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.refresh();
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Button('deleteJavaScriptRegister')
+        .onClick(() => {
+          try {
+            this.controller.deleteJavaScriptRegister("objTestName");
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -983,7 +991,7 @@ if **encoding** is not base64 (including null values), ASCII encoding is used fo
 | data       | string | Yes  | String obtained after being base64 or URL encoded.                   |
 | mimeType   | string | Yes  | Media type (MIME).                                          |
 | encoding   | string | Yes  | Encoding type, which can be base64 or URL.                      |
-| baseUrl    | string | No  | URL (HTTP/HTTPS/data compliant), which is assigned by the **Web** component to **window.origin**.|
+| baseUrl    | string | No  | URL (HTTP/HTTPS/data compliant), which is assigned by the **Web** component to **window.origin**. If a large number of HTML files need to be loaded, set this parameter to **data**.|
 | historyUrl | string | No  | URL used for historical records. If this parameter is not empty, historical records are managed based on this URL. This parameter is invalid when **baseUrl** is left empty.|
 
 > **NOTE**
@@ -1101,6 +1109,8 @@ accessForward(): boolean
 
 Checks whether going to the next page can be performed on the current page.
 
+You can use [getBackForwardEntries](#getbackforwardentries) to obtain the historical information list of the current WebView and use [accessStep](#accessstep) to determine whether to move forward or backward based on the specified number of steps.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
@@ -1195,6 +1205,8 @@ struct WebComponent {
 accessBackward(): boolean
 
 Checks whether going to the previous page can be performed on the current page.
+
+You can use [getBackForwardEntries](#getbackforwardentries) to obtain the historical information list of the current WebView and use [accessStep](#accessstep) to determine whether to move forward or backward based on the specified number of steps.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1582,6 +1594,7 @@ Registers a proxy for interaction between the application and web pages loaded b
 
 > **NOTE**
 >
+> - The **registerJavaScriptProxy** API must be used together with the **deleteJavaScriptRegister** API to prevent memory leak.
 > - It is recommended that **registerJavaScriptProxy** be used only with trusted URLs and over secure HTTPS connections. Injecting JavaScript objects into untrusted web components can expose your application to malicious attacks.
 > - After **registerJavaScriptProxy** is called, the application exposes the registered JavaScript object to all page frames.
 > - If a **registerJavaScriptProxy** is both registered in the synchronous and asynchronous lists, it is called asynchronously by default.
@@ -1593,7 +1606,7 @@ Registers a proxy for interaction between the application and web pages loaded b
 
 | Name    | Type      | Mandatory| Description                                       |
 | ---------- | -------------- | ---- | ------------------------------------------------------------ |
-| object     | object         | Yes  | Application-side JavaScript object to be registered. Methods and attributes can be declared, but cannot be directly called on HTML5.<br>The parameter and return value can be any of the following types:<br>string, number, boolean.<br>Dictionary or Array, with a maximum of 10 nested layers and 10,000 data records per layer.<br>Object, which must contain the **methodNameListForJsProxy:[fun1, fun2]** attribute, where **fun1** and **fun2** are methods that can be called.<br>The parameter also supports Function and Promise. Their callback cannot have return values.<br>The return value supports Promise. Its callback cannot have a return value.<br>For the example, see [Invoking Application Functions on the Frontend Page](../../web/web-in-page-app-function-invoking.md).|
+| object     | object         | Yes  | Application-side JavaScript object to be registered. Methods and attributes can be declared separately, but cannot be registered and used at the same time. If an object contains only attributes, HTML5 can access the attributes in the object. If an object contains only methods, HTML5 can access the methods in the object.<br>The parameter and return value can be any of the following types:<br>string, number, boolean.<br>Dictionary or Array, with a maximum of 10 nested layers and 10,000 data records per layer.<br>Object, which must contain the **methodNameListForJsProxy:[fun1, fun2]** attribute, where **fun1** and **fun2** are methods that can be called.<br>The parameter also supports Function and Promise. Their callback cannot have return values.<br>The return value supports Promise. Its callback cannot have a return value.<br>For the example, see [Invoking Application Functions on the Frontend Page](../../web/web-in-page-app-function-invoking.md).|
 | name       | string         | Yes  | Name of the object to be registered, which is the same as that invoked in the window. After registration, the window can use this name to access the JavaScript object at the application side.|
 | methodList | Array\<string> | Yes  | Synchronous methods of the JavaScript object to be registered at the application side.                      |
 | asyncMethodList<sup>12+</sup> | Array\<string> | No  | Asynchronous methods of the JavaScript object to be registered at the application side. The default value is null. Asynchronous methods cannot obtain return values. |
@@ -1689,6 +1702,16 @@ struct Index {
             this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber"], ["asyncTestBool"]);
             this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
             this.controller.registerJavaScriptProxy(this.asyncTestObj, "objAsyncName", [], ["asyncTest", "asyncString"]);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Button('deleteJavaScriptRegister')
+        .onClick(() => {
+          try {
+            this.controller.deleteJavaScriptRegister("objName");
+            this.controller.deleteJavaScriptRegister("objTestName");
+            this.controller.deleteJavaScriptRegister("objAsyncName");
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -3797,6 +3820,7 @@ struct WebComponent {
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
+        })
       Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
@@ -4283,6 +4307,10 @@ removeCache(clearRom: boolean): void
 
 Clears the cache in the application. This API will clear the cache for all webviews in the same application.
 
+> **NOTE**
+>
+> You can view the Webview cache in the **data/storage/el2/base/cache/web/Cache** directory.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
@@ -4559,6 +4587,8 @@ export default class EntryAbility extends UIAbility {
 restoreWebState(state: Uint8Array): void
 
 Restores the page status history from the serialized data of the current WebView.
+
+If the value of **state** is too large, exceptions may occur. It is recommended that the page status history be not restored when the **state** value is greater than 512 KB.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -5949,9 +5979,9 @@ struct WebComponent {
     Column() {
       Button('getDefaultUserAgent')
         .onClick(() => {
-          webview.WebviewController.getDefaultUserAgent();
-      })
-      Web({ src: 'www.example.com', controller: this.controller })
+          let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
+          console.log("defaultUserAgent: " + defaultUserAgent);
+        })
     }
   }
 }
@@ -6749,6 +6779,15 @@ struct Index {
           try {
             this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
             this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Button('deleteJavaScriptRegister')
+        .onClick(() => {
+          try {
+            this.controller.deleteJavaScriptRegister("objName");
+            this.controller.deleteJavaScriptRegister("objTestName");
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -7898,7 +7937,7 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
   }
 
   setVolume(volume: number) {
-    // The ArkWeb kernel requires to adjust the volume of the native player.
+    // The ArkWeb kernel requires to adjust the volume of the local player.
     // Set the volume of the local player.
   }
 
@@ -8016,7 +8055,7 @@ struct WebComponent {
 
 webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): void
 
-Obtains the full drawing result of the web page. (Local resource web pages are not supported currently.)
+Obtains the full drawing result of the web page.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -8575,7 +8614,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 
 setPathAllowingUniversalAccess(pathList: Array\<string\>): void
 
-Sets a path list. When a file protocol accesses resources in the path of list, it can access the local files across domains. In addition, when a path list is set, the file protocol can access only the resources in the path list. The behavior of [fileAccess](ts-basic-components-web.md#fileAccess) will be overwritten by that of this API. The paths in the list must be any of the following:
+Sets a path list. When a file protocol accesses resources in the path list, it can access the local files across domains. In addition, when a path list is set, the file protocol can access only the resources in the path list. The behavior of [fileAccess](ts-basic-components-web.md#fileaccess) will be overwritten by that of this API. The paths in the list must be any of the following:
 
 1. The path of subdirectory of the application file directory. (The application file directory is obtained using [Context.filesDir](../apis-ability-kit/js-apis-inner-application-context.md#context) in the Ability Kit.) For example:
 
@@ -8587,7 +8626,7 @@ Sets a path list. When a file protocol accesses resources in the path of list, i
 * /data/storage/el1/bundle/entry/resource/resfile
 * /data/storage/el1/bundle/entry/resource/resfile/example
 
-If a path in the list is not any of the preceding paths, error code 401 is reported and the path list fails to be set. When the path list is set to empty, the accessible files for the file protocol are subject to the behavior of the [fileAccess](ts-basic-components-web.md#fileAccess).
+If a path in the list is not of the preceding paths, error code 401 is reported and the path list fails to be set. When the path list is set to empty, the accessible files for the file protocol are subject to the behavior of the [fileAccess](ts-basic-components-web.md#fileaccess).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -8642,7 +8681,7 @@ struct WebComponent {
 
 ```
 
-Load the HTML file, which is located in the application resource directory **resource/resfile/index.html**.
+Load the HTML file in the application resource directory **resource/resfile/index.html**.
 ```html
 <!-- index.html -->
 <!DOCTYPE html>
@@ -8688,7 +8727,7 @@ Load the HTML file, which is located in the application resource directory **res
 </html>
 ```
 
-In HTML, the file protocol is used to access the local JS file through XMLHttpRequest. The JS file is stored in **resource/resfile/js/script.js**.
+In the HTML file, use the file protocol to access the local JS file through **XMLHttpRequest**. The JS file is stored in **resource/rawfile/js/script.js**.
 <!--code_no_check-->
 ```javascript
 const body = document.body;
@@ -8795,7 +8834,7 @@ struct Index {
 
 ### trimMemoryByPressureLevel<sup>14+</sup>
 
-trimMemoryByPressureLevel(level: number): void
+trimMemoryByPressureLevel(level: PressureLevel): void
 
 Clears the cache occupied by **Web** component based on the specified memory pressure level.
 
@@ -8813,7 +8852,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Parameter string is too long.3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Parameter string is too long. 3.Parameter verification failed. |
 
 **Example**
 ```ts
@@ -8860,9 +8899,13 @@ Obtains the data stream of a specified web page using an asynchronous callback.
 | configuration | [PdfConfiguration](#pdfconfiguration14) | Yes  | Parameters required for creating a PDF file.      |
 | callback      | AsyncCallback<[PdfData](#pdfdata14)>    | Yes  | Callback used to return the data stream of an online PDF file.|
 
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: Incorrect parameter types. |
+| 401      | Invalid input parameter.  |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
@@ -8939,9 +8982,13 @@ Obtains the data stream of a specified web page using a promise.
 | ------------------------------ | ----------------------------- |
 | Promise<[PdfData](#pdfdata14)> | Promise used to return the data stream of a web page.|
 
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: Incorrect parameter types. |
+| 401      | Invalid input parameter. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
@@ -9073,7 +9120,7 @@ Implements a **WebCookieManager** instance to manage behavior of cookies in **We
 
 static getCookie(url: string): string
 
-Obtains the cookie corresponding to the specified URL.
+Obtains the cookie value of the specified URL.
 
 > **NOTE**
 >
@@ -9135,7 +9182,7 @@ struct WebComponent {
 
 static fetchCookieSync(url: string, incognito?: boolean): string
 
-Obtains the cookie value corresponding to the specified URL.
+Obtains the cookie value of the specified URL.
 
 > **NOTE**
 >
@@ -13282,7 +13329,11 @@ struct WebComponent {
 
 start(downloadPath: string): void
 
-Starts a download. This API must be used in the **onBeforeDownload** callback of **WebDownloadDelegate**. If it is not called in the callback, the download task remains in the PENDING state.
+Starts a download to a specified directory.
+
+> **NOTE**
+>
+>This API must be used in the **onBeforeDownload** callback of **WebDownloadDelegateb**. If it is not called in the callback, the download task remains in the PENDING state and is downloaded to a temporary directory. After the target path is specified by **WebDownloadItem.start**, the temporary files are renamed to the target path and the unfinished files are directly downloaded to the target path. If you do not want to download the file to the temporary directory before invoking **WebDownloadItem.start**, you can call **WebDownloadItem.cancel** to cancel the current download task and then call **WebDownloadManager.resumeDownload** to resume the task.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -13644,13 +13695,17 @@ struct WebComponent {
 
 ## WebDownloadDelegate<sup>11+</sup>
 
-Implements a **WebDownloadDelegate** class. You can use the callbacks of this class to notify users of the download state.
+ Implements a **WebDownloadDelegate** class. You can use the callbacks of this class to notify users of the download state.
 
 ### onBeforeDownload<sup>11+</sup>
 
 onBeforeDownload(callback: Callback\<WebDownloadItem>): void
 
 Invoked to notify users before the download starts. **WebDownloadItem.start("xxx")** must be called in this API, with a download path provided. Otherwise, the download remains in the PENDING state.
+
+> **NOTE**
+>
+>The file of the download task in the PENDING state is saved to a temporary directory. After the target path is specified by invoking **WebDownloadItem.start**, the temporary file is renamed as the target file, and the unfinished part is directly downloaded to the target path. To avoid generating temporary files before invoking **WebDownloadItem.start**, you can call **WebDownloadItem.cancel** to cancel the current download task and then call **WebDownloadManager.resumeDownload** to resume it.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -16002,7 +16057,7 @@ Defines a rectangle.
 
 ## BackForwardCacheSupportedFeatures<sup>12+<sup>
 
-Adds a page that uses any of the following features to the back-forward cache.
+Adds a page that uses any of the following features to the back-forward cache. For the complete sample code, see [enableBackForwardCache](#enablebackforwardcache12).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -16011,9 +16066,17 @@ Adds a page that uses any of the following features to the back-forward cache.
 | nativeEmbed | boolean | Yes| Whether to add a page that uses same-layer rendering to the back-forward cache. The default value is **false**. When the value is set to **true**, you need to maintain the lifecycle of native controls created for the same-layer rendering elements to avoid resource leak.|
 | mediaTakeOver | boolean | Yes| Whether to add a page that takes over media playback to the back-forward cache. The default value is **false**. When the value is set to **true**, you need to maintain the lifecycle of native controls created for video elements to avoid resource leak.|
 
+### constructor<sup>12+</sup>
+
+constructor()
+
+Constructs a **BackForwardCacheOptions** instance.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
 ## BackForwardCacheOptions<sup>12+<sup>
 
-Implements a **BackForwardCacheOptions** object to set back-forward cache options of the **Web** component.
+Implements a **BackForwardCacheOptions** object to set back-forward cache options of the **Web** component. For the complete sample code, see [BackForwardCacheOptions](#backforwardcacheoptions12).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -16021,6 +16084,14 @@ Implements a **BackForwardCacheOptions** object to set back-forward cache option
 |------|------|------|------|
 | size | number | Yes| The maximum number of pages that can be cached in a **Web** component. The default value is **1**, and the maximum value is **50**. If this parameter is set to **0** or a negative value, the back-forward cache is disabled. The web reclaims the cache for memory pressure.|
 | timeToLive | number | Yes| The time that a **Web** component allows a page to stay in the back-forward cache. The default value is **600**, in seconds. If this parameter is set to **0** or a negative value, the back-forward cache is disabled.|
+
+### constructor<sup>12+</sup>
+
+constructor()
+
+Constructs a **BackForwardCacheOptions** instance.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ## AdsBlockManager<sup>12+</sup>
 
@@ -16543,6 +16614,11 @@ Represents a full drawing result.
 | size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | No| Actual size drawn on the web page. The value is of the number type, and the unit is vp.|
 | imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | No| Full drawing result in image.pixelMap format.|
 
+> **NOTE**
+>
+> Only static images and texts in the rendering process can be captured.
+> Videos cannot be captured. If there is a video on the page, the placeholder image of the video is displayed when you take a screenshot.
+
 ## ScrollType<sup>12+</sup>
 
 Represents a scroll type, which is used in [setScrollable](#setscrollable12).
@@ -16617,3 +16693,5 @@ Represents the current scrolling offset of a web page.
 | ---- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | x    | number | Yes  | Yes  | Horizontal scrolling offset of a web page. The value is the difference between the x-coordinate of the left boundary of the web page and that of the left boundary of the **Web** component. The unit is vp.<br>When the web page is scrolled rightwards, the value is negative.<br>When the web page is not scrolled or scrolled leftwards, the value is **0** or positive.|
 | y    | number | Yes  | Yes  | Vertical scrolling offset of a web page. The value is the difference between the y-coordinate of the upper boundary of the web page and that of the upper boundary of the **Web** component. The unit is vp.<br>When the web page is scrolled downwards, the value is negative.<br>When the web page is not scrolled or scrolled upwards, the value is **0** or positive.|
+
+<!--no_check-->

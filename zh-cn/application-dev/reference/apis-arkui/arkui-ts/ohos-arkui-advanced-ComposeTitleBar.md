@@ -21,7 +21,7 @@ import { ComposeTitleBar } from '@kit.ArkUI'
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)
 
 ## ComposeTitleBar
 
@@ -51,6 +51,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| symbolStyle<sup>16+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol图标资源，优先级大于value，item左侧头像不支持设置该属性。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | label<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标标签描述。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | isEnabled | boolean | 否 | 是否启用，默认禁用。<br> isEnabled为true时，表示为启用。<br> isEnabled为false时，表示为禁用。<br>item属性不支持触发isEnabled属性。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包，item属性不支持触发action事件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -59,7 +60,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 | accessibilityDescription<sup>16+<sup> | ResourceStr | 否 | 标题栏右侧自定义按钮的无障碍描述。此描述用于向用户详细解释当前组件，开发人员应为组件的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。<br/>默认值为“单指双击即可执行”。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。           |
 
 ## 事件
-不支持[通用事件](ts-universal-events-click.md)
+不支持[通用事件](ts-component-general-events.md)
 
 ## 示例
 
@@ -137,7 +138,7 @@ struct Index {
 }
 ```
 
-![img.png](img.png)
+![zh-cn_image_composetitlebar_example01](figures/zh-cn_image_composetitlebar_example01.png)
 
 ### 示例2（右侧自定义按钮播报）
 该示例通过设置标题栏右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
@@ -228,4 +229,86 @@ struct Index {
   }
 }
 ```
-![img_1.png](img_1.png)
+
+![zh-cn_image_composetitlebar_example02](figures/zh-cn_image_composetitlebar_example02.png)
+
+### 示例3（设置Symbol类型图标）
+
+该示例通过设置ComposeTitleBarMenuItem的属性symbolStyle，展示了自定义Symbol类型图标。
+
+```ts
+import { ComposeTitleBar, promptAction, ComposeTitleBarMenuItem, SymbolGlyphModifier } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+  //定义右侧菜单项目列表
+  private menuItems: Array<ComposeTitleBarMenuItem> = [
+    {
+      //菜单图片资源
+      value: $r('sys.symbol.house'),
+      //菜单symbol图标
+      symbolStyle: new SymbolGlyphModifier($r('sys.symbol.bell')).fontColor([Color.Red]),
+      //启用图标
+      isEnabled: true,
+      //点击菜单时触发事件
+      action: () => promptAction.showToast({ message: "show toast index 1" })
+    },
+    {
+      value: $r('sys.symbol.house'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "show toast index 1" })
+    },
+    {
+      value: $r('sys.symbol.car'),
+      symbolStyle: new SymbolGlyphModifier($r('sys.symbol.heart')).fontColor([Color.Pink]),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "show toast index 1" })
+    },
+    {
+      value: $r('sys.symbol.car'),
+      isEnabled: true,
+      action: () => promptAction.showToast({ message: "show toast index 1" })
+    },
+  ]
+
+  build() {
+    Row() {
+      Column() {
+        //分割线
+        Divider().height(2).color(0xCCCCCC)
+        ComposeTitleBar({
+          title: "标题",
+          subtitle: "副标题",
+          menuItems: this.menuItems.slice(0, 1),
+        })
+        Divider().height(2).color(0xCCCCCC)
+        ComposeTitleBar({
+          title: "标题",
+          subtitle: "副标题",
+          menuItems: this.menuItems.slice(0, 2),
+        })
+        Divider().height(2).color(0xCCCCCC)
+        ComposeTitleBar({
+          title: "标题",
+          subtitle: "副标题",
+          menuItems: this.menuItems,
+        })
+        Divider().height(2).color(0xCCCCCC)
+        //定义带头像的标题栏
+        ComposeTitleBar({
+          menuItems: [{ isEnabled: true, value: $r('sys.symbol.heart'),
+            action: () => promptAction.showToast({ message: "show toast index 1" })
+          }],
+          title: "标题",
+          subtitle: "副标题",
+          item: { isEnabled: true, value: $r('sys.media.ohos_app_icon') }
+        })
+        Divider().height(2).color(0xCCCCCC)
+      }
+    }.height('100%')
+  }
+}
+```
+
+![示例3-ComposeTitleBar示例3 设置Symbol类型图标](figures/zh-cn_image_composetitlebar_demo_03.png)

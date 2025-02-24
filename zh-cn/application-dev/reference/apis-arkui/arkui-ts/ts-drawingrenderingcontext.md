@@ -54,7 +54,7 @@ invalidate(): void
 
 使组件无效，触发组件的重新渲染。
 
-**示例：**
+## 示例
 
 该示例实现了如何使用DrawingRenderingContext中的方法进行绘制。
 

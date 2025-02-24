@@ -38,7 +38,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -94,7 +94,7 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -136,7 +136,7 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -181,7 +181,7 @@ cancelReminder(reminderId: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -218,7 +218,7 @@ getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -245,8 +245,6 @@ reminderAgentManager.getValidReminders((err: BusinessError, reminders: Array<rem
       }
       console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent?.pkgName);
       console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent?.abilityName);
-      console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent?.pkgName);
-      console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent?.abilityName);
       console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
       console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
       console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
@@ -277,7 +275,7 @@ getValidReminders(): Promise\<Array\<ReminderRequest>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -301,8 +299,6 @@ reminderAgentManager.getValidReminders().then((reminders: Array<reminderAgentMan
     }
     console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent?.pkgName);
     console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent?.abilityName);
-    console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent?.pkgName);
-    console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent?.abilityName);
     console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
     console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
     console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
@@ -334,7 +330,7 @@ cancelAllReminders(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -371,7 +367,7 @@ cancelAllReminders(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -491,7 +487,7 @@ removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | 是 | 目标notification\.slot的类型。 |
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | 是 | 通知渠道类型。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数，当删除成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -531,7 +527,7 @@ removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | 是 | 目标notification\.slot的类型。 |
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | 是 | 通知渠道类型。 |
 
 **返回值**：
 
@@ -576,7 +572,7 @@ getAllValidReminders(): Promise\<Array\<ReminderInfo>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -599,8 +595,6 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
     }
     console.log("getAllValidReminders, wantAgent.pkgName = " + reminders[i].reminderReq.wantAgent?.pkgName);
     console.log("getAllValidReminders, wantAgent.abilityName = " + reminders[i].reminderReq.wantAgent?.abilityName);
-    console.log("getAllValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].reminderReq.maxScreenWantAgent?.pkgName);
-    console.log("getAllValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].reminderReq.maxScreenWantAgent?.abilityName);
     console.log("getAllValidReminders, ringDuration = " + reminders[i].reminderReq.ringDuration);
     console.log("getAllValidReminders, snoozeTimes = " + reminders[i].reminderReq.snoozeTimes);
     console.log("getAllValidReminders, timeInterval = " + reminders[i].reminderReq.timeInterval);

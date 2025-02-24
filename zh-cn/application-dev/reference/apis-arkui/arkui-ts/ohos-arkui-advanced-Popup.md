@@ -51,6 +51,7 @@ PopupOptions定义Popup的具体式样参数。
 | onClose   | () => void                                                   | 否   | 设置popup关闭按钮回调函数。|
 | buttons   | [[PopupButtonOptions](#popupbuttonoptions)?,[PopupButtonOptions](#popupbuttonoptions)?] | 否   | 设置popup操作按钮,按钮最多设置两个。 |
 | direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 否                                | 布局方向。<br/>默认值：Direction.Auto                                |
+| maxWidth<sup>16+</sup> | [Dimension](ts-types.md#dimension10)                                             | 否                                | 设置popup的最大宽度，通过此接口popup可以自定义宽度显示。<br/>默认值：400vp                                |
 
 ## PopupTextOptions
 
@@ -242,3 +243,68 @@ struct PopupPage {
 ```
 
 ![](figures/popup_8.png)
+
+### 示例3（设置自定义宽度）
+该示例通过配置maxWidth实现Popup的自定义宽度效果。
+
+```ts
+// xxx.ets
+import { Popup, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct PopupPage {
+  @State currentDirection: Direction = Direction.Rtl
+
+  build() {
+     Row() {
+       // popup 自定义高级组件
+       Popup({
+         //设置自定义宽度
+         maxWidth:'50%',
+         //PopupIconOptions 类型设置图标内容
+         icon: {
+           image: $r('app.media.startIcon'),
+           width: 32,
+           height: 32,
+           fillColor: Color.White,
+           borderRadius: 16,
+         } as PopupIconOptions,
+         // PopupTextOptions类型设置文字内容
+         message: {
+           text: 'This is the message,This is the message,This is the message,This is the message',
+           fontSize: 15,
+           fontColor: Color.Black
+         } as PopupTextOptions,
+         showClose: false,
+         onClose: () => {
+           console.info('close Button click')
+         },
+         // PopupButtonOptions类型设置按钮内容
+         buttons: [{
+           text: 'confirm',
+           action: () => {
+             console.info('confirm button click')
+           },
+           fontSize: 15,
+           fontColor: Color.Black,
+         },
+           {
+             text: 'cancel',
+             action: () => {
+               console.info('cancel button click')
+             },
+             fontSize: 15,
+             fontColor: Color.Black
+           },] as [PopupButtonOptions?, PopupButtonOptions?]
+       })
+     }
+     .width(400)
+     .height(200)
+     .borderWidth(2)
+     .justifyContent(FlexAlign.Center)
+   }
+}
+```
+
+![](figures/popup_9.png)

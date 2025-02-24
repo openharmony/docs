@@ -367,8 +367,6 @@ Third-party applications can connect to hotspots through network management.
 
 - You can rotate and drag and drop a window as it rotates.
 
-- You can drag and drop a window between three devices.
-
 - Applications can configure whether to hide the badge during the drag process.
 
 - The data receiver can customize the cut and copy behavior.

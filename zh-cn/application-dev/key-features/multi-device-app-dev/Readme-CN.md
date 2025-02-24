@@ -5,14 +5,14 @@
 - [从一个例子开始](start-with-a-example.md)
 - [应用UX设计](design-principles.md)
 - [工程管理](ide-using.md)
-- 页面开发的一多能力介绍
+- 页面开发的一多能力介绍<!--page-development-->
   - [简介](page-development-intro.md)
-  - 布局能力
+  - 布局能力<!--layout-->
     - [布局简介](layout-intro.md)
     - [自适应布局](adaptive-layout.md)
     - [响应式布局](responsive-layout.md)
     - [典型布局场景](typical-layout-scenario.md)
-    - 典型页面场景
+    - 典型页面场景<!--typical-scenarios-->
       - [应用市场首页](appgallery-home-page.md)
       - [音乐专辑页](music-album-page.md)
       - [设置应用页面](settings-application-page.md)

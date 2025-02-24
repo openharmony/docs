@@ -7,7 +7,8 @@ The **photoAccessHelper** module provides APIs for user album management, includ
 > - Before you get started, obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [Before You Start](photoAccessHelper-preparation.md).
 > - Unless otherwise specified, the **PhotoAccessHelper** instance obtained in the **Before You Start** section is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
 
-To ensure application running efficiency, most **PhotoAccessHelper** APIs are asynchronously implemented in callback or promise mode. The following examples use promise-based APIs. For details about the APIs, see [Album Management](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md).
+To ensure application running efficiency, most PhotoAccessHelper APIs are asynchronously implemented in callback or promise mode. The following examples use promise-based APIs. For details about the APIs, see [Album Management](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md).
+
 Unless otherwise specified, all the media assets to be obtained in this document exist in the database. If no media asset is obtained when the sample code is executed, check whether the media assets exist in the database.
 
 <!--Del-->
@@ -36,7 +37,7 @@ Example: Create a user album.
 3. Call **PhotoAccessHelper.applyChanges** to apply the changes.
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
@@ -72,8 +73,8 @@ Example: Obtain the user album **albumName**.
 3. Call [FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1) to obtain the first user album.
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
@@ -101,7 +102,7 @@ async function example() {
 
 To rename a user album, modify the **Album.albumName** attribute of the album.
 
-Use the [FetchResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchresult) APIs to obtain the user album to rename, use [MediaAlbumChangeRequest.setAlbumName](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#setalbumname11) to rename the user album, and use [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11) to apply the changes to the database.
+Use [FetchResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchresult) to obtain the user album to rename, use [MediaAlbumChangeRequest.setAlbumName](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#setalbumname11) to set the new name, and then use [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11) to apply the changes to the database.
 
 The new user album names must comply with the following requirements:
 
@@ -126,8 +127,8 @@ Example: Rename the user album **albumName**.
 5. Call **PhotoAccessHelper.applyChanges** to save the new album name to the database.
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
@@ -179,8 +180,8 @@ Example: Add an image to the user album **albumName**.
 8. Call **PhotoAccessHelper.applyChanges** to apply the changes.
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
@@ -239,8 +240,8 @@ Example: Obtain an image in the user album **albumName**.
 6. Call [FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1) to obtain the first image from the result set.
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
@@ -299,8 +300,8 @@ Example: Remove an image from the user album **albumName**.
 8. Call **PhotoAccessHelper.applyChanges** to apply the changes.
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
@@ -358,8 +359,8 @@ Example: Delete the user album **albumName**.
 4. Call **MediaAlbumChangeRequest.deleteAlbums** to delete the user album.
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 

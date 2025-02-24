@@ -34,7 +34,7 @@ If you are just starting out with JSVM-API, see [JSVM-API Development Process](u
 
 ### OH_JSVM_GetPrototype
 
-Obtains the prototype of a JS object.
+Call **OH_JSVM_GetPrototype** to obtain the prototype of a JS object.
 
 CPP code:
 
@@ -63,7 +63,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetPrototype},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getPrototype and associate it with a callback. This allows the GetPrototype callback to be called from JS.
+// Alias for the getPrototype method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getPrototype", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -80,7 +80,7 @@ JSVM GetPrototype success
 
 ### OH_JSVM_CreateObject
 
-Creates a default JS object.
+Call **OH_JSVM_CreateObject** to create a default JS object.
 
 CPP code:
 
@@ -116,7 +116,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateObject},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named createObject and associate it with a callback. This allows the CreateObject callback to be called from JS.
+// Alias for the createObject method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"createObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -131,7 +131,7 @@ JSVM CreateObject success
 
 ### OH_JSVM_ObjectFreeze
 
-Freezes a JS object. Once a JS object is frozen, new properties cannot be added to it, existing properties cannot be removed, the enumerability, configurability, or writability of existing properties cannot be changed, and the values of existing properties cannot be changed.
+Call **OH_JSVM_ObjectFreeze** to freeze a JS object. Once a JS object is frozen, new properties cannot be added to it, existing properties cannot be removed, the enumerability, configurability, or writability of existing properties cannot be changed, and the values of existing properties cannot be changed.
 
 CPP code:
 
@@ -164,7 +164,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = ObjectFreeze},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named objectFreeze and associate it with a callback. This allows the ObjectFreeze callback to be called from JS.
+// Alias for the ObjectFreeze method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"objectFreeze", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -180,7 +180,7 @@ Test JSVM OH_JSVM_ObjectFreeze success
 
 ### OH_JSVM_ObjectSeal
 
-Seals a JS object. Once a JS object is sealed, new properties cannot be added to it and all existing properties are marked as unconfigurable.
+Call **OH_JSVM_ObjectSeal** to seal a JS object. Once a JS object is sealed, new properties cannot be added to it and all existing properties are marked as unconfigurable.
 
 CPP code:
 
@@ -226,7 +226,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = ObjectSeal},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named objectSeal and associate it with a callback. This allows the ObjectSeal callback to be called from JS.
+// Alias for the ObjectSeal method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"objectSeal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -242,7 +242,7 @@ Test JSVM OH_JSVM_ObjectSeal success
 
 ### OH_JSVM_Typeof
 
-Returns the type of a JS object.
+Call **OH_JSVM_Typeof** to return the type of a JS object.
 
 CPP code:
 
@@ -312,7 +312,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetTypeof},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getTypeof and associate it with a callback. This allows the GetTypeof callback to be called from JS.
+// Alias for the GetTypeof method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getTypeof", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -327,7 +327,7 @@ JSVM Input type is boolean
 
 ### OH_JSVM_Instanceof
 
-Checks whether an object is an instance of a constructor.
+Call **OH_JSVM_Instanceof** to check whether an object is an instance of a constructor.
 
 CPP code:
 
@@ -359,7 +359,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = InstanceOf},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named instanceOf and associate it with a callback. This allows the InstanceOf callback to be called from JS.
+// Alias for the InstanceOf method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"instanceOf", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -383,11 +383,11 @@ JSVM InstanceOf: 1
 
 ### OH_JSVM_TypeTagObject
 
-Associate the value of the **type_tag** pointer with a JS object so that the object can be identified more accurately.
+Call **OH_JSVM_TypeTagObject** to associate the value of the **type_tag** pointer with a JS object so that the object can be identified more accurately.
 
 ### OH_JSVM_CheckObjectTypeTag
 
-Checks whether a tag matches the tag type of an object.
+Call **OH_JSVM_CheckObjectTypeTag** to check whether a tag matches the tag type of an object.
 
 CPP code:
 
@@ -456,7 +456,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CheckObjectTypeTag},
 };
 static JSVM_CallbackStruct *method = param;
-// Set property descriptors named setTypeTagToObject and CheckObjectTypeTag, and associate them with a callback each. This allows the SetTypeTagToObject and CheckObjectTypeTag callbacks to be called from JS.
+// Aliases for the SetTypeTagToObject and CheckObjectTypeTag methods to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"setTypeTagToObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
     {"checkObjectTypeTag", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
@@ -480,8 +480,8 @@ JSVM SetTypeTagToObject:1
 
 ### OH_JSVM_CreateExternal
 
-Use **OH_JSVM_CreateExternal** to create a JS object that wraps an external pointer.
-**NOTE**<br>When a JS object is garbage-collected, the content pointed to by the wrapped external pointer is not directly managed by GC. Only the function corresponding to the third input parameter (if it is not nullptr) is called.
+Call **OH_JSVM_CreateExternal** to create a JS object that wraps an external pointer.
+> **NOTE**<br>When a JS object is garbage-collected, the content pointed to by the wrapped external pointer is not directly managed by GC. Only the function corresponding to the third input parameter (if it is not nullptr) is called.
 
 CPP code:
 
@@ -519,7 +519,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateExternal},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named createExternal and associate it with a callback. This allows the CreateExternal callback to be called from JS.
+// Alias for the CreateExternal method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"createExternal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -534,7 +534,7 @@ JSVM CreateExternal success
 
 ### OH_JSVM_GetValueExternal
 
-Use **OH_JSVM_CreateExternal** to create a JS object that wraps a custom C/C++ object, and use **OH_JSVM_GetValueExternal** to obtain the pointer to the external object wrapped by **OH_JSVM_CreateExternal**.
+Call **OH_JSVM_CreateExternal** to create a JS object that wraps a custom C/C++ object, and call **OH_JSVM_GetValueExternal** to obtain the pointer to the external object wrapped by **OH_JSVM_CreateExternal**.
 
 CPP code:
 
@@ -552,14 +552,14 @@ static JSVM_Value GetValueExternal(JSVM_Env env, JSVM_CallbackInfo info)
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_CreateExternal fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_CreateExternal sucess");
+        OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_CreateExternal success");
     }
     void *data_value;
     status = OH_JSVM_GetValueExternal(env, externalValue, &data_value);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetValueExternal fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM GetValueExternal sucess");
+        OH_LOG_INFO(LOG_APP, "JSVM GetValueExternal success");
     }
     // Convert the sign bit into a value of int type and pass it.
     JSVM_Value returnValue = nullptr;
@@ -572,7 +572,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetValueExternal},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getValueExternal and associate it with a callback. This allows the GetValueExternal callback to be called from JS.
+// Alias for the GetValueExternal method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getValueExternal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -582,13 +582,13 @@ const char* srcCallNative = R"JS(getValueExternal())JS";
 
 **Expected output**
 ```ts
-JSVM OH_JSVM_CreateExternal sucess
-JSVM GetValueExternal sucess
+JSVM OH_JSVM_CreateExternal success
+JSVM GetValueExternal success
 ```
 
 ### OH_JSVM_CreateSymbol
 
-Create a symbol. Symbol is a special data type used to indicate a unique identifier. Unlike strings or numbers, the value of a symbol is unique. Even if two symbols have the same description, they are not equal. Symbols are often used as keys for object properties to ensure property uniqueness.
+Call **OH_JSVM_CreateSymbol** to create a symbol. Symbol is a special data type used to indicate a unique identifier. Unlike strings or numbers, the value of a symbol is unique. Even if two symbols have the same description, they are not equal. Symbols are often used as keys for object properties to ensure property uniqueness.
 
 CPP code:
 
@@ -619,7 +619,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateSymbol},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named createSymbol and associate it with a callback. This allows the CreateSymbol callback to be called from JS.
+// Alias for the CreateSymbol method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"createSymbol", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -634,7 +634,7 @@ JSVM CreateSymbol Success
 
 ### OH_JSVM_SymbolFor
 
-Searches for a symbol with the given key in a global (runtime-wide) symbol registry. If a match is found, the symbol will be returned. Otherwise, a symbol will be created in the registry.
+Call **OH_JSVM_SymbolFor** to search for a symbol with the given key in a global (runtime-wide) symbol registry. If a match is found, the symbol will be returned. Otherwise, a symbol will be created in the Registry.
 
 CPP code:
 
@@ -671,7 +671,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = SymbolFor},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named symbolFor and associate it with a callback. This allows the SymbolFor callback to be called from JS.
+// Alias for the SymbolFor method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"symbolFor", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };

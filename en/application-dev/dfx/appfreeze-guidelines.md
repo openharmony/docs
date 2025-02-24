@@ -113,7 +113,7 @@ General information is present in all the aforementioned logs. It contains the f
 
 > **NOTE**
 >
-> When the entire system is heavily loaded, if the call stack is obtained in low-overhead mode or the stack capture times out, the function symbol and build-id information may be lost.
+> When the device is heavily loaded and the call stack is obtained in low-overhead mode, the function name and **build-id** information may be lost.
 
 The **MSG** field includes the cause of the freeze event and task information in the main thread queue of the application.
 
@@ -299,7 +299,7 @@ MSG = App main thread is not response!EventHandler dump begin curTime:2017-08-08
  Uid: 20010039
  Process name: com.ohos.huawei.myapplication
  Tid:1561 Name:i.myapplication
-   at anonymous (D:/project/OpenHarmonyOS/MyApplication_test/entry/build/default/intermediates/loader_out/default/ets,pages/Index_.js:0:1)
+   at anonymous entry (D:/project/OpenHarmonyOS/MyApplication_test/entry/build/default/intermediates/loader_out/default/ets,pages/Index_.js:0:1)
    #00 pc 0017909c /system/lib/libark_jsruntime.so
    #01 pc 00177ebb /system/lib/libark_jsruntime.so
    #02 pc 0024b4bb /system/lib/libark_jsruntime.so(panda:FunctionRef:Call(panda:ecmascript:EcmaVM const*,panda:Local<panda:JSValueRef>,panda
@@ -340,7 +340,7 @@ Pid:1561
 Uid:20010039
 Process name:com.ohos.huawei.myapplication
 Tid:1561 Name:i.myapplication
-  at anonymous (D:/project/OpenHarmony0S/MyApplication_test/entry/build/default/intermediates/loader_out/default/ets/pages/Index_.js:0:1)
+  at anonymous entry (D:/project/OpenHarmony0S/MyApplication_test/entry/build/default/intermediates/loader_out/default/ets/pages/Index_.js:0:1)
   #00 pc 00178dcc /system/lib/libark_jsruntime.so
   #01 pc 00177ebb /system/lib/libark_jsruntime.so
   #02 pc 0024b4bb /system/lib/libark_jsruntime.so(panda:FunctionRef:Call(panda:ecmascript:EcmaVM const*,panda:Local<panda:JSValueRef>,par
@@ -413,9 +413,9 @@ The appfreeze log is managed together with the native process crash, JS applicat
 <!--Del-->
 - Method 3: Shell
 
-    AppFreeze logs are stored in the device-specific **/data/log/faultlog/faultlogger/** directory. The log files are named in the format of **appfreeze-application bundle name-application UID-time (seconds)**.
+    AppFreeze logs are stored in the device-specific **/data/log/faultlog/faultlogger/** directory. The log files are named in the format of **appfreeze-application bundle name-application UID-time (milliseconds).log**.
 
-    ![appfreeze_20230308145160](figures/appfreeze_20230308145160.png)
+    ![appfreeze_2024111501](figures/appfreeze_2024111501.png)
 <!--DelEnd-->
 
 ### Confirming Basic Information
@@ -719,7 +719,7 @@ In this case, you can check the following items:
 
 4. Check whether there is no calling relationship and whether the stack is an IPC stack.
 
-Check whether the stack is a temporary stack, that is, whether the warning stack is the same as the error stack. It is possible that the warning stack is an IPC stack, and the block stack is a temporary stack because the IPC request has ended when the binder is captured, and the IPC request takes a short time.
+Check whether the stack is a temporary stack, that is, whether the warning stack is the same as the block stack. It is possible that the warning stack is an IPC stack, and the block stack is a temporary stack because the IPC request has ended when the binder is captured, and the IPC request takes a short time.
 It should be noted that binder information is not obtained in real time when a fault occurs and is delayed. For faults that require half-period detection, binder information is accurately captured because most binder information can be collected within the fault period. For other faults, the off-site binder information may be captured when the reporting is delayed.
 
 You can view the execution duration of the binder based on the trace.
@@ -868,7 +868,7 @@ PACKAGE_NAME = com.xxx.xxx.xxx
 PROCESS_NAME = com.xxx.xxx.xxx
 ```
 
-When the **THREAD_BLOCK_3S** event is reported, the **EventHandler** is captured at **08:24:29.413**. The cause is as expected: "App main thread is not response!" The main thread does not respond. The running task is send at **08:24:01.514**.
+When the **THREAD_BLOCK_3S** event is reported, the **EventHandler** is captured at **08:24:29.413**. The cause is as expected: "App main thread is not response!" The main thread does not respond. The running task is sent at **08:24:01.514**.
 
 ```
 MSG = 
@@ -884,7 +884,7 @@ The watchdog task is in the high priority event queue. As shown in the following
 
 The queue of **THREAD_BLOCK_3S** is similar to that of **THREAD_BLOCK_6S**, with one more event in the queue of **THREAD_BLOCK_6S**.
 
-The earliest event is send at **08:24:11.388**, which is 18s earlier than the report time **08:24:29:612** as expected.
+The earliest event is sent at **08:24:11.388**, which is 18s earlier than the report time **08:24:29:612** as expected.
 
 ```
  High priority event queue information:

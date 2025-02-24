@@ -15,6 +15,8 @@ This topic walks you through on how to import an AES 256-bit key and an RSA 2048
 
 3. Use [huks.importKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksimportkeyitem9) to import the key.
 
+    For details about **HuksParam** and **HuksOptions**, see [HuksParam](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam) and [HuksOptions](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksoptions).
+
 ### Importing an AES256 Key
 ```ts
 /* Import an AES 256-bit key in plaintext. This example uses callback-based APIs. */
@@ -27,8 +29,8 @@ let plainTextSize32 = new Uint8Array([
 ]);
 /* 1. Set the key alias. */
 let keyAlias = 'AES256Alias_sample';
-/* 2. Encapsulate the key property set and key material. */
 
+/* 2. Encapsulate the key property set and key material. */
 let properties: Array<huks.HuksParam> = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
