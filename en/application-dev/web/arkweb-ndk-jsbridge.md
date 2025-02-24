@@ -17,7 +17,7 @@ If an application is developed using ArkTS and C++ language, or if its architect
   The native JSBridge APIs are provided to avoid unnecessary switching to the ArkTS environment and allow callback to run in non-UI threads to avoid UI blocking.
 
 ## Using Native APIs to Implement JSBridge Communication (Recommended)
-In the previous version, the return value of native synchronization APIs is fixed to void. With the continuous expansion of services, many service scenarios require APIs to provide return values to support synchronous calls. To meet this requirement, substitute APIs are introduced since API version 14. They support return values of the Boolean, string, and buffer types.
+In the previous version, the return value of native synchronization APIs is fixed to void. With the continuous expansion of services, many service scenarios require APIs to provide return values to support synchronous calls. To meet this requirement, substitute APIs are introduced since API version 16. They support return values of the Boolean, string, and buffer types.
 
 In addition, the [permission](#permission) field is added for the synchronous API [registerJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerjavascriptproxyex) and asynchronous API [registerAsyncJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerasyncjavascriptproxyex) to control the calling permission.
 
@@ -41,14 +41,13 @@ In addition, the [permission](#permission) field is added for the synchronous AP
   // Define a webTag and transfer it as an input parameter when WebviewController is created to establish the mapping between controller and webTag.
   webTag: string = 'ArkWeb1';
   controller: web_webview.WebviewController = new web_webview.WebviewController(this.webTag);
-  // ...
+
   // Use aboutToAppear() to pass webTag to C++ through Node-API. The webTag uniquely identifies the C++ ArkWeb component.
   aboutToAppear() {
     console.info("aboutToAppear")
     // Initialize the web NDK.
     testNapi.nativeWebInit(this.webTag);
   }
-  // ...
   ```
 
 * C++ Side:
@@ -1381,5 +1380,3 @@ Use [runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runj
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "JSBridgeObject SaySomething argc:%{public}s", say);
   }
   ```
-
-<!--no_check-->

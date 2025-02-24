@@ -86,7 +86,11 @@ However, Chrome cannot directly access the domain socket on the device. Therefor
      (2) The application uses the **Web** component to load the web page.
 
 2. Exit hdc shell, and run the following command to forward the obtained domain socket to TCP port 9222 of the PC. 
-   
+   Run the **exit** command to exit the hdc shell.
+   ```shell
+   exit
+   ```
+   Run the following command to forward the port:
    ```shell
    hdc fport tcp:9222 localabstract:webview_devtools_remote_38532
    ```
@@ -355,5 +359,3 @@ The port forwarding may be invalid due to the following reasons:
     - Ensure that the port number in **Configure** on the Chrome debugging page is the same as the TCP port number specified for port forwarding.
     - In this topic, the default TCP port number is **9222**.  
       If you use another TCP port number (for example, **9223**), change the TCP port number in [Port Forwarding](#port-forwarding) and [Opening the Debugging Tool Page in Chrome](#opening-the-debugging-tool-page-in-chrome).
-
-<!--no_check-->

@@ -25,7 +25,7 @@ The lifecycle of same-layer tags is associated with front-end tags (\<embed>/\<o
 
 **Figure 1** Overall architecture of same-layer rendering
 
-![web-same-layer](figures/web-same-layer-develop-architecture_en.png)
+![web-same-layer](figures/web-same-layer-develop-architecture.png)
 
 ## Specifications and Constraints
 ### ArkUI Components That Can Be Rendered at the Same Layer
@@ -80,7 +80,7 @@ The [onNativeEmbedLifecycleChange()](../reference/apis-arkweb/ts-basic-component
 **Distributing and Processing the Input Events of Same-Layer Tags**:
 - The **DOWN**, **UP**, **MOVE**, and **CANCEL** touch events are supported. The [onnativeembedgestureevent11](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedgestureevent11) can be configured. By default, the touch event is consumed on the application side.
 
-- The application page containing same-layer components cannot be scaled, and the scaling APIs such as [initialScale](../reference/apis-arkweb/ts-basic-components-web.md#initialscale), [zoom](../reference/apis-arkweb/js-apis-webview.md#zoom), [zoomIn](../reference/apis-arkweb/js-apis-webview.md#zoomin) and [zoomOut](../reference/apis-arkweb/js-apis-webview.md#zoomout) are not supported.
+- The application page containing same-layer components cannot be scaled, and the scaling APIs such as [initialScale](../reference/apis-arkweb/ts-basic-components-web.md#initialscale9), [zoom](../reference/apis-arkweb/js-apis-webview.md#zoom), [zoomIn](../reference/apis-arkweb/js-apis-webview.md#zoomin) and [zoomOut](../reference/apis-arkweb/js-apis-webview.md#zoomout) are not supported.
 
 - Mouse, keyboard, and touchpad events are not supported.
 
@@ -90,7 +90,7 @@ The [onNativeEmbedLifecycleChange()](../reference/apis-arkweb/ts-basic-component
 
 - Due to GPU restrictions, the maximum height and texture size of a same-layer tag are 8000 px.
 
-- When same-layer rendering is enabled, web pages opened by the **Web** component do not support the unified [RenderMode](../reference/apis-arkweb/ts-basic-components-web.md#rendermode12).
+- When same-layer rendering is enabled, web pages opened by the **Web** component do not support [RenderMode](../reference/apis-arkweb/ts-basic-components-web.md#rendermode12).
 
 - When the non-full-screen mode is changed to the full-screen mode, the **Video** component is exported through non-texture mode and the video playback status remains unchanged. When the non-full-screen mode is restored, the **Video** component is exported through texture mode and the video playback status remains unchanged.
 
@@ -104,7 +104,7 @@ The [onNativeEmbedLifecycleChange()](../reference/apis-arkweb/ts-basic-component
 
   **Figure 3** Proper **TextInput** with **Stack**
 
-  ![web-same-layer-develop](figures/web-same-layer-develop-textinput2_en.png)
+  ![web-same-layer-develop](figures/web-same-layer-develop-textinput2.png)
 
 ## Rendering Text Boxes at the Same Layer on Web Pages
 On web pages, you can render the native ArkUI **TextInput** components at the same layer. The following figure shows the effect of three text boxes that are rendered at the same layer.
@@ -250,7 +250,7 @@ On web pages, you can render the native ArkUI **TextInput** components at the sa
      private type_: string = "";
      private isDestroy_: boolean = false;
 
-     setRenderOption(params: nodeControllerParams) {
+     setRenderOption(params: NodeControllerParams) {
        this.surfaceId_ = params.surfaceId;
        this.renderType_ = params.renderType;
        this.embedId_ = params.embedId;
@@ -461,7 +461,7 @@ Code on the application side:
     height: number
   }
 
-  declare class nodeControllerParams {
+  declare class NodeControllerParams {
     surfaceId: string
     type: string
     renderType: NodeRenderType
@@ -481,7 +481,7 @@ Code on the application side:
     private type_: string = "";
     private isDestroy_: boolean = false;
 
-    setRenderOption(params: nodeControllerParams) {
+    setRenderOption(params: NodeControllerParams) {
       this.surfaceId_ = params.surfaceId;
       this.renderType_ = params.renderType;
       this.embedId_ = params.embedId;
@@ -686,7 +686,7 @@ You can enable or disable same-layer rendering through [enableNativeEmbedMode()]
     height : number
   }
 
-  declare class nodeControllerParams {
+  declare class NodeControllerParams {
     surfaceId : string
     type : string
     renderType : NodeRenderType
@@ -706,7 +706,7 @@ You can enable or disable same-layer rendering through [enableNativeEmbedMode()]
     private type_ : string = "";
     private isDestroy_ : boolean = false;
 
-    setRenderOption(params : nodeControllerParams) {
+    setRenderOption(params : NodeControllerParams) {
       this.surfaceId_ = params.surfaceId;
       this.renderType_ = params.renderType;
       this.embedId_ = params.embedId;
