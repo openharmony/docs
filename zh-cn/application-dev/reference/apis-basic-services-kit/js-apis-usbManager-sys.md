@@ -178,7 +178,7 @@ setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 
 | 类型                | 说明          |
 | ------------------- | ------------- |
-| Promise\<**void**\> | Promise对象。 |
+| Promise\<void\> | Promise对象。 |
 
 **示例：**
 
@@ -337,7 +337,7 @@ setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): 
 
 | 类型                | 说明          |
 | ------------------- | ------------- |
-| Promise\<**void**\> | Promise对象。 |
+| Promise\<void\> | Promise对象。 |
 
 **示例：**
 
@@ -541,7 +541,7 @@ setDeviceFunctions(funcs: FunctionType): Promise\<void\>
 
 | 类型                | 说明          |
 | ------------------- | ------------- |
-| Promise\<**void**\> | Promise对象。 |
+| Promise\<void\> | Promise对象。 |
 
 **示例：**
 
@@ -705,7 +705,7 @@ setPortRoleTypes(portId: number, powerRole: PowerRoleType, dataRole: DataRoleTyp
 
 | 类型                | 说明          |
 | ------------------- | ------------- |
-| Promise\<**void**\> | Promise对象。 |
+| Promise\<void\> | Promise对象。 |
 
 **示例：**
 
