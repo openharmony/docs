@@ -1,8 +1,8 @@
-# Using HiCollie (C/C++)
+# Using HiCollie to Detect Service Thread Stuck and Jank Events (C/C++)
 
 HiCollie provides APIs for detecting service thread stuck and jank events and reporting stuck events.
 
-## Available APIs
+## Availability APIs
 | API                         | Description                             |
 | ------------------------------- | --------------------------------- |
 | OH_HiCollie_Init_StuckDetection | Registers a callback to periodically detect service thread stuck events.           |
@@ -13,7 +13,7 @@ HiCollie provides APIs for detecting service thread stuck and jank events and re
 >
 > The service thread stuck faultlog starts with **appfreeze-** and is generated in **Device/data/log/faultlog/faultlogger/**. The log files are named in the format of **appfreeze-application bundle name-application UID-time (seconds)**. For details, see [appfreeze Log Analysis](./appfreeze-guidelines.md#appfreeze-log-analysis).
 >
-> For details about the specifications of service thread jank logs, see [Main Thread Jank Event Specifications](./hiappevent-watcher-mainthreadjank-events-arkts.md#main-thread-jank-event-specifications).
+> For details about the specifications of service thread jank event logs, see [Main Thread Jank Event Specifications](./hiappevent-watcher-mainthreadjank-events.md#main-thread-jank-event-specifications).
 
 
 For details (such as parameter usage and value ranges), see [HiCollie](../reference/apis-performance-analysis-kit/_hi_hicollie.md).
@@ -208,7 +208,8 @@ The following describes how to add a button in the application and click the but
 7. At the bottom of DevEco Studio, switch to the **Log** tab and set the filter criteria to **testTag**.
 
     (1) Wait for 10s and click the **testHiCollieJankNdk** button. (The jank event detection is not performed within 10s after the thread starts.)
-      The thread timeout information of the sampling stack obtained through **OH_HiCollie_Init_JankDetection()** is displayed in **/data/app/el2/100/log/application bundle name/watchdog/BUSSINESS_THREAD_JANK_XXX.txt.**
-    
-(2) Click the **testHiCollieStuckNdk** button.
+      The thread timeout information of the sampling stack obtained through **OH_HiCollie_Init_JankDetection()** is displayed
+      in **/data/app/el2/100/log/application bundle name/watchdog/BUSSINESS_THREAD_JANK_XXX.txt.**
+
+    (2) Click the **testHiCollieStuckNdk** button.
       The callback used for detecting stuck events is initialized through **OH_HiCollie_Init_StuckDetection()**. You can define the detection function for stuck events as required.
