@@ -39,8 +39,7 @@ deactivateUserKey(userId: number):void;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. Possible causes: Mandatory
- parameters are left unspecified; Or input parameter has type different from the type the interface requires. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified; Or input parameter has type different from the type the interface requires. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. Possible causes: Cannot find user key for the specified user. |
 | 13600009 | User ID out of range. Possible causes: input parameter userId < 100 or userId > 10736. |

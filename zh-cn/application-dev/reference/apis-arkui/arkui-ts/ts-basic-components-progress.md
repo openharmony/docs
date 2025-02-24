@@ -90,7 +90,7 @@ ProgressType.Capsule | [CapsuleStyleOptions<sup>10+</sup>](#capsulestyleoptions1
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 > **说明：**
 >
@@ -307,7 +307,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 
@@ -385,7 +385,8 @@ struct ProgressExample {
 @Component
 struct ProgressExample {
   private gradientColor: LinearGradient = new LinearGradient([{ color: Color.Yellow, offset: 0.5 },
-                                                              { color: Color.Orange, offset: 1.0 }])
+    { color: Color.Orange, offset: 1.0 }])
+
   build() {
     Column({ space: 15 }) {
       Text('Gradient Color').fontSize(9).fontColor(0xCCCCCC).width('90%')
@@ -438,14 +439,19 @@ struct ProgressExample {
 @Entry
 @Component
 struct ProgressExample {
-
   build() {
     Column({ space: 15 }) {
       Row({ space: 40 }) {
-        Progress({ value: 100, total: 100,type: ProgressType.Capsule }).width(100).height(50)
-          .style({borderColor: Color.Blue, borderWidth: 1, content: 'Installing...',
-                  font: {size: 13, style: FontStyle.Normal}, fontColor: Color.Gray,
-                  enableScanEffect: false, showDefaultPercentage: false})
+        Progress({ value: 100, total: 100, type: ProgressType.Capsule }).width(100).height(50)
+          .style({
+            borderColor: Color.Blue,
+            borderWidth: 1,
+            content: 'Installing...',
+            font: { size: 13, style: FontStyle.Normal },
+            fontColor: Color.Gray,
+            enableScanEffect: false,
+            showDefaultPercentage: false
+          })
       }
     }.width('100%').padding({ top: 5 })
   }
@@ -465,15 +471,19 @@ struct Index {
   @State value: number = 0
 
   build() {
-    Column({space: 10}) {
-      Text('enableSmoothEffect: true').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(5)
-        .margin({top: 20})
-      Progress({value: this.value, total: 100, type:ProgressType.Linear})
-        .style({strokeWidth: 10, enableSmoothEffect: true})
+    Column({ space: 10 }) {
+      Text('enableSmoothEffect: true')
+        .fontSize(9)
+        .fontColor(0xCCCCCC)
+        .width('90%')
+        .margin(5)
+        .margin({ top: 20 })
+      Progress({ value: this.value, total: 100, type: ProgressType.Linear })
+        .style({ strokeWidth: 10, enableSmoothEffect: true })
 
       Text('enableSmoothEffect: false').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(5)
-      Progress({value: this.value, total: 100, type:ProgressType.Linear})
-        .style({strokeWidth: 10, enableSmoothEffect: false})
+      Progress({ value: this.value, total: 100, type: ProgressType.Linear })
+        .style({ strokeWidth: 10, enableSmoothEffect: false })
 
       Button('value +10').onClick(() => {
         this.value += 10
@@ -484,7 +494,7 @@ struct Index {
     }
     .width('50%')
     .height('100%')
-    .margin({left:20})
+    .margin({ left: 20 })
   }
 }
 
@@ -500,19 +510,19 @@ struct Index {
 class MyProgressModifier implements ContentModifier<ProgressConfiguration> {
   color: Color = Color.White
 
-
-  constructor(color:Color) {
+  constructor(color: Color) {
     this.color = color
   }
-  applyContent() : WrappedBuilder<[ProgressConfiguration]>
-  {
+
+  applyContent(): WrappedBuilder<[ProgressConfiguration]> {
     return wrapBuilder(myProgress)
   }
 }
 
-@Builder function myProgress(config: ProgressConfiguration ) {
+@Builder
+function myProgress(config: ProgressConfiguration) {
 
-  Column({space:30}) {
+  Column({ space: 30 }) {
     Text("当前进度：" + config.value + "/" + config.total).fontSize(20)
     Row() {
       Flex({ justifyContent: FlexAlign.SpaceBetween }) {
@@ -520,26 +530,29 @@ class MyProgressModifier implements ContentModifier<ProgressConfiguration> {
           .width('30%')
           .height('30%')
           .commands('M108 0 L141 70 L218 78.3 L162 131 L175 205 L108 170 L41.2 205 L55 131 L1 78 L75 68 L108 0 Z')
-          .fill(config.enabled && config.value >=1 ? (config.contentModifier as MyProgressModifier).color : Color.White)
+          .fill(config.enabled && config.value >= 1 ? (config.contentModifier as MyProgressModifier).color :
+          Color.White)
           .stroke(Color.Black)
           .strokeWidth(3)
         Path()
           .width('30%')
           .height('30%')
           .commands('M108 0 L141 70 L218 78.3 L162 131 L175 205 L108 170 L41.2 205 L55 131 L1 78 L75 68 L108 0 Z')
-          .fill(config.enabled && config.value >=2 ? (config.contentModifier as MyProgressModifier).color : Color.White)
+          .fill(config.enabled && config.value >= 2 ? (config.contentModifier as MyProgressModifier).color :
+          Color.White)
           .stroke(Color.Black)
           .strokeWidth(3)
         Path()
           .width('30%')
           .height('30%')
           .commands('M108 0 L141 70 L218 78.3 L162 131 L175 205 L108 170 L41.2 205 L55 131 L1 78 L75 68 L108 0 Z')
-          .fill(config.enabled && config.value >=3 ? (config.contentModifier as MyProgressModifier).color : Color.White)
+          .fill(config.enabled && config.value >= 3 ? (config.contentModifier as MyProgressModifier).color :
+          Color.White)
           .stroke(Color.Black)
           .strokeWidth(3)
       }.width('100%')
     }
-  }.margin({bottom:100})
+  }.margin({ bottom: 100 })
 }
 
 @Entry
@@ -547,20 +560,21 @@ class MyProgressModifier implements ContentModifier<ProgressConfiguration> {
 struct Index {
   @State currentValue: number = 0
   modifier = new MyProgressModifier(Color.Red)
-  @State myModifier:(MyProgressModifier | undefined)  = this.modifier
+  @State myModifier: (MyProgressModifier | undefined) = this.modifier
+
   build() {
     Column() {
-        Progress({ value: this.currentValue, total: 3, type: ProgressType.Ring}).contentModifier(this.modifier)
-        Button('Progress++').onClick(()=>{
-          if (this.currentValue < 3) {
-            this.currentValue += 1
-          }
-        }).width('30%')
-        Button('addProgress--').onClick(()=>{
-          if (this.currentValue > 0) {
-            this.currentValue -= 1
-          }
-        }).width('30%')
+      Progress({ value: this.currentValue, total: 3, type: ProgressType.Ring }).contentModifier(this.modifier)
+      Button('Progress++').onClick(() => {
+        if (this.currentValue < 3) {
+          this.currentValue += 1
+        }
+      }).width('30%')
+      Button('addProgress--').onClick(() => {
+        if (this.currentValue > 0) {
+          this.currentValue -= 1
+        }
+      }).width('30%')
     }.width('100%').height('100%')
   }
 }
@@ -614,15 +628,16 @@ struct ProgressExample {
       Text('Capsule Progress').fontSize(9).width('90%')
       Row({ space: 15 }) {
         Progress({ value: 30, total: 100, type: ProgressType.Capsule })
-      .style({ content: "默认圆角", borderWidth: 5})
-      .width(100)
-      .height(60)
+          .style({ content: "默认圆角", borderWidth: 5 })
+          .width(100)
+          .height(60)
       }
+
       Row({ space: 15 }) {
         Progress({ value: 30, total: 100, type: ProgressType.Capsule })
-      .style({ content: "圆角为20vp", borderWidth: 5, borderRadius: LengthMetrics.vp(20)})
-      .width(100)
-      .height(60)
+          .style({ content: "圆角为20vp", borderWidth: 5, borderRadius: LengthMetrics.vp(20) })
+          .width(100)
+          .height(60)
       }
     }
     .width('100%')

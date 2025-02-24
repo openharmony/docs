@@ -548,7 +548,7 @@ DAHelper.notifyChange('dataability:///com.example.DataAbility').then(() => {
 
 ## DataAbilityHelper.insert
 
-insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>): void
+insert(uri: string, valuesBucket: [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket), callback: AsyncCallback\<number>): void
 
 将单个数据记录插入数据库。使用callback异步回调。
 
@@ -561,7 +561,7 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<num
 | 参数名         | 类型                   | 必填 | 说明                                                   |
 | ------------ | ---------------------- | ---- | ------------------------------------------------------ |
 | uri          | string                 | 是   | 表示要插入数据的uri。                               |
-| valuesBucket | rdb.ValuesBucket       | 是   | 表示要插入的数据记录。如果此参数为空，将插入一个空行。 |
+| valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)       | 是   | 表示要插入的数据记录。如果此参数为空，将插入一个空行。 |
 | callback     | AsyncCallback\<number> | 是   | 回调函数，返回插入数据记录的索引。                     |
 
 **示例：**
@@ -592,7 +592,7 @@ DAHelper.insert('dataability:///com.example.DataAbility', valueBucket, (error, d
 
 ## DataAbilityHelper.insert
 
-insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
+insert(uri: string, valuesBucket: [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)): Promise\<number>
 
 将单个数据记录插入数据库。使用Promise异步回调。
 
@@ -605,7 +605,7 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 | 参数名         | 类型             | 必填 | 说明                                                   |
 | ------------ | ---------------- | ---- | ------------------------------------------------------ |
 | uri          | string           | 是   | 表示要插入数据的uri。                               |
-| valuesBucket | rdb.ValuesBucket | 是   | 表示要插入的数据记录。如果此参数为空，将插入一个空行。 |
+| valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket) | 是   | 表示要插入的数据记录。如果此参数为空，将插入一个空行。 |
 
 **返回值：**
 
@@ -834,7 +834,7 @@ DAHelper.delete('dataability:///com.example.DataAbility', (error, data) => {
 
 ## DataAbilityHelper.update
 
-update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
+update(uri: string, valuesBucket: [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket), predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
 
 更新数据库中的数据记录。使用callback异步回调。
 
@@ -847,7 +847,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.Data
 | 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | 是   | 表示要更新数据的uri。                         |
-| valuesBucket | rdb.ValuesBucket                  | 是   | 表示要更新的数据。                               |
+| valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)                  | 是   | 表示要更新的数据。                               |
 | predicates   | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
 | callback     | AsyncCallback\<number>            | 是   | 回调函数，返回更新的数据记录数。                 |
 
@@ -881,7 +881,7 @@ DAHelper.update('dataability:///com.example.DataAbility', va, da, (error, data) 
 
 ## DataAbilityHelper.update
 
-update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>
+update(uri: string, valuesBucket: [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket), predicates?: dataAbility.DataAbilityPredicates): Promise\<number>
 
 更新数据库中的数据记录。使用Promise异步回调。
 
@@ -894,7 +894,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.Dat
 | 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | 是   | 表示要更新数据的uri。                         |
-| valuesBucket | rdb.ValuesBucket                  | 是   | 表示要更新的数据。                               |
+| valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)                  | 是   | 表示要更新的数据。                               |
 | predicates   | dataAbility.DataAbilityPredicates | 否   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
 
 **返回值：**
@@ -929,7 +929,7 @@ DAHelper.update('dataability:///com.example.DataAbility', va, da).then((data) =>
 
 ## DataAbilityHelper.update
 
-update(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>): void
+update(uri: string, valuesBucket: [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket), callback: AsyncCallback\<number>): void
 
 predicates筛选条件为空，自定义更新数据库的处理逻辑。使用callback异步回调。
 
@@ -942,7 +942,7 @@ predicates筛选条件为空，自定义更新数据库的处理逻辑。使用c
 | 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | 是   | 表示要更新数据的uri。                         |
-| valuesBucket | rdb.ValuesBucket                  | 是   | 表示要更新的数据。                               |
+| valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)                  | 是   | 表示要更新的数据。                               |
 | callback     | AsyncCallback\<number>            | 是   | 回调函数，返回更新的数据记录数。                 |
 
 **示例：**

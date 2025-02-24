@@ -147,7 +147,7 @@ A read, write, attach, or detach operation is being performed, and cannot be com
 
 **Error Message**
 
-The database is already attached.
+The database alias already exists.
 
 **Description**
 
@@ -214,6 +214,25 @@ The SQL statement used for query does not meet specifications.
 **Solution**
 
 Use SQL statements that comply with specifications.
+
+## 14800020 Key Damaged or Lost
+
+**Error Message**
+
+The secret key is corrupted or lost.
+
+**Description**
+
+The operation for obtaining the secret key fails.
+
+**Possible Causes**
+
+The root key is lost, the application does not have the permission to read the key file, or the key file is damaged.
+
+**Solution**
+
+1. Check the permission for accessing the key file and the content of the key file.
+2. Rebuild or restore the database.
 
 ## 14800021 SQLite: Generic Error
 
@@ -516,7 +535,7 @@ The WAL file size exceeds the default limit.
 
 **Description**
 
-The WAL file exceeds 200 MB, which is the default limit.
+The WAL file exceeds 512 MB, which is the default limit.
 
 **Possible Causes**
 
@@ -532,7 +551,7 @@ Data is added, deleted, and modified continuously without closing the read trans
 
 **Error Message**
 
-Failed to obtain subscription service.
+Failed to obtain the subscription service.
 
 **Description**
 
@@ -550,7 +569,7 @@ Deploy the subscription service on the platform.
 
 **Error Message**
 
- Only supported in stage mode.
+The operation is supported in the stage model only.
 
 **Description**
 
@@ -568,7 +587,7 @@ Perform the operation on the stage model.
 
 **Error Message**
 
-The data group id is not valid.
+Invalid data group ID.
 
 **Description**
 

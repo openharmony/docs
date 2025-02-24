@@ -18,7 +18,7 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
 创建WantAgent（callback形式）。 创建失败返回的WantAgent为空值。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -78,7 +78,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 创建WantAgent（Promise形式）。 创建失败返回的WantAgent为空值。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -135,7 +135,7 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 
 获取WantAgent实例的Bundle名称（callback形式）。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -208,7 +208,7 @@ getBundleName(agent: WantAgent): Promise\<string\>
 
 获取WantAgent实例的Bundle名称（Promise形式）。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -276,7 +276,7 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 
 获取WantAgent实例的用户ID（callback形式）。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -349,7 +349,7 @@ getUid(agent: WantAgent): Promise\<number\>
 
 获取WantAgent实例的用户ID（Promise形式）。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -416,7 +416,7 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 
 取消WantAgent实例（callback形式）。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -489,7 +489,7 @@ cancel(agent: WantAgent): Promise\<void\>
 
 取消WantAgent实例（Promise形式）。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -558,7 +558,7 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<Complet
 
 主动激发WantAgent实例（callback形式）。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -633,7 +633,7 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 
 判断两个WantAgent实例是否相等（callback形式）,以此来判断是否是来自同一应用的相同操作。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -643,7 +643,7 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 | ---------- | ------------------------ | ---- | --------------------------------------- |
 | agent      | WantAgent                | 是   | WantAgent对象。                           |
 | otherAgent | WantAgent                | 是   | WantAgent对象。                           |
-| callback   | AsyncCallback\<boolean\> | 是   | 判断两个WantAgent实例是否相等的回调方法。 |
+| callback   | AsyncCallback\<boolean\> | 是   | 判断两个WantAgent实例是否相等的回调方法。返回true表示两个WantAgent实例相等；返回false表示不相等。 |
 
 **示例：**
 
@@ -709,7 +709,7 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
 判断两个WantAgent实例是否相等（Promise形式）,以此来判断是否是来自同一应用的相同操作。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -724,7 +724,7 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取判断两个WantAgent实例是否相等的结果。 |
+| Promise\<boolean\> | 以Promise形式返回获取判断两个WantAgent实例是否相等的结果。返回true表示两个WantAgent实例相等；返回false表示不相等。 |
 
 **示例：**
 
@@ -774,9 +774,9 @@ wantAgent.getWantAgent({
 
 ## WantAgentFlags
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                | 值             | 说明                                                         |
 | ------------------- | -------------- | ------------------------------------------------------------ |
@@ -793,9 +793,9 @@ wantAgent.getWantAgent({
 
 ## OperationType
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称              | 值            | 说明                      |
 | ----------------- | ------------- | ------------------------- |
@@ -807,9 +807,9 @@ wantAgent.getWantAgent({
 
 ## CompleteData 
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称           | 类型                           | 必填 | 说明                    |
 | -------------- | ------------------------------ | ---- | ---------------------- |
@@ -818,3 +818,17 @@ wantAgent.getWantAgent({
 | finalCode      | number                          | 是   | 触发wantAgent的请求代码。|
 | finalData      | string                          | 是   | 公共事件收集的最终数据。  |
 | extraInfo      | { [key: string]: any }            | 否   | 额外数据。               |
+
+## WantAgent
+
+type WantAgent = object
+
+WantAgent对象。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| object | WantAgent对象。 |

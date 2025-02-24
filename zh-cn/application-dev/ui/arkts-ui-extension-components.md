@@ -7,8 +7,8 @@ UIExtension允许开发者创建可以嵌入到其他应用窗口上的界面扩
 ## 基本概念
 
 - [UIExtensionComponent](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)组件
-
-​	在使用方应用定义使用，在是ArkUI提供的提供的组件，可以使用ArkTS的声明式范式在应用中使用。
+	
+  在使用方应用定义使用，在是ArkUI提供的提供的组件，可以使用ArkTS的声明式范式在应用中使用。
 
 - [UIExtensionAbility](../application-models/uiextensionability.md)组件
 
@@ -78,7 +78,7 @@ UIExtension为了实现跨应用的能力共享，存在较开放的灵活性，
 
 | 组件                                                         | 能力规格 | 功能说明                                                     | 规格补充说明                                                 |
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [PluginComponent (系统接口)](../reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent-sys.md) | 不支持   | 用于给插件组件的使用者请求组件和数据，使用者发送组件模板和数据。支撑SystemUI实现插件化方式集成其他业务提供的UI。 | 1、和UIExtension能力类似，容易出现嵌套，增加复杂度；<br/>2、由于UIExtension组件的提供方已经在另一个进程中，默认能力下，无法提供访问宿主组件访问的能力。 |
+| [PluginComponent (系统接口)](../reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent-sys.md) | 不支持   | 用于给插件组件的使用者请求组件和数据，使用者发送组件模板和数据。支撑SystemUI实现插件化方式集成其他业务提供的UI。 | 1、和UIExtension能力类似，容易出现嵌套，增加复杂度。<br/>2、由于UIExtension组件的提供方已经在另一个进程中，默认能力下，无法提供访问宿主组件访问的能力。 |
 | [FormComponent（系统接口）](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md) | 不支持   | 提供卡片组件，实现卡片的显示功能。                           | 卡片组件提供的是跨进程的组件调用能力，UIExtension中嵌套使用会导致进程关系复杂，导致功能性能方面的问题。 |
 | [IsolatedComponent (系统接口)](../reference/apis-arkui/arkui-ts/ts-container-isolated-component-sys.md) | 不支持   | IsolatedComponent用于支持在本页面内嵌入显示独立Abc（.abc文件）提供的UI，展示的内容在受限worker线程中运行。 | 由于云卡能力也是一种跨应用调度的能力，UIExtension中暂不支持拉起云卡。 |
 | [FullScreenLaunchComponent (全屏启动元服务组件)](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md) | 不支持   | 全屏启动元服务组件，当被拉起方授权使用方可以嵌入式运行元服务时，使用方全屏嵌入式运行元服务；未授权时，使用方跳出式拉起元服务。 | 由于是一种跨应用调度的能力，UIExtension中暂不支持嵌套拉起。  |
@@ -93,7 +93,7 @@ UIExtension为了实现跨应用的能力共享，存在较开放的灵活性，
 | [警告弹窗](../reference/apis-arkui/arkui-ts/ts-methods-alert-dialog-box.md) | 部分支持 | 显示警告弹窗组件，可设置文本内容与响应回调。若在UIExtension中设置showInSubWindow为true, 弹窗将基于UIExtension的宿主窗口对齐。 | 需要依赖主窗的信息实现弹窗对齐，弹窗组件基于UIExtension提供的信息获取宿主应用的窗口信息实现了对齐应用窗口的能力。仅限于窗口对齐。 |
 | [列表选择弹窗](../reference/apis-arkui/arkui-ts/ts-methods-action-sheet.md) | 部分支持 | 列表弹窗。若在UIExtension中设置showInSubWindow为true, 弹窗将基于UIExtension的宿主窗口对齐。 | 需要依赖主窗的信息实现弹窗对齐，弹窗组件基于UIExtension提供的信息获取宿主应用的窗口信息实现了对齐应用窗口的能力。仅限于窗口对齐。 |
 | [自定义弹窗](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md) | 部分支持 | 通过CustomDialogController类显示自定义弹窗。使用弹窗组件时，可优先考虑自定义弹窗，便于自定义弹窗的样式与内容。若在UIExtension中设置showInSubWindow为true, 弹窗将基于UIExtension的宿主窗口对齐。 | 需要依赖主窗的信息实现弹窗对齐，弹窗组件基于UIExtension提供的信息获取宿主应用的窗口信息实现了对齐应用窗口的能力。仅限于窗口对齐。 |
-| [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) | 部分支持 | 该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为。 | 1、如果UIExtension未设置模态或沉浸式，Navigation无法扩展到安全区；<br/>2、无法路由到宿主方的页面中。 |
+| [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) | 部分支持 | 该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为。 | 1、如果UIExtension未设置模态或沉浸式，Navigation无法扩展到安全区。<br/>2、无法路由到宿主方的页面中。 |
 
 **Node-API接口**
 
@@ -112,7 +112,7 @@ Native API接口提供能力，在UIExtension场景下也需要考虑是否是�
 | [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md) | 不支持   | @ohos.window在API version 10 新增[getUIContext](../reference/apis-arkui/js-apis-window.md#getuicontext10)接口，获取UI上下文实例UIContext对象，使用UIContext对象提供的替代方法，可以直接作用在对应的UI实例上。 | 基于window获取，但UIExtension内部默认方式下，提供方无真正的窗口承载，无法使用该接口获取到正确的UIContext。 |
 | [DragController](../reference/apis-arkui/js-apis-arkui-dragController.md) | 不支持   | 本模块提供发起主动拖拽的能力，当应用接收到触摸或长按等事件时可以主动发起拖拽的动作，并在其中携带拖拽信息。<br/>本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见UIContext说明。 | 拖拽时通过UIContext上下文传递组件间的事件传递，使用方应用和提供方应用不共享UIContext内容，默认能力下无法支持拖拽事件的传递。 |
 | [布局回调](../reference/apis-arkui/js-apis-arkui-inspector.md) | 部分支持 | 提供注册组件布局和绘制完成回调通知的能力。                   | 如果指定UIExtension组件，预期是获得所有UIExtension中的组件信息，尚未支持该能力；提供方内部可以正常使用。 |
-| [性能监测](../reference/apis-arkui/js-apis-arkui-performancemonitor-sys.md) | 不支持   | 用户操作场景提供性能相关指标监测能力，目前仅包含响应时延、完成时延、丢帧。不支持 | —                                                            |
+| [性能监测](../reference/apis-arkui/js-apis-arkui-performancemonitor-sys.md) | 不支持   | 用户操作场景提供性能相关指标监测能力，目前仅包含响应时延、完成时延、丢帧。 | —                                                            |
 | [注册自定义字体](../reference/apis-arkui/js-apis-font.md)    | 不支持   | 本模块提供注册自定义字体。                                   | 注册字体存在影响范围的问题，提供方侧无法影响使用方应用的字体。 |
 | [PluginComponentManager](../reference/apis-arkui/js-apis-plugincomponent.md) | 不支持   | 用于给插件组件的使用者请求组件与数据，使用者发送组件模板和数据。 | 依赖获取其他组件的数据，提供方组件在另一个进程中，无法提供访问宿主组件的能力。 |
 | [用户界面外观(系统接口)](../reference/apis-arkui/js-apis-uiappearance-sys.md) | 不支持   | 用户界面外观提供管理系统外观的一些基础能力，目前仅包括深浅色模式配置。 | 提供方不能通过该能力影响使用方。                             |
@@ -121,7 +121,7 @@ Native API接口提供能力，在UIExtension场景下也需要考虑是否是�
 
 **安全能力约束**
 
-UIExtensionComponent组件（使用方）可以访问调用集成了UIExtensionAbility的应用（提供方），提供了一种通用应用共享能力。UIExtension能力无法独立提供安全保障机制，作为提供服务的应用（提供方）保护自己不被使用方应用攻击，需要提供方应用结合使用其他ArkUI的能力进行安全保护。（包括CreateModalUIExtension场景）。
+UIExtensionComponent组件（使用方）可以访问调用集成了UIExtensionAbility的应用（提供方），提供了一种通用应用共享能力。UIExtension能力无法独立提供安全保障机制，作为提供服务的应用（提供方）保护自己不被使用方应用攻击，需要提供方应用结合使用其他ArkUI的能力进行安全保护（包括CreateModalUIExtension场景）。
 
 由于UIExtension能力（包含基于UIExtension衍生的相关能力，如提供给系统内CreateModalUIExtension）机制的灵活性，如果提供方应用存在安全方面的诉求，无法在现有UIExtension的场景下解决的，建议优先使用其他方案。如选择继续采用UIExtension能力，提供方应用以及使用方应用都需要承担一定的安全风险。
 
@@ -139,6 +139,17 @@ UIExtensionComponent组件（使用方）可以访问调用集成了UIExtensionA
 
 - 缺点：设置后使用方的交互行为将受限，使用方无法再创建任何子窗覆盖到提供方的窗口上。
 
+锁屏之上显示管控：
+
+和`UIAbility`规格对齐，`UIExtension`被拉起方应用需要具备锁屏显示的权限才能够成功显示在锁屏之上(该管控仅针对设备处于未解锁状态有效，比如机主设置了锁屏密码，指纹，人脸识别等安全认证，用户主动锁屏后亮屏的场景)。
+由于锁屏上只能拉起系统应用的`UIAbility`，`UIExtension`的锁屏管控权限定义如下：
+
+| 属性     | 值                                                  |
+| -------- | --------------------------------------------------- |
+| 权限名   | `ohos.permission.CALLED_UIEXTENSION_ON_LOCK_SCREEN` |
+| APL等级  | `SYSTEM_CORE`                                       |
+| 授权方式 | `SYSTEM_GRANT`                                      |
+| 开放范围 | `SYSTEM_APPLICATION`                                |
 
 **嵌套约束**
 

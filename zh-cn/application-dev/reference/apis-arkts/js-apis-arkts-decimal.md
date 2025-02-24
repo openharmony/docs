@@ -5,7 +5,8 @@ Decimal用于提供高精度数学库，主要用于提供高精度浮点运算�
 > **说明：**
 >
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
+>
+> 此模块仅支持在ArkTS文件（文件后缀为.ets）中导入使用。
 
 ## 导入模块
 
@@ -90,7 +91,7 @@ type Modulo = Rounding | 9
 | toExpPos  | number                 | 否   | 否   | 指数表示法的正指数值的极限值，若Decimal的正指数大于等于该值时，使用科学计数法表示，[toString](#tostring)方法中使用，取值范围为[0, 9e15]，默认值为21。 |
 | minE      | number                 | 否   | 否   | 负指数极限，若Decimal的指数值小于该值，会下溢到零，取值范围为[-9e15, 0]，默认值为-9e15。 |
 | maxE      | number                 | 否   | 否   | 正指数极限，若Decimal的指数值大于该值，会溢出至无穷大，取值范围为[0, 9e15]，默认值为9e15。 |
-| crypto    | boolean                | 否   | 否   | 确定是否使用加密安全伪随机数生成的值，默认值为false。该能力不支持使用，报错的错误码为：10200061  |
+| crypto    | boolean                | 否   | 否   | 确定是否使用加密安全伪随机数生成的值，默认值为false。该能力不支持使用，报错的错误码为：10200061。  |
 | modulo    | [Modulo](#modulo)      | 否   | 否   | 模计算时使用的舍入模式，取值范围为0到9的整数，默认值为1。    |
 | defaults  | boolean                | 否   | 否   | 表示未指定的属性是否被设置为默认值，true表示使用默认值，false表示不使用默认值，默认值为true。 |
 
@@ -295,7 +296,7 @@ console.info("test Decimal clamp:" + data.toString()); // 'test Decimal clamp:10
 
 ### add
 
-add(n: Value): Decimal;
+add(n: Value): Decimal
 
 返回一个新的Decimal，其值为该Decimal的值加上n。
 

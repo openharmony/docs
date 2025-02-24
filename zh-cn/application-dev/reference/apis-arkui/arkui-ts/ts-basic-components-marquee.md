@@ -28,15 +28,15 @@ Marquee(options: MarqueeOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [MarqueeOptions](#marqueeoptions14对象说明) | 是 | 配置跑马灯组件的参数。|
+| options | [MarqueeOptions](#marqueeoptions16对象说明) | 是 | 配置跑马灯组件的参数。|
 
-## MarqueeOptions<sup>14+</sup>对象说明
+## MarqueeOptions<sup>16+</sup>对象说明
 
 Marquee初始化参数。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -52,7 +52,7 @@ Marquee初始化参数。
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### fontColor
 
@@ -207,19 +207,20 @@ onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 @Entry
 @Component
 struct MarqueeExample {
-  @State start: boolean = false
-  @State src: string = ''
-  @State marqueeText: string = 'Running Marquee'
-  private fromStart: boolean = true
-  private step: number = 10
-  private loop: number = Number.POSITIVE_INFINITY
-  controller: TextClockController = new TextClockController()
-  convert2time(value: number): string{
-    let date = new Date(Number(value+'000'));
+  @State start: boolean = false;
+  @State src: string = '';
+  @State marqueeText: string = 'Running Marquee';
+  private fromStart: boolean = true;
+  private step: number = 10;
+  private loop: number = Number.POSITIVE_INFINITY;
+  controller: TextClockController = new TextClockController();
+
+  convert2time(value: number): string {
+    let date = new Date(Number(value + '000'));
     let hours = date.getHours().toString().padStart(2, '0');
     let minutes = date.getMinutes().toString().padStart(2, '0');
     let seconds = date.getSeconds().toString().padStart(2, '0');
-    return hours+ ":" + minutes + ":" + seconds;
+    return hours + ":" + minutes + ":" + seconds;
   }
 
   build() {
@@ -236,23 +237,25 @@ struct MarqueeExample {
         .height('80vp')
         .fontColor('#FFFFFF')
         .fontSize('48fp')
+        .allowScale(true) // 当fontSize为‘fp’单位且想要Marquee组件文本跟随系统字体大小缩放，可以设置该属性为true
         .fontWeight(700)
+        .fontFamily('HarmonyOS Sans') // 不想跟随主题字体可设置该属性为默认字体'HarmonyOS Sans'
         .backgroundColor('#182431')
         .margin({ bottom: '40vp' })
         .onStart(() => {
-          console.info('Succeeded in completing the onStart callback of marquee animation')
+          console.info('Succeeded in completing the onStart callback of marquee animation');
         })
         .onBounce(() => {
-          console.info('Succeeded in completing the onBounce callback of marquee animation')
+          console.info('Succeeded in completing the onBounce callback of marquee animation');
         })
         .onFinish(() => {
-          console.info('Succeeded in completing the onFinish callback of marquee animation')
+          console.info('Succeeded in completing the onFinish callback of marquee animation');
         })
       Button('Start')
         .onClick(() => {
           this.start = true
           // 启动文本时钟
-          this.controller.start()
+          this.controller.start();
         })
         .width('120vp')
         .height('40vp')

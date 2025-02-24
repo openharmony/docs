@@ -287,10 +287,10 @@
 
 | 名称   | 类型     | 必填   | 说明                          |
 | ---- | ------ | ---- | --------------------------- |
-| top    | [Dimension](#dimension10) | 否    | 相对顶边的偏移量 |
-| bottom    | [Dimension](#dimension10) | 否    | 相对底边的偏移量 |
-| left    | [Dimension](#dimension10) | 否    | 相对左边的偏移量 |
-| right    | [Dimension](#dimension10) | 否    | 相对右边的偏移量 |
+| top    | [Dimension](#dimension10) | 否    | 相对顶边的偏移量。 |
+| bottom    | [Dimension](#dimension10) | 否    | 相对底边的偏移量。 |
+| left    | [Dimension](#dimension10) | 否    | 相对左边的偏移量。 |
+| right    | [Dimension](#dimension10) | 否    | 相对右边的偏移量。 |
 
 ## LocalizedEdges<sup>12+</sup>
 
@@ -496,18 +496,16 @@
 | START  | 前部区域。 |
 | END    | 尾部区域。 |
 
-## KeyboardAvoidMode<sup>11+</sup>
+## KeyboardAvoidMode<sup>12+</sup>枚举说明
 
-配置键盘避让时页面的避让模式。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 描述       |
-| ------ | ---------- |
-| OFFSET | 上抬模式。 |
-| RESIZE | 压缩模式。 |
-| OFFSET_WITH_CARET<sup>14+</sup> | 上抬模式，输入框光标位置发生变化时候也会触发避让。|
-| RESIZE_WITH_CARET<sup>14+</sup> | 压缩模式，输入框光标位置发生变化时候也会触发避让。|
+| 名称    | 值   | 说明                                             |
+| ------- | ---- | ------------------------------------------------ |
+| DEFAULT | 0    | 默认避让软键盘并在到达极限高度之后进行高度压缩。 |
+| NONE    | 1    | 不避让软键盘。                                   |
 
 ## LayoutSafeAreaType<sup>12+</sup>
 
@@ -682,6 +680,57 @@ getCaretOffset(): CaretOffset
 > - 在Search组件中，不输入文本时，返回值中有相对Search组件的位置信息。
 > - 返回值中的位置信息是光标相对于可编辑组件的位置。
 
+### addText<sup>15+</sup>
+
+addText(text: string, textOperationOptions?: TextContentControllerOptions): number
+
+在已编辑文本的指定位置插入文本，默认插入至文本末尾。
+拖拽文本的状态下不生效。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型   | 必填   | 说明  |
+| ------- | ------ | ---- | ----- |
+| text | string | 是    | 插入的文本内容。 |
+| textOperationOptions   | [TextContentControllerOptions](#textcontentcontrolleroptions15) | 否    | 插入文本的配置选项，不设置时默认插入文本至末尾。 |
+
+### deleteText<sup>15+</sup>
+
+deleteText(range?: TextRange): void
+
+删除已编辑文本的指定区域的内容。
+拖拽文本的状态下不生效。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型   | 必填   | 说明  |
+| ------- | ------ | ---- | ----- |
+| range | [TextRange](ts-text-common.md#textrange12) | 否    | 删除文本的范围，包括删除文本的起始位置和终止位置。<br>未指定删除范围时，默认将删除全部文本。未指定删除文本的起始位置，则默认从下标0开始删除；未指定删除文本的终止位置，则默认以文本末尾作为删除的结束点。 |
+
+### getSelection<sup>15+</sup>
+
+getSelection(): TextRange
+
+返回当前文本的选择范围。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                      | 说明               |
+| ----------------------- | ---------------- |
+| [TextRange](ts-text-common.md#textrange12) | 文本当前的选择范围，未选中返回光标位置。 |
+
 ## TextDecorationOptions<sup>12+</sup>对象说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -768,3 +817,37 @@ setTextSelection选中文字时的配置。
 | --------- | ------ | ---- | ---- | ---------- |
 | colorMode | string | 是   | 否   | 颜色模式。 |
 | fontScale | number | 是   | 否   | 字体缩放。 |
+
+## LayoutPolicy<sup>15+</sup>
+
+用于设置线性布局的布局策略。
+
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 类型   | 只读 | 说明 |
+| --------- | ------ | ---- |---------- |
+| MATCH_PARENT | LayoutPolicy | 是 | 适应父组件布局。 |
+
+>  **说明：**
+>
+>  - 当线性布局组件的父容器设定了长度，组件将以父容器的尺寸为基准，自动调整以适应父组件的布局。若父容器未设定长度，线性布局组件则会等待所有子组件完成布局后，再进行自身调整以适应父组件布局。
+> 
+>  - 若同一父组件下有多个设置MATCH_PARENT的子组件，则多个子组件均会被设置为父组件大小，也即会产生溢出现象。
+> 
+>  - MATCH_PARENT会强制将自身大小设置成父组件大小，因此其设置的其他约束大小的属性将会失效。
+
+## TextContentControllerOptions<sup>15+</sup>
+
+用于设置输入框插入字符时的配置选项。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 类型   | 只读 | 可选 | 说明       |
+| --------- | ------ | ---- | ---- | ---------- |
+| offset | number | 是   | 是   | 插入文本的位置。 |

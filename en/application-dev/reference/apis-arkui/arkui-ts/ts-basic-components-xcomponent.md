@@ -86,7 +86,12 @@ In addition to universal attributes, the following attributes are supported.
   >
   > The **foregroundColor**, **obscured**, and **pixelStretchEffect** attributes are not supported. When **type** is set to **SURFACE**, the following are not supported either: attribute modifier, custom drawing, background options (except **backgroundColor**), image effects (except **shadow**), **maskShape**, and **foregroundEffect** attributes.
   >
-  > When the **XComponent** is of the TEXTURE or SURFACE type, if the [renderFit](./ts-universal-attributes-renderfit.md) attribute is not set, it defaults to **RenderFit.RESIZE_FILL**.
+  > For the **XComponent** component of the TEXTURE or SURFACE type, if the [renderFit](./ts-universal-attributes-renderfit.md) attribute is not set, it defaults to **RenderFit.RESIZE_FILL**.
+  > 
+  > For the **XComponent** component of the SURFACE type with an opaque black background, the [renderFit](./ts-universal-attributes-renderfit.md) attribute can only be set to **RenderFit.RESIZE_FILL**. Other **RenderFit** enum values are not recommended.
+  >
+  > For the **XComponent** component created using the [ArkUI NDK API](../../../ui/ndk-access-the-arkts-page.md), the [getAttribute](../_ark_u_i___native_node_a_p_i__1.md#getattribute) function is not supported for obtaining the **renderFit** attribute value.
+
 ### enableAnalyzer<sup>12+</sup>
 
 enableAnalyzer(enable: boolean)
@@ -376,8 +381,9 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 Starts AI image analysis in the given settings. Before calling this API, make sure the AI image analyzer is [enabled](#enableanalyzer12).<br>Because the image frame used for analysis is the one captured when this API is called, pay attention to the invoking time of this API.<br>If this API is repeatedly called before the execution is complete, an error callback is triggered.
 
 > **NOTE**
-> 
+>
 > The image analysis type cannot be dynamically modified.
+>
 > This API depends on device capabilities. If it is called on an incompatible device, an error code is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.

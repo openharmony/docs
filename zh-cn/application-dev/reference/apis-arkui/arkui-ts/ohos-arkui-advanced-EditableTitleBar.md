@@ -21,7 +21,7 @@ import { EditableTitleBar } from '@kit.ArkUI'
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)
 
 
 ## EditableTitleBar
@@ -70,6 +70,7 @@ EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitle
 | 名称 | 类型 | 必填 | 说明                                                                                                                                                                                                                                                          |
 | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                   |
+| symbolStyle<sup>16+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol图标资源，优先级大于value。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | label<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标标签描述。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                 |
 | isEnabled | boolean | 否 | 是否启用，默认启用。<br> isEnabled为true时，表示为启用。<br> isEnabled为false时，表示为禁用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                       |
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                               |
@@ -104,7 +105,7 @@ type EditableTitleBarItem = EditableTitleBarMenuItem
 | safeAreaEdges  | Array <[SafeAreaEdge](ts-types.md#safeareaedge10)> | 否   | 非必填，配置扩展安全区域的方向。<br />默认值: [SafeAreaEdge.TOP] |
 
 ## 事件
-不支持[通用事件](ts-universal-events-click.md)
+不支持[通用事件](ts-component-general-events.md)
 
 ## 示例
 
@@ -121,6 +122,7 @@ struct Index {
     Row() {
       Column() {
         Divider().height(2).color(0xCCCCCC)
+        // 左侧取消按钮，右侧保存按钮。
         EditableTitleBar({
           leftIconStyle: EditableLeftIconType.Cancel,
           title: '编辑页面',
@@ -133,12 +135,13 @@ struct Index {
           }
         })
         Divider().height(2).color(0xCCCCCC)
+        // 左侧返回按钮，右侧自定义取消按钮（disabled）、保存按钮。
         EditableTitleBar({
           leftIconStyle: EditableLeftIconType.Back,
           title: '编辑页面',
           menuItems: [
             {
-              value: $r('app.media.ic_public_reduce'),
+              value: $r('sys.media.ohos_ic_public_cancel'),
               isEnabled: false,
               action: () => {
                 promptAction.showToast({ message: 'show toast index 2' });
@@ -156,7 +159,7 @@ struct Index {
 }
 ```
 
-![zh-cn_image_0000001617073302](figures/zh-cn_image_0000001617073302.png)
+![zh-cn_image_editabletitlebar_example01](figures/zh-cn_image_editabletitlebar_example01.png)
 
 ### 示例2（头像与背景模糊标题栏）
 该示例主要演示EditableTitleBar设置背景模糊、头像；取消右侧保存图标及自定义标题栏外边距的效果。
@@ -167,7 +170,7 @@ import { EditableLeftIconType, EditableTitleBar, LengthMetrics, promptAction, ro
 @Entry
 @Component
 struct Index {
-  @State titlebarMargin: LocalizedMargin = {
+  @State titleBarMargin: LocalizedMargin = {
     start: LengthMetrics.vp(35),
     end: LengthMetrics.vp(35),
   };
@@ -187,9 +190,7 @@ struct Index {
             promptAction.showToast({ message: "on save" });
           },
         })
-
         Divider().height(2).color(0xCCCCCC);
-
         EditableTitleBar({
           leftIconStyle: EditableLeftIconType.Cancel,
           title: '主标题',
@@ -197,9 +198,7 @@ struct Index {
           // 取消右侧保存按钮
           isSaveIconRequired: false,
         })
-
         Divider().height(2).color(0xCCCCCC);
-
         EditableTitleBar({
           leftIconStyle: EditableLeftIconType.Back,
           title: '主标题',
@@ -209,9 +208,7 @@ struct Index {
             router.back();
           },
         })
-
         Divider().height(2).color(0xCCCCCC);
-
         EditableTitleBar({
           leftIconStyle: EditableLeftIconType.Back,
           title: '主标题',
@@ -231,23 +228,21 @@ struct Index {
             router.back();
           },
         })
-
         Divider().height(2).color(0xCCCCCC);
-
         EditableTitleBar({
           leftIconStyle: EditableLeftIconType.Back,
           title: '主标题',
           subtitle: '副标题',
           // 设置可点击头像
           imageItem: {
-            value: $r('app.media.img'),
+            value: $r('sys.media.ohos_ic_normal_white_grid_image'),
             isEnabled: true,
             action: () => {
               promptAction.showToast({ message: "show toast index 2" });
             }
           },
           // 设置标题栏外边距
-          contentMargin: this.titlebarMargin,
+          contentMargin: this.titleBarMargin,
           // 右侧图标配置
           menuItems: [
             {
@@ -268,13 +263,13 @@ struct Index {
 }
 ```
 
-![zh-cn_image_EditableTitleBar](figures/zh-cn_image_EditableTitleBar.png)
+![zh-cn_image_editabletitlebar_example02](figures/zh-cn_image_editabletitlebar_example02.png)
 
 ### 示例3（右侧自定义按钮播报）
 该示例通过设置标题栏的右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
 
-import {  LengthMetrics, promptAction, router, EditableLeftIconType, EditableTitleBar } from '@kit.ArkUI'；
+import { promptAction, router, EditableLeftIconType, EditableTitleBar } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -301,7 +296,7 @@ struct Index1 {
           title: '主标题',
           subtitle: '副标题',
           imageItem: {
-            value: $r('app.media.image'),
+            value: $r('sys.media.ohos_ic_normal_white_grid_image'),
             isEnabled: true,
             action: () => {
               promptAction.showToast({ message: "show toast index 1" });
@@ -403,3 +398,72 @@ struct Index {
 }
 ```
 ![/editabletitlebarDefaultFocus02](figures/editabletitlebarDefaultFocus02.png)
+
+### 示例6（设置Symbol类型图标）
+
+该示例通过设置EditableTitleBarMenuItem的属性symbolStyle，展示了自定义Symbol类型图标。
+
+```ts
+import { EditableLeftIconType, EditableTitleBar, promptAction, SymbolGlyphModifier } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Divider().height(2).color(0xCCCCCC)
+        EditableTitleBar({
+          leftIconStyle: EditableLeftIconType.Cancel,
+          title: '主标题',
+          subtitle: '副标题',
+          menuItems: [
+            {
+              value: $r('sys.symbol.house'),
+              isEnabled: true,
+              action: () => {
+                promptAction.showToast({ message: 'show toast index 2' });
+              }
+            },
+            {
+              value: $r('sys.symbol.car'),
+              isEnabled: false,
+            }
+          ],
+        })
+        Divider().height(2).color(0xCCCCCC)
+        EditableTitleBar({
+          leftIconStyle: EditableLeftIconType.Back,
+          title: '主标题',
+          subtitle: '副标题',
+          imageItem: {
+            value: $r('sys.media.ohos_app_icon'),
+            isEnabled: true,
+            action: () => {
+              promptAction.showToast({ message: "show toast index 1" });
+            }
+          },
+          menuItems: [
+            {
+              value: $r('sys.symbol.house'),
+              symbolStyle: new SymbolGlyphModifier($r('sys.symbol.bell')).fontColor([Color.Red]),
+              isEnabled: true,
+              action: () => {
+                promptAction.showToast({ message: 'show toast index 2' });
+              }
+            },
+            {
+              value: $r('sys.symbol.car'),
+              symbolStyle: new SymbolGlyphModifier($r('sys.symbol.heart')).fontColor([Color.Blue]),
+              isEnabled: false,
+            }
+          ],
+        })
+        Divider().height(2).color(0xCCCCCC)
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
+![示例6-EditableTitleBar示例6 设置Symbol类型图标](figures/zh-cn_image_editabletitlebar_demo_06.png)

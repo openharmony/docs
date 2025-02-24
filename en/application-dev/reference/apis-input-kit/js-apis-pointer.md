@@ -644,47 +644,48 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
 });
 ```
 ## CustomCursor<sup>14+</sup>
-Defines a custom cursor.
+
+Pixel map resource.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
-
-| Name   | Type    | Read Only  | Optional  | Description  |
-| ------ | ------- | ---------- | --------- | ------------ |
-| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | No   | No   | Custom cursor. The size limit is 256 x 256.|
-| focusX  | number | No   | Yes   | Horizontal coordinate of the focus of the custom cursor. It is subject to the size of the custom cursor.|
-| focusY  | number | No   | Yes   | Vertical coordinate of the focus of the custom cursor. It is subject to the size of the custom cursor.|
+| Name    | Type    | Readable    | Writable    | Description    |
+| -------- | ------- | -------- | -------- | ------- |
+| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | No  | No  | Defines a custom cursor. The maximum resolution is 256 x 256 pixels.|
+| focusX  | number | No  | Yes  | Horizontal coordinate of the cursor focus. The coordinates are restricted by the size of the custom cursor. The default value is **0**.|
+| focusY  | number | No  | Yes  | Vertical coordinate of the cursor focus. The coordinates are restricted by the size of the custom cursor. The default value is **0**.|
 
 ## CursorConfig<sup>14+</sup>
-Specifies custom cursor config.
+
+Defines the custom cursor configuration.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
-| Name   | Type    | Read Only  | Optional  | Description  |
-| ------ | ------- | ---------- | --------- | ------------ |
-| followSystem  | boolean  | No  | No   | Whether to adjust the cursor size based on the system settings.|
-
+| Name    | Type    | Readable    | Writable    | Description    |
+| -------- | ------- | -------- | -------- | ------- |
+| followSystem  | boolean  | No  | No  | Whether to adjust the cursor size based on system settings. The value **false** indicates that the size of the custom cursor is used, and the value **true** indicates that the cursor size is adjusted based on the system settings.|
 
 ## pointer.setCustomCursor<sup>14+</sup>
 
 setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): Promise&lt;void&gt;
 
-Sets the custom cursor. You can set whether to adjust the cursor size based on the system settings.This API Use a Promise asynchronous method to return the result.
+Sets the custom cursor style. This API uses a promise to return the result.
+The cursor may be switched back to the system style in the following cases: application window layout change, hot zone switching, page redirection, moving of the cursor out of the window and then back to the window, or moving of the cursor in different areas of the window. In this case, you need to reset the cursor style.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
 **Parameters**
 
-| Name   | Type    | Mandatory  | Description                                 |
-| ----- | ------ | ---- | ----------------------------------- |
+| Name   | Type   | Mandatory   | Description   |
+| -------- | -------- | -------- | -------- |
 | windowId  | number  | Yes   | Window ID.                         |
-| cursor  | [CustomCursor](js-apis-pointer.md#customcursor14) | Yes   | Defines a custom cursor.|
-| config  | [CursorConfig](js-apis-pointer.md#cursorconfig14) | Yes   | Specifies custom cursor config.|
+| cursor  | [CustomCursor](js-apis-pointer.md#customcursor14) | Yes   | Pixel map resource.|
+| config  | [CursorConfig](js-apis-pointer.md#cursorconfig14) | Yes   | Defines the custom cursor configuration.|
 
 **Return value**
 
 | Name                 | Description              |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | Returns the result through a promise.|
+| Promise&lt;void&gt; | This API uses a promise to return the result. The value **0** indicates that the operation is successful, and any other value indicates that the operation fails.|
 
 **Error codes**
 

@@ -40,14 +40,12 @@ Represents the callback triggered when a geofence status change event is receive
 ```ts
 import { FenceExtensionAbility, geoLocationManager } from '@kit.LocationKit';
 import { notificationManager } from '@kit.NotificationKit';
-import { wantAgent } from '@kit.AbilityKit';
+import { Want, wantAgent } from '@kit.AbilityKit';
 
-export default class MyFenceExtensionAbility extends FenceExtensionAbility {
-  async onFenceStatusChange(transition: geoLocationManager.GeofenceTransition,
-    additions: Record<string, string>): void {
+export class MyFenceExtensionAbility extends FenceExtensionAbility {
+  onFenceStatusChange(transition: geoLocationManager.GeofenceTransition, additions: Record<string, string>): void {
     // Receive the geofence status change event and process the service logic.
-    hilog.info(0x0000, "TAG",
-      `on geofence transition,id:${transition.geofenceId},event:${transition.transitionEvent},additions:${JSON.stringify(additions)}`);
+    console.info(`on geofence transition,id:${transition.geofenceId},event:${transition.transitionEvent},additions:${JSON.stringify(additions)}`);
 
     // Send a geofence notification.
     let wantAgentInfo: wantAgent.WantAgentInfo = {
@@ -65,23 +63,23 @@ export default class MyFenceExtensionAbility extends FenceExtensionAbility {
       actionType: wantAgent.OperationType.START_ABILITY,
       requestCode: 100
     };
-    let wantAgentMy = await wantAgent.getWantAgent(wantAgentInfo);
-    let notificationRequest: notificationManager.NotificationRequest = {
-      id: 1,
-      content: {
-        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
-        normal: {
-          title: "Geofence Notification",
-          text: `on geofence transition,id:${transition.geofenceId},event:${transition.transitionEvent},additions:${JSON.stringify(additions)}`,
-        }
-      },
-      notificationSlotType: notificationManager.SlotType.SOCIAL_COMMUNICATION,
-      wantAgent: wantAgentMy
-    };
-    notificationManager.publish(notificationRequest);
+    wantAgent.getWantAgent(wantAgentInfo).then((wantAgentMy) => {
+      let notificationRequest: notificationManager.NotificationRequest = {
+        id: 1,
+        content: {
+          notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+          normal: {
+            title: "Geofence Notification",
+            text: `on geofence transition,id:${transition.geofenceId},event:${transition.transitionEvent},additions:${JSON.stringify(additions)}`,
+          }
+        },
+        notificationSlotType: notificationManager.SlotType.SOCIAL_COMMUNICATION,
+        wantAgent: wantAgentMy
+      };
+      notificationManager.publish(notificationRequest);
+    });
   }
 }
-
 ```
 ## FenceExtensionAbility.onDestroy
 

@@ -17,7 +17,7 @@ JSVM-API中提供操作private属性能力的接口。
 | OH_JSVM_CreatePrivate                  | 创建一个js private key对象。   |
 | OH_JSVM_SetPrivate                     | 为传入的object设置一个private属性。   |
 | OH_JSVM_GetPrivate                     | 为传入的object获取private key对应的private属性。   |
-| OH_JSVM_DeletePrivate                  | 为传入的object删除private key对应的private属性。。   |
+| OH_JSVM_DeletePrivate                  | 为传入的object删除private key对应的private属性。   |
 
 ## 使用示例
 

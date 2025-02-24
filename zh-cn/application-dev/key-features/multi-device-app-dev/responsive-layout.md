@@ -355,7 +355,7 @@ struct MediaQuerySample {
 
 修改默认的断点范围，同时启用xl和xxl断点。
 
-图片右下角显示了当前设备屏幕的尺寸（即应用窗口尺寸），可以看到随着窗口尺寸发生变化，栅格的断点也相应发生了改变。（为了便于理解，下图中将设备的DPI设置为160，此时1vp=1px）
+图片右下角显示了当前设备屏幕的尺寸（即应用窗口尺寸），可以看到随着窗口尺寸发生变化，栅格的断点也相应发生了改变（为了便于理解，下图中将设备的DPI设置为160，此时1vp=1px）。
 
 ![window3](figures/window3.gif)
 
@@ -440,7 +440,7 @@ struct GridRowSample2 {
 栅格组件columns默认为12列，gutter默认为0，同时支持开发者根据实际需要定义不同断点下的columns数量以及gutter长度。特别的，在栅格组件实际使用过程中，常常会发生多个元素占据的列数相加超过总列数而折行的场景。栅格组件还允许开发者分别定义水平方向的gutter（相邻两列之间的间距）和垂直方向的gutter（折行时相邻两行之间的间距）。
 
 
-  考虑到[组件通用属性](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)中已经有margin和padding，栅格组件不再单独提供额外的margin属性，直接使用通用属性即可。借助margin或者padding属性，均可以控制栅格组件与父容器左右边缘的距离，但是二者也存在一些差异：
+  考虑到[组件通用属性](../../reference/apis-arkui/arkui-ts/ts-component-general-attributes.md)中已经有margin和padding，栅格组件不再单独提供额外的margin属性，直接使用通用属性即可。借助margin或者padding属性，均可以控制栅格组件与父容器左右边缘的距离，但是二者也存在一些差异：
 - margin区域在栅格组件的边界外，padding区域在栅格组件的边界内。
 
 - 栅格组件的backgroundColor会影响padding区域，但不会影响margin区域。

@@ -24,9 +24,9 @@ Defines functions for parameter set lifecycle management, including initializing
 
 | Name| Description| 
 | -------- | -------- |
-| struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_InitParamSet](#oh_huks_initparamset) (struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*\*paramSet) | Initializes a parameter set. | 
-| struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_AddParams](#oh_huks_addparams) (struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Param](_o_h___huks___param.md) \*params, uint32_t paramCnt) | Adds parameters to a parameter set. | 
-| struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_BuildParamSet](#oh_huks_buildparamset) (struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*\*paramSet) | Builds a parameter set. | 
+| struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_InitParamSet](#oh_huks_initparamset) (struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*\*paramSet) | Initializes a parameter set and pre-allocates memory to **paramSet**. | 
+| struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_AddParams](#oh_huks_addparams) (struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Param](_o_h___huks___param.md) \*params, uint32_t paramCnt) | Adds parameters to a parameter set. Before calling this API, call **OH_Huks_InitParamSet** to initialize **paramSet**. | 
+| struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_BuildParamSet](#oh_huks_buildparamset) (struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*\*paramSet) | Builds a parameter set. After adding parameters to **paramSet**, call **OH_Huks_BuildParamSet** to integrate the parameter set. | 
 | void [OH_Huks_FreeParamSet](#oh_huks_freeparamset) (struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*\*paramSet) | Frees a parameter set. | 
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_CopyParamSet](#oh_huks_copyparamset) (const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*fromParamSet, uint32_t fromParamSetSize, struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*\*paramSet) | Copies a parameter set (deep copy). | 
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_GetParam](#oh_huks_getparam) (const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, uint32_t tag, struct [OH_Huks_Param](_o_h___huks___param.md) \*\*param) | Obtains a parameter from a parameter set. | 
@@ -60,7 +60,7 @@ Adds parameters to a parameter set.
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
+Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
 
 
 ### OH_Huks_BuildParamSet()
@@ -81,7 +81,7 @@ Builds a parameter set.
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
+Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
 
 
 ### OH_Huks_CheckParamMatch()
@@ -103,7 +103,7 @@ Checks whether two parameters are the same.
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the two parameters are the same; returns an error code otherwise.
+Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the two parameters are the same; returns an error code otherwise.
 
 
 ### OH_Huks_CopyParamSet()
@@ -126,7 +126,7 @@ Copies a parameter set (deep copy).
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
+Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
 
 
 ### OH_Huks_FreeKeyAliasSet()
@@ -182,7 +182,7 @@ Updates the data of the [OH_Huks_Blob](_o_h___huks___blob.md) type in a paramete
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
+Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
 
 
 ### OH_Huks_GetParam()
@@ -205,7 +205,7 @@ Obtains a parameter from a parameter set.
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
+Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
 
 
 ### OH_Huks_InitParamSet()
@@ -226,7 +226,7 @@ Initializes a parameter set.
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
+Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
 
 
 ### OH_Huks_IsParamSetTagValid()
@@ -247,7 +247,7 @@ Checks whether the parameters in a parameter set are valid.
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the parameters are valid. Otherwise, invalid or duplicate parameters are found.
+Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the parameters are valid. Otherwise, invalid or duplicate parameters are found.
 
 
 ### OH_Huks_IsParamSetValid()
@@ -269,4 +269,4 @@ Checks whether a parameter set is of the valid size.
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the size of the parameter set is valid; returns an error code otherwise.
+Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the size of the parameter set is valid; returns an error code otherwise.

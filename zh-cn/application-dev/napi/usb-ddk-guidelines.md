@@ -66,7 +66,7 @@ libusb_ndk.z.so
 
 2. 获取配置描述符及声明接口。
     
-    使用 **usb_ddk_api.h** 的 **OH_Usb_GetConfigDescriptor** 接口获取配置描述符 **config**，并使用 OH_Usb_ClaimInterface 声明"认领"接口。。
+    使用 **usb_ddk_api.h** 的 **OH_Usb_GetConfigDescriptor** 接口获取配置描述符 **config**，并使用 OH_Usb_ClaimInterface 声明"认领"接口。
 
     ```c++
     struct UsbDdkConfigDescriptor *config = nullptr;
@@ -82,7 +82,7 @@ libusb_ndk.z.so
     ```
 3. 获取当前激活接口的备用设置及激活备用设置。
 
-    使用 **usb_ddk_api.h** 的 **OH_Usb_GetCurrentInterfaceSetting** 获取备用设置，并使用 **OH_Usb_SelectInterfaceSetting** 激活备用设置
+    使用 **usb_ddk_api.h** 的 **OH_Usb_GetCurrentInterfaceSetting** 获取备用设置，并使用 **OH_Usb_SelectInterfaceSetting** 激活备用设置。
 
     ```c++
     uint8_t settingIndex = 0;

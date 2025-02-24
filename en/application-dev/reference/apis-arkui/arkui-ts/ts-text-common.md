@@ -90,11 +90,11 @@ Obtains the metrics information of a specified line.
 
 | Type                                      | Description      |
 | ---------------------------------------- | -------- |
-| [LineMetrics](../../apis-arkgraphics2d/js-apis-graphics-text.md#linemetrics) | Button("Line Metrics")|
+| [LineMetrics](#linemetrics12) | Button("Line Metrics")|
 
 ### getRectsForRange<sup>14+</sup>
 
-getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeightStyle): Array\<TextBox>
+getRectsForRange(range: TextRange, widthStyle: RectWidthStyle, heightStyle: RectHeightStyle): Array\<TextBox>
 
 Obtains the drawing area information for characters or placeholders within a specified text range, based on the specified width and height of a rectangle.
 
@@ -106,15 +106,15 @@ Obtains the drawing area information for characters or placeholders within a spe
 
 | Name     | Type                                | Mandatory| Description                    |
 | ----------- | ----------------------------------- | ---- | ------------------------ |
-| range       | [Range](../../apis-arkgraphics2d/js-apis-graphics-text.md#range)                     | Yes  | Text range for which to obtain the area information. |
-| widthStyle  | [RectWidthStyle](../../apis-arkgraphics2d/js-apis-graphics-text.md#rectwidthstyle)   | Yes  | Width of the rectangle.|
-| heightStyle | [RectHeightStyle](../../apis-arkgraphics2d/js-apis-graphics-text.md#rectheightstyle) | Yes  | Height of the rectangle.|
+| range       | [TextRange](#textrange12)| Yes  | Text range for which to obtain the area information. |
+| widthStyle  | [RectWidthStyle](#rectwidthstyle14)   | Yes  | Width of the rectangle.|
+| heightStyle | [RectHeightStyle](#rectheightstyle14) | Yes  | Height of the rectangle.|
 
 **Return value**
 
 | Type                        | Description       |
 | --------------------------- | ----------- |
-| Array\<[TextBox](../../apis-arkgraphics2d/js-apis-graphics-text.md#textbox)> | Array holding the rectangles obtained.|
+| Array\<[TextBox](#textbox14)> | Array holding the rectangles obtained.|
 
 ## PositionWithAffinity<sup>12+</sup>
 
@@ -127,7 +127,7 @@ Describes the position and affinity of a glyph.
 | Name     | Type                  | Read Only| Optional| Description                     |
 | --------- | --------------------- | ---- | ---- | ------------------------ |
 | position  | number                | Yes  | No  | Index of the glyph relative to the paragraph. The value is an integer. |
-| affinity  | [Affinity](../../apis-arkgraphics2d/js-apis-graphics-text.md#affinity) | Yes  | Yes  | Affinity of the position.            |
+| affinity  | [Affinity](#affinity12) | Yes  | Yes  | Affinity of the position.            |
 
 ## TextMenuItemId<sup>12+</sup>
 
@@ -150,6 +150,7 @@ Provides the menu ID.
 | COLLABORATION_SERVICE   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | Collaboration service.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | CAMERA_INPUT   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes  | Camera input<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | AI_WRITER<sup>13+</sup>   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | Text enhancement features, such as polishing, summary extraction, and formatting, for selected text. This menu item requires large model capabilities to function.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| SEARCH<sup>16+</sup>   | [TextMenuItemId](#textmenuitemid12)   | Yes   | Yes   | Search services for selected text.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
 
 ### of
 
@@ -206,6 +207,7 @@ Checks whether this **TextMenuItemId** object is the same as another **TextMenuI
 | content | [ResourceStr](ts-types.md#resourcestr) | Yes  | Menu name.|
 | icon | [ResourceStr](ts-types.md#resourcestr) | No  | Menu icon.<br>Online images are not supported.|
 | id | [TextMenuItemId](#textmenuitemid12) | Yes  | Menu ID.|
+| labelInfo<sup>16+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Shortcut key hint.<br>This field is only supported on 2-in-1 devices.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
 
 ## EditMenuOptions
 
@@ -390,7 +392,7 @@ Defines the font settings, including smooth and continuous adjustments for the f
 
 | Name    | Type                                            | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
-| enableVariableFontWeight | boolean | No  | Whether to support variable font weight adjustment.|
+| enableVariableFontWeight | boolean | No  | Whether to support variable font weight adjustment.<br>Default value: **false**|
 
 ## OnDidChangeCallback<sup>12+</sup>
 
@@ -645,3 +647,73 @@ Provides the text decorative line information returned by the backend.
 | type | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | Yes  | Type of the text decorative line.|
 | color | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the text decorative line.|
 | style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | No  | Style of the text decorative line.|
+
+## LineMetrics<sup>12+</sup>
+
+type LineMetrics = LineMetrics
+
+Describes the measurement information of a single line of text in the text layout.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type                             | Description  |
+| --------------------------------- | --------------------------------- |
+| [LineMetrics](../../apis-arkgraphics2d/js-apis-graphics-text.md#linemetrics) | Measurement information of a single line of text in the text layout.|
+
+## Affinity<sup>12+</sup>
+
+type Affinity = Affinity
+
+Enumerates the affinity modes.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type                             | Description  |
+| --------------------------------- | --------------------------------- |
+| [Affinity](../../apis-arkgraphics2d/js-apis-graphics-text.md#affinity) | Affinity mode enum.|
+
+## TextBox<sup>14+</sup>
+
+type TextBox = TextBox
+
+Describes the rectangle that holds the text.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type                             | Description  |
+| --------------------------------- | --------------------------------- |
+| [TextBox](../../apis-arkgraphics2d/js-apis-graphics-text.md#textbox) | Rectangle that holds the text.|
+
+## RectHeightStyle<sup>14+</sup>
+
+type RectHeightStyle = RectHeightStyle
+
+Enumerates the rectangle height styles.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type                             | Description  |
+| --------------------------------- | --------------------------------- |
+| [RectHeightStyle](../../apis-arkgraphics2d/js-apis-graphics-text.md#rectheightstyle) | Rectangle height style enum.|
+
+## RectWidthStyle<sup>14+</sup>
+
+type RectWidthStyle = RectWidthStyle
+
+Enumerates the rectangle width styles.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type                             | Description  |
+| --------------------------------- | --------------------------------- |
+| [RectWidthStyle](../../apis-arkgraphics2d/js-apis-graphics-text.md#rectwidthstyle) | Rectangle width style enum.|

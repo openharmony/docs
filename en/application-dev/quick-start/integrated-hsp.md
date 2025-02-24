@@ -9,26 +9,30 @@ Multiple applications in a group can use the same dynamic shared package. To red
 
 ## Constraints
 - The integrated HSP is only available for the [stage model](application-package-structure-stage.md).
-- The integrated HSP only works with API version 12 or later and uses the [normalized OHMUrl format](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5#section511142752919).
+- Only integrated HSP of API version 12 or later is supported. You should set the **useNormalizedOHMUrl** field to **true** in the project-level [build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-hvigor-build-profile-V13#section511142752919) file.
 
 ## Development Instructions
-1. Project configuration for creators: Normalized OHMUrl format should be used in the integrated HSP. Creator needs to modify the project-level build configuration file **build-profile.json5** and set **useNormalizedOHMUrl** to **true** to enable the normalized OHMUrl format.
+1. Project configuration for creators: Set the **useNormalizedOHMUrl** field to **true** in the project-level **build-profile.json5** file to configure the integrated HSP.
 
     ```json
     // created_party_project/build-profile.json5
     {
       "app": {
-        "products": {
-          "name": "default",
-          "signingConfig": "default",
-          "compatibleSdkVersion": "5.0.0(12)",
-          "runtimeOS": "HarmonyOS",
-          "buildOption": {
-            "strictMode": {
-              "useNormalizedOHMUrl": true
+        "products": [
+          {
+            "name": "default",
+            "signingConfig": "default",
+            "compatibleSdkVersion": "5.0.0(12)",
+            "runtimeOS": "HarmonyOS",
+            "buildOption": {
+              "strictMode": {
+                "useNormalizedOHMUrl": true
+              }
             }
+            // ...
           }
-        }
+        ]
+        // ...
       }
     }
     ```
@@ -46,7 +50,7 @@ Multiple applications in a group can use the same dynamic shared package. To red
     }
     ```
 
-3. Packing configuration for creators (.tgz Package)
+3. Packaging configuration for creators (.tgz Package)
 
     (1) Configure project signature information. For details, see [Signing Your App/Atomic Service](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-signing-V5).
 
@@ -67,25 +71,26 @@ Multiple applications in a group can use the same dynamic shared package. To red
       }
     ```
 
-6. Project configuration for users: Normalized OHMUrl format should be used in the integrated HSP. User needs to modify the project-level build configuration file **build-profile.json5** and set **useNormalizedOHMUrl** to **true** to enable the normalized OHMUrl format.
-
+6. Project configuration for users: Set the **useNormalizedOHMUrl** field to **true** in the project-level **build-profile.json5** file to configure the integrated HSP.
     ```json
     // user_project/build-profile.json5
     {
       "app": {
-        "products": {
-          "name": "default",
-          "signingConfig": "default",
-          "compatibleSdkVersion": "5.0.0(12)",
-          "runtimeOS": "HarmonyOS",
-          "buildOption": {
-            "strictMode": {
-              "useNormalizedOHMUrl": true
+        "products": [
+          {
+            "name": "default",
+            "signingConfig": "default",
+            "compatibleSdkVersion": "5.0.0(12)",
+            "runtimeOS": "HarmonyOS",
+            "buildOption": {
+              "strictMode": {
+                "useNormalizedOHMUrl": true
+              }
             }
           }
-        }
+        ]
       }
     }
     ```
     > **NOTE**
-    > Before installing and running an application, the user must configure the project signature information. For details, see [App/Service Signature](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5).
+    > Before installing and running an application, the user must configure the project signature information. For details, see [App/Service Signature](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-signing-V5).

@@ -22,7 +22,7 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -94,7 +94,7 @@ getWant(agent: WantAgent): Promise\<Want\>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 

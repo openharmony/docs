@@ -2,7 +2,7 @@
 The HSP has requirements on the consistency of bundle names and signatures and the HSP file needs to be installed in the debugging phase. As a result, many integration problems occur in multi-module integration development. In this case, you are advised to use the HAR file to avoid these problems. This topic describes how to convert an HSP project to an HAR project by changing the configuration items.
 ## How to Convert
 
-1. In the **module.json5** file of the HSP module, change the value of the **type** field to **har** and delete the **deliveryWithInstall** field.
+1. In the **module.json5** file of the HSP module, change the value of the **type** field to **har** and delete the **deliveryWithInstall** and **pages** fields.
     ```json
     // MyApplication\library\src\main\module.json5
     {

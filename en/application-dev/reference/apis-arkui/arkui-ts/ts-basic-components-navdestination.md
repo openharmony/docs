@@ -4,13 +4,15 @@
 
 > **NOTE**
 >
-> This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+> - This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 >
-> Since API version 11, this component supports the safe area attribute by default, with the default attribute value being **expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))**. You can override this attribute to change the default behavior. In earlier versions, you need to use the [expandSafeArea](ts-universal-attributes-expand-safe-area.md) attribute to implement the safe area feature.
+> - Since API version 11, this component supports the safe area attribute by default, with the default attribute value being **expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])**. You can override this attribute to change the default behavior. In earlier versions, you need to use the [expandSafeArea](ts-universal-attributes-expand-safe-area.md) attribute to implement the safe area feature.
 >
-> The **NavDestination** component must be used in conjunction with the **Navigation** component to act as the root node for the navigation destination page. When used alone, it can only function as a standard container component and does not possess any routing-related attributes or capabilities.
+> - The **NavDestination** component must be used in conjunction with the **Navigation** component to act as the root node for the navigation destination page. When used alone, it can only function as a standard container component and does not possess any routing-related attributes or capabilities.
 >
-> If the lifecycle of a page in the middle of the navigation stack changes, the lifecycle of the destination page at the top of the stack before the transition (**onWillShow**, **onShown**, **onHidden**, **onWillDisappear**) and the lifecycle of the destination page after the transition (**onWillShow**, **onShown**, **onHidden**, **onWillDisappear**) are both triggered at the end.
+> - If the lifecycle of a page in the middle of the navigation stack changes, the lifecycle of the destination page at the top of the stack before the transition (**onWillShow**, **onShown**, **onHidden**, **onWillDisappear**) and the lifecycle of the destination page after the transition (**onWillShow**, **onShown**, **onHidden**, **onWillDisappear**) are both triggered at the end.
+>
+> - If no main title or subtitle is set for **NavDestination** and there is no back button, the title bar is not displayed.
 
 ## Child Components
 
@@ -47,7 +49,7 @@ Sets the page title. When the NavigationCustomTitle type is used to set the heig
 
 | Name| Type                                                        | Mandatory| Description      |
 | ------ | ------------------------------------------------------------ | ---- | ---------- |
-| value  | string \| [CustomBuilder](ts-types.md#custombuilder8) \| [NavDestinationCommonTitle](#navdestinationcommontitle) \| [NavDestinationCustomTitle](#navdestinationcustomtitle) \| [Resource](ts-types.md#resource)  | Yes  | Page title.|
+| value  | string \| [CustomBuilder](ts-types.md#custombuilder8) \| [NavDestinationCommonTitle](#navdestinationcommontitle) \| [NavDestinationCustomTitle](#navdestinationcustomtitle) \| [Resource<sup>14+</sup>](ts-types.md#resource)  | Yes  | Page title.|
 | options<sup>12+</sup> | [NavigationTitleOptions](ts-basic-components-navigation.md#navigationtitleoptions11) | No  | Title bar options.|
 
 ### hideTitleBar
@@ -253,7 +255,7 @@ Sets whether the **NavDestination** component is recoverable. If set to recovera
 
 | Name| Type        | Mandatory| Description              |
 | ------ | -------------- | ---- | ------------------ |
-| recoverable  | Optional&lt;boolean&gt; | No  | Whether the **NavDestination** component is recoverable. By default, it is recoverable.|
+| recoverable  | Optional&lt;boolean&gt; | Yes  | Whether the **NavDestination** component is recoverable. By default, it is not recoverable.<br>Default value: **false**<br>**true**: The **NavDestination** component is recoverable.<br>**false**: The **NavDestination** component is not recoverable.|
 
 >  **NOTE**
 >
@@ -298,6 +300,22 @@ Binds the **NavDestination** component to nested scrollable containers, which ca
 | Name| Type                                                | Mandatory| Description                                                        |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | scrollInfos | Array<[NestedScrollInfo](#nestedscrollinfo14)> | Yes  | Controller of the target nested scrollable containers.|
+
+### hideBackButton<sup>16+</sup>
+
+hideBackButton(hide: Optional&lt;boolean&gt;)
+
+Sets whether to hide the back button in the title bar.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| hide  | Optional&lt;boolean&gt; | Yes  | Whether to hide the back button in the title bar.<br>Default value: **false**<br>**true**: Hide the back button.<br>**false**: Show the back button.|
 
 ## NavDestinationMode<sup>11+</sup>
 
@@ -635,4 +653,4 @@ struct Index {
 ```
 ![navdestination_bind_scrollable](figures/navdestination_bind_scrollable.gif)
 
-For more examples, see [Example in Navigation](ts-basic-components-navigation.md#example-1).
+For more examples, see [Example in Navigation](ts-basic-components-navigation.md#example-1-implementing-a-navigation-page-layout).

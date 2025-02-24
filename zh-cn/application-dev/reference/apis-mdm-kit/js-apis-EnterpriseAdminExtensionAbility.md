@@ -258,3 +258,75 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   }
 };
 ```
+
+## EnterpriseAdminExtensionAbility.onAccountAdded<sup>16+</sup>
+
+onAccountAdded(accountId: number): void;
+
+系统账号新增事件回调。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| accountId | number | 是    | 新增的用户ID。 |
+
+**示例：**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onAccountAdded(accountId: number) {
+    console.info(`Succeeded in calling onAccountAdded callback, added accountId: ${accountId}`);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onAccountSwitched<sup>16+</sup>
+
+onAccountSwitched(accountId: number): void
+
+系统账号切换事件回调。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| accountId | number | 是    | 切换后的用户ID。 |
+
+**示例：**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onAccountSwitched(accountId: number) {
+    console.info(`Succeeded in calling onAccountSwitched callback, switched accountId: ${accountId}`);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onAccountRemoved<sup>16+</sup>
+
+onAccountRemoved(accountId: number): void
+
+系统账号删除事件回调。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| accountId | number | 是    | 被删除的用户ID。 |
+
+**示例：**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onAccountRemoved(accountId: number) {
+    console.info(`Succeeded in calling onAccountRemoved callback, removed accountId: ${accountId}`);
+  }
+};
+```

@@ -22,9 +22,9 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER 或 ohos.permission.SEND_NOTIFICATION_CROSS_USER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 或 ohos.permission.SEND_NOTIFICATION_CROSS_USER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -96,9 +96,9 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER  或 ohos.permission.SEND_NOTIFICATION_CROSS_USER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER  或 ohos.permission.SEND_NOTIFICATION_CROSS_USER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -159,7 +159,7 @@ let userId: number = 1;
 notificationManager.publish(notificationRequest, userId).then(() => {
 	console.info("publish success");
 }).catch((err: BusinessError) => {
-    console.error(`publish fail: ${JSON.stringify(err)}`);
+    console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -171,9 +171,9 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -224,9 +224,9 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -266,7 +266,7 @@ let notificationSlot: notificationManager.NotificationSlot = {
 notificationManager.addSlot(notificationSlot).then(() => {
 	console.info("addSlot success");
 }).catch((err: BusinessError) => {
-    console.error(`addSlot fail: ${JSON.stringify(err)}`);
+    console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -278,9 +278,9 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -335,9 +335,9 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -381,7 +381,7 @@ notificationSlotArray[0] = notificationSlot;
 notificationManager.addSlots(notificationSlotArray).then(() => {
 	console.info("addSlots success");
 }).catch((err: BusinessError) => {
-    console.error(`addSlots fail: ${JSON.stringify(err)}`);
+    console.error(`addSlots failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -394,9 +394,9 @@ setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCall
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -446,9 +446,9 @@ setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -488,7 +488,7 @@ let bundle: notificationManager.BundleOption = {
 notificationManager.setNotificationEnable(bundle, false).then(() => {
 	console.info("setNotificationEnable success");
 }).catch((err: BusinessError) => {
-    console.error(`setNotificationEnable fail: ${JSON.stringify(err)}`);
+    console.error(`setNotificationEnable failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -500,9 +500,9 @@ getAllNotificationEnabledBundles(): Promise<Array<BundleOption\>>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **返回值：**
 
@@ -534,7 +534,7 @@ notificationManager.getAllNotificationEnabledBundles().then((data: Array<notific
         console.info("Enable bundle is " + JSON.stringify(element.bundle));
     });
 }).catch((err: BusinessError) => {
-    console.error("getAllNotificationEnabledBundles failed, error is" + JSON.stringify(err));
+    console.error(`getAllNotificationEnabledBundles failed, code is ${err.code}, message is ${err.message}`);
 })
 ```
 
@@ -546,7 +546,7 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
 **系统接口**：此接口为系统接口。
 
@@ -599,9 +599,9 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -640,7 +640,7 @@ let bundle: notificationManager.BundleOption = {
 notificationManager.isNotificationEnabled(bundle).then((data: boolean) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
+    console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -652,9 +652,9 @@ isNotificationEnabled(userId: number, callback: AsyncCallback\<boolean\>): void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -704,9 +704,9 @@ isNotificationEnabled(userId: number): Promise\<boolean\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -745,7 +745,7 @@ let userId: number = 1;
 notificationManager.isNotificationEnabled(userId).then((data: boolean) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
+    console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -755,11 +755,13 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 
 设定指定应用的角标使能状态。使用callback异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -778,6 +780,7 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 801 | Capability not supported. | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -807,11 +810,13 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 设定指定应用的角标使能状态。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -835,6 +840,7 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -851,7 +857,7 @@ let bundle: notificationManager.BundleOption = {
 notificationManager.displayBadge(bundle, false).then(() => {
 	console.info("displayBadge success");
 }).catch((err: BusinessError) => {
-    console.error(`displayBadge fail: ${JSON.stringify(err)}`);
+    console.error(`displayBadge failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -861,11 +867,13 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
 获取指定应用的角标使能状态。使用callback异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -883,6 +891,7 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -912,11 +921,13 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
 获取指定应用的角标使能状态。使用Promise异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -939,6 +950,7 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -956,7 +968,7 @@ let bundle: notificationManager.BundleOption = {
 notificationManager.isBadgeDisplayed(bundle).then((data: boolean) => {
 	console.info("isBadgeDisplayed success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`isBadgeDisplayed fail: ${JSON.stringify(err)}`);
+    console.error(`isBadgeDisplayed failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -966,11 +978,13 @@ setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
 
 设定指定应用的通知渠道。使用Promise异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -994,6 +1008,7 @@ setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1013,7 +1028,7 @@ let slotFlags: number = 1;
 notificationManager.setSlotFlagsByBundle(bundle, slotFlags).then(() => {
 	console.info("setSlotFlagsByBundle success");
 }).catch((err: BusinessError) => {
-    console.error(`setSlotFlagsByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`setSlotFlagsByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1025,11 +1040,13 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 
 设置前需要先通过[addSlot](#notificationmanageraddslot)创建通知渠道。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1048,6 +1065,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1082,11 +1100,13 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
 设置前需要先通过[addSlot](#notificationmanageraddslot)创建通知渠道。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1110,6 +1130,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1131,7 +1152,7 @@ let notificationSlot: notificationManager.NotificationSlot = {
 notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
 	console.info("setSlotByBundle success");
 }).catch((err: BusinessError) => {
-    console.error(`setSlotByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`setSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1141,11 +1162,13 @@ getSlotFlagsByBundle(bundle: BundleOption): Promise\<number\>
 
 获取指定应用的通知渠道标识位。使用Promise异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1168,6 +1191,7 @@ getSlotFlagsByBundle(bundle: BundleOption): Promise\<number\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1184,7 +1208,7 @@ let bundle: notificationManager.BundleOption = {
 notificationManager.getSlotFlagsByBundle(bundle).then((data : number) => {
 	console.info("getSlotFlagsByBundle success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`getSlotFlagsByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`getSlotFlagsByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1194,11 +1218,13 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<Notificat
 
 获取指定应用的所有通知渠道。使用callback异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1216,6 +1242,7 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<Notificat
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1245,11 +1272,13 @@ getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 
 获取指定应用的所有通知渠道。使用Promise异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1272,6 +1301,7 @@ getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1289,7 +1319,7 @@ let bundle: notificationManager.BundleOption = {
 notificationManager.getSlotsByBundle(bundle).then((data: Array<notificationManager.NotificationSlot>) => {
 	console.info("getSlotsByBundle success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`getSlotsByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`getSlotsByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1299,11 +1329,13 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 
 获取指定应用的通知渠道数量。使用callback异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1321,6 +1353,7 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1352,11 +1385,13 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 
 获取指定应用的通知渠道数量。使用Promise异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1379,6 +1414,7 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1396,7 +1432,7 @@ let bundle: notificationManager.BundleOption = {
 notificationManager.getSlotNumByBundle(bundle).then((data: number) => {
 	console.info("getSlotNumByBundle success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`getSlotNumByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`getSlotNumByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1409,9 +1445,9 @@ getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>)
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1456,9 +1492,9 @@ getAllActiveNotifications(): Promise\<Array\<NotificationRequest\>\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **返回值：**
 
@@ -1487,7 +1523,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 notificationManager.getAllActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
 	console.info("getAllActiveNotifications success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`getAllActiveNotifications fail: ${JSON.stringify(err)}`);
+    console.error(`getAllActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1499,9 +1535,9 @@ getActiveNotificationByFilter(filter: NotificationFilter, callback: AsyncCallbac
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 
 **参数：**
@@ -1557,9 +1593,9 @@ getActiveNotificationByFilter(filter: NotificationFilter): Promise\<Notification
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 
 **参数：**
@@ -1605,7 +1641,7 @@ let filter: notificationManager.NotificationFilter = {
 notificationManager.getActiveNotificationByFilter(filter).then((data: notificationManager.NotificationRequest) => {
 	console.info("getActiveNotificationByFilter success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`getActiveNotificationByFilter fail: ${JSON.stringify(err)}`);
+    console.error(`getActiveNotificationByFilter failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1617,9 +1653,9 @@ removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCall
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1670,9 +1706,9 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1712,7 +1748,7 @@ let groupName: string = "GroupName";
 notificationManager.removeGroupByBundle(bundleOption, groupName).then(() => {
 	console.info("removeGroupByBundle success");
 }).catch((err: BusinessError) => {
-    console.error(`removeGroupByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`removeGroupByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1722,11 +1758,13 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 
 设置免打扰时间。使用callback异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1744,6 +1782,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1777,11 +1816,13 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
 设置免打扰时间。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1805,6 +1846,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1823,7 +1865,7 @@ let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
 notificationManager.setDoNotDisturbDate(doNotDisturbDate).then(() => {
 	console.info("setDoNotDisturbDate success");
 }).catch((err: BusinessError) => {
-    console.error(`setDoNotDisturbDate fail: ${JSON.stringify(err)}`);
+    console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1834,11 +1876,13 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 
 指定用户设置免打扰时间。使用callback异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1857,6 +1901,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1894,11 +1939,13 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
 指定用户设置免打扰时间。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1922,6 +1969,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1945,7 +1993,7 @@ let userId: number = 1;
 notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
 	console.info("setDoNotDisturbDate success");
 }).catch((err: BusinessError) => {
-    console.error(`setDoNotDisturbDate fail: ${JSON.stringify(err)}`);
+    console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1956,11 +2004,13 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
 查询免打扰时间。使用callback异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1977,6 +2027,7 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2004,11 +2055,13 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 
 查询免打扰时间。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **返回值：**
 
@@ -2025,6 +2078,7 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2038,7 +2092,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 notificationManager.getDoNotDisturbDate().then((data: notificationManager.DoNotDisturbDate) => {
   console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`getDoNotDisturbDate fail: ${JSON.stringify(err)}`);
+    console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -2049,11 +2103,13 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 
 查询指定用户的免打扰时间。使用callback异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2071,6 +2127,7 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2102,11 +2159,13 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 
 查询指定用户的免打扰时间。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2129,6 +2188,7 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2146,7 +2206,7 @@ let userId: number = 1;
 notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.DoNotDisturbDate) => {
 	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`getDoNotDisturbDate fail: ${JSON.stringify(err)}`);
+    console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -2159,9 +2219,9 @@ notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2206,9 +2266,9 @@ isSupportDoNotDisturbMode(): Promise\<boolean\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **返回值：**
 
@@ -2237,7 +2297,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 notificationManager.isSupportDoNotDisturbMode().then((data: boolean) => {
 	console.info("isSupportDoNotDisturbMode success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`isSupportDoNotDisturbMode fail: ${JSON.stringify(err)}`);
+    console.error(`isSupportDoNotDisturbMode failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -2247,11 +2307,13 @@ setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 
 设置设备是否支持分布式通知。使用callback异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2269,6 +2331,7 @@ setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2296,11 +2359,13 @@ setDistributedEnable(enable: boolean): Promise\<void>
 
 设置设备是否支持分布式通知。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2323,6 +2388,7 @@ setDistributedEnable(enable: boolean): Promise\<void>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2337,7 +2403,7 @@ let enable: boolean = true;
 notificationManager.setDistributedEnable(enable).then(() => {
     console.info("setDistributedEnable success");
 }).catch((err: BusinessError) => {
-    console.error(`setDistributedEnable fail: ${JSON.stringify(err)}`);
+    console.error(`setDistributedEnable failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -2347,11 +2413,13 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: As
 
 设置指定应用是否支持分布式通知。使用callback异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2370,6 +2438,7 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: As
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -2403,11 +2472,13 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 
 设置指定应用是否支持分布式通知。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2431,6 +2502,7 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -2449,7 +2521,7 @@ let enable: boolean = true;
 notificationManager.setDistributedEnableByBundle(bundle, enable).then(() => {
     console.info("setDistributedEnableByBundle success");
 }).catch((err: BusinessError) => {
-    console.error(`setDistributedEnableByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`setDistributedEnableByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -2459,11 +2531,13 @@ isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<bool
 
 根据应用的包获取应用程序是否支持分布式通知。使用callback异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2481,6 +2555,7 @@ isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<bool
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -2511,11 +2586,13 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
 查询指定应用是否支持分布式通知。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2538,6 +2615,7 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -2555,7 +2633,7 @@ let bundle: notificationManager.BundleOption = {
 notificationManager.isDistributedEnabledByBundle(bundle).then((data: boolean) => {
     console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`isDistributedEnabledByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`isDistributedEnabledByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -2566,11 +2644,13 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
 获取通知的提醒方式。使用callback异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2587,6 +2667,7 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2612,11 +2693,13 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 
 获取通知的提醒方式。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **返回值：**
 
@@ -2633,6 +2716,7 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2645,7 +2729,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 notificationManager.getDeviceRemindType().then((data: notificationManager.DeviceRemindType) => {
     console.info("getDeviceRemindType success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`getDeviceRemindType fail: ${JSON.stringify(err)}`);
+    console.error(`getDeviceRemindType failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -2658,9 +2742,9 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2733,9 +2817,9 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2798,7 +2882,7 @@ let request: notificationManager.NotificationRequest = {
 notificationManager.publishAsBundle(request, representativeBundle, userId).then(() => {
 	console.info("publishAsBundle success");
 }).catch((err: BusinessError) => {
-    console.error(`publishAsBundle fail: ${JSON.stringify(err)}`);
+    console.error(`publishAsBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -2810,9 +2894,9 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2874,7 +2958,7 @@ let request: notificationManager.NotificationRequest = {
 notificationManager.publishAsBundle(representativeBundle, request).then(() => {
 	console.info("publishAsBundle success");
 }).catch((err: BusinessError) => {
-    console.error(`publishAsBundle fail: ${JSON.stringify(err)}`);
+    console.error(`publishAsBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -2886,9 +2970,9 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2943,9 +3027,9 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2989,7 +3073,7 @@ let userId: number = 100;
 notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
 	console.info("cancelAsBundle success");
 }).catch((err: BusinessError) => {
-    console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
+    console.error(`cancelAsBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3002,9 +3086,9 @@ cancelAsBundle(representativeBundle: BundleOption, id: number): Promise\<void\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -3048,7 +3132,7 @@ let representativeBundle: notificationManager.BundleOption = {
 notificationManager.cancelAsBundle(representativeBundle, 1).then(() => {
 	console.info("cancelAsBundle success");
 }).catch((err: BusinessError) => {
-    console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
+    console.error(`cancelAsBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3062,7 +3146,7 @@ cancel(representativeBundle: BundleOption, id: number): Promise\<void\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -3104,7 +3188,7 @@ let id: number = 1;
 notificationManager.cancel(bundle, id).then(() => {
   console.info("cancel success");
 }).catch((err: BusinessError) => {
-  console.error(`cancel fail: ${JSON.stringify(err)}`);
+  console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3113,6 +3197,8 @@ notificationManager.cancel(bundle, id).then(() => {
 setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback\<void>): void
 
 设置指定应用的指定渠道类型的使能状态。使用callback异步回调。
+
+该接口不支持wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3138,6 +3224,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3170,6 +3257,8 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 设置指定应用的指定渠道类型的使能状态。使用callback异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
@@ -3195,6 +3284,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3228,6 +3318,8 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 设置指定应用的指定渠道类型的使能状态。使用promise异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
@@ -3252,6 +3344,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3270,7 +3363,7 @@ notificationManager.setNotificationEnableSlot(
     true).then(() => {
         console.info("setNotificationEnableSlot success");
     }).catch((err: BusinessError) => {
-        console.error(`setNotificationEnableSlot fail: ${JSON.stringify(err)}`);
+        console.error(`setNotificationEnableSlot failed, code is ${err.code}, message is ${err.message}`);
     });
 ```
 
@@ -3279,6 +3372,8 @@ notificationManager.setNotificationEnableSlot(
 isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncCallback\<boolean\>): void
 
 获取指定应用的指定渠道类型的使能状态。使用callback异步回调。
+
+该接口不支持wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3303,6 +3398,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3334,6 +3430,8 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 
 获取指定应用的指定渠道类型的使能状态。使用Promise异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
@@ -3362,6 +3460,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3377,7 +3476,7 @@ notificationManager.isNotificationSlotEnabled({ bundle: "ohos.samples.notificati
     notificationManager.SlotType.SOCIAL_COMMUNICATION).then((data: boolean) => {
     console.info("isNotificationSlotEnabled success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`isNotificationSlotEnabled fail: ${JSON.stringify(err)}`);
+    console.error(`isNotificationSlotEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3387,6 +3486,8 @@ notificationManager.isNotificationSlotEnabled({ bundle: "ohos.samples.notificati
 setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: AsyncCallback\<void\>): void
 
 设置是否将通知同步到未安装应用程序的设备(callback形式)。
+
+该接口不支持tv和wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3411,6 +3512,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -3441,6 +3543,8 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 
 设置是否将通知同步到未安装应用程序的设备(Promise形式)。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
@@ -3469,6 +3573,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -3485,7 +3590,7 @@ let enable: boolean = true;
 notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
     console.info('setSyncNotificationEnabledWithoutApp success');
 }).catch((err: BusinessError) => {
-    console.error(`setSyncNotificationEnabledWithoutApp fail: ${JSON.stringify(err)}`);
+    console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3589,7 +3694,7 @@ let userId: number = 100;
 notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data: boolean) => {
   console.info('getSyncNotificationEnabledWithoutApp, data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`getSyncNotificationEnabledWithoutApp fail: ${JSON.stringify(err)}`);
+    console.error(`getSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3600,6 +3705,8 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 注册通知监听回调。通知服务将通知信息回调给校验程序，校验程序返回校验结果决定该通知是否发布，如营销类通知发布频率控制等。
 
 系统中每个[SlotType](./js-apis-notificationManager.md#slottype)只允许存在一个注册者。
+
+该接口不支持wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3622,6 +3729,7 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 | -------- | ----------------------------------- | 
 | 202      | Not system application.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 
 **示例：**
@@ -3641,8 +3749,8 @@ let onCheckNotification = (info : notificationManager.NotificationCheckInfo): no
 }
 try{
     notificationManager.on("checkNotification", onCheckNotification);
-} catch (error){
-    console.error(`notificationManager.on error: ${JSON.stringify(error as BusinessError)}`);
+} catch (err: BusinessError){
+    console.error(`notificationManager.on failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -3653,6 +3761,8 @@ on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: 
 注册通知监听回调。通知服务将通知信息回调给校验程序，校验程序返回校验结果决定该通知是否发布，如营销类通知发布频率控制等。使用Promise异步回调。
 
 系统中每个[SlotType](./js-apis-notificationManager.md#slottype)只允许存在一个注册者。
+
+该接口不支持wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3677,6 +3787,7 @@ on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: 
 | 201      | Permission denied.     |  
 | 202      | Not system application.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3695,8 +3806,8 @@ try{
     async (checkInfo)=>{
       return { code: 1, message: "INVALID_PARAMETERS"};
   },);
-} catch (error) {
-  console.error(`notificationManager.on error: ${JSON.stringify(error as BusinessError)}`);
+} catch (err: BusinessError) {
+  console.error(`notificationManager.on failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -3705,6 +3816,8 @@ try{
 off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void
 
 取消通知监听回调。
+
+该接口不支持wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3728,6 +3841,7 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 | 201      | The application dose not have permission to call the interface.     |
 | 202      | Not system application.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 
 **示例：**
@@ -3737,8 +3851,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     notificationManager.off("checkNotification");
-} catch (error){
-    console.error(`notificationManager.off error: ${JSON.stringify(error as BusinessError)}`);
+} catch (err: BusinessError){
+    console.error(`notificationManager.off failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -3747,6 +3861,8 @@ try{
 triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOptions: ButtonOptions): Promise\<void>
 
 触发系统实况窗。使用Promise异步回调。
+
+该接口不支持wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3777,6 +3893,7 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -3800,8 +3917,8 @@ let buttonOptions: notificationManager.ButtonOptions = {
 }
 notificationManager.triggerSystemLiveView(bundle, notificationId, buttonOptions).then(() => {
   console.info("triggerSystemLiveView success");
-}).catch((error: BusinessError) => {
-  console.error(`triggerSystemLiveView fail: ${JSON.stringify(error)}`);
+}).catch((err: BusinessError) => {
+  console.error(`triggerSystemLiveView failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3811,6 +3928,8 @@ notificationManager.triggerSystemLiveView(bundle, notificationId, buttonOptions)
 subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>
 
 订阅系统实况窗。使用Promise异步回调。
+
+该接口不支持wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3836,6 +3955,7 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>
 | -------- | ----------------------------------- |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -3854,8 +3974,8 @@ let subscriber: notificationManager.SystemLiveViewSubscriber  = {
 };
 notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 	console.info("subscribeSystemLiveView success");
-}).catch((error: BusinessError) => {
-    console.error(`subscribeSystemLiveView fail: ${JSON.stringify(error)}`);
+}).catch((err: BusinessError) => {
+    console.error(`subscribeSystemLiveView failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3865,11 +3985,13 @@ setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: 
 
 设置指定应用是否支持跨设备协同。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -3894,6 +4016,7 @@ setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: 
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3915,7 +4038,7 @@ let deviceType: string = "phone";
 notificationManager.setDistributedEnabledByBundle(bundle, deviceType, enable).then(() => {
     console.info("setDistributedEnabledByBundle success");
 }).catch((err: BusinessError) => {
-    console.error(`setDistributedEnabledByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`setDistributedEnabledByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3925,11 +4048,13 @@ isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<
 
 获取指定应用是否支持跨设备协同。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -3953,6 +4078,7 @@ isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3973,7 +4099,7 @@ let deviceType: string = "phone";
 notificationManager.isDistributedEnabledByBundle(bundle, deviceType).then((data: boolean) => {
     console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`isDistributedEnabledByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`isDistributedEnabledByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3983,11 +4109,13 @@ setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void\>
 
 设置设备是否与其他设备协同智能提醒。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -4011,6 +4139,7 @@ setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -4028,7 +4157,7 @@ let enable: boolean = true;
 notificationManager.setSmartReminderEnabled(deviceType, enable).then(() => {
     console.info("setSmartReminderEnabled success");
 }).catch((err: BusinessError) => {
-    console.error(`setSmartReminderEnabled fail: ${JSON.stringify(err)}`);
+    console.error(`setSmartReminderEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -4038,11 +4167,13 @@ isSmartReminderEnabled(deviceType: string): Promise<boolean\>
 
 获取设备是否与其他设备协同智能提醒。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -4065,6 +4196,7 @@ isSmartReminderEnabled(deviceType: string): Promise<boolean\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -4081,7 +4213,7 @@ let deviceType: string = "phone";
 notificationManager.isSmartReminderEnabled(deviceType).then((data: boolean) => {
     console.info("isSmartReminderEnabled success， data:" + data);
 }).catch((err: BusinessError) => {
-    console.error(`isSmartReminderEnabled fail: ${JSON.stringify(err)}`);
+    console.error(`isSmartReminderEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -4090,6 +4222,8 @@ notificationManager.isSmartReminderEnabled(deviceType).then((data: boolean) => {
 setBadgeNumberByBundle(bundle: BundleOption, badgeNumber: number): Promise\<void\>
 
 代理其他应用设定角标个数。使用Promise异步回调。
+
+该接口不支持wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -4116,6 +4250,7 @@ setBadgeNumberByBundle(bundle: BundleOption, badgeNumber: number): Promise\<void
 | -------- | ----------------------------------- |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -4136,7 +4271,7 @@ let badgeNumber: number = 10;
 notificationManager.setBadgeNumberByBundle(bundle, badgeNumber).then(() => {
     console.info('setBadgeNumberByBundle success');
 }).catch((err: BusinessError) => {
-    console.error(`setBadgeNumberByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`setBadgeNumberByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -4146,13 +4281,15 @@ getSlotByBundle(bundle: BundleOption, slotType: SlotType): Promise\<Notification
 
 获取指定应用指定类型的通知渠道。使用Promise异步回调。
 
+该接口不支持wearable设备。
+
 获取前需要先通过[addSlot](#notificationmanageraddslot)创建通知渠道。
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -4176,6 +4313,7 @@ getSlotByBundle(bundle: BundleOption, slotType: SlotType): Promise\<Notification
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -4196,7 +4334,7 @@ let slotType = notificationManager.SlotType.LIVE_VIEW;
 notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationManager.NotificationSlot) => {
 	console.info("getSlotByBundle success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`getSlotByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -4206,11 +4344,13 @@ addDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void\>
 
 添加勿扰模式配置信息。使用Promise异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -4233,6 +4373,7 @@ addDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -4263,8 +4404,8 @@ let templates: Array<notificationManager.DoNotDisturbProfile> = [
 
 notificationManager.addDoNotDisturbProfile(templates).then(() => {
   console.info("addDoNotDisturbProfile success.");
-}).catch((error: BusinessError) => {
-  console.error(`addDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
+}).catch((err: BusinessError) => {
+  console.error(`addDoNotDisturbProfile failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -4274,11 +4415,13 @@ removeDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void
 
 删除勿扰模式配置。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -4301,6 +4444,7 @@ removeDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -4319,8 +4463,8 @@ let templates: Array<notificationManager.DoNotDisturbProfile> = [
 ]
 notificationManager.removeDoNotDisturbProfile(templates).then(() => {
   console.info("removeDoNotDisturbProfile success.");
-}).catch((error: BusinessError) => {
-  console.error(`removeDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
+}).catch((err: BusinessError) => {
+  console.error(`removeDoNotDisturbProfile failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -4330,11 +4474,13 @@ setAdditionalConfig(key: string, value: string): Promise\<number\>
 
 设置通知的系统附加配置信息。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -4358,6 +4504,7 @@ setAdditionalConfig(key: string, value: string): Promise\<number\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -4369,8 +4516,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundleName2]').then((data: number) => {
   console.info("setAdditionalConfig success, data: " + JSON.stringify(data));
-}).catch((error: BusinessError) => {
-  console.error(`setAdditionalConfig fail: ${JSON.stringify(error)}`);
+}).catch((err: BusinessError) => {
+  console.error(`setAdditionalConfig failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -4380,11 +4527,13 @@ getDoNotDisturbProfile(id: number): Promise\<DoNotDisturbProfile\>
 
 查询勿扰模式配置信息。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -4407,6 +4556,7 @@ getDoNotDisturbProfile(id: number): Promise\<DoNotDisturbProfile\>
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -4419,8 +4569,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getDoNotDisturbProfile(1).then((data: notificationManager.DoNotDisturbProfile) => {
   console.info("getDoNotDisturbProfile success: " + JSON.stringify(data));
-}).catch((error: BusinessError) => {
-  console.error(`getDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
+}).catch((err: BusinessError) => {
+  console.error(`getDoNotDisturbProfile failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -4432,9 +4582,9 @@ disableNotificationFeature(disabled: boolean, bundleList: Array\<string\>): Prom
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -4473,11 +4623,11 @@ let bundleList: Array<string> = ["com.example.myapplication"];
 try {
   notificationManager.disableNotificationFeature(disabled, bundleList).then(() => {
     hilog.info(0x0000, 'testTag', '%{public}s', `disableNotificationFeature success.`);
-  }).catch((error: BusinessError) => {
-    hilog.error(0x0000, 'testTag', '%{public}s', `disableNotificationFeature fail: ${JSON.stringify(error)}`);
+  }).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', '%{public}s', `disableNotificationFeature failed, code is ${err.code}, message is ${err.message}`);
   });
-} catch (error) {
-  hilog.error(0x0000, 'testTag', '%{public}s', `testTag fail: ${JSON.stringify(error)}`);
+} catch (err: BusinessError) {
+  hilog.error(0x0000, 'testTag', '%{public}s', `testTag failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -4497,7 +4647,7 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 | 名称         | 值               | 说明                                       |
 | ------------ | ---------------- | ------------------------------------------ |
@@ -4511,7 +4661,7 @@ try {
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 | 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
@@ -4525,7 +4675,7 @@ try {
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 | 名称                 | 值  | 说明                  |
 | -------------------- | --- | -------------------- |
@@ -4600,7 +4750,7 @@ try {
 
 | 名称                                | 值     | 说明                                                         |
 | ----------------------------------- | ------ | ------------------------------------------------------------ |
-| EMERGENCY_INFORMATION<sup>12+</sup> | 10     | 紧急事件。**系统接口**: 此接口为系统接口。                               |
+| EMERGENCY_INFORMATION<sup>12+</sup> | 10     | 紧急事件。**系统接口**：此接口为系统接口。                               |
 
 
 ## NotificationControlFlagStatus<sup>12+</sup>

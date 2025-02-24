@@ -47,6 +47,10 @@ HiAppEvent模块的应用事件打点函数定义。
 
 **引用文件：** &lt;hiappevent/hiappevent.h&gt;
 
+**库：** libhiappevent_ndk.z.so
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
 **起始版本：** 8
 
 **相关模块：**[HiAppEvent](_hi_app_event.md)
@@ -71,8 +75,10 @@ HiAppEvent模块的应用事件打点函数定义。
 | typedef struct [HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) [HiAppEvent_AppEventGroup](_hi_app_event.md#hiappevent_appeventgroup) | 具有相同事件名称的事件组。  | 
 | typedef struct ParamListNode \* [ParamList](_hi_app_event.md#paramlist) | 事件参数列表节点。  | 
 | typedef struct [HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) [HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) | 用于接收app事件的监听器。  | 
+| typedef struct [HiAppEvent_Processor](_hi_app_event.md#hiappevent_processor)[HiAppEvent_Processor](_hi_app_event.md#hiappevent_processor) | 用于处理app事件上报的处理者。  |
+| typedef struct [HiAppEvent_Config](_hi_app_event.md#hiappevent_config)[HiAppEvent_Config](_hi_app_event.md#hiappevent_config) | 用于设置系统事件触发条件的配置对象。  |
 | typedef void(\* [OH_HiAppEvent_OnReceive](_hi_app_event.md#oh_hiappevent_onreceive)) (const char \*domain, const struct [HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) \*appEventGroups, uint32_t groupLen) | 监听器接收到事件后，将触发该回调，将事件内容传递给调用方。  | 
-| typedef void(\* [OH_HiAppEvent_OnTrigger](_hi_app_event.md#oh_hiappevent_ontrigger)) (int row, int size) | 监听器收到事件后，若监听器中未设置OH_HiAppEvent_OnReceive回调，将保存该事件。当保存的事件满足通过 OH_HiAppEvent_SetTriggerCondition设定的条件后，将触发该回调。回调结束后，当新保存的事件消息再次满足设定的条件后，将再次进行回调。  | 
+| typedef void(\* [OH_HiAppEvent_OnTrigger](_hi_app_event.md#oh_hiappevent_ontrigger)) (int row, int size) | 监听器收到事件后，若监听器中未设置OH_HiAppEvent_OnReceive回调，将保存该事件。当保存的事件满足通过OH_HiAppEvent_SetTriggerCondition设定的条件后，将触发该回调。回调结束后，当新保存的事件消息再次满足设定的条件后，将再次进行回调。  | 
 | typedef void(\* [OH_HiAppEvent_OnTake](_hi_app_event.md#oh_hiappevent_ontake)) (const char \*const \*events, uint32_t eventLen) | 使用OH_HiAppEvent_TakeWatcherData获取监听器接收到的事件时，监听器接收到的事件将通过该回调函数传递给调用者。  | 
 
 
@@ -80,8 +86,8 @@ HiAppEvent模块的应用事件打点函数定义。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [EventType](_hi_app_event.md#eventtype) { FAULT = 1, STATISTIC = 2, SECURITY = 3, BEHAVIOR = 4 } | 事件类型。 | 
-
+| [HiAppEvent_ErrorCode](_hi_app_event.md#hiappevent_errorcode) {<br/>[HIAPPEVENT_SUCCESS](_hi_app_event.md) = 0, [HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH](_hi_app_event.md) = 4, [HIAPPEVENT_PROCESSOR_IS_NULL](_hi_app_event.md) = -7, [HIAPPEVENT_PROCESSOR_NOT_FOUND](_hi_app_event.md) = -8,<br/>[HIAPPEVENT_INVALID_PARAM_VALUE](_hi_app_event.md) = -9, [HIAPPEVENT_EVENT_CONFIG_IS_NULL](_hi_app_event.md) = -10, [HIAPPEVENT_OPERATE_FAILED](_hi_app_event.md) = -100, [HIAPPEVENT_INVALID_UID](_hi_app_event.md) = -200<br/>} | 错误码定义。|
+| [EventType](_hi_app_event.md#eventtype) { [FAULT](_hi_app_event.md) = 1, [STATISTIC](_hi_app_event.md) = 2, [SECURITY](_hi_app_event.md) = 3, [BEHAVIOR](_hi_app_event.md) = 4 } | 事件类型。|
 
 ### 函数
 
@@ -109,7 +115,7 @@ HiAppEvent模块的应用事件打点函数定义。
 | bool [OH_HiAppEvent_Configure](_hi_app_event.md#oh_hiappevent_configure) (const char \*name, const char \*value) | 实现应用事件打点的配置功能。  | 
 | [HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \* [OH_HiAppEvent_CreateWatcher](_hi_app_event.md#oh_hiappevent_createwatcher) (const char \*name) | 创建一个用于监听app事件的监听器。  | 
 | void [OH_HiAppEvent_DestroyWatcher](_hi_app_event.md#oh_hiappevent_destroywatcher) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher) | 销毁已创建的监听器。  | 
-| int [OH_HiAppEvent_SetTriggerCondition](_hi_app_event.md#oh_hiappevent_settriggercondition) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher, int row, int size, int timeOut) | 用于设置监听器OH_HiAppEvent_OnTrigger回调的触发条件，分别可以从监视器新接收事件数量，新接收事件大小，onTrigger触发超时时间 设置触发条件，调用方应至少保证从一个方面设置触发条件。  | 
+| int [OH_HiAppEvent_SetTriggerCondition](_hi_app_event.md#oh_hiappevent_settriggercondition) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher, int row, int size, int timeOut) | 用于设置监听器OH_HiAppEvent_OnTrigger回调的触发条件，分别可以从监视器新接收事件数量，新接收事件大小，onTrigger触发超时时间设置触发条件，调用方应至少保证从一个方面设置触发条件。  | 
 | int [OH_HiAppEvent_SetAppEventFilter](_hi_app_event.md#oh_hiappevent_setappeventfilter) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher, const char \*domain, uint8_t eventTypes, const char \*const \*names, int namesLen) | 用于设置监听器需要监听的事件的类型。  | 
 | int [OH_HiAppEvent_SetWatcherOnTrigger](_hi_app_event.md#oh_hiappevent_setwatcherontrigger) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher, [OH_HiAppEvent_OnTrigger](_hi_app_event.md#oh_hiappevent_ontrigger) onTrigger) | 用于设置监听器onTrigger回调的接口。  | 
 | int [OH_HiAppEvent_SetWatcherOnReceive](_hi_app_event.md#oh_hiappevent_setwatcheronreceive) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher, [OH_HiAppEvent_OnReceive](_hi_app_event.md#oh_hiappevent_onreceive) onReceive) | 用于设置监听器onReceive回调函数的接口。当监听器监听到相应事件后，onReceive回调函数将被调用。  | 
@@ -117,3 +123,18 @@ HiAppEvent模块的应用事件打点函数定义。
 | int [OH_HiAppEvent_AddWatcher](_hi_app_event.md#oh_hiappevent_addwatcher) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher) | 添加监听器的接口，监听器开始监听系统消息。  | 
 | int [OH_HiAppEvent_RemoveWatcher](_hi_app_event.md#oh_hiappevent_removewatcher) ([HiAppEvent_Watcher](_hi_app_event.md#hiappevent_watcher) \*watcher) | 移除监听器的接口，监听器停止监听系统消息。  | 
 | void [OH_HiAppEvent_ClearData](_hi_app_event.md#oh_hiappevent_cleardata) (void) | 清除所有监视器保存的所有事件。  | 
+| [HiAppEvent_Processor](_hi_app_event.md#hiappevent_processor) \* [OH_HiAppEvent_CreateProcessor](_hi_app_event.md#oh_hiappevent_createprocessor) (const char \*name) | 创建一个用来处理app事件上报的处理者。  |
+| int [OH_HiAppEvent_SetReportRoute](_hi_app_event.md#oh_hiappevent_setreportroute) ([HiAppEvent_Processor](_hi_app_event.md#hiappevent_processor) \*processor, const char \*appId, const char \*routeInfo) | 设置处理者事件上报路由的接口。  |
+| int [OH_HiAppEvent_SetReportPolicy](_hi_app_event.md#oh_hiappevent_setreportpolicy) ([HiAppEvent_Processor](_hi_app_event.md#hiappevent_processor) \*processor, int periodReport, int batchReport, bool onStartReport, bool onBackgroundReport) | 设置处理者事件上报策略的接口。  |
+| int [OH_HiAppEvent_SetReportEvent](_hi_app_event.md#oh_hiappevent_setreportevent) ([HiAppEvent_Processor](_hi_app_event.md#hiappevent_processor) \*processor, const char \*domain, const char \*name, bool isRealTime) | 设置处理者上报事件的接口。  |
+| int [OH_HiAppEvent_SetCustomConfig](_hi_app_event.md#oh_hiappevent_setcustomconfig) ([HiAppEvent_Processor](_hi_app_event.md#hiappevent_processor) \*processor, const char \*key, const char \*value) | 设置处理者自定义扩展参数的接口。  |
+| int [OH_HiAppEvent_SetConfigId](_hi_app_event.md#oh_hiappevent_setconfigid) ([HiAppEvent_Processor](_hi_app_event.md#hiappevent_processor) \*processor, int configId) | 设置处理者配置id的接口。  |
+| int [OH_HiAppEvent_SetReportUserId](_hi_app_event.md#oh_hiappevent_setreportuserid) ([HiAppEvent_Processor](_hi_app_event.md#hiappevent_processor) \*processor, const char \*const \*userIdNames, int size) | 设置处理者用户ID的接口。  |
+| int [OH_HiAppEvent_SetReportUserProperty](_hi_app_event.md#oh_hiappevent_setreportuserproperty) ([HiAppEvent_Processor](_hi_app_event.md#hiappevent_processor) \*processor, const char \*const \*userPropertyNames, int size) | 设置处理者用户属性的接口。  |
+| int64_t [OH_HiAppEvent_AddProcessor](_hi_app_event.md#oh_hiappevent_addprocessor) ([HiAppEvent_Processor](_hi_app_event.md#hiappevent_processor) \*processor) | 添加数据处理者的接口。开发者可添加数据处理者，用于提供事件上云功能，数据处理者的实现可预置在设备中，开发者可根据数据处理者的约束设置属性。  |
+| void [OH_HiAppEvent_DestroyProcessor](_hi_app_event.md#oh_hiappevent_destroyprocessor) ([HiAppEvent_Processor](_hi_app_event.md#hiappevent_processor) \*processor) | 销毁已创建的数据处理者。  |
+| int [OH_HiAppEvent_RemoveProcessor](_hi_app_event.md#oh_hiappevent_removeprocessor) (int64_t processorId) | 移除数据处理者的接口，处理者停止上报事件。  |
+| [HiAppEvent_Config](_hi_app_event.md#hiappevent_config) \* [OH_HiAppEvent_CreateConfig](_hi_app_event.md#oh_hiappevent_createconfig) (void) | 创建一个指向设置系统事件触发条件的配置对象的指针。  |
+| void [OH_HiAppEvent_DestroyConfig](_hi_app_event.md#oh_hiappevent_destroyconfig) ([HiAppEvent_Config](_hi_app_event.md#hiappevent_config) \*config) | 销毁已创建的配置对象。  |
+| int [OH_HiAppEvent_SetConfigItem](_hi_app_event.md#oh_hiappevent_setconfigitem) ([HiAppEvent_Config](_hi_app_event.md#hiappevent_config) \*config, const char \*itemName, const char \*itemValue) | 设置配置对象中的配置项。  |
+| int [OH_HiAppEvent_SetEventConfig](_hi_app_event.md#oh_hiappevent_seteventconfig) (const char \*name, [HiAppEvent_Config](_hi_app_event.md#hiappevent_config) \*config) | 设定系统事件订阅触发条件。  |

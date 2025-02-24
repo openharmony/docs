@@ -24,7 +24,7 @@ import { TreeView } from "@kit.ArkUI"
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)。
+不支持[通用属性](ts-component-general-attributes.md)。
 
 ## TreeView
 
@@ -135,8 +135,11 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 | currentNodeId | number | 否 | 当前子节点。 |
 | isFolder | boolean | 否 | 是否是目录。默认值：false。true：是目录，false：不是目录。 |
 | icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标。 |
+| symbolIconStyle<sup>16+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol图标，优先级大于icon。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 选中图标。 |
+| symbolSelectedIconStyle<sup>16+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol选中图标，优先级大于selectedIcon。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | editIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 编辑图标。 |
+| symbolEditIconStyle<sup>16+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol编辑图标，优先级大于editIcon。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 主标题。 |
 | secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题。 |
 | container | ()&nbsp;=&gt;&nbsp;void | 否 | 绑定在节点上的右键子组件，子组件由@Builder修饰。 |
@@ -262,12 +265,134 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 | childIndex | number | 否 | 子索引。 |
 
 ## 事件
-不支持[通用事件](ts-universal-events-click.md)。
+不支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
+
+### 示例1（设置简单树视图）
+
 通过树视图组件的控制器对树的节点进行新增、删除、重命名，展示新增不同参数节点的实现效果。
+
 ```ts
 import { TreeController, TreeListener, TreeListenerManager, TreeListenType, NodeParam, TreeView, CallbackParam } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct TreeViewDemo {
+  private treeController: TreeController = new TreeController();
+  private treeListener: TreeListener = TreeListenerManager.getInstance().getTreeListener();
+  @State clickId: number = 0;
+
+  aboutToDisappear(): void {
+    this.treeListener.off(TreeListenType.NODE_CLICK, undefined);
+    this.treeListener.off(TreeListenType.NODE_ADD, undefined);
+    this.treeListener.off(TreeListenType.NODE_DELETE, undefined);
+    this.treeListener.off(TreeListenType.NODE_MOVE, undefined);
+  }
+
+  @Builder menuBuilder1() {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Text('新增').fontSize(16).width(100).height(30).textAlign(TextAlign.Center)
+        .onClick((event: ClickEvent) => {
+          this.treeController.addNode();
+        })
+      Divider()
+      Text('删除').fontSize(16).width(100).height(30).textAlign(TextAlign.Center)
+        .onClick((event: ClickEvent) => {
+          this.treeController.removeNode();
+        })
+      Divider()
+      Text('重命名').fontSize(16).width(100).height(30).textAlign(TextAlign.Center)
+        .onClick((event: ClickEvent) => {
+          this.treeController.modifyNode();
+        })
+    }.width(100).border({width: 1, color: 0x80808a, radius: '16dp'})
+  }
+
+  aboutToAppear(): void {
+    this.treeListener.on(TreeListenType.NODE_CLICK, (callbackParam: CallbackParam) => {
+      this.clickId = callbackParam.currentNodeId;
+    })
+    this.treeListener.on(TreeListenType.NODE_ADD, (callbackParam: CallbackParam) => {
+      this.clickId = callbackParam.currentNodeId;
+    })
+    this.treeListener.on(TreeListenType.NODE_DELETE, (callbackParam: CallbackParam) => {
+      this.clickId = callbackParam.currentNodeId;
+    })
+    this.treeListener.once(TreeListenType.NODE_MOVE, (callbackParam: CallbackParam) => {
+      this.clickId = callbackParam.currentNodeId;
+    })
+
+    let normalResource: Resource = $r('sys.media.ohos_ic_normal_white_grid_folder');
+    let selectedResource: Resource = $r('sys.media.ohos_ic_public_select_all');
+    let editResource: Resource = $r('sys.media.ohos_ic_public_edit');
+    let nodeParam: NodeParam = { parentNodeId:-1, currentNodeId: 1, isFolder: true, icon: normalResource, selectedIcon: selectedResource,
+      editIcon: editResource, primaryTitle: "目录1验证悬浮框自适应效果是否OK",
+      secondaryTitle: "6" };
+    this.treeController
+      .addNode(nodeParam)
+      .addNode({parentNodeId:1, currentNodeId: 2, isFolder: false, primaryTitle: "项目1_1" })
+      .addNode({ parentNodeId:-1, currentNodeId: 7, isFolder: true, primaryTitle: "目录2" })
+      .addNode({ parentNodeId:-1, currentNodeId: 23, isFolder: true, icon: normalResource, selectedIcon: selectedResource,
+        editIcon: editResource, primaryTitle: "目录3" })
+      .addNode({ parentNodeId:-1, currentNodeId: 24, isFolder: false, primaryTitle: "项目4" })
+      .addNode({ parentNodeId:-1, currentNodeId: 31, isFolder: true, icon: normalResource, selectedIcon: selectedResource,
+        editIcon: editResource, primaryTitle: "目录5", secondaryTitle: "0" })
+      .addNode({ parentNodeId:-1, currentNodeId: 32, isFolder: true, icon: normalResource, selectedIcon: selectedResource,
+        editIcon: editResource, primaryTitle: "目录6", secondaryTitle: "0" })
+      .addNode({ parentNodeId:32, currentNodeId: 35, isFolder: true, icon: normalResource, selectedIcon: selectedResource,
+        editIcon: editResource, primaryTitle: "目录6-1", secondaryTitle: "0" })
+      .addNode({ parentNodeId:-1, currentNodeId: 33, isFolder: true, icon: normalResource, selectedIcon: selectedResource,
+        editIcon: editResource, primaryTitle: "目录7", secondaryTitle: "0" })
+      .addNode({ parentNodeId:33, currentNodeId: 34, isFolder: false, primaryTitle: "项目8" })
+      .addNode({ parentNodeId:-1, currentNodeId: 36, isFolder: false, primaryTitle: "项目9" })
+      .buildDone();
+    this.treeController.refreshNode(-1, "父节点", "子节点");
+  }
+
+  build() {
+    Column(){
+      SideBarContainer(SideBarContainerType.Embed)
+      {
+        TreeView({ treeController: this.treeController })
+        Row() {
+          Divider().vertical(true).strokeWidth(2).color(0x000000).lineCap(LineCapStyle.Round)
+          Column({ space: 30 }) {
+            Text('ClickId=' + this.clickId).fontSize('16fp')
+            Button('Add', { type: ButtonType.Normal, stateEffect: true })
+              .borderRadius(8).backgroundColor(0x317aff).width(90)
+              .onClick((event: ClickEvent) => {
+                this.treeController.addNode();
+              })
+            Button('Modify', { type: ButtonType.Normal, stateEffect: true })
+              .borderRadius(8).backgroundColor(0x317aff).width(90)
+              .onClick((event: ClickEvent) => {
+                this.treeController.modifyNode();
+              })
+            Button('Remove', { type: ButtonType.Normal, stateEffect: true })
+              .borderRadius(8).backgroundColor(0x317aff).width(120)
+              .onClick((event: ClickEvent) => {
+                this.treeController.removeNode();
+              })
+          }.height('100%').width('70%').alignItems(HorizontalAlign.Start).margin(10)
+        }
+      }
+      .focusable(true)
+      .showControlButton(false)
+      .showSideBar(true)
+    }
+  }}
+```
+
+![zh-cn_image_0000001664822257](figures/zh-cn_image_0000001664822257.png)
+
+### 示例2（设置Symbol类型图标）
+
+该示例通过设置NodeParam的属性symbolIconStyle、symbolEditIconStyle、symbolSelectedIconStyle，展示了自定义Symbol类型图标。
+
+```ts
+import { TreeController, TreeListener, TreeListenerManager, TreeListenType, NodeParam, TreeView, CallbackParam,
+  SymbolGlyphModifier } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -316,27 +441,35 @@ struct TreeViewDemo {
       this.clickNodeId = callbackParam.currentNodeId;
     })
 
-    let normalResource: Resource = $r('app.media.ic_public_collect_normal');
-    let selectedResource: Resource = $r('app.media.ic_public_collect_selected');
-    let editResource: Resource = $r('app.media.ic_public_collect_edit');
+    let normalResource: Resource = $r('sys.symbol.house');
+    let selectedResource: Resource = $r('sys.symbol.car');
+    let editResource: Resource = $r('sys.symbol.calendar');
+    let normalSymbolResource: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.bell')).fontColor([Color.Red]);
+    let selectedSymbolResource: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.heart')).fontColor([Color.Blue]);
+    let editSymbolResource: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.cake')).fontColor([Color.Pink]);
     let nodeParam: NodeParam = { parentNodeId:-1, currentNodeId: 1, isFolder: true, icon: normalResource, selectedIcon: selectedResource,
-      editIcon: editResource, primaryTitle: "目录1验证悬浮框自适应效果是否OK",
+      editIcon: editResource, primaryTitle: "目录1",
       secondaryTitle: "6" };
     this.treeController
       .addNode(nodeParam)
       .addNode({parentNodeId:1, currentNodeId: 2, isFolder: false, primaryTitle: "项目1_1" })
       .addNode({ parentNodeId:-1, currentNodeId: 7, isFolder: true, primaryTitle: "目录2" })
-      .addNode({ parentNodeId:-1, currentNodeId: 23, isFolder: true, icon: normalResource, selectedIcon: selectedResource,
-        editIcon: editResource, primaryTitle: "目录3" })
+      .addNode({ parentNodeId:-1, currentNodeId: 23, isFolder: true, icon: normalResource, symbolIconStyle: normalSymbolResource,
+        selectedIcon: selectedResource, symbolSelectedIconStyle: selectedSymbolResource, editIcon: editResource,
+        symbolEditIconStyle: editSymbolResource, primaryTitle: "目录3" })
       .addNode({ parentNodeId:-1, currentNodeId: 24, isFolder: false, primaryTitle: "项目4" })
-      .addNode({ parentNodeId:-1, currentNodeId: 31, isFolder: true, icon: normalResource, selectedIcon: selectedResource,
-        editIcon: editResource, primaryTitle: "目录5", secondaryTitle: "0" })
-      .addNode({ parentNodeId:-1, currentNodeId: 32, isFolder: true, icon: normalResource, selectedIcon: selectedResource,
-        editIcon: editResource, primaryTitle: "目录6", secondaryTitle: "0" })
-      .addNode({ parentNodeId:32, currentNodeId: 35, isFolder: true, icon: normalResource, selectedIcon: selectedResource,
-        editIcon: editResource, primaryTitle: "目录6-1", secondaryTitle: "0" })
-      .addNode({ parentNodeId:-1, currentNodeId: 33, isFolder: true, icon: normalResource, selectedIcon: selectedResource,
-        editIcon: editResource, primaryTitle: "目录7", secondaryTitle: "0" })
+      .addNode({ parentNodeId:-1, currentNodeId: 31, isFolder: true, icon: normalResource, symbolIconStyle: normalSymbolResource,
+        selectedIcon: selectedResource, symbolSelectedIconStyle: selectedSymbolResource, editIcon: editResource,
+        symbolEditIconStyle: editSymbolResource, primaryTitle: "目录5", secondaryTitle: "0" })
+      .addNode({ parentNodeId:-1, currentNodeId: 32, isFolder: true, icon: normalResource, symbolIconStyle: normalSymbolResource,
+        selectedIcon: selectedResource, symbolSelectedIconStyle: selectedSymbolResource, editIcon: editResource,
+        symbolEditIconStyle: editSymbolResource, primaryTitle: "目录6", secondaryTitle: "0" })
+      .addNode({ parentNodeId:32, currentNodeId: 35, isFolder: true, icon: normalResource, symbolIconStyle: normalSymbolResource,
+        selectedIcon: selectedResource, symbolSelectedIconStyle: selectedSymbolResource, editIcon: editResource,
+        symbolEditIconStyle: editSymbolResource, primaryTitle: "目录6-1", secondaryTitle: "0" })
+      .addNode({ parentNodeId:-1, currentNodeId: 33, isFolder: true, icon: normalResource, symbolIconStyle: normalSymbolResource,
+        selectedIcon: selectedResource, symbolSelectedIconStyle: selectedSymbolResource, editIcon: editResource,
+        symbolEditIconStyle: editSymbolResource, primaryTitle: "目录7", secondaryTitle: "0" })
       .addNode({ parentNodeId:33, currentNodeId: 34, isFolder: false, primaryTitle: "项目8" })
       .addNode({ parentNodeId:-1, currentNodeId: 36, isFolder: false, primaryTitle: "项目9" })
       .buildDone();
@@ -367,7 +500,7 @@ struct TreeViewDemo {
               .onClick((event: ClickEvent) => {
                 this.treeController.removeNode();
               })
-          }.height('100%').width('70%').alignItems(HorizontalAlign.Start).margin(10)
+          }.height('100%').width('80%').alignItems(HorizontalAlign.Start).margin(10)
         }
       }
       .focusable(true)
@@ -377,4 +510,4 @@ struct TreeViewDemo {
   }}
 ```
 
-![zh-cn_image_0000001664822257](figures/zh-cn_image_0000001664822257.png)
+![示例2-TreeView示例2 设置Symbol类型图标](figures/zh-cn_image_treeview_demo_02.png)

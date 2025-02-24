@@ -33,7 +33,7 @@ import { sendableContextManager } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
@@ -53,9 +53,9 @@ convertFromContext(context: common.Context): SendableContext;
 
 将Context转换为SendableContext对象。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -113,9 +113,9 @@ convertToContext(sendableContext: SendableContext): common.Context
 
 将SendableContext对象转换为Context。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -219,9 +219,9 @@ convertToApplicationContext(sendableContext: SendableContext): common.Applicatio
 
 将SendableContext对象转换为ApplicationContext。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -326,9 +326,9 @@ convertToAbilityStageContext(sendableContext: SendableContext): common.AbilitySt
 
 将SendableContext对象转换为AbilityStageContext。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -431,9 +431,9 @@ convertToUIAbilityContext(sendableContext: SendableContext): common.UIAbilityCon
 
 将SendableContext对象转换为UIAbilityContext。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 

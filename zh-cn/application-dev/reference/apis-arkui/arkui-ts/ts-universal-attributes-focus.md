@@ -6,11 +6,11 @@
 >
 >  - 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >  
->  - 自定义组件无获焦能力，当设置[focusable](#focusable)、[enabled](ts-universal-attributes-enable.md#enabled)等属性为false，或者设置[visibility](ts-universal-attributes-visibility.md#visibility)属性为Hidden、None时，也不影响其子组件的获焦
+>  - 自定义组件无获焦能力，当设置[focusable](#focusable)、[enabled](ts-universal-attributes-enable.md#enabled)等属性为false，或者设置[visibility](ts-universal-attributes-visibility.md#visibility)属性为Hidden、None时，也不影响其子组件的获焦。
 >  
 >  - 组件主动获取焦点不受窗口焦点的控制。
 >  
->  - 焦点开发参考[焦点开发指南](../../../ui/arkts-common-events-focus-event.md).
+>  - 焦点开发参考[焦点开发指南](../../../ui/arkts-common-events-focus-event.md)。
 
 ## focusable
 
@@ -147,7 +147,7 @@ requestFocus(value: string): boolean
 | 名称 | 参数类型 | 必填 | 描述 |
 | ---- | ---- | ---- | ---- |
 | margin  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 焦点框相对组件边缘的距离。<br/>正数代表外侧，负数代表内侧。不支持百分比。 |
-| strokeColor  | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否 | 焦点框颜色 |
+| strokeColor  | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否 | 焦点框颜色。 |
 | strokeWidth | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 焦点框宽度。<br/>不支持负数与百分比。|
 
 ## focusScopePriority<sup>12+</sup>
@@ -164,7 +164,7 @@ focusScopePriority(scopeId: string, priority?: FocusPriority): T
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| scopeId  | string | 是   | 当前组件设置的获焦优先级生效的容器组件的id标识。<br/>**说明：** <br/>1.当前组件必须在scopeId所标识的容器内或者当前组件所属容器在scopeId所标识的容器内 。<br/>2.组件不可重复设置多个优先级。<br/>3.设置了focusScopeId的容器组件不可设置优先级。 |
+| scopeId  | string | 是   | 当前组件设置的获焦优先级生效的容器组件的id标识。<br/>**说明：** <br/>1.当前组件必须在scopeId所标识的容器内或者当前组件所属容器在scopeId所标识的容器内。<br/>2.组件不可重复设置多个优先级。<br/>3.设置了focusScopeId的容器组件不可设置优先级。 |
 | priority  | [FocusPriority](#focuspriority12)  | 否   | 获焦优先级。<br/>**说明：** <br/>priority不设置则组件为默认AUTO优先级。<br/>优先级对走焦以及获焦组件的影响：<br/>1.容器整体获焦（层级页面切换/焦点切换到焦点组/容器组件使用requestFocus申请焦点）时，若容器内存在优先级为PREVIOUS的组件，则优先级为PREVIOUS的组件获焦，否则，由容器内上次获焦的组件获焦；<br/>2.容器非整体获焦（非焦点组场景下使用tab键/方向键走焦）时，若容器为首次获焦，则容器内优先级最高的组件获焦，若容器非首次获焦，不考虑优先级按照位置顺序走焦。 |
 
 ### FocusPriority<sup>12+</sup>
@@ -178,6 +178,19 @@ focusScopePriority(scopeId: string, priority?: FocusPriority): T
 | AUTO | 默认的优先级，缺省时组件的获焦优先级。 |
 | PRIOR | 容器内优先获焦的优先级。优先级高于AUTO。 |
 | PREVIOUS | 上一次容器整体失焦时获焦节点的优先级。优先级高于PRIOR。 |
+
+### KeyProcessingMode<sup>15+</sup>
+
+设置按键事件处理的优先级。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 值    | 说明        |
+| -----------| ----------- | --------- |
+| FOCUS_NAVIGATION  | 0 | 默认值，当前组件不消费按键时，tab/方向键优先在当前容器内走焦。 |
+| ANCESTOR_EVENT  | 1  |  当前组件不消费按键时，tab/方向键优先冒泡给父组件。 |
 
 ## focusScopeId<sup>12+</sup>
 
@@ -226,13 +239,46 @@ tabStop(isTabStop: boolean) :T
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isTabStop  | boolean | 是   | 设置当前容器组件是否为走焦可停留容器。<br/>**说明：** <br/>1.配置tabStop需要保障是容器组件且有可获焦的孩子组件，默认容器组件不能直接获焦。<br/> 2.通过[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)请求焦点，如果是容器组件且配置tabStop，焦点能够停留在容器组件，如果未配置tabStop，即使整条焦点链上有配置了tabStop的组件，该组件依然能获取到焦点。<br/>3.配置tabStop的容器不允许嵌套超过2层。<br/>tabStop走焦规则：<br/>1.通过tab键和方向键走焦，焦点会停留在配置了tabStop的组件上，如果焦点停留在配置了tabStop的容器内部时，可以走焦到容器内部的下一个可获焦组件，如果焦点停留在配置了tabStop的容器外部时，可以走焦到容器外的下一个可获焦组件。<br/>2.当焦点停留在tabStop上时，按Enter键可以走焦到内部第一个可获焦组件，按ESC能够将焦点退回到焦点链中不超过当前层级页面根容器的上一个配置了tabStop的组件，按空格键可以响应该容器的onClick事件。<br/>3.不建议根容器配置tabStop。如果根容器配置了tabStop，通过[clearFocus](../js-apis-arkui-UIContext.md#clearfocus12)将焦点清理到根容器，再按Enter键会重新走回内部上一次获焦组件，通过ESC键将焦点清理到根容器，再按Enter键会走焦到内部第一个可获焦组件。|
+| isTabStop  | boolean | 是   | 设置当前容器组件是否为走焦可停留容器。<br/>**说明：** <br/>1.配置tabStop需要保障是容器组件且有可获焦的孩子组件，默认容器组件不能直接获焦。<br/> 2.通过[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)请求焦点，如果是容器组件且配置tabStop，焦点能够停留在容器组件，如果未配置tabStop，即使整条焦点链上有配置了tabStop的组件，该组件依然能获取到焦点。<br/>3.配置tabStop的容器不允许嵌套超过2层。<br/>tabStop走焦规则：<br/>1.通过tab键和方向键走焦，焦点会停留在配置了tabStop的组件上，如果焦点停留在配置了tabStop的容器内部时，可以走焦到容器内部的下一个可获焦组件，如果焦点停留在配置了tabStop的容器外部时，可以走焦到容器外的下一个可获焦组件。<br/>2.当焦点停留在tabStop上时，按Enter键可以走焦到内部第一个可获焦组件，按ESC能够将焦点退回到不超过当前层级页面根容器的上一个配置了tabStop的组件，按空格键可以响应该容器的onClick事件。<br/>3.不建议根容器配置tabStop。如果根容器配置了tabStop，通过[clearFocus](../js-apis-arkui-UIContext.md#clearfocus12)将焦点清理到根容器，再按Enter键会重新走回内部上一次获焦组件，通过ESC键将焦点清理到根容器，再按Enter键会走焦到内部第一个可获焦组件。|
 
 **描述走焦的时候的按键以及获焦组件**
 
 ![tabStop](figures/tabStop.png)
 
-当前焦点如果停留在button2时，按下tab键将会走焦到Column3上，再按下tab键会循环走焦到button1上
+当前焦点如果停留在button2时，按下tab键将会走焦到Column3上，再按下tab键会循环走焦到button1上。
+
+## nextFocus<sup>16+</sup>
+
+nextFocus(nextStep: Optional\<FocusMovement>): T
+
+设置组件的自定义焦点走焦的逻辑。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| nextStep  | [FocusMovement](#focusmovement16对象说明) | 否 | 设置当前容器组件的自定义走焦规则。<br/>**说明：** <br/>默认值为重置nextStep为空。<br/>没设置自定义走焦或者设置自定义组件容器不存在，仍进行默认走焦规则。|
+
+## FocusMovement<sup>16+</sup>对象说明
+
+设置对应的按键对应的走焦目的组件，缺省则遵循默认走焦规则。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 只读/可选 | 说明 |
+| ---- | ---- | ---- | ---- |
+| forward  | string | 可选 | 通过tab键走焦到组件的id。<br/>默认值为重置forward为空。 |
+| backward  | string | 可选 | 通过shift+tab键走焦到组件的id。<br/>默认值为重置backward为空。 |
+| up  | string | 可选 | 通过方向键上键走焦到组件的id。<br/>默认值为重置up为空。 |
+| down  | string | 可选 | 通过方向键下键走焦到组件的id。<br/>默认值为重置down为空。 |
+| left  | string | 可选 | 通过方向键左键走焦到组件的id。<br/>默认值为重置left为空。 |
+| right  | string | 可选 | 通过方向键右键走焦到组件的id。<br/>默认值为重置right为空。 |
 
 ## 示例
 
@@ -653,7 +699,7 @@ struct TabStop {
               .width(200).height(70).fontColor(Color.White)
               .focusBox({
                 margin: LengthMetrics.px(20),
-                strokeColor: ColorMetrics.rgba(255, 0, 0),
+                strokeColor: ColorMetrics.rgba(23, 169, 141),
                 strokeWidth: LengthMetrics.px(10)
               })
           }
@@ -662,7 +708,7 @@ struct TabStop {
               .width(200).height(70).fontColor(Color.White)
               .focusBox({
                 margin: LengthMetrics.px(20),
-                strokeColor: ColorMetrics.rgba(255, 0, 0),
+                strokeColor: ColorMetrics.rgba(23, 169, 141),
                 strokeWidth: LengthMetrics.px(10)
               })
           }
@@ -677,7 +723,7 @@ struct TabStop {
               .fontColor(Color.White)
               .focusBox({
                 margin: LengthMetrics.px(20),
-                strokeColor: ColorMetrics.rgba(255, 0, 0),
+                strokeColor: ColorMetrics.rgba(23, 169, 141),
                 strokeWidth: LengthMetrics.px(10)
               })
               .margin({ top: 15 })
@@ -690,7 +736,7 @@ struct TabStop {
         .tabStop(true)
         .focusBox({
           margin: LengthMetrics.px(20),
-          strokeColor: ColorMetrics.rgba(255, 0, 0),
+          strokeColor: ColorMetrics.rgba(23, 169, 141),
           strokeWidth: LengthMetrics.px(10)
         })
         .borderWidth(1)
@@ -701,14 +747,72 @@ struct TabStop {
 ```
 示意图：
 
-连续按下两次TAB键时，焦点聚焦在第二个孩子组件上。
-
-![tabStop1](figures/tabStop1.png)
-
-接着按下TAB键，焦点聚焦在配置了tabStop上的组件。
+连续按下两次TAB键时，焦点转移到button2上。
 
 ![tabStop2](figures/tabStop2.png)
 
-再按下TAB键，焦点将循环聚焦到第一个孩子组件上。
+接着按下TAB键，焦点转移到配置了tabStop的组件。
 
 ![tabStop3](figures/tabStop3.png)
+
+再按下Enter键，焦点转移至内部button3上。
+
+![tabStop4](figures/tabStop4.png)
+
+再按下ESC键，焦点转移到配置了tabStop的组件上。
+
+![tabStop3](figures/tabStop3.png)
+
+再按下TAB键，焦点循环走焦到button1上。
+
+![tabStop1](figures/tabStop1.png)
+
+### 示例6（设置自定义走焦）
+
+该示例通过配置nextFocus实现自定义走焦规则。
+如果不配置nextFocus，默认点击tab的走焦顺序：M->A->B->C；配置了nextFocus以后,走焦顺序变更为：M->D->F->B。
+
+```ts
+class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
+  applyNormalAttribute(instance: ButtonAttribute): void {
+    instance.id('M')
+    instance.nextFocus({forward: 'D', up: 'C', down: 'D'})
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State modifier: MyButtonModifier = new MyButtonModifier()
+  @State idList: string[] = ['A', 'B', 'C', 'D', 'E', 'F']
+
+  build() {
+    Column({space: 10}) {
+      Row({space: 10}) {
+        Button("id: M")
+          .attributeModifier(this.modifier)
+        Button("id: " + this.idList[0])
+          .id(this.idList[0])
+          .nextFocus({forward: 'C', backward: 'M', up: 'E', right: 'F', down: 'B', left: 'D'});
+        Button("id: " + this.idList[1])
+          .id(this.idList[1])
+      }
+      Column({space: 10}) {
+        Button("id: " + this.idList[2])
+          .id(this.idList[2]);
+        Button("id: " + this.idList[3])
+          .id(this.idList[3])
+          .nextFocus({forward: 'F'});
+      }
+      Row({space: 10}) {
+        Button("id: " + this.idList[4])
+          .id(this.idList[4]);
+        Button("id: " + this.idList[5])
+          .id(this.idList[5])
+          .nextFocus({forward: 'B'});
+      }
+    }
+  }
+}
+```
+![focusBox](figures/nextStep.gif)

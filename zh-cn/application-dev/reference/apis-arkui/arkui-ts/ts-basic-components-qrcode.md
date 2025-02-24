@@ -32,7 +32,7 @@ QRCode(value: string)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### color
 
@@ -102,6 +102,7 @@ contentOpacity(value: number | Resource)
 @Component
 struct QRCodeExample {
   private value: string = 'hello world'
+
   build() {
     Column({ space: 5 }) {
       Text('normal').fontSize(9).width('90%').fontColor(0xCCCCCC).fontSize(30)

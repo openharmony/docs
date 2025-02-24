@@ -518,7 +518,7 @@ struct Index {
 
 ## 通过系统环境变化更新节点
 
-使用[updateConfiguration](../reference/apis-arkui/js-apis-arkui-builderNode.md#reuse12)来监听[系统环境变化](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)事件，以触发节点的全量更新。
+使用[updateConfiguration](../reference/apis-arkui/js-apis-arkui-builderNode.md#updateconfiguration12)来监听[系统环境变化](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)事件，以触发节点的全量更新。
 
 > **说明：**
 >

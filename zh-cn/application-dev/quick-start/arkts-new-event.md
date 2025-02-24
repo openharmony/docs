@@ -58,7 +58,7 @@
 @Entry
 @ComponentV2
 struct Index {
-  @Local title: string = "Titile One";
+  @Local title: string = "Title One";
   @Local fontColor: Color = Color.Red;
 
   build() {

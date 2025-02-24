@@ -12,10 +12,8 @@ ArkTS provides the following mechanisms to support asynchronous concurrency and 
 
 - Using asynchronous concurrency for development
     - [Asynchronous Concurrency Overview](../arkts-utils/async-concurrency-overview.md)
-    - [Single I/O Task Development](../arkts-utils/single-io-development.md)
 - Using multithread concurrency for development
     - [Multithread Concurrency Overview](../arkts-utils/multi-thread-concurrency-overview.md)
-    - [Comparison Between the Actor and Memory Sharing Models](../arkts-utils/actor-model-development-samples.md)
     - [Comparison Between TaskPool and Worker](../arkts-utils/taskpool-vs-worker.md)
     - [CPU Intensive Task Development](../arkts-utils/cpu-intensive-task-development.md)
     - [I/O Intensive Task Development](../arkts-utils/io-intensive-task-development.md)

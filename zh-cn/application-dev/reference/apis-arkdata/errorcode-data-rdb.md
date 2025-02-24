@@ -47,7 +47,7 @@ Invalid database path.
 
 检查传入数据库路径。
 
-## 14800011 数据库文件损坏
+## 14800011 数据库文件异常
 
 **错误信息**
 
@@ -55,11 +55,11 @@ Database corrupted.
 
 **错误描述**
 
-该错误码表示在调用数据库增、删、查、数据同步等接口时，数据库已损坏。
+数据库出现异常。
 
 **可能原因**
 
-调用数据库增、删、查、数据同步等接口操作数据库时，数据库文件已损坏。
+数据库文件不完整、数据库fd被误操作、数据库内存被踩等。
 
 **处理步骤**
 
@@ -587,7 +587,7 @@ The operation is supported in the stage model only.
 
 **错误信息**
 
-Invalid data ground ID.
+Invalid data group ID.
 
 **错误描述**
 

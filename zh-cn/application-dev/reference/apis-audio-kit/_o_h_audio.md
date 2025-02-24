@@ -165,6 +165,8 @@
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetEncodingType](#oh_audiorenderer_getencodingtype)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) \*encodingType) | 查询当前输出音频流编码类型。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetFramesWritten](#oh_audiorenderer_getframeswritten)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int64_t \*frames) | 查询自创建流以来已写入的帧数。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetTimestamp](#oh_audiorenderer_gettimestamp)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, clockid_t clockId, int64_t \*framePosition, int64_t \*timestamp) | 获取输出音频流时间戳和位置信息。  | 
+| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetAudioTimestampInfo](#oh_audiorenderer_getaudiotimestampinfo) ([OH_AudioRenderer](#oh_audiorenderer)
+ \*renderer, int64_t \*framePosition, int64_t \*timestamp) | 获取输出音频流时间戳和位置信息，适配倍速接口。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetFrameSizeInCallback](#oh_audiorenderer_getframesizeincallback)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int32_t \*frameSize) | 在回调中查询帧大小。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetSpeed](#oh_audiorenderer_getspeed)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, float \*speed) | 获取音频渲染速率。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_SetSpeed](#oh_audiorenderer_setspeed)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, float speed) | 设置音频渲染速率。  | 
@@ -1856,6 +1858,54 @@ AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
 
 AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。
+
+
+### OH_AudioRenderer_GetAudioTimestampInfo()
+
+```
+OH_AudioStream_Result OH_AudioRenderer_GetAudioTimestampInfo(OH_AudioRenderer* renderer, int64_t* framePosition, int64_t* timestamp)
+```
+
+**描述**
+
+获取输出音频流时间戳和位置信息，适配倍速接口。
+
+获取输出音频流时间戳和位置信息，通常用于进行音画同步对齐。
+
+注意，当实际播放位置（framePosition）为0时，时间戳（timestamp）是固定值，直到流真正跑起来时才会更新。当调用Flush接口时实际播放位置也会被重置。 当音频流路由(route)变化时，例如设备变化或者输出类型变化时，播放位置也会被重置，但此时时间戳仍会持续增长。
+
+推荐当实际播放位置和时间戳都稳定后再调用该接口获取相应值。
+
+该接口适配倍速接口，例如当播放速度设置为2倍时，实际播放位置也会返回为正常的2倍。
+
+**起始版本：** 15
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 | 
+| framePosition | 指向要接收位置的变量的指针（作为返回值使用）。 | 
+| timestamp | 指向接收时间戳的变量的指针（作为返回值使用）。 | 
+
+**返回：**
+
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
+
+AUDIOSTREAM_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：
+1. 参数renderer为nullptr。
+2. 参数framePosition或timestamp为nullptr。 
+
+AUDIOSTREAM_ERROR_ILLEGAL_STATE：当前流状态不为合法状态时返回。
+
+AUDIOSTREAM_ERROR_SYSTEM：
+
+1. 系统进程崩溃或被阻塞。
+2. 内部系统其他错误。
 
 
 ### OH_AudioRenderer_GetChannelCount()

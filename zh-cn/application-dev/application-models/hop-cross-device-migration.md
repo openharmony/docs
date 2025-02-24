@@ -186,7 +186,7 @@
 
 **设置迁移能力的时机**
 
-如果需要实现某些特殊场景，比如只在具体某个页面下支持迁移，或只在某个事件发生时才支持迁移，可以按照如下步骤进行配置
+如果需要实现某些特殊场景，比如只在具体某个页面下支持迁移，或只在某个事件发生时才支持迁移，可以按照如下步骤进行配置。
 
 1. 在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)生命周期回调中，关闭迁移能力。
 
@@ -398,6 +398,60 @@ export default class MigrationAbility extends UIAbility {
    }
 ```
 
+### 支持同应用不同BundleName的Ability跨端迁移
+相同应用在不同设备类型下可能使用了不同的BundleName，该场景下如果需要支持应用跨端迁移，需要在不同BundleName的应用的module.json5配置文件中的abilities标签进行如下配置：
+
+- continueBundleName字段：分别添加对端应用的BundleName。
+- continueType字段：必须保持一致。
+
+   > **说明：**
+   >
+   > continueType在本应用中要保证唯一，字符串以字母、数字和下划线组成，最大长度127个字节，不支持中文。
+   > continueType标签类型为字符串数组，如果配置了多个字段，当前仅第一个字段会生效。
+    
+示例如下：
+
+   不同BundleName的相同应用在设备A和设备B之间相互迁移，设备A应用的BundleName为com.demo.example1，设备B应用的BundleName为com.demo.example2。
+  
+```JSON
+// 在设备A的应用配置文件中，continueBundleName字段配置包含设备B上应用的BundleName。
+{
+  "module": {
+    // ···
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        // ···
+        "continueType": ["continueType"],
+        "continueBundleName": ["com.demo.example2"], // continueBundleName标签配置，com.demo.example2为设备B上应用的BundleName。
+       
+      }
+    ]
+    
+  }
+}
+```
+
+```JSON
+// 在设备B的应用配置文件中，continueBundleName字段配置包含设备A上应用的BundleName。
+{
+  "module": {
+    // ···
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        // ···
+        "continueType": ["continueType"],
+        "continueBundleName": ["com.demo.example1"], // continueBundleName标签配置，com.demo.example1为设备A上应用的BundleName。
+       
+      }
+    ]
+    
+  }
+}
+
+```
+
 ### 支持快速拉起目标应用
 默认情况下，发起迁移后不会立即拉起对端的目标应用，而是等待迁移数据从源端同步到对端后，才会拉起。为了发起迁移后能够立即拉起目标应用，做到及时响应，可以通过在continueType标签中添加“_ContinueQuickStart”后缀进行生效，这样待迁移数据从源端同步到对端后只恢复迁移数据即可，提升应用迁移体验。
 
@@ -415,7 +469,11 @@ export default class MigrationAbility extends UIAbility {
      }
    }
    ```
-配置快速拉起功能后，用户触发迁移，等待迁移数据返回的过程中，并行拉起应用，减小用户等待迁移启动时间。同时需注意，应用在迁移的提前启动时，首次触发迁移会收到`launchReason`为提前拉起 (PREPARE_CONTINUATION)的[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)请求。应用可以通过此`launchReason`，解决跳转、时序等问题，也可以在迁移快速启动时，增加loading界面，以获得更好的体验。快速拉起流程如下图所示。
+配置快速拉起功能后，用户触发迁移，等待迁移数据返回的过程中，并行拉起应用，减小用户等待迁移启动时间。同时需注意，应用在迁移的提前启动时，首次触发迁移会收到`launchReason`为提前拉起 (PREPARE_CONTINUATION)的[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)请求。应用可以通过此`launchReason`，解决跳转、时序等问题，也可以在迁移快速启动时，增加loading界面。
+
+从API version 16开始，在快速拉起时含loading界面的应用，支持[获取应用跨端迁移快速拉起结果](../reference/apis-ability-kit/js-apis-app-ability-continueManager.md#continuemanageron)。根据快速拉起结果，应用可以进行相应操作，例如快速拉起成功时退出loading界面进入接续页面。
+
+快速拉起流程如下图所示。
 
 ![hop-cross-device-migration](figures/continue_quick_start.png)
 
@@ -984,15 +1042,15 @@ export default class MigrationAbility extends UIAbility {
 >
 > 本文中的截图仅为参考，具体的显示界面请以实际使用的DevEco Studio和SDK的版本为准。
 
-1. 编译安装全局任务中心
+1. 编译安装全局任务中心。
 
     1. 为了正确编译安装全局任务中心，开发者需要替换Full-SDK，具体操作可参见[替换指南](../faqs/full-sdk-switch-guide.md)。
 
-    2. 下载[MissionCenter_Demo](https://gitee.com/openharmony/ability_dmsfwk/tree/master/services/dtbschedmgr/test/missionCenterDemo/dmsDemo/entry/src/main)示例代码
+    2. 下载[MissionCenter_Demo](https://gitee.com/openharmony/ability_dmsfwk/tree/master/services/dtbschedmgr/test/missionCenterDemo/dmsDemo/entry/src/main)示例代码。
 
-    3. 编译工程文件
+    3. 编译工程文件。
 
-        1. 新建一个工程，找到对应的文件夹替换下载文件
+        1. 新建一个工程，找到对应的文件夹替换下载文件。
 
             ![hop-cross-device-migration](figures/hop-cross-device-migration1.png)
 
@@ -1010,7 +1068,7 @@ export default class MigrationAbility extends UIAbility {
 
         3. 连接开发板运行生成demo。
 
-2. 设备组网
+2. 设备组网。
 
     1. 打开A，B两设备的计算器。
     2. 点击右上角箭头选择B设备。
@@ -1018,7 +1076,7 @@ export default class MigrationAbility extends UIAbility {
     4. 在A设备输入PIN码。
     5. 已组网成功，验证方法：在A设备输入数字，B设备同步出现则证明组网成功。
 
-3. 发起迁移
+3. 发起迁移。
 
     1. 在B设备打开多设备协同权限的应用，A设备打开全局任务中心demo，demo显示A设备名称和B设备名称。
     2. 点击B设备名称，列表显示B设备的应用卡片列表。

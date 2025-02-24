@@ -28,7 +28,7 @@ createBundleContext(bundleName: string): Context
 
 **系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -133,7 +133,7 @@ createModuleResourceManager(bundleName: string, moduleName: string): resmgr.Reso
 
 **系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -183,7 +183,7 @@ createSystemHspModuleResourceManager(bundleName: string, moduleName: string): re
 
 创建系统级HSP的某个模块的资源管理对象。
 
-**系统接口：** 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

@@ -23,21 +23,21 @@ import { uri } from '@kit.ArkTS';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| scheme | string | 是 | 否 | 获取URI的协议部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。|
-| userInfo | string | 是 | 否 | 获取URI的用户信息部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
-| host | string | 是 | 否 | 获取URI的主机名部分（不带端口），若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。|
-| port | string | 是 | 否 | 获取URI的端口部分。 <br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
-| path | string | 是 | 否 | 获取URI的路径部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
-| query | string | 是 | 否 | 获取URI的查询部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
-| fragment | string | 是 | 否 | 获取URI的片段部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
-| authority | string | 是 | 否 | 获取此URI的解码权限组件部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
-| ssp | string | 是 | 否 | 获取URI的解码方案特定部分，方案特定部分是URI的一部分，它包含了特定于协议或方案的信息。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
-| encodedUserInfo<sup>12+</sup>  | string | 是   | 否   | 获取URI的编码用户信息部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。   |
-| encodedPath<sup>12+</sup>      | string | 是   | 否   | 获取URI的编码路径部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。       |
-| encodedQuery<sup>12+</sup>     | string | 是   | 否   | 获取URI的编码查询部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。      |
-| encodedFragment<sup>12+</sup>  | string | 是   | 否   | 获取URI的编码片段部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。      |
-| encodedAuthority<sup>12+</sup> | string | 是   | 否   | 获取URI的编码权限组件部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。   |
-| encodedSSP<sup>12+</sup>       | string | 是   | 否   | 获取URI的编码方案特定部分。<br/>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。   |
+| scheme | string | 是 | 否 | 获取URI的协议部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| userInfo | string | 是 | 否 | 获取URI的用户信息部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| host | string | 是 | 否 | 获取URI的主机名部分（不带端口），若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| port | string | 是 | 否 | 获取URI的端口部分。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| path | string | 是 | 否 | 获取URI的路径部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| query | string | 是 | 否 | 获取URI的查询部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| fragment | string | 是 | 否 | 获取URI的片段部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| authority | string | 是 | 否 | 获取此URI的解码权限组件部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| ssp | string | 是 | 否 | 获取URI的解码方案特定部分，方案特定部分是URI的一部分，它包含了特定于协议或方案的信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| encodedUserInfo<sup>12+</sup>  | string | 是   | 否   | 获取URI的编码用户信息部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| encodedPath<sup>12+</sup>      | string | 是   | 否   | 获取URI的编码路径部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
+| encodedQuery<sup>12+</sup>     | string | 是   | 否   | 获取URI的编码查询部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| encodedFragment<sup>12+</sup>  | string | 是   | 否   | 获取URI的编码片段部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| encodedAuthority<sup>12+</sup> | string | 是   | 否   | 获取URI的编码权限组件部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| encodedSSP<sup>12+</sup>       | string | 是   | 否   | 获取URI的编码方案特定部分。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 
 ### 命名规则
 
@@ -52,7 +52,7 @@ import { uri } from '@kit.ArkTS';
 将URI格式进一步细化可分为：
 [scheme:][//[user-info@]host[:port]][path][?query][#fragment]。
 
-- scheme: 协议名，与scheme-specific-part以：进行分隔，包含scheme部分的URI为绝对URI，不包含scheme部分的URI为相对URI，根据需要填写。例如http、https、ftp、datashare等。
+- scheme: 协议名，与scheme-specific-part以:进行分隔，包含scheme部分的URI为绝对URI，不包含scheme部分的URI为相对URI，根据需要填写。例如http、https、ftp、datashare等。
 - scheme-specific-part: URI的特定解码方案特定部分，位于[scheme:]和[#fragment]之间由[//][authority][path][?query]组成，此部分以/开头的为分层URI，不以/开头的为不透明URI，根据需要填写。
     - authority: URI的解码权限组件部分。由[userinfo@]host[:port]组成，根据需要填写。
         - userinfo: 用户信息，与host通过@进行分隔，根据需要填写。
@@ -136,7 +136,7 @@ constructor(uri: string)
 
 constructor是URI的构造函数。
 
-**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -174,7 +174,7 @@ toString(): string
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -195,7 +195,7 @@ equalsTo(other: URI): boolean
 
 判断此URI是否与其他URI对象相等。
 
-**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -233,7 +233,7 @@ checkIsAbsolute(): boolean
 
 判断此URI是否为绝对URI（是否定义了scheme组件）。
 
-**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -270,7 +270,7 @@ normalize(): URI
 >如果路径规范化后以 ..（双点）段开头，这表明之前没有足够的非 .. 段可以移除，因此路径将以 .. 段开始。
 
 
-**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -301,7 +301,7 @@ checkRelative(): boolean
 
 判断此URI是否为相对URI，相对URI指的是不包含协议(scheme)部分的URI。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -326,7 +326,7 @@ checkOpaque(): boolean
 
 判断此URI是否为不透明URI，方案特定部分不以“/”开头的URI为不透明的URI。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -351,7 +351,7 @@ checkHierarchical(): boolean
 
 判断此URI是否为分层URI，方案特定部分以“/”开头的URI为分层的URI。相对URI也是分层的。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -378,7 +378,7 @@ getQueryValue(key:string): string
 
 查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，键值对之间使用与号“&”分隔。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -418,7 +418,7 @@ addQueryValue(key:string, value:string): URI
 
 在当前URI的基础上添加查询参数，并创建一个新的URI，同时保持原有URI对象不变。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -457,7 +457,7 @@ addSegment(pathSegment:string): URI
 
 对给定的字段进行编码并将其追加到当前URI的path字段中，并创建一个新的URI返回，同时保持原有URI对象不变。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -495,7 +495,7 @@ addEncodedSegment(pathSegment:string): URI
 
 通过将已编码的字段追加到当前URI的path字段中，并创建一个新的URI返回，同时保持原有URI对象不变。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -533,7 +533,7 @@ getQueryNames(): string[]
 
 获取URI查询部分中所有不重复的键。查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，键值对之间使用与号“&”分隔。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -559,7 +559,7 @@ getQueryValues(key:string): string[]
 
 查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，键值对之间使用与号“&”分隔。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -597,7 +597,7 @@ getBooleanQueryValue(key:string,defaultValue:boolean): boolean
 
 从URI查询参数中获取布尔类型的参数值。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -606,7 +606,7 @@ getBooleanQueryValue(key:string,defaultValue:boolean): boolean
 | 参数名       | 类型    | 必填 | 说明                                  |
 | ------------ | ------- | ---- | ------------------------------------- |
 | key          | string  | 是   | 要获取的查询参数的名称。               |
-| defaultValue | boolean | 是   | 返回的默认值。 |
+| defaultValue | boolean | 是   | 设置查询参数中未包含指定键时返回的默认值。 |
 
 **返回值：**
 
@@ -633,6 +633,8 @@ const uriInstance2 = new uri.URI("https://www.test.com/search?active=aa&active=f
 console.info(`${uriInstance2.getBooleanQueryValue("active", false)}`); // true
 const uriInstance3 = new uri.URI("https://www.test.com/search?active=0");
 console.info(`${uriInstance3.getBooleanQueryValue("active", true)}`); // false
+const uriInstance4 = new uri.URI("https://www.test.com/search");
+console.info(`${uriInstance4.getBooleanQueryValue("active", true)}`); // true
 ```
 
 ### clearQuery<sup>12+</sup>
@@ -641,7 +643,7 @@ clearQuery(): URI
 
 清除URI路径查询部分，并创建一个新的URI，同时保持原有URI对象不变。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -664,7 +666,7 @@ getLastSegment(): string
 
 获取此URI路径的最后一个段。每个段代表路径中的一个部分，通常通过“/”来进行分隔。对于以斜杠结尾的或者没有路径的不代表段。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -687,7 +689,7 @@ getSegment(): string[]
 
 获取此URI路径中的所有段。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -710,7 +712,7 @@ createFromParts(scheme: string, ssp: string, fragment: string): URI
 
 根据提供的协议、方案特定部分以及片段部分创建一个新的URI。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

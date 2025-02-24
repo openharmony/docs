@@ -37,8 +37,8 @@ getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;Rd
 
 | 当前开库的加密类型  | 首次创建数据库的加密类型           | 结果 |
 | ------- | -------------------------------- | ---- |
-| 非加密 | 加密                          | 将数据库以加密方式打开   |
-| 加密 | 非加密                          | 将数据库以非加密方式打开   |
+| 非加密 | 加密                          | 将数据库以加密方式打开。   |
+| 加密 | 非加密                          | 将数据库以非加密方式打开。   |
 
 getRdbStore目前不支持多线程并发操作。
 
@@ -63,7 +63,7 @@ getRdbStore目前不支持多线程并发操作。
 | 14800010  | Invalid database path.   |
 | 14800011  | Database corrupted.    |
 | 14801001  | The operation is supported in the stage model only.    |
-| 14801002  | Invalid data ground ID.     |
+| 14801002  | Invalid data group ID.   |
 | 14800017  | Config changed.   |
 | 14800020  | The secret key is corrupted or lost.   |
 | 14800021  | SQLite: Generic error.    |
@@ -139,8 +139,8 @@ getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 
 | 当前开库的加密类型  | 首次创建数据库的加密类型           | 结果 |
 | ------- | -------------------------------- | ---- |
-| 非加密 | 加密                          | 将数据库以加密方式打开   |
-| 加密 | 非加密                          | 将数据库以非加密方式打开   |
+| 非加密 | 加密                          | 将数据库以加密方式打开。   |
+| 加密 | 非加密                          | 将数据库以非加密方式打开。   |
 
 getRdbStore目前不支持多线程并发操作。
 
@@ -170,7 +170,7 @@ getRdbStore目前不支持多线程并发操作。
 | 14800010  | Invalid database path. |
 | 14800011  | Database corrupted.  |
 | 14801001  | The operation is supported in the stage model only.                               |
-| 14801002  | Invalid data ground ID.                             |
+| 14801002  | Invalid data group ID.                             |
 | 14800017  | Config changed. |
 | 14800020  | The secret key is corrupted or lost.   |
 | 14800021  | SQLite: Generic error. |
@@ -238,7 +238,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 删除数据库文件，使用callback异步回调。
 
-删除成功后，建议将数据库对象置为null。建立数据库时，若在[StoreConfig](#storeconfig)中配置了自定义路径，则调用此接口进行删库无效，必须使用 [deleteRdbStore<sup>10+</sup>](#relationalstoredeleterdbstore10) 接口进行删库。
+删除成功后，建议将数据库对象置为null。建立数据库时，若在[StoreConfig](#storeconfig)中配置了自定义路径，则调用此接口进行删库无效，必须使用 [deleteRdbStore](#relationalstoredeleterdbstore10) 接口进行删库。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -311,7 +311,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 使用指定的数据库文件配置删除数据库，使用Promise异步回调。
 
-删除成功后，建议将数据库对象置为null。建立数据库时，若在[StoreConfig](#storeconfig)中配置了自定义路径，则调用此接口进行删库无效，必须使用 [deleteRdbStore<sup>10+</sup>](#relationalstoredeleterdbstore10-1) 接口进行删库。
+删除成功后，建议将数据库对象置为null。建立数据库时，若在[StoreConfig](#storeconfig)中配置了自定义路径，则调用此接口进行删库无效，必须使用 [deleteRdbStore](#relationalstoredeleterdbstore10-1) 接口进行删库。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -407,7 +407,7 @@ deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback\<v
 | 14800000  | Inner error.        |
 | 14800010  | Failed to open or delete database by invalid database path.        |
 | 14801001  | The operation is supported in the stage model only.         |
-| 14801002  | Invalid data ground ID.        |
+| 14801002  | Invalid data group ID.        |
 
 **示例：**
 
@@ -497,7 +497,7 @@ deleteRdbStore(context: Context, config: StoreConfig): Promise\<void>
 | 14800000  | Inner error.      |
 | 14800010  | Invalid database path.   |
 | 14801001  | The operation is supported in the stage model only.   |
-| 14801002  | Invalid data ground ID.   |
+| 14801002  | Invalid data group ID.   |
 
 **示例：**
 
@@ -568,6 +568,47 @@ isVectorSupported(): boolean
 let result = relationalStore.isVectorSupported();
 ```
 
+## relationalStore.isTokenizerSupported<sup>16+</sup>
+
+isTokenizerSupported(tokenizer: Tokenizer): boolean
+
+判断当前平台是否支持传入的分词器，此为同步接口。
+
+如果当前平台支持传入的分词器时，此接口返回值为true；反之，返回值为false。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名  | 类型                  | 必填 | 说明                                                         |
+| ------- | --------------------- | ---- | ------------------------------------------------------------ |
+| tokenizer | [Tokenizer](#tokenizer16)               | 是   | 需要被判断是否支持的分词器。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| boolean | true表示当前平台支持当前传入的分词器，false表示当前平台不支持当前传入的分词器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**             |
+|-----------|---------------------|
+| 401       | Parameter error. Possible causes: Incorrect parameter types. |
+
+
+**示例：**
+
+```ts
+import { relationalStore } from '@kit.ArkData'; // 导入模块
+
+let customType = relationalStore.Tokenizer.CUSTOM_TOKENIZER;
+let customTypeSupported = relationalStore.isTokenizerSupported(customType);
+console.info("custom tokenizer supported on current platform: " + customTypeSupported);
+```
+
 ## StoreConfig
 
 管理关系数据库配置。
@@ -577,15 +618,16 @@ let result = relationalStore.isVectorSupported();
 | name          | string        | 是   | 数据库文件名，也是数据库唯一标识符。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core   |
 | securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core|
 | encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取，暂不支持。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，dataGroupId共沙箱的方式不支持多进程访问加密数据库，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，<!--RP1-->暂不支持指定dataGroupId在对应的沙箱路径下创建RdbStore实例。<!--RP1End--><br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。dataGroupId共沙箱的方式不支持多进程访问加密数据库，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。从API version 16开始，如果同时配置了rootDir参数，将打开或删除如下路径数据库：rootDir + "/" + customDir + "/" + name。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | rootDir<sup>16+</sup> | string | 否 | 指定数据库根路径。<br/>从API version 16开始，支持此可选参数。将从如下目录打开或删除数据库：rootDir + "/" + customDir。通过设置此参数打开的数据库为只读模式，不允许对数据库进行写操作，否则返回错误码801。配置此参数打开或删除数据库时，应确保对应路径下数据库文件存在，并且有读取权限，否则返回错误码14800010。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | autoCleanDirtyData<sup>11+</sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata11)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
-| allowRebuild<sup>12+</sup> | boolean | 否 | 指定数据库是否支持损坏时自动重建，默认不重建。<br/>true:自动重建。<br/>false:不自动重建。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| allowRebuild<sup>12+</sup> | boolean | 否 | 指定数据库是否支持异常时自动删除，并重建一个空库空表，默认不删除。<br/>true:自动删除。<br/>false:不自动删除。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | isReadOnly<sup>12+</sup> | boolean | 否 | 指定数据库是否只读，默认为数据库可读写。<br/>true:只允许从数据库读取数据，不允许对数据库进行写操作，否则会返回错误码801。<br/>false:允许对数据库进行读写操作。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | pluginLibs<sup>12+</sup> | Array\<string> | 否 | 表示包含有fts（Full-Text Search，即全文搜索引擎）等能力的动态库名的数组。<br/>**使用约束：** <br/>1. 动态库名的数量限制最多为16个，如果超过该数量会开库失败，返回错误。<br/>2. 动态库名需为本应用沙箱路径下或系统路径下的动态库，如果动态库无法加载会开库失败，返回错误。<br/>3. 动态库名需为完整路径，用于被sqlite加载。<br/>样例：[context.bundleCodeDir+ "/libs/arm64/" + libtokenizer.so]，其中context.bundleCodeDir是应用沙箱对应的路径，"/libs/arm64/"表示子目录，libtokenizer.so表示动态库的文件名。当此参数不填时，默认不加载动态库。<br/>4. 动态库需要包含其全部依赖，避免依赖项丢失导致无法运行。<br/>例如：在ndk工程中，使用默认编译参数构建libtokenizer.so，此动态库依赖c++标准库。在加载此动态库时，由于namespace与编译时不一致，链接到了错误的libc++_shared.so，导致`__emutls_get_address`符号找不到。要解决此问题，需在编译时静态链接c++标准库，具体请参见[NDK工程构建概述](../../napi/build-with-ndk-overview.md)。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | cryptoParam<sup>14+</sup> | [CryptoParam](#cryptoparam14) | 否 | 指定用户自定义的加密参数。<br/>当此参数不填时，使用默认的加密参数，见[CryptoParam](#cryptoparam14)各参数默认值。<br/>此配置只有在encrypt选项设置为真时才有效。<br/>从API version 14开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| vector<sup>16+</sup> | boolean | 否 | 指定数据库是否是向量数据库，true表示向量数据库，false表示关系型数据库，默认为false。<br/>向量数据库适用于存储和处理高维向量数据，关系型数据库适用于存储和处理结构化数据。<br/>向量数据库目前支持[execute](#execute12-1)，[querySql](#querysql-1)，[beginTrans](#begintrans12)，[commit](#commit12)，[rollback](#rollback12)，[backup](#backup)，[restore](#restore)以及[ResultSet](#resultset)类型操作接口。当使用向量数据库时，在调用deleteRdbStore接口前，应当确保向量数据库已经被正确关闭。**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| vector<sup>16+</sup> | boolean | 否 | 指定数据库是否是向量数据库，true表示向量数据库，false表示关系型数据库，默认为false。<br/>向量数据库适用于存储和处理高维向量数据，关系型数据库适用于存储和处理结构化数据。<br/>向量数据库目前支持[execute](#execute12-1)，[querySql](#querysql-1)，[beginTrans](#begintrans12)，[commit](#commit12)，[rollback](#rollback12)，[backup](#backup)，[restore](#restore)以及[ResultSet](#resultset)类型操作接口。当使用向量数据库时，在调用deleteRdbStore接口前，应当确保向量数据库已经被正确关闭。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| tokenizer<sup>16+</sup> | [Tokenizer](#tokenizer16) | 否 | 指定用户在fts场景下使用哪种分词器。<br/>当此参数不填时，则在fts下不支持中文以及多国语言分词，但仍可支持英文分词。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 
 ## SecurityLevel
 
@@ -653,6 +695,88 @@ let result = relationalStore.isVectorSupported();
 | KDF_SHA1 |  0    | PBKDF2_HMAC_SHA1算法。     |
 | KDF_SHA256 |  1    | PBKDF2_HMAC_SHA256算法。     |
 | KDF_SHA512 |  2    | PBKDF2_HMAC_SHA512算法。     |
+
+## Tokenizer<sup>16+</sup>
+
+描述fts（全文搜索）场景下使用的分词器枚举。请使用枚举名称而非枚举值。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称                              | 值   | 说明             |
+| ------------------------------- | --- | -------------- |
+| NONE_TOKENIZER     | 0  | 不使用分词器。      |
+| ICU_TOKENIZER | 1 | 表示使用icu分词器，支持中文以及多国语言。指定icu分词器时，可指定使用哪种语言，例如zh_CN表示中文，tr_TR表示土耳其语等。详细支持的语言种类，请查阅[ICU分词器](https://gitee.com/openharmony/third_party_icu/blob/master/icu4c/source/data/lang/zh.txt)。详细的语言缩写，请查阅该目录([ICU支持的语言缩写](https://gitee.com/openharmony/third_party_icu/tree/master/icu4c/source/data/locales))下的文件名。|
+| CUSTOM_TOKENIZER | 2 | 表示使用自研分词器，可支持中文（简体、繁体）、英文、阿拉伯数字。CUSTOM_TOKENIZER相比ICU_TOKENIZER在分词准确率、常驻内存占用上更有优势。 |
+
+在使用不同的分词器时，使用的创表语句会有所区别。
+
+**示例：**
+
+使用ICU_TOKENIZER分词器时，创建表的示例：
+
+```ts
+import { relationalStore } from '@kit.ArkData'; // 导入模块
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+// 此处示例在Stage模式、Ability中实现，使用者也可以在其他合理场景中使用
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let store: relationalStore.RdbStore | undefined = undefined;
+    const STORE_CONFIG: relationalStore.StoreConfig = {
+      name: "MyStore.db",
+      securityLevel: relationalStore.SecurityLevel.S3,
+      tokenizer: relationalStore.Tokenizer.ICU_TOKENIZER
+    };
+    store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
+
+    const SQL_CREATE_TABLE = "CREATE VIRTUAL TABLE example USING fts4(name, content, tokenize=icu zh_CN)"
+    if(store != undefined) {
+      (store as relationalStore.RdbStore).executeSql(SQL_CREATE_TABLE, (err) => {
+        if (err) {
+          console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('create virtual table done.');
+      })
+    }
+  }
+}
+```
+
+使用CUSTOM_TOKENIZER分词器时，创建表的示例：
+
+```ts
+import { relationalStore } from '@kit.ArkData'; // 导入模块
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+// 此处示例在Stage模式、Ability中实现，使用者也可以在其他合理场景中使用
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let store: relationalStore.RdbStore | undefined = undefined;
+    const STORE_CONFIG: relationalStore.StoreConfig = {
+      name: "MyStore.db",
+      securityLevel: relationalStore.SecurityLevel.S3,
+      tokenizer: relationalStore.Tokenizer.CUSTOM_TOKENIZER
+    };
+    store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
+
+    const SQL_CREATE_TABLE = "CREATE VIRTUAL TABLE example USING fts5(name, content, tokenize='customtokenizer')"
+    if(store != undefined) {
+      (store as relationalStore.RdbStore).executeSql(SQL_CREATE_TABLE, (err) => {
+        if (err) {
+          console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('create virtual table done.');
+      })
+    }
+  }
+}
+```
 
 ## AssetStatus<sup>10+</sup>
 
@@ -873,6 +997,7 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 | -------- | ------- | ---- | ------------------------------------------------------------ |
 | autoSync   | boolean | 是   | 该值为true时，表示该表支持自动同步和手动同步；该值为false时，表示该表只支持手动同步，不支持自动同步。 |
 | asyncDownloadAsset<sup>16+</sup> | boolean | 否 | 表示当前数据库在端云同步时，同步或异步下载资产。true表示优先下载完所有数据后，使用异步任务下载资产；false表示同步下载资产；默认值为false。 |
+| enableCloud<sup>16+</sup> | boolean | 否 | 表示当前数据库是否允许端云同步。true表示允许端云同步；false表示不允许端云同步。默认值为true。 |
 
 ## ConflictResolution<sup>10+</sup>
 
@@ -3981,7 +4106,9 @@ querySql(sql: string, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用callback异步回调。
 
-[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；特殊语法有<->和<=>，分别是计算向量的相似度和余弦距离。
+[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；扩展语法有<->(计算相似度)和<=>(计算余弦距离)，支持在聚合函数(max、min)中使用，不支持在聚合函数(sum、avg、count)和基础函数(random、abs、upper、lower、length)中使用。
+
+聚合函数不支持嵌套使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4051,7 +4178,9 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 
 根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用callback异步回调。
 
-[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；特殊语法有<->和<=>，分别是计算向量的相似度和余弦距离。
+[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；扩展语法有<->(计算相似度)和<=>(计算余弦距离)，支持在聚合函数(max、min)中使用，不支持在聚合函数(sum、avg、count)和基础函数(random、abs、upper、lower、length)中使用。
+
+聚合函数不支持嵌套使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4104,7 +4233,9 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 
 根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用Promise异步回调。
 
-[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；特殊语法有<->和<=>，分别是计算向量的相似度和余弦距离。
+[向量数据库](#storeconfig)当前支持的标准语法有where、limit、offset、order by、group by以及having；扩展语法有<->(计算相似度)和<=>(计算余弦距离)，支持在聚合函数(max、min)中使用，不支持在聚合函数(sum、avg、count)和基础函数(random、abs、upper、lower、length)中使用。
+
+聚合函数不支持嵌套使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4427,6 +4558,8 @@ execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
+向量数据库使用该接口执行插入操作，数据来源于子查询时，支持全字段插入，暂不支持部分字段插入。
+
 不支持分号分隔的多条语句。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
@@ -4531,7 +4664,7 @@ execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;Va
 
 执行包含指定参数的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用Promise异步回调。
 
-该接口仅支持[向量数据库](#storeconfig)使用。
+该接口仅支持[向量数据库](#storeconfig)使用。使用该接口执行插入操作，数据来源于子查询时，支持全字段插入，暂不支持部分字段插入。
 
 此接口不支持执行查询，可以使用[querySql](#querysql10)接口代替。
 
@@ -4545,7 +4678,7 @@ execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;Va
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | sql      | string                               | 是   | 指定要执行的SQL语句。                                        |
 | txId      | number                               | 是   | 通过[beginTrans](#begintrans12)获取的事务ID，如果传0，该语句默认在单独事务内。                                      |
-| args | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。该参数不填，或者填null或undefined，都认为是sql参数语句完整。 |
+| args | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。该参数不填，填null或者填undefined，都认为是sql参数语句完整。 |
 
 **返回值**：
 
@@ -4606,7 +4739,7 @@ executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 
 执行包含指定参数的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，返回值类型为ValueType。
 
-该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表）,返回结果类型由执行具体sql的结果决定。
+该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表），返回结果类型由执行具体sql的结果决定。
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
@@ -4947,7 +5080,11 @@ createTransaction(options?: TransactionOptions): Promise&lt;Transaction&gt;
 
 创建一个事务对象并开始事务，使用Promise异步回调。
 
-与[beginTransaction](#begintransaction)的区别在于：createTransaction接口会返回一个事务对象，不同事务对象之间是隔离的。一个store最多支持同时存在四个事务对象，超过后会返回14800015错误码，此时需要检查是否持有事务对象时间过长或并发事务过多。如果已无法优化，可以等其它事务释放后再次尝试创建事务对象。
+与[beginTransaction](#begintransaction)的区别在于：createTransaction接口会返回一个事务对象，不同事务对象之间是隔离的。使用事务对象进行插入、删除或更新数据等操作，无法被注册数据变更通知[on('dataChange')](#ondatachange)监听到。
+
+一个store最多支持同时存在四个事务对象，超过后会返回14800015错误码，此时需要检查是否持有事务对象时间过长或并发事务过多，若确认无法通过上述优化解决问题，建议等待现有事务释放后，再尝试新建事务对象。
+
+优先使用createTransaction，不再推荐使用beginTransaction。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -5724,7 +5861,7 @@ if(store != undefined) {
 
 obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void
 
-根据远程设备的本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 使用callback异步回调。
+根据远程设备的本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，使用callback异步回调。
 
 > **说明：**
 >
@@ -5853,7 +5990,7 @@ if(store != undefined && deviceId != undefined) {
 
 sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-在设备之间同步数据, 使用callback异步回调。
+在设备之间同步数据，使用callback异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -7079,7 +7216,7 @@ attach不能并发调用，可能出现未响应情况，报错14800015，需要
 | 14800015  | The database does not respond.                 |
 | 14800016  | The database alias already exists.                |
 | 14801001  | The operation is supported in the stage model only.                 |
-| 14801002  | Invalid data ground ID.                |
+| 14801002  | Invalid data group ID.                |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
@@ -9746,7 +9883,7 @@ executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 
 执行包含指定参数的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，返回值类型为ValueType。
 
-该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表）,返回结果类型由执行具体sql的结果决定。
+该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表），返回结果类型由执行具体sql的结果决定。
 
 此接口不支持执行查询、附加数据库和事务操作，查询可以使用[querySql](#querysql14)、[query](#query14)接口代替、附加数据库可以使用[attach](#attach12)接口代替。
 

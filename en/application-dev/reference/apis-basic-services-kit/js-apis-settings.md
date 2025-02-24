@@ -26,9 +26,9 @@ Describes the domain name.
 | DEVICE_SHARED<sup>11+</sup> | string | Yes  | Yes  | Shared device domain.                                         |
 | USER_PROPERTY<sup>11+</sup> | string | Yes  | Yes  | User property domain.                                          |
 
-## date (Not Supported)
+## date
 
-Provides data items for setting the time and date formats.
+Provides data items for setting the time and date formats. (Not supported yet.)
 
 ### Attributes
 
@@ -38,12 +38,12 @@ Provides data items for setting the time and date formats.
 | ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | DATE_FORMAT         | string | Yes  | Yes  | Date format.<br>The value can be **mm/dd/yyyy**, **dd/mm/yyyy**, or **yyyy/mm/dd**, where **mm** indicates the month, **dd** indicates the day, and **yyyy** indicates the year.|
 | TIME_FORMAT         | string | Yes  | Yes  | Time format.<br>**12**: 12-hour format.<br>**24**: 24-hour format.|
-| AUTO_GAIN_TIME      | string | Yes  | Yes  | Whether the date, time, and time zone are automatically obtained from the Network Identity and Time Zone (NITZ).<br>The value **true** means that the date, time, and time zone are automatically obtained from NITZ;<br>and **false** means the opposite.|
-| AUTO_GAIN_TIME_ZONE | string | Yes  | Yes  | Whether the time zone is automatically obtained from NITZ.<br>The value **true** means that the time zone is automatically obtained from NITZ;<br>and **false** means the opposite.|
+| AUTO_GAIN_TIME      | string | Yes  | Yes  | Whether the date, time, and time zone are automatically obtained from the Network Identity and Time Zone (NITZ).<br>The value **true** means that the date, time, and time zone are automatically obtained from NITZ; **false** means the opposite. |
+| AUTO_GAIN_TIME_ZONE | string | Yes  | Yes  | Whether the time zone is automatically obtained from NITZ.<br>The value **true** means that the time zone is automatically obtained from NITZ; **false** means the opposite. |
 
-## display (Not Supported)
+## display
 
-Provides data items for setting the display effects.
+Provides data items for setting the display effects. (Not supported yet.)
 
 ### Attributes
 
@@ -61,11 +61,11 @@ Provides data items for setting the display effects.
 | ANIMATOR_DURATION_SCALE       | string | Yes  | Yes  | Scale factor for the animation duration. This affects the start delay and duration of all such animations.<br>If the value is **0**, the animation ends immediately. The default value is **1**.                                                 |
 | TRANSITION_ANIMATION_SCALE    | string | Yes  | Yes  | Scale factor for transition animations.<br>The value **0** indicates that the transition animations are disabled.                                                                               |
 | WINDOW_ANIMATION_SCALE        | string | Yes  | Yes  | Scale factor for normal window animations.<br>The value **0** indicates that window animations are disabled.                                                                             |
-| DISPLAY_INVERSION_STATUS      | string | Yes  | Yes  | Whether display color inversion is enabled.<br>**1**: Display color inversion is enabled.<br><br>**0**: Display color inversion is disabled.                                                       |
+| DISPLAY_INVERSION_STATUS      | string | Yes  | Yes  | Whether display color inversion is enabled.<br>**1**: Display color inversion is enabled.<br>**0**: Display color inversion is disabled.                                                       |
 
-## general (Not Supported)
+## general
 
-Provides data items for setting the general information about the device.
+Provides data items for setting the general information about the device. (Not supported yet.)
 
 ### Attributes
 
@@ -90,9 +90,9 @@ Provides data items for setting the general information about the device.
 | SKIP_USE_HINTS                   | string | Yes  | Yes  | Whether the application should attempt to skip all introductory hints at the first startup. This feature is intended for temporary or experienced users.<br>**1**: The application attempts to skip all introductory hints at the first startup.<br>**0**: The application does not skip all introductory hints at the first startup.|
 | TOUCH_EXPLORATION_STATUS         | string | Yes  | Yes  | Whether touch exploration is enabled.<br>**1**: Touch exploration is enabled.<br>**0**: Touch exploration is disabled.|
 
-## input (Not Supported)
+## input
 
-Provides data items for setting input methods.
+Provides data items for setting input methods. (Not supported yet.)
 
 ### Attributes
 
@@ -109,9 +109,9 @@ Provides data items for setting input methods.
 | AUTO_REPLACE_TEXT_INPUT              | string | Yes  | Yes  | Whether autocorrect is enabled for the text editor. Autocorrect enables the text editor to correct typos.<br>**0**: Autocorrect is disabled.<br>**1**: Autocorrect is enabled |
 | SHOW_PASSWORD_TEXT_INPUT             | string | Yes  | Yes  | Whether password presentation is enabled in the text editor. Password presentation enables the text editor to show password characters when the user types them.<br>**0**: Password presentation is disabled.<br>**1**: Password presentation is enabled.|
 
-## network (Not Supported)
+## network
 
-Provides data items for setting network information.
+Provides data items for setting network information. (Not supported yet.)
 
 ### Attributes
 
@@ -123,9 +123,9 @@ Provides data items for setting network information.
 | HTTP_PROXY_CFG           | string | Yes  | Yes  | Host name and port number of the global HTTP proxy. The host name and port number are separated by a colon (:).|
 | NETWORK_PREFERENCE_USAGE | string | Yes  | Yes  | User preferences for the network to use.                                  |
 
-## phone (Not Supported)
+## phone
 
-Provides data items for setting the modes of answering incoming and outgoing calls.
+Provides data items for setting the modes of answering incoming and outgoing calls. (Not supported yet.)
 
 ### Attributes
 
@@ -135,9 +135,9 @@ Provides data items for setting the modes of answering incoming and outgoing cal
 | ------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | RTT_CALLING_STATUS | string | Yes  | Yes  | Whether the real-time text (RTT) feature is enabled. If this feature is enabled, incoming and outgoing calls are answered as RTT calls when supported by the device and carrier.<br> **1**: RTT is enabled.<br> **0**: RTT is disabled.|
 
-## sound (Not Supported)
+## sound
 
-Provides data items for setting the sound effects.
+Provides data items for setting the sound effects. (Not supported yet.)
 
 ### Attributes
 
@@ -157,9 +157,9 @@ Provides data items for setting the sound effects.
 | VIBRATE_STATUS               | string | Yes  | Yes  | Whether the device vibrates for an event. This attribute is used inside the system.<br>**1**: The device vibrates for an event.<br>**0**: The device does not vibrate for an event.|
 | HAPTIC_FEEDBACK_STATUS       | string | Yes  | Yes  | Whether haptic feedback is enabled.<br>**true**: Haptic feedback is enabled.<br>**false**: Haptic feedback is disabled.|
 
-## TTS (Not Supported)
+## TTS
 
-Provides data items for setting text-to-speech (TTS) information.
+Provides data items for setting text-to-speech (TTS) information. (Not supported yet.)
 
 ### Attributes
 
@@ -173,9 +173,9 @@ Provides data items for setting text-to-speech (TTS) information.
 | ENABLED_TTS_PLUGINS | string | Yes  | Yes  | List of activated plug-in packages used for TTS. Multiple plug-in packages are separated by spaces.          |
 
 
-## wireless (Not Supported)
+## wireless
 
-Provides data items for setting wireless network information.
+Provides data items for setting wireless network information. (Not supported yet.)
 
 ### Attributes
 
@@ -208,7 +208,7 @@ Sets the value for a data item. This API uses an asynchronous callback to return
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
-**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (available only to system applications)
+**Required permissions**: ohos.permission.MANAGE_SETTINGS (available only to system applications)
 
 **Parameters**
 
@@ -241,7 +241,7 @@ Sets the value for a data item. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
-**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (available only to system applications)
+**Required permissions**: ohos.permission.MANAGE_SETTINGS (available only to system applications)
 
 **Parameters**
 
@@ -283,7 +283,7 @@ Sets the value for a data item. This API uses a promise to return the result.
 
 ohos.permission.MANAGE_SETTINGS for writing the DEVICE_SHARED and USER_PROPERTY fields (available only to system applications); 
 
-ohos.permission.MANAGE_SECURE_SETTINGS for writing the USER_SECURITY field (available only to system applications)
+ohos.permission.MANAGE_SECURE_SETTINGS for writing the USER_SECURITY field (available only to system applications).
 
 **Parameters**
 
@@ -299,6 +299,14 @@ ohos.permission.MANAGE_SECURE_SETTINGS for writing the USER_SECURITY field (avai
 | Type            | Description                               |
 | ---------------- | ----------------------------------- |
 | Promise\<string> | Promise used to return the result. Returns **true** if the operation is successful; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 201 | Permission denied. |
 
 **Example**
 
@@ -340,7 +348,7 @@ settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, valu
     console.error(`Failed to get the setting. ${err.message} `);
     return;
   }
-  console.log(`callback:value -> ${JSON.stringify(value)}`)
+  console.log(`callback:value -> ${value}`)
 });
 ```
 
@@ -373,7 +381,7 @@ Obtains the value of a data item in the database. This API uses a promise to ret
 import settings from '@ohos.settings';
 const context: Context =  getContext(this);
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
-  console.log(`promise:value -> ${JSON.stringify(value)}`)
+  console.log(`promise:value -> ${value}`)
 });
 ```
 
@@ -389,7 +397,7 @@ Obtains the value of a data item in the database. This API uses a promise to ret
 
 **Required permissions**:  
 
-ohos.permission.MANAGE_SECURE_SETTINGS for reading the USER_SECURITY field (available only to system applications)
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (available only to system applications)
 
 **Parameters**
 
@@ -403,7 +411,7 @@ ohos.permission.MANAGE_SECURE_SETTINGS for reading the USER_SECURITY field (avai
 
 | Type            | Description                               |
 | ---------------- | ----------------------------------- |
-| Promise\<string> | Promise used to return the result. Returns **true** if the operation is successful; returns **false** otherwise.|
+| Promise\<string> | Promise used to return the result. return the value of the data item.|
 
 **Example**
 
@@ -413,7 +421,7 @@ import settings from '@ohos.settings';
 // Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the getValue API will update its value.)
 const context: Context =  getContext(this);
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED).then((value) => {
-  console.log(`Promise:value -> $ {JSON.stringify(value)}`);
+  console.log(`Promise:value -> ${value}`);
 });
 ```
 
@@ -446,7 +454,7 @@ Obtains the value of a data item. Unlike **getValue**, this API returns the resu
 ```js
 import settings from '@ohos.settings';
 
-// Obtain the value of 'settings.screen.brightness' (this data item already exists in the database).
+// Obtain the value of SCREEN_BRIGHTNESS_STATUS (this data item already exists in the database).
 const context: Context =  getContext(this);
 let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
 ```
@@ -463,7 +471,7 @@ Obtains the value of a data item. Unlike **getValue**, this API returns the resu
 
 **Required permissions**:  
 
-ohos.permission.MANAGE_SECURE_SETTINGS for reading the USER_SECURITY field (available only to system applications)
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (available only to system applications)
 
 **Parameters**
 
@@ -524,7 +532,7 @@ If the specified data item exists in the database, the **setValueSync** method u
 ```js
 import settings from '@ohos.settings';
 
-// Update the value of 'settings.screen.brightness'. (As this data item exists in the database, the setValueSync API will update its value.)
+// Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValueSync API will update its value.)
 const context: Context =  getContext(this);
 let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
 ```
@@ -545,7 +553,7 @@ If the specified data item exists in the database, the **setValueSync** method u
 
 ohos.permission.MANAGE_SETTINGS for writing the DEVICE_SHARED and USER_PROPERTY fields (available only to system applications); 
 
-ohos.permission.MANAGE_SECURE_SETTINGS for writing the USER_SECURITY field (available only to system applications)
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (available only to system applications)
 
 **Parameters**
 
@@ -562,12 +570,20 @@ ohos.permission.MANAGE_SECURE_SETTINGS for writing the USER_SECURITY field (avai
 | ---------------- | ----------------------------------- |
 | boolean          | Result indicating whether the value is set successfully. Returns **true** if the value is set successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 201 | Permission denied. |
+
 **Example**
 
 ```js
 import settings from '@ohos.settings';
 
-// Update the value of 'settings.screen.brightness'. (As this data item exists in the database, the setValueSync API will update its value.)
+// Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValueSync API will update its value.)
 const context: Context =  getContext(this);
 let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', settings.domainName.DEVICE_SHARED);
 ```
@@ -595,7 +611,7 @@ Registers an observer in the specified context so that the specified data item c
 
 | Type            | Description                               |
 | ---------------- | ----------------------------------- |
-| boolean | Returns **true** if the registration is successful; returns **false** otherwise.|
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -628,14 +644,13 @@ Unregisters the observer under the specified domain name. This API returns the r
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                | Yes  | Application context. Only UIAbilityContext and ExtensionContext are supported.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
-| value    | string                 | Yes  | Value of the data item. The value range varies by service.                  |
 |domainName| string                 | Yes  | Domain name to set.<br> - **domainName.DEVICE_SHARED**:<br>shared device domain<br>- **domainName.USER_PROPRERTY**:<br>user property domain<br> - **domainName.USER_SECURITY**:<br>&nbsp;&nbsp;&nbsp;Indicates the user security attribute domain (for system applications only).|
 
 **Return value**
 
 | Type            | Description                               |
 | ---------------- | ----------------------------------- |
-| boolean | Returns **true** if the registration is successful; returns **false** otherwise.|
+| boolean | Whether the observer under the specified domain name is successfully unregistered. **true** means that the unregistration is successful, and **false** means the opposite.|
 
 **Example**
 
@@ -643,16 +658,14 @@ Unregisters the observer under the specified domain name. This API returns the r
 import settings from '@ohos.settings';
 
 const context: Context =  getContext(this);
-let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  settings.domainName.DEVICE_SHARED);
+let ret = settings.unregisterKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  settings.domainName.DEVICE_SHARED);
 ```
 
-## settings.enableAirplaneMode (Not Supported)
+## settings.enableAirplaneMode
 
 enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void
 
-Enables or disables airplane mode. This API uses an asynchronous callback to return the result.
-
-This API is not supported currently.
+Enables or disables airplane mode. This API uses an asynchronous callback to return the result. (Not supported yet.)
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
@@ -676,13 +689,11 @@ settings.enableAirplaneMode(isEnabled, (err:Error) => {
 })
 ```
 
-## settings.enableAirplaneMode (Not Supported)
+## settings.enableAirplaneMode
 
 enableAirplaneMode(enable: boolean): Promise\<void>
 
-Enables or disables airplane mode. This API uses a promise to return the result.
-
-This API is not supported currently.
+Enables or disables airplane mode. This API uses a promise to return the result. (Not supported yet.)
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
@@ -709,11 +720,11 @@ settings.enableAirplaneMode(isEnabled).then(() => {
 })
 ```
 
-## settings.canShowFloating (Not Supported)
+## settings.canShowFloating
 
 canShowFloating(callback: AsyncCallback\<boolean>): void
 
-Checks whether the application can be displayed in a floating window. This API uses an asynchronous callback to return the result.
+Checks whether the application can be displayed in a floating window. This API uses an asynchronous callback to return the result. (Not supported yet.)
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
@@ -735,11 +746,11 @@ settings.canShowFloating((err:Error, status: boolean) => {
 });
 ```
 
-## settings.canShowFloating (Not Supported)
+## settings.canShowFloating
 
 canShowFloating(): Promise\<boolean>
 
-Checks whether the application can be displayed in a floating window. This API uses a promise to return the result.
+Checks whether the application can be displayed in a floating window. This API uses a promise to return the result. (Not supported yet.)
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
@@ -757,11 +768,11 @@ settings.canShowFloating().then((status:boolean) => {
 });
 ```
 
-## settings.getUriSync<sup>8+</sup> (Not Supported)
+## settings.getUriSync<sup>8+</sup>
 
 getUriSync(name: string): string
 
-Obtains the URI of a data item.
+Obtains the URI of a data item. (Not supported yet.)
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
@@ -784,11 +795,11 @@ Obtains the URI of a data item.
 let uriVar:string = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 ```
 
-## settings.getURI<sup>(deprecated)</sup> (Not Supported)
+## settings.getURI<sup>(deprecated)</sup>
 
 getURI(name: string, callback: AsyncCallback\<object>): void
 
-Obtains the URI of a data item. This API uses an asynchronous callback to return the result.
+Obtains the URI of a data item. This API uses an asynchronous callback to return the result. (Not supported yet.)
 
 > **NOTE**
 >
@@ -811,11 +822,11 @@ settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS, (uri:string) => {
 })
 ```
 
-## settings.getURI<sup>(deprecated)</sup> (Not Supported)
+## settings.getURI<sup>(deprecated)</sup>
 
 getURI(name: string): Promise\<object>
 
-Obtains the URI of a data item. This API uses a promise to return the result.
+Obtains the URI of a data item. This API uses a promise to return the result. (Not supported yet.)
 
 > **NOTE**
 >

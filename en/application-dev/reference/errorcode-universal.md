@@ -44,15 +44,29 @@ Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 
 
 **Description**
 
-This error code is reported when a parameter error occurs. Regardless of whether the API is synchronous or asynchronous, this type of error is generally thrown in synchronous mode.
+1. A mandatory parameter is left unspecified.
+
+2. A parameter type is incorrect.
+
+3. Parameter verification failed. Regardless of whether the API is synchronous or asynchronous, this type of error is generally thrown in synchronous mode.
 
 **Possible Causes**
 
-The mandatory parameter is not passed in, or the parameter type is invalid.
+1. A mandatory parameter is not passed.
+
+2. A parameter type is incorrect (Type Error).
+
+3. The number of parameters is incorrect (Argument Count Error).
+
+4. A null parameter is incorrect (Null Argument Error).
+
+5. A parameter format is incorrect (Format Error).
+
+6. A value range is incorrect (Value Range Error).
 
 **Solution**
 
-Make sure the mandatory parameter is passed in and the type of the passed parameter is invalid.
+Make sure all the mandatory parameters are passed in and the types of the passed-in parameter are valid. If parameter verification fails, read the parameter specifications and locate the fault based on the possible causes.
 
 ## 801 API Not Supported
 
@@ -62,12 +76,12 @@ Capability not supported. Failed to call the API due to limited device capabilit
 
 **Description**
 
-This error code is reported when the device supports the target SysCap but does not support a specific API.
+The device does not support this API. Therefore, it cannot be called properly.
 
 **Possible Causes**
 
-The device does not support the API.
+The device supports Syscap associated with the API but does not support the API itself.
 
 **Solution**
 
-Check whether the device supports the API.
+Do not use this API on the device. Alternatively, implement conditional checks in the code to mitigate the effects of the application running across various devices, particularly under abnormal circumstances.

@@ -26,6 +26,8 @@ Called when content is added to a placeholder component
 
 **Example**
 
+The following example shows the basic usage of **ContentSlot**.
+
 ```ts
 import { nativeNode } from'libNativeNode.so' // .so file you implemented
 import { NodeContent } from '@kit.ArkUI'
@@ -48,4 +50,3 @@ struct Parent {
     }
 }
 ```
-<!--no_check-->

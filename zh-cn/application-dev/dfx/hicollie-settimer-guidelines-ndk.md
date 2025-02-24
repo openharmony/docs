@@ -3,6 +3,7 @@
 HiCollie模块对外提供函数执行时间超长的检测机制。
 
 ## 接口说明
+
 | 接口名                          | 描述                              |
 | ------------------------------  | --------------------------------- |
 | OH_HiCollie_SetTimer | 启动函数执行时长检测定时器。调用耗时的函数或代码块之前，应该使用此函数。          |
@@ -10,12 +11,12 @@ HiCollie模块对外提供函数执行时间超长的检测机制。
 
 > **说明：**
 >
-> 函数执行超时故障日志：1. APP_HICOLLIE-进程号-时间.log，生成在“设备/data/log/eventlog/”路径下; 2. syswarning-应用包名-应用UID-秒级时间，生成在”设备/data/log/faultlog/faultlogger/”路径下。
-
+> 函数执行超时故障日志：1. APP_HICOLLIE-进程号-时间.log，生成在“设备/data/log/eventlog/”路径下；2. syswarning-应用包名-应用UID-秒级时间，生成在”设备/data/log/faultlog/faultlogger/”路径下。
 
 API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiCollie](../reference/apis-performance-analysis-kit/_hi_hicollie.md)。
 
 ## 开发步骤
+
 下文将展示如何在应用内增加一个按钮，并单击该按钮以调用HiCollie Ndk接口。
 
 1. 新建Native C++工程，目录结构如下：

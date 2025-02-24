@@ -389,11 +389,21 @@ Allows an application to use the scam message Picker to obtain SMS messages.
 
 **Authorization mode**: system_grant
 
-**Valid since**: 16
+**Valid since**: 15
 
 ## ohos.permission.USE_FRAUD_CALL_LOG_PICKER
 
 Allows an application to use the scam call log Picker to obtain call logs.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
+## ohos.permission.USE_FRAUD_APP_PICKER
+
+Allows an application to use the fraud app Picker to obtain application information.
 
 **Permission level**: system_basic
 
@@ -453,6 +463,18 @@ With this permission, the application can turn on or off the function keys, such
 
 **Valid since**: 15
 
+## ohos.permission.SET_ABILITY_INSTANCE_INFO
+
+Allows an application to set the icon and label information for each ability.
+
+The configured icon and label information can be displayed in the Task Center and shortcut bar.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
 ## ohos.permission.NDK_START_SELF_UI_ABILITY
 
 Allows an application to start its UIAbility by using C APIs.
@@ -462,5 +484,46 @@ Currently, this permission is available only to 2-in-1 device applications.
 **Permission level**: normal
 
 **Authorization mode**: system_grant
+
+**Valid since**: 15
+
+## ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
+
+Allows a device administrator application to manage personal device restrictions.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 15
+
+## ohos.permission.START_PROVISIONING_MESSAGE
+
+Allows an application to start the device management service deployment process, which activates the application as a personal device administrator application.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 15
+
+## ohos.permission.ACCESS_DISK_PHY_INFO
+
+Allows an application to obtain the disk hardware information.
+
+This permission is available only to securities applications for securities and stock trading.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 15

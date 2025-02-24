@@ -26,10 +26,10 @@ import { drm } from '@kit.DrmKit';
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
-| ERROR_UNKNOWN       | 24700101    | 未知错误   |
-| MAX_SYSTEM_NUM_REACHED   | 24700103    | MediaKeySystem实例数量超过上限（64个）    |
-| MAX_SESSION_NUM_REACHED    | 24700104    | MediaKeySession实例数量超过上限（64个）     |
-| SERVICE_FATAL_ERROR  | 24700201    | DRM服务异常     |
+| ERROR_UNKNOWN       | 24700101    | 未知错误。   |
+| MAX_SYSTEM_NUM_REACHED   | 24700103    | MediaKeySystem实例数量超过上限（64个）。    |
+| MAX_SESSION_NUM_REACHED    | 24700104    | MediaKeySession实例数量超过上限（64个）。     |
+| SERVICE_FATAL_ERROR  | 24700201    | DRM服务异常。     |
 
 ## PreDefinedConfigName
 
@@ -59,8 +59,8 @@ import { drm } from '@kit.DrmKit';
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
-| MEDIA_KEY_TYPE_OFFLINE        | 0    | 离线   |
-| MEDIA_KEY_TYPE_ONLINE   | 1    | 在线     |
+| MEDIA_KEY_TYPE_OFFLINE        | 0    | 离线。   |
+| MEDIA_KEY_TYPE_ONLINE   | 1    | 在线。     |
 
 ## OfflineMediaKeyStatus
 
@@ -72,9 +72,9 @@ import { drm } from '@kit.DrmKit';
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
-| OFFLINE_MEDIA_KEY_STATUS_UNKNOWN        | 0    | 未知状态   |
-| OFFLINE_MEDIA_KEY_STATUS_USABLE   | 1    | 可用状态     |
-| OFFLINE_MEDIA_KEY_STATUS_INACTIVE     | 2    | 失活状态       |
+| OFFLINE_MEDIA_KEY_STATUS_UNKNOWN        | 0    | 未知状态。   |
+| OFFLINE_MEDIA_KEY_STATUS_USABLE   | 1    | 可用状态。     |
+| OFFLINE_MEDIA_KEY_STATUS_INACTIVE     | 2    | 失活状态。       |
 
 ## CertificateStatus
 
@@ -86,11 +86,11 @@ import { drm } from '@kit.DrmKit';
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
-| CERT_STATUS_PROVISIONED        | 0    | 设备已安装设备证书   |
-| CERT_STATUS_NOT_PROVISIONED   | 1    | 设备未安装设备证书     |
-| CERT_STATUS_EXPIRED    | 2    | 设备证书过期       |
-| CERT_STATUS_INVALID  | 3    | 设备证书无效     |
-| CERT_STATUS_UNAVAILABLE  | 4    | 设备证书不可用     |
+| CERT_STATUS_PROVISIONED        | 0    | 设备已安装设备证书。   |
+| CERT_STATUS_NOT_PROVISIONED   | 1    | 设备未安装设备证书。     |
+| CERT_STATUS_EXPIRED    | 2    | 设备证书过期。       |
+| CERT_STATUS_INVALID  | 3    | 设备证书无效。     |
+| CERT_STATUS_UNAVAILABLE  | 4    | 设备证书不可用。     |
 
 ## MediaKeyRequestType
 
@@ -102,12 +102,12 @@ import { drm } from '@kit.DrmKit';
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
-| MEDIA_KEY_REQUEST_TYPE_UNKNOWN        | 0    | 未知请求类型   |
-| MEDIA_KEY_REQUEST_TYPE_INITIAL    | 1    | 初始化请求     |
-| MEDIA_KEY_REQUEST_TYPE_RENEWAL     | 2    | 续订请求       |
-| MEDIA_KEY_REQUEST_TYPE_RELEASE   | 3    | 释放请求     |
-| MEDIA_KEY_REQUEST_TYPE_NONE    | 4    | 无请求     |
-| MEDIA_KEY_REQUEST_TYPE_UPDATE    | 5    | 更新请求     |
+| MEDIA_KEY_REQUEST_TYPE_UNKNOWN        | 0    | 未知请求类型。   |
+| MEDIA_KEY_REQUEST_TYPE_INITIAL    | 1    | 初始化请求。     |
+| MEDIA_KEY_REQUEST_TYPE_RENEWAL     | 2    | 续订请求。       |
+| MEDIA_KEY_REQUEST_TYPE_RELEASE   | 3    | 释放请求。     |
+| MEDIA_KEY_REQUEST_TYPE_NONE    | 4    | 无请求。     |
+| MEDIA_KEY_REQUEST_TYPE_UPDATE    | 5    | 更新请求。     |
 
 ## ContentProtectionLevel
 
@@ -119,11 +119,11 @@ import { drm } from '@kit.DrmKit';
 
 | 名称                       | 值   | 说明            |
 | ------------------------- | ---- | ------------    |
-| CONTENT_PROTECTION_LEVEL_UNKNOWN        | 0    | 未知内容保护级别   |
-| CONTENT_PROTECTION_LEVEL_SW_CRYPTO   | 1    | 软件内容保护级别     |
-| CONTENT_PROTECTION_LEVEL_HW_CRYPTO    | 2    | 硬件内容保护级别       |
-| CONTENT_PROTECTION_LEVEL_ENHANCED_HW  | 3    | 硬件增强内容保护级别     |
-| CONTENT_PROTECTION_LEVEL_MAX  | 4    | 最高内容保护级别     |
+| CONTENT_PROTECTION_LEVEL_UNKNOWN        | 0    | 未知内容保护级别。   |
+| CONTENT_PROTECTION_LEVEL_SW_CRYPTO   | 1    | 软件内容保护级别。     |
+| CONTENT_PROTECTION_LEVEL_HW_CRYPTO    | 2    | 硬件内容保护级别。       |
+| CONTENT_PROTECTION_LEVEL_ENHANCED_HW  | 3    | 硬件增强内容保护级别。     |
+| CONTENT_PROTECTION_LEVEL_MAX  | 4    | 最高内容保护级别。     |
 
 ## ProvisionRequest
 
@@ -135,8 +135,8 @@ import { drm } from '@kit.DrmKit';
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
-| data   | Uint8Array | 是  | 设备证书请求数据      |
-| defaultURL     | string                 | 是  | Provision服务（设备证书请求服务）URL       |
+| data   | Uint8Array | 是  | 设备证书请求数据。      |
+| defaultURL     | string                 | 是  | Provision服务（设备证书请求服务）URL。       |
 
 ## OptionsData
 
@@ -148,8 +148,8 @@ import { drm } from '@kit.DrmKit';
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
-| name   | string | 是  | 可选数据名      |
-| value     | string                 | 是  | 可选数据值       |
+| name   | string | 是  | 可选数据名。      |
+| value     | string                 | 是  | 可选数据值。       |
 
 ## MediaKeyRequest
 
@@ -161,9 +161,9 @@ import { drm } from '@kit.DrmKit';
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
-| mediaKeyRequestType   | [MediaKeyRequestType](#mediakeyrequesttype) | 是  | 媒体密钥请求类型      |
-| data     | Uint8Array                 | 是  | 媒体密钥请求数据       |
-| defaultURL     | string                 | 是  | 媒体密钥服务URL       |
+| mediaKeyRequestType   | [MediaKeyRequestType](#mediakeyrequesttype) | 是  | 媒体密钥请求类型。      |
+| data     | Uint8Array                 | 是  | 媒体密钥请求数据。       |
+| defaultURL     | string                 | 是  | 媒体密钥服务URL。       |
 
 ## EventInfo
 
@@ -175,8 +175,8 @@ import { drm } from '@kit.DrmKit';
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
-| info   | Uint8Array | 是  | 事件信息数据      |
-| extraInfo     | string                 | 是  | 事件扩展信息       |
+| info   | Uint8Array | 是  | 事件信息数据。      |
+| extraInfo     | string                 | 是  | 事件扩展信息。       |
 
 ## StatisticKeyValue
 
@@ -188,8 +188,8 @@ import { drm } from '@kit.DrmKit';
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
-| name   | string | 是  | 度量记录名      |
-| value     | string                 | 是  | 度量记录值       |
+| name   | string | 是  | 度量记录名。      |
+| value     | string                 | 是  | 度量记录值。       |
 
 ## MediaKeyStatus
 
@@ -201,8 +201,8 @@ import { drm } from '@kit.DrmKit';
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
-| name   | string | 是  | 媒体密钥状态名称（如媒体密钥过期时间、内容保护安全级别等）      |
-| value     | string                 | 是  | 媒体密钥状态值       |
+| name   | string | 是  | 媒体密钥状态名称（如媒体密钥过期时间、内容保护安全级别等）。      |
+| value     | string                 | 是  | 媒体密钥状态值。       |
 
 ## KeysInfo
 
@@ -214,8 +214,8 @@ import { drm } from '@kit.DrmKit';
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
-| keyId   | Uint8Array | 是  | 媒体密钥标识      |
-| value     | string                 | 是  | 媒体密钥状态值       |
+| keyId   | Uint8Array | 是  | 媒体密钥标识。      |
+| value     | string                 | 是  | 媒体密钥状态值。       |
 
 ## MediaKeySystemInfo
 
@@ -227,8 +227,8 @@ import { drm } from '@kit.DrmKit';
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
-| uuid   | string | 是  | DRM内容保护系统的唯一标识      |
-| pssh     | Uint8Array                 | 是  | DRM内容保护系统专用头（Protection System Specific Header）       |
+| uuid   | string | 是  | DRM内容保护系统的唯一标识。      |
+| pssh     | Uint8Array                 | 是  | DRM内容保护系统专用头（Protection System Specific Header）。       |
 
 ## MediaKeySystemDescription<sup>12+</sup>
 
@@ -240,8 +240,8 @@ import { drm } from '@kit.DrmKit';
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
-| name   | string | 是  | 插件名称      |
-| uuid   | string | 是  | 插件唯一标识码      |
+| name   | string | 是  | 插件名称。      |
+| uuid   | string | 是  | 插件唯一标识码。      |
 
 ## drm.createMediaKeySystem
 
@@ -309,7 +309,7 @@ isMediaKeySystemSupported(name: string): boolean
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| boolean          | 返回是否支持。                   |
+| boolean          | 返回是否支持。true表示支持指定的DRM解决方案，false表示不支持指定的DRM解决方案。                   |
 
 **错误码：**
 
@@ -357,7 +357,7 @@ isMediaKeySystemSupported(name: string, mimeType: string): boolean
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| boolean          | 返回是否支持。                   |
+| boolean          | 返回是否支持。true表示支持指定DRM解决方案及媒体类型，false表示不支持指定DRM解决方案及媒体类型。                   |
 
 **错误码：**
 
@@ -406,7 +406,7 @@ isMediaKeySystemSupported(name: string, mimeType: string, level: ContentProtecti
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| boolean          | 返回是否支持。                   |
+| boolean          | 返回是否支持。true表示支持指定DRM解决方案、媒体类型以及内容保护级别，false表示不支持指定DRM解决方案、媒体类型以及内容保护级别。                   |
 
 **错误码：**
 
@@ -453,7 +453,7 @@ getMediaKeySystemUuid(name: string): string;
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| uuid  | string     | 是   | DRM内容保护系统的唯一标识。                   |
+| string  | DRM内容保护系统的唯一标识。                   |
 
 **错误码：**
 
@@ -1254,7 +1254,7 @@ generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: nu
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
 | mimeType  | string     | 是   | 媒体类型，由DRM解决方案决定具体的支持类型。                   |
 | initData  | Uint8Array     | 是   | 初始数据。                   |
-| mediaKeyType| number     | 是   | 媒体密钥类型。                   | 0表示在线，1表示离线 |
+| mediaKeyType| number     | 是   | 媒体密钥类型。0表示在线，1表示离线。 |
 | options  | [OptionsData[]](#optionsdata)     | 否   | 可选数据。                   |
 
 **返回值：**
@@ -1436,7 +1436,7 @@ generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array\>
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| mediaKeyId  | Uint8Array    | 是   | 离线媒体密钥标识                   |
+| mediaKeyId  | Uint8Array    | 是   | 离线媒体密钥标识。                   |
 
 **返回值：**
 

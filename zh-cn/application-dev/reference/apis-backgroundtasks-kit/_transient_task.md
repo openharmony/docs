@@ -28,8 +28,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [TransientTask_ErrorCode](#transienttask_errorcode)[TransientTask_ErrorCode](#transienttask_errorcode) | 定义短时任务错误码。  | 
-| typedef struct [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md)[TransientTask_DelaySuspendInfo](#transienttask_delaysuspendinfo) | 定义短时任务返回信息结构体。  | 
+| typedef enum [TransientTask_ErrorCode](#transienttask_errorcode) [TransientTask_ErrorCode](#transienttask_errorcode) | 定义短时任务错误码。  | 
+| typedef struct [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md) [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md)| 定义短时任务返回信息结构体。  | 
 | typedef void(\* [TransientTask_Callback](#transienttask_callback)) (void) | 定义短时任务超时回调类型。  | 
 
 
@@ -66,7 +66,7 @@ typedef void(* TransientTask_Callback) (void)
 ### TransientTask_DelaySuspendInfo
 
 ```
-typedef struct TransientTask_DelaySuspendInfoTransientTask_DelaySuspendInfo
+typedef struct TransientTask_DelaySuspendInfo TransientTask_DelaySuspendInfo
 ```
 **描述**
 定义短时任务返回信息结构体。
@@ -77,7 +77,7 @@ typedef struct TransientTask_DelaySuspendInfoTransientTask_DelaySuspendInfo
 ### TransientTask_ErrorCode
 
 ```
-typedef enum TransientTask_ErrorCodeTransientTask_ErrorCode
+typedef enum TransientTask_ErrorCode TransientTask_ErrorCode
 ```
 **描述**
 定义短时任务错误码。
@@ -132,7 +132,7 @@ int32_t OH_BackgroundTaskManager_CancelSuspendDelay (int32_t requestId)
 
 **返回：**
 
-返回0，表示取消成功。 返回401，表示入参错误。 返回9800002，表示Parcel读写操作失败。 返回9800003，表示IPC通信失败。 返回9800004，表示系统服务失败。 返回9900001，表示短时任务客户端信息校验失败。 返回9900002，表示短时任务服务端校验失败。 错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。
+返回0，表示取消成功。 </br>返回401，表示入参错误。 </br>返回9800002，表示Parcel读写操作失败。 </br>返回9800003，表示IPC通信失败。 </br>返回9800004，表示系统服务失败。 </br>返回9900001，表示短时任务客户端信息校验失败。 </br>返回9900002，表示短时任务服务端校验失败。 </br>错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。
 
 
 ### OH_BackgroundTaskManager_GetRemainingDelayTime()
@@ -156,7 +156,7 @@ int32_t OH_BackgroundTaskManager_GetRemainingDelayTime (int32_t requestId, int32
 
 **返回：**
 
-返回0，表示查询成功。 返回401，表示入参错误。 返回9800002，表示Parcel读写操作失败。 返回9800003，表示IPC通信失败。 返回9800004，表示系统服务失败。 返回9900001，表示短时任务客户端信息校验失败。 返回9900002，表示短时任务服务端校验失败。 错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。
+返回0，表示查询成功。 </br>返回401，表示入参错误。 </br>返回9800002，表示Parcel读写操作失败。 </br>返回9800003，表示IPC通信失败。 </br>返回9800004，表示系统服务失败。 </br>返回9900001，表示短时任务客户端信息校验失败。 </br>返回9900002，表示短时任务服务端校验失败。 </br>错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。
 
 
 ### OH_BackgroundTaskManager_RequestSuspendDelay()
@@ -181,4 +181,4 @@ int32_t OH_BackgroundTaskManager_RequestSuspendDelay (const char * reason, Trans
 
 **返回：**
 
-返回0，表示申请成功。 返回401，表示入参错误。 返回9800002，表示Parcel读写操作失败。 返回9800003，表示IPC通信失败。 返回9800004，表示系统服务失败。 返回9900001，表示短时任务客户端信息校验失败。 返回9900002，表示短时任务服务端校验失败。 错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。
+返回0，表示申请成功。 </br>返回401，表示入参错误。 </br>返回9800002，表示Parcel读写操作失败。 </br>返回9800003，表示IPC通信失败。 </br>返回9800004，表示系统服务失败。 </br>返回9900001，表示短时任务客户端信息校验失败。 </br>返回9900002，表示短时任务服务端校验失败。 </br>错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。

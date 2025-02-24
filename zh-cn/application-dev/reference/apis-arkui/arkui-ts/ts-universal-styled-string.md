@@ -21,6 +21,8 @@
 
 constructor(value: string | ImageAttachment | CustomSpan , styles?: Array\<StyleOptions>)
 
+属性字符串的构造函数。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -801,10 +803,10 @@ constructor(value: ShadowOptions | Array\<ShadowOptions>)
 | ------------ |---------------------| ---- | ---- | ------ |
 | value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  |  否  | 获取属性字符串的图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | size  | [SizeOptions](ts-types.md#sizeoptions) |  是  |  是  | 获取属性字符串的图片尺寸。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) |  是  |  是  | 获取属性字符串的图片对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| verticalAlign  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) |  是  |  是  | 获取属性字符串的图片对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) |  是  |  是  | 获取属性字符串的图片缩放类型。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | layoutStyle  | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) |  是  |  是  | 获取属性字符串的图片布局。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| colorFilter<sup>16+</sup>  | [ColorFilter](ts-types.md#colorfilter9) |  是  |  是  | 获取属性字符串的图片颜色滤镜效果。**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| colorFilter<sup>15+</sup>  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter) |  是  |  是  | 获取属性字符串的图片颜色滤镜效果。**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ### constructor
 
@@ -822,6 +824,37 @@ constructor(value: ImageAttachmentInterface)
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | value | [ImageAttachmentInterface](#imageattachmentinterface对象说明) | 是   | 图片设置项。 |
 
+### constructor<sup>15+</sup>
+
+constructor(attachment: Optional\<AttachmentType\>)
+
+图片对象的构造函数。与value类型入参构造函数相比，attachment参数增加了对undefined类型和[ResourceStr](ts-types.md#resourcestr)类型图片的支持。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| attachment | Optional<[AttachmentType](#attachmenttype15)> | 是   | PixelMap类型或[ResourceStr](ts-types.md#resourcestr)类型图片设置项。 |
+
+## AttachmentType<sup>15+</sup>
+
+type AttachmentType = ImageAttachmentInterface | ResourceImageAttachmentOptions
+
+图片设置项类型，用于设置属性字符串PixelMap类型或[ResourceStr](ts-types.md#resourcestr)类型图片。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型  | 说明   |
+| ------ | ---------- |
+| [ImageAttachmentInterface](#imageattachmentinterface对象说明) | PixelMap类型图片设置项。|
+| [ResourceImageAttachmentOptions](#resourceimageattachmentoptions15) | ResourceStr类型图片设置项。 |
+
 ## ImageAttachmentInterface对象说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -830,10 +863,10 @@ constructor(value: ImageAttachmentInterface)
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  | 设置图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 设置图片大小。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否   | 设置图片基于文本的对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | 否   | 设置图片基于文本的对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) | 否   | 设置图片布局。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| colorFilter<sup>16+</sup>  | [ColorFilter](ts-types.md#colorfilter9) |  否  | 获取属性字符串的图片颜色滤镜效果。**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| colorFilter<sup>15+</sup>  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter) |  否  | 设置属性字符串的图片颜色滤镜效果。**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## ImageAttachmentLayoutStyle对象说明
 
@@ -846,6 +879,24 @@ constructor(value: ImageAttachmentInterface)
 | margin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Margin](ts-types.md#margin) | 否   | 设置图片外边距。 |
 | padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Padding](ts-types.md#padding) | 否   | 设置图片内边距。 |
 | borderRadius | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置圆角。 |
+
+## ResourceImageAttachmentOptions<sup>15+</sup>
+
+ResourceStr类型图片设置项。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| resourceValue | Optional<[ResourceStr](ts-types.md#resourcestr)> |  是  | 设置图片数据源。 |
+| size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 设置图片大小。 |
+| verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | 否   | 设置图片基于文本的对齐方式。<br/>默认值：ImageSpanAlignment.BOTTOM |
+| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型。<br/>默认值：ImageFit.Cover |
+| layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) | 否   | 设置图片布局。 |
+| colorFilter  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter) |  否  | 设置属性字符串的图片颜色滤镜效果。 |
+| syncLoad  | boolean |  否  | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false |
 
 ## CustomSpan
 
@@ -1605,6 +1656,21 @@ struct styled_string_demo4 {
             }
           })
 
+        Button('设置资源类型图片')
+          .onClick(() => {
+            if (this.imagePixelMap !== undefined) {
+              this.mutableStr = new MutableStyledString(new ImageAttachment({
+                resourceValue: $r('app.media.icon'),
+                size: { width: 50, height: 50 },
+                layoutStyle: { borderRadius: LengthMetrics.vp(10) },
+                verticalAlign: ImageSpanAlignment.BASELINE,
+                objectFit: ImageFit.Contain,
+                syncLoad: true
+              }))
+              this.controller.setStyledString(this.mutableStr)
+            }
+          })
+
         Button('Image之Append')
           .onClick(() => {
             let str = new StyledString('123')
@@ -2160,6 +2226,82 @@ struct styled_string_demo4 {
 ```
 
 ![](figures/styledString_10.gif)
+
+### 示例11（属性字符串的插入、删除、替换）
+
+该示例通过getSubStyledString、removeString、removeStyle、clearStyles、replaceStyledString、insertStyledString接口实现属性字符串的插入、删除、替换。
+
+``` ts
+// xxx.ets
+@Entry
+@Component
+struct styled_string_demo4 {
+  @State message: string = 'Hello World'
+  mutableStr: MutableStyledString = new MutableStyledString('123456', [{
+    start: 0,
+    length: 2,
+    styledKey: StyledStringKey.FONT,
+    styledValue: new TextStyle({fontColor: Color.Red})
+  }, {
+    start: 0,
+    length: 3,
+    styledKey: StyledStringKey.DECORATION,
+    styledValue: new DecorationStyle({type: TextDecorationType.LineThrough})
+  }]);
+  mutableStr2: MutableStyledString = new MutableStyledString('with filter:');
+  controller: TextController = new TextController();
+  controller2: TextController = new TextController();
+  build() {
+    Row() {
+      Column({ space: 5 }) {
+        Text(undefined, { controller: this.controller })
+          .copyOption(CopyOptions.InApp)
+          .draggable(true)
+          .fontSize(30)
+          .onAppear(() => {
+            this.controller.setStyledString(this.mutableStr)
+          })
+        Text(undefined, { controller: this.controller2 })
+          .copyOption(CopyOptions.InApp)
+          .draggable(true)
+          .fontSize(30)
+        Button('GetSubStyledString (0,3)').onClick(() => {
+          this.controller2.setStyledString(this.mutableStr.subStyledString(0, 3))
+        })
+        Button('RemoveStyle (0,1,Decoration)').onClick(() => {
+          this.mutableStr.removeStyle(0, 1, StyledStringKey.DECORATION)
+          this.controller.setStyledString(this.mutableStr)
+        })
+        Button('RemoveString (5,1)').onClick(() => {
+          this.mutableStr.removeString(5, 1)
+          this.controller.setStyledString(this.mutableStr)
+        })
+        Button('ClearStyles').onClick(() => {
+          this.mutableStr.clearStyles()
+          this.controller.setStyledString(this.mutableStr)
+        })
+        Button('replaceStyledString').onClick(() => {
+          this.mutableStr.replaceStyledString(3, 1, new StyledString("abc", [{
+            start: 0,
+            length: 3,
+            styledKey: StyledStringKey.FONT,
+            styledValue: new TextStyle({fontColor: Color.Blue})
+          }]))
+          this.controller.setStyledString(this.mutableStr)
+        })
+        Button('insertStyledString').onClick(() => {
+          this.mutableStr.insertStyledString(4, new StyledString("A"))
+          this.controller.setStyledString(this.mutableStr)
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![](figures/styledString_11.gif)
 
 
 

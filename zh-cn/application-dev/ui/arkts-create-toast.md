@@ -9,7 +9,7 @@
 
  - 合理使用弹出场景，而不是频繁的提醒用户。
 
-    ​可以针对以下常用场景使用即时反馈操作，例如，当用户执行某个操作时及时结果反馈，用来提示用户操作是否成功或失败；或是当应用程序的状态发生变化时提供状态更新等。
+    可以针对以下常用场景使用即时反馈操作，例如，当用户执行某个操作时及时结果反馈，用来提示用户操作是否成功或失败；或是当应用程序的状态发生变化时提供状态更新等。
 
  - 注意文本的信息密度，即时反馈展示时间有限，应当避免长文本的出现。
 
@@ -133,6 +133,7 @@ struct toastExample {
   build() {
     Column() {
       Button('Open Toast')
+        .type(ButtonType.Capsule)
         .height(100)
         .onClick(() => {
           try {
@@ -151,6 +152,7 @@ struct toastExample {
       Blank().height(50);
       Button('Close Toast')
         .height(100)
+        .type(ButtonType.Capsule)
         .onClick(() => {
           try {
             this.promptAction.closeToast(this.toastId);

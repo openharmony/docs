@@ -85,12 +85,13 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_SetMicrophoneEnabled(capture, isMic);
     ```
 
-6. 回调函数的设置，主要监听录屏过程中的错误事件的发生，音频流和视频流数据的产生事件，具体设计可参考[详细说明](#详细说明)。
+6. 回调函数的设置，主要监听录屏过程中的错误事件的发生，音频流和视频流数据的产生事件，录屏屏幕id的获取事件，具体设计可参考[详细说明](#详细说明)。
 
     ```c++
     OH_AVScreenCapture_SetErrorCallback(capture, OnError, userData);
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, userData);
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, userData);
+    OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, userData);
     ```
 
 7. 调用StartScreenCapture()方法开始进行屏幕录制。
@@ -251,9 +252,20 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
         if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
             // 录屏被打断状态处理
         }
-        ...
+        if (stateCode == OH_SCREEN_CAPTURE_STATE_MIC_MUTED_BY_USER) {
+            // 录屏中途用户将麦克风禁音处理
+        }
+        if (stateCode == OH_SCREEN_CAPTURE_STATE_MIC_UNMUTED_BY_USER) {
+            // 录屏中途用户将麦克风解除禁音处理
+        }
+        if (stateCode == OH_SCREEN_CAPTURE_STATE_ENTER_PRIVATE_SCENE) {
+            // 录屏进入隐私状态处理
+        }
         if (stateCode == OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE) {
             // 录屏退出隐私模式状态处理
+        }
+        if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES) {
+            // 录屏被用户切换打断处理
         }
         (void)userData;
     }
@@ -315,6 +327,13 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
                 // 使用buffer数据
             }
         }
+    }
+
+    // 获取录屏屏幕id的回调函数OnDisplaySelected()
+    void OnDisplaySelected(struct OH_AVScreenCapture *capture, uint64_t displayId, void *userData) {
+        (void)capture;
+        (void)displayId;
+        (void)userData;
     }
     ```
 
@@ -387,9 +406,20 @@ void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
     if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
         // 录屏被打断状态处理
     }
-    ...
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_MIC_MUTED_BY_USER) {
+        // 录屏中途用户将麦克风禁音处理
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_MIC_UNMUTED_BY_USER) {
+        // 录屏中途用户将麦克风解除禁音处理
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_ENTER_PRIVATE_SCENE) {
+        // 录屏进入隐私状态处理
+    }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE) {
         // 录屏退出隐私模式状态处理
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES) {
+        // 录屏被用户切换打断处理
     }
     (void)userData;
 }
@@ -453,6 +483,13 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVSc
     }
 }
 
+// 获取录屏屏幕id的回调函数OnDisplaySelected()
+void OnDisplaySelected(struct OH_AVScreenCapture *capture, uint64_t displayId, void *userData) {
+    (void)capture;
+    (void)displayId;
+    (void)userData;
+}
+
 struct OH_AVScreenCapture *capture;
 static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // 从js端获取窗口id number[]
@@ -479,6 +516,8 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     OH_AVScreenCapture_SetErrorCallback(capture, OnError, nullptr);
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, nullptr);
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, nullptr);
+    // 可选 设置录屏屏幕Id回调，必须在开始录屏前调用
+    OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, nullptr);
 
     // 可选 设置光标显示开关，开始录屏前后均可调用
     OH_AVScreenCapture_ShowCursor(capture, false);

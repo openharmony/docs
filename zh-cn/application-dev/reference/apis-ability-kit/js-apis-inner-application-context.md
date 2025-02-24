@@ -19,20 +19,20 @@ import { common } from '@kit.AbilityKit';
 
 | 名称                  | 类型     | 只读   | 可选   | 说明                                                               |
 |---------------------| ------ | ---- | ---- |------------------------------------------------------------------|
-| resourceManager     | resmgr.[ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager) | 否    | 否    | 资源管理对象。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| applicationInfo     | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 否    | 否    | 当前应用程序的信息。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| cacheDir            | string | 否    | 否    | 缓存目录。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| tempDir             | string | 否    | 否    | 临时目录。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| resourceDir<sup>11+<sup>         | string | 否    | 否    | 资源目录。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| filesDir            | string | 否    | 否    | 文件目录。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| databaseDir         | string | 否    | 否    | 数据库目录。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| preferencesDir      | string | 否    | 否    | preferences目录。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| bundleCodeDir       | string | 否    | 否    | 安装包目录。不能拼接路径访问资源文件，请使用[资源管理接口](../apis-localization-kit/js-apis-resource-manager.md)访问资源。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| distributedFilesDir | string | 否    | 否    | 分布式文件目录。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| cloudFileDir<sup>12+</sup>        | string | 否    | 否    | 云文件目录。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。    |
-| eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | 否    | 否    | 事件中心，提供订阅、取消订阅、触发事件对象。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 否    | 否    | 文件分区信息。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| processName<sup>16+</sup> | string | 否   | 否 | 当前应用的进程名。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| resourceManager     | resmgr.[ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager) | 否    | 否    | 资源管理对象。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| applicationInfo     | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 否    | 否    | 当前应用程序的信息。 <br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| cacheDir            | string | 否    | 否    | 缓存目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| tempDir             | string | 否    | 否    | 临时目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| resourceDir<sup>11+<sup>         | string | 否    | 否    | 资源目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| filesDir            | string | 否    | 否    | 文件目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| databaseDir         | string | 否    | 否    | 数据库目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| preferencesDir      | string | 否    | 否    | preferences目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| bundleCodeDir       | string | 否    | 否    | 安装包目录。不能拼接路径访问资源文件，请使用[资源管理接口](../apis-localization-kit/js-apis-resource-manager.md)访问资源。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| distributedFilesDir | string | 否    | 否    | 分布式文件目录。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| cloudFileDir<sup>12+</sup>        | string | 否    | 否    | 云文件目录。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。    |
+| eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | 否    | 否    | 事件中心，提供订阅、取消订阅、触发事件对象。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 否    | 否    | 文件分区信息。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| processName<sup>16+</sup> | string | 否   | 否 | 当前应用的进程名。<br/>**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## Context.createModuleContext<sup>(deprecated)</sup>
 
@@ -44,7 +44,7 @@ createModuleContext(moduleName: string): Context
 >
 > 从 API Version 12 开始废弃，建议使用[application.createModuleContext](./js-apis-app-ability-application.md#applicationcreatemodulecontext12)替代。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -95,7 +95,7 @@ getApplicationContext(): ApplicationContext
 
 获取本应用的应用上下文。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -138,7 +138,7 @@ getGroupDir(dataGroupID: string): Promise\<string>
 
 通过使用应用中的Group ID获取对应的共享目录，使用Promise异步回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -191,7 +191,7 @@ getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 
 通过使用应用中的Group ID获取对应的共享目录，使用callback异步回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -239,7 +239,7 @@ createAreaModeContext(areaMode: contextConstant.AreaMode): Context
 
 当应用需要将不同类型的信息存放在不同目录下时，可以根据指定的数据加密级别创建应用上下文，以获取相应的路径。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -283,15 +283,15 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## Context.createDisplayContext<sup>16+</sup>
+## Context.createDisplayContext<sup>15+</sup>
 
 createDisplayContext(displayId: number): Context
 
 根据指定的物理屏幕ID创建应用上下文，以便于获取和使用其他带有屏幕信息（包括屏幕密度[ScreenDensity](../apis-localization-kit/js-apis-resource-manager.md#screendensity)和屏幕方向[Direction](../apis-localization-kit/js-apis-resource-manager.md#direction)）的应用上下文。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 

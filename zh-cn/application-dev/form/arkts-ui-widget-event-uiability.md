@@ -1,7 +1,6 @@
 # 通过router或call事件刷新卡片内容
 
-
-在卡片页面中可以通过[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)接口触发router事件或者call事件拉起UIAbility，然后由UIAbility刷新卡片内容，下面是这种刷新方式的简单示例。
+使用router事件，点击卡片可拉起对应应用的UIAbility至前台，并刷新卡片。使用call事件，点击卡片可拉起对应应用的UIAbility至后台，并刷新卡片。在卡片页面中可以通过[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)接口触发router事件或者call事件拉起UIAbility，然后由UIAbility刷新卡片内容，下面是这种刷新方式的简单示例。
 
 > **说明：**
 >
@@ -9,7 +8,7 @@
 
 ## 通过router事件刷新卡片内容
 
-- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用postCardAction接口触发router事件拉起UIAbility。
+- 在卡片页面代码文件中，通过注册Button的onClick点击事件回调并在回调中调用postCardAction接口，触发router事件拉起UIAbility至前台。
   
   ```ts
   let storageUpdateRouter = new LocalStorage();
@@ -107,7 +106,7 @@
     }
 
     onWindowStageCreate(windowStage: window.WindowStage): void {
-      // Main window is created, set main page for this ability
+      
       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onWindowStageCreate');
 
       windowStage.loadContent('pages/Index', (err, data) => {
@@ -121,35 +120,9 @@
     // ...
   }
   ```
-
-
 ## 通过call事件刷新卡片内容
 
-- 在使用postCardAction接口的call事件时，需要在FormExtensionAbility中的onAddForm生命周期回调中更新formId。
-
-  ```ts
-  import { Want } from '@kit.AbilityKit';
-  import { formBindingData, FormExtensionAbility } from '@kit.FormKit';
-  
-  export default class WidgetCalleeFormAbility extends FormExtensionAbility {
-    onAddForm(want: Want): formBindingData.FormBindingData {
-      class DataObj1 {
-        formId: string = '';
-      }
-  
-      let dataObj1 = new DataObj1();
-      if (want.parameters && want.parameters['ohos.extra.param.key.form_identity'] !== undefined) {
-        let formId: string = want.parameters['ohos.extra.param.key.form_identity'].toString();
-        dataObj1.formId = formId;
-      }
-      let obj1 = formBindingData.createFormBindingData(dataObj1);
-      return obj1;
-    }
-    // ...
-  }
-  ```
-
-- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用postCardAction接口触发call事件拉起UIAbility。
+- 在卡片页面代码文件中，通过注册Button的onClick点击事件回调并在回调中调用postCardAction接口，触发call事件拉起UIAbility至后台。
   
   ```ts
   let storageUpdateCall = new LocalStorage();
@@ -286,4 +259,12 @@
       });
     }
   }
+  ```
+  要拉起UIAbility至后台，需要在`module.json5`配置文件中，配置`ohos.permission.KEEP_BACKGROUND_RUNNING`权限。
+  ```json
+    "requestPermissions":[
+        {
+        "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+        }
+      ]
   ```

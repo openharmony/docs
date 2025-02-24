@@ -4,6 +4,7 @@
 ## 简介
 
 JSVM-API WebAssembly 接口提供了 WebAssembly 字节码编译、WebAssembly 函数优化、WebAssembly cache 序列化和反序列化的能力。
+注意：WebAssembly相关接口需要应用拥有JIT权限才能执行，可参考[JSVM 申请JIT权限指导](jsvm-apply-jit-profile.md)申请对应权限。
 
 ## 基本概念
 

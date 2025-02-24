@@ -480,7 +480,7 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 | localOnly<sup>7+</sup> | boolean | 是 | 是 | 配置剪贴板内容是否为“仅在本地”，默认值为false。其值会被shareOption属性覆盖，推荐使用shareOption属性。ShareOption.INAPP、ShareOption.LOCALDEVICE会将localOnly设置为true，ShareOption.CROSSDEVICE会将localOnly设置为false。<br/>- 配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>- 配置为false时，表示内容将在设备间传递。 |
 | shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围，如果未设置或设置不正确，则默认值为CROSSDEVICE。                                                                                                                                                                                            |
 
-## FileConflictOption<sup>15+</sup>
+## FileConflictOptions<sup>15+</sup>
 
 定义文件拷贝冲突时的选项。
 
@@ -564,7 +564,7 @@ export default class EntryAbility extends UIAbility {
 		}
 		let params: pasteData.GetDataParams = {
     		destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
-    		fileConflictOption: pasteData.FileConflictOption.OVERWRITE,
+    		fileConflictOptions: pasteData.FileConflictOptions.OVERWRITE,
     		progressIndicator: pasteData.ProgressIndicator.DEFAULT,
     		progressListener: ProgressListener
 		}
@@ -585,13 +585,13 @@ export default class EntryAbility extends UIAbility {
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称               | 类型                                        | 必填 | 说明                                                         |
-| ------------------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| destUri            | string                                      | 否   | 拷贝文件时目标路径。若不支持文件处理，则不需要设置此参数；若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理。 |
-| fileConflictOption | [FileConflictOption](#fileconflictoption15) | 否   | 定义文件拷贝冲突时的选项，默认为OVERWRITE。                  |
-| progressIndicator  | [ProgressIndicator](#progressindicator15)   | 是   | 定义进度条指示选项，可选择是否采用系统默认进度显示。         |
-| progressListener   | [ProgressListener](#progresslistener15)     | 否   | 定义进度数据变化的订阅函数，当选择不使用系统默认进度显示时，可设置该项获取粘贴过程的进度。 |
-| progressSignal     | [ProgressSignal](#progresssignal15)         | 否   | 定义进度取消的函数，在粘贴过程中可选择取消任务，且仅当进度指示选项[ProgressIndicator](#progressindicator15)设置为NONE时此参数才有意义。 |
+| 名称                | 类型                                          | 必填 | 说明                                                         |
+| ------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| destUri             | string                                        | 否   | 拷贝文件时目标路径。若不支持文件处理，则不需要设置此参数；若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理。 |
+| fileConflictOptions | [FileConflictOptions](#fileconflictoptions15) | 否   | 定义文件拷贝冲突时的选项，默认为OVERWRITE。                  |
+| progressIndicator   | [ProgressIndicator](#progressindicator15)     | 是   | 定义进度条指示选项，可选择是否采用系统默认进度显示。         |
+| progressListener    | [ProgressListener](#progresslistener15)       | 否   | 定义进度数据变化的订阅函数，当选择不使用系统默认进度显示时，可设置该项获取粘贴过程的进度。 |
+| progressSignal      | [ProgressSignal](#progresssignal15)           | 否   | 定义进度取消的函数，在粘贴过程中可选择取消任务，且仅当进度指示选项[ProgressIndicator](#progressindicator15)设置为NONE时此参数才有意义。 |
 
 ## PasteDataRecord<sup>7+</sup>
 
@@ -617,7 +617,7 @@ export default class EntryAbility extends UIAbility {
 
 toPlainText(): string
 
-将一个PasteData中的内容强制转换为文本内容。
+将一个PasteDataRecord中的html、plain、uri内容强制转换为文本内容。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -744,6 +744,8 @@ getData(type: string): Promise&lt;ValueType&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
 let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
 record.addEntry(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
@@ -1836,8 +1838,8 @@ setData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste operation is in progress. |
-| 12900004 | Replication is prohibited. |
+| 27787277 | Another copy or paste operation is in progress. |
+| 27787278 | Replication is prohibited. |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **示例：**
@@ -1882,8 +1884,8 @@ setData(data: PasteData): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste operation is in progress. |
-| 12900004 | Replication is prohibited. |
+| 27787277 | Another copy or paste operation is in progress. |
+| 27787278 | Replication is prohibited. |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **示例：**
@@ -1924,7 +1926,7 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste operation is in progress. |
+| 27787277 | Another copy or paste operation is in progress. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
@@ -1967,7 +1969,7 @@ getData(): Promise&lt;PasteData&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste operation is in progress. |
+| 27787277 | Another copy or paste operation is in progress. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **示例：**
@@ -2617,7 +2619,7 @@ getUnifiedData(): Promise&lt;unifiedDataChannel.UnifiedData&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 12900003 | Another copy or paste operation is in progress. |
+| 27787277 | Another copy or paste operation is in progress. |
 
 **示例：**
 
@@ -2710,8 +2712,8 @@ setUnifiedData(data: unifiedDataChannel.UnifiedData): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 12900003 | Another copy or paste operation is in progress. |
-| 12900004 | Replication is prohibited. |
+| 27787277 | Another copy or paste operation is in progress. |
+| 27787278 | Replication is prohibited. |
 
 **示例：**
 
@@ -2815,6 +2817,8 @@ setAppShareOptions(shareOptions: ShareOption): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
   systemPasteboard.setAppShareOptions(pasteboard.ShareOption.INAPP);
@@ -2846,6 +2850,8 @@ removeAppShareOptions(): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
   systemPasteboard.removeAppShareOptions();
@@ -2885,7 +2891,7 @@ detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;Array&lt;Pattern&gt;&gt; | Promise对象，返回检测到的模式 |
+| Promise&lt;Array&lt;Pattern&gt;&gt; | Promise对象，返回检测到的模式。 |
 
 **错误码：**
 
@@ -2932,7 +2938,7 @@ getMimeTypes(): Promise&lt;Array&lt;string&gt;&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回读取到的MIME类型 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回读取到的MIME类型。 |
 
 **示例：**
 
@@ -2951,7 +2957,7 @@ systemPasteboard.getMimeTypes().then((data: Array<String>) => {
 
 getDataWithProgress(params: GetDataParams): Promise&lt;PasteData&gt;
 
-获取剪贴板的内容和进度，使用Promise异步回调。
+获取剪贴板的内容和进度，使用Promise异步回调，不支持对文件夹的拷贝。
 
 **需要权限**：ohos.permission.READ_PASTEBOARD
 
@@ -3003,7 +3009,7 @@ export default class EntryAbility extends UIAbility {
 		}
 		let params: pasteData.GetDataParams = {
     		destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
-    		fileConflictOption: pasteData.FileConflictOption.OVERWRITE,
+    		fileConflictOptions: pasteData.FileConflictOptions.OVERWRITE,
     		progressIndicator: pasteData.ProgressIndicator.DEFAULT,
     		progressListener: ProgressListener
 		}

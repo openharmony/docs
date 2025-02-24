@@ -655,7 +655,7 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 
 | 名称                       | 类型                                      | 只读 | 可选 | 说明        |
 | ------------------------- | ----------------------------------------- | --- | ---- |----------- |
-| depthDataAccuracy            | [DepthDataAccuracy](#depthdataaccuracy12)         | 是  |  否  | 深度数据的精度，分为相对精度和绝对精度 |
+| depthDataAccuracy            | [DepthDataAccuracy](#depthdataaccuracy12)         | 是  |  否  | 深度数据的精度，分为相对精度和绝对精度。 |
 
 ## DepthDataQualityLevel<sup>12+</sup>
 
@@ -1918,80 +1918,6 @@ off(type: 'quickThumbnail', callback?: AsyncCallback\<image.PixelMap>): void
 ```ts
 function unregisterQuickThumbnail(photoOutput: camera.PhotoOutput): void {
   photoOutput.off('quickThumbnail');
-}
-```
-
-## VideoOutput
-
-录像会话中使用的输出信息，继承[CameraOutput](js-apis-camera.md#cameraoutput)。
-
-### isMirrorSupported<sup>12+</sup>
-
-isMirrorSupported(): boolean
-
-查询当前设备是否支持视频镜像。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型            | 说明                     |
-| -------------- | ----------------------- |
-| boolean | 是否支持视频镜像。|
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 202                |  Not System Application.    |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function isMirrorSupported(videoOutput: camera.VideoOutput): boolean {
-  return videoOutput.isMirrorSupported();
-}
-```
-
-### enableMirror<sup>12+</sup>
-
-enableMirror(enabled: boolean): void
-
-使能视频镜像。使能视频镜像之前，需要调用[isMirrorSupported](#ismirrorsupported12)判断当前是否支持。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名      | 类型               | 必填 | 说明                 |
-| -------- | -------------------- | ---- | ------------------- |
-|   enabled   |  boolean  |   是   |   是否使能视频镜像。    |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 202 | Not System Application. |
-| 7400101                |  Parameter missing or parameter type incorrect.  |
-| 7400103                |  Session not config.                             |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function enableMirror(videoOutput: camera.VideoOutput): void {
-  return videoOutput.enableMirror(true);
 }
 ```
 
@@ -3799,9 +3725,30 @@ function unregisterLcdFlashStatus(photoSession: camera.PhotoSession): void {
 }
 ```
 
+## FocusTrackingMode<sup>15+</sup>
+
+枚举，对焦追踪模式。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+| 名称 | 值   | 说明   |
+| ---- | ---- | ------ |
+| AUTO | 0    | 自动。 |
+
+## FocusTrackingInfo<sup>15+</sup>
+
+相机对焦追踪信息，通过VideoSessionForSys.[on('focusTrackingInfoAvailable')](#onfocustrackinginfoavailable15)接口获取。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+| 名称           | 类型                                      | 只读 | 可选 | 说明       |
+| -------------- | ----------------------------------------- | ---- | ---- | ---------- |
+| trackingMode   | [FocusTrackingMode](#focustrackingmode15) | 否   | 否   | 跟踪模式。 |
+| trackingRegion | [Rect](js-apis-camera.md#rect)            | 否   | 否   | 跟踪区域。 |
+
 ## VideoSessionForSys<sup>11+</sup>
 
-VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro
+VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro, Aperture, ColorReservation
 
 提供给系统应用的VideoSession，普通录像模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通录像模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
@@ -3965,6 +3912,80 @@ off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
 ```ts
 function unregisterLcdFlashStatus(videoSession: camera.VideoSession): void {
   videoSession.off('lcdFlashStatus');
+}
+```
+
+### on('focusTrackingInfoAvailable')<sup>15+</sup>
+
+on(type: 'focusTrackingInfoAvailable', callback: Callback\<FocusTrackingInfo\>): void
+
+监听相机对焦跟踪信息，通过注册回调函数获取结果。使用callback方式返回结果。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**参数**：
+
+| 参数名   | 类型                                                       | 必填 | 说明                                                         |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | 是   | 监听事件，固定为'focusTrackingInfoAvailable'，VideoSessionForSys创建成功可监听。 |
+| callback | Callback\<[FocusTrackingInfo](#focustrackinginfo15)\>      | 是   | 回调函数，用于获取当前对焦跟踪信息。                         |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+
+**示例**：
+
+```ts
+function callback(focusTrackingInfo: camera.FocusTrackingInfo): void {
+  console.info(`Focus tracking mode: ${focusTrackingInfo.trackingMode}`);
+  console.info(`Focus tracking Region: topLeftX ${focusTrackingInfo.trackingRegion.topLeftX}
+                                       topLeftY ${focusTrackingInfo.trackingRegion.topLeftY}
+                                       width ${focusTrackingInfo.trackingRegion.width}
+                                       height ${focusTrackingInfo.trackingRegion.height}`);
+}
+
+function registerFocusTrakingInfoChanged(session: camera.VideoSessionForSys): void {
+  session.on('focusTrackingInfoAvailable', callback);
+}
+```
+
+### off('focusTrackingInfoAvailable')<sup>15+</sup>
+
+off(type: 'focusTrackingInfoAvailable', callback?: Callback\<FocusTrackingInfo\>): void
+
+注销监听相机对焦跟踪信息。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**参数**：
+
+| 参数名   | 类型                                                       | 必填 | 说明                                                         |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | 是   | 监听事件，固定为'focusTrackingInfoAvailable'，videoSessionForSys创建成功可监听。 |
+| callback | Callback\<[FocusTrackingInfo](#focustrackinginfo15)\>      | 否   | 回调函数，可选，有就是匹配on('focusTrackingInfoAvailable') callback（callback对象不可是匿名函数）。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+
+**示例**：
+
+```ts
+function unregisterFocusTrakingInfoChanged(session: camera.VideoSessionForSys): void {
+  session.off('focusTrackingInfoAvailable');
 }
 ```
 
@@ -5396,6 +5417,28 @@ function setExposureMeteringMode(professionalPhotoSession: camera.ProfessionalPh
 }
 ```
 
+## FocusRangeType<sup>15+</sup>
+
+枚举，对焦范围类型。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+| 名称 | 值   | 说明       |
+| ---- | ---- | ---------- |
+| AUTO | 0    | 自动对焦。     |
+| NEAR | 1    | 近物对焦。 |
+
+## FocusDrivenType<sup>15+</sup>
+
+枚举，对焦驱动类型。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+| 名称 | 值   | 说明       |
+| ---- | ---- | ---------- |
+| AUTO | 0    | 自动。     |
+| FACE | 1    | 人脸驱动。 |
+
 ## FocusQuery<sup>12+</sup>
 
 提供了查询是否支持对焦辅助的方法。
@@ -5438,6 +5481,106 @@ function isFocusAssistSupported(professionalPhotoSession: camera.ProfessionalPho
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
     console.error(`The isFocusAssistSupported call failed. error code: ${err.code}`);
+  }
+  return status;
+}
+```
+
+### isFocusRangeTypeSupported<sup>15+</sup>
+
+isFocusRangeTypeSupported(type: FocusRangeType): boolean
+
+查询是否支持指定的对焦范围类型。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**参数**：
+
+| 参数名 | 类型                                | 必填 | 说明                     |
+| ------ | ----------------------------------- | ---- | ------------------------ |
+| type   | [FocusRangeType](#focusrangetype15) | 是   | 指定对应的对焦范围类型。 |
+
+**返回值**：
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回true表示支持指定的对焦范围类型，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Not System Application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 7400103  | Session not config.                                          |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isFocusRangeTypeSupported(session: camera.VideoSessionForSys, type: camera.FocusRangeType): boolean {
+  let status: boolean = false;
+  try {
+    status = session.isFocusRangeTypeSupported(type);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The isFocusRangeTypeSupported call failed. error code: ${err.code}`);
+  }
+  return status;
+}
+```
+
+### isFocusDrivenTypeSupported<sup>15+</sup>
+
+isFocusDrivenTypeSupported(type: FocusDrivenType): boolean
+
+查询是否支持指定的对焦驱动类型。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**参数**：
+
+| 参数名 | 类型                                  | 必填 | 说明                     |
+| ------ | ------------------------------------- | ---- | ------------------------ |
+| type   | [FocusDrivenType](#focusdriventype15) | 是   | 指定对应的对焦驱动类型。 |
+
+**返回值**：
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回true表示支持指定的对焦驱动类型，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Not System Application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 7400103  | Session not config.                                          |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isFocusDrivenTypeSupported(session: camera.VideoSessionForSys, type: camera.FocusDrivenType): boolean {
+  let status: boolean = false;
+  try {
+    status = session.isFocusDrivenTypeSupported(type);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The isFocusDrivenTypeSupported call failed. error code: ${err.code}`);
   }
   return status;
 }
@@ -5532,6 +5675,180 @@ function getFocusAssist(professionalPhotoSession: camera.ProfessionalPhotoSessio
     console.error(`The getFocusAssist call failed. error code: ${err.code}`);
   }
   return isFocusAssistOpened;
+}
+```
+
+### setFocusRange<sup>15+</sup>
+
+setFocusRange(type: FocusRangeType): void
+
+设置对焦范围类型。进行设置之前，需要先检查设备是否支持指定的对焦范围类型，可使用方法[isFocusRangeTypeSupported](#isfocusrangetypesupported15)。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**参数**：
+
+| 参数名 | 类型                                | 必填 | 说明           |
+| ------ | ----------------------------------- | ---- | -------------- |
+| type   | [FocusRangeType](#focusrangetype15) | 是   | 对焦范围类型。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Not System Application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |
+| 7400102  | Operation not allowed.                                       |
+| 7400103  | Session not config.                                          |
+| 7400201  | Camera service fatal error.                                  |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setFocusRange(session: camera.VideoSessionForSys, type: camera.FocusRangeType): void {
+  try {
+    session.setFocusRange(type);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The setFocusRange call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getFocusRange<sup>15+</sup>
+
+getFocusRange(): FocusRangeType
+
+获取当前设置的对焦范围类型。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**返回值**：
+
+| 类型                                | 说明                     |
+| ----------------------------------- | ------------------------ |
+| [FocusRangeType](#focusrangetype15) | 当前设置的对焦范围类型。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+| 7400103  | Session not config.     |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getFocusRange(session: camera.VideoSessionForSys): camera.FocusRangeType | undefined {
+  let focusRangeType: camera.FocusRangeType | undefined = undefined;
+  try {
+    focusRangeType = session.getFocusRange();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The getFocusRange call failed. error code: ${err.code}`);
+  }
+  return focusRangeType;
+}
+```
+
+### setFocusDriven<sup>15+</sup>
+
+setFocusDriven(type: FocusDrivenType): void
+
+设置对焦驱动类型。进行设置之前，需要先检查设备是否支持指定的对焦驱动类型，可使用方法[isFocusDrivenTypeSupported](#isfocusdriventypesupported15)。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**参数**：
+
+| 参数名 | 类型                                  | 必填 | 说明           |
+| ------ | ------------------------------------- | ---- | -------------- |
+| type   | [FocusDrivenType](#focusdriventype15) | 是   | 对焦驱动类型。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Not System Application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |
+| 7400102  | Operation not allowed.                                       |
+| 7400103  | Session not config.                                          |
+| 7400201  | Camera service fatal error.                                  |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setFocusDriven(session: camera.VideoSessionForSys, type: camera.FocusDrivenType): void {
+  try {
+    session.setFocusDriven(type);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The setFocusDriven call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getFocusDriven<sup>15+</sup>
+
+getFocusDriven(): FocusDrivenType
+
+获取当前设置的对焦驱动类型。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**返回值**：
+
+| 类型                                  | 说明                     |
+| ------------------------------------- | ------------------------ |
+| [FocusDrivenType](#focusdriventype15) | 当前设置的对焦驱动类型。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+| 7400103  | Session not config.     |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getFocusDriven(session: camera.VideoSessionForSys): camera.FocusDrivenType | undefined {
+  let focusDrivenType: camera.FocusDrivenType | undefined = undefined;
+  try {
+    focusDrivenType = session.getFocusDriven();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The getFocusDriven call failed. error code: ${err.code}`);
+  }
+  return focusDrivenType;
 }
 ```
 
@@ -5734,7 +6051,7 @@ setIso(iso: number): void
 
 | 参数名      | 类型                     | 必填 | 说明                 |
 | -------- | ----------------------- | ---- | ------------------- |
-| iso | number | 是   | 设置ISO值， |
+| iso | number | 是   | 设置ISO值。 |
 
 **错误码：**
 
@@ -8904,5 +9221,156 @@ getSupportedLightPaintingTypes(): Array\<LightPaintingType\>
 function getSupportedLightPaintingTypes(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): Array<camera.LightPaintingType> {
   let types: Array<camera.LightPaintingType> = lightPaintingPhotoSession.getSupportedLightPaintingTypes();
   return types
+}
+```
+
+## ColorReservationType<sup>15+</sup>
+
+枚举，色彩保留类型。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+| 名称     | 值   | 说明             |
+| -------- | ---- | ---------------- |
+| NONE     | 0    | 无色彩保留效果。 |
+| PORTRAIT | 1    | 人像留色。       |
+
+## ColorReservationQuery<sup>15+</sup>
+
+提供了查询设备支持的色彩保留类型的功能。
+
+### getSupportedColorReservationTypes<sup>15+</sup>
+
+getSupportedColorReservationTypes(): Array\<ColorReservationType\>
+
+获取支持的色彩保留类型列表。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**返回值**：
+
+| 类型                                                   | 说明                     |
+| ------------------------------------------------------ | ------------------------ |
+| Array<[ColorReservationType](#colorreservationtype15)> | 支持的色彩保留类型列表。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+| 7400103  | Session not config.     |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getSupportedColorReservationTypes(session: camera.VideoSessionForSys): Array<camera.ColorReservationType> {
+  let colorReservationTypes: Array<camera.ColorReservationType> = [];
+  try {
+    colorReservationTypes = session.getSupportedColorReservationTypes();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The getSupportedColorReservationTypes call failed. error code: ${err.code}`);
+  }
+  return colorReservationTypes;
+}
+```
+
+## ColorReservation<sup>15+</sup>
+
+ColorReservation extends [ColorReservationQuery](#colorreservationquery15)
+
+提供了获取和设置相机色彩保留类型的方法。
+
+### setColorReservation<sup>15+</sup>
+
+setColorReservation(type: ColorReservationType): void
+
+设置色彩保留类型。可以先通过[getSupportedColorReservationTypes](#getsupportedcolorreservationtypes15)获取当前设备所支持的ColorReservationType。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**参数**：
+
+| 参数名 | 类型                                            | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type   | [ColorReservationType](#colorreservationtype15) | 是   | 色彩保留类型，通过[getSupportedColorReservationTypes](#getsupportedcolorreservationtypes15)接口获取。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Not System Application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |
+| 7400102  | Operation not allowed.                                       |
+| 7400103  | Session not config.                                          |
+| 7400201  | Camera service fatal error.                                  |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setColorReservation(session: camera.VideoSessionForSys, type: camera.ColorReservationType): void {
+  try {
+    session.setColorReservation(type);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The setColorReservation call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getColorReservation<sup>15+</sup>
+
+getColorReservation(): ColorReservationType
+
+获取当前设置的色彩保留类型。
+
+**系统接口**： 此接口为系统接口。
+
+**系统能力**： SystemCapability.Multimedia.Camera.Core
+
+**返回值**：
+
+| 类型                                            | 说明                     |
+| ----------------------------------------------- | ------------------------ |
+| [ColorReservationType](#colorreservationtype15) | 当前设置的色彩保留类型。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+| 7400103  | Session not config.     |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getColorReservation(session: camera.VideoSessionForSys): camera.ColorReservationType | undefined {
+  let colorReservation: camera.ColorReservationType | undefined = undefined;
+  try {
+    colorReservation = session.getColorReservation();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The setColorReservation call failed. error code: ${err.code}`);
+  }
+  return colorReservation;
 }
 ```

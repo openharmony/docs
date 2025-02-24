@@ -23,12 +23,20 @@ The **Pasteboard** module supports copying and pasting multiple types of data, i
 
 | Name| Description|
 | -------- | -------- |
-| typedef enum [Pasteboard_NotifyType](#pasteboard_notifytype) [Pasteboard_NotifyType](#pasteboard_notifytype) | Defines an enum for the data change types of the pasteboard. |
+| typedef enum [Pasteboard_NotifyType](#pasteboard_notifytype) [Pasteboard_NotifyType](#pasteboard_notifytype) | Defines an enum for data change types of the pasteboard. |
 | typedef void(\* [Pasteboard_Notify](#pasteboard_notify)) (void \*context, [Pasteboard_NotifyType](#pasteboard_notifytype) type) | Defines a callback to be invoked when the pasteboard content changes. |
 | typedef void(\* [Pasteboard_Finalize](#pasteboard_finalize)) (void \*context) | Defines a callback to be invoked to release the context when the pasteboard observer object is destroyed. |
 | typedef struct [OH_PasteboardObserver](#oh_pasteboardobserver) [OH_PasteboardObserver](#oh_pasteboardobserver) | Defines the pasteboard observer. |
 | typedef struct [OH_Pasteboard](#oh_pasteboard) [OH_Pasteboard](#oh_pasteboard) | Define the pasteboard object to operate the system pasteboard. |
-| typedef enum [PASTEBOARD_ErrCode](#pasteboard_errcode) [PASTEBOARD_ErrCode](#pasteboard_errcode) | Defines an enum for error codes. |
+| typedef enum [PASTEBOARD_ErrCode](#pasteboard_errcode) [PASTEBOARD_ErrCode](#pasteboard_errcode) | Defines an enum for the error codes used in the **Pasteboard** module. |
+| typedef enum [Pasteboard_FileConflictOption](#pasteboard_fileconflictoption) [Pasteboard_FileConflictOption](#pasteboard_fileconflictoption) | Defines an enum for options for file copy conflicts.|
+| typedef enum [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) | Defines an enum for progress indicator options. You can choose whether to use the default progress indicator.|
+| typedef struct [Pasteboard_ProgressInfo](#pasteboard_progressinfo) [Pasteboard_ProgressInfo](#pasteboard_progressinfo) | Defines the progress information.|
+| typedef struct [Pasteboard_ProgressListener](#pasteboard_progresslistener) [Pasteboard_ProgressListener](#pasteboard_progresslistener) | Defines a listener for progress data changes. If the default progress indicator is not used, you can set this type to obtain the paste progress.|
+| typedef struct [Pasteboard_ProgressSignal](#pasteboard_progresssignal) [Pasteboard_ProgressSignal](#pasteboard_progresssignal) | Defines a function for canceling the paste task.|
+| typedef struct [OH_Pasteboard_GetDataParams](#oh_pasteboard_getdataparams) [OH_Pasteboard_GetDataParams](#oh_pasteboard_getdataparams) | Defines the parameters required for obtaining data in the pasteboard, including the destination path, file conflict options, and progress indicator options.|
+| typedef void(* [Pasteboard_ProgressNotify](#pasteboard_progressnotify))([Pasteboard_ProgressInfo](#pasteboard_progressinfo) progressInfo); | Defines a callback function for obtaining the progress information. If the default progress indicator is not used, you can set this type to obtain the paste progress.|
+| typedef int (* [Pasteboard_ProgressCancel](#pasteboard_progresscancel))(); | Defines a function for canceling an ongoing copy-and-paste task.|
 
 
 ### Enums
@@ -36,7 +44,9 @@ The **Pasteboard** module supports copying and pasting multiple types of data, i
 | Name| Description|
 | -------- | -------- |
 | [Pasteboard_NotifyType](#pasteboard_notifytype) { NOTIFY_LOCAL_DATA_CHANGE = 1, NOTIFY_REMOTE_DATA_CHANGE = 2 } | Enumerates the data change types of the pasteboard. |
-| [PASTEBOARD_ErrCode](#pasteboard_errcode) {<br>ERR_OK = 0, ERR_PERMISSION_ERROR = 201, ERR_INVALID_PARAMETER = 401, ERR_DEVICE_NOT_SUPPORTED = 801,<br>ERR_INNER_ERROR = 12900000, ERR_BUSY = 12900003<br>} | Enumerates the error codes. |
+| [PASTEBOARD_ErrCode](#pasteboard_errcode) {<br>ERR_OK = 0, ERR_PERMISSION_ERROR = 201, ERR_INVALID_PARAMETER = 401, ERR_DEVICE_NOT_SUPPORTED = 801,<br>ERR_INNER_ERROR = 12900000, ERR_BUSY = 12900003, ERR_COPY_FILE_ERROR = 12900007, ERR_PROGRESS_START_ERROR = 12900008, ERR_PROGRESS_ABNORMAL = 12900009, ERR_GET_DATA_FAILED = 12900010,<br>} | Enumerates the error codes. |
+| [Pasteboard_FileConflictOption](#pasteboard_fileconflictoption) { OVERWRITE = 0, SKIP = 1} | Enumerates options for a file copy conflict.|
+| [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) { NONE = 0, DEFAULT = 1 } | Enumerates progress indicator types.|
 
 
 ### Functions
@@ -58,6 +68,8 @@ The **Pasteboard** module supports copying and pasting multiple types of data, i
 | int [OH_Pasteboard_SetData](#oh_pasteboard_setdata) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, OH_UdmfData \*data) | Writes the unified data object to the pasteboard. |
 | int [OH_Pasteboard_ClearData](#oh_pasteboard_cleardata) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard) | Clears data from the pasteboard. |
 | char ** [OH_Pasteboard_GetMimeTypes](#oh_pasteboard_getmimetypes) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, unsigned int *count) | Obtains the MIME type from the pasteboard. |
+| OH_UdmfDat *[OH_Pasteboard_GetDataWithProgress](#oh_pasteboard_getdatawithprogress)(OH_Pasteboard *pasteboard, [OH_Pasteboard_GetDataParams](#oh_pasteboard_getdataparams) *params, int *status) | Obtains the pasteboard data and paste progress.|
+| uint32_t [OH_Pasteboard_GetChangeCount](#oh_pasteboard_getchangecount) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard) | Obtains the number of times that the pasteboard data changes. |
 
 
 ## Type Description
@@ -147,6 +159,142 @@ Enumerates the data change types of the pasteboard.
 
 **Since**: 13
 
+### Pasteboard_FileConflictOption 
+
+```
+typedef enum Pasteboard_FileConflictOption
+```
+
+**Description**
+
+Enumerates options for a file copy conflict.
+
+**Since**: 15
+
+### Pasteboard_ProgressIndicator 
+
+```
+typedef enum Pasteboard_ProgressIndicator
+```
+
+**Description**
+
+Defines options for the progress indicator. You can choose whether to use the default progress indicator.
+
+**Since**: 15
+
+### Pasteboard_ProgressInfo 
+
+```
+typedef struct Pasteboard_ProgressInfo {
+	int progress;
+} Pasteboard_ProgressInfo;
+```
+
+**Description**
+
+Defines the progress information. This information is reported only when [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) is set to **NONE**.
+
+**Since**: 15
+
+| Name    | Type| Description                                                      |
+| -------- | ---- | ---------------------------------------------------------- |
+| progress | int  | If the progress indicator provided by the system is not used, the system reports the progress percentage of the copy-and-paste task.|
+
+### Pasteboard_ProgressNotify
+
+```
+typedef void (*Pasteboard_ProgressNotify)(Pasteboard_ProgressInfo progressInfo);
+```
+
+**Description**
+
+Notifies the application of the copy-and-paste task progress when the progress indicator provided by the pasteboard is not used.
+
+**Since**: 15
+
+**Parameters**
+
+| Name        | Type                                               | Description                                                        |
+| ------------ | --------------------------------------------------- | ------------------------------------------------------------ |
+| progressInfo | [Pasteboard_ProgressInfo](#pasteboard_progressinfo) | Defines the progress information. This information is reported only when [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) is set to **NONE**.|
+
+### Pasteboard_ProgressListener 
+
+```
+typedef struct Pasteboard_ProgressListener {
+	Pasteboard_ProgressNotify callback;
+} Pasteboard_ProgressListener;
+```
+
+**Description**
+
+Defines a listener for progress data changes. If the default progress indicator is not used, you can set this type to obtain the paste progress.
+
+**Since**: 15
+
+| Name    | Type                                                   | Description                                                        |
+| -------- | ------------------------------------------------------- | ------------------------------------------------------------ |
+| callback | [Pasteboard_ProgressNotify](#pasteboard_progressnotify) | Notifies the application of the copy-and-paste task progress when the progress indicator provided by the pasteboard is not used.|
+
+### Pasteboard_ProgressCancel
+
+```
+typedef int (*Pasteboard_ProgressCancel)();
+```
+
+**Description**
+
+Cancels an ongoing copy-and-paste task.
+
+**Since**: 15
+
+### Pasteboard_ProgressSignal
+
+```
+typedef struct Pasteboard_ProgressSignal {
+    Pasteboard_ProgressCancel cancel;
+} Pasteboard_ProgressSignal;
+```
+
+**Description**
+
+Defines a function for canceling the paste task. This parameter is valid only when [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) is set to **NONE**.
+
+**Since**: 15
+
+| Name  | Type                                                   | Description                    |
+| ------ | ------------------------------------------------------- | ------------------------ |
+| cancel | [Pasteboard_ProgressCancel](#pasteboard_progresscancel) | Cancels an ongoing paste task.|
+
+### OH_Pasteboard_GetDataParams
+
+```
+typedef struct OH_Pasteboard_GetDataParams {
+    char *destUri;
+    unsigned int destUriLen;
+    Pasteboard_FileConflictOption fileConflictOption;
+    Pasteboard_ProgressIndicator progressIndicator;
+    Pasteboard_ProgressListener progressListener;
+    Pasteboard_ProgressSignal progressSignal;
+} OH_Pasteboard_GetDataParams;
+```
+
+**Description**
+
+Obtains parameters when an application uses the file copy capability provided by the pasteboard, including the destination path, file conflict options, and progress indicator types.
+
+**Since**: 15
+
+| Name              | Type                                                        | Description                                                        |
+| ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| destUri            | char *                                                       | Destination path for copying files. If file processing is not supported, this parameter is not required. If the application involves complex file processing policies or needs to distinguish file multipathing storage, you are advised not to set this parameter but let the application copies files by itself.|
+| destUriLen         | unsigned int                                                 | Length of the destination path.                                    |
+| fileConflictOption | [Pasteboard_FileConflictOption](#pasteboard_fileconflictoption) | File conflict options for a copy-and-paste task. The default value is **OVERWRITE**.                 |
+| progressIndicator  | [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) | Progress indicator display options. You can choose whether to use the default progress indicator.        |
+| progressListener   | [Pasteboard_ProgressListener](#pasteboard_progresslistener)  | A listener for progress data changes. If the default progress indicator is not used, you can set this variable to obtain the paste progress.|
+| progressSignal     | [Pasteboard_ProgressSignal](#pasteboard_progresssignal)      | A function for canceling the paste task. This parameter is valid only when [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) is set to **NONE**.|
+
 
 ## Enum Description
 
@@ -164,12 +312,16 @@ Enumerates the error codes.
 
 | Value| Description|
 | -------- | -------- |
-| ERR_OK  | The operation is successful. ||
-| ERR_PERMISSION_ERROR  | Permission verification has failed. ||
-| ERR_INVALID_PARAMETER  | Invalid parameter. ||
-| ERR_DEVICE_NOT_SUPPORTED  | The device capability is not supported. ||
-| ERR_INNER_ERROR  | Internal error. ||
-| ERR_BUSY  | System busy. ||
+| ERR_OK  | The operation is successful. |
+| ERR_PERMISSION_ERROR  | Permission verification has failed. |
+| ERR_INVALID_PARAMETER  | Invalid parameter. |
+| ERR_DEVICE_NOT_SUPPORTED  | The device capability is not supported. |
+| ERR_INNER_ERROR  | Internal error. |
+| ERR_BUSY  | System busy. |
+| ERR_COPY_FILE_ERROR | File copying failed.|
+| ERR_PROGRESS_START_ERROR | Progress indicator creation fails when the application uses the system progress indicator.|
+| ERR_PROGRESS_ABNORMAL | Progress reporting is abnormal when the application stops using the system progress indicator.|
+| ERR_GET_DATA_FAILED | Fails to obtain the copied data.|
 
 
 ### Pasteboard_NotifyType
@@ -185,9 +337,42 @@ Enumerates the data change types of the pasteboard.
 
 | Value| Description|
 | -------- | -------- |
-| NOTIFY_LOCAL_DATA_CHANGE  | The pasteboard data of the local device is changed. ||
-| NOTIFY_REMOTE_DATA_CHANGE  | The pasteboard data of a non-local device on the network is changed. ||
+| NOTIFY_LOCAL_DATA_CHANGE  | The pasteboard data of the local device is changed. |
+| NOTIFY_REMOTE_DATA_CHANGE  | The pasteboard data of a non-local device on the network is changed. |
 
+### Pasteboard_FileConflictOption 
+
+```
+enum Pasteboard_FileConflictOption
+```
+
+**Description**
+
+Defines options for file copy conflicts.
+
+**Since**: 15
+
+| Value   | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| OVERWRITE | Overwrites the file with the same name in the destination path.                                |
+| SKIP      | Skips the file with the same name in the destination path. If **SKIP** is set, the copied data of the skipped file is not pasted to the application.|
+
+### Pasteboard_ProgressIndicator 
+
+```
+enum Pasteboard_ProgressIndicator
+```
+
+**Description**
+
+Defines options for the progress indicator. You can choose whether to use the default progress indicator.
+
+**Since**: 15
+
+| Value | Description                    |
+| ------- | ------------------------ |
+| NONE    | The default progress indicator is not used.|
+| DEFAULT | The default progress indicator is used.  |
 
 ## Function Description
 
@@ -211,7 +396,7 @@ Clears data from the pasteboard.
 
 **Returns**
 
-Returns an error code. For details, see [PASTEBOARD_ErrCode](#pasteboard_errcode). Returns **ERR_OK** if the operation is successful. Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
+Returns an error code. For details, see [PASTEBOARD_ErrCode](#pasteboard_errcode).<br>Returns **ERR_OK** if the operation is successful.<br>Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
 
 **See**
 
@@ -314,7 +499,7 @@ Obtains the pasteboard data source.
 
 **Returns**
 
-Returns an error code. For details, see [PASTEBOARD_ErrCode](#pasteboard_errcode). Returns **ERR_OK** if the operation is successful. Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
+Returns an error code. For details, see [PASTEBOARD_ErrCode](#pasteboard_errcode).<br>Returns **ERR_OK** if the operation is successful.<br>Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
 
 **See**
 
@@ -342,7 +527,7 @@ Checks whether the pasteboard contains data.
 
 **Returns**
 
-Returns **true** if there is data in the pasteboard; returns **false** otherwise.
+Returns a Boolean value indicating whether the pasteboard contains data. The value **true** means the pasteboard contains data; the value **false** means the opposite.
 
 **See**
 
@@ -369,7 +554,7 @@ Checks whether the pasteboard contains data of the specified type.
 
 **Returns**
 
-Returns **true** if the pasteboard contains data of the specified type; returns **false** otherwise.
+Returns a Boolean value indicating whether the pasteboard contains data of the specified type. The value **true** means the pasteboard contains data of the specified type; the value **false** means the opposite.
 
 **See**
 
@@ -395,7 +580,7 @@ Checks whether the pasteboard data comes from remote devices.
 
 **Returns**
 
-Returns **true** if the pasteboard data comes from the remote devices; returns **false** otherwise.
+Returns a Boolean value indicating whether the data is from a remote device. The value **true** means the data is from a remote device. The value **false** means the data is from the local device.
 
 **See**
 
@@ -597,7 +782,7 @@ Obtains the MIME type from the pasteboard.
 | Name| Description|
 | -------- | -------- |
 | pasteboard | Pointer to an [OH_Pasteboard](#oh_pasteboard) instance. |
-| count | Pointer to the number of data types obtained. |
+| count | Pointer to the number of uniform data types obtained. |
 
 **Returns**
 
@@ -606,6 +791,59 @@ Returns the MIME type obtained if the operation is successful; returns **nullptr
 The lifecycle of the object returned by this API is managed by the input parameter object **pasteboard**. When the application calls [OH_Pasteboard_Destroy](#oh_pasteboard_destroy) to destroy **pasteboard**, the result returned by this API is released synchronously.
 
 The **pasteboard** object saves only the latest result and the historical results obtained by the API become invalid.
+
+**See**
+
+[OH_Pasteboard](#oh_pasteboard)
+
+### OH_Pasteboard_GetDataWithProgress()
+
+```
+OH_UdmfData* OH_Pasteboard_GetDataWithProgress(OH_Pasteboard* pasteboard, OH_Pasteboard_GetDataParams *params, int *status);
+```
+
+**Description**
+
+Obtains the pasteboard data and progress. This API uses a promise to return the result.
+
+**Since**: 15
+
+**Parameters**
+
+| Name      | Description                                                        |
+| ---------- | ------------------------------------------------------------ |
+| pasteboard | Pointer to an [OH_Pasteboard](#oh_pasteboard) instance.   |
+| params     | Parameters required when an application uses the file copy capability provided by the pasteboard. For details, see [OH_Pasteboard_GetDataParams](#oh_pasteboard_getdataparams).|
+| status     | Output parameter, indicating the error code of the operation. For details, see [PASTEBOARD_ErrCode](#pasteboard_errcode).|
+
+**Returns**
+
+Returns a pointer to the **OH_UdmfData** instance obtained if the operation is successful; returns **nullptr** otherwise.
+
+### OH_Pasteboard_GetChangeCount()
+
+```
+uint32_t OH_Pasteboard_GetChangeCount(OH_Pasteboard *pasteboard);
+```
+**Description**
+
+Obtains the number of times that the pasteboard data changes.
+
+Even though the pasteboard data expires, or the data becomes empty because of the called [OH_Pasteboard_ClearData](#oh_pasteboard_cleardata) API, the number of data changes remains.
+
+When the system is restarted, or the pasteboard service is restarted due to an exception, the number of pasteboard data changes counts from 0. In addition, copying the same data repeatedly is considered to change the data for multiple times. Therefore, each time the data is copied, the number of data changes increases.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| pasteboard | Pointer to an [OH_Pasteboard](#oh_pasteboard) instance. |
+
+**Returns**
+
+Returns the result if this API is called successfully; otherwise, returns **0**.
 
 **See**
 

@@ -20,7 +20,7 @@ onDependencyCompleted?(dependency: string, result: ESObject): void
 
 当依赖的启动任务执行完成时该方法将会被调用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
 **参数：**
 
@@ -29,7 +29,7 @@ onDependencyCompleted?(dependency: string, result: ESObject): void
 | dependency | string | 是 | 依赖的启动任务名称。 |
 | result | Object | 是 | 依赖启动任务执行的结果。 |
 
-**示例：**：
+**示例：**
 
 ```ts
 import StartupTask from '@ohos.app.appstartup.StartupTask';
@@ -60,7 +60,7 @@ init(context: AbilityStageContext): Promise\<ESObject\>
 
 启动任务执行的初始化业务。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
 **参数：**
 
@@ -74,7 +74,7 @@ init(context: AbilityStageContext): Promise\<ESObject\>
 | -------- | -------- |
 | Promise\<Object | void\> | Promise对象，返回启动任务执行结果对象。 |
 
-**示例：**：
+**示例：**
 
 ```ts
 import { StartupTask, common } from '@kit.AbilityKit';

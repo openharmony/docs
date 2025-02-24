@@ -31,6 +31,8 @@ NavDestination组件状态。
 | ON_WILL_HIDE<sup>12+</sup> | 5   | NavDestination组件隐藏之前。 |
 | ON_WILL_APPEAR<sup>12+</sup>| 6   | NavDestination挂载到组件树之前。|
 | ON_WILL_DISAPPEAR<sup>12+</sup>| 7   | NavDestination从组件树上卸载之前。|
+| ON_ACTIVE<sup>16+</sup> | 8 | NavDestination组件处于激活态。|
+| ON_INACTIVE<sup>16+</sup> | 9 | NavDestination组件处于非激活态。|
 | ON_BACKPRESS<sup>12+</sup> | 100   | NavDestination组件返回。 |
 
 ## ScrollEventType<sup>12+</sup>
@@ -91,8 +93,8 @@ NavDestination组件信息。
 | index<sup>12+</sup>        | number        | 是   | NavDestination在页面栈中的索引。                   |
 | param<sup>12+</sup>        | Object        | 否   | NavDestination组件的参数。                   |
 | navDestinationId<sup>12+</sup>        | string        | 是   | NavDestination组件的唯一标识ID。                   |
-| mode<sup>16+</sup>        | [NavDestinationMode](arkui-ts/ts-basic-components-navdestination.md#navdestinationmode枚举说明-11)        | 是   | NavDestination类型。                   |
-| uniqueId<sup>16+</sup>        | number        | 是   | NavDestination组件的uniqueId。                   |
+| mode<sup>15+</sup>        | [NavDestinationMode](arkui-ts/ts-basic-components-navdestination.md#navdestinationmode枚举说明-11)        | 否   | NavDestination类型。                   |
+| uniqueId<sup>15+</sup>        | number        | 否   | NavDestination组件的uniqueId。                   |
 
 ## NavigationInfo<sup>12+</sup>
 
@@ -609,7 +611,7 @@ off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'routerPageUpdate'，即router中page页面的状态变化。 |
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围 |
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围。 |
 | callback | Callback\<[RouterPageInfo](#routerpageinfo)\>        | 否   | 需要被注销的回调函。                 |
 
 **示例：**
@@ -829,7 +831,7 @@ struct Index {
 
 on(type: 'didLayout', context: UIContext, callback: Callback\<void\>): void
 
-监听每一帧布局完成情况
+监听每一帧布局完成情况。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

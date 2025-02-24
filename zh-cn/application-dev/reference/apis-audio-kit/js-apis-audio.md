@@ -861,6 +861,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | 短语音消息的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_CAMCORDER<sup>13+</sup>          | 13     | 录像的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
+| SOURCE_TYPE_UNPROCESSED<sup>14+</sup>     | 14 |  麦克风纯净录音的音频源（系统不做任何算法处理）。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 
 ## AudioPlaybackCaptureConfig<sup>(deprecated)</sup>
 
@@ -3252,7 +3253,7 @@ audioVolumeGroupManager.off('micStateChange');
 // 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
 let micStateChangeCallback = (micStateChange: audio.MicStateChangeEvent) => {
   console.info(`Current microphone status is: ${micStateChange.mute} `);
-});
+};
 
 audioVolumeGroupManager.on('micStateChange', micStateChangeCallback);
 
@@ -4322,15 +4323,15 @@ on(type: 'micBlockStatusChanged', callback: Callback<DeviceBlockStatusInfo\>): v
 **示例：**
 
 ```ts
-let blockMic: boolean = audioRoutingManager.isMicBlockDetectionSupported();
-if (blockMic == true) {
-  audioRoutingManager.on('micBlockStatusChanged', (micBlockStatusChanged: audio.DeviceBlockStatusInfo) => {
-    if (micBlockStatusChanged.blockStatus == audio.DeviceBlockStatus.BLOCKED ||
-      micBlockStatusChanged.blockStatus == audio.DeviceBlockStatus.UNBLOCKED) {
-      console.info(`${Tag}: on_micBlockStatusChanged: SUCCESS`);
-    }
-  });
-}
+// 在使用此功能之前，应先查询当前设备是否支持检测
+audioRoutingManager.isMicBlockDetectionSupported().then((value: boolean) => {
+  console.info(`Query whether microphone block detection is supported on current device result is ${value}.`);
+  if (value) {
+    audioRoutingManager.on('micBlockStatusChanged', (micBlockStatusChanged: audio.DeviceBlockStatusInfo) => {
+      console.info(`block status : ${micBlockStatusChanged.blockStatus} `);
+    });
+  }
+});
 ```
 
 ### off('micBlockStatusChanged')<sup>13+</sup>
@@ -4365,7 +4366,6 @@ audioRoutingManager.off('micBlockStatusChanged');
 
 // 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
 let micBlockStatusCallback = (micBlockStatusChanged: audio.DeviceBlockStatusInfo) => {
-  console.info(`device descriptor size : ${micBlockStatusChanged.deviceDescriptors.length} `);
   console.info(`block status : ${micBlockStatusChanged.blockStatus} `);
 };
 

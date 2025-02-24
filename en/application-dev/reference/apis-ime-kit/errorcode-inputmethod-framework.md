@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Package manager error.
+Bundle manager error.
 
 **Description**
 
@@ -52,17 +52,19 @@ This error code is reported when the API for showing or hiding the keyboard fail
 
 **Possible Causes**
 
-The input method is disconnected from the third-party application due to a service error with the application.
+1. The input method is disconnected from the third-party application due to a service error with the application.
+2. The third-party application is not focused.
 
 **Solution**
 
-Bind the input method to the third-party application again: Close the background process of the third-party application, start the application again, and touch a text input box. If the keyboard is displayed properly, the issue is resolved.
+1. Bind the input method to the third-party application again: Close the background process of the third-party application, start the application again, and touch a text input box. If the keyboard is displayed properly, the issue is resolved.
+2. Place the third-party application in the foreground and ensure that it is not covered by other applications or windows. Enable the input method by touching a text input box.
 
 ## 12800004 Not an Input Method
 
 **Error Message**
 
-Not an input method extension.
+Not an input method.
 
 **Description**
 
@@ -80,7 +82,7 @@ Call the API only in an input method.
 
 **Error Message**
 
-Configuration persisting error.
+Configuration persistence error.
 
 **Description**
 
@@ -116,7 +118,7 @@ None
 
 **Error Message**
 
-Input method settings extension error.
+Input method setter error.
 
 **Description**
 
@@ -142,7 +144,7 @@ This error code is reported when an API of the [input method framework](js-apis-
 
 **Possible Causes**
 
-The input method manager service fails to be obtained.
+The input method manager service fails to be found.
 
 **Solution**
 
@@ -152,7 +154,7 @@ Run the **ps -A|grep inputmethod** command to check for the process ID of the in
 
 **Error Message**
 
-Input method client is detached.
+Input method client detached.
 
 **Description**
 
@@ -170,7 +172,7 @@ Call the **attach** API and then try again.
 
 **Error Message**
 
-Not default input method configured by system.
+Not the preconfigured default input method.
 
 **Description**
 
@@ -188,7 +190,7 @@ Use [getDefaultInputMethod](js-apis-inputmethod.md#inputmethodgetdefaultinputmet
 
 **Error Message**
 
-Text preview is not supported.
+Text preview not supported.
 
 **Description**
 
@@ -206,7 +208,7 @@ Use [getEditorAttributeSync](js-apis-inputmethodengine.md#geteditorattributesync
 
 **Error Message**
 
-Input method panel doesn't exist.
+The input method panel does not exist.
 
 **Description**
 
@@ -237,3 +239,75 @@ After the API is called, the system uses the capabilities of the window manager 
 **Solution**
 
 Restart the device and try again.
+
+## 12800014 Non-Full Access Mode of the Input Method Application
+
+**Error Message**
+
+The intput method is basic mode.
+
+**Description**
+
+The input method application is in non-full access mode.
+
+**Possible Causes**
+
+This error is thrown if the input method is in non-full access mode after you call an API that requires the full access mode to be enabled.
+
+**Solution**
+
+Enable the full access mode of the input method in **Settings**.
+
+## 12800015 Message Receiver Unable to Receive Custom Communication Data
+
+**Error Message**
+
+The another side does not accept the request.
+
+**Description**
+
+The message receiver cannot receive custom communication data.
+
+**Possible Causes**
+
+This error is thrown if the message receiver does not register [MessageHandler](js-apis-inputmethodengine.md#messagehandler16) to receive data when you call the API for sending custom communication data.
+
+**Solution**
+
+To receive custom communication data, register a **MessageHandler** for the message receiver, call [recvMessage](js-apis-inputmethodengine.md#recvmessage16) in the input method application, and call [recvMessage](js-apis-inputmethod.md#recvmessage16) for the input method client.
+
+## 12800016 Input Method Client Not in Edit Mode
+
+**Error Message**
+
+The edit mode need enable.
+
+**Description**
+
+The input method client is not in edit mode.
+
+**Possible Causes**
+
+The input method client exits the edit mode after being attached. For example, [hideTextInput](js-apis-inputmethod.md#hidetextinput10) is called after the self-drawing component is attached to the input method through **Attach**.
+
+**Solution**
+
+Enter the edit mode again after the input method client is attached and exits the edit mode. For example, the self-drawing component should enter the edit mode again by calling [showTextInput](js-apis-inputmethod.md#showtextinput10).
+
+## 12800017 Invalid Panel Type or Panel Flag
+
+**Error Message**
+
+Invalid panel type or panel flag.
+
+**Description**
+
+Invalid panel type or panel flag.
+
+**Possible Causes**
+
+This error is thrown if the [panel type](js-apis-inputmethodengine.md#paneltype10) or [panel flag](js-apis-inputmethodengine.md#panelflag10) of the input method does not support API call, or you cannot pass the type or flag to the API.
+
+**Solution**
+
+Read the API usage description and call the API if you need to adjust the panel type or panel flag of the input method, and input parameters. Otherwise, do not call the API.
