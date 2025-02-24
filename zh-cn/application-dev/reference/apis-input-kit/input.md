@@ -1031,8 +1031,6 @@ INPUT_OCCUPIED_BY_SYSTEM 该快捷键已被系统占用，可以通过接口[OH_
 
 INPUT_OCCUPIED_BY_OTHER 已被抢占订阅。
 
-INPUT_DEVICE_NOT_SUPPORTED 表示功能不受支持(部分接口在手表设备上不支持实现)。
-
 ### OH_Input_AddInputEventInterceptor()
 
 ```
