@@ -679,7 +679,7 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 | -------- | -------- | -------- | -------- |
 | windowId  | number  | 是    | 窗口id。                          |
 | cursor  | [CustomCursor](js-apis-pointer.md#customcursor14) | 是    | 自定义光标资源。 |
-| config  | [CursorConfig](js-apis-pointer.md#cursorconfig14) | 是    | 自定义光标配置。是否根据系统设置调整光标大小，如果CursorConfig中followSystem设置为true，则光标大小的可调整范围为：[光标资源图大小，256×256]。 |
+| config  | [CursorConfig](js-apis-pointer.md#cursorconfig14) | 是    | 自定义光标配置,用于配置是否根据系统设置调整光标大小。如果CursorConfig中followSystem设置为true，则光标大小的可调整范围为：[光标资源图大小，256×256]。 |
 
 **返回值**：
 
