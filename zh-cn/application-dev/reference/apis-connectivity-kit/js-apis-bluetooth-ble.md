@@ -352,7 +352,7 @@ try {
 
 startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&lt;number&gt;): void
 
-开始发送BLE广播。使用Callback异步回调。开始发送BLE广播。使用Callback异步回调。从API15开始，多次调用，可发起多路广播，每一路广播通过不同的ID管理。
+开始发送BLE广播。使用Callback异步回调。从API15开始，多次调用，可发起多路广播，每一路广播通过不同的ID管理。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -444,7 +444,7 @@ try {
 
 startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 
-开始发送BLE广播。使用Promise异步回调。开始发送BLE广播。使用Callback异步回调。从API15开始，多次调用，可发起多路广播，每一路广播通过不同的ID管理。
+开始发送BLE广播。使用Promise异步回调。从API15开始，多次调用，可发起多路广播，每一路广播通过不同的ID管理。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
