@@ -8,9 +8,9 @@
 
 | 视频硬解类型       | 视频软解类型   |
 | --------------------- | ---------------- |
-| AVC(H.264)、HEVC(H.265) | MPEG2、MPEG4、AVC(H.264)<!--RP12--><!--RP12End--> |
+| AVC(H.264)、HEVC(H.265)<!--RP14--><!--RP14End--> | MPEG2、MPEG4、AVC(H.264)<!--RP12--><!--RP12End--> |
 
-视频解码软/硬件解码存在差异，基于MimeType创建解码器时，<!--RP13-->软解当前仅支持 MPEG2(OH_AVCODEC_MIMETYPE_VIDEO_MPEG2)、MPEG4(OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2)、 H.264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)，<!--RP13End-->如果硬件平台支持，则可以使用H.264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)和H.265(OH_AVCODEC_MIMETYPE_VIDEO_HEVC)硬件解码能力。
+视频解码软/硬件解码存在差异，基于MimeType创建解码器时，<!--RP13-->软解当前仅支持 MPEG2(OH_AVCODEC_MIMETYPE_VIDEO_MPEG2)、MPEG4(OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2)、 H.264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)，<!--RP13End-->如果硬件平台支持，<!--RP15-->则可以使用H.264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)、H.265(OH_AVCODEC_MIMETYPE_VIDEO_HEVC)<!--RP15End-->硬件解码能力。
 
 每一种解码的能力范围，可以通过[获取支持的编解码能力](obtain-supported-codecs.md)获取。
 

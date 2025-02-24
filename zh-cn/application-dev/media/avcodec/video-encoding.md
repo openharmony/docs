@@ -355,7 +355,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 配置编码Profile。
     int32_t profile = static_cast<int32_t>(OH_AVCProfile::AVC_PROFILE_HIGH);
     // 配置编码比特率模式。
-    int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::VBR);
+    int32_t rateMode = static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_VBR);
     // 配置关键帧的间隔，单位为毫秒。
     int32_t iFrameInterval = 1000;
     // 配置比特率，单位为bps。
@@ -375,7 +375,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_MATRIX_COEFFICIENTS, matrix);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
-    //只有当OH_BitrateMode = CQ时，才需要配置OH_MD_KEY_QUALITY。
+    //只有当OH_BitrateMode = BITRATE_MODE_CQ 时，才需要配置OH_MD_KEY_QUALITY。
     if (rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_CQ)) {
         OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
     } else if (rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_CBR) ||
@@ -436,7 +436,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```
 
 9. （可选）OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数。
-    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
 
     <!--RP8-->
     ```c++
