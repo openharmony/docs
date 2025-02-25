@@ -52,7 +52,7 @@ DRM HDI API 的 IDL 构建完成后，可以在`//ohos/out/产品型号/gen/driv
 驱动入口实现可以参考`//ohos/out/产品型号/gen/drivers/interface/drm/v1_0/media_key_system_factory_driver.cpp`，需要驱动入口实现中修改以下几点，并手动配置编译：
 
 ```
-using namespace OHOS::HDI::Drm::V1_0; // 1、本文中 V1_0 为 HDI API 版本号，需根据不同版本进行变更。
+using namespace OHOS::HDI::Drm::V1_0; // 1.本文中 V1_0 为 HDI API 版本号，需根据不同版本进行变更。
 
 struct HdfMediaKeySystemFactoryHost {
     struct IDeviceIoService ioService;
@@ -149,7 +149,7 @@ int32_t MediaKeySystemFactoryService::GetMediaKeySystemDescription(std::string& 
 ```
 
 ### 编译配置
-//drivers/peripheral/clearplay/BUILD.gn.
+//drivers/peripheral/clearplay/BUILD.gn
 
 ```
 if (defined(ohos_lite)) {
@@ -166,7 +166,7 @@ if (defined(ohos_lite)) {
 }
 ```
 
-//drivers/peripheral/clearplay/hdi_service/BUILD.gn.
+//drivers/peripheral/clearplay/hdi_service/BUILD.gn
 ```
 import("//build/ohos.gni")
 
@@ -219,7 +219,7 @@ group("hdf_clearplay_service") {
 }
 ```
 
-//drivers/peripheral/clearplay/interfaces/BUILD.gn.
+//drivers/peripheral/clearplay/interfaces/BUILD.gn
 
 ```
 import("//build/ohos.gni")
@@ -365,8 +365,8 @@ group("hdf_clearplay_interfaces") {
 与编译系统部件编译类似：
 `./build.sh --product-name rk3568 --ccache --build-target drivers_peripheral_clearplay`
 编译生成的二进制文件如下：
-//ohos/out/rk3568/hdf/drivers_peripheral_clearplay/libclearplay_driver.z.so.
-//ohos/out/rk3568/hdf/drivers_peripheral_clearplay/libmedia_key_system_factory_clearplay_service_1.0.z.so.
+//ohos/out/rk3568/hdf/drivers_peripheral_clearplay/libclearplay_driver.z.so
+//ohos/out/rk3568/hdf/drivers_peripheral_clearplay/libmedia_key_system_factory_clearplay_service_1.0.z.so
 
 ## DRM解决方案插件服务配置
 
@@ -398,7 +398,7 @@ clearplay :: host {
 passwd文件为系统用户配置文件，存储了系统中所有用户的基本信息，这里以此为例：
 
 ```
-//base/startup/init/services/etc/passwd.
+//base/startup/init/services/etc/passwd
 clearplay_host:x:1089:1089:::/bin/false
 ```
 
@@ -453,16 +453,16 @@ clearplay :: host {
 selinux用于限制服务进程可访问的资源，以下给定基础的selinux配置，在此基础上按业务添加所需规则。
 
 注意：以下示例中，clearplay_host表示hcs中的hostName值，clearplay_service表示服务名称
-//base/security/selinux_adapter/sepolicy/ohos_policy/drivers/adapter/public/hdf_service_contexts.
+//base/security/selinux_adapter/sepolicy/ohos_policy/drivers/adapter/public/hdf_service_contexts
 `clearplay_service                             u:object_r:hdf_clearplay_service:s0`
 
-//base/security/selinux_adapter/sepolicy/ohos_policy/drivers/adapter/public/hdf_service.te.
+//base/security/selinux_adapter/sepolicy/ohos_policy/drivers/adapter/public/hdf_service.te
 `type hdf_clearplay_service, hdf_service_attr;`
 
-//base/security/selinux_adapter/sepolicy/ohos_policy/startup/init/public/chipset_init.te.
+//base/security/selinux_adapter/sepolicy/ohos_policy/startup/init/public/chipset_init.te
 `allow init clearplay_host:process { rlimitinh siginh transition };`
 
-//base/security/selinux_adapter/sepolicy/ohos_policy/drivers/peripheral/clearplay/vendor/hdf_devmgr.te.
+//base/security/selinux_adapter/sepolicy/ohos_policy/drivers/peripheral/clearplay/vendor/hdf_devmgr.te
 ```
 allow hdf_devmgr clearplay_host:binder { call transfer };
 allow hdf_devmgr clearplay_host:dir { search };
@@ -470,10 +470,10 @@ allow hdf_devmgr clearplay_host:file { open read };
 allow hdf_devmgr clearplay_host:process { getattr };
 ```
 
-//base/security/selinux_adapter/sepolicy/ohos_policy/drivers/adapter/public/type.te.
+//base/security/selinux_adapter/sepolicy/ohos_policy/drivers/adapter/public/type.te
 `type clearplay_host, hdfdomain, domain;`
 
-//base/security/selinux_adapter/sepolicy/ohos_policy/drivers/peripheral/clearplay/vendor/clearplay_host.te（新建此目录）。
+//base/security/selinux_adapter/sepolicy/ohos_policy/drivers/peripheral/clearplay/vendor/clearplay_host.te（新建此目录）
 ```
 allow clearplay_host chip_prod_file:dir { search };
 allow clearplay_host dev_console_file:chr_file { read write };
