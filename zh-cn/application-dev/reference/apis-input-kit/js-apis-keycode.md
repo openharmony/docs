@@ -241,7 +241,7 @@ import { KeyCode } from '@kit.InputKit';
 | KEYCODE_GOTO                     |  2663 | 进入键。                         |
 | KEYCODE_INFO                     |  2664 | 信息查看键。                       |
 | KEYCODE_PROGRAM                  |  2665 | 程序键。                         |
-| KEYCODE_PVR                      |  2666 | 个人录像机(PVR)键。                 |
+| KEYCODE_PVR                      |  2666 | 个人录像机（PVR）键。                 |
 | KEYCODE_SUBTITLE                 |  2667 | 字幕键。                         |
 | KEYCODE_FULL_SCREEN              |  2668 | 全屏键。                         |
 | KEYCODE_KEYBOARD                 |  2669 | 键盘。                          |
@@ -312,7 +312,7 @@ import { KeyCode } from '@kit.InputKit';
 | KEYCODE_WAKEUP                   |  2802 | 唤醒键。                         |
 | KEYCODE_SENDFILE                 |  2803 | 发送文件按键。                      |
 | KEYCODE_DELETEFILE               |  2804 | 删除文件按键。                      |
-| KEYCODE_XFER                     |  2805 | 文件传输(XFER)按键。                |
+| KEYCODE_XFER                     |  2805 | 文件传输（XFER）按键。                |
 | KEYCODE_PROG1                    |  2806 | 程序键1。                        |
 | KEYCODE_PROG2                    |  2807 | 程序键2。                       |
 | KEYCODE_MSDOS                    |  2808 | MS-DOS键（微软磁盘操作系统）。            |
