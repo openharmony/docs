@@ -62,7 +62,7 @@
    }
    ```
 
-4. 通过上一步获取到的SurfaceId创建预览流，参考[预览(C/C++)](./native-camera-preview.md)步骤4。
+4. 通过上一步获取到的SurfaceId创建预览流（在创建预览流之前需要将SurfaceId类型转成char *），参考[预览(C/C++)](./native-camera-preview.md)步骤4。
 
 5. 创建会话，使能会话，参考[会话管理(C/C++)](./native-camera-session-management.md)。
 
