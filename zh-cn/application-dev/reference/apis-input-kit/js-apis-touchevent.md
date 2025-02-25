@@ -72,7 +72,7 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 | width       | number | 是    | 否    | 触摸区域的宽度。                           |
 | height      | number | 是    | 否    | 触摸区域的高度。                           |
 | tiltX       | number | 是    | 否    | 相对YZ平面的角度，取值的范围[-90, 90]，其中正值是向右倾斜。 |
-| tiltY       | number | 是    | 否    | 相对XZ平面的角度，值的范围[-90, 90]，其中正值是向下倾斜。 |
+| tiltY       | number | 是    | 否    | 相对XZ平面的角度，取值的范围[-90, 90]，其中正值是向下倾斜。 |
 | toolX       | number | 是    | 否    | 工具区域的中心点x坐标。                           |
 | toolY       | number | 是    | 否    | 工具区域的中心点y坐标。                           |
 | toolWidth   | number | 是    | 否    | 工具区域宽度。                              |
