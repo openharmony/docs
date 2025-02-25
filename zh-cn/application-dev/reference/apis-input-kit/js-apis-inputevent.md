@@ -18,12 +18,12 @@ import { InputEvent } from '@kit.InputKit';
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.Core
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
 
 | 名称         | 类型   | 可读   | 可写   | 说明             |
 | ---------- | ------ | ---- | ---- | -------------- |
-| id         | number | 是    | 否    | 事件id |
-| deviceId   | number | 是    | 否    | 上报输入事件的设备id    |
-| actionTime | number | 是    | 否    | 上报输入事件的时间      |
-| screenId   | number | 是    | 否    | 目标屏幕id         |
-| windowId   | number | 是    | 否    | 目标窗口id         |
+| id         | number | 是    | 否    | 事件id。 |
+| deviceId   | number | 是    | 否    | 上报输入事件的设备id。    |
+| actionTime | number | 是    | 否    | 上报输入事件的时间。      |
+| screenId   | number | 是    | 否    | 目标屏幕id。         |
+| windowId   | number | 是    | 否    | 目标窗口id。         |
