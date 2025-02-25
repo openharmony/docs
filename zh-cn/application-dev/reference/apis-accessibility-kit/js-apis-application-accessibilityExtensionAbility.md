@@ -126,7 +126,7 @@ let windowType: WindowType;
 
 ## Rect<sup>10+</sup>
 
-[Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)二级模块，表示矩形区域。
+表示矩形区域，请参考[Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
