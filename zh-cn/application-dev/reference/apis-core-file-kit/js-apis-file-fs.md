@@ -29,7 +29,7 @@ import { fileIo as fs } from '@kit.CoreFileKit';
   ```
 
 使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径。表示沙箱路径的字符串称为path，获取方式及其接口用法请参考：[应用上下文Context-获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
-将指向资源的字符串称为URI。对于只支持path作为入参的接口可使用构造fileUri对象并获取其path属性的方式将URI转换为path，然后使用文件接口。URI定义解及其转换方式请参考:[文件URI](../../../application-dev/reference/apis-core-file-kit/js-apis-file-fileuri.md)。
+将指向资源的字符串称为URI。对于只支持path作为入参的接口可使用构造fileUri对象并获取其path属性的方式将URI转换为path，然后使用文件接口。URI定义解及其转换方式请参考：[文件URI](../../../application-dev/reference/apis-core-file-kit/js-apis-file-fileuri.md)。
 
 ## fs.stat
 
@@ -6108,7 +6108,7 @@ seek(offset: number, whence?: WhenceType): number
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
   | offset | number | 是    | 相对偏移位置，单位为字节。 |
-  | whence | [WhenceType](#whencetype11) | 否    | 偏移指针相对位置类型，默认值：SEEK_SET，文件起始位置处。 |
+  | whence | [WhenceType](#whencetype11) | 否    | 偏移指针相对位置类型。默认值：SEEK_SET，文件起始位置处。 |
 
 **返回值：**
 
@@ -6158,8 +6158,8 @@ close(): void
 
 | 名称     | 类型   | 只读   | 可写   | 说明                                       |
 | ------ | ------ | ---- | ---- | ---------------------------------------- |
-| bytesWritten    | number | 是    | 否    | 可写流已经写入的字节数 |
-| path    | string | 是    | 否    | 当前可写流对应的文件路径 |
+| bytesWritten    | number | 是    | 否    | 可写流已经写入的字节数。 |
+| path    | string | 是    | 否    | 当前可写流对应的文件路径。 |
 
 ### Seek
 
@@ -6174,7 +6174,7 @@ seek(offset: number, whence?: WhenceType): number;
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
   | offset | number | 是    | 相对偏移位置，单位为字节。 |
-  | whence | [WhenceType](#whencetype11) | 否    | 偏移指针相对位置类型，默认值：SEEK_SET，文件起始位置处。 |
+  | whence | [WhenceType](#whencetype11) | 否    | 偏移指针相对位置类型。默认值：SEEK_SET，文件起始位置处。 |
 
 **返回值：**
 
