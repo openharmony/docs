@@ -7676,9 +7676,9 @@ EventResult的构造函数。
 
 ### setGestureEventResult<sup>12+</sup>
 
-设置手势事件消费结果。
-
 setGestureEventResult(result: boolean): void
+
+设置手势事件消费结果。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7694,9 +7694,9 @@ setGestureEventResult(result: boolean): void
 
 ### setGestureEventResult<sup>14+</sup>
 
-设置手势事件消费结果。
-
 setGestureEventResult(result: boolean, stopPropagation?: boolean): void
+
+设置手势事件消费结果。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7705,7 +7705,7 @@ setGestureEventResult(result: boolean, stopPropagation?: boolean): void
 | 参数名          | 类型 | 必填  | 说明             |
 | --------------- | -------- | ----  |------- |
 | result          | boolean  | 是    | 是否消费该手势事件。默认值为true。 |
-| stopPropagation<sup>14+</sup>| boolean  | 否   | 是否阻止冒泡，在result为true时生效。默认值为true。 |
+| stopPropagation | boolean  | 否   | 是否阻止冒泡，在result为true时生效。默认值为true。 |
 
 **示例：**
 
