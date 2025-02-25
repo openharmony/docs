@@ -58,3 +58,21 @@ it is prohibited for non-input applications.
 **处理步骤**
 
 请使用输入法应用调用该接口。
+
+## 26500001 无效的windowId
+
+**错误信息**
+
+windowId is invalid.
+
+**错误描述**
+
+无效的窗口id。
+
+**可能原因**
+
+传入非当前应用的窗口id。
+
+**处理步骤**
+
+请检查并传入当前应用的窗口id，窗口id可通过win.getWindowProperties().id获取。

@@ -73,7 +73,7 @@ setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -643,7 +643,7 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
   });
 });
 ```
-## CustomCursor<sup>14+</sup>
+## CustomCursor<sup>15+</sup>
 
 自定义光标资源。
 
@@ -654,7 +654,7 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
 | focusX  | number | 否   | 是   | 自定义光标焦点的水平坐标。该坐标受自定义光标大小的限制。最小值为0，最大值为资源图的宽度最大值，该参数缺省时默认为0。 |
 | focusY  | number | 否   | 是   | 自定义光标焦点的垂直坐标。该坐标受自定义光标大小的限制。最小值为0，最大值为资源图的高度最大值，该参数缺省时默认为0。 |
 
-## CursorConfig<sup>14+</sup>
+## CursorConfig<sup>15+</sup>
 
 自定义光标配置。
 
@@ -664,7 +664,7 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
 | -------- | ------- | -------- | -------- | ------- |
 | followSystem  | boolean  | 否   | 否   | 是否根据系统设置调整光标大小。false表示使用自定义光标样式大小，true表示根据系统设置调整光标大小，可调整范围为：[光标资源图大小，256×256]。 |
 
-## pointer.setCustomCursor<sup>14+</sup>
+## pointer.setCustomCursor<sup>15+</sup>
 
 setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): Promise&lt;void&gt;
 
@@ -678,8 +678,8 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 | 参数名    | 类型    | 必填    | 说明    |
 | -------- | -------- | -------- | -------- |
 | windowId  | number  | 是    | 窗口id。                          |
-| cursor  | [CustomCursor](js-apis-pointer.md#customcursor14) | 是    | 自定义光标资源。 |
-| config  | [CursorConfig](js-apis-pointer.md#cursorconfig14) | 是    | 自定义光标配置，用于配置是否根据系统设置调整光标大小。如果CursorConfig中followSystem设置为true，则光标大小的可调整范围为：[光标资源图大小，256×256]。 |
+| cursor  | [CustomCursor](js-apis-pointer.md#customcursor15) | 是    | 自定义光标资源。 |
+| config  | [CursorConfig](js-apis-pointer.md#cursorconfig15) | 是    | 自定义光标配置，用于配置是否根据系统设置调整光标大小。如果CursorConfig中followSystem设置为true，则光标大小的可调整范围为：[光标资源图大小，256×256]。 |
 
 **返回值**：
 
@@ -689,11 +689,12 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[输入设备错误码](./errorcode-inputdevice.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 401  | 401 - Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
+| 26500001 | Invalid windowID. |
 
 **示例**：
 
@@ -744,7 +745,6 @@ setCustomCursorSync(windowId: number, pixelMap: image.PixelMap, focusX?: number,
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 26500001 | Invalid windowID. |
 
 **示例**：
 
