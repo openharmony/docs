@@ -68,15 +68,15 @@ DRM会话管理（MediaKeySession）支持媒体密钥管理及媒体解密等�
 
    ```ts
    let initData = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
-   // 根据DRM解决方案要求设置可选数据的值
+   // 根据DRM解决方案要求设置可选数据的值。
    let optionalData:drm.OptionsData[] = [{
      name: "...",
      value: "..."
    }];
-   // 以下示例完成在线媒体密钥请求和响应设置
+   // 以下示例完成在线媒体密钥请求和响应设置。
    mediaKeySession.generateMediaKeyRequest("video/avc", initData, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData).then(async (licenseRequest) => {
       console.info("generateMediaKeyRequest success", licenseRequest.mediaKeyRequestType, licenseRequest.data, licenseRequest.defaultURL);
-      // 将媒体密钥请求返回的licenseRequest.data通过网络请求发送给DRM服务获取媒体密钥请求响应，设置媒体密钥请求响应
+      // 将媒体密钥请求返回的licenseRequest.data通过网络请求发送给DRM服务获取媒体密钥请求响应，设置媒体密钥请求响应。
       let licenseResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
       mediaKeySession.processMediaKeyResponse(licenseResponse).then((mediaKeyId: Uint8Array) => {
         console.info("processMediaKeyResponse success");
@@ -86,11 +86,11 @@ DRM会话管理（MediaKeySession）支持媒体密钥管理及媒体解密等�
    }).catch((err:BusinessError) =>{
      console.info("generateMediaKeyRequest err end", err.code);
    });
-   // 以下示例完成离线媒体密钥请求和响应设置
+   // 以下示例完成离线媒体密钥请求和响应设置。
    let offlineMediaKeyId = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
    mediaKeySession.generateMediaKeyRequest("video/avc", initData, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData).then((licenseRequest: drm.MediaKeyRequest) => {
       console.info("generateMediaKeyRequest success", licenseRequest.mediaKeyRequestType, licenseRequest.data, licenseRequest.defaultURL);
-      // 将媒体密钥请求返回的licenseRequest.data通过网络请求发送给DRM服务获取媒体密钥请求响应，设置媒体密钥请求响应
+      // 将媒体密钥请求返回的licenseRequest.data通过网络请求发送给DRM服务获取媒体密钥请求响应，设置媒体密钥请求响应。
       let licenseResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
       mediaKeySession.processMediaKeyResponse(licenseResponse).then((mediaKeyId: Uint8Array) => {
 	offlineMediaKeyId = mediaKeyId;
@@ -120,7 +120,7 @@ DRM会话管理（MediaKeySession）支持媒体密钥管理及媒体解密等�
    ```ts
    mediaKeySession.generateOfflineReleaseRequest(offlineMediaKeyId).then((OfflineReleaseRequest: Uint8Array) => {
      console.info("generateOfflineReleaseRequest success", OfflineReleaseRequest);
-     // 将媒体密钥释放请求返回的OfflineReleaseRequest通过网络请求发送给DRM服务获取媒体密钥释放请求响应，设置媒体密钥释放请求响应
+     // 将媒体密钥释放请求返回的OfflineReleaseRequest通过网络请求发送给DRM服务获取媒体密钥释放请求响应，设置媒体密钥释放请求响应。
      let OfflineReleaseResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
      mediaKeySession.processOfflineReleaseResponse(offlineMediaKeyId, OfflineReleaseResponse).then(() => {
        console.info("processOfflineReleaseResponse success");
@@ -135,7 +135,7 @@ DRM会话管理（MediaKeySession）支持媒体密钥管理及媒体解密等�
 7. （可选）恢复离线媒体密钥。
 
    ```ts
-   // 恢复指定媒体密钥信息到当前会话
+   // 恢复指定媒体密钥信息到当前会话。
    mediaKeySession.restoreOfflineMediaKeys(offlineMediaKeyId).then(() => {
      console.log("restoreOfflineMediaKeys success.");
    }).catch((err: BusinessError) => {
