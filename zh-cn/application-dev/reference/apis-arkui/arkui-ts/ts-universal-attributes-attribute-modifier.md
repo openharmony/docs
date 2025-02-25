@@ -337,12 +337,14 @@ struct Index {
 | bindContextMenu          | 不支持   | Method not implemented.   | 不支持入参为CustomBuilder。               |
 | bindPopup                | 不支持   | Method not implemented.   | 不支持入参为CustomBuilder。               |
 | bindSheet                | 不支持   | Method not implemented.   | 不支持入参为CustomBuilder。               |
+| chainWeight              | 不支持   | is not callable           | -                                         |
 | compositingFilter        | 不支持   | is not callable           | -                                         |
 | drawModifier             | 不支持   | is not callable           | 不支持modifier相关的属性。                |
 | foregroundFilter         | 不支持   | is not callable           | -                                         |
 | freeze                   | 不支持   | is not callable           | -                                         |
 | gesture                  | 不支持   | Method not implemented.   | 不支持gesture相关的属性。                 |
 | gestureModifier          | 不支持   | is not callable           | 不支持modifier相关的属性。                |
+| onAccessibilityHover     | 不支持   | is not callable           | -                                         |
 | onChildTouchTest         | 不支持   | is not callable           | -                                         |
 | onDragStart              | 不支持   | Method not implemented.   | 不支持返回值为CustomBuilder。             |
 | onPreDrag                | 不支持   | Method not implemented.   | -                                         |
