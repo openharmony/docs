@@ -299,7 +299,7 @@ import { KeyCode } from '@kit.InputKit';
 | KEYCODE_WAKEUP                   |  2802 | 唤醒键。                         |
 | KEYCODE_SENDFILE                 |  2803 | 发送文件按键。                      |
 | KEYCODE_DELETEFILE               |  2804 | 删除文件按键。                      |
-| KEYCODE_XFER                     |  2805 | 文件传输(XFER)按键。              |
+| KEYCODE_XFER                     |  2805 | 文件传输（XFER）按键。              |
 | KEYCODE_PROG2                    |  2807 | 程序键2。                        |
 | KEYCODE_MSDOS                    |  2808 | MS-DOS键（微软磁盘操作系统）。           |
 | KEYCODE_SCREENLOCK               |  2809 | 屏幕锁定键。                       |
