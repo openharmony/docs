@@ -12,7 +12,7 @@
     <!--Del-->
     - [申请使用受控权限](declare-permissions-in-acl.md)
     <!--DelEnd-->
-  - 应用权限列表
+  - 应用权限列表<!--app-permissions-->
     - [对所有应用开放](permissions-for-all.md)
     <!--Del-->
     - [仅对系统应用开放](permissions-for-system-apps.md)
