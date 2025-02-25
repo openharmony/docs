@@ -42,7 +42,7 @@ edm enable-admin [-h] [-n bundleName] [-a abilityName]
 ```bash
 # 激活一个所在应用包名为com.example.mdmsample，类名为EnterpriseAdminAbility的EnterpriseAdminExtensionAbility。
 edm enable-admin -n com.example.mdmsample -a com.example.mdmsample.EnterpriseAdminAbility
-// 执行结果
+# 执行结果
 enable-admin success.
 ```
 
@@ -66,13 +66,13 @@ edm disable-admin [-h] [-n bundleName]
   ```bash
 # 解除激活所在应用包名为com.example.mdmsample的EnterpriseAdminExtensionAbility。
 edm disable-admin -n com.example.mdmsample
-// 执行结果
+# 执行结果
 disable-admin success.
   ```
 
 ## edm工具错误信息
 
-### error: command requires option.
+### error: command requires option
 
 **错误描述**
 
@@ -88,7 +88,7 @@ disable-admin success.
 
 2、如果当前使用的命令是disable-admin，请补充-n \<bundle-name\>参数。
 
-### error: -n, --bundle-name option requires an argument.
+### error: -n, --bundle-name option requires an argument
 
 **错误描述**
 
@@ -102,7 +102,7 @@ disable-admin success.
 
 检查-n后的参数，请补充bundleName。
 
-### error: -a, --ability-name option requires an argument.
+### error: -a, --ability-name option requires an argument
 
 **错误描述**
 
@@ -116,7 +116,7 @@ disable-admin success.
 
 检查-a后的参数，请补充abilityName。
 
-### error: unknown option.
+### error: unknown option
 
 **错误描述**
 
@@ -130,7 +130,7 @@ disable-admin success.
 
 请确认参数是否在参数列表中。
 
-### error: -n \<bundle-name\> is expected.
+### error: -n \<bundle-name\> is expected
 
 **错误描述**
 
@@ -144,7 +144,7 @@ disable-admin success.
 
 请补充-n \<bundle-name\>。
 
-### error: -a \<ability-name\> is expected.
+### error: -a \<ability-name\> is expected
 
 **错误描述**
 
@@ -158,7 +158,7 @@ disable-admin success.
 
 请补充-a \<ability-name\>。
 
-### error: the administrator ability component is invalid.
+### error: the administrator ability component is invalid
 
 **错误描述**
 
@@ -176,7 +176,7 @@ disable-admin success.
 
 查询应用的bundleName和enterpriseAdmin类型的ExtensionAbility的abilityName，并将其传入到参数中。
 
-### error: failed to enable the administrator application of the device.
+### error: failed to enable the administrator application of the device
 
 **错误描述**
 
@@ -196,7 +196,7 @@ disable-admin success.
 
 2、请使用未被管控的设备进行调试。
 
-### error: failed to disable the administrator application of the device.
+### error: failed to disable the administrator application of the device
 
 **错误描述**
 
