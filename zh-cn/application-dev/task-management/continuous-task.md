@@ -165,7 +165,9 @@
           // 使用者自定义的一个私有值
           requestCode: 0,
           // 点击通知后，动作执行属性
-          actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+          actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG],
+          // 长时任务子类型。当主类型（backgroundMode）包含bluetoothInteraction时生效
+          extraInfo: { [backgroundTaskManager.BackgroundModeType.SUB_MODE] : backgroundTaskManager.BackgroundSubMode.CAR_KEY }
         };
 
         try {
@@ -173,6 +175,7 @@
           wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
             try {
               let list: Array<string> = ["audioRecording"];
+              // let list: Array<string> = ["bluetoothInteraction"]; 长时任务主类型包含bluetoothInteraction，CAR_KEY子类型合法
               backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
                 console.info("Operation startBackgroundRunning succeeded");
                 // 此处执行具体的长时任务逻辑，如录音，录制等。
