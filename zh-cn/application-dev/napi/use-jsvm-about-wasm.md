@@ -20,6 +20,13 @@ JSVM-API WebAssembly 接口提供了 WebAssembly 字节码编译、WebAssembly �
 | OH_JSVM_CreateWasmCache     | 将 wasm module 中的机器码序列化为 wasm cache，如果 wasm module 不包含机器码，则会序列化失败。                    |
 | OH_JSVM_ReleaseCache        | 释放由 JSVM 接口生成的 cache。传入的 cacheType 和 cacheData 必须匹配，否则会产生未定义行为。                      |
 
+## code cache 校验规格说明
+| 规格        | 规格说明                                         |
+| ---------- | ------------------------------------------------ |
+| 完整性校验  | 由用户保证                                        |
+| 兼容性校验  | 校验生成 cache 的 JSVM 版本与编译选项是否与当前一致 |
+| 一致性校验  | 由用户保证                                        |
+
 ## 使用示例
 
 JSVM-API 接口开发流程参考 [使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应 C++ 相关代码进行展示。
