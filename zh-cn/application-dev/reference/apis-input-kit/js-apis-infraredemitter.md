@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.infraredEmitter (红外管理)(系统接口)
+# @ohos.multimodalInput.infraredEmitter (红外管理)
 
 红外管理模块提供产生特定频率和大小的红外信号，以及查询设备支持的频率范围等功能。
 
@@ -6,7 +6,6 @@
 >
 > - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> - 本模块接口均为系统接口。
 
 ## 导入模块
 
@@ -14,7 +13,7 @@
 import { infraredEmitter } from '@kit.InputKit';
 ```
 
-## infraredEmitter.transmitInfrared 
+## infraredEmitter.transmitInfrared<sup>15+</sup>
 
 transmitInfrared(infraredFrequency: number, pattern: Array&lt;number&gt;): void
 
@@ -29,7 +28,7 @@ transmitInfrared(infraredFrequency: number, pattern: Array&lt;number&gt;): void
 | 参数名       | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | infraredFrequency | number             | 是    | 红外频率，单位Hz。 |
-| pattern | Array&lt;number&gt; | 是    | 红外电平信号，单位是us，数组个数必须是偶数，比如[100,200,300,400]，表示100us为高电平信号、200us为低电平信号、300us为高电平信号、400us为低电平信号，数组个数取值[0,500)。 |
+| pattern | Array&lt;number&gt; | 是    | 红外电平信号，单位是us，电平信号的数量取值范围[0,1024]，电平信号数量需为偶数。<br/>比如[100,200,300,400]该电平信号数组，其中100us为高电平信号、200us为低电平信号、300us为高电平信号、400us为低电平信号。 |
 
 **错误码：**
 
@@ -38,7 +37,6 @@ transmitInfrared(infraredFrequency: number, pattern: Array&lt;number&gt;): void
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
@@ -51,7 +49,7 @@ try {
 }
 ```
 
-## infraredEmitter.getInfraredFrequencies
+## infraredEmitter.getInfraredFrequencies<sup>15+</sup>
 
 getInfraredFrequencies(): Array&lt;InfraredFrequency&gt;
 
@@ -65,7 +63,7 @@ getInfraredFrequencies(): Array&lt;InfraredFrequency&gt;
 
 | 参数                  | 说明                  |
 | ------------------- | ------------------- |
-| Array&lt;[InfraredFrequency](#infraredfrequency)&gt; | 频率范围，包含多组最大和最小频率。 |
+| Array&lt;[InfraredFrequency](#infraredfrequency<sup>15+</sup>)&gt; | 频率范围，包含多组最大和最小频率。 |
 
 **错误码：**
 
@@ -74,7 +72,6 @@ getInfraredFrequencies(): Array&lt;InfraredFrequency&gt;
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
 
 **示例**：
 
@@ -87,7 +84,7 @@ try {
 }
 ```
 
-##  InfraredFrequency
+##  InfraredFrequency<sup>15+</sup>
 
 红外信号的频率范围。
 
