@@ -817,7 +817,7 @@ export default class EntryAbility extends UIAbility {
 
 ## BackgroundMode
 
-长时任务模式。
+长时任务类型。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -878,20 +878,20 @@ export default class EntryAbility extends UIAbility {
 
 ## BackgroundSubMode<sup>16+</sup>
 
-长时任务子模式。
+长时任务子类型。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 | 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
-| CAR_KEY           | 1    | 车钥匙。当[BackgroundMode](#backgroundmode)包含BLUETOOTH_INTERACTION时生效。                  |
+| CAR_KEY           | 1    | 车钥匙。<br/>**说明：**  只有申请BLUETOOTH_INTERACTION类型的长时任务，车钥匙子类型才能生效。                  |
 
 ## BackgroundModeType<sup>16+</sup>
 
-长时任务模式类别。
+长时任务类型类别。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 | 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
-| SUB_MODE           | subMode    | 子模式。                  |
+| SUB_MODE           | 'subMode'    | 子类型。                  |
