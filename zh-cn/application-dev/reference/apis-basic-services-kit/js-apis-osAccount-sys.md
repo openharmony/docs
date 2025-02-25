@@ -1241,7 +1241,7 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
 | 参数名  | 类型   | 必填 | 说明                 |
 | ------- | ------ | ---- | -------------------- |
-| localId | number | 是   | 要查询的系统账号的ID |
+| localId | number | 是   | 要查询的系统账号的ID。 |
 
 **返回值：**
 
@@ -5584,7 +5584,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | localId      | number | 是   | 系统账号ID     |
-| type | [ConstraintSourceType](#constraintsourcetype9) | 是   | 约束来源类型 |
+| type | [ConstraintSourceType](#constraintsourcetype9) | 是   | 约束来源类型。 |
 
 ## ConstraintSourceType<sup>9+</sup>
 
@@ -5596,10 +5596,10 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称   | 值 | 说明         |
 | ------ | ------ | ------------ |
-| CONSTRAINT_NOT_EXIST  | 0      | 约束不存在 |
-| CONSTRAINT_TYPE_BASE | 1      | 约束源自系统设置   |
-| CONSTRAINT_TYPE_DEVICE_OWNER  | 2   | 约束源自设备所有者设置   |
-| CONSTRAINT_TYPE_PROFILE_OWNER  | 3  | 约束源自资料所有者设置   |
+| CONSTRAINT_NOT_EXIST  | 0      | 约束不存在。 |
+| CONSTRAINT_TYPE_BASE | 1      | 约束源自系统设置。   |
+| CONSTRAINT_TYPE_DEVICE_OWNER  | 2   | 约束源自设备所有者设置。   |
+| CONSTRAINT_TYPE_PROFILE_OWNER  | 3  | 约束源自资料所有者设置。   |
 
 ## AuthStatusInfo<sup>10+</sup>
 
@@ -5611,8 +5611,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| remainTimes  | number | 是   | 剩余次数   |
-| freezingTime | number | 是   | 冻结时间 |
+| remainTimes  | number | 是   | 剩余次数。   |
+| freezingTime | number | 是   | 冻结时间。 |
 
 ## GetDomainAccessTokenOptions<sup>10+</sup>
 
@@ -5624,10 +5624,10 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| domainAccountInfo  | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域账号的信息   |
-| domainAccountToken | Uint8Array | 是   | 域账号的令牌 |
-| businessParams | Record<string, Object> | 是   | 业务参数，由业务方根据请求协议自定义 |
-| callerUid | number | 是   | 调用方唯一标识符 |
+| domainAccountInfo  | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域账号的信息。   |
+| domainAccountToken | Uint8Array | 是   | 域账号的令牌。 |
+| businessParams | Record<string, Object> | 是   | 业务参数，由业务方根据请求协议自定义。 |
+| callerUid | number | 是   | 调用方唯一标识符。 |
 
 ## GetDomainAccountInfoOptions<sup>10+</sup>
 
@@ -5653,7 +5653,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| callerUid | number | 是   | 调用方唯一标识符 |
+| callerUid | number | 是   | 调用方唯一标识符。 |
 
 ## OsAccountSwitchEventData<sup>12+</sup>
 
@@ -5665,8 +5665,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| fromAccountId | number | 是   | 切换前系统账号ID |
-| toAccountId | number | 是   | 切换后系统账号ID |
+| fromAccountId | number | 是   | 切换前系统账号ID。 |
+| toAccountId | number | 是   | 切换后系统账号ID。 |
 
 ## CreateOsAccountOptions<sup>12+</sup>
 
@@ -5678,7 +5678,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| shortName | string | 是   | 表示账号短名称（用作个人文件夹目录） <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符|
+| shortName | string | 是   | 表示账号短名称（用作个人文件夹目录）。 <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符。|
 | disallowedPreinstalledBundles<sup>16+</sup> | Array&lt;string&gt; | 否   | 表示预置应用禁止名单，名单中的应用不可被安装在设备上。|
 | allowedPreinstalledBundles<sup>16+</sup> | Array&lt;string&gt; | 否   | 表示预置应用允许名单，仅名单中的应用可以被安装在设备上。|
 
@@ -5692,7 +5692,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| shortName | string | 是   | 表示账号短名称（用作个人文件夹目录） <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符|
+| shortName | string | 是   | 表示账号短名称（用作个人文件夹目录）。 <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符。|
 
 ## GetAuthInfoOptions<sup>12+</sup>
 
