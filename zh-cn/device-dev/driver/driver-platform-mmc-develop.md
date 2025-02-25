@@ -14,7 +14,7 @@ MMC、SD、SDIO总线，其总线规范类似，都是从MMC总线规范演化�
 
 - SD卡（Secure Digital Memory Card）
 
-    SD卡即安全数码卡。它是在MMC的基础上发展而来，SD卡强调数据的安全安全，可以设定存储内容的使用权限，防止数据被他人复制。在数据传输和物理规范上，SD卡（24mm\*32mm\*2.1mm，比MMC卡更厚一点），向前兼容了MMC卡。所有支持SD卡的设备也支持MMC卡。
+    SD卡即安全数码卡。它是在MMC的基础上发展而来，SD卡强调数据的安全，可以设定存储内容的使用权限，防止数据被他人复制。在数据传输和物理规范上，SD卡（24mm\*32mm\*2.1mm，比MMC卡更厚一点），向前兼容了MMC卡。所有支持SD卡的设备也支持MMC卡。
 
 - SDIO（Secure Digital Input and Output）
 
