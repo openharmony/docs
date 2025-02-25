@@ -480,52 +480,52 @@ onScrollIndex(event: (first: number, last: number) => void)
 
 // 实现IDataSource接口的对象，用于瀑布流组件加载数据
 export class WaterFlowDataSource implements IDataSource {
-  private dataArray: number[] = []
-  private listeners: DataChangeListener[] = []
+  private dataArray: number[] = [];
+  private listeners: DataChangeListener[] = [];
 
   constructor() {
     for (let i = 0; i < 100; i++) {
-      this.dataArray.push(i)
+      this.dataArray.push(i);
     }
   }
 
   // 获取索引对应的数据
   public getData(index: number): number {
-    return this.dataArray[index]
+    return this.dataArray[index];
   }
 
   // 通知控制器数据重新加载
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
-      listener.onDataReloaded()
+      listener.onDataReloaded();
     })
   }
 
   // 通知控制器数据增加
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataAdd(index)
+      listener.onDataAdd(index);
     })
   }
 
   // 通知控制器数据变化
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataChange(index)
+      listener.onDataChange(index);
     })
   }
 
   // 通知控制器数据删除
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataDelete(index)
+      listener.onDataDelete(index);
     })
   }
 
   // 通知控制器数据位置变化
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataMove(from, to)
+      listener.onDataMove(from, to);
     })
   }
 
@@ -538,107 +538,107 @@ export class WaterFlowDataSource implements IDataSource {
 
   // 获取数据总数
   public totalCount(): number {
-    return this.dataArray.length
+    return this.dataArray.length;
   }
 
   // 注册改变数据的控制器
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener)
+      this.listeners.push(listener);
     }
   }
 
   // 注销改变数据的控制器
   unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener)
+    const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      this.listeners.splice(pos, 1)
+      this.listeners.splice(pos, 1);
     }
   }
 
   // 增加数据
   public add1stItem(): void {
-    this.dataArray.splice(0, 0, this.dataArray.length)
-    this.notifyDataAdd(0)
+    this.dataArray.splice(0, 0, this.dataArray.length);
+    this.notifyDataAdd(0);
   }
 
   // 在数据尾部增加一个元素
   public addLastItem(): void {
-    this.dataArray.splice(this.dataArray.length, 0, this.dataArray.length)
-    this.notifyDataAdd(this.dataArray.length - 1)
+    this.dataArray.splice(this.dataArray.length, 0, this.dataArray.length);
+    this.notifyDataAdd(this.dataArray.length - 1);
   }
 
   // 在指定索引位置增加一个元素
   public addItem(index: number): void {
-    this.dataArray.splice(index, 0, this.dataArray.length)
-    this.notifyDataAdd(index)
+    this.dataArray.splice(index, 0, this.dataArray.length);
+    this.notifyDataAdd(index);
   }
 
   // 删除第一个元素
   public delete1stItem(): void {
-    this.dataArray.splice(0, 1)
-    this.notifyDataDelete(0)
+    this.dataArray.splice(0, 1);
+    this.notifyDataDelete(0);
   }
 
   // 删除第二个元素
   public delete2ndItem(): void {
-    this.dataArray.splice(1, 1)
-    this.notifyDataDelete(1)
+    this.dataArray.splice(1, 1);
+    this.notifyDataDelete(1);
   }
 
   // 删除最后一个元素
   public deleteLastItem(): void {
-    this.dataArray.splice(-1, 1)
-    this.notifyDataDelete(this.dataArray.length)
+    this.dataArray.splice(-1, 1);
+    this.notifyDataDelete(this.dataArray.length);
   }
 
   // 在指定索引位置删除一个元素
   public deleteItem(index: number): void {
-    this.dataArray.splice(index, 1)
-    this.notifyDataDelete(index)
+    this.dataArray.splice(index, 1);
+    this.notifyDataDelete(index);
   }
 
   // 重新加载数据
   public reload(): void {
-    this.dataArray.splice(1, 1)
-    this.dataArray.splice(3, 2)
-    this.notifyDataReload()
+    this.dataArray.splice(1, 1);
+    this.dataArray.splice(3, 2);
+    this.notifyDataReload();
   }
 }
 ```
 
 ```ts
 // Index.ets
-import { WaterFlowDataSource } from './WaterFlowDataSource'
+import { WaterFlowDataSource } from './WaterFlowDataSource';
 
 @Entry
 @Component
 struct WaterFlowDemo {
-  @State minSize: number = 80
-  @State maxSize: number = 180
-  @State fontSize: number = 24
-  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
-  scroller: Scroller = new Scroller()
-  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
-  private itemWidthArray: number[] = []
-  private itemHeightArray: number[] = []
+  @State minSize: number = 80;
+  @State maxSize: number = 180;
+  @State fontSize: number = 24;
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
+  scroller: Scroller = new Scroller();
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource();
+  private itemWidthArray: number[] = [];
+  private itemHeightArray: number[] = [];
 
   // 计算FlowItem宽/高
   getSize() {
-    let ret = Math.floor(Math.random() * this.maxSize)
-    return (ret > this.minSize ? ret : this.minSize)
+    let ret = Math.floor(Math.random() * this.maxSize);
+    return (ret > this.minSize ? ret : this.minSize);
   }
 
   // 设置FlowItem的宽/高数组
   setItemSizeArray() {
     for (let i = 0; i < 100; i++) {
-      this.itemWidthArray.push(this.getSize())
-      this.itemHeightArray.push(this.getSize())
+      this.itemWidthArray.push(this.getSize());
+      this.itemHeightArray.push(this.getSize());
     }
   }
 
   aboutToAppear() {
-    this.setItemSizeArray()
+    this.setItemSizeArray();
   }
 
   @Builder
@@ -672,7 +672,7 @@ struct WaterFlowDemo {
             // 即将触底时提前增加数据
             if (item + 20 == this.dataSource.totalCount()) {
               for (let i = 0; i < 100; i++) {
-                this.dataSource.addLastItem()
+                this.dataSource.addLastItem();
               }
             }
           })
@@ -688,17 +688,17 @@ struct WaterFlowDemo {
       .width('100%')
       .height('100%')
       .onReachStart(() => {
-        console.info('waterFlow reach start')
+        console.info('waterFlow reach start');
       })
       .onScrollStart(() => {
-        console.info('waterFlow scroll start')
+        console.info('waterFlow scroll start');
       })
       .onScrollStop(() => {
-        console.info('waterFlow scroll stop')
+        console.info('waterFlow scroll stop');
       })
       .onScrollFrameBegin((offset: number, state: ScrollState) => {
-        console.info('waterFlow scrollFrameBegin offset: ' + offset + ' state: ' + state.toString())
-        return { offsetRemain: offset }
+        console.info('waterFlow scrollFrameBegin offset: ' + offset + ' state: ' + state.toString());
+        return { offsetRemain: offset };
       })
     }
   }
@@ -711,34 +711,34 @@ struct WaterFlowDemo {
 该示例通过auto-fill实现了自动计算列数的效果。
 ```ts
 // Index.ets
-import { WaterFlowDataSource } from './WaterFlowDataSource'
+import { WaterFlowDataSource } from './WaterFlowDataSource';
 
 @Entry
 @Component
 struct WaterFlowDemo {
-  @State minSize: number = 80
-  @State maxSize: number = 180
-  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
-  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
-  private itemWidthArray: number[] = []
-  private itemHeightArray: number[] = []
+  @State minSize: number = 80;
+  @State maxSize: number = 180;
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource();
+  private itemWidthArray: number[] = [];
+  private itemHeightArray: number[] = [];
 
   // 计算FlowItem宽/高
   getSize() {
-    let ret = Math.floor(Math.random() * this.maxSize)
-    return (ret > this.minSize ? ret : this.minSize)
+    let ret = Math.floor(Math.random() * this.maxSize);
+    return (ret > this.minSize ? ret : this.minSize);
   }
 
   // 设置FlowItem宽/高数组
   setItemSizeArray() {
     for (let i = 0; i < 100; i++) {
-      this.itemWidthArray.push(this.getSize())
-      this.itemHeightArray.push(this.getSize())
+      this.itemWidthArray.push(this.getSize());
+      this.itemHeightArray.push(this.getSize());
     }
   }
 
   aboutToAppear() {
-    this.setItemSizeArray()
+    this.setItemSizeArray();
   }
 
   build() {
@@ -775,21 +775,21 @@ struct WaterFlowDemo {
 该示例展示了分组的初始化以及splice、push、update、values、length等接口的不同效果。如果配合状态管理V2使用，详情见：[WaterFlow与makeObserved](../../../quick-start/arkts-v1-v2-migration.md#waterflow)。
 ```ts
 // Index.ets
-import { WaterFlowDataSource } from './WaterFlowDataSource'
+import { WaterFlowDataSource } from './WaterFlowDataSource';
 
 @Reusable
 @Component
 struct ReusableFlowItem {
-  @State item: number = 0
+  @State item: number = 0;
 
   // 从复用缓存中加入到组件树之前调用，可在此处更新组件的状态变量以展示正确的内容
   aboutToReuse(params: Record<string, number>) {
     this.item = params.item;
-    console.info('Reuse item:' + this.item)
+    console.info('Reuse item:' + this.item);
   }
 
   aboutToAppear() {
-    console.info('new item:' + this.item)
+    console.info('new item:' + this.item);
   }
 
   build() {
@@ -804,16 +804,16 @@ struct ReusableFlowItem {
 @Entry
 @Component
 struct WaterFlowDemo {
-  minSize: number = 80
-  maxSize: number = 180
-  fontSize: number = 24
-  colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
-  scroller: Scroller = new Scroller()
-  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
-  dataCount: number = this.dataSource.totalCount()
-  private itemHeightArray: number[] = []
-  @State sections: WaterFlowSections = new WaterFlowSections()
-  sectionMargin: Margin = { top: 10, left: 5, bottom: 10, right: 5 }
+  minSize: number = 80;
+  maxSize: number = 180;
+  fontSize: number = 24;
+  colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
+  scroller: Scroller = new Scroller();
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource();
+  dataCount: number = this.dataSource.totalCount();
+  private itemHeightArray: number[] = [];
+  @State sections: WaterFlowSections = new WaterFlowSections();
+  sectionMargin: Margin = { top: 10, left: 5, bottom: 10, right: 5 };
   oneColumnSection: SectionOptions = {
     itemsCount: 4,
     crossCount: 1,
@@ -821,58 +821,58 @@ struct WaterFlowDemo {
     rowsGap: 10,
     margin: this.sectionMargin,
     onGetItemMainSizeByIndex: (index: number) => {
-      return this.itemHeightArray[index % 100]
+      return this.itemHeightArray[index % 100];
     }
   }
   twoColumnSection: SectionOptions = {
     itemsCount: 2,
     crossCount: 2,
     onGetItemMainSizeByIndex: (index: number) => {
-      return 100
+      return 100;
     }
   }
   lastSection: SectionOptions = {
     itemsCount: 20,
     crossCount: 2,
     onGetItemMainSizeByIndex: (index: number) => {
-      return this.itemHeightArray[index % 100]
+      return this.itemHeightArray[index % 100];
     }
   }
 
   // 计算FlowItem高度
   getSize() {
-    let ret = Math.floor(Math.random() * this.maxSize)
-    return (ret > this.minSize ? ret : this.minSize)
+    let ret = Math.floor(Math.random() * this.maxSize);
+    return (ret > this.minSize ? ret : this.minSize);
   }
 
   // 设置FlowItem的高度数组
   setItemSizeArray() {
     for (let i = 0; i < 100; i++) {
-      this.itemHeightArray.push(this.getSize())
+      this.itemHeightArray.push(this.getSize());
     }
   }
 
   aboutToAppear() {
-    this.setItemSizeArray()
+    this.setItemSizeArray();
     // 初始化瀑布流分组信息
-    let sectionOptions: SectionOptions[] = []
-    let count = 0
-    let oneOrTwo = 0
+    let sectionOptions: SectionOptions[] = [];
+    let count = 0;
+    let oneOrTwo = 0;
     while (count < this.dataCount) {
       if (this.dataCount - count < 20) {
-        this.lastSection.itemsCount = this.dataCount - count
-        sectionOptions.push(this.lastSection)
+        this.lastSection.itemsCount = this.dataCount - count;
+        sectionOptions.push(this.lastSection);
         break;
       }
       if (oneOrTwo++ % 2 == 0) {
-        sectionOptions.push(this.oneColumnSection)
-        count += this.oneColumnSection.itemsCount
+        sectionOptions.push(this.oneColumnSection);
+        count += this.oneColumnSection.itemsCount;
       } else {
-        sectionOptions.push(this.twoColumnSection)
-        count += this.twoColumnSection.itemsCount
+        sectionOptions.push(this.twoColumnSection);
+        count += this.twoColumnSection.itemsCount;
       }
     }
-    this.sections.splice(0, 0, sectionOptions)
+    this.sections.splice(0, 0, sectionOptions);
   }
 
   build() {
@@ -882,16 +882,16 @@ struct WaterFlowDemo {
           .height('5%')
           .onClick(() => {
             // 将所有分组替换成一个新分组，注意保证LazyForEach中数据数量和新分组itemsCount保持一致
-            let totalCount: number = this.dataSource.totalCount()
+            let totalCount: number = this.dataSource.totalCount();
             let newSection: SectionOptions = {
               itemsCount: totalCount,
               crossCount: 2,
               onGetItemMainSizeByIndex: (index: number) => {
-                return this.itemHeightArray[index % 100]
+                return this.itemHeightArray[index % 100];
               }
             }
-            let oldLength: number = this.sections.length()
-            this.sections.splice(0, oldLength, [newSection])
+            let oldLength: number = this.sections.length();
+            this.sections.splice(0, oldLength, [newSection]);
           })
           .margin({ top: 10, left: 20 })
         Button('update')
@@ -905,15 +905,15 @@ struct WaterFlowDemo {
               rowsGap: 10,
               margin: this.sectionMargin,
               onGetItemMainSizeByIndex: (index: number) => {
-                return this.itemHeightArray[index % 100]
+                return this.itemHeightArray[index % 100];
               }
             }
-            this.dataSource.addItem(this.oneColumnSection.itemsCount)
-            this.dataSource.addItem(this.oneColumnSection.itemsCount + 1)
-            this.dataSource.addItem(this.oneColumnSection.itemsCount + 2)
-            this.dataSource.addItem(this.oneColumnSection.itemsCount + 3)
-            const result: boolean = this.sections.update(1, newSection)
-            console.info('update:' + result)
+            this.dataSource.addItem(this.oneColumnSection.itemsCount);
+            this.dataSource.addItem(this.oneColumnSection.itemsCount + 1);
+            this.dataSource.addItem(this.oneColumnSection.itemsCount + 2);
+            this.dataSource.addItem(this.oneColumnSection.itemsCount + 3);
+            const result: boolean = this.sections.update(1, newSection);
+            console.info('update:' + result);
           })
           .margin({ top: 10, left: 20 })
         Button('delete')
@@ -927,14 +927,14 @@ struct WaterFlowDemo {
               rowsGap: 10,
               margin: this.sectionMargin,
               onGetItemMainSizeByIndex: (index: number) => {
-                return this.itemHeightArray[index % 100]
+                return this.itemHeightArray[index % 100];
               }
             }
-            this.dataSource.deleteItem(this.oneColumnSection.itemsCount)
-            this.dataSource.deleteItem(this.oneColumnSection.itemsCount)
-            this.dataSource.deleteItem(this.oneColumnSection.itemsCount)
-            this.dataSource.deleteItem(this.oneColumnSection.itemsCount)
-            this.sections.update(1, newSection)
+            this.dataSource.deleteItem(this.oneColumnSection.itemsCount);
+            this.dataSource.deleteItem(this.oneColumnSection.itemsCount);
+            this.dataSource.deleteItem(this.oneColumnSection.itemsCount);
+            this.dataSource.deleteItem(this.oneColumnSection.itemsCount);
+            this.sections.update(1, newSection);
           })
           .margin({ top: 10, left: 20 })
         Button('values')
@@ -944,7 +944,7 @@ struct WaterFlowDemo {
             for (const value of sections) {
               console.log(JSON.stringify(value));
             }
-            console.info('count:' + this.sections.length())
+            console.info('count:' + this.sections.length());
           })
           .margin({ top: 10, left: 20 })
       }.margin({ bottom: 20 })
@@ -971,7 +971,7 @@ struct WaterFlowDemo {
         // 即将触底时提前增加数据
         if (last + 20 >= this.dataSource.totalCount()) {
           for (let i = 0; i < 100; i++) {
-            this.dataSource.addLastItem()
+            this.dataSource.addLastItem();
           }
           // 更新数据源后同步更新sections，修改最后一个section的FlowItem数量
           const sections: Array<SectionOptions> = this.sections.values();
@@ -991,21 +991,21 @@ struct WaterFlowDemo {
 该示例通过[priorityGesture](ts-gesture-settings.md)和[PinchGesture](ts-basic-gestures-pinchgesture.md)实现了双指缩放改变列数效果。
 ```ts
 // Index.ets
-import { WaterFlowDataSource } from './WaterFlowDataSource'
+import { WaterFlowDataSource } from './WaterFlowDataSource';
 
 @Reusable
 @Component
 struct ReusableFlowItem {
-  @State item: number = 0
+  @State item: number = 0;
 
   // 从复用缓存中加入到组件树之前调用，可在此处更新组件的状态变量以展示正确的内容
   aboutToReuse(params: Record<string, number>) {
     this.item = params.item;
-    console.info('Reuse item:' + this.item)
+    console.info('Reuse item:' + this.item);
   }
 
   aboutToAppear() {
-    console.info('item:' + this.item)
+    console.info('item:' + this.item);
   }
 
   build() {
@@ -1022,34 +1022,34 @@ struct ReusableFlowItem {
 @Entry
 @Component
 struct WaterFlowDemo {
-  minSize: number = 80
-  maxSize: number = 180
-  colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
-  @State columns: number = 2
-  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
-  private itemWidthArray: number[] = []
-  private itemHeightArray: number[] = []
+  minSize: number = 80;
+  maxSize: number = 180;
+  colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
+  @State columns: number = 2;
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource();
+  private itemWidthArray: number[] = [];
+  private itemHeightArray: number[] = [];
 
   // 计算FlowItem宽/高
   getSize() {
-    let ret = Math.floor(Math.random() * this.maxSize)
-    return (ret > this.minSize ? ret : this.minSize)
+    let ret = Math.floor(Math.random() * this.maxSize);
+    return (ret > this.minSize ? ret : this.minSize);
   }
 
   // 设置FlowItem的宽/高数组
   setItemSizeArray() {
     for (let i = 0; i < 100; i++) {
-      this.itemWidthArray.push(this.getSize())
-      this.itemHeightArray.push(this.getSize())
+      this.itemWidthArray.push(this.getSize());
+      this.itemHeightArray.push(this.getSize());
     }
   }
 
   aboutToAppear() {
-    let lastCount = AppStorage.get<number>('columnsCount')
+    let lastCount = AppStorage.get<number>('columnsCount');
     if (typeof lastCount != 'undefined') {
-      this.columns = lastCount
+      this.columns = lastCount;
     }
-    this.setItemSizeArray()
+    this.setItemSizeArray();
   }
 
   build() {
@@ -1085,16 +1085,16 @@ struct WaterFlowDemo {
       .priorityGesture(
         PinchGesture()
           .onActionEnd((event: GestureEvent) => {
-            console.info('end scale:' + event.scale)
+            console.info('end scale:' + event.scale);
             // 手指分开，减少列数以放大item，触发阈值可以自定义，示例为2
             if (event.scale > 2) {
-              this.columns--
+              this.columns--;
             } else if (event.scale < 0.6) {
-              this.columns++
+              this.columns++;
             }
             // 可以根据设备屏幕宽度设定最大和最小列数，此处以最小1列最大4列为例
             this.columns = Math.min(4, Math.max(1, this.columns));
-            AppStorage.setOrCreate<number>('columnsCount', this.columns)
+            AppStorage.setOrCreate<number>('columnsCount', this.columns);
           })
       )
     }
