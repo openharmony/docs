@@ -484,6 +484,8 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 
 定义文件拷贝冲突时的选项。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 | 名称      | 值   | 说明                                                         |
@@ -494,6 +496,8 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 ## ProgressIndicator<sup>15+</sup>
 
 定义进度条指示选项，可选择是否采用系统默认进度显示。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -547,33 +551,41 @@ cancel(): void
 **示例：**
 
 ```ts
-import { AbilityConstant, UIAbility, Want} from '@kit.AbilityKit'
 import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-    async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
-        let text = "test";
-        let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
-        let systemPasteboard = pasteboard.getSystemPasteboard();
-        await systemPasteboard.setData(pasteData);
-        let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-        let signal = new pasteboard.ProgressSignal;
-		let ProgressListener = (progress: pasteData.ProgressInfo) => {
-    		console.log('progressListener success, progress:' + progress.progress);
-            signal.cancel();
-		}
-		let params: pasteData.GetDataParams = {
-    		destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
-    		fileConflictOptions: pasteData.FileConflictOptions.OVERWRITE,
-    		progressIndicator: pasteData.ProgressIndicator.DEFAULT,
-    		progressListener: ProgressListener
-		}
-		systemPasteboard.getDataWithProgress(params).then((pasteData: pasteboard.PasteData) => {
-    		let text: string = pasteData.getPrimaryText();
-		}).catch((err: BusinessError) => {
-    		console.error('Failed to get PasteData. Cause: ' + err.message);
-		});   
+@Entry
+@Component
+struct PasteboardTest {
+ build() {
+   RelativeContainer() {
+     Column() {
+       Column() {
+         Button("Copy txt")
+           .onClick(async ()=>{
+              let text = "test";
+              let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
+              let systemPasteboard = pasteboard.getSystemPasteboard();
+        	  await systemPasteboard.setData(pasteData);
+              let signal = new pasteboard.ProgressSignal;
+              let ProgressListener = (progress: pasteboard.ProgressInfo) => {
+    		    console.log('progressListener success, progress:' + progress.progress);
+                signal.cancel();
+              }
+              let params: pasteboard.GetDataParams = {
+                destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
+                fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
+                progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
+                progressListener: ProgressListener
+              };
+              systemPasteboard.getDataWithProgress(params).then((pasteData: pasteboard.PasteData) => {
+                console.error('getDataWithProgress succ');
+              }).catch((err: BusinessError) => {
+                console.error('Failed to get PasteData. Cause: ' + err.message);
+              })   
+          })
+        }
+      }
     }
+  }
 }
 ```
 
@@ -2983,7 +2995,7 @@ getDataWithProgress(params: GetDataParams): Promise&lt;PasteData&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed. The application does not have the. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error.                                             |
 | 12900003 | Another copy or paste operation is in progress.              |
 | 12900007 | Copy file failed.                                            |
@@ -2994,31 +3006,39 @@ getDataWithProgress(params: GetDataParams): Promise&lt;PasteData&gt;
 **示例：**
 
 ```ts
-import { AbilityConstant, UIAbility, Want} from '@kit.AbilityKit'
 import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-    async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
-        let text = "test";
-        let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
-        let systemPasteboard = pasteboard.getSystemPasteboard();
-        await systemPasteboard.setData(pasteData);
-        let signal = new pasteboard.ProgressSignal;
-		let ProgressListener = (progress: pasteData.ProgressInfo) => {
-    		console.log('progressListener success, progress:' + progress.progress);
-		}
-		let params: pasteData.GetDataParams = {
-    		destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
-    		fileConflictOptions: pasteData.FileConflictOptions.OVERWRITE,
-    		progressIndicator: pasteData.ProgressIndicator.DEFAULT,
-    		progressListener: ProgressListener
-		}
-		systemPasteboard.getDataWithProgress(params).then((pasteData: pasteboard.PasteData) => {
-    		let text: string = pasteData.getPrimaryText();
-		}).catch((err: BusinessError) => {
-    		console.error('Failed to get PasteData. Cause: ' + err.message);
-		});   
+@Entry
+@Component
+struct PasteboardTest {
+ build() {
+   RelativeContainer() {
+     Column() {
+       Column() {
+         Button("Copy txt")
+           .onClick(async ()=>{
+              let text = "test";
+              let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
+              let systemPasteboard = pasteboard.getSystemPasteboard();
+        	  await systemPasteboard.setData(pasteData);
+              let ProgressListener = (progress: pasteboard.ProgressInfo) => {
+    		    console.log('progressListener success, progress:' + progress.progress);
+              }
+              let params: pasteboard.GetDataParams = {
+                destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
+                fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
+                progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
+                progressListener: ProgressListener
+              };
+              systemPasteboard.getDataWithProgress(params).then((pasteData: pasteboard.PasteData) => {
+                console.error('getDataWithProgress succ');
+              }).catch((err: BusinessError) => {
+                console.error('Failed to get PasteData. Cause: ' + err.message);
+              })   
+          })
+        }
+      }
     }
+  }
 }
 ```
 
