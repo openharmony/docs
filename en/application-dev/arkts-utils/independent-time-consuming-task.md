@@ -1,10 +1,10 @@
 # Using TaskPool for Independent Time-Consuming Tasks
 
-For a time-consuming task that runs independently, you only need to return the result to the host thread after the task is executed. There is no context dependency. You can implement the task in the following way:
+For a time-consuming task that runs independently, you only need to return the result to the host thread after the task is executed. There is no context dependency. You can use the approach described in this topic.
 
-The following uses image loading as an example.
+This example uses image loading to illustrate the process.
 
-1. Implement the task to be executed by the sub-thread.
+1. Implement the task to be executed in a child thread.
 
    ```ts
    // IconItemSource.ets
@@ -23,14 +23,14 @@ The following uses image loading as an example.
    // IndependentTask.ets
    import { IconItemSource } from './IconItemSource';
     
-   @Concurrent // Methods executed in the task must be decorated by @Concurrent. Otherwise, they cannot be called.
+   // Methods executed in the task must be decorated by @Concurrent. Otherwise, they cannot be called.
    @Concurrent
    export function loadPicture(count: number): IconItemSource[] {
      let iconItemSourceList: IconItemSource[] = [];
-     // Traverse and add six IconItem data records.
+     // Add six IconItem data records.
      for (let index = 0; index < count; index++) {
        const numStart: number = index * 6;
-       // Six images are used cyclically.
+       // Use six images in the loop.
        iconItemSourceList.push(new IconItemSource('$media:startIcon', `item${numStart + 1}`));
        iconItemSourceList.push(new IconItemSource('$media:background', `item${numStart + 2}`));
        iconItemSourceList.push(new IconItemSource('$media:foreground', `item${numStart + 3}`));
@@ -42,7 +42,7 @@ The following uses image loading as an example.
    }
    ```
 
-2. The execute method in TaskPool is used to execute the preceding task, that is, load images.
+2. Use the **execute** method of TaskPool to execute the task, that is, to load the images.
 
    ```ts
    // Index.ets
@@ -67,7 +67,7 @@ The following uses image loading as an example.
                let lodePictureTask: taskpool.Task = new taskpool.Task(loadPicture, 30);
                // Execute the task and return the result.
                taskpool.execute(lodePictureTask).then((res: object) => {
-                 // Execution result of the loadPicture API.
+                 // Execution result of the loadPicture method.
                  iconItemSourceList = res as IconItemSource[];
                })
              })

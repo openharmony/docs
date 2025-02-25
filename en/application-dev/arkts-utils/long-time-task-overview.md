@@ -1,13 +1,13 @@
-# Concurrent Continuous Task Scenarios
+# Overview of Concurrency in Continuous Tasks
 
-During the implementation of application services, tasks that need to run for a long time and irregularly are called long-term tasks. If a long-duration task is executed in the UI main thread, the UI service of the UI main thread is blocked, and problems such as frame freezing and frame loss occur, affecting user experience. You can execute the independent continuous task in an independent child thread.
+During the implementation of application services, tasks that require extended and irregular execution periods are known as continuous tasks. Executing continuous tasks in the UI main thread may block the thread's normal operations, leading to performance issues such as freezing and frame loss, which degrade user experience. To avoid this, these independent tasks are typically run in separate background threads.
 
-Typical scenarios of continuous tasks are as follows.
+The following describes typical service scenarios for continuous tasks.
 
 
-| Common Service Scenario| Description| 
+| Service Scenario| Description| 
 | -------- | -------- |
-| Periodically collects sensor data.| Periodically collects sensor information (such as location information and speed sensor information), and runs continuously for a long time during application running.| 
-| Listening to Socket Port Information| Listens for socket data for a long time and responds irregularly.| 
+| Periodic sensor data collection| Regularly collecting data of sensors (such as location and speed) that run continuously throughout the application's operation without interruption.| 
+| Listening for socket port information| Continuously monitoring socket data and responding to it at irregular intervals.| 
 
-The preceding table lists independent continuous tasks with long task execution period and simple interaction with external systems. After these tasks are distributed to the background thread, you need to respond irregularly to obtain results. Therefore, using **TaskPool** can reduce development workload, and avoid complex lifecycle management and too many threads. You only need to place the preceding independent continuous tasks in the **TaskPool** queue and wait for the result.
+These scenarios involve independent continuous tasks with extended execution periods and minimal external interaction. Once dispatched to background threads, these tasks need to respond periodically to retrieve results. Therefore, using TaskPool can streamline development efforts by eliminating the need to manage complex lifecycles and prevent thread overload. You simply need to enqueue these independent continuous tasks into a task pool and wait for the results.
