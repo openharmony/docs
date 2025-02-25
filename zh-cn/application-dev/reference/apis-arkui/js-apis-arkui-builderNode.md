@@ -777,7 +777,9 @@ recycle(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ```ts
-import { FrameNode,NodeController,BuilderNode,UIContext } from "@kit.ArkUI";
+import { FrameNode, NodeController, BuilderNode, UIContext } from "@kit.ArkUI";
+
+const TEST_TAG: string = "Reuse+Recycle";
 
 class MyDataSource {
   private dataArray: string[] = [];
@@ -818,7 +820,10 @@ class Params {
 
 @Builder
 function buildNode(param: Params = new Params("hello")) {
-  ReusableChildComponent2({ item: param.item });
+  Row() {
+    Text(`C${param.item} -- `)
+    ReusableChildComponent2({ item: param.item }) //该自定义组件在BuilderNode中无法被正确复用
+  }
 }
 
 class MyNodeController extends NodeController {
@@ -834,10 +839,12 @@ class MyNodeController extends NodeController {
   }
 }
 
+// 被回收复用的自定义组件，其状态变量会更新，而子自定义组件ReusableChildComponent3中的状态变量也会更新，但BuilderNode会阻断这一传递过程
 @Reusable
 @Component
 struct ReusableChildComponent {
-  @State item: string = '';
+  @Prop item: string = '';
+  @Prop switch: string = '';
   private controller: MyNodeController = new MyNodeController();
 
   aboutToAppear() {
@@ -845,17 +852,29 @@ struct ReusableChildComponent {
   }
 
   aboutToRecycle(): void {
-    console.log("ReusableChildComponent aboutToRecycle " + this.item);
-    this.controller?.builderNode?.recycle();
+    console.log(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
+
+    // 当开关为open，通过BuilderNode的reuse接口和recycle接口传递给其下的自定义组件，例如ReusableChildComponent2，完成复用
+    if (this.switch === 'open') {
+      this.controller?.builderNode?.recycle();
+    }
   }
 
   aboutToReuse(params: object): void {
-    console.log("ReusableChildComponent aboutToReuse " + JSON.stringify(params));
-    this.controller?.builderNode?.reuse(params);
+    console.log(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
+
+    // 当开关为open，通过BuilderNode的reuse接口和recycle接口传递给其下的自定义组件，例如ReusableChildComponent2，完成复用
+    if (this.switch === 'open') {
+      this.controller?.builderNode?.reuse(params);
+    }
   }
 
   build() {
-    NodeContainer(this.controller);
+    Row() {
+      Text(`A${this.item}--`)
+      ReusableChildComponent3({ item: this.item })
+      NodeContainer(this.controller);
+    }
   }
 }
 
@@ -864,16 +883,38 @@ struct ReusableChildComponent2 {
   @Prop item: string = "false";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log("ReusableChildComponent2 Reusable 2 " + JSON.stringify(params));
+    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log("ReusableChildComponent2 aboutToRecycle 2 " + this.item);
+    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToRecycle ${this.item}`);
   }
 
   build() {
     Row() {
-      Text(this.item)
+      Text(`D${this.item}`)
+        .fontSize(20)
+        .backgroundColor(Color.Yellow)
+        .margin({ left: 10 })
+    }.margin({ left: 10, right: 10 })
+  }
+}
+
+@Component
+struct ReusableChildComponent3 {
+  @Prop item: string = "false";
+
+  aboutToReuse(params: Record<string, object>) {
+    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToReuse ${JSON.stringify(params)}`);
+  }
+
+  aboutToRecycle(): void {
+    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToRecycle ${this.item}`);
+  }
+
+  build() {
+    Row() {
+      Text(`B${this.item}`)
         .fontSize(20)
         .backgroundColor(Color.Yellow)
         .margin({ left: 10 })
@@ -888,7 +929,7 @@ struct Index {
   @State data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
-    for (let i = 0;i < 100; i++) {
+    for (let i = 0; i < 100; i++) {
       this.data.pushData(i.toString());
     }
   }
@@ -898,7 +939,10 @@ struct Index {
       List({ space: 3 }) {
         LazyForEach(this.data, (item: string) => {
           ListItem() {
-            ReusableChildComponent({ item: item })
+            ReusableChildComponent({
+              item: item,
+              switch: 'open' // 将open改为close可观察到，BuilderNode不通过reuse和recycle接口传递复用时，BuilderNode内部的自定义组件的行为表现
+            })
           }
         }, (item: string) => item)
       }
