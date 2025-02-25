@@ -333,11 +333,11 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, o
 | SELECTION_MENU | 0 | 文本选择菜单。|
 | PREVIEW_MENU | 1 | 图片预览菜单。|
 
-## KeyboardAppearance<sup>16+</sup>枚举说明
+## KeyboardAppearance<sup>15+</sup>枚举说明
 
 键盘外观。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
