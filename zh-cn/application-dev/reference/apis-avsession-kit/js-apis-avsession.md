@@ -6432,8 +6432,8 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 
 | 参数名    | 类型                                  | 必填 | 说明                           |
 | ------- | ------------------------------------- | ---- | ------------------------------ |
-| command | string | 是   | 需要设置的自定义控制命令的名称 |
-| args | {[key: string]: Object} | 是   | 需要传递的控制命令键值对 |
+| command | string | 是   | 需要设置的自定义控制命令的名称。 |
+| args | {[key: string]: Object} | 是   | 需要传递的控制命令键值对。 |
 | callback | AsyncCallback\<void>                  | 是   | 回调函数。当命令发送成功，err为undefined，否则返回错误对象。                     |
 
 > **说明：**
