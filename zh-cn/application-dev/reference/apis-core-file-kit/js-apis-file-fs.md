@@ -5171,7 +5171,7 @@ unlock(): void
   ## fs.DfsListeners<sup>12+</sup>
 
 interface DfsListeners {
-  onStatus(networkId: string, status: number): void;
+  onStatus(networkId: string, status: number): void
 }
 
 事件监听类。创建DFSListener对象，用于监听分布式文件系统状态。
@@ -5195,7 +5195,7 @@ onStatus(networkId: string, status: number): void;
 
 ## RandomAccessFile
 
-随机读写文件流，在调用RandomAccessFile的方法前，需要先通过createRandomAccess()方法（同步或异步）来构建一个RandomAccessFile实例。
+随机读写文件流。在调用RandomAccessFile的方法前，需要先通过createRandomAccess()方法（同步或异步）来构建一个RandomAccessFile实例。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -5210,7 +5210,7 @@ onStatus(networkId: string, status: number): void;
 
 setFilePointer(): void
 
-设置文件偏置指针
+设置文件偏置指针。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -5523,7 +5523,7 @@ readSync(buffer: ArrayBuffer, options?: ReadOptions): number
 
 ### getReadStream<sup>12+</sup>
 
-getReadStream(): ReadStream;
+getReadStream(): ReadStream
 
 获取当前 RandomAccessFile 的一个 ReadStream 实例。
 
@@ -5533,7 +5533,7 @@ getReadStream(): ReadStream;
 
   | 类型                | 说明        |
   | ------------------ | --------- |
-  | [ReadStream](#readstream12) | 文件可读流 |
+  | [ReadStream](#readstream12) | 文件可读流。 |
 
 **示例：**
 
@@ -5547,7 +5547,7 @@ getReadStream(): ReadStream;
 
 ### getWriteStream<sup>12+</sup>
 
-getWriteStream(): WriteStream;
+getWriteStream(): WriteStream
 
 获取当前 RandomAccessFile 的一个 WriteStream 实例。
 
@@ -5557,7 +5557,7 @@ getWriteStream(): WriteStream;
 
   | 类型                | 说明        |
   | ------------------ | --------- |
-  | [WriteStream](#writestream12) | 文件可写流 |
+  | [WriteStream](#writestream12) | 文件可写流。 |
 
 **示例：**
 
@@ -5693,12 +5693,12 @@ open接口flags参数常量。文件打开标签。
 
 | 名称        | 值       | 说明                |
 | ----------- | --------------- | ------------------ |
-| LOCAl | 1     | 文件在本地存在           |
-| CLOUD    | 2     | 文件在云端存在 |
+| LOCAl | 1     | 文件在本地存在。           |
+| CLOUD    | 2     | 文件在云端存在。 |
 
 ## AccessModeType<sup>12+</sup>
 
-枚举，表示需要校验的具体权限，若不填，默认校验文件是否存在。
+枚举，表示需要校验的具体权限。若不填，默认校验文件是否存在。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5706,20 +5706,20 @@ open接口flags参数常量。文件打开标签。
 
 | 名称        | 值       | 说明                |
 | ----------- | --------------- | ------------------ |
-| EXIST | 0     | 文件是否存在           |
-| WRITE    | 2     | 文件是否具有写入权限 |
-| READ    | 4     | 文件是否具有读取权限 |
-| READ_WRITE    | 6     | 文件是否具有读写权限 |
+| EXIST | 0     | 文件是否存在。           |
+| WRITE    | 2     | 文件是否具有写入权限。 |
+| READ    | 4     | 文件是否具有读取权限。 |
+| READ_WRITE    | 6     | 文件是否具有读写权限。 |
 
 ## AccessFlagType<sup>12+</sup>
 
-枚举，表示需要校验的文件位置
+枚举，表示需要校验的文件位置。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 | 名称        | 值       | 说明                |
 | ----------- | --------------- | ------------------ |
-| LOCAL | 0     | 文件是否在本地          |
+| LOCAL | 0     | 文件是否在本地。          |
 
 ## ReadOptions<sup>11+</sup>
 
@@ -5756,7 +5756,7 @@ open接口flags参数常量。文件打开标签。
 | ----------- | --------------- | ------------------ | ------------------ |
 | length | number     | 否 | 期望写入数据的长度，单位为字节。可选，默认缓冲区长度。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。           |
 |  offset    | number     | 否 | 期望写入文件位置，单位为字节（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| encoding    | string | 否 | 当数据是string类型时有效，表示数据的编码方式，默认 'utf-8'。仅支持 'utf-8'。       |
+| encoding    | string | 否 | 当数据是string类型时有效，表示数据的编码方式。默认 'utf-8'。仅支持 'utf-8'。       |
 
 ## ListFileOptions<sup>11+</sup>
 
@@ -5770,7 +5770,7 @@ open接口flags参数常量。文件打开标签。
 | ----------- | --------------- | ------------------ | ------------------ |
 | recursion | boolean     | 否 | 是否递归子目录下文件名。可选，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。           |
 |  listNum    | number     | 否 | 列出文件名数量。可选，当设置0时，列出所有文件，默认为0。 |
-| filter    | [Filter](#filter10) | 否 | 文件过滤配置项类型。 可选，设置文件的过滤条件 |
+| filter    | [Filter](#filter10) | 否 | 文件过滤配置项类型。 可选，设置文件的过滤条件。 |
 
 ## ReadStream<sup>12+</sup>
 
@@ -5782,12 +5782,12 @@ open接口flags参数常量。文件打开标签。
 
 | 名称     | 类型   | 只读   | 可写   | 说明                                       |
 | ------ | ------ | ---- | ---- | ---------------------------------------- |
-| bytesRead    | number | 是    | 否    | 可读流已经读取的字节数 |
-| path    | string | 是    | 否    | 当前可读流对应的文件路径 |
+| bytesRead    | number | 是    | 否    | 可读流已经读取的字节数。 |
+| path    | string | 是    | 否    | 当前可读流对应的文件路径。 |
 
 ### Seek
 
-seek(offset: number, whence?: WhenceType): number;
+seek(offset: number, whence?: WhenceType): number
 
 
 调整可读流偏置指针位置。
