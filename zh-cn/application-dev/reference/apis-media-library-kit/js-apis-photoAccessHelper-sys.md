@@ -5535,7 +5535,7 @@ async function example() {
 
 ### constructor<sup>16+</sup>
 
-constructor(album: Album);
+constructor(album: Album)
 
 构造函数。
 
@@ -5665,7 +5665,7 @@ async function example() {
 
 ### constructor<sup>16+</sup>
 
-constructor(album: Album);
+constructor(album: Album)
 
 构造函数。
 
