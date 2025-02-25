@@ -1679,6 +1679,7 @@
           - [使用Node-API接口进行模块加载](napi/use-napi-load-module-with-info.md)
           - [使用Node-API接口从异步线程向ArkTS线程投递指定优先级和入队方式的的任务](napi/use-call-threadsafe-function-with-priority.md)
           - [使用Node-API接口产生的异常日志/崩溃分析](napi/use-napi-about-crash.md)
+          - [使用Node-API调用返回值为promise的ArkTS方法](napi/use-napi-method-promise.md)
         - [Node-API常见问题](napi/use-napi-faqs.md)
       - 使用JSVM-API实现JS与C/C++语言交互<!--jsvm-->
         - [JSVM-API简介](napi/jsvm-introduction.md)
@@ -1738,6 +1739,7 @@
         - [USB DDK开发指导](napi/usb-ddk-guidelines.md)
         - [HID DDK开发指导](napi/hid-ddk-guidelines.md)
         - [USB SERIAL DDK开发指导](napi/usb-serial-ddk-guidelines.md)
+        - [SCSI Peripheral DDK开发指南](napi/scsi-peripheral-ddk-guidelines.md)
       - 包管理<!--bundle-management-->
         - [NativeBundle开发指导](napi/native-bundle-guidelines.md)
     - 调试和性能分析<!--debugging-profiling-->
