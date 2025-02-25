@@ -876,7 +876,7 @@ export default class EntryAbility extends UIAbility {
 | SYSTEM_CANCEL_NOT_USE_MULTI_DEVICE            | 10    | 申请MULTI_DEVICE_CONNECTION类型长时任务，但是未使用多设备互联。预留接口，暂未启用。        |
 | SYSTEM_CANCEL_USE_ILLEGALLY            | 11    | 使用非法类型的长时任务，如申请AUDIO_PLAYBACK类型长时任务，但是使用音视频播放及定位导航业务。预留接口，暂未启用。        |
 
-## BackgroundSubMode<sup>15+</sup>
+## BackgroundSubMode<sup>16+</sup>
 
 长时任务子模式。
 
@@ -886,7 +886,7 @@ export default class EntryAbility extends UIAbility {
 | ----------------------- | ---- | --------------------- |
 | CAR_KEY           | 1    | 车钥匙。当[BackgroundMode](#backgroundmode)包含BLUETOOTH_INTERACTION时生效                  |
 
-## BackgroundModeType<sup>15+</sup>
+## BackgroundModeType<sup>16+</sup>
 
 长时任务模式类别。
 
