@@ -124,8 +124,8 @@ import { KeyCode } from '@kit.InputKit';
 | KEYCODE_MOVE_END                 |  2082 | 光标移动到末尾键。                    |
 | KEYCODE_INSERT                   |  2083 | 插入键。                         |
 | KEYCODE_FORWARD                  |  2084 | 前进键。                         |
-| KEYCODE_MEDIA_PLAY               |  2085 | 多媒体键：播放<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
-| KEYCODE_MEDIA_PAUSE              |  2086 | 多媒体键：暂停<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
+| KEYCODE_MEDIA_PLAY               |  2085 | 多媒体键：播放。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
+| KEYCODE_MEDIA_PAUSE              |  2086 | 多媒体键：暂停。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
 | KEYCODE_MEDIA_CLOSE              |  2087 | 多媒体键：关闭。                     |
 | KEYCODE_MEDIA_EJECT              |  2088 | 多媒体键：弹出。                     |
 | KEYCODE_MEDIA_RECORD             |  2089 | 多媒体键：录音。                     |
