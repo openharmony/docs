@@ -173,7 +173,7 @@ FileManagement_ErrCode OH_FileShare_ActivatePermission (const FileShare_PolicyIn
 | -------- | -------- |
 | policies | 一个指向FileShare_PolicyInfo实例的指针。 | 
 | policyNum | FileShare_PolicyInfo实例数组的大小。 | 
-| result | FileShare_PolicyErrorResult数组指针. 请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 | 
+| result | FileShare_PolicyErrorResult数组指针。请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 | 
 | resultNum | FileShare_PolicyErrorResult数组大小。 | 
 
 **需要权限：**
