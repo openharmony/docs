@@ -53,10 +53,10 @@ import { display } from '@kit.ArkUI';
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| FOLD_STATUS_UNKNOWN<sup>12+</sup> | 0 | 表示设备当前折叠状态未知。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| FOLD_STATUS_EXPANDED<sup>12+</sup> | 1 | 表示设备当前折叠状态为完全展开。如果是双折轴设备，则表示折轴一折叠状态为完全展开，折轴二折叠状态为折叠。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| FOLD_STATUS_FOLDED<sup>12+</sup> | 2 | 表示设备当前折叠状态为折叠。如果是双折轴设备，则表示折轴一折叠状态为折叠，折轴二折叠状态为折叠。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| FOLD_STATUS_HALF_FOLDED<sup>12+</sup> | 3 | 表示设备当前折叠状态为半折叠。半折叠指完全展开和折叠之间的状态。如果是双折轴设备，则表示折轴一折叠状态为半折叠，折轴二折叠状态为折叠。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_UNKNOWN<sup>10+</sup> | 0 | 表示设备当前折叠状态未知。<br/>**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_EXPANDED<sup>10+</sup> | 1 | 表示设备当前折叠状态为完全展开。如果是双折轴设备，则表示折轴一折叠状态为完全展开，折轴二折叠状态为折叠。<br/>**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_FOLDED<sup>10+</sup> | 2 | 表示设备当前折叠状态为折叠。如果是双折轴设备，则表示折轴一折叠状态为折叠，折轴二折叠状态为折叠。<br/>**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_HALF_FOLDED<sup>10+</sup> | 3 | 表示设备当前折叠状态为半折叠。半折叠指完全展开和折叠之间的状态。如果是双折轴设备，则表示折轴一折叠状态为半折叠，折轴二折叠状态为折叠。<br/>**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。|
 | FOLD_STATUS_EXPANDED_WITH_SECOND_EXPANDED<sup>15+</sup> | 11 | 表示双折轴设备折轴一折叠状态为完全展开，折轴二折叠状态为完全展开。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | FOLD_STATUS_EXPANDED_WITH_SECOND_HALF_FOLDED<sup>15+</sup> | 21 | 表示双折轴设备折轴一折叠状态为完全展开，折轴二折叠状态为半折叠。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | FOLD_STATUS_FOLDED_WITH_SECOND_EXPANDED<sup>15+</sup> | 12 | 表示双折轴设备折轴一折叠状态为折叠，折轴二折叠状态为完全展开。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
