@@ -663,7 +663,7 @@ enum Input_KeyCode
 | KEYCODE_RIGHT_BRACKET  | 按键']'。 | 
 | KEYCODE_BACKSLASH  | 按键'\'。 | 
 | KEYCODE_SEMICOLON  | 按键';'。 | 
-| KEYCODE_APOSTROPHE  | 按键''' (单引号)。 | 
+| KEYCODE_APOSTROPHE  | 按键'''（单引号）。 | 
 | KEYCODE_SLASH  | 按键'/'。 | 
 | KEYCODE_AT  | 按键'\@'。 | 
 | KEYCODE_PLUS  | 按键'+'。 | 
