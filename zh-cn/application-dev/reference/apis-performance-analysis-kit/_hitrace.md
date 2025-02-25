@@ -104,7 +104,7 @@ hitraceChain为开发者提供跨线程、跨进程的分布式跟踪能力。 H
 ### HiTrace_Communication_Mode
 
 ```
-typedef enum HiTrace_Communication_ModeHiTrace_Communication_Mode
+typedef enum HiTrace_Communication_Mode HiTrace_Communication_Mode
 ```
 **描述**
 HiTrace通信模式枚举。
@@ -130,7 +130,7 @@ HiTrace标志位。
 ### HiTrace_Tracepoint_Type
 
 ```
-typedef enum HiTrace_Tracepoint_TypeHiTrace_Tracepoint_Type
+typedef enum HiTrace_Tracepoint_Type HiTrace_Tracepoint_Type
 ```
 **描述**
 HiTrace打点类型。
@@ -143,7 +143,7 @@ HiTrace打点类型。
 ### HiTrace_Version
 
 ```
-typedef enum HiTrace_VersionHiTrace_Version
+typedef enum HiTrace_Version HiTrace_Version
 ```
 **描述**
 HiTrace版本号。
@@ -156,7 +156,7 @@ HiTrace版本号。
 ### HiTraceId_Valid
 
 ```
-typedef enum HiTraceId_ValidHiTraceId_Valid
+typedef enum HiTraceId_Valid HiTraceId_Valid
 ```
 **描述**
 HiTraceId是否有效标志。
