@@ -77,8 +77,8 @@ AtomicServiceNavigation({
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 标题栏背景颜色。 |
 | isBlurEnabled | boolean | 否 | 标题栏是否模糊，默认为true。 |
 | barStyle | [BarStyle](ts-basic-components-navigation.md#barstyle12枚举说明)  | 否 | 标题栏样式属性设置。 |
-| titleBarType | [TitleBarType](#titlebartype16) | 否 | 设置标题栏类型。 |
-| titleIcon | [Resource](ts-types.md#resource) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 设置标题栏的图标。默认值为$r('sys.color.ohos_id_color_titlebar_icon')。 |
+| titleBarType<sup>16+</sup> | [TitleBarType](#titlebartype16) | 否 | 设置标题栏类型。 |
+| titleIcon<sup>16+</sup> | [Resource](ts-types.md#resource) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 设置标题栏的图标。默认值为$r('sys.color.ohos_id_color_titlebar_icon')。 |
 
 ## GradientBackground<sup>16+</sup>
 供开发者设置品牌渐变色。
