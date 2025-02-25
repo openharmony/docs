@@ -788,8 +788,8 @@ enum Input_Result
 | INPUT_PARAMETER_ERROR  | 参数检查失败。 | 
 | INPUT_SERVICE_EXCEPTION  | 服务异常。 | 
 | INPUT_REPEAT_INTERCEPTOR  | 应用创建拦截后，再次执行创建拦截的操作。 | 
-| INPUT_OCCUPIED_BY_SYSTEM  | 已经被系统应用占用，**起始版本：** 14 | 
-| INPUT_OCCUPIED_BY_OTHER  | 已经被其他应用占用，**起始版本：** 14 | 
+| INPUT_OCCUPIED_BY_SYSTEM  | 已经被系统应用占用，**起始版本：** 14。 | 
+| INPUT_OCCUPIED_BY_OTHER  | 已经被其他应用占用，**起始版本：** 14。 | 
 
 
 ### Input_TouchEventAction
