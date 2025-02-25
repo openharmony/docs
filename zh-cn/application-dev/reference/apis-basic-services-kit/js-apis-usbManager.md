@@ -681,7 +681,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
 2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe之后；
+3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
 4.获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
 5.调用usbManager.bulkTransfer接口。
 
@@ -756,7 +756,7 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void
 
 1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
 2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe之后；
+3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
 4.获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
 5.调用usbManager.usbSubmitTransfer接口。
 
@@ -806,11 +806,11 @@ let endpoint = device.configs[0].interfaces[0]?.endpoints.find((value) => {
 //获取设备的第一个id
 let ret: number = usbManager.claimInterface(devicepipe, device.configs[0].interfaces[0], true);
 
-const transferParams = {
+let transferParams: usbManager.UsbDataTransferParams = {
   devPipe: devicepipe,
-  flags: 0,
+  flags: usbManager.UsbTransferFlags.USB_TRANSFER_SHORT_NOT_OK,
   endpoint: 1,
-  type: 2,
+  type: usbManager.UsbEndpointTransferType.TRANSFER_TYPE_BULK,
   timeout: 2000,
   length: 10, 
   callback: () => {},
@@ -839,7 +839,7 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;
 
 1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
 2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe之后；
+3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
 4.获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
 5.调用usbManager.usbCancelTransfer接口。
 
@@ -893,11 +893,11 @@ let endpoint = device.configs[0].interfaces[0]?.endpoints.find((value) => {
 })
 //获取设备的第一个id
 let ret: number = usbManager.claimInterface(devicepipe, device.configs[0].interfaces[0], true);
-const transferParams = {
+let transferParams: usbManager.UsbDataTransferParams = {
   devPipe: devicepipe,
-  flags: 0,
+  flags: usbManager.UsbTransferFlags.USB_TRANSFER_SHORT_NOT_OK,
   endpoint: 1,
-  type: 2,
+  type: usbManager.UsbEndpointTransferType.TRANSFER_TYPE_BULK,
   timeout: 2000,
   length: 10, 
   callback: () => {},
@@ -911,7 +911,7 @@ try {
     console.info('callBackData =' +JSON.stringify(callBackData));
   }
   usbManager.usbSubmitTransfer(transferParams);
-  usbManager.UsbCancelTransfer(transferParams);
+  usbManager.usbCancelTransfer(transferParams);
   console.info('USB transfer request submitted.');
 } catch (error) {
   console.error('USB transfer failed:', error);
@@ -1402,7 +1402,7 @@ USB配件句柄。
 
 | 名称         | 类型   | 必填    |说明    |
 | ---------- | ------ | ----- |----- |
-| pipe | [UsbDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址，需要调用connectDevice获取。 |
 | flags | [UsbTransferFlags](#usbtransferflags16) |是 | USB传输标志。 |
 | endpoint | number | 是 | 端点地址，正整数。 |
 | type | [UsbEndpointTransferType](#usbendpointtransfertype16) |是 | 传输类型。 |
