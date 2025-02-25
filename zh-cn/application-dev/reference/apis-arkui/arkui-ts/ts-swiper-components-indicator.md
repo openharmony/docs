@@ -4,6 +4,10 @@
 
 将原[Swiper](ts-container-swiper.md)组件中的[Indicator](ts-container-swiper.md#indicator)已有的能力作为一个单独组件提供给开发者使用。开发者可以不依赖Swiper组件单独显示导航点，也可以通过IndicatorComponentController与Swiper组件绑定使用。
 
+当多个导航点组件和同一个Swiper绑定时，只有最后一个导航点组件能成功和Swiper绑定。
+
+当一个导航点组件和多个Swiper绑定时，只有最后一个Swiper能成功和导航点组件绑定。
+
 >  **说明：**
 >
 > 该组件从API Version 15开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -27,7 +31,7 @@ IndicatorComponent(controller?: IndicatorComponentController)
 
 **参数：**
 
-|名称|类型|必填|说明|
+|参数名|类型|必填|说明|
 | ----- | ----- | -- |  --- |
 | controller |  [IndicatorComponentController](#indicatorcomponentcontroller) | 否 | 设置控制器，可通过该参数控制单独导航点进行导航点之间的跳转。 |
 
@@ -59,6 +63,8 @@ count(totalCount: number)
 
 设置导航点总数量。
 
+单独导航点组件和Swiper绑定的时候，以Swiper的页面数量为准。
+
 **卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
@@ -76,6 +82,8 @@ count(totalCount: number)
 initialIndex(index: number)
 
 设置首次显示时当前导航点的索引值。设置小于0或大于等于导航点数量时，按照默认值0处理。
+
+单独导航点组件和Swiper绑定的时候，该属性不生效。
 
 **卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
@@ -95,6 +103,8 @@ loop(isLoop: boolean)
 
 设置是否开启循环。设置为true时表示开启循环。
 
+单独导航点组件和Swiper绑定的时候，该属性不生效。
+
 **卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
@@ -112,6 +122,8 @@ loop(isLoop: boolean)
 vertical(isVertical: boolean)
 
 设置是否为纵向滑动。
+
+单独导航点组件和Swiper绑定的时候，该属性不生效。
 
 **卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
@@ -201,7 +213,7 @@ changeIndex(index: number, useAnimation?: boolean): void
 
 **参数：**
 
-| 参数名      | 参数类型       | 必填项  | 参数描述     |
+| 参数名      | 类型       | 必填  | 说明     |
 | -------- | ---------- | ---- | -------- |
 | index| number | 是    | 指定页面在Swiper中的索引值。 |
 | useAnimation| boolean | 否    | 设置翻至指定页面时是否有动效，true表示有动效，false表示没有动效。<br/>默认值：false。 |
