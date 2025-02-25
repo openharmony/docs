@@ -146,7 +146,7 @@ Image、Text和ListItem组件存在设置onDragStart接口DragItemInfo返回值�
 
 **适配指导**
 
-onDragStart接口的返回值用于指定拖拽过程中显示的图片(pixelMap，builder)以及拖拽过程中组件携带的额外信息(pixelMap，builder)。变更后，pixelMap的显示优先级高于builder。如果开发者同时设置了pixelMap和builder，应移除返回值中的pixelMap属性。同样，若不打算传递extraInfo，也应删除该属性。具体实现代码如下：
+onDragStart接口的返回值用于指定拖拽过程中显示的图片(pixelMap，builder)以及拖拽过程中组件携带的额外信息(extraInfo)。变更后，pixelMap的显示优先级高于builder。如果开发者同时设置了pixelMap和builder，应移除返回值中的pixelMap属性。同样，若不打算传递extraInfo，也应删除该属性。具体实现代码如下：
 ```ts
 @Entry
 @Component
