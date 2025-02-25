@@ -35,4 +35,4 @@ advancedDialog.selectDialog
 
 **适配指导**
 
-默认行为变更，无需适配。
+默认行为变更，无需适配。系统弹窗默认规格优化演进，若开发者有其他布局、样式诉求，建议使用CustomDialog自定义实现。
