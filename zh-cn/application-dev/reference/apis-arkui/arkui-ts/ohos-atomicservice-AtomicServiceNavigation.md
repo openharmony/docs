@@ -168,7 +168,7 @@ type NavDestinationBuilder = (name: string, param?: Object) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 类型 | 必填 | 描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | --------------- | ------ | ---- | ---------- |
 | sideBarBackground | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置侧边栏的背景颜色。默认为$r('sys.color.ohos_id_color_sub_background')。 |
 | onChange | Callback\<boolean\> | 否 | 侧边栏显示隐藏回调。 |
