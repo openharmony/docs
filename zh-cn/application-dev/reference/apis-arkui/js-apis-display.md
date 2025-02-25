@@ -1084,6 +1084,14 @@ promise.then((data: Array<display.Display>) => {
 | x<sup>16+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的x轴坐标，原点为主屏左上角，该参数为正整数。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                    |
 | y<sup>16+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的y轴坐标，原点为主屏左上角，该参数为正整数。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                    |
 
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称 | 类型 | 只读 | 可选 | 说明                                                                                                            |
+| -------- | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------|
+| sourceMode<sup>16+</sup> | [DisplaySourceMode](#displaysourcemode16) | 是 | 是 | 屏幕显示内容的显示模式枚举。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                    |
+| x<sup>16+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的x轴坐标，原点为主屏左上角，该参数为正整数。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                    |
+| y<sup>16+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的y轴坐标，原点为主屏左上角，该参数为正整数。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                    |
+
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 
