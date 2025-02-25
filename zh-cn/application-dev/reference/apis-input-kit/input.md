@@ -569,12 +569,12 @@ enum Input_KeyboardType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| KEYBOARD_TYPE_NONE  | 表示无按键设备。&nbsp;&nbsp; | 
-| KEYBOARD_TYPE_UNKNOWN  | 表示未知按键设备。&nbsp;&nbsp; | 
-| KEYBOARD_TYPE_ALPHABETIC  | 表示全键盘设备。&nbsp;&nbsp; | 
-| KEYBOARD_TYPE_DIGITAL  | 表示数字键盘设备。&nbsp;&nbsp; | 
-| KEYBOARD_TYPE_STYLUS  | 表示手写笔设备。&nbsp;&nbsp; | 
-| KEYBOARD_TYPE_REMOTE_CONTROL  | 表示遥控器设备。&nbsp;&nbsp; | 
+| KEYBOARD_TYPE_NONE  | 表示无按键设备。 | 
+| KEYBOARD_TYPE_UNKNOWN  | 表示未知按键设备。 | 
+| KEYBOARD_TYPE_ALPHABETIC  | 表示全键盘设备。 | 
+| KEYBOARD_TYPE_DIGITAL  | 表示数字键盘设备。 | 
+| KEYBOARD_TYPE_STYLUS  | 表示手写笔设备。 | 
+| KEYBOARD_TYPE_REMOTE_CONTROL  | 表示遥控器设备。 | 
 
 
 ### Input_KeyCode
