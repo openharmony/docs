@@ -18,6 +18,10 @@ OH_HiAppEvent_DestroyParamList(list);
 
 **File to include**: <hiappevent/hiappevent_event.h>
 
+**Library**: libhiappevent_ndk.z.so
+
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
+
 **Since**: 8
 
 **Related module**: [HiAppEvent](_hi_app_event.md)

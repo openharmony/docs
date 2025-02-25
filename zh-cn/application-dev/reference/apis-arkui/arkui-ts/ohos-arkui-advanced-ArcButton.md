@@ -68,7 +68,7 @@ ArcButton({options:ArcButtonOptions})
 | fontColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 否   | 弧形按钮文本颜色。<br/>默认值：Color.White。                 |
 | pressedFontColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | 否   | 弧形按钮按下文本颜色。<br/>默认值：Color.White。             |
 | fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle)                  | 否   | 弧形按钮文本样式。<br/>默认值：FontStyle.Normal。            |
-| fontFamily | string \| [Resource](ts-types.md#resource)                   | 否   | 弧形按钮文本族。                                             |
+| fontFamily | string \| [Resource](ts-types.md#resource)                   | 否   | 弧形按钮字体名。                                             |
 | fontMargin | [LocalizedMargin](ts-types.md#localizedmargin12)             | 否   | 弧形按钮文本边距。<br/>默认值：{start:24vp, top: 10vp,end: 24vp, bottom:16vp }。 |
 |onTouch | (event: [TouchEvent](ts-universal-events-touch.md#touchevent)) => void | 否   | 弧形按钮手指触摸动作触发该回调。 |
 |onClick | (event: [ClickEvent](ts-universal-events-click.md#clickevent)) => void | 否   | 弧形按钮点击动作触发该回调。 |
