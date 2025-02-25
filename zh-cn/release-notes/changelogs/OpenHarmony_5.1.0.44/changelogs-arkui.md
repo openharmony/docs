@@ -313,7 +313,7 @@ API 7
 
 **变更的接口/组件**
 
-Checkbox/Radio/Rating/Slider/Toggle
+Checkbox/Radio/Rating/Slider/Toggle/DataPanel/Gauge/LoadingProgress/Progress
 
 **适配指导**
 
