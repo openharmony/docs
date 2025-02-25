@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
-> 该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 规则说明
 
@@ -135,7 +135,7 @@ barrier参数，用于定义一条barrier的id、方向和生成时所依赖的�
 | 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | id  | string  | 是    | barrier的id，必须是唯一的并且不可与容器内组件重名。   |
-| direction | [BarrierDirection](ts-container-relativecontainer.md#barrierdirection12) | 是    | 指定barrier的方向。<br />默认值：BarrierDirection.LEFT |
+| direction | [BarrierDirection](ts-container-relativecontainer.md#barrierdirection12枚举说明) | 是    | 指定barrier的方向。<br />默认值：BarrierDirection.LEFT |
 | referencedId | Array\<string> | 是    | 指定生成barrier所依赖的组件。 |
 
 ## BarrierDirection<sup>12+</sup>枚举说明
@@ -414,7 +414,7 @@ struct Index {
 
 ### 示例4（设置偏移）
 
-本示例通过[bias](ts-universal-attributes-location.md#bias对象说明)实现了子组件的位置在竖直方向的两个锚点间偏移的效果
+本示例通过[bias](ts-universal-attributes-location.md#bias对象说明)实现了子组件的位置在竖直方向的两个锚点间偏移的效果。
 
 ```ts
 @Entry
