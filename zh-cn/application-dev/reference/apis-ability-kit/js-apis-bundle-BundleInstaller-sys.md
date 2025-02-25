@@ -12,7 +12,7 @@
 
 > 从API version 9开始不再维护，建议使用[@ohos.bundle.installer.install](js-apis-installer-sys.md)替代。
 
-install(bundleFilePaths: Array&lt;string&gt;, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void;
+install(bundleFilePaths: Array&lt;string&gt;, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void
 
 在应用中安装hap，支持多hap安装。使用callback异步回调。
 
@@ -65,7 +65,7 @@ bundleInstall.getBundleInstaller().then(installer => {
 
 > 从API version 9开始不再维护，建议使用[uninstall](js-apis-installer-sys.md)替代。
 
-uninstall(bundleName: string, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void;
+uninstall(bundleName: string, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void
 
 卸载应用程序，使用callback异步回调，返回安装状态信息。
 
@@ -117,7 +117,7 @@ bundleInstall.getBundleInstaller().then(installer => {
 
 > 从API version 9开始不再维护，建议使用[recover](js-apis-installer-sys.md)替代。
 
-recover(bundleName: string, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void;
+recover(bundleName: string, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void
 
 恢复一个应用程序，使用callback异步回调。当预置应用被卸载后，可以通过此接口进行恢复。
 
@@ -170,14 +170,14 @@ bundleInstall.getBundleInstaller().then(installer => {
 
 安装、恢复或卸载时需要指定的参数。
 
- **系统能力:** SystemCapability.BundleManager.BundleFramework
+ **系统能力：** SystemCapability.BundleManager.BundleFramework
 
  **系统接口：**  此接口为系统接口。
 
 | 名称        | 类型    | 只读 | 可选 | 说明               |
 | ----------- | ------- | ---- | ---- | ------------------ |
 | userId      | number  | 否  | 否  | 指示用户id, 默认值：调用方的userId。 |
-| installFlag | number  | 否  | 否  | 指示安装标志, 默认值：1。取值范围：<br/>1: 覆盖安装, <br/>16: 免安装|
+| installFlag | number  | 否  | 否  | 指示安装标志, 默认值：1。取值范围：<br/>1: 覆盖安装。<br/>16: 免安装。|
 | isKeepData  | boolean | 否  | 否  | 指示参数是否有数据，默认值：false。 |
 
 ## InstallStatus<sup>(deprecated)<sup>
