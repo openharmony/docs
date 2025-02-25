@@ -5,8 +5,6 @@
 > **说明：**
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
-> **建议使用[Remote Communication Kit](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/remote-communication-kit-guide-V5)进行HTTP请求，Remote Communication Kit将持续演进。**
 ## 导入模块
 
 ```ts
