@@ -5411,7 +5411,7 @@ async function example() {
 
 ### setSubTitle<sup>16+</sup>
 
-setSubTitle(title: string): void;
+setSubTitle(title: string): void
 
 设置时刻副标题内容。
 
@@ -5429,7 +5429,7 @@ setSubTitle(title: string): void;
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
 | 错误码ID    | 错误信息                              |
 | :------- | :-------------------------------- |
@@ -5485,11 +5485,11 @@ static deleteHighlightAlbums(context: Context, albums: Array&lt;Album&gt;): Prom
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
-| albums       | Array&lt;[Album](#album)&gt;   | 是    | 需要删除的时刻相册 |
+| albums       | Array&lt;[Album](#album)&gt;   | 是    | 需要删除的时刻相册。 |
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
 | 错误码ID    | 错误信息                              |
 | :------- | :-------------------------------- |
@@ -5551,7 +5551,7 @@ constructor(album: Album);
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -5585,10 +5585,9 @@ async function example() {
 
 ### setOrderPosition<sup>16+</sup>
 
-setOrderPosition(assets: Array&lt;PhotoAsset&gt;, position: Array&lt;number&gt;): void;
+setOrderPosition(assets: Array&lt;PhotoAsset&gt;, position: Array&lt;number&gt;): void
 
 设置智慧相册中资产的顺序位置。
-
 
 **系统接口**：此接口为系统接口。
 
@@ -5601,11 +5600,11 @@ setOrderPosition(assets: Array&lt;PhotoAsset&gt;, position: Array&lt;number&gt;)
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
 | assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 需要设置顺序位置的相册中资产。 |
-| position       | Array&lt;number&gt;   | 是    | 相册中资产的顺序位置 |
+| position       | Array&lt;number&gt;   | 是    | 相册中资产的顺序位置。 |
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
 | 错误码ID    | 错误信息                              |
 | :------- | :-------------------------------- |
@@ -5682,7 +5681,7 @@ constructor(album: Album);
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -5715,10 +5714,9 @@ async function example() {
 
 ### getOrderPosition<sup>16+</sup>
 
-getOrderPosition(assets: Array&lt;PhotoAsset&gt;): Promise&lt;Array&lt;number&gt;&gt;;
+getOrderPosition(assets: Array&lt;PhotoAsset&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 获取智慧相册中资产的顺序位置。
-
 
 **系统接口**：此接口为系统接口。
 
@@ -5740,7 +5738,7 @@ getOrderPosition(assets: Array&lt;PhotoAsset&gt;): Promise&lt;Array&lt;number&gt
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
 | 错误码ID    | 错误信息                              |
 | :------- | :-------------------------------- |
