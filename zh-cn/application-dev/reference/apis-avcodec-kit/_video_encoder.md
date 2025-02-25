@@ -443,7 +443,7 @@ AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 OH_AVErrCode OH_VideoEncoder_IsValid (OH_AVCodec *codec, bool *isValid )
 ```
 **描述**
-检查当前编码实例是否有效。
+在编码器实例存在的情况下，检查当前编码器服务是否有效。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
 
@@ -454,7 +454,7 @@ OH_AVErrCode OH_VideoEncoder_IsValid (OH_AVCodec *codec, bool *isValid )
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向视频编码实例的指针。  | 
-| isValid | 输出参数，指向布尔类型的指针。指向布尔实例的指针，如果编码器实例有效，则为true，如果编码器实例无效，则为false。建议开发者将isValid初始化为false。  |
+| isValid | 输出参数，指向布尔类型的指针。只有当接口返回AV_ERR_OK时，该值表示编码器服务的有效性（true为有效，false为无效）。建议开发者将isValid初始化为false。  |
 
 **返回：**
 
