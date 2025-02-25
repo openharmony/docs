@@ -594,7 +594,6 @@ stopDiscovering(): void;
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 11600101 | Failed to execute the function.                                 |
-| 11600104 | Discovery unavailable.                                          |
 
 **示例：**
 
