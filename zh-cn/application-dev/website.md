@@ -3863,8 +3863,8 @@
           - 结构体<!--performance-analysis-struct-->
             - [HiAppEvent_AppEventGroup](reference/apis-performance-analysis-kit/_hi_app_event___app_event_group.md)
             - [HiAppEvent_AppEventInfo](reference/apis-performance-analysis-kit/_hi_app_event___app_event_info.md)
-            - [HiCollie_DetectionParam](reference/apis-performance-analysis-kit/_hi_hicollie___detection_param.md)
-            - [HiCollie_SetTimerParam](reference/apis-performance-analysis-kit/_hi_hicollie___set_timer_param.md)
+            - [HiCollie_DetectionParam](reference/apis-performance-analysis-kit/_hi_collie___detection_param.md)
+            - [HiCollie_SetTimerParam](reference/apis-performance-analysis-kit/_hi_collie___set_timer_param.md)
             - [HiDebug_MemoryLimit](reference/apis-performance-analysis-kit/_hi_debug___memory_limit.md)
             - [HiDebug_NativeMemInfo](reference/apis-performance-analysis-kit/_hi_debug___native_mem_info.md)
             - [HiDebug_SystemMemInfo](reference/apis-performance-analysis-kit/_hi_debug___system_mem_info.md)
