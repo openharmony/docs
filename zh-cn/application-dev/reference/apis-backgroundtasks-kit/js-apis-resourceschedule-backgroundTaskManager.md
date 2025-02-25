@@ -884,7 +884,7 @@ export default class EntryAbility extends UIAbility {
 
 | 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
-| CAR_KEY           | 1    | 车钥匙。当[BackgroundMode](#backgroundmode)包含BLUETOOTH_INTERACTION时生效                  |
+| CAR_KEY           | 1    | 车钥匙。当[BackgroundMode](#backgroundmode)包含BLUETOOTH_INTERACTION时生效。                  |
 
 ## BackgroundModeType<sup>16+</sup>
 
