@@ -1,8 +1,8 @@
-# Serial DDK
+# USB Serial DDK
 
 ## 概述
 
-Serial DDK是为开发者提供的USB Serial DDK设备驱动程序开发套件，此模块提供USB Serial DDK接口，包括枚举类型和USB Serial DDK API使用的数据结构。
+USB Serial DDK是为开发者提供的USB Serial DDK设备驱动程序开发套件，此模块提供USB Serial DDK接口，包括枚举类型和USB Serial DDK API使用的数据结构。
 
 在工业用途场景以及一些老旧设备上，常会使用到串口通信，如：发卡机、身份证读卡器等。通过USB Serial DDK提供的接口，开发者可以开发非标外设扩展驱动，实现USB串口设备的扩展功能。
 
