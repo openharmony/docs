@@ -7530,9 +7530,9 @@ EventResult的构造函数。
 
 ### setGestureEventResult<sup>12+</sup>
 
-设置手势事件消费结果。
-
 setGestureEventResult(result: boolean): void
+
+设置手势事件消费结果。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
