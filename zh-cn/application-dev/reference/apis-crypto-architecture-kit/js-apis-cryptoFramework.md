@@ -56,7 +56,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 是   | 指明对称加解密参数的算法模式。可选值如下:<br/> - "IvParamsSpec": 适用于CBC\|CTR\|OFB\|CFB模式<br/> - "GcmParamsSpec": 适用于GCM模式<br/> - "CcmParamsSpec": 适用于CCM模式 |
+| algName | string | 是   | 是   | 指明对称加解密参数的算法模式。可选值如下：<br/> - "IvParamsSpec": 适用于CBC\|CTR\|OFB\|CFB模式<br/> - "GcmParamsSpec": 适用于GCM模式<br/> - "CcmParamsSpec": 适用于CCM模式 |
 
 > **说明：**
 >
