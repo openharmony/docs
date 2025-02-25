@@ -107,3 +107,54 @@ API 10
 **适配指导**
 
 默认行为变更，无需适配。
+
+## cl.arkui.3 当Image组件的draggable接口接收到异常值时，其默认值将由false更改为true
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+当Image组件的draggable接口接收到异常参数，如undefined或null时，其默认值将从false更改为true，从而默认启用拖拽功能。
+
+**变更影响**
+
+此变更涉及应用适配。
+
+变更前：Image组件的draggable接口默认值为true，当传入异常值时，draggable为false，Image组件不可拖拽。
+
+变更后：Image组件的draggable接口默认值为true，当传入异常值时，draggable为true，Image组件可拖拽。
+
+**起始API Level**
+
+API 9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.47开始。
+
+**变更的接口/组件**
+
+Image组件draggable接口。
+
+**适配指导**
+
+如果为Image组件设置了可拖拽（draggable）接口并传入了异常值，想要保持该组件不可拖拽，应将draggable设置为false。
+
+示例：
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Image($r("app.media.startIcon"))
+        .draggable(undefined)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
