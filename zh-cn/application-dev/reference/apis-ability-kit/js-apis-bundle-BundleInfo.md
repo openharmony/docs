@@ -9,7 +9,7 @@
 
 > 从API version 9开始不再维护，建议使用[bundleManager-BundleInfo](js-apis-bundleManager-bundleInfo.md)替代。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework。
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称                             | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | -------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
@@ -45,7 +45,7 @@
 
 应用运行时需向系统申请的权限集合的详细信息。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework。
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称                  | 类型                    | 只读 | 可选 | 说明                   |
 | --------------------- | ----------------------- | ---- | ---- | ---------------------- |
@@ -57,11 +57,11 @@
 
 ## UsedScene<sup>(deprecated)<sup>
 
-> 从API version 9开始不再维护，建议使用[UsedScene](js-apis-bundleManager-bundleInfo.md)替代。
+> 从API version 9开始不再维护，建议使用[UsedScene](js-apis-bundleManager-bundleInfo.md#usedscene)替代。
 
 描述权限使用的场景和时机。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework。
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |

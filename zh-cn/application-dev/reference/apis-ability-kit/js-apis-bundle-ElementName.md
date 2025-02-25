@@ -11,7 +11,7 @@ ElementName信息，通过接口[Context.getElementName](js-apis-inner-app-conte
 
 ElementName信息，标识Ability的基本信息，通过接口[Context.getElementName](js-apis-inner-app-context.md)获取。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework。
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 
 
