@@ -1,28 +1,28 @@
 # ArrayBuffer Object
 
-The ArrayBuffer contains a native memory. Similar to common objects, JS object shells need to be copied and transferred through serialization and deserialization. However, the native memory has two transmission modes: copy and transfer.
+An ArrayBuffer object contains a block of native memory, and its JS object wrapper is allocated in the local heap of the virtual machine. Similar to a regular object, an ArrayBuffer object requires serialization and deserialization. However, the native memory can be passed in two ways: pass-by-copy and pass-by-transfer.
 
-If copy is used during transmission, deep copy (recursive traversal) is required. After transmission, the two threads can independently access the ArrayBuffer. The following figure shows the communication process.
+When pass-by-copy is used, a deep copy (recursive traversal) is required, and both threads can independently access the ArrayBuffer object after the transmission. The following figure shows the communication process.
 
 ![copy_transfer](figures/copy_transfer.png)
 
-If the transfer mode is used, the original thread cannot use the ArrayBuffer object. In cross-thread scenarios, only the JS shell needs to be rebuilt, and the native memory does not need to be copied, improving efficiency. The following figure shows the communication process.
+If pass-by-transfer is used, the original thread can no longer use the ArrayBuffer object. During inter-thread communication, only the JS shell needs to be reconstructed, and the native memory does not need to be copied, resulting in higher efficiency. The following figure shows the communication process.
 
 ![transfer](figures/transfer.png)
 
-ArrayBuffer can be used to represent resources such as images. During application development, image processing is required (for example, the brightness, saturation, and size of an image need to be adjusted). To avoid blocking the UI main thread, you can transfer the image to a subthread to perform these operations. The transfer mode has higher performance. However, the original thread cannot access the ArrayBuffer object. If both threads need to access the ArrayBuffer object, the copy mode must be used. Otherwise, the transfer mode is recommended to improve performance.
+ArrayBuffer objects can be used to represent resources such as images. In application development, scenarios requiring image processing (such as adjusting an image's brightness, saturation, or size) are common. To avoid blocking the UI main thread, images can be passed to child threads to perform these operations. Pass-by-transfer is more performant, but the original thread can no longer access the ArrayBuffer object. If both threads need access, pass-by-copy should be used; otherwise, pass-by-transfer is recommended to enhance performance.
 
-The following describes how to transfer an image to a subthread by copying and transferring the image.
+The following describes how to pass an image to a child thread using both methods.
 
-## ArrayBuffer copy transfer mode
+## Pass-by-Copy
 
-In ArkTS, when the TaskPool transfers ArrayBuffer data, the transfer mode is used by default. You can call the setTransferList () API to specify the transfer mode as the transfer mode for some data and switch the copy mode for other data.
+In ArkTS, TaskPool defaults to passing ArrayBuffer data by transfer. By calling the **setTransferList()** interface, you can specify which parts of the data should be passed by transfer, while the rest can be switched to pass-by-copy.
 
-First, implement an interface that needs to be executed in a task to process ArrayBuffer.
+First, implement an interface for processing the ArrayBuffer that will be executed in the Task.
 
-Then, the ArrayBuffer data is transferred to the task in copy mode, and the ArrayBuffer is processed in the task.
+Then, pass the ArrayBuffer data to the Task by copy and process it within the Task.
 
-Finally, the UI main thread receives the ArrayBuffer data returned after the task is executed and combines the data for display.
+Finally, the UI main thread receives the ArrayBuffer data returned after the Task execution and concatenates the data for display.
 
 ```ts
 // Index.ets
@@ -31,14 +31,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 @Concurrent
 function adjustImageValue(arrayBuffer: ArrayBuffer): ArrayBuffer {
-  // Perform operations on arrayBuffer.
-  return arrayBuffer; // The return value is transferred by default.
+  // Perform operations on the ArrayBuffer.
+  return arrayBuffer;  // The return value is passed by transfer by default.
 }
 
 function createImageTask(arrayBuffer: ArrayBuffer, isParamsByTransfer: boolean): taskpool.Task {
   let task: taskpool.Task = new taskpool.Task(adjustImageValue, arrayBuffer);
-  if (!isParamsByTransfer) {// Whether to use the transfer mode
-    // Transfer an empty array []. All arrayBuffer parameters are transferred in copy mode.
+  if (!isParamsByTransfer) { // Whether to use pass-by-transfer.
+    // Pass an empty array [] to indicate that all ArrayBuffer parameters should be passed by copy.
     task.setTransferList([]);
   }
   return task;
@@ -63,15 +63,15 @@ struct Index {
           let taskNum = 4;
           let arrayBuffer = new ArrayBuffer(1024 * 1024);
           let taskPoolGroup = new taskpool.TaskGroup();
-          // Create a certain number of tasks based on the input taskNum.
+          // Create taskNum tasks.
           for (let i: number = 0; i < taskNum; i++) {
             let arrayBufferSlice: ArrayBuffer = arrayBuffer.slice(arrayBuffer.byteLength / taskNum * i, arrayBuffer.byteLength / taskNum * (i + 1));
-            // Use the copy method to transmit the ArrayBuffer object. Therefore, isParamsByTransfer is false.
+            // To pass the ArrayBuffer object by copy, set isParamsByTransfer to false.
             taskPoolGroup.addTask(createImageTask(arrayBufferSlice, false));
           }
-          // Execute the task.
+          // Execute the tasks.
           taskpool.execute(taskPoolGroup).then((data) => {
-            // Return the result. Combine the arrays to obtain the final result.
+            // Concatenate the results to obtain the final result.
           }).catch((e: BusinessError) => {
             console.error(e.message);
           })
@@ -83,6 +83,6 @@ struct Index {
 }
 ```
 
-## ArrayBuffer transfer mode
+## Pass-by-Transfer
 
-In the TaskPool, the transfer mode is used by default when the ArrayBuffer data is transferred. The original thread cannot use the ArrayBuffer data transferred to the subthread. Therefore, based on the preceding example, you can remove the task.setTransferList interface, that is, set the second parameter of createImageTask to true.
+TaskPool defaults to passing ArrayBuffer data by transfer, and the original thread can no longer use the ArrayBuffer passed to the child thread. To achieve this, simply remove the **task.setTransferList** interface call in the preceding code, meaning the second parameter of **createImageTask** should be **true**.
