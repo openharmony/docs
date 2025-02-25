@@ -337,7 +337,7 @@ try {
 
 startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&lt;number&gt;): void
 
-Starts BLE advertising. This API uses an asynchronous callback to return the result. Starting from API15, multiple calls can start multiple advertising, each managed by a different ID.
+Starts BLE advertising. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -429,7 +429,7 @@ try {
 
 startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 
-Starts BLE advertising. This API uses a promise to return the result. Starting from API15, multiple calls can start multiple advertising, each managed by a different ID.
+Starts BLE advertising. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
