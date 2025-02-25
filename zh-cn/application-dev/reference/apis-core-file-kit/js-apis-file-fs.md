@@ -28,7 +28,8 @@ import { fileIo as fs } from '@kit.CoreFileKit';
   }
   ```
 
-使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径。表示沙箱路径的字符串称为path，获取方式及其接口用法请参考：[应用上下文Context-获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。将指向资源的字符串称为URI。对于只支持path作为入参的接口可使用构造fileUri对象并获取其path属性的方式将URI转换为path，然后使用文件接口。URI定义解及其转换方式请参考:[文件URI](../../../application-dev/reference/apis-core-file-kit/js-apis-file-fileuri.md)
+使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径。表示沙箱路径的字符串称为path，获取方式及其接口用法请参考：[应用上下文Context-获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
+将指向资源的字符串称为URI。对于只支持path作为入参的接口可使用构造fileUri对象并获取其path属性的方式将URI转换为path，然后使用文件接口。URI定义解及其转换方式请参考:[文件URI](../../../application-dev/reference/apis-core-file-kit/js-apis-file-fileuri.md)。
 
 ## fs.stat
 
@@ -82,7 +83,7 @@ stat(file: string | number, callback: AsyncCallback&lt;Stat&gt;): void
 
 | 参数名   | 类型                               | 必填 | 说明                           |
 | -------- | ---------------------------------- | ---- | ------------------------------ |
-| file     | string \| number                            | 是   | 文件应用沙箱路径path或已打开的文件描述符fd。     |
+| file     | string \| number                   | 是   | 文件应用沙箱路径path或已打开的文件描述符fd。     |
 | callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是   | 异步获取文件的信息之后的回调。 |
 
 **错误码：**
@@ -150,7 +151,7 @@ access(path: string, mode?: AccessModeType): Promise&lt;boolean&gt;
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | 是   | 文件应用沙箱路径。                                   |
-| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | 否   | 文件校验的权限。                                   |
+| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | 否   | 文件校验的权限。|
 
 **返回值：**
 
@@ -164,8 +165,8 @@ access(path: string, mode?: AccessModeType): Promise&lt;boolean&gt;
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | 1. 未指定必须的参数 2. 参数类型与接口定义不匹配 |
-| 13900020 | 非法参数值 |
+| 401 | 1. 未指定必须的参数；2. 参数类型与接口定义不匹配。 |
+| 13900020 | 非法参数值。 |
 
 **示例：**
 
@@ -203,7 +204,7 @@ access(path: string, mode: AccessModeType, flag: AccessFlagType): Promise&lt;boo
 
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;boolean&gt; | Promise对象。返回布尔值，true，表示文件存在本地且具有相关权限；false，表示文件不存在本地或不具有相关权限。 |
+  | Promise&lt;boolean&gt; | Promise对象。返回布尔值。true：表示文件存在本地且具有相关权限；false：表示文件不存在本地或不具有相关权限。 |
 
 **错误码：**
 
@@ -211,8 +212,8 @@ access(path: string, mode: AccessModeType, flag: AccessFlagType): Promise&lt;boo
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | 1. 未指定必须的参数 2. 参数类型与接口定义不匹配 |
-| 13900020 | 非法参数值 |
+| 401 | 1. 未指定必须的参数；2. 参数类型与接口定义不匹配。 |
+| 13900020 | 非法参数值。 |
 
 **示例：**
 
@@ -245,7 +246,7 @@ access(path: string, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                    | 是   | 文件应用沙箱路径。                                   |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 异步检查文件是否存在的回调，如果存在，回调返回true，否则返回false。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 异步检查文件是否存在的回调。如果存在，回调返回true；否则返回false。 |
 
 **错误码：**
 
@@ -253,8 +254,8 @@ access(path: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | 1. 未指定必须的参数 2. 参数类型与接口定义不匹配 |
-| 13900020 | 非法参数值 |
+| 401 | 1. 未指定必须的参数；2. 参数类型与接口定义不匹配。 |
+| 13900020 | 非法参数值。|
 
 **示例：**
 
@@ -289,7 +290,7 @@ accessSync(path: string, mode?: AccessModeType): boolean
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | 是   | 文件应用沙箱路径。                                   |
-| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | 否   | 文件校验的权限。                                   |
+| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | 否   | 文件校验的权限。 |
 
 **返回值：**
 
@@ -303,8 +304,8 @@ accessSync(path: string, mode?: AccessModeType): boolean
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | 1. 未指定必须的参数 2. 参数类型与接口定义不匹配 |
-| 13900020 | 非法参数值 |
+| 401 | 1. 未指定必须的参数；2. 参数类型与接口定义不匹配。 |
+| 13900020 | 非法参数值。 |
 
 **示例：**
 
@@ -352,8 +353,8 @@ accessSync(path: string, mode: AccessModeType, flag: AccessFlagType): boolean
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | 1. 未指定必须的参数 2. 参数类型与接口定义不匹配 |
-| 13900020 | 非法参数值 |
+| 401 | 1. 未指定必须的参数；2. 参数类型与接口定义不匹配。 |
+| 13900020 | 非法参数值。 |
 
 **示例：**
 
@@ -387,7 +388,7 @@ close(file: number | File): Promise&lt;void&gt;
 
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
-  | file   | number \| [File](#file) | 是    | 已打开的File对象或已打开的文件描述符fd，关闭后file对象或文件描述符不再具备实际意义，不可再用于进行读写等操作。 |
+  | file   | number \| [File](#file) | 是    | 已打开的File对象或已打开的文件描述符fd。关闭后file对象或文件描述符不再具备实际意义，不可再用于进行读写等操作。 |
 
 **返回值：**
 
@@ -426,7 +427,7 @@ close(file: number | File, callback: AsyncCallback&lt;void&gt;): void
 
   | 参数名      | 类型                        | 必填   | 说明           |
   | -------- | ------------------------- | ---- | ------------ |
-  | file       | number \| [File](#file)                  | 是    | 已打开的File对象或已打开的文件描述符fd，关闭后file对象或文件描述符不再具备实际意义，不可再用于进行读写等操作。 |
+  | file       | number \| [File](#file)        | 是    | 已打开的File对象或已打开的文件描述符fd。关闭后file对象或文件描述符不再具备实际意义，不可再用于进行读写等操作。 |
   | callback | AsyncCallback&lt;void&gt; | 是    | 异步关闭文件之后的回调。 |
 
 **错误码：**
@@ -462,7 +463,7 @@ closeSync(file: number | File): void
 
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
-  | file   | number \| [File](#file) | 是    | 已打开的File对象或已打开的文件描述符fd，关闭后file对象或文件描述符不再具备实际意义，不可再用于进行读写等操作。 |
+  | file   | number \| [File](#file) | 是    | 已打开的File对象或已打开的文件描述符fd。关闭后file对象或文件描述符不再具备实际意义，不可再用于进行读写等操作。 |
 
 **错误码：**
 
@@ -482,7 +483,7 @@ copy(srcUri: string, destUri: string, options?: CopyOptions): Promise\<void>
 
 拷贝文件或者目录，使用Promise异步返回。
 
-支持跨设备拷贝。强制覆盖拷贝。入参支持文件或目录URI。
+支持跨设备拷贝。强制覆盖拷贝。入参支持文件或目录URI。\n
 跨端拷贝时，限制同时最多存在10个拷贝任务；单次拷贝的文件数量不得超过500个。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
@@ -541,15 +542,15 @@ copy(srcUri: string, destUri: string, callback: AsyncCallback\<void>): void
 
 拷贝文件或者目录，使用callback异步回调。
 
-支持跨设备拷贝。强制覆盖拷贝。入参支持文件或目录URI。
+支持跨设备拷贝。强制覆盖拷贝。入参支持文件或目录URI。\n
 跨端拷贝时，限制同时最多存在10个拷贝任务；单次拷贝的文件数量不得超过500个。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
 
-  | 参数名  | 类型                         | 必填   | 说明                                       |
-  | ---- | -------------------------- | ---- | ---------------------------------------- |
+  | 参数名  | 类型    | 必填   | 说明          |
+  | ---- | ------------------ | ---- | ----------------------------|
   | srcUri  | string | 是    | 待复制文件或目录的uri。                      |
   | destUri | string | 是    | 目标文件或目录的uri。                          |
   | callback | AsyncCallback\<void>| 是| 异步拷贝之后的回调。|
@@ -589,7 +590,7 @@ copy(srcUri: string, destUri: string, options: CopyOptions, callback: AsyncCallb
 
 拷贝文件或者目录，使用callback异步回调。
 
-支持跨设备拷贝。强制覆盖拷贝。入参支持文件或目录URI。
+支持跨设备拷贝。强制覆盖拷贝。入参支持文件或目录URI。\n
 跨端拷贝时，限制同时最多存在10个拷贝任务；单次拷贝的文件数量不得超过500个。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
