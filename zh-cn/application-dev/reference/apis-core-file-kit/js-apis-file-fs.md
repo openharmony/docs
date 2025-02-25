@@ -988,7 +988,7 @@ dup(fd: number): File
 
 connectDfs(networkId: string, listeners: DfsListeners): Promise&lt;void&gt;
 
-业务调用connectDfs接口，触发建链，如果对端设备出现异常，业务执行回调DfsListeners内[onStatus](#onstatus12)通知应用。
+业务调用connectDfs接口，触发建链。如果对端设备出现异常，业务执行回调DfsListeners内[onStatus](#onstatus12)通知应用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1118,7 +1118,7 @@ setxattr(path: string, key: string, value: string): Promise&lt;void&gt;
   ```
 ## fs.setxattrSync<sup>12+</sup>
 
-setxattrSync(path: string, key: string, value: string): void;
+setxattrSync(path: string, key: string, value: string): void
 
 设置文件的扩展属性。
 
@@ -1197,7 +1197,7 @@ getxattr(path: string, key: string): Promise&lt;string&gt;
 
 ## fs.getxattrSync<sup>12+</sup>
 
-getxattrSync(path: string, key: string): string;
+getxattrSync(path: string, key: string): string
 
 使用同步接口获取文件的扩展属性。
 
