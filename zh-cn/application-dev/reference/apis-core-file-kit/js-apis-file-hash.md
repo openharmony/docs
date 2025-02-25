@@ -28,7 +28,7 @@ import { hash } from '@kit.CoreFileKit';
   }
   ```
 
-使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：[应用上下文Context-获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)
+使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：[应用上下文Context-获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
 
 ## hash.hash
 
@@ -36,7 +36,7 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
 
 计算文件的哈希值，使用Promise异步回调。
 
-**原子化服务API:** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：**从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -80,7 +80,7 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 
 计算文件的哈希值，使用callback异步回调。
 
-**原子化服务API:** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：**从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -132,7 +132,7 @@ createHash(algorithm: string): HashStream;
 
   | 类型            | 说明         |
   | ------------- | ---------- |
-  | [HashStream](#hashstream12) | HashStream 类的实例 |
+  | [HashStream](#hashstream12) | HashStream 类的实例。 |
 
 **错误码：**
 
