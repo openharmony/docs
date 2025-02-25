@@ -1,10 +1,11 @@
-# Importing a Native Module
+# Statically Loading Native Modules
 
-In ECMAScript 6.0 (ES6) module design, the community uses the **import** syntax to load the content exported from other files (the ECMA specification defines the syntax specifications).
-To help you easily use this feature to import the content exported from the native module (.so), ArkTS performs adaptation and provides several import methods.
+In ECMAScript 6.0 (ES6) module design, the **import** syntax is used to load content exported by other files, as defined by the ECMAScript specification.
+
+To help you easily import content exported from native modules (.so), ArkTS has adapted and supports the following methods:
 
 ## Direct Import
-Export the content from the **index.d.ts** file of a native module, and then import the content to the file.
+Export content from the **index.d.ts** file of a native module, and then import the content to the file.
 
 ### Named Import
 ```ts
@@ -41,7 +42,7 @@ add.add(2, 3);
 
 ## Indirect Import
 
-### Converting to Named Variables Before Export and Import
+### Export as Named Variables and Import
 ```ts
 // test1.ets
 import hilog from '@ohos.hilog'
@@ -53,7 +54,7 @@ import { hilog } from './test1'
 hilog.info(0x000, 'testTag', '%{public}s', 'test');
 ```
 
-### Converting to Namespaces Before Export and Import
+### Export as Namespaces and Import
 ```ts
 // index.d.ts corresponding to libentry.so
 export const add: (a: number, b: number) => number;
@@ -67,8 +68,8 @@ export * from 'libentry.so'
 import { add } from './test1'
 add(2, 3);
 ```
-Note: Namespaces cannot be used simultaneously during the export and import of native modules. 
-**Negative example:** 
+**Note**: Native modules do not support both export and import using namespaces simultaneously. 
+**Anti-example:**
 ```ts
 // test1.ets
 export * from 'libentry.so'
@@ -104,8 +105,8 @@ import('./test1').then((ns:ESObject) => {
 })
 ```
 
-**Note**: When dynamic loading is not supported, a file must be exported using the namespace. 
-**Negative example:** 
+**Note**: Dynamic imports do not support exporting files using namespace exports. 
+**Anti-example:**
 ```ts
 // test1.ets
 export * from 'libentry.so'
