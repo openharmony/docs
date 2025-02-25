@@ -279,7 +279,7 @@ enum ArkUI_InteractionHand
 
 定义事件是由左手点击触发还是右手点击触发。
 
-**起始版本：** 16
+**起始版本：** 15
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -1452,6 +1452,8 @@ int32_t OH_ArkUI_UIInputEvent_GetType (const ArkUI_UIInputEvent * event)
 **返回：**
 
 返回当前UI输入事件的类型，如果参数异常则返回0。
+
+
 ### OH_ArkUI_PointerEvent_GetInteractionHand()
 
 ```
@@ -1461,7 +1463,38 @@ int32_t OH_ArkUI_PointerEvent_GetInteractionHand (const ArkUI_UIInputEvent * eve
 
 获取当前触摸事件是左手点击触发还是右手点击触发。
 
-**起始版本：** 16
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。  | 
+| hand | 返回当前事件识别的交互手。  | 
+
+
+### OH_ArkUI_PointerEvent_GetInteractionHandByIndex()
+
+```
+int32_t OH_ArkUI_PointerEvent_GetInteractionHandByIndex (const ArkUI_UIInputEvent * event, int32_t pointerIndex, ArkUI_InteractionHand * hand)
+```
+**描述：**
+
+获取当前触摸事件是左手点击触发还是右手点击触发。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。  | 
+| pointerIndex | 表示多点触控数据列表中的序号。  | 
+| hand | 返回指定手指的交互手。  | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### OH_ArkUI_FocusAxisEvent_GetAxisValue()
@@ -1480,23 +1513,6 @@ double OH_ArkUI_FocusAxisEvent_GetAxisValue (const ArkUI_UIInputEvent * event，
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | 表示指向当前UI输入事件的指针。  | 
-| hand | 返回当前事件识别的交互手。  | 
-
-**返回：**
-
-[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
-
-
-### OH_ArkUI_PointerEvent_GetInteractionHandByIndex()
-
-```
-int32_t OH_ArkUI_PointerEvent_GetInteractionHandByIndex (const ArkUI_UIInputEvent * event, int32_t pointerIndex, ArkUI_InteractionHand * hand)
-```
-**描述：**
-
-获取当前触摸事件是左手点击触发还是右手点击触发。
-
-**起始版本：** 16
 | axis | 焦点轴事件的轴类型。  | 
 
 **返回：**
@@ -1520,12 +1536,6 @@ int32_t OH_ArkUI_FocusAxisEvent_SetStopPropagation (const ArkUI_UIInputEvent * e
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | 表示指向当前UI输入事件的指针。  | 
-| pointerIndex | 表示多点触控数据列表中的序号。  | 
-| hand | 返回指定手指的交互手。  | 
-
-**返回：**
-
-[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 | stopPropagation | 是否阻止事件冒泡。  | 
 
 **返回：**
