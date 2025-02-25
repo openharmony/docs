@@ -2,7 +2,7 @@
 
 设备上报的触摸（触屏）事件，继承自[InputEvent](./js-apis-inputevent.md)。
 
->  **说明：**
+> **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -16,7 +16,7 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 
 触摸事件类型。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.Core
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
 
 | 名称     | 值   | 说明   |
 | ------ | ------ | ---- |
@@ -29,7 +29,7 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 
 操作触摸的工具类型。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.Core
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
 
 | 名称       | 值   | 说明   |
 | -------- | ------ | ---- |
@@ -46,7 +46,7 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 
 触摸来源的设备类型。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.Core
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
 
 | 名称           | 值  | 说明   |
 | ------------ | ------ | ---- |
@@ -58,7 +58,7 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 
 触摸点信息。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.Core
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
 
 | 名称          | 类型   | 可读   | 可写   | 说明                                  |
 | ----------- | ------ | ---- | ---- | ----------------------------------- |
@@ -68,11 +68,11 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 | screenY     | number | 是    | 否    | 触摸位置所属的屏幕y坐标。                        |
 | windowX     | number | 是    | 否    | 触摸位置在窗口中的x坐标。                        |
 | windowY     | number | 是    | 否    | 触摸位置在窗口中的y坐标。                        |
-| pressure    | number | 是    | 否    | 压力值，取值范围是[0.0, 1.0], 0.0表示不支持。       |
+| pressure    | number | 是    | 否    | 压力值，取值范围是[0.0, 1.0]，0.0表示不支持。       |
 | width       | number | 是    | 否    | 触摸区域的宽度。                           |
 | height      | number | 是    | 否    | 触摸区域的高度。                           |
-| tiltX       | number | 是    | 否    | 相对YZ平面的角度,取值的范围[-90, 90]，其中正值是向右倾斜。 |
-| tiltY       | number | 是    | 否    | 相对XZ平面的角度,值的范围[-90, 90]，其中正值是向下倾斜。 |
+| tiltX       | number | 是    | 否    | 相对YZ平面的角度，取值的范围[-90, 90]，其中正值是向右倾斜。 |
+| tiltY       | number | 是    | 否    | 相对XZ平面的角度，值的范围[-90, 90]，其中正值是向下倾斜。 |
 | toolX       | number | 是    | 否    | 工具区域的中心点x坐标。                           |
 | toolY       | number | 是    | 否    | 工具区域的中心点y坐标。                           |
 | toolWidth   | number | 是    | 否    | 工具区域宽度。                              |
@@ -85,7 +85,7 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 
 触屏事件。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.Core
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
 
 | 名称         | 类型       | 可读   | 可写   | 说明        |
 | ---------- | ---------- | ---- | ---- | --------- |
