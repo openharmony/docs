@@ -28,7 +28,7 @@ ArcButton有上弧形按钮和下弧形按钮两种类型。使用[position](../
 
 - 下弧形按钮（默认类型）。
 
-  通过将[position](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md#arcbuttonoptions)属性设置为ArcButtonPosition.BOTTOM_EDGE，可以将按钮设置为上弧形按钮。
+  通过将[position](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md#arcbuttonoptions)属性设置为ArcButtonPosition.BOTTOM_EDGE，可以将按钮设置为下弧形按钮。
 
   ```ts
   ArcButton({
@@ -102,7 +102,7 @@ ArcButton有上弧形按钮和下弧形按钮两种类型。使用[position](../
     options: new ArcButtonOptions({
       label: 'OK',
       shadowEnabled: true,
-      shadowColor: ColorMetrics.resourceColor('#707070')
+      shadowColor: ColorMetrics.resourceColor('#ffec1022')
     })
   })
   ```

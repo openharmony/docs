@@ -98,9 +98,9 @@ UX规范变更。
 
 此变更不涉及应用适配。
 
-- 变更前：Tabs组件的TabBar上滑隐藏，下滑消失，2s不操作后自动显示。
+- 变更前：Tabs组件的TabBar上滑隐藏，下滑显示，2s不操作后自动显示。
   
-- 变更后：Tabs组件的TabBar上滑隐藏，下滑消失，2s不操作后不会自动显示。
+- 变更后：Tabs组件的TabBar上滑隐藏，下滑显示，2s不操作后不会自动显示。
 
 **起始API Level**
 
@@ -151,3 +151,41 @@ UIContext的bindTabsToScrollable、bindTabsToNestedScrollable接口
 **适配指导**
 
 默认行为变更，无需适配。
+
+## cl.arkui.5 MenuItem高度设置百分比情况下文本垂直对齐方式由顶部对齐变更为居中对齐
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规范变更。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+- 变更前：MenuItem高度设置百分比，菜单项文本垂直方向顶部对齐。
+  
+- 变更后：MenuItem高度设置百分比，菜单项文本垂直方向居中对齐。
+
+| 变更前 | 变更后 |
+|---------|---------|
+|  ![变更前](figures/MenuItemHeightPercent_before.png)       |  ![变更后](figures/MenuItemHeightPercent_after.png)       |
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.52开始。
+
+**变更的接口/组件**
+
+MenuItem组件
+
+**适配指导**
+
+默认效果变更，无需适配。

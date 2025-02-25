@@ -1682,8 +1682,7 @@ try {
 | additionalInfo<sup>10+</sup> | string | 否 |应用安装时的额外信息，默认值为空，最大长度为3000字节。该字段通常由操作系统运营方的应用市场在安装企业应用时指定，用于保存应用的额外信息。 |
 | verifyCodeParams<sup>deprecated<sup> | Array<[VerifyCodeParam](#verifycodeparamdeprecated)> | 否 | 代码签名文件参数，默认值为空。         |
 | pgoParams<sup>11+</sup> | Array<[PGOParam](#pgoparam11)> | 否 | PGO配置文件参数，默认值为空。         |
-| parameters<sup>15+</sup> | Array<[Parameters](#parameters15)> | 否 | 扩展参数，默认值为空。         |
-
+| parameters<sup>15+</sup> | Array<[Parameters](#parameters15)> | 否 | 扩展参数，默认值为空，当前取值支持：</br> - Parameters.key为"ohos.bms.param.verifyUninstallForced"，若对应的value为“true”，表示强制卸载预置应用。</br> - Parameters.key为"ohos.bms.param.verifyUninstallRule"，若对应的value为“true”，表示设置卸载处置规则，用于拦截应用卸载。</br> 若同时配置(“ohos.bms.param.verifyUninstallRule”, “true”)和(“ohos.bms.param.verifyUninstallForced", “true”)，则卸载规则以后者为准。      |
 ## UninstallParam<sup>10+</sup>
 
 共享包卸载需指定的参数信息。
