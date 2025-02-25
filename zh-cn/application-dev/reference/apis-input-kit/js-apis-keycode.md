@@ -158,11 +158,11 @@ import { KeyCode } from '@kit.InputKit';
 | KEYCODE_NUMPAD_ADD               |  2116 | 小键盘按键'+'。                    |
 | KEYCODE_NUMPAD_DOT               |  2117 | 小键盘按键'.'。                    |
 | KEYCODE_NUMPAD_COMMA             |  2118 | 小键盘按键','。                    |
-| KEYCODE_NUMPAD_ENTER             |  2119 | 小键盘按键回车                     |
+| KEYCODE_NUMPAD_ENTER             |  2119 | 小键盘按键回车。                     |
 | KEYCODE_NUMPAD_EQUALS            |  2120 | 小键盘按键'='。                    |
 | KEYCODE_NUMPAD_LEFT_PAREN        |  2121 | 小键盘按键'('。                    |
 | KEYCODE_NUMPAD_RIGHT_PAREN       |  2122 | 小键盘按键')'。                    |
-| KEYCODE_VIRTUAL_MULTITASK        |  2210 | 虚拟多任务键                      |
+| KEYCODE_VIRTUAL_MULTITASK        |  2210 | 虚拟多任务键。                      |
 | KEYCODE_BUTTON_A<sup>16+</sup>   |  2301 | 游戏手柄按键'A'。            |
 | KEYCODE_BUTTON_B<sup>16+</sup>   |  2302 | 游戏手柄按键'B'。            |
 | KEYCODE_BUTTON_X<sup>16+</sup>   |  2304 | 游戏手柄按键'X'。            |
