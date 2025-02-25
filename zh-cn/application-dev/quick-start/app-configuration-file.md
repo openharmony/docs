@@ -90,7 +90,7 @@ app.json5配置文件包含以下标签。
 
 分层图标的配置方式如下：
 
-1. 将图标的前景资源和背景资源放在AppScope/resources/base/media目录下。
+1. 将图标的前景资源和背景资源放在AppScope/resources/base/media目录下，或使用目录下默认存放的前景资源和背景资源。
 
 2. 上述media目录下存在一个分层图标配置文件（layered-image.json），在文件中引用前景资源和背景资源，详见[图标资源规范](https://developer.huawei.com/consumer/cn/doc/design-guides/application-icon-0000001953444009#section634668113212)。
 
