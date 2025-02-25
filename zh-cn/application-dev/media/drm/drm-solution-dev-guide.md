@@ -31,7 +31,7 @@ DRM HDI API 的 IDL 构建完成后，可以在`//ohos/out/产品型号/gen/driv
 
 创建插件目录，参考如下：
 ```
-//drivers/peripheral/clearplay。
+//drivers/peripheral/clearplay
 .
 ├── BUILD.gn     # 模块编译BUILD.gn。
 ├── bundle.json  # 部件配置。
@@ -52,7 +52,7 @@ DRM HDI API 的 IDL 构建完成后，可以在`//ohos/out/产品型号/gen/driv
 驱动入口实现可以参考`//ohos/out/产品型号/gen/drivers/interface/drm/v1_0/media_key_system_factory_driver.cpp`，需要驱动入口实现中修改以下几点，并手动配置编译：
 
 ```
-using namespace OHOS::HDI::Drm::V1_0; // 1.本文中 V1_0 为 HDI API 版本号，需根据不同版本进行变更。
+using namespace OHOS::HDI::Drm::V1_0; // 1. 本文中 V1_0 为 HDI API 版本号，需根据不同版本进行变更。
 
 struct HdfMediaKeySystemFactoryHost {
     struct IDeviceIoService ioService;
