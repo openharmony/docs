@@ -33,7 +33,7 @@ getUserDownloadDir(): string
 | 错误码ID    | 错误信息       |
 |----------| --------- |
 | 801      | Capability not supported. |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -70,7 +70,7 @@ getUserDesktopDir(): string
 | 错误码ID    | 错误信息       |
 |----------| --------- |
 | 801      | Capability not supported. |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -107,7 +107,7 @@ getUserDocumentDir(): string
 | 错误码ID    | 错误信息       |
 |----------| --------- |
 | 801      | Capability not supported. |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error. |
 
 **示例：**
 
