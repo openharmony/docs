@@ -790,7 +790,6 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 |mergeMode<sup>15+</sup>  | [MergeTypeMode](#mergetypemode15)                             |否    | 开启聚合视图模式，支持拉起文件管理应用的聚合视图。默认为DEFAULT，表示该参数不生效，非聚合视图。当该参数置为非DEFAULT时，其他参数不生效。仅支持手机设备。|    
 | isSupportEncryption<sup>16+</sup>    | boolean | 否   | 布尔值，是否支持加密。该参数为true时，在picker界面可以选择对文件进行加密。 **系统能力：** SystemCapability.FileManagement.UserFileService  |     
 
-
 ## DocumentPickerMode<sup>12+</sup>
 
 枚举，picker选择的文档类型。
