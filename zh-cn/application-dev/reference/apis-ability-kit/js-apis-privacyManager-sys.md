@@ -258,7 +258,7 @@ setPermissionUsedRecordToggleStatus(status: boolean): Promise&lt;void&gt;
 
 status为true时，[addPermissionUsedRecord](#privacymanageraddpermissionusedrecord)接口可以正常添加使用记录；status为false时，[addPermissionUsedRecord](#privacymanageraddpermissionusedrecord)接口不记录权限使用记录，并且删除当前用户的历史记录。
 
-**需要权限：** ohos.permission.PERMISSION_USED_STATS，仅系统应用可用。
+**需要权限：** ohos.permission.PERMISSION_RECORD_TOGGLE，仅系统应用可用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
