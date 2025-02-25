@@ -16,7 +16,7 @@ HiCollie模块对外提供检测业务线程卡死、卡顿，以及上报卡死
 >
 > 业务线程卡顿故障日志规格，可参考：[MAIN_THREAD_JANK-主线程超时事件规格](./hiappevent-watcher-mainthreadjank-events.md#主线程超时事件规格)。
 
-API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiCollie](../reference/apis-performance-analysis-kit/_hi_hicollie.md)。
+API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiCollie](../reference/apis-performance-analysis-kit/_hi_collie.md)。
 
 ## 开发步骤
 
