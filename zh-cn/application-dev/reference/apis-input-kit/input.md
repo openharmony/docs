@@ -1291,7 +1291,7 @@ Input_Hotkey* OH_Input_CreateHotkey ()
 
 **返回：**
 
-如果操作成功，则返回一个[Input_Hotkey](#input_hotkey)指针对象。 否则，返回一个空指针，可能的原因是内存分配失败。
+如果操作成功，则返回一个[Input_Hotkey](#input_hotkey)指针对象。否则，返回一个空指针，可能的原因是内存分配失败。
 
 
 ### OH_Input_CreateKeyEvent()
