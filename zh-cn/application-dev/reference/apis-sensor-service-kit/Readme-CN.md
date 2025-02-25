@@ -1,5 +1,4 @@
-# Sensor Service Kit（传感器服务）<!--sensor-service-api-->
-
+# Sensor Service Kit（传感器服务）
 - ArkTS API<!--sensor-service-arkts-->
   - [@ohos.sensor(传感器)](js-apis-sensor.md)
   - [@ohos.vibrator(振动)](js-apis-vibrator.md)
