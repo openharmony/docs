@@ -1,4 +1,4 @@
-# BASE DDK
+# Base DDK
 
 
 ## 概述
@@ -33,7 +33,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [DDK_RetCode](#ddk_retcode) | BASE DDK 错误码定义。  | 
+| [DDK_RetCode](#ddk_retcode) | Base DDK 错误码定义。  | 
 
 
 ### 函数
@@ -58,7 +58,7 @@ enum DDK_RetCode
 
 **描述:**
 
-BASE DDK 错误码定义。
+Base DDK 错误码定义。
 
 | 枚举值 | 描述 |
 | -------- | -------- |
