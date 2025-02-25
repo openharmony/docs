@@ -5190,3 +5190,17 @@ With this permission, the application can perform operations such as taking scre
 **Enable via ACL**: true
 
 **Valid since**: 14
+
+### ohos.permission.ACCESS_STARTUPGUIDE
+
+Allows a system application to access common data and common events of the startup wizard.
+
+This permission is available only to the applications on smartphones, tablets, and 2-in-1 devices.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：16
