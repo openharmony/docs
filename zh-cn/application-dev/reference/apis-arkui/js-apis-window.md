@@ -73,12 +73,12 @@ import { window } from '@kit.ArkUI';
 
 | 名称                                   | 类型 |  必填 | 说明                                                         |
 | -------------------------------------- | -------- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   |  否   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#0x66000000'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| statusBarColor                         | string   |  否   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#66000000'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  |  否   | 状态栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| statusBarContentColor<sup>8+</sup>     | string   |  否   | 状态栏文字颜色。当设置此属性后， `isStatusBarLightIcon`属性设置无效。默认值：`'#0xE5FFFFFF'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| navigationBarColor                     | string   |  否   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#0x66000000'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| statusBarContentColor<sup>8+</sup>     | string   |  否   | 状态栏文字颜色。当设置此属性后， `isStatusBarLightIcon`属性设置无效。默认值：`'#E5FFFFFF'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| navigationBarColor                     | string   |  否   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#66000000'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  否   | 导航栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
-| navigationBarContentColor<sup>8+</sup> | string   |  否   | 导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`'#0xE5FFFFFF'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| navigationBarContentColor<sup>8+</sup> | string   |  否   | 导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`'#E5FFFFFF'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
 | enableStatusBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能状态栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager|
 | enableNavigationBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能导航栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager|
 
@@ -92,7 +92,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称   | 类型 | 只读 | 可选 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| statusBarContentColor   | string   | 是   | 是   | 状态栏文字颜色。默认值：`'#0xE5FFFFFF'`。|
+| statusBarContentColor   | string   | 是   | 是   | 状态栏文字颜色。默认值：`'#E5FFFFFF'`。|
 
 ## Orientation<sup>9+</sup>
 
