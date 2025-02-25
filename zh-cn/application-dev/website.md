@@ -344,6 +344,7 @@
               - [Sendable对象简介](arkts-utils/arkts-sendable.md)
               - [Sendable使用规则与约束](arkts-utils/sendable-constraints.md)
               - [异步锁](arkts-utils/arkts-async-lock-introduction.md)
+              - [异步等待](arkts-utils/arkts-condition-variable-introduction.md)
               - [ASON解析与生成](arkts-utils/ason-parsing-generation.md)
               - [共享容器](arkts-utils/arkts-collections-introduction.md)
               - [共享模块](arkts-utils/arkts-sendable-module.md)
@@ -1153,9 +1154,20 @@
           - 应用账号<!--application-account-->
             - [管理应用账号](basic-services/account/manage-application-account.md)
         - USB服务<!--usb-->
-          - [USB服务开发概述](basic-services/usb/usb-overview.md)
+          <!--Del-->
+          - [USB服务简介](basic-services/usb/usb-overview.md)
           - [USB服务开发指导](basic-services/usb/usb-guidelines.md)
-          - [常见问题](basic-services/usb/../faqs/faqs-usb.md)
+          <!--DelEnd-->
+          - 开发USB服务<!--usb-dev-->
+            - [USB服务开发概述](basic-services/usb/usbManager/usbHost-overview.md)
+            - USB Host模式开发<!--usb-host-dev-->
+              - [USB设备管理](basic-services/usb/usbManager/usbHost/deviceManager.md)
+              - [USB控制传输](basic-services/usb/usbManager/usbHost/controlTransfer.md)
+              - [USB中断传输](basic-services/usb/usbManager/usbHost/interruptTransfer.md)
+              - [USB批量传输](basic-services/usb/usbManager/usbHost/bulkTransfer.md)
+              - [USB同步传输](basic-services/usb/usbManager/usbHost/isochronousTransfer.md)
+          - [常见问题](basic-services/usb/faqs-usb.md)
+          - [术语](basic-services/usb/usb-glossary.md)
         <!--Del-->
         - 升级服务<!--update-->
           - [示例服务器开发概述](basic-services/update/sample-server-overview.md)
@@ -1735,7 +1747,7 @@
       - 设备管理<!--device-management-->
         - [USB DDK开发指导](napi/usb-ddk-guidelines.md)
         - [HID DDK开发指导](napi/hid-ddk-guidelines.md)
-        - [USB SERIAL DDK开发指导](napi/usb-serial-ddk-guidelines.md)
+        - [USB Serial DDK开发指导](napi/usb-serial-ddk-guidelines.md)
         - [SCSI Peripheral DDK开发指南](napi/scsi-peripheral-ddk-guidelines.md)
       - 包管理<!--bundle-management-->
         - [NativeBundle开发指导](napi/native-bundle-guidelines.md)
