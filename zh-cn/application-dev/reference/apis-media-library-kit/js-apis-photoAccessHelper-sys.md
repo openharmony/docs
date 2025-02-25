@@ -1550,7 +1550,7 @@ async function example() {
   }
 }
 ```
-### getKeyFrameThumbnail<sup>14+</sup>
+### getKeyFrameThumbnail<sup>16+</sup>
 
 getKeyFrameThumbnail(beginFrameTimeMs: number, type: ThumbnailType): Promise<image.PixelMap>
 
