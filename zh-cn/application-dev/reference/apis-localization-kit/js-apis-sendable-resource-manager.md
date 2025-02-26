@@ -40,7 +40,7 @@ resourceToSendableResource(resource: Resource): SendableResource
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: <br>1.Incorrect parameter types; <br>2.Parameter verification failed.                 |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.                 |
 
 **示例：** 
   ```js
@@ -82,7 +82,7 @@ sendableResourceToResource(sendableResource: SendableResource): Resource
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: <br>1.Incorrect parameter types; <br>2.Parameter verification failed.                 |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.                 |
 
 **示例：** 
   ```js
