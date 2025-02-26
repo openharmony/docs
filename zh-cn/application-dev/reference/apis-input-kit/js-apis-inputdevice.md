@@ -657,21 +657,21 @@ try {
 
 isFunctionKeyEnabled(functionKey: FunctionKey): Promise&lt;boolean&gt;
 
-检查功能键是否使能。
+检查功能键是否使能。使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
 **参数**：
 
-| 参数名      | 类型                                                | 必填 | 说明                         |
-| ----------- | --------------------------------------------------- | ---- | ---------------------------- |
-| functionKey | [FunctionKey](js-apis-inputdevice.md#functionkey15) | 是   | 需要检查使能状态的功能键id。 |
+| 参数名      | 类型                          | 必填 | 说明                         |
+| ----------- | ----------------------------- | ---- | ---------------------------- |
+| functionKey | [FunctionKey](#functionkey15) | 是   | 需要检查使能状态的功能键id。 |
 
 **返回值**：
 
 | 参数                   | 说明                                                         |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise对象。返回查询结果，true为功能键打开状态，false为功能键关闭状态。 |
+| Promise&lt;boolean&gt; | Promise对象。返回查询结果，true表示功能键使能，false表示功能键未使能。 |
 
 **错误码**：
 
@@ -699,7 +699,7 @@ try {
 
 setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;void&gt;
 
-设置是否使能功能键。
+设置功能键使能状态。
 
 **需要权限**：ohos.permission.INPUT_KEYBOARD_CONTROLLER
 
@@ -707,10 +707,10 @@ setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;vo
 
 **参数**：
 
-| 参数名      | 类型                                                | 必填 | 说明                                                         |
-| ----------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| functionKey | [FunctionKey](js-apis-inputdevice.md#functionkey15) | 是   | 需要设置的功能键id。                                         |
-| enabled     | boolean                                             | 是   | 设置功能键是开启还是关闭状态。true代表开启状态，false代表关闭状态。 |
+| 参数名      | 类型                          | 必填 | 说明                                                         |
+| ----------- | ----------------------------- | ---- | ------------------------------------------------------------ |
+| functionKey | [FunctionKey](#functionkey15) | 是   | 需要设置的功能键id。                                         |
+| enabled     | boolean                       | 是   | 功能键使能状态。取值为true表示使能功能键，取值为false表示不使能功能键。 |
 
 **错误码**：
 
@@ -719,7 +719,7 @@ setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;vo
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied.                                           |
+| 201      | Permission verification failed.                              |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 | 3900002  | There is currently no keyboard device connected.             |
 | 3900003  | It is prohibited for non-input applications.                 |
@@ -877,7 +877,7 @@ type ChangedType = 'add' | 'remove'
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称      | 值   | 说明                                                   |
-| --------- | ---- | ------------------------------------------------------ |
-| CAPS_LOCK | 1    | CapsLock键，仅允许对输入键盘扩展启用或禁用CapsLock键。 |
+| 名称      | 值   | 说明                                                     |
+| --------- | ---- | -------------------------------------------------------- |
+| CAPS_LOCK | 1    | CapsLock键，仅允许对输入键盘扩展使能或不使能CapsLock键。 |
 
