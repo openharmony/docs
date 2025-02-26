@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -29,7 +29,7 @@ Column(options?: ColumnOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [ColumnOptions](#columnoptions14对象说明) | 否 | 纵向布局元素垂直方向间距。 |
+| options | [ColumnOptions<sup>14+</sup>](#columnoptions14对象说明) | 否 | 纵向布局元素垂直方向间距。 |
 
 ### Column<sup>16+</sup>
 Column(options?: ColumnOptions | ColumnOptionsV2)
@@ -82,13 +82,18 @@ type SpaceType = number | string | Resource
 
 描述Row、Column组件构造函数中space支持的数据类型，取值类型为下表类型中的并集。
 
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 |类型	|说明|
 |---|---|
 |number|表示类型为数字，可取任意值。|
 |string|表示值类型为字符串，可取任意值。|
 |[Resource](ts-types.md#resource)|表示值为资源引用类型，取值为从系统资源或者应用资源中引入的数据值。|
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 ## 属性
 
