@@ -28,7 +28,7 @@ The table below lists the main APIs used for calendar management. For details ab
 
    ```ts
    // EntryAbility.ets
-   import {abilityAccessCtrl,AbilityConstant, common, PermissionRequestResult, Permissions, UIAbility, Want } from '@kit.AbilityKit';
+   import { abilityAccessCtrl, AbilityConstant, common, PermissionRequestResult, Permissions, UIAbility, Want } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { calendarManager } from '@kit.CalendarKit';
    import { window } from '@kit.ArkUI';
@@ -122,7 +122,7 @@ The table below lists the main APIs used for calendar management. For details ab
    });
    ```
 
-5. After a calendar is created, it is displayed in black. You need to call the **setConfig()** API to set calendar configuration information, including event reminder and calendar color.
+5. After a calendar is created, it is displayed in black. You need to call **setConfig()** to set calendar configuration information, including event reminder and calendar color.
 
    ```ts
    // Index.ets
