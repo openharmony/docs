@@ -2455,6 +2455,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | priority<sup>11+</sup> | number | 否 | 任务的优先级。任务模式相同的情况下，该配置项的数字越小优先级越高，默认值为0。 |
 | extras | object | 否 | 配置的附加功能，默认为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | multipart<sup>15+</sup> | boolean | 否 | 是否使用单个请求进行上传，单个请求上传时必定使用multipart/form-data，值为false时每个文件使用一个请求传输，值为true时使用多文件单请求上传。默认值为false。 |
+| notification<sup>15+</sup> | [Notification](#notification15) | 否 | 通知栏自定义设置。|
 
 ## State<sup>10+</sup>  
 
@@ -2557,7 +2558,6 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | faults | [Faults](#faults10) | 是 | 任务的失败原因。|
 | reason | string | 是 | 等待/失败/停止/暂停任务的原因。|
 | extras | object | 否 | 任务的额外部分。|
-| notification<sup>15+</sup>  | [Notification](#notification15) | 否 | 通知栏自定义设置。|
 
 ## HttpResponse<sup>12+</sup> 
 任务响应头的数据结构。
@@ -2593,7 +2593,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | 名称           | 类型                                            | 必填 | 说明                                                           |
 |--------------|-----------------------------------------------|----|--------------------------------------------------------------|
 | gauge        | boolean                                       | 否  | 后台任务的进度通知策略，若为true，显示进度、成功、失败通知，若为false，仅显示成功、失败通知。默认为false。 |
-| notification | [Notification](#notification15) | 否  | 通知栏自定义设置。                                                    |
+| notification<sup>15+</sup> | [Notification](#notification15) | 是  | 通知栏自定义设置。                                                    |
 
 ## Task<sup>10+</sup> 
 上传或下载任务。使用该方法前需要先获取Task对象，promise形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10-1)获取，callback形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10)获取。
@@ -4897,7 +4897,7 @@ createGroup(config: GroupConfig): Promise\<string\>
 
 | 错误码ID    | 错误信息                                                                                           |
 |----------|------------------------------------------------------------------------------------------------|
-| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Incorrect parameter type 3. Parameter verification failed |
 | 13400003 | task service ability error.                                                                    |
 
 **示例：**
@@ -4946,9 +4946,10 @@ attachGroup(gid: string, tids: string[]): Promise\<void\>
 
 | 错误码ID    | 错误信息                                                                                           |
 |----------|------------------------------------------------------------------------------------------------|
-| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Incorrect parameter type 3. Parameter verification failed |
 | 13400003 | task service ability error                                                                     |
 | 21900005 | task mode error                                                                                |
+| 21900006 | task not found                                                                                 |
 | 21900007 | task state error                                                                               |
 | 21900008 | group deleted or not found                                                                     |
 
@@ -4996,7 +4997,7 @@ deleteGroup(gid: string): Promise\<void\>
 
 | 错误码ID    | 错误信息                                                                                           |
 |----------|------------------------------------------------------------------------------------------------|
-| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Incorrect parameter type 3. Parameter verification failed |
 | 13400003 | task service ability error                                                                     |
 | 21900008 | group deleted or not found                                                                     |
 
