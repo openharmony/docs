@@ -1006,7 +1006,7 @@ screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称              | 类型                                       | 可读 | 可写 | 说明                                                          |
+| 名称              | 类型                                       | 只读 | 可选 | 说明                                                          |
 | ----------------- | ---------------------------------------------- | ---- | ---- |-------------------------------------------------------------|
 | id                | number                                         | 是   | 否   | 屏幕的id，该参数应为整数。                                              |
 | parent            | number                                         | 是   | 否   | 屏幕所属群组的id，该参数应为整数。                                          |
