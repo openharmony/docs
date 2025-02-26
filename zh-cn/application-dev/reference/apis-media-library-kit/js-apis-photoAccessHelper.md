@@ -969,7 +969,7 @@ showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs:
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回给应用的媒体库文件uri列表。Uri已对应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回给应用的媒体库文件uri列表。Uri已对应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。<br>返回3006表不允许出现非法字符；返回2004表示图片类型和后缀不符；返回203表示文件操作异常。 |
 
 **错误码：**
 
@@ -979,9 +979,6 @@ showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs:
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14000011 |  Internal system error. |
-| 3006 |  Forbidden characters are not permitted. |
-| 2004 |  The image type and suffix do not match. |
-| 203 |  File operation error. |
 
 **示例：**
 
@@ -1034,7 +1031,7 @@ createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Pr
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;string&gt; | Promise对象，返回给应用的媒体库文件uri。Uri已对应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。 |
+| Promise&lt;string&gt; | Promise对象，返回给应用的媒体库文件uri。Uri已对应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。<br>返回3006表不允许出现非法字符；返回2004表示图片类型和后缀不符；返回203表示文件操作异常。 |
 
 **错误码：**
 
@@ -1045,9 +1042,6 @@ createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Pr
 | 201 | Permission denied |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14000011 |  Internal system error |
-| 3006 |  Forbidden characters are not permitted. |
-| 2004 |  The image type and suffix do not match. |
-| 203 |  File operation error. |
 
 **示例：**
 
