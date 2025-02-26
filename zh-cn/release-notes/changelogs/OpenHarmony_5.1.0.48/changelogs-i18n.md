@@ -154,8 +154,8 @@ i18n.SystemLocaleManager.getRegionInfoArray
 
 **变更的接口/组件**
 
-i18n.system.isSuggested
+i18n.System.isSuggested
 
 **适配指导**
 
-该接口适用于根据系统地区选择推荐语言的场景。
+默认行为变更，无需适配。
