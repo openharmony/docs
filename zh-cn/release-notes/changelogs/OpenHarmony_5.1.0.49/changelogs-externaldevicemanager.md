@@ -133,8 +133,6 @@ OH_Usb_SendPipeRequest和OH_Usb_SendPipeRequestWithAshmem接口开发适配指�
     ...
 ```
 
-# 驱动子系统扩展外设管理模块Changelog
-
 ## c1.usbddk.2 SendControlWriteRequest接口行为变更，传入错误参数时，返回值由USB_DDK_SUCCESS变更为USB_DDK_INVALID_PARAMETER 
 
 **访问级别**
