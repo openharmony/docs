@@ -1213,8 +1213,8 @@ type DataProgressListener = (progressInfo: ProgressInfo, data: UnifiedData | nul
 
 | 参数名      | 类型                            | 必填    | 说明           |
 |----------|-------------------------------|-------|--------------|
-| progress | [ProgressInfo](#progressinfo15) | 是     | 定义进度上报的进度信息。 |
-| data     | [UnifiedData](#unifieddata)  \| null  |  是    | 进度达到100时获取的数据，进度未到100时返回null。 |
+| progressInfo| [ProgressInfo](#progressinfo15) | 是     | 定义进度上报的进度信息。 |
+| data        | [UnifiedData](#unifieddata)  \| null  |  是    | 进度达到100时获取的数据，进度未到100时返回null。 |
 
 ## GetDataParams<sup>15+</sup>
 
