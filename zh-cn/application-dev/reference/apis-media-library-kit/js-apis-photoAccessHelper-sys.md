@@ -1271,7 +1271,7 @@ createAssetsForApp(bundleName: string, appName: string, appId: string, photoCrea
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回给接口调用方的的媒体库文件uri列表。Uri已对appId对应的应用授权，支持应用写入数据。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回给接口调用方的的媒体库文件uri列表。Uri已对appId对应的应用授权，支持应用写入数据。如果生成uri异常，则返回对应的错误码。 |
 
 **错误码：**
 
@@ -1283,6 +1283,9 @@ createAssetsForApp(bundleName: string, appName: string, appId: string, photoCrea
 | 202 |  Called by non-system application.         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 14000011       | Internal system error.         |
+| 3006 |  Forbidden characters are not permitted. |
+| 2004 |  The image type and suffix do not match. |
+| 203 |  File operation error. |
 
 **示例：**
 
@@ -1509,7 +1512,7 @@ createAssetsForAppWithMode(boundleName: string, appName: string, appId: string, 
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise\<Array\<string>> | Promise对象，返回给接口调用方的媒体库文件uri列表。Uri已对appId对应的应用授权，支持应用写入数据。|
+| Promise\<Array\<string>> | Promise对象，返回给接口调用方的媒体库文件uri列表。Uri已对appId对应的应用授权，支持应用写入数据。如果生成uri异常，则返回对应的错误码。|
 
 **错误码：**
 
@@ -1521,6 +1524,9 @@ createAssetsForAppWithMode(boundleName: string, appName: string, appId: string, 
 | 202 |  Called by non-system application.         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 14000011       | Internal system error.         |
+| 3006 |  Forbidden characters are not permitted. |
+| 2004 |  The image type and suffix do not match. |
+| 203 |  File operation error. |
 
 **示例：**
 
