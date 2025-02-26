@@ -5168,8 +5168,8 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
-
 **ACL使能**：true
+
+**授权方式**：system_grant
 
 **起始版本**：16
