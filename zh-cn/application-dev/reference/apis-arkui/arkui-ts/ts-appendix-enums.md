@@ -1180,3 +1180,17 @@ Nullable\<T> {
 | UPDATE | 2    | 轴事件触发中。 |
 | END    | 3    | 轴事件结束。 |
 | CANCEL | 4    | 轴事件取消。 |
+
+## InteractionHand<sup>15+</sup>
+
+定义事件是由左手点击触发还是右手点击触发。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 值   | 说明                   |
+| -------- | ---- | ---------------------- |
+| NONE     | 0   | 未知。 |
+| LEFT     | 1   | 左手。 |
+| RIGHT    | 2   | 右手。 |

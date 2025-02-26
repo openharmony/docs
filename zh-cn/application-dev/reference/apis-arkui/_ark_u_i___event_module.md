@@ -322,7 +322,7 @@ enum ArkUI_InteractionHand
 
 定义事件是由左手点击触发还是右手点击触发。
 
-**起始版本：** 16
+**起始版本：** 15
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -1644,7 +1644,7 @@ int32_t OH_ArkUI_PointerEvent_GetInteractionHand (const ArkUI_UIInputEvent * eve
 
 获取当前触摸事件是左手点击触发还是右手点击触发。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
@@ -1667,7 +1667,7 @@ int32_t OH_ArkUI_PointerEvent_GetInteractionHandByIndex (const ArkUI_UIInputEven
 
 获取当前触摸事件是左手点击触发还是右手点击触发。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
