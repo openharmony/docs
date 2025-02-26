@@ -10,7 +10,7 @@
 
 ## 属性
 
-## pointLight
+### pointLight
 
 pointLight(value: PointLightStyle)
 
