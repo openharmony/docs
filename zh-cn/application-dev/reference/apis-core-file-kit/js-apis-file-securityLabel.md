@@ -33,7 +33,7 @@ import { securityLabel } from '@kit.CoreFileKit';
 
 ## DataLevel
 
-type DataLevel = 's0' | 's1' | 's2' | 's3' | 's4' |
+type DataLevel = 's0' | 's1' | 's2' | 's3' | 's4'
 
 数据安全级别。
 
