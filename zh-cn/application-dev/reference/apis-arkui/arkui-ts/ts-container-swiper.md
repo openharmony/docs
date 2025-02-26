@@ -1423,6 +1423,10 @@ onSelected(event: Callback\<number>)
 | ------ | ------ | ---- | -------------------- |
 | event  | [Callback](./ts-types.md#callback12)\<number> | 是   | 当前选中元素的索引。 |
 
+> **说明：**
+>
+> onSelected回调中不可修改swiper的index属性，不可调用SwiperController.changeIndex()、SwiperController.showNext()和SwiperController.showPrevious()方法。 
+
 ### onUnselected<sup>16+</sup>
 
 onUnselected(event: Callback\<number>)
@@ -1440,6 +1444,10 @@ onUnselected(event: Callback\<number>)
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
 | event  | [Callback](./ts-types.md#callback12)\<number> | 是   | 将要隐藏元素的索引。 |
+
+> **说明：**
+>
+> onUnselected回调中不可修改swiper的index属性，不可调用SwiperController.changeIndex()、SwiperController.showNext()和SwiperController.showPrevious()方法。 
 
 ### onContentWillScroll<sup>15+</sup>
 
