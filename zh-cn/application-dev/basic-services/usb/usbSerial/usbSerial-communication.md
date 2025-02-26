@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-本模块主要提供USB Host转串口协议通信的功能，线缆一端连接到鸿蒙PC USB Host端，另一端连接到其他设备的UART端口（DB9标准串口）。
+本模块主要提供USB Host转串口协议通信的功能，USB线缆一端连接到OpenHarmony设备的USB Host端口，另一端连接到目标设备的DB9标准串口。
 它提供获取USB Host转串口协议的、已连接的端口列表，同时提供打开端口、关闭端口、设置参数、获取参数、读取数据、写入数据和设备权限管理这些基本功能。
 
 USB Host转串口协议的端口以下简称串口。
@@ -13,24 +13,17 @@ USB Host转串口协议的端口以下简称串口。
 
 - 开发工具及配置：
 
-  DevEco Studio作为驱动开发工具，是进行驱动开发必备条件之一，开发者可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-tools-overview-V14)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-create-new-project-V14)进行基本的操作验证，保证DevEco Studio可正常运行。
-
+  DevEco Studio作为开发工具，是进行开发必备条件之一，开发者可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-tools-overview-V14)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-create-new-project-V14)进行基本的操作验证，保证DevEco Studio可正常运行。
 
 - SDK版本配置：
 
-  扩展外设管理提供的ArkTs接口，所需SDK版本为API16及以上才可使用。
-
-
-- HDC配置：
-
-  HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命令行工具，通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
+  本模块提供的ArkTs接口，所需SDK版本为API16及以上才可使用。
 
 ### 搭建环境
 
 - 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
 - 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
-- PC安装HDC工具（HarmonyOS Device Connector），通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
-- 一端USB连接到鸿蒙PC的Host USB端口上，另一端DB9插头连接到标准串口设备上，这个设备可以为有串口的Windows PC。
+- USB线缆一端连接到OpenHarmony设备USB Host端口，另一端连接到目标设备的DB9标准串口，这个设备可以为有串口的Windows PC。
 
 ## 开发指导
 
@@ -51,7 +44,7 @@ USB Host转串口协议的端口以下简称串口。
 
 ### 开发步骤
 
-线缆一端连接USB Host端，另一端设备的UART端口（DB9标准串口），以下步骤介绍了关键接口的调用方式：
+USB线缆一端连接到OpenHarmony设备USB Host端口，另一端连接到目标设备的DB9标准串口，以下步骤介绍了关键接口的调用方式：
 
 1. 导入模块。
 
@@ -155,6 +148,6 @@ USB Host转串口协议的端口以下简称串口。
 
 ### 调测验证
 
-1. 一端USB连接到鸿蒙PC的Host USB端口上，另一端DB9插头连接到标准串口设备上，这个设备可以为有串口的Windows PC。
+1. USB线缆一端连接到OpenHarmony设备USB Host端口，另一端连接到目标设备的DB9标准串口，这个设备可以为有串口的Windows PC。
 2. 执行上述代码。
 3. log中关键字`usbSerial success`，表示接口调用成功，关键字`usbSerial error`，表示接口调用失败。

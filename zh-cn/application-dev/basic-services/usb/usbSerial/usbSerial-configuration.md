@@ -49,24 +49,17 @@
 
 - 开发工具及配置：
 
-  DevEco Studio作为驱动开发工具，是进行驱动开发必备条件之一，开发者可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-tools-overview-V14)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-create-new-project-V14)进行基本的操作验证，保证DevEco Studio可正常运行。
-
+  DevEco Studio作为开发工具，是进行开发必备条件之一，开发者可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-tools-overview-V14)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-create-new-project-V14)进行基本的操作验证，保证DevEco Studio可正常运行。
 
 - SDK版本配置：
 
-  扩展外设管理提供的ArkTs接口，所需SDK版本为API16及以上才可使用。
-
-
-- HDC配置：
-
-  HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命令行工具，通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
+  本模块提供的ArkTs接口，所需SDK版本为API16及以上才可使用。
 
 ### 搭建环境
 
 - 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
 - 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
-- PC安装HDC工具（HarmonyOS Device Connector），通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
-- 一端USB连接到鸿蒙PC的Host USB端口上，另一端DB9插头连接到标准串口设备上，这个设备可以为有串口的Windows PC。
+- USB线缆一端连接到OpenHarmony设备USB Host端口，另一端连接到目标设备的DB9标准串口，这个设备可以为有串口的Windows PC。
 
 ## 开发指导
 
@@ -155,7 +148,7 @@
 
 ### 调测验证
 
-1. 一端USB连接到鸿蒙PC的Host USB端口上，另一端DB9插头连接到标准串口设备上，这个设备可以为有串口的Windows PC。
+1. USB线缆一端连接到OpenHarmony设备USB Host端口，另一端连接到目标设备的DB9标准串口，这个设备可以为有串口的Windows PC。
 2. 执行上述代码。
 3. log中搜索关键字`usbSerial success, attribute`，可以查看当前串口的配置。
 
