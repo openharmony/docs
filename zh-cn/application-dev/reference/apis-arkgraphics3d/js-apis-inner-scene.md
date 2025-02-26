@@ -74,7 +74,7 @@ function createNodePromise() : Promise<Node> {
 ### createCamera
 createCamera(params: SceneNodeParameters): Promise\<Camera>
 
-根据结点参数创建相机, 使用Promise异步回调。
+根据结点参数创建相机，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -110,7 +110,7 @@ function createCameraPromise() : Promise<Camera> {
 ### createLight
 createLight(params: SceneNodeParameters, lightType: LightType): Promise\<Light>
 
-根据结点参数和灯光类型创建灯光, 使用Promise异步回调。
+根据结点参数和灯光类型创建灯光，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -147,7 +147,7 @@ function createLightPromise() : Promise<Light> {
 ### createNode
 createNode(params: SceneNodeParameters): Promise\<Node>
 
-创建结点, 使用Promise异步回调。
+创建结点，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -184,7 +184,7 @@ function createNodePromise() : Promise<Node> {
 ### createMaterial
 createMaterial(params: SceneResourceParameters, materialType: MaterialType): Promise\<Material>
 
-根据场景资源参数和材质类型创建材质, 使用Promise异步回调。
+根据场景资源参数和材质类型创建材质，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -221,7 +221,7 @@ function createMaterialPromise() : Promise<Material> {
 ### createShader
 createShader(params: SceneResourceParameters): Promise\<Shader>
 
-根据场景资源参数创建着色器, 使用Promise异步回调。
+根据场景资源参数创建着色器，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -259,7 +259,7 @@ function createShaderPromise() : Promise<Shader> {
 ### createImage
 createImage(params: SceneResourceParameters): Promise\<Image>
 
-创建图片资源, 使用Promise异步回调。
+创建图片资源，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -295,7 +295,7 @@ function createImagePromise() : Promise<Image> {
 ### createEnvironment
 createEnvironment(params: SceneResourceParameters): Promise\<Environment>
 
-根据场景资源参数创建环境, 使用Promise异步回调。
+根据场景资源参数创建环境，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
