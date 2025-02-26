@@ -59,7 +59,7 @@
 | int64_t [OH_ResourceManager_GetRawFileRemainingLength64](#oh_resourcemanager_getrawfileremaininglength64) (const [RawFile64](#rawfile64) \*rawFile) | 获取较大rawfile的剩余长度，单位为int64_t。 | 
 | void [OH_ResourceManager_CloseRawFile64](#oh_resourcemanager_closerawfile64) ([RawFile64](#rawfile64) \*rawFile) | 关闭已打开的[RawFile64](#rawfile64) 以及释放所有相关联的资源。 | 
 | int64_t [OH_ResourceManager_GetRawFileOffset64](#oh_resourcemanager_getrawfileoffset64) (const [RawFile64](#rawfile64) \*rawFile) | 获取较大rawfile文件的偏移量，单位为int64_t。 | 
-| bool [OH_ResourceManager_GetRawFileDescriptor64](#oh_resourcemanager_getrawfiledescriptor64) (const [RawFile64](#rawfile64) \*rawFile, [RawFileDescriptor64](_raw_file_descriptor64.md) \*descriptor) | 基于偏移量(单位为int64_t)和文件长度(单位为int64_t)打开较大的rawfile，并获取文件描述符。 | 
+| bool [OH_ResourceManager_GetRawFileDescriptor64](#oh_resourcemanager_getrawfiledescriptor64) (const [RawFile64](#rawfile64) \*rawFile, [RawFileDescriptor64](_raw_file_descriptor64.md) \*descriptor) | 基于偏移量（单位为int64_t）和文件长度（单位为int64_t）打开较大的rawfile，并获取文件描述符。 | 
 | bool [OH_ResourceManager_ReleaseRawFileDescriptor64](#oh_resourcemanager_releaserawfiledescriptor64) (const [RawFileDescriptor64](_raw_file_descriptor64.md) \*descriptor) | 关闭rawfile文件描述符。 | 
 | [NativeResourceManager](#nativeresourcemanager) \* [OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager) (napi_env env, napi_value jsResMgr) | 基于JavaScipt侧的ResourceManager获取native侧的ResourceManager，用来完成rawfile相关功能。 | 
 | void [OH_ResourceManager_ReleaseNativeResourceManager](#oh_resourcemanager_releasenativeresourcemanager) ([NativeResourceManager](#nativeresourcemanager) \*resMgr) | 释放native侧ResourceManager。 | 
@@ -261,7 +261,7 @@ bool OH_ResourceManager_GetRawFileDescriptor64 (const RawFile64 * rawFile, RawFi
 
 **描述**
 
-基于偏移量(单位为int64_t)和文件长度(单位为int64_t)打开较大的rawfile，并获取文件描述符。
+基于偏移量（单位为int64_t）和文件长度（单位为int64_t）打开较大的rawfile，并获取文件描述符。
 
 打开的文件描述符被用于读取rawfile。
 
@@ -724,7 +724,7 @@ int OH_ResourceManager_SeekRawFile (const RawFile * rawFile, long offset, int wh
 | -------- | -------- |
 | rawFile | 表示指向[RawFile](#rawfile)的指针。 | 
 | offset | 表示指定的偏移量。 | 
-| whence | 读写位置，有以下场景:<br/>0: 读写位置为文件起始位置加上offset.<br/>1: 读写位置为当前位置加上offset。<br/>2: 读写位置为文件末尾加上offset。 | 
+| whence | 读写位置，有以下场景:<br/>0: 读写位置为文件起始位置加上offset。<br/>1: 读写位置为当前位置加上offset。<br/>2: 读写位置为文件末尾加上offset。 | 
 
 **返回：**
 
