@@ -1,5 +1,8 @@
 # Constraints on Access Modifiers of Custom Component Member Variables
 
+In state management V1, after you encapsulates a custom component, the caller cannot determine the input variables as the component input parameters based on the unified standard because the component does not have specific input and output identifiers.
+
+To prevent a state variable from being initialized externally, you can use the **private** qualifier to remind the component caller. However, external initialization must comply with the rules of the decorator. For details, see [Constraints](#constraints).
 
 In ArkTS, use of the access modifiers – **private**, **public**, and **protected** – for custom component member variables must comply with the constraints described in this topic. Build errors will be reported for any incompliance.
 
@@ -12,20 +15,20 @@ Before reading this topic, you are advised to read [State Management Overview](.
 
 ## Constraints
 
-- For regular variables (which do not involve re-rendering) and variables decorated by [\@State](./arkts-state.md), [\@Prop](./arkts-prop.md), [\@Provide](./arkts-provide-and-consume.md), or [\@BuilderParam](./arkts-builderparam.md), when declared as **private**, value assignment is not allowed during custom component construction.
+- The regular variables (which do not involve re-rendering) and variables decorated by [\@State](./arkts-state.md), [\@Prop](./arkts-prop.md), [\@Provide](./arkts-provide-and-consume.md), or [\@BuilderParam](./arkts-builderparam.md) can be initialized externally or using local values. However, **private** access is not allowed.
 
-- For variables decorated by [\@StorageLink](./arkts-appstorage.md), [\@StorageProp](./arkts-appstorage.md), [\@LocalStorageLink](./arkts-localstorage.md), [\@LocalStorageProp](./arkts-localstorage.md), or [\@Consume](./arkts-provide-and-consume.md), **public** access is not allowed.
+- Variables decorated by [\@StorageLink](./arkts-appstorage.md), [\@StorageProp](./arkts-appstorage.md), [\@LocalStorageLink](./arkts-localstorage.md), [\@LocalStorageProp](./arkts-localstorage.md), or [\@Consume](./arkts-provide-and-consume.md) cannot be initialized externally. Therefore, **public** access is not allowed.
 
-- For variables decorated by [\@Link](./arkts-link.md) or [\@ObjectLink](./arkts-observed-and-objectlink.md), private access is not allowed.
+- Variables decorated by [\@Link](./arkts-link.md) or [\@ObjectLink](./arkts-observed-and-objectlink.md) must be initialized externally and local initialization is prohibited. Therefore, **private** access is not allowed.
 
 - Because structs do not support inheritance, none of the preceding variables can be declared as **protected**.
 
-- The regular variables (which do not involve re-rendering) and variables decorated by [\@State](./arkts-state.md), [\@Prop](./arkts-prop.md), [\@Provide](./arkts-provide-and-consume.md), or [\@BuilderParam](./arkts-builderparam.md) in custom components cannot be decorated by both [\@Require](./arkts-require.md) and **private**.
+- Variables decorated by [\@Require](./arkts-require.md) must be initialized externally. Therefore, using \@Require and **private** together to decorate regular variables (which do not involve re-rendering) and variables decorated by [\@State](./arkts-state.md), [\@Prop](./arkts-prop.md), [\@Provide](./arkts-provide-and-consume.md), or [\@BuilderParam](./arkts-builderparam.md) is not allowed.
 
 
 ## Use Scenarios
 
-1. If a member variable is decorated by both the **private** access modifier and the \@State, \@Prop, \@Provide, or \@BuilderParam decorator, and is initialized through the parent component, a build error is reported.
+1. If a member variable is decorated by both **private** and the \@State, \@Prop, \@Provide, or \@BuilderParam decorator, and is initialized through the parent component, a build error is reported.
 
 [Negative Example]
 ```ts

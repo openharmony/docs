@@ -6,7 +6,7 @@
 
 An \@Provide decorated state variable exists in the ancestor component and is said to be "provided" to descendent components. An \@Consume decorated state variable is used in a descendent component. It is linked to ("consumes") the provided state variable in its ancestor component.
 
-Before reading this topic, you are advised to read [Basic Syntax Overview](./arkts-basic-syntax-overview.md), [Declarative UI Description](./arkts-declarative-ui-description.md), and [Creating a Custom Component](./arkts-create-custom-components.md) to have an understanding of the basic syntax of the UI paradigm and custom components.
+Before reading this topic, you are advised to read [Basic Syntax Overview](./arkts-basic-syntax-overview.md), [Declarative UI Description](./arkts-declarative-ui-description.md), and [Creating a Custom Component](./arkts-create-custom-components.md) to have an understanding of the basic syntax of UI paradigms.
 
 > **NOTE**
 >
@@ -55,8 +55,9 @@ The rules of \@State also apply to \@Provide. The difference is that \@Provide a
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Alias: constant string, optional.<br>If the alias is specified, the alias name is used for matching with the \@Provide decorated variable. Otherwise, the variable name is used.|
 | Synchronization type          | Two-way: from the \@Provide decorated variable to all \@Consume decorated variables; and the other way around. The two-way synchronization behaviour is the same as that of the combination of \@State and \@Link.|
-| Allowed variable types | Object, class, string, number, Boolean, enum, and array of these types.<br/>Date type.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported. The type must be specified.<br/>The type of the provided and the consumed variables must be the same.<br/>An \@Consume decorated variable must have a matching \@Provide decorated variable with the corresponding attribute and alias on its parent or ancestor component.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br/>**any** is not supported.<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, **string \| number**, **string \| undefined**, or **ClassA \| null**. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Consume a: string \| undefined**. |
-| Initial value for the decorated variable | Initialization of the decorated variables is forbidden. |
+| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported. The type must be specified.<br>The type of the provided and the consumed variables must be the same.<br>An \@Consume decorated variable must have a matching \@Provide decorated variable with the corresponding attribute and alias on its parent or ancestor component.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, **string \| number**, **string \| undefined**, or **ClassA \| null**. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Consume a: string \| undefined**. |
+| Initial value for the decorated variable     | Initialization of the decorated variables is forbidden.                              |
+
 
 ## Variable Transfer/Access Rules
 
@@ -168,7 +169,7 @@ struct Parent {
    3. The process of initializing the @Consume decorated variable is similar to that of initializing the @State/@Link decorated variable. The @Consume decorated variable saves the matching @Provide decorated variable found in the map and registers itself with the @Provide decorated variable.
 
 2. When the \@Provide decorated variable is updated:
-   1. The system traverses and updates all system components (**elementid**) and state variable (\@Consume) that depend on the \@Provide decorated variable, with which the \@Consume decorated variable has registered itself on initial render.  
+   1. The system traverses and updates all system components (**elementId**) and state variable (\@Consume) that depend on the \@Provide decorated variable, with which the \@Consume decorated variable has registered itself on initial render. After the \@Provide decorated variable of the parent component is changed, all system components (**elementId**) and state variables (\@Consume) that depend on the parent component are traversed and updated.
    2. After the \@Consume decorated variable is updated in all owning child components, all system components (**elementId**) that depend on the \@Consume decorated variable are updated. In this way, changes to the \@Provide decorated variable are synchronized to the \@Consume decorated variable.
 
 3. When the \@Consume decorated variable is updated:
@@ -329,8 +330,6 @@ struct Parent {
 
 The following example shows the two-way synchronization between \@Provide and \@Consume decorated variables. When you click the **ToDo** and **ToDoItem** buttons, the **count** changes in both components are synchronized in a two-way manner.
 
-
-
 ```ts
 @Component
 struct ToDoItem {
@@ -386,7 +385,7 @@ struct ToDo {
 >
 > \@Provide and \@Consume support the Map type since API version 11.
 
-In this example, the **message** variable is of the Map<number, string> type. After the button is clicked, the value of **message** changes, and the UI is re-rendered.
+In this example, the **message** variable is of the **Map<number, string>** type. After the button is clicked, the value of **message** changes, and the UI is re-rendered.
 
 ```ts
 @Component
@@ -446,7 +445,7 @@ struct MapSample {
 >
 > \@Provide and \@Consume support the Set type since API version 11.
 
-In this example, the **message** variable is of the Set\<number\> type. After the button is clicked, the value of **message** changes, and the UI is re-rendered.
+In this example, the **message** variable is of the **Set\<number\>** type. After the button is clicked, the value of **message** changes, and the UI is re-rendered.
 
 ```ts
 @Component
@@ -499,7 +498,7 @@ struct SetSample {
 
 ### Support for Union Type
 
-@Provide and @Consume support **undefined**, **null**, and union types. In the following example, the type of **count** is string | undefined. If the attribute or type of **count** is changed when the button in the **Parent** component is clicked, the change will be synced to the child component.
+@Provide and @Consume support **undefined**, **null**, and union types. In the following example, the type of **count** is **string | undefined**. If the attribute or type of **count** is changed when the button in the **Parent** component is clicked, the change will be synced to the child component.
 
 ```ts
 @Component
@@ -618,7 +617,7 @@ In the preceding example:
 - The **@Provide("reviewVotes") reviewVotes: number = 40** variable is declared in **GrandParent**.
 - In **Parent**, a child component of **GrandParent**, **allowOverride** is declared for **@Provide** to override the **@Provide("reviewVotes") reviewVotes: number = 40** variable of **GrandParent**. If **allowOverride** is not declared, a runtime error is thrown to indicate that the @Provide decorated variable is already in use. The same case applies to **Child**.
 - The @Consume decorated variable of **GrandSon** is initialized from the @Provide decorated variable of its nearest ancestor under the same attribute name.
-- In this example, **GrandSon** finds in the ancestor **Child** the @Provide decorated variable with the same attribute name. Therefore, the initial value of **@Consume("reviewVotes") reviewVotes: number** is **10**. If an @Provide decorated variable with the same attribute name is not defined in **Child**, **GrandSon** continues its search until it finds the one with the same attribute name.
+- In this example, **GrandSon** finds in the ancestor **Child** the @Provide decorated variable with the same attribute name. Therefore, the initial value of **@Consume("reviewVotes") reviewVotes: number** is **10**. If an @Provide decorated variable with the same attribute name as @Consume decorated variable is not defined in **Child**, **GrandSon** continues its search in **Parent** until it finds the one decorated by @Provide with the same attribute name, whose value is **20**.
 - If no such a variable is found when **GrandSon** has reached the root node, an error is thrown to indicate that @Provide could not be found for @Consume initialization.
 
 
