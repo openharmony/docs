@@ -39,7 +39,7 @@ import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 
 ## AccessibilityElement<sup>10+</sup>
 
-[AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)二级模块
+表示无障碍节点元素，请参考[AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -53,7 +53,7 @@ let accessibilityElement: AccessibilityElement;
 
 ## ElementAttributeValues<sup>10+</sup>
 
-[ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)二级模块
+表示节点元素具备的属性名称及属性值类型信息，请参考[ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -67,7 +67,7 @@ let elementAttributeValues: ElementAttributeValues;
 
 ## FocusDirection<sup>10+</sup>
 
-[FocusDirection](js-apis-inner-application-accessibilityExtensionContext.md#focusdirection)二级模块，表示查询下一焦点元素的方向。
+表示查询下一焦点元素的方向，请参考[FocusDirection](js-apis-inner-application-accessibilityExtensionContext.md#focusdirection)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -98,7 +98,7 @@ let elementAttributeKeys: ElementAttributeKeys;
 
 ## FocusType<sup>10+</sup>
 
-[FocusType](js-apis-inner-application-accessibilityExtensionContext.md#focustype)二级模块，表示查询焦点元素的类型。
+表示查询焦点元素的类型，请参考[FocusType](js-apis-inner-application-accessibilityExtensionContext.md#focustype)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -112,7 +112,7 @@ let focusType: FocusType;
 
 ## WindowType <sup>10+</sup>
 
-[WindowType](js-apis-inner-application-accessibilityExtensionContext.md#windowtype)二级模块，表示窗口的类型。
+表示窗口的类型，请参考[WindowType](js-apis-inner-application-accessibilityExtensionContext.md#windowtype)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -126,7 +126,7 @@ let windowType: WindowType;
 
 ## Rect<sup>10+</sup>
 
-[Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)二级模块，表示矩形区域。
+表示矩形区域，请参考[Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -194,23 +194,23 @@ type PageUpdateType = 'pageContentUpdate' | 'pageStateUpdate'
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 类型                | 说明            |
-| ----------------- | ---------------- |
+| 类型                | 说明                |
+| ----------------- | ----------------- |
 | 'pageContentUpdate' | 表示页面内容刷新。 |
-| 'pageStateUpdate' | 表示页面内容刷新。 |
+| 'pageStateUpdate'   | 表示页面状态刷新。 |
 
 ## TouchGuideType
 
-TouchGuideType = 'touchBegin' | 'touchEnd'
+type TouchGuideType = 'touchBegin' | 'touchEnd'
 
 触摸浏览事件类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 类型                | 说明                  |
-| ---------- | ------------------- |
+| 类型        | 说明                |
+| ---------- | ---------- |
 | 'touchBegin' | 表示触摸浏览时开始触摸。 |
-| 'touchEnd' | 表示触摸浏览时结束触摸。 |
+| 'touchEnd'   | 表示触摸浏览时结束触摸。 |
 
 ## AccessibilityExtensionAbility.onConnect<sup>(deprecated)</sup>
 

@@ -1,9 +1,9 @@
 # MVVM模式
 
-当开发者了解了状态管理的概念之后，跃跃欲试去开发一款自己的应用，倘若开发者在应用开发时不注意设计自己的项目结构，随着项目越来越庞大，状态变量设计的越来越多，组件与组件之间的关系变得越来越模糊，当开发一个新需求时，牵一发而动全身，需求开发和维护成本也会成倍增加，为此，本文旨在介绍MVVM模式以及ArkUI的UI开发模式与MVVM的关系，指引开发者如何去设计自己的项目结构，从而在产品迭代和升级时，能更容易的去开发和维护。
+当开发者掌握了状态管理的基本概念后，往往想开发一款自己的应用。然而，如果在应用开发初期未能精心规划项目结构，随着项目的不断扩展和复杂化，状态变量的增多将导致组件间关系变得错综复杂。此时，开发任何新功能都可能引起连锁反应，维护成本也会增加。为此，本文旨在介绍MVVM模式以及ArkUI的UI开发模式与MVVM的关系，指引开发者如何去设计自己的项目结构，从而在产品迭代和升级时，能更容易的去开发和维护。
 
 
-本文档涵盖了大多数状态管理V1装饰器，所以在阅读本文当前，建议开发者对状态管理V1有一定的了解。建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)和状态管理V1装饰器相关文档。
+本文档涵盖了大多数状态管理V1装饰器，所以在阅读本文档前，建议开发者对状态管理V1有一定的了解。建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)和状态管理V1装饰器相关文档。
 
 ## MVVM模式介绍
 
@@ -33,7 +33,7 @@ ArkUI的UI开发开发模式即是MVVM模式，而状态变量在MVVM模式中�
 
 **ViewModel层**
 
-* 页面数据：按照页面组织的数据，用户打开页面时，可能某些页面并不会切换到，因此，这个页面数据最好设计成懒加载的模式。
+* 页面数据：按照页面组织的数据，当用户浏览页面时，某些页面可能不会被显示出来，因此，这个页面数据最好设计成懒加载（按需加载）的模式。
 
 > ViewModel层数据和Model层数据的区别：
 >
@@ -43,15 +43,7 @@ ArkUI的UI开发开发模式即是MVVM模式，而状态变量在MVVM模式中�
 
 **Model层**
 
-Model层是应用的原始数据提供者，这一层在UI来看，有两种模式：
-
-* 本地实现：通过纯NativeC++实现。
-
-* 远端实现：通过IO端口（RestFul）实现。
-
-> 注意：
->
-> 采用本地实现时，系统的对数据加工和处理，基本上一定会存在非UI线程模型，这个时候，被加工的数据变更可能需要即时通知ViewModel层，来引起数据的变化，从而引起UI的相应更新。这个时候，自动线程转换就会变得非常重要。常规下，ViewModel层，View层，都只能在UI线程下执行，才能正常工作。因此需要一种机制，当需要通知UI更新时，需要自动完成线程切换。
+Model层是应用的原始数据提供者。
 
 ### 架构核心原则
 
@@ -68,7 +60,7 @@ Model层是应用的原始数据提供者，这一层在UI来看，有两种模�
 
 这是针对View层设计的核心原则，一个组件应该具备这样的逻辑：
 
-* 禁止直接访问父组件（使用事件或是订阅能力）。
+* 禁止直接访问父组件（必须使用事件或是订阅能力）。
 * 禁止直接访问兄弟组件能力。这是因为组件应该仅能访问自己看的见的子节点（通过传参）和父节点（通过事件或通知），以此完成组件之间的解耦。
 
 对于一个组件，这样设计的原因是：
@@ -589,62 +581,180 @@ View层根据需要来组织，但View层需要区分一下三种组件：
 
 * src
   * ets
+    * Model
+      * ThingsModel
+      * TodoListModel
     * pages
-      * index
+      * Index
     * View
-      * TodoComponent
-      * AllchooseComponent
+      * AllChooseComponent
       * ThingsComponent
+      * TodoComponent
+      * TodoListComponent
     * ViewModel
       * ThingsViewModel
+      * TodoListViewModel
+  * resources
+    * rawfile
+      * defaultTasks.json
 
 文件代码如下：
 
 * Index.ets
 
   ```typescript
-  // import view
-  import { TodoComponent } from './../View/TodoComponent'
-  import { MultiChooseComponent } from './../View/AllchooseComponent'
-  import { ThingsComponent } from './../View/ThingsComponent'
-  
-  // import viewModel
-  import { TodoListData } from '../ViewModel/ThingsViewModel'
-  
+  import { common } from '@kit.AbilityKit';
+  // import ViewModel
+  import TodoListViewModel from '../ViewModel/TodoListViewModel';
+
+  // import View
+  import { TodoComponent } from '../View/TodoComponent';
+  import { AllChooseComponent } from '../View/AllChooseComponent';
+  import { TodoListComponent } from '../View/TodoListComponent';
+
   @Entry
   @Component
-  struct Index {
-    @State isFinished: boolean = false;
-    @State data: TodoListData = new TodoListData();
-  
+  struct TodoList {
+    @State thingsTodo: TodoListViewModel = new TodoListViewModel();
+    private context = getContext(this) as common.UIAbilityContext;
+
+    async aboutToAppear() {
+      await this.thingsTodo.loadTasks(this.context);
+    }
+
     build() {
       Column() {
-        Row({space: 40}) {
+        Row({ space: 40 }) {
           // 全部待办
           TodoComponent()
-  
-          // 全选
-          MultiChooseComponent({isFinished: this.isFinished})
+          //全选
+          AllChooseComponent({ thingsViewModel: this.thingsTodo })
         }
-  
-        List() {
-          ForEach(this.data.planList, (item: string) => {
-            // 待办事项1
-            ThingsComponent({isFinished: this.isFinished, things: item})
-              .margin(5)
-          })
+
+        Column() {
+          TodoListComponent({ thingsViewModelArray: this.thingsTodo.things })
         }
-  
       }
       .height('100%')
       .width('100%')
-      .margin({top: 5, bottom: 5})
+      .margin({ top: 5, bottom: 5 })
       .backgroundColor('#90f1f3f5')
     }
   }
   ```
 
-  * TodoComponent
+  * ThingsModel.ets
+
+  ```typescript
+  export default class ThingsModel {
+    thingsName: string = 'Todo';
+    isFinish: boolean = false;
+  }
+  ```
+
+  * TodoListModel.ets
+
+  ```typescript
+  import { common } from '@kit.AbilityKit';
+  import util from '@ohos.util';
+  import ThingsModel from './ThingsModel';
+
+  export default class TodoListModel {
+    things: Array<ThingsModel> = [];
+
+    constructor(things: Array<ThingsModel>) {
+      this.things = things;
+    }
+
+    async loadTasks(context: common.UIAbilityContext) {
+      let getJson = await context.resourceManager.getRawFileContent('defaultTasks.json');
+      let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM: true };
+      let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
+      let result = textDecoder.decodeToString(getJson, { stream: false });
+      this.things = JSON.parse(result);
+    }
+  }
+  ```
+
+  * AllChooseComponent.ets
+
+  ```typescript
+  import TodoListViewModel from "../ViewModel/TodoListViewModel";
+
+  @Component
+  export struct AllChooseComponent {
+    @State titleName: string = '全选';
+    @Link thingsViewModel: TodoListViewModel;
+
+    build() {
+      Row() {
+        Button(`${this.titleName}`, { type: ButtonType.Capsule })
+          .onClick(() => {
+            this.thingsViewModel.chooseAll();
+            this.titleName = this.thingsViewModel.isChoosen ? '全选' : '取消全选';
+          })
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .backgroundColor('#f7f6cc74')
+      }
+      .padding({ left: this.thingsViewModel.isChoosen ? 15 : 0 })
+      .width('100%')
+      .margin({ top: 10, bottom: 10 })
+    }
+  }
+  ```
+
+  * ThingsComponent.ets
+
+  ```typescript
+  import ThingsViewModel from "../ViewModel/ThingsViewModel";
+
+  @Component
+  export struct ThingsComponent {
+    @Prop things: ThingsViewModel;
+
+    @Builder
+    displayIcon(icon: Resource) {
+      Image(icon)
+        .width(28)
+        .height(28)
+        .onClick(() => {
+          this.things.updateIsFinish();
+        })
+    }
+
+    build() {
+      // 待办事项
+      Row({ space: 15 }) {
+        if(this.things.isFinish) {
+          // 此处'app.media.finished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+          this.displayIcon($r('app.media.finished'));
+        } else {
+          // 此处'app.media.unfinished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+          this.displayIcon($r('app.media.unfinished'));
+        }
+
+        Text(`${this.things.thingsName}`)
+          .fontSize(24)
+          .fontWeight(450)
+          .decoration({ type: this.things.isFinish ? TextDecorationType.LineThrough: TextDecorationType.None })
+          .onClick(() => {
+            this.things.addSuffixes();
+          })
+      }
+      .height('8%')
+      .width('90%')
+      .padding({ left: 15 })
+      .opacity(this.things.isFinish ? 0.3 : 1)
+      .border({ width: 1 })
+      .borderColor(Color.White)
+      .borderRadius(25)
+      .backgroundColor(Color.White)
+    }
+  }
+  ```
+
+  * TodoComponent.ets
 
   ```typescript
   @Component
@@ -655,106 +765,117 @@ View层根据需要来组织，但View层需要区分一下三种组件：
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
       }
-      .padding({left: 15})
+      .padding({ left: 15 })
       .width('50%')
-      .margin({top: 10, bottom: 10})
+      .margin({ top: 10, bottom: 10 })
     }
   }
   ```
 
-  
-
-  * AllchooseComponent.ets
+  * TodoListComponent.ets
 
   ```typescript
+  import ThingsViewModel from "../ViewModel/ThingsViewModel";
+  import { ThingsViewModelArray } from "../ViewModel/TodoListViewModel"
+  import { ThingsComponent } from "./ThingsComponent";
+
   @Component
-  export struct MultiChooseComponent {
-    @Link isFinished: boolean;
-  
+  export struct TodoListComponent {
+    @ObjectLink thingsViewModelArray: ThingsViewModelArray;
+
     build() {
-      Row() {
-        Button('多选', {type: ButtonType.Capsule})
-          .onClick(() => {
-            this.isFinished = !this.isFinished;
+      Column() {
+        List() {
+          ForEach(this.thingsViewModelArray, (item: ThingsViewModel) => {
+            // 待办事项
+            ListItem() {
+              ThingsComponent({ things: item })
+                .margin(5)
+            }
+          }, (item: ThingsViewModel) => {
+            return item.thingsName;
           })
-          .fontSize(30)
-          .fontWeight(FontWeight.Bold)
-          .backgroundColor('#f7f6cc74')
+        }
       }
-      .padding({left: 15})
-      .width('100%')
-      .margin({top: 10, bottom: 10})
     }
   }
   ```
 
-  * ThingsComponent
+  * ThingsViewModel.ets
 
   ```typescript
-  @Component
-  export struct ThingsComponent {
-    @Prop isFinished: boolean;
-    @Prop things: string;
-  
-    @Builder displayIcon(icon: Resource) {
-      Image(icon)
-        .width(28)
-        .height(28)
-        .onClick(() => {
-          this.isFinished = !this.isFinished;
-        })
-    }
-  
-    build() {
-      // 待办事项1
-      Row({space: 15}) {
-        if (this.isFinished) {
-          // 此处'app.media.finished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-          this.displayIcon($r('app.media.finished'));
-        }
-        else {
-          // 此处'app.media.unfinished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-          this.displayIcon($r('app.media.unfinished'));
-        }
-        Text(`${this.things}`)
-          .fontSize(24)
-          .fontWeight(450)
-          .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
-          .onClick(() => {
-            this.things += '啦';
-          })
-      }
-      .height('8%')
-      .width('90%')
-      .padding({left: 15})
-      .opacity(this.isFinished ? 0.3: 1)
-      .border({width:1})
-      .borderColor(Color.White)
-      .borderRadius(25)
-      .backgroundColor(Color.White)
-    }
-  }
-  
-  ```
+  import ThingsModel from "../Model/ThingsModel";
 
-  ThingsViewModel.ets
-
-  ```typescript
   @Observed
-  export class TodoListData {
-    planList: string[] = [
-      '7.30 起床',
-      '8.30 早餐',
-      '11.30 中餐',
-      '17.30 晚餐',
-      '21.30 夜宵',
-      '22.30 洗澡',
-      '1.30 起床'
-    ];
+  export default class ThingsViewModel {
+    @Track thingsName: string = 'Todo';
+    @Track isFinish: boolean = false;
+
+    updateTask(things: ThingsModel) {
+      this.thingsName = things.thingsName;
+      this.isFinish = things.isFinish;
+    }
+
+    updateIsFinish(): void {
+      this.isFinish = !this.isFinish;
+    }
+
+    addSuffixes(): void {
+      this.thingsName += '啦';
+    }
   }
   ```
 
-  经过MVVM模式拆分之后的代码，项目结构更加清晰，各个模块的职责更加清晰，假如有新的page需要用到事件这个组件，只需要import对应的组件即可，因为是固定的本地数据，没有去写Model层的逻辑，后续开发者也可以照着示例去重构自己的项目结构。
+  * TodoListViewModel.ets
+
+  ```typescript
+  import ThingsViewModel from "./ThingsViewModel";
+  import { common } from "@kit.AbilityKit";
+  import TodoListModel from "../Model/TodoListModel";
+
+  @Observed
+  export class ThingsViewModelArray extends Array<ThingsViewModel> {
+  }
+
+  @Observed
+  export default class TodoListViewModel {
+    @Track isChoosen: boolean = true;
+    @Track things: ThingsViewModelArray = new ThingsViewModelArray();
+
+    async loadTasks(context: common.UIAbilityContext) {
+      let todoList = new TodoListModel([]);
+      await todoList.loadTasks(context);
+      for(let things of todoList.things) {
+        let thingsViewModel = new ThingsViewModel();
+        thingsViewModel.updateTask(things);
+        this.things.push(thingsViewModel);
+      }
+    }
+
+    chooseAll(): void {
+      for(let things of this.things) {
+        things.isFinish = this.isChoosen;
+      }
+      this.isChoosen = !this.isChoosen;
+    }
+  }
+  ```
+
+  * defaultTasks.json
+
+  ```typescript
+  [
+    {"thingsName": "7.30起床", "isFinish": false},
+    {"thingsName": "8.30早餐", "isFinish": false},
+    {"thingsName": "11.30中餐", "isFinish": false},
+    {"thingsName": "17.30晚餐", "isFinish": false},
+    {"thingsName": "21.30夜宵", "isFinish": false},
+    {"thingsName": "22.30洗澡", "isFinish": false},
+    {"thingsName": "1.30睡觉", "isFinish": false}
+  ]
+  ```
+
+  经过MVVM模式拆分后的代码，项目结构更加清晰，各模块的职责更加明确。如果有新的页面需要使用事件组件，比如TodoListComponent组件，只需导入该组件即可。
 
   效果图如下：
 

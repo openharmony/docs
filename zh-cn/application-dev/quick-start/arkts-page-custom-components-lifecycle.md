@@ -86,12 +86,13 @@ import { router } from '@kit.ArkUI';
 @Component
 struct MyComponent {
   @State showChild: boolean = true;
-  @State btnColor:string = "#FF007DFF";
+  @State btnColor: string = "#FF007DFF";
 
   // 只有被@Entry装饰的组件才可以调用页面的生命周期
   onPageShow() {
     console.info('Index onPageShow');
   }
+
   // 只有被@Entry装饰的组件才可以调用页面的生命周期
   onPageHide() {
     console.info('Index onPageHide');
@@ -100,8 +101,8 @@ struct MyComponent {
   // 只有被@Entry装饰的组件才可以调用页面的生命周期
   onBackPress() {
     console.info('Index onBackPress');
-    this.btnColor ="#FFEE0606";
-    return true // 返回true表示页面自己处理返回逻辑，不进行页面路由；返回false表示使用默认的路由返回逻辑，不设置返回值按照false处理
+    this.btnColor = "#FFEE0606";
+    return true; // 返回true表示页面自己处理返回逻辑，不进行页面路由；返回false表示使用默认的路由返回逻辑，不设置返回值按照false处理
   }
 
   // 组件生命周期
@@ -125,17 +126,17 @@ struct MyComponent {
       if (this.showChild) {
         Child()
       }
-      // this.showChild为false，删除Child子组件，执行Child aboutToDisappear
       Button('delete Child')
         .margin(20)
         .backgroundColor(this.btnColor)
         .onClick(() => {
+        // 更改this.showChild为false，删除Child子组件，执行Child aboutToDisappear
         this.showChild = false;
       })
-      // push到page页面，执行onPageHide
+      // push到Page页面，执行onPageHide
       Button('push to next page')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/page' });
+          router.pushUrl({ url: 'pages/Page' });
         })
     }
   }
@@ -170,26 +171,30 @@ struct Child {
 }
 ```
 ```ts
-// page.ets
+// Page.ets
 @Entry
 @Component
-struct page {
+struct Page {
   @State textColor: Color = Color.Black;
   @State num: number = 0;
 
+  // 只有被@Entry装饰的组件才可以调用页面的生命周期
   onPageShow() {
     this.num = 5;
   }
 
+  // 只有被@Entry装饰的组件才可以调用页面的生命周期
   onPageHide() {
-    console.log("page onPageHide");
+    console.log("Page onPageHide");
   }
 
+  // 只有被@Entry装饰的组件才可以调用页面的生命周期
   onBackPress() { // 不设置返回值按照false处理
     this.textColor = Color.Grey;
     this.num = 0;
   }
 
+  // 组件生命周期
   aboutToAppear() {
     this.textColor = Color.Blue;
   }

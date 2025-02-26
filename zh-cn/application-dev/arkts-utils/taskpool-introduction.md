@@ -323,7 +323,7 @@ export class MyTestB {
 
 #### 并发异步函数中使用Promise
 
-并发异步函数中如果使用Promise，建议搭配await使用捕获Promise中可能发生的异常。推荐使用示例如下。
+并发异步函数中如果使用Promise，建议搭配await使用。这样TaskPool会捕获Promise中可能发生的异常。推荐使用示例如下。
 
 示例：
 

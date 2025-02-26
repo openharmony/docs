@@ -132,7 +132,7 @@ int32_t OH_BackgroundTaskManager_CancelSuspendDelay (int32_t requestId)
 
 **返回：**
 
-返回0，表示取消成功。 返回401，表示入参错误。 返回9800002，表示Parcel读写操作失败。 返回9800003，表示IPC通信失败。 返回9800004，表示系统服务失败。 返回9900001，表示短时任务客户端信息校验失败。 返回9900002，表示短时任务服务端校验失败。 错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。
+返回0，表示取消成功。 </br>返回401，表示入参错误。 </br>返回9800002，表示Parcel读写操作失败。 </br>返回9800003，表示IPC通信失败。 </br>返回9800004，表示系统服务失败。 </br>返回9900001，表示短时任务客户端信息校验失败。 </br>返回9900002，表示短时任务服务端校验失败。 </br>错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。
 
 
 ### OH_BackgroundTaskManager_GetRemainingDelayTime()
@@ -156,7 +156,7 @@ int32_t OH_BackgroundTaskManager_GetRemainingDelayTime (int32_t requestId, int32
 
 **返回：**
 
-返回0，表示查询成功。 返回401，表示入参错误。 返回9800002，表示Parcel读写操作失败。 返回9800003，表示IPC通信失败。 返回9800004，表示系统服务失败。 返回9900001，表示短时任务客户端信息校验失败。 返回9900002，表示短时任务服务端校验失败。 错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。
+返回0，表示查询成功。 </br>返回401，表示入参错误。 </br>返回9800002，表示Parcel读写操作失败。 </br>返回9800003，表示IPC通信失败。 </br>返回9800004，表示系统服务失败。 </br>返回9900001，表示短时任务客户端信息校验失败。 </br>返回9900002，表示短时任务服务端校验失败。 </br>错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。
 
 
 ### OH_BackgroundTaskManager_RequestSuspendDelay()
@@ -181,4 +181,4 @@ int32_t OH_BackgroundTaskManager_RequestSuspendDelay (const char * reason, Trans
 
 **返回：**
 
-返回0，表示申请成功。 返回401，表示入参错误。 返回9800002，表示Parcel读写操作失败。 返回9800003，表示IPC通信失败。 返回9800004，表示系统服务失败。 返回9900001，表示短时任务客户端信息校验失败。 返回9900002，表示短时任务服务端校验失败。 错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。
+返回0，表示申请成功。 </br>返回401，表示入参错误。 </br>返回9800002，表示Parcel读写操作失败。 </br>返回9800003，表示IPC通信失败。 </br>返回9800004，表示系统服务失败。 </br>返回9900001，表示短时任务客户端信息校验失败。 </br>返回9900002，表示短时任务服务端校验失败。 </br>错误码的具体信息请参考[TransientTask_ErrorCode](#transienttask_errorcode)。

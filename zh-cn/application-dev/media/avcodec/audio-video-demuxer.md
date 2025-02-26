@@ -1,6 +1,6 @@
 # 媒体数据解析
 
-调用者可以调用本模块的Native API接口，完成媒体数据的解封装相关操作，即从比特流数据中取出音频、视频、字幕等媒体sample，获得DRM相关信息
+开发者可以调用本模块的Native API接口，完成媒体数据的解封装相关操作，即从比特流数据中取出音频、视频、字幕等媒体sample，获得DRM相关信息。
 
 当前支持的数据输入类型有：远程连接(http协议)和文件描述符(fd)。
 
@@ -41,7 +41,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 > **说明：**
 >
-> 上述'sample'字样仅为示例，此处由调用者根据实际工程目录自定义。
+> 上述'sample'字样仅为示例，此处由开发者根据实际工程目录自定义。
 >
 
 ### 开发步骤
@@ -58,12 +58,12 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    #include <sys/stat.h>
    ```
 
-2. 创建资源管理实例对象。
+2. 创建资源管理实例。
 
-   调用者HAP中使用open获取fd时，filepath需要转换为[沙箱路径](../../file-management/app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)，才能获取沙盒资源。
+   开发者HAP中使用open获取fd时，filepath需要转换为[沙箱路径](../../file-management/app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)，才能获取沙盒资源。
 
    ```c++
-   // 创建文件操作符 fd，打开时对文件句柄必须有读权限(filePath 为待解封装文件路径，需预置文件，保证路径指向的文件存在)
+   // 创建文件操作符 fd，打开时对文件实例必须有读权限（filePath 为待解封装文件路径，需预置文件，保证路径指向的文件存在）
    std::string filePath = "test.mp4";
    int fd = open(filePath.c_str(), O_RDONLY);
    struct stat fileStatus {};
@@ -74,23 +74,23 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       printf("get stat failed");
       return;
    }
-   // 为 fd 资源文件创建 source 资源对象, 传入 offset 不为文件起始位置 或 size 不为文件大小时，可能会因不能获取完整数据导致 source 创建失败、或后续解封装失败等问题
+   // 为 fd 资源文件创建 source 资源实例, 传入 offset 不为文件起始位置或 size 不为文件大小时，可能会因不能获取完整数据导致 source 创建失败、或后续解封装失败等问题
    OH_AVSource *source = OH_AVSource_CreateWithFD(fd, 0, fileSize);
    if (source == nullptr) {
       printf("create source failed");
       return;
    }
-   // 为 uri 资源文件创建 source 资源对象(可选)
+   // 为 uri 资源文件创建 source 资源实例（可选）
    // OH_AVSource *source = OH_AVSource_CreateWithURI(uri);
 
-   // 为自定义数据源创建 source 资源对象(可选)。使用该方式前，需要先实现AVSourceReadAt接口函数实现。
+   // 为自定义数据源创建 source 资源实例（可选）。使用该方式前，需要先实现AVSourceReadAt接口函数实现。
    // 当使用OH_AVSource_CreateWithDataSource时需要补充g_filePath
    // g_filePath = filePath ;
    // OH_AVDataSource dataSource = {fileSize, AVSourceReadAt};
    // OH_AVSource *source = OH_AVSource_CreateWithDataSource(&dataSource);
    ```
 
-   AVSourceReadAt接口函数，需要放在创建资源管理实例对象前实现：
+   AVSourceReadAt接口函数，需要放在创建资源管理实例前实现：
 
    ```c++
    // 添加头文件
@@ -145,9 +145,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       return length;
    }
    ```
-3. 创建解封装器实例对象。
+3. 创建解封装器实例。
    ```c++
-   // 为资源对象创建对应的解封装器
+   // 为资源实例创建对应的解封装器
    OH_AVDemuxer *demuxer = OH_AVDemuxer_CreateWithSource(source);
    if (demuxer == nullptr) {
       printf("create demuxer failed");
@@ -239,11 +239,11 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       printf("select video track failed: %d", videoTrackIndex);
       return;
    }
-   // 取消选择轨道(可选)
+   // 取消选择轨道（可选）
    // OH_AVDemuxer_UnselectTrackByID(demuxer, audioTrackIndex);
    ```
 
-8. 调整轨道到指定时间点(可选)。
+8. 调整轨道到指定时间点（可选）。
 
    ```c++
    // 调整轨道到指定时间点，后续从该时间点进行解封装
@@ -253,7 +253,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVDemuxer_SeekToTime(demuxer, 0, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
    ```
 
-9. 开始解封装，循环获取sample(以含音频、视频两轨的文件为例)。
+9. 开始解封装，循环获取sample（以含音频、视频两轨的文件为例）。
 
    BufferAttr包含的属性：
    - size：sample尺寸；
@@ -313,12 +313,12 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 10. 销毁解封装实例。
       ```c++
-      // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为nullptr，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误
+      // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将实例置为nullptr，对同一实例重复调用 OH_AVSource_Destroy 会导致程序错误
       if (OH_AVSource_Destroy(source) != AV_ERR_OK) {
          printf("destroy source pointer error");
       }
       source = nullptr;
-      // 需要用户调用 OH_AVDemuxer_Destroy 接口成功后，手动将对象置为nullptr，对同一对象重复调用 OH_AVDemuxer_Destroy 会导致程序错误
+      // 需要用户调用 OH_AVDemuxer_Destroy 接口成功后，手动将实例置为nullptr，对同一实例重复调用 OH_AVDemuxer_Destroy 会导致程序错误
       if (OH_AVDemuxer_Destroy(demuxer) != AV_ERR_OK) {
          printf("destroy demuxer pointer error");
       }

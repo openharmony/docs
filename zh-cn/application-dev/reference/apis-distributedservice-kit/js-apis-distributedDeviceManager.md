@@ -4,10 +4,10 @@
 
 应用可调用接口实现如下功能：
 
-- 注册和解除注册设备上下线变化监听
-- 发现周边不可信设备
-- 认证和取消认证设备
-- 查询可信设备列表
+- 注册和解除注册设备上下线变化监听。
+- 发现周边不可信设备。
+- 认证和取消认证设备。
+- 查询可信设备列表。
 - 查询本地设备信息，包括设备名称，设备类型和设备标识等。
 
 
@@ -45,7 +45,7 @@ createDeviceManager(bundleName: string): DeviceManager;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -83,7 +83,7 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -154,7 +154,7 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -195,7 +195,7 @@ getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -241,7 +241,7 @@ getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -280,7 +280,7 @@ getLocalDeviceNetworkId(): string;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -320,7 +320,7 @@ getLocalDeviceName(): string;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -360,7 +360,7 @@ getLocalDeviceType(): number;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -400,7 +400,7 @@ getLocalDeviceId(): string;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -446,7 +446,7 @@ getDeviceName(networkId: string): string;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -495,7 +495,7 @@ getDeviceType(networkId: string): number;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -539,7 +539,7 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptio
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -592,7 +592,7 @@ stopDiscovering(): void;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -635,7 +635,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , cal
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
@@ -696,7 +696,7 @@ unbindTarget(deviceId: string): void;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -738,7 +738,7 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -791,7 +791,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -844,7 +844,7 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo; }&g
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -896,7 +896,7 @@ off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo; }
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -947,7 +947,7 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string; }&gt;):
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -993,7 +993,7 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string; }&gt;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1039,7 +1039,7 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number; }&gt;): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1085,7 +1085,7 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number; }&gt;): vo
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1131,7 +1131,7 @@ on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1173,7 +1173,7 @@ off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |

@@ -71,7 +71,7 @@ backgroundColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                                       |
 | ------ | ------------------------------------------ | ---- | ---------------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 背景颜色 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 背景颜色。 |
 
 ### regularColor
 
