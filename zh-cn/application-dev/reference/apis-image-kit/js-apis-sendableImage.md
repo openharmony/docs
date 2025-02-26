@@ -40,7 +40,7 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
     sendableImage.createPixelMap(color, opts).then((pixelMap: sendableImage.PixelMap) => {
         console.info('Succeeded in creating pixelmap.');
@@ -131,16 +131,16 @@ async function Demo() {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
-     // 序列化
+     // 序列化。
      let parcelable: MySequence = new MySequence(pixelMap);
      let data: rpc.MessageSequence = rpc.MessageSequence.create();
      data.writeParcelable(parcelable);
 
-     // 反序列化 rpc获取到data
+     // 反序列化 rpc获取到data。
      let ret: MySequence = new MySequence(pixelMap);
      data.readParcelable(ret);
 
-     // 获取到pixelmap
+     // 获取到pixelmap。
      let unmarshPixelmap = ret.pixel_map;
    }
 }
@@ -227,7 +227,7 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
     let pixelMap : sendableImage.PixelMap = sendableImage.createPixelMapSync(color, opts);
     return pixelMap;
@@ -268,7 +268,7 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
     let pixelMap : image.PixelMap = image.createPixelMapSync(color, opts);
     let sendablePixelMap : sendableImage.PixelMap = sendableImage.convertFromPixelMap(pixelMap);
@@ -310,7 +310,7 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
     let sendablePixelMap : sendableImage.PixelMap = sendableImage.createPixelMapSync(color, opts);
     let pixelMap : image.PixelMap = sendableImage.convertToPixelMap(sendablePixelMap);
@@ -363,12 +363,12 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
     if (pixelMap != undefined) {
         pixelMap.readPixelsToBuffer(readBuffer).then(() => {
-            console.info('Succeeded in reading image pixel data.'); // 符合条件则进入 
+            console.info('Succeeded in reading image pixel data.'); // 符合条件则进入。 
         }).catch((error: BusinessError) => {
-            console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
+            console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入。
         })
     }
 }
@@ -405,7 +405,7 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
     if (pixelMap != undefined) {
         pixelMap.readPixelsToBufferSync(readBuffer);
     }
@@ -449,9 +449,9 @@ async function Demo() {
     };
     if (pixelMap != undefined) {
         pixelMap.readPixels(area).then(() => {
-            console.info('Succeeded in reading the image data in the area.'); //符合条件则进入
+            console.info('Succeeded in reading the image data in the area.'); //符合条件则进入。
         }).catch((error: BusinessError) => {
-            console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
+            console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入。
         })
     }
 }
@@ -626,7 +626,7 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
     let bufferArr: Uint8Array = new Uint8Array(color);
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
@@ -672,7 +672,7 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+    const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4。
     let bufferArr : Uint8Array = new Uint8Array(color);
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
@@ -732,7 +732,7 @@ getImageInfoSync(): image.ImageInfo
 
 | 类型                              | 说明                                                        |
 | --------------------------------- | ----------------------------------------------------------- |
-| [ImageInfo](js-apis-image.md#imageinfo)           | 图像像素信息                                                |
+| [ImageInfo](js-apis-image.md#imageinfo)           | 图像像素信息。                                                |
 
 **错误码：**
 
@@ -1554,12 +1554,12 @@ async function Demo() {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
-    // 序列化
+    // 序列化。
      let parcelable: MySequence = new MySequence(pixelMap);
      let data: rpc.MessageSequence = rpc.MessageSequence.create();
      data.writeParcelable(parcelable);
 
-    // 反序列化 rpc获取到data
+    // 反序列化 rpc获取到data。
      let ret: MySequence = new MySequence(pixelMap);
      data.readParcelable(ret);
    }
@@ -1643,12 +1643,12 @@ async function Demo() {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
-    // 序列化
+    // 序列化。
      let parcelable: MySequence = new MySequence(pixelMap);
      let data : rpc.MessageSequence = rpc.MessageSequence.create();
      data.writeParcelable(parcelable);
 
-    // 反序列化 rpc获取到data
+    // 反序列化 rpc获取到data。
      let ret : MySequence = new MySequence(pixelMap);
      data.readParcelable(ret);
    }
@@ -1812,7 +1812,7 @@ createImageSource(buf: ArrayBuffer): ImageSource
 **示例：**
 
 ```ts
-const buf: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+const buf: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(buf);
 ```
 
