@@ -20,7 +20,7 @@ UX规范变更。
 
 **起始API Level**
 
-16
+7
 
 **变更发生版本**
 
@@ -28,7 +28,7 @@ UX规范变更。
 
 **适配指导**
 
-Slider 默认支持触控反馈（声音和振动）效果，如果开发者不想要此效果，可以通过为Slider组件设置 enableHapticFeedback(false) 来关闭此效果。如下代码实现：
+Slider 默认支持触控反馈（声音和振动）效果，此变更为系统变更，建议保持现状，开发者无需适配，如果开发者想关闭触控反馈效果，可以通过为Slider组件设置 enableHapticFeedback(false) 来关闭此效果。如下代码实现：
 ```ts
 @Entry
 @Component
