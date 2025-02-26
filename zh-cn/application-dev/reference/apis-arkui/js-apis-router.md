@@ -81,14 +81,16 @@ class routerParams {
   }
 }
 
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: new routerParams('message', [123, 456, 789])
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: new routerParams('message', [123, 456, 789])
+})
+  .then(() => {
+    console.error(`pushUrl finish`);
   })
-} catch (err) {
-  console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+  .catch((err: ESObject) => {
+    console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -169,7 +171,7 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | 是    | 跳转页面描述信息。  |
-| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
 
 **返回值：**
 
@@ -214,14 +216,16 @@ class routerParams {
   }
 }
 
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: new routerParams('message', [123, 456, 789])
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+router.pushUrl({
+  url: 'pages/routerpage2',
+  params: new routerParams('message', [123, 456, 789])
+}, router.RouterMode.Standard)
+  .then(() => {
+    console.error(`pushUrl finish`);
+  })
+  .catch((err: ESObject) => {
+    console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -239,7 +243,7 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | 是    | 跳转页面描述信息。  |
-| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
@@ -337,14 +341,16 @@ class routerParams {
   }
 }
 
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: new routerParams('message')
+router.replaceUrl({
+  url: 'pages/detail',
+  params: new routerParams('message')
+})
+  .then(() => {
+    console.error(`replaceUrl finish`);
   })
-} catch (err) {
-  console.error(`replaceUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+  .catch((err: ESObject) => {
+    console.error(`replaceUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -415,7 +421,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | 是    | 替换页面描述信息。  |
-| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
 
 
 **返回值：**
@@ -450,14 +456,16 @@ class routerParams {
   }
 }
 
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: new routerParams('message')
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`replaceUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+router.replaceUrl({
+  url: 'pages/detail',
+  params: new routerParams('message')
+}, router.RouterMode.Standard)
+  .then(() => {
+    console.error(`replaceUrl finish`);
+  })
+  .catch((err: ESObject) => {
+    console.error(`replaceUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.replaceUrl<sup>9+</sup>
@@ -475,7 +483,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | 是    | 替换页面描述信息。  |
-| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
@@ -573,14 +581,16 @@ class routerParams {
   }
 }
 
-try {
-  router.pushNamedRoute({
-    name: 'myPage',
-    params: new routerParams('message', [123, 456, 789])
+router.pushNamedRoute({
+  name: 'myPage',
+  params: new routerParams('message', [123, 456, 789])
+})
+  .then(() => {
+    console.error(`pushNamedRoute finish`);
   })
-} catch (err) {
-  console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+  .catch((err: ESObject) => {
+    console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 详细示例请参考：[UI开发-页面路由](../../ui/arkts-routing.md#命名路由)
@@ -663,7 +673,7 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&g
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [NamedRouterOptions](#namedrouteroptions10) | 是    | 跳转页面描述信息。  |
-| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
 
 **返回值：**
 
@@ -708,14 +718,16 @@ class routerParams {
   }
 }
 
-try {
-  router.pushNamedRoute({
-    name: 'myPage',
-    params: new routerParams('message', [123, 456, 789])
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+router.pushNamedRoute({
+  name: 'myPage',
+  params: new routerParams('message', [123, 456, 789])
+}, router.RouterMode.Standard)
+  .then(() => {
+    console.error(`pushNamedRoute finish`);
+  })
+  .catch((err: ESObject) => {
+    console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.pushNamedRoute<sup>10+</sup>
@@ -733,7 +745,7 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCal
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [NamedRouterOptions](#namedrouteroptions10) | 是    | 跳转页面描述信息。  |
-| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
@@ -831,14 +843,16 @@ class routerParams {
   }
 }
 
-try {
-  router.replaceNamedRoute({
-    name: 'myPage',
-    params: new routerParams('message')
+router.replaceNamedRoute({
+  name: 'myPage',
+  params: new routerParams('message')
+})
+  .then(() => {
+    console.error(`replaceNamedRoute finish`);
   })
-} catch (err) {
-  console.error(`replaceNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+  .catch((err: ESObject) => {
+    console.error(`replaceNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.replaceNamedRoute<sup>10+</sup>
@@ -909,7 +923,7 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [NamedRouterOptions](#namedrouteroptions10) | 是    | 替换页面描述信息。  |
-| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
 
 
 **返回值：**
@@ -944,14 +958,16 @@ class routerParams {
   }
 }
 
-try {
-  router.replaceNamedRoute({
-    name: 'myPage',
-    params: new routerParams('message')
-  }, router.RouterMode.Standard)
-} catch (err) {
-  console.error(`replaceNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
-}
+router.replaceNamedRoute({
+  name: 'myPage',
+  params: new routerParams('message')
+}, router.RouterMode.Standard)
+  .then(() => {
+    console.error(`replaceNamedRoute finish`);
+  })
+  .catch((err: ESObject) => {
+    console.error(`replaceNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+  })
 ```
 
 ## router.replaceNamedRoute<sup>10+</sup>
@@ -969,7 +985,7 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: Async
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [NamedRouterOptions](#namedrouteroptions10) | 是    | 替换页面描述信息。  |
-| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
@@ -1303,7 +1319,7 @@ router.getParams();
   > **说明：**
   > 页面路由栈支持的最大Page数量为32。
 
-## RouterMode<sup>9+</sup>枚举说明
+## RouterMode<sup>9+</sup>
 
 路由跳转模式。
 
@@ -1396,13 +1412,15 @@ struct Index {
       url: 'pages/second',
       params: new routerParams('这是第一页的值', [12, 45, 78])
     }
-    try {
-      // 建议使用this.getUIContext().getRouter().pushUrl()
-      await router.pushUrl(options)
-    } catch (err) {
-      console.info(` fail callback, code: ${(err as BusinessError).code}, msg: ${(err as BusinessError).message}`)
+    // 建议使用this.getUIContext().getRouter().pushUrl()
+    router.pushUrl(options)
+      .then(() => {
+        console.error(`pushUrl finish`);
+      })
+      .catch((err: ESObject) => {
+        console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+      })
     }
-  }
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {

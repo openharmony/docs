@@ -275,7 +275,7 @@ setCategory(category: number): void
 
 ```ts
 let toneAttrs = systemSoundManager.createCustomizedToneAttrs();
-let categoryValue = systemSoundManager.TONE_CATEGORY_ALARM; // 需更改为实际所需类型常量
+let categoryValue = systemSoundManager.TONE_CATEGORY_ALARM; // 需更改为实际所需类型常量。
 toneAttrs.setCategory(categoryValue);
 ```
 
@@ -558,7 +558,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
-let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
+let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri。
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
@@ -605,7 +605,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
-let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
+let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri。
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
@@ -827,7 +827,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
-let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
+let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri。
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
@@ -980,7 +980,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
-let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
+let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri。
 let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
@@ -1370,7 +1370,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
-let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
+let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.setAlarmToneUri(context, uri).then(() => {
@@ -1507,7 +1507,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
-let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
+let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.openAlarmTone(context, uri).then((value: number) => {
@@ -1556,7 +1556,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
-let fd = 50; // 需更改为目标铃声的fd
+let fd = 50; // 需更改为目标铃声的fd。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.close(fd).then(() => {
@@ -1609,8 +1609,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
-let title = 'test'; // 需更改为实际名称
-let fileName = 'displayName_test'; // 需更改为实际文件名
+let title = 'test'; // 需更改为实际名称。
+let fileName = 'displayName_test'; // 需更改为实际文件名。
 let categoryValue = systemSoundManager.TONE_CATEGORY_ALARM;
 
 let toneAttrs = systemSoundManager.createCustomizedToneAttrs();
@@ -1618,7 +1618,7 @@ toneAttrs.setTitle(title);
 toneAttrs.setFileName(fileName);
 toneAttrs.setCategory(categoryValue);
 
-let path = 'file://data/test.ogg'; // 需更改为实际铃音uri
+let path = 'file://data/test.ogg'; // 需更改为实际铃音uri。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.addCustomizedTone(context, toneAttrs, path).then((value: string) => {
@@ -1673,8 +1673,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
-let title = 'test'; // 需更改为实际名称
-let fileName = 'displayName_test'; // 需更改为实际文件名
+let title = 'test'; // 需更改为实际名称。
+let fileName = 'displayName_test'; // 需更改为实际文件名。
 let categoryValue = systemSoundManager.TONE_CATEGORY_ALARM;
 
 let toneAttrs = systemSoundManager.createCustomizedToneAttrs();
@@ -1682,9 +1682,9 @@ toneAttrs.setTitle(title);
 toneAttrs.setFileName(fileName);
 toneAttrs.setCategory(categoryValue);
 
-let fd = 10; // 需更改为实际铃音fd,
-let offset = 0; // 需更改为实际所需偏移量
-let length = 50; // 需更改为实际所需数据长度
+let fd = 10; // 需更改为实际铃音fd。
+let offset = 0; // 需更改为实际所需偏移量。
+let length = 50; // 需更改为实际所需数据长度。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.addCustomizedTone(context, toneAttrs, fd, offset, length).then((value: string) => {
@@ -1709,7 +1709,7 @@ removeCustomizedTone(context: BaseContext, uri: string): Promise&lt;void&gt;
 | 参数名 | 类型        | 必填 | 说明                                                                                                      |
 |-----|-----------| ---- |---------------------------------------------------------------------------------------------------------|
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。                                                                                               |
-| uri  | string    | 是   | 铃音uri，可通过[addCustomizedTone](#addcustomizedtone12)或[getAlarmToneAttrList](#getalarmtoneattrlist12)等方法获取 |
+| uri  | string    | 是   | 铃音uri，可通过[addCustomizedTone](#addcustomizedtone12)或[getAlarmToneAttrList](#getalarmtoneattrlist12)等方法获取。 |
 
 **返回值：**
 
@@ -1736,7 +1736,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
-let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
+let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.removeCustomizedTone(context, uri).then(() => {
@@ -1843,7 +1843,7 @@ let context: common.BaseContext = getContext(this);
 let type: systemSoundManager.ToneHapticsType = systemSoundManager.ToneHapticsType.CALL_SIM_CARD_0;
 let toneHapticsSettings: systemSoundManager.ToneHapticsSettings = {
   mode: systemSoundManager.ToneHapticsMode.NON_SYNC,
-  hapticsUri: '/data/storage/el2/base/haptics/synchronized/alarms/test.json', // 需更改为通过getToneHapticsList获取的Uri
+  hapticsUri: '/data/storage/el2/base/haptics/synchronized/alarms/test.json', // 需更改为通过getToneHapticsList获取的Uri。
 }
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
@@ -1946,7 +1946,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
-let toneUri: string = '/data/storage/el2/base/RingTone/alarms/test.ogg'; // 需更改为实际铃音uri
+let toneUri: string = '/data/storage/el2/base/RingTone/alarms/test.ogg'; // 需更改为实际铃音uri。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getHapticsAttrsSyncedWithTone(context, toneUri).then((value: systemSoundManager.ToneHapticsAttrs) => {
@@ -1998,7 +1998,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
-let hapticsUri = '/data/storage/el2/base/haptics/synchronized/alarms/test.json'; // 需更改为目标统铃音的振动的uri
+let hapticsUri = '/data/storage/el2/base/haptics/synchronized/alarms/test.json'; // 需更改为目标统铃音的振动的uri。
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.openToneHaptics(context, hapticsUri).then((value: number) => {

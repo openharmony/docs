@@ -64,7 +64,7 @@ Video(value: VideoOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### muted
 
@@ -183,7 +183,7 @@ analyzerConfig(config: ImageAnalyzerConfig)
 | -------- | -------- | -------- | -------- |
 | config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | 是 | 设置AI分析识别类型 |
 
-### enableShortcutKey<sup>16+</sup>
+### enableShortcutKey<sup>15+</sup>
 
 enableShortcutKey(enabled: boolean)
 
@@ -191,7 +191,7 @@ enableShortcutKey(enabled: boolean)
 
 目前支持在组件获焦后响应空格键播放/暂停、上下方向键调整视频音量、左右方向键快进/快退。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -201,7 +201,7 @@ enableShortcutKey(enabled: boolean)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onStart
 
@@ -253,7 +253,7 @@ onFinish(event:&nbsp;VoidCallback)
 
 ### onError
 
-onError(event:()&nbsp;=&gt;&nbsp;void)
+onError(event: () => void)
 
 播放失败时触发该事件。
 
@@ -285,7 +285,7 @@ onPrepared(callback: Callback\<PreparedInfo>)
 
 | 参数名   | 类型   | 必填 | 说明                       |
 | -------- | ------ | ---- | -------------------------- |
-| callback | Callback\<[PreparedInfo](#preparedinfo14对象说明)> | 是   | 当前视频的时长。 |
+| callback | Callback\<[PreparedInfo](#preparedinfo16对象说明)> | 是   | 当前视频的时长。 |
 
 ### onSeeking
 
@@ -301,7 +301,7 @@ onSeeking(callback: Callback\<PlaybackInfo>)
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | Callback\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
+| callback   | Callback\<[PlaybackInfo](#playbackinfo16对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onSeeked
 
@@ -317,7 +317,7 @@ onSeeked(callback: Callback\<PlaybackInfo>)
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | Callback\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
+| callback   | Callback\<[PlaybackInfo](#playbackinfo16对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onUpdate
 
@@ -333,7 +333,7 @@ onUpdate(callback: Callback\<PlaybackInfo>)
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | Callback\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
+| callback   | Callback\<[PlaybackInfo](#playbackinfo16对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onFullscreenChange
 
@@ -349,13 +349,13 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 | 参数名     | 类型    | 必填 | 说明                                                  |
 | ---------- | ------- | ---- | ----------------------------------------------------- |
-| callback | Callback\<[FullscreenInfo](#fullscreeninfo14对象说明)> | 是   | 当前视频是否进入全屏播放状态。 |
+| callback | Callback\<[FullscreenInfo](#fullscreeninfo16对象说明)> | 是   | 当前视频是否进入全屏播放状态。 |
 
-### FullscreenInfo<sup>14+</sup>对象说明
+### FullscreenInfo<sup>16+</sup>对象说明
 
 用于描述当前视频是否进入全屏播放状态。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -363,11 +363,11 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 | ----------- | ------- | ---- | ---------------------------- |
 | fullscreen  | boolean | 是   | 当前视频是否进入全屏播放状态。<br/>默认值：false  |
 
-### PreparedInfo<sup>14+</sup>对象说明
+### PreparedInfo<sup>16+</sup>对象说明
 
 用于描述当前视频的时长。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -375,11 +375,11 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 | ----------- | ------- | ---- | ---------------------------- |
 | duration    | number  | 是   | 当前视频的时长。<br/>单位：秒。<br/>取值范围：[0,+∞)         |
 
-### PlaybackInfo<sup>14+</sup>对象说明
+### PlaybackInfo<sup>16+</sup>对象说明
 
 用于描述当前视频播放的进度。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

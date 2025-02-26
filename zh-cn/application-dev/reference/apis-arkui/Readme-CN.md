@@ -71,7 +71,7 @@
     - [XComponentNode](js-apis-arkui-xcomponentNode.md)
 - ArkTS组件<!--arkui-declarative-comp-->
   - 组件通用信息<!--universal-component-information-->
-    - 通用事件<!--universal-events-->
+    - [通用事件](arkui-ts/ts-component-general-events.md)
       - [点击事件](arkui-ts/ts-universal-events-click.md)
       - [触摸事件](arkui-ts/ts-universal-events-touch.md)
       - [挂载卸载事件](arkui-ts/ts-universal-events-show-hide.md)
@@ -90,7 +90,7 @@
       - [自定义事件拦截](arkui-ts/ts-universal-attributes-on-touch-intercept.md)
       - [焦点轴事件](arkui-ts/ts-universal-events-focus_axis.md)
       - [轴事件](arkui-ts/ts-universal-events-axis.md)
-    - 通用属性<!--universal-attributes-->
+    - [通用属性](arkui-ts/ts-component-general-attributes.md)
       - [尺寸设置](arkui-ts/ts-universal-attributes-size.md)
       - [位置设置](arkui-ts/ts-universal-attributes-location.md)
       - [布局约束](arkui-ts/ts-universal-attributes-layout-constraints.md)
@@ -372,6 +372,7 @@
     - [AtomicServiceWeb](arkui-ts/ohos-atomicservice-AtomicServiceWeb.md)
     - [InterstitialDialogAction](arkui-ts/ohos-atomicservice-InterstitialDialogAction.md)
     - [FullScreenLaunchComponent](arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)
+    - [HalfScreenLaunchComponent](arkui-ts/ohos-atomicservice-HalfScreenLaunchComponent.md)
     <!--Del-->
     - [InnerFullScreenLaunchComponent (系统接口)](arkui-ts/ohos-arkui-advanced-InnerFullScreenLaunchComponent-sys.md)
     <!--DelEnd-->
@@ -448,6 +449,7 @@
     - [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md)
     - [styled_string.h](styled__string_8h.md)
     - [ui_input_event.h](ui__input__event_8h.md)
+    - [oh_window.h](oh__window_8h.md)
     - [oh_window_comm.h](oh__window__comm_8h.md)
     - [oh_window_event_filter.h](oh__window__event__filter_8h.md)
     - [oh_display_capture.h](oh__display__capture_8h.md)
@@ -491,6 +493,9 @@
     - [NativeDisplayManager_DisplaysInfo](_native_display_manager___displays_info.md)
     - [NativeDisplayManager_Rect](_native_display_manager___rect.md)
     - [NativeDisplayManager_WaterfallDisplayAreaRects](ive_display_manager___waterfall_display_area_rects.md)
+    - [WindowManager_AvoidArea](_window_manager___avoid_area.md)
+    - [WindowManager_Rect](_window_manager___rect.md)
+    - [WindowManager_WindowProperties](_window_manager___window_properties.md)
 - 错误码<!--arkui-arkts-errcode-->
   - UI界面<!--arkui-ui-arkts-errcode-->
     - [动画错误码](errorcode-animator.md)

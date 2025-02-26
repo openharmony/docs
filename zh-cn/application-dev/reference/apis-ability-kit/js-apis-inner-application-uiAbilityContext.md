@@ -2834,3 +2834,53 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+
+## UIAbilityContext.setColorMode<sup>16+</sup>
+
+setColorMode(colorMode: ConfigurationConstant.ColorMode): void
+
+设置UIAbility的颜色模式。调用该接口前需要保证该UIAbility对应页面已完成加载。仅支持主线程调用。
+
+> **说明**：
+> - 调用该接口后会创建新的资源管理器对象，如果此前有缓存资源管理器，需要进行更新。
+> - 颜色模式生效的优先级：UIAbility的颜色模式 > 应用的颜色模式（[ApplicationContext.setColorMode](js-apis-inner-application-applicationContext.md)）> 系统的颜色模式。
+
+**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名 | 类型          | 必填 | 说明                 |
+| ------ | ------------- | ---- | -------------------- |
+| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md) | 是   | 设置颜色模式，包括: <br> - COLOR_MODE_DARK：深色模式 <br> - COLOR_MODE_LIGHT：浅色模式 <br> - COLOR_MODE_NOT_SET：不设置（跟随系统或应用）|
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 16000011 | The context does not exist. |
+
+**示例**：
+
+```ts
+import { UIAbility, ConfigurationConstant } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+
+export default class MyAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content.');
+        return;
+      }
+      let uiAbilityContext = this.context;
+      uiAbilityContext.setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
+    });
+  }
+}
+```

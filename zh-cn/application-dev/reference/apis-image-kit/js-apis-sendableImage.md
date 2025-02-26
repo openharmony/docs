@@ -288,7 +288,7 @@ convertToPixelMap(pixelMap: PixelMap): image.PixelMap
 
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| pixelMap | [PixelMap](#pixelmap) | 是   | sendableImage下的PixelMap |
+| pixelMap | [PixelMap](#pixelmap) | 是   | sendableImage下的PixelMap。 |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -301,7 +301,7 @@ convertToPixelMap(pixelMap: PixelMap): image.PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 
 **示例：**
 
@@ -1464,7 +1464,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------------------|
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 62980104| Failed to initialize the internal object. |
 | 62980108| Failed to convert the color space.       |
 | 62980115| Invalid image parameter.            |

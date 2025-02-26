@@ -18,7 +18,7 @@ import { AtomicServiceTabs, TabBarOptions, TabBarPosition, OnContentWillChangeCa
 
 ## 属性
 
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)
 
 ## AtomicServiceTabs
 
@@ -64,7 +64,7 @@ AtomicServiceTabs ({
 | barBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | @Prop | 设置TabBar的背景颜色。|
 | index | number | 否 | @Prop | 设置当前显示页签的索引。|
 | barOverlap | boolean| 否 | @Prop | 设置TabBar是否背后变模糊并叠加在TabContent之上。|
-| controller|[TabsController](ts-container-tabs#tabscontroller) | 否 | @Prop |Tabs组件的控制器，用于控制Tabs组件进行页签切换。|
+| controller|[TabsController](ts-container-tabs.md#tabscontroller) | 否 | @Prop |Tabs组件的控制器，用于控制Tabs组件进行页签切换。|
 | onChange | Callback\<number\> | 否 | - | Tabs页签切换后触发的事件。 |
 | onTabBarClick | Callback\<number\> | 否 | - |Tabs页签点击后触发的事件。|
 | onContentWillChange | [OnContentWillChangeCallback](#oncontentwillchangecallback) | 否 | - | Tabs页面切换拦截事件能力，新页面即将显示时触发该回调。|
@@ -87,7 +87,7 @@ AtomicServiceTabs ({
 
 | 名称 | 类型 | 必填 | 说明 |
 | --------------- | ------ |------ |------ |
-| icon | [ResourceStr](ts-types.md#resourcestr) \| [TabBarSymbol](#tabbarsymbol12) | 是 | 页签内的图片内容 |
+| icon | [ResourceStr](ts-types.md#resourcestr) \| [TabBarSymbol](ts-container-tabcontent.md#tabbarsymbol12) | 是 | 页签内的图片内容 |
 | text | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的文字内容。 |
 | unselectedColor | [ResourceColor](ts-types.md#resourcecolor) | 是 | 未选择时的页签颜色。 |
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 是 | 被选择时的页签颜色。 |

@@ -131,6 +131,20 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 | TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。 |
 | TYPE_DLNA<sup>12+</sup>      | 4    | DLNA协议。表示媒体正在其他设备上展示。 |
 
+## DistributedSessionType<sup>16+</sup>
+
+远端分布式设备支持的会话类型。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+| 名称                                     | 值 | 说明                        |
+|----------------------------------------|---|---------------------------|
+| TYPE_SESSION_REMOTE      | 0 | 远端设备会话。       |
+| TYPE_SESSION_MIGRATE_IN  | 1 | 迁移至本端的设备会话。 |
+| TYPE_SESSION_MIGRATE_OUT | 2 | 迁移至远端的设备会话。 |
+
 ## AVSessionType<sup>10+<sup>
 
 type AVSessionType = 'audio' | 'video' | 'voice_call' | 'video_call'
@@ -5003,6 +5017,10 @@ type ExtraInfo = { [key: string]: Object; }
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+| 类型                                | 说明                          |
+| ----------------------------------- | ----------------------------- |
+| [key: string]: Object   | key为远端分布式事件类型。当前支持的事件类型包括：<br>'AUDIO_GET_VOLUME'：获取远端设备音量。<br>'AUDIO_GET_AVAILABLE_DEVICES'：获取远端所有可连接设备。<br>'AUDIO_GET_PREFERRED_OUTPUT_DEVICE_FOR_RENDERER_INFO'：获取远端实际发声设备。<br>媒体提供方根据不同的远端分布式事件类型，返回对应的媒体数据包Object对象。 |
+
 ## KeyRequestCallback<sup>12+</sup>
 type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
 
@@ -6441,8 +6459,8 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 
 | 参数名    | 类型                                  | 必填 | 说明                           |
 | ------- | ------------------------------------- | ---- | ------------------------------ |
-| command | string | 是   | 需要设置的自定义控制命令的名称 |
-| args | {[key: string]: Object} | 是   | 需要传递的控制命令键值对 |
+| command | string | 是   | 需要设置的自定义控制命令的名称。 |
+| args | {[key: string]: Object} | 是   | 需要传递的控制命令键值对。 |
 | callback | AsyncCallback\<void>                  | 是   | 回调函数。当命令发送成功，err为undefined，否则返回错误对象。                     |
 
 > **说明：**
@@ -6642,11 +6660,7 @@ getExtrasWithEvent(extraEvent: string): Promise\<ExtraInfo>
 
 | 类型                                | 说明                          |
 | ----------------------------------- | ----------------------------- |
-| Promise<[ExtraInfo](#extrainfo16)\>   | Promise对象，返回远端分布式媒体提供方设置的自定义媒体数据包。 |
-
-> **说明：**
-
-> 参数ExtraInfo支持的数据类型有：字符串、数字、布尔、对象、数组和文件描述符等，详细介绍请参见[@ohos.app.ability.Want(Want)](../apis-ability-kit/js-apis-app-ability-want.md)。
+| Promise<[ExtraInfo](#extrainfo16)\>   | Promise对象，返回远端分布式媒体提供方设置的自定义媒体数据包。<br>参数ExtraInfo支持的数据类型有：字符串、数字、布尔、对象、数组和文件描述符等，详细介绍请参见[@ohos.app.ability.Want(Want)](../apis-ability-kit/js-apis-app-ability-want.md)。 |
 
 **错误码：**
 
@@ -6665,6 +6679,25 @@ getExtrasWithEvent(extraEvent: string): Promise\<ExtraInfo>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(40)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            getExtrasWithEventTest();
+          })
+      }
+    }
+  }
+}
+
 async function getExtrasWithEventTest() {
   let controllerList: Array<avSession.AVSessionController>;
   let controller: avSession.AVSessionController | ESObject;
@@ -6680,19 +6713,19 @@ async function getExtrasWithEventTest() {
   const COMMON_COMMAND_STRING_2 = 'AUDIO_GET_AVAILABLE_DEVICES';
   const COMMON_COMMAND_STRING_3 = 'AUDIO_GET_PREFERRED_OUTPUT_DEVICE_FOR_RENDERER_INFO';
   if (controller !== undefined) {
-    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_1).then((extras) => {
+    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_1).then((extras: avSession.ExtraInfo) => {
       console.info(`${extras[COMMON_COMMAND_STRING_1]}`);
     }).catch((err: BusinessError) => {
       console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
     })
 
-    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_2).then((extras) => {
+    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_2).then((extras: avSession.ExtraInfo) => {
       console.info(`${extras[COMMON_COMMAND_STRING_2]}`);
     }).catch((err: BusinessError) => {
       console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
     })
 
-    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_3).then((extras) => {
+    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_3).then((extras: avSession.ExtraInfo) => {
       console.info(`${extras[COMMON_COMMAND_STRING_3]}`);
     }).catch((err: BusinessError) => {
       console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);

@@ -41,7 +41,7 @@ type ProfileId = constant.ProfileId
 | [constant.ProfileId](js-apis-bluetooth-constant.md#profileid) | 蓝牙profile枚举。 |
 
 
-## ProfileUuids
+## ProfileUuids<sup>12+</sup>
 
 type ProfileUuids = constant.ProfileUuids
 

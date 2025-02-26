@@ -39,7 +39,7 @@ import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 
 ## AccessibilityElement<sup>10+</sup>
 
-[AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)二级模块
+表示无障碍节点元素，请参考[AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -197,7 +197,7 @@ type PageUpdateType = 'pageContentUpdate' | 'pageStateUpdate'
 | 类型                | 说明            |
 | ----------------- | ---------------- |
 | 'pageContentUpdate' | 表示页面内容刷新。 |
-| 'pageStateUpdate' | 表示页面内容刷新。 |
+| 'pageStateUpdate' | 表示页面状态刷新。 |
 
 ## TouchGuideType
 

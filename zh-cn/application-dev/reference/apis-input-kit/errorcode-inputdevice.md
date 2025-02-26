@@ -16,7 +16,7 @@ The specified device does not exist.
 
 **可能原因**
 
-1. 输入设备的设备Id变更；
+1. 输入设备的设备Id变更。
 2. 输入设备的物理连接断开。
 
 **处理步骤**

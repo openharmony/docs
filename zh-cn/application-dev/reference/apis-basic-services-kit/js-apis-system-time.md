@@ -759,7 +759,7 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型              | 必填 | 说明                  |
 | -------- | ------------- | ---- | -------------------------- |
-| timezone | string                    | 是   | 系统时区。 具体可见[支持的系统时区](#支持的系统时区) 。        |
+| timezone | string                    | 是   | 系统时区。具体可见[支持的系统时区](#支持的系统时区) 。        |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
 **错误码：**

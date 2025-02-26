@@ -31,7 +31,7 @@ If you are just starting out with Node-API, see [Node-API Development Process](u
 
 ### napi_coerce_to_bool
 
-Use **napi_coerce_to_bool** to forcibly convert an ArkTS value to an ArkTS Boolean value.
+Call **napi_coerce_to_bool** to forcibly convert an ArkTS value to an ArkTS Boolean value.
 
 CPP code:
 
@@ -82,7 +82,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_bool:%{public}s', re
 
 ### napi_coerce_to_number
 
-Use **napi_coerce_to_number** to forcibly convert an ArkTS value to an ArkTS number.
+Call **napi_coerce_to_number** to forcibly convert an ArkTS value to an ArkTS number.
 
 CPP code:
 
@@ -127,7 +127,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_number:%{public}d', 
 
 ### napi_coerce_to_object
 
-Use **napi_coerce_to_object** to forcibly convert an ArkTS value to an ArkTS object.
+Call **napi_coerce_to_object** to forcibly convert an ArkTS value to an ArkTS object.
 
 CPP code:
 
@@ -172,7 +172,7 @@ if (typeof value === 'object') {
 
 ### napi_coerce_to_string
 
-Use **napi_coerce_to_string** to forcibly convert an ArkTS value to an ArkTS string.
+Call **napi_coerce_to_string** to forcibly convert an ArkTS value to an ArkTS string.
 
 CPP code:
 
@@ -216,7 +216,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_string:%{public}s', 
 
 ### napi_get_boolean
 
-Use **napi_get_boolean** to obtain the ArkTS Boolean value based on the given C Boolean value.
+Call **napi_get_boolean** to obtain the ArkTS Boolean value based on the given C Boolean value.
 
 CPP code:
 
@@ -263,7 +263,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_boolean:%{public}s', data)
 
 ### napi_get_value_bool
 
-Use **napi_get_value_bool** to obtain the C Boolean equivalent of an ArkTS Boolean value.
+Call **napi_get_value_bool** to obtain the C Boolean equivalent of an ArkTS Boolean value.
 
 CPP code:
 
@@ -309,7 +309,7 @@ hilog.info(0x0000, 'Node-API', 'get_value_bool_false %{public}s', testNapi.getVa
 
 ### napi_get_global
 
-Use **napi_get_global** to obtain an ArkTS global object. You can use this API to obtain the **napi_value** that represents an ArkTS global object, so that the global object of the ArkTS runtime can be called by C/C++.
+Call **napi_get_global** to obtain an ArkTS global object. You can use this API to obtain the **napi_value** that represents an ArkTS global object, so that the global object of the ArkTS runtime can be called by C/C++.
 
 CPP code:
 
@@ -345,7 +345,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_global:%{public}s', global
 
 ### napi_get_null
 
-Use **napi_get_null** to obtains **null** in ArkTS.
+Call **napi_get_null** to obtain **null** in ArkTS.
 
 CPP code:
 
@@ -379,7 +379,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_null:%{public}s', value);
 
 ### napi_get_undefined
 
-Use **napi_get_undefined** to obtain **undefined** in ArkTS.
+Call **napi_get_undefined** to obtain **undefined** in ArkTS.
 
 CPP code:
 

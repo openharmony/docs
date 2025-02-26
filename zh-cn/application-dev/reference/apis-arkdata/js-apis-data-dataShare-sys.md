@@ -403,7 +403,7 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 
 | 名称       | 类型                                                         | 必填 | 说明           |
 | ---------- | ------------------------------------------------------------ | ---- | -------------- |
-| type       | [ChangeType](#changetype12)      | 是   | 通知变更的类型 |
+| type       | [ChangeType](#changetype12)      | 是   | 通知变更的类型。 |
 | uri        | string                                                       | 是   | 指定uri。      |
 | values     | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt;| 是   | 更新的数据。   |
 
@@ -1545,7 +1545,7 @@ try {
 
 batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Promise&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt;
 
-批量更新数据库中的数据记录，Record最多支持900K的数据，超出该限制更新失败；该接口的事务性取决于provider（数据提供方）。使用Promise异步回调。
+批量更新数据库中的数据记录，Record最多支持900K的数据，超出该限制更新失败；该接口的事务性取决于provider（数据提供方）。使用Promise异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 

@@ -9,16 +9,19 @@ The following is an example: By clicking **click**, you change the **scale** pro
 
 ```ts
 import { curves } from '@kit.ArkUI';
-class SetSlt{
-  isAnimation:boolean = true
-  set():void{
+
+class SetSlt {
+  isAnimation: boolean = true
+
+  set(): void {
     this.isAnimation = !this.isAnimation;
   }
 }
+
 @Entry
 @Component
 struct AnimationToAnimationDemo {
-// Step 1: Declare the related state variable.
+  // Step 1: Declare the related state variable.
   @State SetAnimation: SetSlt = new SetSlt();
 
   build() {
@@ -32,15 +35,17 @@ struct AnimationToAnimationDemo {
         .backgroundColor(0xf56c6c)
         .width(100)
         .height(100)
-        // Step 2: Set the declared state variable to the related animatable property API.
-        .scale({ x: this.SetAnimation.isAnimation ? 2 : 1, y: this.SetAnimation.isAnimation ? 2 : 1 })
-        // Step 4: Enable the implicit animation. When the end value of the animation changes, the system automatically adds the smoothing animation.
-        .animation({ curve: curves.springMotion(0.4, 0.8) })
+        .scale({
+          // Step 2: Set the declared state variable to the related animatable property.
+          x: this.SetAnimation.isAnimation ? 2 : 1,
+          y: this.SetAnimation.isAnimation ? 2 : 1
+        })
+        .animation({ curve: curves.springMotion(0.4, 0.8) }) // Step 4: Enable implicit animation. When the scale values change, the system automatically applies the animation curve.
 
       Button('Click')
         .margin({ top: 200 })
-        // Step 3: Change the state variable value through the click event, which then changes the property value.
         .onClick(() => {
+          // Step 3: Change the state variable value through the click event, which then changes the property value.
           this.SetAnimation.set()
         })
     }
@@ -71,7 +76,6 @@ import { curves } from '@kit.ArkUI';
 @Entry
 @Component
 struct SpringMotionDemo {
-
   // Step 1: Declare the related state variable.
   @State positionX: number = 100;
   @State positionY: number = 100;
@@ -82,11 +86,10 @@ struct SpringMotionDemo {
       Row() {
         Circle({ width: this.diameter, height: this.diameter })
           .fill(Color.Blue)
-          // Step 2: Set the declared state variable to the related animatable property API.
-          .position({ x: this.positionX, y: this.positionY })
-          // Step 3: Change the state variable value for the time when the user places or moves their finger (or fingers) on the screen and use responsiveSpringMotion for movement toward the new value.
+          .position ({x: this.positionX, y: this.positionY})// Step 2: Set the declared state variable to the related animatable property.
           .onTouch((event?: TouchEvent) => {
-            if(event){
+            // Step 3: Change the state variable value for the time when the user places or moves their finger (or fingers) on the screen and use responsiveSpringMotion for movement toward the new value.
+            if (event) {
               if (event.type === TouchType.Move) {
                 // When the user places or moves their finger on the screen, use the responsiveSpringMotion curve.
                 this.getUIContext()?.animateTo({ curve: curves.responsiveSpringMotion() }, () => {

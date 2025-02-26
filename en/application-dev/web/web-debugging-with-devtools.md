@@ -86,7 +86,11 @@ However, Chrome cannot directly access the domain socket on the device. Therefor
      (2) The application uses the **Web** component to load the web page.
 
 2. Exit hdc shell, and run the following command to forward the obtained domain socket to TCP port 9222 of the PC. 
-   
+   Run the **exit** command to exit the hdc shell.
+   ```shell
+   exit
+   ```
+   Run the following command to forward the port:
    ```shell
    hdc fport tcp:9222 localabstract:webview_devtools_remote_38532
    ```

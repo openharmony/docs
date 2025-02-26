@@ -755,6 +755,18 @@ Allows a system application to access the permission usage records.
 
 **Valid since**: 9
 
+### ohos.permission.PERMISSION_RECORD_TOGGLE
+
+Allows an application to set the permission usage record switch.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.CAPTURE_SCREEN
 
 Allows an application to take screenshots.
@@ -4498,6 +4510,18 @@ After the script address is configured, other applications can read and parse th
 
 **Valid since**: 15
 
+### ohos.permission.ACCESS_VIRTUAL_SCREEN
+
+Allows an application to manage virtual screens.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.GET_PAGE_INFO
 
 Allows a system application to obtain the page information of a specified application.
@@ -4554,6 +4578,18 @@ peripherals connected to the host via a USB bus and:
 
 1) InterfaceClass of the peripheral is Communication Device Control Class (0x02) and InterfaceSubClass follows ACMSubClass model(0x02).
 2) The peripheral can simulate traditional serial communication through a USB interface.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_CUSTOM_RINGTONE
+
+Allows an application to access the RBT library.
 
 **Permission level**: system_basic
 

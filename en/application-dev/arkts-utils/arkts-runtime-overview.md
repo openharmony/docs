@@ -1,23 +1,23 @@
-# ArkTS Runtime Overview
+# Overview of ArkTS Runtime
 
-The ArkTS runtime is the default language runtime of applications on OpenHarmony. It runs the bytecode and related standard libraries of ArkTS, TS, and JS, and supports the interpreter, AOT, and JIT for efficient execution, in addition, it provides a complete cross-language API implementation [Node-API](../napi/napi-introduction.md) and supports multi-language development.
+ArkTS Runtime is the default language runtime for applications on OpenHarmony. It executes bytecode and standard libraries for ArkTS, TS, and JS languages, and supports the interpreter, Ahead-of-Time (AOT), and Just-In-Time (JIT) for efficient execution. It also provides [Node-API](../napi/napi-introduction.md) to enable multi-language hybrid development. 
 
-ArkCompiler JS Runtime consists of four subsystems:
+ArkTS Runtime is primarily composed of four subsystems:
 
-- The core subsystem consists of basic language-irrelevant runtime libraries, including File, Tooling, and Base. File provides bytecode. Tooling supports Debugger. Base implements system calls.
+- **Core subsystem**: consists of the foundational runtime libraries that are language-agnostic, including the File component that carries bytecode, the Tooling component that supports Debugger functionality, and the Base library component responsible for adapting system calls.
 
-- Execution Subsystem: contains the interpreter for executing Ark bytecode, fast path inline cache, and [modular file management and running](module-principle.md).
+- **Execution subsystem**: includes the interpreter for executing Ark bytecode, fast-path inline caches, and [file-based modular management for runtime execution](module-principle.md).
 
-- Compiler subsystem: includes the stub compiler, IR-based compilation optimization framework, AOT static compiler, and JIT dynamic compiler (in the experiment).
+- **Compiler subsystem**: includes the stub compiler, an IR-based compilation optimization framework, an AOT static compiler, and an experimental JIT dynamic compiler.
 
-- Runtime subsystem: includes the following modules related to the running of ArkTS, TS, and JS:
+- **Runtime subsystem**: includes the following modules related to the execution of ArkTS/TS/JS:
 
   - Memory management: object allocator and [garbage collector](gc-introduction.md) (CMS-GC and Partial-Compressing-GC for concurrent marking and partial memory compression)
 
-  - Analysis tools: DFX tool and CPU and heap profiling tool
+  - Analysis tools: DFX, and profiling tools for CPU and heap analysis
 
-  - Concurrency management: abc file manager in the actor concurrency model
+  - Concurrency management: .abc file manager in the actor model
 
-  - Standard library: standard library defined by ECMAScript, efficient container library, and object model
+  - Standard libraries: standard libraries defined by ECMAScript, efficient container libraries, and object models
   
-  - Others: asynchronous work queues and Node-APIs that interact with C++.
+  - Other: asynchronous work queues, and Node-API that interact with C++

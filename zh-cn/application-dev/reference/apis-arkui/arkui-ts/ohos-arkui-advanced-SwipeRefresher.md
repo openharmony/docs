@@ -20,7 +20,7 @@ import { SwipeRefresher } from '@kit.ArkUI'
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)
 
 
 ## SwipeRefresher
@@ -41,7 +41,7 @@ SwipeRefresher ({content?: string, isLoading: boolean})
 | isLoading | boolean | 是 | \@Prop | 当前是否正在加载。<br> isLoading为true时，表示正在加载。<br> isLoading为false时，表示未在加载。 |
 
 ## 事件
-支持[通用事件](ts-universal-events-click.md)
+支持[通用事件](ts-component-general-events.md)
 
 ## 示例
 展示设置属性content为空字串及不为空、isLoading为true和false的不同加载效果。

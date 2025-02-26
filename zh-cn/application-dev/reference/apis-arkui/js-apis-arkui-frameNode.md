@@ -13,8 +13,34 @@ FrameNode表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeC
 ## 导入模块
 
 ```ts
-import { FrameNode, LayoutConstraint, typeNode, NodeAdapter } from "@kit.ArkUI";
+import { FrameNode, LayoutConstraint, ExpandMode, typeNode, NodeAdapter } from "@kit.ArkUI";
 ```
+
+## CrossLanguageOptions<sup>15+</sup>
+
+用于设置或返回FrameNode的跨语言选项。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型   | 只读 | 可选 | 说明                   |
+| ------ | ------ | ---- | ---- | ---------------------- |
+| attributeSetting  | boolean | 否   | 是   | FrameNode是否支持跨语言属性设置。默认为false。 |
+
+## ExpandMode<sup>15+</sup>
+
+子节点展开模式枚举。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| NOT_EXPAND | 0 | 表示不展开当前FrameNode的子节点。如果FrameNode包含[LazyForEach](./arkui-ts/ts-rendering-control-lazyforeach.md)子节点，获取在主节点树上的子节点时，不展开当前FrameNode的子节点。子节点序列号按在主节点树上的子节点计算。 |
+| EXPAND | 1 | 表示展开当前FrameNode的子节点。如果FrameNode包含[LazyForEach](./arkui-ts/ts-rendering-control-lazyforeach.md)子节点，获取所有子节点时，展开当前FrameNode的子节点。子节点序列号按所有子节点计算。 |
+| LAZY_EXPAND | 2 | 表示按需展开当前FrameNode的子节点。如果FrameNode包含[LazyForEach](./arkui-ts/ts-rendering-control-lazyforeach.md)子节点，获取在主树上的子节点时，不展开当前FrameNode的子节点；获取不在主树上的子节点时，展开当前FrameNode的子节点。子节点序列号按所有子节点计算。 |
 
 ## FrameNode
 
@@ -204,7 +230,7 @@ clearChildren(): void
 
 ### getChild<sup>12+</sup> 
 
-getChild(index: number): FrameNode | null
+getChild(index: number, expandMode?: ExpandMode): FrameNode | null
 
 获取当前节点指定位置的子节点。
 
@@ -217,6 +243,7 @@ getChild(index: number): FrameNode | null
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
 | index  | number | 是   | 需要查询的子节点的序列号。 |
+| expandMode<sup>15+</sup> | [ExpandMode](#expandmode15) | 否 | 指定子节点展开模式。<br/>默认值：ExpandMode.Expand |
 
 **返回值：**
 
@@ -226,12 +253,53 @@ getChild(index: number): FrameNode | null
 
 **示例：**
 
-请参考[节点操作示例](#节点操作示例)。
+请参考[节点操作示例](#节点操作示例)和[LazyForEach场景节点操作示例](#lazyforeach场景节点操作示例)。
+
+### getFirstChildIndexWithoutExpand<sup>15+</sup> 
+
+getFirstChildIndexWithoutExpand(): number
+
+获取当前节点第一个在主节点树上的子节点的序列号。子节点序列号按所有子节点计算。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型   | 说明                                      |
+| ------ | ---------------------------------------- |
+| number | 当前节点第一个在主节点树上的子节点的序列号。 |
+
+**示例：**
+
+请参考[LazyForEach场景节点操作示例](#lazyforeach场景节点操作示例)。
+
+### getLastChildIndexWithoutExpand<sup>15+</sup> 
+
+getLastChildIndexWithoutExpand(): number
+
+获取当前节点最后一个在主节点树上的子节点的序列号。子节点序列号按所有子节点计算。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型   | 说明                                        |
+| ------ | ------------------------------------------ |
+| number | 当前节点最后一个在主节点树上的子节点的序列号。 |
+
+**示例：**
+
+请参考[LazyForEach场景节点操作示例](#lazyforeach场景节点操作示例)。
+
 ### getFirstChild<sup>12+</sup> 
 
 getFirstChild(): FrameNode | null
 
-获取当前FrameNode的第一个子节点
+获取当前FrameNode的第一个子节点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -323,6 +391,37 @@ getParent(): FrameNode | null;
 | 类型     | 说明                            |
 | -------- | ------------------------------- |
 | number | 获取当前FrameNode的子节点数量。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### moveTo<sup>16+</sup>
+
+moveTo(targetParent: FrameNode, index?: number): void
+
+将当前FrameNode移动到目标FrameNode的指定位置。当前FrameNode如果不可修改，抛出异常信息。targetParent为[typeNode](#typenode12)时会校验子组件类型或个数，不满足抛出异常信息，限制情况请查看[typeNode](#typenode12)描述。
+
+> **说明：**
+>
+> 当前仅支持以下类型的[TypedFrameNode](#typedframenode12)进行移动操作：[Stack](#stack12)、[XComponent](#xcomponent12)。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名        | 类型                    | 必填 | 说明                  |
+| ------------ | ----------------------- | ---- | --------------------- |
+| targetParent | [FrameNode](#framenode) | 是   | 目标父节点。<br/>**说明：**<br/>targetParent节点不可以为声明式创建的节点，即不可修改的FrameNode。若目标父节点不符合规格，则抛出异常信息。 |
+| index        | number                  | 否   | 子节点序列号。当前FrameNode将被添加到目标FrameNode对应序列号的子节点之前，若目标FrameNode有n个节点，index取值范围为0到n-1。<br/>若参数无效或不指定，则添加到目标FrameNode的最后。<br/>默认值：-1 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                          |
+| -------- | -------------------------------- |
+| 100021   | The FrameNode is not modifiable. |
 
 **示例：**
 
@@ -1362,6 +1461,56 @@ struct Index {
 
 请参考[节点自定义示例](#节点自定义示例)。
 
+### setCrossLanguageOptions<sup>15+</sup>
+
+setCrossLanguageOptions(options: CrossLanguageOptions): void
+
+设置当前FrameNode的跨语言选项。当前FrameNode如果不可修改或不可设置跨语言选项，抛出异常信息。
+
+> **说明：**
+>
+> 当前仅支持以下类型的[TypedFrameNode](#typedframenode12)设置跨语言选项：[Scroll](#scroll12)。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名        | 类型                    | 必填 | 说明                  |
+| ------------ | ----------------------- | ---- | --------------------- |
+| options | [CrossLanguageOptions](#crosslanguageoptions15) | 是   | 跨语言选项。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                          |
+| -------- | -------------------------------- |
+| 100022   | The FrameNode cannot be set whether to support cross-language common attribute setting. |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### getCrossLanguageOptions<sup>15+</sup>
+
+getCrossLanguageOptions(): CrossLanguageOptions
+
+获取当前FrameNode的跨语言选项。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                    | 说明                  |
+| ----------------------- | --------------------- |
+| [CrossLanguageOptions](#crosslanguageoptions15) | 跨语言选项。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
 ## TypedFrameNode<sup>12+</sup>
 
 TypedFrameNode继承自[FrameNode](#framenode)，用于声明具体类型的FrameNode。
@@ -1813,12 +1962,12 @@ createNode(context: UIContext, nodeType: 'Scroll'): Scroll
 typeNode.createNode(uiContext, 'Scroll');
 ```
 
-### getAttribute('Scroll')<sup>16+</sup>
+### getAttribute('Scroll')<sup>15+</sup>
 getAttribute(node: FrameNode, nodeType: 'Scroll'): ScrollAttribute | undefined
 
 获取Scroll节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1843,12 +1992,12 @@ getAttribute(node: FrameNode, nodeType: 'Scroll'): ScrollAttribute | undefined
 typeNode.getAttribute(node, 'Scroll');
 ```
 
-### bindController('Scroll')<sup>16+</sup>
+### bindController('Scroll')<sup>15+</sup>
 bindController(node: FrameNode, controller: Scroller, nodeType: 'Scroll'): void
 
 将滚动控制器Scroller绑定到Scroll节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3643,6 +3792,21 @@ class MyNodeController extends NodeController {
     }
   }
 
+  moveFrameNode() {
+    const currentNode = this.frameNode!.getChild(4);
+    try {
+      currentNode!.moveTo(this.rootNode, 0);
+      if (this.rootNode!.getChild(0) === currentNode) {
+        console.log(TEST_TAG + " moveTo  result: success.");
+      } else {
+        console.log(TEST_TAG + " moveTo  result: fail.");
+      }
+    } catch (err) {
+      console.log(TEST_TAG + " " + (err as BusinessError).code + " : " + (err as BusinessError).message);
+      console.log(TEST_TAG + " moveTo  result: fail.");
+    }
+  }
+
   getPositionToWindow() {
     let positionToWindow = this.rootNode?.getPositionToWindow();
     console.log(TEST_TAG + JSON.stringify(positionToWindow));
@@ -3743,6 +3907,20 @@ class MyNodeController extends NodeController {
     console.log(TEST_TAG + JSON.stringify(inspectorInfo));
   }
 
+  setCrossLanguageOptions() {
+    console.log(TEST_TAG + " getCrossLanguageOptions " + JSON.stringify(this.frameNode?.getCrossLanguageOptions()));
+    try {
+      this.frameNode?.setCrossLanguageOptions({
+        attributeSetting: true
+      });
+      console.log(TEST_TAG + " setCrossLanguageOptions success.");
+    } catch (err) {
+      console.log(TEST_TAG + " " + (err as BusinessError).code + " : " + (err as BusinessError).message);
+      console.log(TEST_TAG + " setCrossLanguageOptions fail.");
+    }
+    console.log(TEST_TAG + " getCrossLanguageOptions " + JSON.stringify(this.frameNode?.getCrossLanguageOptions()));
+  }
+
   throwError() {
     try {
       this.rootNode!.getParent()!.clearChildren();
@@ -3834,6 +4012,11 @@ struct Index {
           .width(300)
           .onClick(() => {
             this.myNodeController.searchFrameNode();
+          })
+        Button("moveFrameNode")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.moveFrameNode();
           })
         Button("getPositionToWindow")
           .width(300)
@@ -3962,6 +4145,11 @@ struct Index {
           })
           .customProperty('customProperty2', {})
           .customProperty('customProperty2', undefined)
+        Button("setCrossLanguageOptions")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.setCrossLanguageOptions();
+          })
         Button("throwError")
           .width(300)
           .onClick(() => {
@@ -3974,6 +4162,267 @@ struct Index {
   }
 }
 ```
+
+## LazyForEach场景节点操作示例
+
+```ts
+import { NodeController, FrameNode, UIContext, BuilderNode, ExpandMode, LengthUnit } from '@kit.ArkUI';
+
+const TEST_TAG: string = "FrameNode "
+
+// BasicDataSource实现了IDataSource接口，用于管理listener监听，以及通知LazyForEach数据更新
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: string[] = [];
+
+  public totalCount(): number {
+    return 0;
+  }
+
+  public getData(index: number): string {
+    return this.originDataArray[index];
+  }
+
+  // 该方法为框架侧调用，为LazyForEach组件向其数据源处添加listener监听
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      console.info('add listener');
+      this.listeners.push(listener);
+    }
+  }
+
+  // 该方法为框架侧调用，为对应的LazyForEach组件在数据源处去除listener监听
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  // 通知LazyForEach组件需要重载所有子组件
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded();
+    })
+  }
+
+  // 通知LazyForEach组件需要在index对应索引处添加子组件
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+      // 写法2：listener.onDatasetChange([{type: DataOperationType.ADD, index: index}]);
+    })
+  }
+
+  // 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index);
+      // 写法2：listener.onDatasetChange([{type: DataOperationType.CHANGE, index: index}]);
+    })
+  }
+
+  // 通知LazyForEach组件需要在index对应索引处删除该子组件
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+      // 写法2：listener.onDatasetChange([{type: DataOperationType.DELETE, index: index}]);
+    })
+  }
+
+  // 通知LazyForEach组件将from索引和to索引处的子组件进行交换
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to);
+      // 写法2：listener.onDatasetChange(
+      //         [{type: DataOperationType.EXCHANGE, index: {start: from, end: to}}]);
+    })
+  }
+
+  notifyDatasetChange(operations: DataOperation[]): void {
+    this.listeners.forEach(listener => {
+      listener.onDatasetChange(operations);
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: string[] = []
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): string {
+    return this.dataArray[index];
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
+  }
+
+  public pushData(data: string): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+}
+
+class Params {
+  data: MyDataSource | null = null;
+  scroller: Scroller | null = null;
+  constructor(data: MyDataSource, scroller: Scroller) {
+    this.data = data;
+    this.scroller = scroller;
+  }
+}
+
+@Builder
+function buildData(params: Params) {
+  List({ scroller: params.scroller }) {
+    LazyForEach(params.data, (item: string) => {
+      ListItem() {
+        Column() {
+          Text(item)
+            .fontSize(20)
+            .onAppear(() => {
+              console.log(TEST_TAG + " node appear: " + item)
+            })
+            .backgroundColor(Color.Pink)
+            .margin({
+              top: 30,
+              bottom: 30,
+              left: 10,
+              right: 10
+            })
+        }
+      }
+      .id(item)
+    }, (item: string) => item)
+  }
+  .cachedCount(5)
+  .listDirection(Axis.Horizontal)
+}
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private uiContext: UIContext | null = null;
+  private data: MyDataSource = new MyDataSource();
+  private scroller: Scroller = new Scroller();
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.uiContext = uiContext;
+    for (let i = 0; i <= 20; i++) {
+      this.data.pushData(`N${i}`);
+    }
+    const params: Params = new Params(this.data, this.scroller);
+    const dataNode: BuilderNode<[Params]> = new BuilderNode(uiContext);
+    dataNode.build(wrapBuilder<[Params]>(buildData), params);
+    this.rootNode = dataNode.getFrameNode();
+    const scrollToIndexOptions: ScrollToIndexOptions = {
+      extraOffset: {
+        value: 20, unit: LengthUnit.VP
+      }
+    };
+    this.scroller.scrollToIndex(6, true, ScrollAlign.START, scrollToIndexOptions);
+    return this.rootNode;
+  }
+
+  getFirstChildIndexWithoutExpand() {
+    console.log(`${TEST_TAG} getFirstChildIndexWithoutExpand: ${this.rootNode!.getFirstChildIndexWithoutExpand()}`);
+  }
+
+  getLastChildIndexWithoutExpand() {
+    console.log(`${TEST_TAG} getLastChildIndexWithoutExpand: ${this.rootNode!.getLastChildIndexWithoutExpand()}`);
+  }
+
+  getChildWithNotExpand() {
+    const childNode = this.rootNode!.getChild(3, ExpandMode.NOT_EXPAND);
+    console.log(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND): " + childNode!.getId());
+    if (childNode!.getId() === "N9") {
+      console.log(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: success.");
+    } else {
+      console.log(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: fail.");
+    }
+  }
+
+  getChildWithExpand() {
+    const childNode = this.rootNode!.getChild(3, ExpandMode.EXPAND);
+    console.log(TEST_TAG + " getChild(3, ExpandMode.EXPAND): " + childNode!.getId());
+    if (childNode!.getId() === "N3") {
+      console.log(TEST_TAG + " getChild(3, ExpandMode.EXPAND)  result: success.");
+    } else {
+      console.log(TEST_TAG + " getChild(3, ExpandMode.EXPAND)  result: fail.");
+    }
+  }
+  
+  getChildWithLazyExpand() {
+    const childNode = this.rootNode!.getChild(3, ExpandMode.LAZY_EXPAND);
+    console.log(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND): " + childNode!.getId());
+    if (childNode!.getId() === "N3") {
+      console.log(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND)  result: success.");
+    } else {
+      console.log(TEST_TAG + " getChild(3, ExpandMode.LAZY_EXPAND)  result: fail.");
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private scroller: Scroller = new Scroller();
+
+  build() {
+    Scroll(this.scroller) {
+      Column({ space: 8 }) {
+        Column() {
+          Text("This is a NodeContainer.")
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
+          NodeContainer(this.myNodeController)
+            .borderWidth(1)
+            .width(300)
+            .height(100)
+        }
+
+        Button("getFirstChildIndexWithoutExpand")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getFirstChildIndexWithoutExpand();
+          })
+        Button("getLastChildIndexWithoutExpand")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getLastChildIndexWithoutExpand();
+          })
+        Button("getChildWithNotExpand")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getChildWithNotExpand();
+          })
+        Button("getChildWithExpand")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getChildWithExpand();
+          })
+        Button("getChildWithLazyExpand")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getChildWithLazyExpand();
+          })
+      }
+      .width("100%")
+    }
+    .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
+  }
+}
+```
+
 ## 基础事件示例
 ```ts
 import { NodeController, FrameNode } from '@kit.ArkUI';

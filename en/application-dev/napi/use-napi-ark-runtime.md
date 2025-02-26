@@ -1,4 +1,4 @@
-# Creating an ArkTs Runtime Environment Using Node-API
+# Creating an ArkTS Runtime Environment Using Node-API
 
 ## When to Use
 
@@ -6,7 +6,7 @@ After creating a thread using **pthread_create**, you can use **napi_create_ark_
 
 ## Constraints
 
-A maximum of 16 runtime environments can be created for a process.
+A maximum of 64 runtime environments can be created for a process.
 
 ## Example
 
@@ -26,13 +26,28 @@ A maximum of 16 runtime environments can be created for a process.
    # the minimum version of CMake.
    cmake_minimum_required(VERSION 3.4.1)
    project(MyApplication)
-   
+
    set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
-   
+
    include_directories(${NATIVERENDER_ROOT_PATH}
                        ${NATIVERENDER_ROOT_PATH}/include)
    add_library(entry SHARED create_ark_runtime.cpp)
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
+   ```
+
+   Configure the **build-profile.json5** file of the current module as follows:
+   ```json
+   {
+       "buildOption" : {
+           "arkOptions" : {
+               "runtimeOnly" : {
+                   "sources": [
+                       "./src/main/ets/pages/ObjectUtils.ets"
+                   ]
+               }
+           }
+       }
+   }
    ```
 
    **Register modules.**
@@ -49,7 +64,7 @@ A maximum of 16 runtime environments can be created for a process.
        return exports;
    }
    EXTERN_C_END
-   
+
    static napi_module nativeModule = {
        .nm_version = 1,
        .nm_flags = 0,
@@ -59,7 +74,7 @@ A maximum of 16 runtime environments can be created for a process.
        .nm_priv = nullptr,
        .reserved = { 0 },
    };
-   
+
    extern "C" __attribute__((constructor)) void RegisterQueueWorkModule()
    {
        napi_module_register(&nativeModule);
@@ -71,9 +86,8 @@ A maximum of 16 runtime environments can be created for a process.
    ```cpp
    // create_ark_runtime.cpp
    #include <pthread.h>
-   
    #include "napi/native_api.h"
-   
+
    static void *CreateArkRuntimeFunc(void *arg)
    {
        // 1. Create the ArkTS runtime environment.
@@ -82,14 +96,14 @@ A maximum of 16 runtime environments can be created for a process.
        if (ret != napi_ok) {
            return nullptr;
        }
-   
+
        // 2. Load custom modules.
        napi_value objUtils;
        ret = napi_load_module_with_info(env, "entry/src/main/ets/pages/ObjectUtils", "com.example.myapplication/entry", &objUtils);
        if (ret != napi_ok) {
            return nullptr;
        }
-   
+
        // 3. Use the logger in ArkTS.
        napi_value logger;
        ret = napi_get_named_property(env, objUtils, "Logger", &logger);
@@ -97,14 +111,12 @@ A maximum of 16 runtime environments can be created for a process.
            return nullptr;
        }
        ret = napi_call_function(env, objUtils, logger, 0, nullptr, nullptr);
-   
+
        // 4. Destroy the ArkTS runtime environment.
        ret = napi_destroy_ark_runtime(&env);
-   
        return nullptr;
    }
-   
-   
+
    static napi_value CreateArkRuntime(napi_env env, napi_callback_info info)
    {
        pthread_t tid;
@@ -121,6 +133,9 @@ A maximum of 16 runtime environments can be created for a process.
    export function Logger() {
        console.log("print log");
    }
-   ```
 
-   
+   // Call ArkTS APIs.
+   import testNapi from 'libentry.so';
+
+   testNapi.createArkRuntime();
+   ```

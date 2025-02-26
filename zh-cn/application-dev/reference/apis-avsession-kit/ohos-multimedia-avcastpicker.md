@@ -21,7 +21,7 @@ AVCastPicker()
 
 投播组件，可用于将音视频资源投放到其它设备播放。
 
-该组件为自定义组件，开发者在使用前需要先了解[@Component](../../quick-start/arkts-create-custom-components.md)。
+该组件为自定义组件，开发者在使用前需要先了解[@Component](../../quick-start/arkts-create-custom-components.md#component)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -29,7 +29,7 @@ AVCastPicker()
 
 ## 属性
 
-除支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](../apis-arkui/arkui-ts/ts-component-general-attributes.md)外，还支持以下属性：
 
 | 名称 | 参数类型 | 必填 | 装饰器修饰类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -43,7 +43,7 @@ AVCastPicker()
 
 ## 事件
 
-支持[通用事件](../apis-arkui/arkui-ts/ts-universal-events-click.md)。
+支持[通用事件](../apis-arkui/arkui-ts/ts-component-general-events.md)。
 
 ## 示例
 

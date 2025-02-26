@@ -6,7 +6,7 @@ Toggle组件提供状态按钮样式、勾选框样式和开关样式，一般�
 
 ## 创建切换按钮
 
-Toggle通过调用接口来创建，接口调用形式如下：
+Toggle通过调用[ToggleOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md#toggleoptions16对象说明)来创建，具体调用形式如下：
 
 ```ts
 Toggle(options: { type: ToggleType, isOn?: boolean })
@@ -88,7 +88,7 @@ API version 11开始，Checkbox默认样式由圆角方形变为圆形。
 
 ## 添加事件
 
-除支持[通用事件](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md)外，Toggle还用于选中和取消选中后触发某些操作，可以绑定onChange事件来响应操作后的自定义行为。
+除支持[通用事件](../reference/apis-arkui/arkui-ts/ts-component-general-events.md)外，Toggle还用于选中和取消选中后触发某些操作，可以绑定onChange事件来响应操作后的自定义行为。
 
 
 ```ts

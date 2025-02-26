@@ -63,7 +63,7 @@ getRdbStore目前不支持多线程并发操作。
 | 14800010  | Invalid database path.   |
 | 14800011  | Database corrupted.    |
 | 14801001  | The operation is supported in the stage model only.    |
-| 14801002  | Invalid data ground ID.     |
+| 14801002  | Invalid data group ID.   |
 | 14800017  | Config changed.   |
 | 14800020  | The secret key is corrupted or lost.   |
 | 14800021  | SQLite: Generic error.    |
@@ -170,7 +170,7 @@ getRdbStore目前不支持多线程并发操作。
 | 14800010  | Invalid database path. |
 | 14800011  | Database corrupted.  |
 | 14801001  | The operation is supported in the stage model only.                               |
-| 14801002  | Invalid data ground ID.                             |
+| 14801002  | Invalid data group ID.                             |
 | 14800017  | Config changed. |
 | 14800020  | The secret key is corrupted or lost.   |
 | 14800021  | SQLite: Generic error. |
@@ -238,7 +238,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 删除数据库文件，使用callback异步回调。
 
-删除成功后，建议将数据库对象置为null。建立数据库时，若在[StoreConfig](#storeconfig)中配置了自定义路径，则调用此接口进行删库无效，必须使用 [deleteRdbStore<sup>10+</sup>](#relationalstoredeleterdbstore10) 接口进行删库。
+删除成功后，建议将数据库对象置为null。建立数据库时，若在[StoreConfig](#storeconfig)中配置了自定义路径，则调用此接口进行删库无效，必须使用 [deleteRdbStore](#relationalstoredeleterdbstore10) 接口进行删库。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -311,7 +311,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 使用指定的数据库文件配置删除数据库，使用Promise异步回调。
 
-删除成功后，建议将数据库对象置为null。建立数据库时，若在[StoreConfig](#storeconfig)中配置了自定义路径，则调用此接口进行删库无效，必须使用 [deleteRdbStore<sup>10+</sup>](#relationalstoredeleterdbstore10-1) 接口进行删库。
+删除成功后，建议将数据库对象置为null。建立数据库时，若在[StoreConfig](#storeconfig)中配置了自定义路径，则调用此接口进行删库无效，必须使用 [deleteRdbStore](#relationalstoredeleterdbstore10-1) 接口进行删库。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -407,7 +407,7 @@ deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback\<v
 | 14800000  | Inner error.        |
 | 14800010  | Failed to open or delete database by invalid database path.        |
 | 14801001  | The operation is supported in the stage model only.         |
-| 14801002  | Invalid data ground ID.        |
+| 14801002  | Invalid data group ID.        |
 
 **示例：**
 
@@ -497,7 +497,7 @@ deleteRdbStore(context: Context, config: StoreConfig): Promise\<void>
 | 14800000  | Inner error.      |
 | 14800010  | Invalid database path.   |
 | 14801001  | The operation is supported in the stage model only.   |
-| 14801002  | Invalid data ground ID.   |
+| 14801002  | Invalid data group ID.   |
 
 **示例：**
 
@@ -618,7 +618,7 @@ console.info("custom tokenizer supported on current platform: " + customTypeSupp
 | name          | string        | 是   | 数据库文件名，也是数据库唯一标识符。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core   |
 | securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core|
 | encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取，暂不支持。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，dataGroupId共沙箱的方式不支持多进程访问加密数据库，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，<!--RP1-->暂不支持指定dataGroupId在对应的沙箱路径下创建RdbStore实例。<!--RP1End--><br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。dataGroupId共沙箱的方式不支持多进程访问加密数据库，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。从API version 16开始，如果同时配置了rootDir参数，将打开或删除如下路径数据库：rootDir + "/" + customDir + "/" + name。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | rootDir<sup>16+</sup> | string | 否 | 指定数据库根路径。<br/>从API version 16开始，支持此可选参数。将从如下目录打开或删除数据库：rootDir + "/" + customDir。通过设置此参数打开的数据库为只读模式，不允许对数据库进行写操作，否则返回错误码801。配置此参数打开或删除数据库时，应确保对应路径下数据库文件存在，并且有读取权限，否则返回错误码14800010。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | autoCleanDirtyData<sup>11+</sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata11)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
@@ -771,7 +771,7 @@ class EntryAbility extends UIAbility {
           console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
           return;
         }
-    		console.info('create virtual table done.');
+        console.info('create virtual table done.');
       })
     }
   }
@@ -997,6 +997,7 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 | -------- | ------- | ---- | ------------------------------------------------------------ |
 | autoSync   | boolean | 是   | 该值为true时，表示该表支持自动同步和手动同步；该值为false时，表示该表只支持手动同步，不支持自动同步。 |
 | asyncDownloadAsset<sup>16+</sup> | boolean | 否 | 表示当前数据库在端云同步时，同步或异步下载资产。true表示优先下载完所有数据后，使用异步任务下载资产；false表示同步下载资产；默认值为false。 |
+| enableCloud<sup>16+</sup> | boolean | 否 | 表示当前数据库是否允许端云同步。true表示允许端云同步；false表示不允许端云同步。默认值为true。 |
 
 ## ConflictResolution<sup>10+</sup>
 
@@ -3096,6 +3097,199 @@ if(store != undefined) {
 }
 ```
 
+### batchInsertWithConflictResolution<sup>16+</sup>
+
+batchInsertWithConflictResolution(table: string, values: Array&lt;ValuesBucket&gt;, conflict: ConflictResolution): Promise&lt;number&gt;
+
+向目标表中插入一组数据，可以通过conflict参数指定冲突解决模式。使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                         |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| table  | string                                     | 是   | 指定的目标表名。             |
+| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是   | 表示要插入到表中的一组数据。 |
+| conflict   | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决模式。       |
+
+**返回值**：
+
+| 类型   | 说明                                           |
+| ------ | ---------------------------------------------- |
+| Promise&lt;number&gt; | Promise对象。如果操作成功，返回插入的数据个数，否则返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000     | Inner error.                                                 |
+| 14800011     | Database corrupted.                                          |
+| 14800014     | Already closed.                                              |
+| 14800015     | The database does not respond.                                        |
+| 14800021     | SQLite: Generic error.                                       |
+| 14800022     | SQLite: Callback routine requested an abort.                 |
+| 14800023     | SQLite: Access permission denied.                            |
+| 14800024     | SQLite: The database file is locked.                         |
+| 14800025     | SQLite: A table in the database is locked.                   |
+| 14800026     | SQLite: The database is out of memory.                       |
+| 14800027     | SQLite: Attempt to write a readonly database.                |
+| 14800028     | SQLite: Some kind of disk I/O error occurred.                |
+| 14800029     | SQLite: The database is full.                                |
+| 14800030     | SQLite: Unable to open the database file.                    |
+| 14800031     | SQLite: TEXT or BLOB exceeds size limit.                     |
+| 14800032     | SQLite: Abort due to constraint violation.                   |
+| 14800033     | SQLite: Data type mismatch.                                  |
+| 14800034     | SQLite: Library used incorrectly.                            |
+| 14800047     | The WAL file size exceeds the default limit.                 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+let value5 = "Jack";
+let value6 = 19;
+let value7 = 101.5;
+let value8 = new Uint8Array([6, 7, 8, 9, 10]);
+let value9 = "Tom";
+let value10 = 20;
+let value11 = 102.5;
+let value12 = new Uint8Array([11, 12, 13, 14, 15]);
+
+const valueBucket1: relationalStore.ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
+};
+const valueBucket2: relationalStore.ValuesBucket = {
+  'NAME': value5,
+  'AGE': value6,
+  'SALARY': value7,
+  'CODES': value8,
+};
+const valueBucket3: relationalStore.ValuesBucket = {
+  'NAME': value9,
+  'AGE': value10,
+  'SALARY': value11,
+  'CODES': value12,
+};
+
+let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
+if(store != undefined) {
+  (store as relationalStore.RdbStore).batchInsertWithConflictResolution("EMPLOYEE", valueBuckets, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((insertNum: number) => {
+    console.info(`batchInsert is successful, insertNum = ${insertNum}`);
+  }).catch((err: BusinessError) => {
+    console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
+  })
+}
+```
+
+### batchInsertWithConflictResolutionSync<sup>16+</sup>
+
+batchInsertWithConflictResolutionSync(table: string, values: Array&lt;ValuesBucket&gt;, conflict: ConflictResolution): number
+
+向目标表中插入一组数据。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                         |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| table  | string                                     | 是   | 指定的目标表名。             |
+| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是   | 表示要插入到表中的一组数据。 |
+| conflict   | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决模式。       |
+
+**返回值**：
+
+| 类型   | 说明                                           |
+| ------ | ---------------------------------------------- |
+| number | 如果操作成功，返回插入的数据个数，否则返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000     | Inner error.                                                 |
+| 14800011     | Database corrupted.                                          |
+| 14800014     | Already closed.                                              |
+| 14800015     | The database does not respond.                                        |
+| 14800021     | SQLite: Generic error.                                       |
+| 14800022     | SQLite: Callback routine requested an abort.                 |
+| 14800023     | SQLite: Access permission denied.                            |
+| 14800024     | SQLite: The database file is locked.                         |
+| 14800025     | SQLite: A table in the database is locked.                   |
+| 14800026     | SQLite: The database is out of memory.                       |
+| 14800027     | SQLite: Attempt to write a readonly database.                |
+| 14800028     | SQLite: Some kind of disk I/O error occurred.                |
+| 14800029     | SQLite: The database is full.                                |
+| 14800030     | SQLite: Unable to open the database file.                    |
+| 14800031     | SQLite: TEXT or BLOB exceeds size limit.                     |
+| 14800032     | SQLite: Abort due to constraint violation.                   |
+| 14800033     | SQLite: Data type mismatch.                                  |
+| 14800034     | SQLite: Library used incorrectly.                            |
+| 14800047     | The WAL file size exceeds the default limit.                 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+let value5 = "Jack";
+let value6 = 19;
+let value7 = 101.5;
+let value8 = new Uint8Array([6, 7, 8, 9, 10]);
+let value9 = "Tom";
+let value10 = 20;
+let value11 = 102.5;
+let value12 = new Uint8Array([11, 12, 13, 14, 15]);
+
+const valueBucket1: relationalStore.ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
+};
+const valueBucket2: relationalStore.ValuesBucket = {
+  'NAME': value5,
+  'AGE': value6,
+  'SALARY': value7,
+  'CODES': value8,
+};
+const valueBucket3: relationalStore.ValuesBucket = {
+  'NAME': value9,
+  'AGE': value10,
+  'SALARY': value11,
+  'CODES': value12,
+};
+
+let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
+if(store != undefined) {
+  try {
+    let insertNum: number = (store as relationalStore.RdbStore).batchInsertWithConflictResolutionSync("EMPLOYEE", valueBuckets, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
+    console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
+  } catch (err) {
+      console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
+  }
+}
+```
+
 ### update
 
 update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
@@ -4677,7 +4871,7 @@ execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;Va
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | sql      | string                               | 是   | 指定要执行的SQL语句。                                        |
 | txId      | number                               | 是   | 通过[beginTrans](#begintrans12)获取的事务ID，如果传0，该语句默认在单独事务内。                                      |
-| args | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。该参数不填，或者填null或undefined，都认为是sql参数语句完整。 |
+| args | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。该参数不填，填null或者填undefined，都认为是sql参数语句完整。 |
 
 **返回值**：
 
@@ -4738,7 +4932,7 @@ executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 
 执行包含指定参数的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，返回值类型为ValueType。
 
-该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表）,返回结果类型由执行具体sql的结果决定。
+该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表），返回结果类型由执行具体sql的结果决定。
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
@@ -5860,7 +6054,7 @@ if(store != undefined) {
 
 obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void
 
-根据远程设备的本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 使用callback异步回调。
+根据远程设备的本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，使用callback异步回调。
 
 > **说明：**
 >
@@ -5989,7 +6183,7 @@ if(store != undefined && deviceId != undefined) {
 
 sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-在设备之间同步数据, 使用callback异步回调。
+在设备之间同步数据，使用callback异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -7215,7 +7409,7 @@ attach不能并发调用，可能出现未响应情况，报错14800015，需要
 | 14800015  | The database does not respond.                 |
 | 14800016  | The database alias already exists.                |
 | 14801001  | The operation is supported in the stage model only.                 |
-| 14801002  | Invalid data ground ID.                |
+| 14801002  | Invalid data group ID.                |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
@@ -9223,6 +9417,203 @@ if(store != undefined) {
 }
 ```
 
+### batchInsertWithConflictResolution<sup>16+</sup>
+
+batchInsertWithConflictResolution(table: string, values: Array&lt;ValuesBucket&gt;, conflict: ConflictResolution): Promise&lt;number&gt;
+
+向目标表中插入一组数据，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                         |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| table  | string                                     | 是   | 指定的目标表名。             |
+| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是   | 表示要插入到表中的一组数据。|
+| conflict | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决模式。如果是ON_CONFLICT_ROLLBACK模式，当发生冲突时会回滚整个事务。 |
+
+**返回值**：
+
+| 类型                  | 说明                                                        |
+| --------------------- | ----------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise对象。如果操作成功，返回插入的数据个数，否则返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+|-----------| ------------------------------------------------------------ |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000  | Inner error. |
+| 14800011  | Database corrupted. |
+| 14800014  | Already closed. |
+| 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort. |
+| 14800023  | SQLite: Access permission denied. |
+| 14800024  | SQLite: The database file is locked. |
+| 14800025  | SQLite: A table in the database is locked. |
+| 14800026  | SQLite: The database is out of memory. |
+| 14800027  | SQLite: Attempt to write a readonly database. |
+| 14800028  | SQLite: Some kind of disk I/O error occurred. |
+| 14800029  | SQLite: The database is full. |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
+| 14800032  | SQLite: Abort due to constraint violation. |
+| 14800033  | SQLite: Data type mismatch. |
+| 14800034  | SQLite: Library used incorrectly. |
+| 14800047  | The WAL file size exceeds the default limit. |
+
+**示例：**
+
+```ts
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+let value5 = "Jack";
+let value6 = 19;
+let value7 = 101.5;
+let value8 = new Uint8Array([6, 7, 8, 9, 10]);
+let value9 = "Tom";
+let value10 = 20;
+let value11 = 102.5;
+let value12 = new Uint8Array([11, 12, 13, 14, 15]);
+
+const valueBucket1: relationalStore.ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
+};
+const valueBucket2: relationalStore.ValuesBucket = {
+  'NAME': value5,
+  'AGE': value6,
+  'SALARY': value7,
+  'CODES': value8,
+};
+const valueBucket3: relationalStore.ValuesBucket = {
+  'NAME': value9,
+  'AGE': value10,
+  'SALARY': value11,
+  'CODES': value12,
+};
+
+let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
+if(store != undefined) {
+  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+    transaction.batchInsertWithConflictResolution("EMPLOYEE", valueBuckets, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((insertNum: number) => {
+      transaction.commit();
+      console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
+    }).catch((e: BusinessError) => {
+      transaction.rollback();
+      console.error(`batchInsert is failed, code is ${e.code},message is ${e.message}`);
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
+  });
+}
+```
+
+### batchInsertWithConflictResolutionSync<sup>16+</sup>
+
+batchInsertWithConflictResolutionSync(table: string, values: Array&lt;ValuesBucket&gt;, conflict: ConflictResolution): number
+
+向目标表中插入一组数据。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                         |
+| ------ | ------------------------------------------ | ---- | ---------------------------- |
+| table  | string                                     | 是   | 指定的目标表名。             |
+| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是   | 表示要插入到表中的一组数据。 |
+| conflict | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决模式。如果是ON_CONFLICT_ROLLBACK模式，当发生冲突时会回滚整个事务。 |
+
+**返回值**：
+
+| 类型   | 说明                                           |
+| ------ | ---------------------------------------------- |
+| number | 如果操作成功，返回插入的数据个数，否则返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000  | Inner error. |
+| 14800011  | Database corrupted. |
+| 14800014  | Already closed. |
+| 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort. |
+| 14800023  | SQLite: Access permission denied. |
+| 14800024  | SQLite: The database file is locked. |
+| 14800025  | SQLite: A table in the database is locked. |
+| 14800026  | SQLite: The database is out of memory. |
+| 14800027  | SQLite: Attempt to write a readonly database. |
+| 14800028  | SQLite: Some kind of disk I/O error occurred. |
+| 14800029  | SQLite: The database is full. |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
+| 14800032  | SQLite: Abort due to constraint violation. |
+| 14800033  | SQLite: Data type mismatch. |
+| 14800034  | SQLite: Library used incorrectly. |
+| 14800047  | The WAL file size exceeds the default limit. |
+
+**示例：**
+
+```ts
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+let value5 = "Jack";
+let value6 = 19;
+let value7 = 101.5;
+let value8 = new Uint8Array([6, 7, 8, 9, 10]);
+let value9 = "Tom";
+let value10 = 20;
+let value11 = 102.5;
+let value12 = new Uint8Array([11, 12, 13, 14, 15]);
+
+const valueBucket1: relationalStore.ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
+};
+const valueBucket2: relationalStore.ValuesBucket = {
+  'NAME': value5,
+  'AGE': value6,
+  'SALARY': value7,
+  'CODES': value8,
+};
+const valueBucket3: relationalStore.ValuesBucket = {
+  'NAME': value9,
+  'AGE': value10,
+  'SALARY': value11,
+  'CODES': value12,
+};
+
+let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
+if(store != undefined) {
+  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+    try {
+      let insertNum: number = (transaction as relationalStore.Transaction).batchInsertWithConflictResolutionSync("EMPLOYEE", valueBuckets, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
+      transaction.commit();
+      console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
+    } catch (e) {
+      transaction.rollback();
+      console.error(`batchInsert is failed, code is ${e.code},message is ${e.message}`);
+    };
+  }).catch((err: BusinessError) => {
+    console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
+  });
+}
+```
+
 ### update<sup>14+</sup>
 
 update(values: ValuesBucket, predicates: RdbPredicates, conflict?: ConflictResolution): Promise&lt;number&gt;
@@ -9882,7 +10273,7 @@ executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 
 执行包含指定参数的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，返回值类型为ValueType。
 
-该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表）,返回结果类型由执行具体sql的结果决定。
+该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表），返回结果类型由执行具体sql的结果决定。
 
 此接口不支持执行查询、附加数据库和事务操作，查询可以使用[querySql](#querysql14)、[query](#query14)接口代替、附加数据库可以使用[attach](#attach12)接口代替。
 
