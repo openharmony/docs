@@ -1091,6 +1091,25 @@ Nullable\<T> {
 | HEIGHT_MD | 1   | 窗口高宽比大于等于0.8，且小于1.2。 |
 | HEIGHT_LG | 2   | 窗口高宽比大于等于1.2。 |
 
+## AxisModel<sup>15+</sup>
+
+定义焦点轴事件的轴类型。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 值   | 描述                               |
+| ------- | ---- | ---------------------------------- |
+| ABS_X  | 0    | 游戏手柄X轴。 |
+| ABS_Y  | 1    | 游戏手柄Y轴。 |
+| ABS_Z  | 2    | 游戏手柄Z轴。 |
+| ABS_RZ | 3    | 游戏手柄RZ轴。 |
+| ABS_GAS | 4    | 游戏手柄GAS轴。 |
+| ABS_BRAKE | 5    | 游戏手柄BRAKE轴。 |
+| ABS_HAT0X | 6    | 游戏手柄HAT0X轴。 |
+| ABS_HAT0Y | 7    | 游戏手柄HAT0Y轴。 |
+
 ## PageFlipMode<sup>15+</sup>
 
 表示鼠标滚轮翻页模式。
