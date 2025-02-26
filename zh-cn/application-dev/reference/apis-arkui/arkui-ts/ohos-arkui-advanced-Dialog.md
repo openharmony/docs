@@ -22,7 +22,7 @@ import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog, Cu
 
 ## 属性
 
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)
 
 ## TipsDialog
 
@@ -218,7 +218,7 @@ PopoverDialog({visible: boolean, popover: PopoverOptions, targetBuilder: Callbac
 
 ## 事件
 
-不支持[通用事件](ts-universal-events-click.md)
+不支持[通用事件](ts-component-general-events.md)
 
 ## 示例
 
@@ -227,13 +227,10 @@ PopoverDialog({visible: boolean, popover: PopoverOptions, targetBuilder: Callbac
 
 ```ts
 import { TipsDialog } from '@kit.ArkUI';
-import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
 struct Index {
-  @State pixelMap: PixelMap | undefined = undefined;
-  isChecked = false;
   dialogControllerImage: CustomDialogController = new CustomDialogController({
     builder: TipsDialog({
       imageRes: $r('sys.media.ohos_ic_public_voice'),
@@ -273,25 +270,6 @@ struct Index {
     }
     .backgroundImageSize({ width: '100%', height: '100%' })
     .height('100%')
-  }
-  
-  aboutToAppear(): void {
-    this.getPixmapFromMedia($r('app.media.app_icon'));    
-  }
-  
-  // 获取PixelMap格式的图片资源
-  async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
-    this.pixelMap = await imageSource.createPixelMap({
-      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    })
-    await imageSource.release()
-    return this.pixelMap;
   }
 }
 ```
@@ -518,7 +496,7 @@ struct Index {
 }
 ```
 
-![LoadingDialog](figures/LoadingDialog.png)
+![LoadingDialog](figures/LoadingDialog.gif)
 
 ### 示例6（自定义主题风格弹出框）
 自定义主题风格弹出框，包含content、theme等内容。

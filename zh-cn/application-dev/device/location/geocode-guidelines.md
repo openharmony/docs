@@ -1,4 +1,4 @@
-# 地理编码转化与逆地理编码转化开发指导
+# 地理编码转化与逆地理编码转化开发指导(ArkTS)
 
 ## 场景概述
 
@@ -13,8 +13,6 @@
 ## 接口说明
 
 进行坐标和地理编码信息的相互转化，所使用的接口说明如下，详细信息参见：[Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md)。
-
-**表3** 地理编码转化与逆地理编码转化接口介绍
 
 | 接口名 | 功能描述 | 
 | -------- | -------- |
@@ -53,9 +51,9 @@
       try {
           geoLocationManager.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
               if (err) {
-                  console.log('getAddressesFromLocation err: ' + JSON.stringify(err));
+                  console.error('getAddressesFromLocation err: ' + JSON.stringify(err));
               } else {
-                  console.log('getAddressesFromLocation data: ' + JSON.stringify(data));
+                  console.info('getAddressesFromLocation data: ' + JSON.stringify(data));
               }
           });
       } catch (err) {
@@ -70,9 +68,9 @@
       try {
           geoLocationManager.getAddressesFromLocationName(geocodeRequest, (err, data) => {
               if (err) {
-                  console.log('getAddressesFromLocationName err: ' + JSON.stringify(err));
+                  console.error('getAddressesFromLocationName err: ' + JSON.stringify(err));
               } else {
-                  console.log('getAddressesFromLocationName data: ' + JSON.stringify(data));
+                  console.info('getAddressesFromLocationName data: ' + JSON.stringify(data));
               }
           });
       } catch (err) {

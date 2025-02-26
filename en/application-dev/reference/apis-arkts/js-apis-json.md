@@ -113,6 +113,7 @@ export function reviverFunc(key, value) {
 
 <!--code_no_check-->
 ```ts
+import { JSON } from '@kit.ArkTS';
 import { reviverFunc } from './test';
 
 let jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
@@ -177,6 +178,7 @@ export let exportObj = {1: "John", 2: 30, 3: "New York"};
 
 <!--code_no_check-->
 ```ts
+import { JSON } from '@kit.ArkTS';
 import { exportObj } from './test';
 
 let arr = [1, 2];
@@ -256,6 +258,7 @@ export function replacer(key: string, value: Object): Object {
 
 <!--code_no_check-->
 ```ts
+import { JSON } from '@kit.ArkTS';
 import { replacer } from './test';
 
 interface Person {
@@ -324,11 +327,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
+import { JSON } from '@kit.ArkTS';
+
 const jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
 let inputObj = JSON.parse(jsonText);
-let rstflag = JSON.has(inputObj, "name");
-console.info("rstflag = " + rstflag);
-// Output: rstflag = true
+let result = JSON.has(inputObj, "name");
+console.info("result = " + result);
+// Output: result = true
 ```
 
 
@@ -360,10 +365,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
+import { JSON } from '@kit.ArkTS';
+
 const jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
 let inputObj = JSON.parse(jsonText);
 JSON.remove(inputObj, "name");
-let rstflag = JSON.has(inputObj, "name");
-console.info("rstflag = " + rstflag);
-// Output: rstflag = false
+let result = JSON.has(inputObj, "name");
+console.info("result = " + result);
+// Output: result = false
 ```

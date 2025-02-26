@@ -33,7 +33,7 @@ import installer from '@ohos.bundle.installer';
 
 getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void
 
-获取BundleInstaller对象，使用callback形式返回结果。
+获取BundleInstaller对象，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -78,7 +78,7 @@ try {
 
 getBundleInstaller(): Promise\<BundleInstaller>
 
-获取BundleInstaller对象，使用callback形式返回结果。
+获取BundleInstaller对象，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -156,7 +156,7 @@ try {
 ## BundleInstaller.install
 install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void
 
-以异步方法安装应用，使用callback形式返回结果。
+安装应用，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -214,6 +214,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 | 17700066 | Failed to install the HAP because installing the native package failed. |
 | 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
+| 17700076 | Failed to install the HAP or HSP because the app distribution type is not allowed. |
 
 **示例：**
 
@@ -248,7 +249,7 @@ try {
 ## BundleInstaller.install
 install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-以异步方法安装应用，使用callback形式返回结果。
+安装应用，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -304,6 +305,7 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 | 17700066 | Failed to install the HAP because installing the native package failed. |
 | 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
+| 17700076 | Failed to install the HAP or HSP because the app distribution type is not allowed. |
 
 **示例：**
 
@@ -335,7 +337,7 @@ try {
 
 install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<void\>
 
-以异步方法安装应用，使用Promise形式返回结果。
+安装应用，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -398,6 +400,7 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 | 17700066 | Failed to install the HAP because installing the native package failed. |
 | 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
+| 17700076 | Failed to install the HAP or HSP because the app distribution type is not allowed. |
 
 **示例：**
 
@@ -433,7 +436,7 @@ try {
 
 uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void
 
-以异步方法卸载应用，使用callback形式返回结果。
+卸载应用，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -502,7 +505,7 @@ try {
 
 uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
-以异步方法卸载应用，使用callback形式返回结果。
+卸载应用，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -562,7 +565,7 @@ try {
 
 uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 
-以异步方法卸载应用，使用Promise形式返回结果。
+卸载应用，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -635,7 +638,7 @@ try {
 
 recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void
 
-以异步方法回滚应用到初次安装时的状态，使用callback形式返回结果。
+回滚应用到初次安装时的状态，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -701,7 +704,7 @@ try {
 
 recover(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
-以异步方法回滚应用到初次安装时的状态，使用callback形式返回结果。
+回滚应用到初次安装时的状态，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -759,7 +762,7 @@ try {
 
 recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 
-以异步方法回滚应用到初次安装时的状态，使用Promise形式返回结果。
+回滚应用到初次安装时的状态，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -827,7 +830,7 @@ try {
 
 uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void\>) : void
 
-以异步方法卸载一个共享包，使用callback形式返回结果。
+卸载一个共享包，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -887,7 +890,7 @@ try {
 
 uninstall(uninstallParam: UninstallParam) : Promise\<void>
 
-以异步方法卸载一个共享包，使用Promise形式返回结果。
+卸载一个共享包，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -952,7 +955,7 @@ try {
 
 addExtResource(bundleName: string, filePaths: Array\<string>): Promise\<void>;
 
-根据给定的bundleName和hsp文件路径添加扩展资源，使用Promise形式返回结果。
+根据给定的bundleName和hsp文件路径添加扩展资源，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1014,7 +1017,7 @@ try {
 
 removeExtResource(bundleName: string, moduleNames: Array\<string>): Promise\<void>;
 
-根据给定的bundleName和moduleNames删除扩展资源，使用Promise形式返回结果。
+根据给定的bundleName和moduleNames删除扩展资源，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1076,7 +1079,7 @@ try {
 
 updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, callback: AsyncCallback\<void\>): void
 
-以异步方法更新当前应用，仅限企业设备上的企业MDM应用调用，且传入的hapFilePaths中的hap必须都属于当前应用，使用callback形式返回结果。
+更新当前应用，仅限企业设备上的企业MDM应用调用，且传入的hapFilePaths中的hap必须都属于当前应用，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1155,7 +1158,7 @@ try {
 
 updateBundleForSelf(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void\>): void
 
-以异步方法更新当前应用，仅限企业设备上的企业MDM应用调用，且传入的hapFilePaths中的hap必须都属于当前应用，使用callback形式返回结果。
+更新当前应用，仅限企业设备上的企业MDM应用调用，且传入的hapFilePaths中的hap必须都属于当前应用，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1227,7 +1230,7 @@ try {
 
 updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam): Promise\<void\>
 
-以异步方法更新当前应用，仅限企业设备上的企业MDM应用调用，且传入的hapFilePaths中的hap必须都属于当前应用，使用promise形式返回结果。
+更新当前应用，仅限企业设备上的企业MDM应用调用，且传入的hapFilePaths中的hap必须都属于当前应用，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1310,7 +1313,7 @@ try {
 
 uninstallUpdates(bundleName: string, installParam?: InstallParam): Promise\<void\>;
 
-以异步方法对预置应用进行卸载更新，恢复到初次安装时的状态，使用Promise形式返回结果。
+对预置应用进行卸载更新，恢复到初次安装时的状态，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1380,7 +1383,7 @@ try {
 
 createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): Promise\<number\>;
 
-以异步方法创建应用分身，使用Promise形式返回结果。
+创建应用分身，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1447,7 +1450,7 @@ try {
 
 destroyAppClone(bundleName: string, appIndex: number, userId?: number): Promise\<void\>;
 
-以异步方法删除应用分身，使用Promise形式返回结果。
+删除应用分身，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1512,7 +1515,7 @@ try {
 
 destroyAppClone(bundleName: string, appIndex: number, destroyAppCloneParam?: DestroyAppCloneParam): Promise\<void\>;
 
-以异步方法删除应用分身，使用Promise形式返回结果。
+删除应用分身，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1586,7 +1589,7 @@ try {
 
 installPreexistingApp(bundleName: string, userId?: number): Promise\<void\>;
 
-以异步方法安装应用，使用Promise形式返回结果。
+安装应用，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1679,8 +1682,7 @@ try {
 | additionalInfo<sup>10+</sup> | string | 否 |应用安装时的额外信息，默认值为空，最大长度为3000字节。该字段通常由操作系统运营方的应用市场在安装企业应用时指定，用于保存应用的额外信息。 |
 | verifyCodeParams<sup>deprecated<sup> | Array<[VerifyCodeParam](#verifycodeparamdeprecated)> | 否 | 代码签名文件参数，默认值为空。         |
 | pgoParams<sup>11+</sup> | Array<[PGOParam](#pgoparam11)> | 否 | PGO配置文件参数，默认值为空。         |
-| parameters<sup>15+</sup> | Array<[Parameters](#parameters15)> | 否 | 扩展参数，默认值为空。         |
-
+| parameters<sup>15+</sup> | Array<[Parameters](#parameters15)> | 否 | 扩展参数，默认值为空，当前取值支持：</br> - Parameters.key为"ohos.bms.param.verifyUninstallForced"，若对应的value为“true”，表示强制卸载预置应用。</br> - Parameters.key为"ohos.bms.param.verifyUninstallRule"，若对应的value为“true”，表示设置卸载处置规则，用于拦截应用卸载。</br> 若同时配置(“ohos.bms.param.verifyUninstallRule”, “true”)和(“ohos.bms.param.verifyUninstallForced", “true”)，则卸载规则以后者为准。      |
 ## UninstallParam<sup>10+</sup>
 
 共享包卸载需指定的参数信息。

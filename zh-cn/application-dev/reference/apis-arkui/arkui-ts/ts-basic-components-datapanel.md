@@ -59,7 +59,7 @@ DataPanel(options: DataPanelOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### closeEffect
 
@@ -188,10 +188,10 @@ constructor(colorStops: ColorStop[])
 
 | 参数名         | 类型 | 必填 | 说明 |
 | ------------- | ------- | ---- | -------- |
-| colorStops | [ColorStop](#colorstop10)[] | 是 | 存储渐变颜色和渐变点。|
+| colorStops | [ColorStop](#colorstop10枚举说明)[] | 是 | 存储渐变颜色和渐变点。|
 
 
-## ColorStop<sup>10+</sup>
+## ColorStop<sup>10+</sup>枚举说明
 
 颜色断点类型，用于描述渐进色颜色断点。
 

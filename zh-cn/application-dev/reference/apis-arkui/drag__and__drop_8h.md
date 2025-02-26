@@ -32,6 +32,7 @@
 | typedef struct [ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) [ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) | 主动发起拖拽后，通过拖拽状态监听返回的系统拖拽相关数据。  | 
 | typedef struct [OH_UdmfData](_ark_u_i___native_module.md#oh_udmfdata) [OH_UdmfData](_ark_u_i___native_module.md#oh_udmfdata) | UDMF 统一数据定义。  | 
 | typedef struct [OH_PixelmapNative](_ark_u_i___native_module.md#oh_pixelmapnative) [OH_PixelmapNative](_ark_u_i___native_module.md#oh_pixelmapnative) | Pixelmap结构体类型，用于执行Pixelmap相关操作。  | 
+| typedef struct [OH_UdmfGetDataParams](_ark_u_i___native_module.md#oh_udmfgetdataparams) [OH_UdmfGetDataParams](_ark_u_i___native_module.md#oh_udmfgetdataparams) | 从UDMF获取数据时的参数。  | 
 
 
 ### 枚举
@@ -52,7 +53,7 @@
 | [ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \* [OH_ArkUI_NodeEvent_GetDragEvent](_ark_u_i___native_module.md#oh_arkui_nodeevent_getdragevent) ([ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) \*nodeEvent) | 从 NodeEvent 中获取DragEvent。  | 
 | [ArkUI_PreDragStatus](_ark_u_i___native_module.md#arkui_predragstatus) [OH_ArkUI_NodeEvent_GetPreDragStatus](_ark_u_i___native_module.md#oh_arkui_nodeevent_getpredragstatus) ([ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) \*nodeEvent) | 获取预览拖拽事件状态。  | 
 | int32_t [OH_ArkUI_DragEvent_DisableDefaultDropAnimation](_ark_u_i___native_module.md#oh_arkui_dragevent_disabledefaultdropanimation) ([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \*event, bool disable) | 设置是否禁用松手时的系统默认动效，默认不禁用，通常在应用需要自定义落位动效时配置。  | 
-| int32_t [OH_ArkUI_DragEvent_SetSuggestedDropOperation](_ark_u_i___native_module.md#oh_arkui_dragevent_setsuggesteddropoperation) ([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \*event, [ArkUI_DropProposal](_ark_u_i___native_module.md#arkui_dropproposal) proposal) | 设置数据处理方式  | 
+| int32_t [OH_ArkUI_DragEvent_SetSuggestedDropOperation](_ark_u_i___native_module.md#oh_arkui_dragevent_setsuggesteddropoperation) ([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \*event, [ArkUI_DropProposal](_ark_u_i___native_module.md#arkui_dropproposal) proposal) | 设置数据处理方式。  | 
 | int32_t [OH_ArkUI_DragEvent_SetDragResult](_ark_u_i___native_module.md#oh_arkui_dragevent_setdragresult) ([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \*event, [ArkUI_DragResult](_ark_u_i___native_module.md#arkui_dragresult) result) | 设置拖拽事件的结果。  | 
 | int32_t [OH_ArkUI_DragEvent_SetData](_ark_u_i___native_module.md#oh_arkui_dragevent_setdata) ([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \*event, [OH_UdmfData](_ark_u_i___native_module.md#oh_udmfdata) \*data) | 向ArkUI_DragEvent中设置拖拽数据。  | 
 | int32_t [OH_ArkUI_DragEvent_GetUdmfData](_ark_u_i___native_module.md#oh_arkui_dragevent_getudmfdata) ([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \*event, [OH_UdmfData](_ark_u_i___native_module.md#oh_udmfdata) \*data) | 从ArkUI_DragEvent中获取拖拽默认相关数据。  | 
@@ -101,3 +102,6 @@
 | [ArkUI_DragStatus](_ark_u_i___native_module.md#arkui_dragstatus) [OH_ArkUI_DragAndDropInfo_GetDragStatus](_ark_u_i___native_module.md#oh_arkui_draganddropinfo_getdragstatus) ([ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) \*dragAndDropInfo) | 获取dragaction发起拖拽的状态，获取异常时返回 ArkUI_DRAG_STATUS_UNKNOWN。  | 
 | [ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \* [OH_ArkUI_DragAndDropInfo_GetDragEvent](_ark_u_i___native_module.md#oh_arkui_draganddropinfo_getdragevent) ([ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) \*dragAndDropInfo) | 通过dragAndDropInfo获取到DragEvent，可通过DragEvent获取释放结果等。  | 
 | int32_t [OH_ArkUI_StartDrag](_ark_u_i___native_module.md#oh_arkui_startdrag) ([ArkUI_DragAction](_ark_u_i___native_module.md#arkui_dragaction) \*dragAction) | 通过构造的DragAction对象发起拖拽。  | 
+| int32_t [OH_ArkUI_DragEvent_StartDataLoading](_ark_u_i___native_module.md#oh_arkui_dragevent_startdataloading) ([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent)\* event, OH_UdmfGetDataParams\* options, char\* key, unsigned int keyLen) | 异步获取拖拽数据。  | 
+| int32_t [OH_ArkUI_CancelDataLoading](_ark_u_i___native_module.md#oh_arkui_canceldataloading) ([ArkUI_Context](_ark_u_i___native_module.md#arkui_context) uiContext, const char\* key) | 取消异步获取拖拽数据。 | 
+| int32_t [OH_ArkUI_DisableDropDataPrefetchOnNode](_ark_u_i___native_module.md#oh_arkui_disabledropdataprefetchonnode) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool disable) | 设置拖拽是否提前获取数据。true为不提前获取数据，默认值为false。  | 

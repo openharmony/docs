@@ -5,7 +5,7 @@
 
 数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括number、string、boolean、bigint以及可序列化的object。
 
-共享用户首选项默认加密等级为EL2，持久化文件存储在对应的EL2路径下。设备开机后，若无锁屏密码，可直接访问；若有锁屏密码，此路径下的文件需要至少一次解锁对应用户的锁屏界面后（密码、指纹、人脸等方式解锁皆可）才能够访问。需避免在开机未解锁的情况下访问首选项。修改加密等级的方法请参见[获取和修改加密分区](../../../application-dev/application-models/application-context-stage.md#获取和修改加密分区)。
+共享用户首选项的持久化文件存储在[preferencesDir](../../application-models/application-context-stage.md#获取应用文件路径)路径下，创建preferences对象前，需要保证preferencesDir路径可读写。持久化文件存储路径中的[加密等级](../apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)会影响文件的可读写状态，路径访问限制详见[应用文件目录与应用文件路径](../../file-management/app-sandbox-directory.md#应用文件目录与应用文件路径)。
 
 共享用户首选项可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，性能优于普通的[用户首选项](js-apis-data-preferences.md)，可参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。
 
@@ -61,7 +61,7 @@ getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
 | 15501001 | The operations is supported in stage mode only. |
@@ -119,7 +119,7 @@ getPreferencesSync(context: Context, options: Options): Preferences
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
 | 15501001 | The operations is supported in stage mode only.   |
@@ -172,7 +172,7 @@ deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
 | 15500010 | Failed to delete the user preferences persistence file. |
@@ -230,7 +230,7 @@ removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
 | 15501001 | The operations is supported in stage mode only. |
@@ -281,7 +281,7 @@ removePreferencesFromCacheSync(context: Context, options: Options):void
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
 | 15501001 | The operations is supported in stage mode only.   |
@@ -350,7 +350,7 @@ get(key: string, defValue: lang.ISendable): Promise&lt;lang.ISendable&gt;
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
@@ -397,7 +397,7 @@ getSync(key: string, defValue: lang.ISendable): lang.ISendable
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
@@ -517,7 +517,7 @@ put(key: string, value: lang.ISendable): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
@@ -562,7 +562,7 @@ putSync(key: string, value: lang.ISendable): void
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
@@ -599,7 +599,7 @@ has(key: string): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
@@ -647,7 +647,7 @@ hasSync(key: string): boolean
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
@@ -689,7 +689,7 @@ delete(key: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
@@ -727,7 +727,7 @@ deleteSync(key: string): void
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
@@ -893,7 +893,7 @@ on(type: 'change', callback: Callback&lt;string&gt;): void
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
@@ -944,7 +944,7 @@ on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 
 | 错误码ID | 错误信息                                |
 | -------- | -------------------------------------- |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                           |
 | 15500019 | Failed to obtain the subscription service. |
 
@@ -993,7 +993,7 @@ on(type: 'dataChange', keys: Array&lt;string&gt;, callback: Callback&lt;lang.ISe
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
@@ -1039,7 +1039,7 @@ off(type: 'change', callback?: Callback&lt;string&gt;): void
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
@@ -1085,7 +1085,7 @@ off(type: 'multiProcessChange', callback?: Callback&lt;string&gt;): void
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
@@ -1129,7 +1129,7 @@ off(type: 'dataChange', keys: Array&lt;string&gt;, callback?: Callback&lt;lang.I
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**

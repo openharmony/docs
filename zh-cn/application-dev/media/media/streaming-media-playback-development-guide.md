@@ -81,7 +81,7 @@ avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value : numb
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
     // 监听当前HLS协议流可用的码率
     avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
-      consle.info('availableBitrates called, and availableBitrates length is: ' + bitrates.length);
+      console.info('availableBitrates called, and availableBitrates length is: ' + bitrates.length);
     })
     ```
 
@@ -92,7 +92,7 @@ avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value : numb
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
     // 监听码率设置是否生效
     avPlayer.on('bitrateDone', (bitrate: number) => {
-      consle.info('bitrateDone called, and bitrate value is: ' + bitrate);
+      console.info('bitrateDone called, and bitrate value is: ' + bitrate);
     })
     // 设置播放码率
     let bitrate: number = 96000;
@@ -115,11 +115,11 @@ avPlayer.setMediaSource(mediaSource, playbackStrategy);
 
 DASH流媒体资源一般包含多路分辨率、码率、采样率、编码格式等参数各不相同的音频、视频和字幕资源。默认情况下，AVPlayer会依据网络状况自动切换不同码率的视频轨道。开发者可根据实际需求，自主选择指定的音视频轨道进行播放，此时自适应码率切换策略会失效。
 
-1. 设置selectTrack生效的监听事件[trackChange](../../reference/apis-media-kit/js-apis-media.md)。
+1. 设置selectTrack生效的监听事件[trackChange](../../reference/apis-media-kit/js-apis-media.md#ontrackchange12)。
 
     ```ts
     avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
-      console.info(`trackChange info, index: ${error}, isSelect: ${isSelect}`);
+      console.info(`trackChange info, index: ${index}, isSelect: ${isSelect}`);
     })
     ```
 

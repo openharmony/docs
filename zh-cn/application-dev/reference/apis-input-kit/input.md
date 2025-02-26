@@ -104,7 +104,7 @@
 | int64_t [OH_Input_GetKeyEventActionTime](#oh_input_getkeyeventactiontime) (const struct [Input_KeyEvent](#input_keyevent) \*keyEvent) | 获取按键事件发生的时间。  | 
 | int32_t [OH_Input_InjectMouseEvent](#oh_input_injectmouseevent) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 注入鼠标事件。  | 
 | struct [Input_MouseEvent](#input_mouseevent) \* [OH_Input_CreateMouseEvent](#oh_input_createmouseevent) () | 创建鼠标事件对象。  | 
-| void [OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent) (struct [Input_MouseEvent](#input_mouseevent) \*\*mouseEvent) | 销毁鼠标事件对象 。 | 
+| void [OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent) (struct [Input_MouseEvent](#input_mouseevent) \*\*mouseEvent) | 销毁鼠标事件对象。 | 
 | void [OH_Input_SetMouseEventAction](#oh_input_setmouseeventaction) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int32_t action) | 设置鼠标事件的动作。  | 
 | int32_t [OH_Input_GetMouseEventAction](#oh_input_getmouseeventaction) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标事件的动作。  | 
 | void [OH_Input_SetMouseEventDisplayX](#oh_input_setmouseeventdisplayx) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int32_t displayX) | 设置鼠标事件的屏幕X坐标。  | 
@@ -159,7 +159,7 @@
 | [Input_Result](#input_result) [OH_Input_RemoveTouchEventMonitor](#oh_input_removetoucheventmonitor) ([Input_TouchEventCallback](#input_toucheventcallback) callback) | 移除触摸事件监听。  | 
 | [Input_Result](#input_result) [OH_Input_RemoveAxisEventMonitorForAll](#oh_input_removeaxiseventmonitorforall) ([Input_AxisEventCallback](#input_axiseventcallback) callback) | 移除所有类型轴事件监听。  | 
 | [Input_Result](#input_result) [OH_Input_RemoveAxisEventMonitor](#oh_input_removeaxiseventmonitor) ([InputEvent_AxisEventType](#inputevent_axiseventtype) axisEventType, [Input_AxisEventCallback](#input_axiseventcallback) callback) | 移除指定类型轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](#inputevent_axiseventtype)中。  | 
-| [Input_Result](#input_result) [OH_Input_AddKeyEventInterceptor](#oh_input_addkeyeventinterceptor) ([Input_KeyEventCallback](#input_keyeventcallback) callback, [Input_InterceptorOptions](#input_interceptoroptions) \*option) | 添加按键事件的拦截,重复添加只有第一次生效。  | 
+| [Input_Result](#input_result) [OH_Input_AddKeyEventInterceptor](#oh_input_addkeyeventinterceptor) ([Input_KeyEventCallback](#input_keyeventcallback) callback, [Input_InterceptorOptions](#input_interceptoroptions) \*option) | 添加按键事件的拦截，重复添加只有第一次生效。  | 
 | [Input_Result](#input_result) [OH_Input_AddInputEventInterceptor](#oh_input_addinputeventinterceptor) ([Input_InterceptorEventCallback](_input___interceptor_event_callback.md) \*callback [Input_InterceptorOptions](#input_interceptoroptions) \*option) | 添加输入事件拦截，包括鼠标、触摸和轴事件，重复添加只有第一次生效。  | 
 | [Input_Result](#input_result) [OH_Input_RemoveKeyEventInterceptor](#oh_input_removekeyeventinterceptor) () | 移除按键事件拦截。  | 
 | [Input_Result](#input_result) [OH_Input_RemoveInputEventInterceptor](#oh_input_removeinputeventinterceptor) () | 移除输入事件拦截，包括鼠标、触摸和轴事件。  | 
@@ -192,6 +192,7 @@
 | [Input_Result](#input_result) [OH_Input_RegisterDeviceListener](#oh_input_registerdevicelistener) ([Input_DeviceListener](_input___device_listener.md) \*listener) | 注册设备热插拔的监听器。  | 
 | [Input_Result](#input_result) [OH_Input_UnregisterDeviceListener](#oh_input_unregisterdevicelistener) ([Input_DeviceListener](_input___device_listener.md) \*listener) | 取消注册设备热插拔的监听。  | 
 | [Input_Result](#input_result) [OH_Input_UnregisterDeviceListeners](#oh_input_unregisterdevicelisteners) () | 取消注册所有的设备热插拔的监听。  | 
+| [Input_Result](#input_result) [OH_Input_GetFunctionKeyState](#oh_input_getfunctionkeystate) (int32_t keyCode, int32_t \*state) | 获取功能键状态。  | 
 
 
 ## 类型定义说明
@@ -203,6 +204,7 @@
 typedef struct Input_AxisEventInput_AxisEvent
 ```
 **描述**
+
 轴事件。
 
 **起始版本：** 12
@@ -214,6 +216,7 @@ typedef struct Input_AxisEventInput_AxisEvent
 typedef void(* Input_AxisEventCallback) (const Input_AxisEvent *axisEvent)
 ```
 **描述**
+
 轴事件的回调函数，axisEvent的生命周期为回调函数内。
 
 **起始版本：** 12
@@ -224,6 +227,7 @@ typedef void(* Input_AxisEventCallback) (const Input_AxisEvent *axisEvent)
 typedef void(* Input_DeviceAddedCallback) (int32_t deviceId)
 ```
 **描述**
+
 回调函数，用于回调输入设备的热插事件。
 
 **起始版本：** 13
@@ -240,6 +244,7 @@ typedef void(* Input_DeviceAddedCallback) (int32_t deviceId)
 typedef struct Input_DeviceInfoInput_DeviceInfo
 ```
 **描述**
+
 输入设备信息。
 
 **起始版本：** 13
@@ -250,6 +255,7 @@ typedef struct Input_DeviceInfoInput_DeviceInfo
 typedef struct Input_DeviceListenerInput_DeviceListener
 ```
 **描述**
+
 定义一个结构体用于监听设备热插拔。
 
 **起始版本：** 13
@@ -260,6 +266,7 @@ typedef struct Input_DeviceListenerInput_DeviceListener
 typedef void(* Input_DeviceRemovedCallback) (int32_t deviceId)
 ```
 **描述**
+
 回调函数，用于回调输入设备的热拔事件。
 
 **起始版本：** 13
@@ -277,6 +284,7 @@ typedef void(* Input_DeviceRemovedCallback) (int32_t deviceId)
 typedef struct Input_Hotkey Input_Hotkey
 ```
 **描述**
+
 定义快捷键结构体。
 
 **起始版本：** 14
@@ -288,6 +296,7 @@ typedef struct Input_Hotkey Input_Hotkey
 typedef void(* Input_HotkeyCallback) (Input_Hotkey *hotkey)
 ```
 **描述**
+
 回调函数，用于回调快捷键事件。
 
 **起始版本：** 14
@@ -299,6 +308,7 @@ typedef void(* Input_HotkeyCallback) (Input_Hotkey *hotkey)
 typedef struct Input_InterceptorEventCallbackInput_InterceptorEventCallback
 ```
 **描述**
+
 拦截回调事件结构体，拦截鼠标事件、触摸事件和轴事件。
 
 **起始版本：** 12
@@ -310,6 +320,7 @@ typedef struct Input_InterceptorEventCallbackInput_InterceptorEventCallback
 typedef struct Input_InterceptorOptionsInput_InterceptorOptions
 ```
 **描述**
+
 事件拦截选项。
 
 **起始版本：** 12
@@ -321,6 +332,7 @@ typedef struct Input_InterceptorOptionsInput_InterceptorOptions
 typedef enum Input_KeyboardTypeInput_KeyboardType
 ```
 **描述**
+
 输入设备的键盘类型。
 
 **起始版本：** 13
@@ -332,6 +344,7 @@ typedef enum Input_KeyboardTypeInput_KeyboardType
 typedef struct Input_KeyEventInput_KeyEvent
 ```
 **描述**
+
 要注入的按键事件。
 
 **起始版本：** 12
@@ -343,6 +356,7 @@ typedef struct Input_KeyEventInput_KeyEvent
 typedef enum Input_KeyEventActionInput_KeyEventAction
 ```
 **描述**
+
 按键事件类型的枚举值。
 
 **起始版本：** 12
@@ -354,6 +368,7 @@ typedef enum Input_KeyEventActionInput_KeyEventAction
 typedef void(* Input_KeyEventCallback) (const Input_KeyEvent *keyEvent)
 ```
 **描述**
+
 按键事件的回调函数，keyEvent的生命周期为回调函数内。
 
 **起始版本：** 12
@@ -365,6 +380,7 @@ typedef void(* Input_KeyEventCallback) (const Input_KeyEvent *keyEvent)
 typedef struct Input_KeyStateInput_KeyState
 ```
 **描述**
+
 定义按键信息，用于标识按键行为。例如，“Ctrl”按键信息包含键值和键类型。
 
 **起始版本：** 12
@@ -376,6 +392,7 @@ typedef struct Input_KeyStateInput_KeyState
 typedef enum Input_KeyStateActionInput_KeyStateAction
 ```
 **描述**
+
 按键状态的枚举值。
 
 **起始版本：** 12
@@ -387,6 +404,7 @@ typedef enum Input_KeyStateActionInput_KeyStateAction
 typedef struct Input_MouseEventInput_MouseEvent
 ```
 **描述**
+
 要注入的鼠标事件。
 
 **起始版本：** 12
@@ -397,6 +415,7 @@ typedef struct Input_MouseEventInput_MouseEvent
 typedef enum Input_MouseEventActionInput_MouseEventAction
 ```
 **描述**
+
 鼠标动作的枚举值。
 
 **起始版本：** 12
@@ -408,6 +427,7 @@ typedef enum Input_MouseEventActionInput_MouseEventAction
 typedef enum Input_MouseEventButtonInput_MouseEventButton
 ```
 **描述**
+
 鼠标按键的枚举值。
 
 **起始版本：** 12
@@ -419,6 +439,7 @@ typedef enum Input_MouseEventButtonInput_MouseEventButton
 typedef void(* Input_MouseEventCallback) (const Input_MouseEvent *mouseEvent)
 ```
 **描述**
+
 鼠标事件的回调函数，mouseEvent的生命周期为回调函数内。
 
 **起始版本：** 12
@@ -430,6 +451,7 @@ typedef void(* Input_MouseEventCallback) (const Input_MouseEvent *mouseEvent)
 typedef enum Input_ResultInput_Result
 ```
 **描述**
+
 错误码枚举值。
 
 **起始版本：** 12
@@ -441,6 +463,7 @@ typedef enum Input_ResultInput_Result
 typedef struct Input_TouchEventInput_TouchEvent
 ```
 **描述**
+
 要注入的触摸事件。
 
 **起始版本：** 12
@@ -452,6 +475,7 @@ typedef struct Input_TouchEventInput_TouchEvent
 typedef enum Input_TouchEventActionInput_TouchEventAction
 ```
 **描述**
+
 触摸动作的枚举值。
 
 **起始版本：** 12
@@ -463,6 +487,7 @@ typedef enum Input_TouchEventActionInput_TouchEventAction
 typedef void(* Input_TouchEventCallback) (const Input_TouchEvent *touchEvent)
 ```
 **描述**
+
 触摸事件的回调函数，touchEvent的生命周期为回调函数内。
 
 **起始版本：** 12
@@ -474,6 +499,7 @@ typedef void(* Input_TouchEventCallback) (const Input_TouchEvent *touchEvent)
 typedef enum InputEvent_AxisActionInputEvent_AxisAction
 ```
 **描述**
+
 轴事件动作。
 
 **起始版本：** 12
@@ -485,6 +511,7 @@ typedef enum InputEvent_AxisActionInputEvent_AxisAction
 typedef enum InputEvent_AxisEventTypeInputEvent_AxisEventType
 ```
 **描述**
+
 输入设备的轴事件类型。
 
 **起始版本：** 12
@@ -496,6 +523,7 @@ typedef enum InputEvent_AxisEventTypeInputEvent_AxisEventType
 typedef enum InputEvent_AxisTypeInputEvent_AxisType
 ```
 **描述**
+
 输入设备的轴类型。
 
 **起始版本：** 12
@@ -507,6 +535,7 @@ typedef enum InputEvent_AxisTypeInputEvent_AxisType
 typedef enum InputEvent_MouseAxisInputEvent_MouseAxis
 ```
 **描述**
+
 鼠标轴事件类型。
 
 **起始版本：** 12
@@ -518,6 +547,7 @@ typedef enum InputEvent_MouseAxisInputEvent_MouseAxis
 typedef enum InputEvent_SourceTypeInputEvent_SourceType
 ```
 **描述**
+
 输入事件源类型。
 
 **起始版本：** 12
@@ -532,18 +562,19 @@ typedef enum InputEvent_SourceTypeInputEvent_SourceType
 enum Input_KeyboardType
 ```
 **描述**
+
 输入设备的键盘类型。
 
 **起始版本：** 13
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| KEYBOARD_TYPE_NONE  | 表示无按键设备。&nbsp;&nbsp; | 
-| KEYBOARD_TYPE_UNKNOWN  | 表示未知按键设备。&nbsp;&nbsp; | 
-| KEYBOARD_TYPE_ALPHABETIC  | 表示全键盘设备。&nbsp;&nbsp; | 
-| KEYBOARD_TYPE_DIGITAL  | 表示数字键盘设备。&nbsp;&nbsp; | 
-| KEYBOARD_TYPE_STYLUS  | 表示手写笔设备。&nbsp;&nbsp; | 
-| KEYBOARD_TYPE_REMOTE_CONTROL  | 表示遥控器设备。&nbsp;&nbsp; | 
+| KEYBOARD_TYPE_NONE  | 表示无按键设备。 | 
+| KEYBOARD_TYPE_UNKNOWN  | 表示未知按键设备。 | 
+| KEYBOARD_TYPE_ALPHABETIC  | 表示全键盘设备。 | 
+| KEYBOARD_TYPE_DIGITAL  | 表示数字键盘设备。 | 
+| KEYBOARD_TYPE_STYLUS  | 表示手写笔设备。 | 
+| KEYBOARD_TYPE_REMOTE_CONTROL  | 表示遥控器设备。 | 
 
 
 ### Input_KeyCode
@@ -552,145 +583,146 @@ enum Input_KeyboardType
 enum Input_KeyCode
 ```
 **描述**
+
 键码值。
 
 **起始版本：** 12
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| KEYCODE_UNKNOWN  | 未知按键&nbsp;&nbsp; | 
-| KEYCODE_FN  | 功能（Fn）键&nbsp;&nbsp; | 
-| KEYCODE_VOLUME_UP  | 音量增加键&nbsp;&nbsp; | 
-| KEYCODE_VOLUME_DOWN  | 音量减小键&nbsp;&nbsp; | 
-| KEYCODE_POWER  | 电源键&nbsp;&nbsp; | 
-| KEYCODE_CAMERA  | 拍照键&nbsp;&nbsp; | 
-| KEYCODE_VOLUME_MUTE  | 扬声器静音键&nbsp;&nbsp; | 
-| KEYCODE_MUTE  | 话筒静音键&nbsp;&nbsp; | 
-| KEYCODE_BRIGHTNESS_UP  | 亮度调节按键：调亮&nbsp;&nbsp; | 
-| KEYCODE_BRIGHTNESS_DOWN  | 亮度调节按键：调暗&nbsp;&nbsp; | 
-| KEYCODE_0  | 按键'0'&nbsp;&nbsp; | 
-| KEYCODE_1  | 按键'1'&nbsp;&nbsp; | 
-| KEYCODE_2  | 按键'2'&nbsp;&nbsp; | 
-| KEYCODE_3  | 按键'3'&nbsp;&nbsp; | 
-| KEYCODE_4  | 按键'4'&nbsp;&nbsp; | 
-| KEYCODE_5  | 按键'5'&nbsp;&nbsp; | 
-| KEYCODE_6  | 按键'6'&nbsp;&nbsp; | 
-| KEYCODE_7  | 按键'7'&nbsp;&nbsp; | 
-| KEYCODE_8  | 按键'8'&nbsp;&nbsp; | 
-| KEYCODE_9  | 按键'9'&nbsp;&nbsp; | 
-| KEYCODE_STAR  | 按键'\*'&nbsp;&nbsp; | 
-| KEYCODE_POUND  | 按键'\#'&nbsp;&nbsp; | 
-| KEYCODE_DPAD_UP  | 导航键：向上&nbsp;&nbsp; | 
-| KEYCODE_DPAD_DOWN  | 导航键：向下&nbsp;&nbsp; | 
-| KEYCODE_DPAD_LEFT  | 导航键：向左&nbsp;&nbsp; | 
-| KEYCODE_DPAD_RIGHT  | 导航键：向右&nbsp;&nbsp; | 
-| KEYCODE_DPAD_CENTER  | 导航键：确定键&nbsp;&nbsp; | 
-| KEYCODE_A  | 按键'A'&nbsp;&nbsp; | 
-| KEYCODE_B  | 按键'B'&nbsp;&nbsp; | 
-| KEYCODE_C  | 按键'C'&nbsp;&nbsp; | 
-| KEYCODE_D  | 按键'D'&nbsp;&nbsp; | 
-| KEYCODE_E  | 按键'E'&nbsp;&nbsp; | 
-| KEYCODE_F  | 按键'F'&nbsp;&nbsp; | 
-| KEYCODE_G  | 按键'G'&nbsp;&nbsp; | 
-| KEYCODE_H  | 按键'H'&nbsp;&nbsp; | 
-| KEYCODE_I  | 按键'I'&nbsp;&nbsp; | 
-| KEYCODE_J  | 按键'J'&nbsp;&nbsp; | 
-| KEYCODE_K  | 按键'K'&nbsp;&nbsp; | 
-| KEYCODE_L  | 按键'L'&nbsp;&nbsp; | 
-| KEYCODE_M  | 按键'M'&nbsp;&nbsp; | 
-| KEYCODE_N  | 按键'N'&nbsp;&nbsp; | 
-| KEYCODE_O  | 按键'O'&nbsp;&nbsp; | 
-| KEYCODE_P  | 按键'P'&nbsp;&nbsp; | 
-| KEYCODE_Q  | 按键'Q'&nbsp;&nbsp; | 
-| KEYCODE_R  | 按键'R'&nbsp;&nbsp; | 
-| KEYCODE_S  | 按键'S'&nbsp;&nbsp; | 
-| KEYCODE_T  | 按键'T'&nbsp;&nbsp; | 
-| KEYCODE_U  | 按键'U'&nbsp;&nbsp; | 
-| KEYCODE_V  | 按键'V'&nbsp;&nbsp; | 
-| KEYCODE_W  | 按键'W'&nbsp;&nbsp; | 
-| KEYCODE_X  | 按键'X'&nbsp;&nbsp; | 
-| KEYCODE_Y  | 按键'Y'&nbsp;&nbsp; | 
-| KEYCODE_Z  | 按键'Z'&nbsp;&nbsp; | 
-| KEYCODE_COMMA  | 按键','&nbsp;&nbsp; | 
-| KEYCODE_PERIOD  | 按键'.'&nbsp;&nbsp; | 
-| KEYCODE_ALT_LEFT  | 左Alt键&nbsp;&nbsp; | 
-| KEYCODE_ALT_RIGHT  | 右Alt键&nbsp;&nbsp; | 
-| KEYCODE_SHIFT_LEFT  | 左Shift键&nbsp;&nbsp; | 
-| KEYCODE_SHIFT_RIGHT  | 右Shift键&nbsp;&nbsp; | 
-| KEYCODE_TAB  | Tab键&nbsp;&nbsp; | 
-| KEYCODE_SPACE  | 空格键&nbsp;&nbsp; | 
-| KEYCODE_SYM  | 符号修改器按键&nbsp;&nbsp; | 
-| KEYCODE_EXPLORER  | 浏览器功能键，此键用于启动浏览器应用程序&nbsp;&nbsp; | 
-| KEYCODE_ENVELOPE  | 电子邮件功能键，此键用于启动电子邮件应用程序&nbsp;&nbsp; | 
-| KEYCODE_ENTER  | 回车键&nbsp;&nbsp; | 
-| KEYCODE_DEL  | 退格键&nbsp;&nbsp; | 
-| KEYCODE_GRAVE  | 按键'‘’&nbsp;&nbsp; | 
-| KEYCODE_MINUS  | 按键'-'&nbsp;&nbsp; | 
-| KEYCODE_EQUALS  | 按键'='&nbsp;&nbsp; | 
-| KEYCODE_LEFT_BRACKET  | 按键'['&nbsp;&nbsp; | 
-| KEYCODE_RIGHT_BRACKET  | 按键']'&nbsp;&nbsp; | 
-| KEYCODE_BACKSLASH  | 按键'\'&nbsp;&nbsp; | 
-| KEYCODE_SEMICOLON  | 按键';'&nbsp;&nbsp; | 
-| KEYCODE_APOSTROPHE  | 按键''' (单引号)&nbsp;&nbsp; | 
-| KEYCODE_SLASH  | 按键'/'&nbsp;&nbsp; | 
-| KEYCODE_AT  | 按键'\@'&nbsp;&nbsp; | 
-| KEYCODE_PLUS  | 按键'+'&nbsp;&nbsp; | 
-| KEYCODE_MENU  | 菜单键&nbsp;&nbsp; | 
-| KEYCODE_PAGE_UP  | 向上翻页键&nbsp;&nbsp; | 
-| KEYCODE_PAGE_DOWN  | 向下翻页键&nbsp;&nbsp; | 
-| KEYCODE_ESCAPE  | ESC键&nbsp;&nbsp; | 
-| KEYCODE_FORWARD_DEL  | 删除键&nbsp;&nbsp; | 
-| KEYCODE_CTRL_LEFT  | 左Ctrl键&nbsp;&nbsp; | 
-| KEYCODE_CTRL_RIGHT  | 右Ctrl键&nbsp;&nbsp; | 
-| KEYCODE_CAPS_LOCK  | 大写锁定键&nbsp;&nbsp; | 
-| KEYCODE_SCROLL_LOCK  | 滚动锁定键&nbsp;&nbsp; | 
-| KEYCODE_META_LEFT  | 左元修改器键&nbsp;&nbsp; | 
-| KEYCODE_META_RIGHT  | 右元修改器键&nbsp;&nbsp; | 
-| KEYCODE_FUNCTION  | 功能键&nbsp;&nbsp; | 
-| KEYCODE_SYSRQ  | 系统请求/打印屏幕键&nbsp;&nbsp; | 
-| KEYCODE_BREAK  | Break/Pause键&nbsp;&nbsp; | 
-| KEYCODE_MOVE_HOME  | 光标移动到开始键&nbsp;&nbsp; | 
-| KEYCODE_MOVE_END  | 光标移动到末尾键&nbsp;&nbsp; | 
-| KEYCODE_INSERT  | 插入键&nbsp;&nbsp; | 
-| KEYCODE_FORWARD  | 前进键&nbsp;&nbsp; | 
-| KEYCODE_MEDIA_PLAY  | 多媒体键：播放&nbsp;&nbsp; | 
-| KEYCODE_MEDIA_PAUSE  | 多媒体键：暂停&nbsp;&nbsp; | 
-| KEYCODE_MEDIA_CLOSE  | 多媒体键：关闭&nbsp;&nbsp; | 
-| KEYCODE_MEDIA_EJECT  | 多媒体键：弹出&nbsp;&nbsp; | 
-| KEYCODE_MEDIA_RECORD  | 多媒体键：录音&nbsp;&nbsp; | 
-| KEYCODE_F1  | 按键'F1'&nbsp;&nbsp; | 
-| KEYCODE_F2  | 按键'F2'&nbsp;&nbsp; | 
-| KEYCODE_F3  | 按键'F3'&nbsp;&nbsp; | 
-| KEYCODE_F4  | 按键'F4'&nbsp;&nbsp; | 
-| KEYCODE_F5  | 按键'F5'&nbsp;&nbsp; | 
-| KEYCODE_F6  | 按键'F6'&nbsp;&nbsp; | 
-| KEYCODE_F7  | 按键'F7'&nbsp;&nbsp; | 
-| KEYCODE_F8  | 按键'F8'&nbsp;&nbsp; | 
-| KEYCODE_F9  | 按键'F9'&nbsp;&nbsp; | 
-| KEYCODE_F10  | 按键'F10'&nbsp;&nbsp; | 
-| KEYCODE_F11  | 按键'F11'&nbsp;&nbsp; | 
-| KEYCODE_F12  | 按键'F12'&nbsp;&nbsp; | 
-| KEYCODE_NUM_LOCK  | 小键盘锁&nbsp;&nbsp; | 
-| KEYCODE_NUMPAD_0  | 小键盘按键'0'&nbsp;&nbsp; | 
-| KEYCODE_NUMPAD_1  | 小键盘按键'1'&nbsp;&nbsp; | 
-| KEYCODE_NUMPAD_2  | 小键盘按键'2'&nbsp;&nbsp; | 
-| KEYCODE_NUMPAD_3  | 小键盘按键'3'&nbsp;&nbsp; | 
-| KEYCODE_NUMPAD_4  | 小键盘按键'4'&nbsp;&nbsp; | 
-| KEYCODE_NUMPAD_5  | 小键盘按键'5'&nbsp;&nbsp; | 
-| KEYCODE_NUMPAD_6  | 小键盘按键'6'&nbsp;&nbsp; | 
-| KEYCODE_NUMPAD_7  | 小键盘按键'7'&nbsp;&nbsp; | 
-| KEYCODE_NUMPAD_8  | 小键盘按键'8'&nbsp;&nbsp; | 
-| KEYCODE_NUMPAD_9  | 小键盘按键'9'&nbsp;&nbsp; | 
-| KEYCODE_NUMPAD_DIVIDE  | 小键盘按键'/'&nbsp;&nbsp; | 
-| KEYCODE_NUMPAD_MULTIPLY  | 小键盘按键'\*'&nbsp;&nbsp; | 
-| KEYCODE_NUMPAD_SUBTRACT  | 小键盘按键'-'&nbsp;&nbsp; | 
-| KEYCODE_NUMPAD_ADD  | 小键盘按键'+'&nbsp;&nbsp; | 
-| KEYCODE_NUMPAD_DOT  | 小键盘按键'.'&nbsp;&nbsp; | 
-| KEYCODE_NUMPAD_COMMA  | 小键盘按键','&nbsp;&nbsp; | 
-| KEYCODE_NUMPAD_ENTER  | 小键盘按键回车&nbsp;&nbsp; | 
-| KEYCODE_NUMPAD_EQUALS  | 小键盘按键'='&nbsp;&nbsp; | 
-| KEYCODE_NUMPAD_LEFT_PAREN  | 小键盘按键'('&nbsp;&nbsp; | 
-| KEYCODE_NUMPAD_RIGHT_PAREN  | 小键盘按键')'&nbsp;&nbsp; | 
+| KEYCODE_UNKNOWN  | 未知按键。 | 
+| KEYCODE_FN  | 功能（Fn）键。 | 
+| KEYCODE_VOLUME_UP  | 音量增加键。 | 
+| KEYCODE_VOLUME_DOWN  | 音量减小键。 | 
+| KEYCODE_POWER  | 电源键。 | 
+| KEYCODE_CAMERA  | 拍照键。 | 
+| KEYCODE_VOLUME_MUTE  | 扬声器静音键。 | 
+| KEYCODE_MUTE  | 话筒静音键。 | 
+| KEYCODE_BRIGHTNESS_UP  | 亮度调节按键：调亮。 | 
+| KEYCODE_BRIGHTNESS_DOWN  | 亮度调节按键：调暗。 | 
+| KEYCODE_0  | 按键'0'。 | 
+| KEYCODE_1  | 按键'1'。 | 
+| KEYCODE_2  | 按键'2'。 | 
+| KEYCODE_3  | 按键'3'。 | 
+| KEYCODE_4  | 按键'4'。 | 
+| KEYCODE_5  | 按键'5'。 | 
+| KEYCODE_6  | 按键'6'。 | 
+| KEYCODE_7  | 按键'7'。 | 
+| KEYCODE_8  | 按键'8'。 | 
+| KEYCODE_9  | 按键'9'。 | 
+| KEYCODE_STAR  | 按键'\*'。 | 
+| KEYCODE_POUND  | 按键'\#'。 | 
+| KEYCODE_DPAD_UP  | 导航键：向上。 | 
+| KEYCODE_DPAD_DOWN  | 导航键：向下。 | 
+| KEYCODE_DPAD_LEFT  | 导航键：向左。 | 
+| KEYCODE_DPAD_RIGHT  | 导航键：向右。 | 
+| KEYCODE_DPAD_CENTER  | 导航键：确定键。 | 
+| KEYCODE_A  | 按键'A'。 | 
+| KEYCODE_B  | 按键'B'。 | 
+| KEYCODE_C  | 按键'C'。 | 
+| KEYCODE_D  | 按键'D'。 | 
+| KEYCODE_E  | 按键'E'。 | 
+| KEYCODE_F  | 按键'F'。 | 
+| KEYCODE_G  | 按键'G'。 | 
+| KEYCODE_H  | 按键'H'。 | 
+| KEYCODE_I  | 按键'I'。 | 
+| KEYCODE_J  | 按键'J'。 | 
+| KEYCODE_K  | 按键'K'。 | 
+| KEYCODE_L  | 按键'L'。 | 
+| KEYCODE_M  | 按键'M'。 | 
+| KEYCODE_N  | 按键'N'。 | 
+| KEYCODE_O  | 按键'O'。 | 
+| KEYCODE_P  | 按键'P'。 | 
+| KEYCODE_Q  | 按键'Q'。 | 
+| KEYCODE_R  | 按键'R'。 | 
+| KEYCODE_S  | 按键'S'。 | 
+| KEYCODE_T  | 按键'T'。 | 
+| KEYCODE_U  | 按键'U'。 | 
+| KEYCODE_V  | 按键'V'。 | 
+| KEYCODE_W  | 按键'W'。 | 
+| KEYCODE_X  | 按键'X'。 | 
+| KEYCODE_Y  | 按键'Y'。 | 
+| KEYCODE_Z  | 按键'Z'。 | 
+| KEYCODE_COMMA  | 按键','。 | 
+| KEYCODE_PERIOD  | 按键'.'。 | 
+| KEYCODE_ALT_LEFT  | 左Alt键。 | 
+| KEYCODE_ALT_RIGHT  | 右Alt键。 | 
+| KEYCODE_SHIFT_LEFT  | 左Shift键。 | 
+| KEYCODE_SHIFT_RIGHT  | 右Shift键。 | 
+| KEYCODE_TAB  | Tab键。 | 
+| KEYCODE_SPACE  | 空格键。 | 
+| KEYCODE_SYM  | 符号修改器按键。 | 
+| KEYCODE_EXPLORER  | 浏览器功能键，此键用于启动浏览器应用程序。 | 
+| KEYCODE_ENVELOPE  | 电子邮件功能键，此键用于启动电子邮件应用程序。 | 
+| KEYCODE_ENTER  | 回车键。 | 
+| KEYCODE_DEL  | 退格键。 | 
+| KEYCODE_GRAVE  | 按键'‘’。 | 
+| KEYCODE_MINUS  | 按键'-'。 | 
+| KEYCODE_EQUALS  | 按键'='。 | 
+| KEYCODE_LEFT_BRACKET  | 按键'['。 | 
+| KEYCODE_RIGHT_BRACKET  | 按键']'。 | 
+| KEYCODE_BACKSLASH  | 按键'\'。 | 
+| KEYCODE_SEMICOLON  | 按键';'。 | 
+| KEYCODE_APOSTROPHE  | 按键'''（单引号）。 | 
+| KEYCODE_SLASH  | 按键'/'。 | 
+| KEYCODE_AT  | 按键'\@'。 | 
+| KEYCODE_PLUS  | 按键'+'。 | 
+| KEYCODE_MENU  | 菜单键。 | 
+| KEYCODE_PAGE_UP  | 向上翻页键。 | 
+| KEYCODE_PAGE_DOWN  | 向下翻页键。 | 
+| KEYCODE_ESCAPE  | ESC键。 | 
+| KEYCODE_FORWARD_DEL  | 删除键。 | 
+| KEYCODE_CTRL_LEFT  | 左Ctrl键。 | 
+| KEYCODE_CTRL_RIGHT  | 右Ctrl键。 | 
+| KEYCODE_CAPS_LOCK  | 大写锁定键。 | 
+| KEYCODE_SCROLL_LOCK  | 滚动锁定键。 | 
+| KEYCODE_META_LEFT  | 左元修改器键。 | 
+| KEYCODE_META_RIGHT  | 右元修改器键。 | 
+| KEYCODE_FUNCTION  | 功能键。 | 
+| KEYCODE_SYSRQ  | 系统请求/打印屏幕键。 | 
+| KEYCODE_BREAK  | Break/Pause键。 | 
+| KEYCODE_MOVE_HOME  | 光标移动到开始键。 | 
+| KEYCODE_MOVE_END  | 光标移动到末尾键。 | 
+| KEYCODE_INSERT  | 插入键。 | 
+| KEYCODE_FORWARD  | 前进键。 | 
+| KEYCODE_MEDIA_PLAY  | 多媒体键：播放。 | 
+| KEYCODE_MEDIA_PAUSE  | 多媒体键：暂停。 | 
+| KEYCODE_MEDIA_CLOSE  | 多媒体键：关闭。 | 
+| KEYCODE_MEDIA_EJECT  | 多媒体键：弹出。 | 
+| KEYCODE_MEDIA_RECORD  | 多媒体键：录音。 | 
+| KEYCODE_F1  | 按键'F1'。 | 
+| KEYCODE_F2  | 按键'F2'。 | 
+| KEYCODE_F3  | 按键'F3'。 | 
+| KEYCODE_F4  | 按键'F4'。 | 
+| KEYCODE_F5  | 按键'F5'。 | 
+| KEYCODE_F6  | 按键'F6'。 | 
+| KEYCODE_F7  | 按键'F7'。 | 
+| KEYCODE_F8  | 按键'F8'。 | 
+| KEYCODE_F9  | 按键'F9'。 | 
+| KEYCODE_F10  | 按键'F10'。 | 
+| KEYCODE_F11  | 按键'F11'。 | 
+| KEYCODE_F12  | 按键'F12'。 | 
+| KEYCODE_NUM_LOCK  | 小键盘锁。 | 
+| KEYCODE_NUMPAD_0  | 小键盘按键'0'。 | 
+| KEYCODE_NUMPAD_1  | 小键盘按键'1'。 | 
+| KEYCODE_NUMPAD_2  | 小键盘按键'2'。 | 
+| KEYCODE_NUMPAD_3  | 小键盘按键'3'。 | 
+| KEYCODE_NUMPAD_4  | 小键盘按键'4'。 | 
+| KEYCODE_NUMPAD_5  | 小键盘按键'5'。 | 
+| KEYCODE_NUMPAD_6  | 小键盘按键'6'。 | 
+| KEYCODE_NUMPAD_7  | 小键盘按键'7'。 | 
+| KEYCODE_NUMPAD_8  | 小键盘按键'8'。 | 
+| KEYCODE_NUMPAD_9  | 小键盘按键'9'。 | 
+| KEYCODE_NUMPAD_DIVIDE  | 小键盘按键'/'。 | 
+| KEYCODE_NUMPAD_MULTIPLY  | 小键盘按键'\*'。 | 
+| KEYCODE_NUMPAD_SUBTRACT  | 小键盘按键'-'。 | 
+| KEYCODE_NUMPAD_ADD  | 小键盘按键'+'。 | 
+| KEYCODE_NUMPAD_DOT  | 小键盘按键'.'。 | 
+| KEYCODE_NUMPAD_COMMA  | 小键盘按键','。 | 
+| KEYCODE_NUMPAD_ENTER  | 小键盘按键回车。 | 
+| KEYCODE_NUMPAD_EQUALS  | 小键盘按键'='。 | 
+| KEYCODE_NUMPAD_LEFT_PAREN  | 小键盘按键'('。 | 
+| KEYCODE_NUMPAD_RIGHT_PAREN  | 小键盘按键')'。 | 
 
 
 ### Input_KeyEventAction
@@ -699,6 +731,7 @@ enum Input_KeyCode
 enum Input_KeyEventAction
 ```
 **描述**
+
 按键事件类型的枚举值。
 
 **起始版本：** 12
@@ -716,6 +749,7 @@ enum Input_KeyEventAction
 enum Input_KeyStateAction
 ```
 **描述**
+
 按键状态的枚举值。
 
 **起始版本：** 12
@@ -735,6 +769,7 @@ enum Input_KeyStateAction
 enum Input_MouseEventAction
 ```
 **描述**
+
 鼠标动作的枚举值。
 
 **起始版本：** 12
@@ -756,18 +791,19 @@ enum Input_MouseEventAction
 enum Input_MouseEventButton
 ```
 **描述**
+
 鼠标按键的枚举值。
 
 **起始版本：** 12
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| MOUSE_BUTTON_NONE  | 无效按键&nbsp;&nbsp; | 
-| MOUSE_BUTTON_LEFT  | 鼠标左键&nbsp;&nbsp; | 
-| MOUSE_BUTTON_MIDDLE  | 鼠标中间键&nbsp;&nbsp; | 
-| MOUSE_BUTTON_RIGHT  | 鼠标右键&nbsp;&nbsp; | 
-| MOUSE_BUTTON_FORWARD  | 鼠标前进键&nbsp;&nbsp; | 
-| MOUSE_BUTTON_BACK  | 鼠标返回键&nbsp;&nbsp; | 
+| MOUSE_BUTTON_NONE  | 无效按键。 | 
+| MOUSE_BUTTON_LEFT  | 鼠标左键。 | 
+| MOUSE_BUTTON_MIDDLE  | 鼠标中间键。 | 
+| MOUSE_BUTTON_RIGHT  | 鼠标右键。 | 
+| MOUSE_BUTTON_FORWARD  | 鼠标前进键。 | 
+| MOUSE_BUTTON_BACK  | 鼠标返回键。 | 
 
 
 ### Input_Result
@@ -776,20 +812,21 @@ enum Input_MouseEventButton
 enum Input_Result
 ```
 **描述**
+
 错误码枚举值。
 
 **起始版本：** 12
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| INPUT_SUCCESS  | 操作成功&nbsp;&nbsp; | 
-| INPUT_PERMISSION_DENIED  | 权限验证失败&nbsp;&nbsp; | 
-| INPUT_NOT_SYSTEM_APPLICATION  | 非系统应用&nbsp;&nbsp; | 
-| INPUT_PARAMETER_ERROR  | 参数检查失败&nbsp;&nbsp; | 
-| INPUT_SERVICE_EXCEPTION  | 服务异常&nbsp;&nbsp; | 
-| INPUT_REPEAT_INTERCEPTOR  | 应用创建拦截后，再次执行创建拦截的操作&nbsp;&nbsp; | 
-| INPUT_OCCUPIED_BY_SYSTEM  | 已经被系统应用占用，**起始版本：** 14 | 
-| INPUT_OCCUPIED_BY_OTHER  | 已经被其他应用占用，**起始版本：** 14 | 
+| INPUT_SUCCESS  | 操作成功。 | 
+| INPUT_PERMISSION_DENIED  | 权限验证失败。 | 
+| INPUT_NOT_SYSTEM_APPLICATION  | 非系统应用。 | 
+| INPUT_PARAMETER_ERROR  | 参数检查失败。 | 
+| INPUT_SERVICE_EXCEPTION  | 服务异常。 | 
+| INPUT_REPEAT_INTERCEPTOR  | 应用创建拦截后，再次执行创建拦截的操作。 | 
+| INPUT_OCCUPIED_BY_SYSTEM  | 已经被系统应用占用，**起始版本：** 14。 | 
+| INPUT_OCCUPIED_BY_OTHER  | 已经被其他应用占用，**起始版本：** 14。 | 
 
 
 ### Input_TouchEventAction
@@ -798,16 +835,17 @@ enum Input_Result
 enum Input_TouchEventAction
 ```
 **描述**
+
 触摸动作的枚举值。
 
 **起始版本：** 12
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| TOUCH_ACTION_CANCEL  | 触摸取消&nbsp;&nbsp; | 
-| TOUCH_ACTION_DOWN  | 触摸按下&nbsp;&nbsp; | 
-| TOUCH_ACTION_MOVE  | 触摸移动&nbsp;&nbsp; | 
-| TOUCH_ACTION_UP  | 触摸抬起&nbsp;&nbsp; | 
+| TOUCH_ACTION_CANCEL  | 触摸取消。 | 
+| TOUCH_ACTION_DOWN  | 触摸按下。 | 
+| TOUCH_ACTION_MOVE  | 触摸移动。 | 
+| TOUCH_ACTION_UP  | 触摸抬起。 | 
 
 
 ### InputEvent_AxisAction
@@ -816,6 +854,7 @@ enum Input_TouchEventAction
 enum InputEvent_AxisAction
 ```
 **描述**
+
 轴事件动作。
 
 **起始版本：** 12
@@ -834,6 +873,7 @@ enum InputEvent_AxisAction
 enum InputEvent_AxisEventType
 ```
 **描述**
+
 输入设备的轴事件类型。
 
 **起始版本：** 12
@@ -850,6 +890,7 @@ enum InputEvent_AxisEventType
 enum InputEvent_AxisType
 ```
 **描述**
+
 输入设备的轴类型。
 
 **起始版本：** 12
@@ -869,14 +910,15 @@ enum InputEvent_AxisType
 enum InputEvent_MouseAxis
 ```
 **描述**
+
 鼠标轴事件类型。
 
 **起始版本：** 12
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| MOUSE_AXIS_SCROLL_VERTICAL  | 垂直滚动轴&nbsp;&nbsp; | 
-| MOUSE_AXIS_SCROLL_HORIZONTAL  | 水平滚动轴&nbsp;&nbsp; | 
+| MOUSE_AXIS_SCROLL_VERTICAL  | 垂直滚动轴。 | 
+| MOUSE_AXIS_SCROLL_HORIZONTAL  | 水平滚动轴。 | 
 
 
 ### InputEvent_SourceType
@@ -885,6 +927,7 @@ enum InputEvent_MouseAxis
 enum InputEvent_SourceType
 ```
 **描述**
+
 输入事件源类型。
 
 **起始版本：** 12
@@ -905,6 +948,7 @@ enum InputEvent_SourceType
 Input_Result OH_Input_AddAxisEventMonitor (InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback )
 ```
 **描述**
+
 添加指定类型的轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](#inputevent_axiseventtype)中。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -916,7 +960,7 @@ Input_Result OH_Input_AddAxisEventMonitor (InputEvent_AxisEventType axisEventTyp
 | 名称 | 描述 | 
 | -------- | -------- |
 | axisEventType | 要监听的轴事件类型，轴事件类型定义在[InputEvent_AxisEventType](#inputevent_axiseventtype)中。  | 
-| callback | 回调函数，用于接收指定类型的轴事件  | 
+| callback | 回调函数，用于接收指定类型的轴事件。  | 
 
 **Permission：**
 
@@ -933,6 +977,7 @@ ohos.permission.INPUT_MONITORING
 Input_Result OH_Input_AddAxisEventMonitorForAll (Input_AxisEventCallback callback)
 ```
 **描述**
+
 添加所有类型轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](#inputevent_axiseventtype)中。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -960,6 +1005,7 @@ ohos.permission.INPUT_MONITORING
 Input_Result OH_Input_AddHotkeyMonitor (const Input_Hotkey * hotkey, Input_HotkeyCallback callback )
 ```
 **描述**
+
 订阅快捷键事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -992,6 +1038,7 @@ INPUT_OCCUPIED_BY_OTHER 已被抢占订阅。
 Input_Result OH_Input_AddInputEventInterceptor (Input_InterceptorEventCallback *callback Input_InterceptorOptions * option)
 ```
 **描述**
+
 添加输入事件拦截，包括鼠标、触摸和轴事件，重复添加只有第一次生效。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1028,7 +1075,8 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 Input_Result OH_Input_AddKeyEventInterceptor (Input_KeyEventCallback callback, Input_InterceptorOptions * option )
 ```
 **描述**
-添加按键事件的拦截,重复添加只有第一次生效。
+
+添加按键事件的拦截，重复添加只有第一次生效。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1064,6 +1112,7 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 Input_Result OH_Input_AddKeyEventMonitor (Input_KeyEventCallback callback)
 ```
 **描述**
+
 添加按键事件监听。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1097,7 +1146,8 @@ ohos.permission.INPUT_MONITORING
 Input_Result OH_Input_AddMouseEventMonitor (Input_MouseEventCallback callback)
 ```
 **描述**
-添加鼠标事件监听,包含鼠标点击，移动，不包含滚轮事件，滚轮事件归属于轴事件。
+
+添加鼠标事件监听，包含鼠标点击，移动，不包含滚轮事件，滚轮事件归属于轴事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1130,6 +1180,7 @@ ohos.permission.INPUT_MONITORING
 Input_Result OH_Input_AddTouchEventMonitor (Input_TouchEventCallback callback)
 ```
 **描述**
+
 添加触摸事件监听。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1157,6 +1208,7 @@ ohos.permission.INPUT_MONITORING
 void OH_Input_CancelInjection ()
 ```
 **描述**
+
 取消事件注入并撤销授权
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1170,6 +1222,7 @@ void OH_Input_CancelInjection ()
 Input_Hotkey** OH_Input_CreateAllSystemHotkeys (int32_t count)
 ```
 **描述**
+
 创建[Input_Hotkey](#input_hotkey)类型实例的数组。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1193,6 +1246,7 @@ OH_Input_CreateAllSystemHotkey 函数错误码。 INPUT_SUCCESS 表示创建实�
 Input_AxisEvent* OH_Input_CreateAxisEvent (void )
 ```
 **描述**
+
 创建轴事件对象实例。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1210,6 +1264,7 @@ Input_AxisEvent* OH_Input_CreateAxisEvent (void )
 Input_DeviceInfo* OH_Input_CreateDeviceInfo (void )
 ```
 **描述**
+
 创建输入设备信息的对象。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1227,6 +1282,7 @@ Input_DeviceInfo* OH_Input_CreateDeviceInfo (void )
 Input_Hotkey* OH_Input_CreateHotkey ()
 ```
 **描述**
+
 创建快捷键对象的实例。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1235,7 +1291,7 @@ Input_Hotkey* OH_Input_CreateHotkey ()
 
 **返回：**
 
-如果操作成功,则返回一个[Input_Hotkey](#input_hotkey)指针对象。 否则, 返回一个空指针， 可能的原因是内存分配失败。
+如果操作成功，则返回一个[Input_Hotkey](#input_hotkey)指针对象。否则，返回一个空指针，可能的原因是内存分配失败。
 
 
 ### OH_Input_CreateKeyEvent()
@@ -1244,6 +1300,7 @@ Input_Hotkey* OH_Input_CreateHotkey ()
 struct Input_KeyEvent* OH_Input_CreateKeyEvent ()
 ```
 **描述**
+
 创建按键事件对象
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1252,7 +1309,7 @@ struct Input_KeyEvent* OH_Input_CreateKeyEvent ()
 
 **返回：**
 
-如果操作成功返回一个[Input_KeyEvent](#input_keyevent)指针对象 否则返回空指针。
+如果操作成功返回一个[Input_KeyEvent](#input_keyevent)指针对象，否则返回空指针。
 
 
 ### OH_Input_CreateKeyState()
@@ -1261,6 +1318,7 @@ struct Input_KeyEvent* OH_Input_CreateKeyEvent ()
 struct Input_KeyState* OH_Input_CreateKeyState ()
 ```
 **描述**
+
 创建按键状态的枚举对象。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1269,7 +1327,7 @@ struct Input_KeyState* OH_Input_CreateKeyState ()
 
 **返回：**
 
-如果操作成功，返回一个[Input_KeyState](#input_keystate)指针对象， 否则返回空指针。
+如果操作成功，返回一个[Input_KeyState](#input_keystate)指针对象，否则返回空指针。
 
 
 ### OH_Input_CreateMouseEvent()
@@ -1278,6 +1336,7 @@ struct Input_KeyState* OH_Input_CreateKeyState ()
 struct Input_MouseEvent* OH_Input_CreateMouseEvent ()
 ```
 **描述**
+
 创建鼠标事件对象
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1286,7 +1345,7 @@ struct Input_MouseEvent* OH_Input_CreateMouseEvent ()
 
 **返回：**
 
-如果操作成功返回一个[Input_MouseEvent](#input_mouseevent)指针对象 否则返回空指针。
+如果操作成功返回一个[Input_MouseEvent](#input_mouseevent)指针对象，否则返回空指针。
 
 
 ### OH_Input_CreateTouchEvent()
@@ -1295,6 +1354,7 @@ struct Input_MouseEvent* OH_Input_CreateMouseEvent ()
 struct Input_TouchEvent* OH_Input_CreateTouchEvent ()
 ```
 **描述**
+
 创建触屏事件对象
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1303,7 +1363,7 @@ struct Input_TouchEvent* OH_Input_CreateTouchEvent ()
 
 **返回：**
 
-如果操作成功返回一个[Input_TouchEvent](#input_touchevent)指针对象 否则返回空指针。
+如果操作成功返回一个[Input_TouchEvent](#input_touchevent)指针对象，否则返回空指针。
 
 
 ### OH_Input_DestroyAllSystemHotkeys()
@@ -1312,6 +1372,7 @@ struct Input_TouchEvent* OH_Input_CreateTouchEvent ()
 void OH_Input_DestroyAllSystemHotkeys (Input_Hotkey ** hotkeys, int32_t count )
 ```
 **描述**
+
 销毁[Input_Hotkey](#input_hotkey)实例数组并回收内存。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1332,6 +1393,7 @@ void OH_Input_DestroyAllSystemHotkeys (Input_Hotkey ** hotkeys, int32_t count )
 Input_Result OH_Input_DestroyAxisEvent (Input_AxisEvent ** axisEvent)
 ```
 **描述**
+
 销毁轴事件对象实例。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1355,6 +1417,7 @@ Input_Result OH_Input_DestroyAxisEvent (Input_AxisEvent ** axisEvent)
 void OH_Input_DestroyDeviceInfo (Input_DeviceInfo ** deviceInfo)
 ```
 **描述**
+
 销毁输入设备信息的对象。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1374,6 +1437,7 @@ void OH_Input_DestroyDeviceInfo (Input_DeviceInfo ** deviceInfo)
 void OH_Input_DestroyHotkey (Input_Hotkey ** hotkey)
 ```
 **描述**
+
 销毁快捷键对象的实例。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1393,6 +1457,7 @@ void OH_Input_DestroyHotkey (Input_Hotkey ** hotkey)
 void OH_Input_DestroyKeyEvent (struct Input_KeyEvent ** keyEvent)
 ```
 **描述**
+
 销毁按键事件对象
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1412,6 +1477,7 @@ void OH_Input_DestroyKeyEvent (struct Input_KeyEvent ** keyEvent)
 void OH_Input_DestroyKeyState (struct Input_KeyState ** keyState)
 ```
 **描述**
+
 销毁按键状态的枚举对象。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1431,7 +1497,8 @@ void OH_Input_DestroyKeyState (struct Input_KeyState ** keyState)
 void OH_Input_DestroyMouseEvent (struct Input_MouseEvent ** mouseEvent)
 ```
 **描述**
-销毁鼠标事件对象
+
+销毁鼠标事件对象。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1450,6 +1517,7 @@ void OH_Input_DestroyMouseEvent (struct Input_MouseEvent ** mouseEvent)
 void OH_Input_DestroyTouchEvent (struct Input_TouchEvent ** touchEvent)
 ```
 **描述**
+
 销毁触屏事件对象
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1469,6 +1537,7 @@ void OH_Input_DestroyTouchEvent (struct Input_TouchEvent ** touchEvent)
 Input_Result OH_Input_GetAllSystemHotkeys (Input_Hotkey ** hotkey, int32_t * count )
 ```
 **描述**
+
 获取设置的所有快捷键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1495,6 +1564,7 @@ OH_Input_GetAllSystemHotkeys 函数错误码。
 Input_Result OH_Input_GetAxisEventAction (const Input_AxisEvent * axisEvent, InputEvent_AxisAction * action )
 ```
 **描述**
+
 获取轴事件的动作。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1518,6 +1588,7 @@ Input_Result OH_Input_GetAxisEventAction (const Input_AxisEvent * axisEvent, Inp
 Input_Result OH_Input_GetAxisEventActionTime (const Input_AxisEvent * axisEvent, int64_t * actionTime )
 ```
 **描述**
+
 获取轴事件发生的时间。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1542,6 +1613,7 @@ Input_Result OH_Input_GetAxisEventActionTime (const Input_AxisEvent * axisEvent,
 Input_Result OH_Input_GetAxisEventAxisValue (const Input_AxisEvent * axisEvent, InputEvent_AxisType axisType, double * axisValue )
 ```
 **描述**
+
 获取轴事件指定轴类型的轴值。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1567,6 +1639,7 @@ Input_Result OH_Input_GetAxisEventAxisValue (const Input_AxisEvent * axisEvent, 
 Input_Result OH_Input_GetAxisEventDisplayX (const Input_AxisEvent * axisEvent, float * displayX )
 ```
 **描述**
+
 获取轴事件的X坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1591,6 +1664,7 @@ Input_Result OH_Input_GetAxisEventDisplayX (const Input_AxisEvent * axisEvent, f
 Input_Result OH_Input_GetAxisEventDisplayY (const Input_AxisEvent * axisEvent, float * displayY )
 ```
 **描述**
+
 获取轴事件的Y坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1615,6 +1689,7 @@ Input_Result OH_Input_GetAxisEventDisplayY (const Input_AxisEvent * axisEvent, f
 Input_Result OH_Input_GetAxisEventSourceType (const Input_AxisEvent * axisEvent, InputEvent_SourceType * sourceType )
 ```
 **描述**
+
 获取轴事件源类型。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1639,6 +1714,7 @@ Input_Result OH_Input_GetAxisEventSourceType (const Input_AxisEvent * axisEvent,
 Input_Result OH_Input_GetAxisEventType (const Input_AxisEvent * axisEvent, InputEvent_AxisEventType * axisEventType )
 ```
 **描述**
+
 获取轴事件类型。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1663,6 +1739,7 @@ Input_Result OH_Input_GetAxisEventType (const Input_AxisEvent * axisEvent, Input
 Input_Result OH_Input_GetCapabilities (Input_DeviceInfo * deviceInfo, int32_t * capabilities )
 ```
 **描述**
+
 获取有关输入设备能力信息，比如设备是触摸屏、触控板、键盘等。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1687,6 +1764,7 @@ INPUT_SUCCESS 表示操作成功。 INPUT_PARAMETER_ERROR 表示deviceInfo或者
 Input_Result OH_Input_GetDevice (int32_t deviceId, Input_DeviceInfo ** deviceInfo )
 ```
 **描述**
+
 获取输入设备信息。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1713,6 +1791,7 @@ INPUT_PARAMETER_ERROR 表示deviceInfo为空指针或deviceId无效，可以通�
 Input_Result OH_Input_GetDeviceAddress (Input_DeviceInfo * deviceInfo, char ** address )
 ```
 **描述**
+
 获取输入设备的物理地址。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1737,6 +1816,7 @@ INPUT_SUCCESS 表示操作成功。 INPUT_PARAMETER_ERROR 表示deviceInfo或者
 Input_Result OH_Input_GetDeviceId (Input_DeviceInfo * deviceInfo, int32_t * id )
 ```
 **描述**
+
 获取输入设备的id。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1761,6 +1841,7 @@ INPUT_SUCCESS 表示操作成功。 INPUT_PARAMETER_ERROR 表示deviceInfo或者
 Input_Result OH_Input_GetDeviceIds (int32_t * deviceIds, int32_t inSize, int32_t * outSize )
 ```
 **描述**
+
 获取所有输入设备的ID列表。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1786,6 +1867,7 @@ INPUT_SUCCESS 表示操作成功。 INPUT_PARAMETER_ERROR 表示deviceIds或outS
 Input_Result OH_Input_GetDeviceName (Input_DeviceInfo * deviceInfo, char ** name )
 ```
 **描述**
+
 获取输入设备的名称。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1810,6 +1892,7 @@ INPUT_SUCCESS 表示操作成功。 INPUT_PARAMETER_ERROR 表示deviceInfo或者
 Input_Result OH_Input_GetDeviceProduct (Input_DeviceInfo * deviceInfo, int32_t * product )
 ```
 **描述**
+
 获取输入设备的产品信息。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1834,6 +1917,7 @@ INPUT_SUCCESS 表示操作成功。 INPUT_PARAMETER_ERROR 表示deviceInfo或者
 Input_Result OH_Input_GetDeviceVendor (Input_DeviceInfo * deviceInfo, int32_t * vendor )
 ```
 **描述**
+
 获取输入设备的厂商信息。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1858,6 +1942,7 @@ INPUT_SUCCESS 表示操作成功。 INPUT_PARAMETER_ERROR 表示deviceInfo或者
 Input_Result OH_Input_GetDeviceVersion (Input_DeviceInfo * deviceInfo, int32_t * version )
 ```
 **描述**
+
 获取输入设备的版本信息。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1882,6 +1967,7 @@ INPUT_SUCCESS 表示操作成功。 INPUT_PARAMETER_ERROR 表示deviceInfo或者
 Input_Result OH_Input_GetFinalKey (const Input_Hotkey * hotkey, int32_t * finalKeyCode )
 ```
 **描述**
+
 获取被修饰键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1908,6 +1994,7 @@ OH_Input_GetfinalKey 函数错误码。 若获取成功，返回INPUT_SUCCESS；
 int32_t OH_Input_GetIntervalSinceLastInput (int64_t * timeInterval)
 ```
 **描述**
+
 获取距离上次系统输入事件的时间间隔。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1933,6 +2020,7 @@ OH_Input_GetIntervalSinceLastInput 函数错误码。
 Input_Result OH_Input_GetKeyboardType (int32_t deviceId, int32_t * keyboardType )
 ```
 **描述**
+
 获取输入设备的键盘类型。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1957,6 +2045,7 @@ INPUT_SUCCESS 表示操作成功。 INPUT_PARAMETER_ERROR 表示设备ID为无�
 int32_t OH_Input_GetKeyCode (const struct Input_KeyState * keyState)
 ```
 **描述**
+
 获取按键状态对象的键值。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -1980,6 +2069,7 @@ int32_t OH_Input_GetKeyCode (const struct Input_KeyState * keyState)
 int32_t OH_Input_GetKeyEventAction (const struct Input_KeyEvent * keyEvent)
 ```
 **描述**
+
 获取按键事件类型
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2003,6 +2093,7 @@ int32_t OH_Input_GetKeyEventAction (const struct Input_KeyEvent * keyEvent)
 int64_t OH_Input_GetKeyEventActionTime (const struct Input_KeyEvent * keyEvent)
 ```
 **描述**
+
 获取按键事件发生的时间
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2026,6 +2117,7 @@ int64_t OH_Input_GetKeyEventActionTime (const struct Input_KeyEvent * keyEvent)
 int32_t OH_Input_GetKeyEventKeyCode (const struct Input_KeyEvent * keyEvent)
 ```
 **描述**
+
 获取按键事件的键值。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2049,6 +2141,7 @@ Key code.
 int32_t OH_Input_GetKeyPressed (const struct Input_KeyState * keyState)
 ```
 **描述**
+
 获取按键状态对象的按键是否按下。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2072,6 +2165,7 @@ int32_t OH_Input_GetKeyPressed (const struct Input_KeyState * keyState)
 Input_Result OH_Input_GetKeyState (struct Input_KeyState * keyState)
 ```
 **描述**
+
 查询按键状态的枚举对象。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2088,7 +2182,7 @@ Input_Result OH_Input_GetKeyState (struct Input_KeyState * keyState)
 
 如果操作成功，
 
-返回Input_Result#INPUT_SUCCESS; 否则返回[Input_Result](#input_result)中定义的其他错误代码。
+返回Input_Result#INPUT_SUCCESS；否则返回[Input_Result](#input_result)中定义的其他错误代码。
 
 
 ### OH_Input_GetKeySwitch()
@@ -2097,6 +2191,7 @@ Input_Result OH_Input_GetKeyState (struct Input_KeyState * keyState)
 int32_t OH_Input_GetKeySwitch (const struct Input_KeyState * keyState)
 ```
 **描述**
+
 获取按键状态对象的按键开关。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2120,6 +2215,7 @@ int32_t OH_Input_GetKeySwitch (const struct Input_KeyState * keyState)
 int32_t OH_Input_GetMouseEventAction (const struct Input_MouseEvent * mouseEvent)
 ```
 **描述**
+
 获取鼠标事件的动作
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2143,6 +2239,7 @@ int32_t OH_Input_GetMouseEventAction (const struct Input_MouseEvent * mouseEvent
 int64_t OH_Input_GetMouseEventActionTime (const struct Input_MouseEvent * mouseEvent)
 ```
 **描述**
+
 获取鼠标事件发生的时间。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2166,6 +2263,7 @@ int64_t OH_Input_GetMouseEventActionTime (const struct Input_MouseEvent * mouseE
 int32_t OH_Input_GetMouseEventAxisType (const struct Input_MouseEvent * mouseEvent)
 ```
 **描述**
+
 获取鼠标轴事件的类型。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2189,6 +2287,7 @@ int32_t OH_Input_GetMouseEventAxisType (const struct Input_MouseEvent * mouseEve
 float OH_Input_GetMouseEventAxisValue (const struct Input_MouseEvent * mouseEvent)
 ```
 **描述**
+
 获取鼠标轴事件的值
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2212,6 +2311,7 @@ float OH_Input_GetMouseEventAxisValue (const struct Input_MouseEvent * mouseEven
 int32_t OH_Input_GetMouseEventButton (const struct Input_MouseEvent * mouseEvent)
 ```
 **描述**
+
 获取鼠标事件的按键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2235,6 +2335,7 @@ int32_t OH_Input_GetMouseEventButton (const struct Input_MouseEvent * mouseEvent
 int32_t OH_Input_GetMouseEventDisplayX (const struct Input_MouseEvent * mouseEvent)
 ```
 **描述**
+
 获取鼠标事件的屏幕X坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2258,6 +2359,7 @@ int32_t OH_Input_GetMouseEventDisplayX (const struct Input_MouseEvent * mouseEve
 int32_t OH_Input_GetMouseEventDisplayY (const struct Input_MouseEvent * mouseEvent)
 ```
 **描述**
+
 获取鼠标事件的屏幕Y坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2281,6 +2383,7 @@ int32_t OH_Input_GetMouseEventDisplayY (const struct Input_MouseEvent * mouseEve
 Input_Result OH_Input_GetPreKeys (const Input_Hotkey * hotkey, int32_t ** preKeys, int32_t * preKeyCount )
 ```
 **描述**
+
 获取修饰键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2307,6 +2410,7 @@ OH_Input_GetpressedKeys 函数错误码。 若获取成功，返回INPUT_SUCCESS
 Input_Result OH_Input_GetRepeat (const Input_Hotkey * hotkey, bool * isRepeat )
 ```
 **描述**
+
 获取是否上报重复key事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2332,6 +2436,7 @@ OH_Input_GetIsRepeat 函数错误码。 若获取成功，返回INPUT_SUCCESS；
 int32_t OH_Input_GetTouchEventAction (const struct Input_TouchEvent * touchEvent)
 ```
 **描述**
+
 获取触屏事件的动作。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2355,6 +2460,7 @@ int32_t OH_Input_GetTouchEventAction (const struct Input_TouchEvent * touchEvent
 int64_t OH_Input_GetTouchEventActionTime (const struct Input_TouchEvent * touchEvent)
 ```
 **描述**
+
 获取触摸事件发生的时间。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2378,6 +2484,7 @@ int64_t OH_Input_GetTouchEventActionTime (const struct Input_TouchEvent * touchE
 int32_t OH_Input_GetTouchEventDisplayX (const struct Input_TouchEvent * touchEvent)
 ```
 **描述**
+
 获取触屏事件的屏幕X坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2401,6 +2508,7 @@ int32_t OH_Input_GetTouchEventDisplayX (const struct Input_TouchEvent * touchEve
 int32_t OH_Input_GetTouchEventDisplayY (const struct Input_TouchEvent * touchEvent)
 ```
 **描述**
+
 获取触屏事件的屏幕Y坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2424,6 +2532,7 @@ int32_t OH_Input_GetTouchEventDisplayY (const struct Input_TouchEvent * touchEve
 int32_t OH_Input_GetTouchEventFingerId (const struct Input_TouchEvent * touchEvent)
 ```
 **描述**
+
 获取触屏事件的手指ID。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2447,6 +2556,7 @@ int32_t OH_Input_GetTouchEventFingerId (const struct Input_TouchEvent * touchEve
 int32_t OH_Input_InjectKeyEvent (const struct Input_KeyEvent * keyEvent)
 ```
 **描述**
+
 注入按键事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2470,6 +2580,7 @@ int32_t OH_Input_InjectKeyEvent (const struct Input_KeyEvent * keyEvent)
 int32_t OH_Input_InjectMouseEvent (const struct Input_MouseEvent * mouseEvent)
 ```
 **描述**
+
 注入鼠标事件
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2493,6 +2604,7 @@ int32_t OH_Input_InjectMouseEvent (const struct Input_MouseEvent * mouseEvent)
 int32_t OH_Input_InjectTouchEvent (const struct Input_TouchEvent * touchEvent)
 ```
 **描述**
+
 注入触摸事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2515,6 +2627,7 @@ int32_t OH_Input_InjectTouchEvent (const struct Input_TouchEvent * touchEvent)
 Input_Result OH_Input_RegisterDeviceListener (Input_DeviceListener * listener)
 ```
 **描述**
+
 注册设备热插拔的监听器。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2539,6 +2652,7 @@ INPUT_SUCCESS 表示注册成功，INPUT_PARAMETER_ERROR 表示listener 为NULL�
 Input_Result OH_Input_RemoveAxisEventMonitor (InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback )
 ```
 **描述**
+
 移除指定类型轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](#inputevent_axiseventtype)中。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2567,6 +2681,7 @@ ohos.permission.INPUT_MONITORING
 Input_Result OH_Input_RemoveAxisEventMonitorForAll (Input_AxisEventCallback callback)
 ```
 **描述**
+
 移除所有类型轴事件监听。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2594,6 +2709,7 @@ ohos.permission.INPUT_MONITORING
 Input_Result OH_Input_RemoveHotkeyMonitor (const Input_Hotkey * hotkey, Input_HotkeyCallback callback )
 ```
 **描述**
+
 取消订阅快捷键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2620,6 +2736,7 @@ INPUT_PARAMETER_ERROR 表示参数检查失败。
 Input_Result OH_Input_RemoveInputEventInterceptor ()
 ```
 **描述**
+
 移除输入事件拦截，包括鼠标、触摸和轴事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2641,6 +2758,7 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 Input_Result OH_Input_RemoveKeyEventInterceptor ()
 ```
 **描述**
+
 移除按键事件拦截。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2662,6 +2780,7 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 Input_Result OH_Input_RemoveKeyEventMonitor (Input_KeyEventCallback callback)
 ```
 **描述**
+
 移除按键事件监听。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2689,6 +2808,7 @@ ohos.permission.INPUT_MONITORING
 Input_Result OH_Input_RemoveMouseEventMonitor (Input_MouseEventCallback callback)
 ```
 **描述**
+
 移除鼠标事件监听。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2716,6 +2836,7 @@ ohos.permission.INPUT_MONITORING
 Input_Result OH_Input_RemoveTouchEventMonitor (Input_TouchEventCallback callback)
 ```
 **描述**
+
 移除触摸事件监听。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2743,6 +2864,7 @@ ohos.permission.INPUT_MONITORING
 Input_Result OH_Input_SetAxisEventAction (Input_AxisEvent * axisEvent, InputEvent_AxisAction action )
 ```
 **描述**
+
 设置轴事件的动作。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2766,6 +2888,7 @@ Input_Result OH_Input_SetAxisEventAction (Input_AxisEvent * axisEvent, InputEven
 Input_Result OH_Input_SetAxisEventActionTime (Input_AxisEvent * axisEvent, int64_t actionTime )
 ```
 **描述**
+
 设置轴事件发生的时间。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2790,6 +2913,7 @@ Input_Result OH_Input_SetAxisEventActionTime (Input_AxisEvent * axisEvent, int64
 Input_Result OH_Input_SetAxisEventAxisValue (Input_AxisEvent * axisEvent, InputEvent_AxisType axisType, double axisValue )
 ```
 **描述**
+
 设置轴事件指定轴类型的轴值。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2815,6 +2939,7 @@ Input_Result OH_Input_SetAxisEventAxisValue (Input_AxisEvent * axisEvent, InputE
 Input_Result OH_Input_SetAxisEventDisplayX (Input_AxisEvent * axisEvent, float displayX )
 ```
 **描述**
+
 设置轴事件的X坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2839,6 +2964,7 @@ Input_Result OH_Input_SetAxisEventDisplayX (Input_AxisEvent * axisEvent, float d
 Input_Result OH_Input_SetAxisEventDisplayY (Input_AxisEvent * axisEvent, float displayY )
 ```
 **描述**
+
 设置轴事件的Y坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2863,6 +2989,7 @@ Input_Result OH_Input_SetAxisEventDisplayY (Input_AxisEvent * axisEvent, float d
 Input_Result OH_Input_SetAxisEventSourceType (Input_AxisEvent * axisEvent, InputEvent_SourceType sourceType )
 ```
 **描述**
+
 设置轴事件源类型。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2887,6 +3014,7 @@ Input_Result OH_Input_SetAxisEventSourceType (Input_AxisEvent * axisEvent, Input
 Input_Result OH_Input_SetAxisEventType (Input_AxisEvent * axisEvent, InputEvent_AxisEventType axisEventType )
 ```
 **描述**
+
 设置轴事件类型。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2911,6 +3039,7 @@ Input_Result OH_Input_SetAxisEventType (Input_AxisEvent * axisEvent, InputEvent_
 void OH_Input_SetFinalKey (Input_Hotkey * hotkey, int32_t finalKey )
 ```
 **描述**
+
 设置被修饰键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2931,6 +3060,7 @@ void OH_Input_SetFinalKey (Input_Hotkey * hotkey, int32_t finalKey )
 void OH_Input_SetKeyCode (struct Input_KeyState * keyState, int32_t keyCode )
 ```
 **描述**
+
 设置按键状态对象的键值。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2951,6 +3081,7 @@ void OH_Input_SetKeyCode (struct Input_KeyState * keyState, int32_t keyCode )
 void OH_Input_SetKeyEventAction (struct Input_KeyEvent * keyEvent, int32_t action )
 ```
 **描述**
+
 设置按键事件类型
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2971,6 +3102,7 @@ void OH_Input_SetKeyEventAction (struct Input_KeyEvent * keyEvent, int32_t actio
 void OH_Input_SetKeyEventActionTime (struct Input_KeyEvent * keyEvent, int64_t actionTime )
 ```
 **描述**
+
 设置按键事件发生的时间。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -2991,6 +3123,7 @@ void OH_Input_SetKeyEventActionTime (struct Input_KeyEvent * keyEvent, int64_t a
 void OH_Input_SetKeyEventKeyCode (struct Input_KeyEvent * keyEvent, int32_t keyCode )
 ```
 **描述**
+
 设置按键事件的键值。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -3011,6 +3144,7 @@ void OH_Input_SetKeyEventKeyCode (struct Input_KeyEvent * keyEvent, int32_t keyC
 void OH_Input_SetKeyPressed (struct Input_KeyState * keyState, int32_t keyAction )
 ```
 **描述**
+
 设置按键状态对象的按键是否按下。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -3031,6 +3165,7 @@ void OH_Input_SetKeyPressed (struct Input_KeyState * keyState, int32_t keyAction
 void OH_Input_SetKeySwitch (struct Input_KeyState * keyState, int32_t keySwitch )
 ```
 **描述**
+
 设置按键状态对象的按键开关。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -3051,6 +3186,7 @@ void OH_Input_SetKeySwitch (struct Input_KeyState * keyState, int32_t keySwitch 
 void OH_Input_SetMouseEventAction (struct Input_MouseEvent * mouseEvent, int32_t action )
 ```
 **描述**
+
 设置鼠标事件的动作。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -3071,6 +3207,7 @@ void OH_Input_SetMouseEventAction (struct Input_MouseEvent * mouseEvent, int32_t
 void OH_Input_SetMouseEventActionTime (struct Input_MouseEvent * mouseEvent, int64_t actionTime )
 ```
 **描述**
+
 设置鼠标事件发生的时间。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -3091,6 +3228,7 @@ void OH_Input_SetMouseEventActionTime (struct Input_MouseEvent * mouseEvent, int
 void OH_Input_SetMouseEventAxisType (struct Input_MouseEvent * mouseEvent, int32_t axisType )
 ```
 **描述**
+
 设置鼠标轴事件的类型。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -3111,6 +3249,7 @@ void OH_Input_SetMouseEventAxisType (struct Input_MouseEvent * mouseEvent, int32
 void OH_Input_SetMouseEventAxisValue (struct Input_MouseEvent * mouseEvent, float axisValue )
 ```
 **描述**
+
 设置鼠标轴事件的值。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -3131,6 +3270,7 @@ void OH_Input_SetMouseEventAxisValue (struct Input_MouseEvent * mouseEvent, floa
 void OH_Input_SetMouseEventButton (struct Input_MouseEvent * mouseEvent, int32_t button )
 ```
 **描述**
+
 设置鼠标事件的按键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -3151,6 +3291,7 @@ void OH_Input_SetMouseEventButton (struct Input_MouseEvent * mouseEvent, int32_t
 void OH_Input_SetMouseEventDisplayX (struct Input_MouseEvent * mouseEvent, int32_t displayX )
 ```
 **描述**
+
 设置鼠标事件的屏幕X坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -3171,6 +3312,7 @@ void OH_Input_SetMouseEventDisplayX (struct Input_MouseEvent * mouseEvent, int32
 void OH_Input_SetMouseEventDisplayY (struct Input_MouseEvent * mouseEvent, int32_t displayY )
 ```
 **描述**
+
 设置鼠标事件的屏幕Y坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -3191,6 +3333,7 @@ void OH_Input_SetMouseEventDisplayY (struct Input_MouseEvent * mouseEvent, int32
 void OH_Input_SetPreKeys (Input_Hotkey * hotkey, int32_t * preKeys, int32_t size )
 ```
 **描述**
+
 设置修饰键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -3212,6 +3355,7 @@ void OH_Input_SetPreKeys (Input_Hotkey * hotkey, int32_t * preKeys, int32_t size
 void OH_Input_SetRepeat (Input_Hotkey * hotkey, bool isRepeat )
 ```
 **描述**
+
 设置是否上报重复key事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -3232,6 +3376,7 @@ void OH_Input_SetRepeat (Input_Hotkey * hotkey, bool isRepeat )
 void OH_Input_SetTouchEventAction (struct Input_TouchEvent * touchEvent, int32_t action )
 ```
 **描述**
+
 设置触屏事件的动作。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -3252,6 +3397,7 @@ void OH_Input_SetTouchEventAction (struct Input_TouchEvent * touchEvent, int32_t
 void OH_Input_SetTouchEventActionTime (struct Input_TouchEvent * touchEvent, int64_t actionTime )
 ```
 **描述**
+
 设置触摸事件发生的时间。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -3272,6 +3418,7 @@ void OH_Input_SetTouchEventActionTime (struct Input_TouchEvent * touchEvent, int
 void OH_Input_SetTouchEventDisplayX (struct Input_TouchEvent * touchEvent, int32_t displayX )
 ```
 **描述**
+
 设置触屏事件的屏幕X坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -3292,6 +3439,7 @@ void OH_Input_SetTouchEventDisplayX (struct Input_TouchEvent * touchEvent, int32
 void OH_Input_SetTouchEventDisplayY (struct Input_TouchEvent * touchEvent, int32_t displayY )
 ```
 **描述**
+
 设置触屏事件的屏幕Y坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -3312,6 +3460,7 @@ void OH_Input_SetTouchEventDisplayY (struct Input_TouchEvent * touchEvent, int32
 void OH_Input_SetTouchEventFingerId (struct Input_TouchEvent * touchEvent, int32_t id )
 ```
 **描述**
+
 设置触屏事件的手指ID。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -3331,6 +3480,7 @@ void OH_Input_SetTouchEventFingerId (struct Input_TouchEvent * touchEvent, int32
 Input_Result OH_Input_UnregisterDeviceListener (Input_DeviceListener * listener)
 ```
 **描述**
+
 取消注册设备热插拔的监听。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -3360,6 +3510,7 @@ INPUT_SERVICE_EXCEPTION 表示由于服务异常调用失败。
 Input_Result OH_Input_UnregisterDeviceListeners ()
 ```
 **描述**
+
 取消注册所有的设备热插拔的监听。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
@@ -3371,3 +3522,33 @@ Input_Result OH_Input_UnregisterDeviceListeners ()
 OH_Input_UnregisterDeviceListener 的返回值。 
 
 INPUT_SUCCESS 表示调用成功，INPUT_SERVICE_EXCEPTION 表示由于服务异常调用失败。
+
+### OH_Input_GetFunctionKeyState()
+
+```
+Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state)
+```
+**描述**
+
+获取功能键状态。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| keyCode | 功能键值。支持的功能键包含CapsLock键。  |
+| state | 功能键状态。 0表示功能键关闭，1表示功能键打开。  | 
+
+**返回：**
+
+OH_Input_GetFunctionKeyState的执行结果。
+
+ **INPUT_SUCCESS** 表示获取状态成功。
+
+ **INPUT_PARAMETER_ERROR** 表示参数错误。
+
+ **INPUT_DEVICE_NOT_EXIST** 表示键盘设备不存在。

@@ -152,3 +152,39 @@ hideNonSecureWindows
 **适配指导**
 
 默认行为变更，无需适配。
+
+## cl.ArkUI.5 uiExtension下新增properties必选属性
+
+[uiExtension.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.arkui.uiExtension.d.ts)中uiExtension命名空间下新增properties必选属性
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+[EmbeddedComponent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-embedded-component.md)所在的应用窗口移动的场景下，无法获取该组件的大小和位置信息，不满足开发者业务诉求。
+
+**变更影响**
+
+此变更涉及应用适配。
+
+变更前：uiExtension命名空间下的WindowProxy无必选属性properties。
+
+变更后：uiExtension命名空间下的WindowProxy有必选属性properties。
+
+**起始API Level**
+
+API 14
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.59开始。
+
+**变更的接口/组件**
+
+WindowProxy的properties属性
+
+**适配指导**
+
+升级到API14后，如果应用在自己的业务中实现WindowProxy这个Interface，则需要在自定义的实现中新增必选属性properties。

@@ -394,7 +394,7 @@ struct BindMenuDemo {
 
 ## 使用bindContextMenu实现菜单弹出效果
 
-[bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)为组件绑定弹出式菜单，通过长按或右键点击触发。完整示例和效果如下。
+[bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)为组件绑定弹出式菜单，通过长按或右键点击触发。
 
 完整示例和效果如下。
 

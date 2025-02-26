@@ -18,7 +18,7 @@ import { drawing } from '@kit.ArkGraphics2D';
 
 ## BlendMode
 
-混合模式枚举。混合模式的操作会为两种颜色（源色、目标色）生成一种新的颜色。 这些操作在4个颜色通道（红、绿、蓝、透明度）上是相同的。 对于这些，我们使用透明度通道作为示例，而不是单独命名每个通道。
+混合模式枚举。混合模式的操作会为两种颜色（源色、目标色）生成一种新的颜色。 这些操作在红、绿、蓝3个颜色通道上是相同的（透明度有另外的处理规则）。 对于这些，我们使用透明度通道作为示例，而不是单独命名每个通道。
 
 为简洁起见，我们使用以下缩写：
 
@@ -26,7 +26,7 @@ s : source 源的缩写。 d : destination 目标的缩写。 sa : source alpha 
 
 计算结果用如下缩写表示：
 
-r : 如果4个通道的计算方式相同，用r表示。 ra : 如果只操作透明度通道，用ra表示。 rc : 如果操作3个颜色通道，用rc表示。
+r : 如果4个通道（透明度、红、绿、蓝）的计算方式相同，用r表示。 ra : 如果只操作透明度通道，用ra表示。 rc : 如果操作3个颜色通道，用rc表示。
 
 以黄色矩形为源图像，蓝色圆形为目标图像，各混合模式枚举生成的效果示意图请参考下表。
 
@@ -34,35 +34,35 @@ r : 如果4个通道的计算方式相同，用r表示。 ra : 如果只操作�
 
 | 名称        | 值   | 说明                                                         | 示意图   |
 | ----------- | ---- | ------------------------------------------------------------ | -------- |
-| CLEAR       | 0    | 清除模式，r = 0。                                            | ![CLEAR](./figures/zh-ch_image_BlendMode_Clear.png) |
-| SRC         | 1    | r = s（result的4个通道，都等于source的4个通道，即结果等于源。） | ![SRC](./figures/zh-ch_image_BlendMode_Src.png) |
-| DST         | 2    | r = d（result的4个通道，都等于destination的4个通道，即结果等于目标。） | ![DST](./figures/zh-ch_image_BlendMode_Dst.png) |
-| SRC_OVER    | 3    | r = s + (1 - sa) * d                                         | ![SRC_OVER](./figures/zh-ch_image_BlendMode_SrcOver.png) |
-| DST_OVER    | 4    | r = d + (1 - da) * s                                         | ![DST_OVER](./figures/zh-ch_image_BlendMode_DstOver.png) |
-| SRC_IN      | 5    | r = s * da                                                   | ![SRC_IN](./figures/zh-ch_image_BlendMode_SrcIn.png) |
-| DST_IN      | 6    | r = d * sa                                                   | ![DST_IN](./figures/zh-ch_image_BlendMode_DstIn.png) |
-| SRC_OUT     | 7    | r = s * (1 - da)                                             | ![SRC_OUT](./figures/zh-ch_image_BlendMode_SrcOut.png) |
-| DST_OUT     | 8    | r = d * (1 - sa)                                             | ![DST_OUT](./figures/zh-ch_image_BlendMode_DstOut.png) |
-| SRC_ATOP    | 9    | r = s * da + d * (1 - sa)                                    | ![SRC_ATOP](./figures/zh-ch_image_BlendMode_SrcATop.png) |
-| DST_ATOP    | 10   | r = d * sa + s * (1 - da)                                    | ![DST_ATOP](./figures/zh-ch_image_BlendMode_DstATop.png) |
-| XOR         | 11   | r = s * (1 - da) + d * (1 - sa)                              | ![XOR](./figures/zh-ch_image_BlendMode_Xor.png) |
-| PLUS        | 12   | r = min(s + d, 1)                                            | ![PLUS](./figures/zh-ch_image_BlendMode_Plus.png) |
-| MODULATE    | 13   | r = s * d                                                    | ![MODULATE](./figures/zh-ch_image_BlendMode_Modulate.png) |
-| SCREEN      | 14   | 滤色模式，r = s + d - s * d                                  | ![SCREEN](./figures/zh-ch_image_BlendMode_Screen.png) |
-| OVERLAY     | 15   | 叠加模式                                                     | ![OVERLAY](./figures/zh-ch_image_BlendMode_Overlay.png) |
-| DARKEN      | 16   | 变暗模式，rc = s + d - max(s * da, d * sa), ra = s + (1 - sa) * d | ![DARKEN](./figures/zh-ch_image_BlendMode_Darken.png) |
-| LIGHTEN     | 17   | 变亮模式，rc = s + d - min(s * da, d * sa), ra = s + (1 - sa) * d | ![LIGHTEN](./figures/zh-ch_image_BlendMode_Lighten.png) |
-| COLOR_DODGE | 18   | 颜色减淡模式                                                 | ![COLOR_DODGE](./figures/zh-ch_image_BlendMode_ColorDodge.png) |
-| COLOR_BURN  | 19   | 颜色加深模式                                                 | ![COLOR_BURN](./figures/zh-ch_image_BlendMode_ColorBurn.png) |
-| HARD_LIGHT  | 20   | 强光模式                                                     | ![HARD_LIGHT](./figures/zh-ch_image_BlendMode_HardLight.png) |
-| SOFT_LIGHT  | 21   | 柔光模式                                                     | ![SOFT_LIGHT](./figures/zh-ch_image_BlendMode_SoftLight.png) |
-| DIFFERENCE  | 22   | 差值模式，rc = s + d - 2 * (min(s * da, d * sa)), ra = s + (1 - sa) * d | ![DIFFERENCE](./figures/zh-ch_image_BlendMode_Difference.png) |
-| EXCLUSION   | 23   | 排除模式，rc = s + d - two(s * d), ra = s + (1 - sa) * d     | ![EXCLUSION](./figures/zh-ch_image_BlendMode_Exclusion.png) |
-| MULTIPLY    | 24   | 正片叠底，r = s * (1 - da) + d * (1 - sa) + s * d            | ![MULTIPLY](./figures/zh-ch_image_BlendMode_Multiply.png) |
-| HUE         | 25   | 色相模式                                                     | ![HUE](./figures/zh-ch_image_BlendMode_Hue.png) |
-| SATURATION  | 26   | 饱和度模式                                                   | ![SATURATION](./figures/zh-ch_image_BlendMode_Saturation.png) |
-| COLOR       | 27   | 颜色模式                                                     | ![COLOR](./figures/zh-ch_image_BlendMode_Color.png) |
-| LUMINOSITY  | 28   | 亮度模式                                                     | ![LUMINOSITY](./figures/zh-ch_image_BlendMode_Luminosity.png) |
+| CLEAR       | 0    | 清除模式，r = 0，设置为全透明。                                | ![CLEAR](./figures/zh-ch_image_BlendMode_Clear.png) |
+| SRC         | 1    | r = s（result的4个通道，都等于source的4个通道，即结果等于源。），使用源像素替换目标像素。 | ![SRC](./figures/zh-ch_image_BlendMode_Src.png) |
+| DST         | 2    | r = d（result的4个通道，都等于destination的4个通道，即结果等于目标。），保持目标像素不变。 | ![DST](./figures/zh-ch_image_BlendMode_Dst.png) |
+| SRC_OVER    | 3    | r = s + (1 - sa) * d，在目标像素上方绘制源像素，考虑源像素的透明度。 | ![SRC_OVER](./figures/zh-ch_image_BlendMode_SrcOver.png) |
+| DST_OVER    | 4    | r = d + (1 - da) * s，在源像素上方绘制目标像素，考虑目标像素的透明度。 | ![DST_OVER](./figures/zh-ch_image_BlendMode_DstOver.png) |
+| SRC_IN      | 5    | r = s * da，仅保留源像素与目标不透明部分的交集。 | ![SRC_IN](./figures/zh-ch_image_BlendMode_SrcIn.png) |
+| DST_IN      | 6    | r = d * sa，仅保留目标像素与源不透明部分的交集。 | ![DST_IN](./figures/zh-ch_image_BlendMode_DstIn.png) |
+| SRC_OUT     | 7    | r = s * (1 - da)，保留源像素中不与目标重叠的部分。 | ![SRC_OUT](./figures/zh-ch_image_BlendMode_SrcOut.png) |
+| DST_OUT     | 8    | r = d * (1 - sa)，保留目标像素中不与源重叠的部分。 | ![DST_OUT](./figures/zh-ch_image_BlendMode_DstOut.png) |
+| SRC_ATOP    | 9    | r = s * da + d * (1 - sa)，源像素覆盖在目标像素上，仅在目标不透明部分显示源像素。 | ![SRC_ATOP](./figures/zh-ch_image_BlendMode_SrcATop.png) |
+| DST_ATOP    | 10   | r = d * sa + s * (1 - da)，目标像素覆盖在源像素上，仅在源不透明部分显示目标像素。 | ![DST_ATOP](./figures/zh-ch_image_BlendMode_DstATop.png) |
+| XOR         | 11   | r = s * (1 - da) + d * (1 - sa)，仅显示源像素和目标像素中不重叠的部分。 | ![XOR](./figures/zh-ch_image_BlendMode_Xor.png) |
+| PLUS        | 12   | r = min(s + d, 1)，源和目标像素的颜色值相加。                   | ![PLUS](./figures/zh-ch_image_BlendMode_Plus.png) |
+| MODULATE    | 13   | r = s * d，源和目标像素的颜色值相乘。                           | ![MODULATE](./figures/zh-ch_image_BlendMode_Modulate.png) |
+| SCREEN      | 14   | 滤色模式，r = s + d - s * d，反转源和目标像素的颜色值，相乘后再反转，结果通常更亮。 | ![SCREEN](./figures/zh-ch_image_BlendMode_Screen.png) |
+| OVERLAY     | 15   | 叠加模式，根据目标像素的亮度，选择性地应用MULTIPLY或SCREEN模式，增强对比度。 | ![OVERLAY](./figures/zh-ch_image_BlendMode_Overlay.png) |
+| DARKEN      | 16   | 变暗模式，rc = s + d - max(s * da, d * sa), ra = s + (1 - sa) * d，取源和目标像素中较暗的颜色值。 | ![DARKEN](./figures/zh-ch_image_BlendMode_Darken.png) |
+| LIGHTEN     | 17   | 变亮模式，rc = s + d - min(s * da, d * sa), ra = s + (1 - sa) * d，取源和目标像素中较亮的颜色值。 | ![LIGHTEN](./figures/zh-ch_image_BlendMode_Lighten.png) |
+| COLOR_DODGE | 18   | 颜色减淡模式，通过减小对比度使目标像素变亮以反映源像素。           | ![COLOR_DODGE](./figures/zh-ch_image_BlendMode_ColorDodge.png) |
+| COLOR_BURN  | 19   | 颜色加深模式，通过增加对比度使目标像素变暗以反映源像素。           | ![COLOR_BURN](./figures/zh-ch_image_BlendMode_ColorBurn.png) |
+| HARD_LIGHT  | 20   | 强光模式，根据源像素的亮度，选择性地应用MULTIPLY或SCREEN模式。    | ![HARD_LIGHT](./figures/zh-ch_image_BlendMode_HardLight.png) |
+| SOFT_LIGHT  | 21   | 柔光模式，根据源像素的亮度，柔和地变亮或变暗目标像素。             | ![SOFT_LIGHT](./figures/zh-ch_image_BlendMode_SoftLight.png) |
+| DIFFERENCE  | 22   | 差值模式，rc = s + d - 2 * (min(s * da, d * sa)), ra = s + (1 - sa) * d，计算源和目标像素颜色值的差异。 | ![DIFFERENCE](./figures/zh-ch_image_BlendMode_Difference.png) |
+| EXCLUSION   | 23   | 排除模式，rc = s + d - two(s * d), ra = s + (1 - sa) * d，类似于DIFFERENCE，但对比度较低。 | ![EXCLUSION](./figures/zh-ch_image_BlendMode_Exclusion.png) |
+| MULTIPLY    | 24   | 正片叠底，r = s * (1 - da) + d * (1 - sa) + s * d，源和目标像素的颜色值相乘，结果通常更暗。 | ![MULTIPLY](./figures/zh-ch_image_BlendMode_Multiply.png) |
+| HUE         | 25   | 色相模式，使用源像素的色相，目标像素的饱和度和亮度。               | ![HUE](./figures/zh-ch_image_BlendMode_Hue.png) |
+| SATURATION  | 26   | 饱和度模式，使用源像素的饱和度，目标像素的色相和亮度。             | ![SATURATION](./figures/zh-ch_image_BlendMode_Saturation.png) |
+| COLOR       | 27   | 颜色模式，使用源像素的色相和饱和度，目标像素的亮度。               | ![COLOR](./figures/zh-ch_image_BlendMode_Color.png) |
+| LUMINOSITY  | 28   | 亮度模式，使用源像素的亮度，目标像素的色相和饱和度。               | ![LUMINOSITY](./figures/zh-ch_image_BlendMode_Luminosity.png) |
 
 ## PathMeasureMatrixFlags<sup>12+</sup>
 
@@ -375,8 +375,8 @@ arcTo(x1: number, y1: number, x2: number, y2: number, startDeg: number, sweepDeg
 | y1       | number | 是   | 矩形左上角的y坐标，该参数为浮点数。 |
 | x2       | number | 是   | 矩形右下角的x坐标，该参数为浮点数。 |
 | y2       | number | 是   | 矩形右下角的y坐标，该参数为浮点数。 |
-| startDeg | number | 是   | 起始角度，单位为度，该参数为浮点数。 |
-| sweepDeg | number | 是   | 扫描度数，单位为度，该参数为浮点数。 |
+| startDeg | number | 是   | 起始的角度。角度的起始方向（0°）为x轴正方向。 |
+| sweepDeg | number | 是   | 扫描的度数，为正数时顺时针扫描，为负数时逆时针扫描。实际扫描的度数为该入参对360取模的结果。 |
 
 **错误码：**
 
@@ -497,7 +497,7 @@ cubicTo(ctrlX1: number, ctrlY1: number, ctrlX2: number, ctrlY2: number, endX: nu
 import { drawing } from '@kit.ArkGraphics2D';
 let path = new drawing.Path();
 path.moveTo(10,10);
-path.cubicTo(10, 10, 10, 10, 15, 15);
+path.cubicTo(100, 100, 80, 150, 300, 150);
 ```
 
 ### rMoveTo<sup>12+</sup>
@@ -1030,7 +1030,7 @@ addPolygon(points: Array\<common2D.Point>, close: boolean): void
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
 | points | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)>   | 是   | 坐标点数组。 |
-| close  | boolean                                                        | 是   | 表示是否将路径闭合，即是否添加路径起始点到终点的连线，true表示将路径闭合，false表示不将路径闭合。 |
+| close  | boolean                                                        | 是   | 表示是否将路径闭合，即是否添加路径起始点到终点的连线。true表示将路径闭合，false表示不将路径闭合。 |
 
 **错误码：**
 
@@ -1117,7 +1117,7 @@ op(path: Path, pathOp: PathOp): boolean
 
 | 类型   | 说明                |
 | ------ | ------------------ |
-| boolean | 返回路径合并是否成功的结果，true表示合并成功，false表示合并失败。 |
+| boolean | 返回路径合并是否成功的结果。true表示合并成功，false表示合并失败。 |
 
 **错误码：**
 
@@ -1218,14 +1218,14 @@ getPositionAndTangent(forceClosed: boolean, distance: number, position: common2D
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
 | forceClosed | boolean | 是   | 表示是否按照闭合路径测量，true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。                 |
 | distance | number | 是   | 表示与路径起始点的距离，小于0时会被视作0，大于路径长度时会被视作路径长度。该参数为浮点数。               |
-| position | [common2D.Point](js-apis-graphics-common2D.md#point) | 是   | 存储获取到的距离路径起始点distance处的点的的坐标。                  |
+| position | [common2D.Point](js-apis-graphics-common2D.md#point) | 是   | 存储获取到的距离路径起始点distance处的点的坐标。                  |
 | tangent | [common2D.Point](js-apis-graphics-common2D.md#point) | 是   | 存储获取到的距离路径起始点distance处的点的的切线值，tangent.x表示该点切线的余弦值，tangent.y表示该点切线的正弦值。                 |
 
 **返回值：**
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| boolean |表示是否成功获取距离路径起始点distance处的点的坐标和正切值的结果，true表示获取成功，false表示获取失败，position和tangent不会被改变。 |
+| boolean |表示是否成功获取距离路径起始点distance处的点的坐标和正切值的结果。true表示获取成功，false表示获取失败，position和tangent不会被改变。 |
 
 **错误码：**
 
@@ -1449,7 +1449,7 @@ drawRect(rect: common2D.Rect): void
 
 | 参数名 | 类型                                               | 必填 | 说明           |
 | ------ | -------------------------------------------------- | ---- | -------------- |
-| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 绘制的矩形区域 |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 绘制的矩形区域。 |
 
 **错误码：**
 
@@ -1650,7 +1650,7 @@ drawShadow(path: Path, planeParams: common2D.Point3d, devLightPos: common2D.Poin
 | 参数名          | 类型                                       | 必填   | 说明         |
 | ------------ | ---------------------------------------- | ---- | ---------- |
 | path | [Path](#path)                | 是    | 路径对象，可生成阴影。 |
-| planeParams  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是    | 表示一个三维向量，用于计算z轴方向的偏移量。 |
+| planeParams  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是    | 表示一个三维向量，用于计算遮挡物相对于画布在z轴上的偏移量，其值取决于x与y坐标。 |
 | devLightPos  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是    | 光线相对于画布的位置。 |
 | lightRadius   | number           | 是    | 圆形灯半径，该参数为浮点数。      |
 | ambientColor  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是    | 环境阴影颜色。 |
@@ -1860,7 +1860,7 @@ drawImage(pixelmap: image.PixelMap, left: number, top: number, samplingOptions?:
 
 | 参数名   | 类型                                         | 必填 | 说明                            |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 图片的PixelMap                  |
+| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 图片的PixelMap。                  |
 | left     | number                                       | 是   | 图片位置的左上角x轴坐标，该参数为浮点数。 |
 | top      | number                                       | 是   | 图片位置的左上角y轴坐标，该参数为浮点数。 |
 | samplingOptions<sup>12+</sup>  | [SamplingOptions](#samplingoptions12)  | 否  | 采样选项对象，默认为不使用任何参数构造的原始采样选项对象。 |
@@ -1994,7 +1994,7 @@ drawColor(color: common2D.Color, blendMode?: BlendMode): void
 | 参数名    | 类型                                                 | 必填 | 说明                             |
 | --------- | ---------------------------------------------------- | ---- | -------------------------------- |
 | color     | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色，每个颜色通道是0到255之间的整数。                   |
-| blendMode | [BlendMode](#blendmode)                              | 否   | 颜色混合模式，默认模式为SRC_OVER |
+| blendMode | [BlendMode](#blendmode)                              | 否   | 颜色混合模式，默认模式为SRC_OVER。 |
 
 **错误码：**
 
@@ -2322,7 +2322,7 @@ class DrawingRenderNode extends RenderNode {
 
 drawArc(arc: common2D.Rect, startAngle: number, sweepAngle: number): void
 
-在画布上绘制一段圆弧。该方法允许指定圆弧的起始角度、扫描角度。
+在画布上绘制一段圆弧。该方法允许指定圆弧的起始角度、扫描角度。当扫描角度的绝对值大于360度时，该方法绘制的是一个椭圆。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2332,7 +2332,7 @@ drawArc(arc: common2D.Rect, startAngle: number, sweepAngle: number): void
 | ------ | -------------------------------------------------- | ---- | -------------- |
 | arc   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 包含要绘制的圆弧的椭圆的矩形边界。 |
 | startAngle      | number | 是   | 弧的起始角度，单位为度，该参数为浮点数。0度时起始点位于椭圆的右端点，正数时以顺时针方向放置起始点，负数时以逆时针方向放置起始点。 |
-| sweepAngle      | number | 是   | 弧的扫描角度，单位为度，该参数为浮点数。为正数时顺时针扫描，为负数时逆时针扫描。 |
+| sweepAngle      | number | 是   | 弧的扫描角度，单位为度，该参数为浮点数。为正数时顺时针扫描，为负数时逆时针扫描。它的有效范围在-360度到360度之间，当绝对值大于360度时，该方法绘制的是一个椭圆。 |
 
 **错误码：**
 
@@ -2638,7 +2638,7 @@ drawRegion(region: Region): void
 
 | 参数名 | 类型                | 必填 | 说明        |
 | ------ | ------------------- | ---- | ----------- |
-| region   | [Region](#region12) | 是   | 绘制的区域  |
+| region   | [Region](#region12) | 是   | 绘制的区域。  |
 
 **错误码：**
 
@@ -2837,16 +2837,12 @@ import { common2D, drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
-    const pen = new drawing.Pen();
-    pen.setStrokeWidth(5);
-    pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     let path = new drawing.Path();
     path.moveTo(10, 10);
-    path.cubicTo(10, 10, 10, 10, 15, 15);
+    path.cubicTo(100, 100, 80, 150, 300, 150);
     path.close();
-    canvas.attachPen(pen);
-    canvas.clipPath(path, drawing.ClipOp.DIFFERENCE, true);
-    canvas.detachPen();
+    canvas.clipPath(path, drawing.ClipOp.INTERSECT, true);
+    canvas.clear({alpha: 255, red: 255, green: 0, blue: 0});
   }
 }
 ```
@@ -2883,12 +2879,8 @@ import { common2D, drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
-    const pen = new drawing.Pen();
-    pen.setStrokeWidth(5);
-    pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
-    canvas.attachPen(pen);
     canvas.clipRect({left : 10, right : 500, top : 300, bottom : 900}, drawing.ClipOp.DIFFERENCE, true);
-    canvas.detachPen();
+    canvas.clear({alpha: 255, red: 255, green: 0, blue: 0});
   }
 }
 ```
@@ -2897,7 +2889,7 @@ class DrawingRenderNode extends RenderNode {
 
 save(): number
 
-用于保存当前画布的状态（画布矩阵）到栈顶。
+用于保存当前画布的状态（画布矩阵）到栈顶。需要与恢复接口[restore](#restore12)配合使用。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -3037,8 +3029,8 @@ skew(sx: number, sy: number) : void
 
 | 参数名  | 类型     | 必填   | 说明         |
 | ---- | ------ | ---- | ----------------- |
-| sx   | number | 是   | x轴上的倾斜量，该参数为浮点数。    |
-| sy   | number | 是   | y轴上的倾斜量，该参数为浮点数。    |
+| sx   | number | 是   | x轴上的倾斜量，该参数为浮点数。正值会使绘制沿y轴增量方向向右倾斜；负值会使绘制沿y轴增量方向向左倾斜。    |
+| sy   | number | 是   | y轴上的倾斜量，该参数为浮点数。正值会使绘制沿x轴增量方向向下倾斜；负值会使绘制沿x轴增量方向向上倾斜。    |
 
 **错误码：**
 
@@ -3293,6 +3285,7 @@ class DrawingRenderNode extends RenderNode {
     let matrix = new drawing.Matrix();
     matrix.setMatrix([5, 0, 0, 0, 1, 2, 0, 0, 1]);
     canvas.concatMatrix(matrix);
+    canvas.drawRect({left: 10, right: 200, top: 100, bottom: 500});
   }
 }
 ```
@@ -3330,6 +3323,7 @@ class DrawingRenderNode extends RenderNode {
     let matrix = new drawing.Matrix()
     matrix.setMatrix([5, 0, 0, 0, 1, 1, 0, 0, 1]);
     canvas.setMatrix(matrix);
+    canvas.drawRect({left: 10, right: 200, top: 100, bottom: 500});
   }
 }
 ```
@@ -3399,6 +3393,8 @@ class DrawingRenderNode extends RenderNode {
     let region : drawing.Region = new drawing.Region();
     region.setRect(0, 0, 500, 500);
     canvas.clipRegion(region);
+    let color: common2D.Color = {alpha: 255, red: 255, green: 0, blue: 0};
+    canvas.clear(color);
   }
 }
 ```
@@ -3438,6 +3434,8 @@ class DrawingRenderNode extends RenderNode {
     let rect: common2D.Rect = { left: 10, top: 100, right: 200, bottom: 300 };
     let roundRect = new drawing.RoundRect(rect, 10, 10);
     canvas.clipRoundRect(roundRect);
+    let color: common2D.Color = {alpha: 255, red: 255, green: 0, blue: 0};
+    canvas.clear(color);
   }
 }
 ```
@@ -3463,6 +3461,247 @@ class DrawingRenderNode extends RenderNode {
   }
 }
 ```
+
+### quickRejectPath<sup>16+</sup>
+
+quickRejectPath(path: Path): boolean
+
+判断路径与画布区域是否不相交。画布区域包含边界。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明               |
+| ------ | ------------- | ---- | ------------------ |
+| path   | [Path](#path) | 是   | 路径对象。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| boolean | 返回路径是否与画布区域不相交的结果。true表示路径与画布区域不相交，false表示路径与画布区域相交。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let path = new drawing.Path();
+    path.moveTo(10, 10);
+    path.cubicTo(10, 10, 10, 10, 15, 15);
+    path.close();
+    if (canvas.quickRejectPath(path)) {
+      console.info("canvas and path do not intersect.");
+    } else {
+      console.info("canvas and path intersect.");
+    }
+  }
+}
+```
+
+### quickRejectRect<sup>16+</sup>
+
+quickRejectRect(rect: common2D.Rect): boolean
+
+判断矩形和画布区域是否不相交。画布区域包含边界。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                               | 必填 | 说明           |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 矩形区域。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| boolean | 返回矩形是否与画布区域不相交的结果。true表示矩形与画布区域不相交，false表示矩形与画布区域相交。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let rect: common2D.Rect = { left : 10, top : 20, right : 50, bottom : 30 };
+    if (canvas.quickRejectRect(rect)) {
+      console.info("canvas and rect do not intersect.");
+    } else {
+      console.info("canvas and rect intersect.");
+    }
+  }
+}
+```
+
+### drawArcWithCenter<sup>16+</sup>
+
+drawArcWithCenter(arc: common2D.Rect, startAngle: number, sweepAngle: number, useCenter: boolean): void
+
+在画布上绘制一段圆弧。该方法允许指定圆弧的起始角度、扫描角度以及圆弧的起点和终点是否连接圆弧的中心点。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数**
+
+| 参数名 | 类型                                               | 必填 | 说明           |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| arc   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 包含要绘制的圆弧的椭圆的矩形边界。 |
+| startAngle      | number | 是   | 弧的起始角度，单位为度，该参数为浮点数。0度时起始点位于椭圆的右端点，为正数时以顺时针方向放置起始点，为负数时以逆时针方向放置起始点。 |
+| sweepAngle      | number | 是   | 弧的扫描角度，单位为度，该参数为浮点数。为正数时顺时针扫描，为负数时逆时针扫描。扫描角度可以超过360度，将绘制一个完整的椭圆。 |
+| useCenter       | boolean | 是   | 绘制时弧形的起点和终点是否连接弧形的中心点。true表示连接，false表示不连接。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setStrokeWidth(5);
+    const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
+    pen.setColor(color);
+    canvas.attachPen(pen);
+    const rect: common2D.Rect = { left: 100, top: 50, right: 400, bottom: 200 };
+    canvas.drawArcWithCenter(rect, 90, 180, false);
+    canvas.detachPen();
+  }
+}
+```
+
+### drawImageNine<sup>16+</sup>
+
+drawImageNine(pixelmap: image.PixelMap, center: common2D.Rect, dstRect: common2D.Rect, filterMode: FilterMode): void
+
+通过绘制两条水平线和两条垂直线将图像分割成9个部分：四个边，四个角和中心。<br>
+若角落的4个区域尺寸不超过目标矩形，则会在不缩放的情况下被绘制在目标矩形，反之则会按比例缩放绘制在目标矩形；如果还有剩余空间，剩下的5个区域会通过拉伸或压缩来绘制，以便能够完全覆盖目标矩形。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| pixelmap   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 用于绘制网格的像素图。 |
+| center    | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 分割图像的中心矩形。矩形四条边所在的直线将图像分成了9个部分。 |
+| dstRect  | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 在画布上绘制的目标矩形区域。 |
+| filterMode | [FilterMode](#filtermode12) | 是   | 过滤模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+import { image } from '@kit.ImageKit';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let pixelMap: image.PixelMap = globalThis.getInstance().getPixelMap("test_2.jpg");
+    canvas.drawImage(pixelMap, 0, 0); // 原图
+    let center: common2D.Rect = { left: 20, top: 10, right: 50, bottom: 40 };
+    let dst: common2D.Rect = { left: 70, top: 0, right: 100, bottom: 30 };
+    let dst1: common2D.Rect = { left: 110, top: 0, right: 200, bottom: 90 };
+    canvas.drawImageNine(pixelMap, center, dst, drawing.FilterMode.FILTER_MODE_NEAREST); // 示例1
+    canvas.drawImageNine(pixelMap, center, dst1, drawing.FilterMode.FILTER_MODE_NEAREST); // 示例2
+  }
+}
+```
+![zh-ch_image_Nine.png](figures/zh-ch_image_Nine.png)
+
+### drawImageLattice<sup>16+</sup>
+
+drawImageLattice(pixelmap: image.PixelMap, lattice: Lattice, dstRect: common2D.Rect, filterMode: FilterMode): void
+
+将图像按照矩形网格对象的设置划分为多个网格，并把图像的每个部分按照网格对象的设置绘制到画布上的目标矩形区域。<br>
+偶数行和列（起始计数为0）的每个交叉点都是固定的，若固定网格区域的尺寸不超过目标矩形，则会在不缩放的情况下被绘制在目标矩形，反之则会按比例缩放绘制在目标矩形；如果还有剩余空间，剩下的区域会通过拉伸或压缩来绘制，以便能够完全覆盖目标矩形。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| pixelmap   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 用于绘制网格的像素图。 |
+| lattice  | [Lattice](#lattice12) | 是   | 矩形网格对象。 |
+| dstRect    | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 目标矩形区域。 |
+| filterMode | [FilterMode](#filtermode12) | 是   | 过滤模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+import { image } from '@kit.ImageKit';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let pixelMap: image.PixelMap = globalThis.getInstance().getPixelMap("test_3.jpg");
+    canvas.drawImage(pixelMap, 0, 0); // 原图
+    let xDivs: Array<number> = [28, 36, 44, 52];
+    let yDivs: Array<number> = [28, 36, 44, 52];
+    let lattice = drawing.Lattice.createImageLattice(xDivs, yDivs, 4, 4);
+    let dst: common2D.Rect = { left: 100, top: 0, right: 164, bottom: 64 };
+    let dst1: common2D.Rect = { left: 200, top: 0, right: 360, bottom: 160 };
+    canvas.drawImageLattice(pixelMap, lattice, dst, drawing.FilterMode.FILTER_MODE_NEAREST); // 示例1
+    canvas.drawImageLattice(pixelMap, lattice, dst1, drawing.FilterMode.FILTER_MODE_NEAREST); // 示例2
+  }
+}
+```
+![zh-ch_image_Lattice.png](figures/zh-ch_image_Lattice.png)
 
 ## ImageFilter<sup>12+</sup>
 
@@ -3619,8 +3858,8 @@ let imgFilter1 = drawing.ImageFilter.createFromColorFilter(clolorfilter, imgFilt
 | INVERSE_WINDING  | 2    | WINDING涂色规则取反。 |
 | INVERSE_EVEN_ODD  | 3    | EVEN_ODD涂色规则取反。 |
 
-> **说明：**
-> ![WINDING&EVEN_ODD](./figures/zh-ch_image_PathFillType_Winding_Even_Odd.png)
+> **说明：**<br>
+> ![WINDING&EVEN_ODD](./figures/zh-ch_image_PathFillType_Winding_Even_Odd.png)<br>
 > 如图所示圆环为路径，箭头指示路径的方向，p为区域内任意一点，蓝色线条为点p出发的射线，黑色箭头所指为对应填充规则下使用蓝色填充路径的结果。WINDING填充规则下，射线与路径的交点计数为2，不为0，点p被涂色；EVEN_ODD填充规则下，射线与路径的相交次数为2，是偶数，点p不被涂色。
 
 ## PointMode<sup>12+</sup>
@@ -3637,28 +3876,28 @@ let imgFilter1 = drawing.ImageFilter.createFromColorFilter(clolorfilter, imgFilt
 
 ## FontEdging<sup>12+</sup>
 
-字形边缘效果类型枚举。
+字型边缘效果类型枚举。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
 | 名称                  | 值    | 说明      |
 | ------------------- | ---- | ------- |
 | ALIAS | 0    | 无抗锯齿处理。 |
-| ANTI_ALIAS  | 1    | 使用抗锯齿来平滑字形边缘。 |
-| SUBPIXEL_ANTI_ALIAS  | 2    | 使用次像素级别的抗锯齿来平滑字形边缘，可以获得更加平滑的字形渲染效果。 |
+| ANTI_ALIAS  | 1    | 使用抗锯齿来平滑字型边缘。 |
+| SUBPIXEL_ANTI_ALIAS  | 2    | 使用次像素级别的抗锯齿来平滑字型边缘，可以获得更加平滑的字型渲染效果。 |
 
 ## FontHinting<sup>12+</sup>
 
-字形轮廓效果类型枚举。
+字型轮廓效果类型枚举。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
 | 名称                  | 值    | 说明      |
 | ------------------- | ---- | ------- |
-| NONE    | 0    | 不修改字形轮廓。 |
-| SLIGHT  | 1    | 最小限度修改字形轮廓以改善对比度。 |
-| NORMAL  | 2    | 修改字形轮廓以提高对比度。 |
-| FULL    | 3    | 修改字形轮廓以获得最大对比度。 |
+| NONE    | 0    | 不修改字型轮廓。 |
+| SLIGHT  | 1    | 最小限度修改字型轮廓以改善对比度。 |
+| NORMAL  | 2    | 修改字型轮廓以提高对比度。 |
+| FULL    | 3    | 修改字型轮廓以获得最大对比度。 |
 
 ## TextBlob
 
@@ -3967,7 +4206,7 @@ static makeFromRawFile(rawfile: Resource): Typeface
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| [Typeface](#typeface) | 返回Typeface对象(异常情况下会返回空指针)。 |
+| [Typeface](#typeface) | 返回Typeface对象（异常情况下会返回空指针）。 |
 
 **错误码：**
 
@@ -4221,7 +4460,7 @@ font.enableEmbolden(true);
 
 enableLinearMetrics(isLinearMetrics: boolean): void
 
-使能字形的线性缩放。
+使能字型的线性缩放。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -4229,7 +4468,7 @@ enableLinearMetrics(isLinearMetrics: boolean): void
 
 | 参数名          | 类型    | 必填 | 说明                                                        |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
-| isLinearMetrics | boolean | 是   | 表示是否使能字形的线性缩放。true表示使能，false表示不使能。 |
+| isLinearMetrics | boolean | 是   | 表示是否使能字型的线性缩放。true表示使能，false表示不使能。 |
 
 **错误码：**
 
@@ -4463,7 +4702,7 @@ class DrawingRenderNode extends RenderNode {
 
 setScaleX(scaleX: number): void
 
-用于设置字形对象在x轴上的缩放比例。
+用于设置字型对象在x轴上的缩放比例。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -4506,7 +4745,7 @@ class DrawingRenderNode extends RenderNode {
 
 setSkewX(skewX: number): void
 
-用于设置字形对象在x轴上的倾斜比例。
+用于设置字型对象在x轴上的倾斜比例。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -4549,7 +4788,7 @@ class DrawingRenderNode extends RenderNode {
 
 setEdging(edging: FontEdging): void
 
-设置字形边缘效果。
+设置字型边缘效果。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -4557,7 +4796,7 @@ setEdging(edging: FontEdging): void
 
 | 参数名   | 类型                          | 必填 | 说明       |
 | -------- | ----------------------------- | ---- | ---------- |
-| edging | [FontEdging](#fontedging12) | 是   | 字形边缘效果。 |
+| edging | [FontEdging](#fontedging12) | 是   | 字型边缘效果。 |
 
 **错误码：**
 
@@ -4580,7 +4819,7 @@ font.setEdging(drawing.FontEdging.SUBPIXEL_ANTI_ALIAS);
 
 setHinting(hinting: FontHinting): void
 
-设置字形轮廓效果。
+设置字型轮廓效果。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -4588,7 +4827,7 @@ setHinting(hinting: FontHinting): void
 
 | 参数名   | 类型                          | 必填 | 说明       |
 | -------- | ----------------------------- | ---- | ---------- |
-| hinting | [FontHinting](#fonthinting12) | 是   | 字形轮廓效果。 |
+| hinting | [FontHinting](#fonthinting12) | 是   | 字型轮廓效果。 |
 
 **错误码：**
 
@@ -4649,7 +4888,7 @@ console.info("count text number: " + resultNumber);
 
 setBaselineSnap(isBaselineSnap: boolean): void
 
-当前画布矩阵轴对齐时，设置字形基线是否与像素对齐。
+当前画布矩阵轴对齐时，设置字型基线是否与像素对齐。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -4657,7 +4896,7 @@ setBaselineSnap(isBaselineSnap: boolean): void
 
 | 参数名          | 类型    | 必填 | 说明                                       |
 | --------------- | ------- | ---- | ---------------------------------------- |
-| isBaselineSnap | boolean | 是   | 指示字形基线是否和像素对齐，true表示对齐，false表示不对齐。 |
+| isBaselineSnap | boolean | 是   | 指示字型基线是否和像素对齐，true表示对齐，false表示不对齐。 |
 
 **错误码：**
 
@@ -4681,7 +4920,7 @@ console.info("drawing font isBaselineSnap: " + font.isBaselineSnap());
 
 isBaselineSnap(): boolean
 
-当前画布矩阵轴对齐时，获取字形基线是否与像素对齐的结果。
+当前画布矩阵轴对齐时，获取字型基线是否与像素对齐的结果。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -4689,7 +4928,7 @@ isBaselineSnap(): boolean
 
 | 类型   | 说明             |
 | ------ | ---------------- |
-| boolean | 返回字形基线是否与像素对齐，true为对齐，false为没有对齐。 |
+| boolean | 返回字型基线是否与像素对齐，true为对齐，false为没有对齐。 |
 
 **示例：**
 
@@ -4706,7 +4945,7 @@ console.info("drawing font isBaselineSnap: " + font.isBaselineSnap());
 
 setEmbeddedBitmaps(isEmbeddedBitmaps: boolean): void
 
-设置字形是否转换成位图处理。
+设置字型是否转换成位图处理。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -4714,7 +4953,7 @@ setEmbeddedBitmaps(isEmbeddedBitmaps: boolean): void
 
 | 参数名   | 类型   | 必填 | 说明             |
 | -------- | ------ | ---- | ---------------- |
-| isEmbeddedBitmaps | boolean | 是   | 设置字形是否转换成位图处理，true表示转换成位图处理，false表示不转换成位图处理。 |
+| isEmbeddedBitmaps | boolean | 是   | 设置字型是否转换成位图处理，true表示转换成位图处理，false表示不转换成位图处理。 |
 
 **错误码：**
 
@@ -4739,7 +4978,7 @@ console.info("draw isEmbeddedBitmaps: " + font.isEmbeddedBitmaps());
 
 isEmbeddedBitmaps(): boolean
 
-获取字形是否转换成位图处理的结果。
+获取字型是否转换成位图处理的结果。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -4747,7 +4986,7 @@ isEmbeddedBitmaps(): boolean
 
 | 类型   | 说明             |
 | ------ | ---------------- |
-| boolean | 返回字形是否转换成位图处理结果，true表示转换成位图处理，false表示不转换成位图处理。 |
+| boolean | 返回字型是否转换成位图处理结果，true表示转换成位图处理，false表示不转换成位图处理。 |
 
 **示例：**
 
@@ -4764,7 +5003,7 @@ console.info("draw isEmbeddedBitmaps: " + font.isEmbeddedBitmaps());
 
 setForceAutoHinting(isForceAutoHinting: boolean): void
 
-设置是否自动调整字形轮廓。
+设置是否自动调整字型轮廓。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -4772,7 +5011,7 @@ setForceAutoHinting(isForceAutoHinting: boolean): void
 
 | 参数名   | 类型   | 必填 | 说明             |
 | -------- | ------ | ---- | ---------------- |
-| isForceAutoHinting | boolean | 是   | 是否自动调整字形轮廓，true为自动调整，false为不自动调整。 |
+| isForceAutoHinting | boolean | 是   | 是否自动调整字型轮廓，true为自动调整，false为不自动调整。 |
 
 **错误码：**
 
@@ -4797,7 +5036,7 @@ console.info("drawing isForceAutoHinting:  " + font.isForceAutoHinting());
 
 isForceAutoHinting(): boolean
 
-获取字形轮廓是否自动调整的结果。
+获取字型轮廓是否自动调整的结果。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -4805,7 +5044,7 @@ isForceAutoHinting(): boolean
 
 | 类型   | 说明             |
 | ------ | ---------------- |
-| boolean | 返回字形轮廓是否自动调整，true为自动调整，false为不自动调整。 |
+| boolean | 返回字型轮廓是否自动调整，true为自动调整，false为不自动调整。 |
 
 **示例：**
 
@@ -5062,7 +5301,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### setThemeFontFollowed<sup>16+</sup>
+### setThemeFontFollowed<sup>15+</sup>
 
 setThemeFontFollowed(followed: boolean): void
 
@@ -5094,7 +5333,7 @@ font.setThemeFontFollowed(true);
 console.info("font is theme font followed: " + font.isThemeFontFollowed());
 ```
 
-### isThemeFontFollowed()<sup>16+</sup>
+### isThemeFontFollowed()<sup>15+</sup>
 
 isThemeFontFollowed(): boolean
 
@@ -5130,7 +5369,7 @@ console.info("font is theme font followed: " + font.isThemeFontFollowed());
 | UNDERLINE_POSITION_VALID      | 1 << 1    | 表示[FontMetrics](#fontmetrics)结构中的underlinePosition（下划线位置）字段有效。  |
 | STRIKETHROUGH_THICKNESS_VALID | 1 << 2    | 表示[FontMetrics](#fontmetrics)结构中strikethroughThickness（删除线厚度）是有效的。|
 | STRIKETHROUGH_POSITION_VALID  | 1 << 3    | 表示[FontMetrics](#fontmetrics)结构中strikethroughPosition（删除线位置）字段有效。  |
-| BOUNDS_INVALID                | 1 << 4    | 表示[FontMetrics](#fontmetrics)结构中的边界度量值（如top, bottom, xMin, xMax）无效。  |
+| BOUNDS_INVALID                | 1 << 4    | 表示[FontMetrics](#fontmetrics)结构中的边界度量值（如top、bottom、xMin、xMax）无效。  |
 
 ## FontMetrics
 
@@ -5180,7 +5419,7 @@ createBlendModeColorFilter(color: common2D.Color, mode: BlendMode) : ColorFilter
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
+| [ColorFilter](#colorfilter) | 返回一个颜色滤波器。 |
 
 **错误码：**
 
@@ -5253,7 +5492,7 @@ createComposeColorFilter(outer: ColorFilter, inner: ColorFilter) : ColorFilter
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
+| [ColorFilter](#colorfilter) | 返回一个颜色滤波器。 |
 
 **错误码：**
 
@@ -5285,7 +5524,7 @@ createLinearToSRGBGamma() : ColorFilter
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
+| [ColorFilter](#colorfilter) | 返回一个颜色滤波器。 |
 
 **示例：**
 
@@ -5306,7 +5545,7 @@ createSRGBGammaToLinear() : ColorFilter
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
+| [ColorFilter](#colorfilter) | 返回一个颜色滤波器。 |
 
 **示例：**
 
@@ -5319,7 +5558,7 @@ let colorFilter = drawing.ColorFilter.createSRGBGammaToLinear();
 
 createLumaColorFilter() : ColorFilter
 
-创建一个将亮度与透明度相乘的颜色滤波器。
+创建一个颜色滤波器将其输入的亮度值乘以透明度通道，并将红色、绿色和蓝色通道设置为零。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -5327,7 +5566,7 @@ createLumaColorFilter() : ColorFilter
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
+| [ColorFilter](#colorfilter) | 返回一个颜色滤波器。 |
 
 **示例：**
 
@@ -6730,7 +6969,7 @@ setJoinStyle(style: JoinStyle): void
 
 | 参数名 | 类型                     | 必填 | 说明             |
 | ------ | ----------------------- | ---- | --------------- |
-| style  | [JoinStyle](#joinstyle12) | 是   | 折线转角样式     |
+| style  | [JoinStyle](#joinstyle12) | 是   | 折线转角样式。     |
 
 **错误码：**
 
@@ -7360,7 +7599,7 @@ setShadowLayer(shadowLayer: ShadowLayer): void
 
 | 参数名  | 类型                       | 必填 | 说明      |
 | ------- | ------------------------- | ---- | --------- |
-| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。为null时表示清空阴影层效果 |
+| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。为null时表示清空阴影层效果。 |
 
 **错误码：**
 
@@ -7669,7 +7908,7 @@ setMatrix(values: Array\<number>): void
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| values  | Array\<number> | 是   | 长度为9的浮点数组，表示矩阵对象参数。数组中的值按下标从小,到大分别表示水平缩放系数、水平倾斜系数、水平位移系数、垂直倾斜系数、垂直缩放系数、垂直位移系数、X轴透视系数、Y轴透视系数、透视缩放系数。 |
+| values  | Array\<number> | 是   | 长度为9的浮点数组，表示矩阵对象参数。数组中的值按下标从小，到大分别表示水平缩放系数、水平倾斜系数、水平位移系数、垂直倾斜系数、垂直缩放系数、垂直位移系数、X轴透视系数、Y轴透视系数、透视缩放系数。 |
 
 **错误码：**
 
@@ -8264,7 +8503,7 @@ if (matrix.setRectToRect(src, dst, scaleToFit)) {
 
 setPolyToPoly(src: Array\<common2D.Point>, dst: Array\<common2D.Point>, count: number): boolean
 
-将当前矩阵设置为能使源点数组映射到目标点数组的变换矩阵。
+将当前矩阵设置为能使源点数组映射到目标点数组的变换矩阵。源点以及目标点的个数要大于等于0，小于等于4。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -8351,8 +8590,8 @@ setCorner(pos: CornerPos, x: number, y: number): void
 | 参数名   | 类型                                         | 必填 | 说明                            |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
 | pos | [CornerPos](#cornerpos12) | 是   | 圆角位置。                 |
-| x     | number                 | 是   | x轴方向的圆角半径，该参数为浮点数。 |
-| y     | number      | 是   | y轴方向的圆角半径，该参数为浮点数。 |
+| x     | number                 | 是   | x轴方向的圆角半径，该参数为浮点数，小于等于0时无效。 |
+| y     | number      | 是   | y轴方向的圆角半径，该参数为浮点数，小于等于0时无效。 |
 
 **错误码：**
 
@@ -8857,7 +9096,7 @@ import { common2D,drawing } from '@kit.ArkGraphics2D';
 
 let startPt: common2D.Point = { x: 100, y: 100 };
 let endPt: common2D.Point = { x: 300, y: 300 };
-let shaderEffect =drawing.ShaderEffect.createLinearGradient(startPt, endPt, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
+let shaderEffect = drawing.ShaderEffect.createLinearGradient(startPt, endPt, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
 ```
 
 ### createRadialGradient<sup>12+</sup>
@@ -9005,11 +9244,11 @@ let endPt: common2D.Point = {x: 200, y: 200};
 let shaderEffect = drawing.ShaderEffect.createConicalGradient(startPt, 100, endPt, 50, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
 ```
 
-## Tool<sup>16+</sup>
+## Tool<sup>15+</sup>
 
 本模块定义的工具类，仅提供静态的方法，主要完成其他模块和[common2D](js-apis-graphics-common2D.md)中定义的数据结构的转换功能等操作。
 
-### makeColorFromResourceColor<sup>16+</sup>
+### makeColorFromResourceColor<sup>15+</sup>
 
 static makeColorFromResourceColor(resourceColor: ResourceColor): common2D.Color
 

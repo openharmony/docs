@@ -1190,7 +1190,7 @@ getVolumeManager(): AudioVolumeManager
 
 | 类型                                      | 说明                          |
 |-----------------------------------------| ----------------------------- |
-| [AudioVolumeManager](#audiovolumemanager9) | AudioVolumeManager实例 |
+| [AudioVolumeManager](#audiovolumemanager9) | AudioVolumeManager实例。 |
 
 **示例：**
 
@@ -1212,7 +1212,7 @@ getStreamManager(): AudioStreamManager
 
 | 类型                                         | 说明                          |
 |--------------------------------------------| ----------------------------- |
-| [AudioStreamManager](#audiostreammanager9) | AudioStreamManager实例 |
+| [AudioStreamManager](#audiostreammanager9) | AudioStreamManager实例。 |
 
 **示例：**
 
@@ -1234,7 +1234,7 @@ getRoutingManager(): AudioRoutingManager
 
 | 类型                                       | 说明                          |
 |------------------------------------------| ----------------------------- |
-| [AudioRoutingManager](#audioroutingmanager9) | AudioRoutingManager实例 |
+| [AudioRoutingManager](#audioroutingmanager9) | AudioRoutingManager实例。 |
 
 **示例：**
 
@@ -1256,7 +1256,7 @@ getSessionManager(): AudioSessionManager
 
 | 类型                                           | 说明                          |
 |----------------------------------------------| ----------------------------- |
-| [AudioSessionManager](#audiosessionmanager12) | AudioSessionManager实例 |
+| [AudioSessionManager](#audiosessionmanager12) | AudioSessionManager实例。 |
 
 **示例：**
 
@@ -2226,10 +2226,10 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 **示例：**
 
 ```ts
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioManager.off('deviceChange');
 
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let deviceChangeCallback = (deviceChanged: audio.DeviceChangeAction) => {
   console.info(`device change type : ${deviceChanged.type} `);
   console.info(`device descriptor size : ${deviceChanged.deviceDescriptors.length} `);
@@ -2316,10 +2316,10 @@ let interAudioInterrupt: audio.AudioInterrupt = {
   pauseWhenDucked:true
 };
 
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioManager.off('interrupt', interAudioInterrupt);
 
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let interruptCallback = (interruptAction: audio.InterruptAction) => {
   if (interruptAction.actionType === 0) {
     console.info('An event to gain the audio focus starts.');
@@ -2510,10 +2510,10 @@ off(type: 'volumeChange', callback?: Callback\<VolumeEvent>): void
 **示例：**
 
 ```ts
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioVolumeManager.off('volumeChange');
 
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let volumeChangeCallback = (volumeEvent: audio.VolumeEvent) => {
   console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
   console.info(`Volume level: ${volumeEvent.volume} `);
@@ -3247,13 +3247,13 @@ off(type: 'micStateChange', callback?: Callback&lt;MicStateChangeEvent&gt;): voi
 **示例：**
 
 ```ts
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioVolumeGroupManager.off('micStateChange');
 
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let micStateChangeCallback = (micStateChange: audio.MicStateChangeEvent) => {
   console.info(`Current microphone status is: ${micStateChange.mute} `);
-});
+};
 
 audioVolumeGroupManager.on('micStateChange', micStateChangeCallback);
 
@@ -4323,7 +4323,7 @@ on(type: 'micBlockStatusChanged', callback: Callback<DeviceBlockStatusInfo\>): v
 **示例：**
 
 ```ts
-// 在使用此功能之前，应先查询当前设备是否支持检测
+// 在使用此功能之前，应先查询当前设备是否支持检测。
 audioRoutingManager.isMicBlockDetectionSupported().then((value: boolean) => {
   console.info(`Query whether microphone block detection is supported on current device result is ${value}.`);
   if (value) {
@@ -4361,10 +4361,10 @@ off(type: 'micBlockStatusChanged', callback?: Callback<DeviceBlockStatusInfo\>):
 **示例：**
 
 ```ts
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioRoutingManager.off('micBlockStatusChanged');
 
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let micBlockStatusCallback = (micBlockStatusChanged: audio.DeviceBlockStatusInfo) => {
   console.info(`block status : ${micBlockStatusChanged.blockStatus} `);
 };
@@ -4437,10 +4437,10 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 **示例：**
 
 ```ts
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioRoutingManager.off('deviceChange');
 
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let deviceChangeCallback = (deviceChanged: audio.DeviceChangeAction) => {
   console.info('device change type : ' + deviceChanged.type);
   console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
@@ -4593,10 +4593,10 @@ off(type: 'availableDeviceChange', callback?: Callback<DeviceChangeAction\>): vo
 **示例：**
 
 ```ts
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioRoutingManager.off('availableDeviceChange');
 
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let availableDeviceChangeCallback = (deviceChanged: audio.DeviceChangeAction) => {
   console.info('device change type : ' + deviceChanged.type);
   console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
@@ -4897,7 +4897,7 @@ on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererI
 
 | 参数名   | 类型                                                 | 必填 | 说明                                                      |
 | :------- | :--------------------------------------------------- | :--- |:--------------------------------------------------------|
-| type     | string                                               | 是   | 监听事件，固定为：'preferOutputDeviceChangeForRendererInfo' |
+| type     | string                                               | 是   | 监听事件，固定为：'preferOutputDeviceChangeForRendererInfo'。|
 | rendererInfo  | [AudioRendererInfo](#audiorendererinfo8)        | 是   | 表示渲染器信息。                                                |
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | 是   | 回调函数，返回优先级最高的输出设备信息。 |
 
@@ -4952,10 +4952,10 @@ off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDe
 **示例：**
 
 ```ts
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
 
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let preferOutputDeviceChangeForRendererInfoCallback = (desc: audio.AudioDeviceDescriptors) => {
   console.info(`device descriptor: ${desc}`);
 };
@@ -5177,10 +5177,10 @@ off(type: 'preferredInputDeviceChangeForCapturerInfo', callback?: Callback<Audio
 **示例：**
 
 ```ts
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioRoutingManager.off('preferredInputDeviceChangeForCapturerInfo');
 
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let preferredInputDeviceChangeForCapturerInfoCallback = (desc: audio.AudioDeviceDescriptors) => {
   console.info(`device descriptor: ${desc}`);
 };
@@ -5357,10 +5357,10 @@ off(type: 'audioSessionDeactivated', callback?: Callback\<AudioSessionDeactivate
 **示例：**
 
 ```ts
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioSessionManager.off('audioSessionDeactivated');
 
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let audioSessionDeactivatedCallback = (audioSessionDeactivatedEvent: audio.AudioSessionDeactivatedEvent) => {
   console.info(`reason of audioSessionDeactivated: ${audioSessionDeactivatedEvent.reason} `);
 };
@@ -7509,8 +7509,8 @@ AudioRenderer对象在start事件发生时会主动获取焦点，在pause、sto
 ```ts
 import { audio } from '@kit.AudioKit';
 
-let isPlaying: boolean; // 标识符，表示是否正在渲染
-let isDucked: boolean; // 标识符，表示是否被降低音量
+let isPlaying: boolean; // 标识符，表示是否正在渲染。
+let isDucked: boolean; // 标识符，表示是否被降低音量。
 onAudioInterrupt();
 
 async function onAudioInterrupt(){
@@ -7520,40 +7520,40 @@ async function onAudioInterrupt(){
     // 注：默认焦点策略下，INTERRUPT_HINT_RESUME为INTERRUPT_SHARE类型，其余hintType均为INTERRUPT_FORCE类型。因此对forceType可不做判断。
     // 2、必选：读取interruptEvent.hintType的类型，做出相应的处理。
     if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-      // 音频焦点事件已由系统强制执行，应用需更新自身状态及显示内容等
+      // 音频焦点事件已由系统强制执行，应用需更新自身状态及显示内容等。
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-          // 音频流已被暂停，临时失去焦点，待可重获焦点时会收到resume对应的interruptEvent
+          // 音频流已被暂停，临时失去焦点，待可重获焦点时会收到resume对应的interruptEvent。
           console.info('Force paused. Update playing status and stop writing');
-          isPlaying = false; // 简化处理，代表应用切换至暂停状态的若干操作
+          isPlaying = false; // 简化处理，代表应用切换至暂停状态的若干操作。
           break;
         case audio.InterruptHint.INTERRUPT_HINT_STOP:
-          // 音频流已被停止，永久失去焦点，若想恢复渲染，需用户主动触发
+          // 音频流已被停止，永久失去焦点，若想恢复渲染，需用户主动触发。
           console.info('Force stopped. Update playing status and stop writing');
-          isPlaying = false; // 简化处理，代表应用切换至暂停状态的若干操作
+          isPlaying = false; // 简化处理，代表应用切换至暂停状态的若干操作。
           break;
         case audio.InterruptHint.INTERRUPT_HINT_DUCK:
-          // 音频流已被降低音量渲染
+          // 音频流已被降低音量渲染。
           console.info('Force ducked. Update volume status');
-          isDucked = true; // 简化处理，代表应用更新音量状态的若干操作
+          isDucked = true; // 简化处理，代表应用更新音量状态的若干操作。
           break;
         case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
-          // 音频流已被恢复正常音量渲染
+          // 音频流已被恢复正常音量渲染。
           console.info('Force ducked. Update volume status');
-          isDucked = false; // 简化处理，代表应用更新音量状态的若干操作
+          isDucked = false; // 简化处理，代表应用更新音量状态的若干操作。
           break;
         default:
           console.info('Invalid interruptEvent');
           break;
       }
     } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-      // 音频焦点事件需由应用进行操作，应用可以自主选择如何处理该事件，建议应用遵从InterruptHint提示处理
+      // 音频焦点事件需由应用进行操作，应用可以自主选择如何处理该事件，建议应用遵从InterruptHint提示处理。
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_RESUME:
-          // 建议应用继续渲染（说明音频流此前被强制暂停，临时失去焦点，现在可以恢复渲染）
-          // 由于INTERRUPT_HINT_RESUME操作需要应用主动执行，系统无法强制，故INTERRUPT_HINT_RESUME事件一定为INTERRUPT_SHARE类型
+          // 建议应用继续渲染（说明音频流此前被强制暂停，临时失去焦点，现在可以恢复渲染）。
+          // 由于INTERRUPT_HINT_RESUME操作需要应用主动执行，系统无法强制，故INTERRUPT_HINT_RESUME事件一定为INTERRUPT_SHARE类型。
           console.info('Resume force paused renderer or ignore');
-          // 若选择继续渲染，需在此处主动执行开始渲染的若干操作
+          // 若选择继续渲染，需在此处主动执行开始渲染的若干操作。
           break;
         default:
           console.info('Invalid interruptEvent');
@@ -7750,10 +7750,10 @@ off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): v
 **示例：**
 
 ```ts
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioRenderer.off('outputDeviceChange');
 
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let outputDeviceChangeCallback = (deviceInfo: audio.AudioDeviceDescriptors) => {
   console.info(`DeviceInfo id: ${deviceInfo[0].id}`);
   console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
@@ -7827,10 +7827,10 @@ off(type: 'outputDeviceChangeWithInfo', callback?: Callback\<AudioStreamDeviceCh
 **示例：**
 
 ```ts
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioRenderer.off('outputDeviceChangeWithInfo');
 
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let outputDeviceChangeWithInfoCallback = (deviceChangeInfo: audio.AudioStreamDeviceChangeInfo) => {
   console.info(`DeviceInfo id: ${deviceChangeInfo.devices[0].id}`);
   console.info(`DeviceInfo name: ${deviceChangeInfo.devices[0].name}`);
@@ -7882,7 +7882,7 @@ class Options {
 
 let bufferSize: number = 0;
 let path = getContext().cacheDir;
-// 确保该沙箱路径下存在该资源
+// 确保该沙箱路径下存在该资源。
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
@@ -7894,11 +7894,11 @@ let writeDataCallback = (buffer: ArrayBuffer) => {
   try {
     fs.readSync(file.fd, buffer, options);
     bufferSize += buffer.byteLength;
-    // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果
+    // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果。
     return audio.AudioDataCallbackResult.VALID;
   } catch (error) {
     console.error('Error reading file:', error);
-    // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果
+    // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果。
     return audio.AudioDataCallbackResult.INVALID;
   }
 };
@@ -7938,10 +7938,10 @@ off(type: 'writeData', callback?: AudioRendererWriteDataCallback): void
 **示例：**
 
 ```ts
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioRenderer.off('writeData');
 
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let writeDataCallback = (data: ArrayBuffer) => {
     console.info(`write data: ${data}`);
 };
@@ -8764,7 +8764,7 @@ AudioCapturer对象在start事件发生时会主动获取焦点，在pause、sto
 ```ts
 import { audio } from '@kit.AudioKit';
 
-let isCapturing: boolean; // 标识符，表示是否正在采集
+let isCapturing: boolean; // 标识符，表示是否正在采集。
 onAudioInterrupt();
 
 async function onAudioInterrupt(){
@@ -8774,30 +8774,30 @@ async function onAudioInterrupt(){
     // 注：默认焦点策略下，INTERRUPT_HINT_RESUME为INTERRUPT_SHARE类型，其余hintType均为INTERRUPT_FORCE类型。因此对forceType可不做判断。
     // 2、必选：读取interruptEvent.hintType的类型，做出相应的处理。
     if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-      // 音频焦点事件已由系统强制执行，应用需更新自身状态及显示内容等
+      // 音频焦点事件已由系统强制执行，应用需更新自身状态及显示内容等。
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-          // 音频流已被暂停，临时失去焦点，待可重获焦点时会收到resume对应的interruptEvent
+          // 音频流已被暂停，临时失去焦点，待可重获焦点时会收到resume对应的interruptEvent。
           console.info('Force paused. Update capturing status and stop reading');
-          isCapturing = false; // 简化处理，代表应用切换至暂停状态的若干操作
+          isCapturing = false; // 简化处理，代表应用切换至暂停状态的若干操作。
           break;
         case audio.InterruptHint.INTERRUPT_HINT_STOP:
-          // 音频流已被停止，永久失去焦点，若想恢复采集，需用户主动触发
+          // 音频流已被停止，永久失去焦点，若想恢复采集，需用户主动触发。
           console.info('Force stopped. Update capturing status and stop reading');
-          isCapturing = false; // 简化处理，代表应用切换至暂停状态的若干操作
+          isCapturing = false; // 简化处理，代表应用切换至暂停状态的若干操作。
           break;
         default:
           console.info('Invalid interruptEvent');
           break;
       }
     } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-      // 音频焦点事件需由应用进行操作，应用可以自主选择如何处理该事件，建议应用遵从InterruptHint提示处理
+      // 音频焦点事件需由应用进行操作，应用可以自主选择如何处理该事件，建议应用遵从InterruptHint提示处理。
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_RESUME:
-          // 建议应用继续采集（说明音频流此前被强制暂停，临时失去焦点，现在可以恢复采集）
-          // 由于INTERRUPT_HINT_RESUME操作需要应用主动执行，系统无法强制，故INTERRUPT_HINT_RESUME事件一定为INTERRUPT_SHARE类型
+          // 建议应用继续采集（说明音频流此前被强制暂停，临时失去焦点，现在可以恢复采集）。
+          // 由于INTERRUPT_HINT_RESUME操作需要应用主动执行，系统无法强制，故INTERRUPT_HINT_RESUME事件一定为INTERRUPT_SHARE类型。
           console.info('Resume force paused renderer or ignore');
-          // 若选择继续采集，需在此处主动执行开始采集的若干操作
+          // 若选择继续采集，需在此处主动执行开始采集的若干操作。
           break;
         default:
           console.info('Invalid interruptEvent');
@@ -8897,10 +8897,10 @@ off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): vo
 **示例：**
 
 ```ts
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioCapturer.off('inputDeviceChange');
 
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let inputDeviceChangeCallback = (deviceChangeInfo: audio.AudioDeviceDescriptors) => {
   console.info(`inputDevice id: ${deviceChangeInfo[0].id}`);
   console.info(`inputDevice deviceRole: ${deviceChangeInfo[0].deviceRole}`);
@@ -8973,10 +8973,10 @@ off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>):
 **示例：**
 
 ```ts
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioCapturer.off('audioCapturerChange');
 
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let audioCapturerChangeCallback = (capturerChangeInfo: audio.AudioCapturerChangeInfo) => {
   console.info(`audioCapturerChange id: ${capturerChangeInfo[0].id}`);
   console.info(`audioCapturerChange deviceRole: ${capturerChangeInfo[0].deviceRole}`);
@@ -9151,7 +9151,7 @@ class Options {
 
 let bufferSize: number = 0;
 let path = getContext().cacheDir;
-// 确保该沙箱路径下存在该资源
+// 确保该沙箱路径下存在该资源。
 let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
 let readDataCallback = (buffer: ArrayBuffer) => {
@@ -9201,10 +9201,10 @@ off(type: 'readData', callback?: Callback\<ArrayBuffer>): void
 **示例：**
 
 ```ts
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioCapturer.off('readData');
 
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let readDataCallback = (data: ArrayBuffer) => {
     console.info(`read data: ${data}`);
 };

@@ -42,7 +42,7 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 
 ## 属性
 
-除支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](../apis-arkui/arkui-ts/ts-component-general-attributes.md)外，还支持以下属性：
 
 ### muted
 
@@ -151,7 +151,7 @@ enableAnalyzer(enabled: boolean)
 
 ## 事件
 
-除支持[通用事件](../apis-arkui/arkui-ts/ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](../apis-arkui/arkui-ts/ts-component-general-events.md)外，还支持以下事件：
 
 ### onComplete<sup>13+</sup>
 
@@ -282,6 +282,16 @@ stopPlayback(): void
 停止播放，再次播放时从头开始播放。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### refreshMovingPhoto<sup>16+</sup>
+
+refreshMovingPhoto(): void
+
+强制刷新动态照片组件加载的视频和图片资源，会打断组件当前的行为，使用时要谨慎。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -659,6 +669,10 @@ struct Index {
           Button('StopPlay')
             .onClick(() => {
               this.controller.stopPlayback()
+            })
+          Button('refreshMovingPhoto')
+            .onClick(() => {
+              this.controller.refreshMovingPhoto()
             })
           Button('mute').id('MovingPhotoView_true')
             .onClick(() => {

@@ -30,7 +30,7 @@ Text(content?: string | Resource , value?: TextOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)，还支持以下属性：
 
 ### textAlign
 
@@ -54,7 +54,7 @@ textAlign(value: TextAlign)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                       |
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
-| value  | [TextAlign](ts-appendix-enums.md#textalign) | 是   | 文本段落在水平方向的对齐方式。<br/>默认值：TextAlign.Start |
+| value  | [TextAlign](ts-appendix-enums.md#textalign) | 是   | 文本段落在水平方向的对齐方式。<br/>默认值：TextAlign.Start，wearable设备上默认值为：'TextAlign.Center' |
 
 ### textOverflow
 
@@ -186,7 +186,7 @@ minFontSize(value: number | string | Resource)
 
 自适应字号生效时，fontSize设置不生效。
 
-minFontSize小于或等于0时，自适应字号不生效。
+minFontSize小于或等于0时，自适应字号不生效，此时按照[fontSize](#fontsize)属性的值生效，未设置时按照其默认值生效。
 
 从API Version 16开始支持在子组件和属性字符串上生效，未设置字号的部分自适应字号。
 
@@ -211,6 +211,8 @@ maxFontSize(value: number | string | Resource)
 需配合[minFontSize](#minfontsize)以及[maxLines](#maxlines)或布局大小限制使用，单独设置不生效。
 
 自适应字号生效时，fontSize设置不生效。
+
+maxFontSize小于或等于0时，自适应字号不生效，此时按照[fontSize](#fontsize)属性的值生效，未设置时按照其默认值生效。
 
 从API Version 16开始支持在子组件和属性字符串上生效，未设置字号的部分自适应字号。
 
@@ -248,7 +250,7 @@ textCase(value: TextCase)
 
 fontColor(value: ResourceColor)
 
-设置字体颜色。
+设置字体颜色。wearable设备上默认值为：'#dbffffff'
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -266,7 +268,7 @@ fontColor(value: ResourceColor)
 
 fontSize(value: number | string | Resource)
 
-设置字体大小。
+设置字体大小。wearable设备上默认值为：15fp
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -314,7 +316,7 @@ fontWeight(value: number | FontWeight | string)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是   | 文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal |
+| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是   | 文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal，wearable设备上默认值为：'FontWeight.Regular' |
 
 ### fontFamily
 
@@ -416,11 +418,11 @@ textShadow(value: ShadowOptions | Array&lt;ShadowOptions&gt;)
 
 heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
 
-设置文本自适应高度的方式。
+设置文本自适应布局调整字号的方式。
 
 当设置为TextHeightAdaptivePolicy.MAX_LINES_FIRST时，优先使用[maxLines](#maxlines)属性来调整文本高度。如果使用maxLines属性的布局大小超过了布局约束，则尝试在[minFontSize](#minfontsize)和[maxFontSize](#maxfontsize)的范围内缩小字体以显示更多文本。
 
-当设置为TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST时，优先使用minFontSize属性来调整文本高度。如果使用minFontSize属性可以将文本布局在一行中，则尝试在minFontSize和maxFontSize的范围内增大字体并使用最大可能的字体大小。
+当设置为TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST时，优先使用minFontSize属性来调整文本高度。如果使用minFontSize属性可以将文本布局在一行中，则尝试在minFontSize和maxFontSize的范围内增大字体并使用最大可能的字体大小在一行内显示，否则按minFontSize显示。
 
 当设置为TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST时，优先使用布局约束来调整文本高度。如果布局大小超过布局约束，则尝试在minFontSize和maxFontSize的范围内缩小字体以满足布局约束。如果将字体大小缩小到minFontSize后，布局大小仍然超过布局约束，则删除超过布局约束的行。
 
@@ -532,7 +534,7 @@ decoration:{
 
 当overflow设置为TextOverflow.MARQUEE时，该功能不会生效。
 
-当copyOption设置为CopyOptions.None时，点击实体弹出的菜单没有选择文本和复制功能。当copyOption不为CopyOptions.None，且textSelectable设置为TextSelectableMode.UNSELECTABLE时，仍然具有实体复制功能，但没有选择文本功能。
+当copyOption设置为CopyOptions.None时，点击实体弹出的菜单没有选择文本、复制、翻译、分享和搜索功能。当copyOption不为CopyOptions.None，且textSelectable设置为TextSelectableMode.UNSELECTABLE时，仍然具有实体复制功能，但没有选择文本功能。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -873,11 +875,20 @@ selectedBackgroundColor(color: ResourceColor)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 说明 |
-| -------- | -------- |
-| TEXT | Span为文字类型。 |
-| IMAGE | Span为图像类型。|
-| MIXED | Span为图文混合类型。|
+| 名称 | 值 | 说明 |
+| -------- | ---- | -------- |
+| TEXT | 0 | Span为文字类型。 |
+| IMAGE | 1 | Span为图像类型。|
+| MIXED | 2 | Span为图文混合类型。|
+| DEFAULT<sup>15+</sup> | 3 | 注册此类型菜单但未注册TEXT、IMAGE、MIXED菜单时，文字类型、图片类型、图文混合类型都会触发并显示此类型对应的菜单。|
+
+>  **说明：**
+>
+>  菜单类型的匹配顺序如下。例如，用户长按文本时，根据以下规则查找：
+>  1. 查找是否注册了TextSpanType.TEXT、TextResponseType.LONG_PRESS菜单
+>  2. 查找是否注册了TextSpanType.TEXT、TextResponseType.DEFAULT菜单
+>  3. 查找是否注册了TextSpanType.DEFAULT、TextResponseType.LONG_PRESS菜单
+>  4. 查找是否注册了TextSpanType.DEFAULT、TextResponseType.DEFAULT菜单
 
 ## TextResponseType<sup>11+</sup>枚举说明
 
@@ -885,11 +896,20 @@ selectedBackgroundColor(color: ResourceColor)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 说明          |
-| ---------- | ------------- |
-| RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
-| LONG_PRESS  | 通过长按触发菜单弹出。   |
-| SELECT | 通过鼠标选中触发菜单弹出。 |
+| 名称         | 值 |  说明          |
+| ---------- | --- | ------------- |
+| RIGHT_CLICK | 0 | 通过鼠标右键触发菜单弹出。 |
+| LONG_PRESS  | 1 | 通过长按触发菜单弹出。   |
+| SELECT | 2 | 通过鼠标选中触发菜单弹出。 |
+| DEFAULT<sup>15+</sup> | 3 | 注册此类型的菜单但未注册RIGHT_CLICK、LONG_PRESS、SELECT时，右键、长按、鼠标选中都会触发并显示此类型对应的菜单。|
+
+>  **说明：**
+>
+>  菜单类型的匹配顺序如下。例如，用户长按文本时，根据以下规则查找：
+>  1. 查找是否注册了TextSpanType.TEXT、TextResponseType.LONG_PRESS菜单
+>  2. 查找是否注册了TextSpanType.TEXT、TextResponseType.DEFAULT菜单
+>  3. 查找是否注册了TextSpanType.DEFAULT、TextResponseType.LONG_PRESS菜单
+>  4. 查找是否注册了TextSpanType.DEFAULT、TextResponseType.DEFAULT菜单
 
 ## TextOverflowOptions<sup>16+</sup>对象说明
 
@@ -909,7 +929,7 @@ selectedBackgroundColor(color: ResourceColor)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onCopy<sup>11+</sup>
 
@@ -1092,16 +1112,16 @@ function style(TextAlign: TextAlign) {
 @Entry
 @Component
 struct TextExample1 {
-  @State changeTextAlignIndex: number = 0
-  @State changeDecorationIndex: number = 0
-  @State TextAlign: TextAlign[] = [TextAlign.Start, TextAlign.Center, TextAlign.End]
-  @State TextAlignStr: string[] = ['Start', 'Center', 'End']
+  @State changeTextAlignIndex: number = 0;
+  @State changeDecorationIndex: number = 0;
+  @State TextAlign: TextAlign[] = [TextAlign.Start, TextAlign.Center, TextAlign.End];
+  @State TextAlignStr: string[] = ['Start', 'Center', 'End'];
   @State TextDecorationType: TextDecorationType[] =
-    [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline]
-  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline']
+    [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline];
+  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline'];
   @State TextDecorationStyle: TextDecorationStyle[] =
-    [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY]
-  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY']
+    [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY];
+  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
@@ -1118,9 +1138,9 @@ struct TextExample1 {
 
       Row() {
         Button('当前TextAlign类型：' + this.TextAlignStr[this.changeTextAlignIndex]).onClick(() => {
-          this.changeTextAlignIndex++
+          this.changeTextAlignIndex++;
           if (this.changeTextAlignIndex > (this.TextAlignStr.length - 1)) {
-            this.changeTextAlignIndex = 0
+            this.changeTextAlignIndex = 0;
           }
         })
       }.justifyContent(FlexAlign.Center).width('100%')
@@ -1163,12 +1183,12 @@ struct TextExample1 {
 
 ### 示例2（设置文本样式）
 
-该示例通过decoration、letterSpacing、textCase、textShadow属性展示了不同样式的文本效果。
+该示例通过decoration、letterSpacing、textCase、fontFamily、textShadow、fontStyle、textIndent、fontWeight属性展示了不同样式的文本效果。
 
 ```ts
 @Extend(Text)
 function style() {
-  .fontSize(12)
+  .font({ size: 12 })
   .border({ width: 1 })
   .padding(10)
   .width('100%')
@@ -1178,13 +1198,13 @@ function style() {
 @Entry
 @Component
 struct TextExample2 {
-  @State changeDecorationIndex: number = 0
+  @State changeDecorationIndex: number = 0;
   @State TextDecorationType: TextDecorationType[] =
-    [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline]
-  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline']
+    [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline];
+  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline'];
   @State TextDecorationStyle: TextDecorationStyle[] =
-    [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY]
-  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY']
+    [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY];
+  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
@@ -1201,9 +1221,9 @@ struct TextExample2 {
       Row() {
         Button('当前decoration类型：' + this.TextDecorationTypeStr[this.changeDecorationIndex] + ' & ' +
         this.TextDecorationStyleStr[this.changeDecorationIndex]).onClick(() => {
-          this.changeDecorationIndex++
+          this.changeDecorationIndex++;
           if (this.changeDecorationIndex > (this.TextDecorationTypeStr.length - 1)) {
-            this.changeDecorationIndex = 0
+            this.changeDecorationIndex = 0;
           }
         })
       }.justifyContent(FlexAlign.Center).width('100%')
@@ -1233,6 +1253,12 @@ struct TextExample2 {
         .textCase(TextCase.UpperCase)
         .style()
 
+      Text('fontFamily').fontSize(9).fontColor(0xCCCCCC)
+      // 设置字体列表
+      Text('This is the text content with fontFamily')
+        .style()
+        .fontFamily('HarmonyOS Sans')
+
       Text('textShadow').fontSize(9).fontColor(0xCCCCCC)
       // 设置文字阴影效果
       Text('textShadow')
@@ -1246,7 +1272,28 @@ struct TextExample2 {
           offsetY: 0
         })
 
-    }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
+      Text('fontStyle').fontSize(9).fontColor(0xCCCCCC)
+      // 设置字体样式
+      Text('This is the text content with fontStyle set to Italic')
+        .style()
+        .fontStyle(FontStyle.Italic)
+      Text('This is the text content with fontStyle set to Normal')
+        .style()
+        .fontStyle(FontStyle.Normal)
+
+      Text('textIndent').fontSize(9).fontColor(0xCCCCCC)
+      // 设置文字缩进
+      Text('This is the text content with textIndent 30')
+        .style()
+        .textIndent(30)
+
+      Text('fontWeight').fontSize(9).fontColor(0xCCCCCC)
+      // 设置文本的字体粗细
+      Text('This is the text content with fontWeight 800')
+        .style()
+        .fontWeight('800', { enableVariableFontWeight: true })
+
+    }.width('100%').padding({ left: 35, right: 35 })
   }
 }
 ```
@@ -1271,10 +1318,10 @@ function style() {
 @Component
 struct TextExample3 {
   @State text: string =
-    'The text component is used to display a piece of textual information.Support universal attributes and universal text attributes.'
-  @State ellipsisModeIndex: number = 0
-  @State ellipsisMode: EllipsisMode[] = [EllipsisMode.START, EllipsisMode.CENTER, EllipsisMode.END]
-  @State ellipsisModeStr: string[] = ['START', 'CENTER', 'END']
+    'The text component is used to display a piece of textual information.Support universal attributes and universal text attributes.';
+  @State ellipsisModeIndex: number = 0;
+  @State ellipsisMode: EllipsisMode[] = [EllipsisMode.START, EllipsisMode.CENTER, EllipsisMode.END];
+  @State ellipsisModeStr: string[] = ['START', 'CENTER', 'END'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
@@ -1298,23 +1345,23 @@ struct TextExample3 {
         .textOverflow({ overflow: TextOverflow.MARQUEE })
         .style()
         .marqueeOptions({
-            start: true,
-            fromStart: true,
-            step: 6,
-            loop: -1,
-            delay: 0,
-            fadeout: false,
-            marqueeStartPolicy: MarqueeStartPolicy.DEFAULT
-          })
-        .onMarqueeStateChange((state:MarqueeState) => {
-            if (state == MarqueeState.START) {
-              // "收到状态: START";
-            } else if(state == MarqueeState.BOUNCE){
-              // "收到状态: BOUNCE";
-            } else if(state == MarqueeState.FINISH){
-              // "收到状态: FINISH";
-            }
-          })
+          start: true,
+          fromStart: true,
+          step: 6,
+          loop: -1,
+          delay: 0,
+          fadeout: false,
+          marqueeStartPolicy: MarqueeStartPolicy.DEFAULT
+        })
+        .onMarqueeStateChange((state: MarqueeState) => {
+          if (state == MarqueeState.START) {
+            // "收到状态: START";
+          } else if (state == MarqueeState.BOUNCE) {
+            // "收到状态: BOUNCE";
+          } else if (state == MarqueeState.FINISH) {
+            // "收到状态: FINISH";
+          }
+        })
 
       Text('ellipsisMode').fontSize(9).fontColor(0xCCCCCC)
       // 设置文本超长时省略号的位置
@@ -1326,9 +1373,9 @@ struct TextExample3 {
 
       Row() {
         Button('更改省略号位置：' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
-          this.ellipsisModeIndex++
+          this.ellipsisModeIndex++;
           if (this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
-            this.ellipsisModeIndex = 0
+            this.ellipsisModeIndex = 0;
           }
         })
       }
@@ -1358,19 +1405,19 @@ function style() {
 @Component
 struct TextExample4 {
   @State text: string =
-    'The text component is used to display a piece of textual information.Support universal attributes and universal text attributes.'
+    'The text component is used to display a piece of textual information.Support universal attributes and universal text attributes.';
   @State text2: string =
     "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
       "The built-in components include buttons radio buttons progress indicators and text You can set the rendering effect of these components in method chaining mode," +
-      "page components are divided into independent UI units to implement independent creation development and reuse of different units on pages making pages more engineering-oriented."
-  @State textClip: boolean = false
-  @State wordBreakIndex: number = 0
-  @State wordBreak: WordBreak[] = [WordBreak.NORMAL, WordBreak.BREAK_ALL, WordBreak.BREAK_WORD]
-  @State wordBreakStr: string[] = ['NORMAL', 'BREAK_ALL', 'BREAK_WORD']
-  @State lineBreakStrategyIndex: number = 0
+      "page components are divided into independent UI units to implement independent creation development and reuse of different units on pages making pages more engineering-oriented.";
+  @State textClip: boolean = false;
+  @State wordBreakIndex: number = 0;
+  @State wordBreak: WordBreak[] = [WordBreak.NORMAL, WordBreak.BREAK_ALL, WordBreak.BREAK_WORD];
+  @State wordBreakStr: string[] = ['NORMAL', 'BREAK_ALL', 'BREAK_WORD'];
+  @State lineBreakStrategyIndex: number = 0;
   @State lineBreakStrategy: LineBreakStrategy[] =
-    [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
-  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
+    [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED];
+  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
@@ -1384,9 +1431,9 @@ struct TextExample4 {
 
       Row() {
         Button('当前wordBreak模式：' + this.wordBreakStr[this.wordBreakIndex]).onClick(() => {
-          this.wordBreakIndex++
+          this.wordBreakIndex++;
           if (this.wordBreakIndex > (this.wordBreakStr.length - 1)) {
-            this.wordBreakIndex = 0
+            this.wordBreakIndex = 0;
           }
         })
       }
@@ -1400,7 +1447,7 @@ struct TextExample4 {
         .style()
       Row() {
         Button('切换clip：' + this.textClip).onClick(() => {
-          this.textClip = !this.textClip
+          this.textClip = !this.textClip;
         })
       }
 
@@ -1411,9 +1458,9 @@ struct TextExample4 {
         .style()
       Row() {
         Button('当前lineBreakStrategy模式：' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
-          this.lineBreakStrategyIndex++
+          this.lineBreakStrategyIndex++;
           if (this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
-            this.lineBreakStrategyIndex = 0
+            this.lineBreakStrategyIndex = 0;
           }
         })
       }
@@ -1426,17 +1473,18 @@ struct TextExample4 {
 
 ### 示例5（设置文本选中和复制）
 
-该示例通过selection、onCopy接口展示了文本选中以及触发复制回调的效果。
+该示例通过selection、onCopy、draggable、caretColor、selectedBackgroundColor接口展示了文本选中、触发复制回调、设置文本选中可拖拽以及修改手柄和选中颜色的效果。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TextExample5 {
-  @State onCopy: string = ''
-  @State text: string = 'This is set selection to Selection text content This is set selection to Selection text content.'
-  @State start: number = 0
-  @State end: number = 20
+  @State onCopy: string = '';
+  @State text: string =
+    'This is set selection to Selection text content This is set selection to Selection text content.';
+  @State start: number = 0;
+  @State end: number = 20;
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
@@ -1448,14 +1496,18 @@ struct TextExample5 {
         .copyOption(CopyOptions.InApp)
         .selection(this.start, this.end)
         .onCopy((value: string) => {
-          this.onCopy = value
+          this.onCopy = value;
         })
+        .draggable(true)
+        .caretColor(Color.Red)
+        .selectedBackgroundColor(Color.Grey)
+        .enableHapticFeedback(true)
       Button('Set text selection')
-        .margin({left:20})
+        .margin({ left: 20 })
         .onClick(() => {
           // 变更文本选中起始点、终点
-          this.start = 10
-          this.end = 30
+          this.start = 10;
+          this.end = 30;
         })
       Text(this.onCopy).fontSize(12).margin(10).key('copy')
     }.height(600).width(335).padding({ left: 35, right: 35, top: 35 })
@@ -1464,9 +1516,9 @@ struct TextExample5 {
 ```
 ![](figures/textExample5.png)
 
-### 示例6（设置文本自适应）
+### 示例6（设置文本自适应和缩放倍数限制范围）
 
-该示例通过heightAdaptivePolicy属性展示了文本自适应的效果。
+该示例通过heightAdaptivePolicy属性展示文本自适应效果以及通过minFontScale、maxFontScale展示设置字体缩放倍数限制范围。
 
 ```ts
 // xxx.ets
@@ -1496,6 +1548,12 @@ struct TextExample6 {
         .style(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
       Text('This is the text with the height adaptive policy set.')
         .style(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
+
+      Text('fontScale').fontSize(9).fontColor(0xCCCCCC)
+      Text('This is the text content with minFontScale set to 1 and maxFontScale set to 1.2')
+        .style(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
+        .minFontScale(1)
+        .maxFontScale(1.2)
     }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
   }
 }
@@ -1512,28 +1570,31 @@ struct TextExample6 {
 @Entry
 @Component
 struct TextExample7 {
-  @State phoneNumber: string = '(86) (755) ********'
-  @State url: string = 'www.********.com'
-  @State email: string = '***@example.com'
-  @State address: string = 'XX省XX市XX区XXXX'
-  @State datetime: string = 'XX年XX月XX日XXXX'
-  @State enableDataDetector: boolean = true
-  @State types: TextDataDetectorType[] = []
+  @State phoneNumber: string = '(86) (755) ********';
+  @State url: string = 'www.********.com';
+  @State email: string = '***@example.com';
+  @State address: string = 'XX省XX市XX区XXXX';
+  @State datetime: string = 'XX年XX月XX日XXXX';
+  @State enableDataDetector: boolean = true;
+  @State types: TextDataDetectorType[] = [];
 
   build() {
     Row() {
       Column() {
         Text(
           '电话号码：' + this.phoneNumber + '\n' +
-          '链接：' + this.url + '\n' +
-          '邮箱：' + this.email + '\n' +
-          '地址：' + this.address + '\n' +
-          '时间：' + this.datetime
+            '链接：' + this.url + '\n' +
+            '邮箱：' + this.email + '\n' +
+            '地址：' + this.address + '\n' +
+            '时间：' + this.datetime
         )
           .fontSize(16)
           .copyOption(CopyOptions.InApp)
           .enableDataDetector(this.enableDataDetector)
-          .dataDetectorConfig({types : this.types, onDetectResultUpdate: (result: string)=>{}})
+          .dataDetectorConfig({
+            types: this.types, onDetectResultUpdate: (result: string) => {
+            }
+          })
           .textAlign(TextAlign.Center)
           .borderWidth(1)
           .padding(10)
@@ -1557,8 +1618,8 @@ struct TextExample7 {
 @Entry
 @Component
 struct TextExample8 {
-  controller: TextController = new TextController()
-  options: TextOptions = { controller: this.controller }
+  controller: TextController = new TextController();
+  options: TextOptions = { controller: this.controller };
 
   build() {
     Column() {
@@ -1574,16 +1635,16 @@ struct TextExample8 {
         .copyOption(CopyOptions.InApp)
         .bindSelectionMenu(TextSpanType.IMAGE, this.LongPressImageCustomMenu, TextResponseType.LONG_PRESS, {
           onDisappear: () => {
-            console.info(`自定义选择菜单关闭时回调`)
+            console.info(`自定义选择菜单关闭时回调`);
           },
           onAppear: () => {
-            console.info(`自定义选择菜单弹出时回调`)
+            console.info(`自定义选择菜单弹出时回调`);
           }
         })
         .bindSelectionMenu(TextSpanType.TEXT, this.RightClickTextCustomMenu, TextResponseType.RIGHT_CLICK)
         .bindSelectionMenu(TextSpanType.MIXED, this.SelectMixCustomMenu, TextResponseType.SELECT)
         .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
-          console.info(`文本选中区域变化回调, selectionStart: ${selectionStart}, selectionEnd: ${selectionEnd}`)
+          console.info(`文本选中区域变化回调, selectionStart: ${selectionStart}, selectionEnd: ${selectionEnd}`);
         })
         .borderWidth(1)
         .borderColor(Color.Red)
@@ -1605,7 +1666,7 @@ struct TextExample8 {
         MenuItemGroup() {
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 1", labelInfo: "" })
             .onClick((event) => {
-              this.controller.closeSelectionMenu()
+              this.controller.closeSelectionMenu();
             })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 2", labelInfo: "" })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 3", labelInfo: "" })
@@ -1622,7 +1683,7 @@ struct TextExample8 {
         MenuItemGroup() {
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 1", labelInfo: "" })
             .onClick((event) => {
-              this.controller.closeSelectionMenu()
+              this.controller.closeSelectionMenu();
             })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 2", labelInfo: "" })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 3", labelInfo: "" })
@@ -1639,7 +1700,7 @@ struct TextExample8 {
         MenuItemGroup() {
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 1", labelInfo: "" })
             .onClick((event) => {
-              this.controller.closeSelectionMenu()
+              this.controller.closeSelectionMenu();
             })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 2", labelInfo: "" })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 3", labelInfo: "" })
@@ -1673,7 +1734,6 @@ function style() {
   .fontSize(12)
   .border({ width: 1 })
   .width('100%')
-  // .margin(5)
 }
 
 @Entry
@@ -1728,13 +1788,13 @@ import { text } from '@kit.ArkGraphics2D'
 @Entry
 @Component
 struct TextExample10 {
-  @State lineCount: string = ""
-  @State glyphPositionAtCoordinate: string = ""
-  @State lineMetrics: string = ""
-  @State rectsForRangeStr: string = ""
-  controller: TextController = new TextController()
+  @State lineCount: string = "";
+  @State glyphPositionAtCoordinate: string = "";
+  @State lineMetrics: string = "";
+  @State rectsForRangeStr: string = "";
+  controller: TextController = new TextController();
   @State textStr: string =
-    'Hello World! 您好，世界！'
+    'Hello World! 您好，世界！';
 
   build() {
     Scroll() {
@@ -1748,8 +1808,8 @@ struct TextExample10 {
           .fontSize(25)
           .borderWidth(1)
           .onAreaChange(() => {
-            let layoutManager: LayoutManager = this.controller.getLayoutManager()
-            this.lineCount = "LineCount: " + layoutManager.getLineCount()
+            let layoutManager: LayoutManager = this.controller.getLayoutManager();
+            this.lineCount = "LineCount: " + layoutManager.getLineCount();
           })
 
         Text('LineCount').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
@@ -1758,11 +1818,11 @@ struct TextExample10 {
         Text('GlyphPositionAtCoordinate').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
         Button("相对组件坐标[150,50]字形信息")
           .onClick(() => {
-            let layoutManager: LayoutManager = this.controller.getLayoutManager()
-            let position: PositionWithAffinity = layoutManager.getGlyphPositionAtCoordinate(150, 50)
+            let layoutManager: LayoutManager = this.controller.getLayoutManager();
+            let position: PositionWithAffinity = layoutManager.getGlyphPositionAtCoordinate(150, 50);
             this.glyphPositionAtCoordinate =
               "相对组件坐标[150,50] glyphPositionAtCoordinate position: " + position.position + " affinity: " +
-              position.affinity
+              position.affinity;
           })
           .margin({ bottom: 20, top: 10 })
         Text(this.glyphPositionAtCoordinate)
@@ -1770,12 +1830,12 @@ struct TextExample10 {
         Text('LineMetrics').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
         Button("首行行信息、文本样式信息、以及字体属性信息")
           .onClick(() => {
-            let layoutManager: LayoutManager = this.controller.getLayoutManager()
-            let lineMetrics: LineMetrics = layoutManager.getLineMetrics(0)
-            this.lineMetrics = "lineMetrics is " + JSON.stringify(lineMetrics) + "\n\n"
-            let runMetrics = lineMetrics.runMetrics
+            let layoutManager: LayoutManager = this.controller.getLayoutManager();
+            let lineMetrics: LineMetrics = layoutManager.getLineMetrics(0);
+            this.lineMetrics = "lineMetrics is " + JSON.stringify(lineMetrics) + "\n\n";
+            let runMetrics = lineMetrics.runMetrics;
             runMetrics.forEach((value, key) => {
-              this.lineMetrics += "runMetrics key is " + key + " " + JSON.stringify(value) + "\n\n"
+              this.lineMetrics += "runMetrics key is " + key + " " + JSON.stringify(value) + "\n\n";
             })
           })
           .margin({ bottom: 20, top: 10 })
@@ -1784,13 +1844,13 @@ struct TextExample10 {
         Text('getRectsForRange').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
         Button("获取指定矩形宽度和高度下，文本中任意区间范围内字符或占位符的绘制区域信息")
           .onClick(() => {
-            let layoutManager: LayoutManager = this.controller.getLayoutManager()
-            let range: TextRange = { start: 0, end: 1 }
+            let layoutManager: LayoutManager = this.controller.getLayoutManager();
+            let range: TextRange = { start: 0, end: 1 };
             let rectsForRangeInfo: text.TextBox[] =
-              layoutManager.getRectsForRange(range, text.RectWidthStyle.TIGHT, text.RectHeightStyle.TIGHT)
-            this.rectsForRangeStr = "getRectsForRange result is " + "\n\n"
+              layoutManager.getRectsForRange(range, text.RectWidthStyle.TIGHT, text.RectHeightStyle.TIGHT);
+            this.rectsForRangeStr = "getRectsForRange result is " + "\n\n";
             rectsForRangeInfo.forEach((value, key) => {
-              this.rectsForRangeStr += "rectsForRange key is " + key + " " + JSON.stringify(value) + "\n\n"
+              this.rectsForRangeStr += "rectsForRange key is " + key + " " + JSON.stringify(value) + "\n\n";
             })
           })
           .margin({ bottom: 20, top: 10 })
@@ -1813,8 +1873,9 @@ struct TextExample10 {
 @Entry
 @Component
 struct TextExample11 {
-  @State message: string = 'TextTextTextTextTextTextTextText' + 'TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText'
-  
+  @State message: string =
+    'TextTextTextTextTextTextTextText' + 'TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText';
+
   build() {
     Column() {
       Text(this.message)
@@ -1847,34 +1908,34 @@ struct TextExample12 {
       content: 'custom1',
       icon: $r('app.media.startIcon'),
       id: TextMenuItemId.of('custom1'),
-    }
+    };
     let item2: TextMenuItem = {
       content: 'custom2',
       id: TextMenuItemId.of('custom2'),
       icon: $r('app.media.startIcon'),
-    }
-    menuItems.push(item1)
-    menuItems.unshift(item2)
-    return menuItems
+    };
+    menuItems.push(item1);
+    menuItems.unshift(item2);
+    return menuItems;
   }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
     if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end)
-      return true
+      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end);
+      return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end)
-      return true
+      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
+      return true;
     }
     if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
-      return false
+      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+      return false;
     }
-    return false
-  }
+    return false;
+  };
   @State editMenuOptions: EditMenuOptions = {
     onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
-  }
+  };
 
   build() {
     Column() {
@@ -1905,7 +1966,7 @@ struct TextExample13 {
     Column({ space: 10 }) {
       Text("privacySensitive")
         .privacySensitive(true)
-        .margin({top :30})
+        .margin({ top: 30 })
     }
     .alignItems(HorizontalAlign.Center)
     .width("100%")

@@ -79,6 +79,7 @@
       - [Key Event](arkui-ts/ts-universal-events-key.md)
       - [Focus Event](arkui-ts/ts-universal-focus-event.md)
       - [Mouse Event](arkui-ts/ts-universal-mouse-key.md)
+      - [Crown Event](arkui-ts/ts-universal-events-crown.md)
       - [Hover Event](arkui-ts/ts-universal-events-hover.md)
       - [Accessibility Hover Event](arkui-ts/ts-universal-accessibility-hover-event.md)
       - [Component Area Change Event](arkui-ts/ts-universal-component-area-change-event.md)
@@ -133,6 +134,7 @@
       - Transition
         - [Modal Transition](arkui-ts/ts-universal-attributes-modal-transition.md)
         - [Sheet Transition](arkui-ts/ts-universal-attributes-sheet-transition.md)
+        - [Sheet Transition (System API)](arkui-ts/ts-universal-attributes-sheet-transition-sys.md)
       - [Obscuring](arkui-ts/ts-universal-attributes-obscured.md)
       - [Universal Text Attributes](arkui-ts/ts-universal-attributes-text-style.md)
       - [Drag and Drop Control](arkui-ts/ts-universal-attributes-drag-drop.md)
@@ -182,6 +184,8 @@
     - [List](arkui-ts/ts-container-list.md)
     - [ListItem](arkui-ts/ts-container-listitem.md)
     - [ListItemGroup](arkui-ts/ts-container-listitemgroup.md)
+    - [ArcList](arkui-ts/ts-container-arclist.md)
+    - [ArcListItem](arkui-ts/ts-container-arclistitem.md)
     - [Grid](arkui-ts/ts-container-grid.md)
     - [GridItem](arkui-ts/ts-container-griditem.md)
     - [Scroll](arkui-ts/ts-container-scroll.md)
@@ -193,11 +197,13 @@
     - [ComposeListItem](arkui-ts/ohos-arkui-advanced-ComposeListItem.md)
     - [GridObjectSortComponent](arkui-ts/ohos-arkui-advanced-GridObjectSortComponent.md)
     - [SwipeRefresher](arkui-ts/ohos-arkui-advanced-SwipeRefresher.md)
+    - [ArcScrollBar](arkui-ts/ts-basic-components-arcscrollbar.md)
     - [Scrollable Component Common APIs](arkui-ts/ts-container-scrollable-common.md)
     <!--Del-->
     - [List (System API)](arkui-ts/ts-container-list-sys.md)
     <!--DelEnd-->
   - Navigation and Switching
+    - [Indicator](arkui-ts/ts-swiper-components-indicator.md)
     - [Navigation](arkui-ts/ts-basic-components-navigation.md)
     - [NavDestination](arkui-ts/ts-basic-components-navdestination.md)
     - [MultiNavigation](arkui-ts/ohos-arkui-advanced-MultiNavigation.md)
@@ -221,7 +227,9 @@
     - [DownloadFileButton](arkui-ts/ohos-arkui-advanced-DownloadFileButton.md)
     - [ProgressButton](arkui-ts/ohos-arkui-advanced-ProgressButton.md)
     - [SegmentButton](arkui-ts/ohos-arkui-advanced-SegmentButton.md)
+    - [SegmentButtonV2](arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md)
     - [Filter](arkui-ts/ohos-arkui-advanced-Filter.md)
+    - [ArcButton](arkui-ts/ohos-arkui-advanced-ArcButton.md)
   - Text and Input
     - [Text](arkui-ts/ts-basic-components-text.md)
     - [TextArea](arkui-ts/ts-basic-components-textarea.md)
@@ -253,6 +261,7 @@
     <!--DelEnd-->
   - Information Display
     - [AlphabetIndexer](arkui-ts/ts-container-alphabet-indexer.md)
+    - [ArcAlphabetIndexer](arkui-ts/ts-container-arc-alphabet-indexer.md)
     - [Badge](arkui-ts/ts-container-badge.md)
     - [Chip](arkui-ts/ohos-arkui-advanced-Chip.md)
     - [ChipGroup](arkui-ts/ohos-arkui-advanced-ChipGroup.md)
@@ -372,6 +381,9 @@
     - [ForEach](arkui-ts/ts-rendering-control-foreach.md)
     - [LazyForEach](arkui-ts/ts-rendering-control-lazyforeach.md)
     - [Repeat](arkui-ts/ts-rendering-control-repeat.md)
+    <!--Del-->
+    - [State Management with Application-level Variables (System API)](arkui-ts/ts-state-management-sys.md)
+    <!--DelEnd-->
   - Common Definitions
     - [Basic Types](arkui-ts/ts-types.md)
     - [Pixel Units](arkui-ts/ts-pixel-units.md)
@@ -420,6 +432,7 @@
     - [native_gesture.h](native__gesture_8h.md)
     - [native_interface.h](native__interface_8h.md)
     - [native_interface_accessibility.h](native__interface__accessibility_8h.md)
+    - [native_interface_focus.h](native__interface__focus_8h.md)
     - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
     - [native_key_event.h](native__key_event_8h.md)
     - [native_node.h](native__node_8h.md)
@@ -480,6 +493,7 @@
     - [System Resource Error Codes](errorcode-system-resource.md)
     - [Sheet Error Codes](errorcode-bindSheet.md)
     - [Scrollable Component Error Codes](errorcode-scroll.md)
+    - [Snapshot Error Codes](errorcode-snapshot.md)
   - Graphics
     - [Display Error Codes](errorcode-display.md)
     - [Window Error Codes](errorcode-window.md)

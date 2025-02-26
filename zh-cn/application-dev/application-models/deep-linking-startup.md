@@ -11,11 +11,13 @@ Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标�
 
 ### 配置module.json5文件
 
-为了能够支持被其他应用访问，目标应用需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中配置[skills标签](../quick-start/module-configuration-file.md#skills标签)。其中，scheme的取值支持自定义，可以定义为任意不包含特殊字符、非`ohos`开头的字符串。
+为了能够支持被其他应用访问，目标应用需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中配置[skills标签](../quick-start/module-configuration-file.md#skills标签)。
 
 > **说明：**
 > 
-> Deep Linking中的scheme取值通常不为https、http、file，否则会拉起默认的系统浏览器。
+> skills标签下默认包含一个skill对象，用于标识应用入口。应用跳转链接不能在该skill对象中配置，需要创建独立的skill对象。如果存在多个跳转场景，需要在skills标签下创建不同的skill对象，否则会导致配置无法生效。
+> 
+> Deep Linking中的scheme取值支持自定义，可以为任意不包含特殊字符、非ohos开头的字符串。通常不为https、http、file，否则会拉起默认的系统浏览器。
 
 
 配置示例如下：
@@ -29,8 +31,16 @@ Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标�
         // ...
         "skills": [
           {
+            "entities": [
+              "entity.system.home"
+            ],
             "actions": [
-              // actions不能为空，actions为空会造成目标方匹配失败
+              "action.system.home"
+            ]
+          },
+          {
+            "actions": [
+              // actions不能为空，actions为空会造成目标方匹配失败。
               "ohos.want.action.viewData"
             ],
             "uris": [
@@ -41,7 +51,7 @@ Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标�
                 "host": "www.example.com"
               }
             ]
-          }
+          } // 新增一个skill对象，用于跳转场景。如果存在多个跳转场景，需配置多个skill对象。
         ]
       }
     ]

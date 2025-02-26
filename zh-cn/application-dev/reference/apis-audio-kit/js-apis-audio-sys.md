@@ -1858,8 +1858,8 @@ let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
 }];
 
 async function selectInputDeviceByFilter() {
-    let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例
-    let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例
+    let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例。
+    let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例。
     audioRoutingManager.selectInputDeviceByFilter(inputAudioCapturerFilter, inputAudioDeviceDescriptor, (err: BusinessError) => {
     if (err) {
         console.error(`Result ERROR: ${err}`);
@@ -1922,8 +1922,8 @@ let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
 }];
 
 async function selectInputDeviceByFilter(){
-    let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例
-    let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例
+    let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例。
+    let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例。
     audioRoutingManager.selectInputDeviceByFilter(inputAudioCapturerFilter, inputAudioDeviceDescriptor).then(() => {
         console.info('Select input devices by filter result promise: SUCCESS');
     }).catch((err: BusinessError) => {
@@ -1969,8 +1969,8 @@ let outputAudioRendererFilter: audio.AudioRendererFilter = {
 };
 
 async function selectOutputDeviceByFilter(){
-    let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例
-    let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例
+    let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例。
+    let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例。
     let desc : audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredOutputDeviceByFilter(outputAudioRendererFilter);
     console.info(`device descriptor: ${desc}`);
 }
@@ -2013,8 +2013,8 @@ let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
 };
 
 async function getPreferredInputDeviceByFilter(){
-    let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例
-    let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例
+    let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例。
+    let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例。
     let desc: audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredInputDeviceByFilter(inputAudioCapturerFilter);
     console.info(`device descriptor: ${desc}`);
 }
@@ -2646,7 +2646,7 @@ on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpat
 | 参数名   | 类型                                                 | 必填 | 说明                                           |
 | :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
 | type     | string                                               | 是   | 监听事件，固定为：'spatializationEnabledChangeForAnyDevice'。 |
-| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | 是   | Callback对象，返回设备信息和空间音频渲染开关状态    |
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | 是   | Callback对象，返回设备信息和空间音频渲染开关状态。    |
 
 **错误码：**
 
@@ -2702,10 +2702,10 @@ off(type: 'spatializationEnabledChange', callback?: Callback<boolean\>): void
 **示例：**
 
 ```ts
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioSpatializationManager.off('spatializationEnabledChange');
 
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let spatializationEnabledChangeCallback = (isSpatializationEnabled: boolean) => {
   console.info(`isSpatializationEnabled: ${isSpatializationEnabled}`);
 };
@@ -2747,10 +2747,10 @@ off(type: 'spatializationEnabledChangeForAnyDevice', callback?: Callback<AudioSp
 ```ts
 import { audio } from '@kit.AudioKit';
 
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioSpatializationManager.off('spatializationEnabledChangeForAnyDevice');
 
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let spatializationEnabledChangeForAnyDeviceCallback = (audioSpatialEnabledStateForDevice: audio.AudioSpatialEnabledStateForDevice) => {
   console.info(`deviceDescriptor: ${audioSpatialEnabledStateForDevice.deviceDescriptor}`);
   console.info(`isSpatializationEnabled: ${audioSpatialEnabledStateForDevice.enabled}`);
@@ -3144,10 +3144,10 @@ off(type: 'headTrackingEnabledChange', callback?: Callback<boolean\>): void
 ```ts
 import { audio } from '@kit.AudioKit';
 
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioSpatializationManager.off('headTrackingEnabledChange');
 
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let headTrackingEnabledChangeCallback = (isHeadTrackingEnabled: boolean) => {
   console.info(`isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
 };
@@ -3189,10 +3189,10 @@ off(type: 'headTrackingEnabledChangeForAnyDevice', callback?: Callback<AudioSpat
 ```ts
 import { audio } from '@kit.AudioKit';
 
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioSpatializationManager.off('headTrackingEnabledChangeForAnyDevice');
 
-// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let headTrackingEnabledChangeForAnyDeviceCallback = (audioSpatialEnabledStateForDevice: audio.AudioSpatialEnabledStateForDevice) => {
   console.info(`deviceDescriptor: ${audioSpatialEnabledStateForDevice.deviceDescriptor}`);
   console.info(`isSpatializationEnabled: ${audioSpatialEnabledStateForDevice.enabled}`);
@@ -3699,7 +3699,7 @@ setAsrAecMode(mode: AsrAecMode): boolean;
 
 | 参数名| 类型                         | 必填 | 说明 |
 |-------|----------------------------|-------|-------|
-| mode | [AsrAecMode](#asraecmode12) | 是 |ASR AEC 模式 |
+| mode | [AsrAecMode](#asraecmode12) | 是 |ASR AEC 模式。 |
 
 **返回值：**
 
@@ -3770,7 +3770,7 @@ setAsrNoiseSuppressionMode(mode: AsrNoiseSuppressionMode): boolean;
 
 | 参数名| 类型                                                    | 必填 | 说明 |
 |-------|-------------------------------------------------------|-------|-------|
-| mode | [AsrNoiseSuppressionMode](#asrnoisesuppressionmode12) | 是 |ASR 噪音抑制模式 |
+| mode | [AsrNoiseSuppressionMode](#asrnoisesuppressionmode12) | 是 |ASR 噪音抑制模式。 |
 
 **返回值：**
 
@@ -3871,7 +3871,7 @@ setAsrWhisperDetectionMode(mode: AsrWhisperDetectionMode): boolean
 
 | 参数名  | 类型                  | 必填 | 说明     |
 |------|---------------------|-------|--------|
-| mode | [AsrWhisperDetectionMode](#asrwhisperdetectionmode12) | 是 | 耳语检测模式 |
+| mode | [AsrWhisperDetectionMode](#asrwhisperdetectionmode12) | 是 | 耳语检测模式。 |
 
 **返回值：**
 
@@ -3943,7 +3943,7 @@ setAsrVoiceControlMode(mode: AsrVoiceControlMode, enable: boolean): boolean
 
 | 参数名  | 类型                  | 必填 | 说明     |
 |------|---------------------|-------|--------|
-| mode | [AsrVoiceControlMode](#asrvoicecontrolmode12) | 是 | 音频通路模式 |
+| mode | [AsrVoiceControlMode](#asrvoicecontrolmode12) | 是 | 音频通路模式。 |
 | enable   | boolean             | 是 | 开关状态   |
 
 **返回值：**
@@ -3983,8 +3983,8 @@ setAsrVoiceMuteMode(mode: AsrVoiceMuteMode, enable: boolean): boolean
 
 | 参数名  | 类型                                    | 必填 | 说明       |
 |------|---------------------------------------|-------|----------|
-| mode | [AsrVoiceMuteMode](#asrvoicemutemode12) | 是 | 静音控制模式 |
-| enable   | boolean                               | 是 | 开关状态     |
+| mode | [AsrVoiceMuteMode](#asrvoicemutemode12) | 是 | 静音控制模式。 |
+| enable   | boolean                               | 是 | 开关状态。     |
 
 **返回值：**
 

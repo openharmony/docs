@@ -239,9 +239,14 @@ struct TransitionEffectExample3 {
             Image($r('app.media.testImg')).width(150).height(150).id("image1")
               .transition(TransitionEffect.OPACITY.animation({ duration: 1000 }))
           }
-          Image($r('app.media.testImg')).width(150).height(150).margin({top: 50}).id("image2")
-            .transition(TransitionEffect.scale({x: 0, y: 0}).animation({ duration: 1000 }))
-          Text("view").margin({top: 50})
+
+          Image($r('app.media.testImg'))
+            .width(150)
+            .height(150)
+            .margin({ top: 50 })
+            .id("image2")
+            .transition(TransitionEffect.scale({ x: 0, y: 0 }).animation({ duration: 1000 }))
+          Text("view").margin({ top: 50 })
         }
         .id("column1")
         .transition(TransitionEffect.opacity(0.99).animation({ duration: 1000 }),

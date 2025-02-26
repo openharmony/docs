@@ -40,3 +40,4 @@
 | [NativeArkWeb_OnValidCallback](_web.md#nativearkweb_onvalidcallback) [OH_NativeArkWeb_GetJavaScriptProxyValidCallback](_web.md#oh_nativearkweb_getjavascriptproxyvalidcallback) (const char \*webTag) | 获取已注册的对象可注册时的回调函数。  | 
 | void [OH_NativeArkWeb_SetDestroyCallback](_web.md#oh_nativearkweb_setdestroycallback) (const char \*webTag, [NativeArkWeb_OnDestroyCallback](_web.md#nativearkweb_ondestroycallback) callback) | 设置组件销毁时的回调函数。  | 
 | [NativeArkWeb_OnDestroyCallback](_web.md#nativearkweb_ondestroycallback) [OH_NativeArkWeb_GetDestroyCallback](_web.md#oh_nativearkweb_getdestroycallback) (const char \*webTag) | 获取已注册的组件销毁时的回调函数。  | 
+| [ArkWeb_ErrorCode](_web.md#arkweb_errorcode) [OH_NativeArkWeb_LoadData](_web.md#oh_nativearkweb_loaddata) (const char* webTag,const char* data,const char* mimeType,const char* encoding,const char* baseUrl,const char* historyUrl) | 加载数据或URL，此函数应在主线程中调用。  |

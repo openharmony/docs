@@ -12,19 +12,115 @@
 import { appManager } from '@kit.AbilityKit';
 ```
 
-## 属性
+## ApplicationStateObserver.onForegroundApplicationChanged
+
+onForegroundApplicationChanged(appStateData: AppStateData): void
+
+应用前后台状态发生变化时执行的回调函数。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称                             | 类型                    | 可读 | 可写 | 说明   |
-| -------------------------------- | ---------------------- | ---- | ---- | ------------------ |
-| onForegroundApplicationChanged   | AsyncCallback\<void>   | 是   | 否   | 应用前后台状态发生变化时执行的回调函数。传入参数类型是[AppStateData](js-apis-inner-application-appStateData.md)。 |
-| onAbilityStateChanged            | AsyncCallback\<void>   | 是   | 否  | ability状态发生变化时执行的回调函数。传入参数类型是[AbilityStateData](js-apis-inner-application-abilityStateData.md)。   |
-| onProcessCreated                 | AsyncCallback\<void>   | 是   | 否   | 进程创建时执行的回调函数。传入参数类型是[ProcessData](js-apis-inner-application-processData.md)。          |
-| onProcessDied                     | AsyncCallback\<void>   | 是   | 否   | 进程销毁时执行的回调函数。传入参数类型是[ProcessData](js-apis-inner-application-processData.md)。          |
-| onProcessStateChanged | AsyncCallback\<void>   | 是   | 否   | 进程状态更新时执行的回调函数。传入参数类型是[ProcessData](js-apis-inner-application-processData.md)。        |
-| onAppStarted      | AsyncCallback\<void>   | 是   | 否   | 应用第一个进程创建时执行的回调函数。传入参数类型是[AppStateData](js-apis-inner-application-appStateData.md)。     |
-| onAppStopped       | AsyncCallback\<void>   | 是   | 否   | 应用最后一个进程销毁时执行的回调函数。传入参数类型是[AppStateData](js-apis-inner-application-appStateData.md)。     |
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| appStateData | [AppStateData](js-apis-inner-application-appStateData.md) | 是 | 应用状态信息。 |
+
+## ApplicationStateObserver.onAbilityStateChanged
+
+onAbilityStateChanged(abilityStateData: AbilityStateData): void
+
+ability状态发生变化时执行的回调函数。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| abilityStateData | [AbilityStateData](js-apis-inner-application-abilityStateData.md) | 是 | Ability状态信息。 |
+
+## ApplicationStateObserver.onProcessCreated
+
+onProcessCreated(processData: ProcessData): void
+
+进程创建时执行的回调函数。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| processData | [ProcessData](js-apis-inner-application-processData.md) | 是 | 进程数据信息。 |
+
+## ApplicationStateObserver.onProcessDied
+
+onProcessDied(processData: ProcessData): void
+
+进程销毁时执行的回调函数。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| processData | [ProcessData](js-apis-inner-application-processData.md) | 是 | 进程数据信息。 |
+
+## ApplicationStateObserver.onProcessStateChanged
+
+onProcessStateChanged(processData: ProcessData): void
+
+进程状态更新时执行的回调函数。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| processData | [ProcessData](js-apis-inner-application-processData.md) | 是 | 进程数据信息。 |
+
+## ApplicationStateObserver.onAppStarted
+
+onAppStarted(appStateData: AppStateData): void
+
+应用第一个进程创建时执行的回调函数。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| appStateData | [AppStateData](js-apis-inner-application-appStateData.md) | 是 | 应用状态信息。 |
+
+## ApplicationStateObserver.onAppStopped
+
+onAppStopped(appStateData: AppStateData): void
+
+应用最后一个进程销毁时执行的回调函数。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| appStateData | [AppStateData](js-apis-inner-application-appStateData.md) | 是 | 应用状态信息。 |
+
+## ProcessData
+
+type ProcessData = _ProcessData.default
+
+进程数据信息。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_ProcessData.default](js-apis-inner-application-processData.md) | 进程数据信息。 |
 
 **示例：**
 ```ts

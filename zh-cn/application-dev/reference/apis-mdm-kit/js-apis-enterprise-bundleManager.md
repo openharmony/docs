@@ -20,7 +20,7 @@ import { bundleManager } from '@kit.MDMKit';
 
 addAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-指定设备管理应用添加应用至包安装白名单，添加至白名单的应用允许在当前/指定用户下安装，否则不允许安装。
+添加应用至包安装白名单，添加至白名单的应用允许在当前/指定用户下安装，否则不允许安装。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -31,9 +31,9 @@ addAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组。                                                 |
-| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
+| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **错误码**：
 
@@ -69,7 +69,7 @@ try {
 
 removeAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-指定设备管理应用在包安装白名单中移除应用，在白名单存在的情况下，不在包安装白名单中的应用不允许在当前/指定用户下安装。
+在包安装白名单中移除应用，在白名单存在的情况下，不在包安装白名单中的应用不允许在当前/指定用户下安装。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -80,9 +80,9 @@ removeAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accoun
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组。                                                 |
-| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
+| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **错误码**：
 
@@ -118,7 +118,7 @@ try {
 
 getAllowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&gt;
 
-指定设备管理应用获取当前/指定用户下的包安装白名单。
+获取当前/指定用户下的包安装白名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -129,8 +129,8 @@ getAllowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&g
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
+| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **返回值：**
 
@@ -170,7 +170,7 @@ try {
 
 addDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-指定设备管理应用添加应用至包安装黑名单，添加至黑名单的应用不允许在当前/指定用户下安装。
+添加应用至包安装黑名单，添加至黑名单的应用不允许在当前/指定用户下安装。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -180,9 +180,9 @@ addDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accoun
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组。                                                 |
-| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
+| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **错误码**：
 
@@ -218,7 +218,7 @@ try {
 
 removeDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-指定设备管理应用在包安装黑名单中移除应用，在黑名单存在的情况下，在包安装黑名单中的应用不允许在当前/指定用户下安装。
+在包安装黑名单中移除应用，在黑名单存在的情况下，在包安装黑名单中的应用不允许在当前/指定用户下安装。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -228,9 +228,9 @@ removeDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, acc
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组。                                                 |
-| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
+| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **错误码**：
 
@@ -266,7 +266,7 @@ try {
 
 getDisallowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&gt;
 
-指定设备管理应用获取当前/指定用户下的包安装黑名单。
+获取当前/指定用户下的包安装黑名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -277,8 +277,8 @@ getDisallowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;strin
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
+| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **返回值：**
 
@@ -318,7 +318,7 @@ try {
 
 addDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-指定设备管理应用添加应用至包卸载黑名单，添加至黑名单的应用不允许在当前/指定用户下卸载。
+添加应用至包卸载黑名单，添加至黑名单的应用不允许在当前/指定用户下卸载。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -329,9 +329,9 @@ addDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, acco
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组。                                                 |
-| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
+| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **错误码**：
 
@@ -366,7 +366,7 @@ try {
 
 removeDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-指定设备管理应用在包卸载黑名单中移除应用。在黑名单存在的情况下，在包卸载黑名单中的应用不允许在当前/指定用户下卸载。
+在包卸载黑名单中移除应用。在黑名单存在的情况下，在包卸载黑名单中的应用不允许在当前/指定用户下卸载。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -377,9 +377,9 @@ removeDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, a
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组。                                                 |
-| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
+| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **错误码**：
 
@@ -414,7 +414,7 @@ try {
 
 getDisallowedUninstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&gt;
 
-指定设备管理应用获取当前/指定用户下包卸载黑名单接口。
+获取当前/指定用户下包卸载黑名单接口。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -425,8 +425,8 @@ getDisallowedUninstallBundlesSync(admin: Want, accountId?: number): Array&lt;str
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
+| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **返回值：**
 
@@ -466,7 +466,7 @@ try {
 
 uninstall(admin: Want, bundleName: string, userId?: number, isKeepData?: boolean): Promise&lt;void&gt;
 
-指定设备管理应用卸载当前/指定用户下的指定包接口，选择是否保留包数据（由isKeepData指定）。使用promise异步回调。
+卸载当前/指定用户下的指定包接口，选择是否保留包数据（由isKeepData指定）。使用promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
@@ -477,7 +477,7 @@ uninstall(admin: Want, bundleName: string, userId?: number, isKeepData?: boolean
 
 | 参数名     | 类型                                                    | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | bundleName | string                                                  | 是   | 包名。                                                       |
 | userId     | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 | isKeepData | boolean                                                 | 否   | 是否保留包数据，true表示保留，false表示不保留。              |
@@ -520,7 +520,7 @@ bundleManager.uninstall(wantTemp, 'bundleName', 100, true).then(() => {
 
 install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam): Promise\<void>
 
-指定设备管理应用安装指定路径下的应用包。使用promise异步回调。
+安装指定路径下的应用包。使用promise异步回调。
 注意：此接口只能安装分发类型为enterprise_mdm和enterprise_normal类型的应用。
 
 **需要权限：** ohos.permission.ENTERPRISE_INSTALL_BUNDLE
@@ -532,7 +532,7 @@ install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam):
 
 | 参数名       | 类型                                                    | 必填 | 说明                   |
 | ------------ | ------------------------------------------------------- | ---- | ---------------------- |
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。         |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。         |
 | hapFilePaths | Array\<string>                                          | 是   | 待安装应用包路径数组。 |
 | installParam | [InstallParam](#installparam)                           | 否   | 应用包安装参数。       |
 

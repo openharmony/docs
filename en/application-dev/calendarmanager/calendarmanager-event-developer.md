@@ -26,7 +26,7 @@ The table below lists the main APIs used for event management. For details about
 
    ```ts
    // entry/src/main/ets/entryability/EntryAbility.ets
-   import {abilityAccessCtrl,AbilityConstant, common, PermissionRequestResult, Permissions, UIAbility, Want } from '@kit.AbilityKit';
+   import { abilityAccessCtrl, AbilityConstant, common, PermissionRequestResult, Permissions, UIAbility, Want } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { calendarManager } from '@kit.CalendarKit';
    import { window } from '@kit.ArkUI';
@@ -138,9 +138,9 @@ The table below lists the main APIs used for event management. For details about
 
    Currently, you can create an event in either of the following methods:
 
-   Method 1: Use the **addEvent()** or **addEvents()** API to create an event in the calendar. You can use the **addEvent()** API to create a single event or use the **addEvents()** API to create events in batches. The following describes how to create a single event.
+   Method 1: Use **addEvent()** to create a single event or use **addEvents()** to create events in batches under a calendar account. The following describes how to create a single event.
 
-   Method 2: After obtaining the **calendarManager** object, you can use the **editEvent()** API to create a single event. In this case, the event creation page is displayed, where you can perform related operations to create an event. Note that **editEvent()** does not support the creation of custom periodic events.
+   Method 2: After obtaining the **calendarManager** object, you can use **editEvent()** to create a single event. In this case, the event creation page is displayed, where you can perform related operations to create an event. Note that **editEvent()** does not support the creation of custom periodic events.
 
    ```ts
    // Index.ets
@@ -190,7 +190,7 @@ The table below lists the main APIs used for event management. For details about
      console.error(`Failed to addEvent. Code: ${err.code}, message: ${err.message}`);
    });
    // Method 2
-    const eventInfo: calendarManager.Event = {
+   const eventInfo: calendarManager.Event = {
      // Event title.
      title: 'title',
      // Event type.

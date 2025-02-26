@@ -1,67 +1,67 @@
-# Introduction to Modular Operation
+# Overview of Modular Operation
 
-During the development of large-scale and complex applications, some code is copied for multiple times during compilation. As a result, the package size increases, file dependency, code and resource sharing is difficult, and singleton and global variable pollution occurs. In addition, ArkTS supports modular compilation, packaging, and running of applications to facilitate code compilation and function maintenance.
+To address challenges of large and complex application development—such as increased package size due to multiple copies of code during compilation, file dependencies, difficulties in sharing code and resources, and pollution of singletons and global variables—ArkTS supports modular compilation, packaging, and running. This approach not only streamlines the development process but also facilitates easier code writing and feature maintenance.
 
-Modularization refers to the process of splitting ArkTS/TS/JS into multiple modules (files or fragments) and loading, parsing, combining, and executing these modules using compilation tools or runtime mechanisms.
+Modularization refers to the process of splitting ArkTS/TS/JS into multiple modules (files or fragments) and then [loading](#loading-process-of-modular-operation), parsing, combining, and executing these modules using compilation tools or runtime mechanisms.
 
-ArtTS supports ETS/TS/JS files, JSON files, and native modules. ArkTS supports [ECMAScript module specifications](#ecmascript-module) and [CommonJS module specifications](#commonjs-module). In addition, ArkTS extends the loading modes, including dynamic loading (arkts-dynamic-import.md), delayed loading (arkts-lazy-import.md), and synchronous dynamic loading of native modules (js-apis-load-native-module.md). [Node-API interface loading file](load-module-base-nodeapi.md)
+ArkTS supports various module types, including ETS/TS/JS files, JSON files, and native modules. It adheres to both [ECMAScript module specifications](#ecmascript-module) and [CommonJS module specifications](#commonjs-module). In addition, ArkTS extends loading modes to include [dynamic import](arkts-dynamic-import.md), [lazy import](arkts-lazy-import.md), [synchronous dynamic loading of native modules](js-apis-load-native-module.md), and [loading files using Node-API](load-module-base-nodeapi.md).
 
 ## Loading Process of Modular Operation
 
-ArkTS modular runs are implemented according to the ECMA specification, and modules are executed in a later sequential traversal manner: starting from the leftmost subtree of the module diagram, executing the modules, then executing their peers, and then executing their parent. This algorithm runs recursively until it reaches the root of the module graph.
+ArkTS modular operation is implemented according to the ECMA specification and executes modules using a post-order traversal method: starting from the leftmost subtree of the module graph, it executes the modules, then their peers, and finally their parents. This algorithm runs recursively until it reaches the root of the module graph.
 
-As shown in the following figure, each parent node loads the corresponding child nodes and executes the child nodes at the same level based on the import sequence in the code. The following module diagram files are executed in the sequence of D-&gt;F-&gt;G-&gt;E-&gt;B-&gt;I-&gt;H-&gt;C-&gt;A.
+For example, in the figure below, each parent node loads its corresponding child nodes and executes peers in the order specified by the **import** statements in the code. The execution order for the module graph files is as follows: D-&gt;F-&gt;G-&gt;E-&gt;B-&gt;I-&gt;H-&gt;C-&gt;A.
 
 ![image_0000002043487154](figures/image_0000002043487154.png)
 
-The file A is referred to as an entry file, that is, the file is an execution start point. Some built-in loading interfaces, such as [windowStage.loadContent](../reference/apis-arkui/js-apis-window.md#loadcontent9) and [Navigation](../ui/arkts-navigation-navigation.md), are used to start pages (that is, files that are not started by using the import method). The input parameter file is executed as the entry file.
+Here, file A is referred to as the entry file, which is the starting point for execution. Certain built-in interfaces for loading content, such as [windowStage.loadContent](../reference/apis-arkui/js-apis-window.md#loadcontent9) and [Navigation](../ui/arkts-navigation-navigation.md), will also be executed as entry files, especially when these files are not loaded using the **import** syntax.
 
-File A is used as the entry to load a complete set of files, including file A, files on which file A depends, and files on which file A depends until each branch leaf node.
+Starting from file A, a complete set of files will be loaded, including file A, files on which file A depends, and subsequently dependent files, until the leaf nodes of each branch is reached.
 
 ## Modular Specifications Supported by ArkTS
 
 ### ECMAScript Module
 
-The ECMAScript module (ES Module) is a module function implemented by JavaScript from the standard level (ECMAScript® 2025 Language Specification (tc39.es)) since ECMAScript6.0. The module function consists of two commands: export and import.
+ECMAScript modules (ES modules) are a module feature implemented in JavaScript starting from ECMAScript 6.0, standardized in the ECMAScript® 2025 Language Specification (tc39.es). The module functionality is composed of two commands: **export** and **import**.
 
-For details about how to use export and import in ArkTS, see [ArkTS Introduction](../quick-start/introduction-to-arkts.md#module).
+For details about how to use **export** and **import** in ArkTS, see [ArkTS Introduction](../quick-start/introduction-to-arkts.md#modules).
 
 ### CommonJS Module
 
-The CommonJS module is a standard proposed by the JavaScript community in 2009. Some standards are first adopted and implemented in Node.js. The CommonJS considers each file as a module and uses the module variable to represent the current module. The module.exports variable is the variable exported by the module. Each module has the exports variable (exports = = = module.exports).
+CommonJS modules were proposed as a standard by the JavaScript community in 2009 and first partially adopted and implemented in Node.js. CommonJS treats each file as a module, with the **module** variable representing the current module. **module.exports** is the variable exported by the module, and each module also has an **exports** variable (exports === module.exports).
 
-The following table lists the import and export methods.
+The following table lists the import and export syntax.
 
-| Loading Type| Module import| Module export (module.exports and exports cannot be used together.)|
+| Loading Type| Module Import| Module Export (Do Not Mix module.exports with exports)|
 | -------- | -------- | -------- |
-| Name| const ohos = require('ohos') | exports.add = add<br>module.exports.name = name |
-| const ohos = require('ohos') | module.exports = add |
-| Functions| const ohos = require('ohos')<br>ohos.fun(); | exports.fun = function foo () {}<br>module.exports.fun = function foo () {} |
+| Variable| const ohos = require('ohos') | exports.add = add<br>module.exports.name = name |
+| Variable| const ohos = require('ohos') | module.exports = add |
+| Function| const ohos = require('ohos')<br>ohos.fun(); | exports.fun = function foo () {}<br>module.exports.fun = function foo () {} |
 
-> **Note**
+> **NOTE**
 >
-> The CommonJS module applies only to third-party package export and cannot be created or used by developers in projects.
+> CommonJS modules can be used only to export third-party packages. They cannot be created or used in projects.
 
 
-### Specifications Supported by CommonJS and ES Modules
+### Compatibility Between CommonJS and ES Modules
 
-The following table lists the specifications for mutual reference between CommonJS and ES Module. The import and export syntax complies with the specifications of each module.
-| Mutual reference relationship| ES Module Export| CommonJS export|
+The following table lists the compatibility between CommonJS and ES modules, with the import and export syntax following their respective specifications:
+| Inter-Module Reference| ES Module Export| CommonJS Export|
 | -------- | -------- | -------- |
-| ES Module Import| Yes.| Yes.|
-| Importing CommonJS| Not supported| Yes|
+| ES Module Import| Supported| Supported|
+| CommonJS Import| Not supported| Supported|
 
-## Types of Modules That Can Be Loaded by ArkTS
+## Module Types Supported by ArkTS
 
-### ets/ts/js
+### ETS/TS/JS
 
-The loading of the ETS, TS, and JS modules complies with [ECMAScript](#ecmascript-module) and [CommonJS](#commonjs-module) module specifications.
+Loading of the ETS, TS, and JS modules complies with the [ECMAScript module specifications](#ecmascript-module) and [CommonJS module specifications](#commonjs-module).
 
 ### JSON File
 
-JavaScript Object Notation (JSON) is a lightweight data interaction format that uses a text format that is completely independent of programming languages to store and represent data.
+JavaScript Object Notation (JSON) is a lightweight data interchange format that uses a text-based format independent of any programming language to store and represent data.
 
-The JSON file can be imported only in default mode, as shown in the following:
+JSON files can only be imported using the **default** method, as shown below:
 
 ```
 import data from './example.json'
@@ -69,11 +69,11 @@ import data from './example.json'
 
 ### Native Module
 
-The syntax specifications for importing and exporting the native module (.so) are the same as those for loading the ETS, TS, and JS files.
+The syntax specifications for importing and exporting the native module (.so) are the same as those for loading the ETS, TS, and JS files. Native modules (.so files) follow the same import/export and loading syntax as ETS/TS/JS modules. For details, see [Statically Loading Native Modules](./arkts-import-native-module.md).
 
-> **Note**
+> **NOTE**
 >
-> The Native module cannot be imported to the CommonJS module.
+> Native modules cannot be imported to CommonJS modules.
 
 Example:
 
@@ -88,23 +88,23 @@ import { add } from 'libentry.so'
 add(2, 3)
 ```
 
-ArkTS does not support namespaces for both native module export and import.
+Currently, ArkTS does not support namespaces for native module exports or imports.
 
-Non-compliant code example:
+Anti-example:
 
 ```
 // test1.ets
-export * from'libentry.so' // Use the namespace to export data.
+export * from 'libentry.so'  // Use the namespace to export data.
 ```
 
 ```
 // test2.ets
 import('./test1').then((ns:ESObject) => {
-  // The ns object cannot be obtained during dynamic loading.
-  // If you want to use this method to load the Native module, change the export mode in test1.ets to named export or default export.
+  // The ns object cannot be obtained during dynamic import.
+  // To use this method to load native modules, change the export in test1.ets to named or default export.
 })
 ```
 
-> **Note**
+> **NOTE**
 >
-> You are not advised to import data in import \* as xxx from 'xxx' mode. This import mode will cause runtime exceptions. You are advised to use the default import mode.
+> You are not advised to import data using import \* as xxx from 'xxx'. This import mode will cause runtime exceptions. Default imports are recommended.

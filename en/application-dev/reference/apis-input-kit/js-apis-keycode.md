@@ -163,19 +163,19 @@ Keycode value.
 | KEYCODE_NUMPAD_LEFT_PAREN        |  2121 | Key ( on numeric keypad                   |
 | KEYCODE_NUMPAD_RIGHT_PAREN       |  2122 | Key ) on numeric keypad                   |
 | KEYCODE_VIRTUAL_MULTITASK        |  2210 | Multi-task key                     |
-| KEYCODE_BUTTON_A<sup>16+</sup>   |  2301 | Button A on the gamepad            |
-| KEYCODE_BUTTON_B<sup>16+</sup>   |  2302 | Button B on the gamepad            |
-| KEYCODE_BUTTON_X<sup>16+</sup>   |  2304 | Button X on the gamepad            |
-| KEYCODE_BUTTON_Y<sup>16+</sup>   |  2305 | Button Y on the gamepad            |
-| KEYCODE_BUTTON_L1<sup>16+</sup>  |  2307 | Button L1 on the gamepad           |
-| KEYCODE_BUTTON_R1<sup>16+</sup>  |  2308 | Button R1 on the gamepad           |
-| KEYCODE_BUTTON_L2<sup>16+</sup>  |  2309 | Button L2 on the gamepad           |
-| KEYCODE_BUTTON_R2<sup>16+</sup>  |  2310 | Button R2 on the gamepad           |
-| KEYCODE_BUTTON_SELECT<sup>16+</sup>   |  2311 | Select button on the gamepad       |
-| KEYCODE_BUTTON_START<sup>16+</sup>    |  2312 | Start button on the gamepad        |
-| KEYCODE_BUTTON_MODE<sup>16+</sup>     |  2313 | Mode button on the gamepad         |
-| KEYCODE_BUTTON_THUMBL<sup>16+</sup>   |  2314 | Left Thumb button on the gamepad   |
-| KEYCODE_BUTTON_THUMBR<sup>16+</sup>   |  2315 | Right Thumb button on the gamepad  |
+| KEYCODE_BUTTON_A<sup>16+</sup>   |  2301 | Joystick key A           |
+| KEYCODE_BUTTON_B<sup>16+</sup>   |  2302 | Joystick key B           |
+| KEYCODE_BUTTON_X<sup>16+</sup>   |  2304 | Joystick key X           |
+| KEYCODE_BUTTON_Y<sup>16+</sup>   |  2305 | Joystick key Y           |
+| KEYCODE_BUTTON_L1<sup>16+</sup>  |  2307 | Joystick key L1          |
+| KEYCODE_BUTTON_R1<sup>16+</sup>  |  2308 | Joystick key R1          |
+| KEYCODE_BUTTON_L2<sup>16+</sup>  |  2309 | Joystick key L2          |
+| KEYCODE_BUTTON_R2<sup>16+</sup>  |  2310 | Joystick key R2          |
+| KEYCODE_BUTTON_SELECT<sup>16+</sup>   |  2311 | Joystick key Select      |
+| KEYCODE_BUTTON_START<sup>16+</sup>    |  2312 | Joystick key Start       |
+| KEYCODE_BUTTON_MODE<sup>16+</sup>     |  2313 | Joystick key Mode        |
+| KEYCODE_BUTTON_THUMBL<sup>16+</sup>   |  2314 | Joystick key THUMBL      |
+| KEYCODE_BUTTON_THUMBR<sup>16+</sup>   |  2315 | Joystick key THUMBR      |
 | KEYCODE_SLEEP                    |  2600 | Sleep key                        |
 | KEYCODE_ZENKAKU_HANKAKU          |  2601 | Zenkaku/Hankaku key                   |
 | KEYCODE_102ND                    |  2602 | 102nd key                    |

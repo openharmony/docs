@@ -9,7 +9,7 @@ You can use the APIs of this module to configure the concerned information, obta
 > - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The current page contains only the system APIs of the current module. For details about other public APIs, see [AccessibilityExtensionContext](js-apis-inner-application-accessibilityExtensionContext.md).
 
-## Instructions
+## How to Use
 
 Before using the **AccessibilityExtensionContext** module, you must define a child class that inherits from **AccessibilityExtensionAbility**.
 
@@ -35,7 +35,7 @@ Enables or disables the screen curtain.
 
 | Name        | Type                                    | Mandatory  | Description            |
 | ----------- | ---------------------------------------- | ---- | -------------- |
-| isEnable | boolean | Yes   | **true** indicates enabled; **false** indicates disabled.|
+| isEnable | boolean | Yes   | The value **true** indicates enabled; **false** indicates disabled.|
 
 **Error codes**
 
@@ -248,5 +248,95 @@ axContext.startAbility(want).then(() => {
   console.info(`startAbility Succeeded enable ability`);
 }).catch((err: BusinessError) => {
   console.error(`startAbility failed to enable ability, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+### getElements<sup>16+</sup>
+
+getElements(windowId: number, elementId?: number): Promise<Array&lt;AccessibilityElement&gt;>;
+
+Obtains node elements in batches.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| windowId | number | Yes| Window ID to be obtained.|
+| elementId | number | No| Element ID to be obtained. If this parameter is passed in, the list of all child nodes under the current node is obtained. Otherwise, all nodes in the window are obtained.|
+
+**Return value**
+| Type                                 | Description                    |
+| ----------------------------------- | ---------------------- |
+| Promise<Array&lt;AccessibilityElement&gt;> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
+
+**Example**
+
+```ts
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowId: number = 10;
+let elementId: number = 10;
+
+axContext.getElements(windowId, elementId).then((data:AccessibilityElement[]) => {
+  console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+### getDefaultFocusedElementIds<sup>16+</sup>
+
+getDefaultFocusedElementIds(windowId: number): Promise<Array&lt;number&gt;>;
+
+Obtains the custom default focuses of an application.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| windowId | number | Yes| Window ID to be obtained.|
+
+**Return value**
+| Type                                 | Description                    |
+| ----------------------------------- | ---------------------- |
+| Promise<Array&lt;number&gt;> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
+
+**Example**
+
+```ts
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowId: number = 10;
+
+axContext.getDefaultFocusedElementIds(windowId).then((data: number[]) => {
+  console.log(`Succeeded in get default focus, ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to get default focus, Code is ${err.code}, message is ${err.message}`);
 });
 ```

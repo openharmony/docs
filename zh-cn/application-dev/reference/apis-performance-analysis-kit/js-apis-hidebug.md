@@ -224,10 +224,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let applicationContext: common.Context | null = null;
 try {
-    let context = getContext() as common.UIAbilityContext;
-    applicationContext = context.getApplicationContext();
+  let context = getContext() as common.UIAbilityContext;
+  applicationContext = context.getApplicationContext();
 } catch (error) {
-    console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 
 let filesDir: string = applicationContext!.filesDir;
@@ -238,9 +238,9 @@ let serviceId: number = 10;
 let args: Array<string> = new Array("allInfo");
 
 try {
-    hidebug.getServiceDump(serviceId, file.fd, args);
+  hidebug.getServiceDump(serviceId, file.fd, args);
 } catch (error) {
-    console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 fileIo.closeSync(file);
 ```
@@ -278,7 +278,7 @@ try {
   // ...
   hidebug.stopJsCpuProfiling();
 } catch (error) {
-  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -301,7 +301,7 @@ try {
   // ...
   hidebug.stopJsCpuProfiling();
 } catch (error) {
-  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -336,7 +336,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   hidebug.dumpJsHeapData("heapData");
 } catch (error) {
-  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -434,12 +434,11 @@ getAppVMMemoryInfo(): VMMemoryInfo
 **示例：**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let vmMemory: hidebug.VMMemoryInfo = hidebug.getAppVMMemoryInfo();
-hilog.info(0x0000, "example", "totalHeap = %{public}d", vmMemory.totalHeap);
-hilog.info(0x0000, "example", "heapUsed = %{public}d", vmMemory.heapUsed);
-hilog.info(0x0000, "example", "allArraySize = %{public}d", vmMemory.allArraySize);
+console.info(`totalHeap = ${vmMemory.totalHeap}, heapUsed = ${vmMemory.heapUsed},` +
+  `allArraySize = ${vmMemory.allArraySize}` );
 ```
 
 ## hidebug.getAppThreadCpuUsage<sup>12+</sup>
@@ -461,12 +460,11 @@ getAppThreadCpuUsage(): ThreadCpuUsage[]
 **示例：**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let appThreadCpuUsage: hidebug.ThreadCpuUsage[] = hidebug.getAppThreadCpuUsage();
 for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
-    hilog.info(0x0000, "example", "threadId=%{public}d, cpuUsage=%{public}f", appThreadCpuUsage[ii].threadId,
-    appThreadCpuUsage[ii].cpuUsage);
+  console.info(`threadId=${appThreadCpuUsage[ii].threadId}, cpuUsage=${appThreadCpuUsage[ii].cpuUsage}`);
 }
 ```
 
@@ -474,11 +472,12 @@ for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
 
 startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : string
 
-启动应用trace采集，'startAppTraceCapture()'方法的调用需要与'[stopAppTraceCapture()](#hidebugstopapptracecapture12)'方法的调用一一对应。
+该接口是对[hitrace](../../dfx/hitrace.md)功能的一个补充，开发者可通过该接口完成指定范围的trace自动化采集。
+由于该接口中trace采集过程中消耗的性能与需要采集的范围成正相关，建议开发者在使用该接口前，通过hitrace命令抓取应用的trace日志，从中筛选出所需trace采集的关键范围，以提高该接口性能。
 
-先开启后关闭，严禁使用'start->start->stop'，'start->stop->stop'，'start->start->stop->stop'等类似的顺序调用。
+'startAppTraceCapture()'方法的调用需要与'[stopAppTraceCapture()](#hidebugstopapptracecapture12)'方法的调用一一对应，重复开启trace采集将导致接口调用异常，由于trace采集过程中会消耗较多性能，开发者应在完成采集后及时关闭。
 
-应用调用startAppTraceCapture接口启动采集trace，当采集的trace大小超过了limitSize，系统将自动调用stopAppTraceCapture接口停止采集，因此limitSize大小设置不当，将导致采集trace数据不足，无法满足故障分析。所以要求开发者根据实际情况，评估limitSize大小。
+应用调用startAppTraceCapture接口启动采集trace，当采集的trace大小超过了limitSize，系统将自动调用stopAppTraceCapture接口停止采集。因此limitSize大小设置不当，将导致采集trace数据不足，无法满足故障分析。所以要求开发者根据实际情况，评估limitSize大小。
 
 评估方法：limitSize = 预期trace采集时长 * trace单位流量。
 
@@ -492,10 +491,10 @@ trace单位流量实测方法：limitSize设置为最大值500M，调用startApp
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                                   |
-| -------- | ------   | ---- |--------------------------------------|
-| tags     | number[] | 是   | 详情请见[tags](#hidebugtags12)           |
-| flag     | TraceFlag| 是   | 详情请见[TraceFlag](#traceflag12)        |
+| 参数名   | 类型     | 必填 | 说明                                 |
+| -------- | ------   | ---- |------------------------------------|
+| tags     | number[] | 是   | trace范围，详情请见[tags](#hidebugtags12) |
+| flag     | TraceFlag| 是   | 详情请见[TraceFlag](#traceflag12)      |
 | limitSize| number   | 是   | 开启trace文件大小限制，单位为Byte，单个文件大小上限为500MB |
 
 **返回值：**
@@ -523,20 +522,23 @@ import { hidebug } from '@kit.PerformanceAnalysisKit';
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
 let limitSize: number = 1024 * 1024;
-let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
-// code block
-// ...
-// code block
-hidebug.stopAppTraceCapture();
+
+try {
+  let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
+  // code block
+  // ...
+  // code block
+  hidebug.stopAppTraceCapture();
+} catch (error) {
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+}
 ```
 
 ## hidebug.stopAppTraceCapture<sup>12+</sup>
 
 stopAppTraceCapture() : void
 
-停止应用trace采集，在停止采集前，需要通过'[startAppTraceCapture()](#hidebugstartapptracecapture12)'方法开始采集。
-
-先开启后关闭，严禁使用'start->start->stop'，'start->stop->stop'，'start->start->stop->stop'等类似的顺序调用。
+停止应用trace采集，在停止采集前，需要通过'[startAppTraceCapture()](#hidebugstartapptracecapture12)'方法开始采集，关闭前未开启trace采集或重复关闭将导致接口调用异常。
 
 调用startAppTraceCapture接口，如果没有合理传入limitSize参数，生成trace的大小大于传入的limitSize大小，系统内部会自动调用stopAppTraceCapture，再次手动调用stopAppTraceCapture就会抛出错误码11400105。
 
@@ -559,11 +561,15 @@ import { hidebug } from '@kit.PerformanceAnalysisKit';
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
 let limitSize: number = 1024 * 1024;
-let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
-// code block
-// ...
-// code block
-hidebug.stopAppTraceCapture();
+try {
+  let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
+  // code block
+  // ...
+  // code block
+  hidebug.stopAppTraceCapture();
+} catch (error) {
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+}
 ```
 
 ## hidebug.getAppMemoryLimit<sup>12+</sup>
@@ -616,7 +622,11 @@ getSystemCpuUsage() : number
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 
-let cpuUsage: number = hidebug.getSystemCpuUsage();
+try {
+  console.info(`getSystemCpuUsage: ${hidebug.getSystemCpuUsage()}`)
+} catch (error) {
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+}
 ```
 
 ## hidebug.setAppResourceLimit<sup>12+</sup>
@@ -655,7 +665,11 @@ import { hidebug } from '@kit.PerformanceAnalysisKit';
 let type: string = 'js_heap';
 let value: number = 85;
 let enableDebugLog: boolean = false;
-hidebug.setAppResourceLimit(type, value, enableDebugLog);
+try {
+  hidebug.setAppResourceLimit(type, value, enableDebugLog);
+} catch (error) {
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+}
 ```
 
 ## hidebug.getAppNativeMemInfo<sup>12+</sup>
@@ -675,23 +689,12 @@ getAppNativeMemInfo(): NativeMemInfo
 **示例**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfo();
-
-hilog.info(0x0000, 'testTag', "pss = %{public}d", nativeMemInfo.pss);
-
-hilog.info(0x0000, 'testTag', "vss = %{public}d", nativeMemInfo.vss);
-
-hilog.info(0x0000, 'testTag', "rss = %{public}d", nativeMemInfo.rss);
-
-hilog.info(0x0000, 'testTag', "sharedDirty = %{public}d", nativeMemInfo.sharedDirty);
-
-hilog.info(0x0000, 'testTag', "privateDirty = %{public}d", nativeMemInfo.privateDirty);
-
-hilog.info(0x0000, 'testTag', "sharedClean = %{public}d", nativeMemInfo.sharedClean);
-
-hilog.info(0x0000, 'testTag', "privateClean = %{public}d", nativeMemInfo.privateClean);
+console.info(`pss: ${nativeMemInfo.pss}, vss: ${nativeMemInfo.vss}, rss: ${nativeMemInfo.rss}, ` +
+  `sharedDirty: ${nativeMemInfo.sharedDirty}, privateDirty: ${nativeMemInfo.privateDirty}, ` +
+  `sharedClean: ${nativeMemInfo.sharedClean}, privateClean: ${nativeMemInfo.privateClean}`);
 ```
 
 ## hidebug.getSystemMemInfo<sup>12+</sup>
@@ -711,15 +714,12 @@ getSystemMemInfo(): SystemMemInfo
 **示例**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let systemMemInfo: hidebug.SystemMemInfo = hidebug.getSystemMemInfo();
 
-hilog.info(0x0000, 'testTag', "totalMem = %{public}d", systemMemInfo.totalMem);
-
-hilog.info(0x0000, 'testTag', "freeMem = %{public}d", systemMemInfo.freeMem);
-
-hilog.info(0x0000, 'testTag', "availableMem = %{public}d", systemMemInfo.availableMem);
+console.info(`totalMem: ${systemMemInfo.totalMem}, freeMem: ${systemMemInfo.freeMem}, ` +
+  `availableMem: ${systemMemInfo.availableMem}`);
 ```
 
 ## hidebug.getVMRuntimeStats<sup>12+</sup>
@@ -739,14 +739,14 @@ getVMRuntimeStats(): GcStats
 **示例**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let vMRuntimeStats: hidebug.GcStats = hidebug.getVMRuntimeStats();
-hilog.info(0x0000, "testTag", `gc-count: ${vMRuntimeStats['ark.gc.gc-count']}`);
-hilog.info(0x0000, "testTag", `gc-time: ${vMRuntimeStats['ark.gc.gc-time']}`);
-hilog.info(0x0000, "testTag", `gc-bytes-allocated: ${vMRuntimeStats['ark.gc.gc-bytes-allocated']}`);
-hilog.info(0x0000, "testTag", `gc-bytes-freed: ${vMRuntimeStats['ark.gc.gc-bytes-freed']}`);
-hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${vMRuntimeStats['ark.gc.fullgc-longtime-count']}`);
+console.info(`gc-count: ${vMRuntimeStats['ark.gc.gc-count']}`);
+console.info(`gc-time: ${vMRuntimeStats['ark.gc.gc-time']}`);
+console.info(`gc-bytes-allocated: ${vMRuntimeStats['ark.gc.gc-bytes-allocated']}`);
+console.info(`gc-bytes-freed: ${vMRuntimeStats['ark.gc.gc-bytes-freed']}`);
+console.info(`fullgc-longtime-count: ${vMRuntimeStats['ark.gc.fullgc-longtime-count']}`);
 ```
 
 ## hidebug.getVMRuntimeStat<sup>12+</sup>
@@ -780,13 +780,16 @@ getVMRuntimeStat(item : string): number
 **示例**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
-
-hilog.info(0x0000, "testTag", `gc-count: ${hidebug.getVMRuntimeStat('ark.gc.gc-count')}`);
-hilog.info(0x0000, "testTag", `gc-time: ${hidebug.getVMRuntimeStat('ark.gc.gc-time')}`);
-hilog.info(0x0000, "testTag", `gc-bytes-allocated: ${hidebug.getVMRuntimeStat('ark.gc.gc-bytes-allocated')}`);
-hilog.info(0x0000, "testTag", `gc-bytes-freed: ${hidebug.getVMRuntimeStat('ark.gc.gc-bytes-freed')}`);
-hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${hidebug.getVMRuntimeStat('ark.gc.fullgc-longtime-count')}`);
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+try {
+  console.info(`gc-count: ${hidebug.getVMRuntimeStat('ark.gc.gc-count')}`);
+  console.info(`gc-time: ${hidebug.getVMRuntimeStat('ark.gc.gc-time')}`);
+  console.info(`gc-bytes-allocated: ${hidebug.getVMRuntimeStat('ark.gc.gc-bytes-allocated')}`);
+  console.info(`gc-bytes-freed: ${hidebug.getVMRuntimeStat('ark.gc.gc-bytes-freed')}`);
+  console.info(`fullgc-longtime-count: ${hidebug.getVMRuntimeStat('ark.gc.fullgc-longtime-count')}`);
+} catch (error) {
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+}
 ```
 
 ## MemoryLimit<sup>12+</sup>
@@ -827,44 +830,46 @@ hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${hidebug.getVMRuntimeStat
 
 ## hidebug.tags<sup>12+</sup>
 
-描述支持/使用场景标签。
+描述支持trace使用场景的标签, 用户可通过[hitrace](../../dfx/hitrace.md)中的命令行工具，抓取指定标签的trace内容以进行预览。
+
+注意：以下标签实际值由系统定义，可能随版本升级而发生改变，为避免升级后出现兼容性问题，在生产中应直接使用标签名称而非标签数值。
 
 **系统能力:** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称                     | 类型    | 只读  |说明                                |
-| -------------------------| ------- |-----|----------------------------------- |
-| ABILITY_MANAGER          | number  | 是 |  能力管理标签                         |
-| ARKUI                    | number  | 是 |  ArkUI开发框架标签                    |
-| ARK                      | number  | 是 |  JSVM虚拟机标签                       |
-| BLUETOOTH                | number  | 是 |  蓝牙标签                            |
-| COMMON_LIBRARY           | number  | 是 |  公共库子系统标签                     |
-| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  | 是 |  分布式硬件设备管理标签     |
-| DISTRIBUTED_AUDIO        | number  | 是 |        分布式音频标签                 |
-| DISTRIBUTED_CAMERA       | number  | 是 |  分布式相机标签                       |
-| DISTRIBUTED_DATA         | number  | 是 |  分布式数据管理模块标签                |
-| DISTRIBUTED_HARDWARE_FRAMEWORK | number  | 是 |  分布式硬件框架标签              |
-| DISTRIBUTED_INPUT        | number  | 是 |  分布式输入标签                       |
-| DISTRIBUTED_SCREEN       | number  | 是 |  分布式屏幕标签                       |
-| DISTRIBUTED_SCHEDULER    | number  | 是 |  分布式调度器标签                     |
-| FFRT                     | number  | 是 |  FFRT任务标签.                        |
-| FILE_MANAGEMENT          | number  | 是 |  文件管理系统标签                     |
-| GLOBAL_RESOURCE_MANAGER  | number  | 是 |  全局资源管理标签                     |
-| GRAPHICS                 | number  | 是 |  图形模块标签                        |
-| HDF                      | number  | 是 |  HDF子系统标签                       |
-| MISC                     | number  | 是 |  MISC模块标签                        |
-| MULTIMODAL_INPUT         | number  | 是 |  多模态输入模块标签                   |
-| NET                      | number  | 是 |  网络标签                             |
-| NOTIFICATION             | number  | 是 |  通知模块标签                         |
-| NWEB                     | number  | 是 |  Nweb标签                            |
-| OHOS                     | number  | 是 |  OHOS通用标签                         |
-| POWER_MANAGER            | number  | 是 |  电源管理标签                         |
-| RPC                      | number  | 是 |  RPC标签                             |
-| SAMGR                    | number  | 是 |  系统能力管理标签                     |
-| WINDOW_MANAGER           | number  | 是 |  窗口管理标签                         |
-| AUDIO                    | number  | 是 |  音频模块标签                        |
-| CAMERA                   | number  | 是 |  相机模块标签                        |
-| IMAGE                    | number  | 是 |  图片模块标签                        |
-| MEDIA                    | number  | 是 |  媒体模块标签                        |
+| 名称                     | 类型    | 只读  | 说明                                         |
+| -------------------------| ------- |-----|--------------------------------------------|
+| ABILITY_MANAGER          | number  | 是 | 能力管理标签，hitrace命令行工具对应tagName:ability                  |
+| ARKUI                    | number  | 是 | ArkUI开发框架标签， hitrace命令行工具对应tagName:ace                |
+| ARK                      | number  | 是 | JSVM虚拟机标签， hitrace命令行工具对应tagName:ark                  |
+| BLUETOOTH                | number  | 是 | 蓝牙标签， hitrace命令行工具对应tagName:bluetooth                 |
+| COMMON_LIBRARY           | number  | 是 | 公共库子系统标签， hitrace命令行工具对应tagName:commonlibrary         |
+| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  | 是 | 分布式硬件设备管理标签， hitrace命令行工具对应tagName:devicemanager      |
+| DISTRIBUTED_AUDIO        | number  | 是 | 分布式音频标签， hitrace命令行工具对应tagName:daudio                 |
+| DISTRIBUTED_CAMERA       | number  | 是 | 分布式相机标签， hitrace命令行工具对应tagName:dcamera                |
+| DISTRIBUTED_DATA         | number  | 是 | 分布式数据管理模块标签， hitrace命令行工具对应tagName:distributeddatamgr |
+| DISTRIBUTED_HARDWARE_FRAMEWORK | number  | 是 | 分布式硬件框架标， hitrace命令行工具对应tagName:dhfwk                 |
+| DISTRIBUTED_INPUT        | number  | 是 | 分布式输入标签， hitrace命令行工具对应tagName:dinput                 |
+| DISTRIBUTED_SCREEN       | number  | 是 | 分布式屏幕标签， hitrace命令行工具对应tagName:dscreen                |
+| DISTRIBUTED_SCHEDULER    | number  | 是 | 分布式调度器标签， hitrace命令行工具对应tagName:dsched                |
+| FFRT                     | number  | 是 | FFRT任务标签， hitrace命令行工具对应tagName:ffrt                  |
+| FILE_MANAGEMENT          | number  | 是 | 文件管理系统标签， hitrace命令行工具对应tagName:filemanagement        |
+| GLOBAL_RESOURCE_MANAGER  | number  | 是 | 全局资源管理标签， hitrace命令行工具对应tagName:gresource             |
+| GRAPHICS                 | number  | 是 | 图形模块标签， hitrace命令行工具对应tagName:graphic                 |
+| HDF                      | number  | 是 | HDF子系统标签， hitrace命令行工具对应tagName:hdf                   |
+| MISC                     | number  | 是 | MISC模块标签， hitrace命令行工具对应tagName:misc                  |
+| MULTIMODAL_INPUT         | number  | 是 | 多模态输入模块标签， hitrace命令行工具对应tagName:multimodalinput      |
+| NET                      | number  | 是 | 网络标签， hitrace命令行工具对应tagName:net                       |
+| NOTIFICATION             | number  | 是 | 通知模块标签， hitrace命令行工具对应tagName:notification            |
+| NWEB                     | number  | 是 | Nweb标签， hitrace命令行工具对应tagName:nweb                    |
+| OHOS                     | number  | 是 | OHOS通用标签， hitrace命令行工具对应tagName:ohos                  |
+| POWER_MANAGER            | number  | 是 | 电源管理标签， hitrace命令行工具对应tagName:power                   |
+| RPC                      | number  | 是 | RPC标签， hitrace命令行工具对应tagName:rpc                      |
+| SAMGR                    | number  | 是 | 系统能力管理标签， hitrace命令行工具对应tagName:samgr                 |
+| WINDOW_MANAGER           | number  | 是 | 窗口管理标签， hitrace命令行工具对应tagName:window                  |
+| AUDIO                    | number  | 是 | 音频模块标签， hitrace命令行工具对应tagName:zaudio                  |
+| CAMERA                   | number  | 是 | 相机模块标签， hitrace命令行工具对应tagName:zcamera                 |
+| IMAGE                    | number  | 是 | 图片模块标签， hitrace命令行工具对应tagName:zimage                  |
+| MEDIA                    | number  | 是 | 媒体模块标签， hitrace命令行工具对应tagName:zmedia                  |
 
 ## NativeMemInfo<sup>12+</sup>
 
@@ -944,9 +949,9 @@ isDebugState(): boolean
 **示例**
 
 ```ts
-import { hidebug,hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
-hilog.info(0x000, "testTag", "isDebugState = %{public}s", hidebug.isDebugState())
+console.info(`isDebugState = ${hidebug.isDebugState()}`)
 ```
 
 ## hidebug.getGraphicsMemory<sup>14+</sup>
@@ -978,9 +983,9 @@ import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 hidebug.getGraphicsMemory().then((ret: number) => {
-    hilog.info(0x000, "testTag", `graphicsMemory: ${ret}`)
+  console.info(`graphicsMemory: ${ret}`)
 }).catch((error: BusinessError) => {
-    hilog.info(0x000, "testTag", `error code: ${error.code}, error msg: ${error.message}`);
+  console.error(`error code: ${error.code}, error msg: ${error.message}`);
 })
 ```
 
@@ -1011,12 +1016,12 @@ getGraphicsMemorySync(): number
 **示例**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    hilog.info(0x000, "testTag", `graphicsMemory: ${hidebug.getGraphicsMemorySync()}`)
+  console.info(`graphicsMemory: ${hidebug.getGraphicsMemorySync()}`)
 } catch (error) {
-    hilog.info(0x000, "testTag", `error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```

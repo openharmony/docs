@@ -49,13 +49,17 @@
 
 - URI还支持添加其他参数来设置具体的访问方式或访问对象，URI添加参数需严格遵循格式：`datashareproxy://{bundleName}/{dataPath}?{arg1}&{arg2}`，不符合规范的URI参数不生效。
 
-  其中以"?"符号开始参数，以"&"符号连接参数，连续的多个符号会被视为一个。当前仅支持“Proxy”以及“appIndex”参数。当使用多个"?"符开始参数时，"?"后的参数需是"Proxy"参数，否则该参数不生效。
+  其中以"?"符号开始参数，以"&"符号连接参数，连续的多个符号会被视为一个。当前仅支持“Proxy”、“appIndex”以及“user”参数。当使用多个"?"符开始参数时，"?"后的参数需是"Proxy"参数，否则该参数不生效。
 
   - "Proxy"仅支持设置为true或false，true表示数据访问方采用静默数据访问方式，false则表示数据访问方采用非静默数据访问方式。
 
   - "appIndex"仅支持设置为整型，表示应用包的分身索引，从1开始支持，仅在分身应用中生效。appIndex的定义及获取参照[BundleInfo](../reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md)。appIndex为0，或不填写时，访问数据提供者的应用本体。
 
     目前访问应用分身仅支持静默访问方式下，不支持非静默访问方式。故需要设置访问应用分身URI和参数时，请注意同步设置"Proxy"参数和"appIndex"参数。例如“datashareproxy://{bundleName}/{dataPath}?Proxy=true&appIndex=1”，表示将在数据访问方会在静默访问方式下访问应用的第一个分身。
+
+  - "user"仅支持设置为整型，表示要访问的数据提供方的用户ID。user的定义及获取参照[user](../reference/apis-basic-services-kit/js-apis-osAccount.md#getactivatedosaccountlocalids9)。user不填写时，默认为数据访问者所在的用户ID。
+
+    目前跨用户访问仅支持主空间和隐私空间之间的访问，且需要数据访问方配有跨用户访问权限ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS才可成功访问。
 
 ## 约束与限制
 
@@ -84,7 +88,7 @@
 | query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;DataShareResultSet&gt;): void | 查询数据库中的数据。           |
 | update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void | 更新数据库中的数据记录。         |
 | addTemplate(uri: string, subscriberId: string, template: Template): void | 添加一个指定订阅者的数据模板。      |
-| on(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, callback: AsyncCallback&lt;RdbDataChangeNode&gt;): Array&lt;OperationResult | 订阅指定URI和模板对应的数据变更事件。 |
+| on(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, callback: AsyncCallback&lt;RdbDataChangeNode&gt;): Array&lt;OperationResult&gt; | 订阅指定URI和模板对应的数据变更事件。 |
 
 ### 过程数据
 
@@ -138,9 +142,9 @@
 
    | 属性名称  | 备注说明                                     | 必填   |
    | ----- | ---------------------------------------- | ---- |
-   | path  | 指定数据源路径，目前支持关系型数据库，配置为库名/表名              | 是    |
+   | path  | 指定数据源路径，目前支持关系型数据库，配置为库名/表名。             | 是    |
    | type  | 标识数据库类型，目前支持配置为rdb，表示关系型数据库。             | 是    |
-   | scope | 数据库所在范围。<br>1.module表示数据库位于本模块下；<br>2.application表示数据库位于本应用下。 | 否    |
+   | scope | 数据库所在范围。<br>1.module表示数据库位于本模块下。<br>2.application表示数据库位于本应用下。 | 否    |
    | allowLists          | 包括appIdentifier和onlyMain。<br>allowLists中配置被允许访问的应用列表，最多配置256个授权信息。在跨应用数据访问时通过该配置校验数据访问方是否在数据提供方配置的列表内，若不在则拒绝访问。若无allowLists配置则不做白名单校验。不管是否配置allowLists，在[表1](#数据提供方应用的开发)中的读写权限依然会被正常校验。<br>**-appIdentifier：** 字符串，应用的唯一标识，由云端统一分配。数据提供方自行向访问方获取。<br>appIdentifier信息可参考[应用包信息](../reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md#signatureinfo)。 <br>**-onlyMain：** 布尔值，控制是否仅支持主应用。true: 只允许主应用访问，分身应用不可访问。false: 主应用和分身应用均可访问。 | 否   |
 
    **my_config.json配置样例**
@@ -367,7 +371,7 @@
 
 ### 数据提供方应用的开发
 
-数据提供方调用开启动态开启静默访问接口，来开启静默访问功能。此接口是搭配data_share_config.json文件中isSilentProxyEnable字段进行工作的。支持的配置可参考[data_share_config.json配置](./share-data-by-datashareextensionability.md)
+数据提供方调用开启动态开启静默访问接口，来开启静默访问功能。此接口是搭配data_share_config.json文件中isSilentProxyEnable字段进行工作的。支持的配置可参考[data_share_config.json配置](./share-data-by-datashareextensionability.md)。
 
 > 注意：
 >

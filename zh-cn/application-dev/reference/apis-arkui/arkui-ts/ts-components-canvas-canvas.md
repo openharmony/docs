@@ -45,12 +45,12 @@ Canvas(context: CanvasRenderingContext2D | DrawingRenderingContext, imageAIOptio
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### enableAnalyzer<sup>12+</sup>
 
 设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能。
-需要搭配[context](ts-canvasrenderingcontext2d.md)中的[StartImageAnalyzer](ts-canvasrenderingcontext2d.md#startimageanalyzer12)和[StopImageAnalyzer](ts-canvasrenderingcontext2d.md#stopimageanalyzer12)一起使用。
+需要搭配[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#canvasrenderingcontext2d)中的[StartImageAnalyzer](ts-canvasrenderingcontext2d.md#startimageanalyzer12)和[StopImageAnalyzer](ts-canvasrenderingcontext2d.md#stopimageanalyzer12)一起使用。
 不能和[overlay](ts-universal-attributes-overlay.md#overlay)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -65,7 +65,7 @@ Canvas(context: CanvasRenderingContext2D | DrawingRenderingContext, imageAIOptio
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持如下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持如下事件：
 
 ### onReady
 
@@ -87,7 +87,9 @@ Canvas组件初始化完成时或者Canvas组件发生大小变化时的事件�
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | event  | [VoidCallback](ts-types.md#voidcallback12) | 是   | Canvas组件初始化完成时或者Canvas组件发生大小变化时的事件回调事件。 |
 
-**示例：**
+## 示例
+
+### 示例1（使用CanvasRenderingContext2D中的方法）
 
 该示例实现了如何在Canvas组件使用CanvasRenderingContext2D中的方法进行绘制。
 
@@ -116,6 +118,7 @@ struct CanvasExample {
 ```
   ![zh-cn_image_0000001194032666](figures/zh-cn_image_0000001194032666.png)
 
+### 示例2（使用DrawingRenderingContext中的方法）
 
 该示例实现了如何在Canvas组件使用DrawingRenderingContext中的方法进行绘制。
 

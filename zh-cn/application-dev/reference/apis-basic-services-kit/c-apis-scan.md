@@ -260,7 +260,7 @@ int32_t OH_Scan_CloseScanner(const char* scannerId);
 
 返回SCAN_ERROR_RPC_FAILURE表示RPC通信错误；
 
-返回SCAN_ERROR_SERVER_FAILURE表示服务端出现异常。
+返回SCAN_ERROR_SERVER_FAILURE表示服务端出现异常；
 
 返回SCAN_ERROR_INVALID_PARAMETER表示无效参数。
 

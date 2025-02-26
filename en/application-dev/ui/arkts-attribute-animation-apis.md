@@ -20,7 +20,7 @@ Among the parameters of [animateTo](../reference/apis-arkui/arkui-ts/ts-explicit
 
 > **NOTE**
 > 
-> To avoid confusion with **animateTo** instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext) API, and then use the [animateTo](../reference/apis-arkui/js-apis-arkui-UIContext.md#animateto) API to invoke the instance's **animateTo** method.
+> Directly using **animateTo** can lead to ambiguous instance issues. To avoid this, it is recommended that you obtain a [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext) instance using the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext) API, and then call the [animateTo](../reference/apis-arkui/js-apis-arkui-UIContext.md#animateto) API on this instance.
 
 ```ts
 import { curves } from '@kit.ArkUI';

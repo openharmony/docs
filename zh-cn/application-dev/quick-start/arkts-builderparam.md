@@ -122,7 +122,7 @@
 
 ## 限制条件
 
-- \@BuilderParam装饰的变量只能使用\@Builder函数来进行初始化。详情见[@BuilderParam装饰器初始化的值必须为@Builder](#builderparam装饰器初始化的值必须为builder)
+- \@BuilderParam装饰的变量只能使用\@Builder函数来进行初始化。详情见[@BuilderParam装饰器初始化的值必须为@Builder](#builderparam装饰器初始化的值必须为builder)。
 
 - 当@Require装饰器和\@BuilderParam装饰器一起使用的时候，\@BuilderParam装饰器必须进行初始化。详情见[@Require装饰器和@BuilderParam装饰器联合使用](#require装饰器和builderparam装饰器联合使用)。
 

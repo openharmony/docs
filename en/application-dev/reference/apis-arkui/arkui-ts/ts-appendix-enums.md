@@ -801,6 +801,8 @@ Enumerates the coloring strategies.
 
 ## CheckBoxShape<sup>11+</sup>
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -835,7 +837,7 @@ Enumerates the coloring strategies.
 | INLINE  | Inline input style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.<br>The **showError** attribute is not supported for this style.<br>This style does not allow for text dragging and dropping.|
 
 
-## Nullable<sup>11+</sup>
+## Nullable\<T><sup>11+</sup>
 
 Nullable\<T> {
 
@@ -1003,18 +1005,6 @@ Enumerates the types of the providers that can be started by the **EmbeddedCompo
 | ROTATION_180 | 180 degrees.|
 | ROTATION_270 | 270 degrees.|
 
-## BlurStyleActivePolicy<sup>14+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 13.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name    | Description                           |
-| ------ | ----------------------------- |
-| ALWAYS_ACTIVE | The blur effect is always active.|
-| FOLLOWS_WINDOW_ACTIVE_STATE | The blur effect changes according to the window's focus state; it is inactive when the window is not in focus and active when the window is in focus.|
-| ALWAYS_INACTIVE | The blur effect is always inactive.|
-
 ## ScrollSource<sup>12+</sup>
 
 Enumerates the sources of scroll operations.
@@ -1102,11 +1092,11 @@ Enumerates the height breakpoint values corresponding to different window aspect
 | HEIGHT_MD | 1   | The window aspect ratio is greater than or equal to 0.8 and less than 1.2.|
 | HEIGHT_LG | 2   | The window aspect ratio is greater than or equal to 1.2.|
 
-## PageFlipMode<sup>14+</sup>
+## PageFlipMode<sup>15+</sup>
 
 Enumerates the modes for flipping pages using the mouse wheel.
 
-**Atomic service API**: This API can be used in atomic services since API version 14.
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1120,6 +1110,8 @@ Enumerates the modes for flipping pages using the mouse wheel.
 Enumerates the modes in which the final state of the component's content is rendered during its width and height animation process.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name                         | Description                                                                             |
 | --------------------------- | ---------------------------------------------------------------------------------- |
@@ -1140,7 +1132,36 @@ Enumerates the modes in which the final state of the component's content is rend
 | RESIZE_COVER_TOP_LEFT       | While maintaining its aspect ratio in the final state, the component's content is scaled to cover the component's entire content box. When there is remaining space in the width direction, the content is left-aligned with the component, so that its left part is displayed. When there is remaining space in the height direction, the content is top-aligned with the component, so that its top part is displayed.   ![renderfit_resize_cover_top_left](figures/renderfit_resize_cover_top_left.png) |
 | RESIZE_COVER_BOTTOM_RIGHT   | While maintaining its aspect ratio in the final state, the component's content is scaled to cover the component's entire content box. When there is remaining space in the width direction, the content is right-aligned with the component, so that its right part is displayed. When there is remaining space in the height direction, the content is bottom-aligned with the component, so that its bottom part is displayed.   ![renderfit_resize_cover_bottom_right](figures/renderfit_resize_cover_bottom_right.png) |
 
+
 > **NOTE**
 >
 > - In the illustrative diagrams, the blue area indicates the content, and the orange area indicates the component content box.
 > - Different render fit modes create different effects during the width and height animation process. Choose the one that best fits your need.
+
+## CrownAction<sup>16+</sup>
+
+Enumerates the crown actions.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+|Name            | Value| Description                                  |
+|-------------------| -- | ------------------------------------- |
+| BEGIN             | 0  | The crown starts to rotate.                         |
+| UPDATE	        | 1  | The crown is rotating.                           |
+| END	            | 2  | The crown stops rotating.                         |
+
+## CrownSensitivity<sup>16+</sup>
+
+Enumerates the sensitivity levels for crown rotation.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name          | Value | Description                                     |
+| -------------- | -- | ---------------------------------------- |
+| LOW 	         | 0   | Low sensitivity.                                |
+| MEDIUM         | 1   | Medium sensitivity.                                |
+| HIGH 	         | 2   | High sensitivity.                                |

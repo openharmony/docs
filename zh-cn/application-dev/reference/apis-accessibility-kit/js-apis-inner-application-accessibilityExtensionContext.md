@@ -84,7 +84,8 @@ class EntryAbility extends AccessibilityExtensionAbility {
 | offset<sup>12+</sup>             | number                                                             | 是   | 否   | 对于可滚动类控件，如List、Grid，内容区相对控件的顶部坐标滚动的像素偏移量。 |
 | hotArea<sup>12+</sup>             | [Rect](#rect)                                                              | 是   | 否   | 元素的可触摸区域。 |
 | customComponentType<sup>16+</sup>             | string                                                             | 是   | 否   | 自定义组件类型。 |
-| accessibilityNextFocusId<sup>16+</sup>             | number                                                             | 是   | 否   | 下一个要聚焦的组件ID。 |
+| accessibilityNextFocusId<sup>16+</sup>             | number                | 是   | 否   | 下一个要聚焦的组件ID。通过findElement('elementId')查询到的AccessibilityElementInfo对象中可获取到用户在控件上设置的该属性值。 |
+| accessibilityPreviousFocusId<sup>16+</sup>             | number                | 是   | 否   | 上一个聚焦的组件ID。通过findElement('elementId')查询到的AccessibilityElementInfo对象中可获取到用户在控件上设置的该属性值。 |
 | extraInfo<sup>16+</sup>             | string                                                             | 是   | 否   | 扩展属性，用于定义一些特定组件才拥有的属性。 |
 
 ## FocusDirection

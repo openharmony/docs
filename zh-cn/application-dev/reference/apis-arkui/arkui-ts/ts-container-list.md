@@ -4,25 +4,7 @@
 
 > **说明：**
 >
-> - 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
->
-> - 该组件内容区小于一屏时，默认没有回弹效果。需要回弹效果，可以通过edgeEffect属性的options参数进行设置。
->
-> - List组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
->
-> - 要使List处于可编辑模式需配合onItemDelete事件和ListItem的editable属性，即可编辑模式实现删除列表项功能，需满足以下条件（该功能从API9开始废弃）：
->
->   - editMode属性设置为true。
->
->   - 绑定onItemDelete事件，且事件回调返回true。
->
->   - ListItem的editable属性设置为true。
->
-> - 实现ListItem拖拽，需满足以下条件：
->
->   - editMode属性设置为true（从API9开始无需设置editMode属性）。
->
->   - 绑定onDragStart事件，且事件回调中返回浮动UI布局。
+> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -33,19 +15,17 @@
 >
 > List的子组件的索引值计算规则：
 >
-> 按子组件的顺序依次递增。
+> - 按子组件的顺序依次递增。
 >
-> if/else语句中，只有条件成立的分支内的子组件会参与索引值计算，条件不成立的分支内子组件不计算索引值。
+> - if/else语句中，只有条件成立的分支内的子组件会参与索引值计算，条件不成立的分支内子组件不计算索引值。
 >
-> ForEach/LazyForEach/Repeat语句中，会计算展开所有子节点索引值。
+> - ForEach/LazyForEach/Repeat语句中，会计算展开所有子节点索引值。
 >
-> [if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)、[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)发生变化以后，会更新子节点索引值。
+> - [if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)、[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)发生变化以后，会更新子节点索引值。
 >
-> ListItemGroup作为一个整体计算一个索引值，ListItemGroup内部的ListItem不计算索引值。
+> - ListItemGroup作为一个整体计算一个索引值，ListItemGroup内部的ListItem不计算索引值。
 >
-> List子组件visibility属性设置为Hidden或None依然会计算索引值。
->
-> List子组件的visibility属性设置为None时不显示，但该子组件上下的space还会生效。
+> - List子组件visibility属性设置为Hidden或None依然会计算索引值。
 
 
 ## 接口
@@ -76,13 +56,17 @@ List(value?: [ListOptions](#listoptions16对象说明))
 
 | 名称       | 类型                                    | 必填 | 说明                                                     |
 | ------------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| space        | number&nbsp;\|&nbsp;string                  | 否   | 子组件主轴方向的间隔。<br/>默认值：0<br/>参数类型为number时单位为vp<br/>**说明：** <br/>设置为负数或者大于等于List内容区长度时，按默认值显示。<br/>space参数值小于List分割线宽度时，子组件主轴方向的间隔取分割线宽度。 |
-| initialIndex | number                                      | 否   | 设置当前List初次加载时显示区域起始位置的item索引值。<br/>默认值：0<br/>**说明：** <br/>设置为负数或超过了当前List最后一个item的索引值时视为无效取值，无效取值按默认值显示。 |
+| initialIndex | number | 否 | 设置当前List初次加载时显示区域起始位置的item索引值。<br/>默认值：0<br/>**说明：** <br/>设置为负数或超过了当前List最后一个item的索引值时视为无效取值，无效取值按默认值显示。 |
+| space        | number&nbsp;\|&nbsp;string                  | 否   | 子组件主轴方向的间隔。<br/>默认值：0<br/>参数类型为number时单位为vp。<br/>**说明：** <br/>设置为负数或者大于等于List内容区长度时，按默认值显示。<br/>space参数值小于List分割线宽度时，子组件主轴方向的间隔取分割线宽度。<br/> List子组件的visibility属性设置为None时不显示，但该子组件上下的space还是会生效。|
 | scroller     | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件绑定同一个滚动控制对象。 |
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)和[滚动组件通用属性](ts-container-scrollable-common.md#属性)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)和[滚动组件通用属性](ts-container-scrollable-common.md#属性)外，还支持以下属性：
+
+> **说明：**
+>
+> List组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
 
 ### listDirection
 
@@ -212,6 +196,10 @@ editMode(value: boolean)
 edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
 
 设置边缘滑动效果。
+
+> **说明：**
+>
+> 当List组件的内容区小于一屏时，默认没有回弹效果。若要启用回弹效果，可以通过设置edgeEffect属性的options参数来实现。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -478,6 +466,22 @@ maintainVisibleContentPosition(enabled: boolean)
 > - maintainVisibleContentPosition属性设置为true后，在显示区域上方插入或删除数据，会触发onDidScroll、onScrollIndex事件。
 > - maintainVisibleContentPosition属性设置为true后，在多列场景下，一次插入或删除整行数据，可以保持可见内容位置不变，如果不是插入或删除整行数据，可见内容位置还是会发生变化。
 
+### stackFromEnd<sup>16+</sup>
+
+stackFromEnd(enabled: boolean)
+
+设置List组件从末尾开始布局。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| enabled  | boolean | 是   | 设置List组件是否从末尾开始布局。<br/>默认值：false，List从顶部开始布局。 true：List组件从末尾开始布局。|
+
 ## ListItemAlign<sup>9+</sup>枚举说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -555,7 +559,7 @@ maintainVisibleContentPosition(enabled: boolean)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)和[滚动组件通用事件](ts-container-scrollable-common.md#事件)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)和[滚动组件通用事件](ts-container-scrollable-common.md#事件)外，还支持以下事件：
 
 ### onItemDelete<sup>(deprecated)</sup>
 
@@ -942,7 +946,7 @@ getVisibleListContentInfo(x:number, y: number): VisibleListContentInfo
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100004   | Controller not bound to component.                               |
+| 100004   |The controller not bound to component.|
 ### scrollToItemInGroup<sup>11+</sup>
 
 scrollToItemInGroup(index: number, indexInGroup: number, smooth?: boolean, align?: ScrollAlign): void

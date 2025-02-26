@@ -32,24 +32,24 @@ Tabs(options?: TabsOptions)
 
 | 参数名 | 类型         | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [TabsOptions](#tabsoptions16) | 否 | Tabs组件参数。 |
+| options | [TabsOptions](#tabsoptions15) | 否 | Tabs组件参数。 |
 
-## TabsOptions<sup>16+</sup>
+## TabsOptions<sup>15+</sup>
 
-Tabs组件参数，设置Tabs的页签位置，当前显示页签的索引和Tabs控制器。
+Tabs组件参数，设置Tabs的页签位置，当前显示页签的索引，Tabs控制器和TabBar的[通用属性](ts-component-general-attributes.md)。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名         | 类型                              | 必填   | 说明                                     |
 | ----------- | --------------------------------- | ---- | ---------------------------------------- |
 | barPosition | [BarPosition](#barposition枚举说明)| 否    | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start   |
 | index       | number                            | 否    | 设置当前显示页签的索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>直接修改index跳页时，切换动效不生效。 使用TabController的changeIndex时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>Tabs重建、系统资源切换（如系统字体切换、系统深浅色切换）或者组件属性变化时，会跳转到index对应的页面。若需要在上述情况下不跳转，建议使用双向绑定。 |
 | controller  | [TabsController](#tabscontroller) | 否    | 设置Tabs控制器。                               |
-| barModifier<sup>16+</sup>  | [CommonModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier) | 否    | 设置TabBar的[通用属性](ts-universal-attributes-size.md)。<br/>**说明：** <br/>动态置为undefined时会保持当前状态不变，不会重置各通用属性。 <br/>由一个CommonModifier切换为另一个CommonModifier时，重复属性会进行覆盖，非重复属性会同时生效，不会重置前一个CommonModifier的通用属性。<br/>Tabs的[barWidth](#barwidth)、[barHeight](#barheight)、[barBackgroundColor](#barbackgroundcolor10)、[barBackgroundBlurStyle](#barbackgroundblurstyle15)、[barBackgroundEffect](#barbackgroundeffect15)属性会覆盖CommonModifier的[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor16)、[barBackgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle16)、[barBackgroundEffect](ts-universal-attributes-background.md#backgroundeffect16)属性。<br/>[align](ts-universal-attributes-location.md#align)属性仅在[BarMode.Scrollable](#barmode10-1)模式下生效，且Tabs为横向时还需[nonScrollableLayoutStyle](#scrollablebarmodeoptions10对象说明)未设置或设置为异常值时才能生效。<br/>[TabContent](ts-container-tabcontent.md)组件的[tabBar](ts-container-tabcontent.md#tabbar16)属性为底部页签样式时不支持拖拽功能。|
+| barModifier<sup>15+</sup>  | [CommonModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier) | 否    | 设置TabBar的[通用属性](ts-component-general-attributes.md)。<br/>**说明：** <br/>动态置为undefined时会保持当前状态不变，不会重置各通用属性。 <br/>由一个CommonModifier切换为另一个CommonModifier时，重复属性会进行覆盖，非重复属性会同时生效，不会重置前一个CommonModifier的通用属性。<br/>Tabs的[barWidth](#barwidth)、[barHeight](#barheight)、[barBackgroundColor](#barbackgroundcolor10)、[barBackgroundBlurStyle](#barbackgroundblurstyle15)、[barBackgroundEffect](#barbackgroundeffect15)属性会覆盖CommonModifier的[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor16)、[backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle16)、[backgroundEffect](ts-universal-attributes-background.md#backgroundeffect16)属性。<br/>[align](ts-universal-attributes-location.md#align)属性仅在[BarMode.Scrollable](#barmode10-1)模式下生效，且Tabs为横向时还需[nonScrollableLayoutStyle](#scrollablebarmodeoptions10对象说明)未设置或设置为异常值时才能生效。<br/>[TabContent](ts-container-tabcontent.md)组件的[tabBar](ts-container-tabcontent.md#tabbar16)属性为底部页签样式时不支持拖拽功能。|
 
 ## BarPosition枚举说明
 
@@ -67,7 +67,7 @@ Tabs页签位置枚举。
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### vertical
 
@@ -205,7 +205,7 @@ animationDuration(value: number)
 
 animationMode(mode: Optional\<AnimationMode\>)
 
-设置点击TabBar页签时切换TabContent的动画形式。
+设置点击TabBar页签或调用TabsController的changeIndex接口时切换TabContent的动画形式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -215,7 +215,7 @@ animationMode(mode: Optional\<AnimationMode\>)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| mode  | Optional\<[AnimationMode](#animationmode12枚举说明)\> | 是   | 点击TabBar页签时切换TabContent的动画形式。<br/>默认值：<br/>默认值是AnimationMode.CONTENT_FIRST，表示在点击TabBar切换TabContent时，先加载目标页内容，再开始切换动画。|
+| mode  | Optional\<[AnimationMode](#animationmode12枚举说明)\> | 是   | 点击TabBar页签或调用TabsController的changeIndex接口时切换TabContent的动画形式。<br/>默认值：AnimationMode.CONTENT_FIRST，表示在点击TabBar页签或调用TabsController的changeIndex接口切换TabContent时，先加载目标页内容，再开始切换动画。|
 
 ### barPosition<sup>9+</sup>
 
@@ -463,9 +463,9 @@ TabBar布局模式枚举。
 | ------------- | ---- | ------------------------------------------------------------ |
 | CONTENT_FIRST | 0    | 先加载目标页内容，再开始切换动画。                             |
 | ACTION_FIRST  | 1    | 先开始切换动画，再加载目标页内容；生效需要同时需要满足：Tabs的height、width没有设置成auto。 |
-| NO_ANIMATION  | 2    | 关闭默认动画。                                                 |
-| CONTENT_FIRST_WITH_JUMP<sup>16+</sup> | 3    | 先加载目标页内容，再无动画跳转到目标页附近，最后有动画跳转到目标页。                             |
-| ACTION_FIRST_WITH_JUMP<sup>16+</sup>  | 4    | 先无动画跳转到目标页附近，再有动画跳转到目标页，最后加载目标页内容。此项生效需要同时需要满足：Tabs的height、width没有设置成auto。 |
+| NO_ANIMATION  | 2    | 关闭默认动画。调用TabsController的changeIndex接口切换TabContent时该枚举值不生效。<br>可以通过设置animationDuration为0实现调用TabsController的changeIndex接口时不带动画。               |
+| CONTENT_FIRST_WITH_JUMP<sup>15+</sup> | 3    | 先加载目标页内容，再无动画跳转到目标页附近，最后有动画跳转到目标页。                             |
+| ACTION_FIRST_WITH_JUMP<sup>15+</sup>  | 4    | 先无动画跳转到目标页附近，再有动画跳转到目标页，最后加载目标页内容。此项生效需要同时需要满足：Tabs的height、width没有设置成auto。 |
 
 ## LayoutStyle<sup>10+</sup>枚举说明
 
@@ -483,7 +483,7 @@ Scrollable模式下不滚动时的页签排布方式枚举。
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onChange
 
@@ -630,6 +630,61 @@ onContentWillChange(handler: OnTabsContentWillChangeCallback)
 | ------ | ------ | ---- | -------------------- |
 | handler  | [OnTabsContentWillChangeCallback](#ontabscontentwillchangecallback16) | 是   | 自定义Tabs页面切换拦截事件能力，新页面即将显示时触发的回调。 |
 
+### onSelected<sup>16+</sup>
+
+onSelected(event: Callback\<number>)
+
+当选中元素改变时触发该回调，返回值为当前选中的元素的索引值。
+
+满足以下任一条件，即可触发该事件：
+
+1. 滑动离手时满足翻页阈值，开始切换动画时触发。
+
+2. 通过[TabsController控制器](#tabscontroller)调用。
+
+3. 通过[状态变量](../../../quick-start/arkts-state.md)构造的属性值进行修改。
+
+4. 通过页签处点击触发。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| event  | [Callback](./ts-types.md#callback12)\<number> | 是   | 当前选中元素的索引。 |
+
+### onUnselected<sup>16+</sup>
+
+onUnselected(event: Callback\<number>)
+
+当选中元素改变时触发该回调，返回值为将要隐藏的元素的索引值。
+
+满足以下任一条件，即可触发该事件：
+
+1. 滑动离手时满足翻页阈值，开始切换动画时触发。
+
+2. 通过[TabsController控制器](#tabscontroller)调用。
+
+3. 通过[状态变量](../../../quick-start/arkts-state.md)构造的属性值进行修改。
+
+4. 通过页签处点击触发。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| event  | [Callback](./ts-types.md#callback12)\<number> | 是   | 将要隐藏元素的索引。 |
 
 ## OnTabsAnimationStartCallback<sup>16+</sup>
 
@@ -765,10 +820,10 @@ Tabs自定义切换动画相关信息。
 
 | 名称            | 类型         | 必填   | 说明                                       |
 | ------------- | ---------------------- | ---- |---------------------- |
-| timeout | number | 否 | Tabs自定义切换动画超时时间。从自定义动画开始切换计时，如果到达该时间后，开发者仍未调用[TabContentTransitionProxy](#tabcontenttransitionproxy11对象说明)的finishTransition接口通知Tabs组件自定义动画结束，那么组件就会认为此次自定义动画已结束，直接执行后续操作。单位ms，默认值为1000.|
-| transition | [Callback](./ts-types.md#callback12)\<[TabContentTransitionProxy](#tabcontenttransitionproxy11对象说明)> | 是 | 自定义切换动画具体内容。|
+| timeout | number | 否 | Tabs自定义切换动画超时时间。从自定义动画开始切换计时，如果到达该时间后，开发者仍未调用[TabContentTransitionProxy](#tabcontenttransitionproxy11)的finishTransition接口通知Tabs组件自定义动画结束，那么组件就会认为此次自定义动画已结束，直接执行后续操作。单位ms，默认值为1000.|
+| transition | [Callback](./ts-types.md#callback12)\<[TabContentTransitionProxy](#tabcontenttransitionproxy11)> | 是 | 自定义切换动画具体内容。|
 
-## TabContentTransitionProxy<sup>11+</sup>对象说明
+## TabContentTransitionProxy<sup>11+</sup>
 
 Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画的起始和目标页面信息，同时，也可以通过调用该对象的finishTransition接口通知Tabs组件自定义动画已结束。
 
@@ -2358,3 +2413,74 @@ struct TabsBarModifierExample {
 ```
 
 ![tabs15](figures/tabs15.gif)
+
+### 示例16（Tabs与TabBar联动切换）
+
+该示例通过onSelected接口，实现了Tabs与TabBar联动切换。
+
+```ts
+@Entry
+@Component
+struct TabsExample {
+  @State fontColor: string = '#182431'
+  @State selectedFontColor: string = '#007DFF'
+  @State currentIndex: number = 0
+  @State selectedIndex: number = 0
+  private controller: TabsController = new TabsController()
+
+  @Builder tabBuilder(index: number, name: string) {
+    Column() {
+      Text(name)
+        .fontColor(this.selectedIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontSize(16)
+        .fontWeight(this.selectedIndex === index ? 500 : 400)
+        .lineHeight(22)
+        .margin({ top: 17, bottom: 7 })
+      Divider()
+        .strokeWidth(2)
+        .color('#007DFF')
+        .opacity(this.selectedIndex === index ? 1 : 0)
+    }.width('100%')
+  }
+
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.Start, index: this.currentIndex, controller: this.controller }) {
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#00CB87')
+        }.tabBar(this.tabBuilder(0, 'green'))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#007DFF')
+        }.tabBar(this.tabBuilder(1, 'blue'))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#FFBF00')
+        }.tabBar(this.tabBuilder(2, 'yellow'))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#E67C92')
+        }.tabBar(this.tabBuilder(3, 'pink'))
+      }
+      .vertical(false)
+      .barMode(BarMode.Fixed)
+      .barWidth(360)
+      .barHeight(56)
+      .animationDuration(400)
+      .animationMode(AnimationMode.CONTENT_FIRST)
+      .onChange((index: number) => {
+        console.log("onChange index:" + index);
+        this.currentIndex = index
+      })
+      .onSelected((index: number) => {
+        console.log("onSelected index:" + index);
+        this.selectedIndex = index
+      })
+      .width('100%')
+      .height('100%')
+      .backgroundColor('#F1F3F5')
+    }.width('100%')
+  }
+}
+```
+![tabs_tarbar](figures/tabs_tarbar.gif)

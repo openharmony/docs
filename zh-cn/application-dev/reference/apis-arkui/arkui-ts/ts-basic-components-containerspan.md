@@ -56,7 +56,7 @@ attributeModifier(modifier: AttributeModifier\<ContainerSpanAttribute>)
 
 ## 事件
 
-不支持[通用事件](ts-universal-events-click.md)。
+不支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 ### 示例1（设置背景样式）
@@ -77,7 +77,7 @@ struct Index {
             .height('40vp')
             .verticalAlign(ImageSpanAlignment.CENTER)
           Span('   Hello World !   ').fontSize('16fp').fontColor(Color.White)
-        }.textBackgroundStyle({color: "#7F007DFF", radius: "12vp"})
+        }.textBackgroundStyle({ color: "#7F007DFF", radius: "12vp" })
       }
     }.width('100%').alignItems(HorizontalAlign.Center)
   }
@@ -114,7 +114,7 @@ struct ContainerSpanModifierExample {
             .width('40vp')
             .height('40vp')
             .verticalAlign(ImageSpanAlignment.CENTER)
-          Span(' 我是ContainerSpan attributeModifier ').fontSize('16fp').fontColor(Color.White)
+          Span(' I\'m ContainerSpan attributeModifier ').fontSize('16fp').fontColor(Color.White)
         }.attributeModifier(this.containerSpanModifier as MyContainerSpanModifier)
       }
     }.width('100%').alignItems(HorizontalAlign.Center)

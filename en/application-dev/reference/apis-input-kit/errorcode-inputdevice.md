@@ -22,26 +22,26 @@ This error code is generated if the specified device ID cannot be found in the m
 **Procedure**
 
 1. Call the [inputDevice.getDeviceList](js-apis-inputdevice.md) API to query the device ID and use the correct device ID to perform operations.
-   
-## 3900002 Keyboard device no connected.
+
+## 3900002 Keyboard Not Connected
 
 **Error Message**
 
-There is currently no keyboard device inserted for connection.
+There is currently no keyboard device connected.
 
 **Description**
 
-This error code is generated if currently no keyboard device connected.
+No keyboard is connected.
 
 **Possible Causes**
 
-The physical keyboard device is disconnected.
+The physical connection of the input device is disconnected.
 
 **Procedure**
 
-Check if the physical connection of the device is disconnected.
+Check whether the keyboard cable is disconnected.
 
-## 3900003 Non-input applications call
+## 3900003 API Call Failed for a Non-Input Application
 
 **Error Message**
 
@@ -49,12 +49,12 @@ it is prohibited for non-input applications.
 
 **Description**
 
-Prohibit non input method applications from calling this interface.
+Non-input applications are not allowed to call this API.
 
 **Possible Causes**
 
-Third party applications or non input method system applications call this interface.
+This API is called by a third-party application or a non-input system application.
 
 **Procedure**
 
-Please use input method application to call this interface.
+Use an input application to call this API.

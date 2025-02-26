@@ -7,11 +7,19 @@ During application development, you may want selected attributes to persist even
 PersistentStorage is an optional singleton object within an application. Its purpose is to persist selected AppStorage attributes so that their values are the same upon application re-start as they were when the application was closed.
 
 
+PersistentStorage provides capability for persisting the state variables. However, the persistence and UI reading capabilities depend on AppStorage. Before reading this topic, you are advised to read [AppStorage](./arkts-appstorage.md) and [PersistentStorage API reference](../reference/apis-arkui/arkui-ts/ts-state-management.md#persistentstorage).
+
 ## Overview
 
 PersistentStorage retains the selected AppStorage attributes on the device. The application uses the API to determine which AppStorage attributes should be persisted with PersistentStorage. The UI and business logic do not directly access attributes in PersistentStorage. All attribute access is to AppStorage. Changes in AppStorage are automatically synchronized to PersistentStorage.
 
 PersistentStorage creates a two-way synchronization with attributes in AppStorage. A frequently used API function is to access AppStorage through PersistentStorage. Additional API functions include managing persisted attributes. The business logic always obtains or sets attributes through AppStorage.
+
+The data storage path of PersistentStorage is at the module level. That is, the data copy is stored in the persistent file of the corresponding module when the module calls PersistentStorage. If multiple modules use the same key, the data is copied from and stored in the module that uses PersistentStorage first.
+
+The storage path of PersistentStorage, determined when the first ability of the application is started, is the module to which the ability belongs. If an ability calls PersistentStorage and can be started by different modules, the number of data copies is the same as the number of startup modes of the ability.
+
+PersistentStorage is coupled with AppStorage in terms of functions, and errors may occur when using data in different modules. Therefore, you are advised to use the **globalConnect** API of PersistenceV2 to replace the **persistProp** API of PersistentStorage. For details about how to migrate data from PersistentStorage to PersistenceV2, see [PersistentStorage->PersistenceV2](arkts-v1-v2-migration.md#persistentstorage-persistencev2). For details about PersistenceV2, see [PersistenceV2: Persisting Application State](arkts-new-persistencev2.md).
 
 ## Constraints
 
@@ -69,11 +77,11 @@ onWindowStageCreate(windowStage: window.WindowStage): void {
    ```
 
    Alternatively, apply local definition within the component:
-   
-   
-      ```ts
-      @StorageLink('aProp') aProp: number = 48;
-      ```
+
+
+   ```ts
+   @StorageLink('aProp') aProp: number = 48;
+   ```
 
 The complete code is as follows:
 
@@ -84,8 +92,8 @@ PersistentStorage.persistProp('aProp', 47);
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
-  @StorageLink('aProp') aProp: number = 48
+  @State message: string = 'Hello World';
+  @StorageLink('aProp') aProp: number = 48;
 
   build() {
     Row() {
@@ -105,16 +113,16 @@ struct Index {
 - First running after fresh application installation:
   1. **persistProp** is called to initialize PersistentStorage. A search for the **aProp** attribute in PersistentStorage returns no result, because the application has just been installed.
   2. A search for the attribute **aProp** in AppStorage still returns no result.
-  3. Create the **aProp** attribute of the number type in AppStorge and initialize it with the value 47.
+  3. Create the **aProp** attribute of the number type in AppStorge and initialize it with the value **47**.
   4. PersistentStorage writes the **aProp** attribute and its value **47** to the local device. The value of **aProp** in AppStorage and its subsequent changes are persisted.
-  5. In the **Index** component, create the state variable **\@StorageLink('aProp') aProp**, which creates a two-way synchronization with the **aProp** attribute in AppStorage. During the creation, the search in AppStorage for the **aProp** attribute is successful, and therefore, the state variable is initialized with the value **47** found in AppStorage.
+  5. In the **\<Index>** component, create the state variable **\@StorageLink('aProp') aProp**, which creates a two-way synchronization with the **aProp** attribute in AppStorage. During the creation, the search in AppStorage for the **aProp** attribute is successful, and therefore, the state variable is initialized with the value **47** found in AppStorage.
 
   **Figure 1** PersistProp initialization process 
 
 ![en-us_image_0000001553348833](figures/en-us_image_0000001553348833.png)
 
 - After a click event is triggered:
-  1. The state variable **\@StorageLink('aProp') aProp** is updated, triggering the **Text** component to be re-rendered.
+  1. The state variable **\@StorageLink('aProp') aProp** is updated, triggering the **\<Text>** component to be re-rendered.
   2. The two-way synchronization between the \@StorageLink decorated variable and AppStorage results in the change of the **\@StorageLink('aProp') aProp** being synchronized back to AppStorage.
   3. The change of the **aProp** attribute in AppStorage triggers any other one-way or two-way bound variables to be updated. (In this example, there are no such other variables.)
   4. Because the attribute corresponding to **aProp** has been persisted, the change of the **aProp** attribute in AppStorage triggers PersistentStorage to write the attribute and its new value to the device.
@@ -122,7 +130,7 @@ struct Index {
 - Subsequent application running:
   1. **PersistentStorage.persistProp('aProp', 47)** is called. A search for the **aProp** attribute in PersistentStorage succeeds.
   2. The attribute is added to AppStorage with the value found in PersistentStorage.
-  3. In the **Index** component, the value of the @StorageLink decorated **aProp** attribute is the value written by PersistentStorage to AppStorage, that is, the value stored when the application was closed last time.
+  3. In the **\<Index>** component, the value of the @StorageLink decorated **aProp** attribute is the value written by PersistentStorage to AppStorage, that is, the value stored when the application was closed last time.
 
 
 ### Accessing an Attribute in AppStorage Before PersistentStorage
@@ -213,10 +221,13 @@ struct PersistedDate {
           Text(`Persisted Date is ${this.persistedDate.toString()}`)
             .margin(20)
 
-          Text(`Persisted Date month is ${this.persistedDate.getMonth()}`)
+          Text(`Persisted Date year is ${this.persistedDate.getFullYear()}`)
             .margin(20)
 
-          Text(`Persisted Date day is ${this.persistedDate.getDay()}`)
+          Text(`Persisted Date hours is ${this.persistedDate.getHours()}`)
+            .margin(20)
+
+          Text(`Persisted Date minutes is ${this.persistedDate.getMinutes()}`)
             .margin(20)
 
           Text(`Persisted Date time is ${this.persistedDate.toLocaleTimeString()}`)

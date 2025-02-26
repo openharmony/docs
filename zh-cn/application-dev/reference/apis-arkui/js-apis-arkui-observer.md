@@ -31,6 +31,8 @@ NavDestination组件状态。
 | ON_WILL_HIDE<sup>12+</sup> | 5   | NavDestination组件隐藏之前。 |
 | ON_WILL_APPEAR<sup>12+</sup>| 6   | NavDestination挂载到组件树之前。|
 | ON_WILL_DISAPPEAR<sup>12+</sup>| 7   | NavDestination从组件树上卸载之前。|
+| ON_ACTIVE<sup>16+</sup> | 8 | NavDestination组件处于激活态。|
+| ON_INACTIVE<sup>16+</sup> | 9 | NavDestination组件处于非激活态。|
 | ON_BACKPRESS<sup>12+</sup> | 100   | NavDestination组件返回。 |
 
 ## ScrollEventType<sup>12+</sup>
@@ -79,20 +81,18 @@ TabContent组件的状态。
 
 NavDestination组件信息。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称         | 类型                                               | 必填 | 说明                                         |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | 包含NavDestination组件的Navigation组件的id。 |
-| name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | NavDestination组件的名称。 |
-| state        | [NavDestinationState](#navdestinationstate)        | 是   | NavDestination组件的状态。 |
-| index<sup>12+</sup>        | number        | 是   | NavDestination在页面栈中的索引。                   |
-| param<sup>12+</sup>        | Object        | 否   | NavDestination组件的参数。                   |
-| navDestinationId<sup>12+</sup>        | string        | 是   | NavDestination组件的唯一标识ID。                   |
-| mode<sup>16+</sup>        | [NavDestinationMode](arkui-ts/ts-basic-components-navdestination.md#navdestinationmode枚举说明-11)        | 是   | NavDestination类型。                   |
-| uniqueId<sup>16+</sup>        | number        | 是   | NavDestination组件的uniqueId。                   |
+| navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | 包含NavDestination组件的Navigation组件的id。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | NavDestination组件的名称。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| state        | [NavDestinationState](#navdestinationstate)        | 是   | NavDestination组件的状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| index<sup>12+</sup>        | number        | 是   | NavDestination在页面栈中的索引。    <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。               |
+| param<sup>12+</sup>        | Object        | 否   | NavDestination组件的参数。    <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。               |
+| navDestinationId<sup>12+</sup>        | string        | 是   | NavDestination组件的唯一标识ID。       <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。            |
+| mode<sup>15+</sup>        | [NavDestinationMode](arkui-ts/ts-basic-components-navdestination.md#navdestinationmode枚举说明-11)        | 否   | NavDestination类型。    <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。               |
+| uniqueId<sup>15+</sup>        | number        | 否   | NavDestination组件的uniqueId。      <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。             |
 
 ## NavigationInfo<sup>12+</sup>
 

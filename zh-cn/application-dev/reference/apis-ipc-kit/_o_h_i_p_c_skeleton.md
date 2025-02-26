@@ -26,11 +26,11 @@
 | -------- | -------- |
 | void [OH_IPCSkeleton_JoinWorkThread](#oh_ipcskeleton_joinworkthread) (void) | 当前线程加入IPC工作线程池。 | 
 | void [OH_IPCSkeleton_StopWorkThread](#oh_ipcskeleton_stopworkthread) (void) | 当前线程退出IPC工作线程池。 | 
-| uint64_t [OH_IPCSkeleton_GetCallingTokenId](#oh_ipcskeleton_getcallingtokenid) (void) | 获取调用方TokenId.该接口需要在IPC上下文中调用，否则返回自身TokenId。 | 
+| uint64_t [OH_IPCSkeleton_GetCallingTokenId](#oh_ipcskeleton_getcallingtokenid) (void) | 获取调用方TokenId。该接口需要在IPC上下文中调用，否则返回自身TokenId。 | 
 | uint64_t [OH_IPCSkeleton_GetFirstTokenId](#oh_ipcskeleton_getfirsttokenid) (void) | 获取首调者TokenId。 | 
 | uint64_t [OH_IPCSkeleton_GetSelfTokenId](#oh_ipcskeleton_getselftokenid) (void) | 获取自身TokenId。 | 
-| uint64_t [OH_IPCSkeleton_GetCallingPid](#oh_ipcskeleton_getcallingpid) (void) | 获取调用方进程ID.该接口需要在IPC上下文中调用，否则返当前进程ID。 | 
-| uint64_t [OH_IPCSkeleton_GetCallingUid](#oh_ipcskeleton_getcallinguid) (void) | 获取调用方用户ID.该接口需要在IPC上下文中调用，否则返当前用户ID。 | 
+| uint64_t [OH_IPCSkeleton_GetCallingPid](#oh_ipcskeleton_getcallingpid) (void) | 获取调用方进程ID。该接口需要在IPC上下文中调用，否则返当前进程ID。 | 
+| uint64_t [OH_IPCSkeleton_GetCallingUid](#oh_ipcskeleton_getcallinguid) (void) | 获取调用方用户ID。该接口需要在IPC上下文中调用，否则返当前用户ID。 | 
 | int [OH_IPCSkeleton_IsLocalCalling](#oh_ipcskeleton_islocalcalling) (void) | 判断是否正在进行本地调用。 | 
 | int [OH_IPCSkeleton_SetMaxWorkThreadNum](#oh_ipcskeleton_setmaxworkthreadnum) (const int maxThreadNum) | 设置最大工作线程数。 | 
 | int [OH_IPCSkeleton_ResetCallingIdentity](#oh_ipcskeleton_resetcallingidentity) (char \*\*identity, int32_t \*len, [OH_IPC_MemAllocator](_o_h_i_p_c_parcel.md#oh_ipc_memallocator) allocator) | 重置调用方身份凭证为自身进程的身份凭证（包括tokenid、UID和PID信息），并返回调用方的凭证信息。 该信息主要用于OH_IPCSkeleton_SetCallingIdentity接口调用。 | 
@@ -44,12 +44,12 @@
 ### OH_IPCSkeleton_GetCallingPid()
 
 ```
-uint64_t OH_IPCSkeleton_GetCallingPid (void )
+uint64_t OH_IPCSkeleton_GetCallingPid (void)
 ```
 
 **描述**
 
-获取调用方进程ID.该接口需要在IPC上下文中调用，否则返当前进程ID。
+获取调用方进程ID。该接口需要在IPC上下文中调用，否则返当前进程ID。
 
 **系统能力：** SystemCapability.Communication.IPC.Core
 
@@ -63,12 +63,12 @@ uint64_t OH_IPCSkeleton_GetCallingPid (void )
 ### OH_IPCSkeleton_GetCallingTokenId()
 
 ```
-uint64_t OH_IPCSkeleton_GetCallingTokenId (void )
+uint64_t OH_IPCSkeleton_GetCallingTokenId (void)
 ```
 
 **描述**
 
-获取调用方TokenId.该接口需要在IPC上下文中调用，否则返回自身TokenId。
+获取调用方TokenId。该接口需要在IPC上下文中调用，否则返回自身TokenId。
 
 **系统能力：** SystemCapability.Communication.IPC.Core
 
@@ -82,12 +82,12 @@ uint64_t OH_IPCSkeleton_GetCallingTokenId (void )
 ### OH_IPCSkeleton_GetCallingUid()
 
 ```
-uint64_t OH_IPCSkeleton_GetCallingUid (void )
+uint64_t OH_IPCSkeleton_GetCallingUid (void)
 ```
 
 **描述**
 
-获取调用方用户ID.该接口需要在IPC上下文中调用，否则返当前用户ID。
+获取调用方用户ID。该接口需要在IPC上下文中调用，否则返当前用户ID。
 
 **系统能力：** SystemCapability.Communication.IPC.Core
 
@@ -101,7 +101,7 @@ uint64_t OH_IPCSkeleton_GetCallingUid (void )
 ### OH_IPCSkeleton_GetFirstTokenId()
 
 ```
-uint64_t OH_IPCSkeleton_GetFirstTokenId (void )
+uint64_t OH_IPCSkeleton_GetFirstTokenId (void)
 ```
 
 **描述**
@@ -120,7 +120,7 @@ uint64_t OH_IPCSkeleton_GetFirstTokenId (void )
 ### OH_IPCSkeleton_GetSelfTokenId()
 
 ```
-uint64_t OH_IPCSkeleton_GetSelfTokenId (void )
+uint64_t OH_IPCSkeleton_GetSelfTokenId (void)
 ```
 
 **描述**
@@ -139,7 +139,7 @@ uint64_t OH_IPCSkeleton_GetSelfTokenId (void )
 ### OH_IPCSkeleton_IsHandlingTransaction()
 
 ```
-int OH_IPCSkeleton_IsHandlingTransaction (void )
+int OH_IPCSkeleton_IsHandlingTransaction (void)
 ```
 
 **描述**
@@ -158,7 +158,7 @@ int OH_IPCSkeleton_IsHandlingTransaction (void )
 ### OH_IPCSkeleton_IsLocalCalling()
 
 ```
-int OH_IPCSkeleton_IsLocalCalling (void )
+int OH_IPCSkeleton_IsLocalCalling (void)
 ```
 
 **描述**
@@ -177,7 +177,7 @@ int OH_IPCSkeleton_IsLocalCalling (void )
 ### OH_IPCSkeleton_JoinWorkThread()
 
 ```
-void OH_IPCSkeleton_JoinWorkThread (void )
+void OH_IPCSkeleton_JoinWorkThread (void)
 ```
 
 **描述**
@@ -192,7 +192,7 @@ void OH_IPCSkeleton_JoinWorkThread (void )
 ### OH_IPCSkeleton_ResetCallingIdentity()
 
 ```
-int OH_IPCSkeleton_ResetCallingIdentity (char ** identity, int32_t * len, OH_IPC_MemAllocator allocator )
+int OH_IPCSkeleton_ResetCallingIdentity (char ** identity, int32_t * len, OH_IPC_MemAllocator allocator)
 ```
 
 **描述**
@@ -269,7 +269,7 @@ int OH_IPCSkeleton_SetMaxWorkThreadNum (const int maxThreadNum)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| maxThreadNum | 最大工作线程数，默认16，范围[1, 32]。 | 
+| maxThreadNum | 最大工作线程数，默认16，范围:[1, 32]。 | 
 
 **返回：**
 
@@ -283,7 +283,7 @@ int OH_IPCSkeleton_SetMaxWorkThreadNum (const int maxThreadNum)
 ### OH_IPCSkeleton_StopWorkThread()
 
 ```
-void OH_IPCSkeleton_StopWorkThread (void )
+void OH_IPCSkeleton_StopWorkThread (void)
 ```
 
 **描述**

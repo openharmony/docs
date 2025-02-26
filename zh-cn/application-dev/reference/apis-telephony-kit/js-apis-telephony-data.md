@@ -24,7 +24,7 @@ getDefaultCellularDataSlotId(callback: AsyncCallback\<number\>): void
 
 | 参数名   | 类型                    | 必填 | 说明                                       |
 | -------- | ----------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<number\> | 是   | 以callback形式异步返回结果。<br />0：卡槽1。<br />1：卡槽2。 |
+| callback | AsyncCallback\<number\> | 是   | 以callback形式异步返回结果。<br />0：卡槽1 <br />1：卡槽2 |
 
 **示例：**
 
@@ -53,7 +53,7 @@ getDefaultCellularDataSlotId(): Promise\<number\>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<number\> | 以Promise形式返回获取默认移动数据的SIM卡。<br />0：卡槽1。<br />1：卡槽2。 |
+| Promise\<number\> | 以Promise形式返回获取默认移动数据的SIM卡。<br />0：卡槽1 <br />1：卡槽2 |
 
 **示例：**
 
@@ -72,7 +72,7 @@ data.getDefaultCellularDataSlotId().then((contextData: number) => {
 
 getDefaultCellularDataSlotIdSync(): number
 
-获取默认移动数据的SIM卡
+获取默认移动数据的SIM卡。
 
 **系统能力**：SystemCapability.Telephony.CellularData
 
@@ -80,7 +80,7 @@ getDefaultCellularDataSlotIdSync(): number
 
 | 类型              | 说明                                                         |
 | ------ | -------------------------------------------------- |
-| number | 获取默认移动数据的SIM卡。<br />0：卡槽1。<br />1：卡槽2。 |
+| number | 获取默认移动数据的SIM卡。<br />0：卡槽1 <br />1：卡槽2 |
 
 **示例：**
 

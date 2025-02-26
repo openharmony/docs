@@ -23,16 +23,15 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct  [OH_Filter](_o_h___filter.md) | 滤镜结构体，用来生成滤镜位图。 | 
-| struct  [OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md) | 定义一个用来创建滤镜效果的矩阵。 | 
+| struct&nbsp;&nbsp;[OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md) | 定义一个用来创建滤镜效果的矩阵。 | 
 
 
 ### 类型定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [OH_Filter](_o_h___filter.md)  [pixelMap](effect_kit.md#pixelmap) | 滤镜结构体，用来生成滤镜位图。 | 
-| typedef enum [EffectErrorCode](effect_kit.md#effecterrorcode)  [EffectErrorCode](effect_kit.md#effecterrorcode) | 定义滤镜效果的状态码。 | 
+| typedef struct [OH_Filter](effect_kit.md#oh_filter) [OH_Filter](effect_kit.md#oh_filter) | 滤镜结构体，用来生成滤镜位图。 | 
+| typedef struct [OH_PixelmapNative](effect_kit.md#oh_pixelmapnative) [OH_PixelmapNative](effect_kit.md#oh_pixelmapnative) | 定义一个位图。 | 
 
 
 ### 枚举

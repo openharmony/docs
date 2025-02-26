@@ -61,8 +61,8 @@ getGlyphPositionAtCoordinate(x: number, y: number): PositionWithAffinity
 
 | 参数名    | 类型   | 必填   | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| x | number | 是    | 相对于组件的横坐标，单位px |
-| y | number | 是    | 相对于组件的纵坐标，单位px |
+| x | number | 是    | 相对于组件的横坐标。<br/>单位：px |
+| y | number | 是    | 相对于组件的纵坐标。<br/>单位：px |
 
 **返回值：**
 
@@ -150,7 +150,9 @@ getRectsForRange(range: TextRange, widthStyle: RectWidthStyle, heightStyle: Rect
 | COLLABORATION_SERVICE   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 互通服务。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | CAMERA_INPUT   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是   | 拍摄输入。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | AI_WRITER<sup>13+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 可对选中的文本进行润色、摘要提取、排版等。该菜单项依赖大模型能力，否则不生效。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
-| SEARCH<sup>16+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 对选中的文本提供搜索服务。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| TRANSLATE<sup>16+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 对选中的文本提供翻译服务。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| SHARE<sup>16+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 对选中的文本提供分享服务，拉起分享窗口分享选中文本内容。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| SEARCH<sup>16+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 对选中的文本提供搜索服务，拉起浏览器搜索选中文本内容。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ### of
 
@@ -207,7 +209,7 @@ equals(id: TextMenuItemId): boolean
 | content | [ResourceStr](ts-types.md#resourcestr) | 是   | 菜单名称。 |
 | icon | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单图标。<br/>不支持网络图片。 |
 | id | [TextMenuItemId](#textmenuitemid12) | 是   | 菜单id。 |
-| labelInfo<sup>16+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 快捷键提示。<br/>该字段仅2in1设备支持。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| labelInfo<sup>15+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 快捷键提示。<br/>该字段仅2in1设备支持。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## EditMenuOptions
 
@@ -268,8 +270,6 @@ onMenuItemClick(menuItem: TextMenuItem, range: TextRange): boolean
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### 属性
-
 | 名称 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
 | start | number | 否 | 起始索引。 |
@@ -277,7 +277,7 @@ onMenuItemClick(menuItem: TextMenuItem, range: TextRange): boolean
 
 ## EditableTextOnChangeCallback<sup>12+</sup>
 
-type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) => void
+type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, options?: TextChangeOptions) => void
 
 输入内容发生变化时，触发该回调。
 
@@ -291,6 +291,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 | -- | -- | -- | -- |
 | value | string | 是 | 文本框内正式上屏的文本内容。 |
 | previewText | [PreviewText](#previewtext12) | 否 | 预上屏文本信息，包含预上屏起始位置和文本内容。 |
+| options<sup>15+</sup> | [TextChangeOptions](#textchangeoptions15对象说明) | 否 | 文本内容变化信息，包含变化前后的选区范围、变化前的文本内容和预上屏文本信息。 |
 
 ## TextDataDetectorType<sup>11+</sup>枚举说明
 
@@ -298,13 +299,13 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 说明                               |
-| ----- | -------------------------------------- |
-| PHONE_NUMBER  | 电话号码 |
-| URL | 链接 |
-| EMAIL | 邮箱 |
-| ADDRESS | 地址 |
-| DATE_TIME<sup>12+</sup> | 时间 |
+| 名称  | 值   | 说明                               |
+| ----- | ----- | --------------------------------- |
+| PHONE_NUMBER  | 0 | 电话号码 |
+| URL | 1 | 链接 |
+| EMAIL | 2 | 邮箱 |
+| ADDRESS | 3 | 地址 |
+| DATE_TIME<sup>12+</sup> | 4 | 时间 |
 
 ## TextDeleteDirection<sup>12+</sup>枚举说明
 
@@ -331,6 +332,21 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 | ------- | ---- | ------------------- |
 | SELECTION_MENU | 0 | 文本选择菜单。|
 | PREVIEW_MENU | 1 | 图片预览菜单。|
+
+## KeyboardAppearance<sup>16+</sup>枚举说明
+
+键盘外观。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| ------- | ---- | ------------------- |
+| NONE_IMMERSIVE | 0 | 默认外观模式，不采用沉浸式风格。|
+| IMMERSIVE | 1 | 沉浸式模式，跟随系统。|
+| LIGHT_IMMERSIVE | 2 | 浅色沉浸式风格。|
+| DARK_IMMERSIVE | 3 | 深色沉浸式风格。|
 
 ## InsertValue<sup>12+</sup>对象说明
 
@@ -367,6 +383,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 | onDetectResultUpdate   | (result: string) => void | 否   | 文本识别成功后，触发onDetectResultUpdate回调。<br/>-&nbsp;result：文本识别的结果，Json格式。 |
 | color<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本识别成功后的实体颜色。<br/>默认值：'#ff0a59f7' |
 | decoration<sup>12+</sup>  | [DecorationStyleInterface](ts-universal-styled-string.md#decorationstyleinterface对象说明)| 否   | 设置文本识别成功后的实体装饰线样式。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.Underline,<br/>&nbsp;color:&nbsp;与实体颜色一致,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
+
 ## PreviewText<sup>12+</sup>
 
 预上屏信息。
@@ -421,7 +438,7 @@ type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => vo
 
 | 名称 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| onWillChange | Callback<[StyledStringChangeValue](ts-basic-components-richeditor.md#styledstringchangevalue12), boolean> | 否 | 文本内容将要变化回调函数。 |
+| onWillChange | Callback<[StyledStringChangeValue](#styledstringchangevalue12), boolean> | 否 | 文本内容将要变化回调函数。 |
 | onDidChange | [OnDidChangeCallback](#ondidchangecallback12) | 否 | 文本内容完成变化回调函数。 |
 
 ## StyledStringChangeValue<sup>12+</sup>
@@ -434,7 +451,7 @@ type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => vo
 
 | 名称 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| range | TextRange | 是 | 即将被替换的属性字符串子串在原字符串中的范围。 |
+| range | [TextRange](#textrange12) | 是 | 即将被替换的属性字符串子串在原字符串中的范围。 |
 | replacementString | [StyledString](ts-universal-styled-string.md#styledstring) | 是 | 用于替换的属性字符串。 |
 | previewText | [StyledString](ts-universal-styled-string.md#styledstring) | 否 | 预览样式字符串。 |
 
@@ -476,7 +493,7 @@ selectionStart和selectionEnd均为-1时表示全选。
 | -------------- | ------ | ---- | ------- |
 | selectionStart | number | 是    | 选中开始位置。 |
 | selectionEnd   | number | 是    | 选中结束位置。 |
-| options<sup>12+</sup>   | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选择项配置。 |
+| options   | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选择项配置。 |
 
 ### closeSelectionMenu<sup>12+</sup>
 
@@ -620,7 +637,7 @@ setStyledString(styledString: StyledString): void
 
 ### getStyledString<sup>12+</sup>
 
-getStyledString(): MutableStyledString;
+getStyledString(): MutableStyledString
 
 获取富文本组件显示的属性字符串。
 
@@ -632,7 +649,7 @@ getStyledString(): MutableStyledString;
 
 | 类型    | 说明                          |
 | ------- | ----------------------------- |
-| [MutableStyledString](ts-universal-styled-string.md#mutablestyledstring) | 富文本组件显示的属性字符串 |
+| [MutableStyledString](ts-universal-styled-string.md#mutablestyledstring) | 富文本组件显示的属性字符串。 |
 
 ## DecorationStyleResult<sup>12+</sup>
 
@@ -717,3 +734,57 @@ type RectWidthStyle = RectWidthStyle
 | 类型                              | 说明   |
 | --------------------------------- | --------------------------------- |
 | [RectWidthStyle](../../apis-arkgraphics2d/js-apis-graphics-text.md#rectwidthstyle) | 矩形区域宽度规格枚举。 |
+
+## TextChangeOptions<sup>15+</sup>对象说明
+
+变化前的文本信息，以及变化后的选区范围。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                                    | 必填 | 说明                                                    |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| rangeBefore  | [TextRange](#textrange12) | 是   | 变化前的选区范围。 |
+| rangeAfter  | [TextRange](#textrange12) | 是   | 变化后的选区范围。 |
+| oldContent  | string | 是   | 变化前的文本内容。 |
+| oldPreviewText | [PreviewText](#previewtext12) | 是 | 变化前的预上屏信息。 |
+
+## EditableTextChangeValue<sup>15+</sup>
+
+文本变化的详细信息，包括预上屏。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                                    | 必填 | 说明                                                    |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| content  | string | 是   | 当前的文本内容。 |
+| previewText  | [PreviewText](#previewtext12) | 否   | 预上屏的内容信息。 |
+| options  | [TextChangeOptions](#textchangeoptions15对象说明) | 否   | 变化的文本内容信息。 |
+
+## TextMenuShowMode<sup>16+</sup>
+
+菜单的显示模式。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| ------- | ---- | ------------------- |
+| DEFAULT | 0 | 显示在当前窗口中。<br/>|
+| PREFER_WINDOW | 1 | 优先显示在独立窗口中，若不支持独立窗口，则显示在当前窗口中。<br/>**说明：** <br/>除应用主窗口、应用子窗口、系统模态窗口及系统桌面类型的窗口外，其他类型的窗口不支持将文本选择菜单显示在独立窗口中。<br/>在预览器中不支持将文本选择菜单显示在独立窗口中。<br/>在UIExtension中不支持将文本选择菜单显示在独立窗口中。<br/>当文本类组件已经显示在子窗类型的Popup、Dialog、Toast、Menu中时，不支持将其对应的文本选择菜单显示在独立窗口中。<br/>当TextInput、TextArea可支持拉起AutoFill时，不支持将其对应的文本选择菜单显示在独立窗口中。<br/>|
+
+## TextMenuOptions<sup>16+</sup>对象说明
+
+菜单选项。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                                    | 必填 | 说明                                                    |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| showMode  | [TextMenuShowMode](#textmenushowmode16) | 否   | 菜单的显示模式。<br/>默认值：TextMenuShowMode.DEFAULT |

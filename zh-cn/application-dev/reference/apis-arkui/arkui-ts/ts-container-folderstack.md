@@ -1,10 +1,10 @@
 # FolderStack
 
-FolderStack继承于Stack(层叠布局)控件，新增了折叠屏悬停能力，通过识别upperItems自动避让折叠屏折痕区后移到上半屏
+FolderStack继承于Stack(层叠布局)控件，新增了折叠屏悬停能力，通过识别upperItems自动避让折叠屏折痕区后移到上半屏。
 
 >  **说明：**
 >
->  该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -38,7 +38,7 @@ FolderStack(options?: FolderStackOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### alignContent
 
@@ -94,7 +94,7 @@ autoHalfFold(value: boolean)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onFolderStateChange
 
@@ -181,13 +181,13 @@ type OnFoldStatusChangeCallback = (event: OnFoldStatusChangeInfo) => void
 | foldStatus       | [FoldStatus](ts-appendix-enums.md#foldstatus11)             | 是   | 当前设备的折叠状态。 |
 | isHoverMode      | boolean                                                     | 是   | 当前是否悬停模式。  |
 | appRotation      | [AppRotation](ts-appendix-enums.md#approtation12)           | 是   | 当前应用方向。    |
-| windowStatusType | [WindowStatusType<sup>12+</sup>](#windowstatustype12) | 是   | 窗口模式枚举。    |
+| windowStatusType | [WindowStatusType](#windowstatustype12) | 是   | 窗口模式枚举。    |
 
 ## WindowStatusType<sup>12+</sup>
 
 type WindowStatusType = WindowStatusType
 
-窗口模式枚举
+窗口模式枚举。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

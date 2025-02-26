@@ -400,10 +400,10 @@ VKAPI_ATTR VkResult VKAPI_CALL vkAcquireImageOHOS (VkDevice device, VkImage imag
 | 名称 | 描述 | 
 | -------- | -------- |
 | device | VkDevice对象。 | 
-| image | 要获取的Vulkan图像 | 
-| nativeFenceFd | 原生Fence的文件描述符 | 
-| semaphore | 表示图像可用状态的Vulkan Semaphore(信号量) | 
-| fence | 用于在图像获取完成时进行同步的Vulkan Fence | 
+| image | 要获取的Vulkan图像。 | 
+| nativeFenceFd | 原生Fence的文件描述符。 | 
+| semaphore | 表示图像可用状态的Vulkan Semaphore(信号量)。 | 
+| fence | 用于在图像获取完成时进行同步的Vulkan Fence。 | 
 
 **返回：**
 
@@ -534,7 +534,7 @@ VKAPI_ATTR VkResult VKAPI_CALL vkQueueSignalReleaseImageOHOS (VkQueue queue, uin
 
 **描述**
 
-当前图像使用完毕后，通过该函数向系统硬件缓冲区发出释放信号, 以便其他组件可以访问该图像
+当前图像使用完毕后，通过该函数向系统硬件缓冲区发出释放信号, 以便其他组件可以访问该图像。
 
 **系统能力：** SystemCapability.Graphic.Vulkan
 
@@ -544,11 +544,11 @@ VKAPI_ATTR VkResult VKAPI_CALL vkQueueSignalReleaseImageOHOS (VkQueue queue, uin
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| queue | Vulkan队列的句柄 | 
-| waitSemaphoreCount | 等待Semaphore(信号量)的数量 | 
-| pWaitSemaphores | 指向等待Semaphore(信号量)数组的指针 | 
-| images | 要释放的Vulkan图像句柄 | 
-| pNativeFenceFd | 指向Fence的文件描述符的指针 | 
+| queue | Vulkan队列的句柄。 | 
+| waitSemaphoreCount | 等待Semaphore(信号量)的数量。 | 
+| pWaitSemaphores | 指向等待Semaphore(信号量)数组的指针。 | 
+| images | 要释放的Vulkan图像句柄。 | 
+| pNativeFenceFd | 指向Fence的文件描述符的指针。 | 
 
 **返回：**
 

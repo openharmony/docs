@@ -261,11 +261,12 @@ struct Index {
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称        | 值   | 说明                                                                                                                  |
-| ----------- | ---- | -------------------------------------------------------------------------------------------------------------------- |
-| NORMAL      | 0    | 默认的换行规则。依据各自语言的规则，允许在字间发生换行。                                                                  |
-| BREAK_ALL   | 1    | 对于 Non-CJK（非中文，日文，韩文）文本允许在任意字符内发生换行。该值适合包含一些非亚洲文本的亚洲文本，比如使连续的英文字符断行。|
-| BREAK_WORD  | 2    | 与`BREAK_ALL`基本相同，不同的地方在于它要求一个没有断行破发点的词必须保持为一个整体单位。                                   |
+| 名称                          | 值   | 说明                                                                                                                  |
+|-----------------------------| ---- | -------------------------------------------------------------------------------------------------------------------- |
+| NORMAL                      | 0    | 默认的换行规则。依据各自语言的规则，允许在字间发生换行。                                                                  |
+| BREAK_ALL                   | 1    | 对于Non-CJK（非中文，日文，韩文）文本允许在任意字符内发生换行。该值适合包含一些非亚洲文本的亚洲文本，比如使连续的英文字符断行。|
+| BREAK_WORD                  | 2    | 与`BREAK_ALL`基本相同，不同的地方在于它要求一个没有断行破发点的词必须保持为一个整体单位。                                   |
+| BREAK_HYPHEN<sup>16+</sup>  | 3    | 每行末尾单词尝试通过连字符“-”进行断行，若无法添加连字符“-”，则跟`BREAK_WORD`保持一致。                        |
 
 ## Decoration
 
@@ -1371,7 +1372,7 @@ getLineMetrics(lineNumber: number): LineMetrics | undefined
 
 | 参数名 | 类型   | 必填 | 说明      |
 | ----- | ------ | ---- | --------- |
-| lineNumber  | number | 是   | 要查询度量信息的行的编号, 行号从0开始。|
+| lineNumber  | number | 是   | 要查询度量信息的行的编号，行号从0开始。|
 
 **返回值：**
 
@@ -2124,7 +2125,7 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 
 | 参数名 | 类型                                                  | 必填 | 说明                    |
 | ------ | ---------------------------------------------------- | ---- | ---------------------- |
-| canvas | [drawing.Canvas](js-apis-graphics-drawing.md#canvas) | 是   | 绘制的目标 canvas。      |
+| canvas | [drawing.Canvas](js-apis-graphics-drawing.md#canvas) | 是   | 绘制的目标canvas。      |
 |    x   | number                                               | 是   | 绘制的左上角位置的横坐标，浮点数。|
 |    y   | number                                               | 是   | 绘制的左上角位置的纵坐标，浮点数。|
 
@@ -2477,7 +2478,7 @@ enumerateCaretOffsets(callback: CaretOffsetsCallback): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -| - | - | - |
-| callback | [CaretOffsetsCallback](#caretoffsetscallback16) | 是 | 用户自定义函数。将文本行中枚举的每个字符偏移量、索引值作为参数的回调方法 |
+| callback | [CaretOffsetsCallback](#caretoffsetscallback16) | 是 | 用户自定义函数。将文本行中枚举的每个字符偏移量、索引值作为参数的回调方法。 |
 
 **错误码：**
 
@@ -2895,22 +2896,26 @@ import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
 import { image } from '@kit.ImageKit';
 
-function textFunc() {
-  const color: ArrayBuffer = new ArrayBuffer(160000);
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
-  let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
-  let canvas = new drawing.Canvas(pixelMap);
+function textFunc(pixelmap: PixelMap) {
+  let canvas = new drawing.Canvas(pixelmap);
   runs[0].paint(canvas, 0, 0);
 }
 
 @Entry
 @Component
 struct Index {
+  @State pixelmap?: PixelMap = undefined;
   fun: Function = textFunc;
   build() {
     Column() {
+      Image(this.pixelmap).width(200).height(200);
       Button().onClick(() => {
-        this.fun();
+        if (this.pixelmap == undefined) {
+          const color: ArrayBuffer = new ArrayBuffer(160000);
+          let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
+          this.pixelmap = image.createPixelMapSync(color, opts);
+        }
+        this.fun(this.pixelmap);
       })
     }
   }

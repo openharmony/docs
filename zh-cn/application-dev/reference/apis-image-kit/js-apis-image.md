@@ -163,7 +163,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。<br>**说明：** 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数 |
+| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。<br>**说明：** 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数。 |
 | options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
@@ -200,7 +200,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 
 | 参数名   | 类型                                             | 必填 | 说明                       |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
-| colors   | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。<br>**说明：** 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数 |
+| colors   | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。<br>**说明：** 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数。 |
 | options  | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 | callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | 是   | 回调函数，当创建PixelMap成功，err为undefined，data为获取到的PixelMap对象；否则为错误对象。 |
 
@@ -249,15 +249,15 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed|
+| 62980096 | Operation failed.|
 | 62980097 | IPC error.|
-| 62980115 | Invalid input parameter|
-| 62980105 | Failed to get the data|
-| 62980177 | Abnormal API environment|
-| 62980178 | Failed to create the PixelMap|
-| 62980179 | Abnormal buffer size|
-| 62980180 | FD mapping failed|
-| 62980246 | Failed to read the PixelMap|
+| 62980115 | Invalid input parameter.|
+| 62980105 | Failed to get the data.|
+| 62980177 | Abnormal API environment.|
+| 62980178 | Failed to create the PixelMap.|
+| 62980179 | Abnormal buffer size.|
+| 62980180 | FD mapping failed.|
+| 62980246 | Failed to read the PixelMap.|
 
 **示例：**
 
@@ -325,8 +325,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 根据Surface id和区域信息，创建一个PixelMap对象。该区域的大小由[Region](#region8).size指定。使用Promise形式返回。
 
 > **说明：**
-> 1. [Region](#region8).size的宽高需和[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件的宽高保持一致。
-> 2. 当开发设备为折叠屏，折叠状态切换时，需自行调整[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件的宽高。
+> 当开发设备为折叠屏，折叠状态切换时，可能因Surface自带旋转角度导致接口创建失败，需将宽高适配旋转角度。推荐使用[image.createPixelMapFromSurface](#imagecreatepixelmapfromsurface15)
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -334,8 +333,8 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
-| surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
-| region                 | [Region](#region8)  | 是   | 区域信息。 |
+| surfaceId              | string              | 是   | 对应Surface的ID，可通过预览组件获取，如[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件。 |
+| region                 | [Region](#region8)  | 是   | 区域信息。[Region](#region8).size的宽高需和设置的预览流大小保持一致。 |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -349,8 +348,8 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 62980115 | If the image parameter invalid.|
-| 62980105 | Failed to get the data|
-| 62980178 | Failed to create the PixelMap|
+| 62980105 | Failed to get the data.|
+| 62980178 | Failed to create the PixelMap.|
 
 **示例：**
 
@@ -374,8 +373,7 @@ createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 以同步方式，根据Surface id和区域信息，创建一个PixelMap对象。该区域的大小由[Region](#region8).size指定。
 
 > **说明：**
-> 1. [Region](#region8).size的宽高需和[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件的宽高保持一致。
-> 2. 当开发设备为折叠屏，折叠状态切换时，需自行调整[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件的宽高。
+> 当开发设备为折叠屏，折叠状态切换时，可能因Surface自带旋转角度导致接口创建失败，需将宽高适配旋转角度。推荐使用[image.createPixelMapFromSurfaceSync](#imagecreatepixelmapfromsurfacesync15)。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -383,8 +381,8 @@ createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
-| surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
-| region                 | [Region](#region8)  | 是   | 区域信息。 |
+| surfaceId              | string              | 是   | 对应Surface的ID，可通过预览组件获取，如[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件。 |
+| region                 | [Region](#region8)  | 是   | 区域信息。[Region](#region8).size的宽高需和设置的预览流大小保持一致。 |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -397,9 +395,9 @@ createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
-| 62980105 | Failed to get the data|
-| 62980178 | Failed to create the PixelMap|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+| 62980105 | Failed to get the data.|
+| 62980178 | Failed to create the PixelMap.|
 
 **示例：**
 
@@ -413,7 +411,7 @@ async function Demo(surfaceId: string) {
 }
 ```
 
-## image.createPixelMapFromSurface<sup>16+</sup>
+## image.createPixelMapFromSurface<sup>15+</sup>
 
 createPixelMapFromSurface(surfaceId: string): Promise\<PixelMap>
 
@@ -425,7 +423,7 @@ createPixelMapFromSurface(surfaceId: string): Promise\<PixelMap>
 
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
-| surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
+| surfaceId              | string              | 是   | 对应Surface的ID，可通过预览组件获取，如[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件。 |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -456,7 +454,7 @@ async function Demo(surfaceId: string) {
 } 
 ```
 
-## image.createPixelMapFromSurfaceSync<sup>16+</sup>
+## image.createPixelMapFromSurfaceSync<sup>15+</sup>
 
 createPixelMapFromSurfaceSync(surfaceId: string): PixelMap
 
@@ -468,7 +466,7 @@ createPixelMapFromSurfaceSync(surfaceId: string): PixelMap
 
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
-| surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
+| surfaceId              | string              | 是   | 对应Surface的ID，可通过预览组件获取，如[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件。 |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -507,7 +505,7 @@ createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMa
 
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。<br>**说明：** 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数 |
+| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。<br>**说明：** 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数。 |
 | options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
@@ -772,8 +770,8 @@ createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
-|  62980103    | The image data is not supported |
+|  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+|  62980103    | The image data is not supported. |
 |  62980246    | Failed to read the pixelMap. |
 |  62980248    | Pixelmap not allow modify. |
 
@@ -1258,6 +1256,8 @@ async function Release() {
 从API version 11开始，PixelMap支持通过worker跨线程调用。当PixelMap通过[Worker](../apis-arkts/js-apis-worker.md)跨线程后，原线程的PixelMap的所有接口均不能调用，否则将报错501 服务器不具备完成请求的功能。  
 
 在调用PixelMap的方法前，需要先通过[image.createPixelMap](#imagecreatepixelmap8)构建一个PixelMap对象。
+
+开发原子化服务请通过[ImageSoure](#imagesource)构建PixelMap对象。
 
 ### 属性
 
@@ -2646,6 +2646,91 @@ async function CreateScaledPixelMapSync() {
 }
 ```
 
+### clone<sup>16+</sup>
+
+clone(): Promise</PixelMap>
+
+拷贝一份当前Pixelmap对象，使用Promise形式返回。
+
+**系统能力：**: SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | Promise对象，返回PixelMap。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 501 | Resource unavailable. |
+| 62980102 | Image malloc abnormal. This status code is thrown when an error occurs during the process of copying data. |
+| 62980103 | Image YUV And ASTC types are not supported. |
+| 62980104 | Image initialization abnormal. This status code is thrown when an error occurs during the process of createing empty pixelmap. |
+| 62980106 | The image data is to large.This status code is thrown when an error occurs during the process of checking size. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo() {
+  if (pixelMap != undefined) {
+    pixelMap.clone().then((clonePixelMap: image.PixelMap) => {
+      console.info('Succeeded clone pixelmap.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to clone pixelmap. code is ${error.code}, message is ${error.message}`);
+    })
+  }
+}
+```
+
+### cloneSync<sup>16+</sup>
+
+cloneSync(): PixelMap
+
+拷贝一份当前Pixelmap对象, 同步返回结果。
+
+**系统能力：**: SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------------- |
+| [PixelMap](#pixelmap7) | 成功同步返回PixelMap对象，失败抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 501 | Resource unavailable. |
+| 62980102 | Image malloc abnormal. This status code is thrown when an error occurs during the process of copying data. |
+| 62980103 | Image YUV And ASTC types are not supported. |
+| 62980104 | Image initialization abnormal. This status code is thrown when an error occurs during the process of createing empty pixelmap. |
+| 62980106 | The image data is to large.This status code is thrown when an error occurs during the process of checking size. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async Demo() {
+  if (pixelMap != undefined) {
+    try {
+      let clonedPixelMap = pixelMap.cloneSync();
+    } catch(e) {
+      let error = e as BusinessError;
+      console.error(`clone pixelmap error. code is ${error.code}, message is ${error.message}`);
+    }
+  }
+}
+```
+
 ### translate<sup>9+</sup>
 
 translate(x: number, y: number, callback: AsyncCallback\<void>): void
@@ -3807,6 +3892,9 @@ YUV和RGB类型互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA88
 
 从API16开始，可用于ASTC_4x4类型转为RGBA_8888类型，目前仅支持ASTC_4x4转为RGBA_8888。
 
+> **注意：**
+> 仅在ASTC_4x4格式的图像需要进行像素访问时，建议调用此接口将ASTC_4x4类型转为RGBA_8888类型。由于使用ASTC_4x4反解为RGBA_8888时延较高，其余情况下不推荐使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -4110,7 +4198,7 @@ createImageSource(rawfile: resourceManager.RawFileDescriptor, options?: SourceOp
 
 | 参数名 | 类型                             | 必填 | 说明                                 |
 | ------ | -------------------------------- | ---- | ------------------------------------ |
-| rawfile | [resourceManager.RawFileDescriptor](../apis-localization-kit/js-apis-resource-manager.md#rawfiledescriptor8) | 是 | 图像资源文件的RawFileDescriptor。 |
+| rawfile | [resourceManager.RawFileDescriptor](../apis-localization-kit/js-apis-resource-manager.md#rawfiledescriptor9) | 是 | 图像资源文件的RawFileDescriptor。 |
 | options | [SourceOptions](#sourceoptions9) | 否 | 图片属性，包括图片像素密度、像素格式和图片尺寸。 |
 
 **返回值：**
@@ -5060,7 +5148,7 @@ if (pixelmap != undefined) {
 
 createPixelMapUsingAllocator(option?: DecodingOptions, allocatorType?: AllocatorType): Promise\<PixelMap\>
 
-使用指定的分配器根据图像解码参数异步创建 PixelMap 对象。使用 Promise 返回对象。
+使用指定的分配器根据图像解码参数异步创建PixelMap对象。使用Promise返回对象。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -5098,7 +5186,7 @@ createPixelMapUsingAllocator(option?: DecodingOptions, allocatorType?: Allocator
 import image from '@ohos.multimedia.image';
 
 const context: Context = getContext(this);
-//此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+// 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
 let imageSource = image.createImageSource(filePath);
 let decodingOptions: image.DecodingOptions = {
@@ -5184,6 +5272,9 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 
 通过图片解码参数创建PixelMap数组。针对动图如Gif、Webp，此接口返回每帧图片数据；针对静态图，此接口返回唯一的一帧图片数据。
 
+> **注意：**
+> 此接口会一次性解码全部帧，当帧数过多或单帧图像过大时，会占用较大内存，造成系统内存紧张，此种情况推荐使用Image组件显示动图，Image组件采用逐帧解码，占用内存比此接口少。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
@@ -5248,6 +5339,9 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
 通过默认参数创建PixelMap数组，使用callback形式返回结果。针对动图如Gif、Webp，此接口返回每帧图片数据；针对静态图，此接口返回唯一的一帧图片数据。
 
+> **注意：**
+> 此接口会一次性解码全部帧，当帧数过多或单帧图像过大时，会占用较大内存，造成系统内存紧张，此种情况推荐使用Image组件显示动图，Image组件采用逐帧解码，占用内存比此接口少。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
@@ -5299,6 +5393,9 @@ imageSourceApi.createPixelMapList((err: BusinessError, pixelMapList: Array<image
 createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<PixelMap>>): void
 
 通过图片解码参数创建PixelMap数组，使用callback形式返回结果。针对动图如Gif、Webp，此接口返回每帧图片数据；针对静态图，此接口返回唯一的一帧图片数据。
+
+> **注意：**
+> 此接口会一次性解码全部帧，当帧数过多或单帧图像过大时，会占用较大内存，造成系统内存紧张，此种情况推荐使用Image组件显示动图，Image组件采用逐帧解码，占用内存比此接口少。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -5841,58 +5938,6 @@ async function Packing() {
         console.error(funcName, 'Failed to pack the image.code ${error.code},message is ${error.message}');
       });
   }
-}
-```
-
-### packing<sup>16+</sup>
-
-packing(pixelmapSequence: Array\<PixelMap>, options: PackingOptionsForSequence): Promise\<ArrayBuffer>
-
-将多个pixelmap编码成gif数据，使用Promise形式返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
-
-**参数：**
-
-| 参数名           | 类型                                                      | 必填 | 说明                   |
-| ---------------- | --------------------------------------------------------- | ---- | ---------------------- |
-| pixelmapSequence | Array\<[PixelMap](#pixelmap7)>                            | 是   | 待编码的PixelMap序列。 |
-| options          | [PackingOptionsForSequence](#packingoptionsforsequence16) | 是   | 动图编码参数。         |
-
-**返回值：**
-
-| 类型                  | 说明                            |
-| --------------------- | ------------------------------- |
-| Promise\<ArrayBuffer> | Promise对象，返回编码后的数据。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import image from "@ohos.multimedia.image";
-
-async function Packing() {
-  const RGBA_8888 = image.PixelMapFormat.RGBA_8888;
-  const context = getContext();
-  const resourceMgr = context.resourceManager;
-  // 此处'moving_test.gif'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
-  const fileData = await resourceMgr.getRawFileContent('moving_test.gif');
-  const color = fileData.buffer;
-  let imageSource = image.createImageSource(color);
-  let pixelMapList = await imageSource.createPixelMapList();
-  let ops: image.PackingOptionsForSequence = {
-    frameCount: 3,  // 指定GIF编码中的帧数为3
-    delayTimeList: [10, 10, 10],  // 指定GIF编码中3帧的延迟时间分别为100ms、100ms、100ms
-    disposalTypes: [3, 2, 3], // 指定GIF编码中3帧的帧过渡模式分别为3（恢复到之前的状态）、2（恢复背景色)、3(恢复到之前的状态)。
-    loopCount: 0 // 指定GIF编码中循环次数为无限循环
-  };
-  let Packer = image.createImagePacker();
-  Packer.packing(pixelMapList, ops)
-    .then((data: ArrayBuffer) => {
-      console.info('Succeeded in packing.');
-    }).catch((error: BusinessError) => {
-      console.error('Failed to packing.');
-    }) 
 }
 ```
 
@@ -6441,62 +6486,6 @@ async function PackToFile() {
       console.error(funcName, 'Failed to pack the image to file.code ${error.code},message is ${error.message}');
     });
   }
-}
-```
-
-### packToFile<sup>16+</sup>
-
-packToFile(pixelmapSequence: Array\<PixelMap>, fd: number, options: PackingOptionsForSequence): Promise\<void>
-
-指定编码参数，将多个PixelMap编码成gif文件。使用Promise形式返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
-
-**参数：**
-
-| 参数名           | 类型                                                      | 必填 | 说明                   |
-| ---------------- | --------------------------------------------------------- | ---- | ---------------------- |
-| pixelmapSequence | Array<[PixelMap](#pixelmap7)>                             | 是   | 待编码的PixelMap序列。 |
-| fd               | number                                                    | 是   | 文件描述符。           |
-| options          | [PackingOptionsForSequence](#packingoptionsforsequence16) | 是   | 动图编码参数。         |
-
-**返回值：**
-
-| 类型           | 说明                      |
-| -------------- | ------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import fs from '@ohos.file.fs';
-import image from "@ohos.multimedia.image";
-
-async function Packing() {
-  const RGBA_8888 = image.PixelMapFormat.RGBA_8888;
-  const context = getContext();
-  const resourceMgr = context.resourceManager;
-  // 此处'moving_test.gif'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
-  const fileData = await resourceMgr.getRawFileContent('moving_test.gif');
-  const color = fileData.buffer;
-  let imageSource = image.createImageSource(color);
-  let pixelMapList = await imageSource.createPixelMapList();
-  let path: string = context.cacheDir + '/result.gif';
-  let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  let ops: image.PackingOptionsForSequence = {
-    frameCount: 3,  // 指定GIF编码中的帧数为3
-    delayTimeList: [10, 10, 10],  // 指定GIF编码中3帧的延迟时间分别为100ms、100ms、100ms
-    disposalTypes: [3, 2, 3], // 指定GIF编码中3帧的帧过渡模式分别为3（恢复到之前的状态）、2（恢复背景色)、3(恢复到之前的状态)。
-    loopCount: 0 // 指定GIF编码中循环次数为无限循环
-  };
-  let Packer = image.createImagePacker();
-  Packer.packToFile(pixelMapList, file.fd, ops)
-    .then(() => {
-      console.info('Succeeded in packToFileMultiFrames.');
-    }).catch((error: BusinessError) => {
-    console.error('Failed to packToFileMultiFrames.');
-    })
 }
 ```
 
@@ -8223,19 +8212,6 @@ PixelMap的初始化选项。
 | bufferSize<sup>9+</sup> | number | 否   | 是   | 接收编码数据的缓冲区大小，单位为Byte。如果不设置大小，默认为25M。如果编码图片超过25M，需要指定大小。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 否   | 是   | 目标动态范围。默认值为SDR。 |
 | needsPackProperties<sup>12+</sup> | boolean | 否   | 是   | 是否需要编码图片属性信息，例如EXIF。默认值为false。 |
-
-## PackingOptionsForSequence<sup>16+</sup>
-
-描述图像序列打包的选项。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
-
-| 名称          | 类型           | 只读 | 可选 | 说明                                                         |
-| ------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| frameCount    | number         | 否   | 否   | GIF编码中指定的帧数。                                        |
-| delayTimeList | Array\<number> | 否   | 否   | GIF编码中设定输出图片每一帧的延迟时间，如果不是0，则此字段指定在继续处理数据流之前等待的百分之一秒数。<br>如果长度小于frameCount，则缺失的部分将用delayTimeList最后一个值填充。 |
-| disposalTypes | Array\<number> | 否   | 是   | GIF编码中设定输出图片帧过渡模式的参数，取值范围为[0，3]。<br>0：不需要任何操作；<br>1：保持图形不变；<br>2：恢复背景色；<br>3：恢复到之前的状态。 |
-| loopCount     | number         | 否   | 是   | GIF编码中设定输出图片循环播放次数的参数，取值范围为[0，65535]。<br>0表示无限循环；如果没有此字段，则表示不循环播放。 |
 
 ## ImagePropertyOptions<sup>11+</sup>
 

@@ -1,6 +1,6 @@
 # HAP
 
-The Harmony Ability Package (HAP) is the basic unit for installing and running applications. An HAP is a module package consisting of code, resource files, third-party libraries, and an application configuration file. There are two types of HAPs: entry and feature.
+The Harmony Ability Package (HAP) is the basic unit for installing and running applications. A HAP is a module package consisting of code, resource files, third-party libraries, and an application configuration file. There are two types of HAPs: entry and feature.
 
 - entry: main module of and entry to an application, providing the basic application functionality.
 - feature: dynamic feature module of an application, extending the application functionality. This type of HAP can be installed based on user needs and device types.
@@ -9,7 +9,7 @@ An application package can contain either only one entry HAP or one entry HAP pl
 
 ## When to Use
 
-- Single HAP: If your application only uses the UIAbility (that is, no ExtensionAbility is required), a single HAP (entry HAP) is recommended. While an HAP can contain one or more UIAbilities, adopt the "one UIAbility + multiple pages" mode to avoid unnecessary resource loading.
+- Single HAP: If your application only uses the UIAbility (that is, no ExtensionAbility is required), a single HAP (entry HAP) is recommended. While a HAP can contain one or more UIAbilities, adopt the "one UIAbility + multiple pages" mode to avoid unnecessary resource loading.
 
 - Multi-HAP: If your application needs to use ExtensionAbilities, develop multiple HAPs (one entry HAP and one or more feature HAPs) for it, with each HAP containing one UIAbility or one ExtensionAbility. Note that repeated packaging may arise if these HAPs reference the same library file.
 
@@ -24,9 +24,9 @@ An application package can contain either only one entry HAP or one entry HAP pl
 
 - If an application has multiple HAPs, the signing certificates of all HAPs and HSPs of this application must be the same. Applications are released to the application market in the form of App Pack after being signed. Before distribution, the application market splits an App Pack into HAPs and resigns them to ensure the consistency of HAP signing certificates. Before installing HAPs on a device through the CLI or DevEco Studio for debugging purposes, ensure that their signing certificates are the same. Otherwise, the installation will fail.
 
-## Creating an HAP
+## Creating a HAP
 
-To create an HAP in DevEco Studio:
+To create a HAP in DevEco Studio:
 
 1. Create a project to build the first ArkTS application.
 2. Right-click the project directory and choose **New** > **Module** from the shortcut menu.
@@ -36,23 +36,23 @@ To create an HAP in DevEco Studio:
 
 5. On the ability configuration page, set **Ability name** and click **Finish**.
 
-## Developing an HAP
+## Developing a HAP
 
-- You can add a UIAbility or ExtensionAbility to an HAP. For details, see <!--RP1-->[Adding an Ability to a Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-add-new-ability-V5)<!--RP1End-->.
+- You can add a UIAbility or ExtensionAbility to a HAP. For details, see [Adding an Ability to a Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-add-new-ability-V13).
 
-- You can also configure an HAP to reference a HAR or HSP. For details, see [Using an HAR](./har-package.md#using-an-har) and [Using an HSP](./in-app-hsp.md#using-an-hsp).
+- You can also configure a HAP to reference a HAR or HSP. For details, see [Using an HAR](./har-package.md#using-an-har) and [Using an HSP](./in-app-hsp.md#using-an-hsp).
 
-## Debugging an HAP
+## Debugging a HAP
 
-After building code into one or more HAPs and installing or updating these HAPs, you can debug them. For details about how to build the same HAP into different versions based on the deployment environment, target user group, and running environment, see <!--RP2-->[Introduction](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-customized-multi-targets-and-products-guides-V5)<!--RP2End-->.
+After building code into one or more HAPs and installing or updating these HAPs, you can debug them. For details about how to compile the same HAP into different versions based on the deployment environment, target user group, and running environment, see Introduction of [Configuring Multi-Target and Multi-Product](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-customized-multi-targets-and-products-guides-V13).
 
-To debug an HAP, use either of the following tools:
+To debug a HAP, use either of the following tools:
 
-- **Method 1**: Use DevEco Studio for debugging. For details, see <!--RP3-->[Setting Running/Debugging Configuration](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-run-debug-configurations-V5)<!--RP3End-->.
+- **Method 1**: Use DevEco Studio for debugging. For details, see [Running/Debugging Configuration](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-run-debug-configurations-V13).
 
 - Method 2: Use <!--Del-->[<!--DelEnd-->hdc<!--Del-->](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd--> (obtained from the **toolchains** directory in the OpenHarmony SDK) for debugging.
 
-   Before debugging an HAP, install or update it using either of the methods:
+   Before debugging a HAP, install or update it using either of the methods:
 
    - Use hdc to install and update the HAP.
 

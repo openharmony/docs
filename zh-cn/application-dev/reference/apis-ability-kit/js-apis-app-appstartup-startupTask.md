@@ -29,7 +29,7 @@ onDependencyCompleted?(dependency: string, result: ESObject): void
 | dependency | string | 是 | 依赖的启动任务名称。 |
 | result | Object | 是 | 依赖启动任务执行的结果。 |
 
-**示例：**：
+**示例：**
 
 ```ts
 import StartupTask from '@ohos.app.appstartup.StartupTask';
@@ -74,7 +74,7 @@ init(context: AbilityStageContext): Promise\<ESObject\>
 | -------- | -------- |
 | Promise\<Object | void\> | Promise对象，返回启动任务执行结果对象。 |
 
-**示例：**：
+**示例：**
 
 ```ts
 import { StartupTask, common } from '@kit.AbilityKit';

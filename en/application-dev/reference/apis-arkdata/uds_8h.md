@@ -27,10 +27,10 @@ Defines the APIs and structs related to the uniform data structs.
 | typedef struct [OH_UdsHyperlink](_u_d_m_f.md#oh_udshyperlink) [OH_UdsHyperlink](_u_d_m_f.md#oh_udshyperlink) | Defines a struct for the uniform data of the hyperlink type.| 
 | typedef struct [OH_UdsHtml](_u_d_m_f.md#oh_udshtml) [OH_UdsHtml](_u_d_m_f.md#oh_udshtml) | Defines a struct for the uniform data of the Hypertext Markup Language (HTML) type.| 
 | typedef struct [OH_UdsAppItem](_u_d_m_f.md#oh_udsappitem) [OH_UdsAppItem](_u_d_m_f.md#oh_udsappitem) | Defines a struct for the uniform data of the home screen icon type.| 
-| typedef struct [OH_UdsFileUri](_u_d_m_f.md#oh_udsfileuri) [OH_UdsFileUri](_u_d_m_f.md#oh_udsfileuri) | Defines a struct for the file URI type.| 
-| typedef struct [OH_UdsPixelMap](_u_d_m_f.md#oh_udspixelmap) [OH_UdsPixelMap](_u_d_m_f.md#oh_udspixelmap) | Defines a struct for the pixel map type.| 
-| typedef struct [OH_UdsArrayBuffer](_u_d_m_f.md#oh_udsarraybuffer) [OH_UdsArrayBuffer](_u_d_m_f.md#oh_udsarraybuffer) | Defines a struct for the ArrayBuffer type.| 
-
+| typedef struct [OH_UdsFileUri](_u_d_m_f.md#oh_udsfileuri) [OH_UdsFileUri](_u_d_m_f.md#oh_udsfileuri) | Defines a struct for the uniform data of the file URI type.| 
+| typedef struct [OH_UdsPixelMap](_u_d_m_f.md#oh_udspixelmap) [OH_UdsPixelMap](_u_d_m_f.md#oh_udspixelmap) | Defines a struct for the uniform data of the pixel map type.| 
+| typedef struct [OH_UdsArrayBuffer](_u_d_m_f.md#oh_udsarraybuffer) [OH_UdsArrayBuffer](_u_d_m_f.md#oh_udsarraybuffer) | Defines a struct for the uniform data of the ArrayBuffer type.| 
+| typedef struct [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) | Defines a struct for the uniform data of the content widget type.| 
 
 ### Functions
 
@@ -88,3 +88,18 @@ Defines the APIs and structs related to the uniform data structs.
 | int [OH_UdsArrayBuffer_Destroy](_u_d_m_f.md#oh_udsarraybuffer_destroy) ([OH_UdsArrayBuffer](_u_d_m_f.md#oh_udsarraybuffer) \*buffer) | Destroys an [OH_UdsArrayBuffer](_u_d_m_f.md#oh_udsarraybuffer) instance.| 
 | int [OH_UdsArrayBuffer_SetData](_u_d_m_f.md#oh_udsarraybuffer_setdata) ([OH_UdsArrayBuffer](_u_d_m_f.md#oh_udsarraybuffer) \*buffer, unsigned char \*data, unsigned int len) | Sets data for an [OH_UdsArrayBuffer](_u_d_m_f.md#oh_udsarraybuffer) instance.| 
 | int [OH_UdsArrayBuffer_GetData](_u_d_m_f.md#oh_udsarraybuffer_getdata) ([OH_UdsArrayBuffer](_u_d_m_f.md#oh_udsarraybuffer) \*buffer, unsigned char \*\*data, unsigned int \*len) | Obtains the custom ArrayBuffer from an [OH_UdsArrayBuffer](_u_d_m_f.md#oh_udsarraybuffer) instance.| 
+| [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \* [OH_UdsContentForm_Create](_u_d_m_f.md#oh_udscontentform_create) () | Creates an [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) instance and a pointer to it.| 
+| void [OH_UdsContentForm_Destroy](_u_d_m_f.md#oh_udscontentform_destroy) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis) | Destroys an [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) instance.| 
+| const char \* [OH_UdsContentForm_GetType](_u_d_m_f.md#oh_udscontentform_gettype) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis) | Obtains the type ID from an [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) instance.| 
+| int [OH_UdsContentForm_GetThumbData](_u_d_m_f.md#oh_udscontentform_getthumbdata) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis, unsigned char \*\*thumbData, unsigned int \*len) | Obtains image data from an [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) instance.| 
+| const char \* [OH_UdsContentForm_GetDescription](_u_d_m_f.md#oh_udscontentform_getdescription) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis) | Obtains the description from an [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) instance.| 
+| const char \* [OH_UdsContentForm_GetTitle](_u_d_m_f.md#oh_udscontentform_gettitle) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis) | Obtains the title from an [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) instance.| 
+| int [OH_UdsContentForm_GetAppIcon](_u_d_m_f.md#oh_udscontentform_getappicon) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis, unsigned char \*\*appIcon, unsigned int \*len) | Obtains the application icon data from an [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) instance.| 
+| const char \* [OH_UdsContentForm_GetAppName](_u_d_m_f.md#oh_udscontentform_getappname) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis) | Obtains the application name from an [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) instance.| 
+| const char \* [OH_UdsContentForm_GetLinkUri](_u_d_m_f.md#oh_udscontentform_getlinkuri) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis) | Obtains the hyperlink information from an [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) instance.| 
+| int [OH_UdsContentForm_SetThumbData](_u_d_m_f.md#oh_udscontentform_setthumbdata) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis, const unsigned char \*thumbData, unsigned int len) | Sets the image data for an [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) instance.| 
+| int [OH_UdsContentForm_SetDescription](_u_d_m_f.md#oh_udscontentform_setdescription) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis, const char \*description) | Sets the description for an [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) instance.| 
+| int [OH_UdsContentForm_SetTitle](_u_d_m_f.md#oh_udscontentform_settitle) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis, const char \*title) | Sets the title for an [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) instance.| 
+| int [OH_UdsContentForm_SetAppIcon](_u_d_m_f.md#oh_udscontentform_setappicon) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis, const unsigned char \*appIcon, unsigned int len) | Sets the application icon data for an [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) instance.| 
+| int [OH_UdsContentForm_SetAppName](_u_d_m_f.md#oh_udscontentform_setappname) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis, const char \*appName) | Sets the application name for an [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) instance.| 
+| int [OH_UdsContentForm_SetLinkUri](_u_d_m_f.md#oh_udscontentform_setlinkuri) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis, const char \*linkUri) | Sets the hyperlink data for an [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) instance.| 

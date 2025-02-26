@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
-> 该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 规则说明
 
@@ -47,7 +47,7 @@ RelativeContainer()
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持如下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持如下属性：
 
 ### guideLine<sup>12+</sup>
 
@@ -85,7 +85,7 @@ barrier(value: Array&lt;BarrierStyle&gt;)
 
 barrier(barrierStyle: Array&lt;LocalizedBarrierStyle&gt;)
 
-设置RelativeContaine容器内的屏障，Array中每个项目即为一条barrier。
+设置RelativeContainer容器内的屏障，Array中每个项目即为一条barrier。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -95,7 +95,7 @@ barrier(barrierStyle: Array&lt;LocalizedBarrierStyle&gt;)
 
 | 参数名 | 类型                                   | 必填 | 说明                           |
 | ------ | -------------------------------------- | ---- | ------------------------------ |
-| barrierStyle  | Array\<[LocalizedBarrierStyle](#localizedbarrierstyle12对象说明)\> | 是   | RelativeContaine容器内的屏障。 |
+| barrierStyle  | Array\<[LocalizedBarrierStyle](#localizedbarrierstyle12对象说明)\> | 是   | RelativeContainer容器内的屏障。 |
 
 ## GuideLineStyle<sup>12+</sup>对象说明
 
@@ -135,7 +135,7 @@ barrier参数，用于定义一条barrier的id、方向和生成时所依赖的�
 | 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | id  | string  | 是    | barrier的id，必须是唯一的并且不可与容器内组件重名。   |
-| direction | [BarrierDirection](ts-container-relativecontainer.md#barrierdirection12) | 是    | 指定barrier的方向。<br />默认值：BarrierDirection.LEFT |
+| direction | [BarrierDirection](ts-container-relativecontainer.md#barrierdirection12枚举说明) | 是    | 指定barrier的方向。<br />默认值：BarrierDirection.LEFT |
 | referencedId | Array\<string> | 是    | 指定生成barrier所依赖的组件。 |
 
 ## BarrierDirection<sup>12+</sup>枚举说明
@@ -414,7 +414,7 @@ struct Index {
 
 ### 示例4（设置偏移）
 
-本示例通过[bias](ts-universal-attributes-location.md#bias对象说明)实现了子组件的位置在竖直方向的两个锚点间偏移的效果
+本示例通过[bias](ts-universal-attributes-location.md#bias对象说明)实现了子组件的位置在竖直方向的两个锚点间偏移的效果。
 
 ```ts
 @Entry
@@ -839,3 +839,69 @@ struct Index {
 }
 ```
 ![relative container](figures/relativecontainer8.png)
+
+### 示例10（设置链中节点权重）
+
+本示例展示了链中节点使用[chainWeight](ts-universal-attributes-location.md#chainweight14)设置尺寸权重的用法。
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      RelativeContainer() {
+        Row() {
+          Text('row1')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(80)
+        .height(80)
+        .backgroundColor('#a3cf62')
+        .alignRules({
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          right: { anchor: "row2", align: HorizontalAlign.Start },
+          center: { anchor: "__container__", align: VerticalAlign.Center },
+        })
+        .id("row1")
+        .chainMode(Axis.Horizontal, ChainStyle.PACKED)
+
+        Row() {
+          Text('row2')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(80)
+        .height(80)
+        .backgroundColor('#00ae9d')
+        .alignRules({
+          left: { anchor: "row1", align: HorizontalAlign.End },
+          right: { anchor: "row3", align: HorizontalAlign.Start },
+          top: { anchor: "row1", align: VerticalAlign.Top }
+        })
+        .id("row2")
+        .chainWeight({horizontal:1})
+
+        Row() {
+          Text('row3')
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(80)
+        .height(80)
+        .backgroundColor('#0a59f7')
+        .alignRules({
+          left: { anchor: "row2", align: HorizontalAlign.End },
+          right: { anchor: "__container__", align: HorizontalAlign.End },
+          top: { anchor: "row1", align: VerticalAlign.Top }
+        })
+        .id("row3")
+        .chainWeight({horizontal:2})
+      }
+      .width(300).height(300)
+      .margin({ left: 50 })
+      .border({ width: 2, color: "#6699FF" })
+    }
+    .height('100%')
+  }
+}
+```
+![relative container](figures/relativecontainer9.png)

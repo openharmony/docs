@@ -2,6 +2,9 @@
 
 \@Computed decorator: Computed property means that the computation is performed only once when the value changes. It is mainly used to solve the performance problem caused by repeated computation when the UI reuses the property for multiple times.
 
+
+The change of a state variable can trigger the recomputing of its associated \@Computed. Before reading this topic, you are advised to read [\@ComponentV2](./arkts-new-componentV2.md), [\@ObservedV2 and \@Trace](./arkts-new-observedV2-and-trace.md), and [\@Local](./arkts-new-local.md).
+
 >**NOTE**
 >
 >The \@Computed decorator is supported since API version 12.
@@ -55,7 +58,7 @@ get varName(): T {
   }
   ```
 
-- \@Computed cannot be used together with **!!**. That is, \@Computed decorates the **getter** accessor, which is not synchronized by the child components nor assigned a value. **setter** of the computed property implemented by the developer does not take effect, and a runtime error is reported.
+- \@Computed cannot be used together with **!!**. That is, \@Computed decorates the **getter** accessor, which is not synchronized by the child components nor assigned a value. **setter** of the computed property implemented by you does not take effect, and an error is reported during compilation.
 
   ```ts
   @ComponentV2
@@ -81,7 +84,7 @@ get varName(): T {
       return this.count * 2;
     }
   
-    // The @Computed decorated property is read-only. The setter implemented by the developer does not take effect, and a runtime error is reported.
+    // The @Computed decorated property is read-only. The setter implemented by you does not take effect, and an error is reported during compilation.
     set double(newValue : number) {
       this.count = newValue / 2;
     }
@@ -129,7 +132,7 @@ get varName(): T {
 struct Index {
   @Local firstName: string = 'Li';
   @Local lastName: string = 'Hua';
-  age: number = 20; // cannot trigger Computed
+  age: number = 20; // Computed cannot be triggered.
 
   @Computed
   get fullName() {
@@ -149,7 +152,7 @@ struct Index {
       })
 
       Button('changed age').onClick(() => {
-        this.age++;  // cannot trigger Computed
+        this.age++;  // Computed cannot be triggered.
       })
     }
   }

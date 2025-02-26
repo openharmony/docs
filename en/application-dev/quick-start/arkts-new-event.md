@@ -1,6 +1,9 @@
-# \@Event Decorator: Component Output
+# \@Event Decorator: Standardizing Component Output
 
-You can use \@Event, a variable decorator in state management V2, to enable a child component to require the parent component to update the \@Param decorated variables.
+You can use \@Event, a variable decorator in state management V2, to enable a child component to require the parent component to update the \@Param decorated variables. Using \@Event to decorate the callback method is a standard, indicating that the child component needs to pass in the callback for updating the data source.
+
+
+\@Event works with \@Param to implement two-way data synchronization. Before reading this topic, you are advised to read [\@Param](./arkts-new-param.md).
 
 >**NOTE**
 >
@@ -39,7 +42,7 @@ When using \@Event to decorate a component:
     @Event message: string = "abcd"; // Incorrect usage. Variable of the non-function type is decorated.
   }
   @Component
-  struct CompA {
+  struct Index {
     @Event changeFactory: ()=>void = ()=>{}; // Incorrect usage. An error is reported during compilation.
   }
   ```

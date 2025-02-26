@@ -185,6 +185,49 @@ let isBoundary = iterator.isBoundary(9); // isBoundary: true
 // Obtain the text processed by BreakIterator.
 let breakText = iterator.getLineBreakText(); // breakText: Apple is my favorite fruit.
 ```
-<!--RP1--><!--RP1End-->
 
+### Performs file path mirroring.
+
+File path mirroring means to localize the input file paths. This function is implemented through the [getUnicodeWrappedFilePath](../reference/apis-localization-kit/js-apis-i18n.md#getunicodewrappedfilepath16) API of the **I18NUtil** class. The development procedure is as follows:
+
+1. Import the **i18n** and **intl** modules.
+```ts
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { i18n, intl } from '@kit.LocalizationKit';
+```
+
+2. Call the file path mirroring API.
+```ts
+  try {
+    let path: string = "/data/out/tmp"; // Define a path.
+    let delimiter: string = "/"; // Define the path delimiter.
+    let locale: intl.Locale = new intl.Locale ("ar"); // Define the locale object.
+    let mirrorPath : string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale); // Call the API.
+  } catch (error) {
+    console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+```
+
+
+**Development Example**
+```ts
+// Import the i18n module.
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n, intl } from '@kit.LocalizationKit';
+
+try {
+    // Perform file path mirroring if mirrorPath is passed.
+    let path : string = "/data/out/tmp";
+    let delimiter : string = "/";
+    let locale : intl.Locale = new intl.Locale("ar");
+    let mirrorPath : string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale); // mirrorPath: tmp/out/data/
+
+    // Skip file path mirroring if unMirrorPath is passed.
+    let localeZh : intl.Locale = new intl.Locale("zh");
+    let unMirrorPath : string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, localeZh); // unMirrorPath: /data/out/tmp
+} catch (error) {
+    console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${error.code}, message: ${error.message}.`);
+}
+```
+<!--RP1--><!--RP1End-->
 <!--no_check-->

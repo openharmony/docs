@@ -2,8 +2,6 @@
 
 本模块提供相机拍照与录制的能力。应用可以自行选择媒体类型实现拍照和录制的功能。该类接口，需要应用在界面UIAbility中调用，否则无法拉起cameraPicker应用。
 
-开发者需在release模式下调用系统相机（CameraPicker），在debug模式下会显示异常。
-
 > **说明：**
 >
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -36,8 +34,7 @@ pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: Pick
 
 | 类型                                             | 说明                                                                                   |
 | ----------------------------------------------- | -------------------------------------------------------------------------------------- |
-| Promise\<PickerResult\>                         | 使用Promise的方式获取相机选择器的处理结果。具体返回值[PickerResult](#pickerresult)           |
-
+| Promise\<PickerResult\>                         | 使用Promise的方式获取相机选择器的处理结果。具体返回值[PickerResult](#pickerresult)。        |
 
 **示例：**
 
@@ -73,8 +70,8 @@ async function demo() {
 
 | 名称             | 值    | 说明     |
 | ----------------| ----  | ---------|
-| PHOTO           | photo | 拍照模式  |
-| VIDEO           | video | 录制模式  |
+| PHOTO           | photo | 拍照模式。  |
+| VIDEO           | video | 录制模式。 |
 
 
 ## PickerProfile

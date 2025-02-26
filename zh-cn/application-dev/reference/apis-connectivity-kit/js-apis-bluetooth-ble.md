@@ -15,11 +15,13 @@ import { ble } from '@kit.ConnectivityKit';
 ```
 
 
-## ProfileConnectionState
+## ProfileConnectionState<sup>12+</sup>
 
 type ProfileConnectionState = constant.ProfileConnectionState
 
 蓝牙设备的profile连接状态。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -350,7 +352,7 @@ try {
 
 startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&lt;number&gt;): void
 
-开始发送BLE广播。使用Callback异步回调。
+开始发送BLE广播。使用Callback异步回调。从API15开始，多次调用，可发起多路广播，每一路广播通过不同的ID管理。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -442,7 +444,7 @@ try {
 
 startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 
-开始发送BLE广播。使用Promise异步回调。
+开始发送BLE广播。使用Promise异步回调。从API15开始，多次调用，可发起多路广播，每一路广播通过不同的ID管理。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -3898,7 +3900,7 @@ try {
 
 | 名称          | 类型    | 可读   | 可写   | 说明                                       |
 | ----------- | ------- | ---- | ---- | ---------------------------------------- |
-| interval    | number  | 是    | 是    | 表示广播间隔，最小值设置160个slot表示100ms，最大值设置16384个slot，默认值设置为1600个slot表示1s。 |
+| interval    | number  | 是    | 是    | 表示广播间隔，最小值设置32个slot表示20ms，最大值设置16777215个slot，默认值设置为1600个slot表示1s。(传统广播模式下最大值为16384个slot表示10.24s) |
 | txPower     | number  | 是    | 是    | 表示发送功率，最小值设置-127，最大值设置1，默认值设置-7，单位dbm。推荐值：高档（1），中档（-7），低档（-15）。   |
 | connectable | boolean | 是    | 是    | 表示是否是可连接广播，默认值设置为true，表示可连接，false表示不可连接。                   |
 

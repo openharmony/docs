@@ -9,7 +9,7 @@ The **NodeContainer** component is a basic component that accepts an instance of
 > Only custom [FrameNodes](../js-apis-arkui-frameNode.md) or the root FrameNode obtained from a [BuilderNode](../js-apis-arkui-builderNode.md) can be attached to this component.
 > [Proxy nodes](../js-apis-arkui-frameNode.md#ismodifiable12) of built-in system components obtained through querying cannot be attached to this component.
 >
-> This component does not work with the [attribute modifer](./ts-universal-attributes-attribute-modifier.md).
+> This component does not work with the [attribute modifier](./ts-universal-attributes-attribute-modifier.md).
 ## Child Components
 
 Not supported
@@ -38,6 +38,8 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 The [universal events](ts-universal-events-click.md) are supported.
 
 ## Example
+
+This example demonstrates how to mount a BuilderNode through **NodeController**.
 
 ```ts
 import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';

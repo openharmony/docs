@@ -82,6 +82,78 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 | width | number | 否 | 否 | 矩形宽度，有效取值范围大于0。 |
 | height | number | 否 | 否 | 矩形高度，有效取值范围大于0。 |
 
+## GeometryType<sup>16+</sup>
+几何类型枚举，用于指定不同的几何类型。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+| 名称 | 值 | 说明 |
+| ---- | ---- | ---- |
+| CUSTOM | 0 | 未定义类型。 |
+| CUBE | 1 | 立方体类型。 |
+| PLANE | 2 | 平面类型。 |
+| SPHERE | 3 | 球体类型。 |
+
+## GeometryDefinition<sup>16+</sup>
+几何类型定义抽象类，用于解释特定几何类型的属性。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| geometryType | [GeometryType](#geometrytype16)| 是 | 否 | 定义不同的几何类型。 |
+
+## PrimitiveTopology<sup>16+</sup>
+ 图元拓扑枚举，在顶点处理过程中，指定顶点的不同处理方式。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+| 名称 | 值 | 说明 |
+| ---- | ---- | ---- |
+| TRIANGLE_LIST | 0 | 由不相交的顶点集合构成不同的三角形。 |
+| TRIANGLE_STRIP | 1 | 每个顶点和前一个三角形的一条边构成新的三角形。 |
+
+## CustomGeometry<sup>16+</sup>
+自定义几何类型，继承自[GeometryDefinition](#geometrydefinition16)。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| topology | [PrimitiveTopology](#primitivetopology16)| 否 | 是 | 三角形图元的解析方式，默认值为TRIANGLE_LIST。 |
+| vertices | [Vec3](#vec3)[] | 否 | 否 | 模型的顶点数组。 |
+| indices | number[] | 否 | 是 | 顶点索引数组，数组中元素的取值范围大于等于0，默认值为undefined。 |
+| normals| [Vec3](#vec3)[] | 否 | 是 | 顶点数组对应的法向量数组，默认值为undefined。 |
+| uvs | [Vec2](#vec2)[] | 否 | 是 | 顶点数组对应的UV坐标数组，默认值为undefined。 |
+| colors | [Color](#color)[] | 否 | 是 | 顶点数组对应的颜色数组，默认值为undefined。 |
+
+## CubeGeometry<sup>16+</sup>
+立方体几何类型，继承自[GeometryDefinition](#geometrydefinition16)。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| size | [Vec3](#vec3) | 否 | 否 | 立方体的宽、高和深度，表示立方体的大小。 |
+
+## PlaneGeometry<sup>16+</sup>
+平面几何类型，继承自[GeometryDefinition](#geometrydefinition16)。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| size | [Vec2](#vec2) | 否 | 否 | 平面的宽、高，表示平面的大小。 |
+
+## SphereGeometry<sup>16+</sup>
+球体几何类型，继承自[GeometryDefinition](#geometrydefinition16)。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| radius | number | 否 | 否 | 球体半径，取值范围大于0。 |
+| segmentCount | number | 否 | 否 | 在球体上以经纬度分割的段数，取值范围大于0。 |
+
 ## Position3
 type Position3 = Vec3
 

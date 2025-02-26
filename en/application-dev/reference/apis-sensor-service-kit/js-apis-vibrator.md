@@ -829,11 +829,14 @@ Defines the vibration effect.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
-| Name        | Value                   | Description                        |
-| ------------ | --------------------- | ---------------------------- |
-| EFFECT_SOFT  | 'haptic.effect.soft'  | Soft vibration, low frequency.|
-| EFFECT_HARD  | 'haptic.effect.hard'  | Hard vibration, medium frequency.|
-| EFFECT_SHARP | 'haptic.effect.sharp' | Sharp vibration, high frequency.|
+| Name                               | Value                     | Description                        |
+| ----------------------------------- | ----------------------- | ---------------------------- |
+| EFFECT_SOFT                         | 'haptic.effect.soft'    | Soft vibration, low frequency.|
+| EFFECT_HARD                         | 'haptic.effect.hard'    | Hard vibration, medium frequency.|
+| EFFECT_SHARP                        | 'haptic.effect.sharp'   | Sharp vibration, high frequency.|
+| EFFECT_NOTICE_SUCCESS<sup>16+</sup> | 'haptic.notice.success' | Vibration for a successful notification.    |
+| EFFECT_NOTICE_FAILURE<sup>16+</sup> | 'haptic.notice.fail'    | Vibration for a notification failure.    |
+| EFFECT_NOTICE_WARNING<sup>16+</sup> | 'haptic.notice.warning' | Vibration for an alert.    |
 
 ## VibratorStopMode
 
