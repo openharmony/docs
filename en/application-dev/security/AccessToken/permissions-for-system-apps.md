@@ -5199,8 +5199,8 @@ This permission is available only to the applications on smartphones, tablets, a
 
 **Permission level**：system_basic
 
-**Authorization mode**：system_grant
-
 **Enable via ACL**：true
+
+**Authorization mode**：system_grant
 
 **Valid since**：16
