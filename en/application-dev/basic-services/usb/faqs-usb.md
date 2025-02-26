@@ -8,7 +8,7 @@ After a device is connected to a PC using a USB cable, the device list obtained 
 
 ### Possible Causes
 
-USB devices are classified into two types: USB host and USB device. The USB host takes charge of data transmission and USB port management, and USB devices are managed by the USB host.
+USB devices are classified into two types: host and device. The USB host takes charge of data transmission and USB port management, and USB devices are managed by the USB host.
 
 If the current device functions as the USB host, the **usbManager.getDevices** API can be used to obtain the list of connected USB devices.
 
