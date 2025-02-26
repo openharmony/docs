@@ -1398,6 +1398,7 @@
         - [使用ImagePacker完成图片编码](media/image/image-encoding.md)
         - [使用ImagePacker完成多图对象编码](media/image/image-picture-encoding.md)
         - [编辑图片EXIF信息](media/image/image-tool.md)
+        - [申请图片解码内存](media/image/image-allocator-type.md)
       - 图片开发指导(C/C++)<!--image-native-->
         - [介绍Image_NativeModule结构体信息](media/image/image-structure-c.md)
         - [使用Image_NativeModule完成图片解码](media/image/image-source-c.md)
