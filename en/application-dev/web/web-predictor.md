@@ -102,18 +102,22 @@ import { webview } from '@kit.ArkWeb';
 @Component
 struct WebComponent {
   webviewController: webview.WebviewController = new webview.WebviewController();
-  
+
   build() {
     Column() {
-      Web({ src: "https://www.example.com/", controller: this.webviewController})
+      Web({ src: "https://www.example.com/", controller: this.webviewController })
         .onAppear(() => {
           // Replace https://www.example1.com/post?e=f&g=h with the actual URL of the POST request to prefetch.
           webview.WebviewController.prefetchResource(
-            {url:"https://www.example1.com/post?e=f&g=h",
-              method:"POST",
-              formData:"a=x&b=y",},
-            [{headerKey:"c",
-              headerValue:"z",},],
+            {
+              url: "https://www.example1.com/post?e=f&g=h",
+              method: "POST",
+              formData: "a=x&b=y",
+            },
+            [{
+              headerKey: "c",
+              headerValue: "z",
+            },],
             "KeyX", 500);
         })
         .onPageEnd(() => {
@@ -125,7 +129,7 @@ struct WebComponent {
 }
 ```
 
-If you can predict that a **Web** component is about to load a page or is about to navigate to a page that includes a POST request, you can use [prefetchResource()](../reference/apis-arkweb/js-apis-webview.md#prefetchresource12) to prefetch the POST request for the page.
+If you can predict that a **\<Web>** component is about to load a page or is about to navigate to a page that includes a POST request, you can use [prefetchResource()](../reference/apis-arkweb/js-apis-webview.md#prefetchresource12) to prefetch the POST request for the page.
 
   Here is an example of how you might initiate prefetching of a POST request for a page to visit, in the **onPageEnd** callback:
 
@@ -137,18 +141,22 @@ import { webview } from '@kit.ArkWeb';
 @Component
 struct WebComponent {
   webviewController: webview.WebviewController = new webview.WebviewController();
-  
+
   build() {
     Column() {
-      Web({ src: 'https://www.example.com/', controller: this.webviewController})
+      Web({ src: 'https://www.example.com/', controller: this.webviewController })
         .onPageEnd(() => {
           // Replace https://www.example1.com/post?e=f&g=h with the actual URL of the POST request to prefetch.
           webview.WebviewController.prefetchResource(
-            {url:"https://www.example1.com/post?e=f&g=h",
-              method:"POST",
-              formData:"a=x&b=y",},
-            [{headerKey:"c",
-              headerValue:"z",},],
+            {
+              url: "https://www.example1.com/post?e=f&g=h",
+              method: "POST",
+              formData: "a=x&b=y",
+            },
+            [{
+              headerKey: "c",
+              headerValue: "z",
+            },],
             "KeyX", 500);
         })
     }
@@ -171,11 +179,15 @@ export default class EntryAbility extends UIAbility {
     webview.WebviewController.initializeWebEngine();
     // Replace https://www.example1.com/post?e=f&g=h with the actual URL of the POST request to prefetch.
     webview.WebviewController.prefetchResource(
-      {url:"https://www.example1.com/post?e=f&g=h",
-        method:"POST",
-        formData:"a=x&b=y",},
-      [{headerKey:"c",
-        headerValue:"z",},],
+      {
+        url: "https://www.example1.com/post?e=f&g=h",
+        method: "POST",
+        formData: "a=x&b=y",
+      },
+      [{
+        headerKey: "c",
+        headerValue: "z",
+      },],
       "KeyX", 500);
     AppStorage.setOrCreate("abilityWant", want);
     console.log("EntryAbility onCreate done");
@@ -189,7 +201,7 @@ You can use [precompileJavaScript()](../reference/apis-arkweb/js-apis-webview.md
 
 You are advised to use this function together with dynamic components, use offline **Web** components to generate bytecode caches, and load the service **Web** component at the appropriate time to use the bytecode caches. The example code is as follows:
 
-1. First, save **UIContext** to **localStorage** in EntryAbility.
+1. Save **UIContext** to **localStorage** in **EntryAbility**.
 
    ```ts
    // EntryAbility.ets
@@ -213,7 +225,7 @@ You are advised to use this function together with dynamic components, use offli
    }
    ```
 
-2. Compile the basic code required of the dynamic components.
+2. Compile the basic code of the dynamic component.
 
    ```ts
    // DynamicComponent.ets
@@ -400,7 +412,7 @@ You can use [injectOfflineResources()](../reference/apis-arkweb/js-apis-webview.
 
 You are advised to use this function together with dynamic components, use offline **Web** components to inject resources into the memory cache of the kernel, and load the service **Web** component at the appropriate time to use these resources. The example code is as follows:
 
-1. First, save **UIContext** to **localStorage** in **EntryAbility**.
+1. Save **UIContext** to **localStorage** in **EntryAbility**.
 
    ```ts
    // EntryAbility.ets

@@ -434,5 +434,5 @@ void good_write()
 }
 ```
 
-此时运行该程序可以检测到另一个线程的double-close问题，详细信息可以 <a href="#日志信息">参考日志</a>。同样也可以设置error_level为fatal，这样可以使fdsan在检测到crash之后主动crash以获取更多信息。
+此时运行该程序可以检测到另一个线程的double-close问题，详细信息可以<a href="#日志信息">参考日志</a>。同样也可以设置error_level为fatal，这样可以使fdsan在检测到crash之后主动crash以获取更多信息。
 
