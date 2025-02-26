@@ -307,7 +307,7 @@ OH_AVFormat* OH_VideoDecoder_GetOutputDescription (OH_AVCodec *codec)
 OH_AVErrCode OH_VideoDecoder_IsValid (OH_AVCodec *codec, bool *isValid )
 ```
 **描述**
-检查当前解码实例是否有效。
+在解码器实例存在的情况下，检查当前解码器服务是否有效。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
 
@@ -318,7 +318,7 @@ OH_AVErrCode OH_VideoDecoder_IsValid (OH_AVCodec *codec, bool *isValid )
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向视频解码实例的指针。  | 
-| isValid | 输出参数。指向布尔类型的指针，如果解码器实例有效，则为true，如果解码器实例无效，则为false。建议开发者将isValid初始化为false。  | 
+| isValid | 输出参数，指向布尔类型的指针。只有当接口返回AV_ERR_OK时，该值表示解码器服务的有效性（true为有效，false为无效）。建议开发者将isValid初始化为false。  | 
 
 **返回：**
 
