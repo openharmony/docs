@@ -699,7 +699,7 @@ try {
 
 setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;void&gt;
 
-设置功能键使能状态。
+设置功能键使能状态。使用Promise异步回调。
 
 **需要权限**：ohos.permission.INPUT_KEYBOARD_CONTROLLER
 
