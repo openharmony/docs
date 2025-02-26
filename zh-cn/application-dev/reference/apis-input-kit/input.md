@@ -118,7 +118,7 @@
 | void [OH_Input_SetTouchEventAction](#oh_input_settoucheventaction) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int32_t action) | 设置触屏事件的动作。  | 
 | int32_t [OH_Input_GetTouchEventAction](#oh_input_gettoucheventaction) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触屏事件的动作。  | 
 | void [OH_Input_SetTouchEventFingerId](#oh_input_settoucheventfingerid) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int32_t id) | 设置触屏事件的手指ID。  | 
-| int32_t [OH_Input_GetTouchEventFingerId](#oh_input_gettoucheventfingerid) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触屏事件的手指ID  | 
+| int32_t [OH_Input_GetTouchEventFingerId](#oh_input_gettoucheventfingerid) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触屏事件的手指ID。  | 
 | void [OH_Input_SetTouchEventDisplayX](#oh_input_settoucheventdisplayx) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int32_t displayX) | 设置触屏事件的屏幕X坐标。  | 
 | int32_t [OH_Input_GetTouchEventDisplayX](#oh_input_gettoucheventdisplayx) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触屏事件的屏幕X坐标。  | 
 | void [OH_Input_SetTouchEventDisplayY](#oh_input_settoucheventdisplayy) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int32_t displayY) | 设置触屏事件的屏幕Y坐标。  | 
@@ -993,7 +993,7 @@ struct Input_KeyEvent* OH_Input_CreateKeyEvent ()
 
 **返回：**
 
-如果操作成功返回一个[Input_KeyEvent](#input_keyevent)指针对象 否则返回空指针。
+如果操作成功返回一个[Input_KeyEvent](#input_keyevent)指针对象，否则返回空指针。
 
 
 ### OH_Input_CreateKeyState()
@@ -1012,7 +1012,7 @@ struct Input_KeyState* OH_Input_CreateKeyState ()
 
 如果操作成功，
 
-返回一个[Input_KeyState](#input_keystate)指针对象 否则返回空指针。
+返回一个[Input_KeyState](#input_keystate)指针对象，否则返回空指针。
 
 ### OH_Input_CreateMouseEvent()
 
@@ -1028,7 +1028,7 @@ struct Input_MouseEvent* OH_Input_CreateMouseEvent ()
 
 **返回：**
 
-如果操作成功返回一个[Input_MouseEvent](#input_mouseevent)指针对象 否则返回空指针。
+如果操作成功返回一个[Input_MouseEvent](#input_mouseevent)指针对象，否则返回空指针。
 
 
 ### OH_Input_CreateTouchEvent()
@@ -1045,7 +1045,7 @@ struct Input_TouchEvent* OH_Input_CreateTouchEvent ()
 
 **返回：**
 
-如果操作成功返回一个[Input_TouchEvent](#input_touchevent)指针对象 否则返回空指针。
+如果操作成功返回一个[Input_TouchEvent](#input_touchevent)指针对象，否则返回空指针。
 
 
 ### OH_Input_DestroyAxisEvent()
@@ -1453,7 +1453,7 @@ Input_Result OH_Input_GetKeyState (struct Input_KeyState * keyState)
 
 如果操作成功，
 
-返回Input_Result#INPUT_SUCCESS; 否则返回[Input_Result](#input_result)中定义的其他错误代码。
+返回Input_Result#INPUT_SUCCESS；否则返回[Input_Result](#input_result)中定义的其他错误代码。
 
 
 ### OH_Input_GetKeySwitch()
