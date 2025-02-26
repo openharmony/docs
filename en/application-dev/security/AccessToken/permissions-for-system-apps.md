@@ -4599,6 +4599,20 @@ Allows an application to access the RBT library.
 
 **Valid since**: 16
 
+### ohos.permission.ACCESS_STARTUPGUIDE
+
+Allows a system application to access common data and common events of the startup wizard.
+
+This permission is available only to the applications on smartphones, tablets, and 2-in-1 devices.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：16
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
