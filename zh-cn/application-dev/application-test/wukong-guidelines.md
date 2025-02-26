@@ -321,3 +321,41 @@ C:\Users\xxx>hdc file recv /data/local/tmp/wukong/report/20170805_170053/wukong.
 [I][2024-01-03 20:08:02] HdcFile::TransferSummary success
 FileTransfer finish, Size:76492, File count = 1, time:16ms rate:4780.75kB/s
 ```
+
+## 常见问题
+### failed to connect to AAMS
+ **错误描述** 
+
+failed to connect to AAMS.
+
+ **可能原因** 
+
+AAMS被hypium或者dev testing的UIViewer占用了，AAMS同一时间只能被一个程序连接。
+
+ **解决方案** 
+
+结束占用AAMS的进程，或直接重启设备。
+### Errorcode:(4005)
+ **错误描述** 
+
+Errorcode:(4005).
+
+ **可能原因** 
+
+因屏幕显示区域大小变化，导致无障碍获取页面信息失败。
+
+ **解决方案** 
+
+该错误不影响测试流程，无需处理。
+### Errorcode:(4007)
+ **错误描述** 
+
+Errorcode:(4007).
+
+ **可能原因** 
+
+因屏幕显示区域大小变化，导致无障碍获取页面信息失败。
+
+ **解决方案** 
+
+该错误不影响测试流程，无需处理。
