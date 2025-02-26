@@ -754,7 +754,7 @@ call.formatPhoneNumberToE164("138xxxxxxxx", "CN", (err: BusinessError, data: str
 
 formatPhoneNumberToE164\(phoneNumber: string, countryCode: string\): Promise\<string\>
 
-将电话号码格式化为E.164表示形式。使用Promise异步回调。
+将电话号码格式化为E.164表示形式，使用Promise异步回调。
 
 待格式化的电话号码需要与传入的国家码相匹配，如中国电话号码需要传入国家码CN，否则格式化后的电话号码为null。
 
