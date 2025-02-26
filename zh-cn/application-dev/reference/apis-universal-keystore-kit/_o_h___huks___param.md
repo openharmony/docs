@@ -57,7 +57,7 @@ int32_t型参数。
 uint32_t OH_Huks_Param::tag
 ```
 **描述**
-标签值
+标签值。
 
 
 ### uint32Param
