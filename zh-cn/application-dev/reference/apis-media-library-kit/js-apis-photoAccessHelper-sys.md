@@ -1271,7 +1271,7 @@ createAssetsForApp(bundleName: string, appName: string, appId: string, photoCrea
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回给接口调用方的的媒体库文件uri列表。Uri已对appId对应的应用授权，支持应用写入数据。如果生成uri异常，则返回对应的错误码。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回给接口调用方的的媒体库文件uri列表。Uri已对appId对应的应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。 |
 
 **错误码：**
 
@@ -1512,7 +1512,7 @@ createAssetsForAppWithMode(boundleName: string, appName: string, appId: string, 
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise\<Array\<string>> | Promise对象，返回给接口调用方的媒体库文件uri列表。Uri已对appId对应的应用授权，支持应用写入数据。如果生成uri异常，则返回对应的错误码。|
+| Promise\<Array\<string>> | Promise对象，返回给接口调用方的媒体库文件uri列表。Uri已对appId对应的应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。|
 
 **错误码：**
 
