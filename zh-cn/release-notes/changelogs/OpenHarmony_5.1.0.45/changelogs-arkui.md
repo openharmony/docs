@@ -328,3 +328,54 @@ struct ChildComponent {
   }
 }
 ```
+
+## cl.arkui.6 Image组件的borderRadius接口支持百分比输入
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+为了增强功能的灵活性，Image组件的borderRadius接口支持百分比输入，功能与通用属性的borderRadius对齐。
+
+**变更影响**
+
+此变更涉及应用适配。
+
+| 变更前                                                                                                                     | 变更后                                                                                                                   |
+| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Image组件的borderRadius接口输入百分比不生效。<br>![borderRadiusNotSupportPercentage](figures/borderRadiusNotSupportPercentage.png)| Image组件的borderRadius接口输入百分比，百分比依据组件宽度生效。<br>![borderRadiusSupportPercentage](figures/borderRadiusSupportPercentage.png) |
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.45 版本开始。
+
+**变更的接口/组件**
+
+Image组件的borderRadius接口。
+
+**适配指导**
+
+如果代码中依赖borderRadius传入百分比不生效的行为，建议传入0，或者不设置borderRadius，例如：borderRadius(0)。
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Image($r("app.media.startIcon"))
+        .width(100)
+        .height(100)
+        .borderRadius("10%")
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
