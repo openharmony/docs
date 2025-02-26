@@ -77,7 +77,7 @@
 | [InputEvent_SourceType](#inputevent_sourcetype) { SOURCE_TYPE_MOUSE = 1, SOURCE_TYPE_TOUCHSCREEN = 2, SOURCE_TYPE_TOUCHPAD = 3 } | 输入事件源类型。  | 
 | [Input_KeyboardType](#input_keyboardtype) {<br/>KEYBOARD_TYPE_NONE = 0, KEYBOARD_TYPE_UNKNOWN = 1, KEYBOARD_TYPE_ALPHABETIC = 2, KEYBOARD_TYPE_DIGITAL = 3,<br/>KEYBOARD_TYPE_STYLUS = 4, KEYBOARD_TYPE_REMOTE_CONTROL = 5<br/>} | 输入设备的键盘类型。  | 
 | [Input_Result](#input_result) {<br/>INPUT_SUCCESS = 0, INPUT_PERMISSION_DENIED = 201, INPUT_NOT_SYSTEM_APPLICATION = 202, INPUT_PARAMETER_ERROR = 401,<br/>INPUT_SERVICE_EXCEPTION = 3800001, INPUT_REPEAT_INTERCEPTOR = 4200001, INPUT_OCCUPIED_BY_SYSTEM = 4200002, INPUT_OCCUPIED_BY_OTHER = 4200003<br/>} | 错误码枚举值。  | 
-| [Input_KeyCode](#input_keycode) {<br/>KEYCODE_UNKNOWN = -1, KEYCODE_FN = 0, KEYCODE_VOLUME_UP = 16, KEYCODE_VOLUME_DOWN = 17,<br/>KEYCODE_POWER = 18, KEYCODE_CAMERA = 19, KEYCODE_VOLUME_MUTE = 22, KEYCODE_MUTE = 23,<br/>KEYCODE_BRIGHTNESS_UP = 40, KEYCODE_BRIGHTNESS_DOWN = 41, KEYCODE_0 = 2000, KEYCODE_1 = 2001,<br/>KEYCODE_2 = 2002, KEYCODE_3 = 2003, KEYCODE_4 = 2004, KEYCODE_5 = 2005,<br/>KEYCODE_6 = 2006, KEYCODE_7 = 2007, KEYCODE_8 = 2008, KEYCODE_9 = 2009,<br/>KEYCODE_STAR = 2010, KEYCODE_POUND = 2011, KEYCODE_DPAD_UP = 2012, KEYCODE_DPAD_DOWN = 2013,<br/>KEYCODE_DPAD_LEFT = 2014, KEYCODE_DPAD_RIGHT = 2015, KEYCODE_DPAD_CENTER = 2016, KEYCODE_A = 2017,<br/>KEYCODE_B = 2018, KEYCODE_C = 2019, KEYCODE_D = 2020, KEYCODE_E = 2021,<br/>KEYCODE_F = 2022, KEYCODE_G = 2023, KEYCODE_H = 2024, KEYCODE_I = 2025,<br/>KEYCODE_J = 2026, KEYCODE_K = 2027, KEYCODE_L = 2028, KEYCODE_M = 2029,<br/>KEYCODE_N = 2030, KEYCODE_O = 2031, KEYCODE_P = 2032, KEYCODE_Q = 2033,<br/>KEYCODE_R = 2034, KEYCODE_S = 2035, KEYCODE_T = 2036, KEYCODE_U = 2037,<br/>KEYCODE_V = 2038, KEYCODE_W = 2039, KEYCODE_X = 2040, KEYCODE_Y = 2041,<br/>KEYCODE_Z = 2042, KEYCODE_COMMA = 2043, KEYCODE_PERIOD = 2044, KEYCODE_ALT_LEFT = 2045,<br/>KEYCODE_ALT_RIGHT = 2046, KEYCODE_SHIFT_LEFT = 2047, KEYCODE_SHIFT_RIGHT = 2048, KEYCODE_TAB = 2049,<br/>KEYCODE_SPACE = 2050, KEYCODE_SYM = 2051, KEYCODE_EXPLORER = 2052, KEYCODE_ENVELOPE = 2053,<br/>KEYCODE_ENTER = 2054, KEYCODE_DEL = 2055, KEYCODE_GRAVE = 2056, KEYCODE_MINUS = 2057,<br/>KEYCODE_EQUALS = 2058, KEYCODE_LEFT_BRACKET = 2059, KEYCODE_RIGHT_BRACKET = 2060, KEYCODE_BACKSLASH = 2061,<br/>KEYCODE_SEMICOLON = 2062, KEYCODE_APOSTROPHE = 2063, KEYCODE_SLASH = 2064, KEYCODE_AT = 2065,<br/>KEYCODE_PLUS = 2066, KEYCODE_MENU = 2067, KEYCODE_PAGE_UP = 2068, KEYCODE_PAGE_DOWN = 2069,<br/>KEYCODE_ESCAPE = 2070, KEYCODE_FORWARD_DEL = 2071, KEYCODE_CTRL_LEFT = 2072, KEYCODE_CTRL_RIGHT = 2073,<br/>KEYCODE_CAPS_LOCK = 2074, KEYCODE_SCROLL_LOCK = 2075, KEYCODE_META_LEFT = 2076, KEYCODE_META_RIGHT = 2077,<br/>KEYCODE_FUNCTION = 2078, KEYCODE_SYSRQ = 2079, KEYCODE_BREAK = 2080, KEYCODE_MOVE_HOME = 2081,<br/>KEYCODE_MOVE_END = 2082, KEYCODE_INSERT = 2083, KEYCODE_FORWARD = 2084, KEYCODE_MEDIA_PLAY = 2085,<br/>KEYCODE_MEDIA_PAUSE = 2086, KEYCODE_MEDIA_CLOSE = 2087, KEYCODE_MEDIA_EJECT = 2088, KEYCODE_MEDIA_RECORD = 2089,<br/>KEYCODE_F1 = 2090, KEYCODE_F2 = 2091, KEYCODE_F3 = 2092, KEYCODE_F4 = 2093,<br/>KEYCODE_F5 = 2094, KEYCODE_F6 = 2095, KEYCODE_F7 = 2096, KEYCODE_F8 = 2097,<br/>KEYCODE_F9 = 2098, KEYCODE_F10 = 2099, KEYCODE_F11 = 2100, KEYCODE_F12 = 2101,<br/>KEYCODE_NUM_LOCK = 2102, KEYCODE_NUMPAD_0 = 2103, KEYCODE_NUMPAD_1 = 2104, KEYCODE_NUMPAD_2 = 2105,<br/>KEYCODE_NUMPAD_3 = 2106, KEYCODE_NUMPAD_4 = 2107, KEYCODE_NUMPAD_5 = 2108, KEYCODE_NUMPAD_6 = 2109,<br/>KEYCODE_NUMPAD_7 = 2110, KEYCODE_NUMPAD_8 = 2111, KEYCODE_NUMPAD_9 = 2112, KEYCODE_NUMPAD_DIVIDE = 2113,<br/>KEYCODE_NUMPAD_MULTIPLY = 2114, KEYCODE_NUMPAD_SUBTRACT = 2115, KEYCODE_NUMPAD_ADD = 2116, KEYCODE_NUMPAD_DOT = 2117,<br/>KEYCODE_NUMPAD_COMMA = 2118, KEYCODE_NUMPAD_ENTER = 2119, KEYCODE_NUMPAD_EQUALS = 2120, KEYCODE_NUMPAD_LEFT_PAREN = 2121,<br/>KEYCODE_NUMPAD_RIGHT_PAREN = 2122<br/>} | 键码值。  | 
+| [Input_KeyCode](#input_keycode) {<br/>KEYCODE_UNKNOWN = -1, KEYCODE_FN = 0, KEYCODE_VOLUME_UP = 16, KEYCODE_VOLUME_DOWN = 17,<br/>KEYCODE_POWER = 18, KEYCODE_CAMERA = 19, KEYCODE_VOLUME_MUTE = 22, KEYCODE_MUTE = 23,<br/>KEYCODE_BRIGHTNESS_UP = 40, KEYCODE_BRIGHTNESS_DOWN = 41, KEYCODE_0 = 2000, KEYCODE_1 = 2001,<br/>KEYCODE_2 = 2002, KEYCODE_3 = 2003, KEYCODE_4 = 2004, KEYCODE_5 = 2005,<br/>KEYCODE_6 = 2006, KEYCODE_7 = 2007, KEYCODE_8 = 2008, KEYCODE_9 = 2009,<br/>KEYCODE_STAR = 2010, KEYCODE_POUND = 2011, KEYCODE_DPAD_UP = 2012, KEYCODE_DPAD_DOWN = 2013,<br/>KEYCODE_DPAD_LEFT = 2014, KEYCODE_DPAD_RIGHT = 2015, KEYCODE_DPAD_CENTER = 2016, KEYCODE_A = 2017,<br/>KEYCODE_B = 2018, KEYCODE_C = 2019, KEYCODE_D = 2020, KEYCODE_E = 2021,<br/>KEYCODE_F = 2022, KEYCODE_G = 2023, KEYCODE_H = 2024, KEYCODE_I = 2025,<br/>KEYCODE_J = 2026, KEYCODE_K = 2027, KEYCODE_L = 2028, KEYCODE_M = 2029,<br/>KEYCODE_N = 2030, KEYCODE_O = 2031, KEYCODE_P = 2032, KEYCODE_Q = 2033,<br/>KEYCODE_R = 2034, KEYCODE_S = 2035, KEYCODE_T = 2036, KEYCODE_U = 2037,<br/>KEYCODE_V = 2038, KEYCODE_W = 2039, KEYCODE_X = 2040, KEYCODE_Y = 2041,<br/>KEYCODE_Z = 2042, KEYCODE_COMMA = 2043, KEYCODE_PERIOD = 2044, KEYCODE_ALT_LEFT = 2045,<br/>KEYCODE_ALT_RIGHT = 2046, KEYCODE_SHIFT_LEFT = 2047, KEYCODE_SHIFT_RIGHT = 2048, KEYCODE_TAB = 2049,<br/>KEYCODE_SPACE = 2050, KEYCODE_SYM = 2051, KEYCODE_EXPLORER = 2052, KEYCODE_ENVELOPE = 2053,<br/>KEYCODE_ENTER = 2054, KEYCODE_DEL = 2055, KEYCODE_GRAVE = 2056, KEYCODE_MINUS = 2057,<br/>KEYCODE_EQUALS = 2058, KEYCODE_LEFT_BRACKET = 2059, KEYCODE_RIGHT_BRACKET = 2060, KEYCODE_BACKSLASH = 2061,<br/>KEYCODE_SEMICOLON = 2062, KEYCODE_APOSTROPHE = 2063, KEYCODE_SLASH = 2064, KEYCODE_AT = 2065,<br/>KEYCODE_PLUS = 2066, KEYCODE_MENU = 2067, KEYCODE_PAGE_UP = 2068, KEYCODE_PAGE_DOWN = 2069,<br/>KEYCODE_ESCAPE = 2070, KEYCODE_FORWARD_DEL = 2071, KEYCODE_CTRL_LEFT = 2072, KEYCODE_CTRL_RIGHT = 2073,<br/>KEYCODE_CAPS_LOCK = 2074, KEYCODE_SCROLL_LOCK = 2075, KEYCODE_META_LEFT = 2076, KEYCODE_META_RIGHT = 2077,<br/>KEYCODE_FUNCTION = 2078, KEYCODE_SYSRQ = 2079, KEYCODE_BREAK = 2080, KEYCODE_MOVE_HOME = 2081,<br/>KEYCODE_MOVE_END = 2082, KEYCODE_INSERT = 2083, KEYCODE_FORWARD = 2084, KEYCODE_MEDIA_PLAY = 2085,<br/>KEYCODE_MEDIA_PAUSE = 2086, KEYCODE_MEDIA_CLOSE = 2087, KEYCODE_MEDIA_EJECT = 2088, KEYCODE_MEDIA_RECORD = 2089,<br/>KEYCODE_F1 = 2090, KEYCODE_F2 = 2091, KEYCODE_F3 = 2092, KEYCODE_F4 = 2093,<br/>KEYCODE_F5 = 2094, KEYCODE_F6 = 2095, KEYCODE_F7 = 2096, KEYCODE_F8 = 2097,<br/>KEYCODE_F9 = 2098, KEYCODE_F10 = 2099, KEYCODE_F11 = 2100, KEYCODE_F12 = 2101,<br/>KEYCODE_NUM_LOCK = 2102, KEYCODE_NUMPAD_0 = 2103, KEYCODE_NUMPAD_1 = 2104, KEYCODE_NUMPAD_2 = 2105,<br/>KEYCODE_NUMPAD_3 = 2106, KEYCODE_NUMPAD_4 = 2107, KEYCODE_NUMPAD_5 = 2108, KEYCODE_NUMPAD_6 = 2109,<br/>KEYCODE_NUMPAD_7 = 2110, KEYCODE_NUMPAD_8 = 2111, KEYCODE_NUMPAD_9 = 2112, KEYCODE_NUMPAD_DIVIDE = 2113,<br/>KEYCODE_NUMPAD_MULTIPLY = 2114, KEYCODE_NUMPAD_SUBTRACT = 2115, KEYCODE_NUMPAD_ADD = 2116, KEYCODE_NUMPAD_DOT = 2117,<br/>KEYCODE_NUMPAD_COMMA = 2118, KEYCODE_NUMPAD_ENTER = 2119, KEYCODE_NUMPAD_EQUALS = 2120, KEYCODE_NUMPAD_LEFT_PAREN = 2121,<br/>KEYCODE_NUMPAD_RIGHT_PAREN = 2122, KEYCODE_DAGGER_CLICK = 3211, KEYCODE_DAGGER_DOUBLE_CLICK = 3212, KEYCODE_DAGGER_LONG_PRESS = 3213<br/>} | 键码值。  | 
 
 
 ### 函数
@@ -102,6 +102,10 @@
 | int32_t [OH_Input_GetKeyEventKeyCode](#oh_input_getkeyeventkeycode) (const struct [Input_KeyEvent](#input_keyevent) \*keyEvent) | 获取按键事件的键值。  | 
 | void [OH_Input_SetKeyEventActionTime](#oh_input_setkeyeventactiontime) (struct [Input_KeyEvent](#input_keyevent) \*keyEvent, int64_t actionTime) | 设置按键事件发生的时间。  | 
 | int64_t [OH_Input_GetKeyEventActionTime](#oh_input_getkeyeventactiontime) (const struct [Input_KeyEvent](#input_keyevent) \*keyEvent) | 获取按键事件发生的时间。  | 
+| void [OH_Input_SetKeyEventWindowId](#oh_input_setkeyeventwindowid) (struct [Input_KeyEvent](#input_keyevent) \*keyEvent, int32_t windowId) | 设置按键事件的窗口Id。  | 
+| int32_t [OH_Input_GetKeyEventWindowId](#oh_input_getkeyeventwindowid) (const struct [Input_KeyEvent](#input_keyevent) \*keyEvent) | 获取按键事件的窗口Id。  | 
+| void [OH_Input_SetKeyEventDisplayId](#oh_input_setkeyeventdisplayid) (struct [Input_KeyEvent](#input_keyevent) \*keyEvent, int32_t displayId) | 设置按键事件的屏幕Id。  | 
+| int32_t [OH_Input_GetKeyEventDisplayId](#oh_input_getkeyeventdisplayid) (const struct [Input_KeyEvent](#input_keyevent) \*keyEvent) | 获取按键事件的屏幕Id。  | 
 | int32_t [OH_Input_InjectMouseEvent](#oh_input_injectmouseevent) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 注入鼠标事件。  | 
 | struct [Input_MouseEvent](#input_mouseevent) \* [OH_Input_CreateMouseEvent](#oh_input_createmouseevent) () | 创建鼠标事件对象。  | 
 | void [OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent) (struct [Input_MouseEvent](#input_mouseevent) \*\*mouseEvent) | 销毁鼠标事件对象。 | 
@@ -119,6 +123,10 @@
 | float [OH_Input_GetMouseEventAxisValue](#oh_input_getmouseeventaxisvalue) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标轴事件的值。  | 
 | void [OH_Input_SetMouseEventActionTime](#oh_input_setmouseeventactiontime) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int64_t actionTime) | 设置鼠标事件发生的时间。  | 
 | int64_t [OH_Input_GetMouseEventActionTime](#oh_input_getmouseeventactiontime) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标事件发生的时间。  | 
+| void [OH_Input_SetMouseEventWindowId](#oh_input_setmouseeventwindowid) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int32_t windowId) | 设置鼠标事件的窗口Id。  | 
+| int32_t [OH_Input_GetMouseEventWindowId](#oh_input_getmouseeventwindowid) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标事件的窗口Id。  | 
+| void [OH_Input_SetMouseEventDisplayId](#oh_input_setmouseeventdisplayid) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int32_t displayId) | 设置鼠标事件的屏幕Id。  | 
+| int32_t [OH_Input_GetMouseEventDisplayId](#oh_input_getmouseeventdisplayid) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标事件的屏幕Id。  | 
 | int32_t [OH_Input_InjectTouchEvent](#oh_input_injecttouchevent) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 注入触摸事件。  | 
 | struct [Input_TouchEvent](#input_touchevent) \* [OH_Input_CreateTouchEvent](#oh_input_createtouchevent) () | 创建触屏事件对象。  | 
 | void [OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent) (struct [Input_TouchEvent](#input_touchevent) \*\*touchEvent) | 销毁触屏事件对象。  | 
@@ -132,6 +140,10 @@
 | int32_t [OH_Input_GetTouchEventDisplayY](#oh_input_gettoucheventdisplayy) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触屏事件的屏幕Y坐标。  | 
 | void [OH_Input_SetTouchEventActionTime](#oh_input_settoucheventactiontime) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int64_t actionTime) | 设置触摸事件发生的时间。  | 
 | int64_t [OH_Input_GetTouchEventActionTime](#oh_input_gettoucheventactiontime) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触摸事件发生的时间。  | 
+| void [OH_Input_SetTouchEventWindowId](#oh_input_settoucheventwindowid) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int32_t windowId) | 设置触屏事件的窗口Id。  | 
+| int32_t [OH_Input_GetTouchEventWindowId](#oh_input_gettoucheventwindowid) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触屏事件的窗口Id。  | 
+| void [OH_Input_SetTouchEventDisplayId](#oh_input_settoucheventdisplayid) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int32_t displayId) | 设置触屏事件的屏幕Id。  | 
+| int32_t [OH_Input_GetTouchEventDisplayId](#oh_input_gettoucheventdisplayid) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触屏事件的屏幕Id。  | 
 | void [OH_Input_CancelInjection](#oh_input_cancelinjection) () | 取消事件注入并撤销授权。  | 
 | [Input_AxisEvent](#input_axisevent) \* [OH_Input_CreateAxisEvent](#oh_input_createaxisevent) (void) | 创建轴事件对象实例。  | 
 | [Input_Result](#input_result) [OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent) ([Input_AxisEvent](#input_axisevent) \*\*axisEvent) | 销毁轴事件对象实例。  | 
@@ -149,6 +161,10 @@
 | [Input_Result](#input_result) [OH_Input_GetAxisEventType](#oh_input_getaxiseventtype) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_AxisEventType](#inputevent_axiseventtype) \*axisEventType) | 获取轴事件类型。  | 
 | [Input_Result](#input_result) [OH_Input_SetAxisEventSourceType](#oh_input_setaxiseventsourcetype) ([Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_SourceType](#inputevent_sourcetype) sourceType) | 设置轴事件源类型。  | 
 | [Input_Result](#input_result) [OH_Input_GetAxisEventSourceType](#oh_input_getaxiseventsourcetype) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_SourceType](#inputevent_sourcetype) \*sourceType) | 获取轴事件源类型。  | 
+| [Input_Result](#input_result) [OH_Input_SetAxisEventWindowId](#oh_input_setaxiseventwindowid) ([Input_AxisEvent](#input_axisevent) \*axisEvent, int32_t windowId) | 设置轴事件的窗口Id。  | 
+| [Input_Result](#input_result) [OH_Input_GetAxisEventWindowId](#oh_input_getaxiseventwindowid) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, int32_t \*windowId) | 获取轴事件的窗口Id。  | 
+| [Input_Result](#input_result) [OH_Input_SetAxisEventDisplayId](#oh_input_setaxiseventdisplayid) ([Input_AxisEvent](#input_axisevent) \*axisEvent, int32_t displayId) | 设置轴事件的屏幕Id。  | 
+| [Input_Result](#input_result) [OH_Input_GetAxisEventDisplayId](#oh_input_getaxiseventdisplayid) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, int32_t \*displayId) | 获取轴事件的屏幕Id。  | 
 | [Input_Result](#input_result) [OH_Input_AddKeyEventMonitor](#oh_input_addkeyeventmonitor) ([Input_KeyEventCallback](#input_keyeventcallback) callback) | 添加按键事件监听。  | 
 | [Input_Result](#input_result) [OH_Input_AddMouseEventMonitor](#oh_input_addmouseeventmonitor) ([Input_MouseEventCallback](#input_mouseeventcallback) callback) | 添加鼠标事件监听,包含鼠标点击，移动，不包含滚轮事件，滚轮事件归属于轴事件。  | 
 | [Input_Result](#input_result) [OH_Input_AddTouchEventMonitor](#oh_input_addtoucheventmonitor) ([Input_TouchEventCallback](#input_toucheventcallback) callback) | 添加触摸事件监听。  | 
@@ -192,6 +208,7 @@
 | [Input_Result](#input_result) [OH_Input_RegisterDeviceListener](#oh_input_registerdevicelistener) ([Input_DeviceListener](_input___device_listener.md) \*listener) | 注册设备热插拔的监听器。  | 
 | [Input_Result](#input_result) [OH_Input_UnregisterDeviceListener](#oh_input_unregisterdevicelistener) ([Input_DeviceListener](_input___device_listener.md) \*listener) | 取消注册设备热插拔的监听。  | 
 | [Input_Result](#input_result) [OH_Input_UnregisterDeviceListeners](#oh_input_unregisterdevicelisteners) () | 取消注册所有的设备热插拔的监听。  | 
+| [Input_Result](#input_result) [OH_Input_GetFunctionKeyState](#oh_input_getfunctionkeystate) (int32_t keyCode, int32_t \*state) | 获取功能键状态。  | 
 
 
 ## 类型定义说明
@@ -1561,6 +1578,31 @@ Input_Result OH_Input_GetAxisEventAxisValue (const Input_AxisEvent * axisEvent, 
 若获取轴事件指定轴类型的轴值成功，则返回**INTO_SUCCESS**；若axisEvent或者axisValue为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
+### OH_Input_GetAxisEventDisplayId()
+
+```
+Input_Result OH_Input_GetAxisEventDisplayId (const Input_AxisEvent * axisEvent, int32_t * displayId )
+```
+**描述**
+
+获取轴事件的屏幕Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| axisEvent | 轴事件对象。  | 
+| displayId | 出参，返回轴事件屏幕Id。  | 
+
+**返回：**
+
+若获取轴事件的屏幕Id成功，则返回**INTO_SUCCESS**；若axisEvent或者displayId为NULL，则返回INPUT_PARAMETER_ERROR。
+
+
 ### OH_Input_GetAxisEventDisplayX()
 
 ```
@@ -1655,6 +1697,31 @@ Input_Result OH_Input_GetAxisEventType (const Input_AxisEvent * axisEvent, Input
 **返回：**
 
 若获取轴事件类型成功，则返回**INTO_SUCCESS**；若axisEvent或者axisEventType为NULL，则返回INPUT_PARAMETER_ERROR。
+
+
+### OH_Input_GetAxisEventWindowId()
+
+```
+Input_Result OH_Input_GetAxisEventWindowId (const Input_AxisEvent * axisEvent, int32_t * windowId )
+```
+**描述**
+
+获取轴事件的窗口Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| axisEvent | 轴事件对象。  | 
+| windowId | 出参，返回轴事件窗口Id。  | 
+
+**返回：**
+
+若获取轴事件的窗口Id成功，则返回**INTO_SUCCESS**；若axisEvent或者windowId为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
 ### OH_Input_GetCapabilities()
@@ -1900,6 +1967,27 @@ Input_Result OH_Input_GetFinalKey (const Input_Hotkey * hotkey, int32_t * finalK
 OH_Input_GetfinalKey 函数错误码。 若获取成功，返回INPUT_SUCCESS；
 
 若获取失败，返回INPUT_PARAMETER_ERROR。
+### OH_Input_GetFunctionKeyState()
+
+```
+Input_Result OH_Input_GetFunctionKeyState (int32_t keyCode, int32_t * state )
+```
+**描述**
+获取功能键状态。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| keyCode | 功能键值。支持的功能键包含CapsLock键。  | 
+| state | 功能键状态。0表示功能键关闭，1表示功能键打开。  | 
+
+**返回：**
+
+OH_Input_GetFunctionKeyState的执行结果。
+INPUT_SUCCESS 表示获取状态成功。 INPUT_PARAMETER_ERROR 表示参数错误。 INPUT_DEVICE_NOT_EXIST 表示键盘设备不存在。
 
 
 ### OH_Input_GetIntervalSinceLastInput()
@@ -2018,6 +2106,28 @@ int64_t OH_Input_GetKeyEventActionTime (const struct Input_KeyEvent * keyEvent)
 **返回：**
 
 返回按键事件发生的时间。
+### OH_Input_GetKeyEventDisplayId()
+
+```
+int32_t OH_Input_GetKeyEventDisplayId (const struct Input_KeyEvent * keyEvent)
+```
+**描述**
+
+获取按键事件的屏幕Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| keyEvent | 按键事件对象。  | 
+
+**返回：**
+
+按键事件的屏幕Id。
 
 
 ### OH_Input_GetKeyEventKeyCode()
@@ -2041,6 +2151,28 @@ int32_t OH_Input_GetKeyEventKeyCode (const struct Input_KeyEvent * keyEvent)
 **返回：**
 
 Key code.
+### OH_Input_GetKeyEventWindowId()
+
+```
+int32_t OH_Input_GetKeyEventWindowId (const struct Input_KeyEvent * keyEvent)
+```
+**描述**
+
+获取按键事件的窗口Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| keyEvent | 按键事件对象。  | 
+
+**返回：**
+
+按键事件的窗口Id。
 
 
 ### OH_Input_GetKeyPressed()
@@ -2229,6 +2361,28 @@ int32_t OH_Input_GetMouseEventButton (const struct Input_MouseEvent * mouseEvent
 鼠标按键。
 
 
+### OH_Input_GetMouseEventDisplayId()
+
+```
+int32_t OH_Input_GetMouseEventDisplayId (const struct Input_MouseEvent * mouseEvent)
+```
+**描述**
+
+获取鼠标事件的屏幕Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| mouseEvent | 鼠标事件对象。  | 
+
+**返回：**
+
+鼠标事件的屏幕Id。
 ### OH_Input_GetMouseEventDisplayX()
 
 ```
@@ -2273,6 +2427,28 @@ int32_t OH_Input_GetMouseEventDisplayY (const struct Input_MouseEvent * mouseEve
 **返回：**
 
 屏幕Y坐标。
+### OH_Input_GetMouseEventWindowId()
+
+```
+int32_t OH_Input_GetMouseEventWindowId (const struct Input_MouseEvent * mouseEvent)
+```
+**描述**
+
+获取鼠标事件的窗口Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| mouseEvent | 鼠标事件对象。  | 
+
+**返回：**
+
+鼠标事件的窗口Id。
 
 
 ### OH_Input_GetPreKeys()
@@ -2372,6 +2548,28 @@ int64_t OH_Input_GetTouchEventActionTime (const struct Input_TouchEvent * touchE
 返回触摸事件发生的时间。
 
 
+### OH_Input_GetTouchEventDisplayId()
+
+```
+int32_t OH_Input_GetTouchEventDisplayId (const struct Input_TouchEvent * touchEvent)
+```
+**描述**
+
+获取触屏事件的屏幕Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| touchEvent | 触屏事件对象。  | 
+
+**返回：**
+
+触屏事件的屏幕Id。
 ### OH_Input_GetTouchEventDisplayX()
 
 ```
@@ -2441,6 +2639,28 @@ int32_t OH_Input_GetTouchEventFingerId (const struct Input_TouchEvent * touchEve
 触屏的手指ID。
 
 
+### OH_Input_GetTouchEventWindowId()
+
+```
+int32_t OH_Input_GetTouchEventWindowId (const struct Input_TouchEvent * touchEvent)
+```
+**描述**
+
+获取触屏事件的窗口Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| touchEvent | 触屏事件对象。  | 
+
+**返回：**
+
+触屏事件的窗口Id。
 ### OH_Input_InjectKeyEvent()
 
 ```
@@ -2809,6 +3029,31 @@ Input_Result OH_Input_SetAxisEventAxisValue (Input_AxisEvent * axisEvent, InputE
 若设置轴事件指定轴类型的轴值成功，则返回**INTO_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
+### OH_Input_SetAxisEventDisplayId()
+
+```
+Input_Result OH_Input_SetAxisEventDisplayId (Input_AxisEvent * axisEvent, int32_t displayId )
+```
+**描述**
+
+设置轴事件的屏幕Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| axisEvent | 轴事件对象。  | 
+| displayId | 轴事件屏幕Id。  | 
+
+**返回：**
+
+若设置轴事件的屏幕Id成功，则返回**INTO_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+
+
 ### OH_Input_SetAxisEventDisplayX()
 
 ```
@@ -2905,6 +3150,31 @@ Input_Result OH_Input_SetAxisEventType (Input_AxisEvent * axisEvent, InputEvent_
 若设置轴事件类型成功，则返回**INTO_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
+### OH_Input_SetAxisEventWindowId()
+
+```
+Input_Result OH_Input_SetAxisEventWindowId (Input_AxisEvent * axisEvent, int32_t windowId )
+```
+**描述**
+
+设置轴事件的窗口Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| axisEvent | 轴事件对象。  | 
+| windowId | 轴事件窗口Id。  | 
+
+**返回：**
+
+若设置轴事件的窗口Id成功，则返回**INTO_SUCCESS**；若axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+
+
 ### OH_Input_SetFinalKey()
 
 ```
@@ -2985,6 +3255,27 @@ void OH_Input_SetKeyEventActionTime (struct Input_KeyEvent * keyEvent, int64_t a
 | actionTime | 按键事件发生的时间。  | 
 
 
+### OH_Input_SetKeyEventDisplayId()
+
+```
+void OH_Input_SetKeyEventDisplayId (struct Input_KeyEvent * keyEvent, int32_t displayId )
+```
+**描述**
+
+设置按键事件的屏幕Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| keyEvent | 按键事件对象。  | 
+| displayId | 按键事件对应的屏幕Id。  | 
+
+
 ### OH_Input_SetKeyEventKeyCode()
 
 ```
@@ -3003,6 +3294,27 @@ void OH_Input_SetKeyEventKeyCode (struct Input_KeyEvent * keyEvent, int32_t keyC
 | -------- | -------- |
 | keyEvent | 按键事件对象。  | 
 | keyCode | 按键的键值。  | 
+
+
+### OH_Input_SetKeyEventWindowId()
+
+```
+void OH_Input_SetKeyEventWindowId (struct Input_KeyEvent * keyEvent, int32_t windowId )
+```
+**描述**
+
+设置按键事件的窗口Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| keyEvent | 按键事件对象。  | 
+| windowId | 按键事件对应的窗口Id。  | 
 
 
 ### OH_Input_SetKeyPressed()
@@ -3145,6 +3457,27 @@ void OH_Input_SetMouseEventButton (struct Input_MouseEvent * mouseEvent, int32_t
 | button | 鼠标按键。  | 
 
 
+### OH_Input_SetMouseEventDisplayId()
+
+```
+void OH_Input_SetMouseEventDisplayId (struct Input_MouseEvent * mouseEvent, int32_t displayId )
+```
+**描述**
+
+设置鼠标事件的屏幕Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| mouseEvent | 鼠标事件对象。  | 
+| displayId | 鼠标事件的屏幕Id。  | 
+
+
 ### OH_Input_SetMouseEventDisplayX()
 
 ```
@@ -3183,6 +3516,27 @@ void OH_Input_SetMouseEventDisplayY (struct Input_MouseEvent * mouseEvent, int32
 | -------- | -------- |
 | mouseEvent | 鼠标事件对象。  | 
 | displayY | 屏幕Y坐标。  | 
+
+
+### OH_Input_SetMouseEventWindowId()
+
+```
+void OH_Input_SetMouseEventWindowId (struct Input_MouseEvent * mouseEvent, int32_t windowId )
+```
+**描述**
+
+设置鼠标事件的窗口Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| mouseEvent | 鼠标事件对象。  | 
+| windowId | 鼠标事件的窗口Id。  | 
 
 
 ### OH_Input_SetPreKeys()
@@ -3266,6 +3620,27 @@ void OH_Input_SetTouchEventActionTime (struct Input_TouchEvent * touchEvent, int
 | actionTime | 触摸事件发生的时间。  | 
 
 
+### OH_Input_SetTouchEventDisplayId()
+
+```
+void OH_Input_SetTouchEventDisplayId (struct Input_TouchEvent * touchEvent, int32_t displayId )
+```
+**描述**
+
+设置触屏事件的屏幕Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| touchEvent | 触屏事件对象。  | 
+| displayId | 触屏事件的屏幕Id。  | 
+
+
 ### OH_Input_SetTouchEventDisplayX()
 
 ```
@@ -3324,6 +3699,28 @@ void OH_Input_SetTouchEventFingerId (struct Input_TouchEvent * touchEvent, int32
 | -------- | -------- |
 | touchEvent | 触屏事件对象。 | 
 | id | 触屏的手指ID。 | 
+
+
+### OH_Input_SetTouchEventWindowId()
+
+```
+void OH_Input_SetTouchEventWindowId (struct Input_TouchEvent * touchEvent, int32_t windowId )
+```
+**描述**
+
+设置触屏事件的窗口Id。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| touchEvent | 触屏幕事件对象。  | 
+| windowId | 触屏事件的窗口Id。  | 
+
 
 ### OH_Input_UnregisterDeviceListener()
 
