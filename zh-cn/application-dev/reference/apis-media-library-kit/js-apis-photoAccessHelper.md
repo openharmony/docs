@@ -1034,8 +1034,7 @@ createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Pr
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;string&gt; | Promise对象，返回给应用的媒体库文件uri。Uri已对应用授权，支持应用写入数据。如果生成uri异常，则返回对应的错误码
-。 |
+| Promise&lt;string&gt; | Promise对象，返回给应用的媒体库文件uri。Uri已对应用授权，支持应用写入数据。如果生成uri异常，则返回对应的错误码。 |
 
 **错误码：**
 
