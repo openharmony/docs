@@ -11,7 +11,7 @@ You can use [publish()](../../reference/apis-basic-services-kit/js-apis-commonEv
 
 ## Available APIs
 
-For details about the APIs, see [API Reference](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerpublish).
+For details about the APIs, see [commonEventManager.publish](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerpublish).
 
 | API                                                      | Description                    |
 | ------------------------------------------------------------ | ---------------------------- |
@@ -62,7 +62,7 @@ Common events that carry information can be published as unordered, ordered, and
    const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
-2. Create the public event information to be released.
+2. Create the public event information to publish.
    
    ```ts
    // Attributes of a common event.
@@ -78,10 +78,10 @@ Common events that carry information can be published as unordered, ordered, and
    // Publish the common event. Replace the event field with the actual event name.
    commonEventManager.publish('event', options, (err: BusinessError) => {
      if (err) {
-       hilog.error(DOMAIN_NUMBER, TAG, 'PublishCallBack err = ' + JSON.stringify(err));
+       hilog.error(DOMAIN_NUMBER, TAG, `Failed to publish common event. Code is ${err.code}, message is ${err.message}`);
      } else {
        //...
-       hilog.info(DOMAIN_NUMBER, TAG, 'Publish success');
+       hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in publishing common event.`);
      }
    });
    ```

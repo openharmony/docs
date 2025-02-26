@@ -60,7 +60,8 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | distributionOSApiVersion<sup>10+</sup> | number| Yes| No| Distribution OS API version.<!--Del--> It is defined by the issuer.<!--DelEnd-->.<br>Example: 50001|
 | distributionOSApiName<sup>13+</sup> | string | Yes| No| Distribution OS API name.<!--Del--> It is defined by the issuer.<!--DelEnd-->.|
 | distributionOSReleaseType<sup>10+</sup> | string | Yes| No| Distribution OS release type.<!--Del--> It is defined by the issuer.<!--DelEnd-->.<br>Example: Release|
-| ODID<sup>12+</sup> | string | Yes| No|Vendor Anonymous Identifier<br>An ODID will be regenerated in the following scenarios:<br>Restore a phone to its factory settings.<br>Uninstall and reinstall all applications with the same **developerId** on one device.<br>An ODID is generated based on the following rules:<br>The value is generated based on the **groupId** parsed from the **developerId** in the signature information. As **groupId.developerId** is the rule, if no **groupId** exists, the **developerId** is used as the **groupId**.<br>Applications with the same **developerId** use the same ODID on one device.<br>Applications with different **developerId**s use different ODIDs on one device.<br>Applications with the same **developerId** use different ODIDs on different devices.<br>Applications with different **developerId**s use different ODIDs on different devices.<br>**NOTE**<br>The data length is 37 bytes.<br>Example: 1234a567-XXXX-XXXX-XXXX-XXXXXXXXXXXX|
+| ODID<sup>12+</sup> | string | Yes| No|Open device identifier.<br>An ODID will be regenerated in the following scenarios:<br>Restore a phone to its factory settings.<br>Uninstall and reinstall all applications with the same **developerId** on one device.<br>An ODID is generated based on the following rules:<br>The value is generated based on the **groupId** parsed from the **developerId** in the signature information. As **groupId.developerId** is the rule, if no **groupId** exists, the **developerId** is used as the **groupId**.<br>Applications with the same **developerId** use the same ODID on one device.<br>Applications with different **developerId**s use different ODIDs on one device.<br>Applications with the same **developerId** use different ODIDs on different devices.<br>Applications with different **developerId**s use different ODIDs on different devices.<br>**NOTE**<br>The data length is 37 bytes.<br>Example: 1234a567-XXXX-XXXX-XXXX-XXXXXXXXXXXX|
+| diskSN<sup>15+</sup> | string | Yes| No| Disk SN.<br> **NOTE**<br>This field can be queried only on the 2-in-1 device. For other devices, the query result is empty.<br> **Required permissions**: ohos.permission.ACCESS_DISK_PHY_INFO<br> Example: 2502EM400567|
 
 **Example**
 
@@ -198,7 +199,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
     // Output: the value of the distributionOSApiVersion is: 500001
     console.info('the value of the deviceInfo distributionOSApiVersion is :' + distributionOSApiVersion);
 
-    let distributionOSApiName: number = deviceInfo.distributionOSApiName
+    let distributionOSApiName: string = deviceInfo.distributionOSApiName
     console.info('the value of the deviceInfo distributionOSApiName is :' + distributionOSApiName);
 
     let distributionOSReleaseType: string = deviceInfo.distributionOSReleaseType
@@ -208,5 +209,9 @@ import { deviceInfo } from '@kit.BasicServicesKit';
     let odid: string = deviceInfo.ODID;
     // Output: the value of the ODID is: 1234a567-XXXX-XXXX-XXXX-XXXXXXXXXXXX
     console.info('the value of the deviceInfo odid is :' + odid);
+
+    let diskSN: string = deviceInfo.diskSN;
+    // Output: the value of the deviceInfo diskSN is: 2502EM400567
+    console.info('the value of the deviceInfo diskSN is :' + diskSN);
 
 ```
