@@ -125,7 +125,7 @@
     } catch (error) {
       console.error('open usbSerial error, ' + JSON.stringify(error));
     }
-   ```
+    ```
 
 5. 获取和修改串口配置。
 

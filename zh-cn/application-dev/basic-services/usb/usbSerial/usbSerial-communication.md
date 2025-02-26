@@ -98,7 +98,7 @@ USB Host转串口协议的端口以下简称串口。
     } catch (error) {
       console.error('open usbSerial error, ' + JSON.stringify(error));
     }
-   ```
+    ```
 
 5. 通过串口读取数据。
 
