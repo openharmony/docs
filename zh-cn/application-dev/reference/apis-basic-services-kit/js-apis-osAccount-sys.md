@@ -1004,7 +1004,9 @@ createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccoun
   import { BusinessError } from '@kit.BasicServicesKit';
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let options: osAccount.CreateOsAccountOptions = {
-    shortName: 'myShortName'
+    shortName: 'myShortName',
+    disallowedPreinstalledBundles: [],
+    allowedPreinstalledBundles: [],
   }
   try {
     accountManager.createOsAccount('testAccountName', osAccount.OsAccountType.NORMAL, options).then(
@@ -1239,7 +1241,7 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
 | 参数名  | 类型   | 必填 | 说明                 |
 | ------- | ------ | ---- | -------------------- |
-| localId | number | 是   | 要查询的系统账号的ID |
+| localId | number | 是   | 要查询的系统账号的ID。 |
 
 **返回值：**
 
@@ -3935,56 +3937,6 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
   }
   ```
 
-### updateAccountInfo<sup>12+</sup>
-
-updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccountInfo): Promise&lt;void&gt;
-
-修改指定域账号信息。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
-
-**系统能力：** SystemCapability.Account.OsAccount
-
-**参数：**
-
-| 参数名      | 类型                                    | 必填 | 说明             |
-| ---------- | --------------------------------------- | ---- | --------------- |
-| oldAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示旧域账号信息。|
-| newAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示新域账号信息。|
-
-**错误码：**
-
-| 错误码ID | 错误信息                     |
-| -------- | --------------------------- |
-| 201 | Permission denied.|
-| 202 | Not system application.|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801 | Capability not supported.|
-| 12300001 | The system service works abnormally. |
-| 12300002 | The new account info is invalid. |
-| 12300003 | The old account not found. |
-| 12300004 | The new account already exists. |
-
-**示例：**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  let oldDomainInfo: osAccount.DomainAccountInfo =
-    {domain: 'testDomain', accountName: 'oldtestAccountName'};
-  let newDomainInfo: osAccount.DomainAccountInfo =
-    {domain: 'testDomain', accountName: 'newtestAccountName'};
-  try {
-    osAccount.DomainAccountManager.updateAccountInfo(oldDomainInfo, newDomainInfo).then(() => {
-      console.log('updateAccountInfo, success');
-    }).catch((err: BusinessError) => {
-      console.log('updateAccountInfo err: ' + err);
-    });
-  } catch (e) {
-    console.log('updateAccountInfo exception: ' + e);
-  }
-  ```
-
 ### getAccountInfo<sup>10+</sup>
 
 getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
@@ -4250,178 +4202,6 @@ isAuthenticationExpired(domainAccountInfo: DomainAccountInfo): Promise&lt;boolea
   } catch (e) {
     console.log('isAuthenticationExpired exception: ' + e);
   }
-  ```
-
-## DomainServerConfig<sup>12+</sup>
-
-域服务器配置。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Account.OsAccount
-
-| 名称      | 类型   | 必填 | 说明       |
-| ----------- | ------ | ---- | ---------- |
-| parameters | Record<string, Object> | 是   | 服务器配置参数。 |
-| id | string | 是   | 服务器配置标识。|
-| domain | string | 是 | 服务器所属的域。 |
-
-## DomainServerConfigManager<sup>12+</sup>
-
-域服务器配置管理类。
-
-### addServerConfig<sup>12+</sup>
-
-static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;DomainServerConfig&gt;
-
-添加域服务器配置。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Account.OsAccount
-
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
-
-**参数：**
-
-| 参数名    | 类型                     | 必填 | 说明                      |
-| ----------| ----------------------- | --- | -------------------------- |
-| parameters   | Record<string, Object>  | 是  | 指示域服务器配置参数。 |
-
-**返回值：**
-
-| 类型                      | 说明                     |
-| :------------------------ | ----------------------- |
-| Promise&lt;[DomainServerConfig](#domainserverconfig12)&gt; | Promise对象，返回新添加的域服务器配置。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息                     |
-| -------- | --------------------------- |
-| 201 | Permission denied.|
-| 202 | Not system application.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801 | Capability not supported.|
-| 12300001 | The system service works abnormally. |
-| 12300002 | - Invalid server config parameters. |
-| 12300211 | - Server unreachable. |
-
-**示例：**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  let configParams: Record<string, Object> = {
-    'uri': 'test.example.com',
-    'port': 100
-  };
-  osAccount.DomainServerConfigManager.addServerConfig(configParams).then((
-    serverConfig: osAccount.DomainServerConfig) => {
-    console.log('add server configuration successfully, the return config: ' + JSON.stringify(serverConfig));
-  }).catch((err: BusinessError) => {
-    console.log('add server configuration failed, error: ' + JSON.stringify(err));
-  });
-  ```
-
-### removeServerConfig<sup>12+</sup>
-
-static removeServerConfig(configId: string): Promise&lt;void&gt;
-
-删除域服务器配置。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Account.OsAccount
-
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
-
-**参数：**
-
-| 参数名    | 类型                     | 必填 | 说明                      |
-| ----------| ----------------------- | --- | -------------------------- |
-| configId   | string  | 是  | 指示服务器配置标识。 |
-
-**返回值：**
-
-| 类型                      | 说明                     |
-| :------------------------ | ----------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息                     |
-| -------- | --------------------------- |
-| 201 | Permission denied.|
-| 202 | Not system application.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801 | Capability not supported.|
-| 12300001 | The system service works abnormally. |
-| 12300212 | - Server config not found. |
-
-**示例：**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  let configParams: Record<string, Object> = {
-    'uri': 'test.example.com',
-    'port': 100
-  };
-  osAccount.DomainServerConfigManager.addServerConfig(configParams).then((
-    serverConfig: osAccount.DomainServerConfig) => {
-    console.log('add domain server configuration successfully, the added config: ' + JSON.stringify(serverConfig));
-    osAccount.DomainServerConfigManager.removeServerConfig(serverConfig.id);
-    console.log('remove domain server configuration successfully');
-  }).catch((err: BusinessError) => {
-    console.log('add server configuration failed, error: ' + JSON.stringify(err));
-  });
-  ```
-
-### getAccountServerConfig<sup>12+</sup>
-
-static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;DomainServerConfig&gt;
-
-获取目标域账号的服务器配置。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Account.OsAccount
-
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
-
-**参数：**
-
-| 参数名    | 类型                     | 必填 | 说明                      |
-| ----------| ----------------------- | --- | -------------------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是  | 指示目标域账号信息。 |
-
-**返回值：**
-
-| 类型                      | 说明                     |
-| :------------------------ | ----------------------- |
-| Promise&lt;[DomainServerConfig](#domainserverconfig12)&gt; | Promise对象，返回目标账号的域服务器配置。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息                     |
-| -------- | --------------------------- |
-| 201 | Permission denied.|
-| 202 | Not system application.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801 | Capability not supported.|
-| 12300001 | The system service works abnormally. |
-| 12300003 | Domain account not found. |
-
-**示例：**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  let accountInfo: osAccount.DomainAccountInfo = {
-    'accountName': 'demoName',
-    'accountId': 'demoId',
-    'domain': 'demoDomain'
-  };
-  osAccount.DomainServerConfigManager.getAccountServerConfig(accountInfo).then((
-    serverConfig: osAccount.DomainServerConfig) => {
-    console.log('get account server configuration successfully, the return config: ' + JSON.stringify(serverConfig));
-  }).catch((err: BusinessError) => {
-    console.log('add server configuration failed, error: ' + JSON.stringify(err));
-  });
   ```
 
 ## UserIdentityManager<sup>8+</sup>
@@ -5619,7 +5399,6 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | ----------- | ------ | ---- | ---------- |
 | accountId<sup>10+</sup> | string | 否   | 域账号标识。<br>**系统接口：** 此接口为系统接口，默认为undefined。 |
 | isAuthenticated<sup>11+</sup>| boolean | 否 | 指示域账号是否已认证。<br>**系统接口：** 此接口为系统接口，默认为false。|
-| serverConfigId<sup>12+</sup>| boolean | 否 | 域账号所属服务器标识。<br>**系统接口：** 此接口为系统接口，默认为undefined。|
 
 ## ConstraintSourceTypeInfo<sup>9+</sup>
 
@@ -5632,7 +5411,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | localId      | number | 是   | 系统账号ID     |
-| type | [ConstraintSourceType](#constraintsourcetype9) | 是   | 约束来源类型 |
+| type | [ConstraintSourceType](#constraintsourcetype9) | 是   | 约束来源类型。 |
 
 ## ConstraintSourceType<sup>9+</sup>
 
@@ -5644,10 +5423,10 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称   | 值 | 说明         |
 | ------ | ------ | ------------ |
-| CONSTRAINT_NOT_EXIST  | 0      | 约束不存在 |
-| CONSTRAINT_TYPE_BASE | 1      | 约束源自系统设置   |
-| CONSTRAINT_TYPE_DEVICE_OWNER  | 2   | 约束源自设备所有者设置   |
-| CONSTRAINT_TYPE_PROFILE_OWNER  | 3  | 约束源自资料所有者设置   |
+| CONSTRAINT_NOT_EXIST  | 0      | 约束不存在。 |
+| CONSTRAINT_TYPE_BASE | 1      | 约束源自系统设置。   |
+| CONSTRAINT_TYPE_DEVICE_OWNER  | 2   | 约束源自设备所有者设置。   |
+| CONSTRAINT_TYPE_PROFILE_OWNER  | 3  | 约束源自资料所有者设置。   |
 
 ## AuthStatusInfo<sup>10+</sup>
 
@@ -5659,8 +5438,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| remainTimes  | number | 是   | 剩余次数   |
-| freezingTime | number | 是   | 冻结时间 |
+| remainTimes  | number | 是   | 剩余次数。   |
+| freezingTime | number | 是   | 冻结时间。 |
 
 ## GetDomainAccessTokenOptions<sup>10+</sup>
 
@@ -5672,10 +5451,10 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| domainAccountInfo  | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域账号的信息   |
-| domainAccountToken | Uint8Array | 是   | 域账号的令牌 |
-| businessParams | Record<string, Object> | 是   | 业务参数，由业务方根据请求协议自定义 |
-| callerUid | number | 是   | 调用方唯一标识符 |
+| domainAccountInfo  | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域账号的信息。   |
+| domainAccountToken | Uint8Array | 是   | 域账号的令牌。 |
+| businessParams | Record<string, Object> | 是   | 业务参数，由业务方根据请求协议自定义。 |
+| callerUid | number | 是   | 调用方唯一标识符。 |
 
 ## GetDomainAccountInfoOptions<sup>10+</sup>
 
@@ -5701,7 +5480,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| callerUid | number | 是   | 调用方唯一标识符 |
+| callerUid | number | 是   | 调用方唯一标识符。 |
 
 ## OsAccountSwitchEventData<sup>12+</sup>
 
@@ -5713,8 +5492,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| fromAccountId | number | 是   | 切换前系统账号ID |
-| toAccountId | number | 是   | 切换后系统账号ID |
+| fromAccountId | number | 是   | 切换前系统账号ID。 |
+| toAccountId | number | 是   | 切换后系统账号ID。 |
 
 ## CreateOsAccountOptions<sup>12+</sup>
 
@@ -5726,7 +5505,9 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| shortName | string | 是   | 表示账号短名称（用作个人文件夹目录） <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符|
+| shortName | string | 是   | 表示账号短名称（用作个人文件夹目录）。 <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符。|
+| disallowedPreinstalledBundles<sup>16+</sup> | Array&lt;string&gt; | 否   | 表示预置应用禁止名单，名单中的应用不可被安装在设备上。|
+| allowedPreinstalledBundles<sup>16+</sup> | Array&lt;string&gt; | 否   | 表示预置应用允许名单，仅名单中的应用可以被安装在设备上。|
 
 ## CreateOsAccountForDomainOptions<sup>12+</sup>
 
@@ -5738,7 +5519,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| shortName | string | 是   | 表示账号短名称（用作个人文件夹目录） <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符|
+| shortName | string | 是   | 表示账号短名称（用作个人文件夹目录）。 <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符。|
 
 ## GetAuthInfoOptions<sup>12+</sup>
 

@@ -339,3 +339,55 @@ FrameNode.d.ts文件isVisible接口。
 **适配指导**
 
 默认行为变更，无需适配。
+
+## cl.arkui.5 TextClock、TextTimer使用start、end参数设置borderColor、margin、padding行为更改
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+TextClock、TextTimer使用start、end参数设置borderColor、margin、padding未生效。
+
+**变更影响**
+
+此变更无需应用适配。
+
+| 变更前                                                                                                                     | 变更后                                                                                                                   |
+| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| 使用start、end参数设置borderColor、margin、padding不生效。<br>![textclock_before](figures/textclock_before.png)| 使用start、end参数设置borderColor、margin、padding生效。<br>![textclock_after](figures/textclock_after.png) |
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony 5.1.0.46 版本开始。
+
+**变更的接口/组件**
+
+TextClock、TextTimer。
+
+**适配指导**
+
+正确使用start、end参数设置borderColor、margin、padding。
+
+示例：
+```
+import { LengthMetrics } from '@kit.ArkUI'
+@Entry
+@Component
+struct Index {
+  
+  build() {
+    Column(){
+      TextClock().borderWidth(50)
+        .borderColor({start: "#D5D5D5", end: "#D5D5D5", top: "#D5D5D5", bottom: "#D5D5D5"})
+        .padding({start: LengthMetrics.vp(20), end: LengthMetrics.vp(40)})
+        .margin({start: LengthMetrics.vp(20), end: LengthMetrics.vp(40)})
+    }
+  }
+}
+```

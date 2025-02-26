@@ -83,7 +83,7 @@ Version:1.0.0
 Pid:1561
 Uid:20010039
 Reason:LIFECYCLE_TIMEOUT
-sysfreeze: LIFECYCLE_TIMEOUT LIFECYCLE_TIMEOUT at 20230317170653
+sysfreeze:LIFECYCLE_TIMEOUT LIFECYCLE_TIMEOUT at 20230317170653
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 DOMAIN:AAFWK
 STRINGID:LIFECYCLE_TIMEOUT
@@ -102,12 +102,12 @@ General information is present in all the aforementioned logs. It contains the f
 | Field| Description|
 | -------- | -------- |
 | EVENTNAME | One or more fault events that constitute the cause of main thread freeze event.|
-| TIMESTAMP | Time when the fault event reported. You can narrow down the time range to view HiLog logs based on the timeout duration described in [AppFreeze Detection](#appfreeze-detection).|
+| TIMESTAMP | Time when the fault event is reported. You can narrow down the time range to view HiLog logs based on the timeout duration described in [AppFreeze Detection](#appfreeze-detection).|
 | PID | PID of the failed process, which can be used with the timestamp and timeout duration to search for related process information in the Hilog logs.|
 | PACKAGE_NAME | Application process package name.|
 | MSG | Dump information or description of the fault.|
 | BinderCatcher | Information about IPC calls between a process and other system processes, such as the call waiting time.|
-| PeerBinder Stacktrace | Information about stack trace of the peer process.|
+| PeerBinder Stacktrace | Stack trace information of the peer process.|
 | cpuusage | CPU usage of the device.|
 | memory | Memory usage of the process.|
 
@@ -155,7 +155,7 @@ Tid:1561,Name:i.myapplication
 #15 pc 0045dd4b /system/lib/libace.z.so
 #16 pc 00d24fef /system/lib/libace.z.so
 #17 pc 0041e6e9 /system/lib/libace.z.so
-#18 pc 0000b4d9 /system/lib/platformsdk/libeventhandler.z.so(OHOS:AppExecFwk:EventHandler:DistributeEvent(std::__h:unique_ptr<0 #19 pc 00012829 /system/lib/platformsdk/libeventhandler.z.so
+#18 pc 0000b4d9 /system/lib/platformsdk/libeventhandler.z.so(OHOS:AppExecFwk:EventHandler:DistributeEvent(std::__h:unique_ptr<0 #19 pc 00012829 /system/lib/platformsdk/libeventhandler.z.so))
 #20 pc 00011841 /system/lib/platformsdk/libeventhandler.z.so(OHOS:AppExecFwk:EventRunner:Run()+64)
 #21 pc 00054a8b /system/lib/libappkit_native.z.so(OHOS:AppExecFwk:MainThread:Start()+278)
 #22 pc 00011503 /system/bin/appspawn
@@ -174,7 +174,8 @@ PeerBinderCatcher -pid==1561 Layer_==0
 
 
 BinderCatcher --
-    1561::1561t0685:0c0de0Wait:10.366245919s 1329::1376t0487:794c0de0Wait:0.12070041s
+    1561:1561 to 685:0 code 0 Wait:10.366245919 s
+    1329:1376 to 487:794 code 0 Wait:0.12070041 s
 
 pid   context  request  started  max  ready free_async_space
 1561   binder    0       3       16     4       520192
@@ -209,7 +210,7 @@ Tid:658,Name:wifi_manager_service
 #08 pc 0002666f /system/lib/platformsdk/libipc_core.z.so(OHOS:BinderInvoker:StartWorkLoop()+18)
 #09 pc 000270a9 /system/lib/platformsdk/libipc_core.z.so(OHOS:BinderInvoker:JoinThread(bool)+32)
 #10 pc 00023783 /system/lib/platformsdk/libipc_core.z.so(OHOS:IPCWorkThread:ThreadHandler(void*)+290)
-#11 pc 0007b4d9 /system/lib/platformsdk/libeventhandler.z.so(OHOS:AppExecFwk:EventHandler:DistributeEvent(std::__h:unique_ptr<OHOS:Ap
+#11 pc 0007b4d9 /system/lib/platformsdk/libeventhandler.z.so
 #12 pc 00072829 /system/lib/platformsdk/libeventhandler.z.so
 #13 pc 00071841 /system/lib/platformsdk/libeventhandler.z.so(OHOS:AppExecFwk:EventRunner:Run()+64)
 #14 pc 00094a8b /system/lib/libappkit_native.z.so(OHOS:AppExecFwk:MainThread:Start()+278)
@@ -224,9 +225,9 @@ Tid:1563,Name:IPC_0_1563
 The following example shows the CPU usage information of the device.
 
 ```
-Load average:2.87 /1.45 /0.58;the cpu load average in 1 min,5 min and 15 min
-CPU usage fr0m2023-03-1017:06:53t02023-03-1017:06:53
-Total:29%;User Space:28%;Kernel Space:1%;iowait:6%;irq:0%;idle:62%
+Load average: 2.87 / 1.45 / 0.58; the cpu load average in 1 min,5 min and 15 min
+CPU usage from 2023-03-10 17:06:53 to 2023-03-10 17:06:53
+Total: 29%; User Space: 28%; Kernel Space: 1%; iowait: 6%; irq: 0%; idle: 62%
 Details of Processes:
     PID     Total Usage     User Space     Kernel Space     Page Fault Minor     Page Fault Major      Name
     1561       23%            23%              0%               9985                  26            i.myapplication
@@ -286,7 +287,7 @@ MSG = App main thread is not response!EventHandler dump begin curTime:2017-08-08
   Immediate priority event queue information:
   Total size of Immediate events 0
   High priority event queue information:
-  No.1 Event send thread 1561,send time 2017-08-08 05:06:18.039,handle time 2017-08-08 05:06:21.539,task name [anr_handler.cpp(Send Total size of High events 1
+  No.1 Event send thread 1561,send time 2017-08-08 05:06:18.039,handle time 2017-08-08 05:06:21.539,task name [anr_handler.cpp(Send Total size of High events 1)]
   Low priority event queue information:
   No.1:Event{send thread=1566,send time=2017-08-0805:06:21.062,handle time=2017-08-0805:06:21.062,id=1}
   Total size of Low events 1
@@ -302,7 +303,7 @@ MSG = App main thread is not response!EventHandler dump begin curTime:2017-08-08
    at anonymous entry (D:/project/OpenHarmonyOS/MyApplication_test/entry/build/default/intermediates/loader_out/default/ets,pages/Index_.js:0:1)
    #00 pc 0017909c /system/lib/libark_jsruntime.so
    #01 pc 00177ebb /system/lib/libark_jsruntime.so
-   #02 pc 0024b4bb /system/lib/libark_jsruntime.so(panda:FunctionRef:Call(panda:ecmascript:EcmaVM const*,panda:Local<panda:JSValueRef>,panda
+   #02 pc 0024b4bb /system/lib/libark_jsruntime.so
    #03 pc 00fbed23 /system/lib/libace.z.so
    #04 pc 00d8208f /system/lib/libace.z.so
    ...
@@ -351,7 +352,7 @@ Tid:1561 Name:i.myapplication
 
 Check the code being executed on the application side based on the Hilog log.
 
-Generally, you can view the [General Information in the Log Body](#general-information-in-the-log-body) to determine the cause of an appfreeze event, including peer communication suspension, high CPU usage, memory leakage, or a large amount of memory.
+Generally, you can view the [General Information in the Log Body](#general-information-in-the-log-body) to determine the cause of an appfreeze event, including peer communication suspension, high CPU usage, memory leaks, or a large amount of memory.
 
 ### Specific Information in the Log Body (User Input Response Timeout)
 
@@ -363,7 +364,7 @@ For details, see [General Information in the Log Body](#general-information-in-t
 
 ### Specific Information in the Log Body (Lifecycle Switching Timeout)
 
-Similar to **THREAD_BLOCK**, **LIFECYCLE_TIMEOUT** consists of two parts, namely **LIFECYCLE_HALF_TIMEOUT** and **LIFECYCLE_TIMEOUT**.
+**LIFECYCLE_TIMEOUT** consists of two events, namely **LIFECYCLE_HALF_TIMEOUT** and **LIFECYCLE_TIMEOUT**.
 
 **MSG** indicates the lifecycle that encounters a timeout.
 
@@ -400,7 +401,7 @@ To locate an appfreeze event, you need to obtain related logs such as fault logs
 
 ### Obtaining the Log
 
-The appfreeze log is managed together with the native process crash, JS application crash, and system process crash logs in the FaultLogger module. You can obtain the log in any of the following ways.
+The appfreeze log is managed together with the native process crash, JS application crash, and system process crash logs in the FaultLog module. You can obtain the log in any of the following ways.
 
 - Method 1: DevEco Studio
 
@@ -420,17 +421,17 @@ The appfreeze log is managed together with the native process crash, JS applicat
 
 ### Confirming Basic Information
 
-#### Obtain basic information such as the process ID of the freeze application and whether the application is in the foreground
+#### Obtain basic information such as the process ID of the freeze application and whether the application is in the foreground.
 
 ```
 Generated by HiviewDFX@OpenHarmony
 ============================================================
 Device info:HUAWEI Mate 60 Pro
 Build info:ALN-AL00 x.x.x.xx(XXXXXXX)
-Fingerprint: ef8bd28f8b57b54656d743b546efa73764c77866a65934bd96f2678f886813b7
+Fingerprint:ef8bd28f8b57b54656d743b546efa73764c77866a65934bd96f2678f886813b7
 Module name:com.xxx.xxx
 Version:1.2.2.202
-VersionCode: 1002002202
+VersionCode:1002002202
 PreInstalled:Yes
 Foreground:No   --> Indicates that the application is not in the foreground.
 Pid:15440
@@ -441,7 +442,7 @@ DisplayPowerInfo:powerState: AWAKE
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 ```
 
-#### Obtain the fault occurrence time
+#### Obtain the fault occurrence time.
 
 Fault report time:
 
@@ -464,9 +465,12 @@ Detection durations for different faults in different scenarios:
 |Foreground application: 6s<br> Background application: 3s * 5 + 6s = 21s| 5s | Load: 10s<br> Active: 5s<br> Inactive: 0.5s<br> Terminate: 10s<br> Connect: 3s<br> Disconnect: 0.5s<br> Restart: 5s<br> Foreground: 5s<br> Background: 3s|
 
 **NOTE**
-1. The detection duration of **THREAD_BLOCK_3S** or **LIFECYCLE_HALF_TIMEOUT** is half of that of **THREAD_BLOCK_6S** or **LIFECYCLE_TIMEOUT**. **THREAD_BLOCK_3S** and **LIFECYCLE_HALF_TIMEOUT** are warnings and do not report logs independently. **THREAD_BLOCK_6S** and **LIFECYCLE_TIMEOUT** are errors and report logs with the corresponding warning.
-2. If **THREAD_BLOCK_3S** occurs in the foreground application, **THREAD_BLOCK_6S** will be triggered.
-3. The value of **backgroundReportCount_** is **0**. When **THREAD_BLOCK_3S** occurs for five consecutive times (the count is not cleared), the **THREAD_BLOCK_6S** event is reported. Consequently, the detection durations of **THREAD_BLOCK_3S** and **THREAD_BLOCK_6S** are 18s and 21s respectively.
+
+1. The detection duration of **THREAD_BLOCK_3S** is half that of **THREAD_BLOCK_6S**, while **LIFECYCLE_HALF_TIMEOUT** is half that of **LIFECYCLE_TIMEOUT**. **THREAD_BLOCK_3S** and **LIFECYCLE_HALF_TIMEOUT** are warnings and do not report logs independently. **THREAD_BLOCK_6S** and **LIFECYCLE_TIMEOUT** are errors and report logs with the corresponding warning.
+
+2. When **THREAD_BLOCK_3S** occurs in the foreground application, **THREAD_BLOCK_6S** will be triggered.
+
+3. In the background application, when **THREAD_BLOCK_3S** occurs for five consecutive times (the value of **backgroundReportCount_** is **5**), the **THREAD_BLOCK_6S** event is reported. Consequently, the detection durations of **THREAD_BLOCK_3S** and **THREAD_BLOCK_6S** are 18s and 21s respectively.
 
 The fault occurrence time can be obtained based on the detection duration and the fault reporting time.
 
@@ -485,7 +489,9 @@ mainHandler dump is:
 ```
 
 Running duration of the current task = dump begin curTime – trigger time. In this example, the running duration of the current task is 27s.
+
 If the task running duration is longer than the fault detection duration, the running task causes the application freeze event. In this case, you need to check the task.
+
 If the current task running duration is short, the task is only one of the tasks running in the main thread within the detection duration and may not be the task that consumes most time. You are advised to check the task that consumes the longest time recently (in **History event queue information**). In this case, the watchdog cannot be scheduled because the thread is busy.
 
 2. History event queue information
@@ -540,6 +546,7 @@ To ensure timely response to the user, all tasks in the user input event propaga
 The watchdog task is in the priority queue, which is sent every 3 seconds.
 
 Compare the movements of the watchdog task in the queue of the warning and block events.
+
 warning:
 ```
  High priority event queue information:
@@ -627,7 +634,7 @@ Tid:14727, Name:xxx
 # 10 pc 00000000000b4214 /system/lib64/platformsdk/libnative_rdb.z.so(OHOS::NativeRdb::SqliteSharedResultSet::ExecuteForSharedBlock(OHOS::AppDataFwk::SharedBlock*, int, int, bool)+236)(5e8443def4695e8c791e5f847035ad9f)
 ```
 
-Based on the trace information, check whether the called function of stack top times out.
+Based on [Analyzing Trace Logs](#analyzing-trace logs), check whether the execution of the function at stack top times out.
 
 4. The stack is a temporary stack, and the warning stack is not the same as the error stack.
 
@@ -665,11 +672,11 @@ Tid:3108, xxx
 # 10 pc 00000000002d6e14 /system/lib64/module/arkcompiler/stub.an(RTStub_AsmInterpreterEntry+208)
 ```
 
-In this case, the stacks are irregular because they are captured during thread running, which indicates that the thread is not suspended. If the thread is busy, analyze and optimize the application based on the trace and hilog logs.
+In this case, the stacks are irregular because they are captured during thread running, which indicates that the thread does not freezes. If the thread is busy, analyze and optimize the application based on [Analyzing Trace Logs](#analyzing-trace logs) and hilog logs.
 
 ### Viewing Binder Information
 
-Obtain the Binder information after the warning event if it occurs, otherwise, obtain the Binder information after the block event.
+Obtain the binder information after the warning event if it occurs, otherwise, obtain the binder information after the block event.
 
 1. Obtain the Binder information.
 
@@ -722,7 +729,7 @@ In this case, you can check the following items:
 Check whether the stack is a temporary stack, that is, whether the warning stack is the same as the block stack. It is possible that the warning stack is an IPC stack, and the block stack is a temporary stack because the IPC request has ended when the binder is captured, and the IPC request takes a short time.
 It should be noted that binder information is not obtained in real time when a fault occurs and is delayed. For faults that require half-period detection, binder information is accurately captured because most binder information can be collected within the fault period. For other faults, the off-site binder information may be captured when the reporting is delayed.
 
-You can view the execution duration of the binder based on the trace.
+You can view the execution duration of binder based on [Analyzing Trace Logs](#analyzing-trace logs).
 
 ### Analyzing Hilog logs
 
@@ -750,7 +757,7 @@ You can view the execution duration of the binder based on the trace.
 
 #### Procedure
 
-View [Obtain the fault occurrence time](#obtain-the-fault-occurrence-time), and determine the fault occurrence time based on the fault type. Analyze the hilog log in the specific period to obtain the status of the running thread.
+View [Obtain the fault occurrence time](#obtain-the-fault-occurrence-time), and determine the fault occurrence time based on the fault type. Analyze the HiLog logs in the specific period to obtain the status of the running thread.
 
 - If no application log is printed, the application is frozen when the logging API is invoked.
 
@@ -774,7 +781,7 @@ View [Obtain the fault occurrence time](#obtain-the-fault-occurrence-time), and 
 
 The possible causes are as follows:
 
-1. The duration of each service is not long, but the number of services is too large.Therefore, the process runs intensively in a long period of time and occupies the main thread.
+1. The duration of each service is not long, but the number of services is too large. Therefore, the process runs intensively in a long period of time and occupies the main thread.
 
 ![appfreeze_2024061409](figures/appfreeze_2024061409.png)
 
@@ -800,7 +807,7 @@ In the preceding figure, the execution duration of **OHOS::AppExecFwk::FormMgrAd
 
 #### Background
 
-The xxx service reports the appfreeze crash **THREAD_BLOCK_6S**.
+The xxx service reports the appfreeze problem **THREAD_BLOCK_6S**.
 
 #### Error Codes
 
@@ -821,7 +828,7 @@ int xxx()
 
 #### Impact
 
-The background application is suspended and related functions are unavailable, but it is imperceptible to the user.
+The background application freezes and related functions are unavailable, but it is imperceptible to the user.
 
 #### Fault Locating
 
@@ -832,7 +839,7 @@ appfreeze: com.huawei.hmsapp.xxx THREAD_BLOCK_6S at 20240408082432
 DisplayPowerInfo:powerState:AWAKE
 ```
 
-The value of **Foreground** indicates that **hiai** is a background application. Therefore, it can be inferred that when the 3s event is reported, the background application is suspended for **18s**.
+The value of **Foreground** indicates that **hiai** is a background application. Therefore, it can be inferred that when the 3s event is reported, the background application freezes for **18s**.
 
 ```
 Module name:com.xxx.xxx.xxx
@@ -880,7 +887,7 @@ mainHandler dump is:
  Current Running: start at 2024-04-08 08:24:01.514, Event { send thread = 43675, send time = 2024-04-08 08:24:01.514, handle time = 2024-04-08 08:24:01.514, task name = uvLoopTask }
 ```
 
-The watchdog task is in the high priority event queue. As shown in the following figure, a task is thrown to the main thread every 3 seconds, which is as expected.
+The watchdog task is in **High priority event queue**. As shown in the following figure, a task is thrown to the main thread every 3 seconds, which is as expected.
 
 The queue of **THREAD_BLOCK_3S** is similar to that of **THREAD_BLOCK_6S**, with one more event in the queue of **THREAD_BLOCK_6S**.
 
@@ -897,11 +904,11 @@ The earliest event is sent at **08:24:11.388**, which is 18s earlier than the re
  No.7 : Event { send thread = 43679, send time = 2024-04-08 08:24:29.412, handle time = 2024-04-08 08:24:29.412, id = 1, caller = [watchdog.cpp(Timer:139)] }
 ```
 
-To sum up, the main thread of the application starts to run this task at **08:24:01.514**. The first **THREAD_BLOCK_3S** event occurs at **08:24:11.388**, and the application is suspended at about **08:24:11**.
+To sum up, the main thread of the application starts to run this task at **08:24:01.514**. The first **THREAD_BLOCK_3S** event occurs at **08:24:11.388**, and the application freezes at about **08:24:11**.
 
 View the main thread stack at **xxx_request_client.so -> libsamgr_proxy.z.so -> libipc_core.z.so(OHOS::BinderConnector::WriteBinder)**.
 
-The main thread initiates an IPC request, but the peer process does not response. As a result, the process is suspended, as shown in the following stack.
+The main thread initiates an IPC request, but the peer process does not respond. As a result, the process freezes, as shown in the following stack.
 
 ```
 Tid:43675, Name:xxx
@@ -927,7 +934,7 @@ Tid:43675, Name:xxx
 # 19 pc 0000000000002944 xxx_rpc_client.so(xxx::xxx::RpcRequestClient::RpcRequestClient()+224)(02343ed2fff69759d408b23eaf69fcde)
 ```
 
-Check the binderCatcher. The main thread **43675** is communicating with process **979** and the **BinderCatcher** is suspended for 27s.
+Check **BinderCatcher**. The main thread **43675** is communicating with process **979** and the **BinderCatcher** waits for 27s.
 
 ```
 PeerBinderCatcher -- pid==43675 layer_ == 1
@@ -973,7 +980,7 @@ Tid:979, Name:xxxserver
 # 13 pc 00000000000a3b58 /system/lib/ld-musl-aarch64.so.1(libc_start_main_stage2+64)(91b804d2409a13f27463debe9e19fb5d)
 ```
 
-The error code can be located by decompiling, and the use of the lock can be checked based on the context.
+Decompile the code to locate the error line and check the lock based on the context.
 
 #### Solution
 
@@ -1009,15 +1016,15 @@ Adjust the lock properly based on the context.
 
 #### Suggestions
 
-1. Pay special attention to the timing and deadlock events during multi-thread interaction.
+1. Pay special attention to the timing and deadlock issues during multi-thread interaction.
 
 ### Typical Case of **APP_INPUT_BLOCK** - Full Component Update
 
 #### Background
 
-When the theme is switched, the system is suspended, and the appfreeze fault of the sceneboard is reported.
+When the theme is switched, the system freezes, and the appfreeze problem of sceneboard is reported.
 
-This appfreeze fault occurs when the thread is busy.
+This appfreeze problem occurs because the thread is too busy.
 
 #### Error Codes
 
@@ -1059,8 +1066,8 @@ PACKAGE_NAME:com.ohos.sceneboard
 PROCESS_NAME:com.ohos.sceneboard
 ```
 
-The reported cause: "User input does not respond!" There is no response to the user input event.
-The running task of the main thread (TID = PID) starts at **14:40:53.499** and is not complete until the **Fault time** **14:40:58**.
+The reported cause is "User input does not respond!".  
+The running task of the main thread (Thread ID == PID) starts at **14:40:53.499** and is not complete until the **Fault time** **14:40:58**.
 
 ```
 MSG = 
@@ -1072,9 +1079,9 @@ mainHandler dump is:
  Current Running: start at 2024-03-14 02:40:53.499, Event { send thread = 2918, send time = 2024-03-14 02:40:53.499, handle time = 2024-03-14 02:40:53.499, task name =  }
 ```
 
-User input events need to be responded immediately. Therefore, user input events are in the high priority event queue, together with the watchdog tasks.
+User input events need to be responded immediately. Therefore, they are in the high priority event queue, together with the watchdog tasks.
 
-In the following example, more than 200 input events are blocked in the queue and are not processed.
+In the following example, more than 200 input events are blocked in the queue.
 
 ```
  High priority event queue information:
@@ -1108,7 +1115,7 @@ In the following example, more than 200 input events are blocked in the queue an
 The input event triggers the main thread task of the application. However, the execution is not complete within 6 seconds and no response is returned. As a result, the ANR times out.
 In this case, you only need to find out the task that the input triggers and why the task execution times out.
 
-In the running main thread stack, the **ark_jsruntime GetCurrentThreadId** function at the stack top is not lock blocking or time-consuming. The captured stack is a transient stack that is useless for analysis.
+In the running main thread stack, the **ark_jsruntime GetCurrentThreadId** function at the stack top does not hold a lock or is time-consuming. The captured stack is a transient stack that is useless for analysis.
 
 ```
 Tid:2918, Name:ohos.sceneboard
@@ -1132,7 +1139,7 @@ Tid:2918, Name:ohos.sceneboard
 
 Check the Hilog logs.
 
-The **APP_INPUT_BLOCK** event is reported at about **13:40:59.448**, and then the DFX kills the suspended SCB.
+The **APP_INPUT_BLOCK** event is reported at about **13:40:59.448**, and then DFX kills the freezed SCB.
 
 ![appfreeze_2024061412](figures/appfreeze_2024061412.png)
 
@@ -1140,7 +1147,7 @@ The **APP_INPUT_BLOCK** event is reported at about **13:40:59.448**, and then th
 
 ![appfreeze_2024061413](figures/appfreeze_2024061413.png)
 
-Within the 6 seconds, a large number of SCB logs are printed, showing that the SCB is re-rendering.
+Within the 6 seconds, a large number of SCB logs are printed, showing that the SCB is re-rendered.
 
 ![appfreeze_2024061414](figures/appfreeze_2024061414.png)
 
@@ -1168,9 +1175,9 @@ Trigger the home screen component refresh only when the home screen component st
 
 #### Suggestions
 
-The scope of page refresh triggered by a click event needs to be properly controlled. Avoid scenarios such as a large number of components need to be refreshed or a page needs to be refreshed frequently.
+Minimize the scope of page refresh triggered by a click event. Avoid scenarios where a large number of components need to be refreshed or a page needs to be refreshed frequently.
 
-### Typical Case of **LIFECYCLE_TIMEOUT** - Loading a Cloud Diagram
+### Typical Case of **LIFECYCLE_TIMEOUT** - Loading a Cloud Image
 
 #### Background
 
@@ -1178,7 +1185,7 @@ When a user opens a cloud note, the application freezes and then crashes.
 
 #### Error Codes
 
-The cloud images are obtained synchronously in a loop.
+The cloud image is obtained synchronously in a loop.
 
 ```ts
 public static xxxFunction(fileUris: string[]): void {
@@ -1203,7 +1210,7 @@ The following example extracts the key fault logs of **LIFECYCLE_TIMEOUT** that 
  sysfreeze: LIFECYCLE_TIMEOUT LIFECYCLE_TIMEOUT at 20240201100459
 ```
 
-The **MSG** information indicates that the timeout is in the foreground, and the duration is 5s.
+The **MSG** information indicates that the timeout occurs in the foreground, and the duration is 5s.
 
 ```
 MSG = 
@@ -1239,7 +1246,7 @@ PACKAGE_NAME = com.huawei.hmos.notepad
 PROCESS_NAME = com.huawei.hmos.notepad
 ```
 
-The task is started at **10:04:54.798**, and the interval between the start time and **LIFECYCLE_HALF_TIMEOUT** is about 2.5s, which is as expected.
+The task starts at **10:04:54.798**, and the interval between the start time and **LIFECYCLE_HALF_TIMEOUT** is about 2.5s, which is as expected.
 
 ```
 mainHandler dump is:
@@ -1277,7 +1284,7 @@ Tid:18083, Name:ei.hmos.notepad
 # 14 pc 0000000000132e48 /system/lib64/module/arkcompiler/stub.an
 ```
 
-The **BinderCatcher** shows that the communication with process **5235** takes more than 2.5s, which is as expected.
+The **BinderCatcher** information shows that the communication with process **5235** takes more than 2.5s, which is as expected.
 
 ```
 PeerBinderCatcher -- pid==18083 layer_ == 1
@@ -1287,7 +1294,7 @@ BinderCatcher --
     3462:3621 to 4956:4981 code 8 wait:273.550283291 s
 ```
 
-The **5235** is a media library process and stack information is not useful for analysis.
+The **5235** process is a media library process and the stack information is not useful for analysis.
 
 ```
 PeerBinder Stacktrace --
@@ -1319,9 +1326,9 @@ Tid:5235, Name:edialibrarydata
 # 18 pc 000000000001106c /system/bin/appspawn(_start_c+76)(7b715884c45cfe57b22df46fdaeeca88)
 ```
 
-The preceding information indicates that the application loads files synchronously using the URI through **Open::Sync** and calls the **datashare()** to obtain media library file data.
+The preceding information indicates that the application loads files synchronously using the URI through **Open::Sync** and calls **datashare()** to obtain media library file data.
 
-The log information shows that the process is suspended when calls the **datashare()** to load the cloud diagram, which is consistent with the stack information.
+The log information shows that the process freezes when calling **datashare()** to load the cloud image, which is consistent with the stack information.
 
 ![appfreeze_2024061416](figures/appfreeze_2024061416.png)
 
@@ -1360,6 +1367,6 @@ public static async xxxFunction(fileUris: string[]): void {
 
 #### Suggestions
 
-1. Data on the cloud side must be fully verified in scenarios with good network, weak network, and no network.
+1. Verify the requested cloud data in scenarios where the network is available, weak, or unavailable.
 
 2. Do not perform time-consuming operations in the application lifecycle function.
