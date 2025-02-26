@@ -1860,7 +1860,7 @@ Input_Result OH_Input_GetKeyState (struct Input_KeyState * keyState)
 
 如果操作成功，
 
-返回Input_Result#INPUT_SUCCESS; 否则返回[Input_Result](#input_result)中定义的其他错误代码。
+返回Input_Result#INPUT_SUCCESS；否则返回[Input_Result](#input_result)中定义的其他错误代码。
 
 
 ### OH_Input_GetKeySwitch()
