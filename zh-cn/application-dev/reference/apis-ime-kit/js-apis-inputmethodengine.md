@@ -179,6 +179,19 @@ try {
 }
 ```
 
+## SizeChangeCallback<sup>15+</sup>
+
+type SizeChangeCallback = (size: window.Size, keyboardArea?: KeyboardArea) => void
+
+当输入法面板大小变化时触发的回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 参数名       | 类型                                                 | 必填 | 说明                             |
+| ------------ | ---------------------------------------------------- | ---- | -------------------------------- |
+| size         | [window.Size](../apis-arkui/js-apis-window.md#size7) | 是   | 当前面板大小。                   |
+| keyboardArea | [KeyboardArea](#keyboardarea15)                      | 否   | 当前面板中可作为键盘区域的大小。 |
+
 ## InputMethodEngine
 
 下列API均需使用[getInputMethodEngine](#inputmethodenginegetinputmethodenginedeprecated)获取到InputMethodEngine实例后，通过实例调用。
@@ -1891,6 +1904,101 @@ try {
 }
 ```
 
+### adjustPanelRect<sup>15+</sup>
+
+adjustPanelRect(flag: PanelFlag, rect: EnhancedPanelRect): void
+
+预设置输入法应用横竖屏大小、位置、自定义避让区域以及热区。
+
+> **说明:**
+>
+> 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。此接口兼容[adjustPanelRect](#adjustpanelrect12)的调用方法，若入参rect仅填写属性landscapeRect和portraitRect，则默认调用[adjustPanelRect](#adjustpanelrect12)。
+>
+> 此接口为同步接口，接口返回仅代表系统侧收到设置的请求，不代表已完成设置。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型                                      | 必填 | 说明                                                       |
+| ------ | ----------------------------------------- | ---- | ---------------------------------------------------------- |
+| flag   | [PanelFlag](#panelflag10)                 | 是   | 目标面板状态类型。类型为FLG_FIXED或FLG_FLOATING。          |
+| rect   | [EnhancedPanelRect](#enhancedpanelrect15) | 是   | 目标面板横屏状态及竖屏状态的位置、大小、避让区域以及热区。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 12800013 | window manager service error.                                |
+| 12800017 | invalid panel type or panel flag.                            |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let panelFlag = inputMethodEngine.PanelFlag.FLG_FIXED;
+  let panelRect:inputMethodEngine.EnhancedPanelRect = {
+    landscapeAvoidY: 650,
+    landscapeInputRegion: [{left:300, top:650, width:2000, height:500}],
+    portraitAvoidY: 1800,
+    portraitInputRegion: [{left:0, top:1800, width:1200, height:800}],
+    fullScreenMode: true
+  };
+  panel.adjustPanelRect(panelFlag, panelRect);
+} catch(err) {
+  console.error(`Failed to adjustPanelRect: ${JSON.stringify(err)}`);
+}
+```
+
+### updatelnputRegion<sup>15+</sup>
+
+updateRegion(inputRegion: Array&lt;window.Rect&gt;): void
+
+更新当前状态下输入法面板内的热区。
+
+> **说明:**
+>
+> 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。
+>
+> 此接口为同步接口，接口返回仅代表系统侧收到更新热区的请求，不代表已完成热区更新。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名      | 类型                                                         | 必填 | 说明                                                         |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| inputRegion | Array&lt;[window.Rect](../apis-arkui/js-apis-window.md#rect7)&gt; | 是   | 面板内接收输入事件的区域。<br/>- 数组大小限制为[1, 4]。<br/>- 传入的热区位置是相对于输入法面板窗口左顶点的位置。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 12800013 | window manager service error.                                |
+| 12800017 | invalid panel type or panel flag.                            |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+try {
+  let inputRegion: Array<window.Rect> = [{left:300, top:650, width:2000, height:500}];
+  panel.updateRegion(inputRegion);
+} catch(err) {
+  console.error(`Failed to updateRegion: ${JSON.stringify(err)}`);
+}
+```
+
 ### on('show')<sup>10+</sup>
 
 on(type: 'show', callback: () => void): void
@@ -1947,22 +2055,25 @@ try {
 
 ### on('sizeChange')<sup>12+</sup>
 
-on(type: 'sizeChange', callback: Callback&lt;window.Size&gt;): void;
+on(type: 'sizeChange', callback: SizeChangeCallback): void
 
 监听当前面板大小变化，使用callback异步回调。
 
->**说明:**
+> **说明:**
 >
-> 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。由于输入法通过adjustPanelRect等接口对面板大小调节时，系统往往要根据一定规则校验计算得出最终的数值(例如超出屏幕等场景)，输入法应用可通过该回调做最终的面板布局刷新。
+> 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。输入法通过adjustPanelRect等接口对面板大小进行调节时，系统会根据一定规则校验计算出最终的数值（例如超出屏幕等场景），输入法应用可通过该回调获取的真实面板大小，完成最终的面板布局刷新。
+>
+>-  从API version 12-14开始支持，此接口回调函数中仅包含[window.Size](../apis-arkui/js-apis-window.md#size7)类型的必选参数。
+>-  从API version 15起，调用[adjustPanelRect](#adjustpanelrect15)接口后，此接口回调函数增加[KeyboardArea](#keyboardarea15)类型的可选参数。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明     |
-| -------- | ---------------------- | ---- | -------- |
-| type | string | 是 | 监听当前面板的大小是否产生变化，固定取值为'sizeChange'。 |
-| callback | Callback\<[window.Size](../apis-arkui/js-apis-window.md#size7)> |  是  | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。 |
+| 参数名   | 类型                                        | 必填 | 说明                                                   |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------ |
+| type     | string                                      | 是   | 监听当前面板的大小是否产生变化，固定值为'sizeChange'。 |
+| callback | [SizeChangeCallback](#sizechangecallback15) | 是   | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。 |
 
 **示例：**
 
@@ -1970,10 +2081,17 @@ on(type: 'sizeChange', callback: Callback&lt;window.Size&gt;): void;
 import { window } from '@kit.ArkUI';
 try {
   panel.on('sizeChange', (windowSize: window.Size) => {
-    console.info(`panel is size changes, width: ${windowSize.width}, height: ${windowSize.height}`);
+    console.info(`panel size changed, width: ${windowSize.width}, height: ${windowSize.height}`);
   });
 } catch(err) {
-  console.error(`Failed to sizeChange: ${JSON.stringify(err)}`);
+  console.error(`Failed to subscribe sizeChange: ${JSON.stringify(err)}`);
+}
+try {
+  panel.on('sizeChange', (windowSize: window.Size, keyboardArea: inputMethodEngine.KeyboardArea) => {
+    console.info(`panel size changed, windowSize: ${JSON.stringify(windowSize)}, keyboardArea: ${JSON.stringify(keyboardArea)}`);
+  });
+} catch(err) {
+  console.error(`Failed to subscribe sizeChange: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2045,18 +2163,25 @@ try {
 
 ### off('sizeChange')<sup>12+</sup>
 
-off(type: 'sizeChange', callback?: Callback&lt;window.Size&gt;): void;
+off(type: 'sizeChange', callback?: SizeChangeCallback): void
 
 取消监听当前面板大小变化，使用callback异步回调。
+
+> **说明:**
+>
+> 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。输入法通过adjustPanelRect等接口对面板大小进行调节时，系统会根据一定规则校验计算出最终的数值（例如超出屏幕等场景），输入法应用可通过该回调获取的真实面板大小，完成最终的面板布局刷新。
+>
+>-  从API version 12-14开始支持，此接口回调函数中仅包含[window.Size](../apis-arkui/js-apis-window.md#size7)类型的必选参数。
+>-  从API version 15起，调用[adjustPanelRect](#adjustpanelrect15)接口后，此接口回调函数增加[KeyboardArea](#keyboardarea15)类型的可选参数。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明     |
-| -------- | ---------------------- | ---- | -------- |
-| type | string | 是 | 监听当前面板的大小是否产生变化，固定取值为'sizeChange'。 |
-| callback | Callback\<[window.Size](../apis-arkui/js-apis-window.md#size7)> | 否   | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。 |
+| 参数名   | 类型                                        | 必填 | 说明                                                     |
+| -------- | ------------------------------------------- | ---- | -------------------------------------------------------- |
+| type     | string                                      | 是   | 监听当前面板的大小是否产生变化，固定取值为'sizeChange'。 |
+| callback | [SizeChangeCallback](#sizechangecallback15) | 否   | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。   |
 
 **示例：**
 
@@ -2064,10 +2189,10 @@ off(type: 'sizeChange', callback?: Callback&lt;window.Size&gt;): void;
 import { window } from '@kit.ArkUI';
 try {
   panel.off('sizeChange', (windowSize: window.Size) => {
-    console.info(`panel is size changes, width: ${windowSize.width}, height: ${windowSize.height}`);
+    console.info(`panel size changed, width: ${windowSize.width}, height: ${windowSize.height}`);
   });
 } catch(err) {
-    console.error(`Failed to sizeChange: ${JSON.stringify(err)}`);
+    console.error(`Failed to subscribe sizeChange: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -4442,6 +4567,35 @@ inputMethodController.recvMessage();
 | ------------ | -------- | ---- | ---- | ------------------ |
 | landscapeRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 否   | 否   | 横屏状态时输入法面板窗口的位置大小。 |
 | portraitRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 否   | 否   | 竖屏状态时输入法面板窗口的位置大小。 |
+
+## EnhancedPanelRect<sup>15+</sup>
+
+增强的输入法面板位置、大小信息，包含自定义避让区域、自定义热区。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称                 | 类型                                                         | 只读 | 可选 | 说明                                                         |
+| -------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| landscapeRect        | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | 否   | 是   | 横屏状态时输入法面板窗口的位置大小。<br/>- 当fullScreenMode不填写或值为false时，此属性为必选。 |
+| portraitRect         | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | 否   | 是   | 竖屏状态时，输入法面板窗口的位置大小。<br/>- 当fullScreenMode不填写或值为false时，此属性为必选。 |
+| landscapeAvoidY      | number                                                       | 否   | 是   | 横屏状态时，面板中的避让线距离面板顶部的距离。默认值为0。<br/>- 应用内其他系统组件会对避让线以下的输入法面板区域进行避让。<br/>- 面板为固定态时，避让线到屏幕底部的高度不能超过屏幕高度的70%。 |
+| landscapeInputRegion | Array&lt;[window.Rect](../apis-arkui/js-apis-window.md#rect7)&gt; | 否   | 是   | 横屏状态时，面板接收输入事件的区域。<br/>- 数组大小限制为[1, 4]。默认值为横屏时的面板大小。<br/>- 传入的热区位置是相对于输入法面板窗口左顶点的位置。 |
+| portraitAvoidY       | number                                                       | 否   | 是   | 竖屏状态时，面板中的避让线距离面板顶部的距离。默认值为0。<br/>- 应用内其他系统组件会对避让线以下的输入法面板区域进行避让。<br/>- 面板为固定态时，避让线到屏幕底部的高度不能超过屏幕高度的70%。 |
+| portraitInputRegion  | Array&lt;[window.Rect](../apis-arkui/js-apis-window.md#rect7)&gt; | 否   | 是   | 竖屏状态时，面板接收输入事件的区域。<br/>- 数组大小限制为[1, 4]。默认值为竖屏时的面板大小。<br/>- 传入的热区位置是相对于输入法面板窗口左顶点的位置。 |
+| fullScreenMode       | boolean                                                      | 否   | 是   | 是否开启全屏模式。默认值为false。<br/>- 值为true，landscapeRect和portraitRect可不填写。<br/>- 值为false，landscapeRect和portraitRect为必选属性。 |
+
+## KeyboardArea<sup>15+</sup>
+
+面板中的键盘区域。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称   | 类型   | 只读 | 可选 | 说明                                                         |
+| ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| top    | number | 是   | 否   | 键盘区域的上边界到面板区域上边界的距离，单位为px，该参数为整数。 |
+| bottom | number | 是   | 否   | 键盘区域的下边界到面板区域下边界的距离，单位为px，该参数为整数。 |
+| left   | number | 是   | 否   | 键盘区域的左边界到面板区域左边界的距离，单位为px，该参数为整数。 |
+| right  | number | 是   | 否   | 键盘区域的右边界到面板区域右边界的距离，单位为px，该参数为整数。 |
 
 ## WindowInfo<sup>12+</sup>
 
