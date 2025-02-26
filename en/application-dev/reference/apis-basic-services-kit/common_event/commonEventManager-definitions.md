@@ -1,7 +1,7 @@
 # System Common Events
 
 This document provides a list of common events defined by the system.
-Common event types are defined in [Support enumeration of the ohos.commonEventManager module](../js-apis-commonEventManager.md#support).
+Common event types are defined in [Support](../js-apis-commonEventManager.md#support) of the **ohos.commonEventManager** module.
 
 
 
