@@ -18,7 +18,7 @@ import { adminManager } from '@kit.MDMKit';
 
 disableAdmin(admin: Want, userId?: number): Promise\<void>
 
-将当前/指定用户下指定的普通管理应用去激活。使用promise异步回调。
+将当前设备指定用户的设备管理应用去激活。使用promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -32,14 +32,14 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 | 参数名 | 类型                                                    | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 普通设备管理应用。                                           |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
 | userId | number                                                  | 否   | 用户ID， 取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
 
 | 类型           | 说明                                                         |
 | -------------- | ------------------------------------------------------------ |
-| Promise\<void> | 无返回结果的Promise对象。当去激活普通管理应用失败时，会抛出错误对象。 |
+| Promise\<void> | 无返回结果的Promise对象。当去激活设备管理应用失败时，会抛出错误对象。 |
 
 **错误码**:
 
@@ -57,8 +57,8 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 adminManager.disableAdmin(wantTemp, 100).catch((err: BusinessError) => {
@@ -70,7 +70,7 @@ adminManager.disableAdmin(wantTemp, 100).catch((err: BusinessError) => {
 
 subscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): void
 
-指定的设备管理应用订阅系统管理事件。
+订阅系统管理事件。
 
 **需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -82,10 +82,10 @@ subscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): voi
 
 **参数：**
 
-| 参数名        | 类型                                                    | 必填 | 说明           |
-| ------------- | ------------------------------------------------------- | ---- | -------------- |
-| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
-| managedEvents | Array\<[ManagedEvent](#managedevent)>                   | 是   | 订阅事件数组。 |
+| 参数名        | 类型                                                    | 必填 | 说明                   |
+| ------------- | ------------------------------------------------------- | ---- | ---------------------- |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| managedEvents | Array\<[ManagedEvent](#managedevent)>                   | 是   | 订阅事件数组。         |
 
 **错误码**：
 
@@ -103,8 +103,8 @@ subscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): voi
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
@@ -120,7 +120,7 @@ try {
 
 unsubscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): void
 
-指定的设备管理应用取消订阅系统管理事件。
+取消订阅系统管理事件。
 
 **需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -132,10 +132,10 @@ unsubscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): v
 
 **参数：**
 
-| 参数名        | 类型                                                    | 必填 | 说明               |
-| ------------- | ------------------------------------------------------- | ---- | ------------------ |
-| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。     |
-| managedEvents | Array\<[ManagedEvent](#managedevent)>                   | 是   | 取消订阅事件数组。 |
+| 参数名        | 类型                                                    | 必填 | 说明                   |
+| ------------- | ------------------------------------------------------- | ---- | ---------------------- |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| managedEvents | Array\<[ManagedEvent](#managedevent)>                   | 是   | 取消订阅事件数组。     |
 
 **错误码**：
 
@@ -153,8 +153,8 @@ unsubscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): v
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
