@@ -1,12 +1,10 @@
-# Sendable Usage Rules and Constraints
+# Usage Rules and Constraints for Sendable
 
-## A sendable class can inherit only from another sendable class.
+## Sendable Classes Must Inherit Only from Other Sendable Classes
 
-> **Note**
->
-> The class here does not include variables. In other words, a sendable class cannot inherit from a variable.
+The layout and prototype chain of Sendable objects are immutable. Non-Sendable objects can modify their layout in special ways, but they cannot inherit from or be inherited by Sendable classes. This rule applies to classes, not variables. In other words, Sendable classes cannot inherit from variables.
 
-**Positive Example:**
+**Correct Example**
 
 ```ts
 @Sendable
@@ -23,7 +21,7 @@ class B extends A {
 }
 ```
 
-**Negative Example:**
+**Incorrect Example**
 
 ```ts
 class A {
@@ -40,9 +38,11 @@ class B extends A {
 ```
 
 
-## A non-sendable class can inherit only from a non-sendable class.
+## Non-Sendable Classes Must Inherit Only from Other Non-Sendable Classes
 
-**Positive Example:**
+The layout and prototype chain of Sendable objects are immutable. Since non-Sendable objects can modify their layout in special ways, they cannot inherit from or be inherited by Sendable classes.
+
+**Correct Example**
 
 ```ts
 class A {
@@ -57,7 +57,7 @@ class B extends A {
 }
 ```
 
-**Negative Example:**
+**Incorrect Example**
 
 ```ts
 @Sendable
@@ -74,9 +74,11 @@ class B extends A {
 ```
 
 
-## A non-sendable class can implement only a non-sendable interface.
+## Non-Sendable Classes Can Only Implement Non-Sendable Interfaces
 
-**Positive Example:**
+If a non-Sendable class implements a Sendable interface, it may be mistakenly considered as Sendable, leading to incorrect usage.
+
+**Correct Example**
 
 ```ts
 interface I {};
@@ -84,7 +86,7 @@ interface I {};
 class B implements I {};
 ```
 
-**Negative Example:**
+**Incorrect Example**
 
 ```ts
 import { lang } from '@kit.ArkTS';
@@ -97,9 +99,11 @@ class B implements I {};
 ```
 
 
-## The member variables of a sendable class or interface must be of a sendable data type.
+## Member Variables of Sendable Classes/Interfaces Must Be Sendable Data Types 
 
-**Positive Example:**
+Sendable objects cannot hold non-Sendable data. Therefore, member properties of Sendable objects must be of Sendable data types.
+
+**Correct Example**
 
 ```ts
 @Sendable
@@ -110,7 +114,7 @@ class A {
 }
 ```
 
-**Negative Example:**
+**Incorrect Example**
 
 ```ts
 @Sendable
@@ -122,9 +126,11 @@ class A {
 ```
 
 
-## The member variables of a sendable class or interface cannot use the exclamation mark (!) for assertion.
+## Member Variables of Sendable Classes/Interfaces Cannot Use the Exclamation Mark (!) for Assertion
 
-**Positive Example:**
+Member properties of Sendable objects must be initialized. The assertion using the exclamation mark (!) allows variables to remain uninitialized. Therefore, using the exclamation mark (!) for assertion is not supported.
+
+**Correct Example**
 
 ```ts
 @Sendable
@@ -135,7 +141,7 @@ class A {
 }
 ```
 
-**Negative Example:**
+**Incorrect Example**
 
 ```ts
 @Sendable
@@ -147,9 +153,11 @@ class A {
 ```
 
 
-## The member variables of a sendable class or interface do not support computed property names.
+## Member Variables of Sendable Classes/Interfaces Cannot Use Computed Property Names
 
-**Positive Example:**
+The layout of Sendable objects is immutable. Computed properties cannot statically determine the object layout, and therefore they cannot be used for Sendable objects.
+
+**Correct Example**
 
 ```ts
 @Sendable
@@ -162,7 +170,7 @@ class A {
 }
 ```
 
-**Negative Example:**
+**Incorrect Example**
 
 ```ts
 enum B {
@@ -176,9 +184,11 @@ class A {
 ```
 
 
-## The template type of a sendable class, collections.Array, collections.Map, and collections.Set in the generic class must be Sendable.
+## Template Types for Sendable Classes, collections.Array, collections.Map, and collections.Set Must Be Sendable
 
-**Positive Example:**
+Sendable objects cannot hold non-Sendable data. Therefore, template types for Sendable data in generic classes must be Sendable.
+
+**Correct Example**
 
 ```ts
 import { collections } from '@kit.ArkTS';
@@ -192,7 +202,7 @@ try {
 }
 ```
 
-**Negative Example:**
+**Incorrect Example**
 
 ```ts
 import { collections } from '@kit.ArkTS';
@@ -208,15 +218,15 @@ try {
 ```
 
 
-## Variables defined in the context of the current module cannot be used in a sendable class.
+## Sendable Classes Cannot Use Variables Defined in the Context of the Current Module
 
-Because the context of a sendable object varies among concurrent instances, direct access may cause unexpected behavior. A sendable object cannot use the variables defined in the context of the current module. Otherwise, a compile-time error is reported.
+Sendable objects operate in different concurrent instances with distinct context environments within a single virtual machine instance. Direct access to variables defined in the context of the current module can lead to unexpected behavior. Therefore, Sendable objects cannot use variables defined in the context of the current module. Violations will result in compile-time errors.
 
-> **Note**
+> **NOTE**
 >
-> Since API version 12, a sendable class object of the top level can be used internally by the sendable class itself.
+> Since API version 12, Sendable classes can use top-level Sendable class objects.
 
-**Positive Example:**
+**Correct Example**
 
 ```ts
 import { lang } from '@kit.ArkTS';
@@ -244,7 +254,7 @@ class C {
 }
 ```
 
-**Negative Example:**
+**Incorrect Example**
 
 ```ts
 import { lang } from '@kit.ArkTS';
@@ -268,22 +278,22 @@ let b = new B();
 
   @Sendable
   class C {
-    u: I = bar(); // bar is not a sendable class object. A compile-time error is reported.
-    v: I = new A(); // A is not defined in the top level. A compile-time error is reported.
+    u: I = bar(); // bar is not a Sendable class object. A compile-time error is reported.
+    v: I = new A(); // A is not defined at the top level. A compile-time error is reported.
 
     foo() {
-      return b; // b is not a sendable class object but an instance of the sendable class. A compile-time error is reported.
+      return b; // b is not a Sendable class object but an instance of the Sendable class. A compile-time error is reported.
     }
   }
 }
 ```
 
 
-## A sendable class and sendable function can only use the @Sendable decorator.
+## Sendable Classes and Functions Cannot Use Decorators Other Than @Sendable
 
-If the class decorator is defined in a .ts file, any modification to the class layout causes a runtime error.
+If a class decorator modifies the class layout and is defined in a .ts file, it can cause runtime errors.
 
-**Positive Example:**
+**Correct Example**
 
 ```ts
 @Sendable
@@ -292,7 +302,7 @@ class A {
 }
 ```
 
-**Negative Example:**
+**Incorrect Example**
 
 ```ts
 @Sendable
@@ -303,11 +313,11 @@ class C {
 ```
 
 
-## The Sendable type cannot be initialized using an object literal or array literal.
+## Object Literals/Array Literals Cannot Be Used to Initialize Sendable Types 
 
-A sendable data type can be created only by using the **new** expression of the Sendable type.
+Object literals and array literals are non-Sendable types. Sendable data types can only be created using **new** expressions of Sendable types.
 
-**Positive Example:**
+**Correct Example**
 
 ```ts
 import { collections } from '@kit.ArkTS';
@@ -315,7 +325,7 @@ import { collections } from '@kit.ArkTS';
 let arr1: collections.Array<number> = new collections.Array<number>(1, 2, 3); // The type is Sendable.
 ```
 
-**Negative Example:**
+**Incorrect Example**
 
 ```ts
 import { collections } from '@kit.ArkTS';
@@ -326,13 +336,11 @@ let arr4: number[] = new collections.Array<number>(1, 2, 3); // A compile-time e
 ```
 
 
-## A non-sendable type cannot be converted to a sendable type using **as**.
+## Non-Sendable Types Cannot Be Cast to Sendable Types Using **as**
 
-> **Note**
->
-> A sendable type must be compatible with a non-sendable type without violating the sendable usage rules. Therefore, a sendable type can be converted to a non-sendable type using **as**.
+Except for the Object type, non-Sendable types cannot be cast to Sendable types using **as**. Using **as** to cast a non-Sendable type to a Sendable type results in an object that is still non-Sendable, leading to incorrect usage. Sendable types, however, can be cast to non-Sendable types using **as** to maintain compatibility, provided they do not violate Sendable rules.
 
-**Positive Example:**
+**Correct Example**
 
 ```ts
 class A {
@@ -347,7 +355,7 @@ class SendableA {
 let a1: A = new SendableA() as A;
 ```
 
-**Negative Example:**
+**Incorrect Example**
 
 ```ts
 class A {
@@ -363,11 +371,11 @@ let a2: SendableA = new A() as SendableA;
 ```
 
 
-## An arrow function is not sendable.
+## Arrow Functions Are Not Supported for Sharing
 
-An arrow function cannot be decorated by @Sendable.
+Arrow functions do not support the @Sendable decorator and are non-Sendable. Therefore, they cannot be shared.
 
-**Positive Example:**
+**Correct Example**
 
 ```ts
 @Sendable
@@ -389,7 +397,7 @@ class SendableClass {
 let sendableClass = new SendableClass(SendableFunc);
 ```
 
-**Negative Example:**
+**Incorrect Example**
 
 ```ts
 @Sendable
@@ -403,18 +411,18 @@ class SendableClass {
 ```
 
 
-## The @Sendable decorator supports type decoration for functions only.
+## @Sendable Can Only Be Applied to Function Types
 
-The @Sendable decorator supports type decoration for functions only.
+Currently, The @Sendable decorator only supports declaring Sendable function types.
 
-**Positive Example:**
+**Correct Example**
 
 ```ts
 @Sendable
 type SendableFuncType = () => void;
 ```
 
-**Negative Example:**
+**Incorrect Example**
 
 ```ts
 @Sendable
@@ -431,7 +439,7 @@ type D = C; // A compile-time error is reported.
 ## Notice
 
 
-When using **Sendable** in HAR, enable the configuration of generating TS files. For details, see [Building TS Files](../quick-start/har-package.md#building-ts-files).
+When using Sendable in HAR, you must enable the configuration for compiling and generating TS files. For details, see [Building TS Files](../quick-start/har-package.md#building-ts-files).
 
 
 ## Rules for Interaction with TS/JS
@@ -439,27 +447,27 @@ When using **Sendable** in HAR, enable the configuration of generating TS files.
 
 ### ArkTS General Rules (Only for Sendable Objects Currently)
 
-| Rule Description|
+| Rule|
 | -------- |
-| When a sendable object is passed to a TS/JS interface, the object layout cannot be operated (adding or deleting properties, or changing property types).|
-| When a sendable object is set to a TS/JS object, the object layout cannot be operated (adding or deleting properties, or changing property types) after the TS/JS object obtains the sendable object.|
-| When a sendable object is placed in a TS/JS container, the object layout cannot be operated (adding or deleting properties, or changing property types) after the TS/JS object obtains the sendable object.|
+| Do not modify the object layout (add or delete properties, or change property types) of Sendable objects when passing them to TS/JS interfaces.|
+| Do not modify the object layout (add or delete properties, or change property types) of Sendable objects when setting them to TS/JS objects.|
+| Do not modify the object layout (add or delete properties, or change property types) of Sendable objects when placing them in TS/JS containers.|
 
-> **Note**
+> **NOTE**
 >
-> Changes of the property types do not include changes of the sendable object types, for example, from Sendable class A to Sendable class B.
+> Changing the property type does not include changing the type of a Sendable object, such as from Sendable class A to Sendable class B.
 
 
-### Native API Rules (Only for Sendable Objects Currently)
+### NAPI Rules (Only for Sendable Objects Currently)
 
-| Rule Description|
+| Rule|
 | -------- |
-| Do not delete properties. The **napi_delete_property** interface cannot be used.|
-| Do not add properties. The following interfaces cannot be used: **napi_set_property**, **napi_set_named_property**, and **napi_define_properties**.|
-| Do not modify property types. The following interfaces cannot be used: **napi_set_property**, **napi_set_named_property**, and **napi_define_properties**.|
-| Symbol-related interfaces and types are not supported. The following interfaces cannot be used: **napi_create_symbol**, **napi_is_symbol_object**, and **napi_symbol**.|
+| Do not delete properties. Prohibited interfaces: **napi_delete_property**.|
+| Do not add properties. Prohibited interfaces: **napi_set_property**, **napi_set_named_property**, and **napi_define_properties**.|
+| Do not change property types. Prohibited interfaces: **napi_set_property**, **napi_set_named_property**, and **napi_define_properties**.|
+| Symbol-related interfaces and types are not supported. Prohibited interfaces: **napi_create_symbol**, **napi_is_symbol_object**, and **napi_symbol**.|
 
 
 ## Rules for Interaction with the UI
 
-The Sendable data needs to be used together with the [makeObserved](../quick-start/arkts-new-makeObserved.md) to observe the data changes of the Sendable object. For details, see [Using makeObserved and @Sendable Decorated Class Together](../quick-start/arkts-new-makeObserved.md#using-makeobserved-and-sendable-decorated-class-together).
+To observe data changes in Sendable objects when interacting with UI, Sendable data must be used in conjunction with [makeObserved](../quick-start/arkts-new-makeObserved.md). For more information, see [Using makeObserved and @Sendable Decorated Class Together](../quick-start/arkts-new-makeObserved.md#using-makeobserved-and-sendable-decorated-class-together).

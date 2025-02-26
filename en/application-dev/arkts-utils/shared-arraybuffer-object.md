@@ -1,13 +1,13 @@
 # SharedArrayBuffer Object
 
-SharedArrayBuffer contains a native memory block, which can be shared across concurrent instances. However, the Atomics class must be used for access and modification to prevent data competition. SharedArrayBuffer can be used for state sharing or data sharing between multiple concurrent instances. The following figure shows the communication process.
+A SharedArrayBuffer object contains a block of native memory, and its JS object wrapper is allocated in the local heap of the virtual machine. It allows sharing across concurrent instances but requires the use of the Atomics class to manage access and modifications, thereby preventing data races. It is suitable for sharing state or data among multiple concurrent instances. The following figure shows the communication process.
 
 ![sharedarraybufer](figures/sharedarraybufer.png)
 
 
-## Samples
+## Usage Example
 
-The following is a simple example of using TaskPool to transfer an Int32Array object:
+The following is a simple example of using TaskPool to pass an Int32Array object:
 
 ```ts
 import { taskpool } from '@kit.ArkTS';

@@ -1,29 +1,29 @@
 # Lazy Import
 
-With the continuous expansion of application features, the time required for cold start increases significantly. The main reason is that a large number of modules are loaded at the early stage of startup, and a large number of redundant files that are not actually executed exist. In this case, not only an initialization process of the application is delayed, but also invalid resource occupation is caused. Therefore, measures urgently need to be taken to simplify a loading process and eliminate unnecessary file execution, to optimize cold start performance and ensure smooth user experience.
+As applications evolve with more features, the time required for cold start increases significantly. The main reason is that a large number of modules are loaded at the early stage of startup, and many of them are redundant and not actually executed. This not only prolongs application initialization but also leads to invalid resource utilization. To address this, it is crucial to streamline the loading process by eliminating non-essential file executions to optimize cold start performance and ensure a smooth user experience.
 
-> **Note**
+> **NOTE**
 > 
-> - The lazy import is supported since API version 12.
+> - The lazy import feature is supported since API version 12.
 >
-> - To use the lazy import syntax on API version 12, you need to configure **"compatibleSdkVersionStage": "beta3"** in the project. Otherwise, the compilation fails. For details, see [DevEco Studio build-profile.json5 File Description](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5#section511142752919).
+> - To use the lazy import syntax on API version 12, you must configure **"compatibleSdkVersionStage": "beta3"** in the project. Otherwise, the compilation fails. For details, see [Project-level build-profile.json5 File](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5#section511142752919).
 
 
-## **Functions and Features**
+## Features
 
-With the lazy import, unnecessary files are not loaded in the cold start phase until these files are required during application running, shortening the time required for cold start.
+The lazy import feature allows files that are pending loading to remain unloaded during the cold start phase. Instead, these files are loaded synchronously on-demand only when the application actually needs them during runtime, thereby reducing the time required for application cold start.
 
-## Storage mode
+## Usage
 
-You can use<!--Del-->[<!--DelEnd-->Trace<!--Del-->](../performance/common-trace-using-instructions.md)<!--DelEnd--> tools or logs to identify files that are not actually called during cold start. By analyzing the data, you can accurately locate the files that do not need to be pre-loaded in the startup phase, and add the **lazy** identifier for the invoking points of these files. Notice that subsequent synchronous loading may block the task execution. (If a task is clicked and lazy import is triggered, the files that are not loaded will be executed in cold start, which increases the time consumption. Therefore, you need to evaluate whether to use the **lazy** identifier.
+You can use <!--Del-->[<!--DelEnd-->Trace<!--Del-->](../performance/common-trace-using-instructions.md)<!--DelEnd--> or logs to identify files that are not actually called during cold start.<!--RP1--> For details about the analysis method, see [Lazy Import](../performance/Lazy-Import-Instructions.md).<!--RP1End--> By analyzing the data, you can accurately identify the files that do not need to be pre-loaded in the startup phase, and add the **lazy** flag for the call points of these files. Note that the subsequent loading is synchronous and may block task execution. (For example, if a click task triggers a lazy import, the runtime will execute the files not loaded during the cold start, thereby increasing latency.) Therefore, you need to evaluate whether to use the **lazy** flag.
 
 > **NOTE**
 >
-> You are not advised to blindly add **lazy** identifiers, which also increases the identification overhead during building and running.
-    
+> You are not advised to blindly add **lazy** flags, as this can also increase the overhead of identification during compilation and runtime.
+
 ## Scenario Behavior Analysis
 
-- Use lazy import.
+- Use lazy-import for deferred loading.
 
     ```typescript    
         // main.ets   
@@ -54,13 +54,13 @@ You can use<!--Del-->[<!--DelEnd-->Trace<!--Del-->](../performance/common-trace-
         main executed
     ```
 
-- Reference lazy import and native import for the same module at the same time.
+- Use both lazy-import and native import for the same module.
 
     ```typescript    
         // main.ets   
         import lazy { a } from "./mod1";    // "mod1" is not executed.
         import { c } from "./mod2";         // "mod2" is executed.
-        import { c } from "./mod2";         // "mod1" is executed.
+        import { b } from "./mod1";         // "mod1" is executed.
         
         // ...
         
@@ -91,7 +91,7 @@ You can use<!--Del-->[<!--DelEnd-->Trace<!--Del-->](../performance/common-trace-
         main executed
     ```
     
-    If the keyword **lazy** is deleted from **main.ets** file, the execution sequence is as follows:
+    If the keyword **lazy** is deleted from the **main.ets** file, the execution sequence is as follows:
     
     ```typescript  
         mod1 a executed
@@ -100,21 +100,21 @@ You can use<!--Del-->[<!--DelEnd-->Trace<!--Del-->](../performance/common-trace-
         main executed
     ```
 
-## Specifications
+## Syntax Specifications and Supported Versions
 
-- Lazy import supports the following instructions:
+- The lazy import feature supports the following syntax:
 
-| Syntax                              | ModuleRequest | ImportName  | LocalName   | Supported by API Version 12   |
-| :--------------------------------- | :------------ | :---------- | :---------- | :------------------- |
-| import lazy { x } from "mod";        | "mod"         | "x"         | "x"         | Yes                 |
-| import lazy { x as v } from "mod";   | "mod"         | "x"         | "v"         | Yes.                 |
+| Syntax                                           | ModuleRequest  | ImportName | LocalName   | Supported by API Version 12|
+|:----------------------------------------------|:---------------|:-----------|:------------|:-----------|
+| import lazy { x } from "mod";                 | "mod"          | "x"        | "x"         | Yes     |
+| import lazy { x as v } from "mod";            | "mod"          | "x"        | "v"         | Yes     |
 
-- The shared module is lazy imported or the dependency path contains the shared module.
-    Lazy import still takes effect for the shared module. For details about the constraints, see [Shared Module Development](../arkts-utils/arkts-sendable-module.md).
+- Lazy importing of shared modules or modules within a dependency path that includes shared modules
+    Lazy import remains effective for shared modules. For details about the constraints, see [Shared Module](../arkts-utils/arkts-sendable-module.md).
 
-### [Incorrect Example]
+### Incorrect Example
 
-Build error is reported if use the following syntax:
+The following syntax will cause compilation errors:
 
 ```typescript
     export lazy var v;                  // The compiler reports an application compilation error.
@@ -142,37 +142,37 @@ If the **type** keyword is added to the syntax, an error is reported.
 
 ### Syntax Not Recommended
 
-- In the same ets file, not all the dependency modules that require the lazy import are added lazy identifiers.
-    
-    Incomplete labeling will cause lazy loading to fail and increase the overhead of identifying lazy loading.
+- Incomplete **lazy** flags within the same .ets file
+  
+    Incomplete marking will cause lazy imports to fail and increase the overhead of identifying lazy-imported modules.
     ```typescript
         // main.ets   
-        import lazy { a } from "./mod1";    // Obtain the object a from "mod1" and add a lazy identifier.
+        import lazy { a } from "./mod1";    // Obtain the object a from "mod1" and add the lazy flag.
         import { c } from "./mod2";
-        import { b } from "./mod1";         // Obtain the attributes in "mod1". This syntax is not added a lazy identifier, so "mod1" is executed by default.
+        import { b } from "./mod1";         // Obtain the attributes in "mod1". This syntax is not added with the lazy flag, so "mod1" is executed by default.
         
         // ...
     ```
-- In the same ETS file, lazy loading variables are not used and exported again. Lazy loading variables cannot be exported by re-export.
-    
-    The variable c exported in this mode is not used in B.ets, and the B.ets file is not executed. When variable a is used in the A.ets file, the variable is not initialized and a JS exception is thrown.
+- Re-exporting lazy-imported variables within the same .ets file without using them
+  
+    The variable **c** is not used in **B.ets**, so **B.ets** does not trigger execution. When **c** is used in **A.ets**, it is not initialized, resulting in a JS exception.
     ```typescript
         // A.ets
         import { c } from "./B";
         console.info(c);
 
         // B.ets
-        import lazy { a } from "./mod1";    // Obtain the object a from "mod1" and add a lazy identifier.
+        import lazy { c } from "./C";    // Obtain the object c from "C" and add the lazy flag.
         export { c }
 
         // C.ets
-        function c(){};
+        let c = "c";
         export { c }
     ```
     The execution result is as follows:
     ```typescript
-        ReferenceError: a is not initaliized
-             at func_main_0 (A.ets:2:1)
+        ReferenceError: c is not initaliized
+             at func_main_0 (A.ets:2:13)
     ```
 
     ```typescript
@@ -181,22 +181,24 @@ If the **type** keyword is added to the syntax, an error is reported.
         console.info(ns.c);
 
         // B.ets
-        import lazy { a } from "./mod1";    // Obtain the object a from "mod1" and add a lazy identifier.
+        import lazy { c } from "./C";    // Obtain the object c from "C" and add the lazy flag.
         export { c }
 
         // C.ets
-        function c(){};
+        let c = "c";
         export { c }
     ```
     The execution result is as follows:
     ```typescript
     ReferenceError: module environment is undefined
-        at func_main_0 (A_ns.js:2:1)
+        at func_main_0 (A_ns.js:2:13)
     ```
 
-- Currently, lazy import cannot be executed in kit.
+- Currently, lazy-import is not available for kit loading.
 
-- Developers need to evaluate the impact of lazy loading.
-    * Side-effects that do not depend on the module (such as initializing global variables and mounting globalThis)
-    * When objects are exported, time required for the lazy import deteriorates corresponding features.
-    * Bugs occur when the **lazy** identifier is used but the module is not executed.
+- You need to evaluate the impact of lazy imports.
+    * Side effects that are independent of the module's execution (such as initializing global variables and mounting **globalThis**). For details, see [Side Effects and Optimization of Module Loading](./arkts-module-side-effects.md).
+    * Negative impact on the functionality of features due to the delay caused by triggering lazy imports when using exported objects.
+    * Bugs caused by modules not being executed due to the use of the lazy import feature.
+
+ <!--no_check--> 
