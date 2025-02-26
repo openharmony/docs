@@ -1309,7 +1309,7 @@ struct Input_KeyEvent* OH_Input_CreateKeyEvent ()
 
 **返回：**
 
-如果操作成功返回一个[Input_KeyEvent](#input_keyevent)指针对象 否则返回空指针。
+如果操作成功返回一个[Input_KeyEvent](#input_keyevent)指针对象，否则返回空指针。
 
 
 ### OH_Input_CreateKeyState()
@@ -1327,7 +1327,7 @@ struct Input_KeyState* OH_Input_CreateKeyState ()
 
 **返回：**
 
-如果操作成功，返回一个[Input_KeyState](#input_keystate)指针对象， 否则返回空指针。
+如果操作成功，返回一个[Input_KeyState](#input_keystate)指针对象，否则返回空指针。
 
 
 ### OH_Input_CreateMouseEvent()
@@ -1345,7 +1345,7 @@ struct Input_MouseEvent* OH_Input_CreateMouseEvent ()
 
 **返回：**
 
-如果操作成功返回一个[Input_MouseEvent](#input_mouseevent)指针对象 否则返回空指针。
+如果操作成功返回一个[Input_MouseEvent](#input_mouseevent)指针对象，否则返回空指针。
 
 
 ### OH_Input_CreateTouchEvent()
@@ -1363,7 +1363,7 @@ struct Input_TouchEvent* OH_Input_CreateTouchEvent ()
 
 **返回：**
 
-如果操作成功返回一个[Input_TouchEvent](#input_touchevent)指针对象 否则返回空指针。
+如果操作成功返回一个[Input_TouchEvent](#input_touchevent)指针对象，否则返回空指针。
 
 
 ### OH_Input_DestroyAllSystemHotkeys()
