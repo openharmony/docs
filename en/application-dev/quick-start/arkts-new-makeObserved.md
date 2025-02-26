@@ -1,6 +1,6 @@
 # makeObserved API: Changing Unobservable Data to Observable Data
 
-To change the unobservable data to observable data, you can use the [makeObserved](../reference/apis-arkui/js-apis-StateManagement.md#makeobserved12) API.
+To change the unobservable data to observable data, you can use the [makeObserved](../reference/apis-arkui/js-apis-StateManagement.md#makeobserved) API.
 
 
 **makeObserved** can be used when \@Trace cannot be used. Before reading this topic, you are advised to read [\@Trace](./arkts-new-observedV2-and-trace.md).
@@ -457,7 +457,7 @@ struct Index {
 ```
 
 ### Input Parameter of makeObserved Is the Return Value of JSON.parse
-JSON.parse returns an object which cannot be decorated by @Trace. You can use makeObserved to make it observable.
+**JSON.parse** returns an object which cannot be decorated by @Trace. You can use **makeObserved** to make it observable.
 
 ```ts
 import { JSON } from '@kit.ArkTS';

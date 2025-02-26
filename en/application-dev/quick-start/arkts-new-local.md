@@ -540,3 +540,95 @@ struct Index {
   }
 }
 ```
+
+### Using animationTo Failed in State Management V2
+
+In the following scenario, [animateTo](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md) cannot be directly used in state management V2.
+
+```ts
+@Entry
+@ComponentV2
+struct Index {
+  @Local w: number = 50; // Width.
+  @Local h: number = 50; // Height.
+  @Local message: string = 'Hello';
+
+  build() {
+    Column() {
+      Button('change size')
+        .margin(20)
+        .onClick(() => {
+          // Values are changed additionally before the animation is executed.
+          this.w = 100;
+          this.h = 100;
+          this.message = 'Hello World';
+          animateTo({
+            duration: 1000
+          }, () => {
+            this.w = 200;
+            this.h = 200;
+            this.message = 'Hello ArkUI';
+          })
+        })
+      Column() {
+        Text(`${this.message}`)
+      }
+      .backgroundColor('#ff17a98d')
+      .width(this.w)
+      .height(this.h)
+    }
+  }
+}
+```
+
+In the preceding code, the length and width of the green rectangle are expected to change from **100** to **200** and the string is expected to change from **Hello World** to **Hello ArkUI**. However, **animateTo** is incompatible with V2 in the refresh mechanism. Therefore, the extra change does not take effect. As a result, the length and width of the green rectangle actually change from **50** to **200** and the string changes from **Hello** to **Hello ArkUI**.
+
+![arkts-new-local-animateTo-1](figures/arkts-new-local-animateTo-1.gif)
+
+Follow the method below to achieve the expected display effect temporarily.
+
+```ts
+@Entry
+@ComponentV2
+struct Index {
+  @Local w: number = 50; // Width.
+  @Local h: number = 50; // Height.
+  @Local message: string = 'Hello';
+
+  build() {
+    Column() {
+      Button('change size')
+        .margin(20)
+        .onClick(() => {
+          // Values are changed additionally before the animation is executed.
+          this.w = 100;
+          this.h = 100;
+          this.message = 'Hello Word';
+          animateToImmediately({
+            duration: 0
+          }, () => {
+          })
+          animateTo({
+            duration: 1000
+          }, () => {
+            this.w = 200;
+            this.h = 200;
+            this.message = 'Hello ArkUI';
+          })
+        })
+      Column() {
+        Text(`${this.message}`)
+      }
+      .backgroundColor('#ff17a98d')
+      .width(this.w)
+      .height(this.h)
+    }
+  }
+}
+```
+
+Use [animateToImmediately](../reference/apis-arkui/arkui-ts/ts-explicit-animatetoimmediately.md) whose **duration** is **0** to refresh the extra change and then execute the original animation to achieve the expected effect.
+
+![arkts-new-local-animateTo-2](figures/arkts-new-local-animateTo-2.gif)
+
+You are advised to use the **animateTo** API with caution in state management V2.

@@ -1,11 +1,11 @@
 # \@Reusable Decorator: Reusing Components
 
 
-When the \@reusable decorator decorates any custom component, the custom component is reusable.
+When the \@Reusable decorator decorates any custom component, the custom component is reusable.
 
 > **NOTE**
 >
-> This decorator can be used in ArkTS since API version 10.
+> The \@Reusable decorator is supported since API version 10.
 
 ## Overview
 
@@ -159,7 +159,7 @@ struct Index {
           .fontSize(14)
         PlayButton02({ isPlaying02: $isPlaying02 })
       }
-      Text(`==================`).fontSize(14)
+      Text(`==================`).fontSize(14);
 
       // Initial state of the button: hidden
       if (this.isPlaying01) {
@@ -167,7 +167,7 @@ struct Index {
           .fontSize(14)
         PlayButton02({ isPlaying02: $isPlaying01 })
       }
-      Text(`==================`).fontSize(14)
+      Text(`==================`).fontSize(14);
 
       // Parent-child nesting
       if (this.isPlaying) {
@@ -188,8 +188,8 @@ struct Index {
       Text(`==================`).fontSize(14);
 
       // Hide the button control by default.
-      Text(`hidedchild==is ${this.isPlaying01 ? '' : 'not'} playing`).fontSize(14)
-      Button('Button===hidedchild==control==' + this.isPlaying01)
+      Text(`Hiddenchild==is ${this.isPlaying01 ? '' : 'not'} playing`).fontSize(14)
+      Button('Button===hiddenchild==control==' + this.isPlaying01)
         .margin(14)
         .onClick(() => {
           this.isPlaying01 = !this.isPlaying01;
@@ -321,7 +321,7 @@ struct Child {
 }
 ```
 
-### List Scrolling Used with LazyForEach
+### Using List Scrolling with LazyForEach
 
 - In the sample code, the **CardView** custom component is marked as a reusable component, and the list is scrolled up and down to trigger **CardView** reuse.
 - \@Reusable: The custom component to reuse is decorated by @Reusable.
@@ -535,8 +535,8 @@ export class MyDataSource<T> extends BasicDataSource<T> {
 
 ### Foreach
 
-- In the following sample code, when the **update** button is clicked, the data is successfully refreshed, but component cannot be reused when scolling the list because of the full expansion attribute of **Foreach**.
-- Click **clear** and **update** in order, and the reuse is successful. This operation is feasible because it can repeatedly create multiple destroyed custom components in a frame.
+- When **Foreach** is used to create a reusable custom component, component reuse cannot be triggered due to the full expansion attribute of **Foreach**. In the following example, after **update** is clicked, the data is refreshed successfully, but **ListItemView** cannot be reused.
+- Click **clear** and then click **update** again. **ListItemView** is successfully reused because multiple destroyed custom components are repeatedly created in a frame.
 
 ```ts
 // xxx.ets
@@ -630,14 +630,14 @@ struct ListItemView {
 
   aboutToAppear(): void {
     // Click update and scroll the list. The components cannot be reused because of the full expansion attribute of Foreach.
-    console.log("=====abouTo===Appear=====ListItemView==created==" + this.item)
+    console.log("=====aboutToAppear=====ListItemView==created==" + this.item);
   }
 
   aboutToReuse(params: ESObject) {
     this.item = params.item;
     // Click clear and update and the reuse is successful,
-    // because this operation can repeatedly create multiple destroyed custom components in a frame.
-    console.log("=====aboutTo===Reuse====ListItemView==reused==" + this.item)
+    // because multiple destroyed custom components are repeatedly created in a frame.
+    console.log("=====aboutToReuse====ListItemView==reused==" + this.item);
   }
 
   build() {
@@ -827,7 +827,7 @@ class WaterFlowDataSource implements IDataSource {
 struct ReusableFlowItem {
   @State item: number = 0;
 
-  // Invoked when a reusable custom component is added to the component tree from the reuse cache. The component state variable can be updated here to display the correct content.
+  // Invoked when a reusable custom component is added to the component tree from the reuse cache. The component's state variable can be updated here to display the correct content.
   aboutToReuse(params: ESObject) {
     this.item = params.item;
     console.log("=====aboutToReuse====FlowItem==reused==" + this.item);
@@ -1356,7 +1356,7 @@ struct ReusableComponent {
 #### Composite
 
 - Different reusable components have common child components.
-- Based on the composite component reuse, after the three reusable components in the following example are converted into the **Builder** function, the common child components are under the same parent component **MyComponent**.
+- Based on the composite component reuse, after the three reusable components are converted into the **Builder** function, the common child components are under the same parent component **MyComponent**.
 - When you reuse these child components, their cache pools are also shared in the parent component, reducing the consumption during component creation.
 
 ```ts
@@ -1400,6 +1400,7 @@ struct MyComponent {
     }
   }
 
+// Convert itemBuilderOne to Builder.
   @Builder
   itemBuilderOne(item: string) {
     Column() {
@@ -1409,6 +1410,7 @@ struct MyComponent {
     }
   }
 
+// Convert itemBuilderTwo to Builder.
   @Builder
   itemBuilderTwo(item: string) {
     Column() {
@@ -1418,6 +1420,7 @@ struct MyComponent {
     }
   }
 
+// Convert itemBuilderThree to Builder.
   @Builder
   itemBuilderThree(item: string) {
     Column() {
