@@ -16,6 +16,7 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块接口在<!--RP1-->[自动化测试脚本](../../application-test/arkxtest-guidelines.md)<!--RP1End-->中使用。
 > - 本模块接口不支持并发调用。
+> - 本模块接口适用于手机、平板、2in1设备。
 
 
 ## 导入模块
@@ -1399,7 +1400,7 @@ inputText(text: string): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| text   | string | 是   | 输入的文本信息，当前支持英文和特殊字符。 |
+| text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 |
 
 **错误码：**
 
@@ -2281,7 +2282,7 @@ async function demo() {
 
 screenCap(savePath: string): Promise\<boolean>
 
-Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中。
+Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中。适用于支持截屏的场景。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2720,7 +2721,7 @@ async function demo() {
 
 screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
-捕获当前屏幕的指定区域，并保存为PNG格式的图片至给出的保存路径中。
+捕获当前屏幕的指定区域，并保存为PNG格式的图片至给出的保存路径中。适用于支持截屏的场景。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3109,7 +3110,7 @@ inputText(p: Point, text: string): Promise\<void>
 | 参数名 | 类型             | 必填 | 说明               |
 | ------ | ---------------- | ---- | ------------------ |
 | p      | [Point](#point9) | 是   | 输入文本的坐标点。 |
-| text   | string           | 是   | 输入的文本信息。   |
+| text   | string           | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。   |
 
 **错误码：**
 

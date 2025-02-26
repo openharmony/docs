@@ -264,7 +264,7 @@
 | [ArkUI_AnimationStatus](#arkui_animationstatus) { ARKUI_ANIMATION_STATUS_INITIAL, ARKUI_ANIMATION_STATUS_RUNNING, ARKUI_ANIMATION_STATUS_PAUSED, ARKUI_ANIMATION_STATUS_STOPPED } | 定义帧动画的播放状态。  | 
 | [ArkUI_AnimationFillMode](#arkui_animationfillmode) { ARKUI_ANIMATION_FILL_MODE_NONE, ARKUI_ANIMATION_FILL_MODE_FORWARDS, ARKUI_ANIMATION_FILL_MODE_BACKWARDS, ARKUI_ANIMATION_FILL_MODE_BOTH } | 定义帧动画组件在动画开始前和结束后的状态。  | 
 | [ArkUI_ErrorCode](#arkui_errorcode) {<br/>ARKUI_ERROR_CODE_NO_ERROR = 0, ARKUI_ERROR_CODE_PARAM_INVALID = 401,<br/>ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE = 150001,
-ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002,ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT = 150003, <br/>ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED = 106102, ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE = 106103,<br/>ARKUI_ERROR_CODE_NODE_ADAPTER_NONE_HOST = 106104, ARKUI_ERROR_CODE_NODE_ADAPTER_EXIST_IN_HOST = 106105, ARKUI_ERROR_CODE_NODE_ADAPTER_CHILD_NODE_EXIST = 106106, ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE = 106107,<br/>ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID = 106108, ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN = 106109, ARKUI_ERROR_CODE_NODE_INDEX_INVALID = 106200, ARKUI_ERROR_CODE_GET_INFO_FAILED = 106201,<br/>ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR = 106202, ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER = 180001, ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH = 180002, ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101<br/>} | 定义错误码枚举值。  | 
+ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002,ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT = 150003, <br/>ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED = 106102, ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE = 106103,<br/>ARKUI_ERROR_CODE_NODE_ADAPTER_NONE_HOST = 106104, ARKUI_ERROR_CODE_NODE_ADAPTER_EXIST_IN_HOST = 106105, ARKUI_ERROR_CODE_NODE_ADAPTER_CHILD_NODE_EXIST = 106106, ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE = 106107,<br/>ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID = 106108, ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN = 106109, ARKUI_ERROR_CODE_NODE_INDEX_INVALID = 106200, ARKUI_ERROR_CODE_GET_INFO_FAILED = 106201,<br/>ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR = 106202, ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE = 106203, ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER = 180001, ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH = 180002, ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT = 180003, ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL = 180004, ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT  = 180005, ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101<br/>} | 定义错误码枚举值。  | 
 | [ArkUI_ScrollSource](#arkui_scrollsource) {<br/>ARKUI_SCROLL_SOURCE_DRAG = 0, ARKUI_SCROLL_SOURCE_FLING, ARKUI_SCROLL_SOURCE_EDGE_EFFECT, ARKUI_SCROLL_SOURCE_OTHER_USER_INPUT,<br/>ARKUI_SCROLL_SOURCE_SCROLL_BAR, ARKUI_SCROLL_SOURCE_SCROLL_BAR_FLING, ARKUI_SCROLL_SOURCE_SCROLLER, ARKUI_SCROLL_SOURCE_ANIMATION<br/>} | 定义滚动来源枚举值。  | 
 | [ArkUI_SafeAreaType](#arkui_safeareatype) { ARKUI_SAFE_AREA_TYPE_SYSTEM = 1, ARKUI_SAFE_AREA_TYPE_CUTOUT = 1 &lt;&lt; 1, ARKUI_SAFE_AREA_TYPE_KEYBOARD = 1 &lt;&lt; 2 } | 定义扩展安全区域的枚举值。  | 
 | [ArkUI_ListItemGroupArea](#arkui_listitemgrouparea) { ARKUI_LIST_ITEM_GROUP_AREA_OUTSIDE = 0, ARKUI_LIST_ITEM_SWIPE_AREA_NONE = 1, ARKUI_LIST_ITEM_SWIPE_AREA_ITEM = 2, ARKUI_LIST_ITEM_SWIPE_AREA_HEADER = 3, ARKUI_LIST_ITEM_SWIPE_AREA_FOOTER = 4<br/>} | 定义组件区域的枚举值。 | 
@@ -779,6 +779,7 @@ ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002,ARKUI_ERROR_CODE_FOCUS_NO
 | void [OH_ArkUI_DragEvent_StartDataLoading](#oh_arkui_dragevent_startdataloading)([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent)\* event, [OH_UdmfGetDataParams](#oh_udmfgetdataparams)\* options, char\* key, unsigned int keyLen); | 异步获取拖拽数据。 | 
 | void OH_ArkUI_[CancelDataLoading](#oh_arkui_canceldataloading)([ArkUI_Context](_ark_u_i___native_module.md#arkui_context) uiContext, const char\* key); | 取消异步获取拖拽数据。 | 
 | void OH_ArkUI_[DisableDropDataPrefetchOnNode](#oh_arkui_disabledropdataprefetchonnode)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool disable); | 设置拖拽是否提前获取数据。true为不提前获取数据，默认值为false。 | 
+| int32_t [OH_ArkUI_NodeUtils_GetPositionToParent](#oh_arkui_nodeutils_getpositiontoparent) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md)\* globalOffset) | 获取目标节点相对于父节点的偏移值。  | 
 
 
 ## 宏定义说明
@@ -1508,6 +1509,16 @@ typedef struct ArkUI_ProgressLinearStyleOption ArkUI_ProgressLinearStyleOption
 
 **起始版本：** 15
 
+### OH_HostWindowInfo
+
+```
+typedef struct ArkUI_HostWindowInfo ArkUI_HostWindowInfo
+```
+**描述：**
+
+定义窗口属性的HostWindowInfo类信息。
+
+**起始版本：**: 15
 
 ### OH_UdmfGetDataParams
 
@@ -7460,6 +7471,222 @@ const char* OH_ArkUI_CustomProperty_GetStringValue (ArkUI_CustomProperty * handl
 
 自定义属性value信息。
 
+### OH_ArkUI_NodeUtils_GetAttachedNodeHandleById()
+
+```
+int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeHandle* node)
+```
+**描述：**
+
+根据用户id获取目标节点。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| id | 目标节点的ID。 |
+| node | 目标节点。 |
+
+**返回：**
+
+返回错误码。ARKUI_ERROR_CODE_NO_ERROR代表成功，ARKUI_ERROR_CODE_PARAM_INVALID代表函数参数异常。
+
+### OH_ArkUI_NodeUtils_GetWindowInfo()
+
+```
+int32_t OH_ArkUI_NodeUtils_GetWindowInfo(ArkUI_NodeHandle node, ArkUI_HostWindowInfo** info)
+```
+**描述：**
+
+获取节点所属的窗口信息。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 节点指针。 |
+| info | 窗口结构体指针。 |
+
+**返回：**
+
+返回错误码。ARKUI_ERROR_CODE_NO_ERROR代表成功，ARKUI_ERROR_CODE_PARAM_INVALID代表函数参数异常，ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE代表节点未挂载到节点树上。
+
+### OH_ArkUI_HostWindowInfo_GetName()
+
+```
+const char* OH_ArkUI_HostWindowInfo_GetName(ArkUI_HostWindowInfo* info)
+```
+**描述：**
+
+获取HostWindowInfo对象中的窗口名称。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| info | HostWindowInfo对象。 |
+
+**返回：**
+
+HostWindowInfo对象中的窗口名称。 
+
+### OH_ArkUI_HostWindowInfo_Destroy()
+
+```
+void OH_ArkUI_HostWindowInfo_Destroy(ArkUI_HostWindowInfo* info)
+```
+**描述：**
+
+销毁HostWindowInfo对象。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| info | 要销毁的HostWindowInfo对象。 |
+
+### OH_ArkUI_NodeUtils_GetAttachedNodeHandleById()
+
+```
+int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeHandle* node)
+```
+**描述：**
+
+根据用户id获取目标节点。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| id | 目标节点的id。 |
+| node | 目标父节点指针。 |
+
+**返回：**
+
+返回错误码。ARKUI_ERROR_CODE_NO_ERROR代表成功，ARKUI_ERROR_CODE_PARAM_INVALID代表函数参数异常。
+
+### OH_ArkUI_NodeUtils_SetCrossLanguageOption()
+
+```
+int32_t OH_ArkUI_NodeUtils_SetCrossLanguageOption(ArkUI_NodeHandle node, ArkUI_CrossLanguageOption* option)
+```
+**描述：**
+
+设置目标节点跨语言设置属性的能力。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 目标节点的指针。 |
+| option | 跨语言配置类，类型请参考 {@link ArkUI_CrossLanguageOption}。 |
+
+**返回：**
+
+返回错误码。ARKUI_ERROR_CODE_NO_ERROR代表成功，ARKUI_ERROR_CODE_PARAM_INVALID代表函数参数异常。
+
+### OH_ArkUI_NodeUtils_GetCrossLanguageOption()
+
+```
+int32_t OH_ArkUI_NodeUtils_GetCrossLanguageOption(ArkUI_NodeHandle node, ArkUI_CrossLanguageOption* option)
+```
+**描述：**
+
+获取目标节点跨语言设置属性的配置项。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 目标节点的指针。 |
+| option | 跨语言配置类，类型请参考 {@link ArkUI_CrossLanguageOption}。 |
+
+**返回：**
+
+返回错误码。ARKUI_ERROR_CODE_NO_ERROR代表成功，ARKUI_ERROR_CODE_PARAM_INVALID代表函数参数异常。
+
+### OH_ArkUI_NodeUtils_GetFirstChildIndexWithoutExpand()
+
+```
+int32_t OH_ArkUI_NodeUtils_GetFirstChildIndexWithoutExpand(ArkUI_NodeHandle node, uint32_t* index)
+```
+**描述：**
+
+获取目标节点在树上的第一个子节点的下标。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 目标节点的指针。 |
+| index | 子节点的下标值。 |
+
+**返回：**
+
+返回错误码。ARKUI_ERROR_CODE_NO_ERROR代表成功，ARKUI_ERROR_CODE_PARAM_INVALID代表函数参数异常。
+
+### OH_ArkUI_NodeUtils_GetLastChildIndexWithoutExpand()
+
+```
+int32_t OH_ArkUI_NodeUtils_GetLastChildIndexWithoutExpand(ArkUI_NodeHandle node, uint32_t* index)
+```
+**描述：**
+
+获取目标节点在树上的最后一个子节点的下标。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 目标节点的指针。 |
+| index | 子节点的下标值。 |
+
+**返回：**
+
+返回错误码。ARKUI_ERROR_CODE_NO_ERROR代表成功，ARKUI_ERROR_CODE_PARAM_INVALID代表函数参数异常。
+
+### OH_ArkUI_NodeUtils_GetChildWithExpandMode()
+
+```
+int32_t OH_ArkUI_NodeUtils_GetChildWithExpandMode(ArkUI_NodeHandle node, int32_t position,
+    ArkUI_NodeHandle* subnode, uint32_t expandMode)
+```
+**描述：**
+
+用不同的展开模式获取对应下标的子节点。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 目标节点的指针。 |
+| position | 对应子节点的下标。 |
+| subnode | 获取子节点的指针。 |
+| expandMode | 节点遍历展开方式，详情请参考 {@link ArkUI_ExpandMode}。 |
+
+**返回：**
+
+返回错误码。ARKUI_ERROR_CODE_NO_ERROR代表成功，ARKUI_ERROR_CODE_PARAM_INVALID代表函数参数异常。
 
 ### OH_ArkUI_CustomSpanDrawInfo_Create()
 
@@ -15410,6 +15637,101 @@ int32_t OH_ArkUI_DisableDropDataPrefetchOnNode (ArkUI_NodeHandle node, bool disa
 | node | 指定的节点。  | 
 | disable | 设置拖拽是否提前获取数据。true为不提前获取数据，默认值为false。当使用OH_ArkUI_DragEvent_StartDataLoading获取数据时，需设置为true。 | 
 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+### OH_ArkUI_CrossLanguageOption_Create()
+
+```
+ArkUI_CrossLanguageOption* OH_ArkUI_CrossLanguageOption_Create(void)
+```
+**描述：**
+
+创建跨语言配置项实例。
+
+**起始版本：** 15
+
+**返回：**
+
+返回跨语言实例。如果对象返回空指针，则表示创建失败，失败的原因可能是地址空间已满。
+
+
+### OH_ArkUI_CrossLanguageOption_Destroy()
+
+```
+void OH_ArkUI_CrossLanguageOption_Destroy(ArkUI_CrossLanguageOption* option)
+```
+**描述：**
+
+销毁跨语言配置项实例。
+
+**起始版本：** 15
+
+**参数：**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| option | 要销毁的跨语言配置项实例。  | 
+
+### OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus()
+
+```
+void OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus(ArkUI_CrossLanguageOption* option, bool enable)
+```
+**描述：**
+
+设置配置项中是否允许跨语言修改属性。
+
+**起始版本：** 15
+
+**参数：**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| option | 跨语言配置项实例。  | 
+| enable | 是否允许跨语言修改属性。默认值：false。  | 
+
+### OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus()
+
+```
+bool OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus(ArkUI_CrossLanguageOption* option)
+```
+**描述：**
+
+获取配置项中是否允许跨语言修改属性。
+
+**起始版本：** 15
+
+**参数：**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| option | 跨语言配置项实例。  | 
+
+**返回：**
+
+是否允许跨语言修改属性。
+
+### OH_ArkUI_NodeUtils_GetPositionToParent()
+
+```
+int32_t OH_ArkUI_NodeUtils_GetPositionToParent (ArkUI_NodeHandle node, ArkUI_IntOffset* globalOffset )
+```
+**描述：**
+
+获取目标节点相对于父节点的偏移值。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | ArkUI_NodeHandle指针。  | 
+| globalOffset | 组件handle相对父节点的偏移值，单位：px。  | 
 
 **返回：**
 

@@ -35,7 +35,7 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function castAudio() {
-  // 投播到其他设备
+  // 投播到其他设备。
   let audioManager = audio.getAudioManager();
   let audioRoutingManager = audioManager.getRoutingManager();
   let audioDevices: audio.AudioDeviceDescriptors | undefined = undefined;

@@ -144,3 +144,4 @@
 | ArkUI_SnapshotOptions* [OH_ArkUI_CreateSnapshotOptions](_ark_u_i___node_component_snapshot.md#OH_ArkUI_CreateSnapshotOptions) () |  创建快照选项。  | 
 | void [OH_ArkUI_DestroySnapshotOptions](_ark_u_i___node_component_snapshot.md#OH_ArkUI_DestroySnapshotOptions) ([ArkUI_SnapshotOptions](_ark_u_i___node_component_snapshot#ArkUI_SnapshotOptions)* snapshotOptions) | 销毁快照选项。  | 
 | int32_t [OH_ArkUI_ActiveChildrenInfo_GetCount](_ark_u_i___node_component_snapshot.md#OH_ArkUI_SnapshotOptions_SetScale) ([ArkUI_SnapshotOptions](_ark_u_i___node_component_snapshot#ArkUI_SnapshotOptions)* snapshotOptions, float scale) | 设置快照选项的缩放比例。  | 
+| int32_t [OH_ArkUI_NodeUtils_GetPositionToParent](_ark_u_i___native_module.md#oh_arkui_nodeutils_getpositiontoparent) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md) \*globalOffset) | 获取目标节点相对于父节点的偏移值。  | 

@@ -45,7 +45,7 @@ target_link_libraries(entry PUBLIC libohavsession.so)
    使用OH_AVMetadataBuilder构造元数据示例：
  
    ```c++
-   //创建OH_AVMetadataBuilder构造器
+   //创建OH_AVMetadataBuilder构造器。
    OH_AVMetadataBuilder* builder;
    OH_AVMetadataBuilder_Create(&builder);
    
@@ -61,7 +61,7 @@ target_link_libraries(entry PUBLIC libohavsession.so)
    OH_AVMetadataBuilder_SetMediaImageUri(builder, "https://xxx.xxx.xx");
    OH_AVMetadataBuilder_SetSubtitle(builder, "Anonymous subtitle");
    OH_AVMetadataBuilder_SetDescription(builder, "For somebody");
-   // Lyric只支持媒体歌词内容（应用需将歌词内容拼接为一个字符串传入）
+   // Lyric只支持媒体歌词内容（应用需将歌词内容拼接为一个字符串传入）。
    OH_AVMetadataBuilder_SetLyric(builder, "balabala");
    OH_AVMetadataBuilder_SetAssetId(builder, "000");
    OH_AVMetadataBuilder_SetSkipIntervals(builder, SECONDS_30);
@@ -87,11 +87,11 @@ target_link_libraries(entry PUBLIC libohavsession.so)
    ```c++
    AVSession_ErrCode ret = AV_SESSION_ERR_SUCCESS;
    
-   // 设置播放状态，其中state范围应为[0,11]
+   // 设置播放状态，其中state范围应为[0,11]。
    AVSession_PlaybackState state = PLAYBACK_STATE_PREPARING;
    ret = OH_AVSession_SetPlaybackState(avsession, state);
    
-   // 设置播放位置
+   // 设置播放位置。
    AVSession_PlaybackPosition* playbackPosition = new  AVSession_PlaybackPosition;
    playbackPosition->elapsedTime = 1000;
    playbackPosition->updateTime = 16111150;
@@ -116,12 +116,12 @@ target_link_libraries(entry PUBLIC libohavsession.so)
    - 设置收藏
    
    ```c++
-   // 设置播放/暂停/停止/上一首/下一首回调.
-   // CONTROL_CMD_PLAY = 0; 播放
-   // CONTROL_CMD_PAUSE = 1; 暂停
-   // CONTROL_CMD_STOP = 2;  停止
-   // CONTROL_CMD_PLAY_NEXT = 3; 上一首
-   // CONTROL_CMD_PLAY_PREVIOUS = 4; 下一首
+   // 设置播放/暂停/停止/上一首/下一首回调。
+   // CONTROL_CMD_PLAY = 0; 播放。
+   // CONTROL_CMD_PAUSE = 1; 暂停。
+   // CONTROL_CMD_STOP = 2;  停止。
+   // CONTROL_CMD_PLAY_NEXT = 3; 上一首。
+   // CONTROL_CMD_PLAY_PREVIOUS = 4; 下一首。
    AVSession_ControlCommand command = CONTROL_CMD_PLAY;
    OH_AVSessionCallback_OnCommand commandCallback = [](OH_AVSession* session, AVSession_ControlCommand command,
        void* userData) -> AVSessionCallback_Result
@@ -130,7 +130,7 @@ target_link_libraries(entry PUBLIC libohavsession.so)
    };
    OH_AVSession_RegisterCommandCallback(avsession, command, commandCallback, (void *)(&userData));
    
-   //设置快进回调
+   //设置快进回调。
    OH_AVSessionCallback_OnFastForward fastForwardCallback = [](OH_AVSession* session, uint32_t seekTime,
        void* userData) -> AVSessionCallback_Result
    {
