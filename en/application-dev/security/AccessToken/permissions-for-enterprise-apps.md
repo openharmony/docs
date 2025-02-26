@@ -105,3 +105,35 @@ Allows an application to manage Wi-Fi connections.
 **Enable via ACL**: true
 
 **Valid since**: 15
+
+## ohos.permission.MANAGE_NET_FIREWALL
+
+Allows a system application to configure firewall rules.
+
+Currently,this permission is available only to the applications running on 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**AEnable via ACL**：true<!--DelEnd-->
+
+**Valid since**: 12
+
+**Changelog**: This permission is available only to system applications in API versions 12 to 14. From API version 15, it is available to normal enterprise applications.
+
+## ohos.permission.GET_NET_FIREWALL
+
+Allows a system application to obtain firewall rules and firewall interception records.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**AEnable via ACL**：true<!--DelEnd-->
+
+**Valid since**: 12
+
+**Changelog**: This permission is available only to system applications in API versions 12 to 14. From API version 15, it is available to normal enterprise applications.
