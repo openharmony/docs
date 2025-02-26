@@ -1140,7 +1140,7 @@ struct Input_KeyEvent* OH_Input_CreateKeyEvent ()
 
 **返回：**
 
-如果操作成功返回一个[Input_KeyEvent](#input_keyevent)指针对象 否则返回空指针。
+如果操作成功返回一个[Input_KeyEvent](#input_keyevent)指针对象，否则返回空指针。
 
 
 ### OH_Input_CreateKeyState()
@@ -1157,7 +1157,7 @@ struct Input_KeyState* OH_Input_CreateKeyState ()
 
 **返回：**
 
-如果操作成功，返回一个[Input_KeyState](#input_keystate)指针对象， 否则返回空指针。
+如果操作成功，返回一个[Input_KeyState](#input_keystate)指针对象，否则返回空指针。
 
 
 ### OH_Input_CreateMouseEvent()
@@ -1174,7 +1174,7 @@ struct Input_MouseEvent* OH_Input_CreateMouseEvent ()
 
 **返回：**
 
-如果操作成功返回一个[Input_MouseEvent](#input_mouseevent)指针对象 否则返回空指针。
+如果操作成功返回一个[Input_MouseEvent](#input_mouseevent)指针对象，否则返回空指针。
 
 
 ### OH_Input_CreateTouchEvent()
@@ -1191,7 +1191,7 @@ struct Input_TouchEvent* OH_Input_CreateTouchEvent ()
 
 **返回：**
 
-如果操作成功返回一个[Input_TouchEvent](#input_touchevent)指针对象 否则返回空指针。
+如果操作成功返回一个[Input_TouchEvent](#input_touchevent)指针对象，否则返回空指针。
 
 
 ### OH_Input_DestroyAxisEvent()
@@ -1860,7 +1860,7 @@ Input_Result OH_Input_GetKeyState (struct Input_KeyState * keyState)
 
 如果操作成功，
 
-返回Input_Result#INPUT_SUCCESS; 否则返回[Input_Result](#input_result)中定义的其他错误代码。
+返回Input_Result#INPUT_SUCCESS；否则返回[Input_Result](#input_result)中定义的其他错误代码。
 
 
 ### OH_Input_GetKeySwitch()
