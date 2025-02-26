@@ -72,7 +72,7 @@ IDAudioCallback::NotifyEvent ([in] String adpName, [in] int devId, [in] struct D
 | -------- | -------- |
 | adpName | 分布式音频设备NetworkID。  | 
 | devId | 分布式音频设备的端口ID。  | 
-| event | 通知事件类型(如焦点事件，音量事件) | 
+| event | 通知事件类型(如焦点事件，音量事件)。  | 
 
 **返回：**
 
@@ -194,7 +194,7 @@ IDAudioCallback::SetParameters ([in] String adpName, [in] int devId, [in] struct
 | -------- | -------- |
 | adpName | 分布式音频设备NetworkID。  | 
 | devId | 分布式音频设备的端口ID。  | 
-| param | 音频参数(包括采样率、通道数等) | 
+| param | 音频参数(包括采样率、通道数等)。  | 
 
 **返回：**
 
