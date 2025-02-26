@@ -205,3 +205,15 @@ onDump(params: Array\<string>): Array\<string>;
   }
   ```
 
+## DriverExtensionContext
+
+type DriverExtensionContext = _DriverExtensionContext;
+
+DriverExtensionAbility的上下文环境。
+
+**系统能力**：SystemCapability.Driver.ExternalDevice
+
+
+| 类型 | 说明 |
+| -------- | -------- | 
+| _DriverExtensionContext | DriverExtensionAbility的上下文环境，继承自ExtensionContext，其具体使用方法可参考[DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)。|
