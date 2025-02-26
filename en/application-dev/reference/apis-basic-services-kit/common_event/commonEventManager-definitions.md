@@ -1,7 +1,7 @@
 # System Common Events
 
 This document provides a list of common events defined by the system.
-Common event types are defined in [Support](https://gitee.com/hu-zhishan/docs/blob/OpenHarmony-5.0.1-Release/en/application-dev/reference/apis-basic-services-kit/js-apis-commonEventManager.md#support) of the **ohos.commonEventManager** module.
+Common event types are defined in [Support](../js-apis-commonEventManager.md#support) of the **ohos.commonEventManager** module.
 
 ## Ability Kit
 
@@ -358,7 +358,7 @@ Indicates that the user information has been updated.
 
 When the distributed account information, system account profile picture, or system account name is changed, the event notification service is triggered to publish this event carrying the system account ID.
 
-APIs related to this event: **setOsAccountName**, **setOsAccountProfilePhoto**, and **setOsAccountDistributedInfon**. The first two are system APIs, and the last is a public API. For details, see [@ohos.account.osAccount (System Account Management)](https://gitee.com/hu-zhishan/docs/blob/OpenHarmony-5.0.1-Release/en/application-dev/reference/apis-basic-services-kit/js-apis-osAccount.md) and [@ohos.account.distributedAccount (Distributed Account Management)](https://gitee.com/hu-zhishan/docs/blob/OpenHarmony-5.0.1-Release/en/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account.md).
+APIs related to this event: **setOsAccountName**, **setOsAccountProfilePhoto**, and **setOsAccountDistributedInfon**. The first two are system APIs, and the last is a public API. For details, see [@ohos.account.osAccount (System Account Management)](../js-apis-osAccount.md) and [@ohos.account.distributedAccount (Distributed Account Management)](../js-apis-distributed-account.md).
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -375,7 +375,7 @@ Indicates that the credential-encrypted storage has been unlocked for the curren
 
 When the device is unlocked with the lock screen password the first time after user switching, the event notification service is triggered to publish this event carrying the system account ID that identifies the user.
 
-APIs related to this event: **auth**. This API is a system API. For details, see [@ohos.account.osAccount (System Account Management)](https://gitee.com/hu-zhishan/docs/blob/OpenHarmony-5.0.1-Release/en/application-dev/reference/apis-basic-services-kit/js-apis-osAccount.md).
+APIs related to this event: **auth**. This API is a system API. For details, see [@ohos.account.osAccount (System Account Management)](../js-apis-osAccount.md).
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -392,7 +392,7 @@ Indicates a successful login from a distributed account.
 
 When a distributed account is successfully logged in, the event notification service is triggered to publish this event carrying the system account ID.
 
-APIs related to this event: **setOsAccountDistributedInfo** and **updateOsAccountDistributedInfo** (discarded), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API. For details, see [@ohos.account.distributedAccount (Distributed Account Management)](https://gitee.com/hu-zhishan/docs/blob/OpenHarmony-5.0.1-Release/en/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account.md).
+APIs related to this event: **setOsAccountDistributedInfo** and **updateOsAccountDistributedInfo** (discarded), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API. For details, see [@ohos.account.distributedAccount (Distributed Account Management)](../js-apis-distributed-account.md).
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -409,7 +409,7 @@ Indicates a successful logout from a distributed account.
 
 When a distributed account is successfully logged out, the event notification service is triggered to publish this event carrying the system account ID.
 
-APIs related to this event: **setOsAccountDistributedInfo** and **updateOsAccountDistributedInfo** (discarded), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API. For details, see [@ohos.account.distributedAccount (Distributed Account Management)](https://gitee.com/hu-zhishan/docs/blob/OpenHarmony-5.0.1-Release/en/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account.md).
+APIs related to this event: **setOsAccountDistributedInfo** and **updateOsAccountDistributedInfo** (discarded), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API. For details, see [@ohos.account.distributedAccount (Distributed Account Management)](../js-apis-distributed-account.md).
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -426,7 +426,7 @@ Indicates that the token of a distributed account is invalid.
 
 When the token of a distributed account is invalid, the event notification service is triggered to publish this event carrying the system account ID.
 
-APIs related to this event: **setOsAccountDistributedInfo** and **updateOsAccountDistributedInfo** (discarded), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API. For details, see [@ohos.account.distributedAccount (Distributed Account Management)](https://gitee.com/hu-zhishan/docs/blob/OpenHarmony-5.0.1-Release/en/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account.md).
+APIs related to this event: **setOsAccountDistributedInfo** and **updateOsAccountDistributedInfo** (discarded), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API. For details, see [@ohos.account.distributedAccount (Distributed Account Management)](../js-apis-distributed-account.md).
 
 **Required subscriber permissions**: none
 
@@ -442,7 +442,7 @@ Indicates that a distributed account is deregistered.
 
 When a distributed account is deregistered, the event notification service is triggered to publish this event carrying the system account ID.
 
-APIs related to this event: **setOsAccountDistributedInfo** and **updateOsAccountDistributedInfo** (discarded), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API. For details, see [@ohos.account.distributedAccount (Distributed Account Management)](https://gitee.com/hu-zhishan/docs/blob/OpenHarmony-5.0.1-Release/en/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account.md).
+APIs related to this event: **setOsAccountDistributedInfo** and **updateOsAccountDistributedInfo** (discarded), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API. For details, see [@ohos.account.distributedAccount (Distributed Account Management)](../js-apis-distributed-account.md).
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
