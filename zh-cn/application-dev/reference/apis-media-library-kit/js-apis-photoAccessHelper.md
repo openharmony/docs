@@ -5428,8 +5428,8 @@ async function example() {
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | title | string | 否  | 图片或者视频的标题。|
 | fileNameExtension | string | 是  | 文件扩展名，例如'jpg'。|
-| photoType | [PhotoType](#phototype) | 是  | 创建的文件类型，IMAGE或者VIDEO。|
-| subtype | [PhotoSubtype](#photosubtype12) | 否  | 图片或者视频的文件子类型，DEFAULT或者MOVING_PHOTO。|
+| photoType | [PhotoType](#phototype) | 是  | 创建的文件类型，IMAGE或者VIDEO。如果PhotoType的Video，PhotoSubType不生效。|
+| subtype | [PhotoSubtype](#photosubtype12) | 否  | 图片或者视频的文件子类型，当前仅支持DEFAULT。|
 
 ## CompatibleMode<sup>15+</sup>
 
