@@ -31,7 +31,7 @@ unsigned long CellfenceInfo::cid
 ```
 **描述**
 
-小区号
+小区号。
 
 
 ### lac
@@ -41,4 +41,4 @@ unsigned int CellfenceInfo::lac
 ```
 **描述**
 
-基站号
+基站号。
