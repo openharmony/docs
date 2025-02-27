@@ -37,7 +37,7 @@
 | struct&nbsp;&nbsp;[NeighborCell](lpfence_neighbor_cell.md) | 定义设备驻留的基站邻区信息的数据结构。 | 
 | struct&nbsp;&nbsp;[GeofenceCellInfo](lpfence_geofence_cell_info.md) | 定义设备驻留的基站小区信息的数据结构。 | 
 | struct&nbsp;&nbsp;[RequestCellDb](lpfence_request_cell_db.md) | 定义请求基站离线数据库数据的数据结构。 | 
-| interface&nbsp;&nbsp;[IGeofenceCallback](lpfence_interface_i_geofence_callback.md) | 定义地理围栏模块的回调函数 | 
+| interface&nbsp;&nbsp;[IGeofenceCallback](lpfence_interface_i_geofence_callback.md) | 定义地理围栏模块的回调函数。 | 
 | interface&nbsp;&nbsp;[IGeofenceInterface](lpfence_interface_i_geofence_interface.md) | 定义对地理围栏模块进行基本操作的接口。 | 
 
 
