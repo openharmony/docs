@@ -33,6 +33,7 @@ deleteRdbStore/关系型数据管理（relational_store）
 ```ts
 	import { relationalStore } from '@kit.ArkData';
     import { featureAbility } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     let store: relationalStore.RdbStore | undefined = undefined;
     let context = featureAbility.getContext();
@@ -41,7 +42,7 @@ deleteRdbStore/关系型数据管理（relational_store）
 		"name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
 	const STORE_CONFIG = {
 		name: "rdbstore.db",
-		securityLevel: relationalStore.SecurityLevel.S1,
+		securityLevel: relationalStore.SecurityLevel.S3,
 	}
 
 	let store = await relationalStore.getRdbStore(context, STORE_CONFIG);
