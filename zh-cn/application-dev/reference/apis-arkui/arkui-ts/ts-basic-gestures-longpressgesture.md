@@ -46,7 +46,7 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 
 ## 示例
 
-该示例通过TapGesture实现了长按手势的识别。
+该示例通过LongPressGesture实现了长按手势的识别。
 
 ```ts
 // xxx.ets
