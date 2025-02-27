@@ -653,6 +653,95 @@ try {
 }
 ```
 
+## inputDevice.isFunctionKeyEnabled<sup>15+</sup>
+
+isFunctionKeyEnabled(functionKey: FunctionKey): Promise&lt;boolean&gt;
+
+检查功能键是否使能。使用Promise异步回调。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数名      | 类型                          | 必填 | 说明                   |
+| ----------- | ----------------------------- | ---- | ---------------------- |
+| functionKey | [FunctionKey](#functionkey15) | 是   | 需要设置的功能键类型。 |
+
+**返回值**：
+
+| 参数                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise对象。返回查询结果，true表示功能键使能，false表示功能键未使能。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[输入设备错误码](errorcode-inputdevice.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 3900002  | There is currently no keyboard device connected.             |
+
+**示例**：
+
+```js
+import { inputDevice } from '@kit.InputKit';
+
+try {
+  inputDevice.isFunctionKeyEnabled(inputDevice.FunctionKey.CAPS_LOCK).then((state: boolean) => {
+    console.log(`capslock state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`Failed to get capslock state, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.setFunctionKeyEnabled<sup>15+</sup>
+
+setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;void&gt;
+
+设置功能键使能状态。使用Promise异步回调。
+
+**需要权限**：ohos.permission.INPUT_KEYBOARD_CONTROLLER
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数名      | 类型                          | 必填 | 说明                                                         |
+| ----------- | ----------------------------- | ---- | ------------------------------------------------------------ |
+| functionKey | [FunctionKey](#functionkey15) | 是   | 需要设置的功能键类型。                                       |
+| enabled     | boolean                       | 是   | 功能键使能状态。取值为true表示使能功能键，取值为false表示不使能功能键。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[输入设备错误码](errorcode-inputdevice.md)。
+
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed.                              |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 3900002  | There is currently no keyboard device connected.             |
+| 3900003  | It is prohibited for non-input applications.                 |
+
+**示例**：
+
+```js
+import { inputDevice } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  inputDevice.setFunctionKeyEnabled(inputDevice.FunctionKey.CAPS_LOCK, true).then(() => {
+    console.info(`Set capslock state success`);
+  }).catch((error: BusinessError) => {
+    console.info(`Set capslock state failed, error=${JSON.stringify(error)}`);
+  });
+} catch (error) {
+    console.info(`Set capslock enable error`);
+}
+```
+
 ## inputDevice.getIntervalSinceLastInput<sup>14+</sup>
 
 getIntervalSinceLastInput(): Promise&lt;number&gt;
@@ -785,3 +874,14 @@ type ChangedType = 'add' | 'remove'
 | DIGITAL_KEYBOARD    | 3    | 表示小键盘设备。  |
 | HANDWRITING_PEN     | 4    | 表示手写笔设备。  |
 | REMOTE_CONTROL      | 5    | 表示遥控器设备。  |
+
+## FunctionKey<sup>15+</sup>
+
+定义功能键的类型。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+| 名称      | 值   | 说明                                                   |
+| --------- | ---- | ------------------------------------------------------ |
+| CAPS_LOCK | 1    | CapsLock键，仅支持对输入键盘扩展的CapsLock键设置使能。 |
+
