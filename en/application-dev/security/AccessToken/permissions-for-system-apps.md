@@ -4414,25 +4414,25 @@ Allows an application to enable or access the SOS service.
 
 Allows a system application to start the page for setting privacy protection.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：16
+**Valid since**: 16
 
 ### ohos.permission.DLP_GET_HIDE_STATUS
 
 Allows a system application to use the information hiding APIs to obtain the information hiding status.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：16
+**Valid since**: 16
 
 ### ohos.permission.GET_ANIM_POLICY
 
@@ -4605,13 +4605,13 @@ Allows a system application to access common data and common events of the start
 
 This permission is available only to the applications on smartphones, tablets, and 2-in-1 devices.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：16
+**Valid since**: 16
 
 ## system_grant Permissions (Unavailable via ACL)
 

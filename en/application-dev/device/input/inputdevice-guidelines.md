@@ -25,7 +25,7 @@ The following table lists the common APIs for input device management. For detai
 
 When a user enters text, the input method determines whether to launch the virtual keyboard based on whether a physical keyboard is currently inserted. Your application can determine whether a physical keyboard is inserted by listening to device hot swap events.
 
-### How to Develop
+## How to Develop
 
 1. Call the [getDeviceList](../../reference/apis-input-kit/js-apis-inputdevice.md#inputdevicegetdevicelist9) API to obtain the list of connected input devices. Call the [getKeyboardType](../../reference/apis-input-kit/js-apis-inputdevice.md#inputdevicegetkeyboardtype9) API to traverse all connected devices to check whether a physical keyboard exists. If a physical keyboard exists, mark the physical keyboard as connected. This step ensures that your application detects all inserted input devices before listening for device hot swap events.
 2. Call the [on](../../reference/apis-input-kit/js-apis-inputdevice.md#inputdeviceon9) API to listen for device hot swap events. If a physical keyboard is inserted, mark the physical keyboard as connected. If a physical keyboard is removed, mark the physical keyboard as disconnected.
