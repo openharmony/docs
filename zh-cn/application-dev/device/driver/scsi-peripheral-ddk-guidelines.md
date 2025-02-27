@@ -1,4 +1,4 @@
-# SCSI Peripheral DDK开发指南
+# 开发使用SCSI协议的设备驱动
 
 ## 简介
 
@@ -48,7 +48,7 @@ SCSI Peripheral DDK支持SPC（SCSI Primary Commands）、SBC（SCSI Block Comma
 
 **图1** SCSI Peripheral DDK调用原理
 
-![SCSI_Peripheral_DDK原理图](figures/SCSI_Peripheral_DDK原理图.png)
+![SCSI_Peripheral_DDK原理图](figures/ddk-schematic-diagram.png)
 
 ### 约束与限制
 
@@ -77,7 +77,7 @@ SCSI Peripheral DDK支持SPC（SCSI Primary Commands）、SBC（SCSI Block Comma
 ### 搭建环境
 
 1. 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
-2. 将public-SDK更新到API version 16或以上，更新SDK的具体操作可参见[更新指南](../faqs/full-sdk-switch-guide.md)。
+2. 将public-SDK更新到API version 16或以上，更新SDK的具体操作可参见[更新指南](../../faqs/full-sdk-switch-guide.md)。
 3. PC安装HDC工具（HarmonyOS Device Connector），通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
 3. 用USB线缆将搭载OpenHarmony的设备连接到PC。
 4. 将SCSI设备接入OpenHarmony设备的USB口。
@@ -86,7 +86,7 @@ SCSI Peripheral DDK支持SPC（SCSI Primary Commands）、SBC（SCSI Block Comma
 
 检查DevEco Studio是否已连接上OpenHarmony设备。
 
-![设备连接](figures/设备连接.png)
+![设备连接](figures/device-connected.png)
 
 ## 开发指导
 
@@ -110,7 +110,7 @@ SCSI Peripheral DDK支持SPC（SCSI Primary Commands）、SBC（SCSI Block Comma
 | int32_t OH_ScsiPeripheral_DestroyDeviceMemMap(ScsiPeripheral_DeviceMemMap *devMmap) | 销毁缓冲区。|
 | int32_t OH_ScsiPeripheral_ParseBasicSenseInfo(uint8_t *senseData, uint8_t senseDataLen, ScsiPeripheral_BasicSenseInfo *senseInfo) | 解析基本的sense data，包括Information、Command specific information、Sense key specific字段。 |
 
-详细的接口说明请参考[SCSI Peripheral DDK](../reference/apis-driverdevelopment-kit/_s_c_s_i.md)。
+详细的接口说明请参考[SCSI Peripheral DDK](../../reference/apis-driverdevelopment-kit/_s_c_s_i.md)。
 
 ### 开发步骤
 

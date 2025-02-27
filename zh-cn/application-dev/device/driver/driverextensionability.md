@@ -1,4 +1,4 @@
-# 外设扩展驱动开发指导
+# 开发无UI界面基础驱动
 
 ## 场景介绍
 
@@ -10,14 +10,7 @@
 
 ## 环境搭建
 
-请参考[外设扩展驱动客户端开发指导](externaldevice-guidelines.md)中的环境搭建。
-
-其中SDK版本配置的要求如下：
-
-| NDK接口 | SDK版本 |
-|---------|--------|
-| USB DDK | API10及以上 |
-| HID DDK | API11及以上 |
+请参考[环境准备](environmental-preparation.md);
 
 ## 开发步骤
 
