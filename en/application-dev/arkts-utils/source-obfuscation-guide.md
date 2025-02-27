@@ -147,6 +147,6 @@ After obfuscation is complete, intermediate products are generated. You can find
 
 ## Deobfuscating Error Stacks
 
-In applications that have undergone obfuscation, code names are changed, making the error stacks printed during crashes harder to understand because they do not match the source code exactly. You can use the [hstack plugin](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-command-line-hstack-V5) in Command Line Tools of DevEco Studio to deobfuscate the source code stack and analyze issues. The deobfuscation tool requires the **sourceMaps.json** file and the obfuscation name mapping file **nameCache.json** generated during compilation. Be sure to back them up locally.
+In applications that have undergone obfuscation, code names are changed, making the error stacks printed during crashes harder to understand because they do not match the source code exactly. You can use the [hstack plugin](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-command-line-hstack-V5) in Command Line Tools of DevEco Studio to deobfuscate the source code stack and analyze issues. The deobfuscation tool requires the **sourceMaps.map** file and the obfuscation name mapping file **nameCache.json** generated during compilation. Be sure to back them up locally.
 
 ![obfuscation-product](figures/obfuscation-product.png)
