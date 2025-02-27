@@ -60,12 +60,12 @@ AtomicServiceSearch中“选择区”的初始化参数。
 | onSelect                | [OnSelectCallback](#onselectcallback) | 否 | 下拉菜单选中某一项的回调。默认值为undefined。 |
 | menuItemContentModifier | [ContentModifier&lt;MenuItemConfiguration&gt;](ts-basic-components-select.md#menuitemconfiguration12对象说明) | 否 | 	在Select组件上，定制下拉菜单项内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 | divider                 | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;[DividerOptions](ts-basic-components-textpicker.md#divideroptions12对象说明)&gt; \| null; | 否 | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '1px' , <br/>color: '#33182431'<br/>}<br/>2.设置为null时，不显示分割线。<br/>3.strokeWidth设置过宽时，会覆盖文字。分割线会从每一个Item底部开始，同时向上向下画分割线。<br/>4.startMargin和endMargin的默认值与不设置divider属性时的分割线样式保持一致。startMargin和endMargin的和与optionWidth的值相等时，不显示分割线。 startMargin和endMargin的和超过optionWidth的值时，按照默认样式显示分割线。 |
-| font                    | [Font](ts-types.md#font) | 否 | 下拉按钮本身的文本样式。<br/>API Version 11及以前默认值：<br/>{<br/>size:&nbsp;`$r('sys.float.ohos_id_text_size_button1')`,<br/>weight:&nbsp;FontWeight.Medium<br/>} <br/>API Version 12以后，如果设置controlSize的值为：controlSize.SMALL，size默认值是`$r('sys.float.ohos_id_text_size_button2')`，否则为`$r('sys.float.ohos_id_text_size_button1')`。 |
+| font                    | [Font](ts-types.md#font) | 否 | 下拉按钮本身的文本样式。默认值：`$r('sys.float.ohos_id_text_size_button1')`。 |
 | fontColor               | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单选中项的文本颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated')   |
 | selectedOptionBgColor   | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单选中项的背景色。<br/>默认值：`$r('sys.color.ohos_id_color_component_activated')`混合`$r('sys.color.ohos_id_alpha_highlight_bg')`的透明度。 |
 | selectedOptionFont      | [Font](ts-types.md#font) | 否 | 下拉菜单选中项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;$r('sys.color.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
 | selectedOptionFontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单选中项的文本颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated') |
-| optionBgColor           | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单项的背景色。<br/>默认值：<br/>API version 11之前，默认值为Color.White。<br/>API version 11及之后，默认值为Color.Transparent。 |
+| optionBgColor           | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单项的背景色。<br/>默认值：Color.Transparent。 |
 | optionFont              | [Font](ts-types.md#font) | 否 | 下拉菜单项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;$r('sys.float.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
 | optionFontColor         | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单项的文本颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary') |
 | optionWidth             | [Dimension](ts-types.md#dimension10) \| [OptionWidthMode](ts-appendix-enums.md#optionwidthmode11) | 否 | 设置下拉菜单项的宽度，不支持设置百分比。OptionWidthMode类型为枚举类型，OptionWidthMode决定下拉菜单是否继承下拉按钮宽度。当设置为异常值或小于最小宽度56vp时，属性不生效，菜单项宽度设为默认值，即菜单默认宽度为2栅格。 |
@@ -73,7 +73,7 @@ AtomicServiceSearch中“选择区”的初始化参数。
 | space                   | [Length](ts-types.md#length) | 否 | 下拉菜单项的文本与箭头之间的间距。<br/>默认值：8 |
 | arrowPosition           | [ArrowPosition](ts-basic-components-select.md#arrowposition10枚举说明) | 否 | 下拉菜单项的文本与箭头之间的对齐方式。<br/>默认值：ArrowPosition.END |
 | menuAlign               | [MenuAlignParams](#menualignparams) | 否 | 设置下拉按钮与下拉菜单间的对齐方式。<br/>默认值：{alignType：MenuAlignType.START, <br/> offset: {dx: 0, dy: 0}} |
-| menuBackgroundColor     | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单的背景色。<br/>默认值：<br/>API version 11之前，默认值为$r('sys.color.ohos_id_color_card_bg')。<br/>API version 11及之后，默认值为Color.Transparent。   |
+| menuBackgroundColor     | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单的背景色。<br/>默认值：Color.Transparent。   |
 | menuBackgroundBlurStyle | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 下拉菜单的背景模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK |
 
 
@@ -190,8 +190,6 @@ AtomicServiceSearch中“功能区”的初始化参数。
 type OnSelectCallback = (index: number, selectValue: string) => void
 
 下拉菜单选中某一项的回调。
-
-**卡片能力** 从API version 16开始，该接口支持在ArkTs卡片中使用。
 
 **原子化服务API**： 从API version 16开始，该接口支持在原子化服务中使用。
 
