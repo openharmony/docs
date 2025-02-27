@@ -12,16 +12,17 @@ The specified device does not exist.
 
 **错误描述**
 
-指定的设备Id在多模设备列表中找不到，会产生此错误码。
+指定的设备在多模设备列表中不存在。
 
 **可能原因**
 
-1. 输入设备的设备Id变更。
+1. 输入设备的设备id变更。
 2. 输入设备的物理连接断开。
 
 **处理步骤**
 
-1. 可以通过[inputDevice.getDeviceList](js-apis-inputdevice.md)接口查询设备Id，然后使用正确的设备Id操作。
+1. 通过[inputDevice.getDeviceList](js-apis-inputdevice.md#inputdevicegetdevicelist9)查询设备id，并传入正确的设备id。
+2. 检查设备的物理连接是否断开。
 
 ## 3900002 键盘设备没有连接
 
@@ -53,7 +54,7 @@ it is prohibited for non-input applications.
 
 **可能原因**
 
-三方应用或者非输入法系统应用调用该接口。
+该接口不支持三方应用或者非输入法系统应用调用。
 
 **处理步骤**
 
