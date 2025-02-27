@@ -22,10 +22,11 @@ JSVM 提供了生成并使用 code cache 加速编译过程的方法, 其获取�
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
 
-void UseCodeCache(JSVM_Env env, JSVM_CallbackInfo info) {
+JSVM_Value UseCodeCache(JSVM_Env env, JSVM_CallbackInfo info) {
     // 编译参数准备
     JSVM_Value jsSrc;
     JSVM_Script script;
+    JSVM_Value result;
     size_t length = 0;
     const uint8_t* dataPtr = nullptr;
     bool cacheRejected = true;
@@ -47,7 +48,6 @@ void UseCodeCache(JSVM_Env env, JSVM_CallbackInfo info) {
         OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script);
 
         // 执行js代码
-        JSVM_Value result;
         OH_JSVM_RunScript(env, script, &result);
         int value = 0;
         OH_JSVM_GetValueInt32(env, result, &value);
@@ -73,7 +73,6 @@ void UseCodeCache(JSVM_Env env, JSVM_CallbackInfo info) {
         OH_JSVM_CompileScript(env, jsSrc, dataPtr, length, true, &cacheRejected, &script);
 
         // 执行js代码
-        JSVM_Value result;
         OH_JSVM_RunScript(env, script, &result);
         int value = 0;
         OH_JSVM_GetValueInt32(env, result, &value);
@@ -82,6 +81,7 @@ void UseCodeCache(JSVM_Env env, JSVM_CallbackInfo info) {
         OH_JSVM_CloseHandleScope(env, handleScope);
     }
     OH_LOG_INFO(LOG_APP, "cache rejected: %{public}d\n", cacheRejected);
+    return result;
 }
 
 // Register a callback.
