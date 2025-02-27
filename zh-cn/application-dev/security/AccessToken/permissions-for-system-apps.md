@@ -4864,6 +4864,42 @@
 
 **起始版本**：16
 
+### ohos.permission.ACCESS_DEVAUTH_CRED_MGR
+
+允许系统应用或系统服务访问设备互信认证SA的凭据管理模块。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.ACCESS_DEVAUTH_CRED_PRIVILEGE
+
+允许系统应用或系统服务访问设备互信认证SA的凭据管理模块和凭据认证模块并查询和认证其他业务凭据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.ACCESS_DEVAUTH_CRED_AUTH
+
+允许系统应用或系统服务访问设备互信认证SA的凭据认证模块。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ## user_grant，允许ACL跨级申请
 
 以下权限的授权方式均为user_grant（用户授权），且允许通过ACL的方式申请。
