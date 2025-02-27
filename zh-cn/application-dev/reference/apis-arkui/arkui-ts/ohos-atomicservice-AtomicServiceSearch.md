@@ -1,6 +1,6 @@
 # AtomicServiceSearch
 
-AtomicServiceSearch为开发者提供满足定制化需求的功能，内容包括默认显示的搜索区、可自定义的选择区和功能区（最多两个）。各区域的样式、位置和大小均固定。
+AtomicServiceSearch为开发者提供满足定制化需求的功能，内容包括默认显示的搜索区、可自定义的选择区和功能区（最多两个）。
 
 > **说明：**
 >
@@ -37,16 +37,16 @@ AtomicServiceSearch({
 | 名称      | 类型         | 必填 | 装饰器类型 | 说明                                                         |
 | ----------- | :--------------- | ---- | ---------- | ------------------------------------------------------------ |
 | value       | [ResourceColor](ts-types.md#resourcecolor) | 否 | @Prop | 设置当前显示的搜索文本内容。默认值为空字符串。 |
-| placeholder | [ResourceColor](ts-types.md#resourcecolor) | 否 | @Prop | 搜索框内默认显示的提示文本。默认值：Search |
-| controller  | [SearchController](ts-basic-components-search.md#searchcontroller) | 否   | - | 原生Search组件控制器，用于设置输入光标的位置、退出编辑态等操作。默认值：undefined |
-| select      | [SelectParams](#selectparams) | 否 | @Prop | select选择区的内容、事件及样式。默认值：undefined |
-| search      | [SearchParams](#searchparams) | 否 | @Prop | search搜索区可支持的事件及样式。默认值：undefined |
-| operation   | [OperationParams](#operationparams) | 否 | - | 选择区（右侧）的功能设置项。默认值：undefined |
+| placeholder | [ResourceColor](ts-types.md#resourcecolor) | 否 | @Prop | 搜索框内默认显示的提示文本。默认值为`Search`。 |
+| controller  | [SearchController](ts-basic-components-search.md#searchcontroller) | 否   | - | 原生Search组件控制器，用于设置输入光标的位置、退出编辑态等操作。默认值为`undefined`。 |
+| select      | [SelectParams](#selectparams) | 否 | @Prop | select选择区的内容、事件及样式。默认值为`undefined`。 |
+| search      | [SearchParams](#searchparams) | 否 | @Prop | search搜索区可支持的事件及样式。默认值为`undefined`。 |
+| operation   | [OperationParams](#operationparams) | 否 | - | 选择区（右侧）的功能设置项。默认值为`undefined`。 |
 
 
 ## SelectParams
 
-AtomicServiceSearch中“选择区”的初始化参数。
+AtomicServiceSearch中“选择区”的可选属性。
 
 **原子化服务API**： 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -54,32 +54,32 @@ AtomicServiceSearch中“选择区”的初始化参数。
 
 | 名称                    | 类型                   | 必填                         | 说明                                                         |
 | ----------------------- | -------------------------------------------- | ------------------------------------------------------------ | ---- |
-| options                 | Array&lt;[SelectOption](ts-basic-components-select.md#selectoption对象说明)&gt; | 否 | 下拉选项内容。默认值为undefined。 |
+| options                 | Array&lt;[SelectOption](ts-basic-components-select.md#selectoption对象说明)&gt; | 否 | 下拉选项内容。默认值为`undefined`。 |
 | selected                | number| 否 | 设置下拉菜单初始选项的索引。第一项的索引为0。当不设置selected属性时，默认选择值为-1，菜单项不选中。 |
-| selectValue             | [ResourceStr](ts-types.md#resourcestr) | 否 | 设置下拉按钮本身的文本内容。默认值为undefined。 |
-| onSelect                | [OnSelectCallback](#onselectcallback) | 否 | 下拉菜单选中某一项的回调。默认值为undefined。 |
-| menuItemContentModifier | [ContentModifier&lt;MenuItemConfiguration&gt;](ts-basic-components-select.md#menuitemconfiguration12对象说明) | 否 | 	在Select组件上，定制下拉菜单项内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
-| divider                 | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;[DividerOptions](ts-basic-components-textpicker.md#divideroptions12对象说明)&gt; \| null; | 否 | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '1px' , <br/>color: '#33182431'<br/>}<br/>2.设置为null时，不显示分割线。<br/>3.strokeWidth设置过宽时，会覆盖文字。分割线会从每一个Item底部开始，同时向上向下画分割线。<br/>4.startMargin和endMargin的默认值与不设置divider属性时的分割线样式保持一致。startMargin和endMargin的和与optionWidth的值相等时，不显示分割线。 startMargin和endMargin的和超过optionWidth的值时，按照默认样式显示分割线。 |
-| font                    | [Font](ts-types.md#font) | 否 | 下拉按钮本身的文本样式。默认值：`$r('sys.float.ohos_id_text_size_button1')`。 |
-| fontColor               | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单选中项的文本颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated')   |
-| selectedOptionBgColor   | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单选中项的背景色。<br/>默认值：`$r('sys.color.ohos_id_color_component_activated')`混合`$r('sys.color.ohos_id_alpha_highlight_bg')`的透明度。 |
-| selectedOptionFont      | [Font](ts-types.md#font) | 否 | 下拉菜单选中项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;$r('sys.color.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
-| selectedOptionFontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单选中项的文本颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated') |
-| optionBgColor           | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单项的背景色。<br/>默认值：Color.Transparent。 |
-| optionFont              | [Font](ts-types.md#font) | 否 | 下拉菜单项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;$r('sys.float.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
-| optionFontColor         | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单项的文本颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary') |
+| selectValue             | [ResourceStr](ts-types.md#resourcestr) | 否 | 设置下拉按钮本身的文本内容。默认值为`undefined`。 |
+| onSelect                | [OnSelectCallback](#onselectcallback) | 否 | 下拉菜单选中某一项的回调。默认值为`undefined`。 |
+| menuItemContentModifier | [ContentModifier&lt;MenuItemConfiguration&gt;](ts-basic-components-select.md#menuitemconfiguration12对象说明) | 否 | 	在Select组件上，定制下拉菜单项内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。默认值为`undefined`。 |
+| divider                 | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;[DividerOptions](ts-basic-components-textpicker.md#divideroptions12对象说明)&gt; \| null | 否 | 1.设置DividerOptions，则按设置的样式显示分割线。默认值：`{strokeWidth: '1px', color: '#33182431'}`。<br/>2.设置为null时，不显示分割线。<br/>3.strokeWidth设置过宽时，会覆盖文字。分割线会从每一个Item底部开始，同时向上向下画分割线。<br/>4.startMargin和endMargin的默认值与不设置divider属性时的分割线样式保持一致。startMargin和endMargin的和与optionWidth的值相等时，不显示分割线。 startMargin和endMargin的和超过optionWidth的值时，按照默认样式显示分割线。 |
+| font                    | [Font](ts-types.md#font) | 否 | 下拉按钮本身的文本样式。默认值：`{size: $r('sys.float.ohos_id_text_size_body1')}`。 |
+| fontColor               | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单选中项的文本颜色。默认值：`{fontColor: $r('sys.color.ohos_id_color_text_primary')}`。   |
+| selectedOptionBgColor   | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单选中项的背景色。默认值：`$r('sys.color.ohos_id_color_component_activated')`混合`$r('sys.color.ohos_id_alpha_highlight_bg')`的透明度。 |
+| selectedOptionFont      | [Font](ts-types.md#font) | 否 | 下拉菜单选中项的文本样式。默认值：`{size:&nbsp;$r('sys.color.ohos_id_text_size_body1'), weight:&nbsp;FontWeight.Regular}`。 |
+| selectedOptionFontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单选中项的文本颜色。默认值：`$r('sys.color.ohos_id_color_text_primary_activated')`。 |
+| optionBgColor           | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单项的背景色。默认值：`Color.Transparent`。 |
+| optionFont              | [Font](ts-types.md#font) | 否 | 下拉菜单项的文本样式。默认值：`{size:&nbsp;$r('sys.float.ohos_id_text_size_body1'), weight:&nbsp;FontWeight.Regular}`。 |
+| optionFontColor         | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单项的文本颜色。默认值：`$r('sys.color.ohos_id_color_text_primary')`。 |
 | optionWidth             | [Dimension](ts-types.md#dimension10) \| [OptionWidthMode](ts-appendix-enums.md#optionwidthmode11) | 否 | 设置下拉菜单项的宽度，不支持设置百分比。OptionWidthMode类型为枚举类型，OptionWidthMode决定下拉菜单是否继承下拉按钮宽度。当设置为异常值或小于最小宽度56vp时，属性不生效，菜单项宽度设为默认值，即菜单默认宽度为2栅格。 |
 | optionHeight            | [Dimension](ts-types.md#dimension10) | 否 | 设置下拉菜单显示的最大高度，不支持设置百分比。下拉菜单的默认最大高度是屏幕可用高度的80%，设置的菜单最大高度不能超过默认最大高度。 |
-| space                   | [Length](ts-types.md#length) | 否 | 下拉菜单项的文本与箭头之间的间距。<br/>默认值：8 |
-| arrowPosition           | [ArrowPosition](ts-basic-components-select.md#arrowposition10枚举说明) | 否 | 下拉菜单项的文本与箭头之间的对齐方式。<br/>默认值：ArrowPosition.END |
-| menuAlign               | [MenuAlignParams](#menualignparams) | 否 | 设置下拉按钮与下拉菜单间的对齐方式。<br/>默认值：{alignType：MenuAlignType.START, <br/> offset: {dx: 0, dy: 0}} |
-| menuBackgroundColor     | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单的背景色。<br/>默认值：Color.Transparent。   |
-| menuBackgroundBlurStyle | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 下拉菜单的背景模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK |
+| space                   | [Length](ts-types.md#length) | 否 | 下拉菜单项的文本与箭头之间的间距。默认值：`8`。 |
+| arrowPosition           | [ArrowPosition](ts-basic-components-select.md#arrowposition10枚举说明) | 否 | 下拉菜单项的文本与箭头之间的对齐方式。默认值：`ArrowPosition.END`。 |
+| menuAlign               | [MenuAlignParams](#menualignparams) | 否 | 设置下拉按钮与下拉菜单间的对齐方式。默认值：`{alignType：MenuAlignType.START,   offset: {dx: 0, dy: 0}}`。 |
+| menuBackgroundColor     | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下拉菜单的背景色。默认值：`Color.Transparent`。   |
+| menuBackgroundBlurStyle | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 下拉菜单的背景模糊材质。默认值：`BlurStyle.COMPONENT_ULTRA_THICK`。 |
 
 
 ## SearchParams
 
-AtomicServiceSearch中“搜索区”的初始化参数。
+AtomicServiceSearch中“搜索区”的可选属性。
 
 **原子化服务API**： 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -87,46 +87,46 @@ AtomicServiceSearch中“搜索区”的初始化参数。
 
 | 名称                     | 类型            | 必填                                   | 说明                                                         |
 | ------------------------ | ---------------------------------------------- | ------------------------------------------------------------ | ---- |
-| componentBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置组件的背景色。   |
-| pressedBackgroundColor   | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置组件按压态的背景色。   |
-| searchButton             | [SearchButtonParams](#searchbuttonparams) | 否 | 设置搜索框末尾搜索按钮。点击搜索按钮，同时触发onSubmit与onClick回调。<br />-value：搜索框末尾搜索按钮文本内容。<br /> -option: 配置搜索框文本样式。<br />默认值：<br />{<br />fontSize: '16fp',<br />fontColor: '#ff3f97e9'<br />} |
-| placeholderColor         | [ResourceColor](ts-types.md#resourcecolor) | 否 | placeholder文本颜色。<br />默认值：'#99182431'。   |
-| placeholderFont          | [Font](ts-types.md#font) | 否 | 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。 |
-| textFont                 | [Font](ts-types.md#font) | 否 | 设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。 |
-| textAlign                | [TextAlign](ts-appendix-enums.md#textalign) | 否 | 文本在搜索框中的对齐方式。<br/>默认值：TextAlign.Start   |
-| copyOptions              | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 否 | 输入的文本是否可复制。<br />默认值：CopyOptions.LocalDevice，支持设备内复制。   |
-| searchIcon               | [IconOptions](ts-basic-components-search.md#iconoptions10对象说明) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 左侧搜索图标样式。<!--RP1--><br />浅色模式默认值：<br />{<br />size: '16vp',<br />color: '#99182431',<br />src: ' '<br />}<br />深色模式默认值：<br />{<br />size: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />} <!--RP1End--> |
-| cancelIcon               | [IconOptions](ts-basic-components-search.md#iconoptions10对象说明) | 否 | 右侧清除按钮样式。<br>默认值：<br />{<br/>style: CancelButtonStyle.INPUT,<br/>icon:&nbsp;{<br/>size: '16vp',<br/>color: '#99ffffff',<br/>src: ' '<br/>}<br/>}<br/>当style为CancelButtonStyle.CONSTANT时，默认显示清除样式。   |
-| fontColor                | [ResourceColor](ts-types.md#resourcecolor) | 否 |  输入文本的字体颜色。<br />默认值：'#FF182431'。 |
-| caretStyle               | [CaretStyle](ts-text-common.md#caretstyle10) | 否 | 光标样式。<br />默认值：<br />{<br />width: '1.5vp',<br />color: '#007DFF'<br />}   |
-| enableKeyboardOnFocus    | boolean | 否 | Search获焦时，是否主动拉起软键盘。<br/>默认值：true。   |
-| hideSelectionMenu        | boolean | 否 | 是否不弹出系统文本选择菜单。<br />设置为true时，单击输入框光标、长按输入框、双击输入框、三击输入框或者右键输入框，不弹出系统文本选择菜单。<br />设置为false时，弹出系统文本选择菜单。<br />默认值：false   |
-| type                     | [SearchType](ts-basic-components-search.md#searchtype11枚举说明) | 否 | 输入框类型。<br/>默认值：SearchType.Normal   |
-| maxLength                | number | 否 | 设置文本的最大输入字符数。默认不设置最大输入字符数限制。到达文本最大字符限制，将无法继续输入字符。   |
-| enterKeyType             | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 否 | 输入法回车键类型。<br/>默认值：EnterKeyType.Search   |
-| decoration               | [TextDecorationOptions](ts-types.md#textdecorationoptions12对象说明) | 否 |  文本装饰线对象。<br />默认值：{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>}   |
-| letterSpacing            | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否 | 设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。 |
-| fontFeature              | [ResourceStr](ts-types.md#resourcestr) | 否 | 设置文字特性效果，比如数字等宽的特性。<br />格式为：normal \| \<feature-tag-value\><br />\<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]<br />\<feature-tag-value\>的个数可以有多个，中间用','隔开。<br />例如，使用等宽数字的输入格式为："ss01" on。   |
-| selectedBackgroundColor  | [ResourceColor](ts-types.md#resourcecolor) | 否 | 文本选中底板颜色。<br/>默认为20%不透明度。 |
-| inputFilter              | [InputFilterParams](#inputfilterparams) | 否 | 通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。仅支持单个字符匹配，不支持字符串匹配。<br /> -value: 正则表达式。 <br /> -error: 正则匹配失败时，返回被过滤的内容。 |
-| textIndent               | [Dimension](ts-types.md#dimension10) | 否 | 首行文本缩进。<br/>默认值：0   |
-| minFontSize              | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否 | 设置文本最小显示字号。   |
-| maxFontSize              | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否 | 设置文本最大显示字号。   |
-| editMenuOptions          | [EditMenuOptions](ts-text-common.md#editmenuoptions) | 否 | 设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。   |
-| enablePreviewText        | boolean | 否 | 是否开启输入预上屏。<br/>默认值：true <br/> 预上屏内容定义为文字暂存态，目前不支持文字拦截功能，因此不触发onWillInsert、onDidInsert、onWillDelete、onDidDelete回调。   |
-| enableHapticFeedback     | boolean | 否 | 是否开启触控反馈。<br/>默认值：true   |
-| onSubmit                 | Callback&lt;string&gt; \| [SearchSubmitCallback](ts-basic-components-search.md#searchsubmitcallback14) | 否 | 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调。   |
-| onChange                 | [EditableTextOnChangeCallback](ts-text-common.md#editabletextonchangecallback12) | 否 | 输入内容发生变化时，触发该回调。   |
-| onCopy                   | Callback&lt;string&gt; | 否 | 进行复制操作时，触发该回调。   |
-| onCut                    | Callback&lt;string&gt; | 否 | 进行剪切操作时，触发该回调。   |
-| onPaste                  | [OnPasteCallback](#onpastecallback) | 否 | 进行粘贴操作时，触发该回调。   |
-| onTextSelectionChange    | [OnTextSelectionChangeCallback](#ontextselectionchangecallback) | 否 | 文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。   |
-| onContentScroll          | [OnContentScrollCallback](#oncontentscrollcallback) | 否 | 文本内容滚动时，触发该回调。   |
-| onEditChange             | Callback&lt;boolean&gt; | 否 | 输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。   |
-| onWillInsert             | Callback&lt;InsertValue, boolean&gt; | 否 | 在将要输入时，触发该回调。   |
-| onDidInsert              | Callback&lt;InsertValue&gt; | 否 | 在输入完成时，触发该回调。   |
-| onWillDelete             | Callback&lt;DeleteValue, boolean&gt; | 否 | 在将要删除时，触发该回调。   |
-| onDidDelete              | Callback&lt;DeleteValue&gt; | 否 | 在删除完成时，触发该回调。   |
+| componentBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置组件的背景色。默认值：`$r('sys.color.ohos_id_color_text_field_sub_bg')`。   |
+| pressedBackgroundColor   | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置组件按压态的背景色。默认值：`$r('sys.color.ohos_id_color_click_effect')`。 |
+| searchButton             | [SearchButtonParams](#searchbuttonparams) | 否 | 设置搜索框末尾搜索按钮。点击搜索按钮，同时触发onSubmit与onClick回调。<br />-value：搜索框末尾搜索按钮文本内容。<br /> -option: 配置搜索框文本样式。默认值：`{fontSize: '16fp', fontColor: '#ff3f97e9'}`。 |
+| placeholderColor         | [ResourceColor](ts-types.md#resourcecolor) | 否 | placeholder文本颜色。默认值：`$r('sys.color.ohos_id_color_text_secondary')`。   |
+| placeholderFont          | [Font](ts-types.md#font) | 否 | 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。默认值：`{size: $r('sys_float.ohos_id_text_size_body1')}`。 |
+| textFont                 | [Font](ts-types.md#font) | 否 | 设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。默认值：`{size: $r('sys_float.ohos_id_text_size_body1')}`。 |
+| textAlign                | [TextAlign](ts-appendix-enums.md#textalign) | 否 | 文本在搜索框中的对齐方式。默认值：`TextAlign.Start`。   |
+| copyOptions              | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 否 | 输入的文本是否可复制。默认值：`CopyOptions.LocalDevice`，支持设备内复制。   |
+| searchIcon               | [IconOptions](ts-basic-components-search.md#iconoptions10对象说明) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 左侧搜索图标样式。<!--RP1--><br />浅色模式默认值：`{size: '16vp', color: '#99182431', src: ' '}`。<br />深色模式默认值：`{size: '16vp', color: '#99ffffff', src: ' '}`。 <!--RP1End--> |
+| cancelIcon               | [IconOptions](ts-basic-components-search.md#iconoptions10对象说明) | 否 | 右侧清除按钮样式。默认值：`{style: CancelButtonStyle.INPUT, icon: {size: '16vp', color: '#99ffffff', src: ' '}}`。<br/>当style为CancelButtonStyle.CONSTANT时，默认显示清除样式。   |
+| fontColor                | [ResourceColor](ts-types.md#resourcecolor) | 否 |  输入文本的字体颜色。默认值：`$r('sys.color.ohos_id_color_text_secondary')`。 |
+| caretStyle               | [CaretStyle](ts-text-common.md#caretstyle10) | 否 | 光标样式。默认值：`{width: '1.5vp', color: '#007DFF'}`。   |
+| enableKeyboardOnFocus    | boolean | 否 | Search获焦时，是否主动拉起软键盘。默认值：`true`。   |
+| hideSelectionMenu        | boolean | 否 | 是否不弹出系统文本选择菜单。<br />设置为true时，单击输入框光标、长按输入框、双击输入框、三击输入框或者右键输入框，不弹出系统文本选择菜单。设置为false时，弹出系统文本选择菜单。默认值：`false`。   |
+| type                     | [SearchType](ts-basic-components-search.md#searchtype11枚举说明) | 否 | 输入框类型。默认值：`SearchType.Normal`。   |
+| maxLength                | number | 否 | 设置文本的最大输入字符数。默认不设置最大输入字符数限制。到达文本最大字符限制，将无法继续输入字符。默认值：`-1`;   |
+| enterKeyType             | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 否 | 输入法回车键类型。默认值：`EnterKeyType.Search`。   |
+| decoration               | [TextDecorationOptions](ts-types.md#textdecorationoptions12对象说明) | 否 |  文本装饰线对象。默认值：`{type: TextDecorationType.None, color: Color.Black, style: TextDecorationStyle.SOLID}`。   |
+| letterSpacing            | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否 | 设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。默认值：`0`;  |
+| fontFeature              | [ResourceStr](ts-types.md#resourcestr) | 否 | 设置文字特性效果，比如数字等宽的特性。<br />格式为：normal \| \<feature-tag-value\><br />\<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]<br />\<feature-tag-value\>的个数可以有多个，中间用','隔开。<br />例如，使用等宽数字的输入格式为："ss01" on。默认值为`undefined`。   |
+| selectedBackgroundColor  | [ResourceColor](ts-types.md#resourcecolor) | 否 | 文本选中底板颜色。默认为20%不透明度。 |
+| inputFilter              | [InputFilterParams](#inputfilterparams) | 否 | 通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。仅支持单个字符匹配，不支持字符串匹配。默认值为`undefined`。<br /> -value: 正则表达式。 <br /> -error: 正则匹配失败时，返回被过滤的内容。 |
+| textIndent               | [Dimension](ts-types.md#dimension10) | 否 | 首行文本缩进。默认值：`0`。   |
+| minFontSize              | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否 | 设置文本最小显示字号。需要配合maxFontSize以及布局大小限制使用，单独设置不生效。默认值为`undefined`。   |
+| maxFontSize              | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否 | 设置文本最大显示字号。需要配合minFontSize以及布局大小限制使用，单独设置不生效。默认值为`undefined`。   |
+| editMenuOptions          | [EditMenuOptions](ts-text-common.md#editmenuoptions) | 否 | 设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。默认值为`undefined`。   |
+| enablePreviewText        | boolean | 否 | 是否开启输入预上屏。默认值：`true`。 <br/> 需要配合开启输入法的预上屏功能。预上屏内容定义为文字暂存态，目前不支持文字拦截功能，因此该值为true时不触发onWillInsert、onDidInsert回调。  |
+| enableHapticFeedback     | boolean | 否 | 是否开启触控反馈。默认值：`true`。   |
+| onSubmit                 | Callback&lt;string&gt; \| [SearchSubmitCallback](ts-basic-components-search.md#searchsubmitcallback14) | 否 | 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调。默认值为`undefined`。   |
+| onChange                 | [EditableTextOnChangeCallback](ts-text-common.md#editabletextonchangecallback12) | 否 | 输入内容发生变化时，触发该回调。默认值为`undefined`。   |
+| onCopy                   | Callback&lt;string&gt; | 否 | 进行复制操作时，触发该回调。默认值为`undefined`。   |
+| onCut                    | Callback&lt;string&gt; | 否 | 进行剪切操作时，触发该回调。默认值为`undefined`。   |
+| onPaste                  | [OnPasteCallback](#onpastecallback) | 否 | 进行粘贴操作时，触发该回调。默认值为`undefined`。   |
+| onTextSelectionChange    | [OnTextSelectionChangeCallback](#ontextselectionchangecallback) | 否 | 文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。默认值为`undefined`。   |
+| onContentScroll          | [OnContentScrollCallback](#oncontentscrollcallback) | 否 | 文本内容滚动时，触发该回调。默认值为`undefined`。   |
+| onEditChange             | Callback&lt;boolean&gt; | 否 | 输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。默认值为`undefined`。   |
+| onWillInsert             | Callback&lt;InsertValue, boolean&gt; | 否 | 在将要输入时，触发该回调。默认值为`undefined`。   |
+| onDidInsert              | Callback&lt;InsertValue&gt; | 否 | 在输入完成时，触发该回调。默认值为`undefined`。   |
+| onWillDelete             | Callback&lt;DeleteValue, boolean&gt; | 否 | 在将要删除时，触发该回调。默认值为`undefined`。   |
+| onDidDelete              | Callback&lt;DeleteValue&gt; | 否 | 在删除完成时，触发该回调。默认值为`undefined`。   |
 
 
 ## OperationParams
@@ -139,8 +139,8 @@ AtomicServiceSearch中“功能区”的初始化参数。
 
 | 名称          | 类型        | 必填  | 说明                          |
 | ------------- | --------------- | ---------------------------- | ---- |
-| auxiliaryItem | [OperationOption ](ohos-arkui-advanced-SubHeader.md#operationoption)| 否 | 附属于搜索区（右侧）的功能位。默认值：undefined |
-| auxiliaryItem | [OperationOption ](ohos-arkui-advanced-SubHeader.md#operationoption)| 否 | 独立于搜索区（右侧）的功能位。默认值：undefined |
+| auxiliaryItem | [OperationOption ](ohos-arkui-advanced-SubHeader.md#operationoption)| 否 | 附属于搜索区（右侧）的功能位。默认值为`undefined`。 |
+| auxiliaryItem | [OperationOption ](ohos-arkui-advanced-SubHeader.md#operationoption)| 否 | 独立于搜索区（右侧）的功能位。默认值为`undefined`。 |
 
 
 ## InputFilterParams
@@ -154,7 +154,7 @@ AtomicServiceSearch中“功能区”的初始化参数。
 | 名称             | 类型         | 必填 | 说明                               |
 | ---------------- | ---------------- | ---- | ---------------------------------- |
 | inputFilterValue | [ResourceStr](ts-types.md#resourcestr) | 是 | 正则表达式。 |
-| error | Callback<string> | 否 | 正则匹配失败时，返回被过滤的内容。 |
+| error | Callback<string> | 否 | 正则匹配失败时，返回被过滤的内容。默认值为`undefined`。 |
 
 
 ## SearchButtonParams
@@ -168,7 +168,7 @@ AtomicServiceSearch中“功能区”的初始化参数。
 | 名称              | 类型            | 必填 | 说明                                                         |
 | ----------------- | ------------------- | ---- | ------------------------------------------------------------ |
 | searchButtonValue | [ResourceStr](ts-types.md#resourcestr) | 是   | 搜索框末尾搜索按钮文本内容。 |
-| options | [SearchButtonOptions](ts-basic-components-search.md#searchbuttonoptions10对象说明) | 否   | 配置搜索框文本样式。默认值：{fontSize: '16fp',fontColor: '#ff3f97e9'} |
+| options | [SearchButtonOptions](ts-basic-components-search.md#searchbuttonoptions10对象说明) | 否   | 配置搜索框文本样式。默认值：`{fontSize: '16fp',fontColor: '#ff3f97e9'}`。 |
 
 
 ## MenuAlignParams
@@ -181,8 +181,8 @@ AtomicServiceSearch中“功能区”的初始化参数。
 
 | 名称      | 类型      | 必填 | 说明                                                         |
 | --------- | ------------- | ---- | ------------------------------------------------------------ |
-| alignType | [MenuAlignType](ts-basic-components-select.md#menualigntype10枚举说明) | 是 | 对齐方式类型。默认值：MenuAlignType.START |
-| offset | [Offset](ts-types.md#offset) | 否 | 按照对齐类型对齐后，下拉菜单相对下拉按钮的偏移量。默认值：{dx: 0, dy: 0} |
+| alignType | [MenuAlignType](ts-basic-components-select.md#menualigntype10枚举说明) | 是 | 对齐方式类型。默认值：`MenuAlignType.START`。 |
+| offset | [Offset](ts-types.md#offset) | 否 | 按照对齐类型对齐后，下拉菜单相对下拉按钮的偏移量。默认值：`{dx: 0, dy: 0}`。 |
 
 
 ## OnSelectCallback
