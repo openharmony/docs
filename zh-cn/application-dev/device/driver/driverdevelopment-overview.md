@@ -44,12 +44,12 @@ HDF扩展驱动框架为外设扩展驱动开发，提供稳定统一的外设�
 
 具体的权限申请如下所示：
 
-| API 类型    | DDK类型              | 权限名称                                            |
-|-----------|--------------------|-------------------------------------------------|
-| ArkTs-API | 不涉及                | ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER |
-| C-API     | USB DDK            | ohos.permission.ACCESS_DDK_USB |
-| C-API     | HID DDK            | ohos.permission.ACCESS_DDK_HID |
-| C-API     | USB Serial DDK     | ohos.permission.ACCESS_DDK_USB_SERIAL |
+| API 类型 | DDK类型 | 权限名称 |
+|-----------|--------------------|--------------------------|
+| ArkTs-API | 不涉及 | ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER |
+| C-API     | USB DDK | ohos.permission.ACCESS_DDK_USB |
+| C-API     | HID DDK | ohos.permission.ACCESS_DDK_HID |
+| C-API     | USB Serial DDK | ohos.permission.ACCESS_DDK_USB_SERIAL |
 | C-API     | SCSI Peripheral DDK | ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL |
 
 ### 流程说明
@@ -68,10 +68,9 @@ HDF扩展驱动框架为外设扩展驱动开发，提供稳定统一的外设�
 
 ## 关联模块
 
-
-| Kit名称                  | 作用                              | 
-|------------------------|---------------------------------|
-| PerformanceAnalysisKit | 引入{hilog}用于日志打印。                | 
+| Kit名称                | 作用 | 
+|------------------------|-----------------------------|
+| PerformanceAnalysisKit | 引入{hilog}用于日志打印。| 
 | BasicServicesKit       | 引入{BusinessError}用于catch error。 |
-| IPCKit                 | 引入{rpc}用于驱动与客户端ipc通信。           |
-| AbilityKit             | 引入{want}用于生命周期管理。               |
+| IPCKit                 | 引入{rpc}用于驱动与客户端ipc通信。|
+| AbilityKit             | 引入{want}用于生命周期管理。|

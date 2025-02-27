@@ -34,26 +34,26 @@ HID DDK（HID Driver Develop Kit）是为开发者提供的HID设备驱动程序
 
 ## 接口说明
 
-| 名称 | 描述                                                           |
-| -------- |--------------------------------------------------------------|
-| OH_Hid_CreateDevice(Hid_Device *hidDevice, Hid_EventProperties *hidEventProperties) | 创建HID设备。请在设备使用完后使用OH_Hid_DestroyDevice销毁设备。                  |
-| OH_Hid_EmitEvent(int32_t deviceId, const Hid_EmitItem items[], uint16_t length) | 向指定deviceId的HID设备发送事件。                                       |
-| OH_Hid_DestroyDevice(int32_t deviceId) | 销毁指定deviceId的HID设备。                                          |
-| int32_t OH_Hid_Init(void) | 初始化HID DDK。                                                  |
-| int32_t OH_Hid_Release(void) | 释放HID DDK。                                                   |
-| int32_t OH_Hid_Open(uint64_t deviceId, uint8_t interfaceIndex, Hid_DeviceHandle **dev) | 打开deviceId和interfaceIndex指定的设备。                              |
-| int32_t OH_Hid_Close(Hid_DeviceHandle **dev) | 关闭设备。                                                        |
-| int32_t OH_Hid_Write(Hid_DeviceHandle *dev, uint8_t *data, uint32_t length, uint32_t *bytesWritten) | 向设备写入报告。                                                     |
-| int32_t OH_Hid_ReadTimeout(Hid_DeviceHandle *dev, uint8_t *data, uint32_t buffSize, int timeout, uint32_t *bytesRead) | 在指定的超时时间内从设备读取报告。                                            |
+| 名称 | 描述 |
+| -------- | -------- |
+| OH_Hid_CreateDevice(Hid_Device *hidDevice, Hid_EventProperties *hidEventProperties) | 创建HID设备。请在设备使用完后使用OH_Hid_DestroyDevice销毁设备。 |
+| OH_Hid_EmitEvent(int32_t deviceId, const Hid_EmitItem items[], uint16_t length) | 向指定deviceId的HID设备发送事件。 |
+| OH_Hid_DestroyDevice(int32_t deviceId) | 销毁指定deviceId的HID设备。 |
+| int32_t OH_Hid_Init(void) | 初始化HID DDK。 |
+| int32_t OH_Hid_Release(void) | 释放HID DDK。 |
+| int32_t OH_Hid_Open(uint64_t deviceId, uint8_t interfaceIndex, Hid_DeviceHandle **dev) | 打开deviceId和interfaceIndex指定的设备。 |
+| int32_t OH_Hid_Close(Hid_DeviceHandle **dev) | 关闭设备。 |
+| int32_t OH_Hid_Write(Hid_DeviceHandle *dev, uint8_t *data, uint32_t length, uint32_t *bytesWritten) | 向设备写入报告。 |
+| int32_t OH_Hid_ReadTimeout(Hid_DeviceHandle *dev, uint8_t *data, uint32_t buffSize, int timeout, uint32_t *bytesRead) | 在指定的超时时间内从设备读取报告。 |
 | int32_t OH_Hid_Read(Hid_DeviceHandle *dev, uint8_t *data, uint32_t buffSize, uint32_t *bytesRead) | 从设备读取报告，默认为阻塞模式（阻塞等待直到有数据可读取），可以调用OH_Hid_SetNonBlocking改变模式。 |
-| int32_t OH_Hid_SetNonBlocking(Hid_DeviceHandle *dev, int nonblock) | 设置设备读取模式为非阻塞。                                                |
-| int32_t OH_Hid_GetRawInfo(Hid_DeviceHandle *dev, Hid_RawDevInfo *rawDevInfo) | 获取设备原始信息。                                                    |
-| int32_t OH_Hid_GetRawName(Hid_DeviceHandle *dev, char *data, uint32_t buffSize) | 获取设备原始名称。                                                    |
-| int32_t OH_Hid_GetPhysicalAddress(Hid_DeviceHandle *dev, char *data, uint32_t buffSize) | 获取设备物理地址。                                                    |
-| int32_t OH_Hid_GetRawUniqueId(Hid_DeviceHandle *dev, uint8_t *data, uint32_t buffSize) | 获取设备原始唯一标识符。                                                 |
-| int32_t OH_Hid_SendReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, const uint8_t *data, uint32_t length) | 向设备发送报告。                                                     |
-| int32_t OH_Hid_GetReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, uint8_t *data, uint32_t buffSize) | 获取设备报告。                                                      |
-| int32_t OH_Hid_GetReportDescriptor(Hid_DeviceHandle *dev, uint8_t *buf, uint32_t buffSize, uint32_t *bytesRead) | 获取设备报告描述符。                                                   |
+| int32_t OH_Hid_SetNonBlocking(Hid_DeviceHandle *dev, int nonblock) | 设置设备读取模式为非阻塞。 |
+| int32_t OH_Hid_GetRawInfo(Hid_DeviceHandle *dev, Hid_RawDevInfo *rawDevInfo) | 获取设备原始信息。 |
+| int32_t OH_Hid_GetRawName(Hid_DeviceHandle *dev, char *data, uint32_t buffSize) | 获取设备原始名称。 |
+| int32_t OH_Hid_GetPhysicalAddress(Hid_DeviceHandle *dev, char *data, uint32_t buffSize) | 获取设备物理地址。 |
+| int32_t OH_Hid_GetRawUniqueId(Hid_DeviceHandle *dev, uint8_t *data, uint32_t buffSize) | 获取设备原始唯一标识符。 |
+| int32_t OH_Hid_SendReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, const uint8_t *data, uint32_t length) | 向设备发送报告。 |
+| int32_t OH_Hid_GetReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, uint8_t *data, uint32_t buffSize) | 获取设备报告。 |
+| int32_t OH_Hid_GetReportDescriptor(Hid_DeviceHandle *dev, uint8_t *buf, uint32_t buffSize, uint32_t *bytesRead) | 获取设备报告描述符。 |
 
 详细的接口说明请参考[HID DDK](../../reference/apis-driverdevelopment-kit/_hid_ddk.md)。
 
