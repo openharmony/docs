@@ -44,7 +44,7 @@ IGeofenceInterface::AddCircleGeofences ([in] struct GeofenceCircleRequest[] circ
 
 添加圆形地理围栏。
 
-支持一次添加多个圆形地理围栏
+支持一次添加多个圆形地理围栏。
 
 **起始版本：** 4.0
 
@@ -72,7 +72,7 @@ IGeofenceInterface::AddPolygonGeofences ([in] struct GeofencePolygonRequest[] po
 
 添加多边形地理围栏。
 
-支持一次添加多个多边形地理围栏
+支持一次添加多个多边形地理围栏。
 
 **起始版本：** 4.0
 
