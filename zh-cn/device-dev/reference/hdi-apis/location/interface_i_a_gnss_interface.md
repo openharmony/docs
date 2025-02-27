@@ -107,7 +107,7 @@ IAGnssInterface::SetSubscriberSetId ([in] struct SubscriberSetId id)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| id | 表示setId，详情参考[SubscriberSetId](_subscriber_set_id.md).  | 
+| id | 表示setId，详情参考[SubscriberSetId](_subscriber_set_id.md)。  | 
 
 **返回：**
 
