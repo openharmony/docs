@@ -455,7 +455,7 @@ type D = C; // 编译报错
 
 > **说明：**
 >
-> 此处改变属性类型不包括Sendable对象类型的改变，比如从Sendable class A 变为Sendable class B。
+> 此处改变属性类型不包括Sendable对象类型的改变，比如从Sendable class A变为Sendable class B。
 
 
 ### NAPI规则（目前只针对Sendable对象）
