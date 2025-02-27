@@ -16,7 +16,7 @@ import { usbManager } from '@kit.BasicServicesKit';
 
 getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
-获取接入主设备的USB设备列表。如果没有设备接入，那么将会返回一个空的列表（开发者选项开启时）或undefined（开发者选项关闭时），注意需要对接口返回值做判空处理。
+获取接入主设备的USB设备列表。如果没有设备接入，那么将会返回一个空的列表。开发者选项关闭时，如果没有设备接入，接口可能返回`undefined`，注意需要对接口返回值做判空处理。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -96,7 +96,7 @@ devicesList 返回的数据结构,此处提供一个简单的示例，如下
 
 connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
-根据getDevices()返回的设备信息打开USB设备。如果USB服务异常，可能返回undefined，注意需要对接口返回值做判空处理。
+根据getDevices()返回的设备信息打开USB设备。如果USB服务异常，可能返回`undefined`，注意需要对接口返回值做判空处理。
 
 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及device，再调用[usbManager.requestRight](#usbmanagerrequestright)请求使用该设备的权限。
 
@@ -472,7 +472,7 @@ console.log(`setInterface = ${ret}`);
 
 getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 
-获取原始的USB描述符。如果USB服务异常，可能返回undefined，注意需要对接口返回值做判空处理。
+获取原始的USB描述符。如果USB服务异常，可能返回`undefined`，注意需要对接口返回值做判空处理。
 
 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
