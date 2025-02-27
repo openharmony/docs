@@ -41,6 +41,11 @@ DatePicker(options?: DatePickerOptions)
 | selected | Date | 否   | 设置选中项的日期。<br/>默认值：当前系统日期<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | mode<sup>16+</sup> | [DatePickerMode](#datepickermode16枚举说明) | 否   | 设置DatePicker显示的日期选项列。<br/>默认值：DatePickerMode.DATE，日期列显示年、月、日三列。 小数值做取整处理。<br/>在DatePickerDialog中，当showTime=true时，此参数不生效，显示默认年月日三列。 |
 
+>  **说明：**
+>
+>  Date的使用请参考[TimePickerOptions](ts-basic-components-timepicker.md)。
+>
+
 ## DatePickerMode<sup>16+</sup>枚举说明
 
 设置要显示的日期选项列。
@@ -232,7 +237,6 @@ enableHapticFeedback(enable: Optional\<boolean>)
 >   "name": "ohos.permission.VIBRATE",
 >  }
 >  ]
->  ``
 >  ```
 
 ### digitalCrownSensitivity<sup>16+</sup>
