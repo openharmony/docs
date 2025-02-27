@@ -17,7 +17,7 @@
 ## 导入模块
 
 ```ts
-import { Animator as animator, AnimatorOptions,AnimatorResult } from '@kit.ArkUI';
+import { Animator as animator, AnimatorOptions, AnimatorResult, SimpleAnimatorOptions } from '@kit.ArkUI';
 ```
 
 ## Animator
@@ -32,7 +32,7 @@ import { Animator as animator, AnimatorOptions,AnimatorResult } from '@kit.ArkUI
 
 create(options: AnimatorOptions): AnimatorResult
 
-创建动画。
+创建animator动画结果对象（AnimatorResult）。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -79,6 +79,48 @@ let options: AnimatorOptions = {
   end: 400.0
 };
 animator.create(options); // 建议使用 UIContext.creatAnimator()接口
+```
+
+### create<sup>16+</sup>
+
+create(options: AnimatorOptions \| [SimpleAnimatorOptions](#simpleanimatoroptions16)): AnimatorResult
+
+创建animator动画结果对象（AnimatorResult）。与[create](#create9)相比，新增对[SimpleAnimatorOptions](#simpleanimatoroptions16)类型入参的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型                                  | 必填   | 说明      |
+| ------- | ----------------------------------- | ---- | ------- |
+| options | [AnimatorOptions](#animatoroptions) \| [SimpleAnimatorOptions](#simpleanimatoroptions16) | 是    | 定义动画参数选项。 |
+
+**返回值：** 
+
+| 类型                                | 说明            |
+| --------------------------------- | ------------- |
+| [AnimatorResult](#animatorresult) | Animator结果接口。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+
+**示例：**
+
+> **说明：**
+>
+> 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[createAnimator](js-apis-arkui-UIContext.md#createanimator)接口明确UI上下文。
+
+```ts
+import { Animator as animator, SimpleAnimatorOptions } from '@kit.ArkUI';
+let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).duration(2000);
+animator.create(options);// 建议使用 UIContext.creatAnimator()接口
 ```
 
 ### createAnimator<sup>(deprecated)</sup>
@@ -130,7 +172,7 @@ this.animator = animator.createAnimator(options);
 
 reset(options: AnimatorOptions): void
 
-更新当前动画器。
+更新当前animator动画。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -186,6 +228,53 @@ try {
   let code = (error as BusinessError).code
   console.error(`Animator reset failed, error code: ${code}, message: ${message}.`);
 }
+```
+
+### reset<sup>16+</sup>
+
+reset(options: AnimatorOptions \| [SimpleAnimatorOptions](#simpleanimatoroptions16)): void
+
+更新当前animator动画。与[reset](#reset9)相比，新增对[SimpleAnimatorOptions](#simpleanimatoroptions16)类型入参的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型                                  | 必填   | 说明      |
+| ------- | ----------------------------------- | ---- | ------- |
+| options | [AnimatorOptions](#animatoroptions) \| [SimpleAnimatorOptions](#simpleanimatoroptions16) | 是    | 定义动画选项。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参考[通用错误码](../errorcode-universal.md)和[ohos.animator(动画)](errorcode-animator.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100001    | The specified page is not found or the object property list is not obtained.|
+
+**示例：**
+
+```ts
+import { Animator as animator, AnimatorResult, AnimatorOptions, SimpleAnimatorOptions } from '@kit.ArkUI';
+let options: AnimatorOptions = {
+  duration: 1500,
+  easing: "ease",
+  delay: 0,
+  fill: "forwards",
+  direction: "normal",
+  iterations: 1,
+  begin: 100,
+  end: 200
+};
+let optionsNew: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200)
+  .duration(2000)
+  .iterations(3)
+  .delay(1000)
+let animatorResult:AnimatorResult = animator.create(options);
+animatorResult.reset(optionsNew);
 ```
 
 ### play
@@ -544,6 +633,221 @@ animator.update(options);
 | begin      | number                                                      | 是   | 动画插值起点。<br/>默认值:0。                                               |
 | end        | number                                                      | 是   | 动画插值终点。<br/>默认值:1。                                               |
 
+## SimpleAnimatorOptions<sup>16+</sup>
+
+animator简易动画参数对象。与AnimatorOptions相比，部分动画参数有默认值，可不设置。
+
+### constructor<sup>16+</sup>
+
+constructor(begin: number, end: number)
+
+SimpleAnimatorOptions的构造函数。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名       | 类型                                                        | 必填 | 说明                                                         |
+| ---------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+|  begin      | number                                                      | 是   | 动画插值起点。                                               |
+| end        | number                                                      | 是   | 动画插值终点。
+
+**示例：**
+
+```ts
+import { Animator as animator, AnimatorResult, SimpleAnimatorOptions } from '@kit.ArkUI';
+
+let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200); // 动画插值过程从100到200，其余动画参数使用默认值。
+let animatorResult:AnimatorResult = animator.create(options);
+```
+
+### duration<sup>16+</sup>
+
+duration(duration: number): SimpleAnimatorOptions
+
+设置animator动画时长。 
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型                                  | 必填   | 说明      |
+| ------- | ----------------------------------- | ---- | ------- |
+| duration | number | 是    | 设置动画时长，单位毫秒。<br/>默认值：1000 |
+
+**返回值：** 
+
+| 类型                                | 说明            |
+| --------------------------------- | ------------- |
+| [SimpleAnimatorOptions](#simpleanimatoroptions16) | Animator简易动画参数对象。 |
+
+**示例：**
+
+```ts
+import { Animator as animator, AnimatorResult, SimpleAnimatorOptions } from '@kit.ArkUI';
+
+let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).duration(500);
+let animatorResult:AnimatorResult = animator.create(options);
+```
+
+### easing<sup>16+</sup>
+
+easing(curve: string): SimpleAnimatorOptions
+
+设置animator动画插值曲线。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型                                  | 必填   | 说明      |
+| ------- | ----------------------------------- | ---- | ------- |
+| curve | string | 是    | 设置animator动画插值曲线，具体说明参考[AnimatorOptions]。<br/>默认值：“ease” |
+
+**返回值：** 
+
+| 类型                                | 说明            |
+| --------------------------------- | ------------- |
+| [SimpleAnimatorOptions](#simpleanimatoroptions16) | Animator简易动画参数对象。 |
+
+**示例：**
+
+```ts
+import { Animator as animator, AnimatorResult, SimpleAnimatorOptions } from '@kit.ArkUI';
+
+let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).easing("ease-in");
+let animatorResult:AnimatorResult = animator.create(options);
+```
+
+### delay<sup>16+</sup>
+
+delay(delay: number): SimpleAnimatorOptions
+
+设置animator动画播放时延。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型                                  | 必填   | 说明      |
+| ------- | ----------------------------------- | ---- | ------- |
+| delay | number | 是    | 设置animator动画播放时延，单位毫秒，设置为0时，表示不延时。设置为负数时动画提前播放，如果提前播放的时长大于动画总时长，动画直接过渡到终点。<br/>默认值：0 |
+
+**返回值：** 
+
+| 类型                                | 说明            |
+| --------------------------------- | ------------- |
+| [SimpleAnimatorOptions](#simpleanimatoroptions16) | Animator简易动画参数对象。 |
+
+**示例：**
+
+```ts
+import { Animator as animator, AnimatorResult, SimpleAnimatorOptions } from '@kit.ArkUI';
+
+let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).delay(500);
+let animatorResult:AnimatorResult = animator.create(options);
+```
+
+### fill<sup>16+</sup>
+
+fill(fillMode: [FillMode](./arkui-ts/ts-appendix-enums.md#fillmode)): SimpleAnimatorOptions
+
+设置animator动画填充方式。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型                                  | 必填   | 说明      |
+| ------- | ----------------------------------- | ---- | ------- |
+| fillMode | [FillMode](./arkui-ts/ts-appendix-enums.md#fillmode) | 是    | 设置animator动画填充方式，影响动画delay期间和结束时的表现。<br/>默认值：FillMode.Forwards |
+
+**返回值：** 
+
+| 类型                                | 说明            |
+| --------------------------------- | ------------- |
+| [SimpleAnimatorOptions](#simpleanimatoroptions16) | Animator简易动画参数对象。 |
+
+**示例：**
+
+```ts
+import { Animator as animator, AnimatorResult, SimpleAnimatorOptions } from '@kit.ArkUI';
+
+let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).fill(FillMode.Forwards);
+let animatorResult:AnimatorResult = animator.create(options);
+```
+
+### direction<sup>16+</sup>
+
+direction(direction: [PlayMode](./arkui-ts/ts-appendix-enums.md#playmode)): SimpleAnimatorOptions
+
+设置animator动画播放方向。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型                                  | 必填   | 说明      |
+| ------- | ----------------------------------- | ---- | ------- |
+| direction | [PlayMode](./arkui-ts/ts-appendix-enums.md#playmode) | 是    | 设置animator动画播放方向。<br/>默认值：PlayMode.Normal |
+
+**返回值：** 
+
+| 类型                                | 说明            |
+| --------------------------------- | ------------- |
+| [SimpleAnimatorOptions](#simpleanimatoroptions16) | Animator简易动画参数对象。 |
+
+**示例：**
+
+```ts
+import { Animator as animator, AnimatorResult, SimpleAnimatorOptions } from '@kit.ArkUI';
+
+let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).direction(PlayMode.Alternate);
+let animatorResult:AnimatorResult = animator.create(options);
+```
+
+### iterations<sup>16+</sup>
+
+iterations(iterations: number): SimpleAnimatorOptions
+
+设置animator动画播放次数。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型                                  | 必填   | 说明      |
+| ------- | ----------------------------------- | ---- | ------- |
+| iterations | number | 是    | 设置animator动画播放次数，设置为0时不播放，设置为-1时无限次播放。<br/>默认值：1 |
+
+**返回值：** 
+
+| 类型                                | 说明            |
+| --------------------------------- | ------------- |
+| [SimpleAnimatorOptions](#simpleanimatoroptions16) | Animator简易动画参数对象。 |
+
+**示例：**
+
+```ts
+import { Animator as animator, AnimatorResult, SimpleAnimatorOptions } from '@kit.ArkUI';
+
+let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).iterations(3);
+let animatorResult:AnimatorResult = animator.create(options);
+```
 
 ## 完整示例
 ### 基于JS扩展的类Web开发范式
@@ -808,3 +1112,101 @@ struct AnimatorTest {
 }
 ```
 
+### 位移动画示例（简易入参）
+
+```ts
+import { AnimatorResult, SimpleAnimatorOptions } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct AnimatorTest {
+  private TAG: string = '[AnimatorTest]'
+  private backAnimator: AnimatorResult | undefined = undefined
+  private flag: boolean = false
+  @State translate_: number = 0
+
+  create() {
+    this.backAnimator = this.getUIContext()?.createAnimator(
+      new SimpleAnimatorOptions(0, 100)
+    )
+    this.backAnimator.onFinish = ()=> {
+      this.flag = true
+      console.info(this.TAG, 'backAnimator onfinish')
+    }
+    this.backAnimator.onFrame = (value:number)=> {
+      this.translate_ = value
+    }
+  }
+
+  aboutToDisappear() {
+    // 由于backAnimator在onFrame中引用了this, this中保存了backAnimator，
+    // 在自定义组件消失时应该将保存在组件中的backAnimator置空，避免内存泄漏
+    this.backAnimator = undefined;
+  }
+
+  build() {
+    Column() {
+      Column() {
+        Column()
+          .width(100)
+          .height(100)
+          .translate({x: this.translate_})
+          .backgroundColor(Color.Green)
+      }
+      .width('100%')
+      .height(300)
+
+      Column() {
+        Column() {
+          Button('create')
+            .fontSize(30)
+            .fontColor(Color.Black)
+            .onClick(() => {
+              this.create()
+            })
+        }
+        .padding(10)
+
+        Column() {
+          Button('play')
+            .fontSize(30)
+            .fontColor(Color.Black)
+            .onClick(() => {
+              this.flag = false
+              if(this.backAnimator){
+                this.backAnimator.play()
+              }
+            })
+        }
+        .padding(10)
+
+        Column() {
+          Button('reset')
+            .fontSize(30)
+            .fontColor(Color.Black)
+            .onClick(() => {
+              if (this.flag) {
+                this.flag = false
+                if(this.backAnimator){
+                  this.backAnimator.reset(
+                    new SimpleAnimatorOptions(0, -100)
+                      .duration(2000)
+                      .easing("ease-in")
+                      .fill(FillMode.Forwards)
+                      .direction(PlayMode.Alternate)
+                      .iterations(2)
+                  )
+                }
+              } else {
+                console.info(this.TAG, 'Animation not ended')
+              }
+            })
+        }
+        .padding(10)
+      }
+    }
+  }
+}
+```
+
+![animator](figures/animator.gif)
