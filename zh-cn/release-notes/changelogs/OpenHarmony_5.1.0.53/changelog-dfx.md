@@ -80,67 +80,41 @@ hdc工具start命令、kill命令缺少必要的提示输出，开发者无法�
 
 **变更影响**
 
-变更前：使用hdc工具start [-r]命令操作完成后无提示输出，
+变更前：使用hdc工具start [-r]命令、kill -r命令操作完成后无提示输出。
 
-变更后：使用hdc工具start [-r]命令操作完成后新增提示输出进程监听地址信息与启动结束打印，相关命令及返回值如下：
+变更后：使用hdc工具start [-r]命令、kill -r命令操作完成后新增提示输出进程监听地址信息与启动结束打印，相关命令及返回值如下：
 
+（1）启动hdc服务进程命令：
 ```shell
-hdc start [-r]
+hdc start
+```
+预期返回：
+```shell
+hdc start server, listening: ::ffff:127.0.0.1:8710
+Start server finish
 ```
 
-**返回值：**
-| 返回值 | 说明 |
-| -------- | -------- |
-| hdc start server, listening: _::ffff:127.0.0.1:8710_ | 启动服务进程并显示服务进程网络监听参数。 |
-| Start server finish | 服务进程启动成功。 |
-| hdc server process already exists | 服务进程已存在。 |
-| Kill server finish | 重启服务进程，原服务进程终止成功。 |
-| [Fail]具体失败信息 | 服务进程启动失败。 |
-
-**起始API Level**
-
-API16
-
-**变更发生版本**
-
-从OpenHarmony 5.1.0.53 版本开始。
-
-**变更的接口/组件**
-
-hdc命令行工具
-
-**适配指导**
-
-无需适配
-
-## cl.dfx.4 hdc服务进程操作命令新增打印输出
-
-**访问级别**
-
-系统接口
-
-**变更原因**
-
-hdc工具start命令、kill命令缺少必要的提示输出，开发者无法获取命令操作的结果。
-
-**变更影响**
-
-变更前：使用hdc工具start [-r]命令操作完成后无提示输出。
-
-变更后：使用hdc工具start [-r]命令操作完成后新增提示输出进程监听地址信息与启动结束打印，相关命令及返回值如下：
-
+（2）关闭并重新启动hdc服务进程命令1：
 ```shell
-hdc start [-r]
+hdc kill -r
+```
+预期返回：
+```shell
+Kill server finish
+hdc start server, listening: ::ffff:127.0.0.1:8710
+Start server finish
 ```
 
-**返回值：**
-| 返回值 | 说明 |
-| -------- | -------- |
-| hdc start server, listening: _::ffff:127.0.0.1:8710_ | 启动服务进程并显示服务进程网络监听参数。 |
-| Start server finish | 服务进程启动成功。 |
-| hdc server process already exists | 服务进程已存在。 |
-| Kill server finish | 重启服务进程，原服务进程终止成功。 |
-| [Fail]具体失败信息 | 服务进程启动失败。 |
+（3）关闭并重新启动hdc服务进程命令2：
+```shell
+hdc start -r
+```
+预期返回：
+```shell
+Kill server finish
+hdc start server, listening: ::ffff:127.0.0.1:8710
+Start server finish
+```
 
 **起始API Level**
 
@@ -158,7 +132,7 @@ hdc命令行工具
 
 如存在读取hdc工具打印的自动化程序，需更改读取的打印校验内容。
 
-## cl.dfx.5 hdc客户端针对未连接设备的命令操作更改打印输出
+## cl.dfx.4 hdc客户端针对未连接设备的命令操作更改打印输出
 
 **访问级别**
 
@@ -198,7 +172,7 @@ hdc命令行工具
 
 如存在读取hdc工具打印的自动化程序，需更改读取的打印校验内容。
 
-## cl.dfx.6 hdc客户端在Windows平台使用控制台命令操作支持中文字符
+## cl.dfx.5 hdc客户端在Windows平台使用控制台命令操作支持中文字符
 
 **访问级别**
 
@@ -230,7 +204,7 @@ hdc命令行工具
 
 如存在更改字符集以适配hdc命令中文的自动化程序，其命令输入不再需要额外转换字符集。
 
-## cl.dfx.7 hdc服务进程日志本地存储路径变更
+## cl.dfx.6 hdc服务进程日志本地存储路径变更
 
 **访问级别**
 
@@ -264,7 +238,7 @@ hdc命令行工具
 
 如存在读取hdc服务进程日志的自动化程序，需更改读取的日志路径。
 
-## cl.dfx.8 hdc服务进程日志本地存储开启压缩
+## cl.dfx.7 hdc服务进程日志本地存储开启压缩
 
 **访问级别**
 
