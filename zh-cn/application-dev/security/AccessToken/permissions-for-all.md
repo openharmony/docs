@@ -452,6 +452,19 @@
 
 **起始版本**：15
 <!--DelEnd-->
+
+## ohos.permission.INPUT_KEYBOARD_CONTROLLER
+
+允许应用设置键盘功能键状态。
+
+如设置CapsLock（大写锁定键）的开关状态等。当前仅输入法应用可以申请该权限。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**起始版本**：15
+
 ## ohos.permission.SET_ABILITY_INSTANCE_INFO
 
 允许应用单独配置每个Ability的图标和标签信息。
