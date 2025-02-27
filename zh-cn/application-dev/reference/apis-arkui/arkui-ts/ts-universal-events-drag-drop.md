@@ -248,6 +248,7 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | 401       | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 | 190001    | Data not found.|
 | 190002    | Data error. |
+| 190003    | Operation on allowed for current pharse. |
 
 ## DragResult<sup>10+</sup>枚举说明
 
@@ -307,6 +308,8 @@ type DataSyncOptions = GetDataParams
 | [GetDataParams](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#getdataparams15) | 表示从UDMF获取数据时的参数，包含目标路径、文件冲突选项、进度条类型等。|
 
 ## 示例
+
+### 示例1
 
 该示例展示了部分组件（如Image和Text等）拖拽和可落入区域的设置。
 
@@ -503,3 +506,118 @@ struct Index {
 }
 ```
 ![events-drag-drop](figures/events-drag-drop.png) 
+
+### 示例2（拖拽异步获取数据）
+
+通过startDataLoading实现拖拽异步获取数据。
+
+```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+import { fileUri, fileIo as fs } from '@kit.CoreFileKit'
+import { common } from '@kit.AbilityKit'
+
+@Entry
+@Component
+struct ImageExample {
+  @State uri: string = "";
+  @State blockArr: string[] = [];
+  udKey: string = '';
+
+  build() {
+    Column() {
+      Text('Image拖拽')
+        .fontSize('30dp')
+      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+        Image($r('app.media.startIcon'))
+          .width(100)
+          .height(100)
+          .border({ width: 1 })
+          .draggable(true)
+          .onDragStart((event:DragEvent) => {
+            const context: Context = getContext(this);
+            let data = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id, 120);
+            const arrayBuffer: ArrayBuffer = data.buffer.slice(data.byteOffset, data.byteLength + data.byteOffset);
+            let filePath = context.filesDir + '/test.png';
+            let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+            fs.writeSync(file.fd, arrayBuffer);
+            //获取图片的uri
+            let uri = fileUri.getUriFromPath(filePath);
+            let image: unifiedDataChannel.Image = new unifiedDataChannel.Image();
+            image.imageUri = uri;
+            let dragData: unifiedDataChannel.UnifiedData = new unifiedDataChannel.UnifiedData(image);
+            (event as DragEvent).setData(dragData);
+          })
+      }
+      .margin({ bottom: 20 })
+      Row() {
+        Column(){
+          Text('可释放区域')
+            .fontSize('15dp')
+            .height('10%')
+          List(){
+            ForEach(this.blockArr, (item:string, index) => {
+              ListItem() {
+                Image(item)
+                  .width(100)
+                  .height(100)
+                  .border({width: 1})
+              }
+              .margin({ left: 30 , top : 30})
+            }, (item:string) => item)
+          }
+          .border({width: 1})
+          .height('90%')
+          .width('100%')
+          .onDrop((event?: DragEvent, extraParams?: string) => {
+            console.log("enter onDrop")
+            let context = getContext(this) as common.UIAbilityContext;
+            let pathDir: string = context.distributedFilesDir;
+            let destUri = fileUri.getUriFromPath(pathDir);
+            let progressListener: unifiedDataChannel.DataProgressListener = (progress: unifiedDataChannel.ProgressInfo, dragData: UnifiedData|null) => {
+              if(dragData != null) {
+                let arr:Array<unifiedDataChannel.UnifiedRecord> = dragData.getRecords();
+                if(arr.length > 0) {
+                  if (arr[0].getType() === uniformTypeDescriptor.UniformDataType.IMAGE) {
+                    let image = arr[0] as unifiedDataChannel.Image;
+                    this.uri = image.imageUri;
+                    this.blockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
+                  }
+                } else {
+                  console.log('dragData arr is null');
+                }
+              } else {
+                console.log('dragData is undefined');
+              }
+              console.log(`percentage: ${progress.progress}`);
+            };
+            let options: DataSyncOptions = {
+              destUri: destUri,
+              fileConflictOptions: unifiedDataChannel.FileConflictOptions.OVERWRITE,
+              progressIndicator: unifiedDataChannel.ProgressIndicator.DEFAULT,
+              dataProgressListener: progressListener,
+            }
+            try {
+              this.udKey = (event as DragEvent).startDataLoading(options);
+              console.log('udKey: ', this.udKey);
+            } catch(e) {
+              console.log(`startDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+            }
+          }, {disableDataPrefetch: true})
+        }
+        .height("50%")
+        .width("90%")
+        .border({ width: 1 })
+      }
+      Button('取消数据传输')
+        .onClick(() => {
+          try {
+            this.getUIContext().getDragController().cancelDataLoading(this.udKey);
+          } catch (e) {
+            console.log(`cancelDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+          }
+        })
+        .margin({top: 10})
+    }.width('100%')
+  }
+}
+```
