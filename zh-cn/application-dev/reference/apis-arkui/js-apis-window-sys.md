@@ -46,6 +46,7 @@ import { window } from '@kit.ArkUI';
 | TYPE_GLOBAL_SEARCH<sup>11+</sup>    | 20      | 表示全局搜索窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
 | TYPE_HANDWRITE<sup>12+</sup>        | 21      | 表示手写笔窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
 | TYPE_WALLET_SWIPE_CARD<sup>15+</sup>| 22      | 表示钱包刷卡窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
+| TYPE_SCREEN_CONTROL<sup>15+</sup>   | 23      | 表示锁定触控的顶层窗口，用于拦截屏幕触摸和点击事件。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
 ## WindowMode<sup>7+</sup>
 
 窗口模式枚举。
