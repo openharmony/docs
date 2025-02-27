@@ -685,8 +685,11 @@ isFunctionKeyEnabled(functionKey: FunctionKey): Promise&lt;boolean&gt;
 **示例**：
 
 ```js
+import { inputDevice } from '@kit.InputKit';
+
+let CAPS_LOCK = 1;
 try {
-  inputDevice.isFunctionKeyEnabled(1).then((state: boolean) => {
+  inputDevice.isFunctionKeyEnabled(CAPS_LOCK).then((state: boolean) => {
     console.log(`capslock state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -726,10 +729,14 @@ setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;vo
 **示例**：
 
 ```js
+import { inputDevice } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let CAPS_LOCK = 1;
 try {
-  inputDevice.setFunctionKeyEnabled(1, true).then(() => {
+  inputDevice.setFunctionKeyEnabled(CAPS_LOCK, true).then(() => {
     console.info(`Set capslock state success`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Set capslock state failed, error=${JSON.stringify(error)}`);
   });
 } catch (error) {
