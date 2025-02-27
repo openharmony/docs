@@ -9,32 +9,33 @@ Defines an enum for the execution statuses returned by a JSVM-API call.
 Each time a JSVM-API function is called, **JSVM_Status** is returned indicating the execution result.
 
 ```c++
-typedef enum {
-    JSVM_OK,
-    JSVM_INVALID_ARG,
-    JSVM_OBJECT_EXPECTED,
-    JSVM_STRING_EXPECTED,
-    JSVM_NAME_EXPECTED,
-    JSVM_FUNCTION_EXPECTED,
-    JSVM_NUMBER_EXPECTED,
-    JSVM_BOOL_EXPECTED,
-    JSVM_ARRAY_EXPECTED,
-    JSVM_GENERIC_FAILURE,
-    JSVM_PENDING_EXCEPTION,
-    JSVM_CENCELLED,
-    JSVM_ESCAPE_CALLED_TWICE,
-    JSVM_HANDLE_SCOPE_MISMATCH,
-    JSVM_CALLBACK_SCOPE_MISMATCH,
-    JSVM_QUEUE_FULL,
-    JSVM_CLOSING,
-    JSVM_BIGINT_EXPECTED,
-    JSVM_DATA_EXPECTED,
-    JSVM_CALLBACK_SCOPE_MISMATCH,
-    JSVM_DETACHABLE_ARRAYBUFFER_EXPECTED,
-    JSVM_WOULD_DEADLOCK,  /* unused */
-    JSVM_NO_EXTERNAL_BUFFERS_ALLOWED,
-    JSVM_CANNOT_RUN_JS
-} JSVM_Status;
+    typedef enum {
+        JSVM_OK,                              /* Successful. */
+        JSVM_INVALID_ARG,                     /* Invalid parameters. */
+        JSVM_OBJECT_EXPECTED,                 /* An object is expected. */
+        JSVM_STRING_EXPECTED,                 /* A string is expected. */
+        JSVM_NAME_EXPECTED,                   /* A name is expected. */
+        JSVM_FUNCTION_EXPECTED,               /* A function is expected. */
+        JSVM_NUMBER_EXPECTED,                 /* A number is expected. */
+        JSVM_BOOL_EXPECTED,                   /* A Boolean value is expected. */
+        JSVM_ARRAY_EXPECTED,                  /* An array is expected. */
+        JSVM_GENERIC_FAILURE,                 /* Generic failure. */
+        JSVM_PENDING_EXCEPTION,               /* Pending exception. */
+        JSVM_CENCELLED,                       /* Cancelled. */
+        JSVM_ESCAPE_CALLED_TWICE,             /* Escape is called twice. */
+        JSVM_HANDLE_SCOPE_MISMATCH,           /* Handle scope does not match. */
+        JSVM_CALLBACK_SCOPE_MISMATCH,         /* Callback scope does not match. */
+        JSVM_QUEUE_FULL,                      /* The queue is full. */
+        JSVM_CLOSING,                         /* Closing. */
+        JSVM_BIGINT_EXPECTED,                 /* A Bigint value is expected. */
+        JSVM_DATA_EXPECTED,                   /* A date is expected. */
+        JSVM_ARRAYBUFFER_EXPECTED,            /* An ArrayBuffer is expected. */
+        JSVM_DETACHABLE_ARRAYBUFFER_EXPECTED, /* A detachable ArrayBuffer is expected. */
+        JSVM_WOULD_DEADLOCK,                  /* About to deadlock. */
+        JSVM_NO_EXTERNAL_BUFFERS_ALLOWED,     /* External buffers are not allowed. */
+        JSVM_CANNOT_RUN_JS,                   /* JS cannot be executed. */
+        JSVM_JIT_MODE_EXPECTD,                /* JIT mode is expected. */
+    } JSVM_Status;
 ```
 
 ### JSVM_ExtendedErrorInfo
@@ -387,9 +388,7 @@ Before executing JS code, you need to create a avaScript virtual machine (JSVM) 
 ##### Using **JSVM_InitOptions**
 You can use **JSVM_InitOptions** to initialize VM platforms with different capabilities.
 
-
 Example 1: Initialize a JSVM in normal mode.
-
 ```c++
 static void NormalInit(bool &vmInit) {
     if (!vmInit) {
@@ -402,9 +401,7 @@ static void NormalInit(bool &vmInit) {
 }
 ```
 
-
 Example 2: Initialize a JSVM with low memory usage.
-
 ```c++
 static void LowMemoryInit(bool &vmInit) {
     if (!vmInit) {
@@ -422,9 +419,7 @@ static void LowMemoryInit(bool &vmInit) {
 }
 ```
 
-
 Example 3: Initialize a JSVM with a low GC triggering frequency.
-
 ```c++
 static void LowGCFrequencyInit(bool &vmInit) {
     if (!vmInit) {
@@ -448,9 +443,7 @@ Calling **LowGCFrequencyInit** allows for fewer GCs than calling **NormalInit**.
 
 ##### Creating a JSVM Instance
 
-
 Example: Create and destroy a JSVM instance (including the execution context).
-
 ```c++
 bool VM_INIT = false;
 
@@ -892,7 +885,6 @@ Capture, throw, and clear JS exceptions as required.
 | OH_JSVM_CreateSyntaxError| Creates a JS syntax error and returns it.|
 
 #### Example
-
 Create, judge, and throw a JS type error.
 
 ```c++
@@ -953,7 +945,7 @@ However, in many cases, you may need to adjust the lifecycle to be shorter or lo
 | OH_JSVM_OpenEscapableHandleScope| Opens an escapable handle scope. Before this scope is closed, the object created within the scope has the same lifecycle as its parent scope.|
 | OH_JSVM_CloseEscapableHandleScope| Closes an escapable handle scope.|
 | OH_JSVM_EscapeHandle| Promotes a handle to a JS object so that it is valid for the lifetime of the outer scope.|
-| OH_JSVM_CreateReference| Creates a new reference with the specified reference count to the value passed in. The reference allows objects to be used and shared in different contexts and effectively tracks the lifecycle of the object.|
+| OH_JSVM_CreateReference| Creates a new reference with the specified reference count to the value passed in. The reference allows objects to be used and shared in different contexts and effectively monitors the lifecycle of the object.|
 | OH_JSVM_DeleteReference| Release the reference created by **OH_JSVM_CreateReference**. This allows objects to be correctly released and reclaimed when they are no longer required, avoiding memory leaks.|
 | OH_JSVM_ReferenceRef| Increments the reference count of the reference created by **OH_JSVM_CreateReference** so that the object referenced will not be released.|
 | OH_JSVM_ReferenceUnref| Decrements the reference count of the reference created by **OH_JSVM_CreateReference** so that the object can be correctly released and reclaimed when it is not referenced.|
@@ -1645,7 +1637,6 @@ static napi_value TestWrap(napi_env env1, napi_callback_info info)
     return nullptr;
 }
 ```
-
 
 
 Wrap a native object and register a listener for property access operations.

@@ -239,3 +239,75 @@ After the API is called, the system uses the capabilities of the window manager 
 **Solution**
 
 Restart the device and try again.
+
+## 12800014 Non-Full Access Mode of the Input Method Application
+
+**Error Message**
+
+The intput method is basic mode.
+
+**Description**
+
+The input method application is in non-full access mode.
+
+**Possible Causes**
+
+This error is thrown if the input method is in non-full access mode after you call an API that requires the full access mode to be enabled.
+
+**Solution**
+
+Enable the full access mode of the input method in **Settings**.
+
+## 12800015 Message Receiver Unable to Receive Custom Communication Data
+
+**Error Message**
+
+The another side does not accept the request.
+
+**Description**
+
+The message receiver cannot receive custom communication data.
+
+**Possible Causes**
+
+This error is thrown if the message receiver does not register [MessageHandler](js-apis-inputmethodengine.md#messagehandler15) to receive data when you call the API for sending custom communication data.
+
+**Solution**
+
+To receive custom communication data, register a **MessageHandler** for the message receiver, call [recvMessage](js-apis-inputmethodengine.md#recvmessage15) in the input method application, and call [recvMessage](js-apis-inputmethod.md#recvmessage15) for the input method client.
+
+## 12800016 Input Method Client Not in Edit Mode
+
+**Error Message**
+
+The edit mode need enable.
+
+**Description**
+
+The input method client is not in edit mode.
+
+**Possible Causes**
+
+The input method client exits the edit mode after being attached. For example, [hideTextInput](js-apis-inputmethod.md#hidetextinput10) is called after the self-drawing component is attached to the input method through **Attach**.
+
+**Solution**
+
+Enter the edit mode again after the input method client is attached and exits the edit mode. For example, the self-drawing component should enter the edit mode again by calling [showTextInput](js-apis-inputmethod.md#showtextinput10).
+
+## 12800017 Invalid Panel Type or Panel Flag
+
+**Error Message**
+
+Invalid panel type or panel flag.
+
+**Description**
+
+Invalid panel type or panel flag.
+
+**Possible Causes**
+
+This error is thrown if the [panel type](js-apis-inputmethodengine.md#paneltype10) or [panel flag](js-apis-inputmethodengine.md#panelflag10) of the input method does not support API call, or you cannot pass the type or flag to the API.
+
+**Solution**
+
+Read the API usage description and call the API if you need to adjust the panel type or panel flag of the input method, and input parameters. Otherwise, do not call the API.

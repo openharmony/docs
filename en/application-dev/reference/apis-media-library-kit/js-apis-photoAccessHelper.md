@@ -3765,6 +3765,53 @@ async function example(asset: photoAccessHelper.PhotoAsset) {
 }
 ```
 
+### setOrientation<sup>15+</sup>
+
+setOrientation(orientation: number): void
+
+Sets the orientation of this image.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| orientation | number | Yes  | Rotation angle of the image to set. The value can only be **0**, **90**, **180**, or **270**.|
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function example() {
+  console.info('setOrientationDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  assetChangeRequest.setOrientation(90);
+  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
+    console.info('apply setOrientation successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`apply setOrientation failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
 ## MediaAlbumChangeRequest<sup>11+</sup>
 
 Provides APIs for managing the media album change request.
@@ -5060,6 +5107,8 @@ Represents request options.
 | Name                  | Type                       | Read-Only| Optional| Description                                        |
 | ---------------------- |----------------------------| ---- | ---- | ------------------------------------------- |
 | deliveryMode           | [DeliveryMode](#deliverymode11) | No  | No  | Delivery mode of the requested asset. The value can be **FAST_MODE**, **HIGH_QUALITY_MODE**, or **BALANCE_MODE**.|
+| compatibleMode<sup>15+</sup>      | [CompatibleMode](#compatiblemode15) | No  | Yes  | HDR video transcoding policy, which can be **FAST_ORIGINAL_FORMAT_MODE** (maintaining the original HDR format) or **COMPATIBLE_FORMAT_MODE** (converting HDR content to SDR format).|
+| mediaAssetProgressHandler<sup>15+</sup> | [MediaAssetProgressHandler](#mediaassetprogresshandler15) | No  | Yes  | Callback used to return the HDR-to-SDR conversion progress.|
 
 ## MediaChangeRequest<sup>11+</sup>
 
@@ -5320,6 +5369,17 @@ Represents the configuration for saving a media asset (image or video) to the me
 | photoType | [PhotoType](#phototype) | Yes | Type of the file to create, which can be **IMAGE** or **VIDEO**.|
 | subtype | [PhotoSubtype](#photosubtype12) | No | Subtype of the image or video file, which can be **DEFAULT** or **MOVING_PHOTO**.|
 
+## CompatibleMode<sup>15+</sup>
+
+Enumerates the video transcoding mode.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- | ---- | ---- |
+| ORIGINAL_FORMAT_MODE |  0 |  Maintains the original video format. |
+| COMPATIBLE_FORMAT_MODE    |  1 |  Converts the HDR content to SDR format.   |
+
 ## CompleteButtonText<sup>14+</sup>
 
 Enumerates the text displayed on the complete button.
@@ -5331,3 +5391,23 @@ Enumerates the text displayed on the complete button.
 | TEXT_DONE<sup>14+</sup> |  0 |  The text "Done" is displayed. |
 | TEXT_SEND<sup>14+</sup>    |  1 |  The text "Send" is displayed.   |
 | TEXT_ADD<sup>14+</sup> |  2 |  The text "Add" is displayed. |
+
+## MediaAssetProgressHandler<sup>15+</sup>
+
+Represents the media asset progress handler, which is used to obtain the media asset processing progress from **onProgress()**.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### onProgress<sup>15+</sup>
+
+onProgress(progress: number): void
+
+Called when the progress of the requested video is returned.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                      |
+| ------- | ------- | ---- | -------------------------- |
+| progress | number | Yes  | Progress in percentage. <br>Value range: 0 to 100|

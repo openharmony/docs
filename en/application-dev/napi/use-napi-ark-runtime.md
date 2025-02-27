@@ -6,7 +6,7 @@ After creating a thread using **pthread_create**, you can use **napi_create_ark_
 
 ## Constraints
 
-A maximum of 16 runtime environments can be created for a process.
+A maximum of 64 runtime environments can be created for a process.
 
 ## Example
 

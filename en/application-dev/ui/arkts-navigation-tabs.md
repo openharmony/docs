@@ -7,6 +7,7 @@ When there is a large amount of page information, to enable the user to focus on
 ## Basic Layout
 
   The **Tabs** component consists of two parts: **TabContent** and **TabBar**. **TabContent** is the content page, and **TabBar** is the navigation tab bar. The following figure shows the page structure. The layout varies according to the navigation type. In bottom navigation, top navigation, and side navigation, the navigation tab bar is located at the bottom, top, and edge, respectively.
+
   **Figure 1** Tabs component layout 
 
 ![tabs-layout](figures/tabs-layout.png)
@@ -80,7 +81,7 @@ You set the position of the navigation bar through the **barPosition** parameter
 ```ts
 Tabs({ barPosition: BarPosition.End }) {
   // TabContent: Home, Discover, Recommended, and Me
-  ...
+  // ...
 }
 ```
 
@@ -97,7 +98,7 @@ Top navigation comes in handy when there are many content categories and users n
 ```ts
 Tabs({ barPosition: BarPosition.Start }) {
   // TabContent: Following, Video, Game, Digital, Technology, Sports, Movie
-  ...
+  // ...
 }
 ```
 
@@ -119,7 +120,7 @@ To implement the side navigation bar, set the **vertical** attribute of the **Ta
 ```ts
 Tabs({ barPosition: BarPosition.Start }) {
   // TabContent: Home, Discover, Recommended, and Me
-  ...
+  // ...
 }
 .vertical(true)
 .barWidth(100)
@@ -137,6 +138,7 @@ Tabs({ barPosition: BarPosition.Start }) {
 ## Restricting the Scrolling of the Navigation Bar
 
   By default, the navigation bar is scrollable. On some pages that require multi-level classification of content, for example, when both bottom navigation and top navigation are used, the scroll effect of the bottom navigation bar may conflict with that of the top navigation bar. In this case, the scrolling of the bottom navigation bar needs to be restricted to improve user experience.
+  
   **Figure 6** Restricting the scrolling of the bottom navigation bar 
 
 ![restricted-navigation](figures/restricted-navigation.gif)
@@ -150,7 +152,7 @@ Tabs({ barPosition: BarPosition.End }) {
     Column(){
       Tabs(){
         // Content on the top navigation bar
-        ...
+        // ...
       }
     }
     .backgroundColor('#ff08a8f1')
@@ -159,7 +161,7 @@ Tabs({ barPosition: BarPosition.End }) {
   .tabBar('Home')
 
   // Other TabContent content: Discover, Recommended, and Me
-  ...
+  // ...
 }
 .scrollable(false)
 ```
@@ -170,7 +172,7 @@ Tabs({ barPosition: BarPosition.End }) {
 When the content categories are relatively fixed and not scalable, a fixed navigation bar can be used. For example, it can be used for the bottom navigation bar, which generally contains 3 to 5 categories. The fixed navigation bar cannot be scrolled or dragged. The tab bar width is evenly distributed among the categories.
 
 
-  **Figure 7** Fixed navigation bar 
+  **Figure 7** Fixed navigation bar
 
 ![fixed-navigation](figures/fixed-navigation.gif)
 
@@ -180,7 +182,7 @@ To use a fixed navigation bar, set the **barMode** attribute of the **Tabs** com
 ```ts
 Tabs({ barPosition: BarPosition.End }) {
   // TabContent: Home, Discover, Recommended, and Me
-  ...
+  // ...
 }
 .barMode(BarMode.Fixed)
 ```
@@ -201,7 +203,7 @@ To use a scrollable navigation bar, set the **barMode** attribute of the **Tabs*
 ```ts
 Tabs({ barPosition: BarPosition.Start }) {
   // TabContent: follow, video, game, digital, technology, sports, movie, humanities, art, nature, and military
-  ...
+  // ...
 }
 .barMode(BarMode.Scrollable)
 ```
@@ -223,6 +225,8 @@ By default, the system uses an underscore (_) to indicate the active tab. For a 
 To customize the navigation bar, use the **tabBar** parameter and pass in to it custom function component styles in **CustomBuilder** mode. In this example, a custom function component **tabBuilder** is declared, and the input parameters include **title** (tab title), **targetIndex** (target index of the tab), **selectedImg** (image for the selected state), and **normalImg** (image for the unselected state). The UI display style is determined based on whether the value of **currentIndex** (index of the active tab) matches that of **targetIndex** (target index of the tab).
 
 ```ts
+@State currentIndex: number = 0;
+
 @Builder tabBuilder(title: string, targetIndex: number, selectedImg: Resource, normalImg: Resource) {
   Column() {
     Image(this.currentIndex === targetIndex ? selectedImg : normalImg)
@@ -280,19 +284,19 @@ struct TabsExample1 {
     Column() {
       Tabs({ barPosition: BarPosition.End }) {
         TabContent() {
-          ...
+          // ...
         }.tabBar(this.tabBuilder('Home', 0))
 
         TabContent() {
-          ...
+          // ...
         }.tabBar(this.tabBuilder('Discover', 1))
 
         TabContent() {
-          ...
+          // ...
         }.tabBar(this.tabBuilder('Recommended', 2))
 
         TabContent() {
-          ...
+          // ...
         }.tabBar(this.tabBuilder('Me',3))
       }
       .animationDuration(0)
@@ -311,22 +315,39 @@ struct TabsExample1 {
 To enable switching between content pages and tabs without swiping, you can pass **currentIndex** to the **index** parameter of **Tabs**. By changing the value of **currentIndex**, you can navigate to the content page corresponding to a specific index. Alternatively, use **TabsController**, which is the controller for the **Tabs** component, to manage content page switches. By using the **changeIndex** API of **TabsController**, you can set your application to display the tab content corresponding to the specified index.
 ```ts
 @State currentIndex: number = 2
+@State currentAnimationMode: AnimationMode = AnimationMode.CONTENT_FIRST
 private controller: TabsController = new TabsController()
 
 Tabs({ barPosition: BarPosition.End, index: this.currentIndex, controller: this.controller }) {
-  ...
+  // ...
 }
 .height(600)
+.animationMode(this.currentAnimationMode)
 .onChange((index: number) => {
    this.currentIndex = index
 })
 
-Button('Change Index').width('50%').margin({ top: 20 })
+Button('Dynamically Change AnimationMode').width('50%').margin({ top: 1 }).height(25)
+  .onClick(()=>{
+    if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST) {
+      this.currentAnimationMode = AnimationMode.ACTION_FIRST
+    } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST) {
+      this.currentAnimationMode = AnimationMode.NO_ANIMATION
+    } else if (this.currentAnimationMode === AnimationMode.NO_ANIMATION) {
+      this.currentAnimationMode = AnimationMode.CONTENT_FIRST_WITH_JUMP
+    } else if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST_WITH_JUMP) {
+      this.currentAnimationMode = AnimationMode.ACTION_FIRST_WITH_JUMP
+    } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST_WITH_JUMP) {
+      this.currentAnimationMode = AnimationMode.CONTENT_FIRST
+    }
+})
+
+Button('Dynamically Change Index').width('50%').margin({ top: 20 })
   .onClick(()=>{
     this.currentIndex = (this.currentIndex + 1) % 4
 })
 
-Button('changeIndex').width('50%').margin({ top: 20 })
+Button('Change Index via Controller').width('50%').margin({ top: 20 })
   .onClick(()=>{
     let index = (this.currentIndex + 1) % 4
     this.controller.changeIndex(index)
@@ -340,15 +361,17 @@ Button('changeIndex').width('50%').margin({ top: 20 })
 You can use the **onContentWillChange** API of the **Tabs** component to customize the interception callback function. The interception callback function is called when a new page is about to be displayed. If the callback returns **true**, the tab can switch to the new page. If the callback returns **false**, the tab cannot switch to the new page and will remain on the current page.
   
 ```ts
-Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {...}
-.onContentWillChange((currentIndex, comingIndex) => {
-  if (comingIndex == 2) {
-    return false
+Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {
+  // ...
   }
-  return true
-})
+  .onContentWillChange((currentIndex, comingIndex) => {
+    if (comingIndex == 2) {
+      return false
+    }
+    return true
+  })
 ```
-  **Figure 13** Customizing the page switching interception event 
+  **Figure 13** Customizing the page switching interception event
 
 ![TabsChange3](figures/TabsChange3.gif)
 <!--Del-->
@@ -356,7 +379,7 @@ Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.cu
 
 In aging-friendly scenarios with large font sizes, the bottom tab bar offers a dialog box with large fonts for content display. When the component detects a large font setting, it constructs a long-press dialog box based on the configured text and icons. After the user long-presses the tab bar and then swipes in the dialog box to switch to the next tab, the dialog box updates with content of the new tab. Upon releasing, the dialog box closes and the UI switches to the corresponding tab page.
 
->  **NOTE** 
+>  **NOTE**
 >
 > The dialog box applies only to bottom tab bars, that is, tab bars in the style of **BottomTabBarStyle**.
 

@@ -31,14 +31,14 @@ hdc shell "aa process -b com.example.myapplication -a EntryAbility -p perf-cmd"
 | appdebug |  Sets or cancels the waiting-for-debugging state of an application, and obtains the bundle name and persistence flag of an application in the waiting-for-debugging state. The waiting-for-debugging state takes effect only for debugging applications. The setting command of **appdebug** takes effect only for a single application. Once the command is executed repeatedly, the bundle name and persistence flag are replaced with the latest settings.|
 | process |  Debugs or optimizes an application. In DevEco Studio, this command is used to integrate debugging and optimization tools.|
 
-## help
+## help Command
 
 ```bash
 # Display the help information.
 aa help
 ```
 
-## start
+## start Command
 
 Start an application component. The target component can be the PageAbility and ServiceAbility components of the FA model or the UIAbility and ServiceExtensionAbility components of the Stage model. The **exported** tag in the configuration file of the target component cannot be set to **false**.
 
@@ -156,7 +156,7 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
         ```
 
 
-## stop-service
+## stop-service Command
 
 Stops a ServiceAbility.
 
@@ -184,7 +184,7 @@ aa stop-service [-d <deviceId>] -a <abilityName> -b <bundleName> [-m <moduleName
   aa stop-service -a EntryAbility -b com.example.myapplication -m entry
   ```
 
-## dump <sup>(deprecated)</sup>
+## dump Command <sup>(deprecated)</sup>
 
 Prints information about an application component.
 
@@ -235,7 +235,7 @@ aa dump -a
 
   ![aa-dump-i](figures/aa-dump-i.png)
 
-## force-stop
+## force-stop Command
 
 Forcibly stops a process based on the bundle name.
 
@@ -254,7 +254,7 @@ aa force-stop <bundleName>
   aa force-stop com.example.myapplication
   ```
 
-## test
+## test Command
 
 Starts the test framework based on the carried parameters.
 
@@ -264,7 +264,7 @@ aa test -b <bundleName> [-m <module-name>] [-p <package-name>] [-s class <test-c
 
 > **NOTE**
 > 
-> For details about parameters such as **class**, **level**, **size**, and **testType**, see <!--RP2-->[Keywords in the aa test Commands](../application-test/arkxtest-guidelines.md)<!--RP2End-->.
+> For details about parameters such as **class**, **level**, **size**, and **testType**, see <!--RP2-->[Keywords in the aa test Commands](../application-test/arkxtest-guidelines.md#cmd)<!--RP2End-->.
 
   **Parameters in the test command**
   | Name| Description|
@@ -298,7 +298,7 @@ aa test -b <bundleName> [-m <module-name>] [-p <package-name>] [-s class <test-c
   aa test -b com.example.myapplication -m entry_test -s timeout 10000 -s unittest ActsAbilityTest
   ```
 
-## attach
+## attach Command
 
 Attaches an application to enable it to enter the debugging mode.
 
@@ -323,7 +323,7 @@ aa attach -b <bundleName>
   aa attach -b com.example.myapplication
   ```
 
-## detach
+## detach Command
 
 Detaches an application to enable it to exit the debugging mode.
 
@@ -348,7 +348,7 @@ aa detach -b <bundleName>
   aa detach -b com.example.myapplication
   ```
 
-## appdebug
+## appdebug Command
 
 Sets or cancels the waiting-for-debugging state of an application, and obtains the bundle name and persistence flag of an application in the waiting-for-debugging state. The waiting-for-debugging state takes effect only for debugging applications. The setting command of **appdebug** takes effect only for a single application. Once the command is executed repeatedly, the bundle name and persistence flag are replaced with the latest settings.
 
@@ -386,7 +386,7 @@ aa appdebug -b <bundleName> [-p]
   aa appdebug -g
   ```
 
-## process
+## process Command
 
 Debugs or optimizes an application. In DevEco Studio, this command is used to integrate debugging and optimization tools.
 

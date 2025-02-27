@@ -989,7 +989,7 @@ multicast.addMembership(addr).then(() => {
 
 dropMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void;
 
-Drop a **MulticastSocket** object from the multicast group. This API uses an asynchronous callback to return the result.
+Drops a member from a multicast group. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > The IP addresses used for multicast belong to a specific range, for example, 224.0.0.0 to 239.255.255.255.
@@ -1038,7 +1038,7 @@ multicast.dropMembership(addr, (err: Object) => {
 
 dropMembership(multicastAddress: NetAddress): Promise\<void\>;
 
-Drop a **MulticastSocket** object from the multicast group. This API uses a promise to return the result.
+Drops a member from a multicast group. This API uses a promise to return the result.
 
 > **NOTE**
 > The IP addresses used for multicast belong to a specific range, for example, 224.0.0.0 to 239.255.255.255.
@@ -1135,7 +1135,7 @@ multicast.setMulticastTTL(ttl, (err: Object) => {
 
 setMulticastTTL(ttl: number): Promise\<void\>;
 
-Sets the time to live (TTL) for multicast packets. This API uses a promise to return the result.
+Sets the TTL for multicast packets. This API uses a promise to return the result.
 
 > **NOTE**
 > TTL is used to limit the maximum number of router hops for packet transmission on a network.
@@ -4435,7 +4435,7 @@ client.on('close', callback);
 
 off(type: 'close', callback?: Callback\<void\>): void;
 
-Subscribes to **close** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
+Unsubscribes from **close** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -5820,7 +5820,7 @@ Subscribes to **message** events of the TLS socket connection. This API uses an 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result. The TLSSocket connection subscribes to the function triggered by a type of message receiving event and returns the TLSSocket connection information.|
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -6914,7 +6914,7 @@ Defines TLS connection options.
 | address        | [NetAddress](#netaddress)             | Yes |  Gateway address.      |
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | Yes| TLS security options.|
 | ALPNProtocols  | Array\<string\>                         | No| ALPN protocol. The value range is ["spdy/1", "http/1.1"]. The default value is **[]**.     |
-| skipRemoteValidation<sup>12+</sup>  | boolean                         | No| Whether to perform certificate authentication on the server. The default value is **false**.     |
+| skipRemoteValidation<sup>12+</sup>  | boolean                         | No| Whether to skip certificate authentication on the server. The default value is **false**.     |
 
 ## TLSSecureOptions<sup>9+</sup>
 

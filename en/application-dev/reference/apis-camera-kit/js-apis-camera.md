@@ -72,6 +72,8 @@ Defines the camera device information.
 | cameraType                      | [CameraType](#cameratype)           | Yes  | No | Camera type.   |
 | connectionType                  | [ConnectionType](#connectiontype)   | Yes  | No | Camera connection type.|
 | cameraOrientation<sup>12+</sup> | number                              | Yes  | No | Installation angle of the lens, which does not change as the screen rotates. The value ranges from 0° to 360°.|
+| hostDeviceName<sup>16+</sup>    | string                              | Yes  | No | Remote device name.|
+| hostDeviceType<sup>16+</sup>    | [HostDeviceType](#hostdevicetype16) | Yes  | No | Remote device type.|
 
 ## CameraPosition
 
@@ -113,6 +115,18 @@ Enumerates the camera connection types.
 | CAMERA_CONNECTION_BUILT_IN   | 0    | Built-in camera.     |
 | CAMERA_CONNECTION_USB_PLUGIN | 1    | Camera connected using USB.|
 | CAMERA_CONNECTION_REMOTE     | 2    | Remote camera.|
+
+## HostDeviceType<sup>16+</sup>
+
+Enumerates the remote camera types.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                         | Value      | Description     |
+| ---------------------------- | ----     |---------|
+| UNKNOWN_TYPE                 | 0        | Unknown type.|
+| PHONE                        | 0x0E     | Mobile phone.  |
+| TABLET                       | 0x11     | Tablet.  |
 
 ## CameraStatus
 

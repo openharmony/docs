@@ -387,7 +387,7 @@ export default {
 
 ## Template Reference
 
-HML supports using **element** to reference template files. For details, see [Custom Components](../reference/apis-arkui/arkui-js/js-components-custom-basic-usage.md).
+HML supports using **element** to reference template files. For details, see [Basic Usage of Custom Components](../reference/apis-arkui/arkui-js/js-components-custom-basic-usage.md).
 
 ```html
 <!-- template.hml -->

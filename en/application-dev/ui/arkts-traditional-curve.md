@@ -61,7 +61,8 @@ export struct CurveDemo {
       .rowsTemplate('1fr 1fr 1fr 1fr 1fr')
       .padding(10)
       .width('100%')
-      .height(300).margin({top:50})
+      .height(300)
+      .margin({ top: 50 })
 
       Stack() {
         // Swing pipe
@@ -86,7 +87,12 @@ export struct CurveDemo {
           .width(20)
           .height(300)
           .rotate({ angle: this.dRotate })
-          .animation({ duration: 2000, iterations: -1, curve: item.curve, delay: 100 })
+          .animation({
+            duration: 2000,
+            iterations: -1,
+            curve: item.curve,
+            delay: 100
+          })
         })
       }
       .width('100%')
