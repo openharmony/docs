@@ -52,7 +52,7 @@ try {
 }
 ```
 
-## pointer.setPointerVisible<sup>14+</sup>
+## pointer.setPointerVisible
 
 setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
