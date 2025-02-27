@@ -774,7 +774,7 @@ on(type: 'stateChange', callback: (state: PiPState, reason: string) => void): vo
 | 参数名        | 类型        | 必填   | 说明                                                                                                |
 |------------|-----------|------|---------------------------------------------------------------------------------------------------|
 | type       | string    | 是    | 监听事件，固定为'stateChange'，即画中画生命周期状态变化事件。                                                             |
-| callback   | function  | 是    | 回调生命周期状态变化事件以及原因：<br/>state：[PiPState](#pipstate)，表示当前画中画生命周期状态；<br/>reason：string，表示当前生命周期的切换原因。 |
+| callback   | function  | 是    | 回调生命周期状态变化事件以及原因。<br/>state：[PiPState](#pipstate)，表示当前画中画生命周期状态。<br/>reason：string，表示当前生命周期的切换原因。 |
 
 **示例：**
 
