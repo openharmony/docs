@@ -30,7 +30,7 @@ import { systemSoundManager } from '@kit.AudioKit';
 
 ## RingtonePlayer
 
-系统铃声播放器，提供系统铃声的参数设置、参数获取、播放、停止等功能。在调用RingtonePlayer的接口前，需要先通过[getSystemRingtonePlayer](js-apis-systemSoundManager-sys.md#getsystemringtoneplayer)创建实例。
+系统铃声播放器，提供系统铃声的参数设置、参数获取、播放、停止等功能。在调用RingtonePlayer的接口前，需要先通过[getRingtonePlayer](./js-apis-systemSoundManager-sys.md#getringtoneplayer11)创建实例。
 
 ### 属性
 
