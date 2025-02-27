@@ -59,7 +59,7 @@
 
 - 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
 - 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
-- USB线缆一端连接到OpenHarmony设备USB Host端口，另一端连接到目标设备的DB9标准串口，这个设备可以为有串口的Windows PC。
+- USB线缆一端连接到OpenHarmony设备，另一端连接到标准串口设备。
 
 ## 开发指导
 
@@ -148,7 +148,7 @@
 
 ### 调测验证
 
-1. USB线缆一端连接到OpenHarmony设备USB Host端口，另一端连接到目标设备的DB9标准串口，这个设备可以为有串口的Windows PC。
+1. USB线缆一端连接到OpenHarmony设备，另一端连接到标准串口设备。
 2. 执行上述代码。
 3. log中搜索关键字`usbSerial success, attribute`，可以查看当前串口的配置。
 

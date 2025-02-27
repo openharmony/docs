@@ -2,7 +2,7 @@
 
 ## 基本概念
 
-本模块主要提供USB Host转串口协议通信的功能，USB线缆一端连接到OpenHarmony设备的USB Host端口，另一端连接到目标设备的DB9标准串口。
+本模块主要提供USB Host转串口协议通信的功能，USB线缆一端连接到OpenHarmony设备，另一端连接到标准串口设备。
 它提供获取USB Host转串口协议的、已连接的端口列表，同时提供打开端口、关闭端口、设置参数、获取参数、读取数据、写入数据和设备权限管理这些基本功能。
 
 ## 实现原理
@@ -36,4 +36,4 @@
 
 - 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
 - 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
-- USB线缆一端连接到OpenHarmony设备USB Host端口，另一端连接到目标设备的DB9标准串口，这个设备可以为有串口的Windows PC。
+- USB线缆一端连接到OpenHarmony设备，另一端连接到标准串口设备。
