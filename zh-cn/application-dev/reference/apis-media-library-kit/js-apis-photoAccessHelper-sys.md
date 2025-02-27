@@ -5415,6 +5415,12 @@ setSubTitle(title: string): void
 
 设置时刻副标题内容。
 
+副标题参数规格为：
+
+- 相册名字符串长度为1~255。
+- 不允许出现的非法英文字符，包括：<br> . \ / : * ? " ' ` < > | { } [ ]
+- 英文字符大小写不敏感。
+
 **系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.WRITE\_IMAGEVIDEO
@@ -5454,13 +5460,13 @@ async function example() {
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> =
       await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
     if (albumFetchResult.getCount() === 0) {
-      console.error(TAG, 'No album');
+      console.error('No album');
       return;
     }
     let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     albumFetchResult.close();
     let changeHighlightAlbumRequest: photoAccessHelper.HighlightAlbum = new photoAccessHelper.HighlightAlbum(highlightAlbum);
-    changeHighlightAlbumRequest.setSubTitle(this.input);
+    changeHighlightAlbumRequest.setSubTitle("testName");
     console.info('setSubTitle success');
   } catch (err) {
     console.error(`setSubTitle with error: ${err}`);
@@ -5470,7 +5476,7 @@ async function example() {
 
 ### deleteHighlightAlbums<sup>16+</sup>
 
-static deleteHighlightAlbums(context: Context, albums: Array&lt;Album&gt;): Promise&lt;void&gt;
+static deleteHighlightAlbums(context: Context, albums: Array&lt;Album&gt;): Promise&lt;number&gt;
 
 删除指定时刻相册。
 
@@ -5486,6 +5492,12 @@ static deleteHighlightAlbums(context: Context, albums: Array&lt;Album&gt;): Prom
 | ---------- | ------- | ---- | ---------------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
 | albums       | Array&lt;[Album](#album)&gt;   | 是    | 需要删除的时刻相册。 |
+
+**返回值：**
+
+| 类型                | 说明                                |
+| :------------------ | :---------------------------------- |
+| Promise&lt;number&gt; | 是否成功删除相册。成功返回0，失败返回1。 |
 
 **错误码：**
 
@@ -5514,12 +5526,12 @@ async function example() {
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> =
       await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
     if (albumFetchResult.getCount() === 0) {
-      console.error(TAG, 'No album');
+      console.error('No album');
       return;
     }
     let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     albumFetchResult.close();
-    photoAccessHelper.HighlightAlbum.deleteHighlightAlbums(getContext(this), [highlightAlbum]);
+    let result = await photoAccessHelper.HighlightAlbum.deleteHighlightAlbums(getContext(this), [highlightAlbum]);
     console.info('deleteHighlightAlbums success');
   } catch (err) {
     console.error(`deleteHighlightAlbums with error: ${err}`);
@@ -5573,7 +5585,7 @@ async function example() {
   let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> =
     await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
   if (albumFetchResult.getCount() === 0) {
-    console.error(TAG, 'No album');
+    console.error('No album');
     return;
   }
   let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
@@ -5629,7 +5641,7 @@ async function example() {
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = 
       await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
     if (albumFetchResult.getCount() === 0) {
-      console.error(TAG, 'No album');
+      console.error('No album');
       return;
     }
     let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
@@ -5650,9 +5662,9 @@ async function example() {
       new photoAccessHelper.MediaAnalysisAlbumChangeRequest(highlightAlbum);
     changeRequest.setOrderPosition(assets, indexes);
     await helper.applyChanges(changeRequest);
-    console.info(TAG, `setOrderPosition ${indexes}`);
+    console.info(`setOrderPosition ${indexes}`);
   } catch (err) {
-    console.error(TAG, `setOrderPosition error: ${err}`);
+    console.error(`setOrderPosition error: ${err}`);
   }
 }
 ```
@@ -5703,7 +5715,7 @@ async function example() {
   let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = 
     await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
   if (albumFetchResult.getCount() === 0) {
-    console.error(TAG, 'No album');
+    console.error('No album');
     return;
   }
   let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
@@ -5763,7 +5775,7 @@ async function example() {
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = 
       await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
     if (albumFetchResult.getCount() === 0) {
-      console.error(TAG, 'No album');
+      console.error('No album');
       return;
     }
     let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
