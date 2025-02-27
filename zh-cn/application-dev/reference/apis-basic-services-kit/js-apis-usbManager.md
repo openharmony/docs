@@ -806,7 +806,7 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void
 
 > **说明：** 
 >
-> 以下示例代码只是调用usbSubmitTransfer接口的必要流程，实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
+> 以下示例代码需要放入具体的方法中执行，只是调用usbSubmitTransfer接口的必要流程，实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
 
 ```ts
 //usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
