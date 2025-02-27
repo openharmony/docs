@@ -152,7 +152,7 @@ Decimal的构造函数。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -282,7 +282,7 @@ clamp(min: Value, max: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200001 | The value of 'min' is out of range.                          |
 
 **示例：**
@@ -324,7 +324,7 @@ add(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -363,7 +363,7 @@ sub(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -402,7 +402,7 @@ mul(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -441,7 +441,7 @@ div(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -480,7 +480,7 @@ mod(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -569,7 +569,7 @@ pow(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **示例：**
@@ -642,7 +642,7 @@ log(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **示例：**
@@ -1037,7 +1037,7 @@ Decimal的比较方法。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -1079,7 +1079,7 @@ equals(n: Value): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -1117,7 +1117,7 @@ greaterThan(n: Value): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -1155,7 +1155,7 @@ greaterThanOrEqualTo(n: Value): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -1193,7 +1193,7 @@ lessThan(n: Value): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -1231,7 +1231,7 @@ lessThanOrEqualTo(n: Value): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -1423,7 +1423,7 @@ dividedToIntegerBy(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -2147,7 +2147,7 @@ toFraction(max_denominator: Value): Decimal[]
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -2645,7 +2645,7 @@ static abs(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -2682,7 +2682,7 @@ static floor(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -2719,7 +2719,7 @@ static ceil(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -2756,7 +2756,7 @@ static trunc(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -2795,7 +2795,7 @@ static clamp(n: Value, min: Value, max: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200001 | The value of 'min' is out of range.                          |
 
 **示例：**
@@ -2836,7 +2836,7 @@ static add(x: Value, y: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -2875,7 +2875,7 @@ static sum(...n: Value[]): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -2915,7 +2915,7 @@ static sub(x: Value, y: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -2955,7 +2955,7 @@ static mul(x: Value, y: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -2995,7 +2995,7 @@ static div(x: Value, y: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 
 **示例：**
@@ -3036,7 +3036,7 @@ static mod(x: Value, y: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -3075,7 +3075,7 @@ static sqrt(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -3114,7 +3114,7 @@ static cbrt(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -3152,7 +3152,7 @@ static pow(base: Value, exponent: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **示例：**
@@ -3192,7 +3192,7 @@ static exp(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **示例：**
@@ -3233,7 +3233,7 @@ static log(n: Value, base: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **示例：**
@@ -3273,7 +3273,7 @@ static ln(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **示例：**
@@ -3313,7 +3313,7 @@ static log2(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **示例：**
@@ -3353,7 +3353,7 @@ static log10(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **示例：**
@@ -3393,7 +3393,7 @@ static cos(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -3432,7 +3432,7 @@ static sin(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -3471,7 +3471,7 @@ static tan(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -3510,7 +3510,7 @@ static cosh(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -3549,7 +3549,7 @@ static sinh(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -3588,7 +3588,7 @@ static tanh(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -3627,7 +3627,7 @@ static acos(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **示例：**
@@ -3667,7 +3667,7 @@ static asin(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **示例：**
@@ -3707,7 +3707,7 @@ static atan(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **示例：**
@@ -3747,7 +3747,7 @@ static acosh(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **示例：**
@@ -3787,7 +3787,7 @@ static asinh(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **示例：**
@@ -3827,7 +3827,7 @@ static atanh(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **示例：**
@@ -3868,7 +3868,7 @@ static atan2(y: Value, x: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200060 | Precision limit exceeded.                                    |
 
 **示例：**
@@ -3908,7 +3908,7 @@ static hypot(...n: Value[]): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -3945,7 +3945,7 @@ static max(...n: Value[]): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -3982,7 +3982,7 @@ static min(...n: Value[]): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -4049,7 +4049,7 @@ static random(significantDigits: number): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200061 | Crypto unavailable.                                          |
 
 **示例：**
@@ -4086,7 +4086,7 @@ static sign(n: Value): number
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -4123,7 +4123,7 @@ static round(n: Value): Decimal
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -4155,7 +4155,7 @@ static set(object: DecimalConfig):void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br/>1. Incorrect parameter types;<br/>2. Parameter verification failed. |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200001 | The value of 'DecimalConfig.properties' is out of range.     |
 | 10200061 | Crypto unavailable.                                          |
 
