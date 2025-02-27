@@ -199,6 +199,17 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 | certType          | [CertType](#certtype16)                     | 否  | 否  | 表示证书的类型。 |
 | certScope        | [CertScope](#certscope16)                     | 否   | 是  | 表示证书的存储位置。当证书类型为CA_CERT_USER时，此项为必选项。 |
 
+## AuthStorageLevel<sup>16+</sup>
+
+表示凭据的存储级别。
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+| 名称         | 值   | 说明                                       |
+| ------------ | ---- | ------------------------------------------ |
+| EL1  | 1    | EL1级别，表示设备启动后可以访问。               |
+| EL2  | 2    | EL2级别，表示设备首次解锁后可以访问。           |
+| EL4  | 4    | EL4级别，表示设备解锁时可以访问。             |
 
 ## certificateManager.installPrivateCertificate
 
@@ -303,6 +314,68 @@ let keystore: Uint8Array = new Uint8Array([
 let keystorePwd: string = "123456";
 try {
   certificateManager.installPrivateCertificate(keystore, keystorePwd, 'test').then((cmResult) => {
+    let uri: string = (cmResult?.uri == undefined) ? '' : cmResult.uri;
+    console.info('Succeeded in installing private certificate.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (error) {
+  console.error(`Failed to install private certificate. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## certificateManager.installPrivateCertificate<sup>16+</sup>
+
+installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string, level: AuthStorageLevel): Promise\<CMResult>
+
+表示安装私有凭据并指定凭据的存储级别。使用Promise异步回调。
+
+**需要权限：** ohos.permission.ACCESS_CERT_MANAGER
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+**参数：**
+
+| 参数名      | 类型       | 必填 | 说明                                                         |
+| ----------- | ---------- | ---- | ------------------------------------------------------------ |
+| keystore    | Uint8Array | 是   | 表示带有密钥对和证书的密钥库文件。                           |
+| keystorePwd | string     | 是   | 表示密钥库文件的密码。<br>长度限制：32字节以内。                   |
+| certAlias   | string     | 是   | 表示用户输入的凭据别名，当前仅支持传入数字、字母或下划线。<br>长度建议：32字节以内。 |
+| level   | [AuthStorageLevel](#authstoragelevel16)   | 是   | 表示凭据的存储级别。 |
+
+**返回值：**
+
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](#cmresult)> | Promise对象。表示安装私有凭据的结果，返回值为[CMResult](#cmresult)对象中的uri属性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
+
+| 错误码ID               | 错误信息                                                     |
+| ---------------------- | ------------------------------------------------------------ |
+| 201                    | Permission verification failed. The application does not have the permission required to call the API. |
+| 401                    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001               | Internal error.                                              |
+| 17500003               | The keystore is in an invalid format or the keystore password is incorrect. |
+| 17500004<sup>12+</sup> | The number of certificates or credentials reaches the maximum allowed. |
+
+**示例：**
+
+```ts
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+/* 安装的凭据数据需要业务赋值，本例数据非凭据数据。 */
+let keystore: Uint8Array = new Uint8Array([
+  0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01,
+]);
+let keystorePwd: string = "123456";
+try {
+  /* 安装凭据在首次解锁设备后可以使用。 */
+  let level = certificateManager.AuthStorageLevel.EL2;
+  certificateManager.installPrivateCertificate(keystore, keystorePwd, 'test', level).then((cmResult) => {
     let uri: string = (cmResult?.uri == undefined) ? '' : cmResult.uri;
     console.info('Succeeded in installing private certificate.');
   }).catch((err: BusinessError) => {
