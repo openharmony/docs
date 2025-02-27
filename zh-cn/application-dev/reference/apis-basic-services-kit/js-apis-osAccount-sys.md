@@ -2589,6 +2589,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
+| 12300013 | Network exception. |
 | 12300101 | The credential is incorrect. |
 | 12300102 | Credential not enrolled. |
 | 12300105 | The trust level is not supported. |
@@ -2597,7 +2598,10 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300110 | The authentication is locked. |
 | 12300111 | The authentication time out. |
 | 12300112 | The authentication service is busy. |
+| 12300113 | The authentication service does not exist. |
+| 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -2655,6 +2659,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType, authTrustLevel or options. |
 | 12300003 | Account not found. |
+| 12300013 | Network exception. |
 | 12300101 | The credential is incorrect. |
 | 12300102 | Credential not enrolled. |
 | 12300105 | The trust level is not supported. |
@@ -2663,7 +2668,10 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300110 | The authentication is locked. |
 | 12300111 | The authentication time out. |
 | 12300112 | The authentication service is busy. |
+| 12300113 | The authentication service does not exist. |
+| 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -2723,16 +2731,20 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
+| 12300003 | Account not found. |
+| 12300013 | Network exception. |
 | 12300101 | The credential is incorrect. |
 | 12300102 | Credential not enrolled. |
-| 12300003 | Account not found. |
 | 12300105 | The trust level is not supported. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
 | 12300110 | The authentication is locked. |
 | 12300111 | The authentication time out. |
 | 12300112 | The authentication service is busy. |
+| 12300113 | The authentication service does not exist. |
+| 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -3593,6 +3605,7 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 | 12300112 | The authentication service is busy. |
 | 12300113 | The account authentication service does not exist. |
 | 12300114 | The account authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -3651,6 +3664,7 @@ authWithPopup(callback: IUserAuthCallback): void
 | 12300112 | The authentication service is busy. |
 | 12300113 | The account authentication service does not exist. |
 | 12300114 | The account authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -3706,6 +3720,7 @@ authWithPopup(localId: number, callback: IUserAuthCallback): void
 | 12300112 | The authentication service is busy. |
 | 12300113 | The account authentication service does not exist. |
 | 12300114 | The account authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -3751,7 +3766,10 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
+| 12300014 | Not authenticated. |
 | 12300111 | The authentication time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -3808,7 +3826,10 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
+| 12300014 | Not authenticated. |
 | 12300111 | The authentication time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -3967,7 +3988,10 @@ getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;
 | 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
+| 12300014 | Not authenticated. |
 | 12300111 | The authentication time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -4025,7 +4049,10 @@ getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountIn
 | 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
+| 12300014 | Not authenticated. |
 | 12300111 | The authentication time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -4076,6 +4103,8 @@ getAccessToken(businessParams: Record<string, Object>, callback: AsyncCallback&l
 | 12300013 | Network exception. |
 | 12300014 | The domain account is not authenticated. |
 | 12300111 | The authentication time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -4133,6 +4162,8 @@ getAccessToken(businessParams: Record<string, Object>): Promise&lt;Uint8Array&gt
 | 12300013 | Network exception. |
 | 12300014 | The domain account is not authenticated. |
 | 12300111 | The authentication time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
