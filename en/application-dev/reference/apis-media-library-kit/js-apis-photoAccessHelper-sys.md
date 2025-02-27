@@ -1590,9 +1590,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { common }  from '@kit.AbilityKit';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import image from '@ohos.multimedia.image';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { dataSharePredicates } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
 
 async function example() {
   try{
@@ -4226,7 +4226,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';;
 
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -5911,7 +5911,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper'
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 async function example() {
   console.info('getCloudMediaAssetManagerInstanceDemo');
@@ -5961,7 +5961,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper'
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 async function example() {
   console.info('startDownloadCloudMediaDemo');
@@ -6004,7 +6004,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper'
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 async function example() {
   console.info('pauseDownloadCloudMediaDemo');
@@ -6047,7 +6047,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper'
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 async function example() {
   console.info('cancelDownloadCloudMediaDemo');
@@ -6097,7 +6097,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper'
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 async function example() {
   console.info('retainCloudMediaAssetDemo');
@@ -6140,7 +6140,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper'
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 async function example() {
   console.info('getCloudMediaAssetStatusDemo');

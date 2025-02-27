@@ -116,15 +116,41 @@ The following walks you through how to request a continuous task for recording t
 4. Request and cancel a continuous task.
 
    The code snippet below shows how an application requests a continuous task for itself.
-
+      
    ```ts
+    function callback(info: backgroundTaskManager.ContinuousTaskCancelInfo) {
+      // ID of a continuous task.
+      console.info('OnContinuousTaskCancel callback id ' + info.id);
+      // Reason for canceling the continuous task.
+      console.info('OnContinuousTaskCancel callback reason ' + info.reason);
+    }
+
     @Entry
     @Component
     struct Index {
       @State message: string = 'ContinuousTask';
      // Use getContext to obtain the context of the UIAbility for the page.
       private context: Context = getContext(this);
-   
+
+      OnContinuousTaskCancel() {
+        try {
+           backgroundTaskManager.on("continuousTaskCancel", callback);
+           console.info(`Succeeded in operationing OnContinuousTaskCancel.`);
+        } catch (error) {
+           console.error(`Operation OnContinuousTaskCancel failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+      }
+
+      OffContinuousTaskCancel() {
+        try {
+           // If the callback parameter is not passed, all callbacks associated with the specified event are canceled.
+           backgroundTaskManager.off("continuousTaskCancel", callback);
+           console.info(`Succeeded in operationing OffContinuousTaskCancel.`);
+        } catch (error) {
+           console.error(`Operation OffContinuousTaskCancel failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+      }
+
       startContinuousTask() {
         let wantAgentInfo: wantAgent.WantAgentInfo = {
           // List of operations to be executed after the notification is clicked.
@@ -142,7 +168,7 @@ The following walks you through how to request a continuous task for recording t
           // Execution attribute of the operation to perform after the notification is clicked.
           actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
-   
+
         try {
           // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
           wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
@@ -162,6 +188,7 @@ The following walks you through how to request a continuous task for recording t
           console.error(`Failed to Operation getWantAgent. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
         }
       }
+
    
       stopContinuousTask() {
          backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
@@ -204,6 +231,32 @@ The following walks you through how to request a continuous task for recording t
    
               // Cancel the continuous task by clicking a button.
               this.stopContinuousTask();
+            })
+
+            Button() {
+              Text('Register a callback for canceling a continuous task').fontSize (25).fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .margin({ top: 10 })
+            .backgroundColor('#0D9FFB')
+            .width(250)
+            .height(40)
+            .onClick(() => {
+              // Use a button to register a callback for canceling a continuous task.
+              this.OnContinuousTaskCancel();
+            })
+
+            Button() {
+              Text('Unregister a callback for canceling a continuous task').fontSize (25).fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .margin({ top: 10 })
+            .backgroundColor('#0D9FFB')
+            .width(250)
+            .height(40)
+            .onClick(() => {
+              // Use a button to unregister a callback for canceling a continuous task.
+              this.OffContinuousTaskCancel();
             })
           }
           .width('100%')

@@ -636,7 +636,7 @@ ws.off('open', callback1);
 
 on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
-Enables listening for the **message** events of a WebSocket connection. This API uses an asynchronous callback to return the result. The maximum length of each message is 4 KB. If the length exceeds 4 KB, the message is automatically fragmented.
+Enables listening for the **message** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > The data in **AsyncCallback** can be in the format of string (API version 6) or ArrayBuffer (API version 8).
@@ -668,7 +668,7 @@ ws.on('message', (err: BusinessError<void>, value: string | ArrayBuffer) => {
 
 off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 
-Disables listening for the **message** events of a WebSocket connection. This API uses an asynchronous callback to return the result. The maximum length of each message is 4 KB. If the length exceeds 4 KB, the message is automatically fragmented.
+Disables listening for the **message** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > The data in **AsyncCallback** can be in the format of string (API version 6) or ArrayBuffer (API version 8).
@@ -709,7 +709,7 @@ Enables listening for the **close** events of a WebSocket connection. This API u
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | Yes  | Event type. <br />**close**: event indicating that a WebSocket connection has been closed.|
-| callback | AsyncCallback\<CloseResult\> | Yes  | Callback used to return the result.<br>**close** indicates the close error code and **reason** indicates the error code description.|
+| callback | AsyncCallback\<CloseResult\> | Yes  | Callback used to return the result.<br>**close** and **reason** indicate the error code and error cause for closing the connection, respectively.|
 
 **Example**
 
@@ -741,7 +741,7 @@ Disables listening for the **close** events of a WebSocket connection. This API 
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | Yes  | Event type. <br />**close**: event indicating that a WebSocket connection has been closed.|
-| callback | AsyncCallback\<CloseResult\> | No  | Callback used to return the result.<br>**close** indicates the close error code and **reason** indicates the error code description.|
+| callback | AsyncCallback\<CloseResult\> | No  | Callback used to return the result.<br>**close** and **reason** indicate the error code and error cause for closing the connection, respectively.|
 
 **Example**
 
@@ -992,7 +992,7 @@ Enumerates the response headers sent by the server.
 | ------ | ------------------------------------------------------------ |
 | {[k:string]:string \| string[] \| undefined} | The header data type can be key-value pair, string, or undefined.|
 
-## Result Codes for Closing a WebSocket Connection
+## Result Codes for Connection Closing
 
 You can customize the result codes sent to the server. The result codes in the following table are for reference only.
 

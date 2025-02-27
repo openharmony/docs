@@ -179,6 +179,19 @@ try {
 }
 ```
 
+## SizeChangeCallback<sup>15+</sup>
+
+type SizeChangeCallback = (size: window.Size, keyboardArea?: KeyboardArea) => void
+
+Callback triggered when the size of the input method panel changes.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name      | Type                                                | Mandatory| Description                            |
+| ------------ | ---------------------------------------------------- | ---- | -------------------------------- |
+| size         | [window.Size](../apis-arkui/js-apis-window.md#size7) | Yes  | Panel size.                  |
+| keyboardArea | [KeyboardArea](#keyboardarea15)                      | No  | Size of the keyboard area.|
+
 ## InputMethodEngine
 
 In the following API examples, you must first use [getInputMethodEngine](#inputmethodenginegetinputmethodenginedeprecated) to obtain an **InputMethodEngine** instance, and then call the APIs using the obtained instance.
@@ -1822,6 +1835,101 @@ try {
 }
 ```
 
+### adjustPanelRect<sup>15+</sup>
+
+adjustPanelRect(flag: PanelFlag, rect: EnhancedPanelRect): void
+
+Adjusts the panel rectangle, and customizes the avoid area and hot zone.
+
+> **NOTE**
+>
+> This API applies only to the panels of the **SOFT_KEYBOARD** type in the **FLG_FIXED** or **FLG_FLOATING** state. This API is compatible with [adjustPanelRect](#adjustpanelrect12). If the input parameter **rect** contains only the **landscapeRect** and **portraitRect** attributes, [adjustPanelRect](#adjustpanelrect12) is called by default.
+>
+> This API returns the result synchronously. The return only indicates that the system receives the setting request, not that the setting is complete.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type                                     | Mandatory| Description                                                      |
+| ------ | ----------------------------------------- | ---- | ---------------------------------------------------------- |
+| flag   | [PanelFlag](#panelflag10)                 | Yes  | Type of the state of the target panel. It can be **FLG_FIXED** or **FLG_FLOATING**.           |
+| rect   | [EnhancedPanelRect](#enhancedpanelrect15) | Yes  | Size of the landscape rectangle and portrait rectangle of the target panel, avoid area, and hot zone.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 12800013 | window manager service error.                                |
+| 12800017 | invalid panel type or panel flag.                            |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let panelFlag = inputMethodEngine.PanelFlag.FLG_FIXED;
+  let panelRect:inputMethodEngine.EnhancedPanelRect = {
+    landscapeAvoidY: 650,
+    landscapeInputRegion: [{left:300, top:650, width:2000, height:500}],
+    portraitAvoidY: 1800,
+    portraitInputRegion: [{left:0, top:1800, width:1200, height:800}],
+    fullScreenMode: true
+  };
+  panel.adjustPanelRect(panelFlag, panelRect);
+} catch(err) {
+  console.error(`Failed to adjustPanelRect: ${JSON.stringify(err)}`);
+}
+```
+
+### updatelnputRegion<sup>15+</sup>
+
+updateRegion(inputRegion: Array&lt;window.Rect&gt;): void
+
+Updates the hot zone on the input method panel in the current state.
+
+> **NOTE**
+>
+> This API applies only to the panels of the **SOFT_KEYBOARD** type in the **FLG_FIXED** or **FLG_FLOATING** state.
+>
+> This API returns the result synchronously. The return only indicates that the system has received the request for updating the hot zone, not that the hot zone has been updated.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name     | Type                                                        | Mandatory| Description                                                        |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| inputRegion | Array&lt;[window.Rect](../apis-arkui/js-apis-window.md#rect7)&gt; | Yes  | Region for receiving input events. The array size is limited to [1, 4].<br>- The input hot zone is relative to the left vertex of the input method panel window.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 12800013 | window manager service error.                                |
+| 12800017 | invalid panel type or panel flag.                            |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+try {
+  let inputRegion: Array<window.Rect> = [{left:300, top:650, width:2000, height:500}];
+  panel.updateRegion(inputRegion);
+} catch(err) {
+  console.error(`Failed to updateRegion: ${JSON.stringify(err)}`);
+}
+```
+
 ### on('show')<sup>10+</sup>
 
 on(type: 'show', callback: () => void): void
@@ -1878,7 +1986,7 @@ try {
 
 ### on('sizeChange')<sup>12+</sup>
 
-on(type: 'sizeChange', callback: Callback&lt;window.Size&gt;): void;
+on(type: 'sizeChange', callback: SizeChangeCallback): void
 
 Enables listening for the panel size change. This API uses an asynchronous callback to return the result.
 
@@ -1901,10 +2009,17 @@ Enables listening for the panel size change. This API uses an asynchronous callb
 import { window } from '@kit.ArkUI';
 try {
   panel.on('sizeChange', (windowSize: window.Size) => {
-    console.info(`panel is size changes, width: ${windowSize.width}, height: ${windowSize.height}`);
+    console.info(`panel size changed, width: ${windowSize.width}, height: ${windowSize.height}`);
   });
 } catch(err) {
-  console.error(`Failed to sizeChange: ${JSON.stringify(err)}`);
+  console.error(`Failed to subscribe sizeChange: ${JSON.stringify(err)}`);
+}
+try {
+  panel.on('sizeChange', (windowSize: window.Size, keyboardArea: inputMethodEngine.KeyboardArea) => {
+    console.info(`panel size changed, windowSize: ${JSON.stringify(windowSize)}, keyboardArea: ${JSON.stringify(keyboardArea)}`);
+  });
+} catch(err) {
+  console.error(`Failed to subscribe sizeChange: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1976,7 +2091,7 @@ try {
 
 ### off('sizeChange')<sup>12+</sup>
 
-off(type: 'sizeChange', callback?: Callback&lt;window.Size&gt;): void;
+off(type: 'sizeChange', callback?: SizeChangeCallback): void
 
 Disables listening for the panel size change. This API uses an asynchronous callback to return the result.
 
@@ -2336,6 +2451,92 @@ Describes the direction in which the cursor moves when the text is selected.
 | Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | direction  | [Direction](#direction10) | No| No| Direction in which the cursor moves when the text is selected.|
+
+## MessageHandler<sup>15+</sup>
+
+Represents a custom communication object.
+
+> **NOTE**
+>
+> You can register this object to receive custom communication data sent by the edit box application attached to the input method application. When the custom communication data is received, the [onMessage](#onmessage15) callback in this object is triggered.
+>
+> This object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#onmessage15) callback of the penultimate registered object is triggered.
+>
+> If this object is unregistered, its [onTerminated](#onterminated15) callback will be triggered.
+### onMessage<sup>15+</sup>
+
+onMessage(msgId: string, msgParam?: ArrayBuffer): void
+
+Receives the custom data callback sent by the edit box application attached to the input method application.
+
+> **NOTE**
+>
+> This callback is triggered when the registered MeesageHandler receives custom communication data sent by the edit box application attached to the input method application.
+>
+> The **msgId** parameter is mandatory, and the **msgParam** parameter is optional. If only the custom **msgId** data is received, confirm it with the data sender.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type       | Optional| Description                            |
+| -------- | ----------- | ---- | -------------------------------- |
+| msgId    | string      | No  | Identifier of the received custom communication data.|
+| msgParam | ArrayBuffer | Yes  | Message body of the received custom communication data.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let messageHandler: inputmethod.MessageHandler = {
+        onTerminated(): void {
+            console.log('OnTerminated.');
+        },
+        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+        }
+    }
+    inputMethodController.recvMessage(messageHandler);
+} catch(err) {
+  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+}
+```
+
+### onTerminated<sup>15+</sup>
+
+onTerminated(): void
+
+Listens for MessageHandler termination.
+
+> **NOTE**
+>
+> When an application registers a new MessageHandler object, the **OnTerminated** callback of the previous registered MessageHandler object is triggered.
+>
+> When an application unregisters a MessageHandler object, the **OnTerminated** callback of the current registered MessageHandler object is triggered.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let messageHandler: inputmethod.MessageHandler = {
+        onTerminated(): void {
+            console.log('OnTerminated.');
+        },
+        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+        }
+    }
+    inputMethodController.recvMessage(messageHandler);
+} catch(err) {
+  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+}
+```
 
 ## InputClient<sup>9+</sup>
 
@@ -4047,7 +4248,111 @@ try {
 }
 ```
 
-## EditorAttribute
+### sendMessage<sup>15+</sup>
+
+sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
+
+Sends the custom communication to the edit box application attached to the input method application. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API can be called only when the edit box is attached to the input method and enter the edit mode, and the input method application is in full experience mode.
+>
+> The maximum length of **msgId** is 256 B, and the maximum length of **msgParam** is 128 KB.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type       | Optional| Description                                                        |
+| -------- | ----------- | ---- | ------------------------------------------------------------ |
+| msgId    | string      | No  | Identifier of the custom data to be sent to the edit box application attached to the input method application.|
+| msgParam | ArrayBuffer | Yes  | Message body of the custom data to be sent to the edit box application attached to the input method application.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Incorrect parameter types. 2. Incorrect parameter length.  |
+| 12800003 | input method client error.                  |
+| 12800009 | input method client detached.               |
+| 12800014 | the input method is in basic mode.          |
+| 12800015 | the other side does not accept the request. |
+| 12800016 | input method client is not editable.        |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let msgId: string = "testMsgId";
+let msgParam: ArrayBuffer = new ArrayBuffer(128);
+inputMethodController.sendMessage(msgId, msgParam).then(() => {
+  console.log('Succeeded send message.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to send message: ${JSON.stringify(err)}`);
+});
+```
+
+### recvMessage<sup>15+</sup>
+
+recvMessage(msgHandler?: MessageHandler): void;
+
+Registers or unregisters MessageHandler.
+
+> **NOTE**
+>
+> The [MessageHandler](#messagehandler15) object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#onterminated15) callback of the penultimate registered object is triggered.
+>
+> If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#onterminated15) callback will be triggered.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                                        |
+| ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| msgHandler | [MessageHandler](#messagehandler15) | No  | This object receives custom communication data from the edit box application attached to the input method application through [onMessage](#onmessage15) and receives a message for terminating the subscription to this object through [onTerminated](#onterminated15). If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#onterminated15) callback will be triggered.|
+
+**Return value**
+
+| Type| Description        |
+| ---- | ------------ |
+| void | No value is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | parameter error. Possible causes: 1. Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+let messageHandler: inputmethod.MessageHandler = {
+    onTerminated(): void {
+        console.log('OnTerminated.');
+    },
+    onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+        console.log('recv message.');
+    }
+}
+inputMethodController.recvMessage(messageHandler);
+inputMethodController.recvMessage();
+```
+
+### EditorAttribute
 
 Represents the attributes of the edit box.
 
@@ -4114,6 +4419,35 @@ Represents the size of the input method panel.
 | ------------ | -------- | ---- | ---- | ------------------ |
 | landscapeRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | No  | No  | Size of the input method panel window in landscape mode.|
 | portraitRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | No  | No  | Size of the input method panel window in portrait mode.|
+
+## EnhancedPanelRect<sup>15+</sup>
+
+Indicates the size of the enhanced input method panel, including the custom avoid area and hot zone.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name                | Type                                                        | Read-Only| Optional| Description                                                        |
+| -------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| landscapeRect        | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | No  | Yes  | Size of the input method panel window in landscape mode.<br>- This attribute is mandatory when **fullScreenMode** is not set or is set to **false**.|
+| portraitRect         | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | No  | Yes  | Size of the input method panel window in portrait mode.<br>- This attribute is mandatory when **fullScreenMode** is not set or is set to **false**.|
+| landscapeAvoidY      | number                                                       | No  | Yes  | Distance between the avoid line and the top of the panel in landscape mode. The default value is **0**.<br>- Other system components in the application avoid the input method panel area below the avoid line.<br>- When the panel is fixed, the distance between the avoid line and the bottom of the screen cannot exceed 70% of the screen height.|
+| landscapeInputRegion | Array&lt;[window.Rect](../apis-arkui/js-apis-window.md#rect7)&gt; | No  | Yes  | Region where the panel receives input events in landscape mode.<br>- The array size is limited to [1, 4]. The default value is the panel size in landscape mode.<br>- The input hot zone is relative to the left vertex of the input method panel window.|
+| portraitAvoidY       | number                                                       | No  | Yes  | Distance between the avoid line and the top of the panel in portrait mode. The default value is **0**.<br>- Other system components in the application avoid the input method panel area below the avoid line.<br>- When the panel is fixed, the distance between the avoid line and the bottom of the screen cannot exceed 70% of the screen height.|
+| portraitInputRegion  | Array&lt;[window.Rect](../apis-arkui/js-apis-window.md#rect7)&gt; | No  | Yes  | Region where the panel receives input events in portrait mode.<br>- The array size is limited to [1, 4]. The default value is the panel size in portrait mode.<br>- The input hot zone is relative to the left vertex of the input method panel window.|
+| fullScreenMode       | boolean                                                      | No  | Yes  | Indicates whether to enable the full-screen mode. The default value is **false**.<br>- If the value is **true**, **landscapeRect** and **portraitRect** are optional.<br>- If the value is **false**, **landscapeRect** and **portraitRect** are mandatory.|
+
+## KeyboardArea<sup>15+</sup>
+
+Keyboard area on the panel.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name  | Type  | Read-Only| Optional| Description                                                        |
+| ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| top    | number | Yes  | No  | Distance between the upper boundary of the keyboard area and the upper boundary of the panel area, in pixels. The value is an integer.|
+| bottom | number | Yes  | No  | Distance between the lower boundary of the keyboard area and the lower boundary of the panel area, in pixels. The value is an integer.|
+| left   | number | Yes  | No  | Distance between the left boundary of the keyboard area and the left boundary of the panel area, in pixels. The value is an integer.|
+| right  | number | Yes  | No  | Distance between the right border of the keyboard area and the right border of the panel area, in pixels. The value is an integer.|
 
 ## WindowInfo<sup>12+</sup>
 

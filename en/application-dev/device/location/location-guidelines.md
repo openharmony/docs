@@ -68,7 +68,7 @@ This module supports only the WGS-84 coordinate system.
          If fast location is expected, you are advised to set **LocatingPriority** to **PRIORITY_LOCATING_SPEED**. The first obtained location result will be provided for the application.<br>
          Both the GNSS positioning and the network positioning technologies are used in the two location policies. This can lead to significant hardware resource consumption and power consumption.<br>
       - Set the location timeout interval by using **locatingTimeoutMs**.<br>
-         Due to the impact of the ambient environment, device status, and system power consumption control policy, the location response delay may fluctuates greatly. You are advised to set the timeout interval for a single location to 10 seconds.<br>
+         Due to the impact of the ambient environment, device status, and system power consumption control policy, the location response delay may fluctuate greatly. You are advised to set the timeout interval for a single location to 10 seconds.<br>
          
       The following code snippet uses **PRIORITY_LOCATING_SPEED** as an example.<br>
 
