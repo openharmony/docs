@@ -11,7 +11,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
 1. 导入NDK接口，导入方法如下。
 
    ```c++
-    // 导入NDK接口头文件
+    // 导入NDK接口头文件。
     #include "hilog/log.h"
     #include "ohcamera/camera.h"
     #include "ohcamera/camera_input.h"
@@ -55,7 +55,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
     if (cameraOutputCapability->previewProfilesSize < 0) {
         OH_LOG_ERROR(LOG_APP, "previewProfilesSize == null");
     }
-    metaDataObjectType = cameraOutputCapability->supportedMetadataObjectTypes[2]; // 2:camera metedata types
+    metaDataObjectType = cameraOutputCapability->supportedMetadataObjectTypes[2]; // 2:camera metedata types.
     if (metaDataObjectType == nullptr) {
         OH_LOG_ERROR(LOG_APP, "Get metaDataObjectType failed.");
     }
