@@ -10,7 +10,7 @@ OpenHarmony某应用点击多次或者页面切换时，会出现应用闪退现
 
 1.打印提示Crash，每次Crash的进程一致，均是Process name:com.chinasoftinc.launcher， 线程却不确定，mosquitto loop、jsThread-1随机出现；
 
-2.Crash的时机不确定，页面点击次数累计一定程序出现，native不回调JS function时不会出现Crash，JS function代码量多时，则Crash概率大，代码量小时，Crash概率小。
+2.Crash的时机不确定，页面点击次数累计一定程度出现，native不回调JS function时不会出现Crash，JS function代码量多时，则Crash概率大，代码量小时，Crash概率小。
 
  mosquitto loop、jsThread-1 二者crash随机出现
 
