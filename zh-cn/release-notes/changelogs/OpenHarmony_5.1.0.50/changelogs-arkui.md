@@ -196,7 +196,8 @@ struct AttrAnimationExample {
 
 | 变更前 | 变更后 |
 |---------|---------|
-| 滚动类组件和Refresh组件下拉过界时，相同手指滑动，下拉过界距离较大。<br> ![变更前](figures/list-changelog1_1.gif)       | 滚动类组件和Refresh组件下拉过界时，相同手指滑动，下拉过界距离较小。 <br> ![变更后](figures/list-changelog.gif)       |
+| 滚动类组件和Refresh组件下拉过界时，相同手指滑动，下拉过界距离较大。<br> ![变更前](figures/list1.gif)       | 滚动类组件和Refresh组件下拉过界时，相同手指滑动，下拉过界距离较小。 <br> ![变更后](figures/list.gif)       |
+| <br> ![变更前](figures/list2.gif)       |  <br> ![变更后](figures/list3.gif)       |
 
 **起始API Level**
 
