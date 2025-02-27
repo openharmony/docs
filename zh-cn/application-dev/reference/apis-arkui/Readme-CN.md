@@ -368,6 +368,7 @@
     - [WithTheme](arkui-ts/ts-container-with-theme.md) 
   - 原子化服务<!--atomic-services-->
     - [AtomicServiceNavigation](arkui-ts/ohos-atomicservice-AtomicServiceNavigation.md)
+    - [AtomicServiceSearch](arkui-ts/ohos-atomicservice-AtomicServiceSearch.md)
     - [AtomicServiceTabs](arkui-ts/ohos-atomicservice-AtomicServiceTabs.md)
     - [AtomicServiceWeb](arkui-ts/ohos-atomicservice-AtomicServiceWeb.md)
     - [InterstitialDialogAction](arkui-ts/ohos-atomicservice-InterstitialDialogAction.md)
