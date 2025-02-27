@@ -2715,7 +2715,7 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 | from    | [Point](#point9) | 是   | 手指接触屏幕的起始点坐标。                                        |
 | to      | [Point](#point9) | 是   | 手指离开屏幕时的坐标点。                                         |
 | stepLen | number           | 是   | 间隔距离，单位：像素点（px）。                                         |
-| speed   | number           | 是   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+| speed   | number           | 是   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：pixel/s。 |
 
 **错误码：**
 
