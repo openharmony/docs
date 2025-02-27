@@ -97,6 +97,7 @@
 | typedef struct [ArkUI_TransitionEffect](#arkui_transitioneffect) [ArkUI_TransitionEffect](#arkui_transitioneffect) | 定义transition属性配置转场参数对象。  | 
 | typedef bool(\* [ArkUI_OnWillDismissEvent](#arkui_onwilldismissevent)) (int32_t reason) | 弹窗关闭的回调函数。  | 
 | typedef struct [ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) [ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) | 定义弹窗关闭事件对象。  | 
+| typedef struct [ArkUI_CustomDialogOptions ](#arkui_customdialogoptions) [ArkUI_CustomDialogOptions ](#arkui_customdialogoptions) | 定义自定义弹窗的内容对象。  | 
 | typedef uint32_t [ArkUI_GestureEventActionTypeMask](#arkui_gestureeventactiontypemask) | 定义手势事件类型集合  | 
 | typedef uint32_t [ArkUI_GestureDirectionMask](#arkui_gesturedirectionmask) | 定义滑动手势方向集合。  | 
 | typedef ArkUI_GestureRecognizer \* [ArkUI_GestureRecognizerHandle](#arkui_gesturerecognizerhandle) | 提供手势识别器句柄类型对象定义。  | 
@@ -150,6 +151,8 @@
 | [ArkUI_DragPreviewScaleMode](#arkui_dragpreviewscalemode) { ARKUI_DRAG_PREVIEW_SCALE_AUTO, ARKUI_DRAG_PREVIEW_SCALE_DISABLED } | 拖拽预览缩放模式。  | 
 | [ArkUI_DragStatus](#arkui_dragstatus) { ArkUI_DRAG_STATUS_UNKNOWN, ArkUI_DRAG_STATUS_STARTED, ArkUI_DRAG_STATUS_ENDED } | 拖拽状态。  | 
 | [ArkUI_DismissReason](#arkui_dismissreason) { DIALOG_DISMISS_BACK_PRESS = 0, DIALOG_DISMISS_TOUCH_OUTSIDE, DIALOG_DISMISS_CLOSE_BUTTON, DIALOG_DISMISS_SLIDE_DOWN } | 弹窗关闭的触发方式。  | 
+| [ArkUI_LevelMode](#arkui_levelmode) { ARKUI_LEVEL_MODE_OVERLAY = 0, ARKUI_LEVEL_MODE_EMBEDDED } | 设置弹窗显示层级。  |
+| [ArkUI_ImmersiveMode](#arkui_immersivemode) { ARKUI_IMMERSIVE_MODE_DEFAULT = 0, ARKUI_IMMERSIVE_MODE_EXTEND } | 指定嵌入式弹窗的蒙层覆盖区域。  |
 | [ArkUI_GestureEventActionType](#arkui_gestureeventactiontype) { GESTURE_EVENT_ACTION_ACCEPT = 0x01, GESTURE_EVENT_ACTION_UPDATE = 0x02, GESTURE_EVENT_ACTION_END = 0x04, GESTURE_EVENT_ACTION_CANCEL = 0x08 } | 定义手势事件类型。  | 
 | [ArkUI_GesturePriority](#arkui_gesturepriority) { NORMAL = 0, PRIORITY = 1, PARALLEL = 2 } | 定义手势事件模式。  | 
 | [ArkUI_GroupGestureMode](#arkui_groupgesturemode) { SEQUENTIAL_GROUP = 0, PARALLEL_GROUP = 1, EXCLUSIVE_GROUP = 2 } | 定义手势组事件模式。  | 
@@ -429,6 +432,13 @@
 | void [OH_ArkUI_DialogDismissEvent_SetShouldBlockDismiss](#oh_arkui_dialogdismissevent_setshouldblockdismiss) ([ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) \*event, bool shouldBlockDismiss) | 设置是否需要屏蔽系统关闭弹窗行为，true表示屏蔽系统行为不关闭弹窗，false表示不屏蔽。  | 
 | void \* [OH_ArkUI_DialogDismissEvent_GetUserData](#oh_arkui_dialogdismissevent_getuserdata) ([ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) \*event) | 获取弹窗关闭事件对象中的用户自定义数据指针。  | 
 | int32_t [OH_ArkUI_DialogDismissEvent_GetDismissReason](#oh_arkui_dialogdismissevent_getdismissreason) ([ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) \*event) | 获取交互式关闭事件指针中的关闭原因。  | 
+| int32_t [OH_ArkUI_CustomDialog_OpenDialog](#oh_arkui_customdialog_opendialog) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, void (\*callback)(int32_t dialogId)) | 弹出自定义弹窗。  |
+| int32_t [OH_ArkUI_CustomDialog_CloseDialog](#oh_arkui_customdialog_closedialog) (int32_t dialogId) | 关闭自定义弹窗。  |
+| ArkUI_CustomDialogOptions\* [OH_ArkUI_CustomDialog_CreateOptions](#oh_arkui_customdialog_createoptions) ([ArkUI_NodeHandle](#arkui_nodehandle) content) | 创建自定义弹窗options。  |
+| void [OH_ArkUI_CustomDialog_DisposeOptions](#oh_arkui_customdialog_disposeoptions) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options) | 销毁自定义弹窗options。  |
+| int32_t [OH_ArkUI_CustomDialog_SetLevelMode](#oh_arkui_customdialog_setlevelmode) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, [ArkUI_LevelMode](#arkui_levelmode) levelMode) | 设置弹窗的显示层级。  |
+| int32_t [OH_ArkUI_CustomDialog_SetLevelUniqueId](#oh_arkui_customdialog_setleveluniqueid) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, int32_t uniqueId) | 设置弹窗显示层级页面下的节点id。  |
+| int32_t [OH_ArkUI_CustomDialog_SetImmersiveMode](#oh_arkui_customdialog_setimmersivemode) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, [ArkUI_ImmersiveMode](#arkui_immersivemode) immersiveMode) | 设置嵌入式弹窗蒙层的显示区域。  |
 | bool [OH_ArkUI_GestureInterruptInfo_GetSystemFlag](#oh_arkui_gestureinterruptinfo_getsystemflag) (const ArkUI_GestureInterruptInfo \*event) | 判断是否组件内置手势。  | 
 | ArkUI_GestureRecognizer \* [OH_ArkUI_GestureInterruptInfo_GetRecognizer](#oh_arkui_gestureinterruptinfo_getrecognizer) (const ArkUI_GestureInterruptInfo \*event) | 返回被打断的手势指针。  | 
 | ArkUI_GestureEvent \* [OH_ArkUI_GestureInterruptInfo_GetGestureEvent](#oh_arkui_gestureinterruptinfo_getgestureevent) (const ArkUI_GestureInterruptInfo \*event) | 返回打断的手势事件数据。  | 
@@ -995,6 +1005,17 @@ typedef struct ArkUI_DialogDismissEvent ArkUI_DialogDismissEvent
 定义弹窗关闭事件对象。
 
 **起始版本：** 12
+
+### ArkUI_CustomDialogOptions
+
+```
+typedef struct ArkUI_CustomDialogOptions ArkUI_CustomDialogOptions
+```
+**描述：**
+
+定义自定义弹窗的内容对象。
+
+**起始版本：** 16
 
 
 ### ArkUI_DragAction
@@ -2093,6 +2114,39 @@ enum ArkUI_DismissReason
 | DIALOG_DISMISS_TOUCH_OUTSIDE  | 点击遮障层触发。  | 
 | DIALOG_DISMISS_CLOSE_BUTTON  | 点击关闭按钮。  | 
 | DIALOG_DISMISS_SLIDE_DOWN  | 下拉关闭。  | 
+
+
+### ArkUI_LevelMode
+
+```
+enum ArkUI_LevelMode
+```
+**描述：**
+
+设置弹窗显示层级。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_LEVEL_MODE_OVERLAY  | 显示在应用最上层。  | 
+| ARKUI_LEVEL_MODE_EMBEDDED  | 嵌入式显示在应用的页面内。  | 
+
+### ArkUI_ImmersiveMode
+
+```
+enum ArkUI_ImmersiveMode
+```
+**描述：**
+
+指定嵌入式弹窗的蒙层覆盖区域。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_IMMERSIVE_MODE_DEFAULT  | 弹窗蒙层按照显示页面给定的布局约束显示。  | 
+| ARKUI_IMMERSIVE_MODE_EXTEND  | 弹窗蒙层可扩展至覆盖状态栏和导航条。  | 
 
 ### ArkUI_DragPreviewScaleMode
 
@@ -8056,6 +8110,166 @@ int32_t OH_ArkUI_DialogDismissEvent_GetDismissReason (ArkUI_DialogDismissEvent *
 **返回：**
 
 关闭原因，异常情况返回-1。 DIALOG_DISMISS_BACK_PRESS 对应点击三键back、左滑/右滑、键盘ESC关闭。 DIALOG_DISMISS_TOUCH_OUTSIDE 点击遮障层时。 DIALOG_DISMISS_CLOSE_BUTTON 点击关闭按钮。 DIALOG_DISMISS_SLIDE_DOWN 下拉关闭。
+
+### OH_ArkUI_CustomDialog_OpenDialog()
+
+```
+int32_t OH_ArkUI_CustomDialog_OpenDialog(ArkUI_CustomDialogOptions* options, void (*callback)(int32_t dialogId))
+```
+**描述：**
+
+弹出自定义弹窗。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| callback | 开启弹窗的回调，返回入参是弹窗ID。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_CloseDialog()
+
+```
+int32_t OH_ArkUI_CustomDialog_CloseDialog(int32_t dialogId)
+```
+**描述：**
+
+关闭自定义弹窗。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| dialogId | 需要关闭的弹窗ID。 | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_CreateOptions()
+
+```
+ArkUI_CustomDialogOptions* OH_ArkUI_CustomDialog_CreateOptions(ArkUI_NodeHandle content)
+```
+**描述：**
+
+创建自定义弹窗options。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| content | 自定义弹窗的内容。 | 
+
+**返回：**
+
+自定义弹窗options的指针。
+
+### OH_ArkUI_CustomDialog_DisposeOptions()
+
+```
+void OH_ArkUI_CustomDialog_DisposeOptions(ArkUI_CustomDialogOptions* options)
+```
+**描述：**
+
+销毁自定义弹窗options。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 自定义弹窗options的指针。 | 
+
+
+### OH_ArkUI_CustomDialog_SetLevelMode()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetLevelMode(ArkUI_CustomDialogOptions* options, ArkUI_LevelMode levelMode)
+```
+**描述：**
+
+设置弹窗的显示层级。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 指向自定义弹窗options的指针。 | 
+| levelMode | 显示层级的枚举值， 类型为ArkUI_LevelMode。 |
+
+**注解：**
+
+OH_ArkUI_CustomDialog_SetLevelMode方法需要在调用OH_ArkUI_CustomDialog_OpenDialog方法之前调用。
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetLevelUniqueId()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetLevelUniqueId(ArkUI_CustomDialogOptions* options, int32_t uniqueId)
+```
+**描述：**
+
+设置弹窗显示层级页面下的节点id。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 指向自定义弹窗options的指针。 | 
+| uniqueId | 指定节点id，会查找该节点所在页面，并将弹窗显示在该页面下。 |
+
+**注解：**
+
+OH_ArkUI_CustomDialog_SetLevelUniqueId方法需要在调用OH_ArkUI_CustomDialog_OpenDialog方法之前调用。
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetImmersiveMode()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetImmersiveMode(ArkUI_CustomDialogOptions* options, ArkUI_ImmersiveMode immersiveMode)
+```
+**描述：**
+
+设置嵌入式弹窗蒙层的显示区域。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 指向自定义弹窗options的指针。 | 
+| immersiveMode | 显示区域类型的枚举值， 类型为ArkUI_ImmersiveMode。 |
+
+**注解：**
+
+OH_ArkUI_CustomDialog_SetImmersiveMode方法需要在调用OH_ArkUI_CustomDialog_OpenDialog方法之前调用。
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### OH_ArkUI_DialogDismissEvent_GetUserData()
