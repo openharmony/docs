@@ -20,7 +20,7 @@ import { TestRunner } from '@kit.TestKit';
 
 onPrepare(): void
 
-为运行测试用例准备单元测试环境。
+为运行测试用例准备单元测试环境
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
@@ -46,7 +46,7 @@ export default class UserTestRunner implements TestRunner {
 
 onRun(): void
 
-运行测试用例。
+运行测试用例
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
