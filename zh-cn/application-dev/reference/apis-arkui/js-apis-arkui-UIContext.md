@@ -6591,6 +6591,14 @@ cancelDataLoading(key: string): void
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | key | string | 是   | 拖拽数据的标识，用于区分每次拖拽。key可通过startDataLoading接口获取。 |
 
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. |
+
 ## OverlayManager<sup>12+</sup>
 
 以下API需先使用UIContext中的[getOverlayManager()](#getoverlaymanager12)方法获取到OverlayManager对象，再通过该对象调用对应方法。
