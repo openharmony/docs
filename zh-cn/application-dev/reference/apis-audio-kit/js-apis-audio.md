@@ -5570,7 +5570,7 @@ getStreamInfo(): Promise<AudioStreamInfo\>
 
 | 类型                                           | 说明                   |
 | :--------------------------------------------- | :--------------------- |
-| Promise<[AudioStreamInfo](#audiostreaminfo8)\> | Promise对象，返回音频流信息. |
+| Promise<[AudioStreamInfo](#audiostreaminfo8)\> | Promise对象，返回音频流信息。 |
 
 **示例：**
 
@@ -5600,7 +5600,7 @@ getStreamInfoSync(): AudioStreamInfo
 
 | 类型                                           | 说明                   |
 | :--------------------------------------------- | :--------------------- |
-| [AudioStreamInfo](#audiostreaminfo8) | 返回音频流信息. |
+| [AudioStreamInfo](#audiostreaminfo8) | 返回音频流信息。 |
 
 **示例：**
 
