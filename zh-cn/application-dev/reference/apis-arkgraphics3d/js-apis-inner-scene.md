@@ -329,29 +329,13 @@ function createEnvironmentPromise() : Promise<Environment> {
 ```
 
 ## RenderParameters<sup>15+</sup>
-渲染控制参数对象, 用于控制场景是否持续渲染。
+渲染控制参数对象，用于控制场景是否持续渲染。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| alwaysRender | boolean | 否 | 是 | 控制信号，true表示持续渲染，false表示非持续渲染。由开发者填写。|
+| alwaysRender | boolean | 否 | 是 | 控制信号。true表示场景将持续渲染画面，false表示场景只渲染一帧画面。默认值为undefined表示场景只渲染一帧画面。 |
 
-**示例：**
-```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderParameters } from '@kit.ArkGraphics3D';
-
-function controlRender() : void {
-  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: Scene) => {
-    if (result) {
-         // 创建渲染控制参数并设置非持续渲染
-        let renderParameters: RenderParameters = { alwaysRender: false };
-        let controlResult: boolean = result.renderFrame(renderParameters);
-    }
-  });
-}
-```
 
 ## Scene
 用于设置场景。
@@ -467,7 +451,7 @@ renderFrame(params?: RenderParameters): boolean
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [RenderParameters](#RenderParameters) | 否 | 渲染控制参数，是否持续渲染，默认为空。|
+| params | [RenderParameters](#renderparameters15) | 否 | 渲染控制参数，是否持续渲染。 默认值为undefined。 |
 
 **返回值：**
 | 类型 | 说明 |

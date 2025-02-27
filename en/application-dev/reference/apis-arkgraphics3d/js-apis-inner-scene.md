@@ -329,7 +329,6 @@ function createEnvironmentPromise() : Promise<Environment> {
 }
 ```
 
-
 ## Scene
 Used to set a scene.
 
@@ -433,7 +432,6 @@ function getFactory() : void {
   });
 }
 ```
-
 
 ### destroy
 destroy(): void
