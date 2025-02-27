@@ -24,29 +24,29 @@ A constructor used to create a **NodeContent** object.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Example** 
+**Example**
 
 <!--code_no_check-->
 
 ```ts
 import { nativeNode } from'libNativeNode.so' // so. file implemented by you.
-import {NodeContent } from '@kit.ArkUI'
+import { NodeContent } from '@kit.ArkUI'
 
 @Component
 struct Parent {
-    private nodeContent: Content = new NodeContent();
+  private nodeContent: Content = new NodeContent();
 
-    aboutToAppear() {
-        // Create a node through the C API and add it to the nodeContent manager.
-        nativeNode.createNativeNode(this.nodeContent);
-    }
+  aboutToAppear() {
+    // Create a node through the C API and add it to the nodeContent manager.
+    nativeNode.createNativeNode(this.nodeContent);
+  }
 
-    build() {
-        Column() {
-            // Display the native components stored in the nodeContent manager.
-            ContentSlot(this.nodeContent)
-        }
+  build() {
+    Column() {
+      // Display the native components stored in the nodeContent manager.
+      ContentSlot(this.nodeContent)
     }
+  }
 }
 ```
 
@@ -62,9 +62,9 @@ Adds a FrameNode to this **NodeContent** object.
 
 **Parameters**
 
-| Name | Type                                                  | Mandatory | Description            |
+| Name | Type                                                  | Mandatory| Description            |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| node | [FrameNode](./js-apis-arkui-frameNode.md#framenode) | Yes  | FrameNode to add. |
+| node | [FrameNode](./js-apis-arkui-frameNode.md#framenode) | Yes  | FrameNode to add.|
 
 ### removeFrameNode<sup>12+</sup>
 
@@ -78,14 +78,17 @@ Removes a FrameNode from this **NodeContent** object.
 
 **Parameters**
 
-| Name | Type                                                  | Mandatory | Description            |
+| Name | Type                                                  | Mandatory| Description            |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| node | [FrameNode](./js-apis-arkui-frameNode.md#framenode) | Yes  | FrameNode to remove. |
+| node | [FrameNode](./js-apis-arkui-frameNode.md#framenode) | Yes  | FrameNode to remove.|
 
 **Example**
 
+This example shows how to add or remove a FrameNode in the **NodeContent** object.
+
 ```ts
-import {NodeContent, typeNode } from '@kit.ArkUI';
+// xxx.ets
+import { NodeContent, typeNode } from '@kit.ArkUI';
 
 class NodeContentCtrl {
   content: NodeContent

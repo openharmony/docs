@@ -9,30 +9,105 @@ The state management module provides data storage, persistent data management, U
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
-The meanings of T and S in this topic are as follows:
+T and S in this topic represent the types as described below.
 
 
 | Type  | Description                                    |
 | ---- | -------------------------------------- |
-| T    | Class, number, boolean, string, and arras of these types.|
+| T    | Class, number, boolean, string, and arrays of these types.|
 | S    | number, boolean, string.                |
 
 
 ## AppStorage
 
+For details about how to use AppStorage, see [AppStorage: Storing Application-wide UI State](../../../quick-start/arkts-appstorage.md).
 
-For details about how to use AppStorage on the UI, see [AppStorage: Application-wide UI State Storage](../../../quick-start/arkts-appstorage.md).
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### ref<sup>12+</sup>
+
+static ref\<T\>(propName: string): AbstractProperty\<T\> | undefined
+
+Returns a reference to the data corresponding to **propName** in [AppStorage](../../../quick-start/arkts-appstorage.md). If the provided **propName** does not exist, this API returns **undefined**.
+
+This API is similar to [link](#link10) but does not require manually releasing the returned variable of the [AbstractProperty](#abstractproperty) type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description              |
+| -------- | ------ | ---- | ---------------------- |
+| propName | string | Yes  | Property name in AppStorage.|
+
+**Return value**
+
+| Type                                  | Description                                                        |
+| -------------------------------------- | ------------------------------------------------------------ |
+| [AbstractProperty&lt;T&gt;](#abstractproperty) \| undefined | A reference to the property in AppStorage, or **undefined** if the property does not exist.|
+
+**Example**
+
+```ts
+AppStorage.setOrCreate('PropA', 47);
+let refToPropA1: AbstractProperty<number> | undefined = AppStorage.ref('PropA');
+let refToPropA2: AbstractProperty<number> | undefined = AppStorage.ref('PropA'); // refToPropA2.get() == 47
+refToPropA1?.set(48); // Synchronously updates AppStorage: refToPropA1.get() == refToPropA2.get() == 48.
+```
+
+### setAndRef<sup>12+</sup>
+
+static setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&lt;T&gt;
+
+Similar to the [ref](#ref12) API, returns a reference to the data corresponding to **propName** in [AppStorage](../../../quick-start/arkts-appstorage.md). If **propName** does not exist, this API creates and initializes the property in AppStorage using **defaultValue** and returns its reference. **defaultValue** must be of the **T** type and can be **null** or **undefined**.
+
+This API is similar to [setAndLink](#setandlink10) but does not require manually releasing the returned variable of the [AbstractProperty](#abstractproperty) type.
+
+> **NOTE**
+>
+> Since API version 12, AppStorage supports [Map](../../../quick-start/arkts-appstorage.md#decorating-variables-of-the-map-type), [Set](../../../quick-start/arkts-appstorage.md#decorating-variables-of-the-set-type), [Date](../../../quick-start/arkts-appstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../quick-start/arkts-appstorage.md#union-type) types.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name      | Type  | Mandatory| Description                                                    |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| propName     | string | Yes  | Property name in AppStorage.                                      |
+| defaultValue | T      | Yes  | Default value used to initialize **propName** in AppStorage if it does not exist. The value can be **null** or **undefined**.|
+
+**Return value**
+
+| Type                     | Description                                                        |
+| ------------------------- | ------------------------------------------------------------ |
+| [AbstractProperty&lt;T&gt;](#abstractproperty) | Instance of **AbstractProperty&lt;T&gt;**, which is a reference to the property in AppStorage corresponding to **propName**.|
+
+**Example**
+
+```ts
+AppStorage.setOrCreate('PropA', 47);
+let ref1: AbstractProperty<number> = AppStorage.setAndRef('PropB', 49); // Create PropB 49
+let ref2: AbstractProperty<number> = AppStorage.setAndRef('PropA', 50); // PropA exists, remains 47
+```
 
 
 ### link<sup>10+</sup>
 
 static link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
-Establishes two-way data binding with the given attribute (specified by **propName**) in AppStorage. If the given attribute exists in AppStorage, the two-way bound data of the attribute in AppStorage is returned.
+Establishes a two-way data binding with the property corresponding to **propName** in [AppStorage](../../../quick-start/arkts-appstorage.md). If the given property exists in AppStorage, the two-way bound data of the property in AppStorage is returned.
 
-Any update of the data is synchronized back to AppStorage, which then synchronizes the update to all data and custom components bound to the attribute.
+Any update of the data is synchronized back to AppStorage, which then synchronizes the update to all data and custom components bound to the property.
 
-If the given attribute does not exist in AppStorage, **undefined** is returned.
+If the given property does not exist in AppStorage, **undefined** is returned.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -40,13 +115,13 @@ If the given attribute does not exist in AppStorage, **undefined** is returned.
 
 | Name     | Type    | Mandatory  | Description            |
 | -------- | ------ | ---- | ---------------- |
-| propName | string | Yes   | Attribute name in AppStorage.|
+| propName | string | Yes   | Property name in AppStorage.|
 
 **Return value**
 
 | Type                               | Description                                                        |
 | ----------------------------------- | ------------------------------------------------------------ |
-| SubscribedAbstractProperty&lt;T&gt; | Returns two-way bound data if specified attribute exists in AppStorage; returns **undefined** otherwise.|
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | Two-way bound data of the specified property in AppStorage, or **undefined** if the property does not exist.|
 
 **Example**
 ```ts
@@ -61,7 +136,13 @@ linkToPropA1.set(48); // Two-way synchronization: linkToPropA1.get() == linkToPr
 
 static setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
 
-Works in a way similar to the **link** API. If the given attribute exists in AppStorage, the two-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in AppStorage, and two-way bound data is returned. The value of **defaultValue** must be of the T type and cannot be **undefined** or **null**.
+Similar to the [link](#link10) API, establishes a two-way data binding with the property corresponding to **propName** in [AppStorage](../../../quick-start/arkts-appstorage.md). If the given property exists in AppStorage, this API returns the two-way bound data for the property. If the given property does not exist, this API creates and initializes the property in AppStorage using **defaultValue** and returns its two-way bound data. The value of **defaultValue** must be of the **T** type. Since API version 12, it can be **null** or **undefined**.
+
+> **NOTE**
+>
+> Since API version 12, AppStorage supports [Map](../../../quick-start/arkts-appstorage.md#decorating-variables-of-the-map-type), [Set](../../../quick-start/arkts-appstorage.md#decorating-variables-of-the-set-type), [Date](../../../quick-start/arkts-appstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../quick-start/arkts-appstorage.md#union-type) types.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -69,14 +150,14 @@ Works in a way similar to the **link** API. If the given attribute exists in App
 
 | Name      | Type  | Mandatory| Description                                                    |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
-| propName     | string | Yes  | Attribute name in AppStorage.                                      |
-| defaultValue | T      | Yes  | Default value used to initialize the attribute with the specified attribute name in AppStorage. The value cannot be **undefined** or **null**.|
+| propName     | string | Yes  | Property name in AppStorage.                                      |
+| defaultValue | T      | Yes  | Default value used to initialize **propName** in AppStorage if it does not exist. Since API version 12, **defaultValue** can be **null** or **undefined**.|
 
 **Return value**
 
 | Type                                 | Description                                      |
 | ----------------------------------- | ---------------------------------------- |
-| SubscribedAbstractProperty&lt;T&gt; | Instance of **SubscribedAbstractProperty&lt;T&gt;** and two-way bound data of the given attribute in AppStorage.|
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | Instance of **SubscribedAbstractProperty&lt;T&gt;** and two-way bound data of the given property in AppStorage.|
 
 **Example**
 ```ts
@@ -90,7 +171,9 @@ let link2: SubscribedAbstractProperty<number> = AppStorage.setAndLink('PropA', 5
 
 static prop&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
-Establishes one-way data binding with the given attribute (specified by **propName**) in AppStorage. If the given attribute exists in AppStorage, the one-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist in AppStorage, **undefined** is returned. Updates of the one-way bound data are not synchronized back to AppStorage.
+Establishes a one-way data binding with the property corresponding to **propName** in [AppStorage](../../../quick-start/arkts-appstorage.md). If the given property exists in AppStorage, the one-way bound data of the property in AppStorage is returned. If the given property does not exist in AppStorage, **undefined** is returned. Updates of the one-way bound data are not synchronized back to AppStorage.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -98,13 +181,13 @@ Establishes one-way data binding with the given attribute (specified by **propNa
 
 | Name     | Type    | Mandatory  | Description            |
 | -------- | ------ | ---- | ---------------- |
-| propName | string | Yes   | Attribute name in AppStorage.|
+| propName | string | Yes   | Property name in AppStorage.|
 
 **Return value**
 
 | Type                               | Description                                                        |
 | ----------------------------------- | ------------------------------------------------------------ |
-| SubscribedAbstractProperty&lt;T&gt; | Returns one-way bound data if specified attribute exists in AppStorage; returns **undefined** otherwise.|
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | One-way bound data of the specified property in AppStorage, or **undefined** if the property does not exist.|
 
 **Example**
 
@@ -120,7 +203,13 @@ prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
 
 static setAndProp&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
 
-Works in a way similar to the **prop** API. If the given attribute exists in AppStorage, the one-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in AppStorage, and one-way bound data is returned. The value of **defaultValue** must be of the T type and cannot be **undefined** or **null**.
+Similar to the [prop](#prop10) API, establishes a one-way data binding with the property corresponding to **propName** in [AppStorage](../../../quick-start/arkts-appstorage.md). If the given property exists in AppStorage, this API returns the one-way bound data for the property. If the given property does not exist, this API creates and initializes the property in AppStorage using **defaultValue** and returns its one-way bound data. The value of **defaultValue** must be of the **T** type. Since API version 12, it can be **null** or **undefined**.
+
+> **NOTE**
+>
+> Since API version 12, AppStorage supports [Map](../../../quick-start/arkts-appstorage.md#decorating-variables-of-the-map-type), [Set](../../../quick-start/arkts-appstorage.md#decorating-variables-of-the-set-type), [Date](../../../quick-start/arkts-appstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../quick-start/arkts-appstorage.md#union-type) types.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -128,14 +217,14 @@ Works in a way similar to the **prop** API. If the given attribute exists in App
 
 | Name      | Type  | Mandatory| Description                                                    |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
-| propName     | string | Yes  | Attribute name in AppStorage.                                      |
-| defaultValue | T      | Yes  | Default value used to initialize the attribute with the specified attribute name in AppStorage. The value cannot be **undefined** or **null**.|
+| propName     | string | Yes  | Property name in AppStorage.                                      |
+| defaultValue | T      | Yes  | Default value used to initialize **propName** in AppStorage if it does not exist. Since API version 12, **defaultValue** can be **null** or **undefined**.|
 
 **Return value**
 
 | Type                                 | Description                                     |
 | ----------------------------------- | --------------------------------------- |
-| SubscribedAbstractProperty&lt;T&gt; | Instance of **SubscribedAbstractProperty&lt;T&gt;**.|
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | Instance of **SubscribedAbstractProperty&lt;T&gt;**.|
 
 **Example**
 ```ts
@@ -148,7 +237,9 @@ let prop: SubscribedAbstractProperty<number> = AppStorage.setAndProp('PropB', 49
 
 static has(propName: string): boolean
 
-Checks whether the attribute with the specified attribute name exists in AppStorage.
+Checks whether the property corresponding to **propName** exists in [AppStorage](../../../quick-start/arkts-appstorage.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -156,13 +247,13 @@ Checks whether the attribute with the specified attribute name exists in AppStor
 
 | Name     | Type    | Mandatory  | Description            |
 | -------- | ------ | ---- | ---------------- |
-| propName | string | Yes   | Attribute name in AppStorage.|
+| propName | string | Yes   | Property name in AppStorage.|
 
 **Return value**
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the attribute with the specified attribute name exists in AppStorage; returns **false** otherwise.|
+| boolean | Returns **true** if the property exists in AppStorage; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -174,7 +265,9 @@ AppStorage.has('simpleProp');
 
 static get&lt;T&gt;(propName: string): T | undefined
 
-Obtains the attribute with the specified attribute name in AppStorage. If the attribute does not exist, **undefined** is returned.
+Obtains the value of the property corresponding to **propName** from [AppStorage](../../../quick-start/arkts-appstorage.md). If the property does not exist, this API returns **undefined**.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -182,13 +275,13 @@ Obtains the attribute with the specified attribute name in AppStorage. If the at
 
 | Name     | Type    | Mandatory  | Description            |
 | -------- | ------ | ---- | ---------------- |
-| propName | string | Yes   | Attribute name in AppStorage.|
+| propName | string | Yes   | Property name in AppStorage.|
 
 **Return value**
 
 | Type                    | Description                                                       |
 | ------------------------ | ----------------------------------------------------------- |
-| T \| undefined | Returns the attribute with the specified attribute name in AppStorage; returns **undefined** if the attribute does not exist.|
+| T \| undefined | Value of the property corresponding to **propName** in AppStorage, or **undefined** if it does not exist.|
 
 **Example**
 ```ts
@@ -201,7 +294,13 @@ let value: number = AppStorage.get('PropA') as number; // 47
 
 static set&lt;T&gt;(propName: string, newValue: T): boolean
 
-Sets the value for the attribute with the specified attribute name in AppStorage. If the value of **newValue** is the same as the value of the attribute with the specified attribute name, that is, no value needs to be assigned, the state variable will not instruct the UI to update the value of attribute.
+Sets the value of the property corresponding to **propName** in [AppStorage](../../../quick-start/arkts-appstorage.md). If the value of **newValue** is the same as the current value of the property, no assignment is performed, and the state variable does not instruct the UI to update the value of the property. Since API version 12, **newValue** can be **null** or **undefined**.
+
+> **NOTE**
+>
+> Since API version 12, AppStorage supports [Map](../../../quick-start/arkts-appstorage.md#decorating-variables-of-the-map-type), [Set](../../../quick-start/arkts-appstorage.md#decorating-variables-of-the-set-type), [Date](../../../quick-start/arkts-appstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../quick-start/arkts-appstorage.md#union-type) types.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -209,14 +308,14 @@ Sets the value for the attribute with the specified attribute name in AppStorage
 
 | Name     | Type    | Mandatory  | Description                  |
 | -------- | ------ | ---- | ---------------------- |
-| propName | string | Yes   | Attribute name in AppStorage.      |
-| newValue | T      | Yes   | Attribute value, which cannot be **undefined** or **null**.|
+| propName | string | Yes   | Property name in AppStorage.      |
+| newValue | T      | Yes   | Property value. Since API version 12, the value can be **null** or **undefined**.|
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the operation is successful; return **false** if the attribute with the specified attribute name does not exist in AppStorage, or the value to set is **undefined** or **null**.  |
+| boolean | Returns **false** if the property corresponding to **propName** does not exist in AppStorage or if the assignment fails. Returns **true** if the assignment is successful.|
 
 **Example**
 ```ts
@@ -230,10 +329,14 @@ let res1: boolean = AppStorage.set('PropB', 47) // false
 
 static setOrCreate&lt;T&gt;(propName: string, newValue: T): void
 
-Sets a new value for the attribute with the specified attribute name in AppStorage or, if the attribute does not exist, creates one with the specified attribute name and the set value.
-If the new value is the same as the existing value of the attribute with the specified attribute name, the state variable will not instruct the UI to update the value of the attribute. This **setOrCreate** method creates only one AppStorage key-value pair. To create multiple key-value pairs, call this method multiple times.
+Sets the value of the property corresponding to **propName** in [AppStorage](../../../quick-start/arkts-appstorage.md) to a new value, if the property exists and the new value is different from the current value. If the new value is the same as the current value of the property, no assignment is performed, and the state variable does not instruct the UI to update the value of the property.
+If the property does not exist, this API creates it with the value of **newValue**. This **setOrCreate** API can create only one AppStorage key-value pair each time. To create multiple key-value pairs, call this API multiple times. Since API version 12, **newValue** can be **null** or **undefined**.
 
-The value of **newValue** cannot be **undefined** or **null**.
+> **NOTE**
+>
+> Since API version 12, AppStorage supports [Map](../../../quick-start/arkts-appstorage.md#decorating-variables-of-the-map-type), [Set](../../../quick-start/arkts-appstorage.md#decorating-variables-of-the-set-type), [Date](../../../quick-start/arkts-appstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../quick-start/arkts-appstorage.md#union-type) types.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -241,8 +344,8 @@ The value of **newValue** cannot be **undefined** or **null**.
 
 | Name     | Type    | Mandatory  | Description                  |
 | -------- | ------ | ---- | ---------------------- |
-| propName | string | Yes   | Attribute name in AppStorage.      |
-| newValue | T      | Yes   | Attribute value, which cannot be **undefined** or **null**.|
+| propName | string | Yes   | Property name in AppStorage.      |
+| newValue | T      | Yes   | Property value. Since API version 12, the value can be **null** or **undefined**.|
 
 **Example**
 ```ts
@@ -254,9 +357,23 @@ AppStorage.setOrCreate('simpleProp', 121);
 
 static delete(propName: string): boolean
 
-Deletes the attribute with the specified attribute name from AppStorage under the prerequisite that the attribute does not have a subscriber. If there is a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
+Deletes the property corresponding to **propName** from [AppStorage](../../../quick-start/arkts-appstorage.md).
 
-The subscribers of the attribute are attributes with the same name bound to APIs such as **link** and **prop**, **\@StorageLink('propName')**, and **\@StorageProp('propName')**. This means that if @StorageLink('propName') and @StorageProp('propName') are used in a custom component or if there is still a **SubscribedAbstractProperty** instance in sync with the attribute, the attribute cannot be deleted from AppStorage.
+The deletion is only successful if the property has no subscribers. If there is a subscriber, the deletion fails and **false** is returned. If the deletion is successful, **true** is returned.
+
+The property subscribers include the following:
+
+1. Variables decorated by [\@StorageLink](../../../quick-start/arkts-appstorage.md#storagelink) or [\@StorageProp](../../../quick-start/arkts-appstorage.md#storageprop)
+
+2. Instances of [SubscribedAbstractProperty](#subscribedabstractproperty) returned by [link](#link10), [prop](#prop10), [setAndLink](#setandlink10), or [setAndProp](#setandprop10)
+
+To delete these subscribers:
+
+1. Remove the custom component containing @StorageLink or @StorageProp. For details, see [Custom Component Deletion](../../../quick-start/arkts-page-custom-components-lifecycle.md#custom-component-deletion).
+
+2. Call the [aboutToBeDeleted](#abouttobedeleted10) API on instances of **SubscribedAbstractProperty** returned by **link**, **prop**, **setAndLink**, or **setAndProp**.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -264,7 +381,7 @@ The subscribers of the attribute are attributes with the same name bound to APIs
 
 | Name     | Type    | Mandatory  | Description            |
 | -------- | ------ | ---- | ---------------- |
-| propName | string | Yes   | Attribute name in AppStorage.|
+| propName | string | Yes   | Property name in AppStorage.|
 
 **Return value**
 
@@ -287,7 +404,9 @@ let res1: boolean = AppStorage.delete('PropB'); // true, PropB is deleted from A
 
 static keys(): IterableIterator&lt;string&gt;
 
-Obtains all attribute names in AppStorage.
+Obtains all property names in [AppStorage](../../../quick-start/arkts-appstorage.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -295,7 +414,7 @@ Obtains all attribute names in AppStorage.
 
 | Type                            | Description                |
 | ------------------------------ | ------------------ |
-| IterableIterator&lt;string&gt; | All attribute names in AppStorage.|
+| IterableIterator&lt;string&gt; | All property names in AppStorage.|
 
 **Example**
 ```ts
@@ -308,9 +427,11 @@ let keys: IterableIterator<string> = AppStorage.keys();
 
 static clear(): boolean
 
-Deletes all attributes from AppStorage under the prerequisite that none of the attributes has a subscriber. If any of the attributes has a subscriber, this API does not take effect and **false** is returned. If the deletion is successful, **true** is returned.
+Deletes all properties from [AppStorage](../../../quick-start/arkts-appstorage.md). The deletion is only successful if none of the properties in AppStorage have any subscribers. If there are subscribers, this API does not take effect and **false** is returned. If the deletion is successful, **true** is returned.
 
 For details about the subscriber, see [delete](#delete10).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -331,7 +452,9 @@ let res: boolean = AppStorage.clear(); // true, there are no subscribers
 
 static size(): number
 
-Obtains the number of attributes in AppStorage.
+Obtains the number of properties in [AppStorage](../../../quick-start/arkts-appstorage.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -339,7 +462,7 @@ Obtains the number of attributes in AppStorage.
 
 | Type    | Description                 |
 | ------ | ------------------- |
-| number | Number of attributes in AppStorage.|
+| number | Number of properties in AppStorage.|
 
 **Example**
 ```ts
@@ -352,11 +475,11 @@ let res: number = AppStorage.size(); // 1
 
 static Link(propName: string): any
 
-Establishes two-way data binding with the given attribute (specified by **propName**) in AppStorage. If the given attribute exists in AppStorage, the two-way bound data of the attribute in AppStorage is returned.
+Establishes a two-way data binding with the property corresponding to **propName** in [AppStorage](../../../quick-start/arkts-appstorage.md). If the given property exists in AppStorage, the two-way bound data of the property in AppStorage is returned.
 
-Any update of the data is synchronized back to AppStorage, which then synchronizes the update to all data and custom components bound to the attribute.
+Any update of the data is synchronized back to AppStorage, which then synchronizes the update to all data and custom components bound to the property.
 
-If the given attribute does not exist in AppStorage, **undefined** is returned.
+If the given property does not exist in AppStorage, **undefined** is returned.
 
 > **NOTE**
 >
@@ -368,13 +491,13 @@ If the given attribute does not exist in AppStorage, **undefined** is returned.
 
 | Name     | Type    | Mandatory  | Description            |
 | -------- | ------ | ---- | ---------------- |
-| propName | string | Yes   | Attribute name in AppStorage.|
+| propName | string | Yes   | Property name in AppStorage.|
 
 **Return value**
 
 | Type                            | Description                                                        |
 | -------------------------------- | ------------------------------------------------------------ |
-| any | Returns two-way bound data if specified attribute exists in AppStorage; returns **undefined** otherwise.|
+| any | Two-way bound data of the specified property in AppStorage, or **undefined** if the property does not exist.|
 
 **Example**
 ```ts
@@ -388,7 +511,7 @@ linkToPropA1.set(48); // Two-way synchronization: linkToPropA1.get() == linkToPr
 
 static SetAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
 
-Works in a way similar to the **Link** API. If the given attribute exists in AppStorage, the two-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in AppStorage, and two-way bound data is returned. The value of **defaultValue** must be of the T type and cannot be **undefined** or **null**.
+Similar to the [Link](#linkdeprecated) API, establishes a two-way data binding with the property corresponding to **propName** in [AppStorage](../../../quick-start/arkts-appstorage.md). If the given property exists in AppStorage, this API returns the two-way bound data for the property. If the given property does not exist, this API creates and initializes the property in AppStorage using **defaultValue** and returns its two-way bound data. The value of **defaultValue** must be of the **T** type and cannot be **null** or **undefined**.
 
 > **NOTE**
 >
@@ -400,14 +523,14 @@ Works in a way similar to the **Link** API. If the given attribute exists in App
 
 | Name      | Type  | Mandatory| Description                                                    |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
-| propName     | string | Yes  | Attribute name in AppStorage.                                      |
-| defaultValue | T      | Yes  | Default value used to initialize the attribute with the specified attribute name in AppStorage. The value cannot be **undefined** or **null**.|
+| propName     | string | Yes  | Property name in AppStorage.                                      |
+| defaultValue | T      | Yes  | Default value used to initialize **propName** in AppStorage if it does not exist. The value cannot be **null** or **undefined**.|
 
 **Return value**
 
 | Type                                 | Description                                      |
 | ----------------------------------- | ---------------------------------------- |
-| SubscribedAbstractProperty&lt;T&gt; | Instance of **SubscribedAbstractProperty&lt;T&gt;** and two-way bound data of the given attribute in AppStorage.|
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | Instance of **SubscribedAbstractProperty&lt;T&gt;** and two-way bound data of the given property in AppStorage.|
 
 **Example**
 ```ts
@@ -421,11 +544,11 @@ let link2: SubscribedAbstractProperty<number> = AppStorage.SetAndLink('PropA', 5
 
 static Prop(propName: string): any
 
-Establishes one-way data binding with the given attribute (specified by **propName**) in AppStorage. If the given attribute exists in AppStorage, the one-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist in AppStorage, **undefined** is returned. Updates of the one-way bound data are not synchronized back to AppStorage.
+Establishes a one-way data binding with the property corresponding to **propName** in [AppStorage](../../../quick-start/arkts-appstorage.md). If the given property exists in AppStorage, the one-way bound data of the property in AppStorage is returned. If the given property does not exist in AppStorage, **undefined** is returned. Updates of the one-way bound data are not synchronized back to AppStorage.
 
 > **NOTE**
 >
-> Prop supports only simple types.
+> **Prop** supports only simple types.
 >
 > This API is supported since API version 7 and deprecated since API version 10. You are advised to use [prop10+](#prop10) instead.
 
@@ -435,13 +558,13 @@ Establishes one-way data binding with the given attribute (specified by **propNa
 
 | Name     | Type    | Mandatory  | Description            |
 | -------- | ------ | ---- | ---------------- |
-| propName | string | Yes   | Attribute name in AppStorage.|
+| propName | string | Yes   | Property name in AppStorage.|
 
 **Return value**
 
 | Type                            | Description                                                        |
 | -------------------------------- | ------------------------------------------------------------ |
-| any | Returns one-way bound data if specified attribute exists in AppStorage; returns **undefined** otherwise.|
+| any | One-way bound data of the specified property in AppStorage, or **undefined** if the property does not exist.|
 
 **Example**
 ```ts
@@ -455,7 +578,7 @@ prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
 
 static SetAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProperty&lt;S&gt;
 
-Works in a way similar to the **Prop** API. If the given attribute exists in AppStorage, the one-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in AppStorage, and one-way bound data is returned. The value of **defaultValue** must be of the S type and cannot be **undefined** or **null**.
+Similar to the [Prop](#propdeprecated) API, establishes a one-way data binding with the property corresponding to **propName** in [AppStorage](../../../quick-start/arkts-appstorage.md). If the given property exists in AppStorage, this API returns the one-way bound data for the property. If the given property does not exist, this API creates and initializes the property in AppStorage using **defaultValue** and returns its one-way bound data. The value of **defaultValue** must be of the **S** type and cannot be **null** or **undefined**.
 
 > **NOTE**
 >
@@ -467,14 +590,14 @@ Works in a way similar to the **Prop** API. If the given attribute exists in App
 
 | Name      | Type  | Mandatory| Description                                                    |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
-| propName     | string | Yes  | Attribute name in AppStorage.                                      |
-| defaultValue | S      | Yes  | Default value used to initialize the attribute with the specified attribute name in AppStorage. The value cannot be **undefined** or **null**.|
+| propName     | string | Yes  | Property name in AppStorage.                                      |
+| defaultValue | S      | Yes  | Default value used to initialize **propName** in AppStorage if it does not exist. The value cannot be **null** or **undefined**.|
 
 **Return value**
 
 | Type                                 | Description                                     |
 | ----------------------------------- | --------------------------------------- |
-| SubscribedAbstractProperty&lt;S&gt; | Instance of **SubscribedAbstractProperty&lt;S&gt;**.|
+| [SubscribedAbstractProperty&lt;S&gt;](#subscribedabstractproperty) | Instance of **SubscribedAbstractProperty&lt;S&gt;**.|
 
 **Example**
 ```ts
@@ -486,7 +609,7 @@ let prop: SubscribedAbstractProperty<number> = AppStorage.SetAndProp('PropB', 49
 
 static Has(propName: string): boolean
 
-Checks whether the attribute with the specified attribute name exists in AppStorage.
+Checks whether the property corresponding to **propName** exists in [AppStorage](../../../quick-start/arkts-appstorage.md).
 
 > **NOTE**
 >
@@ -498,13 +621,13 @@ Checks whether the attribute with the specified attribute name exists in AppStor
 
 | Name     | Type    | Mandatory  | Description            |
 | -------- | ------ | ---- | ---------------- |
-| propName | string | Yes   | Attribute name in AppStorage.|
+| propName | string | Yes   | Property name in AppStorage.|
 
 **Return value**
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the attribute with the specified attribute name exists in AppStorage; returns **false** otherwise.|
+| boolean | Returns **true** if the property exists in AppStorage; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -515,7 +638,7 @@ AppStorage.Has('simpleProp');
 
 static Get&lt;T&gt;(propName: string): T | undefined
 
-Obtains the attribute with the specified attribute name in AppStorage. If the attribute does not exist, **undefined** is returned.
+Obtains the value of the property corresponding to **propName** from [AppStorage](../../../quick-start/arkts-appstorage.md). If the property does not exist, this API returns **undefined**.
 
 > **NOTE**
 >
@@ -527,13 +650,13 @@ Obtains the attribute with the specified attribute name in AppStorage. If the at
 
 | Name     | Type    | Mandatory  | Description            |
 | -------- | ------ | ---- | ---------------- |
-| propName | string | Yes   | Attribute name in AppStorage.|
+| propName | string | Yes   | Property name in AppStorage.|
 
 **Return value**
 
 | Type                    | Description                                                        |
 | ------------------------ | ------------------------------------------------------------ |
-| T \| undefined | Returns the attribute with the specified attribute name in AppStorage; returns **undefined** if the attribute does not exist.|
+| T \| undefined | Value of the property corresponding to **propName** in AppStorage, or **undefined** if it does not exist.|
 
 **Example**
 ```ts
@@ -545,7 +668,7 @@ let value: number = AppStorage.Get('PropA') as number; // 47
 
 static Set&lt;T&gt;(propName: string, newValue: T): boolean
 
-Sets the value for the attribute with the specified attribute name in AppStorage.
+Sets the value of the property corresponding to **propName** in [AppStorage](../../../quick-start/arkts-appstorage.md).
 
 > **NOTE**
 >
@@ -555,16 +678,16 @@ Sets the value for the attribute with the specified attribute name in AppStorage
 
 **Parameters**
 
-| Name     | Type    | Mandatory  | Description                  |
-| -------- | ------ | ---- | ---------------------- |
-| propName | string | Yes   | Attribute name in AppStorage.      |
-| newValue | T      | Yes   | Attribute value, which cannot be **undefined** or **null**.|
+| Name  | Type  | Mandatory| Description                       |
+| -------- | ------ | ---- | ------------------------------- |
+| propName | string | Yes  | Property name in AppStorage.         |
+| newValue | T      | Yes  | Property value, which cannot be **null** or **undefined**.|
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the operation is successful; return **false** if the attribute with the specified attribute name does not exist in AppStorage, or the value to set is **undefined** or **null**.  |
+| boolean | Returns **true** if the operation is successful; returns **false** if the property corresponding to **propName** does not exist in AppStorage, or the value to set is **undefined** or **null**.  |
 
 **Example**
 ```ts
@@ -577,9 +700,9 @@ let res1: boolean = AppStorage.Set('PropB', 47) // false
 
 static SetOrCreate&lt;T&gt;(propName: string, newValue: T): void
 
-Sets a new value for the attribute with the specified attribute name in AppStorage or, if the attribute does not exist, creates one with the specified attribute name and default value.
+Sets the value of the property corresponding to **propName** in [AppStorage](../../../quick-start/arkts-appstorage.md) to a new value, if the property exists. If the property does not exist, this API creates it with the value of **newValue**.
 
-The value of **newValue** cannot be **undefined** or **null**.
+The value of **newValue** cannot be **null** or **undefined**.
 
 > **NOTE**
 >
@@ -589,10 +712,10 @@ The value of **newValue** cannot be **undefined** or **null**.
 
 **Parameters**
 
-| Name     | Type    | Mandatory  | Description                  |
-| -------- | ------ | ---- | ---------------------- |
-| propName | string | Yes   | Attribute name in AppStorage.      |
-| newValue | T      | Yes   | Attribute value, which cannot be **undefined** or **null**.|
+| Name  | Type  | Mandatory| Description                       |
+| -------- | ------ | ---- | ------------------------------- |
+| propName | string | Yes  | Property name in AppStorage.         |
+| newValue | T      | Yes  | Property value, which cannot be **null** or **undefined**.|
 
 **Example**
 ```ts
@@ -603,9 +726,11 @@ AppStorage.SetOrCreate('simpleProp', 121);
 
 static Delete(propName: string): boolean
 
-Deletes the attribute with the specified attribute name from AppStorage under the prerequisite that the attribute does not have a subscriber. If there is a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
+Deletes the property corresponding to **propName** from [AppStorage](../../../quick-start/arkts-appstorage.md).
 
-The subscribers of the attribute are attributes with the same name bound to APIs such as **Link** and **Prop**, **\@StorageLink('propName')**, and **\@StorageProp('propName')**. This means that if @StorageLink('propName') and @StorageProp('propName') are used in a custom component or if there is still a **SubscribedAbstractProperty** instance in sync with the attribute, the attribute cannot be deleted from AppStorage.
+The deletion is only successful if the property has no subscribers. If there is a subscriber, the deletion fails and **false** is returned. If the deletion is successful, **true** is returned.
+
+Subscribers include properties bound using [Link](#linkdeprecated) and [Prop](#propdeprecated) APIs, as well as those decorated with [\@StorageLink('propName')](../../../quick-start/arkts-appstorage.md#storagelink) and [\@StorageProp('propName')](../../../quick-start/arkts-appstorage.md#storageprop). This means that if @StorageLink('propName') and @StorageProp('propName') are used in a custom component or if there is still a **SubscribedAbstractProperty** instance in a synchronization relationship with the property, the property cannot be deleted from AppStorage.
 
 > **NOTE**
 >
@@ -617,7 +742,7 @@ The subscribers of the attribute are attributes with the same name bound to APIs
 
 | Name     | Type    | Mandatory  | Description            |
 | -------- | ------ | ---- | ---------------- |
-| propName | string | Yes   | Attribute name in AppStorage.|
+| propName | string | Yes   | Property name in AppStorage.|
 
 **Return value**
 
@@ -639,7 +764,7 @@ let res1: boolean = AppStorage.Delete('PropB'); // true, PropB is deleted from A
 
 static Keys(): IterableIterator&lt;string&gt;
 
-Obtains all attribute names in AppStorage.
+Obtains all property names in [AppStorage](../../../quick-start/arkts-appstorage.md).
 
 > **NOTE**
 >
@@ -651,7 +776,7 @@ Obtains all attribute names in AppStorage.
 
 | Type                            | Description                |
 | ------------------------------ | ------------------ |
-| IterableIterator&lt;string&gt; | All attribute names in AppStorage.|
+| IterableIterator&lt;string&gt; | All property names in AppStorage.|
 
 **Example**
 ```ts
@@ -664,7 +789,7 @@ let keys: IterableIterator<string> = AppStorage.Keys();
 
 static staticClear(): boolean
 
-Deletes all attributes.
+Deletes all properties.
 
 > **NOTE**
 >
@@ -676,7 +801,7 @@ Deletes all attributes.
 
 | Type     | Description                               |
 | ------- | --------------------------------- |
-| boolean | Returns **true** if all attributes are deleted; returns **false** if any of the attributes is being referenced by a state variable.|
+| boolean | Returns **true** if all properties are deleted; returns **false** if any of the properties is being referenced by a state variable.|
 
 **Example**
 ```ts
@@ -688,7 +813,7 @@ let simple = AppStorage.staticClear();
 
 static Clear(): boolean
 
-Deletes all attributes from AppStorage under the prerequisite that none of the attributes has a subscriber. If any of the attributes has a subscriber, this API does not take effect and **false** is returned. If the deletion is successful, **true** is returned.
+Deletes all properties from [AppStorage](../../../quick-start/arkts-appstorage.md). The deletion is only successful if none of the properties in AppStorage have any subscribers. If there are subscribers, this API does not take effect and **false** is returned. If the deletion is successful, **true** is returned.
 
 For details about the subscriber, see [delete](#delete10).
 
@@ -715,7 +840,7 @@ let res: boolean = AppStorage.Clear(); // true, there are no subscribers
 
 static IsMutable(propName: string): boolean
 
-Checks whether the given attribute in AppStorage name is mutable.
+Checks whether the property corresponding to **propName** in [AppStorage](../../../quick-start/arkts-appstorage.md) is mutable.
 
 > **NOTE**
 >
@@ -727,13 +852,13 @@ Checks whether the given attribute in AppStorage name is mutable.
 
 | Name     | Type    | Mandatory  | Description            |
 | -------- | ------ | ---- | ---------------- |
-| propName | string | Yes   | Attribute name in AppStorage.|
+| propName | string | Yes   | Property name in AppStorage.|
 
 **Return value**
 
 | Type     | Description                              |
 | ------- | -------------------------------- |
-| boolean | Whether the given attribute in AppStorage name is mutable.|
+| boolean | Whether the property corresponding to **propName** is mutable.|
 
 **Example**
 ```ts
@@ -746,7 +871,7 @@ let res: boolean = AppStorage.IsMutable('simpleProp');
 
 static Size(): number
 
-Obtains the number of attributes in AppStorage.
+Obtains the number of properties in [AppStorage](../../../quick-start/arkts-appstorage.md).
 
 > **NOTE**
 >
@@ -758,7 +883,7 @@ Obtains the number of attributes in AppStorage.
 
 | Type    | Description                 |
 | ------ | ------------------- |
-| number | Number of attributes in AppStorage.|
+| number | Number of properties in AppStorage.|
 
 **Example**
 ```ts
@@ -772,16 +897,21 @@ let res: number = AppStorage.Size(); // 1
 
 For details about how to use LocalStorage on the UI, see [LocalStorage: UI State Storage](../../../quick-start/arkts-localstorage.md).
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ### constructor<sup>9+</sup>
 
 constructor(initializingProperties?: Object)
 
-Creates a **LocalStorage** instance and initializes it using the attributes and values returned by **Object.keys(initializingProperties)**.
+Creates a [LocalStorage](../../../quick-start/arkts-localstorage.md) instance and initializes it using the properties and values returned by **Object.keys(initializingProperties)**.
 
-> **NOTE**
->
-> This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -789,7 +919,7 @@ Creates a **LocalStorage** instance and initializes it using the attributes and 
 
 | Name                   | Type    | Mandatory  | Description                                    |
 | ---------------------- | ------ | ---- | ---------------------------------------- |
-| initializingProperties | Object | No   | Attributes and values used to initialize the **LocalStorage** instance. The value cannot be **undefined**.|
+| initializingProperties | Object | No   | Properties and values used to initialize the **LocalStorage** instance. The value cannot be **undefined**.|
 
 **Example**
 ```ts
@@ -802,11 +932,11 @@ let storage: LocalStorage = new LocalStorage(para);
 
 static getShared(): LocalStorage
 
-Obtains the **LocalStorage** instance shared by the current stage.
+Obtains the [LocalStorage](../../../quick-start/arkts-localstorage.md) instance shared across the current stage.
 
-> **NOTE**
->
-> This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -819,18 +949,18 @@ Obtains the **LocalStorage** instance shared by the current stage.
 | [LocalStorage](#localstorage9) | **LocalStorage** instance.|
 
 **Example**
-For details about how to use **getShared**, see [Sharing a LocalStorage Instance from UIAbility to One or More Pages](../../../quick-start/arkts-localstorage.md#example-of-sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
+For details about how to use the **getShared** API, see [Example of Sharing a LocalStorage Instance from UIAbility to One or More Pages](../../../quick-start/arkts-localstorage.md#example-of-sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
 
 
 ### has<sup>9+</sup>
 
 has(propName: string): boolean
 
-Checks whether the attribute with the specified attribute name exists in LocalStorage.
+Checks whether the property corresponding to **propName** exists in [LocalStorage](../../../quick-start/arkts-localstorage.md).
 
-> **NOTE**
->
-> This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -838,13 +968,13 @@ Checks whether the attribute with the specified attribute name exists in LocalSt
 
 | Name     | Type    | Mandatory  | Description              |
 | -------- | ------ | ---- | ------------------ |
-| propName | string | Yes   | Attribute name in LocalStorage.|
+| propName | string | Yes   | Property name in LocalStorage.|
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the attribute with the specified attribute name exists in LocalStorage; returns **false** otherwise.|
+| boolean | Returns **true** if the property exists in LocalStorage; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -858,11 +988,11 @@ storage.has('PropA'); // true
 
 get&lt;T&gt;(propName: string): T | undefined
 
-Obtains the attribute with the specified attribute name in LocalStorage.
+Obtains the value of the property corresponding to **propName** from [LocalStorage](../../../quick-start/arkts-localstorage.md).
 
-> **NOTE**
->
-> This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -870,13 +1000,13 @@ Obtains the attribute with the specified attribute name in LocalStorage.
 
 | Name     | Type    | Mandatory  | Description              |
 | -------- | ------ | ---- | ------------------ |
-| propName | string | Yes   | Attribute name in LocalStorage.|
+| propName | string | Yes   | Property name in LocalStorage.|
 
 **Return value**
 
 | Type                    | Description                                                        |
 | ------------------------ | ------------------------------------------------------------ |
-| T \| undefined | Returns the attribute with the specified attribute name in LocalStorage; returns **undefined** if the attribute does not exist.|
+| T \| undefined | Value of the property corresponding to **propName** in LocalStorage, or **undefined** if it does not exist.|
 
 **Example**
 ```ts
@@ -890,11 +1020,15 @@ let value: number = storage.get('PropA') as number; // 47
 
 set&lt;T&gt;(propName: string, newValue: T): boolean
 
-Sets a value for the attribute with the specified attribute name in LocalStorage. If the value of **newValue** is the same as the value of the attribute with the specified attribute name, that is, no value needs to be assigned, the state variable will not instruct the UI to update the value of attribute.
+Sets the value of the property corresponding to **propName** in [LocalStorage](../../../quick-start/arkts-localstorage.md). If the value of **newValue** is the same as the current value of the property, no assignment is performed, and the state variable does not instruct the UI to update the value of the property. Since API version 12, **newValue** can be **null** or **undefined**.
 
 > **NOTE**
->
-> This API can be used in ArkTS widgets since API version 9.
+> 
+> Since API version 12, LocalStorage supports [Map](../../../quick-start/arkts-localstorage.md#decorating-variables-of-the-map-type), [Set](../../../quick-start/arkts-localstorage.md#decorating-variables-of-the-set-type), [Date](../../../quick-start/arkts-localstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../quick-start/arkts-localstorage.md#union-type) types.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -902,14 +1036,14 @@ Sets a value for the attribute with the specified attribute name in LocalStorage
 
 | Name     | Type    | Mandatory  | Description                   |
 | -------- | ------ | ---- | ----------------------- |
-| propName | string | Yes   | Attribute name in LocalStorage.     |
-| newValue | T      | Yes   | Attribute value, which cannot be **undefined** or **null**.|
+| propName | string | Yes   | Property name in LocalStorage.     |
+| newValue | T      | Yes   | Property value. Since API version 12, the value can be **null** or **undefined**.|
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the operation is successful; return **false** if the attribute with the specified attribute name does not exist in LocalStorage, or the value to set is **undefined** or **null**.  |
+| boolean | Returns **true** if the operation is successful; returns **false** if the property corresponding to **propName** does not exist in LocalStorage.  |
 
 **Example**
 
@@ -925,12 +1059,16 @@ let res1: boolean = storage.set('PropB', 47); // false
 
 setOrCreate&lt;T&gt;(propName: string, newValue: T): boolean
 
-Sets a new value for the attribute with the specified attribute name in LocalStorage or, if the attribute does not exist, creates one with the specified attribute name and the set value.
-If the new value is the same as the existing value of the attribute with the specified attribute name, the state variable will not instruct the UI to update the value of the attribute. This **setOrCreate** method creates only one LocalStorage key-value pair. To create multiple key-value pairs, call this method multiple times.
+Sets the value of the property corresponding to **propName** in [LocalStorage](../../../quick-start/arkts-localstorage.md) to a new value, if the property exists and the new value is different from the current value. If the new value is the same as the current value of the property, no assignment is performed, and the state variable does not instruct the UI to update the value of the property.
+If the property does not exist, this API creates it with the value of **newValue**. This **setOrCreate** method creates only one LocalStorage key-value pair. To create multiple key-value pairs, call this method multiple times. Since API version 12, **newValue** can be **null** or **undefined**.
 
 > **NOTE**
->
-> This API can be used in ArkTS widgets since API version 9.
+> 
+> Since API version 12, LocalStorage supports [Map](../../../quick-start/arkts-localstorage.md#decorating-variables-of-the-map-type), [Set](../../../quick-start/arkts-localstorage.md#decorating-variables-of-the-set-type), [Date](../../../quick-start/arkts-localstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../quick-start/arkts-localstorage.md#union-type) types.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -938,14 +1076,14 @@ If the new value is the same as the existing value of the attribute with the spe
 
 | Name     | Type    | Mandatory  | Description                   |
 | -------- | ------ | ---- | ----------------------- |
-| propName | string | Yes   | Attribute name in LocalStorage.     |
-| newValue | T      | Yes   | Attribute value, which cannot be **undefined** or **null**.|
+| propName | string | Yes   | Property name in LocalStorage.     |
+| newValue | T      | Yes   | Property value. Since API version 12, the value can be **null** or **undefined**.|
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **false** if **newValue** is set to **undefined** or **null**.<br>Updates the target attribute with the new value and returns **true** if the attribute exists in LocalStorage.<br>Creates an attribute with the specified attribute name and default value if the attribute does not exist in LocalStorage.|
+| boolean | Returns **true** if the property corresponding to **propName** exists and its value is updated to the value of **newValue**,<br>or if **propName** is created with the value of **newValue**.|
 
 **Example**
 
@@ -954,23 +1092,94 @@ let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let res: boolean = storage.setOrCreate('PropA', 121); // true
 let res1: boolean = storage.setOrCreate('PropB', 111); // true
-let res2: boolean = storage.setOrCreate('PropB', null); // false
+let res2: boolean = storage.setOrCreate('PropB', null); // true (API version 12 and later) or false (API version 11 and earlier)
 ```
 
+### ref<sup>12+</sup>
+
+public ref\<T\>(propName: string): AbstractProperty\<T\> | undefined
+
+Returns a reference to the data corresponding to **propName** in [LocalStorage](../../../quick-start/arkts-localstorage.md). If the provided **propName** does not exist, this API returns **undefined**.
+
+This API is similar to [link](#link9) but does not require manually releasing the returned variable of the [AbstractProperty](#abstractproperty) type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                |
+| -------- | ------ | ---- | ------------------------ |
+| propName | string | Yes  | Property name in LocalStorage.|
+
+**Return value**
+
+| Type                                  | Description                                                        |
+| -------------------------------------- | ------------------------------------------------------------ |
+| [AbstractProperty&lt;T&gt;](#abstractproperty) \| undefined | A reference to the property in LocalStorage, or **undefined** if the property does not exist.|
+
+**Example**
+
+```ts
+let para: Record<string, number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
+let refToPropA1: AbstractProperty<number> | undefined = storage.ref('PropA');
+let refToPropA2: AbstractProperty<number> | undefined = storage.ref('PropA'); // refToPropA2.get() == 47
+refToPropA1?.set(48); // refToPropA1.get() == refToPropA2.get() == 48
+```
+
+### setAndRef<sup>12+</sup>
+
+public setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&lt;T&gt;
+
+Similar to the [ref](#ref12-1) API, returns a reference to the data corresponding to **propName** in [LocalStorage](../../../quick-start/arkts-localstorage.md). If **propName** does not exist, this API creates and initializes the property in LocalStorage using **defaultValue** and returns its reference. **defaultValue** must be of the **T** type and can be **null** or **undefined**.
+
+This API is similar to [setAndLink](#setandlink9) but does not require manually releasing the returned variable of the [AbstractProperty](#abstractproperty) type.
+
+> **NOTE**
+>
+> Since API version 12, LocalStorage supports [Map](../../../quick-start/arkts-localstorage.md#decorating-variables-of-the-map-type), [Set](../../../quick-start/arkts-localstorage.md#decorating-variables-of-the-set-type), [Date](../../../quick-start/arkts-localstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../quick-start/arkts-localstorage.md#union-type) types.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name      | Type  | Mandatory| Description                                                    |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| propName     | string | Yes  | Property name in LocalStorage.                                    |
+| defaultValue | T      | Yes  | Default value used to initialize **propName** in LocalStorage if it does not exist. The value can be **null** or **undefined**.|
+
+**Return value**
+
+| Type                     | Description                                                        |
+| ------------------------- | ------------------------------------------------------------ |
+| [AbstractProperty&lt;T&gt;](#abstractproperty) | Instance of **AbstractProperty&lt;T&gt;**, which is a reference to the property in LocalStorage corresponding to **propName**.|
+
+**Example**
+
+```ts
+let para: Record<string, number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
+let ref1: AbstractProperty<number> = storage.setAndRef('PropB', 49); // Create PropB 49
+let ref2: AbstractProperty<number> = storage.setAndRef('PropA', 50); // PropA exists, remains 47
+```
 
 ### link<sup>9+</sup>
 
 link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
-Establishes two-way data binding with the given attribute in this **LocalStorage** instance. If the given attribute exists, the two-way bound data of the attribute in LocalStorage is returned.
+Establishes a two-way data binding with the property corresponding to **propName** in [LocalStorage](../../../quick-start/arkts-localstorage.md). If the given property exists in LocalStorage, this API returns the two-way bound data for the property.
 
-Any update of the data is synchronized back to LocalStorage, which then synchronizes the update to all data and custom components bound to the attribute.
+Any update of the data is synchronized back to LocalStorage, which then synchronizes the update to all data and custom components bound to the property.
 
-If the given attribute does not exist in LocalStorage, **undefined** is returned.
+If the given property does not exist in LocalStorage, **undefined** is returned.
 
-> **NOTE**
->
-> This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -978,13 +1187,13 @@ If the given attribute does not exist in LocalStorage, **undefined** is returned
 
 | Name     | Type    | Mandatory  | Description              |
 | -------- | ------ | ---- | ------------------ |
-| propName | string | Yes   | Attribute name in LocalStorage.|
+| propName | string | Yes   | Property name in LocalStorage.|
 
 **Return value**
 
 | Type                               | Description                                                        |
 | ----------------------------------- | ------------------------------------------------------------ |
-| SubscribedAbstractProperty&lt;T&gt; | Returns the **SubscribedAbstractProperty&lt;T&gt;** instance if the given attribute exists in LocalStorage; returns undefined otherwise.|
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | Returns the **SubscribedAbstractProperty&lt;T&gt;** instance if the given property exists in LocalStorage; returns undefined otherwise.|
 
 **Example**
 ```ts
@@ -1000,11 +1209,15 @@ linkToPropA1.set(48); // Two-way synchronization: linkToPropA1.get() == linkToPr
 
 setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
 
-Works in a way similar to the **link** API. If the given attribute exists in LocalStorage, the two-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in LocalStorage, and two-way bound data is returned. The value of **defaultValue** must be of the T type and cannot be **undefined** or **null**.
+Similar to the [link](#link9) API, establishes a two-way data binding with the property corresponding to **propName** in [LocalStorage](../../../quick-start/arkts-localstorage.md). If the given property exists in LocalStorage, this API returns the two-way bound data for the property. If the given property does not exist, this API creates and initializes the property in LocalStorage using **defaultValue** and returns its two-way bound data. The value of **defaultValue** must be of the **T** type. Since API version 12, it can be **null** or **undefined**.
 
 > **NOTE**
->
-> This API can be used in ArkTS widgets since API version 9.
+> 
+> Since API version 12, LocalStorage supports [Map](../../../quick-start/arkts-localstorage.md#decorating-variables-of-the-map-type), [Set](../../../quick-start/arkts-localstorage.md#decorating-variables-of-the-set-type), [Date](../../../quick-start/arkts-localstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../quick-start/arkts-localstorage.md#union-type) types.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1012,14 +1225,14 @@ Works in a way similar to the **link** API. If the given attribute exists in Loc
 
 | Name      | Type  | Mandatory| Description                                                    |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
-| propName     | string | Yes  | Attribute name in LocalStorage.                                    |
-| defaultValue | T      | Yes  | Default value used to initialize the attribute with the specified attribute name in LocalStorage. The value cannot be **undefined** or **null**.|
+| propName     | string | Yes  | Property name in LocalStorage.                                    |
+| defaultValue | T      | Yes  | Default value used to initialize **propName** in LocalStorage if it does not exist. Since API version 12, **defaultValue** can be **null** or **undefined**.|
 
 **Return value**
 
 | Type                               | Description                                                        |
 | ----------------------------------- | ------------------------------------------------------------ |
-| SubscribedAbstractProperty&lt;T&gt; | Instance of **SubscribedAbstractProperty&lt;T&gt;** and two-way bound data of the given attribute in LocalStorage.|
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | Instance of **SubscribedAbstractProperty&lt;T&gt;** and two-way bound data of the given property in LocalStorage.|
 
 **Example**
 ```ts
@@ -1034,11 +1247,11 @@ let link2: SubscribedAbstractProperty<number> = storage.setAndLink('PropA', 50);
 
 prop&lt;S&gt;(propName: string): SubscribedAbstractProperty&lt;S&gt;
 
-Establishes one-way data binding with the given attribute in this **LocalStorage** instance. If the given attribute exists, the one-way bound data of the attribute in LocalStorage is returned. If the given attribute does not exist in LocalStorage, **undefined** is returned. Updates of the one-way bound data are not synchronized back to LocalStorage.
+Establishes a one-way data binding with the property corresponding to **propName** in [LocalStorage](../../../quick-start/arkts-localstorage.md). If the given property exists in LocalStorage, this API returns the two-way bound data for the property. If the given property does not exist in LocalStorage, **undefined** is returned. Updates of the one-way bound data are not synchronized back to LocalStorage.
 
-> **NOTE**
->
-> This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1046,13 +1259,13 @@ Establishes one-way data binding with the given attribute in this **LocalStorage
 
 | Name     | Type    | Mandatory  | Description              |
 | -------- | ------ | ---- | ------------------ |
-| propName | string | Yes   | Attribute name in LocalStorage.|
+| propName | string | Yes   | Property name in LocalStorage.|
 
 **Return value**
 
 | Type                               | Description                                                        |
 | ----------------------------------- | ------------------------------------------------------------ |
-| SubscribedAbstractProperty&lt;S&gt; | Returns the **SubscribedAbstractProperty&lt;S&gt;** instance if the given attribute exists in LocalStorage; returns **undefined** otherwise.|
+| [SubscribedAbstractProperty&lt;S&gt;](#subscribedabstractproperty) | Instance of **SubscribedAbstractProperty&lt;S&gt;** and one-way bound data of the given property in LocalStorage, or **undefined** if the provided **propName** does not exist in LocalStorage.|
 
 **Example**
 ```ts
@@ -1068,11 +1281,15 @@ prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
 
 setAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProperty&lt;S&gt;
 
-Works in a way similar to the **prop** API. If the given attribute exists in LocalStorage, the one-way bound data of the attribute in LocalStorage is returned. If the given attribute does not exist, it is created and initialized with **defaultValue** in LocalStorage, and one-way bound data is returned. The value of **defaultValue** must be of the S type and cannot be **undefined** or **null**.
+Similar to the [prop](#prop9) API, establishes a one-way data binding with the property corresponding to **propName** in [LocalStorage](../../../quick-start/arkts-localstorage.md). If the given property exists in LocalStorage, this API returns the one-way bound data for the property. If the given property does not exist, this API creates and initializes the property in LocalStorage using **defaultValue** and returns its one-way bound data. The value of **defaultValue** must be of the **S** type. Since API version 12, it can be **null** or **undefined**.
 
 > **NOTE**
->
-> This API can be used in ArkTS widgets since API version 9.
+> 
+> Since API version 12, LocalStorage supports [Map](../../../quick-start/arkts-localstorage.md#decorating-variables-of-the-map-type), [Set](../../../quick-start/arkts-localstorage.md#decorating-variables-of-the-set-type), [Date](../../../quick-start/arkts-localstorage.md#decorating-variables-of-the-date-type), **null**, **undefined**, and [union](../../../quick-start/arkts-localstorage.md#union-type) types.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1080,14 +1297,14 @@ Works in a way similar to the **prop** API. If the given attribute exists in Loc
 
 | Name      | Type  | Mandatory| Description                                                    |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
-| propName     | string | Yes  | Attribute name in LocalStorage.                                    |
-| defaultValue | S      | Yes  | Default value used to initialize the attribute with the specified attribute name in LocalStorage. The value cannot be **undefined** or **null**.|
+| propName     | string | Yes  | Property name in LocalStorage.                                    |
+| defaultValue | S      | Yes  | Default value used to initialize **propName** in LocalStorage if it does not exist. Since API version 12, **defaultValue** can be **null** or **undefined**.|
 
 **Return value**
 
 | Type                               | Description                                                        |
 | ----------------------------------- | ------------------------------------------------------------ |
-| SubscribedAbstractProperty&lt;S&gt; | Instance of **SubscribedAbstractProperty&lt;S&gt;** and one-way bound data of the given attribute in LocalStorage.|
+| [SubscribedAbstractProperty&lt;S&gt;](#subscribedabstractproperty) | Instance of **SubscribedAbstractProperty&lt;S&gt;** and one-way bound data of the given property in LocalStorage.|
 
 **Example**
 
@@ -1102,13 +1319,23 @@ let prop: SubscribedAbstractProperty<number> = storage.setAndProp('PropB', 49); 
 
 delete(propName: string): boolean
 
-Deletes the attribute with the specified attribute name from LocalStorage under the prerequisite that the attribute does not have a subscriber. If there is a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
+Deletes the property corresponding to **propName** from [LocalStorage](../../../quick-start/arkts-localstorage.md). The deletion is only successful if the property has no subscribers. If there is a subscriber, the deletion fails and **false** is returned. If the deletion is successful, **true** is returned.
 
-The subscribers of the attribute are attributes with the same name bound to APIs such as **link** and **prop**, and **\@StorageLink('propName')** and **\@StorageProp('propName')**. This means that if **@StorageLink('propName')** and **@StorageProp('propName')** are used in a custom component or if there is still a **SubscribedAbstractProperty** instance in sync with the attribute, the attribute cannot be deleted from LocalStorage.
+The property subscribers include the following:
 
-> **NOTE**
->
-> This API can be used in ArkTS widgets since API version 9.
+1. Variables decorated by [\@LocalStorageLink](../../../quick-start/arkts-localstorage.md#localstoragelink) or [\@LocalStorageProp](../../../quick-start/arkts-localstorage.md#localstorageprop)
+
+2. Instances of [SubscribedAbstractProperty](#subscribedabstractproperty) returned by [link](#link9), [prop](#prop9), [setAndLink](#setandlink9), or [setAndProp](#setandprop9)
+
+To delete these subscribers:
+
+1. Remove the custom component containing \@LocalStorageLink or \@LocalStorageProp. For details, see [Custom Component Deletion](../../../quick-start/arkts-page-custom-components-lifecycle.md#custom-component-deletion).
+
+2. Call the [aboutToBeDeleted](#abouttobedeleted10) API on instances of **SubscribedAbstractProperty** returned by **link**, **prop**, **setAndLink**, or **setAndProp**.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1116,7 +1343,7 @@ The subscribers of the attribute are attributes with the same name bound to APIs
 
 | Name     | Type    | Mandatory  | Description              |
 | -------- | ------ | ---- | ------------------ |
-| propName | string | Yes   | Attribute name in LocalStorage.|
+| propName | string | Yes   | Property name in LocalStorage.|
 
 **Return value**
 
@@ -1140,11 +1367,11 @@ let res2: boolean = storage.delete('PropB'); // true, PropB is deleted from stor
 
 keys(): IterableIterator&lt;string&gt;
 
-Obtains all attribute names in LocalStorage.
+Obtains all property names in [LocalStorage](../../../quick-start/arkts-localstorage.md).
 
-> **NOTE**
->
-> This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1152,7 +1379,7 @@ Obtains all attribute names in LocalStorage.
 
 | Type                            | Description                  |
 | ------------------------------ | -------------------- |
-| IterableIterator&lt;string&gt; | All attribute names in LocalStorage.|
+| IterableIterator&lt;string&gt; | All property names in LocalStorage.|
 
 **Example**
 ```ts
@@ -1166,11 +1393,11 @@ let keys: IterableIterator<string> = storage.keys();
 
 size(): number
 
-Obtains the number of attributes in LocalStorage.
+Obtains the number of properties in [LocalStorage](../../../quick-start/arkts-localstorage.md).
 
-> **NOTE**
->
-> This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1178,7 +1405,7 @@ Obtains the number of attributes in LocalStorage.
 
 | Type  | Description                        |
 | ------ | ---------------------------- |
-| number | Number of attributes in LocalStorage.|
+| number | Number of properties in LocalStorage.|
 
 **Example**
 ```ts
@@ -1192,13 +1419,13 @@ let res: number = storage.size(); // 1
 
 clear(): boolean
 
-Deletes all attributes from LocalStorage under the prerequisite that none of the attributes has a subscriber. If any of the attributes has a subscriber, this API does not take effect and **false** is returned. If the deletion is successful, **true** is returned.
+Deletes all properties from [LocalStorage](../../../quick-start/arkts-localstorage.md). The deletion is only successful if none of the properties in LocalStorage have any subscribers. If there are subscribers, this API does not take effect and **false** is returned. If the deletion is successful, **true** is returned.
 
 For details about the subscriber, see [delete](#delete9).
 
-> **NOTE**
->
-> This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1222,13 +1449,13 @@ let res: boolean = storage.clear(); // true, there are no subscribers
 
 static GetShared(): LocalStorage
 
-Obtains the **LocalStorage** instance shared by the current stage.
+Obtains the [LocalStorage](../../../quick-start/arkts-localstorage.md) instance shared across the current stage.
 
 > **NOTE**
->
-> This API can be used in ArkTS widgets since API version 9.
->
+> 
 > This API is deprecated since API version 10. You are advised to use [getShared10+](#getshared10) instead.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1245,19 +1472,120 @@ Obtains the **LocalStorage** instance shared by the current stage.
 let storage: LocalStorage = LocalStorage.GetShared();
 ```
 
+## AbstractProperty
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### get<sup>12+</sup>
+
+get(): T
+
+Obtains data of the referenced property from [AppStorage](../../../quick-start/arkts-appstorage.md) or [LocalStorage](../../../quick-start/arkts-localstorage.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type| Description                                       |
+| ---- | ------------------------------------------- |
+| T    | Data of the referenced property in AppStorage or LocalStorage.|
+
+**Example**
+
+```ts
+AppStorage.setOrCreate('PropA', 47);
+let ref1: AbstractProperty<number> | undefined = AppStorage.ref('PropA');
+ref1?.get(); //  ref1.get()=47
+```
+
+
+### set<sup>12+</sup>
+
+set(newValue: T): void
+
+Updates the data of the referenced property in [AppStorage](../../../quick-start/arkts-appstorage.md) or [LocalStorage](../../../quick-start/arkts-localstorage.md). The value of **newValue** must be of the **T** type and can be **null** or **undefined**.
+
+> **NOTE**
+>
+> Since API version 12, AppStorage and LocalStorage support the Map, Set, Date types, as well as **null**, **undefined**, and union types.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+
+**Parameters**
+
+
+| Name  | Type| Mandatory| Description                             |
+| -------- | ---- | ---- | ------------------------------------- |
+| newValue | T    | Yes  | New data to update. The value can be **null** or **undefined**.|
+
+
+**Example**
+
+```ts
+AppStorage.setOrCreate('PropA', 47);
+let ref1: AbstractProperty<number> | undefined = AppStorage.ref('PropA');
+ref1?.set(1); //  ref1.get()=1
+let a: Map<string, number> = new Map([['1', 0]]);
+let ref2 = AppStorage.setAndRef('MapA', a);
+ref2.set(a);
+let b: Set<string> = new Set('1');
+let ref3 = AppStorage.setAndRef('SetB', b);
+ref3.set(b);
+let c: Date = new Date('2024');
+let ref4 = AppStorage.setAndRef('DateC', c);
+ref4.set(c);
+ref2.set(null);
+ref3.set(undefined);
+```
+
+### info<sup>12+</sup>
+
+info(): string
+
+Reads the property name of the referenced property in [AppStorage](../../../quick-start/arkts-appstorage.md) or [LocalStorage](../../../quick-start/arkts-localstorage.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type  | Description                                         |
+| ------ | --------------------------------------------- |
+| string | Property name of the referenced property in AppStorage or LocalStorage.|
+
+**Example**
+
+```ts
+AppStorage.setOrCreate('PropA', 47);
+let ref1: AbstractProperty<number> | undefined = AppStorage.ref('PropA');
+ref1?.info(); //  ref1.info()='PropA'
+```
 
 ## SubscribedAbstractProperty
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ### get<sup>9+</sup>
 
 abstract get(): T
 
-Obtains attribute data synchronized from AppStorage or LocalStorage.
+Reads the data of the synchronized property from [AppStorage](../../../quick-start/arkts-appstorage.md) or [LocalStorage](../../../quick-start/arkts-localstorage.md).
 
-> **NOTE**
->
-> This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1265,7 +1593,7 @@ Obtains attribute data synchronized from AppStorage or LocalStorage.
 
 | Type  | Description                             |
 | ---- | ------------------------------- |
-| T    | Attribute data synchronized from AppStorage or LocalStorage.|
+| T    | Data of the synchronized property in AppStorage or LocalStorage.|
 
 **Example**
 ```ts
@@ -1279,11 +1607,15 @@ prop1.get(); //  prop1.get()=47
 
 abstract set(newValue: T): void
 
-Sets the attribute data synchronized from AppStorage or LocalStorage. The value of **newValue** must be of the T type and cannot be **undefined** or **null**.
+Sets the data of the synchronized property in [AppStorage](../../../quick-start/arkts-appstorage.md) or [LocalStorage](../../../quick-start/arkts-localstorage.md). The value of **newValue** must be of the **T** type. Since API version 12, it can be **null** or **undefined**.
 
 > **NOTE**
->
-> This API can be used in ArkTS widgets since API version 9.
+> 
+>Since API version 12, AppStorage and LocalStorage support the Map, Set, Date types, as well as **null**, **undefined**, and union types.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1291,9 +1623,9 @@ Sets the attribute data synchronized from AppStorage or LocalStorage. The value 
 **Parameters**
 
 
-| Name  | Type| Mandatory| Description                             |
-| -------- | ---- | ---- | ------------------------------------- |
-| newValue | T    | Yes  | Data to set. The value cannot be **undefined** or **null**.|
+| Name  | Type| Mandatory| Description                                                 |
+| -------- | ---- | ---- | --------------------------------------------------------- |
+| newValue | T    | Yes  | Data to set. Since API version 12, the value can be **null** or **undefined**.|
 
 
 **Example**
@@ -1301,13 +1633,27 @@ Sets the attribute data synchronized from AppStorage or LocalStorage. The value 
 AppStorage.setOrCreate('PropA', 47);
 let prop1: SubscribedAbstractProperty<number> = AppStorage.prop('PropA');
 prop1.set(1); //  prop1.get()=1
+// Since API version 12, the Map, Set, Date types, as well as null, undefined, and union types are supported.
+let a: Map<string, number> = new Map([['1', 0]]);
+let prop2 = AppStorage.setAndProp('MapA', a);
+prop2.set(a);
+let b: Set<string> = new Set('1');
+let prop3 = AppStorage.setAndProp('SetB', b);
+prop3.set(b);
+let c: Date = new Date('2024');
+let prop4 = AppStorage.setAndProp('DateC', c);
+prop4.set(c);
+prop2.set(null);
+prop3.set(undefined);
 ```
 
 ### aboutToBeDeleted<sup>10+</sup>
 
 abstract aboutToBeDeleted(): void
 
-Cancels one-way or two-way synchronization between the **SubscribedAbstractProperty** instance and AppStorage or LocalStorage, and invalidates the instance. After this API is called, the **SubscribedAbstractProperty** instance cannot be used to call the setter or getter.
+Cancels the synchronization relationship between the [SubscribedAbstractProperty](#subscribedabstractproperty) instance and [AppStorage](../../../quick-start/arkts-appstorage.md) or [LocalStorage](../../../quick-start/arkts-localstorage.md), whether it is a one-way or two-way binding. After **aboutToBeDeleted** is called, the **SubscribedAbstractProperty** instance is invalidated, meaning it can no longer be used to call the [set](#set9-1) or [get](#get9-1) API.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1318,13 +1664,38 @@ let link = AppStorage.setAndLink('PropB', 49); // PropA -> 47, PropB -> 49
 link.aboutToBeDeleted();
 ```
 
+### info
+
+info(): string;
+
+Property name.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+|Type  |Description    |
+|---------|-------------|
+|string    |Property name.   |
+
 
 ## PersistentStorage
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
-For details about how to use PersistentStorage on the UI, see [PersistentStorage: Application State Persistence](../../../quick-start/arkts-persiststorage.md).
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+For details about how to use PersistentStorage on the UI, see [PersistentStorage: Persisting Application State](../../../quick-start/arkts-persiststorage.md).
+
+> **NOTE**
+>
+> Since API version 12, PersistentStorage supports **null** and **undefined**.
 
 ### PersistPropsOptions
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1332,25 +1703,27 @@ For details about how to use PersistentStorage on the UI, see [PersistentStorage
 
 | Name      | Type                                 | Mandatory| Description                                                    |
 | ------------ | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| key          | string                                | Yes  | Attribute name.                                                    |
-| defaultValue | number \| string \| boolean \| Object | Yes  | Default value used to initialize the created attribute when the corresponding attribute is not found in PersistentStorage and AppStorage. The value cannot be **undefined** or **null**.|
+| key          | string                                | Yes  | Property name.                                                    |
+| defaultValue | number \| string \| boolean \| Object | Yes  | Default value used to initialize the property when it does not exist in PersistentStorage and AppStorage. Since API version 12, **defaultValue** can be **null** or **undefined**.|
 
 
 ### persistProp<sup>10+</sup>
 
 static persistProp&lt;T&gt;(key: string, defaultValue: T): void
 
-Persists the attribute with the specified key in AppStorage to a file. This API is usually called before access to AppStorage.
+Persists the property corresponding to **key** from [AppStorage](../../../quick-start/arkts-appstorage.md) to a file. This API is usually called before access to AppStorage.
 
-The sequence of determining the type and value of an attribute is as follows:
+The order for determining the type and value of a property is as follows:
 
-1. If the PersistentStorage file contains the attribute with the specified key, an attribute with the key as the name is created in AppStorage and initialized with the attribute of the key found in PersistentStorage.
+1. If the property with the specified key is found in the [PersistentStorage](../../../quick-start/arkts-persiststorage.md) file, the corresponding property is created in AppStorage and initialized with the value found in PersistentStorage.
 
-2. If the attribute with the specified key is not found in the PersistentStorage file, AppStorage is searched for the attribute corresponding to the key. If the matching attribute is found, it is persisted.
+2. If the property with the specified key is not found in the PersistentStorage file, AppStorage is searched for the property. If the property is found, it is persisted.
 
-3. If no matching attribute is found in AppStorage, it is created in AppStorage, initialized with the value of **defaultValue**, and persisted.
+3. If no matching property is found in AppStorage, it is created in AppStorage, initialized with the value of **defaultValue**, and persisted.
 
-According to the preceding initialization process, if AppStorage contains the matching attribute, the value of this attribute is used to overwrite the value in the PersistentStorage file. Because AppStorage stores data in the memory, the attribute value becomes nonpersistent.
+According to the preceding initialization process, if the property exists in AppStorage, its value will be used, overriding the value in the PersistentStorage file. Because AppStorage stores data in the memory, the property value becomes nonpersistent.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1358,8 +1731,8 @@ According to the preceding initialization process, if AppStorage contains the ma
 
 | Name      | Type  | Mandatory| Description                                                    |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
-| key          | string | Yes  | Attribute name.                                                    |
-| defaultValue | T      | Yes  | Default value used to initialize the created attribute. The value cannot be **undefined** or **null**.|
+| key          | string | Yes  | Property name.                                                    |
+| defaultValue | T      | Yes  | Default value used for initialization if the specified **key** is not found in PersistentStorage and AppStorage. Since API version 12, the value can be **null** or **undefined**.|
 
 
 **Example**
@@ -1372,7 +1745,9 @@ For details about how to use persistProp, see [Accessing PersistentStorage Initi
 
 static deleteProp(key: string): void
 
-Performs the reverse operation of **persistProp**. Specifically, this API deletes the attribute corresponding to the specified key from PersistentStorage. Subsequent AppStorage operations do not affect data in PersistentStorage.
+Performs the reverse operation of [persistProp](#persistprop10). Specifically, this API deletes the property corresponding to the specified **key** from [PersistentStorage](../../../quick-start/arkts-persiststorage.md). Subsequent operations on [AppStorage](../../../quick-start/arkts-appstorage.md) do not affect data in PersistentStorage. This operation removes the corresponding key from the persistence file. To persist the property again, you can call the [persistProp](#persistprop10) API.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1380,7 +1755,7 @@ Performs the reverse operation of **persistProp**. Specifically, this API delete
 
 | Name | Type    | Mandatory  | Description                   |
 | ---- | ------ | ---- | ----------------------- |
-| key  | string | Yes   | Attribute name in PersistentStorage.|
+| key  | string | Yes   | Property name in PersistentStorage.|
 
 **Example**
 ```ts
@@ -1392,7 +1767,9 @@ PersistentStorage.deleteProp('highScore');
 
 static persistProps(props: PersistPropsOptions[]): void
 
-Works in a way similar to the **persistProp** API, with the difference that it allows for persistence in batches and is therefore ideal for initialization during application startup.
+Persists multiple properties. This API is similar to [persistProp](#persistprop10), but allows multiple properties to be persisted at once, making it suitable for initializing during application startup.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1400,7 +1777,7 @@ Works in a way similar to the **persistProp** API, with the difference that it a
 
 | Name       | Type                                      | Mandatory  | Description                                    |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| props | [PersistPropsOptions](#persistpropsoptions)[] | Yes| Array of persistent attributes.|
+| props | [PersistPropsOptions](#persistpropsoptions)[] | Yes| Array of properties to persist.|
 
 **Example**
 ```ts
@@ -1412,7 +1789,9 @@ PersistentStorage.persistProps([{ key: 'highScore', defaultValue: '0' }, { key: 
 
 static keys(): Array&lt;string&gt;
 
-Obtains an array of keys for all persistent attributes.
+Returns an array of all persisted property names.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1420,7 +1799,7 @@ Obtains an array of keys for all persistent attributes.
 
 | Type               | Description                              |
 | ------------------- | ---------------------------------- |
-| Array&lt;string&gt; | Array of keys of all persistent attributes.|
+| Array&lt;string&gt; | Array of all persisted property names.|
 
 **Example**
 ```ts
@@ -1432,17 +1811,17 @@ let keys: Array<string> = PersistentStorage.keys();
 
 static PersistProp&lt;T&gt;(key: string, defaultValue: T): void
 
-Persists the attribute with the specified key in AppStorage to a file. This API is usually called before access to AppStorage.
+Persists the property corresponding to **key** from [AppStorage](../../../quick-start/arkts-appstorage.md) to a file. This API is usually called before access to AppStorage.
 
-The sequence of determining the type and value of an attribute is as follows:
+The order for determining the type and value of a property is as follows:
 
-1. If the PersistentStorage file contains the attribute with the specified key, an attribute with the key as the name is created in AppStorage and initialized with the attribute of the key found in PersistentStorage.
+1. If the property with the specified key is found in the [PersistentStorage](../../../quick-start/arkts-persiststorage.md) file, the corresponding property is created in AppStorage and initialized with the value found in PersistentStorage.
 
-2. If the attribute with the specified key is not found in the PersistentStorage file, AppStorage is searched for the attribute corresponding to the key. If the matching attribute is found, it is persisted.
+2. If the property with the specified key is not found in the PersistentStorage file, AppStorage is searched for the property. If the property is found, it is persisted.
 
-3. If no matching attribute is found in AppStorage, it is created in AppStorage, initialized with the value of **defaultValue**, and persisted.
+3. If no matching property is found in AppStorage, it is created in AppStorage, initialized with the value of **defaultValue**, and persisted.
 
-According to the preceding initialization process, if AppStorage contains the matching attribute, the value of this attribute is used to overwrite the value in the PersistentStorage file. Because AppStorage stores data in the memory, the attribute value becomes nonpersistent.
+According to the preceding initialization process, if the property exists in AppStorage, its value will be used, overriding the value in the PersistentStorage file. Because AppStorage stores data in the memory, the property value becomes nonpersistent.
 
 
 > **NOTE**
@@ -1455,8 +1834,8 @@ According to the preceding initialization process, if AppStorage contains the ma
 
 | Name      | Type  | Mandatory| Description                                                    |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
-| key          | string | Yes  | Attribute name.                                                    |
-| defaultValue | T      | Yes  | Default value used to initialize the created attribute. The value cannot be **undefined** or **null**.|
+| key          | string | Yes  | Property name.                                                    |
+| defaultValue | T      | Yes  | Default value used for initialization if the specified **key** is not found in PersistentStorage and AppStorage. The value cannot be **null** or **undefined**.|
 
 
 **Example**
@@ -1471,7 +1850,7 @@ PersistentStorage.PersistProp('highScore', '0');
 
 static DeleteProp(key: string): void
 
-Performs the reverse operation of **PersistProp**. Specifically, this API deletes the attribute corresponding to the specified key from PersistentStorage. Subsequent AppStorage operations do not affect data in PersistentStorage.
+Performs the reverse operation of [PersistProp](#persistpropdeprecated). Specifically, this API deletes the property corresponding to the specified key from [PersistentStorage](../../../quick-start/arkts-persiststorage.md). Subsequent operations on [AppStorage](../../../quick-start/arkts-appstorage.md) do not affect data in PersistentStorage.
 
 
 > **NOTE**
@@ -1484,7 +1863,7 @@ Performs the reverse operation of **PersistProp**. Specifically, this API delete
 
 | Name | Type    | Mandatory  | Description                   |
 | ---- | ------ | ---- | ----------------------- |
-| key  | string | Yes   | Attribute name in PersistentStorage.|
+| key  | string | Yes   | Property name in PersistentStorage.|
 
 **Example**
 ```ts
@@ -1496,7 +1875,7 @@ PersistentStorage.DeleteProp('highScore');
 
 static PersistProps(properties: {key: string, defaultValue: any;}[]): void
 
-Works in a way similar to the **PersistProp** API, with the difference that it allows for persistence in batches and is therefore ideal for initialization during application startup.
+Persists multiple properties. This API is similar to [PersistProp](#persistpropdeprecated), but allows multiple properties to be persisted at once, making it suitable for initializing during application startup.
 
 > **NOTE**
 >
@@ -1508,7 +1887,7 @@ Works in a way similar to the **PersistProp** API, with the difference that it a
 
 | Name    | Type                              | Mandatory| Description                                                    |
 | ---------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| properties | {key: string, defaultValue: any}[] | Yes  | Array of attributes to persist.<br>**key**: attribute name.<br>**defaultValue**: default value. The rules are the same as those of **PersistProp**.|
+| properties | {key: string, defaultValue: any}[] | Yes  | Array of properties to persist.<br>**key**: property name.<br>**defaultValue**: default value. The rules are the same as those of **PersistProp**.|
 
 **Example**
 
@@ -1521,7 +1900,7 @@ PersistentStorage.PersistProps([{ key: 'highScore', defaultValue: '0' }, { key: 
 
 static Keys(): Array&lt;string&gt;
 
-Obtains an array of keys for all persistent attributes.
+Returns an array of all persisted property names.
 
 > **NOTE**
 >
@@ -1533,7 +1912,7 @@ Obtains an array of keys for all persistent attributes.
 
 | Type               | Description                              |
 | ------------------- | ---------------------------------- |
-| Array&lt;string&gt; | Array of keys of all persistent attributes.|
+| Array&lt;string&gt; | Array of all persisted property names.|
 
 **Example**
 ```ts
@@ -1543,10 +1922,15 @@ let keys: Array<string> = PersistentStorage.Keys();
 
 ## Environment
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
-For details about how to use Environment, see [Environment: Device Environment Query](../../../quick-start/arkts-environment.md).
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+For details about how to use environment parameters, see [Environment: Device Environment Query](../../../quick-start/arkts-environment.md).
 
 ### EnvPropsOptions
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1555,18 +1939,20 @@ For details about how to use Environment, see [Environment: Device Environment Q
 | Name      | Type                       | Mandatory| Description                                                    |
 | ------------ | --------------------------- | ---- | ------------------------------------------------------------ |
 | key          | string                      | Yes  | Environment variable name. For details about the value range, see [Built-in Environment Variables](#built-in-environment-variables).|
-| defaultValue | number \| string \| boolean | Yes  | Default value used if the value of the environment variable key is not found in AppStorage.|
+| defaultValue | number \| string \| boolean | Yes  | Default value used if the value of the specified environment variable key is not found in AppStorage.|
 
 
 ### envProp<sup>10+</sup>
 
 static envProp&lt;S&gt;(key: string, value: S): boolean
 
-Saves the built-in environment variable key in environment to AppStorage. If the value of the environment variable key is not found in AppStorage, the default value is used. If the value is successfully saved, **true** is returned. If the value of the environment variable key is found in AppStorage, **false** is returned.
+Stores the built-in environment variable key from [Environment](../../../quick-start/arkts-environment.md) into [AppStorage](../../../quick-start/arkts-appstorage.md). If the value of the environment variable key is not found in AppStorage, the default value is used and stored in AppStorage. If the value is successfully stored, **true** is returned. If the value of the environment variable key already exists in AppStorage, **false** is returned.
 
 You are advised to call this API when the application is started.
 
-It is incorrect to use AppStorage to read environment variables without invoking **envProp** first.
+It is incorrect to use AppStorage to read environment variables without calling **envProp** first.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1581,7 +1967,7 @@ It is incorrect to use AppStorage to read environment variables without invoking
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **false** if the attribute corresponding to the key exists in AppStorage; creates an attribute with the key and the default value and returns **true** otherwise.|
+| boolean | Returns **false** if the property corresponding to the key exists in AppStorage; creates a property with the key and the default value and returns **true** otherwise.|
 
 **Example**
 
@@ -1593,7 +1979,9 @@ For details about how to use **envProp**, see [Accessing Environment Parameters 
 
 static envProps(props: EnvPropsOptions[]): void
 
-Works in a way similar to the [envProp](#envprop10) API, with the difference that it allows for initialization of multiple attributes in batches. You are advised to call this API during application startup to save system environment variables to AppStorage in batches.
+Works in a way similar to the [envProp](#envprop10) API, with the difference that it allows for initialization of multiple properties in batches. It is recommended that this API be called during application startup to store system environment variables to [AppStorage](../../../quick-start/arkts-appstorage.md) in batches.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1616,7 +2004,9 @@ Environment.envProps([{ key: 'accessibilityEnabled', defaultValue: 'default' }, 
 
 static keys(): Array&lt;string&gt;
 
-Array of keys of environment variables.
+Returns an array of keys of environment variables.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1624,7 +2014,7 @@ Array of keys of environment variables.
 
 | Type                 | Description         |
 | ------------------- | ----------- |
-| Array&lt;string&gt; | Returns an array of associated system attributes.|
+| Array&lt;string&gt; | Array of associated system properties.|
 
 **Example**
 ```ts
@@ -1641,7 +2031,7 @@ let keys: Array<string> = Environment.keys(); // accessibilityEnabled, languageC
 
 static EnvProp&lt;S&gt;(key: string, value: S): boolean
 
-Saves the built-in environment variable key in environment to AppStorage. If the value of the environment variable key is not found in AppStorage, the default value is used. If the value is successfully saved, **true** is returned. If the value of the environment variable key is found in AppStorage, **false** is returned.
+Stores the built-in environment variable key from [Environment](../../../quick-start/arkts-environment.md) into [AppStorage](../../../quick-start/arkts-appstorage.md). If the value of the environment variable key is not found in AppStorage, the default value is used and stored in AppStorage. If the value is successfully stored, **true** is returned. If the value of the environment variable key already exists in AppStorage, **false** is returned.
 
 You are advised to call this API when the application is started.
 
@@ -1664,7 +2054,7 @@ It is incorrect to use AppStorage to read environment variables without invoking
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **false** if the attribute corresponding to the key exists in AppStorage; creates an attribute with the key and the default value and returns **true** otherwise.|
+| boolean | Returns **false** if the property corresponding to the key exists in AppStorage; creates a property with the key and the default value and returns **true** otherwise.|
 
 **Example**
 
@@ -1678,7 +2068,7 @@ Environment.EnvProp('accessibilityEnabled', 'default');
 
 static EnvProps(props: {key: string; defaultValue: any;}[]): void
 
-Works in a way similar to the [EnvProp](#envpropdeprecated) API, with the difference that it allows for initialization of multiple attributes in batches. You are advised to call this API during application startup to save system environment variables to AppStorage in batches.
+Works in a way similar to the [EnvProp](#envpropdeprecated) API, with the difference that it allows for initialization of multiple properties in batches. It is recommended that this API be called during application startup to store system environment variables to [AppStorage](../../../quick-start/arkts-appstorage.md) in batches.
 
 > **NOTE**
 >
@@ -1717,7 +2107,7 @@ Array of keys of environment variables.
 
 | Type                 | Description         |
 | ------------------- | ----------- |
-| Array&lt;string&gt; | Returns an array of associated system attributes.|
+| Array&lt;string&gt; | Array of associated system properties.|
 
 **Example**
 
@@ -1739,5 +2129,5 @@ let keys: Array<string> = Environment.Keys(); // accessibilityEnabled, languageC
 | colorMode            | ColorMode       | Color mode. The options are as follows:<br>- **ColorMode.LIGHT**: light mode.<br>- **ColorMode.DARK**: dark mode.|
 | fontScale            | number          | Font scale.                                              |
 | fontWeightScale      | number          | Font weight scale.                                                  |
-| layoutDirection      | LayoutDirection | Layout direction. The options are as follows:<br>- **LayoutDirection.LTR**: from left to right.<br>- **LayoutDirection.RTL**: from right to left.|
+| layoutDirection      | LayoutDirection | Layout direction. The options are as follows:<br>- **LayoutDirection.LTR**: from left to right.<br>- **LayoutDirection.RTL**: from right to left.<br>- **Auto**: follows the system settings.|
 | languageCode         | string          | Current system language. The value is in lowercase, for example, **zh**.                            |

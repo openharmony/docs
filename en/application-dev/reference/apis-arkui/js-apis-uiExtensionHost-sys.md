@@ -448,6 +448,61 @@ export default class EntryAbility extends UIExtensionAbility {
   }
 }
 ```
+### hidePrivacyContentForHost<sup>13+</sup>
+
+hidePrivacyContentForHost(shouldHide: boolean): Promise&lt;void&gt;
+
+Sets whether to enable privacy protection for the UIExtension component during non-system screenshots. This API uses a promise to return the result.
+> **NOTE**
+>
+> When privacy protection is enabled, using [window.snapshot](js-apis-window.md#snapshot9) or [UIContext.getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12) will not capture the content of the current component (excluding child windows created under this component).
+ 
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type    | Mandatory| Description                                           |
+| ------ | ------- | --- | ------------------------------------------------ |
+| shouldHide | boolean | Yes  | Whether to enable privacy protection for screenshots. The value **true** means to enable privacy protection for screenshots, and **false** means the opposite.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameters types. <br> 3. Parameter verification failed. |
+| 1300002  | The UIExtension window proxy is abnormal.                    |
+
+**Example**
+
+```ts
+// ExtensionProvider.ts
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // Enable privacy protection for screenshots.
+    extensionHostWindow.hidePrivacyContentForHost(true).then(() => {
+      console.log(`Successfully enabled privacy protection for non-system screenshots.`);
+    }).catch((err: BusinessError) => {
+      console.log(`Failed enabled privacy protection for non-system screenshots. Cause:${JSON.stringify(err)}`);
+    })
+  }
+}
+```
 
 ## UIExtensionHostWindowProxyProperties
 
@@ -561,6 +616,11 @@ This example shows how to use all the available APIs in the UIExtensionAbility. 
         console.log(`Succeeded in hiding the non-secure windows.`);
       }).catch((err: BusinessError)=> {
         console.log(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
+      })
+      extensionHostWindow.hidePrivacyContentForHost(true).then(() => {
+        console.log(`Successfully enabled privacy protection for non-system screenshots.`);
+      }).catch((err: BusinessError) => {
+        console.log(`Failed enabled privacy protection for non-system screenshots. Cause:${JSON.stringify(err)}`);
       })
     }
 
