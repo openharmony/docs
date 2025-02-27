@@ -880,30 +880,36 @@ getWindowsByCoordinate(displayId: number, windowNumber?: number, x?: number, y?:
 | 1300003 | This window manager service works abnormally. |
 
 ```ts
+import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-    let properties = windowClass.getWindowProperties();
-    window.getWindowsByCoordinate(properties.displayId).then((data) => {
+export default class EntryAbility extends UIAbility {
+    
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    let windowClass = windowStage.getMainWindowSync();
+    try {
+      let properties = windowClass.getWindowProperties();
+      window.getWindowsByCoordinate(properties.displayId).then((data) => {
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
         for (let window of data) {
-            // do something with window
+          // do something with window
         }
-    }).catch((err: BusinessError) => {
+      }).catch((err: BusinessError) => {
         console.error(`Failed to get window from point. Cause code: ${err.code}, message: ${err.message}`);
-    });
-
-    window.getWindowsByCoordinate(properties.displayId, 2, 500, 500).then((data) => {
+      });
+      window.getWindowsByCoordinate(properties.displayId, 2, 500, 500).then((data) => {
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
         for (let window of data) {
-            // do something with window
+          // do something with window
         }
-    }).catch((err: BusinessError) => {
+      }).catch((err: BusinessError) => {
         console.error(`Failed to get window from point. Cause code: ${err.code}, message: ${err.message}`);
-    });
-} catch (exception) {
-    console.error(`Failed to get window from point. Cause code: ${exception.code}, message: ${exception.message}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to get window from point. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
