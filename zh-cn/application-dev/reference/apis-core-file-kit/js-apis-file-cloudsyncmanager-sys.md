@@ -1,6 +1,6 @@
 # @ohos.file.cloudSyncManager (端云同步管理能力)(系统接口)
 
-该模块向云空间应用提供端云同步管理能力，包括使能/去使能端云协同能力、修改应用同步开关，云端数据变化通知以及帐号退出清理/保留云相关文件等。
+该模块向云空间应用提供端云同步管理能力：包括使能/去使能端云协同能力、修改应用同步开关，云端数据变化通知以及帐号退出清理/保留云相关文件等。
 
 > **说明：**
 >
@@ -25,15 +25,15 @@ changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean): Pr
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| accountId | string | 是   | 帐号Id |
-| bundleName | string | 是   | 应用包名|
-| status | boolean | 是   | 修改的应用云同步开关状态，true为打开，false为关闭|
+| accountId | string | 是   | 帐号Id。 |
+| bundleName | string | 是   | 应用包名。|
+| status | boolean | 是   | 修改的应用云同步开关状态。true为打开；false为关闭。|
 
 **返回值：**
 
 | 类型                  | 说明             |
 | --------------------- | ---------------- |
-| Promise&lt;void&gt; | 使用Promise形式返回修改应用的端云文件同步开关的结果 |
+| Promise&lt;void&gt; | 使用Promise形式返回修改应用的端云文件同步开关的结果。 |
 
 **错误码：**
 
@@ -70,10 +70,10 @@ changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean, cal
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| accountId | string | 是   | 帐号Id|
+| accountId | string | 是   | 帐号Id。|
 | bundleName | string | 是   | 应用包名|
-| status | boolean | 是   | 修改的应用云同步开关状态，true为打开，false为关闭|
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步修改应用的端云文件同步开关之后的回调 |
+| status | boolean | 是   | 修改的应用云同步开关状态。true为打开；false为关闭。|
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步修改应用的端云文件同步开关之后的回调。 |
 
 **错误码：**
 
@@ -112,14 +112,14 @@ notifyDataChange(accountId: string, bundleName: string): Promise&lt;void&gt;
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| accountId | string | 是   | 帐号Id|
-| bundleName | string | 是   | 应用包名|
+| accountId | string | 是   | 帐号Id。|
+| bundleName | string | 是   | 应用包名。|
 
 **返回值：**
 
 | 类型                  | 说明             |
 | --------------------- | ---------------- |
-| Promise&lt;void&gt; | 使用Promise形式返回通知端云服务应用的云数据变更的结果 |
+| Promise&lt;void&gt; | 使用Promise形式返回通知端云服务应用的云数据变更的结果。 |
 
 **错误码：**
 
@@ -156,9 +156,9 @@ notifyDataChange(accountId: string, bundleName: string, callback: AsyncCallback&
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| accountId | string | 是   | 帐号Id|
-| bundleName | string | 是   | 应用包名|
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步通知端云服务应用的云数据变更之后的回调 |
+| accountId | string | 是   | 帐号Id。|
+| bundleName | string | 是   | 应用包名。|
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步通知端云服务应用的云数据变更之后的回调。 |
 
 **错误码：**
 
@@ -193,8 +193,8 @@ notifyDataChange(accountId: string, bundleName: string, callback: AsyncCallback&
 
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| eventId | string | 是   | 变更事件id|
-| extraData | ExtraData | 是   | 云端数据变更信息|
+| eventId | string | 是   | 变更事件id。|
+| extraData | ExtraData | 是   | 云端数据变更信息。|
 
 ## cloudSyncManager.notifyDataChange<sup>11+</sup>
 
@@ -210,8 +210,8 @@ notifyDataChange(userId: number, extraData: ExtraData): Promise&lt;void&gt;
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| userId | number | 是   | 用户Id|
-| extraData | ExtraData | 是   | 云端数据变更信息|
+| userId | number | 是   | 用户Id。|
+| extraData | ExtraData | 是   | 云端数据变更信息。|
 
 **返回值：**
 
@@ -257,8 +257,8 @@ notifyDataChange(userId: number, extraData: ExtraData, callback: AsyncCallback&l
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| userId | number | 是   | 用户Id|
-| extraData | ExtraData | 是   | 云端数据变更信息|
+| userId | number | 是   | 用户Id。|
+| extraData | ExtraData | 是   | 云端数据变更信息。|
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步通知端云服务应用的云数据变更之后的回调。 |
 
 **错误码：**
@@ -301,14 +301,14 @@ enableCloud(accountId: string, switches: Record<string, boolean>): Promise&lt;vo
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| accountId | string | 是   | 帐号Id|
-| switches | object | 是   | 应用的端云协同特性使能开关，bundleName为string类型应用包名，开关状态是个boolean类型|
+| accountId | string | 是   | 帐号Id。|
+| switches | object | 是   | 应用的端云协同特性使能开关，bundleName为string类型应用包名，开关状态是个boolean类型。|
 
 **返回值：**
 
 | 类型                  | 说明             |
 | --------------------- | ---------------- |
-| Promise&lt;void&gt; | 使用Promise形式返回使能端云协同能力的结果 |
+| Promise&lt;void&gt; | 使用Promise形式返回使能端云协同能力的结果。 |
 
 **错误码：**
 
@@ -350,9 +350,9 @@ enableCloud(accountId: string, switches: Record<string, boolean>, callback: Asyn
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| accountId | string | 是   | 帐号Id|
-| switches | object | 是   | 应用的端云协同特性使能开关，bundleName为string类型应用包名，开关状态是个boolean类型|
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步使能端云协同能力之后的回调 |
+| accountId | string | 是   | 帐号Id。|
+| switches | object | 是   | 应用的端云协同特性使能开关，bundleName为string类型应用包名，开关状态是个boolean类型。|
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步使能端云协同能力之后的回调。 |
 
 **错误码：**
 
@@ -396,7 +396,7 @@ disableCloud(accountId: string): Promise&lt;void&gt;
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| accountId | string | 是   | 帐号Id|
+| accountId | string | 是   | 帐号Id。|
 
 **返回值：**
 
@@ -440,8 +440,8 @@ disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| accountId | string | 是   | 帐号Id|
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步去使能端云协同能力之后的回调 |
+| accountId | string | 是   | 帐号Id。|
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步去使能端云协同能力之后的回调。|
 
 **错误码：**
 
@@ -477,8 +477,8 @@ disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
-| RETAIN_DATA |  0 |  仅清除云端标识，保留本地缓存文件|
-| CLEAR_DATA |  1 |  清除云端标识信息，若存在本地缓存文件，一并删除|
+| RETAIN_DATA |  0 |  仅清除云端标识，保留本地缓存文件。|
+| CLEAR_DATA |  1 |  清除云端标识信息，若存在本地缓存文件，一并删除。|
 
 ## cloudSyncManager.clean
 
@@ -494,14 +494,14 @@ clean(accountId: string, appActions: Record<string, Action>): Promise&lt;void&gt
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| accountId | string | 是   | 帐号Id|
-| appActions | object | 是   | 清理动作类型，bundleName为string类型待清理应用包名, [Action](#action)为清理动作类型|
+| accountId | string | 是   | 帐号Id。|
+| appActions | object | 是   | 清理动作类型，bundleName为string类型待清理应用包名, [Action](#action)为清理动作类型。|
 
 **返回值：**
 
 | 类型                  | 说明             |
 | --------------------- | ---------------- |
-| Promise&lt;void&gt; | 使用Promise形式返回清理本地云相关数据的结果 |
+| Promise&lt;void&gt; | 使用Promise形式返回清理本地云相关数据的结果。 |
 
 **错误码：**
 
@@ -543,9 +543,9 @@ clean(accountId: string, appActions: Record<string, Action>, callback: AsyncCall
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| accountId | string | 是   | 帐号Id|
-| appActions | object | 是   | 清理动作类型，bundleName为string类型待清理应用包名, [Action](#action)为清理动作类型|
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步方法清理本地云相关数据 |
+| accountId | string | 是   | 帐号Id。|
+| appActions | object | 是   | 清理动作类型，bundleName为string类型待清理应用包名, [Action](#action)为清理动作类型。|
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步方法清理本地云相关数据。 |
 
 **错误码：**
 
@@ -575,3 +575,4 @@ clean(accountId: string, appActions: Record<string, Action>, callback: AsyncCall
     }
   });
   ```
+  
