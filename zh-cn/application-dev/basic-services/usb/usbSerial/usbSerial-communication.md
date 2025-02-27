@@ -59,8 +59,8 @@ USB线缆一端连接到OpenHarmony设备，另一端连接到标准串口设备
     ```ts
     // 获取连接主设备的USB设备列表
     let portList: serial.SerialPort[] = serial.getPortList();
-    console.info('usbSerial portList: ', JSON.stringify(portList));
-    if(portList.length === 0) {
+    console.info('usbSerial portList: ' + JSON.stringify(portList));
+    if (portList === undefined || portList.length === 0) {
       console.info('usbSerial portList is empty');
       return;
     }
@@ -71,7 +71,7 @@ USB线缆一端连接到OpenHarmony设备，另一端连接到标准串口设备
     ```ts
     // 此处对列表中的第一台USB设备判断是否拥有访问权限
     let portId: number = portList[0].portId;
-    if(!serial.hasSerialRight(portId)) {
+    if (!serial.hasSerialRight(portId)) {
       await serial.requestSerialRight(portId).then(result => {
         if(!result) {
           // 没有访问设备的权限且用户不授权则退出
