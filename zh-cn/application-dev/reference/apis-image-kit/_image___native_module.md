@@ -86,10 +86,11 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Image_ErrorCode](#image_errorcode) {<br/>IMAGE_SUCCESS = 0, IMAGE_BAD_PARAMETER = 401, IMAGE_UNSUPPORTED_MIME_TYPE = 7600101, IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br/>IMAGE_TOO_LARGE = 7600103, IMAGE_DMA_NOT_EXIST = 7600173, IMAGE_DMA_OPERATION_FAILED = 7600174, IMAGE_UNSUPPORTED_OPERATION = 7600201,<br/>IMAGE_UNSUPPORTED_METADATA = 7600202, IMAGE_UNSUPPORTED_CONVERSION = 7600203, IMAGE_INVALID_REGION = 7600204, IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205,<br/>IMAGE_ALLOC_FAILED = 7600301, IMAGE_COPY_FAILED = 7600302, IMAGE_LOCK_UNLOCK_FAILED = 7600303, IMAGE_UNKNOWN_ERROR = 7600901,<br/>IMAGE_BAD_SOURCE = 7700101, IMAGE_DECODE_FAILED = 7700301, IMAGE_ENCODE_FAILED = 7800301<br/>} | 错误码。 | 
-| [Image_MetadataType](#image_metadatatype-1) { EXIF_METADATA = 1, FRAGMENT_METADATA = 2 } | 定义元数据类型。  | 
+| [Image_ErrorCode](#image_errorcode) {<br/>IMAGE_SUCCESS = 0, IMAGE_BAD_PARAMETER = 401, IMAGE_UNSUPPORTED_MIME_TYPE = 7600101, IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br/>IMAGE_TOO_LARGE = 7600103, IMAGE_DMA_NOT_EXIST = 7600173, IMAGE_DMA_OPERATION_FAILED = 7600174, IMAGE_UNSUPPORTED_OPERATION = 7600201,<br/>IMAGE_UNSUPPORTED_METADATA = 7600202, IMAGE_UNSUPPORTED_CONVERSION = 7600203, IMAGE_INVALID_REGION = 7600204, IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205,<br/>IMAGE_ALLOC_FAILED = 7600301, IMAGE_COPY_FAILED = 7600302, IMAGE_LOCK_UNLOCK_FAILED = 7600303, IMAGE_UNKNOWN_ERROR = 7600901,<br/>IMAGE_BAD_SOURCE = 7700101,<br/>IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE = 7700102,<br/>IMAGE_SOURCE_TOO_LARGE = 7700103,<br/>IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE = 7700201,<br/>IMAGE_SOURCE_UNSUPPORTED_OPTIONS = 7700203, <br/>IMAGE_DECODE_FAILED = 7700301,<br/>IMAGE_SOURCE_ALLOC_FAILED = 7700302,<br/>IMAGE_ENCODE_FAILED = 7800301<br/>} | 错误码。 | 
+| [Image_MetadataType](#image_metadatatype) { EXIF_METADATA = 1, FRAGMENT_METADATA = 2 } | 定义元数据类型。  | 
 | [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range) {<br/>IMAGE_PACKER_DYNAMIC_RANGE_AUTO = 0,<br/>IMAGE_PACKER_DYNAMIC_RANGE_SDR = 1 } | 编码指定动态范围。 | 
 | [IMAGE_DYNAMIC_RANGE](#image_dynamic_range) {<br/>IMAGE_DYNAMIC_RANGE_AUTO = 0,<br/>IMAGE_DYNAMIC_RANGE_SDR = 1,<br/>IMAGE_DYNAMIC_RANGE_HDR = 2 } | 解码指定期望动态范围。 | 
+| [IMAGE_ALLOCATOR_TYPE](#image_allocator_type) {<br/>IMAGE_ALLOCATOR_TYPE_AUTO = 0,<br/>IMAGE_ALLOCATOR_TYPE_DMA = 1,<br/>IMAGE_ALLOCATOR_TYPE_SHARE_MEMORY = 2 } | 用于分配 PixelMap 内存的分配器类型。 | 
 | [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) {<br/>AUXILIARY_PICTURE_TYPE_GAINMAP = 1, AUXILIARY_PICTURE_TYPE_DEPTH_MAP = 2, AUXILIARY_PICTURE_TYPE_UNREFOCUS_MAP = 3, AUXILIARY_PICTURE_TYPE_LINEAR_MAP = 4,<br/>AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP = 5<br/>} | 辅助图类型。  | 
 | [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type) {<br/>PIXELMAP_ALPHA_TYPE_UNKNOWN = 0,<br/>PIXELMAP_ALPHA_TYPE_OPAQUE = 1,<br/>PIXELMAP_ALPHA_TYPE_PREMULTIPLIED = 2 } | Pixelmap透明度类型。 | 
 | [PIXEL_FORMAT](#pixel_format) {<br/>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_RGB_565 = 2,<br/>PIXEL_FORMAT_RGBA_8888 = 3, PIXEL_FORMAT_BGRA_8888 = 4,<br/>PIXEL_FORMAT_RGB_888 = 5, PIXEL_FORMAT_ALPHA_8 = 6,<br/>PIXEL_FORMAT_RGBA_F16 = 7, PIXEL_FORMAT_NV21 = 8,<br/>PIXEL_FORMAT_NV12 = 9, <br/>PIXEL_FORMAT_RGBA_1010102 = 10, <br/>PIXEL_FORMAT_YCBCR_P010 = 11, <br/>PIXEL_FORMAT_YCRCB_P010 = 12<br/>} | 图片像素格式。 | 
@@ -182,6 +183,7 @@
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromData](#oh_imagesourcenative_createfromdata) (uint8_t \*data, size_t dataSize, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | 通过缓冲区数据创建OH_ImageSourceNative指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromRawFile](#oh_imagesourcenative_createfromrawfile) (RawFileDescriptor \*rawFile, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | 通过图像资源文件的RawFileDescriptor创建OH_ImageSourceNative指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | 通过图片解码参数创建OH_PixelmapNative指针。  | 
+| [Image_ErrorCode](#image_errorcode)[OH_ImageSourceNative_CreatePixelmapUsingAllocator](#oh_imagesourcenative_createpixelmapusingallocator) (OH_ImageSourceNative \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [IMAGE_ALLOCATOR_TYPE](#image_allocator_type) allocator, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | 根据解码参数创建一个PixelMap，PixelMap使用的内存类型可以通过allocatorType来指定。<br/>默认情况下，系统会根据图像类型、图像大小、平台能力等选择内存类型。 在处理通过此接口返回的PixelMap时，请始终考虑步幅（stride）的影响。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmapList](#oh_imagesourcenative_createpixelmaplist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, OH_PixelmapNative \*resVecPixMap[], size_t size) | 通过图片解码参数创建OH_PixelmapNative数组。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePicture](#oh_imagesourcenative_createpicture) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, OH_DecodingOptionsForPicture \*options, [OH_PictureNative](#oh_picturenative) \*\*picture) | 通过图片解码创建OH_PictureNative指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetDelayTimeList](#oh_imagesourcenative_getdelaytimelist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, int32_t \*delayTimeList, size_t size) | 获取图像延迟时间数组。  | 
@@ -755,6 +757,25 @@ NativeBuffer结构体类型，用于执行NativeBuffer相关操作。
 ## 枚举类型说明
 
 
+### IMAGE_ALLOCATOR_TYPE
+
+```
+enum IMAGE_ALLOCATOR_TYPE
+```
+
+**描述**
+
+用于分配 PixelMap 内存的分配器类型。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| IMAGE_ALLOCATOR_TYPE_AUTO | 由系统决定使用DMA内存或共享内存来创建 PixelMap。 | 
+| IMAGE_ALLOCATOR_TYPE_DMA | 使用 DMA 内存来创建 PixelMap。 | 
+| IMAGE_ALLOCATOR_TYPE_SHARE_MEMORY | 使用共享内存来创建 PixelMap。 | 
+
+
 ### Image_AuxiliaryPictureType
 
 ```
@@ -819,9 +840,14 @@ enum Image_ErrorCode
 | IMAGE_COPY_FAILED  | 内存拷贝失败。 | 
 | IMAGE_LOCK_UNLOCK_FAILED | 内存加锁或解锁失败。<br/>**起始版本：** 15 | 
 | IMAGE_UNKNOWN_ERROR  | 未知错误。 | 
-| IMAGE_BAD_SOURCE  | 解码数据源异常。 | 
-| IMAGE_DECODE_FAILED  | 解码失败。 | 
-| IMAGE_ENCODE_FAILED  | 编码失败。 | 
+| IMAGE_BAD_SOURCE | 解码数据源异常。 | 
+| IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE | 不支持的 MIME 类型。<br/>**起始版本：** 15 | 
+| IMAGE_SOURCE_TOO_LARGE | 图像过大。<br/>**起始版本：** 15 | 
+| IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE | 不支持的分配器类型。例如，DMA支持HDR元数据，可以使用共享内存解码HDR图像。<br/>**起始版本：** 15 | 
+| IMAGE_SOURCE_UNSUPPORTED_OPTIONS | 不支持的选项。例如，无法将图像转换为所需的像素格式。<br/>**起始版本：** 15 | 
+| IMAGE_DECODE_FAILED | 解码失败。 | 
+| IMAGE_SOURCE_ALLOC_FAILED | 内存申请失败。<br/>**起始版本：** 15 | 
+| IMAGE_ENCODE_FAILED | 编码失败。 | 
 
 
 ### Image_MetadataType
@@ -2836,6 +2862,54 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmapList(OH_ImageSourceNative *so
 **返回：**
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果不支持的操作返回 IMAGE_UNSUPPORTED_OPERATION， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageSourceNative_CreatePixelmapUsingAllocator()
+
+```
+Image_ErrorCode OH_ImageSourceNative_CreatePixelmapUsingAllocator (OH_ImageSourceNative *source, OH_DecodingOptions *options, IMAGE_ALLOCATOR_TYPE allocator, OH_PixelmapNative **pixelmap )
+```
+
+**描述**
+
+根据解码参数创建一个PixelMap，PixelMap使用的内存类型可以通过allocatorType来指定。
+
+默认情况下，系统会根据图像类型、图像大小、平台能力等选择内存类型。 在处理通过此接口返回的PixelMap时，请始终考虑步幅（stride）的影响。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| source | 被操作的OH_ImageSourceNative指针。 | 
+| options | 解码参数。 详情请参见 **OH_DecodingOptions**。 | 
+| allocator | 指示返回的PixelMap将使用哪种内存类型。 | 
+| pixelmap | 指向c++本地层创建的OH_PixelmapNative对象的指针。 | 
+
+**返回：**
+
+错误码。
+
+如果操作成功返回 IMAGE_SUCCESS。
+
+如果参数错误返回 IMAGE_BAD_PARAMETER。
+
+如果数据源异常返回 IMAGE_BAD_SOURCE。
+
+如果是不支持的MIME类型返回 IMAGE_SOURCE_UNSUPPORTED_MIMETYPE。
+
+如果图像过大返回 IMAGE_SOURCE_TOO_LARGE。
+
+如果是不支持的分配器类型返回 IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE。 例如，使用共享内存解码HDR图像，因为只有DMA支持HDR元数据。
+
+如果是不支持的选项返回 IMAGE_SOURCE_UNSUPPORTED_OPTIONS。 例如，无法将图像转换为所需的像素格式。
+
+如果解码失败返回 IMAGE_DECODE_FAILED。
+
+如果内存分配失败返回 IMAGE_SOURCE_ALLOC_FAILED。
+
+具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
 ### OH_ImageSourceNative_GetDelayTimeList()
