@@ -196,7 +196,7 @@ usbManager.setCurrentFunctions(funcs).then(() => {
 
 getCurrentFunctions(): FunctionType
 
-在设备模式下，获取当前的USB功能列表的数字组合掩码。开发者选项关闭时，如果没有设备接入，接口将会返回undefined，注意需要对接口返回值做判空处理。
+在设备模式下，获取当前的USB功能列表的数字组合掩码。开发者选项关闭时，如果没有设备接入，接口可能返回`undefined`，注意需要对接口返回值做判空处理。
 
 **说明：**
 
@@ -231,7 +231,7 @@ let ret: number = usbManager.getCurrentFunctions();
 
 getPorts(): Array\<USBPort\>
 
-获取所有物理USB端口描述信息。开发者选项关闭时，如果没有设备接入，接口将会返回undefined，注意需要对接口返回值做判空处理。
+获取所有物理USB端口描述信息。开发者选项关闭时，如果没有设备接入，接口可能返回`undefined`，注意需要对接口返回值做判空处理。
 
 **说明：**
 
@@ -567,7 +567,7 @@ usbManager.setDeviceFunctions(funcs).then(() => {
 
 getDeviceFunctions(): FunctionType
 
-在设备模式下，获取当前的USB功能列表的数字组合掩码。开发者选项关闭时，如果没有设备接入，接口将会返回undefined，注意需要对接口返回值做判空处理。
+在设备模式下，获取当前的USB功能列表的数字组合掩码。开发者选项关闭时，如果没有设备接入，接口可能返回`undefined`，注意需要对接口返回值做判空处理。
 
 **说明：**
 
@@ -606,7 +606,7 @@ let ret: number = usbManager.getDeviceFunctions();
 
 getPortList(): Array\<USBPort\>
 
-获取所有物理USB端口描述信息。开发者选项关闭时，如果没有设备接入，接口将会返回undefined，注意需要对接口返回值做判空处理。
+获取所有物理USB端口描述信息。开发者选项关闭时，如果没有设备接入，接口可能返回`undefined`，注意需要对接口返回值做判空处理。
 
 **说明：**
 
