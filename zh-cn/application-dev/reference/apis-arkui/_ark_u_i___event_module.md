@@ -119,6 +119,8 @@
 | float [OH_ArkUI_MouseEvent_GetRawDeltaY](#oh_arkui_mouseevent_getrawdeltay) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取相对于前一个上报的鼠标事件的鼠标指针位置的Y轴偏移量。当鼠标指针位于屏幕边缘时，该值可能小于两次上报的Y坐标的差。  | 
 | int32_t [OH_ArkUI_MouseEvent_GetPressedButtons](#oh_arkui_mouseevent_getpressedbuttons) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, int32_t* pressedButtons, int32_t* length) | 从鼠标事件中获取按下的按钮。  | 
 | int32_t [OH_ArkUI_UIInputEvent_GetTargetDisplayId](#oh_arkui_uiinputevent_gettargetdisplayid) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取发生UI输入事件的屏幕ID。 | 
+| int32_t [OH_ArkUI_AxisEvent_SetPropagation](#oh_arkui_axisevent_setpropagation)(const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, bool propagation) | 设置是否激活轴事件冒泡。|
+| int32_t [OH_ArkUI_AxisEvent_GetScrollStep](#oh_arkui_axisevent_getscrollstep)(const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取鼠标滚轮轴滚动步长配置。|
 
 
 ## 类型定义说明
@@ -2032,3 +2034,49 @@ int32_t OH_ArkUI_PointerEvent_PostClonedEvent(ArkUI_NodeHandle node, const ArkUI
 [ARKUI_ERROR_CODE_NON_CLONED_POINTER_EVENT](_ark_u_i___native_module.md) 输入的事件指针不是克隆事件。
 [ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL](_ark_u_i___native_module.md) 组件状态异常。
 [ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT](_ark_u_i___native_module.md) 未命中可响应事件的组件。
+
+
+### OH_ArkUI_AxisEvent_SetPropagation()
+
+```
+int32_t OH_ArkUI_AxisEvent_SetPropagation (const ArkUI_UIInputEvent * event, bool propagation)
+```
+**描述：**
+
+设置是否激活轴事件冒泡。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。 | 
+| propagation | 表示是否激活事件冒泡。  | 
+
+**返回：**
+
+返回错误码。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+
+### OH_ArkUI_AxisEvent_GetScrollStep()
+
+```
+int32_t OH_ArkUI_AxisEvent_GetScrollStep (const ArkUI_UIInputEvent * event)
+```
+**描述：**
+
+获取鼠标滚轮轴滚动步长配置。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 指向 ArkUI_UIInputEvent事件指针。 | 
+
+**返回：**
+
+返回鼠标滚轮轴滚动步长配置。
