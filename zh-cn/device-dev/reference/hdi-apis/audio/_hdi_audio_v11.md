@@ -50,7 +50,7 @@ Audio模块接口定义。
 | struct&nbsp;&nbsp;[AudioEvent](_audio_event_v10.md) | 音频事件。 | 
 | interface&nbsp;&nbsp;[IAudioAdapter](interface_i_audio_adapter_v10.md) | AudioAdapter音频适配器接口。 | 
 | interface&nbsp;&nbsp;[IAudioCallback](interface_i_audio_callback_v10.md) | Audio回调接口。 | 
-| interface&nbsp;&nbsp;[IAudioCapture](interface_i_audio_capture_v10.md) | 音频接口的包路径。 | 
+| interface&nbsp;&nbsp;[IAudioCapture](interface_i_audio_capture_v10.md) | AudioCapture音频录制接口。 | 
 | interface&nbsp;&nbsp;[IAudioManager](interface_i_audio_manager_v10.md) | AudioManager音频适配器管理接口。 | 
 | interface&nbsp;&nbsp;[IAudioRender](interface_i_audio_render_v10.md) | AudioRender音频播放接口。 | 
 
