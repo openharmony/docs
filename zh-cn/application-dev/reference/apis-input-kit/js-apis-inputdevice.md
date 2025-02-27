@@ -657,7 +657,7 @@ try {
 
 isFunctionKeyEnabled(functionKey: FunctionKey): Promise&lt;boolean&gt;
 
-检查功能键是否使能。
+检查功能键是否使能。使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -665,13 +665,13 @@ isFunctionKeyEnabled(functionKey: FunctionKey): Promise&lt;boolean&gt;
 
 | 参数名     | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| functionKey | [FunctionKey](js-apis-inputdevice.md#functionkey15) | 是   | 需要检查使能状态的功能键id。 |
+| functionKey | [FunctionKey](#functionkey15) | 是   | 需要设置的功能键类型。 |
 
 **返回值**：
 
-| 参数                                          | 说明                            |
-| --------------------------------------------- | ------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回查询结果，true为功能键打开状态，false为功能键关闭状态。 |
+| 参数                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise对象。返回查询结果，true表示功能键使能，false表示功能键未使能。 |
 
 **错误码**：
 
@@ -685,9 +685,10 @@ isFunctionKeyEnabled(functionKey: FunctionKey): Promise&lt;boolean&gt;
 **示例**：
 
 ```js
-// 查询capslock状态。
+import { inputDevice } from '@kit.InputKit';
+
 try {
-  inputDevice.isFunctionKeyEnabled(1).then((state: boolean) => {
+  inputDevice.isFunctionKeyEnabled(inputDevice.FunctionKey.CAPS_LOCK).then((state: boolean) => {
     console.log(`capslock state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -699,7 +700,7 @@ try {
 
 setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;void&gt;
 
-设置是否使能功能键。
+设置功能键使能状态。使用Promise异步回调。
 
 **需要权限**：ohos.permission.INPUT_KEYBOARD_CONTROLLER
 
@@ -709,8 +710,8 @@ setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;vo
 
 | 参数名   | 类型    | 必填 | 说明                      |
 | -------- | ------- | ---- | ------------------------- |
-| functionKey | [FunctionKey](js-apis-inputdevice.md#functionkey15) | 是   |  需要设置的功能键id。          |
-| enabled  | boolean | 是   | 设置功能键是开启还是关闭状态。true代表开启状态，false代表关闭状态。 |
+| functionKey | [FunctionKey](#functionkey15) | 是   | 需要设置的功能键类型。 |
+| enabled  | boolean | 是   | 功能键使能状态。取值为true表示使能功能键，取值为false表示不使能功能键。 |
 
 **错误码**：
 
@@ -727,10 +728,13 @@ setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;vo
 **示例**：
 
 ```js
+import { inputDevice } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
-  inputDevice.setFunctionKeyEnabled(1, true).then(() => {
+  inputDevice.setFunctionKeyEnabled(inputDevice.FunctionKey.CAPS_LOCK, true).then(() => {
     console.info(`Set capslock state success`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Set capslock state failed, error=${JSON.stringify(error)}`);
   });
 } catch (error) {
@@ -879,4 +883,4 @@ type ChangedType = 'add' | 'remove'
 
 | 名称                  | 值    | 说明        |
 | ------------------- | ---- | --------- |
-| CAPS_LOCK                | 1    | CapsLock键，仅允许对输入键盘扩展启用或禁用CapsLock键。  |
+| CAPS_LOCK                | 1    | psLock键，仅允许对输入键盘扩展启用或禁用CapsLock键。 |
