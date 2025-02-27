@@ -148,7 +148,7 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value GetValueInt64(napi_env env, napi_callback_info info) 
+static napi_value GetValueInt64(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -250,7 +250,7 @@ static napi_value CreateInt32(napi_env env, napi_callback_info info)
 {
     // int32_t是有符号的32位整数类型，表示带有符号的整数，它的范围是从-2^31到2^31 - 1，也就是-2147483648到2147483647
     // 要表示的整数值
-    int32_t value = -26; 
+    int32_t value = -26;
     // 创建ArkTS中的int32数字
     napi_value result = nullptr;
     napi_status status = napi_create_int32(env, value, &result);
@@ -287,7 +287,7 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value CreateUInt32(napi_env env, napi_callback_info info) 
+static napi_value CreateUInt32(napi_env env, napi_callback_info info)
 {
     // 如果使用 uint32_t类型来定义-26，会发生溢出，溢出时会对结果进行模运算，将负数的二进制补码转换为相应的正数。-26输出4294967270
     // uint32_t是无符号的32位整数类型，只能表示非负整数。它的范围是从0到2 ^32 - 1，即0到4294967295
@@ -331,10 +331,10 @@ cpp部分代码
 
 static napi_value CreateInt64(napi_env env, napi_callback_info info)
 {
-    // int64是有符号的64位整数类型，可以表示范围从-2^63到2^63 - 1的整数，即 -9223372036854775808到9223372036854775807
     // 要表示的整数值
     int64_t value = 2147483648;
-    // 创建ArkTS中的int64数字
+    // 使用给定数值创建一个ArkTS number，仅能准确表示范围从-2^53 + 1到2^53 - 1（闭区间）的整数
+    // 如果想表示的数值超过了2^53，请使用napi_create_bigint64接口
     napi_value result = nullptr;
     napi_status status = napi_create_int64(env, value, &result);
     if (status != napi_ok) {
