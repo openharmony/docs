@@ -3836,12 +3836,12 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 **系统能力**：SystemCapability.Applications.Contacts
 
-|                名称               |                  类型                 | 必填  |        说明      |        默认值      |
-| --------------------------------- | ------------------------------------- | ---- | ---------------- | ---------------- |
-| isMultiSelect<sup>10+</sup>         | boolean | 否   | 是否为多选。     | false   |
-| maxSelectable<sup>15+</sup>         | number | 否   | 联系人选择数量上限。     | 10000    |
-| isDisplayedByName<sup>15+</sup>         | boolean | 否   | 是否按联系人姓名维度展示。     | false   |
-| filter<sup>15+</sup>         | [ContactSelectionFilter](#contactselectionfilter15) | 否   | 联系人查询过滤器。     | undefined   |
+|                名称               |                  类型                 | 必填  |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| isMultiSelect<sup>10+</sup>         | boolean | 否   | 是否为多选。默认值为false。     |
+| maxSelectable<sup>15+</sup>         | number | 否   | 联系人选择数量上限。默认值为10000。     | 
+| isDisplayedByName<sup>15+</sup>         | boolean | 否   | 是否按联系人姓名维度展示。默认值为false。     |
+| filter<sup>15+</sup>         | [ContactSelectionFilter](#contactselectionfilter15) | 否   | 联系人查询过滤器。     |
 
 ## ContactSelectionFilter<sup>15+</sup>
 
@@ -3878,12 +3878,12 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 **系统能力**：SystemCapability.Applications.Contacts
 
-|                名称               |                  类型                 | 必填  |        说明      |        默认值      |
-| --------------------------------- | ------------------------------------- | ---- | ---------------- | ---------------- |
-| id         | [FilterOptions](#filteroptions15)[] | 否   | 联系人id。     | undefined     |
-| name         | [FilterOptions](#filteroptions15)[]  | 否   | 联系人姓名。     | undefined     |
-| dataItem         | [DataFilter](#datafilter15) | 否   | 联系人数据过滤项。     | undefined     |
-| focusModeList        | [FilterOptions](#filteroptions15)[]  | 否   | 专注模式。     | undefined     |
+|                名称               |                  类型                 | 必填  |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| id         | [FilterOptions](#filteroptions15)[] | 否   | 联系人id。     |
+| name         | [FilterOptions](#filteroptions15)[]  | 否   | 联系人姓名。     |
+| dataItem         | [DataFilter](#datafilter15) | 否   | 联系人数据过滤项。     |
+| focusModeList        | [FilterOptions](#filteroptions15)[]  | 否   | 专注模式。     |
 
 ## FilterOptions<sup>15+</sup>
 
