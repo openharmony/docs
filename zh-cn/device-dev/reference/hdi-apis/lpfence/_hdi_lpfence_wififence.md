@@ -26,7 +26,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| interface&nbsp;&nbsp;[IWififenceCallback](interface_i_wififence_callback.md) | 定义Wi-Fi围栏模块的回调函数 | 
+| interface&nbsp;&nbsp;[IWififenceCallback](interface_i_wififence_callback.md) | 定义Wi-Fi围栏模块的回调函数。 | 
 | interface&nbsp;&nbsp;[IWififenceInterface](interface_i_wififence_interface.md) | 定义对Wi-Fi围栏模块进行基本操作的接口。 | 
 | struct&nbsp;&nbsp;[WififenceRequest](_wififence_request.md) | 定义添加Wi-Fi围栏的数据结构。 | 
 | struct&nbsp;&nbsp;[WififenceSize](_wififence_size.md) | 定义Wi-Fi围栏使用信息的数据结构。 | 
