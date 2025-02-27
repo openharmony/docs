@@ -46,6 +46,7 @@
 | struct&nbsp;&nbsp;[ArkUI_NativeAnimateAPI_1](_ark_u_i___native_animate_a_p_i__1.md) | ArkUI提供的Native侧动画接口集合。  | 
 | struct&nbsp;&nbsp;[ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md) | ArkUI提供的Native侧自定义弹窗接口集合。  | 
 | struct&nbsp;&nbsp;[ArkUI_NativeGestureAPI_1](_ark_u_i___native_gesture_a_p_i__1.md) | 手势模块接口集合。  | 
+| struct&nbsp;&nbsp;[ArkUI_NativeGestureAPI_2](_ark_u_i___native_gesture_a_p_i__2.md) | 新增手势模块接口集合。 |
 | struct&nbsp;&nbsp;[ArkUI_AttributeItem](_ark_u_i___attribute_item.md) | 定义**setAttribute**函数通用入参结构。  | 
 | struct&nbsp;&nbsp;[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) | 定义组件回调事件的参数类型。  | 
 | struct&nbsp;&nbsp;[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md) | 定义组件回调事件使用字符串参数的类型。  | 
@@ -466,6 +467,7 @@
 | int32_t [OH_ArkUI_GetGestureBindNodeId](#oh_arkui_getgesturebindnodeid) (ArkUI_GestureRecognizer \*recognizer, char \*nodeId, int32_t size, int32_t \*result) | 获取手势识别器绑定的组件的ID。  | 
 | bool [OH_ArkUI_IsGestureRecognizerValid](#oh_arkui_isgesturerecognizervalid) (ArkUI_GestureRecognizer \*recognizer) | 当前手势识别器是否有效。  | 
 | void \* [OH_ArkUI_ParallelInnerGestureEvent_GetUserData](#oh_arkui_parallelinnergestureevent_getuserdata) ([ArkUI_ParallelInnerGestureEvent](#arkui_parallelinnergestureevent) \*event) | 获取并行内部手势事件中的用户自定义数据。  | 
+| void* [OH_ArkUI_GestureInterrupter_GetUserData](#oh_arkui_gestureinterrupter_getuserdata) ([ArkUI_GestureInterruptInfo](#arkui_gestureinterruptinfo)* event) | 获取手势中断事件中的用户自定义数据。 |
 | ArkUI_GestureRecognizer \* [OH_ArkUI_ParallelInnerGestureEvent_GetCurrentRecognizer](#oh_arkui_parallelinnergestureevent_getcurrentrecognizer) ([ArkUI_ParallelInnerGestureEvent](#arkui_parallelinnergestureevent) \*event) | 获取并行内部手势事件中的当前手势识别器。  | 
 | int32_t [OH_ArkUI_ParallelInnerGestureEvent_GetConflictRecognizers](#oh_arkui_parallelinnergestureevent_getconflictrecognizers) ([ArkUI_ParallelInnerGestureEvent](#arkui_parallelinnergestureevent) \*event, [ArkUI_GestureRecognizerHandleArray](#arkui_gesturerecognizerhandlearray) \*array, int32_t \*size) | 获取并行内部手势事件中的冲突的手势识别器。  | 
 | int32_t [OH_ArkUI_SetArkUIGestureRecognizerDisposeNotify](#oh_arkui_setarkuigesturerecognizerdisposenotify) (ArkUI_GestureRecognizer \*recognizer, [ArkUI_GestureRecognizerDestructNotifyCallback](#arkui_gesturerecognizerdestructnotifycallback) callback, void \*userData) | 设置手势识别器对象析构通知回调函数。  | 
@@ -1389,6 +1391,19 @@ typedef struct ArkUI_ParallelInnerGestureEvent ArkUI_ParallelInnerGestureEvent
 **描述：**
 
 提供并行内部手势事件类型对象定义。
+
+**起始版本：** 12
+
+
+### ArkUI_GestureInterruptInfo
+
+```
+typedef struct ArkUI_GestureInterruptInfo ArkUI_GestureInterruptInfo
+```
+
+**描述：**
+
+提供手势中断信息对象定义。
 
 **起始版本：** 12
 
@@ -13757,6 +13772,28 @@ void* OH_ArkUI_ParallelInnerGestureEvent_GetUserData (ArkUI_ParallelInnerGesture
 **返回：**
 
 用户自定义数据的指针。
+
+### OH_ArkUI_GestureInterrupter_GetUserData
+
+```
+void* OH_ArkUI_GestureInterrupter_GetUserData(ArkUI_GestureInterruptInfo* event)
+```
+
+**描述：**
+
+获取手势中断事件中的用户自定义数据。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称  | 描述                       |
+| ----- | -------------------------- |
+| event | 是指向手势中断信息的指针。 |
+
+**返回：**
+
+指向用户自定义数据的指针。
 
 
 ### OH_ArkUI_PinchGesture_GetCenterX()

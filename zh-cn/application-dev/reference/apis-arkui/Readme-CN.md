@@ -468,6 +468,7 @@
     - [ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md)
     - [ArkUI_NativeDialogAPI_2](_ark_u_i___native_dialog_a_p_i__2.md)
     - [ArkUI_NativeGestureAPI_1](_ark_u_i___native_gesture_a_p_i__1.md)
+    - [ArkUI_NativeGestureAPI_2](_ark_u_i___native_gesture_a_p_i__2.md)
     - [ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md)
     - [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)
     - [ArkUI_NumberValue](union_ark_u_i___number_value.md)
