@@ -685,7 +685,6 @@ isFunctionKeyEnabled(functionKey: FunctionKey): Promise&lt;boolean&gt;
 **示例**：
 
 ```js
-// 查询capslock状态。
 try {
   inputDevice.isFunctionKeyEnabled(1).then((state: boolean) => {
     console.log(`capslock state: ${JSON.stringify(state)}`);
@@ -709,7 +708,7 @@ setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;vo
 
 | 参数名      | 类型                          | 必填 | 说明                                                         |
 | ----------- | ----------------------------- | ---- | ------------------------------------------------------------ |
-| functionKey | [FunctionKey](#functionkey15) | 是   | 需要设置的功能键id。                                         |
+| functionKey | [FunctionKey](#functionkey15) | 是   | 需要设置的功能键类型。                                       |
 | enabled     | boolean                       | 是   | 功能键使能状态。取值为true表示使能功能键，取值为false表示不使能功能键。 |
 
 **错误码**：
@@ -877,7 +876,7 @@ type ChangedType = 'add' | 'remove'
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称      | 值   | 说明                                                     |
-| --------- | ---- | -------------------------------------------------------- |
-| CAPS_LOCK | 1    | CapsLock键，仅允许对输入键盘扩展使能或不使能CapsLock键。 |
+| 名称      | 值   | 说明                                                   |
+| --------- | ---- | ------------------------------------------------------ |
+| CAPS_LOCK | 1    | CapsLock键，仅支持对输入键盘扩展的CapsLock键设置使能。 |
 
