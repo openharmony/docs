@@ -75,4 +75,4 @@ windowId is invalid.
 
 **处理步骤**
 
-请检查并传入当前应用的窗口id，窗口id可通过win.[getWindowProperties()](../apis-arkui/js-apis-window.md#getwindowproperties9).id获取。
+请检查并传入当前应用的窗口id，可通过windowClass.[getWindowProperties()](../apis-arkui/js-apis-window.md#getwindowproperties9)接口获取当前窗口属性，窗口属性中含有窗口id。
