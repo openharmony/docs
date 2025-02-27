@@ -2562,7 +2562,7 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| idleTime | number | 是   | 空闲时间的阈值。在这个时间段控件不发生变化，视为该控件空闲，单位：毫秒，取值大于等于0。 |
+| idleTime | number | 是   | 空闲时间的阈值。在这个时间段控件不发生变化，视为该控件空闲，单位：毫秒（px），取值大于等于0。 |
 | timeout  | number | 是   | 等待空闲的最大时间，单位：毫秒，取值大于等于0。                    |
 
 **返回值：**
@@ -2606,8 +2606,8 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 | ------- | ---------------- | ---- | ------------------------------------------------------------ |
 | from    | [Point](#point9) | 是   | 手指接触屏幕的起始点坐标。                                   |
 | to      | [Point](#point9) | 是   | 手指离开屏幕时的坐标点。                                     |
-| stepLen | number           | 是   | 间隔距离，单位：像素点。                                     |
-| speed   | number           | 是   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| stepLen | number           | 是   | 间隔距离，单位：像素点（px）。                                     |
+| speed   | number           | 是   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒（px/s）。 |
 
 **错误码：**
 
@@ -2813,7 +2813,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 | ------ | ---------------- | ---- | ----------------------------------------------------------- |
 | p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                            |
 | down   | boolean          | 是   | 滚轮滑动方向是否向下，true表示向下滑动，false表示向上滚动。 |
-| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120个像素点。         |
+| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120px。         |
 | key1   | number           | 否   | 指定的第一个key值。默认值为0。                              |
 | key2   | number           | 否   | 指定的第二个key值。默认值为0。                              |
 
@@ -3762,8 +3762,8 @@ once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 
 | 参数名   | 类型                                         | 必填 | 说明                              |
 | -------- | -------------------------------------------- | ---- | --------------------------------- |
-| type     | string                                       | 是   | 订阅的事件类型，取值为'toastShow' |
-| callback | Callback\<[UIElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调函数          |
+| type     | string                                       | 是   | 订阅的事件类型，取值为'toastShow'。 |
+| callback | Callback\<[UIElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调函数。          |
 
 **错误码：**
 
