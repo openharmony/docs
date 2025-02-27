@@ -45,7 +45,7 @@ HDF扩展驱动框架为外设扩展驱动开发，提供稳定统一的外设�
 具体的权限申请如下所示：
 
 | API 类型 | DDK类型 | 权限名称 |
-|-----------|--------------------|--------------------------|
+| --------- | --------- | --------- |
 | ArkTs-API | 不涉及 | ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER |
 | C-API     | USB DDK | ohos.permission.ACCESS_DDK_USB |
 | C-API     | HID DDK | ohos.permission.ACCESS_DDK_HID |
@@ -68,8 +68,8 @@ HDF扩展驱动框架为外设扩展驱动开发，提供稳定统一的外设�
 
 ## 关联模块
 
-| Kit名称                | 作用 | 
-|------------------------|-----------------------------|
+| Kit名称 | 作用 | 
+| --------- | --------- |
 | PerformanceAnalysisKit | 引入{hilog}用于日志打印。| 
 | BasicServicesKit       | 引入{BusinessError}用于catch error。 |
 | IPCKit                 | 引入{rpc}用于驱动与客户端ipc通信。|
