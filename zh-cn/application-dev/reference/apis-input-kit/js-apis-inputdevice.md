@@ -663,9 +663,9 @@ isFunctionKeyEnabled(functionKey: FunctionKey): Promise&lt;boolean&gt;
 
 **参数**：
 
-| 参数名      | 类型                          | 必填 | 说明                         |
-| ----------- | ----------------------------- | ---- | ---------------------------- |
-| functionKey | [FunctionKey](#functionkey15) | 是   | 需要检查使能状态的功能键id。 |
+| 参数名      | 类型                          | 必填 | 说明                   |
+| ----------- | ----------------------------- | ---- | ---------------------- |
+| functionKey | [FunctionKey](#functionkey15) | 是   | 需要设置的功能键类型。 |
 
 **返回值**：
 
@@ -687,9 +687,8 @@ isFunctionKeyEnabled(functionKey: FunctionKey): Promise&lt;boolean&gt;
 ```js
 import { inputDevice } from '@kit.InputKit';
 
-let CAPS_LOCK = 1;
 try {
-  inputDevice.isFunctionKeyEnabled(CAPS_LOCK).then((state: boolean) => {
+  inputDevice.isFunctionKeyEnabled(inputDevice.FunctionKey.CAPS_LOCK).then((state: boolean) => {
     console.log(`capslock state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -732,9 +731,8 @@ setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;vo
 import { inputDevice } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let CAPS_LOCK = 1;
 try {
-  inputDevice.setFunctionKeyEnabled(CAPS_LOCK, true).then(() => {
+  inputDevice.setFunctionKeyEnabled(inputDevice.FunctionKey.CAPS_LOCK, true).then(() => {
     console.info(`Set capslock state success`);
   }).catch((error: BusinessError) => {
     console.info(`Set capslock state failed, error=${JSON.stringify(error)}`);
