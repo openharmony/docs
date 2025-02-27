@@ -1109,7 +1109,7 @@
         - USB Service<!--usb-->
           - [USB Service Development Overview](basic-services/usb/usb-overview.md)
           - [USB Service Development](basic-services/usb/usb-guidelines.md)
-          - [FAQs](basic-services/faqs/faqs-usb.md)
+          - [FAQs](basic-services/usb/faqs-usb.md)
         <!--Del-->
         - Update Service<!--update-->
           - [Sample Server Development Overview](basic-services/update/sample-server-overview.md)
@@ -1450,6 +1450,13 @@
         - [Requesting Frame Rates for Custom Content](graphics/displaysync-xcomponent.md)
         - [Native DisplaySoloist Development (C/C++)](graphics/displaysoloist-native-guidelines.md)
       - [Overdraw Debugging](graphics/overdraw-dfx-guidelines.md)
+      - [Using Drawing to Draw and Display Graphics](graphics/drawing-js-guidelines.md)
+      - [Using the Text Module for Text Display](graphics/text-js-guidelines.md)
+      - [Using Drawing to Draw and Display Graphics (C/C++)](graphics/drawing-guidelines.md)
+      - [Native Buffer Development (C/C++)](graphics/native-buffer-guidelines.md)
+      - [Native Image Development (C/C++)](graphics/native-image-guidelines.md)
+      - [Native Vsync Development (C/C++)](graphics/native-vsync-guidelines.md)
+      - [Native Window Development (C/C++)](graphics/native-window-guidelines.md)
     - ArkGraphics 3D<!--arkgraphics-3d-->
       - [Introduction to ArkGraphics 3D](graphics3d/arkgraphics3D-overview.md)
       - [Building and Managing ArkGraphics 3D Scenes](graphics3d/arkgraphics3D-scene.md)
