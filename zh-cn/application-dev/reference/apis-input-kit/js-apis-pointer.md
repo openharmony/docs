@@ -684,7 +684,11 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 
 | 参数                  | 说明               |
 | ------------------- | ---------------- |
+<<<<<<< HEAD
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+=======
+| Promise&lt;void&gt; | 通过Promise返回结果。0为设置成功，其他值为设置失败。 |
+>>>>>>> 510f300f96 (自定义光标样式支持根据图片尺寸变更大小接口)
 
 **错误码**：
 
@@ -692,7 +696,11 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+<<<<<<< HEAD
 | 401  | Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
+=======
+| 401  | 401 - Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
+>>>>>>> 510f300f96 (自定义光标样式支持根据图片尺寸变更大小接口)
 | 26500001 | Invalid windowID. |
 
 **示例**：
