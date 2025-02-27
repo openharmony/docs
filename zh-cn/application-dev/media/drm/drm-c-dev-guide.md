@@ -28,7 +28,7 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
 3. 获取设备支持的DRM解决方案名称和唯一标识的列表。
 
     ```c++
-    uint32_t count = 3; // count是当前设备实际支持的DRM插件的个数，用户根据实际情况设置
+    uint32_t count = 3; // count是当前设备实际支持的DRM插件的个数，用户根据实际情况设置。
     DRM_MediaKeySystemDescription descriptions[3];
     memset(descriptions, 0, sizeof(descriptions));
     Drm_ErrCode ret = OH_MediaKeySystem_GetMediaKeySystems(descriptions, &count);
@@ -64,7 +64,7 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
     {
         printf("SystemCallBackWithObj enter");
         if (eventType == EVENT_PROVISION_REQUIRED) {
-            // 设备DRM证书请求和处理
+            // 设备DRM证书请求和处理。
         }
         return DRM_ERR_OK;
     }
@@ -79,10 +79,10 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
 
     ```c++
     DRM_CertificateStatus certStatus = CERT_STATUS_INVALID;
-    // 检查设备DRM证书状态
+    // 检查设备DRM证书状态。
     ret = OH_MediaKeySystem_GetCertificateStatus(mediaKeySystem, &certStatus);
     if (ret == DRM_ERR_OK && certStatus != CERT_STATUS_PROVISIONED) {
-        // 设备DRM证书请求和处理
+        // 设备DRM证书请求和处理。
     }
     ```
 
@@ -90,9 +90,9 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
 
     ```c++
     #define MAX_DRM_PROVISION_BUF_SIZE 24576 // 24576: (2 * 12 * 1024)
-    unsigned char request[MAX_DRM_PROVISION_BUF_SIZE] = { 0x00 };  // 设备DRM证书request最大长度为MAX_DRM_PROVISION_BUF_SIZE，按实际大小申请
+    unsigned char request[MAX_DRM_PROVISION_BUF_SIZE] = { 0x00 };  // 设备DRM证书request最大长度为MAX_DRM_PROVISION_BUF_SIZE，按实际大小申请。
     int32_t requestLen = MAX_DRM_PROVISION_BUF_SIZE;
-    // DRM服务URL的最大长度为2048
+    // DRM服务URL的最大长度为2048。
     char defaultUrl[2048] = { 0x00 };
     int32_t defaultUrlLen = 2048;
     ret = OH_MediaKeySystem_GenerateKeySystemRequest(mediaKeySystem, request, &requestLen, defaultUrl,
@@ -125,7 +125,7 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
 
     ```c++
     MediaKeySession *mediaKeySession = nullptr;
-    DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO; // 依据设备支持的内容保护级别设置
+    DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO; // 依据设备支持的内容保护级别设置。
     ret = OH_MediaKeySystem_CreateMediaKeySession(mediaKeySystem, &contentProtectionLevel, &mediaKeySession);
     if (ret != DRM_ERR_OK || mediaKeySession == nullptr) {
         printf("OH_MediaKeySystem_CreateMediaKeySession failed.");
@@ -138,7 +138,7 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
     static Drm_ErrCode SessionEventCallBackWithObj(MediaKeySession *mediaKeySession, DRM_EventType eventType, uint8_t *info, int32_t infoLen, char *extra)
     {
         if (eventType == EVENT_KEY_REQUIRED) {
-            // 媒体密钥请求与处理
+            // 媒体密钥请求与处理。
         }
         return DRM_ERR_OK;
     }
@@ -171,11 +171,11 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
     #define MAX_DRM_MEDIA_KEY_RESPONSE_BUF_SIZE 24576 // 24576: (2 * 12 * 1024)
     DRM_MediaKeyRequest mediaKeyRequest;
     DRM_MediaKeyRequestInfo info;
-    // initData对应码流中的pssh数据，请按实际数据填入
+    // initData对应码流中的pssh数据，请按实际数据填入。
     unsigned char initData[512] = {0x00};
     memset(&info, 0, sizeof(DRM_MediaKeyRequestInfo));
     info.initDataLen = sizeof(initData);
-    info.type = MEDIA_KEY_TYPE_ONLINE; // MEDIA_KEY_TYPE_ONLINE: 在线媒体密钥请求类型; MEDIA_KEY_TYPE_OFFLINE: 离线媒体密钥请求类型 
+    info.type = MEDIA_KEY_TYPE_ONLINE; // MEDIA_KEY_TYPE_ONLINE: 在线媒体密钥请求类型; MEDIA_KEY_TYPE_OFFLINE: 离线媒体密钥请求类型。 
     memcpy(info.mimeType, (char *)"video/mp4", sizeof("video/mp4"));
     memcpy(info.initData, initData, sizeof(initData));
     memcpy(info.optionName[0], (char *)"optionalDataName", sizeof("optionalDataName"));
@@ -191,7 +191,7 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
     */
     unsigned char mediaKeyId[128] = {0x00};
     int32_t mediaKeyIdLen = 128;
-    // 媒体密钥响应长度最大为MAX_DRM_MEDIA_KEY_RESPONSE_BUF_SIZE，请按实际数据输入
+    // 媒体密钥响应长度最大为MAX_DRM_MEDIA_KEY_RESPONSE_BUF_SIZE，请按实际数据输入。
     unsigned char mediaKeyResponse[MAX_DRM_MEDIA_KEY_RESPONSE_BUF_SIZE] = {0x00};
     int32_t mediaKeyResponseLen = MAX_DRM_MEDIA_KEY_RESPONSE_BUF_SIZE;
     ret = OH_MediaKeySession_ProcessMediaKeyResponse(mediaKeySession, mediaKeyResponse,
@@ -204,7 +204,7 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
 14. （可选）恢复离线媒体密钥。
 
     ```c++
-    // 将指定媒体密钥标识的媒体密钥加载到当前会话
+    // 将指定媒体密钥标识的媒体密钥加载到当前会话。
     ret = OH_MediaKeySession_RestoreOfflineMediaKeys(mediaKeySession, mediaKeyId, mediaKeyIdLen);
     if (ret != DRM_ERR_OK) {
         printf("OH_MediaKeySession_RestoreOfflineMediaKeys failed.");

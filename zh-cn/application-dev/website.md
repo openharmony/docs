@@ -103,7 +103,7 @@
           - [PersistenceV2: 持久化存储UI状态](quick-start/arkts-new-persistencev2.md)
           - [!!语法：双向绑定](quick-start/arkts-new-binding.md)
           - [自定义组件冻结功能](quick-start/arkts-custom-components-freezeV2.md)
-          - [Repeat：子组件复用](quick-start/arkts-new-rendering-control-repeat.md)
+          - [Repeat：可复用的循环渲染](quick-start/arkts-new-rendering-control-repeat.md)
           - [getTarget接口：获取状态管理框架代理前的原始对象](quick-start/arkts-new-getTarget.md)
           - [makeObserved接口：将非观察数据变为可观察数据](quick-start/arkts-new-makeObserved.md)
         - [MVVM模式（状态管理V2）](quick-start/arkts-mvvm-V2.md)
@@ -280,6 +280,11 @@
         - [通过用户首选项实现数据持久化](database/data-persistence-by-preferences.md)
         - [通过键值型数据库实现数据持久化](database/data-persistence-by-kv-store.md)
         - [通过关系型数据库实现数据持久化](database/data-persistence-by-rdb-store.md)
+        - [通过向量数据库实现数据持久化 (ArkTS)](database/data-persistence-by-vector-store.md)
+        - [通过向量数据库实现数据持久化 (C/C++)](database/native-vector-store-guidelines.md)
+        <!--Del-->
+        - [通过图数据库实现数据持久化（仅对系统应用开放）](database/data-persistence-by-graph-store.md)
+        <!--DelEnd-->
       - 同应用跨设备数据同步（分布式）<!--distributed-data-sync-->
         - [同应用跨设备数据同步概述](database/sync-app-data-across-devices-overview.md)
         - [键值型数据库跨设备数据同步](database/data-sync-of-kv-store.md)
@@ -300,6 +305,9 @@
         <!--DelEnd-->
         - 多对多跨应用数据共享<!--many-to-many-data-share-->
           - [通过标准化数据通路实现数据共享](database/unified-data-channels.md)
+      - 智慧化数据构建与检索<!--intelligence-data-->
+        - [智慧化数据构建与检索概述](database/aip-data-intelligence-overview.md)
+        - [应用数据向量化](database/aip-data-intelligence-embedding.md)
       - [RelationalStore开发指导 (C/C++)](database/native-relational-store-guidelines.md)
       - [UDMF开发指导 (C/C++)](database/native-unified-data-management-framework-guidelines.md)
       - [通过用户首选项实现数据持久化 (C/C++)](database/preferences-guidelines.md)
@@ -336,6 +344,7 @@
               - [Sendable对象简介](arkts-utils/arkts-sendable.md)
               - [Sendable使用规则与约束](arkts-utils/sendable-constraints.md)
               - [异步锁](arkts-utils/arkts-async-lock-introduction.md)
+              - [异步等待](arkts-utils/arkts-condition-variable-introduction.md)
               - [ASON解析与生成](arkts-utils/ason-parsing-generation.md)
               - [共享容器](arkts-utils/arkts-collections-introduction.md)
               - [共享模块](arkts-utils/arkts-sendable-module.md)
@@ -410,11 +419,14 @@
             - [栅格布局 (GridRow/GridCol)](ui/arkts-layout-development-grid-layout.md)
             - [媒体查询 (@ohos.mediaquery)](ui/arkts-layout-development-media-query.md)
             - [创建列表 (List)](ui/arkts-layout-development-create-list.md)
+            - [创建弧形列表 (ArcList)](ui/arkts-layout-development-create-arclist.md)（圆形屏幕推荐使用）
             - [创建网格 (Grid/GridItem)](ui/arkts-layout-development-create-grid.md)
             - [创建轮播 (Swiper)](ui/arkts-layout-development-create-looping.md)
+            - [创建弧形轮播 (ArcSwiper)](ui/arkts-layout-development-arcswiper.md)（圆形屏幕推荐使用）
             - [选项卡 (Tabs)](ui/arkts-navigation-tabs.md)
         - 添加组件<!--arkts-add-component-->
           - [按钮 (Button)](ui/arkts-common-components-button.md)
+          - [弧形按钮 (ArcButton)](ui/arkts-advanced-components-arcbutton.md)（圆形屏幕推荐使用）
           - [单选框 (Radio)](ui/arkts-common-components-radio-button.md)
           - [切换按钮 (Toggle)](ui/arkts-common-components-switch.md)
           - [进度条 (Progress)](ui/arkts-common-components-progress-indicator.md)
@@ -1142,9 +1154,20 @@
           - 应用账号<!--application-account-->
             - [管理应用账号](basic-services/account/manage-application-account.md)
         - USB服务<!--usb-->
-          - [USB服务开发概述](basic-services/usb/usb-overview.md)
+          <!--Del-->
+          - [USB服务简介](basic-services/usb/usb-overview.md)
           - [USB服务开发指导](basic-services/usb/usb-guidelines.md)
-          - [常见问题](basic-services/usb/../faqs/faqs-usb.md)
+          <!--DelEnd-->
+          - 开发USB服务<!--usb-dev-->
+            - [USB服务开发概述](basic-services/usb/usbManager/usbHost-overview.md)
+            - USB Host模式开发<!--usb-host-dev-->
+              - [USB设备管理](basic-services/usb/usbManager/usbHost/deviceManager.md)
+              - [USB控制传输](basic-services/usb/usbManager/usbHost/controlTransfer.md)
+              - [USB中断传输](basic-services/usb/usbManager/usbHost/interruptTransfer.md)
+              - [USB批量传输](basic-services/usb/usbManager/usbHost/bulkTransfer.md)
+              - [USB同步传输](basic-services/usb/usbManager/usbHost/isochronousTransfer.md)
+          - [常见问题](basic-services/usb/faqs-usb.md)
+          - [术语](basic-services/usb/usb-glossary.md)
         <!--Del-->
         - 升级服务<!--update-->
           - [示例服务器开发概述](basic-services/update/sample-server-overview.md)
@@ -1348,8 +1371,8 @@
         - [时域可分层视频编码](media/avcodec/video-encoding-temporal-scalability.md)
         - [典型场景的视频编码配置](media/avcodec/video-encoding-configuration-typical-scenarios.md)
         - [视频解码](media/avcodec/video-decoding.md)
-        - [视频可变帧率](media/avcodec/video-variable-refreshrate.md)
         - [创建视频解码器和NativeWindow初始化并行](media/avcodec/parallel-decoding-nativeWindow.md)
+        - [视频可变帧率](media/avcodec/video-variable-refreshrate.md)
       - 媒体数据封装与解析<!--file-muxing-demuxing-->
         - [媒体数据封装](media/avcodec/audio-video-muxer.md)
         - [媒体数据解析](media/avcodec/audio-video-demuxer.md)
@@ -1476,7 +1499,9 @@
         - 播放<!--media-playback-c-->
           - [使用AVPlayer播放音频(C/C++)](media/media/using-ndk-avplayer-for-playback.md)
           - [使用AVPlayer播放视频(C/C++)](media/media/using-ndk-avplayer-for-video-playback.md)
-        - 录屏<!--media-recording-c-->
+        - 录制<!--media-recording-c-->
+          - [使用AVRecorder录制音频(C/C++)](media/media/using-ndk-avrecorder-for-audio-recording.md)
+          - [使用AVRecorder录制视频(C/C++)](media/media/using-ndk-avrecorder-for-video-recording.md)
           - [使用AVScreenCapture录屏取码流(C/C++)](media/media/using-avscreencapture-for-buffer.md)
           - [使用AVScreenCapture录屏写文件(C/C++)](media/media/using-avscreencapture-for-file.md)
     - Media Library Kit（媒体文件管理服务）<!--medialibrary-kit-->
@@ -1662,6 +1687,7 @@
           - [使用Node-API接口进行模块加载](napi/use-napi-load-module-with-info.md)
           - [使用Node-API接口从异步线程向ArkTS线程投递指定优先级和入队方式的的任务](napi/use-call-threadsafe-function-with-priority.md)
           - [使用Node-API接口产生的异常日志/崩溃分析](napi/use-napi-about-crash.md)
+          - [使用Node-API调用返回值为promise的ArkTS方法](napi/use-napi-method-promise.md)
         - [Node-API常见问题](napi/use-napi-faqs.md)
       - 使用JSVM-API实现JS与C/C++语言交互<!--jsvm-->
         - [JSVM-API简介](napi/jsvm-introduction.md)
@@ -1720,7 +1746,8 @@
       - 设备管理<!--device-management-->
         - [USB DDK开发指导](napi/usb-ddk-guidelines.md)
         - [HID DDK开发指导](napi/hid-ddk-guidelines.md)
-        - [USB SERIAL DDK开发指导](napi/usb-serial-ddk-guidelines.md)
+        - [USB Serial DDK开发指导](napi/usb-serial-ddk-guidelines.md)
+        - [SCSI Peripheral DDK开发指南](napi/scsi-peripheral-ddk-guidelines.md)
       - 包管理<!--bundle-management-->
         - [NativeBundle开发指导](napi/native-bundle-guidelines.md)
     - 调试和性能分析<!--debugging-profiling-->
@@ -1969,6 +1996,7 @@
             - [ContinueCallback(系统接口)](reference/apis-ability-kit/js-apis-inner-application-continueCallback-sys.md)
             - [ContinueDeviceInfo(系统接口)](reference/apis-ability-kit/js-apis-inner-application-continueDeviceInfo-sys.md)
             - [ContinueMissionInfo(系统接口)](reference/apis-ability-kit/js-apis-inner-application-continueMissionInfo-sys.md)
+            - [CustomData (系统接口)](reference/apis-ability-kit/js-apis-inner-application-customData-sys.md)
             - [ExtensionRunningInfo(系统接口)](reference/apis-ability-kit/js-apis-inner-application-extensionRunningInfo-sys.md)
             - [MissionCallbacks(系统接口)](reference/apis-ability-kit/js-apis-inner-application-missionCallbacks-sys.md)
             - [MissionDeviceInfo(系统接口)](reference/apis-ability-kit/js-apis-inner-application-missionDeviceInfo-sys.md)
@@ -1976,8 +2004,11 @@
             - [MissionListener(系统接口)](reference/apis-ability-kit/js-apis-inner-application-missionListener-sys.md)
             - [MissionParameter(系统接口)](reference/apis-ability-kit/js-apis-inner-application-missionParameter-sys.md)
             - [MissionSnapshot(系统接口)](reference/apis-ability-kit/js-apis-inner-application-missionSnapshot-sys.md)
-            - [MissionSnapshot(系统接口)](reference/apis-ability-kit/js-apis-inner-application-pageNodeInfo-sys.md)
+            - [MultiAppMode (系统接口)](reference/apis-ability-kit/js-apis-inner-application-multiAppMode-sys.md) 
             - [PageNodeInfo(系统接口)](reference/apis-ability-kit/js-apis-inner-application-pageNodeInfo-sys.md)
+            - [RunningAppClone (系统接口)](reference/apis-ability-kit/js-apis-inner-application-runningAppClone-sys.md)
+            - [RunningMultiAppInfo (系统接口)](reference/apis-ability-kit/js-apis-inner-application-runningMultiAppInfo-sys.md)
+            - [RunningMultiInstanceInfo (系统接口)](reference/apis-ability-kit/js-apis-inner-application-runningMultiInstanceInfo-sys.md) 
             - [ServiceExtensionContext(系统接口)](reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md)
             - [UIServiceExtensionContext(系统接口)](reference/apis-ability-kit/js-apis-inner-application-uiserviceExtensionContext-sys.md)
             - [UIServiceHostProxy(系统接口)](reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md)
@@ -2019,6 +2050,9 @@
           - wantAgent<!--wantagent-->
             - [triggerInfo](reference/apis-ability-kit/js-apis-inner-wantAgent-triggerInfo.md)
             - [wantAgentInfo](reference/apis-ability-kit/js-apis-inner-wantAgent-wantAgentInfo.md)
+            <!--Del-->
+            - [TriggerInfo(系统接口)](reference/apis-ability-kit/js-apis-inner-wantAgent-triggerInfo-sys.md)
+            <!--DelEnd-->
         - 已停止维护的接口<!--ability-arkts-dep-->
           - [@ohos.ability.dataUriUtils (DataUriUtils模块)](reference/apis-ability-kit/js-apis-ability-dataUriUtils.md)
           - [@ohos.ability.errorCode (ErrorCode)](reference/apis-ability-kit/js-apis-ability-errorCode.md)
@@ -2122,6 +2156,7 @@
         <!--Del-->
         - [@ohos.data.cloudData (端云服务)(系统接口)](reference/apis-arkdata/js-apis-data-cloudData-sys.md)
         - [@ohos.data.cloudExtension (端云共享Extension)(系统接口)](reference/apis-arkdata/js-apis-data-cloudExtension-sys.md)
+        - [@ohos.data.collaborationEditObject (协作数据模型)(系统接口)](reference/apis-arkdata/js-apis-data-collaborationEditObject-sys.md)
         - [@ohos.data.dataShare (数据共享)(系统接口)](reference/apis-arkdata/js-apis-data-dataShare-sys.md)
         - [@ohos.data.dataSharePredicates (数据共享谓词)(系统接口)](reference/apis-arkdata/js-apis-data-dataSharePredicates-sys.md)
         - [@ohos.data.dataShareResultSet (数据共享结果集)(系统接口)](reference/apis-arkdata/js-apis-data-DataShareResultSet-sys.md)
@@ -2191,6 +2226,7 @@
         - [用户首选项错误码](reference/apis-arkdata/errorcode-preferences.md)
         - [统一数据管理框架错误码](reference/apis-arkdata/errorcode-udmf.md)
         - [智慧数据平台错误码](reference/apis-arkdata/errorcode-intelligence.md)
+        - [协作数据模型错误码](reference/apis-arkdata/errorcode-collaboration-edit-object.md)
     - ArkTS（方舟编程语言）<!--arkts-api-->
       - ArkTS API<!--arkts-arkts-->
         - [@arkts.collections (ArkTS容器集)](reference/apis-arkts/js-apis-arkts-collections.md)
@@ -2220,6 +2256,9 @@
         - [@ohos.util.TreeMap (非线性容器TreeMap)](reference/apis-arkts/js-apis-treemap.md)
         - [@ohos.util.TreeSet (非线性容器TreeSet)](reference/apis-arkts/js-apis-treeset.md)
         - [@ohos.worker (启动一个Worker)](reference/apis-arkts/js-apis-worker.md)
+        <!--Del-->
+        - [@ohos.worker (启动一个Worker)(系统接口)](reference/apis-arkts/js-apis-worker-sys.md)
+        <!--DelEnd-->
         - [@ohos.xml (xml解析与生成)](reference/apis-arkts/js-apis-xml.md)
         - 已停止维护的接口<!--arkts-arkts-dep-->
           - [@ohos.util.Vector (线性容器Vector)](reference/apis-arkts/js-apis-vector.md)
@@ -2299,7 +2338,7 @@
           - [XComponentNode](reference/apis-arkui/js-apis-arkui-xcomponentNode.md)
       - ArkTS组件<!--arkui-declarative-comp-->
         - 组件通用信息<!--universal-component-information-->
-          - 通用事件<!--universal-events-->
+          - [通用事件](reference/apis-arkui/arkui-ts/ts-component-general-events.md)
             - [点击事件](reference/apis-arkui/arkui-ts/ts-universal-events-click.md)
             - [触摸事件](reference/apis-arkui/arkui-ts/ts-universal-events-touch.md)
             - [挂载卸载事件](reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md)
@@ -2318,7 +2357,7 @@
             - [自定义事件拦截](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-touch-intercept.md)
             - [焦点轴事件](reference/apis-arkui/arkui-ts/ts-universal-events-focus_axis.md)
             - [轴事件](reference/apis-arkui/arkui-ts/ts-universal-events-axis.md)
-          - 通用属性<!--universal-attributes-->
+          - [通用属性](reference/apis-arkui/arkui-ts/ts-component-general-attributes.md)
             - [尺寸设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)
             - [位置设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md)
             - [布局约束](reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md)
@@ -2421,6 +2460,7 @@
           - [GridItem](reference/apis-arkui/arkui-ts/ts-container-griditem.md)
           - [Scroll](reference/apis-arkui/arkui-ts/ts-container-scroll.md)
           - [Swiper](reference/apis-arkui/arkui-ts/ts-container-swiper.md)
+          - [ArcSwiper](reference/apis-arkui/arkui-ts/ts-container-arcswiper.md)
           - [WaterFlow](reference/apis-arkui/arkui-ts/ts-container-waterflow.md)
           - [FlowItem](reference/apis-arkui/arkui-ts/ts-container-flowitem.md)
           - [ScrollBar](reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md)
@@ -2462,6 +2502,7 @@
           - [SegmentButtonV2](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md)
           - [Filter](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Filter.md)
           - [ArcButton](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md)
+          - [ArcSlider](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcSlider.md)
         - 文本与输入<!--text-and-input-->
           - [Text](reference/apis-arkui/arkui-ts/ts-basic-components-text.md)
           - [TextArea](reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)
@@ -2602,6 +2643,7 @@
           - [AtomicServiceWeb](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceWeb.md)
           - [InterstitialDialogAction](reference/apis-arkui/arkui-ts/ohos-atomicservice-InterstitialDialogAction.md)
           - [FullScreenLaunchComponent](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)
+          - [HalfScreenLaunchComponent](reference/apis-arkui/arkui-ts/ohos-atomicservice-HalfScreenLaunchComponent.md)
           <!--Del-->
           - [InnerFullScreenLaunchComponent (系统接口)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-InnerFullScreenLaunchComponent-sys.md)
           <!--DelEnd-->
@@ -3454,8 +3496,8 @@
             - [@ohos.account.distributedAccount (分布式账号管理)](reference/apis-basic-services-kit/js-apis-distributed-account.md)
             - [@ohos.account.osAccount (系统账号管理)](reference/apis-basic-services-kit/js-apis-osAccount.md)
             <!--Del-->
-            - [@ohos.account.distributedAccount (分布式帐号管理)(系统接口)](reference/apis-basic-services-kit/js-apis-distributed-account-sys.md)
-            - [@ohos.account.osAccount (系统帐号管理)(系统接口)](reference/apis-basic-services-kit/js-apis-osAccount-sys.md)
+            - [@ohos.account.distributedAccount (分布式账号管理)(系统接口)](reference/apis-basic-services-kit/js-apis-distributed-account-sys.md)
+            - [@ohos.account.osAccount (系统账号管理)(系统接口)](reference/apis-basic-services-kit/js-apis-osAccount-sys.md)
             <!--DelEnd-->
           - 设备管理<!--device-management-arkts-->
             - [@ohos.batteryInfo (电量信息)](reference/apis-basic-services-kit/js-apis-battery-info.md)
@@ -3710,6 +3752,7 @@
           - 模块<!--driver-development-module-->
             - [BASE DDK](reference/apis-driverdevelopment-kit/_base_ddk.md)
             - [HID DDK](reference/apis-driverdevelopment-kit/_hid_ddk.md)
+            - [SCSI Peripheral DDK](reference/apis-driverdevelopment-kit/_s_c_s_i.md)
             - [Serial DDK](reference/apis-driverdevelopment-kit/_serial_ddk.md)
             - [USB DDK](reference/apis-driverdevelopment-kit/_usb_ddk.md)
           - 头文件<!--driver-development-headerfile-->
@@ -3717,12 +3760,35 @@
             - [ddk_types.h](reference/apis-driverdevelopment-kit/ddk_types.md)
             - [hid_ddk_api.h](reference/apis-driverdevelopment-kit/hid__ddk__api_8h.md)
             - [hid_ddk_types.h](reference/apis-driverdevelopment-kit/hid__ddk__types_8h.md)
+            - [scsi_peripheral_api.h](reference/apis-driverdevelopment-kit/scsi__peripheral__api_8h.md)
+            - [scsi_peripheral_types.h](reference/apis-driverdevelopment-kit/scsi__peripheral__types_8h.md)
             - [usb_ddk_api.h](reference/apis-driverdevelopment-kit/usb__ddk__api_8h.md)
             - [usb_ddk_types.h](reference/apis-driverdevelopment-kit/usb__ddk__types_8h.md)
             - [usb_serial_ddk_api.h](reference/apis-driverdevelopment-kit/usb__serial__ddk__api_8h.md)
             - [usb_serial_ddk_types.h](reference/apis-driverdevelopment-kit/usb__serial__ddk__types_8h.md)
           - 结构体<!--driver-development-struct-->
             - [DDK_Ashmem](reference/apis-driverdevelopment-kit/_ddk_ashmem.md)
+            - [Hid_AbsAxesArray](reference/apis-driverdevelopment-kit/_hid___abs_axes_array.md)
+            - [Hid_Device](reference/apis-driverdevelopment-kit/_hid___device.md)
+            - [Hid_EmitItem](reference/apis-driverdevelopment-kit/_hid___emit_item.md)
+            - [Hid_EventProperties](reference/apis-driverdevelopment-kit/_hid___event_properties.md)
+            - [Hid_EventTypeArray](reference/apis-driverdevelopment-kit/_hid___event_type_array.md)
+            - [Hid_KeyCodeArray](reference/apis-driverdevelopment-kit/_hid___key_code_array.md)
+            - [Hid_MscEventArray](reference/apis-driverdevelopment-kit/_hid___msc_event_array.md)
+            - [Hid_RawDevInfo](reference/apis-driverdevelopment-kit/_hid___raw_dev_info.md)
+            - [Hid_RelAxesArray](reference/apis-driverdevelopment-kit/_hid___rel_axes_array.md)
+            - [ScsiPeripheral_BasicSenseInfo](reference/apis-driverdevelopment-kit/_scsi_peripheral___basic_sense_info.md)
+            - [ScsiPeripheral_CapacityInfo](reference/apis-driverdevelopment-kit/_scsi_peripheral___capacity_info.md)
+            - [ScsiPeripheral_DeviceMemMap](reference/apis-driverdevelopment-kit/_scsi_peripheral___device_mem_map.md)
+            - [ScsiPeripheral_InquiryInfo](reference/apis-driverdevelopment-kit/_scsi_peripheral___inquiry_info.md)
+            - [ScsiPeripheral_InquiryRequest](reference/apis-driverdevelopment-kit/_scsi_peripheral___inquiry_request.md)
+            - [ScsiPeripheral_IORequest](reference/apis-driverdevelopment-kit/_scsi_peripheral___i_o_request.md)
+            - [ScsiPeripheral_ReadCapacityRequest](reference/apis-driverdevelopment-kit/_scsi_peripheral___read_capacity_request.md)
+            - [ScsiPeripheral_Request](reference/apis-driverdevelopment-kit/_scsi_peripheral___request.md)
+            - [ScsiPeripheral_RequestSenseRequest](reference/apis-driverdevelopment-kit/_scsi_peripheral___request_sense_request.md)
+            - [ScsiPeripheral_Response](reference/apis-driverdevelopment-kit/_scsi_peripheral___response.md)
+            - [ScsiPeripheral_TestUnitReadyRequest](reference/apis-driverdevelopment-kit/_scsi_peripheral___test_unit_ready_request.md)
+            - [ScsiPeripheral_VerifyRequest](reference/apis-driverdevelopment-kit/_scsi_peripheral___verify_request.md)
             - [UsbConfigDescriptor](reference/apis-driverdevelopment-kit/_usb_config_descriptor.md)
             - [UsbControlRequestSetup](reference/apis-driverdevelopment-kit/_usb_control_request_setup.md)
             - [UsbDdkConfigDescriptor](reference/apis-driverdevelopment-kit/_usb_ddk_config_descriptor.md)
@@ -3735,15 +3801,6 @@
             - [UsbInterfaceDescriptor](reference/apis-driverdevelopment-kit/_usb_interface_descriptor.md)
             - [UsbRequestPipe](reference/apis-driverdevelopment-kit/_usb_request_pipe.md)
             - [Usb_DeviceArray](reference/apis-driverdevelopment-kit/_usb_device_array.md)
-            - [Hid_AbsAxesArray](reference/apis-driverdevelopment-kit/_hid___abs_axes_array.md)
-            - [Hid_Device](reference/apis-driverdevelopment-kit/_hid___device.md)
-            - [Hid_EmitItem](reference/apis-driverdevelopment-kit/_hid___emit_item.md)
-            - [Hid_EventProperties](reference/apis-driverdevelopment-kit/_hid___event_properties.md)
-            - [Hid_EventTypeArray](reference/apis-driverdevelopment-kit/_hid___event_type_array.md)
-            - [Hid_KeyCodeArray](reference/apis-driverdevelopment-kit/_hid___key_code_array.md)
-            - [Hid_MscEventArray](reference/apis-driverdevelopment-kit/_hid___msc_event_array.md)
-            - [Hid_RawDevInfo](reference/apis-driverdevelopment-kit/_hid___raw_dev_info.md)
-            - [Hid_RelAxesArray](reference/apis-driverdevelopment-kit/_hid___rel_axes_array.md)
             - [UsbSerial_Params](reference/apis-driverdevelopment-kit/_usb_serial___params.md)
       - Multimodal Awareness Kit（多模态融合感知服务）<!--multimodal-awareness-api-->
         - ArkTS API<!--multimodal-awareness-arkts-->
@@ -3797,30 +3854,30 @@
         - C API<!--performance-analysis-c-->
           - 模块<!--performance-analysis-module-->
             - [HiAppEvent](reference/apis-performance-analysis-kit/_hi_app_event.md)
+            - [HiCollie](reference/apis-performance-analysis-kit/_hi_collie.md)
             - [HiDebug](reference/apis-performance-analysis-kit/_hi_debug.md)
             - [HiLog](reference/apis-performance-analysis-kit/_hi_log.md)
             - [Hitrace](reference/apis-performance-analysis-kit/_hitrace.md)
-            - [HiCollie](reference/apis-performance-analysis-kit/_hi_hicollie.md)
           - 头文件<!--performance-analysis-headerfile-->
             - [hiappevent.h](reference/apis-performance-analysis-kit/hiappevent_8h.md)
             - [hiappevent_cfg.h](reference/apis-performance-analysis-kit/hiappevent__cfg_8h.md)
             - [hiappevent_event.h](reference/apis-performance-analysis-kit/hiappevent__event_8h.md)
             - [hiappevent_param.h](reference/apis-performance-analysis-kit/hiappevent__param_8h.md)
+            - [hicollie.h](reference/apis-performance-analysis-kit/hicollie_8h.md)
             - [hidebug.h](reference/apis-performance-analysis-kit/hidebug_8h.md)
             - [hidebug_type.h](reference/apis-performance-analysis-kit/hidebug__type_8h.md)
             - [log.h](reference/apis-performance-analysis-kit/log_8h.md)
             - [trace.h](reference/apis-performance-analysis-kit/trace_8h.md)
-            - [hicollie.h](reference/apis-performance-analysis-kit/hicollie_8h.md)
           - 结构体<!--performance-analysis-struct-->
             - [HiAppEvent_AppEventGroup](reference/apis-performance-analysis-kit/_hi_app_event___app_event_group.md)
             - [HiAppEvent_AppEventInfo](reference/apis-performance-analysis-kit/_hi_app_event___app_event_info.md)
+            - [HiCollie_DetectionParam](reference/apis-performance-analysis-kit/_hi_collie___detection_param.md)
+            - [HiCollie_SetTimerParam](reference/apis-performance-analysis-kit/_hi_collie___set_timer_param.md)
             - [HiDebug_MemoryLimit](reference/apis-performance-analysis-kit/_hi_debug___memory_limit.md)
             - [HiDebug_NativeMemInfo](reference/apis-performance-analysis-kit/_hi_debug___native_mem_info.md)
             - [HiDebug_SystemMemInfo](reference/apis-performance-analysis-kit/_hi_debug___system_mem_info.md)
             - [HiDebug_ThreadCpuUsage](reference/apis-performance-analysis-kit/_hi_debug___thread_cpu_usage.md)
             - [HiTraceId](reference/apis-performance-analysis-kit/_hi_trace_id.md)
-            - [HiCollie_DetectionParam](reference/apis-performance-analysis-kit/_hi_hicollie___detection_param.md)
-            - [HiCollie_SetTimerParam](reference/apis-performance-analysis-kit/_hi_hicollie___set_timer_param.md)
         - 错误码<!--performance-analysis-errcode-->
           - [Faultlogger错误码](reference/apis-performance-analysis-kit/errorcode-faultlogger.md)
           - [应用事件打点错误码](reference/apis-performance-analysis-kit/errorcode-hiappevent.md)
@@ -4102,11 +4159,14 @@
       - C API<!--media-c-->
         - 模块<!--media-module-->
           - [AVPlayer](reference/apis-media-kit/_a_v_player.md)
+          - [AVRecorder](reference/apis-media-kit/_a_v_recorder.md)
           - [AVScreenCapture](reference/apis-media-kit/_a_v_screen_capture.md)
           - [VideoProcessing](reference/apis-media-kit/_video_processing.md)
         - 头文件<!--media-headerfile-->
           - [avplayer.h](reference/apis-media-kit/avplayer_8h.md)
           - [avplayer_base.h](reference/apis-media-kit/avplayer__base_8h.md)
+          - [avrecorder.h](reference/apis-media-kit/avrecorder_8h.md)
+          - [avrecorder_base.h](reference/apis-media-kit/avrecorder__base_8h.md)
           - [native_avscreen_capture.h](reference/apis-media-kit/native__avscreen__capture_8h.md)
           - [native_avscreen_capture_base.h](reference/apis-media-kit/native__avscreen__capture__base_8h.md)
           - [native_avscreen_capture_errors.h](reference/apis-media-kit/native__avscreen__capture__errors_8h.md)
@@ -4114,6 +4174,13 @@
           - [video_processing_types.h](reference/apis-media-kit/video__processing__types_8h.md)
         - 结构体<!--media-struct-->
           - [AVPlayerCallback](reference/apis-media-kit/_a_v_player_callback.md)
+          - [OH_AVRecorder_Config](reference/apis-media-kit/_o_h___a_v_recorder___config.md)
+          - [OH_AVRecorder_EncoderInfo](reference/apis-media-kit/_o_h___a_v_recorder___encoder_info.md)
+          - [OH_AVRecorder_Location](reference/apis-media-kit/_o_h___a_v_recorder___location.md)
+          - [OH_AVRecorder_Metadata](reference/apis-media-kit/_o_h___a_v_recorder___metadata.md)
+          - [OH_AVRecorder_MetadataTemplate](reference/apis-media-kit/_o_h___a_v_recorder___metadata_template.md)
+          - [OH_AVRecorder_Profile](reference/apis-media-kit/_o_h___a_v_recorder___profile.md)
+          - [OH_AVRecorder_Range](reference/apis-media-kit/_o_h___a_v_recorder___range.md)
           - [OH_AudioBuffer](reference/apis-media-kit/_o_h___audio_buffer.md)
           - [OH_AudioCaptureInfo](reference/apis-media-kit/_o_h___audio_capture_info.md)
           - [OH_AudioEncInfo](reference/apis-media-kit/_o_h___audio_enc_info.md)

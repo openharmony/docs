@@ -58,35 +58,9 @@ SCSI Peripheral DDK支持SPC（SCSI Primary Commands）、SBC（SCSI Block Comma
 
 - 使用SCSI Peripheral DDK开放API需要在module.json5中声明对应的ACL权限：ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL。
 
-## 环境准备
+## 环境搭建
 
-### 环境要求
-
-- 开发工具及配置：
-
-  DevEco Studio作为驱动开发工具，是进行驱动开发的必备条件之一，我们可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-tools-overview-V13)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-create-new-project-V13)进行基本的操作验证，保证DevEco Studio可正常运行。
-
-- SDK版本配置：
-
-  扩展外设管理提供的ArkTs接口，需要SDK版本为API version 16及以上方可使用。
-
-- HDC配置：
-
-  HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命令行工具，通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
-
-### 搭建环境
-
-1. 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
-2. 将public-SDK更新到API version 16或以上，更新SDK的具体操作可参见[更新指南](../../faqs/full-sdk-switch-guide.md)。
-3. PC安装HDC工具（HarmonyOS Device Connector），通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
-3. 用USB线缆将搭载OpenHarmony的设备连接到PC。
-4. 将SCSI设备接入OpenHarmony设备的USB口。
-
-### 检验环境是否搭建成功
-
-检查DevEco Studio是否已连接上OpenHarmony设备。
-
-![设备连接](figures/device-connected.png)
+请参考[环境准备](environmental-preparation.md)
 
 ## 开发指导
 

@@ -1452,3 +1452,14 @@ error: install version code not same.
 **处理步骤**
 1. 调整安装包的版本和设备中已存在的应用包的版本号（versionCode）一致，或者卸载设备中的应用，再去安装新的应用包。
 2. 调整安装的多个包的版本号（versionCode），所有的包都需要保持版本号（versionCode）一致。
+
+### 9568421 签名文件中的分发类型被限制，不允许安装到当前设备中，导致安装失败
+**错误信息**
+
+error: the app distribution type is not allowed install.
+
+**可能原因**
+该签名的分发类型被限制，禁止安装到当前设备中。
+
+**处理步骤**
+更换签名文件的分发类型。

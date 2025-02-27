@@ -49,7 +49,7 @@ interface ParticleInterface {
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外还支持以下属性：
 
 ### disturbanceFields<sup>12+</sup>
 
@@ -83,7 +83,7 @@ emitter(value: Array&lt;EmitterProperty&gt;)
 | value  | Array<[EmitterProperty](#emitterproperty12)> | 是   | 需要更新的emitter参数数组 |
 
 ## 事件
-支持[通用事件](ts-universal-events-click.md)
+支持[通用事件](ts-component-general-events.md)
 
 ## ParticleOptions
 

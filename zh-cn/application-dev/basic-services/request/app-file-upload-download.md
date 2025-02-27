@@ -210,3 +210,46 @@ request.agent.create(context, config).then((task: request.agent.Task) => {
   console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
 });
 ```
+
+## 添加网络配置
+
+### HTTP拦截
+
+开发者可以通过设置配置文件实现HTTP拦截功能，上传下载模块在应用配置禁用HTTP后，无法创建明文HTTP传输的上传下载任务。配置文件在APP中的路径是：`src/main/resources/base/profile/network_config.json`。
+
+参考配置文件如下：
+
+```ts
+{
+  "network-security-config": {
+    "base-config": {
+      "cleartextTrafficPermitted": true, 
+      "trust-anchors": [
+        {
+          "certificates": "/etc/security/certificates"
+        }
+      ]
+    },
+    "domain-config": [
+      {
+        "cleartextTrafficPermitted": true,
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "*.example.com"
+          }
+        ],
+      }
+    ]
+  }
+}
+
+```
+
+各个字段含义:
+
+| 字段                      | 类型            | 说明                                   |   
+| --------------------------| --------------- | -------------------------------------- |
+| base-config:<br> cleartextTrafficPermitted | boolean | 全局配置是否允许明文传输。true表示允许明文传输，即不开启HTTP拦截；false表示不允许明文传输，即开启HTTP拦截。 |
+| domain-config:<br> cleartextTrafficPermitted | boolean | 指定域内是否允许明文传输。true表示允许明文传输，即在指定域内不开启HTTP拦截；false表示不允许明文传输，即在指定域内开启HTTP拦截。 |
+| include-subdomains | boolean | 指示规则是否适用于子域。true表示使用正则表达式匹配域名，false表示不使用正则表达式匹配域名。 |

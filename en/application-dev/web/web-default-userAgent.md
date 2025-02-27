@@ -1,10 +1,10 @@
-# Setting UserAgent
+# Developing UserAgent
 <!--RP1-->
 UserAgent (UA) is a special string that contains key information such as the device type, operating system, and version. If a page cannot correctly identify the UA, exceptions in the page layout, rendering, and logic may occur.
 
 ## Default UserAgent Structure
 
-- Default User Agent string
+- String format
 
   ```ts
   Mozilla/5.0 ({DeviceType}; {OSName} {OSVersion}; {DistributionOSName} {DistributionOSVersion}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{ChromeCompatibleVersion}.0.0.0 Safari/537.36 ArkWeb/{ArkWeb VersionCode} {DeviceCompat} {Extension}
@@ -14,30 +14,30 @@ UserAgent (UA) is a special string that contains key information such as the dev
 
   Mozilla/5.0 (Phone; OpenHarmony 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 ArkWeb/4.1.6.1 Mobile
 
-- Description
+- Fields
 
-  | Field.                 | Description                                                        |
+  | Field                 | Description                                                        |
   | --------------------- | ------------------------------------------------------------ |
-  | DeviceType            | Current device type.<br>Value range:<br>- **Phone**: mobile phone<br>- **Tablet**: tablet<br>- **PC**: 2-in-1 device|
-  | OSName                | OS name.<br>Default value: OpenHarmony                 |
-  | OSVersion             | OS version. The value is a two-digit number, in M.S format.<br>To obtain the first two digits M.S, you can use the system parameter **const.ohos.fullname** to parse the version number.<br>Default value: **5.0**      |
-  | DistributionOSName    | OS distribution name.                                        |
-  | DistributionOSVersion | OS distribution version. The value is a two-digit number, in M.S format.<br>You can obtain the M.S value by parsing the version number using the system parameter **const.product.os.dist.apiname**. Use **const.product.os.dist.version** if **const.product.os.dist.apiname** is empty.<br>Default value: **5.0**    |
-  | ChromeCompatibleVersion | The version that is compatible with the Chrome main version, which starts from 114.<br>Default value: **114**           |
+  | DeviceType            | Device type.<br>The value can be:<br>- **Phone**<br>- **Tablet**<br>- **PC** (2-in-1 device)|
+  | OSName                | OS name.<br>Default value: **OpenHarmony**                 |
+  | OSVersion             | OS version. The value is a two-digit number, in M.S format.<br>You can obtain the value by extracting the first two digits of the version number from the system parameter **const.ohos.fullname**.<br>Default value: **5.0**      |
+  | DistributionOSName    | Distribution OS name.                                        |
+  | DistributionOSVersion | Distribution OS version. The value is a two-digit number, in M.S format.<br>You can obtain the value by extracting the first two digits of the version number from the system parameter **const.product.os.dist.apiname**. Use **const.product.os.dist.version** if **const.product.os.dist.apiname** is empty.<br>Default value: **5.0**    |
+  | ChromeCompatibleVersion | The version that is compatible with the main Chrome version. The earliest version is 114.<br>Default value: **114**           |
   | ArkWeb                | Web kernel name of the OpenHarmony version.<br>Default value: **ArkWeb**            |
   | ArkWeb VersionCode    | ArkWeb version number, in the format of a.b.c.d.<br>Default value: **4.1.6.1**        |
-  | DeviceCompat          | Forward compatible field.<br>Default value: **Mobile**                         |
-  | Extension               | The field that can be extended by a third-party application.<br>When a third-party application uses the **Web** component, the UA can be extended. For example, the application information identifier can be added.|
+  | DeviceCompat          | Forward compatibility settings.<br>Default value: **Mobile**                         |
+  | Extension               | Field that can be extended by a third-party application.<br>When a third-party application uses the **Web** component, UA can be extended. For example, an application information identifier can be added.|
 
 > **NOTE**
 >
-> - Currently, the **viewport** attribute of the **meta** tag on the frontend HTML page is enabled based on whether **UserAgent** contains the **Mobile** field. If **UserAgent** does not contain the **Mobile** field, the **viewport** attribute in the **meta** tag is disabled by default. In this case, you can explicitly set [metaViewport](../reference/apis-arkweb/ts-basic-components-web.md#metaviewport12) to **true** to enable the **viewport** attribute.
+> - Currently, the **viewport** parameter of the **meta** tag on the frontend HTML page is enabled or disabled based on whether **UserAgent** contains the **Mobile** field. If **UserAgent** does not contain the **Mobile** field, the **viewport** attribute in the **meta** tag is disabled by default. In this case, you can explicitly set [metaViewport](../reference/apis-arkweb/ts-basic-components-web.md#metaviewport12) to **true** to enable the **viewport** attribute.
 >
-> - You are advised to use the **OpenHarmony** keyword to identify whether a device is an OpenHarmony device, and use the **DeviceType** keyword to identify the device type for page display on different devices. (The **ArkWeb** keyword indicates the web kernel used by the device, and the **OpenHarmony** keyword indicates the operating system used by the device.)
+> - You are advised to use the **OpenHarmony** keyword to identify whether a device is an OpenHarmony device, and use the **DeviceType** keyword to identify the device type for page display on different devices. (The **ArkWeb** keyword indicates the web kernel of the device, and the **OpenHarmony** keyword indicates the operating system of the device.)
 
 ## Custom UserAgent Structure
 
-Example of using [getUserAgent()](../reference/apis-arkweb/js-apis-webview.md#getuseragent) to obtain the default user agent, which can be customized:
+In the following example, [getUserAgent()](../reference/apis-arkweb/js-apis-webview.md#getuseragent) is used to obtain the default **UserAgent** string, which you can modify or extend as needed.
 
 ```ts
 // xxx.ets
@@ -66,11 +66,11 @@ struct WebComponent {
 }
 ```
 
-In the following example, the custom user agent set through [setCustomUserAgent()](../reference/apis-arkweb/js-apis-webview.md#setcustomuseragent10) overwrites the system user agent. You are advised to add the extension field to the end of the default user agent.
+In the following example, [setCustomUserAgent()](../reference/apis-arkweb/js-apis-webview.md#setcustomuseragent10) is used to set a custom user agent, which overwrites the default user agent. You are advised to add the extension field to the end of the default user agent.
 
-When **src** of the **Web** component is set to a URL, you are advised to set **UserAgent** in **onControllerAttached**. For details, see the following example. You are not advised to set **UserAgent** in **onLoadIntercept**. Otherwise, the setting may fail occasionally. If **UserAgent** is not set in **onControllerAttached**, calling **setCustomUserAgent** may load a page that is inconsistent with the custom user agent.
+When **src** of the **Web** component is set to a URL, set **UserAgent** in **onControllerAttached**. For details, see the following example. You are not advised to set **UserAgent** in **onLoadIntercept**. Otherwise, the setting may fail occasionally. When **UserAgent** is not set in **onControllerAttached** and **setCustomUserAgent** is called, the loaded page may be inconsistent with the custom **UserAgent**.
 
-When **src** of the **Web** component is set to an empty string, you are advised to call **setCustomUserAgent** to set **UserAgent** and then use **loadUrl** to load a specific page.
+When **src** of the **Web** component is set to an empty string, call **setCustomUserAgent** to set **UserAgent** and then use **loadUrl** to load a specific page.
 
 ```ts
 // xxx.ets
@@ -101,7 +101,7 @@ struct WebComponent {
 }
 ```
 
-Example of obtaining the custom user agent through [getCustomUserAgent()](../reference/apis-arkweb/js-apis-webview.md#getcustomuseragent10):
+In the following example, [getCustomUserAgent()](../reference/apis-arkweb/js-apis-webview.md#getcustomuseragent10) is used to obtain the custom user agent.
 
 ```ts
 // xxx.ets
@@ -133,11 +133,11 @@ struct WebComponent {
 
 ## FAQs
 
-### How do I use UserAgent to identify different devices of OpenHarmony?
+### How do I use UserAgent to identify different OpenHarmony devices?
 
-OpenHarmony devices can be identified based on the system name, system version, and device type in the **UserAgent**. You are advised to check all of them to ensure accurate device identification.
+OpenHarmony devices can be identified based on the OS name, OS version, and device type in **UserAgent**. You are advised to check all of them to ensure accurate device identification.
 
-1. Identification based on the system name
+1. Identification based on the OS name
 
    Use the **{OSName}** field.
 
@@ -145,7 +145,7 @@ OpenHarmony devices can be identified based on the system name, system version, 
    const isOpenHarmony = () => /OpenHarmony/i.test(navigator.userAgent);   
    ```
 
-2. Identification based on the system version
+2. Identification based on the OS version
 
    Use the **{OSName}** and **{OSVersion}** fields. The format is **OpenHarmony + Version number**.
 
