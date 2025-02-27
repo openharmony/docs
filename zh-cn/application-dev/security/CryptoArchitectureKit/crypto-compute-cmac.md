@@ -49,7 +49,7 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
         algName: "CMAC",
         cipherName: "AES128",
     };
-    let message = 'cmacTestMessgae'; // 待进行CMAC的数据
+    let message = 'cmacTestMessage'; // 待进行CMAC的数据
     let mac = cryptoFramework.createMac(spec);
     await mac.init(key);
     // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
@@ -82,7 +82,7 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
         algName: "CMAC",
         cipherName: "AES128",
     };
-    let message = 'cmacTestMessgae'; // 待进行CMAC的数据
+    let message = 'cmacTestMessage'; // 待进行CMAC的数据
     let mac = cryptoFramework.createMac(spec);
     mac.initSync(key);
     // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
