@@ -140,7 +140,7 @@ async function example() {
     };
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, displayName, createOption);
     let fd: number = await assetChangeRequest.getWriteCacheHandler();
-    // write date into fd
+    // write date into fd.
     await fileIoclose(fd);
     await phAccessHelper.applyChanges(assetChangeRequest);
   } catch (err) {
