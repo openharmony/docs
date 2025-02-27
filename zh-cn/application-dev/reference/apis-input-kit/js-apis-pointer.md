@@ -12,7 +12,7 @@
 import { pointer } from '@kit.InputKit';
 ```
 
-## pointer.setPointerVisible
+## pointer.setPointerVisible<sup>14+</sup>
 
 setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -52,7 +52,7 @@ try {
 }
 ```
 
-## pointer.setPointerVisible
+## pointer.setPointerVisible<sup>14+</sup>
 
 setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
