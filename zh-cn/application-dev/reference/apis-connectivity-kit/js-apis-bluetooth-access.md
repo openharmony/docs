@@ -136,7 +136,7 @@ on(type: 'stateChange', callback: Callback&lt;BluetoothState&gt;): void
 | 参数名   | 类型                                               | 必填  | 说明                                                       |
 | -------- | ------------------------------------------------- | ----- | ---------------------------------------------------------- |
 | type     | string                                            | 是    | 填写"stateChange"字符串，表示蓝牙状态改变事件。               |
-| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | 是    | 表示回调函数的入参及蓝牙状态。回调函数由用户创建并通过该接口注册。 |
+| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | 是    | 表示回调函数的入参，蓝牙状态。回调函数由用户创建并通过该接口注册。 |
 
 **错误码**：
 
