@@ -475,9 +475,11 @@ indicatorInteractive(value: boolean)
 
 ### pageFlipMode<sup>15+</sup>
 
-pageFlipMode(value: PageFlipMode)
+pageFlipMode(mode: Optional\<PageFlipMode>)
 
 设置鼠标滚轮翻页模式。
+
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -487,7 +489,7 @@ pageFlipMode(value: PageFlipMode)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PageFlipMode](ts-appendix-enums.md#PageFlipMode) | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
+| mode  | Optional\<[PageFlipMode](ts-appendix-enums.md#pageflipmode)> | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
 
 ## IndicatorStyle<sup>(deprecated)</sup>对象说明
 
@@ -643,6 +645,8 @@ finishAnimation(callback?: () => void)
 ## SwiperAnimationMode<sup>15+</sup>枚举说明
 
 Swiper组件翻页至指定页面的动效模式。
+
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
