@@ -21,7 +21,7 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags, ca
 
 **需要权限**：ohos.permission.WRITE_MEDIA  
 
-**系统接口**：此接口为系统接口  
+**系统接口**：此接口为系统接口。  
 
 **系统能力**：SystemCapability.FileManagement.AppFileService
 
@@ -29,10 +29,10 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags, ca
 
 | 参数名 | 类型| 必填 | 说明|
 | ------ |---------| ---- |-----------|
-| uri   | string| 是   | 公共目录文件uri |
-| bundleName   | string| 是   | 分享目标的包名   |
-| flag   | [wantConstant.Flags](../apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) | 是   | 授权的权限     |
- | callback | AsyncCallback&lt;void&gt;| 是    | 异步授权之后的回调 |
+| uri   | string| 是   | 公共目录文件uri。 |
+| bundleName   | string| 是   | 分享目标的包名。   |
+| flag   | [wantConstant.Flags](../apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) | 是   | 授权的权限。     |
+ | callback | AsyncCallback&lt;void&gt;| 是    | 异步授权之后的回调。 |
 
 **错误码：**
 
@@ -75,7 +75,7 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags): P
 
 **需要权限**：ohos.permission.WRITE_MEDIA  
 
-**系统接口**：此接口为系统接口  
+**系统接口**：此接口为系统接口。  
 
 **系统能力**：SystemCapability.FileManagement.AppFileService  
 
@@ -83,15 +83,15 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags): P
 
 | 参数名 | 类型| 必填 | 说明        |
 | ------ |-------| ---- |-----------|
-| uri   | string| 是   | 公共目录文件uri |
-| bundleName   | string| 是   | 分享目标的包名   |
-| flag   | [wantConstant.Flags](../apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) | 是   | 授权的权限     |
+| uri   | string| 是   | 公共目录文件uri。 |
+| bundleName   | string| 是   | 分享目标的包名。   |
+| flag   | [wantConstant.Flags](../apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) | 是   | 授权的权限。     |
 
 **返回值：**
 
   | 类型                           | 说明         |
   | ---------- | ---------- |
-  | Promise&lt;void&gt; | Promise对象，无返回值 |
+  | Promise&lt;void&gt; | Promise对象，无返回值。 |
 
 **错误码：**
 
@@ -132,7 +132,7 @@ checkPathPermission(tokenID: number, policies: Array&lt;PathPolicyInfo&gt;, poli
 
 **需要权限**：ohos.permission.CHECK_SANDBOX_POLICY
 
-**系统接口**：此接口为系统接口
+**系统接口**：此接口为系统接口。
 
 **系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
