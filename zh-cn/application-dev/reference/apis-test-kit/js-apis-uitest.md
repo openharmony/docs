@@ -2562,7 +2562,7 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| idleTime | number | 是   | 空闲时间的阈值。在这个时间段控件不发生变化，视为该控件空闲，单位：毫秒，取值大于等于0。 |
+| idleTime | number | 是   | 空闲时间的阈值。在这个时间段控件不发生变化，视为该控件空闲，单位：毫秒（ms），取值大于等于0。 |
 | timeout  | number | 是   | 等待空闲的最大时间，单位：毫秒（ms），取值大于等于0。                    |
 
 **返回值：**
@@ -2607,7 +2607,7 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 | from    | [Point](#point9) | 是   | 手指接触屏幕的起始点坐标。                                   |
 | to      | [Point](#point9) | 是   | 手指离开屏幕时的坐标点。                                     |
 | stepLen | number           | 是   | 间隔距离，单位：像素点（px）。                                     |
-| speed   | number           | 是   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| speed   | number           | 是   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒（px/s）。 |
 
 **错误码：**
 
