@@ -68,7 +68,7 @@ NFC标签读写完整的JS API说明以及实例代码请参考：[NFC标签接�
             "actions": [
               "action.system.home",
 
-              // Add the nfc tag action to filter out for this application.
+              // actions须包含"ohos.nfc.tag.action.TAG_FOUND"
               "ohos.nfc.tag.action.TAG_FOUND"
             ]
           }
@@ -77,7 +77,7 @@ NFC标签读写完整的JS API说明以及实例代码请参考：[NFC标签接�
     ],
     "requestPermissions": [
       {
-        // Add the permission for nfc tag operations.
+        // 添加nfc标签操作的权限
         "name": "ohos.permission.NFC_TAG",
         "reason": "$string:app_name",
       }
@@ -110,7 +110,7 @@ async function readerModeCb(error : BusinessError, tagInfo : tag.TagInfo) {
     }
 
     // 执行读写接口完成标签数据的读取或写入数据到标签
-    // use the IsoDep technology to access this nfc tag.
+    // 使用IsoDep技术访问此nfc标签
     let isoDep : tag.IsoDepTag | null = null;
     for (let i = 0; i < tagInfo.technology.length; i++) {
       if (tagInfo.technology[i] == tag.ISO_DEP) {
@@ -121,14 +121,14 @@ async function readerModeCb(error : BusinessError, tagInfo : tag.TagInfo) {
           return;
         }
       }
-      // use other technology to access this nfc tag if necessary.
+      // 使用其它类型的技术访问此nfc tag
     }
     if (isoDep == undefined) {
       hilog.error(0x0000, 'testTag', 'readerModeCb getIsoDep is invalid');
       return;
     }
 
-    // connect to this nfc tag using IsoDep technology.
+    // 使用IsoDep技术连接到此nfc tag
     try {
         isoDep.connect(); 
     } catch (error) {
@@ -140,8 +140,8 @@ async function readerModeCb(error : BusinessError, tagInfo : tag.TagInfo) {
       return;
     }
 
-    // transmit data to the connected tag.
-    let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+    // 发送指令到已连接的tag
+    let cmdData = [0x01, 0x02, 0x03, 0x04]; // 修改为与标签类型对应协议的指令
     try {
       isoDep.transmit(cmdData).then((response : number[]) => {
         hilog.info(0x0000, 'testTag', 'readerModeCb isoDep.transmit() response = %{public}s.', JSON.stringify(response));
@@ -176,7 +176,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   onForeground() {
-    // Ability has brought to foreground
+    // 应用到前台
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
     if (nfcTagElementName != undefined) {
       // 调用tag模块中前台优先的接口，使能前台应用程序优先处理所发现的NFC标签功能
@@ -191,7 +191,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   onBackground() {
-    // Ability has back to background
+    // 应用退到后台
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
     // 退出应用程序NFC标签页面时，调用tag模块退出前台优先功能
     if (foregroundRegister) {
@@ -231,7 +231,7 @@ export default class EntryAbility extends UIAbility {
             "actions": [
               "action.system.home",
 
-              // Add the nfc tag action to filter out for this application.
+              // actions须包含"ohos.nfc.tag.action.TAG_FOUND"
               "ohos.nfc.tag.action.TAG_FOUND"
             ],
             "uris": [
@@ -241,8 +241,8 @@ export default class EntryAbility extends UIAbility {
               {
                   "type":"tag-tech/IsoDep"
               }
-              // Add other technologies if necessary,
-              // such as: NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable
+              // 如有必要时添加其他技术
+              // 例如: NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable
             ]
           }
         ]
@@ -250,7 +250,7 @@ export default class EntryAbility extends UIAbility {
     ],
     "requestPermissions": [
       {
-        // Add the permission for nfc tag operations.
+        // 添加nfc tag操作的权限
         "name": "ohos.permission.NFC_TAG",
         "reason": "$string:app_name",
       }
@@ -290,7 +290,7 @@ export default class EntryAbility extends UIAbility {
     }
 
     // 执行读写接口完成标签数据的读取或写入数据到标签
-    // use the IsoDep technology to access this nfc tag.
+    // 使用IsoDep技术访问此nfc标签
     let isoDep : tag.IsoDepTag | null = null;
     for (let i = 0; i < tagInfo.technology.length; i++) {
       if (tagInfo.technology[i] == tag.ISO_DEP) {
@@ -301,14 +301,14 @@ export default class EntryAbility extends UIAbility {
           return;
         }
       }
-      // use other technology to access this nfc tag if necessary.
+      // 使用其他技术访问此nfc 标签
     }
     if (isoDep == undefined) {
       hilog.error(0x0000, 'testTag', 'getIsoDep is invalid');
       return;
     }
 
-    // connect to this nfc tag using IsoDep technology.
+    // 使用IsoDep技术连接到此nfc tag
     try {
         isoDep.connect(); 
     } catch (error) {
@@ -320,8 +320,8 @@ export default class EntryAbility extends UIAbility {
       return;
     }
 
-    // transmit data to the connected tag.
-    let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+    // 发送指令到已连接的tag
+    let cmdData = [0x01, 0x02, 0x03, 0x04]; // 修改为与标签类型对应协议的指令
     try {
       isoDep.transmit(cmdData).then((response : number[]) => {
         hilog.info(0x0000, 'testTag', 'isoDep.transmit() response = %{public}s.', JSON.stringify(response));
