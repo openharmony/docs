@@ -684,7 +684,7 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 
 | 参数                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | 通过Promise返回结果。0为设置成功，其他值为设置失败。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码**：
 
