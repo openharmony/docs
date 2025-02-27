@@ -18,7 +18,7 @@ import { FrameNode, LayoutConstraint, ExpandMode, typeNode, NodeAdapter } from "
 
 ## CrossLanguageOptions<sup>15+</sup>
 
-用于设置或返回FrameNode的跨ArkTS语言访问选项。例如ArkTS语言创建的节点，设置或返回该节点是否可通过非ArkTS语言进行属性设置。
+该接口用于配置或查询FrameNode的跨语言访问权限。例如，针对ArkTS语言创建的节点，可通过该接口控制是否允许通过非ArkTS语言进行属性访问或修改。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -258,7 +258,7 @@ getChild(index: number): FrameNode | null
 
 getChild(index: number, expandMode?: ExpandMode): FrameNode | null
 
-获取当前节点指定位置的子节点。
+获取当前节点指定位置的子节点，支持指定子节点展开模式。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
