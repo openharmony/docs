@@ -15,11 +15,11 @@ EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../../r
 1. 获取图片，创建图片源ImageSource。
 
    ```ts
-   // 导入相关模块包
+   // 导入相关模块包。
    import { image } from '@kit.ImageKit';
 
-   // 获取沙箱路径创建ImageSource
-   const fd : number = 0; // 获取需要被处理的图片的fd
+   // 获取沙箱路径创建ImageSource。
+   const fd : number = 0; // 获取需要被处理的图片的fd。
    const imageSourceApi : image.ImageSource = image.createImageSource(fd);
    ```
 
@@ -27,7 +27,7 @@ EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../../r
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-    // 读取EXIF信息，BitsPerSample为每个像素比特数
+    // 读取EXIF信息，BitsPerSample为每个像素比特数。
     let options : image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
     imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options).then((data : string) => {
         console.log('Succeeded in getting the value of the specified attribute key of the image.');
@@ -35,7 +35,7 @@ EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../../r
         console.error('Failed to get the value of the specified attribute key of the image.');
     })
 
-    // 编辑EXIF信息
+    // 编辑EXIF信息。
     imageSourceApi.modifyImageProperty(image.PropertyKey.IMAGE_WIDTH, "120").then(() => {
         imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH).then((width : string) => {
             console.info('The new imageWidth is ' + width);

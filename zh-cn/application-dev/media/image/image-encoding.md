@@ -11,7 +11,7 @@
 1. 创建图像编码ImagePacker对象。
 
    ```ts
-   // 导入相关模块包
+   // 导入相关模块包。
    import { image } from '@kit.ImageKit';
    
    const imagePackerApi = image.createImagePacker();
@@ -42,7 +42,7 @@
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    imagePackerApi.packing(pixelMap, packOpts).then( (data : ArrayBuffer) => {
-     // data 为打包获取到的文件流，写入文件保存即可得到一张图片
+     // data 为打包获取到的文件流，写入文件保存即可得到一张图片。
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    })
@@ -53,7 +53,7 @@
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    imagePackerApi.packing(imageSource, packOpts).then( (data : ArrayBuffer) => {
-       // data 为打包获取到的文件流，写入文件保存即可得到一张图片
+       // data 为打包获取到的文件流，写入文件保存即可得到一张图片。
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    })
@@ -72,7 +72,7 @@
    const path : string = context.cacheDir + "/pixel_map.jpg";
    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(pixelMap, file.fd, packOpts).then(() => {
-       // 直接打包进文件
+       // 直接打包进文件。
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    }).finally(()=>{
@@ -89,7 +89,7 @@
    const filePath : string = context.cacheDir + "/image_source.jpg";
    let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(imageSource, file.fd, packOpts).then(() => {
-       // 直接打包进文件
+       // 直接打包进文件。
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    }).finally(()=>{
