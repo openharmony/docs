@@ -121,7 +121,8 @@ i18n.SystemLocaleManager.getRegionInfoArray
 **变更原因**
 
 接口返回值错误，例如语言为简体中文（zh-Hans）、地区为中国香港（HK），语言和地区不匹配，但返回为true。
-如果将isSuggested接口的返回值用于语言列表排序，返回true的语言排序在前，返回false的语言排序在后，与地区不匹配的语言就会排在前面，影响用户体验。
+如果将isSuggested接口的返回值用于语言列表排序，假设语言列表是en,zh-Hans,bo,ug,zh-Hant，匹配的地区为CN，
+变更前语言列表排序的结果是zh-Hans,en,bo,ug,zh-Hant，变更后的排序结果是zh-Hans,ug,bo,zh-Hant,en，变更后维吾尔语（ug）、藏语（bo）排在前面，符合中国（CN）本地化体验。
 如果将isSuggested接口的返回值用于逻辑判断，需要开发者重新检查代码逻辑。
 
 **变更影响**
