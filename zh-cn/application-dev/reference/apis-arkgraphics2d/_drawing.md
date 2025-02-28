@@ -90,7 +90,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [OH_Drawing_PathEffectType](#oh_drawing_patheffecttype) [OH_Drawing_PathEffectType](#oh_drawing_patheffecttype) | 路径效果的绘制样式枚举。  | 
+| typedef enum [OH_Drawing_PathDashStyle](#oh_drawing_pathdashstyle) [OH_Drawing_PathDashStyle](#oh_drawing_pathdashstyle) | 路径效果的绘制样式枚举。  | 
 | typedef struct [OH_Drawing_String](_o_h___drawing___string.md) [OH_Drawing_String](#oh_drawing_string) | 采用UTF-16编码的字符串信息结构体。 |
 | typedef enum [OH_Drawing_SystemFontType](#oh_drawing_systemfonttype) [OH_Drawing_SystemFontType](#oh_drawing_systemfonttype) | 字体类型的枚举。 |
 | typedef bool(\* [Drawing_CaretOffsetsCallback](#drawing_caretoffsetscallback)) (double offset, int32_t index, bool leadingEdge) | 用户自定义的回调函数。将文本行对象中每个字符的偏移量、索引值作为参数传递给用户自定义的回调函数。 |
@@ -201,7 +201,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_Drawing_PathEffectType](#oh_drawing_patheffecttype-1) { PATH_EFFECT_TRANSLATE, PATH_EFFECT_ROTATE, PATH_EFFECT_MORPH } | 路径效果的绘制样式枚举。  | 
+| [OH_Drawing_PathDashStyle](#oh_drawing_pathdashstyle-1) { DRAWING_PATH_DASH_STYLE_TRANSLATE, DRAWING_PATH_DASH_STYLE_ROTATE, DRAWING_PATH_DASH_STYLE_MORPH } | 路径效果的绘制样式枚举。  | 
 | [OH_Drawing_SystemFontType](#oh_drawing_systemfonttype-1) { ALL = 1 &lt;&lt; 0, GENERIC = 1 &lt;&lt; 1, STYLISH = 1 &lt;&lt; 2, INSTALLED = 1 &lt;&lt; 3, CUSTOMIZED = 1 &lt;&lt; 4 } | 字体类型的枚举。 |
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode-1) { OH_DRAWING_SUCCESS = 0, OH_DRAWING_ERROR_NO_PERMISSION = 201, OH_DRAWING_ERROR_INVALID_PARAMETER = 401, OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE = 26200001,OH_DRAWING_ERROR_ALLOCATION_FAILED = 26200002 } | 枚举本模块可能产生的错误码。 | 
 | [OH_Drawing_PathOpMode](#oh_drawing_pathopmode-1) {<br/>PATH_OP_MODE_DIFFERENCE, PATH_OP_MODE_INTERSECT, PATH_OP_MODE_UNION, PATH_OP_MODE_XOR,<br/>PATH_OP_MODE_REVERSE_DIFFERENCE<br/>} | 路径操作类型枚举。 | 
@@ -252,7 +252,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | 名称 | 描述 |
 | -------- | -------- |
 | [OH_Drawing_PathEffect](#oh_drawing_patheffect) \* [OH_Drawing_CreateSumPathEffect](#oh_drawing_createsumpatheffect) ([OH_Drawing_PathEffect](#oh_drawing_patheffect) \*firstPathEffect, [OH_Drawing_PathEffect](#oh_drawing_patheffect) \*secondPathEffect) | 创建一个使用两种路径效果分别生效后叠加的路径效果对象。  |
-| [OH_Drawing_PathEffect](#oh_drawing_patheffect) \* [OH_Drawing_CreatePathDashEffect](#oh_drawing_createpathdasheffect) (const [OH_Drawing_Path](#oh_drawing_path) \*path, float advance, float phase, [OH_Drawing_PathEffectType](#oh_drawing_patheffecttype) type) | 创建一个虚线效果的路径效果对象。  |
+| [OH_Drawing_PathEffect](#oh_drawing_patheffect) \* [OH_Drawing_CreatePathDashEffect](#oh_drawing_createpathdasheffect) (const [OH_Drawing_Path](#oh_drawing_path) \*path, float advance, float phase, [OH_Drawing_PathDashStyle](#oh_drawing_pathdashstyle) type) | 创建一个虚线效果的路径效果对象。  |
 | [OH_Drawing_PathEffect](#oh_drawing_patheffect) \* [OH_Drawing_CreateDiscretePathEffect](#oh_drawing_creatediscretepatheffect) (float segLength, float deviation) | 创建一种将路径打散并且在路径上产生不规则分布的路径效果对象。  | 
 | [OH_Drawing_PathEffect](#oh_drawing_patheffect) \* [OH_Drawing_CreateCornerPathEffect](#oh_drawing_createcornerpatheffect) (float radius) | 创建一个将路径的夹角变成指定半径的圆角的路径效果对象。  | 
 | [OH_Drawing_PathEffect](#oh_drawing_patheffect) \* [OH_Drawing_CreateComposePathEffect](#oh_drawing_createcomposepatheffect) ([OH_Drawing_PathEffect](#oh_drawing_patheffect) \*outer, [OH_Drawing_PathEffect](#oh_drawing_patheffect) \*inner) | 创建路径组合的路径效果对象。首先应用内部路径效果，然后应用外部路径效果。  | 
@@ -853,10 +853,10 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 ## 类型定义说明
 
-### OH_Drawing_PathEffectType
+### OH_Drawing_PathDashStyle
 
 ```
-typedef enum OH_Drawing_PathEffectType OH_Drawing_PathEffectType
+typedef enum OH_Drawing_PathDashStyle OH_Drawing_PathDashStyle
 ```
 
 **描述**
@@ -2252,10 +2252,10 @@ typedef enum OH_Drawing_WordBreakType OH_Drawing_WordBreakType
 
 ## 枚举类型说明
 
-### OH_Drawing_PathEffectType
+### OH_Drawing_PathDashStyle
 
 ```
-enum OH_Drawing_PathEffectType
+enum OH_Drawing_PathDashStyle
 ```
 
 **描述**
@@ -2266,9 +2266,9 @@ enum OH_Drawing_PathEffectType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| PATH_EFFECT_TRANSLATE  | 表示路径效果是平移效果。| 
-| PATH_EFFECT_ROTATE  | 表示路径效果是旋转效果。| 
-| PATH_EFFECT_MORPH  | 表示路径效果是变形效果。| 
+| DRAWING_PATH_DASH_STYLE_TRANSLATE  | 表示路径效果是平移效果。|
+| DRAWING_PATH_DASH_STYLE_ROTATE  | 表示路径效果是旋转效果。|
+| DRAWING_PATH_DASH_STYLE_MORPH  | 表示路径效果是变形效果。|
 
 ### OH_Drawing_SystemFontType
 
@@ -3206,7 +3206,7 @@ OH_Drawing_PathEffect* OH_Drawing_CreateSumPathEffect (OH_Drawing_PathEffect* fi
 ### OH_Drawing_CreatePathDashEffect()
 
 ```
-OH_Drawing_PathEffect* OH_Drawing_CreatePathDashEffect (const OH_Drawing_Path* path, float advance, float phase, OH_Drawing_PathEffectType type )
+OH_Drawing_PathEffect* OH_Drawing_CreatePathDashEffect (const OH_Drawing_Path* path, float advance, float phase, OH_Drawing_PathDashStyle type )
 ```
 
 **描述**
