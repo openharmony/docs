@@ -447,7 +447,7 @@ Checks whether use of local digits is enabled.
 
 static getSimplifiedLanguage(language?: string): string
 
-Obtains the simplified representation of a language. For example, the simplified representation of **zh-Hans-CN** is **zh**, and the simplified representation of **zh-Hant-TW** is **zh-TW**.
+Obtains the simplified representation of a language. For example, the simplified representation of **en-Latn-US** is **en**, and that of **en-Latn-GB** is **en-GB**.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
@@ -480,7 +480,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
   try {
     let simplifiedLanguage: string = i18n.System.getSimplifiedLanguage("zh-Hans-CN");  // simplifiedLanguage = zh
-    let simplifiedSystemLanguage: string = i18n.System.getSimplifiedLanguage();  // simplifiedSystemLanguage = zh if the current system language is zh-Hans-CN.
+    let simplifiedSystemLanguage: string = i18n.System.getSimplifiedLanguage();  // simplifiedSystemLanguage = zh-Hans if the current system language is zh-Hans-CN.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getSimplifiedLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -3170,7 +3170,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     decimal: decimal_textStyle,
     fraction: fraction_textStyle,
     unit: unit_textStyle });
-  
+
   // Create a StyledNumberFormat object through SimpleNumberFormat.
   let locale = new intl.Locale("zh");
   let simpleNumFmt = i18n.getSimpleNumberFormatBySkeleton("percent", locale);
@@ -3229,7 +3229,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     fraction: fraction_textStyle,
     unit: unit_textStyle });
   let result_1 = styledNumFmt_1.format(1234.5678); // result_1.getString() is 1,234.568%. In result_1, 1,234 is in red, . in brown, 568 in blue, and % in green.
-  
+
   // Create a StyledNumberFormat object through SimpleNumberFormat.
   let locale = new intl.Locale("zh");
   let simpleNumFmt = i18n.getSimpleNumberFormatBySkeleton("percent", locale);

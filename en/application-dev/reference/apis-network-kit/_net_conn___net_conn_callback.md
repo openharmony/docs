@@ -41,9 +41,9 @@ After the callback is complete, the parameter memory is automatically cleared an
 
 **Parameters**
 
-| Name| Description|
-| -------- | -------- |
-| netHandle | Network handle.|
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| netHandle |[NetHandle](js-apis-net-connection.md#nethandle) | Network handle.|
 
 ### onNetCapabilitiesChange
 
@@ -61,10 +61,10 @@ After the callback is complete, the parameter memory is automatically cleared an
 
 **Parameters**
 
-| Name| Description|
-| -------- | -------- |
-| netHandle | Network handle.|
-| netCapabilities | Network capabilities.|
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| netHandle | [NetHandle](js-apis-net-connection.md#nethandle) | Network handle.|
+| netCapabilities | [NetCapabilities](js-apis-net-connection.md#netcapabilities)| Network capabilities.|
 
 ### onConnetionProperties
 
@@ -82,10 +82,10 @@ After the callback is complete, the parameter memory is automatically cleared an
 
 **Parameters**
 
-| Name| Description|
-| -------- | -------- |
-| netHandle | Network handle.|
-| connConnetionProperties | Network connection properties.|
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| netHandle |[NetHandle](js-apis-net-connection.md#nethandle) | Network handle.|
+| connConnetionProperties | [ConnectionProperties](js-apis-net-connection.md#connectionproperties)| Network connection properties.|
 
 ### onNetLost
 
@@ -103,9 +103,9 @@ After the callback is complete, the parameter memory is automatically cleared an
 
 **Parameters**
 
-| Name| Description|
-| -------- | -------- |
-| netHandle | Network handle.|
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| netHandle |[NetHandle](js-apis-net-connection.md#nethandle)| Network handle.|
 
 ### onNetUnavailable
 
