@@ -85,7 +85,7 @@ getLocationPolicy(admin: Want): LocationPolicy
 
 | 类型                              | 说明                                                 |
 | --------------------------------- | ---------------------------------------------------- |
-| [LocationPolicy](#locationpolicy) | 位置服务策略枚举值 0：默认策略 1：禁用 2：强制启用。 |
+| [LocationPolicy](#locationpolicy) | 位置服务策略枚举值。0：默认策略。1：禁用。2：强制启用。 |
 
 **错误码**：
 
