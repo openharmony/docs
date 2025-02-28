@@ -16,7 +16,7 @@ import { usbManager } from '@kit.BasicServicesKit';
 
 getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
-获取接入主设备的USB设备列表。如果没有设备接入，那么将会返回一个空的列表。开发者选项关闭时，如果没有设备接入，接口可能返回`undefined`，注意需要对接口返回值做判空处理。
+获取接入主设备的USB设备列表。如果没有设备接入，那么将会返回一个空的列表。开发者模式关闭时，如果没有设备接入，接口可能返回`undefined`，注意需要对接口返回值做判空处理。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
