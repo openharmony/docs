@@ -12,4 +12,3 @@
   - [开发使用SCSI协议的设备驱动](scsi-peripheral-ddk-guidelines.md)
 - [常见问题](externaldevice-faqs.md)
 - [扩展外设驱动开发术语](terms.md)
-
