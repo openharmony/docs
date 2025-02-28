@@ -1686,7 +1686,7 @@ try {
 }
 ```
 
-### startMoving<sup>15+</sup>
+### startMoving<sup>16+</sup>
 
 startMoving(): void
 
@@ -1700,6 +1700,7 @@ startMoving(): void
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
+| 801 | Capability not supported. |
 | 12800002 | input method engine error. |
 | 12800013 | window manager service error. |
 | 12800017 | invalid panel type or panel flag. |
