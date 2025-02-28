@@ -58,8 +58,6 @@ Enable Wi-Fi.
 
 **Required permissions** ohos.permission.SET_WIFI_INFO and (ohos.permission.MANAGE_WIFI_CONNECTION or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION)
 
-**Atomic service API**: This API can be used in atomic services since API version 15.
-
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Error codes**
@@ -739,8 +737,6 @@ Remove a Wi-Fi DeviceConfig with networkId.
 
 **Required permissions**: ohos.permission.SET_WIFI_INFO and (ohos.permission.MANAGE_WIFI_CONNECTION or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION)
 
-**Atomic service API**: This API can be used in atomic services since API version 15.
-
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
@@ -921,8 +917,6 @@ Add Wi-Fi connection configuration to the device. The configuration will be upda
 
 **Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG
 
-**Atomic service API**: This API can be used in atomic services since API version 15.
-
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
@@ -979,8 +973,6 @@ Add Wi-Fi connection configuration to the device. The configuration will be upda
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
-**Atomic service API**: This API can be used in atomic services since API version 15.
-
 **Parameters**
 
 | **Name**| **Type**| **Mandatory**| **Description**|
@@ -1026,8 +1018,6 @@ Obtain the list of all existed Wi-Fi configurations
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
 
-**Atomic service API**: This API can be used in atomic services since API version 15.
-
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
@@ -1067,8 +1057,6 @@ connectToNetwork(networkId: number): void
 Connect to Wi-Fi hotspot by networkId.
 
 **Required permissions**: ohos.permission.MANAGE_WIFI_CONNECTION or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
-
-**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -1370,8 +1358,6 @@ Disconnect the WLAN.
 
 **Required permissions**: ohos.permission.SET_WIFI_INFO and (ohos.permission.MANAGE_WIFI_CONNECTION or
    ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION)
-
-**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
