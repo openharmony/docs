@@ -123,9 +123,9 @@ USB串口配置管理中，波特率、数据位、校验位和停止位是串�
 
 ### 调测验证
 
-1. USB转串口线缆一端连接到OpenHarmony设备，另一端连接到串口设备。
+1. 准备一根USB转串口线缆，线缆的USB接口连接到OpenHarmony设备USB端口（该端口需支持USB转串口），线缆的串口接口连接到Windows PC的串口上。
 2. 执行上述示例。
-3. 返回`usbSerial success, attribute`，表示相关接口调用成功，可以查看当前串口的配置。
+3. 返回`getAttribute usbSerial success`和`setAttribute usbSerial success`表示相关接口调用成功，可以查看当前串口的配置。
 
 ## 常见问题
 

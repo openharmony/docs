@@ -131,6 +131,6 @@ USB串口通信服务中通过Host设备的USB接口连接串口设备的串口�
 
 ### 调测验证
 
-1. USB转串口线缆一端连接到OpenHarmony设备，另一端连接到串口设备。
+1. 准备一根USB转串口线缆，线缆的USB接口连接到OpenHarmony设备USB端口（该端口需支持USB转串口），线缆的串口接口连接到Windows PC的串口上。
 2. 执行上述示例。
 3. 返回`usbSerial success`，表示相关接口调用成功，设备串口通信能力正常；返回`usbSerial error`，表示接口调用失败。

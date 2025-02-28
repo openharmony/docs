@@ -57,4 +57,4 @@ USB串口服务主要包括两个阶段：
 
 - 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
 - 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](../../../tools/openharmony_sdk_upgrade_assistant.md)。
-- USB转串口线缆一端连接到OpenHarmony设备，另一端连接到串口设备。
+- 准备一根USB转串口线缆，线缆的USB接口连接到OpenHarmony设备USB端口（该端口需支持USB转串口），线缆的串口接口连接到Windows PC的串口上。
