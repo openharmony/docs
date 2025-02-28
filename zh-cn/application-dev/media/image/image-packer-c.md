@@ -42,7 +42,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
 
       Image_ErrorCode packToFileFromImageSourceTest(int fd)
       {
-          //创建ImagePacker实例
+          //创建ImagePacker实例。
           OH_ImagePackerNative *testPacker = nullptr;
           Image_ErrorCode errCode = OH_ImagePackerNative_Create(&testPacker);
           if (errCode != IMAGE_SUCCESS) {
@@ -50,7 +50,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
               return errCode;
           }
 
-          //创建ImageSource实例
+          //创建ImageSource实例。
           OH_ImageSourceNative* imageSource = nullptr;
           errCode = OH_ImageSourceNative_CreateFromFd(fd, &imageSource);
           if (errCode != IMAGE_SUCCESS) {
@@ -58,13 +58,13 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
               return errCode;
           }
 
-          //指定打包参数，将ImageSource图片源编码后直接打包进文件
+          //指定打包参数，将ImageSource图片源编码后直接打包进文件。
           OH_PackingOptions *option = nullptr;
           OH_PackingOptions_Create(&option);
           char type[] = "image/jpeg";
           Image_MimeType image_MimeType = {type, strlen(type)};
           OH_PackingOptions_SetMimeType(option, &image_MimeType);
-          // 编码为hdr内容(需要资源本身为hdr，支持jpeg格式)
+          // 编码为hdr内容(需要资源本身为hdr，支持jpeg格式)。
           OH_PackingOptions_SetDesiredDynamicRange(option, IMAGE_PACKER_DYNAMIC_RANGE_AUTO);
           errCode = OH_ImagePackerNative_PackToFileFromImageSource(testPacker, option, imageSource, fd);
           if (errCode != IMAGE_SUCCESS) {
@@ -72,14 +72,14 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
               return errCode;
           }
 
-          //释放ImagePacker实例
+          //释放ImagePacker实例。
           errCode = OH_ImagePackerNative_Release(testPacker);
           if (errCode != IMAGE_SUCCESS)
           {
               OH_LOG_ERROR(LOG_APP, "ImagePackerNativeCTest ReleasePacker OH_ImagePackerNative_Release failed, errCode: %{public}d.", errCode);
               return errCode;
           }
-          //释放ImageSource实例
+          //释放ImageSource实例。
           errCode = OH_ImageSourceNative_Release(imageSource);
           if (errCode != IMAGE_SUCCESS)
           {
@@ -92,7 +92,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
 
       Image_ErrorCode packToFileFromPixelmapTest(uint8_t *buffer, size_t buffSize, int fd)
       {
-          //创建ImagePacker实例
+          //创建ImagePacker实例。
           OH_ImagePackerNative *testPacker = nullptr;
           Image_ErrorCode errCode = OH_ImagePackerNative_Create(&testPacker);
           if (errCode != IMAGE_SUCCESS) {
@@ -100,7 +100,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
               return errCode;
           }
 
-          //创建Pixelmap实例
+          //创建Pixelmap实例。
           OH_Pixelmap_InitializationOptions *createOpts;
           OH_PixelmapInitializationOptions_Create(&createOpts);
           OH_PixelmapInitializationOptions_SetWidth(createOpts, 6);
@@ -114,7 +114,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
               return errCode;
           }
 
-          //指定打包参数，将PixelMap图片源编码后直接打包进文件
+          //指定打包参数，将PixelMap图片源编码后直接打包进文件。
           OH_PackingOptions *option = nullptr;
           OH_PackingOptions_Create(&option);
           char type[] = "image/jpeg";
@@ -126,7 +126,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
               return errCode;
           }
 
-          //释放ImagePacker实例
+          //释放ImagePacker实例。
           errCode = OH_ImagePackerNative_Release(testPacker);
           if (errCode != IMAGE_SUCCESS)
           {
@@ -134,7 +134,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
               return errCode;
           }
 
-          //释放Pixelmap实例
+          //释放Pixelmap实例。
           errCode = OH_PixelmapNative_Release(pixelmap);
           if (errCode != IMAGE_SUCCESS)
           {
