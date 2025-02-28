@@ -110,4 +110,4 @@
 | /data/storage/el2/base | 应用el2级别加密数据目录：<br> - 非独立沙箱运行的应用：/data/app/el2/&lt;USERID&gt;/base/&lt;PACKAGENAME&gt;<br> - 以独立沙箱运行的Extension应用： /data/app/el2/&lt;USERID&gt;/base/+extension-&lt;EXTENSIONPATH&gt;+&lt;PACKAGENAME&gt; |
 | /data/storage/el1/database | 应用el1级别加密数据库目录：<br> - 非独立沙箱运行的应用：/data/app/el1/&lt;USERID&gt;/database/&lt;PACKAGENAME&gt;<br> - 以独立沙箱运行的Extension应用：/data/app/el1/&lt;USERID&gt;/database/+extension-&lt;EXTENSIONPATH&gt;+&lt;PACKAGENAME&gt; |
 | /data/storage/el2/database | 应用el2级别加密数据库目录：<br> - 非独立沙箱运行的应用：/data/app/el2/&lt;USERID&gt;/database/&lt;PACKAGENAME&gt;<br> - 以独立沙箱运行的Extension应用：/data/app/el2/&lt;USERID&gt;/database/+extension-&lt;EXTENSIONPATH&gt;+&lt;PACKAGENAME&gt; |
-| /data/storage/el2/distributedfiles | /mnt/hmdfs/&lt;USERID&gt;/account/merge_view/data/&lt;PACKAGENAME&gt; | 应用el2加密级别有帐号分布式数据融合目录 |
+| /data/storage/el2/distributedfiles | /mnt/hmdfs/&lt;USERID&gt;/account/merge_view/data/&lt;PACKAGENAME&gt; | 应用el2加密级别有账号分布式数据融合目录 |
