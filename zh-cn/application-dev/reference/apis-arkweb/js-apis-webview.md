@@ -9865,6 +9865,10 @@ static saveCookieSync(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+> **说明：**
+>
+> saveCookieSync方法主要用于同步保存持久化的cookie数据。默认情况下，2in1和Tablet设备不支持保存session cookie。
+
 **示例：**
 
 ```ts
