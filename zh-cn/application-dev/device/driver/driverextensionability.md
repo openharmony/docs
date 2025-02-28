@@ -166,10 +166,10 @@
 
 扩展外设管理目前提供了HID DDK、USB DDK、USB Serical DDK和SCSI Peripheral DDK四种能力，用于扩展外设专项驱动的开发。具体使用方法，请参考：
 
-* [HID DDK开发指导](hid-ddk-guidelines.md)
-* [USB DDK开发指导](usb-ddk-guidelines.md)
-* [USB Serial DDK开发指导](usb-serial-ddk-guidelines.md)
-* [SCSI Peripheral DDK开发指导](scsi-peripheral-ddk-guidelines.md)
+* [开发适用HID协议的设备驱动](hid-ddk-guidelines.md)
+* [开发适用USB协议的设备驱动](usb-ddk-guidelines.md)
+* [开发适用串口协议的设备驱动](usb-serial-ddk-guidelines.md)
+* [开发使用SCSI协议的设备驱动](scsi-peripheral-ddk-guidelines.md)
 
 ## 应用签名
 
