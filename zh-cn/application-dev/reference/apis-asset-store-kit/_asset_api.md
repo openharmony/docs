@@ -61,8 +61,10 @@ int32_t OH_Asset_Add (const Asset_Attr * attributes, uint32_t attrCnt )
 **返回：**
 
 如果操作成功，则返回[ASSET_SUCCESS](_asset_type.md#asset_resultcode)；否则返回错误码。
-0 - 表示操作成功.
-201 - 表示调用者没有权限.
+0 - 表示操作成功。
+
+201 - 表示调用者没有权限。
+
 401 - 表示参数错误。
 24000001 - 表示关键资产服务不可用。
 24000003 - 表示关键资产已存在。
