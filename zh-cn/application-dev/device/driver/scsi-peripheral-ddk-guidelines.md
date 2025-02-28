@@ -60,7 +60,7 @@ SCSI Peripheral DDK支持SPC（SCSI Primary Commands）、SBC（SCSI Block Comma
 
 ## 环境搭建
 
-请参考[环境准备](environmental-preparation.md)
+请参考[环境准备](environmental-preparation.md)完成开发前的准备工作。
 
 ## 开发指导
 

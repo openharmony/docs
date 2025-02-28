@@ -2,15 +2,16 @@
 
 ## 场景介绍
 
-[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)是Driver类型的ExtensionAbility组件，提供驱动相关扩展框架能力。对于部分设备，支持插入外接的硬件模块来扩展设备能力， 此时可以以应用方式安装该硬件模块的驱动程序。通过DriverExtensionAbility可实现此类应用的开发。
+开发者开发无UI界面的基础驱动，适用于简单的设备，不需要通过UI界面设置驱动能力，如鼠标，键盘等，保证即插即用的功能即可。开发者可以通过DriverExtensionAbility可实现此类应用的开发。
 
+## 基本概念
 
-[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)可以通过DriverExtensionManager被应用绑定，并根据应用的请求信息在后台处理相关事务。
+- [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)是Driver类型的ExtensionAbility组件，提供驱动相关扩展框架能力。对于部分设备，支持插入外接的硬件模块来扩展设备能力， 此时可以以应用方式安装该硬件模块的驱动程序。[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)可以通过DriverExtensionManager被应用绑定，并根据应用的请求信息在后台处理相关事务。
 每个类型的ExtensionAbility都有自己的Context，DriverExtensionAbility通过[DriverExtensionContext](../../reference/apis-driverdevelopment-kit/js-apis-inner-application-driverExtensionContext.md)提供相关能力。
 
 ## 环境搭建
 
-请参考[环境准备](environmental-preparation.md);
+请参考[环境准备](environmental-preparation.md)完成开发前的准备工作。
 
 ## 开发步骤
 
@@ -161,12 +162,14 @@
 
 ## 扩展设备能力
 
-扩展外设管理提供了HID DDK和USB DDK两种能力，用于驱动开发；
+扩展外设管理目前提供了HID DDK、USB DDK、USB Serical DDK和SCSI Peripheral DDK四种能力，用于驱动开发；
 
 具体使用方法，请参考：
 
-* [HID DDK开发指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/hid-ddk-guidelines.md)
-* [USB DDK开发指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/usb-ddk-guidelines.md)
+* [HID DDK开发指导](hid-ddk-guidelines.md)
+* [USB DDK开发指导](usb-ddk-guidelines.md)
+* [USB Serial DDK开发指导](usb-serial-ddk-guidelines.md)
+* [SCSI Peripheral DDK开发指导](scsi-peripheral-ddk-guidelines.md)
 
 ## 应用签名
 
