@@ -6,7 +6,7 @@ USB串口通信服务中通过Host设备的USB接口连接串口设备的串口�
 
 ## 环境准备
 
-请参考USB串口通信服务开发概述[环境准备](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/basic-services/usb/usbSerial/usbSerial-overview.md#环境准备)。
+请参考USB串口通信服务开发概述[环境准备](usbSerial-overview.md#环境准备)。
 
 ## 开发指导
 

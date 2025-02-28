@@ -30,7 +30,7 @@ USB串口配置管理中，波特率、数据位、校验位和停止位是串�
 
 ## 环境准备
 
-请参考USB串口通信服务开发概述[环境准备](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/basic-services/usb/usbSerial/usbSerial-overview.md#环境准备)。
+请参考USB串口通信服务开发概述[环境准备](usbSerial-overview.md#环境准备)。
 
 ## 开发指导
 
@@ -129,4 +129,4 @@ USB串口配置管理中，波特率、数据位、校验位和停止位是串�
 
 ## 常见问题
 
-请参考[USB开发FAQ](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/basic-services/usb/usb-FAQ.md)。
+请参考[常见问题](../faqs-usb.md)。
