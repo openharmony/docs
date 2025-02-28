@@ -1,4 +1,4 @@
-# Arkts子系统变更说明
+# ArkTS子系统变更说明
 
 ## cl.arkts.1 Buffer.from()接口行为变更
 
