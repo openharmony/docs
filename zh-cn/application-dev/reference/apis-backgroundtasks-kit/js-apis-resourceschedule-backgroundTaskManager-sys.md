@@ -33,7 +33,7 @@ applyEfficiencyResources(request: EfficiencyResourcesRequest): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -79,7 +79,7 @@ resetAllEfficiencyResources(): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -128,8 +128,8 @@ try {
 | resourceTypes   | number  | 是    | 申请的资源类型。                               |
 | isApply         | boolean | 是    | 申请或释放资源。<br>- true表示申请资源，false表示释放部分资源。 |
 | timeOut         | number  | 是    | 资源使用时间，单位为毫秒。                |
-| isPersist       | boolean | 否    | 是否永久持有资源，默认为false。<br>- true表示永久持有，false表示有限时间内持有。|
-| isProcess       | boolean | 否    | 进程或应用申请，默认为false。<br>- true表示进程申请，false表示应用申请。         |
+| isPersist       | boolean | 否    | 是否永久持有资源，默认为false。<br>- true表示永久持有。<br>- false表示有限时间内持有。|
+| isProcess       | boolean | 否    | 进程或应用申请，默认为false。<br>- true表示进程申请。<br>- false表示应用申请。         |
 | reason          | string  | 是    | 申请资源原因。                |
 
 ## ResourceType
