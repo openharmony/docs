@@ -4,6 +4,8 @@
 
 HID DDK（HID Driver Develop Kit）是为开发者提供的HID设备驱动程序开发套件，支持开发者基于用户态，在应用层开发HID设备驱动。提供了一系列主机侧访问设备的接口，包括创建设备、向设备发送事件、销毁设备、打开关闭设备、读取写入报告、获取设备信息等。
 
+凡是采用USB总线，通过HID协议传输数据的设备，或者通过扩展外设驱动创建虚拟设备，来实现与非标设备的信息交互都可以使用HID DDK开发设备驱动。
+
 ### 基本概念
 
 在进行HID DDK开发前，开发者应了解以下基本概念：
@@ -28,7 +30,7 @@ HID DDK（HID Driver Develop Kit）是为开发者提供的HID设备驱动程序
 
 * HID DDK开放API支持非标HID类外设扩展驱动开发场景。
 
-* HID DDK开放API使用范围内仅允许DriverExtensionAbilit生命周期内使用。
+* HID DDK开放API仅允许DriverExtensionAbilit生命周期内使用。
 
 * 使用HID DDK开放API需要在module.json5中声明匹配的ACL权限，例如ohos.permission.ACCESS_DDK_HID。
 
