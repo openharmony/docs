@@ -87,7 +87,7 @@ AtomicServiceSearch中“搜索区”的可选属性。
 
 | 名称                     | 类型            | 必填                                   | 说明                                                         |
 | ------------------------ | ---------------------------------------------- | ------------------------------------------------------------ | ---- |
-| searchKey | [ResourceColor](ts-types.md#resourcecolor) | 否 | 用作找到一个唯一的search组件。默认值：`undefined`。   |
+| searchKey | [ResourceStr](ts-types.md#resourcestr) | 否 | 用作找到一个唯一的search组件。默认值：`undefined`。   |
 | componentBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置组件的背景色。默认值：`$r('sys.color.ohos_id_color_text_field_sub_bg')`。   |
 | pressedBackgroundColor   | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置组件按压态的背景色。默认值：`$r('sys.color.ohos_id_color_click_effect')`。 |
 | searchButton             | [SearchButtonParams](#searchbuttonparams) | 否 | 设置搜索框末尾搜索按钮。点击搜索按钮，同时触发onSubmit与onClick回调。<br />-value：搜索框末尾搜索按钮文本内容。<br /> -option: 配置搜索框文本样式。默认值：`{fontSize: '16fp', fontColor: '#ff3f97e9'}`。 |
