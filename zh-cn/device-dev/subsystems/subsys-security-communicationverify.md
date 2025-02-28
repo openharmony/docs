@@ -106,7 +106,7 @@ IPC通信鉴权提供的API，仅供Samgr调用，开发者在开发服务时需
 
   **现象描述**
 
-  开发完新服务后，在启动时出现服务在Samgr注册失败问题。
+  开发完新服务后，在启动时出现服务在Samgr注册失败的问题。
 
   **可能原因**
 
@@ -114,4 +114,4 @@ IPC通信鉴权提供的API，仅供Samgr调用，开发者在开发服务时需
 
   **解决办法**
 
-  在base/security/permission/services/permission_lite/ipc_auth/src/ipc_auth_impl.c中配置有效的服务的UID。
+  在`base/security/permission/services/permission_lite/ipc_auth/src/ipc_auth_impl.c`中配置有效的服务的UID。
