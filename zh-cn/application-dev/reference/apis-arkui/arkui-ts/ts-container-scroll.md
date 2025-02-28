@@ -30,7 +30,7 @@ Scroll(scroller?: Scroller)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)和[滚动组件通用属性](ts-container-scrollable-common.md#属性)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)和[滚动组件通用属性](ts-container-scrollable-common.md#属性)外，还支持以下属性：
 
 ### scrollable
 
@@ -239,7 +239,7 @@ initialOffset(value: OffsetOptions)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)和[滚动组件通用事件](ts-container-scrollable-common.md#事件)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)和[滚动组件通用事件](ts-container-scrollable-common.md#事件)外，还支持以下事件：
 >  **说明：**
 >
 >  不支持滚动组件通用事件中的[onWillScroll](ts-container-scrollable-common.md#onwillscroll12)、[onDidScroll](ts-container-scrollable-common.md#ondidscroll12)事件。
@@ -513,7 +513,7 @@ Scroll每帧滚动前触发的回调。
 
 ## Scroller
 
-可滚动容器组件的控制器，可以将此组件绑定至容器组件，然后通过它控制容器组件的滚动，同一个控制器不可以控制多个容器组件，目前支持绑定到List、Scroll、ScrollBar、Grid、WaterFlow上。
+可滚动容器组件的控制器，可以将此组件绑定至容器组件，然后通过它控制容器组件的滚动。同一个控制器不可以控制多个容器组件，目前支持绑定到ArcList、ArcScrollBar、List、Scroll、ScrollBar、Grid、WaterFlow上。
 
 >**说明：**
 >
@@ -586,7 +586,7 @@ fling(velocity: number): void
 
 | 参数名   | 类型 | 必填 | 说明                                                     |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| velocity | number   | 是   | 惯性滚动的初始速度值。单位：vp/s<br/>**说明：**<br/>velocity值设置为0，视为异常值，本次滚动不生效。如果值为正数，则向下滚动；如果值为负数，则向上滚动。 |
+| velocity | number   | 是   | 惯性滚动的初始速度值。单位：vp/s<br/>**说明：**<br/>velocity值设置为0，视为异常值，本次滚动不生效。如果值为正数，则向顶部滚动；如果值为负数，则向底部滚动。 |
 
 **错误码**：
 
@@ -651,7 +651,7 @@ scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign, options?: Sc
 
 >  **说明：**
 >
->  仅支持Grid、List、WaterFlow组件。
+>  仅支持ArcList、Grid、List、WaterFlow组件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -676,7 +676,7 @@ scrollBy(dx: Length, dy: Length)
 
 >  **说明：**
 >
->  支持Scroll、List、Grid、WaterFlow组件。
+>  支持ArcList、Scroll、List、Grid、WaterFlow组件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -697,7 +697,7 @@ isAtEnd(): boolean
 
 >  **说明：**
 >
->  支持Scroll、List、Grid、WaterFlow组件。
+>  支持ArcList、Scroll、List、Grid、WaterFlow组件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -717,7 +717,7 @@ getItemRect(index: number): RectResult
 
 >  **说明：**
 >
->  支持Scroll、List、Grid、WaterFlow组件。
+>  支持ArcList、Scroll、List、Grid、WaterFlow组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

@@ -1,10 +1,10 @@
-# Global Configuration Items
+# Global Configuration
 
-In scenarios where a single process instance is required, for example, global configuration item services that require data consistency between different concurrent instances, the shared module can be used.
+In cases where a process-wide singleton is necessary, for example, for maintaining data consistency across multiple concurrent instances for global configuration services, a shared module can be used.
 
-The following example implements the service function that can be downloaded only after Wi-Fi is enabled and users log in to the system. The procedure is as follows:
+The following example illustrates the service logic where downloads are permitted only when Wi-Fi is enabled and the user is logged in. The implementation involves the following steps:
 
-1. Compile the global configuration file.
+1. Create a global configuration file.
 
    ```ts
    // Config.ets
@@ -62,7 +62,7 @@ The following example implements the service function that can be downloaded onl
    export let config = new Config()
    ```
 
-2. The UI main thread and subthreads access global configuration items.
+2. Enable both the UI main thread and child threads to access the global configuration.
 
    ```ts
    import { config } from './Config'
@@ -100,7 +100,7 @@ The following example implements the service function that can be downloaded onl
                center: { anchor: '__container__', align: VerticalAlign.Center },
                middle: { anchor: '__container__', align: HorizontalAlign.Center }
              })
-           TextInput ({placeholder: "Please enter a user name."})
+           TextInput({ placeholder: "Enter user name" })
              .fontSize(20)
              .fontWeight(FontWeight.Bold)
              .alignRules({

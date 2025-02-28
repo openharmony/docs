@@ -33,14 +33,14 @@
 
     ```ts
     import { image } from '@kit.ImageKit';
-    imageWidth: number = 1920; // 请使用设备支持profile的size的宽
-    imageHeight: number = 1080; // 请使用设备支持profile的size的高
+    imageWidth: number = 1920; // 请使用设备支持profile的size的宽。
+    imageHeight: number = 1080; // 请使用设备支持profile的size的高。
 
     async function initImageReceiver():Promise<void>{
-      // 创建ImageReceiver对象
+      // 创建ImageReceiver对象。
       let size: image.Size = { width: this.imageWidth, height: this.imageHeight };
       let imageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
-      // 获取取第一路流SurfaceId
+      // 获取取第一路流SurfaceId。
       let imageReceiverSurfaceId = await imageReceiver.getReceivingSurfaceId();
       console.info(`initImageReceiver imageReceiverSurfaceId:${imageReceiverSurfaceId}`);
     }
@@ -53,33 +53,33 @@
     import { image } from '@kit.ImageKit';
 
     function onImageArrival(receiver: image.ImageReceiver): void {
-      // 注册imageArrival监听
+      // 注册imageArrival监听。
       receiver.on('imageArrival', () => {
-        // 获取图像
+        // 获取图像。
         receiver.readNextImage((err: BusinessError, nextImage: image.Image) => {
           if (err || nextImage === undefined) {
             console.error('readNextImage failed');
             return;
           }
-          // 解析图像内容
+          // 解析图像内容。
           nextImage.getComponent(image.ComponentType.JPEG, async (err: BusinessError, imgComponent: image.Component) => {
             if (err || imgComponent === undefined) {
               console.error('getComponent failed');
             }
             if (imgComponent.byteBuffer) {
-              // 详情见下方解析图片buffer数据参考，本示例以方式一为例
-              let width = nextImage.size.width; // 获取图片的宽
-              let height = nextImage.size.height; // 获取图片的高
-              let stride = imgComponent.rowStride; // 获取图片的stride
+              // 详情见下方解析图片buffer数据参考，本示例以方式一为例。
+              let width = nextImage.size.width; // 获取图片的宽。
+              let height = nextImage.size.height; // 获取图片的高。
+              let stride = imgComponent.rowStride; // 获取图片的stride。
               console.debug(`getComponent with width:${width} height:${height} stride:${stride}`);
-              // stride与width一致
+              // stride与width一致。
               if (stride == width) {
                 let pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
                   size: { height: height, width: width },
                   srcPixelFormat: 8,
                 })
               } else {
-                // stride与width不一致
+                // stride与width不一致。
                 const dstBufferSize = width * height * 1.5
                 const dstArr = new Uint8Array(dstBufferSize)
                 for (let j = 0; j < height * 1.5; j++) {
@@ -94,8 +94,8 @@
             } else {
               console.error('byteBuffer is null');
             }
-            // 确保当前buffer没有在使用的情况下，可进行资源释放
-            // 如果对buffer进行异步操作，需要在异步操作结束后再释放该资源（nextImage.release()）
+            // 确保当前buffer没有在使用的情况下，可进行资源释放。
+            // 如果对buffer进行异步操作，需要在异步操作结束后再释放该资源（nextImage.release()）。
             nextImage.release();
           })
         })
@@ -111,12 +111,12 @@
     方式一：去除imgComponent.byteBuffer中stride数据，拷贝得到新的buffer，调用不支持stride的接口处理buffer。
 
     ```ts
-    // 以NV21为例（YUV_420_SP格式的图片）YUV_420_SP内存计算公式：长x宽+(长x宽)/2
+    // 以NV21为例（YUV_420_SP格式的图片）YUV_420_SP内存计算公式：长x宽+(长x宽)/2。
     const dstBufferSize = width * height * 1.5;
     const dstArr = new Uint8Array(dstBufferSize);
-    // 逐行读取buffer数据
+    // 逐行读取buffer数据。
     for (let j = 0; j < height * 1.5; j++) {
-      // imgComponent.byteBuffer的每行数据拷贝前width个字节到dstArr中
+      // imgComponent.byteBuffer的每行数据拷贝前width个字节到dstArr中。
       const srcBuf = new Uint8Array(imgComponent.byteBuffer, j * stride, width);
       dstArr.set(srcBuf, j * width);
     }
@@ -128,10 +128,10 @@
     方式二：根据stride*height创建pixelMap，然后调用pixelMap的cropSync方法裁剪掉多余的像素。
 
     ```ts
-    // 创建pixelMap，width宽传行距stride的值
+    // 创建pixelMap，width宽传行距stride的值。
     let pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
       size:{height: height, width: stride}, srcPixelFormat: 8});
-    // 裁剪多余的像素
+    // 裁剪多余的像素。
     pixelMap.cropSync({size:{width:width, height:height}, x:0, y:0});
     ```
 
@@ -159,8 +159,8 @@ struct example {
     })
       .onLoad(async () => {
         console.info('onLoad is called');
-        this.surfaceId = this.xComponentCtl.getXComponentSurfaceId(); // 获取组件surfaceId
-        // 使用surfaceId创建预览流，开启相机，组件实时渲染每帧预览流数据
+        this.surfaceId = this.xComponentCtl.getXComponentSurfaceId(); // 获取组件surfaceId。
+        // 使用surfaceId创建预览流，开启相机，组件实时渲染每帧预览流数据。
       })
       .width(px2vp(this.imageHeight))
       .height(px2vp(this.imageWidth))
@@ -178,19 +178,19 @@ struct example {
 function createDualPreviewOutput(cameraManager: camera.CameraManager, previewProfile: camera.Profile,
 session: camera.Session,
 imageReceiverSurfaceId: string, xComponentSurfaceId: string): void {
-    // 使用imageReceiverSurfaceId创建第一路预览
+    // 使用imageReceiverSurfaceId创建第一路预览。
     let previewOutput1 = cameraManager.createPreviewOutput(previewProfile, imageReceiverSurfaceId);
     if (!previewOutput1) {
     console.error('createPreviewOutput1 error');
     }
-    // 使用xComponentSurfaceId创建第二路预览
+    // 使用xComponentSurfaceId创建第二路预览。
     let previewOutput2 = cameraManager.createPreviewOutput(previewProfile, xComponentSurfaceId);
     if (!previewOutput2) {
     console.error('createPreviewOutput2 error');
     }
-    // 添加第一路预览流输出
+    // 添加第一路预览流输出。
     session.addOutput(previewOutput1);
-    // 添加第二路预览流输出
+    // 添加第二路预览流输出。
     session.addOutput(previewOutput2);
 }
 ```
@@ -240,13 +240,13 @@ struct Index {
    */
   async initImageReceiver(): Promise<void> {
     if (!this.imageReceiver) {
-      // 创建ImageReceiver
+      // 创建ImageReceiver。
       let size: image.Size = { width: this.imageWidth, height: this.imageHeight };
       this.imageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
-      // 获取取第一路流SurfaceId
+      // 获取取第一路流SurfaceId。
       this.imageReceiverSurfaceId = await this.imageReceiver.getReceivingSurfaceId();
       console.info(`initImageReceiver imageReceiverSurfaceId:${this.imageReceiverSurfaceId}`);
-      // 注册监听处理预览流每帧图像数据
+      // 注册监听处理预览流每帧图像数据。
       this.onImageArrival(this.imageReceiver);
     }
   }
@@ -256,35 +256,35 @@ struct Index {
    * @param receiver
    */
   onImageArrival(receiver: image.ImageReceiver): void {
-    // 注册imageArrival监听
+    // 注册imageArrival监听。
     receiver.on('imageArrival', () => {
       console.info('image arrival');
-      // 获取图像
+      // 获取图像。
       receiver.readNextImage((err: BusinessError, nextImage: image.Image) => {
         if (err || nextImage === undefined) {
           console.error('readNextImage failed');
           return;
         }
-        // 解析图像内容
+        // 解析图像内容。
         nextImage.getComponent(image.ComponentType.JPEG, async (err: BusinessError, imgComponent: image.Component) => {
           if (err || imgComponent === undefined) {
             console.error('getComponent failed');
           }
           if (imgComponent.byteBuffer) {
-            // 请参考步骤7解析buffer数据，本示例以方式一为例
-            let width = nextImage.size.width; // 获取图片的宽
-            let height = nextImage.size.height; // 获取图片的高
-            let stride = imgComponent.rowStride; // 获取图片的stride
+            // 请参考步骤7解析buffer数据，本示例以方式一为例。
+            let width = nextImage.size.width; // 获取图片的宽。
+            let height = nextImage.size.height; // 获取图片的高。
+            let stride = imgComponent.rowStride; // 获取图片的stride。
             console.debug(`getComponent with width:${width} height:${height} stride:${stride}`);
-            // stride与width一致
+            // stride与width一致。
             if (stride == width) {
               let pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
                 size: { height: height, width: width },
                 srcPixelFormat: 8,
               })
             } else {
-              // stride与width不一致
-              const dstBufferSize = width * height * 1.5 // 以NV21为例（YUV_420_SP格式的图片）YUV_420_SP内存计算公式：长x宽+(长x宽)/2
+              // stride与width不一致。
+              const dstBufferSize = width * height * 1.5 // 以NV21为例（YUV_420_SP格式的图片）YUV_420_SP内存计算公式：长x宽+(长x宽)/2。
               const dstArr = new Uint8Array(dstBufferSize)
               for (let j = 0; j < height * 1.5; j++) {
                 const srcBuf = new Uint8Array(imgComponent.byteBuffer, j * stride, width)
@@ -298,8 +298,8 @@ struct Index {
           } else {
             console.error('byteBuffer is null');
           }
-          // 确保当前buffer没有在使用的情况下，可进行资源释放
-          // 如果对buffer进行异步操作，需要在异步操作结束后再释放该资源（nextImage.release()）
+          // 确保当前buffer没有在使用的情况下，可进行资源释放。
+          // 如果对buffer进行异步操作，需要在异步操作结束后再释放该资源（nextImage.release()）。
           nextImage.release();
           console.info('image process done');
         })
@@ -316,8 +316,8 @@ struct Index {
       })
         .onLoad(async () => {
           console.info('onLoad is called');
-          this.xComponentSurfaceId = this.xComponentCtl.getXComponentSurfaceId(); // 获取组件surfaceId
-          // 初始化相机，组件实时渲染每帧预览流数据
+          this.xComponentSurfaceId = this.xComponentCtl.getXComponentSurfaceId(); // 获取组件surfaceId。
+          // 初始化相机，组件实时渲染每帧预览流数据。
           this.initCamera()
         })
         .width(px2vp(this.imageHeight))
@@ -327,85 +327,85 @@ struct Index {
     .width('100%')
   }
 
-  // 初始化相机
+  // 初始化相机。
   async initCamera(): Promise<void> {
     console.info(`initCamera imageReceiverSurfaceId:${this.imageReceiverSurfaceId} xComponentSurfaceId:${this.xComponentSurfaceId}`);
     try {
-      // 获取相机管理器实例
+      // 获取相机管理器实例。
       this.cameraManager = camera.getCameraManager(getContext(this));
       if (!this.cameraManager) {
         console.error('initCamera getCameraManager');
       }
-      // 获取当前设备支持的相机device列表
+      // 获取当前设备支持的相机device列表。
       this.cameras = this.cameraManager.getSupportedCameras();
       if (!this.cameras) {
         console.error('initCamera getSupportedCameras');
       }
-      // 选择一个相机device，创建cameraInput输出对象
+      // 选择一个相机device，创建cameraInput输出对象。
       this.cameraInput = this.cameraManager.createCameraInput(this.cameras[0]);
       if (!this.cameraInput) {
         console.error('initCamera createCameraInput');
       }
-      // 打开相机
+      // 打开相机。
       await this.cameraInput.open().catch((err: BusinessError) => {
         console.error(`initCamera open fail: ${JSON.stringify(err)}`);
       })
-      // 获取相机device支持的profile
+      // 获取相机device支持的profile。
       let capability: camera.CameraOutputCapability =
         this.cameraManager.getSupportedOutputCapability(this.cameras[0], camera.SceneMode.NORMAL_VIDEO);
       if (!capability) {
         console.error('initCamera getSupportedOutputCapability');
       }
-      // 根据业务需求选择一个支持的预览流profile
+      // 根据业务需求选择一个支持的预览流profile。
       let previewProfile: camera.Profile = capability.previewProfiles[0];
-      this.imageWidth = previewProfile.size.width; // 更新xComponent组件的宽
-      this.imageHeight = previewProfile.size.height; // 更新xComponent组件的高
+      this.imageWidth = previewProfile.size.width; // 更新xComponent组件的宽。
+      this.imageHeight = previewProfile.size.height; // 更新xComponent组件的高。
       console.info(`initCamera imageWidth:${this.imageWidth} imageHeight:${this.imageHeight}`);
-      // 使用imageReceiverSurfaceId创建第一路预览
+      // 使用imageReceiverSurfaceId创建第一路预览。
       this.previewOutput1 = this.cameraManager.createPreviewOutput(previewProfile, this.imageReceiverSurfaceId);
       if (!this.previewOutput1) {
         console.error('initCamera createPreviewOutput1');
       }
-      // 使用xComponentSurfaceId创建第二路预览
+      // 使用xComponentSurfaceId创建第二路预览。
       this.previewOutput2 = this.cameraManager.createPreviewOutput(previewProfile, this.xComponentSurfaceId);
       if (!this.previewOutput2) {
         console.error('initCamera createPreviewOutput2');
       }
-      // 创建录像模式相机会话
+      // 创建录像模式相机会话。
       this.session = this.cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
       if (!this.session) {
         console.error('initCamera createSession');
       }
-      // 开始配置会话
+      // 开始配置会话。
       this.session.beginConfig();
-      // 添加相机设备输入
+      // 添加相机设备输入。
       this.session.addInput(this.cameraInput);
-      // 添加第一路预览流输出
+      // 添加第一路预览流输出。
       this.session.addOutput(this.previewOutput1);
-      // 添加第二路预览流输出
+      // 添加第二路预览流输出。
       this.session.addOutput(this.previewOutput2);
-      // 提交会话配置
+      // 提交会话配置。
       await this.session.commitConfig();
-      // 开始启动已配置的输入输出流
+      // 开始启动已配置的输入输出流。
       await this.session.start();
     } catch (error) {
       console.error(`initCamera fail: ${JSON.stringify(error)}`);
     }
   }
 
-  // 释放相机
+  // 释放相机。
   async releaseCamera(): Promise<void> {
     console.info('releaseCamera E');
     try {
-      // 停止当前会话
+      // 停止当前会话。
       await this.session?.stop();
-      // 释放相机输入流
+      // 释放相机输入流。
       await this.cameraInput?.close();
-      // 释放预览输出流
+      // 释放预览输出流。
       await this.previewOutput1?.release();
-      // 释放拍照输出流
+      // 释放拍照输出流。
       await this.previewOutput2?.release();
-      // 释放会话
+      // 释放会话。
       await this.session?.release();
     } catch (error) {
       console.error(`initCamera fail: ${JSON.stringify(error)}`);

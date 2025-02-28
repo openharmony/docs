@@ -183,7 +183,7 @@ static set24HourClock(option: boolean): void
 
 | 参数名    | 类型      | 必填   | 说明                                       |
 | ------ | ------- | ---- | ---------------------------------------- |
-| option | boolean | 是    | option为true，表示开启系统24小时制开关；返回false，表示关闭系统24小时开关。 |
+| option | boolean | 是    | option为true，表示开启系统24小时制开关；option为false，表示关闭系统24小时开关。 |
 
 **错误码：**
 

@@ -75,7 +75,7 @@ const char *srcCallNative = R"JS(
 )JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM OH_JSVM_GetPropertyNames success
 ```
@@ -126,7 +126,7 @@ const char *srcCallNative = R"JS(
 )JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM OH_JSVM_SetProperty success
 ```
@@ -173,7 +173,7 @@ const char *srcCallNative = R"JS(
 )JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM OH_JSVM_GetProperty success
 ```
@@ -224,7 +224,7 @@ const char *srcCallNative = R"JS(
 )JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 // Output of hasProperty (obj, "data").
 JSVM OH_JSVM_HasProperty success:1
@@ -284,7 +284,7 @@ const char *srcCallNative = R"JS(
 )JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM OH_JSVM_DeleteProperty success:1
 ```
@@ -349,7 +349,7 @@ const char *srcCallNative = R"JS(
 )JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 // hasOwnProperty (obj, "message") output
 JSVM OH_JSVM_HasOwnProperty success:1
@@ -410,7 +410,7 @@ const char *srcCallNative = R"JS(
 )JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM OH_JSVM_SetNamedProperty success
 ```
@@ -461,7 +461,7 @@ const char *srcCallNative = R"JS(
 )JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM OH_JSVM_GetNamedProperty success
 ```
@@ -515,7 +515,7 @@ const char *srcCallNative = R"JS(
 )JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM OH_JSVM_HasNamedProperty success:1
 ```
@@ -643,7 +643,7 @@ const char *srcCallNative = R"JS(
 )JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM DefineMethodPropertiesExample success:26
 JSVM defineStringPropertiesExample success:Hello!
@@ -695,7 +695,7 @@ const char *srcCallNative = R"JS(
 )JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM OH_JSVM_GetAllPropertyNames success
 ```

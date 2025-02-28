@@ -48,6 +48,48 @@ Display a prompt asking for enabling the location service.
 
 **Error Message**
 
+The network locating is failed because the network cannot be accessed.
+
+**Description**
+
+This error code is reported if network positioning fails because network access is denied.
+
+**Procedure**
+
+Check the device for Internet or Wi-Fi connectivity and an installed SIM card.<br>
+</br>
+
+**Error Message**
+
+The positioning result does not meet the precision requirement (maxAccuracy) in the positioning request parameters.
+
+**Description**
+
+This error code is reported if positioning times out because the positioning result does not meet the requirement of **maxAccuracy**.
+
+**Procedure**
+
+Increase the value of **maxAccuracy** for [LocationRequest](./js-apis-geoLocationManager.md#locationrequest) and [CurrentLocationRequest](./js-apis-geoLocationManager.md#currentlocationrequest) as follows:
+
+- If [scenario](./js-apis-geoLocationManager.md#locationrequestscenario) is set to **NAVIGATION**, **TRAJECTORY_TRACKING** or **CAR_HAILING**, or [priority](./js-apis-geoLocationManager.md#locationrequestpriority) is set to **ACCURACY**, you are advised to set **maxAccuracy** to a value greater than **10**.
+
+- If [scenario](./js-apis-geoLocationManager.md#locationrequestscenario) is set to **DAILY_LIFE_SERVICE** or **NO_POWER**, or [priority](./js-apis-geoLocationManager.md#locationrequestpriority) is set to **LOW_POWER** or **FIRST_FIX**, you are advised to set **maxAccuracy** to a value greater than **100**.<br>
+
+**Error Message**
+
+The system does not have a cache locaiton.
+
+**Description**
+
+This error code is reported if the application fails to obtain the previous location because the system has not cached the location information.
+
+**Procedure**
+
+If the system has not cached the location information, call [getCurrentLocation](./js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation) to obtain the real-time location information.<br>
+</br>
+
+**Error Message**
+
 Failed to obtain the geographical location.
 
 **Description**
@@ -58,25 +100,13 @@ This error code is reported if the location service fails, leading to a failure 
 
 1. Positioning times out because of weak GNSS signals.
 
-2. Positioning times out because the network positioning service is abnormal.
-
-3. Positioning times out because the positioning result does not meet the requirement of **maxAccuracy**.
-
-4. The application fails to obtain the previous location because the system does not cache the location information.
-
-5. The system time is incorrectly set.
+2. The system time is incorrectly set.
 
 **Procedure**
 
 1. Move to an open area and try again.
 
-2. Check the device for Internet or Wi-Fi connectivity and an installed SIM card.
-
-3. Check whether the **maxAccuracy** field in the location request is properly set.
-
-4. Use **getCurrentLocation** to obtain the real-time location if no location information is cached in the system.
-
-5. Enable automatic setting on the **Time & Date** page.
+2. Enable automatic setting on the **Time & Date** page.
 
 
 ## 3301300 Query Failed During Reverse Geocoding

@@ -45,7 +45,7 @@ Obtains the **tagInfo** object provided by the NFC service when the tag is dispa
 import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
-// getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 let tagInfo : TagInfo = tag.getIsoDep(tagInfo).getTagInfo();
 console.info("tag tagInfo: " + tagInfo);
@@ -76,7 +76,7 @@ Connects to this tag. Call this API to set up a connection before reading data f
 import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
-// getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 let connectStatus : boolean = tag.getIsoDep(tagInfo).connectTag();
 console.info("connectStatus: " + connectStatus);
@@ -102,7 +102,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
-| 3100201 | Tag running state is abnormal in service. |
+| 3100201 | The tag running state is abnormal in the service. |
 
 **Example**
 
@@ -110,7 +110,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
-// getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 try {
     tag.getIsoDep(tagInfo).connect(); 
@@ -139,7 +139,7 @@ Resets the connection to this tag.
 import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
-// getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 tag.getIsoDep(tagInfo).reset(); 
 ```
@@ -164,7 +164,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
-| 3100201 | Tag running state is abnormal in service. |
+| 3100201 | The tag running state is abnormal in the service. |
 
 **Example**
 
@@ -172,7 +172,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
-// getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 try {
     tag.getIsoDep(tagInfo).resetConnection(); 
@@ -205,7 +205,7 @@ Checks whether the tag is connected.
 import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
-// getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 let isTagConnected = tag.getIsoDep(tagInfo).isTagConnected(); 
 console.info("isTagConnected: " + isTagConnected);
@@ -242,7 +242,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
-// getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 try {
     let isConnected = tag.getIsoDep(tagInfo).isConnected(); 
@@ -276,7 +276,7 @@ Obtains the maximum length of the data that can be sent to this tag.
 import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
-// getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 let maxSendLen = tag.getIsoDep(tagInfo).getMaxSendLength(); 
 console.info("tag maxSendLen: " + maxSendLen);
@@ -308,14 +308,14 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
-| 3100201 | Tag running state is abnormal in service. |
+| 3100201 | The tag running state is abnormal in the service. |
 
 **Example**
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
-// getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 try {
     let maxTransmitSize = tag.getIsoDep(tagInfo).getMaxTransmitSize(); 
@@ -350,7 +350,7 @@ Obtains the timeout period for sending data to this tag, in milliseconds.
 import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
-// getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 let sendDataTimeout = tag.getIsoDep(tagInfo).getSendDataTimeout(); 
 console.info("tag sendDataTimeout: " + sendDataTimeout);
@@ -382,7 +382,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
-| 3100201 | Tag running state is abnormal in service. |
+| 3100201 | The tag running state is abnormal in the service. |
 
 **Example**
 
@@ -390,7 +390,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
-// getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 try {
     let timeout = tag.getIsoDep(tagInfo).getTimeout(); 
@@ -431,7 +431,7 @@ Sets the maximum time allowed for sending data to this tag, in ms.
 import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
-// getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 let timeoutMs = 700;  // Change it as required.
 let setStatus = tag.getIsoDep(tagInfo).setSendDataTimeout(timeoutMs); 
@@ -465,7 +465,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 |201 | Permission denied.                 |
 |401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
-| 3100201 | Tag running state is abnormal in service. |
+| 3100201 | The tag running state is abnormal in the service. |
 
 **Example**
 
@@ -473,7 +473,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
-// getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 let timeoutMs = 700;  // Change it as required.
 try {
@@ -516,7 +516,7 @@ import tag from '@kit.ConnectivityKit';
 import { BusinessError } from '@ohos.base';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
-// getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 function tagSessionDemo() {
     // Connect to the tag if it is not connected.
@@ -562,7 +562,7 @@ Sends data to this tag. This API uses an asynchronous callback to return the res
 import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
-// getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 function tagSessionDemo() {
     // Connect to the tag if it is not connected.
@@ -600,7 +600,7 @@ Transmits data to this tag. This API uses a promise to return the result.
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| data | number[] | Yes| Data to transmit. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| data | number[] | Yes| Data to send. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
 **Return value**
 
@@ -617,8 +617,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 |201 | Permission denied.                 |
 |401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -627,7 +627,7 @@ import { tag } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
-// getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 function tagSessionDemo() {
 // Connect to the tag if it is not connected.
@@ -670,7 +670,7 @@ Transmits data to this tag. This API uses an asynchronous callback to return the
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| data | number[] | Yes| Data to transmit. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| data | number[] | Yes| Data to send. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 | callback | AsyncCallback<number[]> | Yes| Callback used to return the response from the tag. The response consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
 **Error codes**
@@ -682,7 +682,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 |201 | Permission denied.                 |
 |401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
-| 3100201 | Tag running state is abnormal in service. |
+| 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | Tag I/O operation failed. |
 
 **Example**
@@ -691,7 +691,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import { tag } from '@kit.ConnectivityKit';
 
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
-// getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 function tagSessionDemo() {
     // Connect to the tag if it is not connected.

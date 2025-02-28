@@ -1,25 +1,25 @@
 # PersistenceV2: Persisting Application State
 
-To enhance the state management framework's capability of persistently storing UIs, you can use **PersistenceV2** to persist data. During application development, you may want selected attributes to persist even when the application is closed. In this case, you'll need **PersistenceV2**.
+To enhance the state management framework's capability of persistently storing UIs, you can use **PersistenceV2** to persist data.
 
 **PersistenceV2** is an optional singleton object within an application. Its purpose is to persist UI-related data so that their values are the same upon application re-start as they were when the application was closed.
 
 **PersistenceV2** provides the state variable persistence capability. You can bind the same key through **connect** or **globalConnect** to implement the persistence capability during state variable change and application cold start.
 
-Before reading this topic, you are advised to read [\@ComponentV2](./arkts-new-componentV2.md), [\@ObservedV2 and \@Trace](./arkts-new-observedV2-and-trace.md), and API reference of [PersistentV2](../reference/apis-arkui/js-apis-StateManagement.md).
+Before reading this topic, you are advised to read [\@ComponentV2](./arkts-new-componentV2.md), [\@ObservedV2 and \@Trace](./arkts-new-observedV2-and-trace.md), and API reference of [PersistentV2](../reference/apis-arkui/js-apis-StateManagement.md#persistencev2).
 
 >**NOTE**
 >
 >**PersistenceV2** is supported since API version 12.
 >
->**globalConnect** is supported since API version 16. The behavior of **globalConnect** is the same as that of **connect**. The only difference is that the underlying storage path of **connect** is a module-level path, while that of **globalConnect** is an application-level path. For details, see the section [Using connect and globalConnect in Different Modules](arkts-new-persistencev2.md#using-connect-and-globalconnect-in-different-modules).
+>**globalConnect** is supported since API version 16. The behavior of **globalConnect** is the same as that of **connect**. The only difference is that the underlying storage path of **connect** is a module-level path, while that of **globalConnect** is an application-level path. For details, see the section [Using connect and globalConnect in Different Modules](#using-connect-and-globalconnect-in-different-modules).
 
 
 ## Overview
 
 **PersistenceV2** is a singleton to be created when the application UI is started. Its purpose is to provide central storage for application UI state attributes. Each attribute is accessed using a unique key, which is a string. Unlike **AppStorageV2**, **PersistenceV2** also persistently stores the latest data on device disks. In this way, the selected result can still be saved even when the application is closed.
 
-For a [\@ObservedV2](arkts-new-observedV2-and-trace.md) object associated with **PersistenceV2**, the change of the [\@Trace](arkts-new-observedV2-and-trace.md) attribute of the object triggers **automatic persistence of the entire associated object**. If necessary, you can call **PersistenceV2** APIs to manually perform persistence.
+For a [\@ObservedV2](./arkts-new-observedV2-and-trace.md) object associated with **PersistenceV2**, the change of the [\@Trace](./arkts-new-observedV2-and-trace.md) attribute of the object triggers automatic persistence of the entire associated object. If necessary, you can call **PersistenceV2** APIs to manually perform persistence.
 
 **PersistenceV2** can synchronize application state attributes with UI components and can be accessed during implementation of application service logic as well.
 
@@ -44,15 +44,15 @@ static connect<T extends object>(
 
 >**NOTE**
 >
->1. The third parameter is used when no **key** is specified or the second parameter is invalid. Otherwise, the second parameter is used.
+>1. The second parameter is used when no **key** is specified or the second parameter is invalid, and the third parameter is used in all other cases.
 >
 >2. If the data has been stored in **PersistenceV2**, you can obtain the stored data without using the default constructor. Otherwise, you must specify the default constructor. If no constructor is specified, the application exception occurs.
 >
->3. Ensure that the data types match the key. If different types of data are connected to the same key, the application exception occurs.
+>3. Ensure that the data types match the key. Connecting different types of data to the same key will result in an application exception.
 >
 >4. You are advised to use meaningful values for keys. The values can contain letters, digits, and underscores (_) and a maximum of 255 characters. Using invalid characters or null characters will result in undefined behavior.
 >
->5. When matching the key with the [\@Observed](arkts-observed-and-objectlink.md) object, specify the key or customize the **name** attribute.
+>5. When matching the key with the [\@Observed](./arkts-observed-and-objectlink.md) object, specify the key or customize the **name** attribute.
 >
 >6. The data storage path is at the module level. That is, the data copy is stored in the persistent file of the corresponding module when the module calls the **connect** function. If multiple modules use the same key, the data of the module that uses the **connect** function first is used, and the data in **PersistenceV2** is also stored in the module that uses the **connect** function first.
 >
@@ -91,7 +91,7 @@ class ConnectOptions<T extends object> {
 
 > **NOTE**
 >
-> 1. The third parameter is used when no **key** is specified or the second parameter is invalid. Otherwise, the second parameter is used.
+> 1. The second parameter is used when no **key** is specified or the second parameter is invalid, and the third parameter is used in all other cases.
 >
 > 2. If the data has been stored in **PersistenceV2**, you can obtain the stored data without using the default constructor. Otherwise, you must specify the default constructor. If no constructor is specified, the application exception occurs.
 >
@@ -99,7 +99,7 @@ class ConnectOptions<T extends object> {
 >
 > 4. You are advised to use meaningful values for keys. The values can contain letters, digits, and underscores (_) and a maximum of 255 characters. Using invalid characters or null characters will result in undefined behavior.
 >
-> 5. When matching the key with the [\@Observed](arkts-observed-and-objectlink.md) object, specify the key or customize the **name** attribute.
+> 5. When matching the key with the [\@Observed](./arkts-observed-and-objectlink.md) object, specify the key or customize the **name** attribute.
 >
 > 6. Data is stored in an application-level path. Different modules use the same key and encryption level for **globalConnect**. Only one copy of data is stored.
 >
@@ -152,7 +152,7 @@ static save<T>(keyOrType: string | TypeConstructorWithArgs<T>): void;
 
 >**NOTE**
 >
->Changes to the non-[\@Trace](arkts-new-observedV2-and-trace.md) data do not trigger **PersistenceV2**. If necessary, call this API to persist the data of the corresponding key.
+>Changes to the non-[\@Trace](./arkts-new-observedV2-and-trace.md) data do not trigger **PersistenceV2**. If necessary, call this API to persist the data of the corresponding key.
 >
 >It is useless to manually persist the keys that are not in the **connect** state in the memory.
 
@@ -177,7 +177,7 @@ static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
 
 1. This singleton must be used together with the UI thread only. Other threads, for example, @Sendable decorator is not supported.
 
-2. Types such as collections.Set and collections.Map are not supported.
+2. Types such as **collections.Set** and **collections.Map** are not supported.
 
 3. Non-buildin types, such as native PixelMap, NativePointer, and ArrayList types, are not supported.
 
@@ -187,18 +187,39 @@ static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
 
 6. Objects that used for loop reference are not supported.
 
-7. Automatic persistency is triggered only when [\@Trace](arkts-new-observedV2-and-trace.md) data is changed. The change of state variables in V1, [\@Observed](arkts-observed-and-objectlink.md) objects, and common data does not trigger persistency.
+7. Automatic persistency is triggered only when [\@Trace](./arkts-new-observedV2-and-trace.md) data is changed. The change of state variables in V1, [\@Observed](./arkts-observed-and-objectlink.md) objects, and common data does not trigger persistency.
 
 8. Do not store a large amount of persistent data. Otherwise, frame freezing may occur.
 
-9. Do not use **connect** and **globalConnect** together. If have to, the keys must be different; otherwise, a crash occurs.
+9. Do not use **connect** and **globalConnect** together. If you have to, their keys must be different; otherwise, a crash occurs.
 
 ## Use Scenarios
 
 ### Storing Data Between Two Pages
 
+Data page
+```ts
+// Sample.ets
+import { Type } from '@kit.ArkUI';
+
+// Data center
+@ObservedV2
+class SampleChild {
+  @Trace p1: number = 0;
+  p2: number = 10;
+}
+
+@ObservedV2
+export class Sample {
+  // Complex objects need to be decorated by @Type to ensure successful serialization.
+  @Type(SampleChild)
+  @Trace f: SampleChild = new SampleChild();
+}
+```
+
 Page 1
 ```ts
+// Page1.ets
 import { PersistenceV2 } from '@kit.ArkUI';
 import { Sample } from '../Sample';
 
@@ -266,6 +287,7 @@ struct Page1 {
 
 Page 2
 ```ts
+// Page2.ets
 import { PersistenceV2 } from '@kit.ArkUI';
 import { Sample } from '../Sample';
 
@@ -328,25 +350,6 @@ When using **Navigation**, you need to add the **route_map.json** file to the **
       }
     }
   ]
-}
-```
-
-Data page
-```ts
-import { Type } from '@kit.ArkUI';
-
-// Data center
-@ObservedV2
-class SampleChild {
-  @Trace p1: number = 0;
-  p2: number = 10;
-}
-
-@ObservedV2
-export class Sample {
-  // Complex objects need to be decorated by @Type to ensure successful serialization.
-  @Type(SampleChild)
-  @Trace f: SampleChild = new SampleChild();
 }
 ```
 
@@ -500,7 +503,7 @@ struct Page1 {
 
 Although **globalConnect** is an application-level path, different encryption levels can be set, indicating different storage paths. **connect** does not support the setting of the encryption level. However, when the encryption level of the module is switched, the module storage path is also switched to the path of the corresponding encryption level.
 
-You need to create a module based on the project and redirect to the new module. The sample code is as follows:
+Create a module based on the project and redirect to the new module based on the sample code. The sample code is as follows:
 
 ```ts
 // Module 1

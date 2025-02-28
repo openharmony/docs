@@ -189,6 +189,12 @@
 | typedef struct [OH_UdsArrayBuffer](#oh_udsarraybuffer) [OH_UdsArrayBuffer](#oh_udsarraybuffer) | 描述ArrayBuffer类型的统一数据结构。 | 
 | typedef struct [OH_Utd](#oh_utd) [OH_Utd](#oh_utd) | 统一数据类型描述符。 | 
 | typedef struct [OH_UdsContentForm](#oh_udscontentform) [OH_UdsContentForm](#oh_udscontentform) | 描述内容卡片类型的统一数据结构。 |
+| typedef enum [Udmf_ListenerStatus](#udmf_listenerstatus) [Udmf_ListenerStatus](#udmf_listenerstatus) | 异步获取数据时的状态码枚举。 | 
+| typedef enum [Udmf_FileConflictOptions](#udmf_fileconflictoptions) [Udmf_FileConflictOptions](#udmf_fileconflictoptions) | 定义文件拷贝冲突时的选项。 | 
+| typedef enum [Udmf_ProgressIndicator](#udmf_progressindicator) [Udmf_ProgressIndicator](#udmf_progressindicator) | 定义进度条指示选项，可选择是否采用系统默认进度显示。 | 
+| typedef struct [OH_Udmf_ProgressInfo](#oh_udmf_progressinfo) [OH_Udmf_ProgressInfo](#oh_udmf_progressinfo) | 定义进度信息的数据结构。 |
+| typedef struct [OH_UdmfGetDataParams](#oh_udmfgetdataparams) [OH_UdmfGetDataParams](#oh_udmfgetdataparams) | 定义异步获取UDMF数据的请求参数。 | 
+| typedef void(\* [OH_Udmf_DataProgressListener](#oh_udmf_dataprogresslistener)) ([OH_Udmf_ProgressInfo](#oh_udmf_progressinfo) \*progressInfo, [OH_UdmfData](#oh_udmfdata) \*data) | 定义获取进度信息和数据的监听回调函数。<br/>使用时需要判断数据是否返回空指针。只有当进度达到100时，才会返回数据。 | 
 
 ### 枚举
 
@@ -197,12 +203,23 @@
 | [Udmf_Intention](#udmf_intention-1) { UDMF_INTENTION_DRAG, UDMF_INTENTION_PASTEBOARD } | 描述UDMF数据通路枚举类型。 | 
 | [Udmf_ShareOption](#udmf_shareoption-1) { SHARE_OPTIONS_INVALID, SHARE_OPTIONS_IN_APP, SHARE_OPTIONS_CROSS_APP } | UDMF支持的设备内使用范围类型枚举。 | 
 | [Udmf_ErrCode](#udmf_errcode-1) { UDMF_E_OK = 0, UDMF_ERR = 20400000, UDMF_E_INVALID_PARAM = (UDMF_ERR + 1) } | 错误码信息。 | 
+| [Udmf_ListenerStatus](#udmf_listenerstatus-1) {<br/>UDMF_FINISHED = 0, UDMF_PROCESSING, UDMF_CANCELED, UDMF_INNER_ERROR = 200,<br/>UDMF_INVALID_PARAMETERS, UDMF_DATA_NOT_FOUND, UDMF_SYNC_FAILED, UDMF_COPY_FILE_FAILED<br/>} | 异步获取数据时的状态码枚举。 | 
+| [Udmf_FileConflictOptions](#udmf_fileconflictoptions-1) { UDMF_OVERWRITE = 0, UDMF_SKIP = 1 } | 定义文件拷贝冲突时的选项。 | 
+| [Udmf_ProgressIndicator](#udmf_progressindicator-1) { UDMF_NONE = 0, UDMF_DEFAULT = 1 } | 定义进度条指示选项，可选择是否采用系统默认进度显示。 | 
 
 
 ### 函数
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| int [OH_UdmfProgressInfo_GetProgress](#oh_udmfprogressinfo_getprogress) ([OH_Udmf_ProgressInfo](#oh_udmf_progressinfo) \*progressInfo) | 从进度信息[OH_Udmf_ProgressInfo](#oh_udmf_progressinfo)中获取进度百分比数据。 | 
+| int [OH_UdmfProgressInfo_GetStatus](#oh_udmfprogressinfo_getstatus) ([OH_Udmf_ProgressInfo](#oh_udmf_progressinfo) \*progressInfo) | 从进度信息[OH_Udmf_ProgressInfo](#oh_udmf_progressinfo)中获取状态信息。 | 
+| [OH_UdmfGetDataParams](#oh_udmfgetdataparams) \* [OH_UdmfGetDataParams_Create](#oh_udmfgetdataparams_create) () | 创建异步获取UDMF数据的请求参数[OH_UdmfGetDataParams](#oh_udmfgetdataparams)指针及实例对象。<br/>当不再需要使用指针时，请使用[OH_UdmfGetDataParams_Destroy](#oh_udmfgetdataparams_destroy)销毁实例对象，否则会导致内存泄漏。 | 
+| void [OH_UdmfGetDataParams_Destroy](#oh_udmfgetdataparams_destroy) ([OH_UdmfGetDataParams](#oh_udmfgetdataparams) \*pThis) | 销毁异步请求参数[OH_UdmfGetDataParams](#oh_udmfgetdataparams)指针指向的实例对象。 | 
+| void [OH_UdmfGetDataParams_SetDestUri](#oh_udmfgetdataparams_setdesturi) ([OH_UdmfGetDataParams](#oh_udmfgetdataparams) \*params, const char \*destUri) | 设置异步请求参数[OH_UdmfGetDataParams](#oh_udmfgetdataparams)中的目标路径。<br/>若设置了目标路径，会将文件类型的数据进行拷贝到指定路径。回调中获取到的文件类型数据会被替换为目标路径的URI。<br/>若不设置目标路径，则不会执行拷贝文件操作。回调中获取到的文件类型数据为源端路径URI。<br/>若应用涉及复杂文件处理策略，或需要将文件拷贝在多个路径下时，建议不设置此参数，由应用自行完成文件拷贝相关处理。 | 
+| void [OH_UdmfGetDataParams_SetFileConflictOptions](#oh_udmfgetdataparams_setfileconflictoptions) ([OH_UdmfGetDataParams](#oh_udmfgetdataparams) \*params, const [Udmf_FileConflictOptions](#udmf_fileconflictoptions) options) | 设置异步请求参数[OH_UdmfGetDataParams](#oh_udmfgetdataparams)中的文件冲突选项。 | 
+| void [OH_UdmfGetDataParams_SetProgressIndicator](#oh_udmfgetdataparams_setprogressindicator) ([OH_UdmfGetDataParams](#oh_udmfgetdataparams) \*params, const [Udmf_ProgressIndicator](#udmf_progressindicator) progressIndicator) | 设置异步请求参数[OH_UdmfGetDataParams](#oh_udmfgetdataparams)中的进度条指示选项。 | 
+| void [OH_UdmfGetDataParams_SetDataProgressListener](#oh_udmfgetdataparams_setdataprogresslistener) ([OH_UdmfGetDataParams](#oh_udmfgetdataparams) \*params, const [OH_Udmf_DataProgressListener](#oh_udmf_dataprogresslistener) dataProgressListener) | 设置异步请求参数[OH_UdmfGetDataParams](#oh_udmfgetdataparams)中的监听回调函数。 | 
 | int [OH_UdmfRecord_AddContentForm](#oh_udmfrecord_addcontentform) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsContentForm](#oh_udscontentform) \*contentForm) | 增加一个内容卡片类型[OH_UdsContentForm](#oh_udscontentform)的数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。 | 
 | int [OH_UdmfRecord_GetContentForm](#oh_udmfrecord_getcontentform) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsContentForm](#oh_udscontentform) \*contentForm) | 从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取内容卡片类型[OH_UdsContentForm](#oh_udscontentform)数据。 | 
 | [OH_UdsContentForm](#oh_udscontentform) \* [OH_UdsContentForm_Create](#oh_udscontentform_create) () | 创建内容卡片类型[OH_UdsContentForm](#oh_udscontentform)指针及实例对象 | 
@@ -2134,6 +2151,90 @@ ZIP存档文件类型，归属类型为ARCHIVE。
 
 ## 类型定义说明
 
+
+### Udmf_ListenerStatus
+
+```
+typedef enum Udmf_ListenerStatusUdmf_ListenerStatus
+```
+
+**描述**
+
+异步获取数据时的状态码枚举。
+
+**起始版本：** 15
+
+
+### Udmf_FileConflictOptions
+
+```
+typedef enum Udmf_FileConflictOptionsUdmf_FileConflictOptions
+```
+
+**描述**
+
+定义文件拷贝冲突时的选项。
+
+**起始版本：** 15
+
+### Udmf_ProgressIndicator
+
+```
+typedef enum Udmf_ProgressIndicatorUdmf_ProgressIndicator
+```
+
+**描述**
+
+定义进度条指示选项，可选择是否采用系统默认进度显示。
+
+**起始版本：** 15
+
+### OH_Udmf_ProgressInfo
+
+```
+typedef struct OH_Udmf_ProgressInfoOH_Udmf_ProgressInfo
+```
+
+**描述**
+
+定义进度信息的数据结构。
+
+**起始版本：** 15
+
+### OH_UdmfGetDataParams
+
+```
+typedef struct OH_UdmfGetDataParamsOH_UdmfGetDataParams
+```
+
+**描述**
+
+定义异步获取UDMF数据的请求参数。
+
+**起始版本：** 15
+
+### OH_Udmf_DataProgressListener
+
+```
+typedef void(* OH_Udmf_DataProgressListener) (OH_Udmf_ProgressInfo *progressInfo, OH_UdmfData *data)
+```
+
+**描述**
+
+定义获取进度信息和数据的监听回调函数。
+
+使用时需要判断数据是否返回空指针。只有当进度达到100时，才会返回数据。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| progressInfo | 进度信息，作为出参使用。 | 
+| data | 返回的统一数据对象，作为出参使用。 | 
+
+
 ### OH_UdsContentForm
 
 ```
@@ -2386,6 +2487,62 @@ typedef void(* UdmfData_Finalize) (void *context)
 
 ## 枚举类型说明
 
+### Udmf_ListenerStatus
+
+```
+enum Udmf_ListenerStatus
+```
+
+**描述**
+
+异步获取数据时的状态码枚举。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| UDMF_FINISHED | 表示获取数据成功。 | 
+| UDMF_PROCESSING | 表示正在处理中。 | 
+| UDMF_CANCELED | 表示本次任务已被取消。 | 
+| UDMF_INNER_ERROR | 表示有内部错误发生。 | 
+| UDMF_INVALID_PARAMETERS | 表示包含无效参数。 | 
+| UDMF_DATA_NOT_FOUND | 表示没有获取到数据。 | 
+| UDMF_SYNC_FAILED | 表示同步数据过程中出现错误。 | 
+| UDMF_COPY_FILE_FAILED | 表示文件拷贝过程中出现错误。 | 
+
+### Udmf_FileConflictOptions
+
+```
+enum Udmf_FileConflictOptions
+```
+
+**描述**
+
+定义文件拷贝冲突时的选项。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| UDMF_OVERWRITE | 目标路径存在同文件名时覆盖。若不配置策略，默认使用改策略。 | 
+| UDMF_SKIP | 目标路径存在同文件名时跳过。 | 
+
+### Udmf_ProgressIndicator
+
+```
+enum Udmf_ProgressIndicator
+```
+
+**描述**
+
+定义进度条指示选项，可选择是否采用系统默认进度显示。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| UDMF_NONE | 不采用系统默认进度显示。 | 
+| UDMF_DEFAULT | 采用系统默认进度显示，500ms内获取数据完成将不会拉起默认进度条。 | 
 
 ### Udmf_ErrCode
 
@@ -2444,6 +2601,209 @@ UDMF支持的设备内使用范围类型枚举。
 
 
 ## 函数说明
+
+### OH_UdmfProgressInfo_GetProgress()
+
+```
+int OH_UdmfProgressInfo_GetProgress (OH_Udmf_ProgressInfo* progressInfo)
+```
+
+**描述**
+
+从进度信息[OH_Udmf_ProgressInfo](#oh_udmf_progressinfo)中获取进度百分比数据。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| progressInfo | 表示进度信息[OH_Udmf_ProgressInfo](#oh_udmf_progressinfo)。 | 
+
+**返回：**
+
+返回进度百分比数据。
+
+**参见：**
+
+[OH_Udmf_ProgressInfo](#oh_udmf_progressinfo)
+
+### OH_UdmfProgressInfo_GetStatus()
+
+```
+int OH_UdmfProgressInfo_GetStatus (OH_Udmf_ProgressInfo* progressInfo)
+```
+
+**描述**
+
+从进度信息[OH_Udmf_ProgressInfo](#oh_udmf_progressinfo)中获取状态信息。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| progressInfo | 表示进度信息[OH_Udmf_ProgressInfo](#oh_udmf_progressinfo)。 | 
+
+**返回：**
+
+返回状态信息。
+
+**参见：**
+
+[OH_Udmf_ProgressInfo](#oh_udmf_progressinfo)
+
+[Udmf_ListenerStatus](#udmf_listenerstatus)
+
+### OH_UdmfGetDataParams_Create()
+
+```
+OH_UdmfGetDataParams* OH_UdmfGetDataParams_Create ()
+```
+
+### OH_UdmfGetDataParams_Destroy()
+
+```
+void OH_UdmfGetDataParams_Destroy (OH_UdmfGetDataParams* pThis)
+```
+
+**描述**
+
+销毁异步请求参数[OH_UdmfGetDataParams](#oh_udmfgetdataparams)指针指向的实例对象。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向异步请求参数[OH_UdmfGetDataParams](#oh_udmfgetdataparams)实例的指针。 | 
+
+**参见：**
+
+[OH_UdmfGetDataParams](#oh_udmfgetdataparams)
+
+
+**描述**
+
+创建异步获取UDMF数据的请求参数[OH_UdmfGetDataParams](#oh_udmfgetdataparams)指针及实例对象。
+
+当不再需要使用指针时，请使用[OH_UdmfGetDataParams_Destroy](#oh_udmfgetdataparams_destroy)销毁实例对象，否则会导致内存泄漏。
+
+**起始版本：** 15
+
+**返回：**
+
+执行成功则返回一个指向属性[OH_UdmfGetDataParams](#oh_udmfgetdataparams)实例对象的指针，否则返回nullptr。
+
+**参见：**
+
+[OH_UdmfGetDataParams](#oh_udmfgetdataparams)
+
+### OH_UdmfGetDataParams_SetDestUri()
+
+```
+void OH_UdmfGetDataParams_SetDestUri (OH_UdmfGetDataParams* params, const char* destUri )
+```
+
+**描述**
+
+设置异步请求参数[OH_UdmfGetDataParams](#oh_udmfgetdataparams)中的目标路径。
+
+若设置了目标路径，会将文件类型的数据进行拷贝到指定路径。回调中获取到的文件类型数据会被替换为目标路径的URI。
+
+若不设置目标路径，则不会执行拷贝文件操作。回调中获取到的文件类型数据为源端路径URI。
+
+若应用涉及复杂文件处理策略，或需要将文件拷贝在多个路径下时，建议不设置此参数，由应用自行完成文件拷贝相关处理。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| params | 表示指向异步请求参数[OH_UdmfGetDataParams](#oh_udmfgetdataparams)实例的指针。 | 
+| destUri | 表示目标路径地址。 | 
+
+**参见：**
+
+[OH_UdmfGetDataParams](#oh_udmfgetdataparams)
+
+### OH_UdmfGetDataParams_SetFileConflictOptions()
+
+```
+void OH_UdmfGetDataParams_SetFileConflictOptions (OH_UdmfGetDataParams* params, const Udmf_FileConflictOptions options )
+```
+
+**描述**
+
+设置异步请求参数[OH_UdmfGetDataParams](#oh_udmfgetdataparams)中的文件冲突选项。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| params | 表示指向异步请求参数[OH_UdmfGetDataParams](#oh_udmfgetdataparams)实例的指针。 | 
+| options | 表示文件拷贝冲突时的选项。 | 
+
+**参见：**
+
+[OH_UdmfGetDataParams](#oh_udmfgetdataparams)
+
+[Udmf_FileConflictOptions](#udmf_fileconflictoptions)
+
+### OH_UdmfGetDataParams_SetProgressIndicator()
+
+```
+void OH_UdmfGetDataParams_SetProgressIndicator (OH_UdmfGetDataParams* params, const Udmf_ProgressIndicator progressIndicator )
+```
+
+**描述**
+
+设置异步请求参数[OH_UdmfGetDataParams](#oh_udmfgetdataparams)中的进度条指示选项。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| params | 表示指向异步请求参数[OH_UdmfGetDataParams](#oh_udmfgetdataparams)实例的指针。 | 
+| progressIndicator | 表示是否使用默认进度条选项。 | 
+
+**参见：**
+
+[OH_UdmfGetDataParams](#oh_udmfgetdataparams)
+
+[Udmf_ProgressIndicator](#udmf_progressindicator)
+
+### OH_UdmfGetDataParams_SetDataProgressListener()
+
+```
+void OH_UdmfGetDataParams_SetDataProgressListener (OH_UdmfGetDataParams* params, const OH_Udmf_DataProgressListener dataProgressListener )
+```
+
+**描述**
+
+设置异步请求参数[OH_UdmfGetDataParams](#oh_udmfgetdataparams)中的监听回调函数。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| params | 表示指向异步请求参数[OH_UdmfGetDataParams](#oh_udmfgetdataparams)实例的指针。 | 
+| dataProgressListener | 用户自定义的监听回调函数，可用于获取进度信息和数据。 | 
+
+**参见：**
+
+[OH_UdmfGetDataParams](#oh_udmfgetdataparams)
+
+[OH_Udmf_DataProgressListener](#oh_udmf_dataprogresslistener)
 
 ### OH_UdmfRecord_AddContentForm()
 

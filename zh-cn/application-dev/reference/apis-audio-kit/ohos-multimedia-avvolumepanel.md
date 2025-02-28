@@ -18,7 +18,7 @@ import { AVVolumePanel } from '@kit.AudioKit';
 ```
 ## 属性
 
-支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)。
+支持[通用属性](../apis-arkui/arkui-ts/ts-component-general-attributes.md)。
 
 ## AVVolumePanel
 
@@ -32,7 +32,7 @@ AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 
 ## 属性
 
-除支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](../apis-arkui/arkui-ts/ts-component-general-attributes.md)外，还支持以下属性：
 
 **参数：**
 
@@ -49,7 +49,7 @@ AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 
 ## 事件
 
-支持[通用事件](../apis-arkui/arkui-ts/ts-universal-events-click.md)。
+支持[通用事件](../apis-arkui/arkui-ts/ts-component-general-events.md)。
 
 ## 使用建议
 

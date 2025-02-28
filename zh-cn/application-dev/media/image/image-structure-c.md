@@ -105,7 +105,7 @@ OH_ImageSourceNative是native层封装的图片源结构体，用于创建图片
 OH_ImageSourceNative结构体内容和操作方式如下：
 | 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
 | -------- | -------- | -------- | -------- | -------- |
-| int32_t | delayTimeList | 图像延迟时间数组 | [OH_ImageSourceNative_GetDelayTimeList](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_getdelaytimelist)	|获取图像延迟时间数组 |
+| int32_t | delayTimeList | 图像延迟时间数组 | [OH_ImageSourceNative_GetDelayTimeList](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_getdelaytimelist)	|获取图像延迟时间数组。 |
 | OH_ImageSource_Info | info | 图片源信息 | [OH_ImageSourceNative_GetImageInfo](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_getimageinfo)	|获取指定序号的图片信息。|
 | Image_String | value | 配置项 | [OH_ImageSourceNative_GetImageProperty](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_getimageproperty)	|获取图片指定属性键的值。|
 | Image_String | value | 配置项 | [OH_ImageSourceNative_ModifyImageProperty](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_modifyimageproperty)	|通过指定的键修改图片属性的值。|

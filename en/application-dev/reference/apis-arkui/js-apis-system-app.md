@@ -18,7 +18,7 @@ import app, { AppResponse } from '@system.app'
 
 static getInfo(): AppResponse
 
-Obtains the declared information in the **config.json** file of an application.
+Obtains the declared information in the **config.json** file of an application. In the stage model, this API returns **null**.
 
 This API is deprecated since API version 9. You are advised to use [bundleManager.getBundleInfoForSelf](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself) instead.
 
@@ -48,7 +48,7 @@ export default class Info {
 
 static terminate(): void
 
-Terminates the current ability.
+Terminates the current ability. In the stage model, this API has no effect.
 
 This API is deprecated since API version 7. You are advised to use [@ohos.ability.featureAbility](../apis-ability-kit/js-apis-ability-featureAbility.md) instead.
 

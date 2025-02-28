@@ -57,7 +57,7 @@
                      console.error(`Failed to get paste data. Code is ${err.code}, message is ${err.message}`);
                      return;
                    }
-                   // 剪贴板内容为 '123456'
+                   // 剪贴板内容为 '123456'。
                    this.message = pasteData.getPrimaryText();
                  });
                }

@@ -87,6 +87,7 @@ class EntryAbility extends AccessibilityExtensionAbility {
 | accessibilityNextFocusId<sup>16+</sup>             | number                | 是   | 否   | 下一个要聚焦的组件ID。通过findElement('elementId')查询到的AccessibilityElementInfo对象中可获取到用户在控件上设置的该属性值。 |
 | accessibilityPreviousFocusId<sup>16+</sup>             | number                | 是   | 否   | 上一个聚焦的组件ID。通过findElement('elementId')查询到的AccessibilityElementInfo对象中可获取到用户在控件上设置的该属性值。 |
 | extraInfo<sup>16+</sup>             | string                                                             | 是   | 否   | 扩展属性，用于定义一些特定组件才拥有的属性。 |
+| accessibilityScrollable<sup>16+</sup>             | boolean                 | 是   | 否   | 无障碍模式下元素是否滚动，优先级高于scrollable。其中，true表示可滚动，false表示不可滚动，默认值为true。|
 
 ## FocusDirection
 

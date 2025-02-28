@@ -18,7 +18,7 @@ import { FrameNode, LayoutConstraint, ExpandMode, typeNode, NodeAdapter } from "
 
 ## CrossLanguageOptions<sup>15+</sup>
 
-用于设置或返回FrameNode的跨语言选项。
+该接口用于配置或查询FrameNode的跨语言访问权限。例如，针对ArkTS语言创建的节点，可通过该接口控制是否允许通过非ArkTS语言进行属性访问或修改。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -26,7 +26,7 @@ import { FrameNode, LayoutConstraint, ExpandMode, typeNode, NodeAdapter } from "
 
 | 名称   | 类型   | 只读 | 可选 | 说明                   |
 | ------ | ------ | ---- | ---- | ---------------------- |
-| attributeSetting  | boolean | 否   | 是   | FrameNode是否支持跨语言属性设置。默认为false。 |
+| attributeSetting  | boolean | 否   | 是   | FrameNode是否支持跨ArkTS语言进行属性设置。默认为false。 |
 
 ## ExpandMode<sup>15+</sup>
 
@@ -230,7 +230,7 @@ clearChildren(): void
 
 ### getChild<sup>12+</sup> 
 
-getChild(index: number, expandMode?: ExpandMode): FrameNode | null
+getChild(index: number): FrameNode | null
 
 获取当前节点指定位置的子节点。
 
@@ -243,7 +243,6 @@ getChild(index: number, expandMode?: ExpandMode): FrameNode | null
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
 | index  | number | 是   | 需要查询的子节点的序列号。 |
-| expandMode<sup>15+</sup> | [ExpandMode](#expandmode15) | 否 | 指定子节点展开模式。<br/>默认值：ExpandMode.Expand |
 
 **返回值：**
 
@@ -253,7 +252,34 @@ getChild(index: number, expandMode?: ExpandMode): FrameNode | null
 
 **示例：**
 
-请参考[节点操作示例](#节点操作示例)和[LazyForEach场景节点操作示例](#lazyforeach场景节点操作示例)。
+请参考[节点操作示例](#节点操作示例)。
+
+### getChild<sup>15+</sup> 
+
+getChild(index: number, expandMode?: ExpandMode): FrameNode | null
+
+获取当前节点指定位置的子节点，支持指定子节点展开模式。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| index  | number | 是   | 需要查询的子节点的序列号。 |
+| expandMode | [ExpandMode](#expandmode15) | 否 | 指定子节点展开模式。<br/>默认值：ExpandMode.Expand |
+
+**返回值：**
+
+| 类型                            | 说明                                                          |
+| ------------------------------- | ------------------------------------------------------------- |
+| [FrameNode](#framenode) \| null | 子节点。若该FrameNode不包含所查询的子节点，则返回空对象null。 |
+
+**示例：**
+
+请参考[LazyForEach场景节点操作示例](#lazyforeach场景节点操作示例)。
 
 ### getFirstChildIndexWithoutExpand<sup>15+</sup> 
 
@@ -299,7 +325,7 @@ getLastChildIndexWithoutExpand(): number
 
 getFirstChild(): FrameNode | null
 
-获取当前FrameNode的第一个子节点
+获取当前FrameNode的第一个子节点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1465,11 +1491,11 @@ struct Index {
 
 setCrossLanguageOptions(options: CrossLanguageOptions): void
 
-设置当前FrameNode的跨语言选项。当前FrameNode如果不可修改或不可设置跨语言选项，抛出异常信息。
+设置当前FrameNode的跨ArkTS语言访问选项。例如ArkTS语言创建的节点，设置该节点是否可通过非ArkTS语言进行属性设置。当前FrameNode如果不可修改或不可设置跨ArkTS语言访问选项，抛出异常信息。
 
 > **说明：**
 >
-> 当前仅支持以下类型的[TypedFrameNode](#typedframenode12)设置跨语言选项：[Scroll](#scroll12)。
+> 当前仅支持[Scroll](#scroll12)类型的[TypedFrameNode](#typedframenode12)设置跨ArkTS语言访问选项。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -1479,7 +1505,7 @@ setCrossLanguageOptions(options: CrossLanguageOptions): void
 
 | 参数名        | 类型                    | 必填 | 说明                  |
 | ------------ | ----------------------- | ---- | --------------------- |
-| options | [CrossLanguageOptions](#crosslanguageoptions15) | 是   | 跨语言选项。 |
+| options | [CrossLanguageOptions](#crosslanguageoptions15) | 是   | 跨ArkTS语言访问选项。 |
 
 **错误码：**
 
@@ -1495,7 +1521,7 @@ setCrossLanguageOptions(options: CrossLanguageOptions): void
 
 getCrossLanguageOptions(): CrossLanguageOptions
 
-获取当前FrameNode的跨语言选项。
+获取当前FrameNode的跨ArkTS语言访问选项。例如ArkTS语言创建的节点，返回该节点是否可通过非ArkTS语言进行属性设置。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -1505,7 +1531,7 @@ getCrossLanguageOptions(): CrossLanguageOptions
 
 | 类型                    | 说明                  |
 | ----------------------- | --------------------- |
-| [CrossLanguageOptions](#crosslanguageoptions15) | 跨语言选项。 |
+| [CrossLanguageOptions](#crosslanguageoptions15) | 跨ArkTS语言访问选项。 |
 
 **示例：**
 

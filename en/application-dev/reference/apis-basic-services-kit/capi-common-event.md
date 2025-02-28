@@ -25,11 +25,12 @@ Describes the common event capabilities provided by the **CommonEvent** for appl
 
 | Name| Description|
 | -------- | -------- |
-|[CommonEvent_SubscribeInfo](#commonevent_subscribeinfo) | Defines the subscriber information.|
+|[CommonEvent_SubscribeInfo](#commonevent_subscribeinfo) | Defines a struct for the subscriber information.|
 |[CommonEvent_Subscriber](#commonevent_subscriber) | Defines a subscriber.|
-|[CommonEvent_RcvData](#commonevent_rcvdata) | Defines the callback data of a common event.|
+|[CommonEvent_RcvData](#commonevent_rcvdata) | Defines a struct for the callback data of a common event.|
 |[CommonEvent_Parameters](#commonevent_parameters) | Defines the additional information about a common event.|
 |[CommonEvent_ReceiveCallback](#commonevent_receivecallback)| Defines the callback function of a common event.|
+|[CommonEvent_PublishInfo](#commonevent_publishinfo)| Defines a struct for the attribute object of a common event.|
 
 ### Enums
 
@@ -56,16 +57,46 @@ Describes the common event capabilities provided by the **CommonEvent** for appl
 | [OH_CommonEvent_GetBundleNameFromRcvData](#oh_commonevent_getbundlenamefromrcvdata)| Obtains the bundle name of a common event.|
 | [OH_CommonEvent_GetParametersFromRcvData](#oh_commonevent_getparametersfromrcvdata) | Obtains the additional information about a common event.|
 | [OH_CommonEvent_HasKeyInParameters](#oh_commonevent_haskeyinparameters) | Checks whether the additional information of a common event contains a key-value pair.|
-| [OH_CommonEvent_GetIntFromParameters](#oh_commonevent_getintfromparameters) | Obtains the **int** data information from the additional information of a common event.|
-| [OH_CommonEvent_GetIntArrayFromParameters](#oh_commonevent_getintarrayfromparameters)| Obtains the **int** array information from the additional information of a common event.|
-| [OH_CommonEvent_GetLongFromParameters](#oh_commonevent_getlongfromparameters)| Obtains the **long** data information from the additional information of a common event.|
-| [OH_CommonEvent_GetLongArrayFromParameters](#oh_commonevent_getlongarrayfromparameters)| Obtains the **long** array information from the additional information of a common event.|
-| [OH_CommonEvent_GetBoolFromParameters](#oh_commonevent_getboolfromparameters)| Obtains the **bool** data information from the additional information of a common event.|
-| [OH_CommonEvent_GetBoolArrayFromParameters](#oh_commonevent_getboolarrayfromparameters)| Obtains the **bool** array information from the additional information of a common event.|
-| [OH_CommonEvent_GetCharFromParameters](#oh_commonevent_getcharfromparameters)| Obtains the **char** data from the additional information of a common event.|
-| [OH_CommonEvent_GetCharArrayFromParameters](#oh_commonevent_getchararrayfromparameters)| Obtains the **char** array information from the additional information of a common event.|
-| [OH_CommonEvent_GetDoubleFromParameters](#oh_commonevent_getdoublefromparameters)| Obtains the **double** data information from the additional information of a common event.|
-| [OH_CommonEvent_GetDoubleArrayFromParameters](#oh_commonevent_getdoublearrayfromparameters)| Obtains the **double** array information from the additional information of a common event.|
+| [OH_CommonEvent_GetIntFromParameters](#oh_commonevent_getintfromparameters) | Obtains the int data from the additional information of a common event.|
+| [OH_CommonEvent_GetIntArrayFromParameters](#oh_commonevent_getintarrayfromparameters)| Obtains the int array from the additional information of a common event.|
+| [OH_CommonEvent_GetLongFromParameters](#oh_commonevent_getlongfromparameters)| Obtains the long data from the additional information of a common event.|
+| [OH_CommonEvent_GetLongArrayFromParameters](#oh_commonevent_getlongarrayfromparameters)| Obtains the long array from the additional information of a common event.|
+| [OH_CommonEvent_GetBoolFromParameters](#oh_commonevent_getboolfromparameters)| Obtains the Boolean data from the additional information of a common event.|
+| [OH_CommonEvent_GetBoolArrayFromParameters](#oh_commonevent_getboolarrayfromparameters)| Obtains the Boolean array from the additional information of a common event.|
+| [OH_CommonEvent_GetCharFromParameters](#oh_commonevent_getcharfromparameters)| Obtains the character data from the additional information of a common event.|
+| [OH_CommonEvent_GetCharArrayFromParameters](#oh_commonevent_getchararrayfromparameters)| Obtains the character array from the additional information of a common event.|
+| [OH_CommonEvent_GetDoubleFromParameters](#oh_commonevent_getdoublefromparameters)| Obtains the double data from the additional information of a common event.|
+| [OH_CommonEvent_GetDoubleArrayFromParameters](#oh_commonevent_getdoublearrayfromparameters)| Obtains the double array from the additional information of a common event.|
+| [OH_CommonEvent_CreateParameters](#oh_commonevent_createparameters)| Creates an additional information object of a common event.|
+| [OH_CommonEvent_DestroyParameters](#oh_commonevent_destroyparameters)| Destroys an additional information object of a common event.|
+| [OH_CommonEvent_SetIntToParameters](#oh_commonevent_setinttoparameters)| Sets the additional information of a common event. The value is the content of the int type.|
+| [OH_CommonEvent_SetIntArrayToParameters](#oh_commonevent_setintarraytoparameters)| Sets the additional information of a common event. The value is the content of the int array type.|
+| [OH_CommonEvent_SetLongToParameters](#oh_commonevent_setlongtoparameters)| Sets the additional information of a common event. The value is the content of the long type.|
+| [OH_CommonEvent_SetLongArrayToParameters](#oh_commonevent_setlongarraytoparameters)| Sets the additional information of a common event. The value is the content of the long array type.|
+| [OH_CommonEvent_SetDoubleToParameters](#oh_commonevent_setdoubletoparameters)| Sets the additional information of a common event. The value is the content of the double type.|
+| [OH_CommonEvent_SetDoubleArrayToParameters](#oh_commonevent_setdoublearraytoparameters)| Sets the additional information of a common event. The value is the content of the double array type.|
+| [OH_CommonEvent_SetBoolToParameters](#oh_commonevent_setbooltoparameters)| Sets the additional information of a common event. The value is the content of the Boolean type.|
+| [OH_CommonEvent_SetBoolArrayToParameters](#oh_commonevent_setboolarraytoparameters)| Sets the additional information of a common event. The value is the content of the Boolean array type.|
+| [OH_CommonEvent_SetCharToParameters](#oh_commonevent_setchartoparameters)| Sets the additional information of a common event. The value is the content of the character type.|
+| [OH_CommonEvent_SetCharArrayToParameters](#oh_commonevent_setchararraytoparameters)| Sets the additional information of a common event. The value is the content of the character array type.|
+| [OH_CommonEvent_CreatePublishInfo](#oh_commonevent_createpublishinfo)| Creates an attribute object of a common event.|
+| [OH_CommonEvent_DestroyPublishInfo](#oh_commonevent_destroypublishinfo)| Destroys an attribute object of a common event.|
+| [OH_CommonEvent_SetPublishInfoBundleName](#oh_commonevent_setpublishinfobundlename)| Sets the bundle name of a common event.|
+| [OH_CommonEvent_SetPublishInfoPermissions](#oh_commonevent_setpublishinfopermissions)| Sets the common event permissions.|
+| [OH_CommonEvent_SetPublishInfoCode](#oh_commonevent_setpublishinfocode)| Sets the result code of a common event.|
+| [OH_CommonEvent_SetPublishInfoData](#oh_commonevent_setpublishinfodata)| Sets the result data of a common event.|
+| [OH_CommonEvent_SetPublishInfoParameters](#oh_commonevent_setpublishinfoparameters)| Sets the additional information of a common event.|
+| [OH_CommonEvent_Publish](#oh_commonevent_publish)| Publishes a custom common event.|
+| [OH_CommonEvent_PublishWithInfo](#oh_commonevent_publishwithinfo)| Publishes a custom common event with specified attributes.|
+| [OH_CommonEvent_IsOrderedCommonEvent](#oh_commonevent_isorderedcommonevent)| Checks whether a common event is an ordered common event.|
+| [OH_CommonEvent_FinishCommonEvent](#oh_commonevent_finishcommonevent)| Finishes an ordered common event.|
+| [OH_CommonEvent_GetAbortCommonEvent](#oh_commonevent_getabortcommonevent)| Checks whether an ordered common event is aborted.|
+| [OH_CommonEvent_AbortCommonEvent](#oh_commonevent_abortcommonevent)| Aborts an ordered common event.|
+| [OH_CommonEvent_ClearAbortCommonEvent](#oh_commonevent_clearabortcommonevent)| Clears the aborted state of an ordered common event.|
+| [OH_CommonEvent_GetCodeFromSubscriber](#oh_commonevent_getcodefromsubscriber)| Obtains the result code of an ordered common event.|
+| [OH_CommonEvent_GetDataFromSubscriber](#oh_commonevent_getdatafromsubscriber)| Obtains the result data of an ordered common event.|
+| [OH_CommonEvent_SetCodeToSubscriber](#oh_commonevent_setcodetosubscriber)| Sets the result code of an ordered common event.|
+| [OH_CommonEvent_SetDataToSubscriber](#oh_commonevent_setdatatosubscriber)| Sets the result data of an ordered common event.|
 
 ### Constants
 | Name| Description|
@@ -202,6 +233,17 @@ Defines the callback function of a common event.
 
 **Since**: 12
 
+### CommonEvent_PublishInfo
+
+```c
+typedef struct CommonEvent_PublishInfo CommonEvent_PublishInfo
+```
+
+**Description**
+
+Describes an attribute object used for publishing a custom common event.
+
+**Since**: 16
 
 ## Enum Description
 
@@ -1342,7 +1384,7 @@ Obtains the additional information about a callback common event.
 
 **Returns**
 
-Returns the additional information about a common event. The default value is **null**.
+Returns the additional information of a common event. The default value is **null**.
 
 ### OH_CommonEvent_HasKeyInParameters
 
@@ -1375,7 +1417,7 @@ int OH_CommonEvent_GetIntFromParameters(const CommonEvent_Parameters* para, cons
 
 **Description**
 
-Obtains the **int** data with a specific key from the additional information of a common event.
+Obtains the int data with a specific key from the additional information of a common event.
 
 **Since**: 12
 
@@ -1395,7 +1437,7 @@ int32_t OH_CommonEvent_GetIntArrayFromParameters(const CommonEvent_Parameters* p
 
 **Description**
 
-Obtains the **int** array with a specific key from the additional information of a common event.
+Obtains the int array with a specific key from the additional information of a common event.
 
 **Since**: 12
 
@@ -1405,7 +1447,7 @@ Obtains the **int** array with a specific key from the additional information of
 | -------- | -------- |
 | para | Additional information about a common event.|
 | key | Key.|
-| array | **Int** array to receive data.|
+| array | The **int** array to receive data.|
 
 **Returns**
 
@@ -1419,7 +1461,7 @@ long OH_CommonEvent_GetLongFromParameters(const CommonEvent_Parameters* para, co
 
 **Description**
 
-Obtains the **long** data with a specific key from the additional information of a common event.
+Obtains the long data with a specific key from the additional information of a common event.
 
 **Since**: 12
 
@@ -1439,7 +1481,7 @@ int32_t OH_CommonEvent_GetLongArrayFromParameters(const CommonEvent_Parameters* 
 
 **Description**
 
-Obtains the **long** array with a specific key from the additional information of a common event.
+Obtains the long array with a specific key from the additional information of a common event.
 
 **Since**: 12
 
@@ -1449,7 +1491,7 @@ Obtains the **long** array with a specific key from the additional information o
 | -------- | -------- |
 | para | Additional information about a common event.|
 | key | Key.|
-| array | **long** array to receive data.|
+| array | The **long** array to receive data.|
 
 **Returns**
 
@@ -1463,7 +1505,7 @@ bool OH_CommonEvent_GetBoolFromParameters(const CommonEvent_Parameters* para, co
 
 **Description**
 
-Obtains the **bool** data with a specific key from the additional information of a common event.
+Obtains the Boolean data with a specific key from the additional information of a common event.
 
 **Since**: 12
 
@@ -1483,7 +1525,7 @@ int32_t OH_CommonEvent_GetBoolArrayFromParameters(const CommonEvent_Parameters* 
 
 **Description**
 
-Obtains the **bool** array with a specific key from the additional information of a common event.
+Obtains the Boolean array with a specific key from the additional information of a common event.
 
 **Since**: 12
 
@@ -1493,7 +1535,7 @@ Obtains the **bool** array with a specific key from the additional information o
 | -------- | -------- |
 | para | Additional information about a common event.|
 | key | Key.|
-| array | **long** array to receive data.|
+| array | The **bool** array to receive data.|
 
 **Returns**
 
@@ -1507,7 +1549,7 @@ char OH_CommonEvent_GetCharFromParameters(const CommonEvent_Parameters* para, co
 
 **Description**
 
-Obtains the **char** data with a specific key from the additional information of a common event.
+Obtains the character data with a specific key from the additional information of a common event.
 
 **Since**: 12
 
@@ -1527,7 +1569,7 @@ int32_t OH_CommonEvent_GetCharArrayFromParameters(const CommonEvent_Parameters* 
 
 **Description**
 
-Obtains the **char** array with a specific key from the additional information of a common event.
+Obtains the character array with a specific key from the additional information of a common event.
 
 **Since**: 12
 
@@ -1537,7 +1579,7 @@ Obtains the **char** array with a specific key from the additional information o
 | -------- | -------- |
 | para | Additional information about a common event.|
 | key | Key.|
-| array | **char** array to receive data.|
+| array | The **char** array to receive data.|
 
 **Returns**
 
@@ -1551,7 +1593,7 @@ double OH_CommonEvent_GetDoubleFromParameters(const CommonEvent_Parameters* para
 
 **Description**
 
-Obtains the **double** data with a specific key from the additional information of a common event.
+Obtains the double data with a specific key from the additional information of a common event.
 
 **Since**: 12
 
@@ -1571,7 +1613,7 @@ int32_t OH_CommonEvent_GetDoubleArrayFromParameters(const CommonEvent_Parameters
 
 **Description**
 
-Obtains the **double** array with a specific key from the additional information of a common event.
+Obtains the double array with a specific key from the additional information of a common event.
 
 **Since**: 12
 
@@ -1581,8 +1623,702 @@ Obtains the **double** array with a specific key from the additional information
 | -------- | -------- |
 | para | Additional information about a common event.|
 | key | Key.|
-| array | **char** array to receive data.|
+| array | The **double** array to receive data.|
 
 **Returns**
 
 Returns the length of an array. The default value is **0**.
+
+### OH_CommonEvent_CreateParameters
+
+```cpp
+CommonEvent_Parameters* OH_CommonEvent_CreateParameters()
+```
+
+**Description**
+
+Creates an additional information object of a common event.
+
+**Since**: 16
+
+**Parameters**
+
+None.
+
+**Returns**
+
+Returns additional information of the common event if operation is successful; returns **null** otherwise.
+
+### OH_CommonEvent_DestroyParameters
+
+```cpp
+void OH_CommonEvent_DestroyParameters(CommonEvent_Parameters* param)
+```
+
+**Description**
+
+Destroys an additional information object of a common event.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| param | Additional information about a common event.|
+
+**Returns**
+
+None.
+
+### OH_CommonEvent_SetIntToParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetIntToParameters(CommonEvent_Parameters* param, const char* key, int value)
+```
+
+**Description**
+
+Sets the additional information of a common event. The value is the content of the int type.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| param | Additional information about a common event.|
+| key | Key.|
+| value | Content of the int type.|
+
+**Returns**
+
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.
+
+### OH_CommonEvent_SetIntArrayToParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetIntArrayToParameters(CommonEvent_Parameters* param, const char* key, const int* value, size_t num)
+```
+
+**Description**
+
+Sets the additional information of a common event. The value is the content of the int array type.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| param | Additional information about a common event.|
+| key | Key.|
+| value | Content of the int array type.|
+| num | Number of elements in the content.|
+
+**Returns**
+
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.<br>Returns **COMMONEVENT_ERR_ALLOC_MEMORY_FAILED** if memory allocation fails.
+
+### OH_CommonEvent_SetLongToParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetLongToParameters(CommonEvent_Parameters* param, const char* key, long value)
+```
+
+**Description**
+
+Sets the additional information of a common event. The value is the content of the long type.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| param | Additional information about a common event.|
+| key | Key.|
+| value | Content of the long type.|
+
+**Returns**
+
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.
+
+### OH_CommonEvent_SetLongArrayToParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetLongArrayToParameters(CommonEvent_Parameters* param, const char* key, const long* value, size_t num)
+```
+
+**Description**
+
+Sets the additional information of a common event. The value is the content of the long array type.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| param | Additional information about a common event.|
+| key | Key.|
+| value | Content of the long array type.|
+| num | Number of elements in the content.|
+
+**Returns**
+
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.<br>Returns **COMMONEVENT_ERR_ALLOC_MEMORY_FAILED** if memory allocation fails.
+
+### OH_CommonEvent_SetDoubleToParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetDoubleToParameters(CommonEvent_Parameters* param, const char* key, double value)
+```
+
+**Description**
+
+Sets the additional information of a common event. The value is the content of the double type.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| param | Additional information about a common event.|
+| key | Key.|
+| value | Content of the double type.|
+
+**Returns**
+
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.
+
+### OH_CommonEvent_SetDoubleArrayToParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetDoubleArrayToParameters(CommonEvent_Parameters* param, const char* key, const double* value, size_t num)
+```
+
+**Description**
+
+Sets the additional information of a common event. The value is the content of the double array type.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| param | Additional information about a common event.|
+| key | Key.|
+| value | Content of the double array type.|
+| num | Number of elements in the content.|
+
+**Returns**
+
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.<br>Returns **COMMONEVENT_ERR_ALLOC_MEMORY_FAILED** if memory allocation fails.
+
+### OH_CommonEvent_SetBoolToParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetBoolToParameters(CommonEvent_Parameters* param, const char* key, bool value)
+```
+
+**Description**
+
+Sets the additional information of a common event. The value is the content of the Boolean type.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| param | Additional information about a common event.|
+| key | Key.|
+| value | Content of the Boolean type.|
+
+**Returns**
+
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.
+
+### OH_CommonEvent_SetBoolArrayToParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetBoolArrayToParameters(CommonEvent_Parameters* param, const char* key, const bool* value, size_t num)
+```
+
+**Description**
+
+Sets the additional information of a common event. The value is the content of the Boolean array type.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| param | Additional information about a common event.|
+| key | Key.|
+| value | Content of the Boolean array type.|
+| num | Number of elements in the content.|
+
+**Returns**
+
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.<br>Returns **COMMONEVENT_ERR_ALLOC_MEMORY_FAILED** if memory allocation fails.
+
+### OH_CommonEvent_SetCharToParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetCharToParameters(CommonEvent_Parameters* param, const char* key, char value)
+```
+
+**Description**
+
+Sets the additional information of a common event. The value is the content of the character type.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| param | Additional information about a common event.|
+| key | Key.|
+| value | Content of the character type.|
+
+**Returns**
+
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.
+
+### OH_CommonEvent_SetCharArrayToParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetCharArrayToParameters(CommonEvent_Parameters* param, const char* key, const char* value, size_t num)
+```
+
+**Description**
+
+Sets the additional information of a common event. The value is the content of the character array type.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| param | Additional information about a common event.|
+| key | Key.|
+| value | Content of the character array type.|
+| num | Number of elements in the content.|
+
+**Returns**
+
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.<br>Returns **COMMONEVENT_ERR_ALLOC_MEMORY_FAILED** if memory allocation fails.
+
+### OH_CommonEvent_CreatePublishInfo
+
+```cpp
+CommonEvent_PublishInfo* OH_CommonEvent_CreatePublishInfo(bool ordered)
+```
+
+**Description**
+
+Creates an attribute object of a common event.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| ordered | Whether the event is an ordered common event.<br>**true**: ordered common event.<br> **false**: unordered common event.|
+
+**Returns**
+
+Returns the attribute object if the operation is successful; returns **null** otherwise.
+
+### OH_CommonEvent_DestroyPublishInfo
+
+```cpp
+void OH_CommonEvent_DestroyPublishInfo(CommonEvent_PublishInfo* info)
+```
+
+**Description**
+
+Destroys an attribute object of a common event.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| info | Attribute object of the common event to destroy.|
+
+**Returns**
+
+None.
+
+### OH_CommonEvent_SetPublishInfoBundleName
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoBundleName(CommonEvent_PublishInfo* info, const char* bundleName)
+```
+
+**Description**
+
+Sets the bundle name of a common event.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| info | Attribute object of the common event.|
+| bundleName | Bundle name to set.|
+
+**Returns**
+
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.
+
+### OH_CommonEvent_SetPublishInfoPermissions
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoPermissions(CommonEvent_PublishInfo* info, const char* permissions[], int32_t num)
+```
+
+**Description**
+
+Sets the common event permissions.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| info | Attribute object of the common event.|
+| permissions | Permission name array.|
+| num | Number of permissions.|
+
+**Returns**
+
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.
+
+### OH_CommonEvent_SetPublishInfoCode
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoCode(CommonEvent_PublishInfo* info, int32_t code)
+```
+
+**Description**
+
+Sets the result code of a common event.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| info | Attribute object of the common event.|
+| code | Result code to set.|
+
+**Returns**
+
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.
+
+### OH_CommonEvent_SetPublishInfoData
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoData(CommonEvent_PublishInfo* info, const char* data, size_t length)
+```
+
+**Description**
+
+Sets the result data of a common event.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| info | Attribute object of the common event.|
+| code | Result data to set.|
+| length | Length of the result data.|
+
+**Returns**
+
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.
+
+### OH_CommonEvent_SetPublishInfoParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoParameters(CommonEvent_PublishInfo* info, CommonEvent_Parameters* param)
+```
+
+**Description**
+
+Sets the additional information of a common event.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| info | Attribute object of the common event.|
+| param | Additional information to set.|
+
+**Returns**
+
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.
+
+### OH_CommonEvent_Publish
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event)
+```
+
+**Description**
+
+Publishes a custom common event.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| event | Name of the common event.|
+
+**Returns**
+
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.<br>Returns **COMMONEVENT_ERR_SENDING_REQUEST_FAILED** if the IPC fails to be sent.<br>Returns **COMMONEVENT_ERR_INIT_UNDONE** if the common event service is not initialized.
+
+### OH_CommonEvent_PublishWithInfo
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_PublishWithInfo(const char* event, const CommonEvent_PublishInfo* info)
+```
+
+**Description**
+
+Publishes a custom common event with specified attributes.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| event | Name of the common event.|
+| info | Attribute object of the common event.|
+
+**Returns**
+
+Returns **COMMONEVENT_ERR_OK** if the operation is successful.<br>Returns **COMMONEVENT_ERR_INVALID_PARAMETER** if the parameter is invalid.<br>Returns **COMMONEVENT_ERR_SENDING_REQUEST_FAILED** if the IPC fails to be sent.<br>Returns **COMMONEVENT_ERR_INIT_UNDONE** if the common event service is not initialized.
+
+### OH_CommonEvent_IsOrderedCommonEvent
+
+```cpp
+bool OH_CommonEvent_IsOrderedCommonEvent(const CommonEvent_Subscriber* subscriber)
+```
+
+**Description**
+
+Checks whether a common event is an ordered common event.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| subscriber | Subscriber object of the common event.|
+
+**Returns**
+
+Returns **true** if the common event is an ordered one; returns **false** otherwise.
+
+### OH_CommonEvent_FinishCommonEvent
+
+```cpp
+bool OH_CommonEvent_FinishCommonEvent(CommonEvent_Subscriber* subscriber)
+```
+
+**Description**
+
+Finishes an ordered common event.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| subscriber | Subscriber object of the common event.|
+
+**Returns**
+
+Returns **true** if the operation is successful; returns **false** otherwise.
+
+### OH_CommonEvent_GetAbortCommonEvent
+
+```cpp
+bool OH_CommonEvent_GetAbortCommonEvent(const CommonEvent_Subscriber* subscriber)
+```
+
+**Description**
+
+Checks whether an ordered common event is aborted.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| subscriber | Subscriber object of the common event.|
+
+**Returns**
+
+Returns **true** if the ordered common event is aborted; returns **false** otherwise.
+
+### OH_CommonEvent_AbortCommonEvent
+
+```cpp
+bool OH_CommonEvent_AbortCommonEvent(CommonEvent_Subscriber* subscriber)
+```
+
+**Description**
+
+Aborts an ordered common event when used with **OH_CommonEvent_FinishCommonEvent**. After the abort, the common event is not sent to the next subscriber.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| subscriber | Subscriber object of the common event.|
+
+**Returns**
+
+Returns **true** if the operation is successful; returns **false** otherwise.
+
+### OH_CommonEvent_ClearAbortCommonEvent
+
+```cpp
+bool OH_CommonEvent_ClearAbortCommonEvent(CommonEvent_Subscriber* subscriber)
+```
+
+**Description**
+
+Clears the aborted state of an ordered common event when used with **OH_CommonEvent_FinishCommonEvent**. After the clearance, the common event is sent to the next subscriber.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| subscriber | Subscriber object of the common event.|
+
+**Returns**
+
+Returns **true** if the operation is successful; returns **false** otherwise.
+
+### OH_CommonEvent_GetCodeFromSubscriber
+
+```cpp
+int32_t OH_CommonEvent_GetCodeFromSubscriber(const CommonEvent_Subscriber* subscriber)
+```
+
+**Description**
+
+Obtains the result code of an ordered common event.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| subscriber | Subscriber object of the common event.|
+
+**Returns**
+
+Returns the code of the ordered common event. If the code cannot be obtained, **0** is returned.
+
+### OH_CommonEvent_GetDataFromSubscriber
+
+```cpp
+const char* OH_CommonEvent_GetDataFromSubscriber(const CommonEvent_Subscriber* subscriber)
+```
+
+**Description**
+
+Obtains the result data of an ordered common event.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| subscriber | Subscriber object of the common event.|
+
+**Returns**
+
+Returns the data of the ordered common event. If the data cannot be obtained, **null** is returned.
+
+### OH_CommonEvent_SetCodeToSubscriber
+
+```cpp
+bool OH_CommonEvent_SetCodeToSubscriber(CommonEvent_Subscriber* subscriber, int32_t code)
+```
+
+**Description**
+
+Sets the result code of an ordered common event.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| subscriber | Subscriber object of the common event.|
+| code | Common event code.|
+
+**Returns**
+
+Returns **true** if the operation is successful; returns **false** otherwise.
+
+### OH_CommonEvent_SetDataToSubscriber
+
+```cpp
+bool OH_CommonEvent_SetDataToSubscriber(CommonEvent_Subscriber* subscriber, const char* data, size_t length)
+```
+
+**Description**
+
+Sets the result data of an ordered common event.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| subscriber | Subscriber object of the common event.|
+| data | Common event data.|
+| length | Data length.|
+
+**Returns**
+
+Returns **true** if the operation is successful; returns **false** otherwise.

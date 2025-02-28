@@ -1075,4 +1075,3 @@ export default class MigrationAbility extends UIAbility {
 
 If page stack migration is not disabled for an application, the system migrates and loads the page stack of the application by default. In this case, if you use [loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9) to trigger the loading of a specific page in the [onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore) lifecycle callback function, the loading does not take effect and the page in the page stack is still restored.
 
- <!--no_check--> 

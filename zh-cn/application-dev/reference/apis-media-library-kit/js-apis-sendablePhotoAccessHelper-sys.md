@@ -151,7 +151,7 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, options?: FetchOptions): Promise&
 
 | 参数名  | 类型                                                         | 必填 | 说明                                           |
 | ------- | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
-| mode    | [HiddenPhotosDisplayMode](js-apis-photoAccessHelper-sys.md#hiddenphotosdisplaymode11) | 是   | 隐藏文件显示模式                               |
+| mode    | [HiddenPhotosDisplayMode](js-apis-photoAccessHelper-sys.md#hiddenphotosdisplaymode11) | 是   | 隐藏文件显示模式。                               |
 | options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)    | 否   | 检索选项，不填时默认根据隐藏文件显示模式检索。 |
 
 **返回值：**
@@ -169,7 +169,7 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, options?: FetchOptions): Promise&
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
@@ -177,7 +177,7 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, options?: FetchOptions): Promise&
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 获取系统预置的隐藏相册
+// 获取系统预置的隐藏相册。
 async function getSysHiddenAlbum() {
   console.info('getSysHiddenAlbumDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ASSETS_MODE)
@@ -194,7 +194,7 @@ async function getSysHiddenAlbum() {
     });
 }
 
-// 获取隐藏相册-相册视图，即系统中包含隐藏文件的相册（不包含系统预置的隐藏相册本身和回收站相册）
+// 获取隐藏相册-相册视图，即系统中包含隐藏文件的相册（不包含系统预置的隐藏相册本身和回收站相册）。
 async function getHiddenAlbumsView() {
   console.info('getHiddenAlbumsViewDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE).then( async (fetchResult) => {
@@ -211,7 +211,7 @@ async function getHiddenAlbumsView() {
       predicates: predicates
     };
     for (let i = 0; i < albums.length; i++) {
-      // 获取相册中的隐藏文件
+      // 获取相册中的隐藏文件。
       albums[i].getAssets(fetchOption).then((assetFetchResult) => {
         console.info('album get hidden assets successfully, getCount: ' + assetFetchResult.getCount());
       }).catch((err: BusinessError) => {

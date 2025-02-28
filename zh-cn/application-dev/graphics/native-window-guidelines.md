@@ -5,8 +5,8 @@
 NativeWindow是**本地平台化窗口**，表示图形队列的生产者端。开发者可以通过`NativeWindow`接口进行申请和提交`Buffer`，配置`Buffer`属性信息。
 针对NativeWindow，常见的开发场景如下：
 
-* 通过`NativeWindow`提供的Native API接口申请图形`Buffer`，并将生产图形内容写入图形`Buffer`，最终提交`Buffer`到图形队列
-* 在适配EGL层的`eglswapbuffer`接口时，进行申请和提交`Buffer`
+* 通过`NativeWindow`提供的Native API接口申请图形`Buffer`，并将生产图形内容写入图形`Buffer`，最终提交`Buffer`到图形队列。
+* 在适配EGL层的`eglswapbuffer`接口时，进行申请和提交`Buffer`。
 
 ## 接口说明
 

@@ -21,6 +21,7 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 
 | 名称                | 值   | 说明                   |
 | ------------------- | ---- | ---------------------- |
+| UNKNOWN_STATUS  | 0    | 表示未识别。 |
 | LEFT_HAND_OPERATED  | 1    | 表示触控操作手是左手。 |
 | RIGHT_HAND_OPERATED | 2    | 表示触控操作手是右手。 |
 

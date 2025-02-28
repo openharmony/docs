@@ -43,7 +43,7 @@ struct Index {
     icon: SaveIconStyle.FULL_FILLED,
     text: SaveDescription.SAVE_IMAGE,
     buttonType: ButtonType.Capsule
-  } // 设置安全控件按钮属性
+  } // 设置安全控件按钮属性。
 
   build() {
     Row() {
@@ -51,7 +51,7 @@ struct Index {
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        SaveButton(this.saveButtonOptions) // 创建安全控件按钮
+        SaveButton(this.saveButtonOptions) // 创建安全控件按钮。
           .onClick(async (event, result: SaveButtonOnClickResult) => {
              if (result == SaveButtonOnClickResult.SUCCESS) {
                try {
@@ -105,7 +105,7 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
   try {
-    // picker选择动态照片uri
+    // picker选择动态照片uri。
     let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
     photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.MOVING_PHOTO_IMAGE_TYPE;
     photoSelectOptions.maxSelectNumber = 9;
@@ -113,7 +113,7 @@ async function example() {
     let photoSelectResult = await photoViewPicker.select(photoSelectOptions);
     let uris = photoSelectResult.photoUris;
     for (let i = 0; i < uris.length; i++) {
-      // 获取uri对应的PhotoAsset资产
+      // 获取uri对应的PhotoAsset资产。
       let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
       predicates.equalTo(photoAccessHelper.PhotoKeys.URI, uris[i]);
       let fetchOption: photoAccessHelper.FetchOptions = {
@@ -122,13 +122,13 @@ async function example() {
       };
       let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
       let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-      // 获取PhotoAsset对应的动态照片对象
+      // 获取PhotoAsset对应的动态照片对象。
       await photoAccessHelper.MediaAssetManager.requestMovingPhoto(context, photoAsset, {
         deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE
       }, {
         async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
           if (movingPhoto !== undefined) {
-            // 应用可自定义对movingPhoto的处理逻辑
+            // 应用可自定义对movingPhoto的处理逻辑。
             console.info('request moving photo successfully, uri: ' + movingPhoto.getUri());
           }
         }
@@ -171,9 +171,9 @@ async function example(movingPhoto: photoAccessHelper.MovingPhoto) {
   try {
     let imageFileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/request_moving_photo.jpg';
     let videoFileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/request_moving_photo.mp4';
-    await movingPhoto.requestContent(imageFileUri, videoFileUri); // 将动态照片导出到应用沙箱
-    let imageData = await movingPhoto.requestContent(photoAccessHelper.ResourceType.IMAGE_RESOURCE); // 读取图片的ArrayBuffer内容
-    let videoData = await movingPhoto.requestContent(photoAccessHelper.ResourceType.VIDEO_RESOURCE); // 读取视频的ArrayBuffer内容
+    await movingPhoto.requestContent(imageFileUri, videoFileUri); // 将动态照片导出到应用沙箱。
+    let imageData = await movingPhoto.requestContent(photoAccessHelper.ResourceType.IMAGE_RESOURCE); // 读取图片的ArrayBuffer内容。
+    let videoData = await movingPhoto.requestContent(photoAccessHelper.ResourceType.VIDEO_RESOURCE); // 读取视频的ArrayBuffer内容。
   } catch (err) {
     console.error(`request content of moving photo failed with error: ${err.code}, ${err.message}`);
   }

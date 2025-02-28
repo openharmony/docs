@@ -24,10 +24,10 @@ import { print } from '@kit.BasicServicesKit';
 **属性：**
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| top | number | 否 | 表示页面上边距 |
-| bottom | number | 否 | 表示页面下边距 |
-| left | number | 否 | 表示页面左边距 |
-| right | number | 否 | 表示页面右边距 |
+| top | number | 否 | 表示页面上边距。 |
+| bottom | number | 否 | 表示页面下边距。 |
+| left | number | 否 | 表示页面左边距。 |
+| right | number | 否 | 表示页面右边距。 |
 
 ## PrinterRange
 
@@ -40,9 +40,9 @@ import { print } from '@kit.BasicServicesKit';
 **属性：**
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| startPage | number | 否 | 表示起始页 |
-| endPage | number | 否 | 表示结束页 |
-| pages | Array&lt;number&gt; | 否 | 表示离散页面 |
+| startPage | number | 否 | 表示起始页。 |
+| endPage | number | 否 | 表示结束页。 |
+| pages | Array&lt;number&gt; | 否 | 表示离散页面。 |
 
 ## PreviewAttribute
 
@@ -55,8 +55,8 @@ import { print } from '@kit.BasicServicesKit';
 **属性：**
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| previewRange | PrinterRange | 是 | 表示预览页面范围 |
-| result | number | 否 | 表示预览文件结果 |
+| previewRange | PrinterRange | 是 | 表示预览页面范围。 |
+| result | number | 否 | 表示预览文件结果。 |
 
 ## PrintResolution
 
@@ -69,9 +69,9 @@ import { print } from '@kit.BasicServicesKit';
 **属性：**
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| id | string | 是 | 表示分辨率ID |
-| horizontalDpi | number | 是 | 表示水平DPI |
-| verticalDpi | number | 是 | 表示垂直DPI |
+| id | string | 是 | 表示分辨率ID。 |
+| horizontalDpi | number | 是 | 表示水平DPI。 |
+| verticalDpi | number | 是 | 表示垂直DPI。 |
 
 
 
@@ -86,12 +86,12 @@ import { print } from '@kit.BasicServicesKit';
 **属性：**
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| colorMode | number | 是 | 表示色彩模式 |
-| duplexMode | number | 是 | 表示单双面打印模式 |
-| pageSize | Array&lt;PrintPageSize&gt; | 是 | 表示打印机支持的页面尺寸列表 |
-| resolution | Array&lt;PrintResolution&gt; | 否 | 表示打印机支持的分辨率列表 |
-| minMargin | PrintMargin | 否 | 表示打印机最小边距 |
-| options<sup>11+</sup> | Object | 否 | 表示JSON对象字符串 |
+| colorMode | number | 是 | 表示色彩模式。 |
+| duplexMode | number | 是 | 表示单双面打印模式。 |
+| pageSize | Array&lt;PrintPageSize&gt; | 是 | 表示打印机支持的页面尺寸列表。 |
+| resolution | Array&lt;PrintResolution&gt; | 否 | 表示打印机支持的分辨率列表。 |
+| minMargin | PrintMargin | 否 | 表示打印机最小边距。 |
+| options<sup>11+</sup> | Object | 否 | 表示JSON对象字符串。 |
 
 ## PrinterInfo
 
@@ -104,13 +104,13 @@ import { print } from '@kit.BasicServicesKit';
 **属性：**
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printerId | string | 是 | 表示打印机ID |
-| printerName | string | 是 | 表示打印机名称 |
-| printerState | PrinterState | 是 | 表示当前打印机状态 |
-| printerIcon | number | 否 | 表示打印机图标的资源ID |
-| description | string | 否 | 表示打印机说明 |
-| capability | PrinterCapability | 否 | 表示打印机功能 |
-| options | Object | 否 | 表示JSON对象字符串 |
+| printerId | string | 是 | 表示打印机ID。 |
+| printerName | string | 是 | 表示打印机名称。 |
+| printerState | PrinterState | 是 | 表示当前打印机状态。 |
+| printerIcon | number | 否 | 表示打印机图标的资源ID。 |
+| description | string | 否 | 表示打印机说明。 |
+| capability | PrinterCapability | 否 | 表示打印机功能。 |
+| options | Object | 否 | 表示JSON对象字符串。 |
 
 ## PrintJob
 
@@ -123,21 +123,21 @@ import { print } from '@kit.BasicServicesKit';
 **属性：**
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| fdList | Array&lt;number&gt; | 是 | 表示待打印文件fd列表 |
-| jobId | string | 是 | 表示打印任务ID |
-| printerId | string | 是 | 表示负责打印的打印机ID |
-| jobState | PrintJobState | 是 | 表示当前打印任务状态 |
-| jobSubstate<sup>11+</sup> | PrintJobSubState | 是 | 表示当前打印任务子状态 |
-| copyNumber | number | 是 | 表示文件列表副本 |
-| pageRange | PrinterRange | 是 | 表示打印范围大小 |
-| isSequential | boolean | 是 | 表示连续打印 |
-| pageSize | PrintPageSize | 是 | 表示选定的页面尺寸 |
-| isLandscape | boolean | 是 | 表示垂直打印 |
-| colorMode | number | 是 | 表示色彩模式 |
-| duplexMode | number | 是 | 表示单双面打印模式 |
-| margin | PrintMargin | 否 | 表示当前页边距设置 |
-| preview | PreviewAttribute | 否 | 表示预览设置 |
-| options | Object | 否 | 表示JSON对象字符串 |
+| fdList | Array&lt;number&gt; | 是 | 表示待打印文件fd列表。 |
+| jobId | string | 是 | 表示打印任务ID。 |
+| printerId | string | 是 | 表示负责打印的打印机ID。 |
+| jobState | PrintJobState | 是 | 表示当前打印任务状态。 |
+| jobSubstate<sup>11+</sup> | PrintJobSubState | 是 | 表示当前打印任务子状态。 |
+| copyNumber | number | 是 | 表示文件列表副本。 |
+| pageRange | PrinterRange | 是 | 表示打印范围大小。 |
+| isSequential | boolean | 是 | 表示连续打印。 |
+| pageSize | PrintPageSize | 是 | 表示选定的页面尺寸。 |
+| isLandscape | boolean | 是 | 表示垂直打印。 |
+| colorMode | number | 是 | 表示色彩模式。 |
+| duplexMode | number | 是 | 表示单双面打印模式。 |
+| margin | PrintMargin | 否 | 表示当前页边距设置。 |
+| preview | PreviewAttribute | 否 | 表示预览设置。 |
+| options | Object | 否 | 表示JSON对象字符串。 |
 
 ## PrinterExtensionInfo
 
@@ -150,11 +150,11 @@ import { print } from '@kit.BasicServicesKit';
 **属性：**
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| extensionId | string | 是 | 表示打印机扩展的扩展ID |
-| vendorId | string | 是 | 表示扩展的供应商ID |
-| vendorName | string | 是 | 表示供应商名称 |
-| vendorIcon | number | 是 | 表示供应商图标 |
-| version | string | 是 | 表示当前打印机扩展的版本 |
+| extensionId | string | 是 | 表示打印机扩展的扩展ID。 |
+| vendorId | string | 是 | 表示扩展的供应商ID。 |
+| vendorName | string | 是 | 表示供应商名称。 |
+| vendorIcon | number | 是 | 表示供应商图标。 |
+| version | string | 是 | 表示当前打印机扩展的版本。 |
 
 ## queryAllPrinterExtensionInfos
 
@@ -171,7 +171,7 @@ queryAllPrinterExtensionInfos(callback: AsyncCallback&lt;Array&lt;PrinterExtensi
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;PrinterExtensionInfo&gt;&gt; | 是 | 异步查询所有已安装的打印机扩展服务之后的回调 |
+| callback | AsyncCallback&lt;Array&lt;PrinterExtensionInfo&gt;&gt; | 是 | 异步查询所有已安装的打印机扩展服务之后的回调。 |
 
 **错误码：**
 
@@ -212,7 +212,7 @@ queryAllPrinterExtensionInfos(): Promise&lt;Array&lt;PrinterExtensionInfo&gt;&gt
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;Array&lt;PrinterExtensionInfo&gt;&gt; | 查询所有已安装的打印机扩展服务完成结果 |
+| Promise&lt;Array&lt;PrinterExtensionInfo&gt;&gt; | 查询所有已安装的打印机扩展服务完成结果。 |
 
 **错误码：**
 
@@ -252,8 +252,8 @@ startDiscoverPrinter(extensionList: Array&lt;string&gt;, callback: AsyncCallback
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| extensionList | Array&lt;string&gt; | 是 | 要加载的打印机扩展列表 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步开始发现打印机之后的回调 |
+| extensionList | Array&lt;string&gt; | 是 | 要加载的打印机扩展列表。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 异步开始发现打印机之后的回调。 |
 
 **错误码：**
 
@@ -297,12 +297,12 @@ startDiscoverPrinter(extensionList: Array&lt;string&gt;): Promise&lt;void&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| extensionList | Array&lt;string&gt; | 是 | 要加载的打印机扩展列表 |
+| extensionList | Array&lt;string&gt; | 是 | 要加载的打印机扩展列表。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;void&gt; | 加载特定的打印机扩展并开始发现打印机完成结果 |
+| Promise&lt;void&gt; | 加载特定的打印机扩展并开始发现打印机完成结果。 |
 
 **错误码：**
 
@@ -344,7 +344,7 @@ stopDiscoverPrinter(callback: AsyncCallback&lt;void&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步停止发现具有特定打印机扩展的打印机之后的回调 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 异步停止发现具有特定打印机扩展的打印机之后的回调。 |
 
 **错误码：**
 
@@ -385,7 +385,7 @@ stopDiscoverPrinter(): Promise&lt;void&gt;
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;void&gt; | 停止发现具有特定打印机扩展的打印机完成结果 |
+| Promise&lt;void&gt; | 停止发现具有特定打印机扩展的打印机完成结果。 |
 
 **错误码：**
 
@@ -424,8 +424,8 @@ connectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printerId | string | 是 | 打印机ID |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步连接特定打印机之后的回调 |
+| printerId | string | 是 | 打印机ID。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 异步连接特定打印机之后的回调。 |
 
 **错误码：**
 
@@ -473,7 +473,7 @@ connectPrinter(printerId: string): Promise&lt;void&gt;
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;void&gt; | 连接特定打印机完成结果 |
+| Promise&lt;void&gt; | 连接特定打印机完成结果。 |
 
 **错误码：**
 
@@ -514,8 +514,8 @@ disconnectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printerId | string | 是 | 打印机ID |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步断开特定打印机的连接之后的回调 |
+| printerId | string | 是 | 打印机ID。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 异步断开特定打印机的连接之后的回调。 |
 
 **错误码：**
 
@@ -558,12 +558,12 @@ disconnectPrinter(printerId: string): Promise&lt;void&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printerId | string | 是 | 打印机ID |
+| printerId | string | 是 | 打印机ID。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;void&gt; | 断开特定打印机的连接完成结果 |
+| Promise&lt;void&gt; | 断开特定打印机的连接完成结果。 |
 
 **错误码：**
 
@@ -604,8 +604,8 @@ queryPrinterCapability(printerId: string, callback: AsyncCallback&lt;void&gt;): 
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printerId | string | 是 | 打印机ID |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步查询打印机能力之后的回调 |
+| printerId | string | 是 | 打印机ID。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 异步查询打印机能力之后的回调。 |
 
 **错误码：**
 
@@ -648,12 +648,12 @@ queryPrinterCapability(printerId: string): Promise&lt;void&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printerId | string | 是 | 打印机ID |
+| printerId | string | 是 | 打印机ID。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;void&gt; | 查询打印机能力完成结果 |
+| Promise&lt;void&gt; | 查询打印机能力完成结果。 |
 
 **错误码：**
 
@@ -694,8 +694,8 @@ startPrintJob(jobInfo: PrintJob, callback: AsyncCallback&lt;void&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobInfo | PrintJob | 是 | 打印任务信息 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步开始打印任务之后的回调 |
+| jobInfo | PrintJob | 是 | 打印任务信息。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 异步开始打印任务之后的回调。 |
 
 **错误码：**
 
@@ -754,12 +754,12 @@ startPrintJob(jobInfo: PrintJob): Promise&lt;void&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobInfo | PrintJob | 是 | 打印任务信息 |
+| jobInfo | PrintJob | 是 | 打印任务信息。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;void&gt; | 开始打印任务完成结果 |
+| Promise&lt;void&gt; | 开始打印任务完成结果。 |
 
 **错误码：**
 
@@ -816,8 +816,8 @@ cancelPrintJob(jobId: string, callback: AsyncCallback&lt;void&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobId | string | 是 | 打印任务ID |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步取消已发送到打印机的打印任务之后的回调 |
+| jobId | string | 是 | 打印任务ID。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 异步取消已发送到打印机的打印任务之后的回调。 |
 
 **错误码：**
 
@@ -860,12 +860,12 @@ cancelPrintJob(jobId: string): Promise&lt;void&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobId | string | 是 | 打印任务ID |
+| jobId | string | 是 | 打印任务ID。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;void&gt; | 取消已发送到打印机的打印任务完成结果 |
+| Promise&lt;void&gt; | 取消已发送到打印机的打印任务完成结果。 |
 
 **错误码：**
 
@@ -906,8 +906,8 @@ requestPrintPreview(jobInfo: PrintJob, callback: Callback&lt;number&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobInfo | PrintJob | 是 | 打印任务信息 |
-| callback | Callback&lt;number&gt; | 是 | 请求预览打印数据之后的回调 |
+| jobInfo | PrintJob | 是 | 打印任务信息。 |
+| callback | Callback&lt;number&gt; | 是 | 请求预览打印数据之后的回调。 |
 
 **错误码：**
 
@@ -962,12 +962,12 @@ requestPrintPreview(jobInfo: PrintJob): Promise&lt;number&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobInfo | PrintJob | 是 | 打印任务信息 |
+| jobInfo | PrintJob | 是 | 打印任务信息。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;number&gt; | 请求预览打印数据完成结果 |
+| Promise&lt;number&gt; | 请求预览打印数据完成结果。 |
 
 **错误码：**
 
@@ -1024,8 +1024,8 @@ on(type: 'printerStateChange', callback: (state: PrinterState, info: PrinterInfo
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| type | 'printerStateChange' | 是 | 表示打印机状态改变 |
-| callback | (state: PrinterState, info: PrinterInfo) => void | 是 | 打印机状态改变之后的回调 |
+| type | 'printerStateChange' | 是 | 表示打印机状态改变。 |
+| callback | (state: PrinterState, info: PrinterInfo) => void | 是 | 打印机状态改变之后的回调。 |
 
 **错误码：**
 
@@ -1068,8 +1068,8 @@ off(type: 'printerStateChange', callback?: Callback&lt;boolean&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| type | 'printerStateChange' | 是 | 表示打印机状态改变 |
-| callback | Callback&lt;boolean&gt; | 否 | 打印机状态改变之后的回调 |
+| type | 'printerStateChange' | 是 | 表示打印机状态改变。 |
+| callback | Callback&lt;boolean&gt; | 否 | 打印机状态改变之后的回调。 |
 
 **错误码：**
 
@@ -1106,8 +1106,8 @@ on(type: 'jobStateChange', callback: (state: PrintJobState, job: PrintJob) => vo
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| type | 'jobStateChange' | 是 | 表示打印任务状态改变 |
-| callback | (state: PrintJobState, job: PrintJob) => void | 是 | 打印任务状态改变之后的回调 |
+| type | 'jobStateChange' | 是 | 表示打印任务状态改变。 |
+| callback | (state: PrintJobState, job: PrintJob) => void | 是 | 打印任务状态改变之后的回调。 |
 
 **错误码：**
 
@@ -1144,8 +1144,8 @@ off(type: 'jobStateChange', callback?: Callback&lt;boolean&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| type | 'jobStateChange' | 是 | 表示打印任务状态改变 |
-| callback | Callback&lt;boolean&gt; | 否 | 打印任务状态改变之后的回调 |
+| type | 'jobStateChange' | 是 | 表示打印任务状态改变。 |
+| callback | Callback&lt;boolean&gt; | 否 | 打印任务状态改变之后的回调。 |
 
 **错误码：**
 
@@ -1182,8 +1182,8 @@ on(type: 'extInfoChange', callback: (extensionId: string, info: string) => void)
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| type | 'extInfoChange' | 是 | 表示打印扩展信息改变 |
-| callback | (extensionId: string, info: string) => void | 是 | 打印扩展信息改变之后的回调 |
+| type | 'extInfoChange' | 是 | 表示打印扩展信息改变。 |
+| callback | (extensionId: string, info: string) => void | 是 | 打印扩展信息改变之后的回调。 |
 
 **错误码：**
 
@@ -1220,8 +1220,8 @@ off(type: 'extInfoChange', callback?: Callback&lt;boolean&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| type | 'extInfoChange' | 是 | 表示打印扩展信息改变 |
-| callback | Callback&lt;boolean&gt; | 否 | 打印任务扩展信息改变之后的回调 |
+| type | 'extInfoChange' | 是 | 表示打印扩展信息改变。 |
+| callback | Callback&lt;boolean&gt; | 否 | 打印任务扩展信息改变之后的回调。 |
 
 **错误码：**
 
@@ -1258,8 +1258,8 @@ addPrinters(printers: Array&lt;PrinterInfo&gt;, callback: AsyncCallback&lt;void&
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printers | Array&lt;PrinterInfo&gt; | 是 | 表示新到达的打印机列表 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步添加打印机之后的回调 |
+| printers | Array&lt;PrinterInfo&gt; | 是 | 表示新到达的打印机列表。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 异步添加打印机之后的回调。 |
 
 **错误码：**
 
@@ -1310,12 +1310,12 @@ addPrinters(printers: Array&lt;PrinterInfo&gt;): Promise&lt;void&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printers | Array&lt;PrinterInfo&gt; | 是 | 表示新到达的打印机列表 |
+| printers | Array&lt;PrinterInfo&gt; | 是 | 表示新到达的打印机列表。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;void&gt; | 添加打印机完成结果 |
+| Promise&lt;void&gt; | 添加打印机完成结果。 |
 
 **错误码：**
 
@@ -1364,8 +1364,8 @@ removePrinters(printerIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printerIds | Array&lt;string&gt; | 是 | 表示需移除的打印机列表 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步移除打印机之后的回调 |
+| printerIds | Array&lt;string&gt; | 是 | 表示需移除的打印机列表。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 异步移除打印机之后的回调。 |
 
 **错误码：**
 
@@ -1408,12 +1408,12 @@ removePrinters(printerIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printerIds | Array&lt;string&gt; | 是 | 表示需移除的打印机列表 |
+| printerIds | Array&lt;string&gt; | 是 | 表示需移除的打印机列表。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;void&gt; | 移除打印机完成结果 |
+| Promise&lt;void&gt; | 移除打印机完成结果。 |
 
 **错误码：**
 
@@ -1454,8 +1454,8 @@ updatePrinters(printers: Array&lt;PrinterInfo&gt;, callback: AsyncCallback&lt;vo
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printers | Array&lt;PrinterInfo&gt; | 是 | 表示待更新的打印机列表 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步更新打印机信息之后的回调 |
+| printers | Array&lt;PrinterInfo&gt; | 是 | 表示待更新的打印机列表。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 异步更新打印机信息之后的回调。 |
 
 **错误码：**
 
@@ -1506,12 +1506,12 @@ updatePrinters(printers: Array&lt;PrinterInfo&gt;): Promise&lt;void&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printers | Array&lt;PrinterInfo&gt; | 是 | 表示待更新的打印机列表 |
+| printers | Array&lt;PrinterInfo&gt; | 是 | 表示待更新的打印机列表。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;void&gt; | 更新打印机完成结果 |
+| Promise&lt;void&gt; | 更新打印机完成结果。 |
 
 **错误码：**
 
@@ -1560,9 +1560,9 @@ updatePrinterState(printerId: string, state: PrinterState, callback: AsyncCallba
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printerId | string | 是 | 表示打印机ID |
-| state | PrinterState | 是 | 表示打印机状态 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步更新打印机状态之后的回调 |
+| printerId | string | 是 | 表示打印机ID。 |
+| state | PrinterState | 是 | 表示打印机状态。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 异步更新打印机状态之后的回调。 |
 
 **错误码：**
 
@@ -1606,13 +1606,13 @@ updatePrinterState(printerId: string, state: PrinterState): Promise&lt;void&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printerId | string | 是 | 表示打印机ID |
-| state | PrinterState | 是 | 表示打印机状态 |
+| printerId | string | 是 | 表示打印机ID。 |
+| state | PrinterState | 是 | 表示打印机状态。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;void&gt; | 更新打印机状态完成结果 |
+| Promise&lt;void&gt; | 更新打印机状态完成结果。 |
 
 **错误码：**
 
@@ -1654,10 +1654,10 @@ updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubSt
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobId | string | 是 | 表示打印任务ID |
-| state | PrintJobState | 是 | 表示打印任务状态 |
-| subState | PrintJobSubState | 是 | 表示打印任务子状态 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步更新打印任务状态之后的回调 |
+| jobId | string | 是 | 表示打印任务ID。 |
+| state | PrintJobState | 是 | 表示打印任务状态。 |
+| subState | PrintJobSubState | 是 | 表示打印任务子状态。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 异步更新打印任务状态之后的回调。 |
 
 **错误码：**
 
@@ -1702,14 +1702,14 @@ updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubSt
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobId | string | 是 | 表示打印任务ID |
-| state | PrintJobState | 是 | 表示打印任务状态 |
-| subState | PrintJobSubState | 是 | 表示打印任务子状态 |
+| jobId | string | 是 | 表示打印任务ID。 |
+| state | PrintJobState | 是 | 表示打印任务状态。 |
+| subState | PrintJobSubState | 是 | 表示打印任务子状态。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;void&gt; | 更新打印任务状态完成结果 |
+| Promise&lt;void&gt; | 更新打印任务状态完成结果。 |
 
 **错误码：**
 
@@ -1752,8 +1752,8 @@ updateExtensionInfo(info: string, callback: AsyncCallback&lt;void&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| info | string | 是 | 表示打印扩展变更信息 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步更新打印扩展状态之后的回调 |
+| info | string | 是 | 表示打印扩展变更信息。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 异步更新打印扩展状态之后的回调。 |
 
 **错误码：**
 
@@ -1796,12 +1796,12 @@ updateExtensionInfo(info: string): Promise&lt;void&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| info | string | 是 | 表示打印扩展变更信息 |
+| info | string | 是 | 表示打印扩展变更信息。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;void&gt; | 更新打印扩展状态完成结果 |
+| Promise&lt;void&gt; | 更新打印扩展状态完成结果。 |
 
 **错误码：**
 
@@ -1845,7 +1845,7 @@ queryAllPrintJobs(callback: AsyncCallback&lt;void&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步查询所有打印任务之后的回调 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 异步查询所有打印任务之后的回调。 |
 
 **错误码：**
 
@@ -1889,7 +1889,7 @@ queryAllPrintJobs(): Promise&lt;void&gt;
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;void&gt; | 查询所有打印任务完成结果 |
+| Promise&lt;void&gt; | 查询所有打印任务完成结果。 |
 
 **错误码：**
 
@@ -1928,7 +1928,7 @@ queryPrintJobList(callback: AsyncCallback&lt;Array&lt;PrintJob&gt;&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;PrintJob&gt;&gt; | 是 | 异步查询所有打印任务之后的回调 |
+| callback | AsyncCallback&lt;Array&lt;PrintJob&gt;&gt; | 是 | 异步查询所有打印任务之后的回调。 |
 
 **错误码：**
 
@@ -1969,7 +1969,7 @@ queryPrintJobList(): Promise&lt;Array&lt;PrintJob&gt;&gt;
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;Array&lt;PrintJob&gt;&gt; | 查询所有打印任务完成结果 |
+| Promise&lt;Array&lt;PrintJob&gt;&gt; | 查询所有打印任务完成结果。 |
 
 **错误码：**
 
@@ -2008,8 +2008,8 @@ queryPrintJobById(jobId: string, callback: AsyncCallback&lt;PrintJob&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobId | string | 是 | 表示打印任务ID |
-| callback | AsyncCallback&lt;PrintJob&gt; | 是 | 异步按打印任务ID查询打印任务之后的回调 |
+| jobId | string | 是 | 表示打印任务ID。 |
+| callback | AsyncCallback&lt;PrintJob&gt; | 是 | 异步按打印任务ID查询打印任务之后的回调。 |
 
 **错误码：**
 
@@ -2052,12 +2052,12 @@ queryPrintJobById(jobId: string): Promise&lt;PrintJob&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobId | string | 是 | 表示打印任务ID |
+| jobId | string | 是 | 表示打印任务ID。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;PrintJob&gt; | 按打印任务ID查询打印任务完成结果 |
+| Promise&lt;PrintJob&gt; | 按打印任务ID查询打印任务完成结果。 |
 
 **错误码：**
 
@@ -2098,10 +2098,10 @@ startGettingPrintFile(jobId: string, printAttributes: PrintAttributes, fd: numbe
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobId | string | 是 | 表示打印任务ID |
-| printAttributes | PrintAttributes | 是 | 表示打印参数 |
-| fd | number | 是 | 表示打印文件描述符 |
-| onFileStateChanged | Callback&lt;PrintFileCreationState&gt; | 是 | 表示更新文件状态的回调 |
+| jobId | string | 是 | 表示打印任务ID。 |
+| printAttributes | PrintAttributes | 是 | 表示打印参数。 |
+| fd | number | 是 | 表示打印文件描述符。 |
+| onFileStateChanged | Callback&lt;PrintFileCreationState&gt; | 是 | 表示更新文件状态的回调。 |
 
 **错误码：**
 
@@ -2174,9 +2174,9 @@ notifyPrintService(jobId: string, type: 'spooler_closed_for_cancelled' | 'spoole
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobId | string | 是 | 表示打印任务ID |
-| type | 'spooler_closed_for_cancelled' \| 'spooler_closed_for_started' | 是 | 表示spooler关闭信息 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 异步将spooler关闭信息通知打印服务之后的回调 |
+| jobId | string | 是 | 表示打印任务ID。 |
+| type | 'spooler_closed_for_cancelled' \| 'spooler_closed_for_started' | 是 | 表示spooler关闭信息。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 异步将spooler关闭信息通知打印服务之后的回调。 |
 
 **错误码：**
 
@@ -2219,13 +2219,13 @@ notifyPrintService(jobId: string, type: 'spooler_closed_for_cancelled' | 'spoole
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobId | string | 是 | 表示打印任务ID |
-| type | 'spooler_closed_for_cancelled' \| 'spooler_closed_for_started' | 是 | 表示spooler关闭信息 |
+| jobId | string | 是 | 表示打印任务ID。 |
+| type | 'spooler_closed_for_cancelled' \| 'spooler_closed_for_started' | 是 | 表示spooler关闭信息。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;void&gt; | 将spooler关闭信息通知打印服务后的完成结果 |
+| Promise&lt;void&gt; | 将spooler关闭信息通知打印服务后的完成结果。 |
 
 **错误码：**
 
@@ -2266,7 +2266,7 @@ getAddedPrinters(): Promise&lt;Array&lt;string&gt;&gt;
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;Array&lt;string&gt;&gt; | 获取cups已添加打印机列表的完成结果回调 |
+| Promise&lt;Array&lt;string&gt;&gt; | 获取cups已添加打印机列表的完成结果回调。 |
 
 **错误码：**
 
@@ -2306,12 +2306,12 @@ getPrinterInfoById(printerId: string): Promise&lt;PrinterInfo&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printerId | string | 是 | 表示打印机ID |
+| printerId | string | 是 | 表示打印机ID。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;PrinterInfo&gt; | 根据打印机id获取打印机信息后的完成结果回调 |
+| Promise&lt;PrinterInfo&gt; | 根据打印机id获取打印机信息后的完成结果回调。 |
 
 **错误码：**
 
@@ -2352,12 +2352,12 @@ notifyPrintServiceEvent(event: ApplicationEvent): Promise&lt;void&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| event | ApplicationEvent | 是 | 表示打印应用事件 |
+| event | ApplicationEvent | 是 | 表示打印应用事件。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;void&gt; | 将打印应用相关事件通知打印服务后的完成结果回调 |
+| Promise&lt;void&gt; | 将打印应用相关事件通知打印服务后的完成结果回调。 |
 
 **错误码：**
 

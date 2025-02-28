@@ -15,7 +15,7 @@
 
 ## Overview
 
-When \@Require is used together with a regular variable or a variable decorated by \@Prop, \@State, \@Provide, or \@BuilderParam in a custom component, the variable must be passed from the parent component during construction of the custom component.
+When \@Require is used together with a regular variable or a variable decorated by \@Prop, \@State, \@Provide, \@Param, or \@BuilderParam in a custom component, the variable must be passed from the parent component during construction of the custom component.
 
 ## Constraints
 
@@ -81,7 +81,7 @@ struct Child {
 
  ![img](figures/9e2d58bc-b0e1-4613-934b-8e4237bd5c05.png) 
 
-@ComponentV2 decorated custom component **ChildPage** is initialized through the parent component **ParentPage**. Because the parent component is decorated by @Require, it must be constructed and assigned a value.
+@ComponentV2 decorated custom component **ChildPage** is initialized through the parent component **ParentPage**. Because \@Param is decorated by @Require, **ParentPage** must be constructed and assigned a value.
 
 ```ts
 @ObservedV2
@@ -142,6 +142,30 @@ struct ParentPage {
           this.label1 = "Luck"; // ChildPage is not re-rendered because no decorator is used to listen for value changes.
           this.label2 = "Luck"; // ChildPage is re-rendered because a decorator is used to listen for value changes.
         })
+    }
+  }
+}
+```
+
+Since API version 16, use \@Require to decorate the \@State, \@Prop, or \@Provide decorated state variables. These state variables can be directly used in components without local initial values and no compilation error is reported.
+
+```ts
+@Entry
+@Component
+struct Index {
+  message: string = 'Hello World';
+  build() {
+    Column() {
+      Child({ message: this.message })
+    }
+  }
+}
+@Component
+struct Child {
+  @Require @State message: string;
+  build() {
+    Column() {
+      Text(this.message) // Compilation succeeds since API version 16.
     }
   }
 }

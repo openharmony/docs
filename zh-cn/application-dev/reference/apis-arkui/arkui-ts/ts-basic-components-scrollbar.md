@@ -1,6 +1,6 @@
 # ScrollBar
 
-滚动条组件ScrollBar，用于配合可滚动组件使用，如List、Grid、Scroll。
+滚动条组件ScrollBar，用于配合可滚动组件使用，如[ArcList](ts-container-arclist.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)、[WaterFlow](ts-container-waterflow.md)。
 
 >  **说明：**
 >
@@ -28,7 +28,7 @@ ScrollBar(value: ScrollBarOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### enableNestedScroll<sup>14+</sup>
 

@@ -12,8 +12,6 @@ A typical application of geofencing is to create a geofence around an enterprise
 
 Geo-fencing uses the following interfaces. For details, see [Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md).
 
-**Table 4** Geofencing APIs
-
 | API| Description| 
 | -------- | -------- |
 | [on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagerongnssfencestatuschange) | Registers a listener for status change events of the specified geofence.| 

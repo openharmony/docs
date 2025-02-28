@@ -71,7 +71,7 @@
     - [XComponentNode](js-apis-arkui-xcomponentNode.md)
 - ArkTS组件<!--arkui-declarative-comp-->
   - 组件通用信息<!--universal-component-information-->
-    - 通用事件<!--universal-events-->
+    - [通用事件](arkui-ts/ts-component-general-events.md)
       - [点击事件](arkui-ts/ts-universal-events-click.md)
       - [触摸事件](arkui-ts/ts-universal-events-touch.md)
       - [挂载卸载事件](arkui-ts/ts-universal-events-show-hide.md)
@@ -90,7 +90,7 @@
       - [自定义事件拦截](arkui-ts/ts-universal-attributes-on-touch-intercept.md)
       - [焦点轴事件](arkui-ts/ts-universal-events-focus_axis.md)
       - [轴事件](arkui-ts/ts-universal-events-axis.md)
-    - 通用属性<!--universal-attributes-->
+    - [通用属性](arkui-ts/ts-component-general-attributes.md)
       - [尺寸设置](arkui-ts/ts-universal-attributes-size.md)
       - [位置设置](arkui-ts/ts-universal-attributes-location.md)
       - [布局约束](arkui-ts/ts-universal-attributes-layout-constraints.md)
@@ -372,6 +372,7 @@
     - [AtomicServiceWeb](arkui-ts/ohos-atomicservice-AtomicServiceWeb.md)
     - [InterstitialDialogAction](arkui-ts/ohos-atomicservice-InterstitialDialogAction.md)
     - [FullScreenLaunchComponent](arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)
+    - [HalfScreenLaunchComponent](arkui-ts/ohos-atomicservice-HalfScreenLaunchComponent.md)
     <!--Del-->
     - [InnerFullScreenLaunchComponent (系统接口)](arkui-ts/ohos-arkui-advanced-InnerFullScreenLaunchComponent-sys.md)
     <!--DelEnd-->

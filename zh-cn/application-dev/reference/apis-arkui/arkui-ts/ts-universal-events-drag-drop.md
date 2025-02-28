@@ -114,13 +114,13 @@ onDrop(event: (event: DragEvent, extraParams?: string) => void)
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event    | (event: [DragEvent](#dragevent7), extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
-## onDrop<sup>16+</sup>
+## onDrop<sup>15+</sup>
 
 onDrop(eventCallback: OnDragEventCallback, dropOptions?: DropOptions)
 
 绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。如果开发者没有在onDrop中主动调用event.setResult()设置拖拽接收的结果，若拖拽组件为系统支持默认拖入的组件，以系统实际处理数据结果为准，其它组件则系统按照数据接收成功处理。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -233,10 +233,10 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | getWindowY()<sup>10+</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | getDisplayX()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的x轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | getDisplayY()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\|'Alt'\|'Shift'\|'Fn'，设备外接带Fn键的键盘不支持Fn键查询。 <br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
+| startDataLoading(options: [DataSyncOptions](#datasyncoptions15))<sup>15+</sup> | string | 异步获取拖拽数据，并通知开发者当前数据同步进度，仅支持在onDrop阶段使用。数据传输过程中可使用[cancelDataLoading](../js-apis-arkui-UIContext.md#canceldataloading15)接口取消。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | getX()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br>从API Version 10开始不再维护，建议使用getWindowX()代替。 |
 | getY()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br>从API Version 10开始不再维护，建议使用getWindowY()代替。 |
-| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\|'Alt'\|'Shift'\|'Fn'，设备外接带Fn键的键盘不支持Fn键查询。 <br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
-| startDataLoading(options: GetDataParams)<sup>16+</sup> | string | 异步获取拖拽数据，并通知开发者当前数据同步进度，仅支持在onDrop阶段使用。数据传输过程中可使用[cancelDataLoading](../js-apis-arkui-UIContext.md#canceldataloading16)接口取消。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 
 **错误码：**
@@ -248,6 +248,7 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | 401       | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 | 190001    | Data not found.|
 | 190002    | Data error. |
+| 190003    | Operation on allowed for current pharse. |
 
 ## DragResult<sup>10+</sup>枚举说明
 
@@ -292,6 +293,7 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | PREVIEW_LANDING_FINISHED | 5 | 拖拽落回动效结束阶段。(落回动效结束时触发) |
 | ACTION_CANCELED_BEFORE_DRAG | 6 | 拖拽浮起落位动效中断。(已满足READY_TO_TRIGGER_DRAG_ACTION状态后，未达到动效阶段，手指抬手时触发) |
 | PREPARING_FOR_DRAG_DETECTION<sup>16+</sup>  | 7 | 拖拽准备完成，可发起拖拽阶段。(按下350ms时触发) |
+
 ## executeDropAnimation<sup>16+</sup>
 
 设置一个自定义落位动效的执行函数，仅在useCustomDropAnimation为true时有效。
@@ -303,6 +305,20 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | 参数名     | 类型  | 描述             |
 | ------ | ------ | ---------------- |
 | customDropAnimation | Callback\<void\>  |  在独立的接口中实现自定义落位动效。<br/> **说明：** <br/>1. 该接口仅在 onDrop 回调中使用有效。<br/> 2. 使用前需设置 useCustomDropAnimation 为 true，否则该接口不生效。<br/> 3. 不要在动画callback中实现与动效无关的逻辑，避免影响执行效率。|
+
+## DataSyncOptions<sup>15+</sup>
+
+type DataSyncOptions = GetDataParams
+
+作为startDataLoading的入参对象
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| ----- | ----------------- |
+| [GetDataParams](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#getdataparams15) | 表示从UDMF获取数据时的参数，包含目标路径、文件冲突选项、进度条类型等。|
 
 ## 示例
 
@@ -571,13 +587,13 @@ struct DropAnimationExample {
         .draggable(true)
         .margin({ left: 15 })
         .border({ color: Color.Black, width: 1 })
-        .allowDrop([udmfType.UniformDataType.IMAGE])
+        .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
         .onDrop((dragEvent: DragEvent) => {
-          let records: Array<udmf.UnifiedRecord> = dragEvent.getData().getRecords();
+          let records: Array<unifiedDataChannel.UnifiedRecord> = dragEvent.getData().getRecords();
           let rect: Rectangle = dragEvent.getPreviewRect();
           this.imageWidth = Number(rect.width);
           this.imageHeight = Number(rect.height);
-          this.targetImage = (records[0] as udmf.Image).imageUri;
+          this.targetImage = (records[0] as unifiedDataChannel.Image).imageUri;
           dragEvent.useCustomDropAnimation = true;
           dragEvent.executeDropAnimation(this.customDropAnimation)
         })
@@ -590,3 +606,118 @@ struct DropAnimationExample {
 }
 ```
 ![executeDropAnimation](figures/executeDropAnimation.gif)
+
+### 示例3（拖拽异步获取数据）
+
+通过startDataLoading实现拖拽异步获取数据。
+
+```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+import { fileUri, fileIo as fs } from '@kit.CoreFileKit'
+import { common } from '@kit.AbilityKit'
+
+@Entry
+@Component
+struct ImageExample {
+  @State uri: string = "";
+  @State blockArr: string[] = [];
+  udKey: string = '';
+
+  build() {
+    Column() {
+      Text('Image拖拽')
+        .fontSize('30dp')
+      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+        Image($r('app.media.startIcon'))
+          .width(100)
+          .height(100)
+          .border({ width: 1 })
+          .draggable(true)
+          .onDragStart((event:DragEvent) => {
+            const context: Context = getContext(this);
+            let data = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id, 120);
+            const arrayBuffer: ArrayBuffer = data.buffer.slice(data.byteOffset, data.byteLength + data.byteOffset);
+            let filePath = context.filesDir + '/test.png';
+            let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+            fs.writeSync(file.fd, arrayBuffer);
+            //获取图片的uri
+            let uri = fileUri.getUriFromPath(filePath);
+            let image: unifiedDataChannel.Image = new unifiedDataChannel.Image();
+            image.imageUri = uri;
+            let dragData: unifiedDataChannel.UnifiedData = new unifiedDataChannel.UnifiedData(image);
+            (event as DragEvent).setData(dragData);
+          })
+      }
+      .margin({ bottom: 20 })
+      Row() {
+        Column(){
+          Text('可释放区域')
+            .fontSize('15dp')
+            .height('10%')
+          List(){
+            ForEach(this.blockArr, (item:string, index) => {
+              ListItem() {
+                Image(item)
+                  .width(100)
+                  .height(100)
+                  .border({width: 1})
+              }
+              .margin({ left: 30 , top : 30})
+            }, (item:string) => item)
+          }
+          .border({width: 1})
+          .height('90%')
+          .width('100%')
+          .onDrop((event?: DragEvent, extraParams?: string) => {
+            console.log("enter onDrop")
+            let context = getContext(this) as common.UIAbilityContext;
+            let pathDir: string = context.distributedFilesDir;
+            let destUri = fileUri.getUriFromPath(pathDir);
+            let progressListener: unifiedDataChannel.DataProgressListener = (progress: unifiedDataChannel.ProgressInfo, dragData: UnifiedData|null) => {
+              if(dragData != null) {
+                let arr:Array<unifiedDataChannel.UnifiedRecord> = dragData.getRecords();
+                if(arr.length > 0) {
+                  if (arr[0].getType() === uniformTypeDescriptor.UniformDataType.IMAGE) {
+                    let image = arr[0] as unifiedDataChannel.Image;
+                    this.uri = image.imageUri;
+                    this.blockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
+                  }
+                } else {
+                  console.log('dragData arr is null');
+                }
+              } else {
+                console.log('dragData is undefined');
+              }
+              console.log(`percentage: ${progress.progress}`);
+            };
+            let options: DataSyncOptions = {
+              destUri: destUri,
+              fileConflictOptions: unifiedDataChannel.FileConflictOptions.OVERWRITE,
+              progressIndicator: unifiedDataChannel.ProgressIndicator.DEFAULT,
+              dataProgressListener: progressListener,
+            }
+            try {
+              this.udKey = (event as DragEvent).startDataLoading(options);
+              console.log('udKey: ', this.udKey);
+            } catch(e) {
+              console.log(`startDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+            }
+          }, {disableDataPrefetch: true})
+        }
+        .height("50%")
+        .width("90%")
+        .border({ width: 1 })
+      }
+      Button('取消数据传输')
+        .onClick(() => {
+          try {
+            this.getUIContext().getDragController().cancelDataLoading(this.udKey);
+          } catch (e) {
+            console.log(`cancelDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+          }
+        })
+        .margin({top: 10})
+    }.width('100%')
+  }
+}
+```

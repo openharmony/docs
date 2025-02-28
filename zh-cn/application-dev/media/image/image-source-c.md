@@ -51,7 +51,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
           size_t nameSize = 1024;
           napi_get_value_string_utf8(env, argValue[NUM_0], name, 1024, &nameSize);
 
-          //创建ImageSource实例
+          //创建ImageSource实例。
           OH_ImageSourceNative *source = nullptr;
           Image_ErrorCode errCode = OH_ImageSourceNative_CreateFromUri(name, nameSize, &source);
           if (errCode != IMAGE_SUCCESS) {
@@ -59,7 +59,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
               return errCode;
           }
 
-          //创建定义图片信息的结构体对象，并获取图片信息
+          //创建定义图片信息的结构体对象，并获取图片信息。
           OH_ImageSource_Info *imageInfo;
           OH_ImageSourceInfo_Create(&imageInfo);
           errCode = OH_ImageSourceNative_GetImageInfo(source, 0, imageInfo);
@@ -68,7 +68,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
               return errCode;
           }
 
-          //获取指定属性键的值
+          //获取指定属性键的值。
           uint32_t width, height;
           OH_ImageSourceInfo_GetWidth(imageInfo, &width);
           OH_ImageSourceInfo_GetHeight(imageInfo, &height);
@@ -85,7 +85,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
               return errCode;
           }
 
-          //修改指定属性键的值
+          //修改指定属性键的值。
           Image_String setKey;
           const std::string ORIENTATION = "Orientation";
           setKey.data = (char *)ORIENTATION.c_str();
@@ -99,14 +99,14 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
               return errCode;
           }
 
-          //通过图片解码参数创建PixelMap对象
+          //通过图片解码参数创建PixelMap对象。
           OH_DecodingOptions *ops = nullptr;
           OH_DecodingOptions_Create(&ops);
           //设置为AUTO会根据图片资源格式解码，如果图片资源为HDR资源则会解码为HDR的pixelmap。
           OH_DecodingOptions_SetDesiredDynamicRange(ops, IMAGE_DYNAMIC_RANGE_AUTO);
           OH_PixelmapNative *resPixMap = nullptr;
 
-          //ops参数支持传入nullptr, 当不需要设置解码参数时，不用创建
+          //ops参数支持传入nullptr, 当不需要设置解码参数时，不用创建。
           errCode = OH_ImageSourceNative_CreatePixelmap(source, ops, &resPixMap);
           OH_DecodingOptions_Release(ops);
           if (errCode != IMAGE_SUCCESS) {
@@ -114,7 +114,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
               return errCode;
           }
 
-          //判断pixelmap是否为hdr内容
+          //判断pixelmap是否为hdr内容。
           OH_Pixelmap_ImageInfo *pixelmapImageInfo = nullptr;
           OH_PixelmapImageInfo_Create(&pixelmapImageInfo);
           OH_PixelmapNative_GetImageInfo(resPixMap, pixelmapImageInfo);
@@ -122,7 +122,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
           OH_PixelmapImageInfo_GetDynamicRange(pixelmapImageInfo, &pixelmapIsHdr);
           OH_PixelmapImageInfo_Release(pixelmapImageInfo);
 
-          //获取图像帧数
+          //获取图像帧数。
           uint32_t frameCnt = 0;
           errCode = OH_ImageSourceNative_GetFrameCount(source, &frameCnt);
           if (errCode != IMAGE_SUCCESS) {
@@ -130,7 +130,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
               return errCode;
           }
 
-          //通过图片解码参数创建Pixelmap列表
+          //通过图片解码参数创建Pixelmap列表。
           OH_DecodingOptions *opts = nullptr;
           OH_DecodingOptions_Create(&opts);
           OH_PixelmapNative **resVecPixMap = new OH_PixelmapNative*[frameCnt];
@@ -143,7 +143,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
               return errCode;
           }
 
-          //获取图像延迟时间列表
+          //获取图像延迟时间列表。
           int32_t *delayTimeList = new int32_t[frameCnt];
           size_t size = frameCnt;
           errCode = OH_ImageSourceNative_GetDelayTimeList(source, delayTimeList, size);
@@ -153,7 +153,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
               return errCode;
           }
 
-          //释放ImageSource实例
+          //释放ImageSource实例。
           OH_ImageSourceNative_Release(source);
           OH_LOG_INFO(LOG_APP, "ImageSourceNativeCTest sourceTest success.");
           return IMAGE_SUCCESS;

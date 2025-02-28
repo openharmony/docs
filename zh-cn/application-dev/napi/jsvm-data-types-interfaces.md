@@ -1,15 +1,12 @@
-# JSVM-API支持的数据类型和接口
+# JSVM-API 支持的数据类型和接口
 
-##JSVM -
-    API的数据类型
+## JSVM-API 的数据类型
 
-    ## #JSVM_Status
+### `JSVM_Status`
 
-    是一个枚举数据类型，表示JSVM -
-    API接口返回的状态信息。
+    是一个枚举数据类型，表示 JSVM-API 接口返回的状态信息。
 
-        每当调用一个JSVM -
-    API函数，都会返回该值，表示操作成功与否的相关信息。
+    每当调用一个 JSVM-API 函数，都会返回该值，表示操作成功与否的相关信息。
 
 ```c++
     typedef enum {
@@ -24,14 +21,14 @@
         JSVM_ARRAY_EXPECTED,                  /* 期待传入数组类型 */
         JSVM_GENERIC_FAILURE,                 /* 泛型失败状态 */
         JSVM_PENDING_EXCEPTION,               /* 挂起异常状态 */
-        JSVM_CENCELLED,                       /* 取消状态 */
+        JSVM_CANCELLED,                       /* 取消状态 */
         JSVM_ESCAPE_CALLED_TWICE,             /* 转义调用了2次 */
         JSVM_HANDLE_SCOPE_MISMATCH,           /* 句柄作用域不匹配 */
         JSVM_CALLBACK_SCOPE_MISMATCH,         /* 回调作用域不匹配 */
         JSVM_QUEUE_FULL,                      /* 队列满 */
         JSVM_CLOSING,                         /* 关闭中 */
         JSVM_BIGINT_EXPECTED,                 /* 期望传入Bigint类型 */
-        JSVM_DATA_EXPECTED,                   /* 期望传入日期类型 */
+        JSVM_DATE_EXPECTED,                   /* 期望传入日期类型 */
         JSVM_ARRAYBUFFER_EXPECTED,            /* 期望传入ArrayBuffer类型 */
         JSVM_DETACHABLE_ARRAYBUFFER_EXPECTED, /* 可分离的数组缓冲区预期状态 */
         JSVM_WOULD_DEADLOCK,                  /* 将死锁状态 */
@@ -97,7 +94,7 @@ typedef enum {
     JSVM_UINT8_ARRAY,
     JSVM_UINT8_CLAMPED_ARRAY,
     JSVM_INT16_ARRAY,
-    JAVM_UINT16_ARRAY,
+    JSVM_UINT16_ARRAY,
     JSVM_INT32_ARRAY,
     JSVM_UINT32_ARRAY,
     JSVM_FLOAT32_ARRAY,

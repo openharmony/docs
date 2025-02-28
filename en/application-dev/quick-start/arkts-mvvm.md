@@ -1,9 +1,9 @@
 # MVVM
 
-After understanding the concept of state management, you may be eager to develop your own applications. However, if you do not pay attention to the project structure during application development, the relationship between components becomes blurred as the project becomes larger and more state variables are designed. When you develop a new function, the costs of development and maintenance will increase exponentially. Therefore, this document describes the MVVM mode and the relationship between the UI development mode of ArkUI and the MVVM, and provides guidance for you to design your own project structures. In this way, product development and maintenance are easier during product iteration and upgrade.
+After understanding the basic concepts of state management, you may be eager to develop your own applications. However, if the project structure is not carefully planned at the early stage of application development, the relationship between components becomes blurred as the project grows and state variables increase. In this case, the development of any new function may cause a chain reaction and increase the maintenance cost. This topic describes the MVVM mode and the relationship between the UI development mode of ArkUI and MVVM, and provides guidance for you to design your own project structures to facilitate product development and maintenance during product iteration and upgrade.
 
 
-This topic covers most decorators of the state management V1. You are advised to read [State Management Overview](./arkts-state-management-overview.md) and topics related to decorators of V1 in advance.
+Most decorators are covered in this topic, therefore, you are advised to read [State Management Overview](./arkts-state-management-overview.md) and topics related to decorators of V1 to have a basic understanding of state management V1 before getting started.
 
 ## Introduction
 
@@ -13,7 +13,7 @@ During application development, UI updates need to be synchronized in real time 
 
 - Model: stores and manages application data and service logic without directly interacting with the UI. Generally, Model obtains data from back-end APIs and serves as the data basis of applications, which ensures data consistency and integrity.
 - View: displays data on the UI and interacts with users. No service logic is contained. It dynamically updates the UI by binding the data provided by the ViewModel.
-- ViewModel: manages UI state and interaction logic. As a bridge between Model and View, ViewModel monitors data changes in Model, notifies views to update the UI, processes user interaction events, and converts the events into data operations.
+- ViewModel: manages UI state and interaction logic. As a bridge between Model and View, a View usually corresponds to a ViewModel. The ViewModel listens for data changes in Model, notifies View to update the UI, processes user interaction events, and converts the events into data operations.
 
 The UI development mode of ArkUI belongs to the MVVM mode. By introducing the concept of MVVM, you may have basic understanding on how the state management work in MVVM. State management aims to drive data update and enable you to focus only on page design without paying attention to the UI re-render logic. In addition, ViewModel enables state variables to automatically maintain data. In this way, MVVM provides a more efficient way for you to develop applications.
 
@@ -550,7 +550,7 @@ The previous section describes how to organize code in non-MVVM mode. As the cod
     * shares ------ Stores common components.
     * service ------ Data services.
       * app.ts ------ Service entry.
-      * LoginViewMode ----- Login page
+      * LoginViewModel ----- Login page.
       * xxxModel ------ Other pages.
 
 ### Layered Design
@@ -581,7 +581,7 @@ The View layer is organized as required. You need to distinguish the following t
 >
 > A business component contains ViewModel data. Without ViewModel, the component cannot be executed.
 >
-> A shared component does not contain ViewModel data. The data required needs to be passed from external systems. A shared component contains a self-contained component that can work as long as external parameters (without service parameters) are met.
+> A shared component does not contain ViewModel data and requires external data. It contains a custom component that can work as long as external parameters (without service parameters) are met.
 
 ### Example
 
@@ -662,12 +662,10 @@ The code is as follows:
   }
   ```
 
-  
-
   * AllchooseComponent.ets
 
   ```typescript
-  @Component
+@Component
   export struct MultiChooseComponent {
     @Link isFinished: boolean;
   
@@ -687,11 +685,11 @@ The code is as follows:
     }
   }
   ```
-
+  
   * ThingsComponent
 
   ```typescript
-  @Component
+@Component
   export struct ThingsComponent {
     @Prop isFinished: boolean;
     @Prop things: string;
@@ -736,11 +734,11 @@ The code is as follows:
   }
   
   ```
-
-  ThingsViewModel.ets
+  
+* ThingsViewModel.ets
 
   ```typescript
-  @Observed
+@Observed
   export class TodoListData {
     planList: string[] = [
       '7:30 Get up'
@@ -753,7 +751,7 @@ The code is as follows:
     ];
   }
   ```
-
+  
   After the code is split in MVVM mode, the project structure and responsibilities of each module are clearer. If a new page needs to use the event component, you only need to import the corresponding component because the local data is fixed and the logic at the Model layer is not written. You can reconstruct your project structures based on the example.
 
   The following figure shows the effect.

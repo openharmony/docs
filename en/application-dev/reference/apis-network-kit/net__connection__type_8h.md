@@ -57,6 +57,7 @@ Declares the structs for the C APIs of the network connection module.
 | [NetConn_ConnectionProperties](_net_connection.md#netconn_connectionproperties) | Network connection information.| 
 | [NetConn_NetHandleList](_net_connection.md#netconn_nethandlelist) | Network list.| 
 | (\*[OH_NetConn_CustomDnsResolver](_net_connection.md#oh_netconn_customdnsresolver)) (const char \*host, const char \*serv, const struct addrinfo \*hint, struct addrinfo \*\*res) | Pointer to the custom DNS resolver.| 
+| [NetConn_ErrorCode](_net_connection.md#netconn_errorcode) | Network connection error code.|
 
 
 ### Enums
@@ -65,3 +66,4 @@ Declares the structs for the C APIs of the network connection module.
 | -------- | -------- |
 | [NetConn_NetCap](_net_connection.md#netconn_netcap) {<br>[NETCONN_NET_CAPABILITY_MMS](_net_connection.md) = 0,<br>[NETCONN_NET_CAPABILITY_NOT_METERED](_net_connection.md) = 11,<br>[NETCONN_NET_CAPABILITY_INTERNET](_net_connection.md) = 12,<br>[NETCONN_NET_CAPABILITY_NOT_VPN](_net_connection.md) = 15,<br>[NETCONN_NET_CAPABILITY_VALIDATED](_net_connection.md) = 16<br>} | Network capability set.| 
 | [NetConn_NetBearerType](_net_connection.md#netconn_netbearertype) {<br>[NETCONN_BEARER_CELLULAR](_net_connection.md#netconn_netbearertype-1) = 0,<br>[NETCONN_BEARER_WIFI](_net_connection.md#netconn_netbearertype-1) = 1,<br>[NETCONN_BEARER_ETHERNET](_net_connection.md#netconn_netbearertype-1) = 3<br>[NETCONN_BEARER_VPN](_net_connection.md#netconn_netbearertype-1) = 4<br>} | Network carrier type.|
+| [NetConn_ErrorCode](_net_connection.md#netconn_errorcode) {<br>[NETCONN_SUCCESS](_net_connection.md#netconn_errorcode-1) = 0,<br>[NETCONN_PERMISSION_DENIED](_net_connection.md#netconn_errorcode-1) = 201,<br>[NETCONN_PARAMETER_ERROR](_net_connection.md#netconn_errorcode-1) = 401,<br>[NETCONN_OPERATION_FAILED](_net_connection.md#netconn_errorcode-1) = 2100002,<br>[NETCONN_INTERNAL_ERROR](_net_connection.md#netconn_errorcode-1) = 2100003<br>} | Network connection error code.|

@@ -19,7 +19,7 @@ type BaseProfile = baseProfile.BaseProfile
 
 基础Profile接口定义。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
@@ -32,7 +32,7 @@ createA2dpSrcProfile(): A2dpSourceProfile
 
 创建a2dp profile实例。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **返回值：**
 
@@ -42,7 +42,7 @@ createA2dpSrcProfile(): A2dpSourceProfile
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -65,7 +65,7 @@ try {
 
 ## A2dpSourceProfile
 
-使用A2dpSourceProfile方法之前需要创建该类的实例进行操作，通过createA2dpSrcProfile()方法构造此实例。
+使用A2dpSourceProfile方法之前需要创建该类的实例进行操作，通过[createA2dpSrcProfile()](#a2dpcreatea2dpsrcprofile)方法构造此实例。
 
 
 ### getPlayingState
@@ -76,7 +76,7 @@ getPlayingState(deviceId: string): PlayingState
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -92,7 +92,7 @@ getPlayingState(deviceId: string): PlayingState
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -121,7 +121,7 @@ try {
 
 枚举，蓝牙A2DP 播放状态。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                | 值    | 说明      |
 | ----------------- | ------ | ------- |
@@ -133,28 +133,28 @@ try {
 
 编码器信息。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称        | 类型                    | 可读   | 可写   | 说明                                     |
 | ------------------- | ----------------------- | ---- | ---- | -------------------------------------- |
-| codecType<sup>11+</sup>           | [CodecType](#codectype11)      | 是    | 是    | 表示编码器类型，默认值为CODEC_TYPE_SBC。 |
-| codecBitsPerSample<sup>11+</sup>  | [CodecBitsPerSample](#codecbitspersample11)  | 是    | 是    | 表示每个采样点的位数，默认值为SCAN_MODE_LOW_POWER。 |
-| codecChannelMode<sup>11+</sup>    | [CodecChannelMode](#codecchannelmode11) | 是    | 是    | 表示编码器的声道模式，默认值为CODEC_CHANNEL_MODE_NONE。 |
-| codecSampleRate<sup>11+</sup>     | [CodecSampleRate](#codecsamplerate11) | 是    | 是    | 表示编码器的采样率，默认值为CODEC_BITS_PER_SAMPLE_NONE。 |
+| codecType           | [CodecType](#codectype11)      | 是    | 是    | 表示编码器类型，默认值为CODEC_TYPE_SBC。 |
+| codecBitsPerSample  | [CodecBitsPerSample](#codecbitspersample11)  | 是    | 是    | 表示每个采样点的位数，默认值为SCAN_MODE_LOW_POWER。 |
+| codecChannelMode    | [CodecChannelMode](#codecchannelmode11) | 是    | 是    | 表示编码器的声道模式，默认值为CODEC_CHANNEL_MODE_NONE。 |
+| codecSampleRate     | [CodecSampleRate](#codecsamplerate11) | 是    | 是    | 表示编码器的采样率，默认值为CODEC_BITS_PER_SAMPLE_NONE。 |
 
 
 ## CodecType<sup>11+</sup>
 
 枚举，蓝牙编码器类型。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                | 值    | 说明      |
 | ----------------- | ------ | ------- |
-| CODEC_TYPE_INVALID<sup>11+</sup> | -1 | 未知编码类型。  |
-| CODEC_TYPE_SBC<sup>11+</sup>     | 0 | SBC。 |
-| CODEC_TYPE_AAC<sup>11+</sup>     | 1 | AAC。 |
-| CODEC_TYPE_L2HC<sup>11+</sup>    | 2 | L2HC。|
+| CODEC_TYPE_INVALID | -1 | 未知编码类型。  |
+| CODEC_TYPE_SBC     | 0 | SBC。 |
+| CODEC_TYPE_AAC     | 1 | AAC。 |
+| CODEC_TYPE_L2HC    | 2 | L2HC。|
 | CODEC_TYPE_L2HCST<sup>13+</sup>  | 3 | L2HCST。 |
 | CODEC_TYPE_LDAC<sup>13+</sup>    | 4 | LDAC。|
 
@@ -163,41 +163,41 @@ try {
 
 枚举，蓝牙编码器的声道模式。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                | 值    | 说明      |
 | ----------------- | ------ | ------- |
-| CODEC_CHANNEL_MODE_NONE<sup>11+</sup>   | 0 | 未知声道。|
-| CODEC_CHANNEL_MODE_MONO<sup>11+</sup>   | 1 | 单声道。  |
-| CODEC_CHANNEL_MODE_STEREO<sup>11+</sup> | 2 | 双声道。  |
+| CODEC_CHANNEL_MODE_NONE   | 0 | 未知声道。|
+| CODEC_CHANNEL_MODE_MONO   | 1 | 单声道。  |
+| CODEC_CHANNEL_MODE_STEREO | 2 | 双声道。  |
 
 
 ## CodecBitsPerSample<sup>11+</sup>
 
 枚举，蓝牙编码器每个采样点的位数。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                | 值    | 说明      |
 | ----------------- | ------ | ------- |
-| CODEC_BITS_PER_SAMPLE_NONE<sup>11+</sup> | 0 | 未知采样点的位数。|
-| CODEC_BITS_PER_SAMPLE_16<sup>11+</sup>   | 1 | 16位采样点的位数。|
-| CODEC_BITS_PER_SAMPLE_24<sup>11+</sup>   | 2 | 24位采样点的位数。|
-| CODEC_BITS_PER_SAMPLE_32<sup>11+</sup>   | 3 | 32位采样点的位数。|
+| CODEC_BITS_PER_SAMPLE_NONE | 0 | 未知采样点的位数。|
+| CODEC_BITS_PER_SAMPLE_16   | 1 | 16位采样点的位数。|
+| CODEC_BITS_PER_SAMPLE_24   | 2 | 24位采样点的位数。|
+| CODEC_BITS_PER_SAMPLE_32   | 3 | 32位采样点的位数。|
 
 
 ## CodecSampleRate<sup>11+</sup>
 
 枚举，蓝牙编码器的采样率。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                | 值    | 说明      |
 | ----------------- | ------ | ------- |
-| CODEC_SAMPLE_RATE_NONE<sup>11+</sup>    | 0 | 未知采样率。|
-| CODEC_SAMPLE_RATE_44100<sup>11+</sup>   | 1 | 44.1k采样率。|
-| CODEC_SAMPLE_RATE_48000<sup>11+</sup>   | 2 | 48k采样率。|
-| CODEC_SAMPLE_RATE_88200<sup>11+</sup>   | 3 | 88.2k采样率。|
-| CODEC_SAMPLE_RATE_96000<sup>11+</sup>   | 4 | 96k位采样率。|
-| CODEC_SAMPLE_RATE_176400<sup>11+</sup>  | 5 | 176.4k位采样率。|
-| CODEC_SAMPLE_RATE_192000<sup>11+</sup>  | 6 | 192k位采样率。|
+| CODEC_SAMPLE_RATE_NONE    | 0 | 未知采样率。|
+| CODEC_SAMPLE_RATE_44100   | 1 | 44.1k采样率。|
+| CODEC_SAMPLE_RATE_48000   | 2 | 48k采样率。|
+| CODEC_SAMPLE_RATE_88200   | 3 | 88.2k采样率。|
+| CODEC_SAMPLE_RATE_96000   | 4 | 96k位采样率。|
+| CODEC_SAMPLE_RATE_176400  | 5 | 176.4k位采样率。|
+| CODEC_SAMPLE_RATE_192000  | 6 | 192k位采样率。|

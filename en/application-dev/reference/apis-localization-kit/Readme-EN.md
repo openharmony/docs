@@ -25,6 +25,7 @@
   - Structs
     - [RawFileDescriptor](_raw_file_descriptor.md)
     - [RawFileDescriptor64](_raw_file_descriptor64.md)
+    - [ResourceManager_Configuration](_resource_manager___configuration.md)
 - Error Codes
   - [I18N Error Codes](errorcode-i18n.md)
   - [Resource Manager Error Codes](errorcode-resource-manager.md)

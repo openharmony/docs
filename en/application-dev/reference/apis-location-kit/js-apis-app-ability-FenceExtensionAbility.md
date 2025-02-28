@@ -10,7 +10,7 @@ The **FenceExtensionAbility** class provides geofence-related capabilities. It i
 ## Modules to Import
 
 ```ts
-import FenceExtensionAbility from '@kit.LocationKit';
+import { FenceExtensionAbility } from '@kit.LocationKit';
 ```
 
 ## Attributes
@@ -19,7 +19,7 @@ import FenceExtensionAbility from '@kit.LocationKit';
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [FenceExtensionContext](js-apis-app-ability-FenceExtensionContext-sys.md) | Yes| No| Context of the Geofence service.|
+| context | [FenceExtensionContext](js-apis-app-ability-FenceExtensionContext.md) | Yes| No| Context of the Geofence service.|
 
 ## FenceExtensionAbility.onFenceStatusChange
 

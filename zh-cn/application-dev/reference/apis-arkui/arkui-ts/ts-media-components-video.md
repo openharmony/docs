@@ -64,7 +64,7 @@ Video(value: VideoOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### muted
 
@@ -183,7 +183,7 @@ analyzerConfig(config: ImageAnalyzerConfig)
 | -------- | -------- | -------- | -------- |
 | config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | 是 | 设置AI分析识别类型 |
 
-### enableShortcutKey<sup>16+</sup>
+### enableShortcutKey<sup>15+</sup>
 
 enableShortcutKey(enabled: boolean)
 
@@ -191,7 +191,7 @@ enableShortcutKey(enabled: boolean)
 
 目前支持在组件获焦后响应空格键播放/暂停、上下方向键调整视频音量、左右方向键快进/快退。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -201,7 +201,7 @@ enableShortcutKey(enabled: boolean)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onStart
 

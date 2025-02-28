@@ -51,7 +51,7 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
    ```ts
    mediaKeySystem.on('keySystemRequired', (eventInfo: drm.EventInfo) => {
      console.log('keySystemRequired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
-       // 设备DRM证书请求与处理
+       // 设备DRM证书请求与处理。
    });
    ```
 
@@ -76,7 +76,7 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
        console.info("The certificate already exists.");
    }
    // 将设备DRM证书请求返回的drmRequest.data通过网络请求发送给DRM证书服务获取设备DRM证书响应，并处理。
-   let provisionResponseByte = new Uint8Array([0x00, 0x00, 0x00, 0x00]); // 设备DRM证书响应
+   let provisionResponseByte = new Uint8Array([0x00, 0x00, 0x00, 0x00]); // 设备DRM证书响应。
    mediaKeySystem.processKeySystemResponse(provisionResponseByte).then(() => {
        console.info("processKeySystemResponse success");
    }).catch((err:BusinessError) =>{
@@ -101,7 +101,7 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
       ```ts
       mediaKeySession.on('keyRequired', (eventInfo: drm.EventInfo) => {
         console.log('keyRequired' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
-          // 媒体密钥请求与处理
+          // 媒体密钥请求与处理。
       });
       ```
 
@@ -147,18 +147,18 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
     获取到DRM节目中的DRM信息时，可以生成媒体密钥请求，处理媒体密钥响应，以请求许可证完成DRM节目授权。
 
     ```ts
-    // 根据DRM解决方案要求，基于DRM信息中的pssh生成initData
+    // 根据DRM解决方案要求，基于DRM信息中的pssh生成initData。
     let initData = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
-    // 根据DRM解决方案要求设置可选数据的值
+    // 根据DRM解决方案要求设置可选数据的值。
     let optionalData:drm.OptionsData[] = [{
         name: "optionalDataName",
         value: "optionalDataValue"
     }];
-    // 在线媒体密钥请求和响应
+    // 在线媒体密钥请求和响应。
     mediaKeySession.generateMediaKeyRequest("video/mp4", initData, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData).then(async (licenseRequest: drm.MediaKeyRequest) => {
        console.info("generateMediaKeyRequest success", licenseRequest.mediaKeyRequestType, licenseRequest.data, licenseRequest.defaultURL);
-       // 将媒体密钥请求返回的licenseRequest.data通过网络请求发送给DRM服务获取媒体密钥响应，并处理
-       let licenseResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]); // 媒体密钥响应
+       // 将媒体密钥请求返回的licenseRequest.data通过网络请求发送给DRM服务获取媒体密钥响应，并处理。
+       let licenseResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]); // 媒体密钥响应。
        mediaKeySession.processMediaKeyResponse(licenseResponse).then((mediaKeyId: Uint8Array) => {
          console.info("processMediaKeyResponse success");
        }).catch((err:BusinessError) =>{
@@ -167,12 +167,12 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
     }).catch((err:BusinessError) =>{
       console.info("generateMediaKeyRequest err end", err.code);
     });
-    // 离线媒体密钥请求和响应
+    // 离线媒体密钥请求和响应。
     let offlineMediaKeyId: Uint8Array;
     mediaKeySession.generateMediaKeyRequest("video/mp4", initData, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData).then((licenseRequest: drm.MediaKeyRequest) => {
        console.info("generateMediaKeyRequest success", licenseRequest.mediaKeyRequestType, licenseRequest.data, licenseRequest.defaultURL);
-       // 将媒体密钥请求返回的licenseRequest.data通过网络请求发送给DRM服务获取媒体密钥响应，并处理
-       let licenseResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]); // 媒体密钥响应
+       // 将媒体密钥请求返回的licenseRequest.data通过网络请求发送给DRM服务获取媒体密钥响应，并处理。
+       let licenseResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]); // 媒体密钥响应。
        mediaKeySession.processMediaKeyResponse(licenseResponse).then((mediaKeyId: Uint8Array) => {
          offlineMediaKeyId = new Uint8Array(mediaKeyId);
          console.info("processMediaKeyResponse success");
@@ -231,7 +231,7 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
     完成加密媒体解密，MediaKeySession实例不再使用时，销毁MediaKeySession实例。
 
     ```ts
-    // MediaKeySession实例使用完需要进行资源释放
+    // MediaKeySession实例使用完需要进行资源释放。
     mediaKeySession.destroy();
     ```
 
@@ -240,6 +240,6 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
     完成DRM功能使用，MediaKeySystem实例不再使用，销毁MediaKeySystem实例。
 
     ```ts
-    // MediaKeySystem实例使用完需要进行资源释放
+    // MediaKeySystem实例使用完需要进行资源释放。
     mediaKeySystem.destroy();
     ```

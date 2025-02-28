@@ -11,7 +11,7 @@
 1. 创建图像编码ImagePacker对象。
 
    ```ts
-   // 导入相关模块包
+   // 导入相关模块包。
    import { image } from '@kit.ImageKit';
    
    const imagePackerApi = image.createImagePacker();
