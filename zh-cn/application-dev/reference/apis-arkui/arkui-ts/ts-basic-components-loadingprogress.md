@@ -30,6 +30,10 @@ LoadingProgress()
 
 除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
+>  **说明：**
+>
+> 组件应设置合理的宽高，当组件宽高设置过大时加载动效可能不符合预期效果。
+
 ### color
 
 color(value: ResourceColor)
