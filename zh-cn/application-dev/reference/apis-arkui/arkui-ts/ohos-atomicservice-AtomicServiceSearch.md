@@ -259,34 +259,8 @@ type OnContentScrollCallback = (totalOffsetX: number, totalOffsetY: number) => v
 
 ## 示例
 
-### 示例1（基础默认AtomicServiceSearch）
-```ts
-import { AtomicServiceSearch } from '@kit.ArkUI';
+### 示例1（AtomicServiceSearch添加选择区）
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Column({ space: 6 }) {
-      Text('基础默认AtomicServiceSearch').alignSelf(ItemAlign.Start).decoration({
-        type: TextDecorationType.Underline,
-        color: Color.Black,
-        style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
-      
-      AtomicServiceSearch();
-    }.padding({ left: 16, right: 16 })
-  }
-
-  private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
-  }
-}
-```
-
-### 示例2（AtomicServiceSearch添加选择区）
 ```ts
 import { AtomicServiceSearch } from '@kit.ArkUI';
 
@@ -300,7 +274,7 @@ struct Index {
         color: Color.Black,
         style: TextDecorationStyle.SOLID
       }).margin({top:20, bottom: 20})
-      
+
       AtomicServiceSearch({
         select: {
           options: [
@@ -311,15 +285,15 @@ struct Index {
           ],
           selected: -1,
           selectValue: 'Select1',
-          onSelect: (index: number) => { // 自定义事件
+          onSelect: (index: number, selectValue: string) => { // 自定义事件
             if (index === 0) {
-              this.alert('Select1');
+              this.alert(`index: ${index}, selectValue: ${selectValue}`);
             } else if (index === 1) {
-              this.alert('Select2');
+              this.alert(`index: ${index}, selectValue: ${selectValue}`);
             } else if (index === 2) {
-              this.alert('Select3');
+              this.alert(`index: ${index}, selectValue: ${selectValue}`);
             } else if (index === 3) {
-              this.alert('Select4');
+              this.alert(`index: ${index}, selectValue: ${selectValue}`);
             }
           },
         }
@@ -335,8 +309,14 @@ struct Index {
 }
 ```
 
+![](figures/AtomicServiceSearchDemo01.jpg)
 
-### 示例3（AtomicServiceSearch添加功能位）
+
+
+
+
+### 示例2（AtomicServiceSearch添加功能位）
+
 ```ts
 import { AtomicServiceSearch } from '@kit.ArkUI';
 
@@ -380,7 +360,14 @@ struct Index {
 }
 ```
 
-### 示例4（AtomicServiceSearch添加选择区及功能位）
+
+
+![](figures/AtomicServiceSearchDemo02.jpg)
+
+
+
+### 示例3（AtomicServiceSearch添加选择区及功能位）
+
 ```ts
 import { AtomicServiceSearch } from '@kit.ArkUI';
 
@@ -405,15 +392,15 @@ struct Index {
           ],
           selected: -1,
           selectValue: 'Select1',
-          onSelect: (index: number) => {
+          onSelect: (index: number, selectValue:string) => {
             if (index === 0) {
-              this.alert('Select1');
+              this.alert(`index: ${index}, selectValue: ${selectValue}`);
             } else if (index === 1) {
-              this.alert('Select2');
+              this.alert(`index: ${index}, selectValue: ${selectValue}`);
             } else if (index === 2) {
-              this.alert('Select3');
+              this.alert(`index: ${index}, selectValue: ${selectValue}`);
             } else if (index === 3) {
-              this.alert('Select4');
+              this.alert(`index: ${index}, selectValue: ${selectValue}`);
             }
           },
         },
@@ -443,7 +430,13 @@ struct Index {
 }
 ```
 
-### 示例5（search回调事件, 自定义键盘避让）
+
+
+![](figures/AtomicServiceSearchDemo03.jpg)
+
+
+
+### 示例4（search回调事件）
 
 ```ts
 import { AtomicServiceSearch } from '@kit.ArkUI';
@@ -570,7 +563,13 @@ struct Index {
 }
 ```
 
-### 示例6（AtomicServiceSearch修改Select样式）
+![](figures/AtomicServiceSearchDemo04.jpg)
+
+
+
+
+
+### 示例5（AtomicServiceSearch修改样式）
 
 ```ts
 import { AtomicServiceSearch } from '@kit.ArkUI';
@@ -578,68 +577,106 @@ import { AtomicServiceSearch } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
+  @State private placeholder: string = 'Type to Search...';
+  @State private defaultValue: string = 'default';
+  @State private search?: SearchParams = {};
+  @State private select?: SelectParams = {
+    options: [
+      { value: 'Select1', icon: $r("app.media.sweep") },
+      { value: 'Select2', icon: $r("app.media.sweep") },
+      { value: 'Select3', icon: $r("app.media.sweep") },
+      { value: 'Select4', icon: $r("app.media.sweep") }
+    ],
+    selected: -1,
+    selectValue: 'Select1',
+    onSelect: (index: number) => {
+      if (index === 0) {
+        this.alert('Select1');
+      } else if (index === 1) {
+        this.alert('Select2');
+      } else if (index === 2) {
+        this.alert('Select3');
+      } else if (index === 3) {
+        this.alert('Select4');
+      }
+    }
+  };
+
   build() {
-    Column({ space: 6 }) {
-      Text('AtomicServiceSearch修改Select样式').alignSelf(ItemAlign.Start).decoration({
+    Column({ space: 8 }) {
+      Text('AtomicServiceSearch修改样式').alignSelf(ItemAlign.Start).decoration({
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
-        select: {
-          options: [
-            { value: 'Select1', icon: $r("app.media.sweep") },
-            { value: 'Select2', icon: $r("app.media.sweep") },
-            { value: 'Select3', icon: $r("app.media.sweep") },
-            { value: 'Select4', icon: $r("app.media.sweep") }
-          ],
-          selected: -1,
-          selectValue: 'Select1',
-          onSelect: (index: number) => {
-            if (index === 0) {
-              this.alert('Select1');
-            } else if (index === 1) {
-              this.alert('Select2');
-            } else if (index === 2) {
-              this.alert('Select3');
-            } else if (index === 3) {
-              this.alert('Select4');
+        value: this.defaultValue,
+        placeholder: this.placeholder,
+        select: this.select,
+        search: this.search,
+        operation: {
+          independentItem: {
+            value: $r(`app.media.dingding`),
+            action: () => {
+              this.alert('通知');
             }
-          },
-          font: {
-            size: 16,
-            weight: 700,
-          },
-          fontColor: Color.Red,
-          selectedOptionBgColor: Color.Blue,
-          selectedOptionFont: {
-            size: 8,
-            weight: 400,
-          },
-          optionFont: {
-            size: 16,
-            weight: 700,
-          },
-          optionBgColor: Color.Gray,
-          optionFontColor: Color.Green,
-          menuBackgroundColor: Color.Yellow,
-          optionWidth: 200,
-          optionHeight: 300,
-          space: 20,
-          arrowPosition: ArrowPosition.START,
-          menuAlign: {
-            alignType: MenuAlignType.CENTER,
-            offset: { dx: 100, dy: 100 }
-          },
-          divider: ({
-            strokeWidth: 1,
-            color: Color.Blue,
-            startMargin: 10,
-            endMargin: 10
-          })
+          }
         }
-      });
+      })
+      Button("修改placeholder")
+        .width('100%')
+        .type(ButtonType.Normal)
+        .borderRadius(20)
+        .onClick(() => {
+          if (this.placeholder === 'Search...') {
+            this.placeholder = 'Type to Search...';
+          } else {
+            this.placeholder = 'Search...';
+          }
+        });
+      Button("修改defaultValue")
+        .width('100%')
+        .type(ButtonType.Normal)
+        .borderRadius(20)
+        .onClick(() => {
+          if (this.defaultValue === 'value') {
+            this.defaultValue = 'defaultValue';
+          } else {
+            this.defaultValue = 'value';
+          }
+        });
+      Button("修改Select样式")
+        .width('100%')
+        .type(ButtonType.Normal)
+        .borderRadius(20)
+        .onClick(() => {
+          this.select = {
+            options: [
+              { value: '选项1', icon: $r("app.media.dingding") },
+              { value: '选项2', icon: $r("app.media.dingding") },
+            ],
+            selected: -1,
+            selectValue: '选项1',
+            onSelect: (index: number) => {
+              if (index === 0) {
+                this.alert('选项1');
+              } else if (index === 1) {
+                this.alert('选项2');
+              }
+            }
+          };
+        });
+
+      Button("修改Search样式")
+        .width('100%')
+        .type(ButtonType.Normal)
+        .borderRadius(20)
+        .onClick(() => {
+          this.search = {
+            componentBackgroundColor: '#e0eee8'
+          }
+        });
     }.padding({ left: 16, right: 16 })
   }
 
@@ -651,93 +688,17 @@ struct Index {
 }
 ```
 
-### 示例7（AtomicServiceSearch修改Search样式）
 
-```ts
-import { AtomicServiceSearch } from '@kit.ArkUI';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Column() {
-      Text('AtomicServiceSearch修改Search样式').alignSelf(ItemAlign.Start).decoration({
-        type: TextDecorationType.Underline,
-        color: Color.Black,
-        style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+![](figures/AtomicServiceSearchDemo05.jpg)
 
-      AtomicServiceSearch({
-        select: {
-          options: [
-            { value: '选项1', icon: $r("app.media.sweep") },
-            { value: '选项2', icon: $r("app.media.sweep") },
-            { value: '选项3', icon: $r("app.media.sweep") },
-            { value: '选项4', icon: $r("app.media.sweep") }
-          ],
-          selected: -1,
-          selectValue: '选项1',
-          onSelect: (index: number) => {
-            if (index === 0) {
-              this.alert('选项1');
-            } else if (index === 1) {
-              this.alert('选项2');
-            } else if (index === 2) {
-              this.alert('选项3');
-            } else if (index === 3) {
-              this.alert('选项4');
-            }
-          },
-          font: {
-            size: 12,
-            weight: 700,
-          },
-          optionFont: {
-            size: 12,
-          },
-          selectedOptionFont: {
-            size: 12
-          }
-        },
-        operation: {
-          auxiliaryItem: {
-            value: $r(`app.media.sweep`),
-            action: () => {
-              this.alert('扫一扫');
-            }
-          },
-          independentItem: {
-            value: $r(`app.media.dingding`),
-            action: () => {
-              this.alert('通知');
-            }
-          }
-        },
-        search: {
-          searchButton: {
-            searchButtonValue: 'SEARCH',
-            options: { fontSize: '12fp', fontColor: '#ff0e1216' }
-          },
-          textFont: {
-            size: 12,
-          },
-          placeholderFont: {
-            size: 12,
-          },
-        }
-      });
-    }.padding({ left: 16, right: 16 })
-  }
 
-  public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
-  }
-}
-```
 
-### 示例8（通过controller实现光标位置的设置）
+
+
+
+
+### 示例6（通过controller实现光标位置的设置）
 
 ```ts
 import { AtomicServiceSearch } from '@kit.ArkUI';
@@ -788,58 +749,15 @@ struct Index {
 }
 ```
 
-### 示例9（设置搜索和删除图标的效果）
+![](figures/AtomicServiceSearchDemo06.jpg)
 
-```ts
-import { AtomicServiceSearch } from '@kit.ArkUI';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Column() {
-      Text('设置搜索和删除图标的效果').alignSelf(ItemAlign.Start).decoration({
-        type: TextDecorationType.Underline,
-        color: Color.Black,
-        style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
 
-      AtomicServiceSearch(
-        {
-          search: {
-            searchButton: {
-              searchButtonValue: 'SEARCH',
-              options: { fontSize: '12fp', fontColor: '#ff774747' }
-            },
-            searchIcon: {
-              size: 15,
-              color: '#ff774747',
-              src: $r(`app.media.search`)
-            },
-            cancelIcon: {
-              size: 15,
-              color: '#ff774747',
-              src: $r(`app.media.close`)
-            },
-            placeholderColor: '#ff774747',
-            placeholderFont: { size: 14, weight: 400 },
-            textFont: { size: 14, weight: 400 },
-            componentBackgroundColor : '#F5F5F5'
-          }
-        },
-      );
-    }.padding({ left: 16, right: 16 })
-  }
 
-  public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
-  }
-}
-```
 
-### 示例10（设置输入法回车键类型）
+
+
+### 示例7（设置输入法回车键类型）
 
 ```ts
 import { AtomicServiceSearch } from '@kit.ArkUI';
@@ -880,70 +798,13 @@ struct Index {
 }
 ```
 
-### 示例11（设置文本样式）
+![](figures/AtomicServiceSearchDemo07.jpg)
 
-```ts
-import { AtomicServiceSearch } from '@kit.ArkUI';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Column() {
-      Text('设置文本样式').alignSelf(ItemAlign.Start).decoration({
-        type: TextDecorationType.Underline,
-        color: Color.Black,
-        style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
 
-      Text('letterSpacing').fontSize(9).fontColor(0xCCCCCC)
-      AtomicServiceSearch({
-        value: 'letterSpacing 0'
-      }).margin({bottom: 10})
-      AtomicServiceSearch({
-        value: 'letterSpacing 3',
-        search: {
-          letterSpacing: 3
-        }
-      }).margin({bottom: 10})
-      AtomicServiceSearch({
-        value: 'letterSpacing -1',
-        search: {
-          letterSpacing: -1
-        }
-      }).margin({bottom: 10})
 
-      Text('decoration').fontSize(9).fontColor(0xCCCCCC)
-      AtomicServiceSearch({
-        value: 'LineThrough, Red',
-        search: {
-          decoration: {type: TextDecorationType.LineThrough, color: Color.Red}
-        }
-      }).margin({bottom: 10})
-      AtomicServiceSearch({
-        value: 'Overline, Red, DOTTED',
-        search: {
-          decoration: {type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DOTTED}
-        }
-      }).margin({bottom: 10})
-      AtomicServiceSearch({
-        value: 'Underline, Red, WAVY',
-        search: {
-          decoration: {type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY}
-        }
-      }).margin({bottom: 10})
-    }.padding({ left: 16, right: 16 })
-  }
 
-  public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
-  }
-}
-```
-
-### 示例12（设置文字特性效果）
+### 示例8（设置文字特性效果）
 
 ```ts
 import { AtomicServiceSearch } from '@kit.ArkUI';
@@ -983,7 +844,11 @@ struct Index {
 }
 ```
 
-### 示例13（设置文本自适应）
+![](figures/AtomicServiceSearchDemo08.jpg)
+
+
+
+### 示例9（设置文本自适应）
 
 ```ts
 import { AtomicServiceSearch } from '@kit.ArkUI';
@@ -1021,7 +886,11 @@ struct Index {
 }
 ```
 
-### 示例14（文本扩展自定义菜单）
+![](figures/AtomicServiceSearchDemo09.jpg)
+
+
+
+### 示例10（文本扩展自定义菜单）
 
 ```ts
 import { AtomicServiceSearch } from '@kit.ArkUI';
@@ -1067,7 +936,7 @@ struct Index {
 
   build() {
     Column({ space : 10 }) {
-      Text('设置文本自适应').alignSelf(ItemAlign.Start).decoration({
+      Text('文本扩展自定义菜单').alignSelf(ItemAlign.Start).decoration({
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
@@ -1090,80 +959,15 @@ struct Index {
 }
 ```
 
-### 示例15（设置文本是否可复制）
 
-```ts
-import { AtomicServiceSearch } from '@kit.ArkUI';
 
-@Entry
-@Component
-struct Index {
-  @State copyValue: string = '';
-  @State cutValue: string = '';
+![](figures/AtomicServiceSearchDemo10.jpg)
 
-  build() {
-    Column() {
-      Column({ space: 10 }) {
-        Text('设置文本是否可复制').alignSelf(ItemAlign.Start).decoration({
-          type: TextDecorationType.Underline,
-          color: Color.Black,
-          style: TextDecorationStyle.SOLID
-        }).margin({top:20, bottom: 20})
 
-        AtomicServiceSearch({
-          value: 'Search CopyOption:None',
-          search: {
-            copyOptions: CopyOptions.None,
-            onCopy: (value:string) => {
-              this.copyValue = value;
-            },
-            onCut:(value: string) => {
-              this.cutValue = value;
-            }
-          },
-        })
 
-        AtomicServiceSearch({
-          value: 'Search CopyOption:InApp',
-          search: {
-            copyOptions: CopyOptions.InApp,
-            onCopy: (value:string) => {
-              this.copyValue = value;
-            },
-            onCut:(value: string) => {
-              this.cutValue = value;
-            }
-          },
-        })
 
-        AtomicServiceSearch({
-          value: 'Search CopyOption:LocalDevice',
-          search: {
-            copyOptions: CopyOptions.LocalDevice,
-            onCopy: (value:string) => {
-              this.copyValue = value;
-            },
-            onCut:(value: string) => {
-              this.cutValue = value;
-            }
-          },
-        })
 
-        Text("copy: " + this.copyValue).alignSelf(ItemAlign.Start)
-        Text("cut:" + this.cutValue).alignSelf(ItemAlign.Start)
-      }
-    }.padding({ left: 16, right: 16 })
-  }
-
-  public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
-  }
-}
-```
-
-### 示例16（设置文本水平对齐/光标样式/选中背景色）
+### 示例11（设置文本水平对齐/光标样式/选中背景色）
 
 ```ts
 import { AtomicServiceSearch } from '@kit.ArkUI';
@@ -1197,41 +1001,11 @@ struct Index {
   }
 }
 ```
+![](figures/AtomicServiceSearchDemo11.jpg)
 
-### 示例17（关闭系统文本选择菜单）
 
-```ts
-import { AtomicServiceSearch } from '@kit.ArkUI';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Column() {
-      Text('关闭系统文本选择菜单').alignSelf(ItemAlign.Start).decoration({
-        type: TextDecorationType.Underline,
-        color: Color.Black,
-        style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
-
-      AtomicServiceSearch({
-        value: '123456',
-        search: {
-          hideSelectionMenu: true
-        }
-      })
-    }.padding({ left: 16, right: 16 })
-  }
-
-  public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
-  }
-}
-```
-
-### 示例18（对输入的文本进行过滤）
+### 示例12（对输入的文本进行过滤）
 
 ```ts
 import { AtomicServiceSearch } from '@kit.ArkUI';
@@ -1272,3 +1046,4 @@ struct Index {
 }
 ```
 
+![](figures/AtomicServiceSearchDemo12.jpg)
