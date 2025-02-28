@@ -59,3 +59,21 @@ it is prohibited for non-input applications.
 **处理步骤**
 
 请使用输入法应用调用该接口。
+
+## 26500001 无效的windowId
+
+**错误信息**
+
+windowId is invalid.
+
+**错误描述**
+
+无效的窗口id。
+
+**可能原因**
+
+传入非当前应用的窗口id。
+
+**处理步骤**
+
+请检查并传入当前应用的窗口id，可通过windowClass.[getWindowProperties()](../apis-arkui/js-apis-window.md#getwindowproperties9)接口获取当前窗口属性，窗口属性中含有窗口id。

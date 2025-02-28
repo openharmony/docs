@@ -643,7 +643,7 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
   });
 });
 ```
-## CustomCursor<sup>14+</sup>
+## CustomCursor<sup>15+</sup>
 
 Pixel map resource.
 
@@ -654,7 +654,7 @@ Pixel map resource.
 | focusX  | number | No  | Yes  | Horizontal coordinate of the cursor focus. The coordinates are restricted by the size of the custom cursor. The default value is **0**.|
 | focusY  | number | No  | Yes  | Vertical coordinate of the cursor focus. The coordinates are restricted by the size of the custom cursor. The default value is **0**.|
 
-## CursorConfig<sup>14+</sup>
+## CursorConfig<sup>15+</sup>
 
 Defines the custom cursor configuration.
 
@@ -664,7 +664,7 @@ Defines the custom cursor configuration.
 | -------- | ------- | -------- | -------- | ------- |
 | followSystem  | boolean  | No  | No  | Whether to adjust the cursor size based on system settings. The value **false** indicates that the size of the custom cursor is used, and the value **true** indicates that the cursor size is adjusted based on the system settings.|
 
-## pointer.setCustomCursor<sup>14+</sup>
+## pointer.setCustomCursor<sup>15+</sup>
 
 setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): Promise&lt;void&gt;
 
@@ -678,8 +678,8 @@ The cursor may be switched back to the system style in the following cases: appl
 | Name   | Type   | Mandatory   | Description   |
 | -------- | -------- | -------- | -------- |
 | windowId  | number  | Yes   | Window ID.                         |
-| cursor  | [CustomCursor](js-apis-pointer.md#customcursor14) | Yes   | Pixel map resource.|
-| config  | [CursorConfig](js-apis-pointer.md#cursorconfig14) | Yes   | Defines the custom cursor configuration.|
+| cursor  | [CustomCursor](js-apis-pointer.md#customcursor15) | Yes   | Pixel map resource.|
+| config  | [CursorConfig](js-apis-pointer.md#cursorconfig15) | Yes   | Defines the custom cursor configuration.|
 
 **Return value**
 

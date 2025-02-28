@@ -74,7 +74,7 @@ setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -645,18 +645,18 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
   });
 });
 ```
-## CustomCursor<sup>14+</sup>
+## CustomCursor<sup>15+</sup>
 
 自定义光标资源。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 | 名称     | 类型     | 可读     | 可写     | 说明     |
 | -------- | ------- | -------- | -------- | ------- |
-| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否   | 否   | 自定义光标。最大限制为256 x 256像素。 |
-| focusX  | number | 否   | 是   | 自定义光标焦点的水平坐标。该坐标受自定义光标大小的限制。默认为0。 |
-| focusY  | number | 否   | 是   | 自定义光标焦点的垂直坐标。该坐标受自定义光标大小的限制。默认为0。 |
+| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否   | 否   | 自定义光标。最小限制为资源图本身的最小限制。最大限制为256 x 256px。 |
+| focusX  | number | 否   | 是   | 自定义光标焦点的水平坐标。该坐标受自定义光标大小的限制。最小值为0，最大值为资源图的宽度最大值，该参数缺省时默认为0。 |
+| focusY  | number | 否   | 是   | 自定义光标焦点的垂直坐标。该坐标受自定义光标大小的限制。最小值为0，最大值为资源图的高度最大值，该参数缺省时默认为0。 |
 
-## CursorConfig<sup>14+</sup>
+## CursorConfig<sup>15+</sup>
 
 自定义光标配置。
 
@@ -664,9 +664,9 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
 
 | 名称     | 类型     | 可读     | 可写     | 说明     |
 | -------- | ------- | -------- | -------- | ------- |
-| followSystem  | boolean  | 否   | 否   | 是否根据系统设置调整光标大小。false表示使用自定义光标样式大小，true表示根据系统设置调整光标大小。 |
+| followSystem  | boolean  | 否   | 否   | 是否根据系统设置调整光标大小。false表示使用自定义光标样式大小，true表示根据系统设置调整光标大小，可调整范围为：[光标资源图大小，256×256]。 |
 
-## pointer.setCustomCursor<sup>14+</sup>
+## pointer.setCustomCursor<sup>15+</sup>
 
 setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): Promise&lt;void&gt;
 
@@ -680,22 +680,23 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 | 参数名    | 类型    | 必填    | 说明    |
 | -------- | -------- | -------- | -------- |
 | windowId  | number  | 是    | 窗口id。                          |
-| cursor  | [CustomCursor](js-apis-pointer.md#customcursor14) | 是    | 自定义光标资源。 |
-| config  | [CursorConfig](js-apis-pointer.md#cursorconfig14) | 是    | 自定义光标配置。 |
+| cursor  | [CustomCursor](js-apis-pointer.md#customcursor15) | 是    | 自定义光标资源。 |
+| config  | [CursorConfig](js-apis-pointer.md#cursorconfig15) | 是    | 自定义光标配置，用于配置是否根据系统设置调整光标大小。如果CursorConfig中followSystem设置为true，则光标大小的可调整范围为：[光标资源图大小，256×256]。 |
 
 **返回值**：
 
 | 参数                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | 通过Promise返回结果。0为设置成功，其他值为设置失败。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[输入设备错误码](./errorcode-inputdevice.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 401  | 401 - Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
+| 401  | Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
+| 26500001 | Invalid windowID. |
 
 **示例**：
 
