@@ -1,4 +1,4 @@
-# USB服务<!--usb-->
+# USB服务
 
 <!--Del-->
 - [USB服务简介](usb-overview.md)
@@ -12,6 +12,9 @@
     - [USB中断传输](usbManager/usbHost/interruptTransfer.md)
     - [USB批量传输](usbManager/usbHost/bulkTransfer.md)
     - [USB同步传输](usbManager/usbHost/isochronousTransfer.md)
+- 开发USB串口通信服务<!--usb-serial-dev-->
+  - [USB串口通信服务开发概述](usbSerial/usbSerial-overview.md)
+  - [USB串口配置管理](usbSerial/usbSerial-configuration.md)
+  - [USB串口通信管理](usbSerial/usbSerial-communication.md)
 - [常见问题](faqs-usb.md)
 - [术语](usb-glossary.md)
-
