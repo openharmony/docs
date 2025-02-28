@@ -17,7 +17,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| enum [IntellVoiceTriggerModelType](_intelligent_voice_trigger.md#intellvoicetriggermodeltype)[type](#type) | 智能语音触发器模型类型  | 
+| enum [IntellVoiceTriggerModelType](_intelligent_voice_trigger.md#intellvoicetriggermodeltype) [type](#type) | 智能语音触发器模型类型  | 
 | unsigned int [uid](#uid) | 智能语音触发器模型标识  | 
 | Ashmem [data](#data) | 智能语音触发器模型内容  | 
 
