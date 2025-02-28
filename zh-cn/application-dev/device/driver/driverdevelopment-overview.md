@@ -57,7 +57,7 @@ HDF扩展驱动框架为扩展外设驱动开发，提供稳定统一的外设�
 
 ## 约束与限制
 
-调用Driver Development Kit提供的ArkTs-API或者C-API，开发者需要申请指定权限，才能使用相关接口；
+调用Driver Development Kit提供的ArkTs-API或者C-API，开发者需要申请指定权限，才能使用相关接口。
 
 所需权限如下：
 
