@@ -55,7 +55,7 @@ The asset already exists.
 
 **错误信息**
 
-Access to the asset is denied.
+Access denied.
 
 **可能原因**
 

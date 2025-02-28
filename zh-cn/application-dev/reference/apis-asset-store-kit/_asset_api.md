@@ -61,7 +61,22 @@ int32_t OH_Asset_Add (const Asset_Attr * attributes, uint32_t attrCnt )
 **返回：**
 
 如果操作成功，则返回[ASSET_SUCCESS](_asset_type.md#asset_resultcode)；否则返回错误码。
-
+0 - 表示操作成功。
+201 - 表示调用者没有权限。
+401 - 表示参数错误。
+24000001 - 表示关键资产服务不可用。
+24000003 - 表示关键资产已存在。
+24000005 - 表示锁屏状态不匹配。
+24000006 - 表示系统内存不足。
+24000007 - 表示关键资产损坏。
+24000008 - 表示数据库操作失败。
+24000009 - 表示算法库操作失败。
+24000010 - 表示进程通信错误。
+24000011 - 表示包管理服务异常。
+24000012 - 表示账号系统异常。
+24000013 - 表示访问控制服务异常。
+24000014 - 表示文件操作失败。
+24000015 - 表示获取系统时间失败。
 
 ### OH_Asset_FreeBlob()
 
@@ -111,8 +126,8 @@ Asset_Attr* OH_Asset_ParseAttr (const Asset_Result * result, Asset_Tag tag )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| result | 从OH_Asset_Query中获取的查询结果。  |
-| tag | 待获取的属性标签。  |
+| const Asset_Result * result | 从OH_Asset_Query中获取的查询结果。  |
+| Asset_Tag tag | 待获取的属性标签。  |
 
 **返回：**
 
@@ -133,13 +148,20 @@ int32_t OH_Asset_PostQuery (const Asset_Attr * handle, uint32_t handleCnt )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| handle | 待处理的查询句柄，当前包含OH_Asset_PreQuery执行成功返回的挑战值。  |
-| handleCnt | 句柄属性集合中元素的个数。  |
+| const Asset_Attr * handle | 待处理的查询句柄，当前包含OH_Asset_PreQuery执行成功返回的挑战值。  |
+| uint32_t handleCnt | 句柄属性集合中元素的个数。  |
 
 **返回：**
 
 如果操作成功，则返回[ASSET_SUCCESS](_asset_type.md#asset_resultcode)；否则返回错误码。
-
+0 - 表示操作成功。
+401 - 表示参数错误。
+24000001 - 表示关键资产服务不可用。
+24000006 - 表示系统内存不足。
+24000010 - 表示进程通信错误。
+24000011 - 表示包管理服务异常。
+24000012 - 表示账号系统异常。
+24000013 - 表示访问控制服务异常。
 
 ### OH_Asset_PreQuery()
 
@@ -155,14 +177,28 @@ int32_t OH_Asset_PreQuery (const Asset_Attr * query, uint32_t queryCnt, Asset_Bl
 
 | 名称 | 描述 |
 | -------- | -------- |
-| query | 关键资产的查询条件。  |
-| queryCnt | 关键资产查询条件的个数。  |
-| challenge | 挑战值，在后续调用OH_Asset_Query时使用。  |
+| const Asset_Attr * query | 关键资产的查询条件。  |
+| uint32_t queryCnt | 关键资产查询条件的个数。  |
+| Asset_Blob * challenge | 挑战值，在后续调用OH_Asset_Query时使用。  |
 
 **返回：**
 
 如果操作成功，则返回[ASSET_SUCCESS](_asset_type.md#asset_resultcode)；否则返回错误码。
-
+0 - 表示操作成功。
+401 - 表示参数错误。
+24000001 - 表示关键资产服务不可用。
+24000002 - 表示未找到关键资产。
+24000005 - 表示锁屏状态不匹配。
+24000006 - 表示系统内存不足。
+24000007 - 表示关键资产损坏。
+24000008 - 表示数据库操作失败。
+24000009 - 表示算法库操作失败。
+24000010 - 表示进程通信错误。
+24000011 - 表示包管理服务异常。
+24000012 - 表示账号系统异常。
+24000013 - 表示访问控制服务异常。
+24000016 - 表示缓存数量超限。
+24000017 - 表示该子功能不支持。
 
 ### OH_Asset_Query()
 
@@ -178,13 +214,28 @@ int32_t OH_Asset_Query (const Asset_Attr * query, uint32_t queryCnt, Asset_Resul
 
 | 名称 | 描述 |
 | -------- | -------- |
-| query | 关键资产的查询条件。  |
-| queryCnt | 关键资产查询条件的个数。  |
-| resultSet | 查询结果列表。  |
+| const Asset_Attr * query | 关键资产的查询条件。  |
+| uint32_t queryCnt | 关键资产查询条件的个数。  |
+| Asset_ResultSet * resultSet | 查询结果列表。  |
 
 **返回：**
 
 如果操作成功，则返回[ASSET_SUCCESS](_asset_type.md#asset_resultcode)；否则返回错误码。
+0 - 表示操作成功。
+401 - 表示参数错误。
+24000001 - 表示关键资产服务不可用。
+24000002 - 表示未找到关键资产。
+24000004 - 表示拒绝访问关键资产。
+24000005 - 表示锁屏状态不匹配。
+24000006 - 表示系统内存不足。
+24000007 - 表示关键资产损坏。
+24000008 - 表示数据库操作失败。
+24000009 - 表示算法库操作失败。
+24000010 - 表示进程通信错误。
+24000011 - 表示包管理服务异常。
+24000012 - 表示账号系统异常。
+24000013 - 表示访问控制服务异常。
+24000017 - 表示该子功能不支持。
 
 ### OH_Asset_Remove()
 
@@ -200,13 +251,24 @@ int32_t OH_Asset_Remove (const Asset_Attr * query, uint32_t queryCnt )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| query | 待删除关键资产的搜索条件。  |
-| queryCnt | 待删除关键资产搜索条件的个数。  |
+| const Asset_Attr * query | 待删除关键资产的搜索条件。  |
+| uint32_t queryCnt | 待删除关键资产搜索条件的个数。  |
 
 **返回：**
 
 如果操作成功，则返回[ASSET_SUCCESS](_asset_type.md#asset_resultcode)；否则返回错误码。
-
+0 - 表示操作成功。
+401 - 表示参数错误。
+24000001 - 表示关键资产服务不可用。
+24000002 - 表示未找到关键资产。
+24000006 - 表示系统内存不足。
+24000007 - 表示关键资产损坏。
+24000008 - 表示数据库操作失败。
+24000010 - 表示进程通信错误。
+24000011 - 表示包管理服务异常。
+24000012 - 表示账号系统异常。
+24000013 - 表示访问控制服务异常。
+24000015 - 表示获取系统时间失败。
 
 ### OH_Asset_Update()
 
@@ -222,11 +284,25 @@ int32_t OH_Asset_Update (const Asset_Attr * query, uint32_t queryCnt, const Asse
 
 | 名称 | 描述 |
 | -------- | -------- |
-| query | 待更新关键资产的搜索条件。  |
-| queryCnt | 待更新关键资产搜索条件的个数。  |
-| attributesToUpdate | 待更新关键资产的属性集合。  |
-| updateCnt | 待更新关键资产的属性数量。  |
+| const Asset_Attr * query | 待更新关键资产的搜索条件。  |
+| uint32_t queryCnt | 待更新关键资产搜索条件的个数。  |
+| const Asset_Attr * attributesToUpdate | 待更新关键资产的属性集合。  |
+| uint32_t updateCnt | 待更新关键资产的属性数量。  |
 
 **返回：**
 
 如果操作成功，则返回[ASSET_SUCCESS](_asset_type.md#asset_resultcode)；否则返回错误码。
+0 - 表示操作成功。
+401 - 表示参数错误。
+24000001 - 表示关键资产服务不可用。
+24000002 - 表示未找到关键资产。
+24000005 - 表示锁屏状态不匹配。
+24000006 - 表示系统内存不足。
+24000007 - 表示关键资产损坏。
+24000008 - 表示数据库操作失败。
+24000009 - 表示算法库操作失败。
+24000010 - 表示进程通信错误。
+24000011 - 表示包管理服务异常。
+24000012 - 表示账号系统异常。
+24000013 - 表示访问控制服务异常。
+24000015 - 表示获取系统时间失败。
