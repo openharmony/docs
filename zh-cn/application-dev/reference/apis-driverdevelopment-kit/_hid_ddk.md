@@ -484,7 +484,8 @@ enum Hid_KeyCode
 | HID_KEY_NUMPAD_SUBTRACT | 数字键- | 
 | HID_KEY_NUMPAD_ADD | 数字键+ | 
 | HID_KEY_NUMPAD_DOT | 数字键. | 
-| HID_KEY_SYSRQ | 键ESC | 
+| HID_KEY_SYSRQ | 键打印屏幕 |
+| HID_KEY_DELETE | 键删除 |
 | HID_KEY_MUTE | 键静音 | 
 | HID_KEY_VOLUME_DOWN | 键音量- | 
 | HID_KEY_VOLUME_UP | 键音量+ | 
