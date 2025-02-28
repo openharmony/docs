@@ -141,7 +141,7 @@ AtomicServiceSearch中“功能区”的初始化参数。
 | 名称          | 类型        | 必填  | 说明                          |
 | ------------- | --------------- | ---------------------------- | ---- |
 | auxiliaryItem | [OperationOption ](ohos-arkui-advanced-SubHeader.md#operationoption)| 否 | 附属于搜索区（右侧）的功能位。默认值为`undefined`。 |
-| auxiliaryItem | [OperationOption ](ohos-arkui-advanced-SubHeader.md#operationoption)| 否 | 独立于搜索区（右侧）的功能位。默认值为`undefined`。 |
+| independentItem | [OperationOption ](ohos-arkui-advanced-SubHeader.md#operationoption)| 否 | 独立于搜索区（右侧）的功能位。默认值为`undefined`。 |
 
 
 ## InputFilterParams
