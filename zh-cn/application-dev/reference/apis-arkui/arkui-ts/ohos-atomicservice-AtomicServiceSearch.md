@@ -87,6 +87,7 @@ AtomicServiceSearch中“搜索区”的可选属性。
 
 | 名称                     | 类型            | 必填                                   | 说明                                                         |
 | ------------------------ | ---------------------------------------------- | ------------------------------------------------------------ | ---- |
+| searchKey | [ResourceColor](ts-types.md#resourcecolor) | 否 | 用作找到一个唯一的search组件。默认值：`undefined`。   |
 | componentBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置组件的背景色。默认值：`$r('sys.color.ohos_id_color_text_field_sub_bg')`。   |
 | pressedBackgroundColor   | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置组件按压态的背景色。默认值：`$r('sys.color.ohos_id_color_click_effect')`。 |
 | searchButton             | [SearchButtonParams](#searchbuttonparams) | 否 | 设置搜索框末尾搜索按钮。点击搜索按钮，同时触发onSubmit与onClick回调。<br />-value：搜索框末尾搜索按钮文本内容。<br /> -option: 配置搜索框文本样式。默认值：`{fontSize: '16fp', fontColor: '#ff3f97e9'}`。 |
@@ -309,9 +310,7 @@ struct Index {
 }
 ```
 
-![](figures/AtomicServiceSearchDemo01.jpg)
-
-
+![](figures/AtomicServiceSearchDemo01.gif)
 
 
 
@@ -360,9 +359,7 @@ struct Index {
 }
 ```
 
-
-
-![](figures/AtomicServiceSearchDemo02.jpg)
+![](figures/AtomicServiceSearchDemo02.gif)
 
 
 
@@ -430,9 +427,7 @@ struct Index {
 }
 ```
 
-
-
-![](figures/AtomicServiceSearchDemo03.jpg)
+![](figures/AtomicServiceSearchDemo03.gif)
 
 
 
@@ -563,10 +558,7 @@ struct Index {
 }
 ```
 
-![](figures/AtomicServiceSearchDemo04.jpg)
-
-
-
+![](figures/AtomicServiceSearchDemo04.gif)
 
 
 ### 示例5（AtomicServiceSearch修改样式）
@@ -688,12 +680,7 @@ struct Index {
 }
 ```
 
-
-
-![](figures/AtomicServiceSearchDemo05.jpg)
-
-
-
+![](figures/AtomicServiceSearchDemo05.gif)
 
 
 
@@ -749,10 +736,7 @@ struct Index {
 }
 ```
 
-![](figures/AtomicServiceSearchDemo06.jpg)
-
-
-
+![](figures/AtomicServiceSearchDemo06.gif)
 
 
 
@@ -798,9 +782,7 @@ struct Index {
 }
 ```
 
-![](figures/AtomicServiceSearchDemo07.jpg)
-
-
+![](figures/AtomicServiceSearchDemo07.gif)
 
 
 
@@ -844,7 +826,7 @@ struct Index {
 }
 ```
 
-![](figures/AtomicServiceSearchDemo08.jpg)
+![](figures/AtomicServiceSearchDemo08.png)
 
 
 
@@ -886,7 +868,7 @@ struct Index {
 }
 ```
 
-![](figures/AtomicServiceSearchDemo09.jpg)
+![](figures/AtomicServiceSearchDemo09.png)
 
 
 
@@ -959,9 +941,7 @@ struct Index {
 }
 ```
 
-
-
-![](figures/AtomicServiceSearchDemo10.jpg)
+![](figures/AtomicServiceSearchDemo10.gif)
 
 
 
@@ -1001,7 +981,8 @@ struct Index {
   }
 }
 ```
-![](figures/AtomicServiceSearchDemo11.jpg)
+
+![](figures/AtomicServiceSearchDemo11.gif)
 
 
 
@@ -1046,4 +1027,4 @@ struct Index {
 }
 ```
 
-![](figures/AtomicServiceSearchDemo12.jpg)
+![](figures/AtomicServiceSearchDemo12.gif)
