@@ -30,13 +30,13 @@ onHover(event: (isHover: boolean, event: HoverEvent) => void): T
 | -------- | -------- |
 | T | 返回当前组件。 |
 
-## onHoverMove<sup>16+</sup>
+## onHoverMove<sup>15+</sup>
 
 onHoverMove(event: Callback&lt;HoverEvent&gt;): T
 
 手写笔悬浮于组件上方时触发悬浮移动事件。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -60,12 +60,12 @@ onHoverMove(event: Callback&lt;HoverEvent&gt;): T
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | --------------- | ---------- | ----- | ----- | -------------------- |
-| x<sup>16+</sup> |number|否|是|手写笔位置相对于当前组件左上角的x轴坐标。<br> **原子化服务API：**  从API version 16开始，该接口支持在原子化服务中使用。|
-| y<sup>16+</sup> |number|否|是|手写笔位置相对于当前组件左上角的y轴坐标。<br> **原子化服务API：**  从API version 16开始，该接口支持在原子化服务中使用。|
-| windowX<sup>16+</sup> |number|否|是|手写笔位置相对于应用窗口左上角的x轴坐标。<br> **原子化服务API：**  从API version 16开始，该接口支持在原子化服务中使用。|
-| windowY<sup>16+</sup> |number|否|是|手写笔位置相对于应用窗口左上角的y轴坐标。<br> **原子化服务API：**  从API version 16开始，该接口支持在原子化服务中使用。|
-| displayX<sup>16+</sup> |number|否|是|手写笔位置相对于应用屏幕左上角的x轴坐标。<br> **原子化服务API：**  从API version 16开始，该接口支持在原子化服务中使用。|
-| displayY<sup>16+</sup> |number|否|是|手写笔位置相对于应用屏幕左上角的y轴坐标。<br> **原子化服务API：**  从API version 16开始，该接口支持在原子化服务中使用。|
+| x<sup>15+</sup> |number|否|是|手写笔位置相对于当前组件左上角的x轴坐标。<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
+| y<sup>15+</sup> |number|否|是|手写笔位置相对于当前组件左上角的y轴坐标。<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
+| windowX<sup>15+</sup> |number|否|是|手写笔位置相对于应用窗口左上角的x轴坐标。<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
+| windowY<sup>15+</sup> |number|否|是|手写笔位置相对于应用窗口左上角的y轴坐标。<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
+| displayX<sup>15+</sup> |number|否|是|手写笔位置相对于应用屏幕左上角的x轴坐标。<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
+| displayY<sup>15+</sup> |number|否|是|手写笔位置相对于应用屏幕左上角的y轴坐标。<br> **原子化服务API：**  从API version 15开始，该接口支持在原子化服务中使用。|
 | stopPropagation | () => void |否|否| 阻塞事件冒泡。 <br> **原子化服务API：**  从API version 10开始，该接口支持在原子化服务中使用。|
 
 ## 示例
