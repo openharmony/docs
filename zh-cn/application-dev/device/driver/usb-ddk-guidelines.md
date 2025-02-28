@@ -4,6 +4,8 @@
 
 USB DDK（USB Driver Develop Kit）是为开发者提供的USB驱动程序开发套件，支持开发者基于用户态，在应用层开发USB设备驱动。提供了一系列主机侧访问设备的接口，包括主机侧打开和关闭接口、管道同步异步读写通信、控制传输、中断传输等。
 
+凡是采用USB总线，通过USB协议传输数据的设备都可以使用USB DDK开发设备驱动。特别是内核标准驱动不支持的扩展外设，可以通过USB DDK开发的扩展外设驱动应用实现其独特的设备能力。
+
 ### 基本概念
 
 在进行USB DDK开发前，开发者应了解以下基本概念：
@@ -28,13 +30,13 @@ USB DDK（USB Driver Develop Kit）是为开发者提供的USB驱动程序开发
 
 * USB DDK开放API支持USB接口非标外设扩展驱动开发场景。
 
-* USB DDK开放API使用范围内仅允许DriverExtensionAbilit生命周期内使用。
+* USB DDK开放API仅允许DriverExtensionAbilit生命周期内使用。
 
 * 使用USB DDK开放API需要在module.json5中声明匹配的ACL权限，例如ohos.permission.ACCESS_DDK_USB。
 
 ## 环境搭建
 
-请参考[环境准备](environmental-preparation.md)
+请参考[环境准备](environmental-preparation.md)完成开发前的准备工作。
 
 ## 开发指导
 
