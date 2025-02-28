@@ -299,6 +299,9 @@
         <!--DelEnd-->
         - 多对多跨应用数据共享<!--many-to-many-data-share-->
           - [通过标准化数据通路实现数据共享](database/unified-data-channels.md)
+      - 智慧化数据构建与检索<!--intelligence-data-->
+        - [智慧化数据构建与检索概述](database/aip-data-intelligence-overview.md)
+        - [应用数据向量化](database/aip-data-intelligence-embedding.md)
       - [RelationalStore开发指导 (C/C++)](database/native-relational-store-guidelines.md)
       - [UDMF开发指导 (C/C++)](database/native-unified-data-management-framework-guidelines.md)
       - [通过用户首选项实现数据持久化 (C/C++)](database/preferences-guidelines.md)
@@ -834,7 +837,6 @@
           - [安全控件概述](security/AccessToken/security-component-overview.md)
           - [使用粘贴控件](security/AccessToken/pastebutton.md)
           - [使用保存控件](security/AccessToken/savebutton.md)
-          - [使用位置控件](security/AccessToken/locationbutton.md)
       - Asset Store Kit（关键资产存储服务）<!--asset-store-kit-->
         - [Asset Store Kit简介](security/AssetStoreKit/asset-store-kit-overview.md)
         - 常见场景<!--asset-scenarios-->
@@ -1639,6 +1641,7 @@
           - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](napi/use-napi-event-loop.md)
           - [使用Node-API接口进行模块加载](napi/use-napi-load-module-with-info.md)
           - [使用Node-API接口从异步线程向ArkTS线程投递指定优先级和入队方式的的任务](napi/use-call-threadsafe-function-with-priority.md)
+          - [使用Node-API调用返回值为promise的ArkTS方法](napi/use-napi-method-promise.md)
         - [Node-API常见问题](napi/use-napi-faqs.md)
       - 使用JSVM-API实现JS与C/C++语言交互<!--jsvm-->
         - [JSVM-API简介](napi/jsvm-introduction.md)
@@ -2249,7 +2252,7 @@
           - [XComponentNode](reference/apis-arkui/js-apis-arkui-xcomponentNode.md)
       - ArkTS组件<!--arkui-declarative-comp-->
         - 组件通用信息<!--universal-component-information-->
-          - 通用事件<!--universal-events-->
+          - [通用事件](reference/apis-arkui/arkui-ts/ts-component-general-events.md)
             - [点击事件](reference/apis-arkui/arkui-ts/ts-universal-events-click.md)
             - [触摸事件](reference/apis-arkui/arkui-ts/ts-universal-events-touch.md)
             - [挂载卸载事件](reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md)
@@ -2265,7 +2268,7 @@
             - [组件快捷键事件](reference/apis-arkui/arkui-ts/ts-universal-events-keyboardshortcut.md)
             - [自定义事件分发](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-child-touch-test.md)
             - [自定义事件拦截](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-touch-intercept.md)
-          - 通用属性<!--universal-attributes-->
+          - [通用属性](reference/apis-arkui/arkui-ts/ts-component-general-attributes.md)
             - [尺寸设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)
             - [位置设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md)
             - [布局约束](reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md)
@@ -3550,11 +3553,11 @@
           - [@ohos.multimodalInput.gestureEvent (手势事件)](reference/apis-input-kit/js-apis-multimodalinput-gestureevent.md)
           - [@ohos.multimodalInput.pointer (鼠标指针)](reference/apis-input-kit/js-apis-pointer.md)
           - [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis-input-kit/js-apis-touchevent.md)
+          - [@ohos.multimodalInput.infraredEmitter (红外管理)](reference/apis-input-kit/js-apis-infraredemitter.md)
           - [@ohos.multimodalInput.inputConsumer (组合按键)](reference/apis-input-kit/js-apis-inputconsumer.md)
           <!--Del-->
           - [@ohos.multimodalInput.pointer (鼠标指针)(系统接口)](reference/apis-input-kit/js-apis-pointer-sys.md)
           - [@ohos.multimodalInput.shortKey(快捷键)(系统接口)](reference/apis-input-kit/js-apis-shortKey-sys.md)
-          - [@ohos.multimodalInput.infraredEmitter (红外管理)(系统接口)](reference/apis-input-kit/js-apis-infraredemitter-sys.md)
           - [@ohos.multimodalInput.inputConsumer (组合按键)(系统接口)](reference/apis-input-kit/js-apis-inputconsumer-sys.md)
           - [@ohos.multimodalInput.inputDevice (输入设备)(系统接口)](reference/apis-input-kit/js-apis-inputdevice-sys.md)
           - [@ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)](reference/apis-input-kit/js-apis-inputeventclient-sys.md)
@@ -3707,29 +3710,29 @@
         - C API<!--performance-analysis-c-->
           - 模块<!--performance-analysis-module-->
             - [HiAppEvent](reference/apis-performance-analysis-kit/_hi_app_event.md)
+            - [HiCollie](reference/apis-performance-analysis-kit/_hi_collie.md)
             - [HiDebug](reference/apis-performance-analysis-kit/_hi_debug.md)
             - [HiLog](reference/apis-performance-analysis-kit/_hi_log.md)
             - [Hitrace](reference/apis-performance-analysis-kit/_hitrace.md)
-            - [HiCollie](reference/apis-performance-analysis-kit/_hi_hicollie.md)
           - 头文件<!--performance-analysis-headerfile-->
             - [hiappevent.h](reference/apis-performance-analysis-kit/hiappevent_8h.md)
             - [hiappevent_cfg.h](reference/apis-performance-analysis-kit/hiappevent__cfg_8h.md)
             - [hiappevent_event.h](reference/apis-performance-analysis-kit/hiappevent__event_8h.md)
             - [hiappevent_param.h](reference/apis-performance-analysis-kit/hiappevent__param_8h.md)
+            - [hicollie.h](reference/apis-performance-analysis-kit/hicollie_8h.md)
             - [hidebug.h](reference/apis-performance-analysis-kit/hidebug_8h.md)
             - [hidebug_type.h](reference/apis-performance-analysis-kit/hidebug__type_8h.md)
             - [log.h](reference/apis-performance-analysis-kit/log_8h.md)
             - [trace.h](reference/apis-performance-analysis-kit/trace_8h.md)
-            - [hicollie.h](reference/apis-performance-analysis-kit/hicollie_8h.md)
           - 结构体<!--performance-analysis-struct-->
             - [HiAppEvent_AppEventGroup](reference/apis-performance-analysis-kit/_hi_app_event___app_event_group.md)
             - [HiAppEvent_AppEventInfo](reference/apis-performance-analysis-kit/_hi_app_event___app_event_info.md)
+            - [HiCollie_DetectionParam](reference/apis-performance-analysis-kit/_hi_collie___detection_param.md)
             - [HiDebug_MemoryLimit](reference/apis-performance-analysis-kit/_hi_debug___memory_limit.md)
             - [HiDebug_NativeMemInfo](reference/apis-performance-analysis-kit/_hi_debug___native_mem_info.md)
             - [HiDebug_SystemMemInfo](reference/apis-performance-analysis-kit/_hi_debug___system_mem_info.md)
             - [HiDebug_ThreadCpuUsage](reference/apis-performance-analysis-kit/_hi_debug___thread_cpu_usage.md)
             - [HiTraceId](reference/apis-performance-analysis-kit/_hi_trace_id.md)
-            - [HiCollie](reference/apis-performance-analysis-kit/_hi_hicollie___detection_param.md)
         - 错误码<!--performance-analysis-errcode-->
           - [Faultlogger错误码](reference/apis-performance-analysis-kit/errorcode-faultlogger.md)
           - [应用事件打点错误码](reference/apis-performance-analysis-kit/errorcode-hiappevent.md)

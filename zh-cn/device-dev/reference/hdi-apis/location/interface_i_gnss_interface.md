@@ -91,7 +91,7 @@ IGnssInterface::EnableGnss ([in] IGnssCallback callbackObj)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| callback | 表示GNSS回调函数。GNSS驱动通过此回调函数上报定位结果和卫星状态信息等。 详情参考[IGnssCallback](interface_i_gnss_callback.md). | 
+| callback | 表示GNSS回调函数。GNSS驱动通过此回调函数上报定位结果和卫星状态信息等。 详情参考[IGnssCallback](interface_i_gnss_callback.md)。 | 
 
 **返回：**
 

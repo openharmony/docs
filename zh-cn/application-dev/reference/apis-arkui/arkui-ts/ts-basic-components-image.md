@@ -85,7 +85,7 @@ Image新增[imageAIOptions](ts-image-common.md#imageaioptions)参数，为组件
 
 ## 属性
 
-属性的详细使用指导请参考[添加属性](../../../ui/arkts-graphics-display.md#添加属性)。除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+属性的详细使用指导请参考[添加属性](../../../ui/arkts-graphics-display.md#添加属性)。除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 > **说明：**
 >
@@ -128,6 +128,26 @@ objectFit(value: ImageFit)
 | 参数名 | 类型                                      | 必填 | 说明                                        |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------- |
 | value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 图片的填充效果。<br/>默认值：ImageFit.Cover |
+
+### imageMatrix<sup>15+</sup>
+
+imageMatrix(matrix: ImageMatrix)
+
+设置图片的变换矩阵。通过ImageMatrix对象使用平移、旋转、缩放等函数，实现宫格缩略图的最佳呈现。svg类型图源不支持该属性。
+
+设置resizable、objectRepeat属性时，该属性设置不生效。
+
+该属性只针对图源做处理，不会触发Image组件的回调事件。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                 | 必填 | 说明           |
+| ------ | --------------------------------------------------- | ---- | -------------- |
+| matrix  | ImageMatrix | 是   | 图片的变换矩阵。|
 
 ### objectRepeat
 
@@ -274,13 +294,11 @@ fillColor(value: ResourceColor)
 
 ### fillColor<sup>15+</sup>
 
-fillColor(value: ResourceColor|ColorContent)
+fillColor(color: ResourceColor|ColorContent)
 
 设置填充颜色，设置后填充颜色会覆盖在图片上。仅对svg图源生效，设置后会替换svg图片中所有可绘制元素的填充颜色。如需对png图片进行修改颜色，可以使用[colorFilter](#colorfilter9)。如果想重置填充颜色可以传入[ColorContent](#colorcontent15)类型。
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
-
-**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -290,7 +308,7 @@ fillColor(value: ResourceColor|ColorContent)
 
 | 参数名 | 类型                                       | 必填 | 说明           |
 | ------ | ------------------------------------------ | ---- | -------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor)\|[ColorContent](#colorcontent15) | 是   | 设置填充颜色。 <br/>**说明：**<br/> 默认不对组件进行填充。当传入异常值时，系统将使用默认的主题色：浅色模式下为黑色，深色模式下为白色。 |
+| color  | [ResourceColor](ts-types.md#resourcecolor)\|[ColorContent](#colorcontent15) | 是   | 设置填充颜色。 <br/>**说明：**<br/> 默认不对组件进行填充。当传入异常值时，系统将使用默认的主题色：浅色模式下为黑色，深色模式下为白色。 |
 
 ### autoResize
 
@@ -640,6 +658,20 @@ type DrawingLattice = Lattice
 | ------ | ---------- |
 | [Lattice](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#lattice12) | 返回一个矩阵网格对象。 |
 
+## ImageMatrix<sup>15+<sup>
+
+type ImageMatrix = Matrix4Transit
+
+当前的矩阵对象。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型     | 说明       |
+| ------ | ---------- |
+| [Matrix4Transit](../js-apis-matrix4.md#matrix4transit) | 返回当前的矩阵对象。 |
+
 ## ColorContent<sup>15+</sup>
 
 指定颜色填充内容。
@@ -648,13 +680,13 @@ type DrawingLattice = Lattice
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 类型       | 只读 | 必填 | 说明           |
+| 名称 | 类型       | 只读 | 必填 | 说明           |
 | ------ | --------- | ---- | --- | ------------- |
 | ORIGIN  | ColorContent | 是 | 否 | 重置[fillColor](#fillcolor)接口，效果上与不设置[fillColor](#fillcolor)一致。 |
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onComplete
 
@@ -1460,3 +1492,67 @@ struct Index {
 ```
 
 ![fillColorExample](figures/fillColorExample.png)
+
+### 示例16（通过imageMatrix为图片设置旋转、平移等）
+
+该示例通过[imageMatrix](#imagematrix15)接口和[objectFit](#objectfit)实现了给图片设置变换效果。
+
+```ts
+import { matrix4 } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Test {
+  private matrix1 = matrix4.identity()
+    .translate({ x: -400, y: -750 })
+    .scale({ x: 0.5, y: 0.5 })
+    .rotate({
+      x: 2,
+      y: 0.5,
+      z: 3,
+      centerX: 10,
+      centerY: 10,
+      angle: -10
+    })
+
+  build() {
+    Row() {
+      Column({ space: 50 }) {
+        Column({ space: 5 }) {
+          Image($r("app.media.example"))
+            .border({ width:2, color: Color.Black })
+            .objectFit(ImageFit.Contain)
+            .width(150)
+            .height(150)
+          Text("图片无变换")
+            .fontSize('25px')
+        }
+        Column({ space: 5 }) {
+          Image($r("app.media.example"))
+            .border({ width:2, color: Color.Black })
+            .objectFit(ImageFit.None)
+            .translate({ x: 10, y: 10 })
+            .scale({ x: 0.5, y: 0.5 })
+            .width(100)
+            .height(100)
+          Text("Image直接变换，默认显示图源左上角。")
+            .fontSize('25px')
+        }
+        Column({ space: 5 }) {
+          Image($r("app.media.example"))
+            .objectFit(ImageFit.MATRIX)
+            .imageMatrix(this.matrix1)
+            .border({ width:2, color: Color.Black })
+            .width(150)
+            .height(150)
+          Text("通过imageMatrix变换，调整图源位置，实现最佳呈现。")
+            .fontSize('25px')
+        }
+      }
+      .width('100%')
+    }
+  }
+}
+```
+
+![imageMatrix](figures/imageMatrix.jpeg)

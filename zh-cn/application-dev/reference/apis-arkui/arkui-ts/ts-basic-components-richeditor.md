@@ -37,7 +37,7 @@ RichEditor(options: RichEditorStyledStringOptions)<sup>12+</sup>
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 >  **说明：**
 >
@@ -347,7 +347,7 @@ keyboardAppearance(appearance: Optional\<KeyboardAppearance\>)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持[OnDidChangeCallback](ts-text-common.md#ondidchangecallback12)、[StyledStringChangedListener](ts-text-common.md#styledstringchangedlistener12)、[StyledStringChangeValue](ts-text-common.md#styledstringchangevalue12)和以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持[OnDidChangeCallback](ts-text-common.md#ondidchangecallback12)、[StyledStringChangedListener](ts-text-common.md#styledstringchangedlistener12)、[StyledStringChangeValue](ts-text-common.md#styledstringchangevalue12)和以下事件：
 
 ### onReady
 
@@ -401,7 +401,7 @@ aboutToIMEInput(callback:Callback\<[RichEditorInsertValue](#richeditorinsertvalu
 
 | 参数名 | 类型                                        | 必填 | 说明                 |
 | ------ | ------------------------------------------- | ---- | -------------------- |
-| callback | Callback\<[RichEditorInsertValue](#richeditorinsertvalue), boolean\> | 是   | [RichEditorInsertValue](#richeditorinsertvalue)为输入法将要输入内容信息。<br/>true:组件执行添加内容操作。<br/>false:组件不执行添加内容操作<br/>输入法输入内容前的回调。|
+| callback | Callback\<[RichEditorInsertValue](#richeditorinsertvalue), boolean\> | 是   | [RichEditorInsertValue](#richeditorinsertvalue)为输入法将要输入内容信息。<br/>true:组件执行添加内容操作。<br/>false:组件不执行添加内容操作。<br/>输入法输入内容前的回调。|
 
 ### onDidIMEInput<sup>12+</sup>
 
@@ -506,7 +506,7 @@ onSelectionChange(callback:Callback\<[RichEditorRange](#richeditorrange)\>)
 
 | 参数名   | 类型                                    | 必填   | 说明        |
 | ----- | --------------------------------------- | ---- | ----------- |
-| callback |Callback\<[RichEditorRange](#richeditorrange)\> | 是    | [RichEditorRange](#richeditorrange)为所有内容的选择区域起始和终止位置。<br/>订阅文本选择区域发生变化或编辑状态下光标位置发生变化时触发的回调|
+| callback |Callback\<[RichEditorRange](#richeditorrange)\> | 是    | [RichEditorRange](#richeditorrange)为所有内容的选择区域起始和终止位置。<br/>订阅文本选择区域发生变化或编辑状态下光标位置发生变化时触发的回调。|
 
 ### onEditingChange<sup>12+</sup>
 
@@ -694,6 +694,7 @@ Span类型信息。
 | IMAGE | 1 | Span为图像类型。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | MIXED | 2 | Span为图文混合类型。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | BUILDER<sup>12+</sup> | 3 | Span为BuilderSpan类型。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| DEFAULT<sup>15+</sup> | 4 | 默认类型，不指定Span类型时生效。 <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 
 ## RichEditorResponseType<sup>11+</sup>
 
@@ -708,6 +709,7 @@ Span类型信息。
 | LONG_PRESS  | 通过长按触发菜单弹出。   |
 | RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
 | SELECT | 通过鼠标选中触发菜单弹出。 |
+| DEFAULT<sup>15+</sup> | 默认类型，不指定响应类型时生效。|
 
 ## RichEditorTextStyleResult
 
@@ -1381,7 +1383,7 @@ getStyledString(): MutableStyledString;
 
 onContentChanged(listener: StyledStringChangedListener): void
 
-注册文本内容变化回调，该回调会在后端程序导致文本内容变更时触发
+注册文本内容变化回调，该回调会在后端程序导致文本内容变更时触发。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1668,6 +1670,8 @@ RichEditor span信息。
 | onAppear    | [MenuOnAppearCallback](#menuonappearcallback12) | 否    | 自定义选择菜单弹出时回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onDisappear | Callback\<void\>  | 否    | 自定义选择菜单关闭时回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | menuType<sup>13+</sup> | [MenuType](ts-text-common.md#menutype13枚举说明) | 否 | 自定义选择菜单类型。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br/>默认值：MenuType.SELECTION_MENU。 |
+| onMenuShow<sup>15+</sup> | [MenuCallBack](#menucallback15) | 否 |  自定义选择菜单显示时回调。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| onMenuHide<sup>15+</sup> | [MenuCallBack](#menucallback15) | 否 |  自定义选择菜单隐藏时回调。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## PasteEvent<sup>11+</sup>
 
@@ -1754,6 +1758,23 @@ type MenuOnAppearCallback = (start: number, end: number) => void
 自定义选择菜单弹出时触发的回调事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                             | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
+| start | number | 是   | 选中内容的起始位置。 |
+| end    | number         | 是   | 选中内容的终止位置。         |
+
+## MenuCallback<sup>15+</sup>
+
+type MenuCallback = (start: number, end: number) => void
+
+自定义选择菜单显示或隐藏时触发的回调事件。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

@@ -140,7 +140,7 @@ TextInput有以下类型可选择：Normal基本输入模式、Password密码输
 
   ![zh-cn_image_0000001511740444](figures/zh-cn_image_0000001511740444.png)
 
-  更丰富的样式可以结合[通用属性](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)实现。
+  更丰富的样式可以结合[通用属性](../reference/apis-arkui/arkui-ts/ts-component-general-attributes.md)实现。
 
 
 ## 添加事件

@@ -2796,8 +2796,8 @@ setAbilityInstanceInfo(label: string, icon: image.PixelMap) : Promise&lt;void&gt
 | -------- | ----------------------------------------------------------------------------------- |
 | 201      | The application does not have permission to call the interface.                     |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801      | Capability not support.                                                             |
-| 16000001 | The specified ability does not exist.                                               |
+| 801      | Capability not supported.                                                           |
+| 16000011 | The context does not exist.                                                         |
 | 16000050 | Internal error.                                                                     |
 
 **示例**：

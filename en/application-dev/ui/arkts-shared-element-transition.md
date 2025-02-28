@@ -25,76 +25,7 @@ This example implements a shared element transition for the scenario where, as a
 
 1. Build the component to be expanded, and build two pages for it through state variables: one for the normal state and one for the expanded state.
 
-      ```ts
-      class Tmp {
-        set(item: PostData): PostData {
-          return item
-        }
-      }
-      // Build two pages for the normal and expanded states of the same component, which are then used based on the declared state variables.
-      @Component
-      export struct MyExtendView {
-        // Declare the isExpand variable to be synced with the parent component.
-        @Link isExpand: boolean;
-        // You need to implement the list data.
-        @State cardList: Array<PostData> = xxxx;
-      
-        build() {
-          List() {
-            // Customize the expanded component as required.
-            if (this.isExpand) {
-              Text('expand')
-                .transition(TransitionEffect.translate({y:300}).animation({ curve: curves.springMotion(0.6, 0.8) }))
-            }
-      
-            ForEach(this.cardList, (item: PostData) => {
-              let Item: Tmp = new Tmp()
-              let Imp: Tmp = Item.set(item)
-              let Mc: Record<string, Tmp> = {'cardData': Imp}
-              MyCard(Mc) // Encapsulated widget, which needs to be implemented by yourself.
-            })
-          }
-          .width(this.isExpand? 200:500) // Define the attributes of the expanded component as required.
-          .animation({ curve: curves.springMotion()}) // Bind an animation to component attributes.
-        }
-      }
-      ... 
-      ```
-
 2. Expand the component to be expanded. Use state variables to control the disappearance or appearance of sibling components, and apply the enter/exit transition to the disappearance and appearance.
-
-      ```ts
-      class Tmp{
-        isExpand: boolean = false;
-        set(){
-          this.isExpand = !this.isExpand;
-        }
-      }
-      let Exp:Record<string,boolean> = {'isExpand': false}
-        @State isExpand: boolean = false
-        
-        ...
-        List() {
-          // Control the appearance or disappearance of sibling components through the isExpand variable, and configure the enter/exit transition.
-          if (!this.isExpand) {
-            Text('Collapse')
-              .transition(TransitionEffect.translate({y:300}).animation({ curve: curves.springMotion(0.6, 0.9) }))
-          }
-        
-          MyExtendView(Exp)
-            .onClick(() => {
-              let Epd:Tmp = new Tmp()
-              Epd.set()
-            })
-        
-          // Control the appearance or disappearance of sibling components through the isExpand variable, and configure the enter/exit transition.
-          if (this.isExpand) {
-            Text('Expand')
-              .transition(TransitionEffect.translate({y:300}).animation({ curve: curves.springMotion() }))
-          }
-        }
-      ...
-      ```
 
 Below is the complete sample code and effect.
 
@@ -186,6 +117,7 @@ export default struct  Post {
         }, (imageResource: Resource, index: number) => index.toString())
       }
 
+      // Additional content for the expanded state
       if (this.isExpand) {
         Column() {
           Text('Comments')
@@ -2121,3 +2053,4 @@ After a profile picture on the home page is clicked, the corresponding profile p
 
 ![en-us_image_0000001597320327](figures/en-us_image_0000001597320327.gif)
 
+<!--RP1--><!--RP1End-->

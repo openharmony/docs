@@ -28,6 +28,7 @@ OH_HiTrace_FinishTrace();
   
 ```
 OH_HiTrace_StartAsyncTrace("hitraceTest", 123);
+
 OH_HiTrace_FinishAsyncTrace("hitraceTest", 123);
 ```
 
@@ -68,21 +69,23 @@ OH_HiTrace_CountTrace("hitraceTest", 500);
 
 ## 汇总
 
+
 ### 结构体
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[HiTraceId](_hi_trace_id.md) | HiTraceId定义  | 
+| struct&nbsp;&nbsp;[HiTraceId](_hi_trace_id.md) | HiTraceId定义。  | 
+
 
 ### 类型定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [HiTraceId_Valid](_hitrace.md#hitraceid_valid) [HiTraceId_Valid](_hitrace.md#hitraceid_valid) | HiTraceId是否有效标志  | 
-| typedef enum [HiTrace_Version](_hitrace.md#hitrace_version) [HiTrace_Version](_hitrace.md#hitrace_version) | HiTrace版本号  | 
-| typedef enum [HiTrace_Flag](_hitrace.md#hitrace_flag) [HiTrace_Flag](_hitrace.md#hitrace_flag) | HiTrace标志位  | 
-| typedef enum [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) | HiTrace打点类型  | 
-| typedef enum [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) |  | 
+| typedef enum [HiTraceId_Valid](_hitrace.md#hitraceid_valid) [HiTraceId_Valid](_hitrace.md#hitraceid_valid) | HiTraceId是否有效标志。  | 
+| typedef enum [HiTrace_Version](_hitrace.md#hitrace_version) [HiTrace_Version](_hitrace.md#hitrace_version) | HiTrace版本号。  | 
+| typedef enum [HiTrace_Flag](_hitrace.md#hitrace_flag) [HiTrace_Flag](_hitrace.md#hitrace_flag) | HiTrace标志位。  | 
+| typedef enum [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) | HiTrace打点类型。  | 
+| typedef enum [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) | HiTrace通信模式枚举。  | 
 |  typedef struct [HiTraceId](_hi_trace_id.md)**HiTraceId** |  | 
 
 
@@ -90,11 +93,11 @@ OH_HiTrace_CountTrace("hitraceTest", 500);
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [HiTraceId_Valid](_hitrace.md#hitraceid_valid) { [HITRACE_ID_INVALID](_hitrace.md) = 0, [HITRACE_ID_VALID](_hitrace.md) = 1 } | HiTraceId是否有效标志  | 
-| [HiTrace_Version](_hitrace.md#hitrace_version) { [HITRACE_VER_1](_hitrace.md) = 0 } | HiTrace版本号  | 
-| [HiTrace_Flag](_hitrace.md#hitrace_flag) {<br/>[HITRACE_FLAG_DEFAULT](_hitrace.md) = 0, [HITRACE_FLAG_INCLUDE_ASYNC](_hitrace.md) = 1 &lt;&lt; 0, [HITRACE_FLAG_DONOT_CREATE_SPAN](_hitrace.md) = 1 &lt;&lt; 1, [HITRACE_FLAG_TP_INFO](_hitrace.md) = 1 &lt;&lt; 2,<br/>[HITRACE_FLAG_NO_BE_INFO](_hitrace.md) = 1 &lt;&lt; 3, [HITRACE_FLAG_DONOT_ENABLE_LOG](_hitrace.md) = 1 &lt;&lt; 4, [HITRACE_FLAG_FAULT_TRIGGER](_hitrace.md) = 1 &lt;&lt; 5, [HITRACE_FLAG_D2D_TP_INFO](_hitrace.md) = 1 &lt;&lt; 6<br/>} | HiTrace标志位  | 
-| [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) {<br/>[HITRACE_TP_CS](_hitrace.md) = 0, [HITRACE_TP_CR](_hitrace.md) = 1, [HITRACE_TP_SS](_hitrace.md) = 2, [HITRACE_TP_SR](_hitrace.md) = 3,<br/>[HITRACE_TP_GENERAL](_hitrace.md) = 4<br/>} | HiTrace打点类型  | 
-| [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) { [HITRACE_CM_DEFAULT](_hitrace.md) = 0, [HITRACE_CM_THREAD](_hitrace.md) = 1, [HITRACE_CM_PROCESS](_hitrace.md) = 2, [HITRACE_CM_DEVICE](_hitrace.md) = 3 } |  | 
+| [HiTraceId_Valid](_hitrace.md#hitraceid_valid) { [HITRACE_ID_INVALID](_hitrace.md) = 0, [HITRACE_ID_VALID](_hitrace.md) = 1 } | HiTraceId是否有效标志。  | 
+| [HiTrace_Version](_hitrace.md#hitrace_version) { [HITRACE_VER_1](_hitrace.md) = 0 } | HiTrace版本号。  | 
+| [HiTrace_Flag](_hitrace.md#hitrace_flag) {<br/>[HITRACE_FLAG_DEFAULT](_hitrace.md) = 0, [HITRACE_FLAG_INCLUDE_ASYNC](_hitrace.md) = 1 &lt;&lt; 0, [HITRACE_FLAG_DONOT_CREATE_SPAN](_hitrace.md) = 1 &lt;&lt; 1, [HITRACE_FLAG_TP_INFO](_hitrace.md) = 1 &lt;&lt; 2,<br/>[HITRACE_FLAG_NO_BE_INFO](_hitrace.md) = 1 &lt;&lt; 3, [HITRACE_FLAG_DONOT_ENABLE_LOG](_hitrace.md) = 1 &lt;&lt; 4, [HITRACE_FLAG_FAULT_TRIGGER](_hitrace.md) = 1 &lt;&lt; 5, [HITRACE_FLAG_D2D_TP_INFO](_hitrace.md) = 1 &lt;&lt; 6<br/>} | HiTrace标志位。  | 
+| [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) {<br/>[HITRACE_TP_CS](_hitrace.md) = 0, [HITRACE_TP_CR](_hitrace.md) = 1, [HITRACE_TP_SS](_hitrace.md) = 2, [HITRACE_TP_SR](_hitrace.md) = 3,<br/>[HITRACE_TP_GENERAL](_hitrace.md) = 4<br/>} | HiTrace打点类型。  | 
+| [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) { [HITRACE_CM_DEFAULT](_hitrace.md) = 0, [HITRACE_CM_THREAD](_hitrace.md) = 1, [HITRACE_CM_PROCESS](_hitrace.md) = 2, [HITRACE_CM_DEVICE](_hitrace.md) = 3 } | HiTrace通信模式枚举。  | 
 
 
 ### 函数
@@ -103,7 +106,7 @@ OH_HiTrace_CountTrace("hitraceTest", 500);
 | -------- | -------- |
 | [HiTraceId](_hi_trace_id.md) [OH_HiTrace_BeginChain](_hitrace.md#oh_hitrace_beginchain) (const char \*name, int flags) | 开始跟踪进程实现。  | 
 | void [OH_HiTrace_EndChain](_hitrace.md#oh_hitrace_endchain) () | 如果给定的跟踪ID有效，则停止进程跟踪并清除当前线程的跟踪ID，否则不执行任何操作。  | 
-| [HiTraceId](_hi_trace_id.md) [OH_HiTrace_GetId](_hitrace.md#oh_hitrace_getid) () | 获取当前线程的跟踪ID，如果没有属于当前线程的跟踪ID，则返回一个无效的跟踪ID  | 
+| [HiTraceId](_hi_trace_id.md) [OH_HiTrace_GetId](_hitrace.md#oh_hitrace_getid) () | 获取当前线程的跟踪ID，如果没有属于当前线程的跟踪ID，则返回一个无效的跟踪ID。  | 
 | void [OH_HiTrace_SetId](_hitrace.md#oh_hitrace_setid) (const [HiTraceId](_hi_trace_id.md) \*id) | 将id设置为当前线程的跟踪id。如果ID无效，则不执行任何操作。  | 
 | void [OH_HiTrace_ClearId](_hitrace.md#oh_hitrace_clearid) (void) | 清除当前线程的跟踪ID并将其设置为无效。  | 
 | [HiTraceId](_hi_trace_id.md) [OH_HiTrace_CreateSpan](_hitrace.md#oh_hitrace_createspan) (void) | 根据当前线程的跟踪id创建一个新的span id。  | 

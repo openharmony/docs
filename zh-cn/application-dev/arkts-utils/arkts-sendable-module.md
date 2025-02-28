@@ -16,7 +16,9 @@
 
 - 共享模块内不允许使用side-effects-import。
 
-  共享模块可在线程间共享，共享后函数对依赖的非共享模块会在获取模块化变量值的时候懒加载，这种类型的import不涉及导出变量，所以不会被加载。
+  共享模块在同一进程内只加载一次，可在不同线程间共享。<br/>
+  共享模块加载时，导入的非共享模块不会立刻加载。在共享模块内访问依赖的非共享模块导出变量时，会在本线程懒加载对应的非共享模块，非共享模块在线程间是隔离的，不同线程访问时都会进行至多一次的模块懒加载。<br/>
+  由于side-effects-import不涉及导出变量，所以永远不会被加载，因此不支持。
 
   ```ts
   // 不允许使用side-effects-import
@@ -83,26 +85,8 @@
 2. 在多个线程中操作共享模块导出的对象。
 
    ```ts
-   import { ArkTSUtils, taskpool } from '@kit.ArkTS';
+   import { taskpool } from '@kit.ArkTS';
    import { singletonA } from './sharedModule';
-   
-   @Sendable
-   export class A {
-     private count_: number = 0;
-     lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock();
-   
-     public async getCount(): Promise<number> {
-       return this.lock_.lockAsync(() => {
-         return this.count_;
-       })
-     }
-   
-     public async increaseCount() {
-       await this.lock_.lockAsync(() => {
-         this.count_++;
-       })
-     }
-   }
    
    @Concurrent
    async function increaseCount() {

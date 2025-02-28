@@ -6,17 +6,21 @@
 
 开发者可以通过在[`onReceiveEvent()`](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md#staticsubscriberextensionabilityonreceiveevent)回调中执行业务逻辑，实现当应用接收到特定公共事件时执行业务逻辑的目的。例如，应用希望在设备开机时执行一些初始化任务，那么该应用可以静态订阅开机事件，在收到开机事件后会拉起该应用，然后执行初始化任务。
 
-静态订阅是通过配置文件声明和实现继承自[`StaticSubscriberExtensionAbility`](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)的类实现对公共事件的订阅。
+静态订阅是通过配置文件声明和实现继承自[StaticSubscriberExtensionAbility](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)的类实现对公共事件的订阅。
 
 > **说明：**
 >
-> 需要注意的是，静态订阅公共事件对系统功耗有一定影响，建议谨慎使用。
+> 静态订阅公共事件对系统功耗有一定影响，建议谨慎使用。
+
+## 生命周期
+
+[StaticSubscriberExtensionAbility](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)在[`onReceiveEvent()`](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md#staticsubscriberextensionabilityonreceiveevent)执行完`15秒`后销毁。
 
 ## 开发步骤
 
 1. 静态订阅者声明。
 
-   声明一个静态订阅者，首先需要在工程中新建一个ExtensionAbility，该ExtensionAbility从StaticSubscriberExtensionAbility派生。
+   声明一个静态订阅者，首先需要在工程中新建一个ExtensionAbility，该ExtensionAbility从[StaticSubscriberExtensionAbility](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)派生。
 
    开发者可以在[`onReceiveEvent()`](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md#staticsubscriberextensionabilityonreceiveevent)回调中实现业务逻辑。
 
@@ -106,7 +110,7 @@
    | permission   | 标识订阅者要求的发布者需要具备的权限。                       | 字符串       | 该标签可缺省，缺省值为空。 |
    | events       | 标识订阅的目标事件列表。                                     | 字符串数组   | 该标签不可缺省。           |
 
-4. 修改设备的[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_capability.json)。预置配置文件在设备上的路径为`/system/variant/phone/base/etc/app/install_list_capability.json`，设备开机启动时会读取该配置文件，在应用安装时会对在文件中配置的`allowCommonEvent`公共事件类型进行授权。预授权配置文件字段内容包括`bundleName`、`app_signature`和`allowCommonEvent`。
+4. 修改设备的[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/OpenHarmony-5.0.3-Release/rk3568/preinstall-config/install_list_capability.json)。预置配置文件在设备上的路径为`/system/variant/phone/base/etc/app/install_list_capability.json`，设备开机启动时会读取该配置文件，在应用安装时会对在文件中配置的`allowCommonEvent`公共事件类型进行授权。预授权配置文件字段内容包括`bundleName`、`app_signature`和`allowCommonEvent`。
 
    - `bundleName`字段配置为应用的Bundle名称。
    - `app_signature`字段配置为应用的指纹信息。指纹信息的配置请参见[应用特权配置指南](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md#install_list_capabilityjson中配置)，或者通过[bm工具](../../tools/bm-tool.md)获取并填写该应用的`appId`。

@@ -1,19 +1,19 @@
 # Communication Between the TaskPool Task and Host Thread
 
-If a subthread needs to periodically notify the main thread of the task status and data changes, or needs to return a large amount of data by segment (for example, a large amount of data read from the database), you can perform the following operations:
+When a task needs to do more than just return a final result—such as periodically updating the host thread on its status, reporting data changes, or returning large volumes of data in segments (for example, fetching large datasets from a database)—you can use the approach described in this topic.
 
-The following uses an example in which results of a plurality of image loading tasks are returned in real time.
+The following example uses multiple image loading tasks that provide real-time updates to illustrate the process.
 
-1. First, implement a method to receive messages sent by the task.
+1. Implement a method to receive messages sent by the task.
 
    ```ts
    // TaskSendDataUsage.ets
    function notice(data: number): void {
-     console.info("The subthread task has been executed. Total images loaded:", data)
+     console.info("Child thread task completed. Total images loaded:", data)
    }
    ```
 
-2. Then, add **sendData()** to the task to enable the subthread to send messages to the main thread.
+2. In the task, use **sendData()** to send messages to the host thread.
 
    ```ts
    // IconItemSource.ets
@@ -33,14 +33,14 @@ The following uses an example in which results of a plurality of image loading t
    import { taskpool } from '@kit.ArkTS';
    import { IconItemSource } from './IconItemSource';
    
-   // Use sendData to notify the main thread of information in real time.
+   // Use sendData to notify the host thread of information in real time.
    @Concurrent
    export function loadPictureSendData(count: number): IconItemSource[] {
      let iconItemSourceList: IconItemSource[] = [];
-     // Traverse and add six IconItem data records.
+     // Add six IconItem data records.
      for (let index = 0; index < count; index++) {
        const numStart: number = index * 6;
-       // Six images are used cyclically.
+       // Use six images in the loop.
        iconItemSourceList.push(new IconItemSource('$media:startIcon', `item${numStart + 1}`));
        iconItemSourceList.push(new IconItemSource('$media:background', `item${numStart + 2}`));
        iconItemSourceList.push(new IconItemSource('$media:foreground', `item${numStart + 3}`));
@@ -54,8 +54,8 @@ The following uses an example in which results of a plurality of image loading t
    }
    ```
 
-3. Finally, use **onReceiveData()** to enable the main thread to receive messages.
-   In this way, the main thread can receive the data sent by the task through **notice()**.
+3. In the host thread, use **onReceiveData()** to receive messages.
+   This allows the host thread to receive data sent by the task through **notice()**.
 
    ```ts
    // TaskSendDataUsage.ets
@@ -73,7 +73,7 @@ The following uses an example in which results of a plurality of image loading t
              .onClick(() => {
                let iconItemSourceList: IconItemSource[];
                let lodePictureTask: taskpool.Task = new taskpool.Task(loadPictureSendData, 30);
-               // Use notice to receive messages sent by the task.
+               // Use notice to receive messages from the task.
                lodePictureTask.onReceiveData(notice);
                taskpool.execute(lodePictureTask).then((res: object) => {
                  iconItemSourceList = res as IconItemSource[];

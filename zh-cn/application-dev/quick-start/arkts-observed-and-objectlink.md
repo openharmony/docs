@@ -341,148 +341,156 @@ struct Parent {
 
 ## 使用场景
 
-
-### 嵌套对象
-
-> **说明：**
->
-> NextID是用来在[ForEach循环渲染](./arkts-rendering-control-foreach.md)过程中，为每个数组元素生成一个唯一且持久的键值，用于标识对应的组件。
-
+### 继承对象
 
 ```ts
-// objectLinkNestedObjects.ets
-let NextID: number = 1;
-
 @Observed
-class Bag {
-  public id: number;
-  public size: number;
+class Animal {
+  name: string;
+  age: number;
 
-  constructor(size: number) {
-    this.id = NextID++;
-    this.size = size;
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
   }
 }
 
 @Observed
-class User {
-  public bag: Bag;
+class Dog extends Animal {
+  kinds: string;
 
-  constructor(bag: Bag) {
-    this.bag = bag;
+  constructor(name: string, age: number, kinds: string) {
+    super(name, age);
+    this.kinds = kinds;
   }
 }
 
-@Observed
-class Book {
-  public bookName: BookName;
-
-  constructor(bookName: BookName) {
-    this.bookName = bookName;
-  }
-}
-
-@Observed
-class BookName extends Bag {
-  public nameSize: number;
-
-  constructor(nameSize: number) {
-    // 调用父类方法对nameSize进行处理
-    super(nameSize);
-    this.nameSize = nameSize;
-  }
-}
-
+@Entry
 @Component
-struct Son {
-  label: string = 'Son';
-  @ObjectLink bag: Bag;
+struct Index {
+  @State dog: Dog = new Dog('Molly', 2, 'Husky');
+
+  @Styles
+  pressedStyles() {
+    .backgroundColor('#ffd5d5d5')
+  }
+
+  @Styles
+  normalStyles() {
+    .backgroundColor('#ffffff')
+  }
 
   build() {
     Column() {
-      Text(`Son [${this.label}] this.bag.size = ${this.bag.size}`)
-        .fontColor('#ffffffff')
-        .backgroundColor('#ff3d9dba')
+      Text(`${this.dog.name}`)
         .width(320)
-        .height(50)
-        .borderRadius(25)
         .margin(10)
+        .fontSize(30)
         .textAlign(TextAlign.Center)
-      Button(`Son: this.bag.size add 1`)
-        .width(320)
-        .backgroundColor('#ff17a98d')
-        .margin(10)
+        .stateStyles({
+          pressed: this.pressedStyles,
+          normal: this.normalStyles
+        })
         .onClick(() => {
-          this.bag.size += 1;
+          this.dog.name = 'DouDou';
+        })
+
+      Text(`${this.dog.age}`)
+        .width(320)
+        .margin(10)
+        .fontSize(30)
+        .textAlign(TextAlign.Center)
+        .stateStyles({
+          pressed: this.pressedStyles,
+          normal: this.normalStyles
+        })
+        .onClick(() => {
+          this.dog.age = 3;
+        })
+
+      Text(`${this.dog.kinds}`)
+        .width(320)
+        .margin(10)
+        .fontSize(30)
+        .textAlign(TextAlign.Center)
+        .stateStyles({
+          pressed: this.pressedStyles,
+          normal: this.normalStyles
+        })
+        .onClick(() => {
+          this.dog.kinds = 'Samoyed';
         })
     }
   }
 }
+```
+
+![Observed_ObjectLink_inheritance_object](figures/Observed_ObjectLink_inheritance_object.gif)
+
+上述示例中，Dog类中的部分属性（name、age）继承自Animal类，直接修改\@State装饰的变量dog中的属性name和age可以正常触发UI刷新。
+
+### 嵌套对象
+
+```ts
+@Observed
+class Book {
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+@Observed
+class Bag {
+  book: Book;
+
+  constructor(book: Book) {
+    this.book = book;
+  }
+}
 
 @Component
-struct Father {
-  label: string = 'Father';
-  @ObjectLink bookName: BookName;
+struct BookCard {
+  @ObjectLink book: Book;
 
   build() {
-    Row() {
-      Column() {
-        Text(`Father [${this.label}] this.bookName.size = ${this.bookName.size}`)
-          .fontColor('#ffffffff')
-          .backgroundColor('#ff3d9dba')
-          .width(320)
-          .height(50)
-          .borderRadius(25)
-          .margin(10)
-          .textAlign(TextAlign.Center)
-        Button(`Father: this.bookName.size add 1`)
-          .width(320)
-          .backgroundColor('#ff17a98d')
-          .margin(10)
-          .onClick(() => {
-            this.bookName.size += 1;
-            console.log('this.bookName.size:' + this.bookName.size);
-          })
-      }
-      .width(320)
+    Column() {
+      Text(`BookCard: ${this.book.name}`) // 可以观察到name的变化
+        .width(320)
+        .margin(10)
+        .textAlign(TextAlign.Center)
+
+      Button('change book.name')
+        .width(320)
+        .margin(10)
+        .onClick(() => {
+          this.book.name = 'C++';
+        })
     }
   }
 }
 
 @Entry
 @Component
-struct GrandFather {
-  @State user: User = new User(new Bag(0));
-  @State child: Book = new Book(new BookName(0));
+struct Index {
+  @State bag: Bag = new Bag(new Book('JS'));
 
   build() {
     Column() {
-      Son({ label: 'Son #1', bag: this.user.bag })
+      Text(`Index: ${this.bag.book.name}`) // 无法观察到name的变化
         .width(320)
-      Father({ label: 'Father #3', bookName: this.child.bookName })
+        .margin(10)
+        .textAlign(TextAlign.Center)
+
+      Button('change bag.book.name')
         .width(320)
-      Button(`GrandFather: this.child.bookName.size add 10`)
-        .width(320)
-        .backgroundColor('#ff17a98d')
         .margin(10)
         .onClick(() => {
-          this.child.bookName.size += 10;
-          console.log('this.child.bookName.size:' + this.child.bookName.size);
+          this.bag.book.name = 'TS';
         })
-      Button(`GrandFather: this.user.bag = new Bag(10)`)
-        .width(320)
-        .backgroundColor('#ff17a98d')
-        .margin(10)
-        .onClick(() => {
-          this.user.bag = new Bag(10);
-        })
-      Button(`GrandFather: this.user = new User(new Bag(20))`)
-        .width(320)
-        .backgroundColor('#ff17a98d')
-        .margin(10)
-        .onClick(() => {
-          this.user = new User(new Bag(20));
-        })
+
+      BookCard({ book: this.bag.book })
     }
   }
 }
@@ -490,29 +498,15 @@ struct GrandFather {
 
 ![Observed_ObjectLink_nested_object](figures/Observed_ObjectLink_nested_object.gif)
 
-被@Observed装饰的BookName类，可以观测到继承基类的属性的变化。
-
-
-GrandFather中的事件句柄：
-
-
-- this.user.bag = new Bag(10) 和this.user = new User(new Bag(20))： 对@State装饰的变量user和其属性的修改。
-
-- this.child.bookName.size += ... ：该变化属于第二层的变化，@State无法观察到第二层的变化，但是Bag被\@Observed装饰，Bag的属性size的变化可以被\@ObjectLink观察到。
-
-
-Father中的事件句柄：
-
-
-- this.bookName.size += 1：对\@ObjectLink变量size的修改，将触发Text组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
-
-- \@ObjectLink变量是只读的，this.bookName = new bookName(...)是不允许的，因为一旦赋值操作发生，指向数据源的引用将被重置，同步将被打断。
-
+上述示例中，Index组件中的Text组件不刷新，因为该变化属于第二层的变化，\@State无法观察到第二层的变化。但是Bag被\@Observed装饰，Bag的属性name可以被\@ObjectLink观察到，所以无论点击哪个Button，BookCard组件中的Text组件都会刷新。
 
 ### 对象数组
 
 对象数组是一种常用的数据结构。以下示例展示了数组对象的用法。
 
+> **说明：**
+>
+> NextID是用来在[ForEach循环渲染](./arkts-rendering-control-foreach.md)过程中，为每个数组元素生成一个唯一且持久的键值，用于标识对应的组件。
 
 ```ts
 let NextID: number = 1;

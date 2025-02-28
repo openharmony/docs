@@ -47,18 +47,27 @@ import { display } from '@kit.ArkUI';
 
 ## FoldStatus<sup>10+</sup>
 
-当前可折叠设备的折叠状态枚举。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+当前可折叠设备的折叠状态枚举。如果是双折轴设备，则在充电口朝下的状态下，从右到左分别是折轴一和折轴二。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| FOLD_STATUS_UNKNOWN | 0 | 表示设备当前折叠状态未知。|
-| FOLD_STATUS_EXPANDED | 1 | 表示设备当前折叠状态为完全展开。|
-| FOLD_STATUS_FOLDED | 2 | 表示设备当前折叠状态为折叠。|
-| FOLD_STATUS_HALF_FOLDED | 3 | 表示设备当前折叠状态为半折叠。半折叠指完全展开和折叠之间的状态。|
+| FOLD_STATUS_UNKNOWN<sup>10+</sup> | 0 | 表示设备当前折叠状态未知。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_EXPANDED<sup>10+</sup> | 1 | 表示设备当前折叠状态为完全展开。如果是双折轴设备，则表示折轴一折叠状态为完全展开，折轴二折叠状态为折叠。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_FOLDED<sup>10+</sup> | 2 | 表示设备当前折叠状态为折叠。如果是双折轴设备，则表示折轴一折叠状态为折叠，折轴二折叠状态为折叠。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_HALF_FOLDED<sup>10+</sup> | 3 | 表示设备当前折叠状态为半折叠。半折叠指完全展开和折叠之间的状态。如果是双折轴设备，则表示折轴一折叠状态为半折叠，折轴二折叠状态为折叠。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_EXPANDED_WITH_SECOND_EXPANDED<sup>15+</sup> | 11 | 表示双折轴设备折轴一折叠状态为完全展开，折轴二折叠状态为完全展开。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_EXPANDED_WITH_SECOND_HALF_FOLDED<sup>15+</sup> | 21 | 表示双折轴设备折轴一折叠状态为完全展开，折轴二折叠状态为半折叠。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_FOLDED_WITH_SECOND_EXPANDED<sup>15+</sup> | 12 | 表示双折轴设备折轴一折叠状态为折叠，折轴二折叠状态为完全展开。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_FOLDED_WITH_SECOND_HALF_FOLDED<sup>15+</sup> | 22 | 表示双折轴设备折轴一折叠状态为折叠，折轴二折叠状态为半折叠。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_HALF_FOLDED_WITH_SECOND_EXPANDED<sup>15+</sup> | 13 | 表示双折轴设备折轴一折叠状态为半折叠，折轴二折叠状态为完全展开。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| FOLD_STATUS_HALF_FOLDED_WITH_SECOND_HALF_FOLDED<sup>15+</sup> | 23 | 表示双折轴设备折轴一折叠状态为半折叠，折轴二折叠状态为半折叠。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+
+>**说明：**<br>
+> 只有一个折轴的产品包含FOLD_STATUS_EXPANDED、FOLD_STATUS_FOLDED、FOLD_STATUS_HALF_FOLDED三种折叠状态。
+> 具有两个折轴的产品包含上表所示九种折叠状态。<br>
+> FOLD_STATUS_UNKNOWN是一种不可用的折叠状态。
 
 ## FoldDisplayMode<sup>10+</sup>
 
@@ -77,8 +86,8 @@ import { display } from '@kit.ArkUI';
 | FOLD_DISPLAY_MODE_COORDINATION | 4 | 表示设备当前双屏协同显示。|
 
 >**说明：**<br>
->&bullet; 对于大屏内折产品，内屏显示状态为FOLD_DISPLAY_MODE_FULL，外屏显示状态为FOLD_DISPLAY_MODE_MAIN。<br>
->&bullet; 对于小屏内折产品，内屏显示状态为FOLD_DISPLAY_MODE_MAIN，外屏显示状态为FOLD_DISPLAY_MODE_SUB。
+>&bullet; 对于内外屏均可作为主屏幕使用的折叠产品，内屏显示状态为FOLD_DISPLAY_MODE_FULL，外屏显示状态为FOLD_DISPLAY_MODE_MAIN。<br>
+>&bullet; 对于外屏只有简单的辅助显示作用的折叠产品，内屏显示状态为FOLD_DISPLAY_MODE_MAIN，外屏显示状态为FOLD_DISPLAY_MODE_SUB。
 
 ## FoldCreaseRegion<sup>10+</sup>
 
@@ -685,7 +694,7 @@ display.off('foldStatusChange', callback);
 
 on(type: 'foldAngleChange', callback: Callback&lt;Array&lt;number&gt;&gt;): void
 
-开启折叠设备折叠角度变化的监听。
+开启折叠设备折叠角度变化的监听。如果是双折轴设备，则有两个角度值；在充电口朝下的状态下，从右到左分别是折轴一和折轴二。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -696,7 +705,7 @@ on(type: 'foldAngleChange', callback: Callback&lt;Array&lt;number&gt;&gt;): void
 | 参数名   | 类型                                      | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | 是 | 监听事件，固定为'foldAngleChange'，表示折叠设备折叠角度发生变化。|
-| callback | Callback&lt;Array&lt;number&gt;&gt; | 是 | 回调函数。表示折叠设备屏幕折叠角度值（0度~180度）。|
+| callback | Callback&lt;Array&lt;number&gt;&gt; | 是 | 回调函数。表示折叠设备屏幕折叠角度值（0度~180度）。如果是双折轴设备，则数组返回两个角度值，第一个值是折轴一的折叠角度值，第二个值是折轴二的折叠角度值。|
 
 **错误码：**
 

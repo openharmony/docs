@@ -728,7 +728,7 @@ import { asset } from '@kit.AssetStoreKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let handle: asset.AssetMap = new Map();
-// 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuery执行成功返回的挑战值
+// 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuery执行成功返回的挑战值。
 handle.set(asset.Tag.AUTH_CHALLENGE, new Uint8Array(32));
 try {
   asset.postQuery(handle).then(() => {
@@ -779,7 +779,7 @@ import { asset } from '@kit.AssetStoreKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let handle: asset.AssetMap = new Map();
-// 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuerySync执行成功返回的挑战值
+// 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuerySync执行成功返回的挑战值。
 handle.set(asset.Tag.AUTH_CHALLENGE, new Uint8Array(32));
 try {
   asset.postQuerySync(handle)
@@ -886,9 +886,9 @@ type AssetMap = Map\<Tag, Value>
 
 | 名称                  | 值   | 说明                                                         |
 | --------------------- | ---- | ------------------------------------------------------------ |
-| DEVICE_POWERED_ON     | 0    | 开机后可访问                                   |
-| DEVICE_FIRST_UNLOCKED | 1    | 首次解锁后可访问<br>**备注：** 未设置锁屏密码时，等同于开机后可访问 |
-| DEVICE_UNLOCKED       | 2    | 解锁状态时可访问<br/>**备注：** 未设置锁屏密码时，等同于开机后可访问 |
+| DEVICE_POWERED_ON     | 0    | 开机后可访问。                                   |
+| DEVICE_FIRST_UNLOCKED | 1    | 首次解锁后可访问<br>**说明：** 未设置锁屏密码时，等同于开机后可访问。 |
+| DEVICE_UNLOCKED       | 2    | 解锁状态时可访问<br/>**说明：** 未设置锁屏密码时，等同于开机后可访问。 |
 
 ## AuthType
 
@@ -933,7 +933,7 @@ type AssetMap = Map\<Tag, Value>
 | 名称       | 值   | 说明                                                         |
 | ---------- | ---- | ------------------------------------------------------------ |
 | ALL        | 0    | 返回关键资产明文及属性。<br/>**说明：** 查询单条关键资产明文时，需设置此类型。 |
-| ATTRIBUTES | 1    | 返回关键资产属性，不含关键资产明文。<br>**备注：** 批量查询关键资产属性时，需设置此类型。 |
+| ATTRIBUTES | 1    | 返回关键资产属性，不含关键资产明文。<br>**说明：** 批量查询关键资产属性时，需设置此类型。 |
 
 ## ConflictResolution
 

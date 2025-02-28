@@ -65,7 +65,7 @@ To fully understand the preceding example, a knowledge of the following concepts
 
 - [Rules for Custom Component Parameters](#rules-for-custom-component-parameters)
 
-- [The build Function](#the-build-function)
+- [The build Function](#build-function)
 
 - [Universal Style of a Custom Component](#universal-style-of-a-custom-component)
 

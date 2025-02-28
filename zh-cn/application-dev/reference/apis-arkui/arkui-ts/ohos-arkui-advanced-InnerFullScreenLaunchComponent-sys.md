@@ -22,7 +22,7 @@ import { InnerFullScreenLaunchComponent, LauncherController } from '@kit.ArkUI'
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)
 
 ## InnerFullScreenLaunchComponent
 
@@ -65,7 +65,7 @@ InnerFullScreenLaunchComponent({ content: Callback\<void>, controller: LaunchCon
 | options | [AtomicServiceOptions](../../apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md) | 否 | 拉起原子化服务参数。 |
 
 ## 事件
-不支持[通用事件](ts-universal-events-click.md)
+不支持[通用事件](ts-component-general-events.md)
 
 ## 示例
 

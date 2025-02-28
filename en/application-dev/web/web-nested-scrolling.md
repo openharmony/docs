@@ -9,7 +9,7 @@ When a **Web** component is nested in multiple scrollable containers, the offset
 
 > **NOTE**
 >
-> - Containers that support nested scrolling: **Grid**, **List**, **Scroll**, **Swiper**, **Tabs**, and **WaterFlow**.
+> - Containers that support nested scrolling: [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md), [List](../reference/apis-arkui/arkui-ts/ts-container-list.md), [Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md), [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md), [Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md), [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md), [Refresh](../reference/apis-arkui/arkui-ts/ts-container-refresh.md) and [bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet).
 > - Input sources that support nested scrolling: gestures, mouse device, and touchpad.
 
 ```ts

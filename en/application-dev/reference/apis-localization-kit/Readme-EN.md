@@ -1,6 +1,6 @@
 # Localization Kit
 
-- ArkTS API
+- ArkTS APIs
   - [@ohos.i18n (Internationalization)](js-apis-i18n.md)
   - [@ohos.intl (Internationalization)](js-apis-intl.md)
   - [@ohos.resourceManager (Resource Management)](js-apis-resource-manager.md)
@@ -12,7 +12,7 @@
     - [RawFileDescriptor](rawFileDescriptor.md) 
     - [Resource](resource.md)
     - [SendableResource](sendableResource.md)
-- C API
+- C APIs
   - Modules
     - [Rawfile](rawfile.md)
     - [Resourcemanager](resourcemanager.md)

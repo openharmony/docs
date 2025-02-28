@@ -203,7 +203,7 @@ setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
 | 参数名   | 类型                                       | 必填   | 说明                                    |
 | ----- | ---------------------------------------- | ---- | ------------------------------------- |
-| options | [OverlayManagerOptions](#overlaymanageroptions15) | 否    | OverlayManager参数。|
+| options | [OverlayManagerOptions](#overlaymanageroptions15) | 是  | OverlayManager参数。|
 
 **返回值：** 
 
@@ -2238,7 +2238,7 @@ uiContext.getMaxFontScale()
 
 bindTabsToScrollable(tabsController: TabsController, scroller: Scroller): void;
 
-绑定Tabs组件和可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效。一个TabsController可与多个Scroller绑定，一个Scroller也可与多个TabsController绑定。
+绑定Tabs组件和可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，上滑隐藏，下滑显示。一个TabsController可与多个Scroller绑定，一个Scroller也可与多个TabsController绑定。
 
 >  **说明：**
 >
@@ -2379,7 +2379,7 @@ unbindTabsFromScrollable(tabsController: TabsController, scroller: Scroller): vo
 
 bindTabsToNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void;
 
-绑定Tabs组件和嵌套的可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效。一个TabsController可与多个嵌套的Scroller绑定，嵌套的Scroller也可与多个TabsController绑定。
+绑定Tabs组件和嵌套的可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，上滑隐藏，下滑显示。一个TabsController可与多个嵌套的Scroller绑定，嵌套的Scroller也可与多个TabsController绑定。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -2511,6 +2511,61 @@ import { Font } from '@kit.ArkUI';
 let font:Font|undefined = uiContext.getFont();
 if(font){
   font.getFontByName('Sans Italic')
+}
+```
+
+### dispatchKeyEvent<sup>15+</sup>
+
+按键事件应分发给指定的组件。为了确保行为的可预测性，目标组件必须位于分发组件的子树中。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                          | 必填 | 说明               |
+| ------ | ----------------------------- | ---- | ------------------ |
+| node  | number \| string | 是   | 组件的id或者节点UniqueID。 |
+| event  |[KeyEvent](./arkui-ts/ts-universal-events-key.md#keyevent对象说明) | 是   | KeyEvent对象。 |
+
+**示例：**
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Row() {
+        Button('Button1').id('Button1').onKeyEvent((event) => {
+          console.log("Button1");
+          return true
+        })
+        Button('Button2').id('Button2').onKeyEvent((event) => {
+          console.log("Button2");
+          return true
+        })
+      }
+      .width('100%')
+      .height('100%')
+      .id('Row1')
+      .onKeyEventDispatch((event) => {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Button1');
+        return context.dispatchKeyEvent('Button1', event);
+      })
+
+    }
+    .height('100%')
+    .width('100%')
+    .onKeyEventDispatch((event) => {
+      if (event.type == KeyType.Down) {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Row1');
+        return context.dispatchKeyEvent('Row1', event);
+      }
+      return true;
+    })
+  }
 }
 ```
 
@@ -6575,6 +6630,29 @@ import { window, UIContext } from '@kit.ArkUI';
  }
 }
 ```
+### cancelDataLoading<sup>15+</sup>
+
+cancelDataLoading(key: string): void
+
+当使用[startDataLoading](arkui-ts/ts-universal-events-drag-drop.md#dragevent7)获取拖拽数据时，可调用该接口取消数据传输。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** : SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| key | string | 是   | 拖拽数据的标识，用于区分每次拖拽。key可通过startDataLoading接口获取。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. |
 
 ## OverlayManager<sup>12+</sup>
 
@@ -7014,6 +7092,51 @@ onWindowStageCreate(windowStage: window.WindowStage) {
   });
 }
 ```
+
+### getBarRect<sup>15+</sup>
+
+getBarRect(): Frame
+
+获取原子化服务menuBar相对窗口的布局信息。
+> **说明：**
+>
+> 布局信息包含了原子化服务menuBar的左右margin。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                | 说明            |
+| ----------------- | ------------- |
+| [Frame](./js-apis-arkui-graphics.md#frame) | 原子化服务menuBar的大小和位置。 |
+
+**示例：**
+
+```ts
+import { AtomicServiceBar } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+@Entry
+@Component
+struct Index {
+  build() {
+    Button("getBarRect")
+      .onClick(() => {
+        let uiContext: UIContext = this.getUIContext();
+        let currentBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+        if (currentBar != undefined) {
+          let rect = currentBar.getBarRect();
+          hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully. x:' +
+            rect.x + ' y:' + rect.y + ' width:' + rect.width + ' height:' + rect.height);
+        } else {
+          hilog.info(0x0000, 'testTag', 'Get AtomServiceBar failed.');
+        }
+      })
+  }
+}
+```
+
 ## KeyboardAvoidMode<sup>11+</sup>
 
 配置键盘避让时页面的避让模式。
@@ -7286,6 +7409,69 @@ struct CustomDialogUser {
   }
 }
 ```
+
+### setKeyProcessingMode<sup>15+</sup>
+
+setKeyProcessingMode(mode: KeyProcessingMode): void
+
+设置按键事件处理的优先级。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | ------- | ------- | ------- |
+| mode | [KeyProcessingMode](./arkui-ts/ts-universal-attributes-focus.md#keyprocessingmode15)| 是 | 按键处理模式。 |
+
+```ts
+
+// 该示例演示了在页面加载完成后设置走焦类型的实现方式。
+@Entry
+@Component
+struct Index {
+
+  aboutToAppear() {
+    this.getUIContext().getFocusController().setKeyProcessingMode(KeyProcessingMode.ANCESTOR_EVENT)
+  }
+
+  build() {
+    Row() {
+      Row() {
+        Button('Button1').id('Button1').onKeyEvent((event) => {
+          console.log("Button1");
+          return true
+        })
+        Button('Button2').id('Button2').onKeyEvent((event) => {
+          console.log("Button2");
+          return true
+        })
+      }
+      .width('100%')
+      .height('100%')
+      .id('Row1')
+      .onKeyEventDispatch((event) => {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Button1');
+        return context.dispatchKeyEvent('Button1', event);
+      })
+    }
+    .height('100%')
+    .width('100%')
+    .onKeyEventDispatch((event) => {
+      if (event.type == KeyType.Down) {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Row1');
+        return context.dispatchKeyEvent('Row1', event);
+      }
+      return true;
+    })
+  }
+}
+```
+
 ## PointerStyle<sup>12+</sup>
 
 type PointerStyle = pointer.PointerStyle

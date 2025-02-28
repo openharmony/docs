@@ -89,8 +89,20 @@ static keys(): Array<string>;
 
 ### 在两个页面之间存储数据
 
+数据页面
+```ts
+// 数据中心
+// Sample.ets
+@ObservedV2
+export class Sample {
+  @Trace p1: number = 0;
+  p2: number = 10;
+}
+```
+
 页面1
 ```ts
+// Page1.ets
 import { AppStorageV2 } from '@kit.ArkUI';
 import { Sample } from '../Sample';
 
@@ -145,6 +157,7 @@ struct Page1 {
 
 页面2
 ```ts
+// Page2.ets
 import { AppStorageV2 } from '@kit.ArkUI';
 import { Sample } from '../Sample';
 
@@ -198,22 +211,12 @@ struct Page2 {
   "routerMap": [
     {
       "name": "Page2",
-      "pageSourceFile": "src/main/ets/pages/PersistenceV2-2.ets",
+      "pageSourceFile": "src/main/ets/pages/Page2.ets",
       "buildFunction": "Page2Builder",
       "data": {
-        "description" : "PersistenceV2 example"
+        "description" : "AppStorageV2 example"
       }
     }
   ]
-}
-```
-
-数据页面
-```ts
-// 数据中心
-@ObservedV2
-export class Sample {
-  @Trace p1: number = 0;
-  p2: number = 10;
 }
 ```

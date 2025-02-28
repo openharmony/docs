@@ -110,17 +110,24 @@ export struct SpringCurve {
   private springs: Spring[] = [
     new Spring('springMotion', 'Cycle: 1, damping: 0.25', curves.springMotion(1, 0.25)),
     new Spring('responsive' + '\n' + 'SpringMotion', 'Responsive spring curve', curves.responsiveSpringMotion(1, 0.25)),
-    new Spring('interpolating' + '\n' + 'Spring', 'Initial velocity: 10; quality: 1; stiffness: 228; damping: 30', curves.interpolatingSpring(10, 1, 228, 30)),
+    new Spring('interpolating' + '\n' + 'Spring', 'Initial velocity: 10; quality: 1; stiffness: 228; damping: 30',
+      curves.interpolatingSpring(10, 1, 228, 30)),
     new Spring('springCurve', 'Initial velocity: 10; quality: 1; stiffness: 228; damping: 30', curves.springCurve(10, 1, 228, 30))
   ];
 
   build() {
     Row() {
       ForEach(this.springs, (item: Spring) => {
-        Motion({ title: item.title, subTitle: item.subTitle, iCurve: item.iCurve, dRotate: this.dRotate })
+        Motion({
+          title: item.title,
+          subTitle: item.subTitle,
+          iCurve: item.iCurve,
+          dRotate: this.dRotate
+        })
       })
     }
-    .justifyContent(FlexAlign.Center).alignItems(VerticalAlign.Bottom)
+    .justifyContent(FlexAlign.Center)
+    .alignItems(VerticalAlign.Bottom)
     .width('100%')
     .height(437)
     .margin({ top: 20 })

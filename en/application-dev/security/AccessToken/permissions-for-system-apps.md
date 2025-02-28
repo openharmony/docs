@@ -4215,6 +4215,18 @@ After the script address is configured, other applications can read and parse th
 
 **Valid since**: 15
 
+### ohos.permission.ACCESS_ACCOUNT_SERVICE_EXTENSION_ABILITY
+
+Allows a system application to invoke the services provided by the account ServiceExtensionAbility.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：15
+
 ### ohos.permission.STORAGE_MANAGER_CRYPT
 
 Allows a system application or system service to call APIs to perform encryption and decryption.

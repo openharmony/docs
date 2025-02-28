@@ -21,7 +21,7 @@ import { locationManager } from '@kit.MDMKit';
 
 setLocationPolicy(admin: Want, policy: LocationPolicy): void
 
-以同步方法设置位置服务管理策略。失败抛出对应异常。
+设置位置服务管理策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_LOCATION
 
@@ -32,7 +32,7 @@ setLocationPolicy(admin: Want, policy: LocationPolicy): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | policy | [LocationPolicy](#locationpolicy) | 是    | 位置服务策略。<br>- 0：默认策略。<br>- 1：禁用。<br>- 2：强制启用。 |
 
 **错误码**：
@@ -68,7 +68,7 @@ try {
 
 getLocationPolicy(admin: Want): LocationPolicy
 
-以同步方法查询位置服务策略。成功返回位置服务策略，失败抛出对应异常。
+查询位置服务管理策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_LOCATION
 
@@ -79,7 +79,7 @@ getLocationPolicy(admin: Want): LocationPolicy
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。        |
 
 **返回值：**
 

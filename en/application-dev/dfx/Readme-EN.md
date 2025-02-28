@@ -47,13 +47,14 @@
   - [Using HiDebug (ArkTS)](hidebug-guidelines-arkts.md)
   - [Using HiDebug (C/C++)](hidebug-guidelines-ndk.md)
 - HiCollie
+  - [Using HiCollie to Detect Service Thread Stuck and Jank Events](hicollie-guidelines-ndk.md)
   - [Using HiCollie (C/C++)](hicollie-guidelines-ndk.md)
 - Error Management
   - [Development of Error Manager](errormanager-guidelines.md)
   - [Development of Application Recovery](apprecovery-guidelines.md)
 - Fault Analysis
-  - [Analyzing JSCrash](jscrash-guidelines.md)
-  - [Analyzing CppCrash](cppcrash-guidelines.md)
+  - [Analyzing JS Crash](jscrash-guidelines.md)
+  - [Analyzing CPP Crash](cppcrash-guidelines.md)
   - [Analyzing AppFreeze](appfreeze-guidelines.md)
 - Command Line Tools
   - [hdc](hdc.md)

@@ -1,10 +1,12 @@
 # LazyForEach
 
-**LazyForEach** iterates over provided data sources and creates corresponding components during each iteration. When **LazyForEach** is used in a scrolling container, the framework creates components as required within the visible area of the scrolling container. When a component is out of the visible area, the framework destroys and reclaims the component to reduce memory usage.
-
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+For details about the development, see [LazyForEach: Lazy Data Loading](../../../quick-start/arkts-rendering-control-lazyforeach.md).
+
+**LazyForEach** iterates over provided data sources and creates corresponding components during each iteration. When **LazyForEach** is used in a scrolling container, the framework creates components as required within the visible area of the scrolling container. When a component is out of the visible area, the framework destroys and reclaims the component to reduce memory usage.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 10.
 
@@ -115,7 +117,7 @@ Unregisters the listener for data changes.
 
 ## DataChangeListener<sup>10+</sup>
 
-Listener for data changes.
+Implements the listener for data changes.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 10.
 
@@ -155,8 +157,6 @@ onDataMoved(from: number, to: number): void
 
 Invoked when data is moved. Data is swapped between the **from** and **to** positions.
 
-> **NOTE**
->
 > This API is deprecated since API version 8. You are advised to use [onDataMove](#ondatamove8) instead.
 >
 > The ID must remain unchanged before and after data movement. If the ID changes, APIs for deleting and adding data must be called.  
@@ -218,7 +218,7 @@ Invoked when data is added to the position indicated by the specified index.
 
 onDataMove(from: number, to: number): void
 
-Invoked when data is moved. Data is swapped between the **from** and **to** positions.  
+Invoked when data is moved, that is, when data is swapped between the **from** and **to** positions.  
 
 > **NOTE**
 >
@@ -237,7 +237,9 @@ onDataDelete(index: number): void
 
 Invoked when data is deleted from the position indicated by the specified index. LazyForEach will update the displayed content accordingly.  
 
-> **NOTE**<br>Before **onDataDelete** is called, ensure that the corresponding data in **dataSource** has been deleted. Otherwise, undefined behavior will occur during page rendering.
+> **NOTE**
+>
+> Before **onDataDelete** is called, ensure that the corresponding data in **dataSource** has been deleted. Otherwise, undefined behavior will occur during page rendering.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 10.
 
@@ -435,7 +437,7 @@ Enumerates the data operation types.
 
 | Name| Value                   | Description                |
 | ------ | ------------------- | -------------------- |
-| ADD   |   add       | Data addtion.  |
+| ADD   |   add       | Data addition.  |
 | DELETE  | delete    | Data deletion.   |
 | CHANGE  | change     | Data change.   |
 | MOVE | move | Data movement.|

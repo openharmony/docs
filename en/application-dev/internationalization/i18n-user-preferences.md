@@ -1,4 +1,4 @@
-# User Preference Setting (for System Applications Only)
+# Setting User Preferences (for System Applications Only)
 
 ## Use Cases
 
@@ -29,7 +29,7 @@ For details about how to use the APIs, see [setUsingLocalDigit](../reference/api
      let err: BusinessError = error as BusinessError;
      console.error(`call System.setUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
    }
-   let date = new Date(2023, 9, 25);
+   let date = new Date(2023, 9, 25); // The date is 2023.10.25.
    let appPreferredLanguage = "ar";
    let dateTimeFmt = new intl.DateTimeFormat(appPreferredLanguage);
    let result = dateTimeFmt.format(date); // result = "٢٠٢٣/١٠/٢٥" (local Arabic digits)
@@ -43,7 +43,7 @@ For details about how to use the APIs, see [setUsingLocalDigit](../reference/api
      let err: BusinessError = error as BusinessError;
      console.error(`call System.set24HourClock failed, error code: ${err.code}, message: ${err.message}.`);
    }
-   let date = new Date(2023, 9, 25, 16, 48, 0);
+   let date = new Date(2023, 9, 25, 16, 48, 0); // The date and time is 2023.10.25 16:48:00.
    let appPreferredLanguage = "zh";
    let dateTimeFmt = new intl.DateTimeFormat(appPreferredLanguage, { timeStyle: "medium" });
    let result = dateTimeFmt.format(date); // result = "16:48:00"

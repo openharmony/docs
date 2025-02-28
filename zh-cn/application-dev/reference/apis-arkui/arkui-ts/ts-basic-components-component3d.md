@@ -65,7 +65,7 @@ type Scene = Scene
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### environment
 
@@ -190,7 +190,7 @@ renderHeight(value: Dimension)
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。<br/>

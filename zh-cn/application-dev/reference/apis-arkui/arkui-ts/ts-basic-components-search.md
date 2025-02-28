@@ -29,7 +29,7 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### searchButton
 
@@ -118,7 +118,7 @@ textAlign(value: TextAlign)
 
 copyOption(value: CopyOptions)
 
-设置输入的文本是否可复制。设置CopyOptions.None时，当前Search中的文字无法被复制、剪切和帮写，仅支持粘贴。
+设置输入的文本是否可复制。设置CopyOptions.None时，当前Search中的文字无法被复制、剪切、翻译和帮写，仅支持粘贴。
 
 设置CopyOptions.None时，不允许拖拽。
 
@@ -544,7 +544,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 ### keyboardAppearance<sup>15+</sup>
 
-keyboardAppearance(appearance: KeyboardAppearance)
+keyboardAppearance(appearance: Optional\<KeyboardAppearance>)
 
 设置输入框拉起的键盘样式。
 
@@ -556,7 +556,7 @@ keyboardAppearance(appearance: KeyboardAppearance)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
-| appearance | [KeyboardAppearance](ts-text-common.md#keyboardappearance15枚举说明) | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
+| appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15枚举说明)> | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
 
 ### stopBackPress<sup>15+</sup>
 
@@ -648,7 +648,7 @@ stopBackPress(isStopped: Optional\<boolean>)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onSubmit
 
@@ -861,6 +861,24 @@ onDidDelete(callback: Callback\<DeleteValue>)
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
+
+### onWillChange<sup>15+</sup>
+
+onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
+
+在文本内容将要发生变化时，触发该回调。
+
+onWillChange的回调时序晚于onWillInsert、onWillDelete，早于onDidInsert、onDidDelete。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[EditableTextChangeValue](ts-text-common.md#editabletextchangevalue15), boolean> | 是   | 在文本内容将要发生变化时的回调。<br/>返回true时，表示正常修改。返回false时，表示拦截此次触发。 |
 
 ## SearchController
 

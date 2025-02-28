@@ -3281,6 +3281,61 @@ promise.then((data: sim.DsdsMode) => {
 });
 ```
 
+## sim.getSimAuthentication<sup>14+</sup>
+
+getSimAuthentication\(slotId: number, authType: AuthType, authData: string\): Promise\<SimAuthenticationResponse\>
+
+Obtains SIM card authentication information. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                            | Mandatory| Description                                  |
+| -------- | -------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                           | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| authType | [AuthType](#authtype14)          | Yes  | Authentication type.                        |
+| authData | string                           | Yes  | Password or other authentication information.                  |
+
+**Return value**
+
+| Type             | Description                                   |
+| ----------------- | --------------------------------------- |
+| Promise\<[SimAuthenticationResponse](#simauthenticationresponse14)\> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Service connection failed.                   |
+| 8300003  | System internal error.                       |
+| 8300004  | No SIM card.                                 |
+| 8300999  | Unknown error.                               |
+| 8301002  | An error occurred when operating the SIM card.                              |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
+
+sim.getSimAuthentication(0, sim.AuthType.SIM_AUTH_EAP_SIM_TYPE, "test").then(() => {
+    console.log(`getSimAuthentication success.`);
+}).catch((err: BusinessError) => {
+    console.error(`getSimAuthentication failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
 ## LockType<sup>8+</sup>
 
 Enumerates lock types.
@@ -3468,3 +3523,30 @@ Carrier name.
 | Name               | Value                   | Description     |
 | ------------------ | --------------------- | -------- |
 | CHINA_TELECOM_CARD | "china_telecom_card"  | SIM card of China Telecom.|
+
+## AuthType<sup>14+</sup>
+
+Enumerates authentication types.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name               | Value                   | Description     |
+| ------------------ | --------------------- | -------- |
+| SIM_AUTH_EAP_SIM_TYPE   | 128  | EAP-SIM authentication.|
+| SIM_AUTH_EAP_AKA_TYPE   | 129  | EAP-AKA authentication.|
+
+## SimAuthenticationResponse<sup>14+</sup>
+
+Defines the SIM card authentication response.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name        | Type  | Mandatory|    Description   |
+| ------------ | ------ | ---- | ---------- |
+| simStatusWord1 | number |  Yes | SIM card status word 1.|
+| simStatusWord2 | number |  Yes | SIM card status word 2.|
+| response       | string |  Yes | Authentication response.    |

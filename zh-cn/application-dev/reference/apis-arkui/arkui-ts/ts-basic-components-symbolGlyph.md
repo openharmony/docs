@@ -32,7 +32,7 @@ SymbolGlyph(value?: Resource)
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)，不支持文本通用属性，仅支持以下特有属性：
+支持[通用属性](ts-component-general-attributes.md)，不支持文本通用属性，仅支持以下特有属性：
 
 ### fontColor
 
@@ -475,7 +475,7 @@ PulseSymbolEffect的构造函数，脉冲动效。
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 

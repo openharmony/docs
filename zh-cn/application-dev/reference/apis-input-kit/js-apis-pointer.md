@@ -24,7 +24,7 @@ setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名       | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| visible  | boolean                   | 是    | 鼠标指针是否显示。true表示显示，false表示不显示 |
+| visible  | boolean                   | 是    | 鼠标指针是否显示。true表示显示，false表示不显示。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
 **错误码**：
@@ -34,6 +34,7 @@ setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801<sup>14+</sup>  | Capability not supported. |
 
 **示例**：
 
@@ -78,6 +79,7 @@ setPointerVisible(visible: boolean): Promise&lt;void&gt;
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801<sup>14+</sup>  | Capability not supported. |
 
 **示例**：
 
@@ -601,7 +603,7 @@ setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, foc
 | ----- | ------ | ---- | ----------------------------------- |
 | windowId  | number  | 是    | 窗口id。                          |
 | pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 自定义光标资源。 |
-| focusX  | number | 否    | 自定义光标焦点x, 取值范围：大于等于0，默认为0。 |
+| focusX  | number | 否    | 自定义光标焦点x，取值范围：大于等于0，默认为0。 |
 | focusY  | number | 否    | 自定义光标焦点y，取值范围：大于等于0，默认为0。 |
 
 **返回值**：
@@ -735,7 +737,7 @@ setCustomCursorSync(windowId: number, pixelMap: image.PixelMap, focusX?: number,
 | ----- | ------ | ---- | ----------------------------------- |
 | windowId  | number  | 是    | 窗口id。                          |
 | pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 自定义光标资源。 |
-| focusX  | number | 否    | 自定义光标焦点x, 取值范围：大于等于0，默认为0。 |
+| focusX  | number | 否    | 自定义光标焦点x，取值范围：大于等于0，默认为0。 |
 | focusY  | number | 否    | 自定义光标焦点y，取值范围：大于等于0，默认为0。 |
 
 **错误码**：

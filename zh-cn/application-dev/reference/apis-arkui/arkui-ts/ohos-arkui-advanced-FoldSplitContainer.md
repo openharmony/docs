@@ -6,7 +6,7 @@ FoldSplitContainer分栏布局，实现折叠屏二分栏、三分栏在展开�
 
 > **说明：**
 >
-> 该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
 
@@ -45,7 +45,7 @@ FoldSplitContainer({
 | expandedLayoutOptions | [ExpandedRegionLayoutOptions](#expandedregionlayoutoptions) | 是 | @Prop | 展开态布局信息。 |
 | hoverModeLayoutOptions | [HoverModeRegionLayoutOptions](#hovermoderegionlayoutoptions) | 是 | @Prop | 悬停态布局信息。 |
 | foldedLayoutOptions | [FoldedRegionLayoutOptions](#foldedregionlayoutoptions) | 是 | @Prop | 折叠态布局信息。 |
-| animationOptions | [AnimateParam](ts-explicit-animation.md#animateparam对象说明) \| null | 否 | @Prop | 设置动画效果相关的参数，null表示表示关闭动效。 |
+| animationOptions | [AnimateParam](ts-explicit-animation.md#animateparam对象说明) \| null | 否 | @Prop | 设置动画效果相关的参数，null表示关闭动效。 |
 | onHoverStatusChange | [OnHoverStatusChangeHandler](#onhoverstatuschangehandler) | 否 | - | 折叠屏进入或退出悬停模式时触发的回调函数。 |
 
 ## ExpandedRegionLayoutOptions
@@ -84,11 +84,11 @@ FoldSplitContainer({
 
 ## FoldedRegionLayoutOptions
 
+折叠态布局信息。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-折叠态布局信息。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -120,10 +120,10 @@ onHoverStatusChange事件处理。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| foldStatus | [display.FoldStatus<sup>10+</sup>](../js-apis-display.md#foldstatus10) | 是 | 设备的折叠状态。 |
+| foldStatus | [display.FoldStatus](../js-apis-display.md#foldstatus10) | 是 | 设备的折叠状态。 |
 | isHoverMode | boolean | 是 | app当前是否处于悬停态。 |
 | appRotation | number | 是 | 应用旋转角度。 |
-| windowStatusType | [window.WindowStatusType<sup>11+</sup>](../js-apis-window.md#windowstatustype11) | 是 | 窗口模式。 |
+| windowStatusType | [window.WindowStatusType](../js-apis-window.md#windowstatustype11) | 是 | 窗口模式。 |
 
 ## ExtraRegionPosition
 
