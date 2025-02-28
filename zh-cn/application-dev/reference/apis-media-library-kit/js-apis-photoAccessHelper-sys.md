@@ -1614,6 +1614,197 @@ async function example() {
   }
 }
 ```
+
+### saveGalleryFormInfo<sup>16+</sup>
+
+saveGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
+
+将图库卡片相关信息保存到数据库中，使用Promise方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [GalleryFormInfo](#galleryforminfo16)        | 是   | 图库卡片信息，包括图库卡片的id、卡片绑定的图片或相册的uri集合。              |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function example() {
+  console.info('saveGalleryFormInfoDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+  let uriList: Array<string> = [
+    photoAsset.uri,
+  ];
+  let info: photoAccessHelper.GalleryFormInfo = {
+    // formId是一个由纯数字组成的字符串，assetUris为图库中存在的图片或者相册的uri信息集合。
+    formId: "20230116123",
+    assetUris: uriList,
+  }
+
+  phAccessHelper.saveGalleryFormInfo(info).then(() => {
+    console.info('saveGalleryFormInfo successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`saveGalleryFormInfo failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
+### updateGalleryFormInfo<sup>16+</sup>
+
+updateGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
+
+更新既存的图库卡片的相关信息，并保存到数据库中，使用Promise方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [GalleryFormInfo](#galleryforminfo16)        | 是   | 图库卡片信息，包括图库卡片的id、卡片绑定的图片或相册的uri集合。              |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function example() {
+  console.info('updateGalleryFormInfoDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+  let photoAssetLast: photoAccessHelper.PhotoAsset = await fetchResult.getLastObject();
+  let uriList: Array<string> = [
+    photoAsset.uri,
+    photoAssetLast.uri
+  ];
+  let info: photoAccessHelper.GalleryFormInfo = {
+    // formId是一个由纯数字组成的字符串，assetUris为图库中存在的图片或者相册的uri信息集合。
+    formId: "20230116123",
+    assetUris: uriList,
+  }
+
+  phAccessHelper.updateGalleryFormInfo(info).then(() => {
+    console.info('updateGalleryFormInfo successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`updateGalleryFormInfo failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
+### removeGalleryFormInfo<sup>16+</sup>
+
+removeGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
+
+从数据库中删除图库卡片信息，使用Promise方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [GalleryFormInfo](#galleryforminfo16)        | 是   | 图库卡片信息，包括图库卡片的id、卡片绑定的图片或相册的uri集合。              |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function example() {
+  console.info('removeGalleryFormInfoDemo');
+  let info: photoAccessHelper.GalleryFormInfo = {
+    // formId是一个由纯数字组成的字符串，移除卡片时assertUris不填。
+    formId: "20230116123"
+  }
+
+  phAccessHelper.removeGalleryFormInfo(info).then(() => {
+    console.info('removeGalleryFormInfo successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`removeGalleryFormInfo failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
 ## PhotoAsset
 
 提供封装文件属性的方法。
@@ -6788,6 +6979,19 @@ async function example() {
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 |formId       |string  |是 | 卡片的ID，由图库创建卡片时提供。 |
 |uri          |string  |是 | 卡片绑定的图片的uri。创建卡片时uri可为空或图片的uri，移除卡片时uri不做校验，传空即可。  |
+
+## GalleryFormInfo<sup>16+</sup>
+
+图库卡片相关信息。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                   | 类型                | 必填 | 说明                                              |
+| ---------------------- | ------------------- | ---- | ------------------------------------------------ |
+|formId             |string               |是 | 卡片的ID，由图库创建卡片时提供。 |
+|assetUris          |Array&lt;string&gt;  |是 | 卡片绑定的图片或相册的uri集合。创建和更新卡片时assetUris不可为空，移除卡片时assetUris可以不传。  |
 
 ## ResourceType<sup>11+</sup>
 
