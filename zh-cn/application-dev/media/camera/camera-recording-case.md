@@ -25,14 +25,14 @@ import { common } from '@kit.AbilityKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function videoRecording(context: common.Context, surfaceId: string): Promise<void> {
-  // 创建CameraManager对象
+  // 创建CameraManager对象。
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   if (!cameraManager) {
     console.error("camera.getCameraManager error");
     return;
   }
 
-  // 监听相机状态变化
+  // 监听相机状态变化。
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
     if (err !== undefined && err.code !== 0) {
       console.error('cameraStatus with errorCode = ' + err.code);
@@ -42,7 +42,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.info(`status: ${cameraStatusInfo.status}`);
   });
 
-  // 获取相机列表
+  // 获取相机列表。
   let cameraArray: Array<camera.CameraDevice> = [];
   try {
     cameraArray = cameraManager.getSupportedCameras();
@@ -56,7 +56,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     return;
   }
 
-  // 获取支持的模式类型
+  // 获取支持的模式类型。
   let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
   let isSupportVideoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_VIDEO) >= 0;
   if (!isSupportVideoMode) {
@@ -64,7 +64,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     return;
   }
 
-  // 获取相机设备支持的输出流能力
+  // 获取相机设备支持的输出流能力。
   let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0], camera.SceneMode.NORMAL_VIDEO);
   if (!cameraOutputCap) {
     console.error("cameraManager.getSupportedOutputCapability error")
@@ -87,11 +87,11 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.error("createOutput videoProfilesArray == null || undefined");
   }
 
-  // videoProfile的宽高需要与AVRecorderProfile的宽高保持一致，并且需要使用AVRecorderProfile所支持的宽高
-  // 示例代码默认选择第一个videoProfile，实际开发需根据所需筛选videoProfile
+  // videoProfile的宽高需要与AVRecorderProfile的宽高保持一致，并且需要使用AVRecorderProfile所支持的宽高。
+  // 示例代码默认选择第一个videoProfile，实际开发需根据所需筛选videoProfile。
   let videoProfile: camera.VideoProfile = videoProfilesArray[0];
   let isHdr = videoProfile.format === camera.CameraFormat.CAMERA_FORMAT_YCBCR_P010 || videoProfile.format === camera.CameraFormat.CAMERA_FORMAT_YCRCB_P010;
-  // 配置参数以实际硬件设备支持的范围为准
+  // 配置参数以实际硬件设备支持的范围为准。
   let aVRecorderProfile: media.AVRecorderProfile = {
     audioBitrate: 48000,
     audioChannels: 2,
@@ -105,14 +105,14 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     videoFrameRate: 30,
     isHdr: isHdr
   };
-  let videoUri: string = `file://${context.filesDir}/${Date.now()}.mp4`; // 本地沙箱路径
+  let videoUri: string = `file://${context.filesDir}/${Date.now()}.mp4`; // 本地沙箱路径。
   let file: fs.File = fs.openSync(videoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let aVRecorderConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
     videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
     profile: aVRecorderProfile,
     url: `fd://${file.fd.toString()}`, // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45--file:///data/media/01.mp4
-    rotation: 0, // 合理值0、90、180、270，非合理值prepare接口将报错
+    rotation: 0, // 合理值0、90、180、270，非合理值prepare接口将报错。
     location: { latitude: 30, longitude: 130 }
   };
 
@@ -135,7 +135,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.error(`prepare call failed. error code: ${err.code}`);
   }
 
-  let videoSurfaceId: string | undefined = undefined; // 该surfaceID用于传递给相机接口创造videoOutput
+  let videoSurfaceId: string | undefined = undefined; // 该surfaceID用于传递给相机接口创造videoOutput。
   try {
     videoSurfaceId = await avRecorder.getInputSurface();
   } catch (error) {
@@ -145,7 +145,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   if (videoSurfaceId === undefined) {
     return;
   }
-  // 创建VideoOutput对象
+  // 创建VideoOutput对象。
   let videoOutput: camera.VideoOutput | undefined = undefined;
   try {
     videoOutput = cameraManager.createVideoOutput(videoProfile, videoSurfaceId);
@@ -156,12 +156,12 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   if (videoOutput === undefined) {
     return;
   }
-  // 监听视频输出错误信息
+  // 监听视频输出错误信息。
   videoOutput.on('error', (error: BusinessError) => {
     console.error(`Preview output error code: ${error.code}`);
   });
 
-  //创建会话
+  //创建会话。
   let videoSession: camera.VideoSession | undefined = undefined;
   try {
     videoSession = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
@@ -172,12 +172,12 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   if (videoSession === undefined) {
     return;
   }
-  // 监听session错误信息
+  // 监听session错误信息。
   videoSession.on('error', (error: BusinessError) => {
     console.error(`Video session error code: ${error.code}`);
   });
 
-  // 开始配置会话
+  // 开始配置会话。
   try {
     videoSession.beginConfig();
   } catch (error) {
@@ -185,7 +185,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.error(`Failed to beginConfig. error: ${JSON.stringify(err)}`);
   }
 
-  // 创建相机输入流
+  // 创建相机输入流。
   let cameraInput: camera.CameraInput | undefined = undefined;
   try {
     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
@@ -196,13 +196,13 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   if (cameraInput === undefined) {
     return;
   }
-  // 监听cameraInput错误信息
+  // 监听cameraInput错误信息。
   let cameraDevice: camera.CameraDevice = cameraArray[0];
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
     console.error(`Camera input error code: ${error.code}`);
   });
 
-  // 打开相机
+  // 打开相机。
   try {
     await cameraInput.open();
   } catch (error) {
@@ -210,7 +210,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.error(`Failed to open cameraInput. error: ${JSON.stringify(err)}`);
   }
 
-  // 向会话中添加相机输入流
+  // 向会话中添加相机输入流。
   try {
     videoSession.addInput(cameraInput);
   } catch (error) {
@@ -218,11 +218,11 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.error(`Failed to add cameraInput. error: ${JSON.stringify(err)}`);
   }
 
-  // 创建预览输出流，其中参数 surfaceId 参考下面 XComponent 组件，预览流为XComponent组件提供的surface
+  // 创建预览输出流，其中参数 surfaceId 参考下面 XComponent 组件，预览流为XComponent组件提供的surface。
   let previewOutput: camera.PreviewOutput | undefined = undefined;
   let previewProfile = previewProfilesArray.find((previewProfile: camera.Profile) => {
     return Math.abs((previewProfile.size.width / previewProfile.size.height) - (videoProfile.size.width / videoProfile.size.height)) < Number.EPSILON;
-  }); // 筛选与录像分辨率宽高比一致的预览分辨率
+  }); // 筛选与录像分辨率宽高比一致的预览分辨率。
   if (previewProfile === undefined) {
     return;
   }
@@ -236,7 +236,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     return;
   }
 
-  // 向会话中添加预览输出流
+  // 向会话中添加预览输出流。
   try {
     videoSession.addOutput(previewOutput);
   } catch (error) {
@@ -244,7 +244,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.error(`Failed to add previewOutput. error: ${JSON.stringify(err)}`);
   }
 
-  // 向会话中添加录像输出流
+  // 向会话中添加录像输出流。
   try {
     videoSession.addOutput(videoOutput);
   } catch (error) {
@@ -252,7 +252,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.error(`Failed to add videoOutput. error: ${JSON.stringify(err)}`);
   }
 
-  // 提交会话配置
+  // 提交会话配置。
   try {
     await videoSession.commitConfig();
   } catch (error) {
@@ -260,7 +260,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.error(`videoSession commitConfig error: ${JSON.stringify(err)}`);
   }
 
-  // 启动会话
+  // 启动会话。
   try {
     await videoSession.start();
   } catch (error) {
@@ -268,7 +268,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.error(`videoSession start error: ${JSON.stringify(err)}`);
   }
 
-  // 启动录像输出流
+  // 启动录像输出流。
   videoOutput.start((err: BusinessError) => {
     if (err) {
       console.error(`Failed to start the video output. error: ${JSON.stringify(err)}`);
@@ -277,7 +277,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.info('Callback invoked to indicate the video output start success.');
   });
 
-  // 开始录像
+  // 开始录像。
   try {
     await avRecorder.start();
   } catch (error) {
@@ -285,7 +285,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.error(`avRecorder start error: ${JSON.stringify(err)}`);
   }
 
-  // 停止录像输出流
+  // 停止录像输出流。
   videoOutput.stop((err: BusinessError) => {
     if (err) {
       console.error(`Failed to stop the video output. error: ${JSON.stringify(err)}`);
@@ -294,7 +294,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.info('Callback invoked to indicate the video output stop success.');
   });
 
-  // 停止录像
+  // 停止录像。
   try {
     await avRecorder.stop();
   } catch (error) {
@@ -302,25 +302,25 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.error(`avRecorder stop error: ${JSON.stringify(err)}`);
   }
 
-  // 停止当前会话
+  // 停止当前会话。
   await videoSession.stop();
 
-  // 关闭文件
+  // 关闭文件。
   fs.closeSync(file);
 
-  // 释放相机输入流
+  // 释放相机输入流。
   await cameraInput.close();
 
-  // 释放预览输出流
+  // 释放预览输出流。
   await previewOutput.release();
 
-  // 释放录像输出流
+  // 释放录像输出流。
   await videoOutput.release();
 
-  // 释放会话
+  // 释放会话。
   await videoSession.release();
 
-  // 会话置空
+  // 会话置空。
   videoSession = undefined;
 }
 ```
