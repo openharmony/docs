@@ -37,19 +37,19 @@
    属性定义：
 
    ```ts
-   @State isShowBlack: boolean = false; // 是否显示闪黑组件
-   @StorageLink('captureClick') @Watch('onCaptureClick') captureClickFlag: number = 0; // 拍照闪黑动效入口
-   @State flashBlackOpacity: number = 1; // 闪黑组件透明度
+   @State isShowBlack: boolean = false; // 是否显示闪黑组件。
+   @StorageLink('captureClick') @Watch('onCaptureClick') captureClickFlag: number = 0; // 拍照闪黑动效入口。
+   @State flashBlackOpacity: number = 1; // 闪黑组件透明度。
    ```
 
    闪黑组件的实现逻辑参考：
 
    ```ts
-   // 拍照闪黑及前后置切换时显示，用来遮挡XComponent组件
+   // 拍照闪黑及前后置切换时显示，用来遮挡XComponent组件。
    if (this.isShowBlack) {
      Column()
        .key('black')
-       .width(px2vp(1080)) // 与预览流XComponent宽高保持一致，图层在预览流之上，截图组件之下
+       .width(px2vp(1080)) // 与预览流XComponent宽高保持一致，图层在预览流之上，截图组件之下。
        .height(px2vp(1920))
        .backgroundColor(Color.Black)
        .opacity(this.flashBlackOpacity)
@@ -61,18 +61,18 @@
    ```ts
    function flashBlackAnim() {
      console.info('flashBlackAnim E');
-     this.flashBlackOpacity = 1; // 闪黑组件不透明
-     this.isShowBlack = true; // 显示闪黑组件
+     this.flashBlackOpacity = 1; // 闪黑组件不透明。
+     this.isShowBlack = true; // 显示闪黑组件。
      animateToImmediately({
        curve: curves.interpolatingSpring(1, 1, 410, 38),
-       delay: 50, // 延时50ms，实现黑屏
+       delay: 50, // 延时50ms，实现黑屏。
        onFinish: () => {
-         this.isShowBlack = false; // 闪黑组件下树
+         this.isShowBlack = false; // 闪黑组件下树。
          this.flashBlackOpacity = 1;
          console.info('flashBlackAnim X');
        }
      }, () => {
-       this.flashBlackOpacity = 0; // 闪黑组件从不透明到透明
+       this.flashBlackOpacity = 0; // 闪黑组件从不透明到透明。
      })
    }
    ```
@@ -129,7 +129,7 @@
            await this.surfaceShot.release();
          }
          this.surfaceShot = await image.createPixelMapFromSurface(surfaceId, {
-           size: { width: 1920, height: 1080 }, // 取预览流profile的宽高
+           size: { width: 1920, height: 1080 }, // 取预览流profile的宽高。
            x: 0,
            y: 0
          });
@@ -157,31 +157,31 @@
    属性定义：
 
    ```ts
-   @State isShowBlur: boolean = false; // 是否显示截图组件
-   @StorageLink('modeChange') @Watch('onModeChange') modeChangeFlag: number = 0; // 模式切换动效触发入口
-   @StorageLink('switchCamera') @Watch('onSwitchCamera') switchCameraFlag: number = 0;// 前后置切换动效触发入口
-   @StorageLink('frameStart') @Watch('onFrameStart') frameStartFlag: number = 0; // 动效消失入口
-   @State screenshotPixelMap: image.PixelMap | undefined = undefined; // 截图组件PixelMap
-   @State surfaceId: string = ''; // 当前预览流XComponent的surfaceId
-   @StorageLink('curPosition') curPosition: number = 0; // 当前镜头前后置状态
-   @State shotImgBlur: number = 0; // 截图组件模糊度
-   @State shotImgOpacity: number = 1; // 截图组件透明度
-   @State shotImgScale: ScaleOptions = { x: 1, y: 1 }; // 截图组件比例
-   @State shotImgRotation: RotateOptions = { y: 0.5, angle: 0 } // 截图组件旋转角度
+   @State isShowBlur: boolean = false; // 是否显示截图组件。
+   @StorageLink('modeChange') @Watch('onModeChange') modeChangeFlag: number = 0; // 模式切换动效触发入口。
+   @StorageLink('switchCamera') @Watch('onSwitchCamera') switchCameraFlag: number = 0;// 前后置切换动效触发入口。
+   @StorageLink('frameStart') @Watch('onFrameStart') frameStartFlag: number = 0; // 动效消失入口。
+   @State screenshotPixelMap: image.PixelMap | undefined = undefined; // 截图组件PixelMap。
+   @State surfaceId: string = ''; // 当前预览流XComponent的surfaceId。
+   @StorageLink('curPosition') curPosition: number = 0; // 当前镜头前后置状态。
+   @State shotImgBlur: number = 0; // 截图组件模糊度。
+   @State shotImgOpacity: number = 1; // 截图组件透明度。
+   @State shotImgScale: ScaleOptions = { x: 1, y: 1 }; // 截图组件比例。
+   @State shotImgRotation: RotateOptions = { y: 0.5, angle: 0 } // 截图组件旋转角度。
    ```
 
    截图组件的实现参考：
 
    ```ts
-   // 截图组件，置于预览流XComponent组件之上
+   // 截图组件，置于预览流XComponent组件之上。
    if (this.isShowBlur) {
      Column() {
        Image(this.screenshotPixelMap)
          .blur(this.shotImgBlur)
          .opacity(this.shotImgOpacity)
-         .rotate(this.shotImgRotation)// ArkUI提供，用于组件旋转
+         .rotate(this.shotImgRotation)// ArkUI提供，用于组件旋转。
          .scale(this.shotImgScale)
-         .width(px2vp(1080)) // 与预览流XComponent宽高保持一致，图层在预览流之上
+         .width(px2vp(1080)) // 与预览流XComponent宽高保持一致，图层在预览流之上。
          .height(px2vp(1920))
          .syncLoad(true)
      }
@@ -201,27 +201,27 @@
    ```ts
    async function showBlurAnim() {
      console.info('showBlurAnim E');
-     // 获取已完成的surface截图
+     // 获取已完成的surface截图。
      let shotPixel = BlurAnimateUtil.getSurfaceShot();
-     // 后置
+     // 后置。
      if (this.curPosition === 0) {
        console.info('showBlurAnim BACK');
-       // 直板机后置截图初始内容旋转补偿90°
-       await shotPixel.rotate(90); //ImageKit提供，用于图片内容旋转
-       // 直板机后置截图初始组件旋转补偿0°
+       // 直板机后置截图初始内容旋转补偿90°。
+       await shotPixel.rotate(90); //ImageKit提供，用于图片内容旋转。
+       // 直板机后置截图初始组件旋转补偿0°。
        this.shotImgRotation = { y: 0.5, angle: 0 };
      } else {
        console.info('showBlurAnim FRONT');
-       // 直板机前置截图内容旋转补偿270°
+       // 直板机前置截图内容旋转补偿270°。
        await shotPixel.rotate(270);
-       // 直板机前置截图组件旋转补偿180°
+       // 直板机前置截图组件旋转补偿180°。
        this.shotImgRotation = { y: 0.5, angle: 180 };
      }
      this.screenshotPixelMap = shotPixel;
-     // 初始化动效参数
-     this.shotImgBlur = 0; // 无模糊
-     this.shotImgOpacity = 1; // 不透明
-     this.isShowBlur = true;  // 显示截图组件
+     // 初始化动效参数。
+     this.shotImgBlur = 0; // 无模糊。
+     this.shotImgOpacity = 1; // 不透明。
+     this.isShowBlur = true;  // 显示截图组件。
      animateToImmediately(
        {
          duration: 200,
@@ -231,7 +231,7 @@
          }
        },
        () => {
-         this.shotImgBlur = 48; // 截图组件模糊度变化动效
+         this.shotImgBlur = 48; // 截图组件模糊度变化动效。
        }
      );
    }
@@ -249,14 +249,14 @@
        duration: 200,
        curve: Curve.FastOutSlowIn,
        onFinish: () => {
-         this.isShowBlur = false; // 模糊组件下树
+         this.isShowBlur = false; // 模糊组件下树。
          this.shotImgBlur = 0;
          this.shotImgOpacity = 1;
          console.info('hideBlurAnim X');
        }
      }, () => {
-       // 截图透明度变化动效
-       this.shotImgOpacity = 0; // 截图组件透明度变化动效
+       // 截图透明度变化动效。
+       this.shotImgOpacity = 0; // 截图组件透明度变化动效。
      });
    }
    ```
@@ -275,38 +275,38 @@
     */
    async function rotateFirstAnim() {
      console.info('rotateFirstAnim E');
-     // 获取已完成的surface截图
+     // 获取已完成的surface截图。
      let shotPixel = BlurAnimateUtil.getSurfaceShot();
-     // 后置切前置
+     // 后置切前置。
      if (this.curPosition === 1) {
        console.info('rotateFirstAnim BACK');
-       // 直板机后置切前置截图初始内容旋转补偿90°
-       await shotPixel.rotate(90); //ImageKit提供，用于图片内容旋转
-       // 直板机后置切前置截图初始组件旋转补偿0°
+       // 直板机后置切前置截图初始内容旋转补偿90°。
+       await shotPixel.rotate(90); //ImageKit提供，用于图片内容旋转。
+       // 直板机后置切前置截图初始组件旋转补偿0°。
        this.shotImgRotation = { y: 0.5, angle: 0 };
      } else {
        console.info('rotateFirstAnim FRONT');
-       // 直板机前置切后置截图初始内容旋转补偿270°
+       // 直板机前置切后置截图初始内容旋转补偿270°。
        await shotPixel.rotate(270);
-       // 直板机前置切后置截图初始组件旋转补偿180°
+       // 直板机前置切后置截图初始组件旋转补偿180°。
        this.shotImgRotation = { y: 0.5, angle: 180 };
      }
      this.screenshotPixelMap = shotPixel;
-     this.isShowBlack = true; // 显示闪黑组件，覆盖预览流保证视觉效果
-     this.isShowBlur = true; // 显示截图组件
+     this.isShowBlack = true; // 显示闪黑组件，覆盖预览流保证视觉效果。
+     this.isShowBlur = true; // 显示截图组件。
      animateToImmediately(
        {
          duration: 200,
-         delay: 50, // 时延保证组件缩放模糊动效先行，再翻转,视觉效果更好
+         delay: 50, // 时延保证组件缩放模糊动效先行，再翻转,视觉效果更好。
          curve: curves.cubicBezierCurve(0.20, 0.00, 0.83, 1.00),
          onFinish: () => {
            console.info('rotateFirstAnim X');
-           // 在onFinish后触发二段翻转
+           // 在onFinish后触发二段翻转。
            this.rotateSecondAnim();
          }
        },
        () => {
-         // 截图向外翻转动效
+         // 截图向外翻转动效。
          if (this.curPosition === 1) {
            this.shotImgRotation = { y: 0.5, angle: 90 };
          } else {
@@ -321,18 +321,18 @@
     */
    async function rotateSecondAnim() {
      console.info('rotateSecondAnim E');
-     // 获取已完成的surface截图
+     // 获取已完成的surface截图。
      let shotPixel = BlurAnimateUtil.getSurfaceShot();
-     // 后置
+     // 后置。
      if (this.curPosition === 1) {
-       // 直板机后置镜头内容旋转补偿90°
+       // 直板机后置镜头内容旋转补偿90°。
        await shotPixel.rotate(90);
-       // 组件旋转调整为-90°，保证二段翻转后，图片不是镜像的
+       // 组件旋转调整为-90°，保证二段翻转后，图片不是镜像的。
        this.shotImgRotation = { y: 0.5, angle: 90 };
-     } else { // 前置
-       // 直板机前置截图内容旋转补偿270°
+     } else { // 前置。
+       // 直板机前置截图内容旋转补偿270°。
        await shotPixel.rotate(270);
-       // 直板机前置截图组件旋转补偿180°
+       // 直板机前置截图组件旋转补偿180°。
        this.shotImgRotation = { y: 0.5, angle: 180 };
      }
      this.screenshotPixelMap = shotPixel;
@@ -345,7 +345,7 @@
          }
        },
        () => {
-         // 截图向内翻转动效，翻转至初始状态
+         // 截图向内翻转动效，翻转至初始状态。
          if (this.curPosition === 1) {
            this.shotImgRotation = { y: 0.5, angle: 0 };
          } else {
@@ -360,9 +360,9 @@
     */
    function blurFirstAnim() {
      console.info('blurFirstAnim E');
-     // 初始化动效参数
-     this.shotImgBlur = 0; //无模糊
-     this.shotImgOpacity = 1; //不透明
+     // 初始化动效参数。
+     this.shotImgBlur = 0; //无模糊。
+     this.shotImgOpacity = 1; //不透明。
      this.shotImgScale = { x: 1, y: 1 };
      animateToImmediately(
        {
@@ -374,9 +374,9 @@
          }
        },
        () => {
-         // 截图模糊动效
+         // 截图模糊动效。
          this.shotImgBlur = 48;
-         // 截图比例缩小动效
+         // 截图比例缩小动效。
          this.shotImgScale = { x: 0.75, y: 0.75 };
        }
      );
@@ -396,7 +396,7 @@
          }
        },
        () => {
-         // 截图比例恢复动效
+         // 截图比例恢复动效。
          this.shotImgScale = { x: 1, y: 1 };
        }
      )
