@@ -105,7 +105,8 @@
 | float [OH_ArkUI_UIInputEvent_GetEventTargetPositionY](#oh_arkui_uiinputevent_geteventtargetpositiony) (const [ArkUI_UIInputEvent](#arkui_uiinputevent)) | 获取事件命中的组件的Y坐标。  |
 | float [OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionX](#oh_arkui_uiinputevent_geteventtargetglobalpositionx) (const [ArkUI_UIInputEvent](#arkui_uiinputevent)) | 获取事件命中的组件的全局X坐标。  |
 | float [OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionY](#oh_arkui_uiinputevent_geteventtargetglobalpositiony) (const [ArkUI_UIInputEvent](#arkui_uiinputevent)) | 获取事件命中的组件的全局Y坐标。  |
-| bool [OH_ArkUI_HoverEvent_IsHovered](#oh_arkui_uiinputevent_geteventtargetglobalpositiony) (const [ArkUI_UIInputEvent](#arkui_uiinputevent)) | 获取鼠标是否悬浮在当前组件上。  |    
+| int32_t [OH_ArkUI_UIInputEvent_GetModifierKeyStates](#oh_arkui_uiinputevent_getmodifierkeystates) (const [ArkUI_UIInputEvent](#arkui_uiinputevent), uint64_t \*keys) | 获取UI输入事件的功能键按压状态。  | 
+| bool [OH_ArkUI_HoverEvent_IsHovered](#oh_arkui_hoverevent_ishovered) (const [ArkUI_UIInputEvent](#arkui_uiinputevent)) | 获取鼠标是否悬浮在当前组件上。  |    
 | int32_t [OH_ArkUI_PointerEvent_CreateClonedEvent](#oh_arkui_pointerevent_createclonedevent) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, [ArkUI_UIInputEvent](#arkui_uiinputevent) \*clonedevent) | 基于原始事件指针创建克隆事件指针。  | 
 | int32_t [OH_ArkUI_PointerEvent_DestroyClonedEvent](#oh_arkui_pointerevent_destroyclonedevent) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 销毁克隆事件指针。  | 
 | int32_t [OH_ArkUI_PointerEvent_SetClonedEventLocalPosition](#oh_arkui_pointerevent_setclonedeventlocalposition) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, float x, float y) | 设置指向性事件相对于当前组件左上角的X坐标和Y坐标。  | 
@@ -1691,7 +1692,7 @@ float OH_ArkUI_UIInputEvent_GetEventTargetWidth(const ArkUI_UIInputEvent* event)
 
 获取事件命中的组件的宽度。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1713,7 +1714,7 @@ float OH_ArkUI_UIInputEvent_GetEventTargetHeight(const ArkUI_UIInputEvent* event
 
 获取事件命中的组件的高度。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1735,7 +1736,7 @@ float OH_ArkUI_UIInputEvent_GetEventTargetPositionX(const ArkUI_UIInputEvent* ev
 
 获取事件命中的组件的X坐标。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1757,7 +1758,7 @@ float OH_ArkUI_UIInputEvent_GetEventTargetPositionY(const ArkUI_UIInputEvent* ev
 
 获取事件命中的组件的Y坐标。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1779,7 +1780,7 @@ float OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionX(const ArkUI_UIInputEve
 
 获取事件命中的组件的全局X坐标。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1801,7 +1802,7 @@ float OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionY(const ArkUI_UIInputEve
 
 获取事件命中的组件的全局Y坐标。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1814,6 +1815,29 @@ float OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionY(const ArkUI_UIInputEve
 返回事件命中的组件的全局Y坐标；如果发生任何参数错误，则返回 0.0f。
 
 
+### OH_ArkUI_UIInputEvent_GetModifierKeyStates()
+
+```
+int32_t OH_ArkUI_UIInputEvent_GetModifierKeyStates(const ArkUI_UIInputEvent* event, uint64_t* keys)
+```
+**描述：**
+
+获取UI输入事件的功能键按压状态。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向ArkUI_UIInputEvent对象的指针。  | 
+| keys | 表示当前处于按下状态的modifier key组合。  | 
+
+**返回：**
+
+返回当前处于按下状态的modifier key组合，如果参数异常则返回401。
+
+
 ### OH_ArkUI_HoverEvent_IsHovered()
 
 ```
@@ -1823,7 +1847,7 @@ bool OH_ArkUI_HoverEvent_IsHovered(const ArkUI_UIInputEvent* event)
 
 获取鼠标是否悬浮在当前组件上。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
