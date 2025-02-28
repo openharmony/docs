@@ -4163,10 +4163,9 @@ createWriteStream(path: string, options?: WriteStreamOptions): WriteStream;
 ## AtomicFile<sup>15+</sup>
 AtomicFile是一个用于对文件进行原子读写操作的类。
 
-在写操作时，通过写入新文件，并在写入成功后将其重命名到原始文件位置来确保写入文件的完整性；而在写入失败时不会修改原始文件内容。
+在写操作时，通过写入临时文件，并在写入成功后将其重命名到原始文件位置来确保写入文件的完整性；而在写入失败时删除临时文件，不修改原始文件内容。
 
 使用者可以自行调用finishWrite或failWrite来完成文件内容的写入或回滚。
-
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4174,7 +4173,7 @@ AtomicFile是一个用于对文件进行原子读写操作的类。
 
 constructor(path: string)
 
-AtomicFile的构造函数。
+对于给定路径的文件创建一个AtomicFile类。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4323,7 +4322,7 @@ try {
 
 startWrite(): WriteStream
 
-创建一个写文件流。
+对文件开始新的写入操作。将返回一个WriteStream，用于在其中写入新的文件数据。
 
 当文件不存在时新建文件。
 
@@ -4367,7 +4366,7 @@ try {
 
 finishWrite(): void
 
-文件写入成功后关闭文件。
+在完成对startWrite返回流的写入操作时调用，表示文件写入成功。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4400,7 +4399,7 @@ try {
 
 failWrite(): void
 
-文件写入失败后执行文件回滚操作。
+文件写入失败后调用，将执行文件回滚操作。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4436,7 +4435,7 @@ try {
 
 delete(): void
 
-删除文件。
+删除AtomicFile类，会删除原始文件和临时文件。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
