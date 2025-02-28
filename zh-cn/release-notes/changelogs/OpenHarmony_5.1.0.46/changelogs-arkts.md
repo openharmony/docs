@@ -21,7 +21,7 @@
 ```ts
 // 使用Array的内容中包含负数以及大于255的数值时，创建的buffer中此种情况对应值都改为0。
 let bufObj = buffer.from([1, 2, 3, 4, -1, -2, 5, 265]);
-console.info(JSON.stringify(bufObj)) // {"type":"Buffer","data":[1,2,3,4,0,0,5,0]}
+console.info(JSON.stringify(bufObj)); // {"type":"Buffer","data":[1,2,3,4,0,0,5,0]}
 
 ```
 **变更后**
@@ -29,7 +29,7 @@ console.info(JSON.stringify(bufObj)) // {"type":"Buffer","data":[1,2,3,4,0,0,5,0
 ```ts
 // 使用Array的内容中包含负数以及大于255的数值时，创建的buffer中对应数值按照(value & 255)的规则进行取值低八位，以适应0-255的范围。
 let bufObj = buffer.from([1, 2, 3, 4, -1, -2, 5, 265]);
-console.info(JSON.stringify(bufObj)) // {"type":"Buffer","data":[1,2,3,4,255,254,5,9]}
+console.info(JSON.stringify(bufObj)); // {"type":"Buffer","data":[1,2,3,4,255,254,5,9]}
 
 ```
 **起始API Level**
@@ -46,4 +46,4 @@ from(array: number[]): Buffer;
 
 **适配指导**
 
-from(array: number[]): Buffer 方法行为变更之后，用户之前如果入参Array中有负数或者大于255的数值时，buffer对应位置的结果由0变为与 0xFF 操作取低8位（每个字节）的值。
+from(array: number[]): Buffer; 方法行为变更之后，用户之前如果入参Array中有负数或者大于255的数值时，buffer对应位置的结果由0变为与 0xFF 操作取低8位（每个字节）的值。
