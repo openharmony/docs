@@ -23,7 +23,7 @@
 
    ```ts
    async function createInput(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): Promise<camera.CameraInput | undefined> {
-     // 创建相机输入流
+     // 创建相机输入流。
      let cameraInput: camera.CameraInput | undefined = undefined;
      try {
        cameraInput = cameraManager.createCameraInput(cameraDevice);
@@ -34,11 +34,11 @@
      if (cameraInput === undefined) {
        return undefined;
      }
-     // 监听cameraInput错误信息
+     // 监听cameraInput错误信息。
      cameraInput.on('error', cameraDevice, (error: BusinessError) => {
        console.error(`Camera input error code: ${error.code}`);
      });
-     // 打开相机
+     // 打开相机。
      await cameraInput.open();
      return cameraInput;
    }
@@ -48,7 +48,7 @@
 
     ```ts
     function getSupportedSceneMode(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): Array<camera.SceneMode> {
-      // 获取相机设备支持的模式列表
+      // 获取相机设备支持的模式列表。
       let sceneModeArray: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraDevice);
       if (sceneModeArray != undefined && sceneModeArray.length > 0) {
         for (let index = 0; index < sceneModeArray.length; index++) {
@@ -66,20 +66,20 @@
 
    ```ts
    async function getSupportedOutputCapability(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager, sceneMode: camera.SceneMode): Promise<camera.CameraOutputCapability | undefined> {
-      // 获取相机设备支持的输出流能力
+      // 获取相机设备支持的输出流能力。
       let cameraOutputCapability: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevice, sceneMode);
       if (!cameraOutputCapability) {
         console.error("cameraManager.getSupportedOutputCapability error");
         return undefined;
       }
       console.info("outputCapability: " + JSON.stringify(cameraOutputCapability));
-      // 以NORMAL_PHOTO模式为例，需要添加预览流、拍照流
-      // previewProfiles属性为获取当前设备支持的预览输出流
+      // 以NORMAL_PHOTO模式为例，需要添加预览流、拍照流。
+      // previewProfiles属性为获取当前设备支持的预览输出流。
       let previewProfilesArray: Array<camera.Profile> = cameraOutputCapability.previewProfiles;
       if (!previewProfilesArray) {
         console.error("createOutput previewProfilesArray == null || undefined");
       }
-      //photoProfiles属性为获取当前设备支持的拍照输出流
+      //photoProfiles属性为获取当前设备支持的拍照输出流。
       let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
       if (!photoProfilesArray) {
         console.error("createOutput photoProfilesArray == null || undefined");
