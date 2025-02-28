@@ -34,7 +34,7 @@ type ProfileConnectionState = constant.ProfileConnectionState
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称     | 类型                           | 可读 | 可选 | 说明                            |
+| 名称     | 类型                           | 可读 | 可写 | 说明                            |
 | -------- | ----------------------------- | ---- | ---- | ------------------------------- |
 | deviceId | string                        | 是   | 否   | 表示蓝牙设备地址。   |
 | state    | [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate)        | 是   | 否   | 表示蓝牙设备的profile连接状态。 |
