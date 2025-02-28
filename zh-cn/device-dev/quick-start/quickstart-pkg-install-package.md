@@ -39,7 +39,7 @@
    sudo apt-get install python3
    sudo apt-get install python-is-python3
    ```
-   查询python是否可用符合版本要求
+   查询python是否可用符合版本要求：
 
    ```
    python --version
