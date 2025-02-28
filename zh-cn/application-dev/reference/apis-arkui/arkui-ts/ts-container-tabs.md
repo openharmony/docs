@@ -392,6 +392,23 @@ pageFlipMode(mode: Optional\<PageFlipMode>)
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | mode  | Optional\<[PageFlipMode](ts-appendix-enums.md#pageflipmode15)> | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
 
+### cachedMaxCount<sup>16+</sup>
+
+cachedMaxCount(count: number, mode: TabsCacheMode)
+
+设置子组件的最大缓存个数和缓存模式。设置该属性后，不会对缓存范围内的子组件进行预加载，仅对缓存范围外的子组件进行释放。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                        | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| count  | number                                                      | 是   | 子组件的最大缓存个数。默认所有子组件加载后都不再释放。         |
+| mode   | [TabsCacheMode](#tabscachemode16枚举说明)                   | 是   | 子组件的缓存模式。<br/>默认值：TabsCacheMode.CACHE_BOTH_SIDE   |
+
 ## DividerStyle<sup>10+</sup>对象说明
 
 分割线样式对象。
@@ -490,6 +507,19 @@ type CommonModifier = CommonModifier
 | 类型         | 说明                                     |
 | ---------- | ---------------------------------------- |
 | [CommonModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier) | 设置TabBar的通用属性。 |
+
+## TabsCacheMode<sup>16+</sup>枚举说明
+
+子组件的缓存模式。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                  | 值 | 说明                                     |
+| --------------------- | -- | ---------------------------------------- |
+| CACHE_BOTH_SIDE       | 0  | 缓存当前显示的子组件和其两侧的子组件。即当设置cachedMaxCount属性的count值为n时，最多缓存2n+1个子组件。 |
+| CACHE_LATEST_SWITCHED | 1  | 缓存当前显示的子组件和最近切换过的子组件。即当设置cachedMaxCount属性的count值为n时，最多缓存n+1个子组件。 |
 
 ## 事件
 
@@ -2502,3 +2532,57 @@ struct TabsExample {
 }
 ```
 ![tabs_tarbar](figures/tabs_tarbar.gif)
+
+### 示例17（释放Tabs子组件）
+
+该示例通过设置cachedMaxCount属性，实现了Tabs子组件的释放。
+
+```ts
+@Entry
+@Component
+struct TabsExample {
+  build() {
+    Tabs() {
+      TabContent() {
+        MyComponent({ color: '#00CB87' })
+      }.tabBar(SubTabBarStyle.of('green'))
+
+      TabContent() {
+        MyComponent({ color: '#007DFF' })
+      }.tabBar(SubTabBarStyle.of('blue'))
+
+      TabContent() {
+        MyComponent({ color: '#FFBF00' })
+      }.tabBar(SubTabBarStyle.of('yellow'))
+
+      TabContent() {
+        MyComponent({ color: '#E67C92' })
+      }.tabBar(SubTabBarStyle.of('pink'))
+    }
+    .width(360)
+    .height(296)
+    .backgroundColor('#F1F3F5')
+    .cachedMaxCount(1, TabsCacheMode.CACHE_BOTH_SIDE)
+  }
+}
+
+@Component
+struct MyComponent {
+  private color: string = ""
+
+  aboutToAppear(): void {
+    console.info('aboutToAppear backgroundColor:' + this.color)
+  }
+
+  aboutToDisappear(): void {
+    console.info('aboutToDisappear backgroundColor:' + this.color)
+  }
+
+  build() {
+    Column()
+      .width('100%')
+      .height('100%')
+      .backgroundColor(this.color)
+  }
+}
+```
