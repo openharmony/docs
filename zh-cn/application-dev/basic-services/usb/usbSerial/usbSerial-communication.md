@@ -1,50 +1,33 @@
 # USB串口通信管理
 
-## 场景介绍
+## 简介
 
-本模块主要提供USB Host转串口协议通信的功能，USB线缆一端连接到OpenHarmony设备，另一端连接到标准串口设备。
-它提供获取USB Host转串口协议的、已连接的端口列表，同时提供打开端口、关闭端口、设置参数、获取参数、读取数据、写入数据和设备权限管理这些基本功能。
-
-USB Host转串口协议的端口以下简称串口。
+USB串口通信服务中通过Host设备的USB接口连接串口设备的串口进行串行数据传输，通信管理核心目标是实现设备间的高效、稳定数据传输与协同控制。主要使用在工业自动化与远程监控、物联网设备互联、医疗设备管理等场景。
 
 ## 环境准备
 
-### 环境要求
-
-- 开发工具及配置：
-
-  DevEco Studio作为开发工具，是进行开发必备条件之一，开发者可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-tools-overview-V14)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-create-new-project-V14)进行基本的操作验证，保证DevEco Studio可正常运行。
-
-- SDK版本配置：
-
-  本模块提供的ArkTs接口，所需SDK版本为API16及以上才可使用。
-
-### 搭建环境
-
-- 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
-- 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
-- USB线缆一端连接到OpenHarmony设备，另一端连接到标准串口设备。
+请参考USB串口通信服务开发概述[环境准备](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/basic-services/usb/usbSerial/usbSerial-overview.md#环境准备)。
 
 ## 开发指导
 
 ### 接口说明
 
-| 接口名                                                                          | 描述                        |
-|------------------------------------------------------------------------------|---------------------------|
-| getPortList(): Readonly&lt;SerialPort&gt;[]                                        | 获取串口设备列表                |
-| hasSerialRight(portId: number): boolean                                      | 检查应用程序是否具有访问串口设备的权限       |
-| requestSerialRight(portId: number): Promise&lt;boolean&gt;                         | 请求对串口设备的访问权限              |
-| open(portId: number): void                                                   | 打开串口设备                  |
-| close(portId: number): void                                                  | 关闭串口设备                  |
-| read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;  | 从串口设备读取数据，使用Promise异步返回 |
-| readSync(portId: number, buffer: Uint8Array, timeout?: number): number       | 以同步方法从串口设备读取数据          |
-| write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt; | 往串口设备写入数据，使用Promise异步返回 |
-| writeSync(portId: number, buffer: Uint8Array, timeout?: number): number      | 以同步方法往串口设备写入数据          |
+| 接口名                                                                          | 描述                       |
+|------------------------------------------------------------------------------|--------------------------|
+| getPortList(): Readonly&lt;SerialPort&gt;[]                                        | 获取串口设备列表。                |
+| hasSerialRight(portId: number): boolean                                      | 检查应用程序是否具有访问串口设备的权限。     |
+| requestSerialRight(portId: number): Promise&lt;boolean&gt;                         | 请求对串口设备的访问权限。            |
+| open(portId: number): void                                                   | 打开串口设备。                  |
+| close(portId: number): void                                                  | 关闭串口设备。                  |
+| read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;  | 从串口设备读取数据，使用Promise异步返回。 |
+| readSync(portId: number, buffer: Uint8Array, timeout?: number): number       | 以同步方法从串口设备读取数据。          |
+| write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt; | 往串口设备写入数据，使用Promise异步返回。 |
+| writeSync(portId: number, buffer: Uint8Array, timeout?: number): number      | 以同步方法往串口设备写入数据。          |
 
 
 ### 开发步骤
 
-USB线缆一端连接到OpenHarmony设备，另一端连接到标准串口设备，以下步骤介绍了关键接口的调用方式：
+开发者可以通过上述接口读取和写入数据：
 
 1. 导入模块。
 
@@ -148,6 +131,6 @@ USB线缆一端连接到OpenHarmony设备，另一端连接到标准串口设备
 
 ### 调测验证
 
-1. USB线缆一端连接到OpenHarmony设备，另一端连接到标准串口设备。
-2. 执行上述代码。
-3. log中关键字`usbSerial success`，表示接口调用成功，关键字`usbSerial error`，表示接口调用失败。
+1. USB线缆一端连接到OpenHarmony设备，另一端连接到串口设备。
+2. 执行上述示例。
+3. 返回`usbSerial success`，表示相关接口调用成功，设备串口通信能力正常；返回`usbSerial error`，表示接口调用失败。

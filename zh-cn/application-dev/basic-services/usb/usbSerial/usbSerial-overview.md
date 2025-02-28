@@ -1,24 +1,43 @@
 # USB串口通信服务开发概述
 
-## 基本概念
+## 简介
 
-本模块主要提供USB Host转串口协议通信的功能，USB线缆一端连接到OpenHarmony设备，另一端连接到标准串口设备。
-它提供获取USB Host转串口协议的、已连接的端口列表，同时提供打开端口、关闭端口、设置参数、获取参数、读取数据、写入数据和设备权限管理这些基本功能。
+USB串口通信服务主要提供USB Host设备转串口协议通信的功能，USB线缆一端连接到OpenHarmony设备，另一端连接到串口设备。它提供获取USB Host转串口协议的、已连接的端口列表，同时提供打开端口、关闭端口、设置参数、获取参数、读取数据、写入数据和设备权限管理这些基本功能。
 
-## 实现原理
+USB串口通信服务，配置管理请参考[USB串口配置管理](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/basic-services/usb/usbSerial/usbSerial-configuration.md)，通信管理请参考[USB串口通信管理](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/basic-services/usb/usbSerial/usbSerial-communication.md)。
 
-### 设备枚举与驱动加载
+### 基本概念
 
-- 插入USB转串口设备后，主机通过USB总线发起枚举过程，获取设备描述符（如厂商ID、设备ID、通信类CDC类标识）。
-操作系统根据描述符匹配驱动（如厂商专用驱动或系统内置CDC驱动），完成设备初始化和虚拟串口注册。
+在进行USB串口开发时，开发者应了解以下基本概念：
 
-### 数据收发流程
+- 串口：也称串行接口或串行通讯接口，是采用串行通信方式的扩展接口。串行接口中数据是一位一位地顺序传送。串口特点是通信线路简单，只要一对传输线就可以实现双向通信，适用于远距离通信。
 
-- 发送方向：
-串口应用层发送数据 → 虚拟串口驱动捕获数据 → 驱动通过USB通道传输至设备 → 设备解析数据并通过物理串口发送。
+### 实现原理
 
-- 接收方向：
-设备接收物理串口数据 → 数据经USB打包上传至主机 → 驱动接收数据并存入串口缓冲区 → 应用层读取数据。
+USB串口服务主要包括两个阶段：
+
+- 识别设备并加载驱动。
+
+  插入USB转串口设备后，USB Host设备通过USB总线发起枚举过程，获取设备描述符（如厂商ID、设备ID、USB通信设备类标识）。操作系统根据描述符匹配驱动，完成设备初始化和虚拟串口注册。
+
+- 收发数据。 
+
+  发送方向：
+  应用层发送数据 → 驱动通过USB通道传输至设备 → 设备解析数据并通过物理串口发送给串口设备。 
+  
+  接收方向：
+  设备接收物理串口数据 → 数据经USB打包上传至USB Host设备 → 驱动接收数据并存入串口缓冲区 → 应用层读取数据。
+
+ 
+**图1** USB串口收发数据流程
+
+![串口收发数据](../figures/zh-cn_image_22989BBB5490.png)
+
+### 约束和限制
+
+- Host设备与串口设备进行数据传输前，需先申请访问设备的权限，用户授权之后才可以传输数据。
+
+- 数据传输时若开发者未主动设置配置参数，则使用默认配置参数（波特率：9600bps，数据位：8，校验位：0，停止位：1）。
 
 ## 环境准备
 
@@ -35,5 +54,5 @@
 ### 搭建环境
 
 - 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
-- 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
-- USB线缆一端连接到OpenHarmony设备，另一端连接到标准串口设备。
+- 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/tools/openharmony_sdk_upgrade_assistant.md)。
+- USB线缆一端连接到OpenHarmony设备，另一端连接到串口设备。
