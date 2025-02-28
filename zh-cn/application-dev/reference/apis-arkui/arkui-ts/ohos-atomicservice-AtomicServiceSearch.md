@@ -568,7 +568,7 @@ struct Index {
 
 
 ### 示例5（AtomicServiceSearch修改样式）
-该示例通过search、select、value、placeholder参数实现了AtomicServiceSearch样式的自定义。
+该示例通过search、select、value、placeholder参数实现了AtomicServiceSearch组件样式的自定义。
 
 ```ts
 import { AtomicServiceSearch } from '@kit.ArkUI';
@@ -751,7 +751,7 @@ struct Index {
 
 
 ### 示例7（设置输入法回车键类型）
-该示例通过enterKeyType属性实现了动态切换输入法回车键的效果
+该示例通过enterKeyType属性实现了动态切换输入法回车键的效果。
 
 ```ts
 import { AtomicServiceSearch } from '@kit.ArkUI';
