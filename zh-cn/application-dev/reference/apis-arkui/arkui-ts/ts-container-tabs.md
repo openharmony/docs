@@ -2544,25 +2544,45 @@ struct TabsExample {
   build() {
     Tabs() {
       TabContent() {
-        Column().width('100%').height('100%').backgroundColor('#00CB87')
-      }.tabBar('green')
+        MyComponent({ color: '#00CB87' })
+      }.tabBar(SubTabBarStyle.of('green'))
 
       TabContent() {
-        Column().width('100%').height('100%').backgroundColor('#007DFF')
-      }.tabBar('blue')
+        MyComponent({ color: '#007DFF' })
+      }.tabBar(SubTabBarStyle.of('blue'))
 
       TabContent() {
-        Column().width('100%').height('100%').backgroundColor('#FFBF00')
-      }.tabBar('yellow')
+        MyComponent({ color: '#FFBF00' })
+      }.tabBar(SubTabBarStyle.of('yellow'))
 
       TabContent() {
-        Column().width('100%').height('100%').backgroundColor('#E67C92')
-      }.tabBar('pink')
+        MyComponent({ color: '#E67C92' })
+      }.tabBar(SubTabBarStyle.of('pink'))
     }
     .width(360)
     .height(296)
     .backgroundColor('#F1F3F5')
     .cachedMaxCount(1, TabsCacheMode.CACHE_BOTH_SIDE)
+  }
+}
+
+@Component
+struct MyComponent {
+  private color: string = ""
+
+  aboutToAppear(): void {
+    console.info('aboutToAppear backgroundColor:' + this.color)
+  }
+
+  aboutToDisappear(): void {
+    console.info('aboutToDisappear backgroundColor:' + this.color)
+  }
+
+  build() {
+    Column()
+      .width('100%')
+      .height('100%')
+      .backgroundColor(this.color)
   }
 }
 ```
