@@ -8013,15 +8013,6 @@ constructor(context: Context)
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context | 是   | 应用上下文（仅支持[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)）。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception. |
-
 **示例：**
 
 ```ts
@@ -8078,7 +8069,7 @@ select(options?: AVCastPickerOptions): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -8121,8 +8112,7 @@ on(type: 'pickerStateChange', callback: Callback<AVCastPickerState\>) : void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -8161,8 +8151,7 @@ off(type: 'pickerStateChange', callback?: Callback<AVCastPickerState\>) : void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
