@@ -41,13 +41,13 @@
 
 | 接口名 | 描述 | 
 | -------- | -------- |
-| int&nbsp;CheckPermission(int&nbsp;uid,&nbsp;const&nbsp;char&nbsp;\*permissionName) | 检查指定UID的应用进程是否具有访问系统服务API的权限 | 
-| int&nbsp;CheckSelfPermission(const&nbsp;char&nbsp;\*permissionName) | 检查调用者是否具有访问系统服务API的权限 | 
-| int&nbsp;QueryPermission(const&nbsp;char&nbsp;\*identifier,&nbsp;PermissionSaved&nbsp;\*\*permissions,&nbsp;int&nbsp;\*permNum) | 查询应用申请的所有权限，并检查权限是否被授予 | 
-| int&nbsp;GrantPermission(const&nbsp;char&nbsp;\*identifier,&nbsp;const&nbsp;char&nbsp;\*permName) | 将指定权限授予应用程序 | 
-| int&nbsp;RevokePermission(const&nbsp;char&nbsp;\*identifier,&nbsp;const&nbsp;char&nbsp;\*permName) | 收回应用程序的指定权限 | 
-| int&nbsp;GrantRuntimePermission(int&nbsp;uid,&nbsp;const&nbsp;char&nbsp;\*permissionName) | 应用运行时动态授予指定权限 | 
-| int&nbsp;RevokeRuntimePermission(int&nbsp;uid,&nbsp;const&nbsp;char&nbsp;\*permissionName) | 应用运行时动态撤销指定权限 | 
+| int&nbsp;CheckPermission(int&nbsp;uid,&nbsp;const&nbsp;char&nbsp;\*permissionName) | 检查指定UID的应用进程是否具有访问系统服务API的权限。 | 
+| int&nbsp;CheckSelfPermission(const&nbsp;char&nbsp;\*permissionName) | 检查调用者是否具有访问系统服务API的权限。 | 
+| int&nbsp;QueryPermission(const&nbsp;char&nbsp;\*identifier,&nbsp;PermissionSaved&nbsp;\*\*permissions,&nbsp;int&nbsp;\*permNum) | 查询应用申请的所有权限，并检查权限是否被授予。 | 
+| int&nbsp;GrantPermission(const&nbsp;char&nbsp;\*identifier,&nbsp;const&nbsp;char&nbsp;\*permName) | 将指定权限授予应用程序。 | 
+| int&nbsp;RevokePermission(const&nbsp;char&nbsp;\*identifier,&nbsp;const&nbsp;char&nbsp;\*permName) | 收回应用程序的指定权限。 | 
+| int&nbsp;GrantRuntimePermission(int&nbsp;uid,&nbsp;const&nbsp;char&nbsp;\*permissionName) | 应用运行时动态授予指定权限。 | 
+| int&nbsp;RevokeRuntimePermission(int&nbsp;uid,&nbsp;const&nbsp;char&nbsp;\*permissionName) | 应用运行时动态撤销指定权限。 | 
 
 
 ## 开发步骤
@@ -146,12 +146,12 @@
            HILOG_ERROR(HILOG_MODULE_APP, "BundleManager install failed due to nullptr parameters");
            return false;
        }
-       // 检查ohos.permission.INSTALL_BUNDLE权限是否被授予
+       // 检查ohos.permission.INSTALL_BUNDLE权限是否被授予。
        if (CheckPermission(0, static_cast<const char *>(PERMISSION_INSTALL_BUNDLE)) != GRANTED) {
            HILOG_ERROR(HILOG_MODULE_APP, "BundleManager install failed due to permission denied");
-           return false;  // 返回安装失败
+           return false;  // 返回安装失败。
        }
-       // 安装流程
+       // 安装流程。
        ...
    }
    ```
