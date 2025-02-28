@@ -58,7 +58,7 @@ IHuks::Abort ([in] struct HuksBlob handle, [in] struct HuksParamSet paramSet )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| handle | 密钥会话句柄[HuksBlob](_huks_blob.md) | 
+| handle | 密钥会话句柄[HuksBlob](_huks_blob.md)。 | 
 | paramSet | 操作密钥的参数集[HuksParamSet](_huks_param_set.md)，属性集结构参见《HUKS设备开发指南》。 | 
 
 **参见：**
@@ -87,7 +87,7 @@ IHuks::AgreeKey ([in] struct HuksParamSet paramSet, [in] struct HuksBlob encPriv
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| paramSet | 用于协商的参数[HuksParamSet](_huks_param_set.md) | 
+| paramSet | 用于协商的参数[HuksParamSet](_huks_param_set.md)。 | 
 | encPrivateKey | HUKS存储的密钥对材料密文[HuksBlob](_huks_blob.md)，密钥材料结构参见《HUKS设备开发指南》。  | 
 | peerPublicKey | 待协商的公钥[HuksBlob](_huks_blob.md)。  | 
 | agreedKey | 协商出的密钥明文[HuksBlob](_huks_blob.md)。 | 
@@ -297,7 +297,7 @@ IHuks::Finish ([in] struct HuksBlob handle, [in] struct HuksParamSet paramSet, [
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| handle | 密钥会话句柄[HuksBlob](_huks_blob.md) | 
+| handle | 密钥会话句柄[HuksBlob](_huks_blob.md)。 | 
 | paramSet | 操作密钥的参数集[HuksParamSet](_huks_param_set.md)，属性集结构参见《HUKS设备开发指南》。  | 
 | inData | 分段数据或者参数[HuksBlob](_huks_blob.md)。  | 
 | outData | 操作完成的数据[HuksBlob](_huks_blob.md)。 | 
@@ -442,7 +442,7 @@ IHuks::Init ([in] struct HuksBlob encKey, [in] struct HuksParamSet paramSet, [ou
 
 **参见：**
 
-[Init](#init) | Update| [Finish](#finish)
+[Init](#init) | [Update](#update) | [Finish](#finish)
 
 **返回：**
 

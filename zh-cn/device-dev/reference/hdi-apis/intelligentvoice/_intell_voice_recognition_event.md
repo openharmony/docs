@@ -17,8 +17,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| enum [RecognitionStatus](_intelligent_voice_trigger.md#recognitionstatus)[status](#status) | 识别状态  | 
-| enum [IntellVoiceTriggerModelType](_intelligent_voice_trigger.md#intellvoicetriggermodeltype)[type](#type) | 智能语音触发器模型类型  | 
+| enum [RecognitionStatus](_intelligent_voice_trigger.md#recognitionstatus) [status](#status) | 识别状态  | 
+| enum [IntellVoiceTriggerModelType](_intelligent_voice_trigger.md#intellvoicetriggermodeltype) [type](#type) | 智能语音触发器模型类型  | 
 | int [modelHandle](#modelhandle) | 智能语音触发器模型句柄  | 
 
 
