@@ -22,7 +22,7 @@ device
 │   │   │   ├── mipi_dsi
 │   │   │   ├── mmc
 │   │   │   ├── pwm
-│   │   │   ├── README.md # docs 如果需要的话
+│   │   │   ├── README.md # docs 如果需要的话。
 │   │   │   ├── README_zh.md
 │   │   │   ├── rtc
 │   │   │   ├── spi
