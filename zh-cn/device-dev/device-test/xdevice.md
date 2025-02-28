@@ -200,11 +200,11 @@ list:
 usage:
       list
       list history
-      list <id>  
+      list \<id\>  
 Introduction:
      list:         display device list
      list history: display history record of a serial of tasks
-     list <id>:    display history record about task what contains specific id  
+     list \<id\>:    display history record about task what contains specific id  
 Examples:
      list
      list history
