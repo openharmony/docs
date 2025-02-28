@@ -2548,6 +2548,10 @@ notifyDragStartRequest(requestStatus: draController.DragStartRequestStatus): voi
 **示例：**
 
 ```ts
+import { unifiedDataChannel } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
+import { dragController } from "@kit.ArkUI";
+
 // xxx.ets
 @Entry
 @Component
