@@ -2964,7 +2964,7 @@ Input_Result OH_Input_RemoveHotkeyMonitor (const Input_Hotkey * hotkey, Input_Ho
 
 OH_Input_RemoveHotkeyMonitor 函数错误码。 INPUT_SUCCESS 表示取消订阅组合按键成功。
 
-INPUT_PARAMETER_ERROR 表示参数检查失败。
+INPUT_PARAMETER_ERROR 表示参数检查失败。 INPUT_DEVICE_NOT_SUPPORTED 表示功能不受支持。
 
 
 ### OH_Input_RemoveInputEventInterceptor()
