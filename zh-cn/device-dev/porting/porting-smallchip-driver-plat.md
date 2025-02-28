@@ -11,8 +11,8 @@ device
 ├── vendor_name
 │   ├── drivers
 │   │   │   ├── common
-│   │   │   ├── Kconfig # 厂商驱动内核菜单入口
-│   │   │   └── lite.mk # 构建的入口
+│   │   │   ├── Kconfig # 厂商驱动内核菜单入口。
+│   │   │   └── lite.mk # 构建的入口。
 │   ├── soc_name
 │   │   ├── drivers
 │   │   │   ├── dmac
@@ -37,31 +37,31 @@ HDF为所有的平台驱动都创建了驱动模型，移植平台驱动的主�
 本节我们会以GPIO为例，讲解如何移植平台驱动，移植过程包含以下步骤：
 
 
-1. 创建GPIO驱动
+1. 创建GPIO驱动。
 
    在源码目录`//device/vendor_name/soc_name/drivers/gpio`中创建文件`soc_name_gpio.c`。内容模板如下：
      
    ```
    #include "gpio_core.h"
    
-   // 定义GPIO结构体，如果需要的话
+   // 定义GPIO结构体，如果需要的话。
    struct SocNameGpioCntlr {
-       struct GpioCntlr cntlr;  // 这是HDF GPIO驱动框架需要的结构体
-       int myData; // 以下是当前驱动自身需要的
+       struct GpioCntlr cntlr;  // 这是HDF GPIO驱动框架需要的结构体。
+       int myData; // 以下是当前驱动自身需要的。
    };
    
-   // Bind 方法在HDF驱动中主要用户对外发布服务，这里我们不需要，直接返回成功即可
+   // Bind 方法在HDF驱动中主要用户对外发布服务，这里我们不需要，直接返回成功即可。
    static int32_t GpioBind(struct HdfDeviceObject *device)
    {
        (void)device;
        return HDF_SUCCESS;
    }
    
-   // Init方法时驱动初始化的入口，我们需要在Init方法中完成模型实例的注册
+   // Init方法时驱动初始化的入口，我们需要在Init方法中完成模型实例的注册。
    static int32_t GpioInit(struct HdfDeviceObject *device)
    {
-       SocNameGpioCntlr *impl = CreateGpio(); // 你的创建代码
-       ret = GpioCntlrAdd(&impl->cntlr);  // 注册GPIO模型实例
+       SocNameGpioCntlr *impl = CreateGpio(); // 你的创建代码。
+       ret = GpioCntlrAdd(&impl->cntlr);  // 注册GPIO模型实例。
        if (ret != HDF_SUCCESS) {
            HDF_LOGE("%s: err add controller:%d", __func__, ret);
            return ret;
@@ -69,7 +69,7 @@ HDF为所有的平台驱动都创建了驱动模型，移植平台驱动的主�
        return HDF_SUCCESS;
    }
    
-   // Release方法会在驱动卸载时被调用，这里主要完成资源回收
+   // Release方法会在驱动卸载时被调用，这里主要完成资源回收。
    static void GpioRelease(struct HdfDeviceObject *device)
    {
        // GpioCntlrFromDevice 方法能从抽象的设备对象中获得init方法注册进去的模型实例。
@@ -84,10 +84,10 @@ HDF为所有的平台驱动都创建了驱动模型，移植平台驱动的主�
        .Release = GpioRelease,
        .moduleName = "SOC_NAME_gpio_driver", // 这个名字我们稍后会在配置文件中用到，用来加载驱动。
    };
-   HDF_INIT(g_gpioDriverEntry); // 注册一个GPIO的驱动入口
+   HDF_INIT(g_gpioDriverEntry); // 注册一个GPIO的驱动入口。
    ```
 
-2. 创建厂商驱动构建入口
+2. 创建厂商驱动构建入口。
 
    如前所述`device/vendor_name/drivers/lite.mk`是厂商驱动的构建的入口。我们需要从这个入口开始，进行构建。
 
@@ -99,51 +99,51 @@ HDF为所有的平台驱动都创建了驱动模型，移植平台驱动的主�
    SOC_NAME := $(subst $/",,$(LOSCFG_PLATFORM))
    BOARD_NAME := $(subst $/",,$(LOSCFG_PRODUCT_NAME))
    
-   # 指定SOC进行构建
+   # 指定SOC进行构建。
    LIB_SUBDIRS += $(LITEOSTOPDIR)/../../device/$(SOC_VENDOR_NAME)/$(SOC_NAME)/drivers/
    ```
 
-3. 创建SOC驱动构建入口
+3. 创建SOC驱动构建入口。
      
    ```
    #文件device/vendor_name/soc_name/drivers/lite.mk
    
    SOC_DRIVER_ROOT := $(LITEOSTOPDIR)/../../device/$(SOC_VENDOR_NAME)/$(SOC_NAME)/drivers/
    
-   # 判断如果打开了GPIO的内核编译开关
+   # 判断如果打开了GPIO的内核编译开关。
    ifeq ($(LOSCFG_DRIVERS_HDF_PLATFORM_GPIO), y)
-       # 构建完成要链接一个叫hdf_gpio的对象
+       # 构建完成要链接一个叫hdf_gpio的对象。
        LITEOS_BASELIB += -lhdf_gpio
-       # 增加构建目录gpio
+       # 增加构建目录gpio。
        LIB_SUBDIRS    += $(SOC_DRIVER_ROOT)/gpio 
    endif
    
-   # 后续其他驱动在此基础上追加
+   # 后续其他驱动在此基础上追加。
    ```
 
-4. 创建GPIO构建入口
+4. 创建GPIO构建入口。
      
      
    ```
    include $(LITEOSTOPDIR)/config.mk
    include $(LITEOSTOPDIR)/../../drivers/adapter/khdf/liteos/lite.mk
    
-   # 指定输出对象的名称，注意要与SOC驱动构建入口里的LITEOS_BASELIB 保持一致
+   # 指定输出对象的名称，注意要与SOC驱动构建入口里的LITEOS_BASELIB 保持一致。
    MODULE_NAME := hdf_gpio
    
-   # 增加HDF框架的INCLUDE
+   # 增加HDF框架的INCLUDE。
    LOCAL_CFLAGS += $(HDF_INCLUDE)
    
-   # 要编译的文件
+   # 要编译的文件。
    LOCAL_SRCS += soc_name_gpio.c
    
-   # 编译参数
+   # 编译参数。
    LOCAL_CFLAGS += -fstack-protector-strong -Wextra -Wall -Werror -fsigned-char -fno-strict-aliasing -fno-common
    
    include $(HDF_DRIVER)
    ```
 
-5. 配置产品加载驱动
+5. 配置产品加载驱动。
    
    产品的所有设备信息被定义在源码文件`//vendor/vendor_name/product_name/config/device_info/device_info.hcs`中。
 
