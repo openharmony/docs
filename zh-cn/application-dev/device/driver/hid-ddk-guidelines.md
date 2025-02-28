@@ -1,14 +1,36 @@
-# HID DDK开发指导
+# 开发适用HID协议的设备驱动
 
-## 场景介绍
+## 简介
 
 HID DDK（HID Driver Develop Kit）是为开发者提供的HID设备驱动程序开发套件，支持开发者基于用户态，在应用层开发HID设备驱动。提供了一系列主机侧访问设备的接口，包括创建设备、向设备发送事件、销毁设备、打开关闭设备、读取写入报告、获取设备信息等。
+
+凡是采用USB总线，通过HID协议传输数据的设备，或者通过扩展外设驱动创建虚拟设备，来实现与非标设备的信息交互都可以使用HID DDK开发设备驱动。
+
+### 基本概念
+
+在进行HID DDK开发前，开发者应了解以下基本概念：
+
+- **HID**
+
+  HID（Human Interface Device），中文意思是“人机接口设备”。它是一类用于实现人与计算机或其他电子设备交互的硬件设备。HID 设备的主要功能是将用户的输入（如按键、点击、移动等）转换为数据信号，并将这些信号发送给主机设备（如计算机、平板电脑、游戏机等），从而实现用户对设备的控制和操作。
+
+- **DDK**
+
+  DDK（Driver Develop Kit）是OpenHarmony基于扩展外设框架，为开发者提供的驱动应用开发的工具包，可针对非标USB串口设备，开发对应的驱动。
+
+### 实现原理
+
+非标外设应用通过扩展外设管理服务获取HID设备的ID，通过RPC将ID和要操作的动作下发给HID设备驱动应用，驱动应用通过调用HID DDK接口可创建、销毁HID设备，以及对HID设备发送事件，获取HID报文，解析报文等，DDK接口使用hdi服务将指令下发至内核驱动，内核驱动使用指令与设备通信。
+
+**图1** HID DDK调用原理
+
+![HID_DDK原理图](figures/ddk-schematic-diagram.png)
 
 ## 约束与限制
 
 * HID DDK开放API支持非标HID类外设扩展驱动开发场景。
 
-* HID DDK开放API使用范围内仅允许DriverExtensionAbilit生命周期内使用。
+* HID DDK开放API仅允许DriverExtensionAbilit生命周期内使用。
 
 * 使用HID DDK开放API需要在module.json5中声明匹配的ACL权限，例如ohos.permission.ACCESS_DDK_HID。
 
@@ -16,7 +38,7 @@ HID DDK（HID Driver Develop Kit）是为开发者提供的HID设备驱动程序
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Hid_CreateDevice(Hid_Device *hidDevice, Hid_EventProperties *hidEventProperties) | 创建HID设备。请在设备使用完后使用OH_Hid_DestroyDevice销毁设备 |
+| OH_Hid_CreateDevice(Hid_Device *hidDevice, Hid_EventProperties *hidEventProperties) | 创建HID设备。请在设备使用完后使用OH_Hid_DestroyDevice销毁设备。 |
 | OH_Hid_EmitEvent(int32_t deviceId, const Hid_EmitItem items[], uint16_t length) | 向指定deviceId的HID设备发送事件。 |
 | OH_Hid_DestroyDevice(int32_t deviceId) | 销毁指定deviceId的HID设备。 |
 | int32_t OH_Hid_Init(void) | 初始化HID DDK。 |
@@ -35,7 +57,7 @@ HID DDK（HID Driver Develop Kit）是为开发者提供的HID设备驱动程序
 | int32_t OH_Hid_GetReport(Hid_DeviceHandle *dev, Hid_ReportType reportType, uint8_t *data, uint32_t buffSize) | 获取设备报告。 |
 | int32_t OH_Hid_GetReportDescriptor(Hid_DeviceHandle *dev, uint8_t *buf, uint32_t buffSize, uint32_t *bytesRead) | 获取设备报告描述符。 |
 
-详细的接口说明请参考[HID DDK](../reference/apis-driverdevelopment-kit/_hid_ddk.md)。
+详细的接口说明请参考[HID DDK](../../reference/apis-driverdevelopment-kit/_hid_ddk.md)。
 
 ## 开发步骤
 

@@ -1,34 +1,12 @@
-# 外设扩展驱动客户端开发指导
+# 开发带UI界面基础驱动
 
 ## 场景介绍
 
-扩展外设主要是指通过物理接口连入主设备的配件设备，如手写板、打印机和扫描仪等。应用通过扩展外设管理能力可以查询绑定扩展外设，从而使用扩展外设驱动提供的定制能力来使用扩展外设，如打印机的配套软件。
-
-扩展外设管理能力支持所有可移植OpenHarmony系统的设备使用。
+开发者开发带UI界面的基础驱动，适用于各种复合设备，需要通过UI界面设置对应的独特驱动能力或者通过UI界面展示从设备侧获取的信息，例如带有侧键的鼠标，手写板，身份证读卡器等设备。
 
 ## 环境搭建
 
-### 开发工具及配置
-
-DevEco Studio是驱动开发工具，进行驱动开发必备条件之一，我们可以使用该工具进行开发、调试、打包等操作。
-
-请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-tools-overview-V13)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-create-new-project-V13)进行基本的操作验证，保证DevEco Studio可正常运行。
-
-### SDK版本配置
-
-扩展外设管理提供的ArkTs接口，所需SDK版本为API10及以上版本才可使用。
-
-### HDC配置
-
-HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命令行工具，通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
-
-**注意：** “配置环境变量hdc_server_port”和“全局环境变量”为必须操作。
-
-### 开发设备
-
-* 当前开发调试及验证，以RK3568作为开发设备进行说明。关于RK3568的编译、烧录操作等方法，可参考[快速入门](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-3568-burn.md)。
-* 开发客户端和驱动时，需要一个外接USB设备进行调试，**当前仅支持USB总线的外接设备**。
-* 需要知道外接USB设备的ProductId和VendorId，用于定义驱动以及IPC通信。
+请参考[环境准备](environmental-preparation.md)完成开发前的准备工作。
 
 ## 接口说明
 
@@ -195,7 +173,7 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
     }
     ```
 
-8. 接下来请参考[外设扩展驱动开发指导](driverextensionability.md)，进行对应驱动的示例代码开发。
+8. 接下来请参考[开发无UI界面基础驱动](driverextensionability.md)，进行对应驱动的示例代码开发。
 
 <!--Del-->
 系统应用可通过查询外设详细信息和驱动详细信息，从而管理外设和驱动。开发示例如下：

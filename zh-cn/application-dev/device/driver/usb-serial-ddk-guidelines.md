@@ -1,8 +1,8 @@
-# USB Serial DDK开发指南
+# 开发适用串口协议的设备驱动
 
 ## 简介
 
-在工业用途场景中和一些陈旧设备上，都有对非标串口设备的使用需求，例如：温湿度测量计、特殊身份读卡器等，当系统中没有适配该设备的驱动时，会导致设备接入后无法使用。USB Serial DDK（USB Serial Driver Develop Kit）是为开发者提供的USB串口驱动程序开发套件，支持开发者基于用户态，在应用层开发USB串口设备驱动。USBSerial DDK提供了一系列主机侧访问设备的接口，包括主机侧打开和关闭接口、串口读写通信等。依赖OH提供相应的驱动开发接口，支持该类三方生态外设接入鸿蒙生态，满足鸿蒙生态安全加密场景应用需求。
+在工业用途场景中和一些陈旧设备上，都有对非标串口设备的使用需求，例如：温湿度测量计、特殊身份读卡器等，当系统中没有适配该设备的驱动时，会导致设备接入后无法使用。USB Serial DDK（USB Serial Driver Develop Kit）是为开发者提供的USB串口驱动程序开发套件，支持开发者基于用户态，在应用层开发USB串口设备驱动。USB Serial DDK提供了一系列主机侧访问设备的接口，包括主机侧打开和关闭接口、串口读写通信等。依赖OH提供相应的驱动开发接口，支持该类三方生态外设接入鸿蒙生态，满足鸿蒙生态安全加密场景应用需求。
 
 ### 基本概念
 
@@ -38,7 +38,7 @@
 
 **图1** USB Serial DDK调用原理
 
-![USBSerial_DDK原理图](figures/USBSerial_DDK原理图.png)
+![USBSerial_DDK原理图](figures/ddk-schematic-diagram.png)
 
 ### 约束与限制
 
@@ -48,32 +48,9 @@
 
 - 使用USB Serial DDK开放API需要在module.json5中声明匹配的ACL权限，例如ohos.permission.ACCESS_DDK_USB_SERIAL。
 
-## 环境准备
+## 环境搭建
 
-### 环境要求
-
-- 开发工具及配置：
-DevEco Studio是驱动开发工具，进行驱动开发必备条件之一，我们可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-tools-overview-V13)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-create-new-project-V13)进行基本的操作验证，保证DevEco Studio可正常运行。
-
-- SDK版本配置：
-扩展外设管理提供的ArkTs接口，所需SDK版本为API16及以上版本才可使用。
-
-- HDC配置
-HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命令行工具，通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
-
-### 搭建环境
-
-1. 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
-2. 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](../tools/openharmony_sdk_upgrade_assistant.md)。
-3. PC安装HDC工具（HarmonyOS Device Connector），通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
-3. 用USB线缆将搭载OpenHarmony的设备连接到PC。
-4. 将USB串口设备接入OpenHarmony设备的USB口。
-
-### 检验环境是否搭建成功
-
-检查DevEco Studio是否已连接上OpenHarmony设备。
-
-![设备连接](figures/设备连接.png)
+请参考[环境准备](environmental-preparation.md)完成开发前的准备工作。
 
 ## 开发指导
 
@@ -95,7 +72,7 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
 | OH_UsbSerial_FlushInput(UsbSerial_Device *dev) | 刷新输入缓冲区，缓冲区中的数据会被立刻清空。 |
 | OH_UsbSerial_FlushOutput(UsbSerial_Device *dev) | 刷新输出缓冲区，缓冲区中的数据会被立刻清空。 |
 
-详细的接口说明请参考[USB Serial DDK](../reference/apis-driverdevelopment-kit/_serial_ddk.md)。
+详细的接口说明请参考[USB Serial DDK](../../reference/apis-driverdevelopment-kit/_serial_ddk.md)。
 
 ### 开发步骤
 
@@ -210,7 +187,7 @@ libusb_serial_ndk.z.so
 
 ### 调测验证
 
-驱动应用侧开发完成后，可在openahrmony设备上安装应用，测试步骤如下：
+驱动应用侧开发完成后，可在Openahrmony设备上安装应用，测试步骤如下：
 
 1. 在设备上点击驱动应用，应用在设备上被拉起。
 2. 点击波特率等设置按钮，可以设置串口属性。

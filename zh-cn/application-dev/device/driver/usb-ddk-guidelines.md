@@ -1,18 +1,46 @@
-# USB DDK开发指导
+# 开发适用USB协议的设备驱动
 
-## 场景介绍
+## 简介
 
 USB DDK（USB Driver Develop Kit）是为开发者提供的USB驱动程序开发套件，支持开发者基于用户态，在应用层开发USB设备驱动。提供了一系列主机侧访问设备的接口，包括主机侧打开和关闭接口、管道同步异步读写通信、控制传输、中断传输等。
+
+凡是采用USB总线，通过USB协议传输数据的设备都可以使用USB DDK开发设备驱动。特别是内核标准驱动不支持的扩展外设，可以通过USB DDK开发的扩展外设驱动应用实现其独特的设备能力。
+
+### 基本概念
+
+在进行USB DDK开发前，开发者应了解以下基本概念：
+
+- **USB**
+
+  USB（Universal Serial Bus，通用串行总线）是一种广泛使用的接口技术，用于连接计算机与各种外部设备，如键盘、鼠标、打印机、存储设备、智能手机等。USB 的设计目标是提供一种标准化、高效且易于使用的连接方式，以替代传统的串行和并行接口。
+
+- **DDK**
+
+  DDK（Driver Develop Kit）是OpenHarmony基于扩展外设框架，为开发者提供的驱动应用开发的工具包，可针对非标USB串口设备，开发对应的驱动。
+
+### 实现原理
+
+非标外设应用通过扩展外设管理服务获取USB设备的ID，通过RPC将ID和要操作的动作下发给USB驱动应用，USB驱动应用通过调用USB DDK接口可获取设备描述符，配置描述符，以及发送控制传输，中断传输等请求，DDK接口使用hdi服务将指令下发至内核驱动，内核驱动使用指令与设备通信。
+
+**图1** USB DDK调用原理
+
+![USB_DDK原理图](figures/ddk-schematic-diagram.png)
 
 ## 约束与限制
 
 * USB DDK开放API支持USB接口非标外设扩展驱动开发场景。
 
-* USB DDK开放API使用范围内仅允许DriverExtensionAbilit生命周期内使用。
+* USB DDK开放API仅允许DriverExtensionAbilit生命周期内使用。
 
 * 使用USB DDK开放API需要在module.json5中声明匹配的ACL权限，例如ohos.permission.ACCESS_DDK_USB。
 
-## 接口说明
+## 环境搭建
+
+请参考[环境准备](environmental-preparation.md)完成开发前的准备工作。
+
+## 开发指导
+
+### 接口说明
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -32,9 +60,9 @@ USB DDK（USB Driver Develop Kit）是为开发者提供的USB驱动程序开发
 | OH_Usb_DestroyDeviceMemMap(UsbDeviceMemMap *devMmap) | 销毁缓冲区。请在缓冲区使用完后及时销毁缓冲区，否则会造成资源泄露。 |
 | OH_Usb_GetDevices(struct Usb_DeviceArray *devices) | 获取USB设备ID列表。请保证传入的指针参数是有效的，申请设备的数量不要超过128个，在使用完结构之后，释放成员内存，否则造成资源泄露。获取到的USB设备ID，已通过驱动配置信息中的vid进行筛选过滤。 |
 
-详细的接口说明请参考[USB DDK](../reference/apis-driverdevelopment-kit/_usb_ddk.md)。
+详细的接口说明请参考[USB DDK](../../reference/apis-driverdevelopment-kit/_usb_ddk.md)。
 
-## 开发步骤
+### 开发步骤
 
 以下步骤描述了如何使用 **USB DDK**开发USB驱动：
 
