@@ -55,6 +55,8 @@ addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 
 通过该接口拉起下载界面，允许用户添加单个配置文件。使用Promise异步回调。
 
+**需要权限**：ohos.permission.SET_TELEPHONE_ESIM_STATE_OPEN
+
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
 **参数：**
@@ -73,6 +75,7 @@ addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 
 | 错误码ID              | 错误信息                           |
 | --------------------- | ---------------------------------- |
+| 201 | Permission denied.           |
 | 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
 | 801 | Capability not supported.    |
 |3120001| Service connection failed. |
@@ -84,7 +87,7 @@ addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 import { BusinessError } from '@kit.BasicServicesKit';
 import { eSIM } from '@kit.TelephonyKit';
 
-let profile: eSIM.DownloadableProfile={
+let profile: eSIM.DownloadableProfile = {
   activationCode:'1',
   confirmationCode:'1',
   carrierName:'test',
