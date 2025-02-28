@@ -16,8 +16,8 @@ IPC通信鉴权提供的API，仅供Samgr调用，开发者在开发服务时需
 
 | 接口名 | 描述 | 
 | -------- | -------- |
-| int&nbsp;GetCommunicationStrategy(RegParams&nbsp;params,&nbsp;PolicyTrans&nbsp;\*\*policies,&nbsp;unsigned&nbsp;int&nbsp;\*policyNum) | 服务注册过程中查询调用接口对应的访问策略，仅供Samgr调用 | 
-| int&nbsp;IsCommunicationAllowed(AuthParams&nbsp;params) | 检查访问主体进程是否有权限调用受访客体进程的接口，仅供Samgr调用 | 
+| int&nbsp;GetCommunicationStrategy(RegParams&nbsp;params,&nbsp;PolicyTrans&nbsp;\*\*policies,&nbsp;unsigned&nbsp;int&nbsp;\*policyNum) | 服务注册过程中查询调用接口对应的访问策略，仅供Samgr调用。 | 
+| int&nbsp;IsCommunicationAllowed(AuthParams&nbsp;params) | 检查访问主体进程是否有权限调用受访客体进程的接口，仅供Samgr调用。 | 
 
 
 ## 开发步骤
@@ -37,11 +37,11 @@ IPC通信鉴权提供的API，仅供Samgr调用，开发者在开发服务时需
            "BmsFeature",
            {
                {
-                   .type=FIXED,    // 允许指定UID的进程访问的方式 
+                   .type=FIXED,    // 允许指定UID的进程访问的方式。 
                    .fixedUid={2, 3, 8}
                },
                {
-                   .type=RANGE,    // 允许特定范围内的UID的进程访问的方式 
+                   .type=RANGE,    // 允许特定范围内的UID的进程访问的方式。
                    .uidMin=100,
                    .uidMax=__INT_MAX__,
                },
@@ -51,7 +51,7 @@ IPC通信鉴权提供的API，仅供Samgr调用，开发者在开发服务时需
            "BmsInnerFeature",
            {
                {
-                   .type=FIXED,     // 允许指定UID的进程访问的方式 
+                   .type=FIXED,     // 允许指定UID的进程访问的方式。 
                    .fixedUid={2, 3, 8}
                },
                {
@@ -70,7 +70,7 @@ IPC通信鉴权提供的API，仅供Samgr调用，开发者在开发服务时需
    static PolicySetting g_presetPolicies[] = {
        {"permissionms", pmsFeature, 1},
        {"abilityms", amsFeature, 2},
-       {"bundlems", bmsFeature, 2},  // 步骤1定义的BMS的feature，数量为2 
+       {"bundlems", bmsFeature, 2},  // 步骤1定义的BMS的feature，数量为2。 
        {"dtbschedsrv", dmsFeature, 1},
        {"samgr", samgrFeature, 1},
        {"appspawn", appspawnFeature, 1},
@@ -90,7 +90,7 @@ IPC通信鉴权提供的API，仅供Samgr调用，开发者在开发服务时需
        if (sm == nullptr) {
            return;
        }
-       // 注册服务到Samgr
+       // 注册服务到Samgr。
        sm->RegisterFeature(BMS_SERVICE, reinterpret_cast<Feature *>(BundleMsFeature::GetInstance()));
        sm->RegisterFeatureApi(BMS_SERVICE, BMS_FEATURE,
            GetBmsFeatureApi(reinterpret_cast<Feature *>(BundleMsFeature::GetInstance())));
@@ -104,7 +104,7 @@ IPC通信鉴权提供的API，仅供Samgr调用，开发者在开发服务时需
 
 ## 常见问题
 
-- 开发新服务后，在Samgr注册失败问题
+- 开发新服务后，在Samgr注册失败问题。
   **现象描述**
 
   开发完新服务后，在启动时出现服务在Samgr注册失败问题。
