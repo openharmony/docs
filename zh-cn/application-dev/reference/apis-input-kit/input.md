@@ -801,7 +801,8 @@ enum Input_Result
 | -------- | -------- |
 | INPUT_SUCCESS  | 操作成功。 | 
 | INPUT_PERMISSION_DENIED  | 权限验证失败。 | 
-| INPUT_NOT_SYSTEM_APPLICATION  | 非系统应用。 | 
+| INPUT_NOT_SYSTEM_APPLICATION  | 非系统应用。 |
+| INPUT_DEVICE_NOT_SUPPORTED | 功能不受支持，**起始版本：** 14。|
 | INPUT_PARAMETER_ERROR  | 参数检查失败。 | 
 | INPUT_SERVICE_EXCEPTION  | 服务异常。 | 
 | INPUT_REPEAT_INTERCEPTOR  | 应用创建拦截后，再次执行创建拦截的操作。 | 
