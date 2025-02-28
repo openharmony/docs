@@ -97,9 +97,10 @@ distributedMissionManager.registerMissionListener(
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | deviceId |  string | 是 | 通知断开连接，返回设备ID。 |
-| state |  number | 是 | 通知断开连接，网络状态。 |
+| state |  number | 是 | 通知断开连接，网络状态，0：连接断开。 |
 
 **示例：**
+
 ```ts
 import { distributedMissionManager } from '@kit.AbilityKit';
 
