@@ -283,7 +283,7 @@ Config changed.
 
 **可能原因**
 
-数据库的name（名称）, securityLevel（安全级别）等关键配置发生变化。
+数据库的name（名称）, securityLevel（安全级别），encrypt（是否加密）等关键配置发生变化。
 
 **处理步骤**
 
