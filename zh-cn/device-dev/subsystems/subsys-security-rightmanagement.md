@@ -24,7 +24,7 @@
 > 
 > 1. 静态权限指应用安装时由系统授予的权限，对应于权限敏感级别的system_grant。动态权限指应用在运行过程中需要用户授权的权限，对应于权限敏感级别的user_grant。
 >
-> 2. 不同应用模型的应用配置文件不同，FA模型为config.json，Stage模型为module.json5。应用模型相关解释可参考[应用模型解读](../../application-dev/application-models/application-model-description.md)。
+> 2. 不同应用模型的应用配置文件不同，FA模型为config.json，Stage模型为module.json5。应用模型相关解释可参考[应用模型解读](../../application-dev/application-models/application-models.md)。
 
 ## 场景介绍
 

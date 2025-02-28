@@ -200,11 +200,11 @@ list:
 usage:
       list
       list history
-      list <id>  
+      list \<id\>  
 Introduction:
      list:         display device list
      list history: display history record of a serial of tasks
-     list <id>:    display history record about task what contains specific id  
+     list \<id\>:    display history record about task what contains specific id  
 Examples:
      list
      list history
@@ -217,7 +217,7 @@ Examples:
 
  list history: 展示任务历史信息。
 
- list <id>: 展示特定id的任务其历史信息。
+ list \<id\>: 展示特定id的任务其历史信息。
 
 ------
 
