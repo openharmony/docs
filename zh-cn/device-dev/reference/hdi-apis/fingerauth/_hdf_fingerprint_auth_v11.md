@@ -31,7 +31,7 @@
 | struct&nbsp;&nbsp;[SaCommandParamEnableSensorIllumination](_sa_command_param_enable_sensor_illumination_fingerauth_v11.md) | 光斑使能的sa命令参数。 | 
 | struct&nbsp;&nbsp;[SaCommandParamNone](_sa_command_param_none_fingerauth_v11.md) | sa命令参数为空。 | 
 | union&nbsp;&nbsp;[SaCommandParam](union_sa_command_param_fingerauth_v11.md) | sa命令参数。 | 
-| struct&nbsp;&nbsp;[SaCommand](_sa_command_fingerauth_v11.md) | sa命令ID | 
+| struct&nbsp;&nbsp;[SaCommand](_sa_command_fingerauth_v11.md) | sa命令ID。 | 
 | interface&nbsp;&nbsp;[IExecutor](interface_i_executor_fingerauth_v11.md) | 定义执行器接口，用于获取执行器，获取凭据模版信息，注册指纹特征模版，进行用户指纹认证，删除指纹特征模版等。 | 
 | interface&nbsp;&nbsp;[IFingerprintAuthInterface](interface_i_fingerprint_auth_interface_v11.md) | 定义获取指纹认证驱动的执行器列表接口。 | 
 | interface&nbsp;&nbsp;[ISaCommandCallback](interface_i_sa_command_callback_fingerauth_v11.md) | 定义异步API接口回调，可以发送命令给SA。见[IExecutor](interface_i_executor_fingerauth_v11.md)。 | 
