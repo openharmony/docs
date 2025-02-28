@@ -3762,8 +3762,8 @@ once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 
 | 参数名   | 类型                                         | 必填 | 说明                              |
 | -------- | -------------------------------------------- | ---- | --------------------------------- |
-| type     | string                                       | 是   | 订阅的事件类型，取值为'toastShow' |
-| callback | Callback\<[UIElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调函数          |
+| type     | string                                       | 是   | 订阅的事件类型，取值为'toastShow'。 |
+| callback | Callback\<[UIElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调函数。          |
 
 **错误码：**
 
