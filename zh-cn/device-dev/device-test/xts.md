@@ -372,7 +372,7 @@ XTS子系统当前包括acts与tools软件包：
 | beforeEach | 测试用例级别的预置条件，在每条测试用例开始前执行，执行次数与&nbsp;it&nbsp;定义的测试用例数一致，支持一个参数：预置动作函数 | 可选 | 
 | afterEach | 测试用例级别的清理条件，在每条测试用例结束后执行，执行次数与&nbsp;it&nbsp;定义的测试用例数一致，支持一个参数：清理动作函数 | 可选 | 
 | describe | 定义一个测试套，支持两个参数：测试套名称和测试套函数；&nbsp;describe&nbsp;支持嵌套，每个&nbsp;describe&nbsp;内均可以定义&nbsp;beforeAll&nbsp;、beforeEach&nbsp;、afterEach&nbsp;和&nbsp;afterAll | 必选 | 
-| it | 定义一条测试用例，支持三个参数：用例名称，过滤参数和用例函数<br/>备注：<br/>**过滤参数**：过滤参数为一个&nbsp;32&nbsp;位的&nbsp;Int&nbsp;类型参数，0&nbsp;位&nbsp;置1表示不筛选、默认执行；0-10&nbsp;位&nbsp;置1表示测试用例类型；16-18&nbsp;位&nbsp;置1表示测试用例规模；24-28&nbsp;位&nbsp;置1表示测试层级。<br/>**测试用例类型**：置位0-10分别表示：FUNCTION&nbsp;方法类测试、PERFORMANCE&nbsp;性能类测试、POWER&nbsp;功耗类测试、RELIABILITY&nbsp;可靠性测试、SECURITY&nbsp;安全合规测试、GLOBAL&nbsp;整体性测试、COMPATIBILITY&nbsp;兼容性测试、USER&nbsp;用户测试、STANDARD&nbsp;标准测试、SAFETY&nbsp;安全特性测试，RESILIENCE&nbsp;压力测试。<br/>**测试用例规模**：置位16-18分别表示：SMALL&nbsp;小型测试、MEDIUM&nbsp;中型测试、LARGE&nbsp;大型测试。<br/>**测试层级**：置位24-28分别表示：LEVEL0-0&nbsp;级测试、LEVEL1-1&nbsp;级测试、LEVEL2-2&nbsp;级测试、LEVEL3-3&nbsp;级测试、LEVEL4-4&nbsp;级测试。 | 必选 | 
+| it | 定义一条测试用例，支持三个参数：用例名称，过滤参数和用例函数<br/>备注：<br/>**过滤参数**：过滤参数为一个&nbsp;32&nbsp;位的&nbsp;Int&nbsp;类型参数，0&nbsp;位&nbsp;置1表示不筛选、默认执行；0-10&nbsp;位&nbsp;置1表示测试用例类型；16-18&nbsp;位&nbsp;置1表示测试用例规模；24-28&nbsp;位&nbsp;置1表示测试层级。<br/>**测试用例类型**：置位0-10分别表示：FUNCTION&nbsp;方法类测试、PERFORMANCE&nbsp;性能类测试、POWER&nbsp;功耗类测试、RELIABILITY&nbsp;可靠性测试、SECURITY&nbsp;安全合规测试、GLOBAL&nbsp;整体性测试、COMPATIBILITY&nbsp;兼容性测试、USER&nbsp;用户测试、STANDARD&nbsp;标准测试、SAFETY&nbsp;安全特性测试、RESILIENCE&nbsp;压力测试。<br/>**测试用例规模**：置位16-18分别表示：SMALL&nbsp;小型测试、MEDIUM&nbsp;中型测试、LARGE&nbsp;大型测试。<br/>**测试层级**：置位24-28分别表示：LEVEL0-0&nbsp;级测试、LEVEL1-1&nbsp;级测试、LEVEL2-2&nbsp;级测试、LEVEL3-3&nbsp;级测试、LEVEL4-4&nbsp;级测试。 | 必选 | 
 
 用例编写语法采用 jasmine 的标准语法，格式支持ES6格式。
 
