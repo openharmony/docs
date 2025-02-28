@@ -12,7 +12,7 @@
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
-   // 获取图片大小
+   // 获取图片大小。
    pixelMap.getImageInfo().then( (info : image.ImageInfo) => {
      console.info('info.width = ' + info.size.width);
      console.info('info.height = ' + info.size.height);
@@ -30,10 +30,10 @@
    - 裁剪
 
      ```ts
-     // x：裁剪起始点横坐标0
-     // y：裁剪起始点纵坐标0
-     // height：裁剪高度400，方向为从上往下（裁剪后的图片高度为400）
-     // width：裁剪宽度400，方向为从左到右（裁剪后的图片宽度为400）
+     // x：裁剪起始点横坐标0。
+     // y：裁剪起始点纵坐标0。
+     // height：裁剪高度400，方向为从上往下（裁剪后的图片高度为400）。
+     // width：裁剪宽度400，方向为从左到右（裁剪后的图片宽度为400）。
      pixelMap.crop({x: 0, y: 0, size: { height: 400, width: 400 } });
      ```
 
@@ -42,8 +42,8 @@
    - 缩放
 
      ```ts
-     // 宽为原来的0.5
-     // 高为原来的0.5
+     // 宽为原来的0.5。
+     // 高为原来的0.5。
      pixelMap.scale(0.5, 0.5);
      ```
 
@@ -52,8 +52,8 @@
    - 偏移
 
      ```ts
-     // 向下偏移100
-     // 向右偏移100
+     // 向下偏移100。
+     // 向右偏移100。
      pixelMap.translate(100, 100);
      ```
 
@@ -62,7 +62,7 @@
    - 旋转
 
      ```ts
-     // 顺时针旋转90°
+     // 顺时针旋转90°。
      pixelMap.rotate(90);
      ```
 
@@ -71,14 +71,14 @@
    - 翻转
 
      ```ts
-     // 垂直翻转
+     // 垂直翻转。
      pixelMap.flip(false, true);
      ```
 
      ![Vertical Flip](figures/vertical-flip.jpeg)
 
      ```ts
-     // 水平翻转 
+     // 水平翻转。
      pixelMap.flip(true, false);
      ```
 
@@ -87,7 +87,7 @@
    - 透明度
 
      ```ts
-     // 透明度0.5 
+     // 透明度0.5。
      pixelMap.opacity(0.5);
      ```
 
