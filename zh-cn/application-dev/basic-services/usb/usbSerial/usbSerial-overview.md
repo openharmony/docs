@@ -2,7 +2,7 @@
 
 ## 简介
 
-USB串口通信服务主要提供USB Host设备转串口协议通信的功能，USB线缆一端连接到OpenHarmony设备，另一端连接到串口设备。它提供获取USB Host转串口协议的、已连接的端口列表，同时提供打开端口、关闭端口、设置参数、获取参数、读取数据、写入数据和设备权限管理这些基本功能。
+USB串口通信服务主要提供USB Host设备转串口协议通信的功能，它提供获取USB Host转串口协议的、已连接的端口列表，同时提供打开端口、关闭端口、设置参数、获取参数、读取数据、写入数据和设备权限管理这些基本功能。
 
 USB串口通信服务，配置管理请参考[USB串口配置管理](usbSerial-configuration.md)，通信管理请参考[USB串口通信管理](usbSerial-communication.md)。
 
@@ -10,7 +10,9 @@ USB串口通信服务，配置管理请参考[USB串口配置管理](usbSerial-c
 
 在进行USB串口开发时，开发者应了解以下基本概念：
 
-- 串口：也称串行接口或串行通讯接口，是采用串行通信方式的扩展接口。串行接口中数据是一位一位地顺序传送。串口特点是通信线路简单，只要一对传输线就可以实现双向通信，适用于远距离通信。
+- 串口
+  
+  即串行接口或串行通讯接口，是采用串行通信方式的扩展接口。串行接口中数据是一位一位地顺序传送。串口特点是通信线路简单，只要一对传输线就可以实现双向通信，适用于远距离通信。
 
 ### 实现原理
 
@@ -26,7 +28,7 @@ USB串口服务主要包括两个阶段：
   应用层发送数据 → 驱动通过USB通道传输至设备 → 设备解析数据并通过物理串口发送给串口设备。 
   
   接收方向：
-  设备接收物理串口数据 → 数据经USB打包上传至USB Host设备 → 驱动接收数据并存入串口缓冲区 → 应用层读取数据。
+  设备接收物理串口数据 → 数据打包后上传至USB Host设备 → 驱动接收数据并存入串口缓冲区 → 应用层读取数据。
 
  
 **图1** USB串口收发数据流程
@@ -45,7 +47,7 @@ USB串口服务主要包括两个阶段：
 
 - 开发工具及配置：
 
-  DevEco Studio作为开发工具，是进行开发必备条件之一，开发者可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-tools-overview-V14)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-create-new-project-V14)进行基本的操作验证，保证DevEco Studio可正常运行。
+  DevEco Studio作为开发工具，是进行USB串口通信服务开发必备条件之一，开发者可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-tools-overview-V14)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-create-new-project-V14)进行基本的操作验证，保证DevEco Studio可正常运行。
 
 - SDK版本配置：
 
@@ -54,5 +56,5 @@ USB串口服务主要包括两个阶段：
 ### 搭建环境
 
 - 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
-- 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/tools/openharmony_sdk_upgrade_assistant.md)。
-- USB线缆一端连接到OpenHarmony设备，另一端连接到串口设备。
+- 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](../../../tools/openharmony_sdk_upgrade_assistant.md)。
+- USB转串口线缆一端连接到OpenHarmony设备，另一端连接到串口设备。
