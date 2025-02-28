@@ -394,6 +394,23 @@ pageFlipMode(mode: Optional\<PageFlipMode>)
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | mode  | Optional\<[PageFlipMode](ts-appendix-enums.md#pageflipmode15)> | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
 
+### cachedMaxCount<sup>16+</sup>
+
+cachedMaxCount(count: number, mode: TabsCacheMode)
+
+设置子组件的最大缓存个数和缓存模式。设置该属性后，不会对缓存范围内的子组件进行预加载，仅对缓存范围外的子组件进行释放。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                        | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| count  | number                                                      | 是   | 子组件的最大缓存个数。默认所有子组件加载后都不再释放。         |
+| mode   | [TabsCacheMode](#tabscachemode16枚举说明)                   | 是   | 子组件的缓存模式。<br/>默认值：TabsCacheMode.CACHE_BOTH_SIDE   |
+
 ## DividerStyle<sup>10+</sup>对象说明
 
 分割线样式对象。
@@ -480,6 +497,19 @@ Scrollable模式下不滚动时的页签排布方式枚举。
 | ALWAYS_CENTER | 0 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，页签紧凑居中。|
 | ALWAYS_AVERAGE_SPLIT | 1 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，且所有页签平均分配TabBar宽度。|
 | SPACE_BETWEEN_OR_CENTER      | 2 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度但超过TabBar宽度一半时，TabBar不可滚动，页签紧凑居中。<br/>当页签内容不超过TabBar宽度一半时，TabBar不可滚动，保证页签居中排列在TabBar宽度一半，且间距相同。|
+
+## TabsCacheMode<sup>16+</sup>枚举说明
+
+子组件的缓存模式。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                  | 值 | 说明                                     |
+| --------------------- | -- | ---------------------------------------- |
+| CACHE_BOTH_SIDE       | 0  | 缓存当前显示的子组件和其两侧的子组件。即当设置cachedMaxCount属性的count值为n时，最多缓存2n+1个子组件。 |
+| CACHE_LATEST_SWITCHED | 1  | 缓存当前显示的子组件和最近切换过的子组件。即当设置cachedMaxCount属性的count值为n时，最多缓存n+1个子组件。 |
 
 ## 事件
 
@@ -2484,3 +2514,37 @@ struct TabsExample {
 }
 ```
 ![tabs_tarbar](figures/tabs_tarbar.gif)
+
+### 示例17（释放Tabs子组件）
+
+该示例通过设置cachedMaxCount属性，实现了Tabs子组件的释放。
+
+```ts
+@Entry
+@Component
+struct TabsExample {
+  build() {
+    Tabs() {
+      TabContent() {
+        Column().width('100%').height('100%').backgroundColor('#00CB87')
+      }.tabBar('green')
+
+      TabContent() {
+        Column().width('100%').height('100%').backgroundColor('#007DFF')
+      }.tabBar('blue')
+
+      TabContent() {
+        Column().width('100%').height('100%').backgroundColor('#FFBF00')
+      }.tabBar('yellow')
+
+      TabContent() {
+        Column().width('100%').height('100%').backgroundColor('#E67C92')
+      }.tabBar('pink')
+    }
+    .width(360)
+    .height(296)
+    .backgroundColor('#F1F3F5')
+    .cachedMaxCount(1, TabsCacheMode.CACHE_BOTH_SIDE)
+  }
+}
+```
