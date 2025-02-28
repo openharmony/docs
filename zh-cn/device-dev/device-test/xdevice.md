@@ -7,7 +7,7 @@ OpenHarmony开源操作系统有众多芯片场景基于其之上进行开发版
 
 ### 简介
 
-xDevice测试调度框架是OpenHarmony中测试基础设施的核心组件，提供调度自动化用例执行所依赖的相关服务，支持大量自动化用例的调度执行能力，并可自带生成可视化测试报告。而xDevice二进制包会跟踪随OpenHarmony的XTS套件编译，开发者可以从XTS套件归档路径中获取xDevice工具，
+xDevice测试调度框架是OpenHarmony中测试基础设施的核心组件，提供调度自动化用例执行所依赖的相关服务，支持大量自动化用例的调度执行能力，并可自带生成可视化测试报告。而xDevice二进制包会跟踪随OpenHarmony的XTS套件编译，开发者可以从XTS套件归档路径中获取xDevice工具。
 
 根据设备类型的不同，xDevice主要测试的任务场景有以下三个：
 
@@ -129,16 +129,16 @@ environment环境相关配置，详解介绍如下。
 
 ```json
 {
-    // 测试支撑套件描述
+    // 测试支撑套件描述。
     "description": "Configuration for aceceshi Tests",
     
-    // 指定执行当前测试支撑套的设备
+    // 指定执行当前测试支撑套的设备。
     "environment": {
         "type": "device", 
         "label": "wifiiot"
     },
 
-    // 指定设备执行的驱动
+    // 指定设备执行的驱动。
     "driver": {
         "type": "OHJSUnitTest", 
         "test-timeout": "700000",
@@ -146,7 +146,7 @@ environment环境相关配置，详解介绍如下。
         "package-name": "com.open.harmony.acetestfive",
         "shell-timeout": "700000"
     },
-    // kit的作用主要是为了支撑测试执行活动，在测试前执行预制操作(Setup)，在测试后执行清理操作(Teardown)
+    // kit的作用主要是为了支撑测试执行活动，在测试前执行预制操作(Setup)，在测试后执行清理操作(Teardown)。
     "kits": [
        {
             "type": "ShellKit",
@@ -186,7 +186,7 @@ Examples:
 
 **说明：** 
 
-help run：展示run指令相关说明 。
+help run：展示run指令相关说明。
 
 help list：展示 list指令相关说明。
 
@@ -215,7 +215,7 @@ Examples:
 
  list: 展示设备信息。
 
- list history: 展示任务历史信息 。
+ list history: 展示任务历史信息。
 
  list <id>: 展示特定id的任务其历史信息。
 
@@ -250,13 +250,13 @@ run指令基本使用方法如下。
 
 | xDevice命令  |                             功能                             |                             示例                             |
 | :----------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-|   run xts    |       运行所有指定类型的XTS模块，如acts，hits，ssys等        |                           run acts                           |
-|  run -l xxx  |            运行指定的模块测试套，模块间用分号隔离            |           run -l ActsWifiServiceTest;ActsLwipTest            |
-|   run -sn    |            指定运行设备的SN号，多个SN号用分号隔离            | run acts -sn 10.117.183.37:17001<br/>run acts -sn 88Y02******57723;VEG02******16642 |
-|   run -rp    | 指定报告生成的路径，默认会在工作目录的reports下用时间戳或任务ID建立子目录 | run acts -rp /suites/hits/xdevice_reports/2020.09.28-14.21.26 |
-| run -respath |             指定测试资源路径，默认为resource目录             | run acts -respath /cloud/zidane/xts/release/suites/resource  |
-|   run -ta    | 指定模块运行参数，可以指定运行模块用例中指定的用例，多个用例用逗号隔离，目前支持JS驱动测试套 | run acts -ta class:ohos.hardware.soundtrigger.SoundTriggerTest#testKeyphraseParcelUnparcel_noUsers |
-| run --retry  |        重新运行上一次任务的失败用例，生成新的测试报告        | run –retryrun --retry --session 2020-10-30-17-15-11（任务目录名） |
+|   run xts    |       运行所有指定类型的XTS模块，如acts，hits，ssys等。        |                           run acts                           |
+|  run -l xxx  |            运行指定的模块测试套，模块间用分号隔离。            |           run -l ActsWifiServiceTest;ActsLwipTest            |
+|   run -sn    |            指定运行设备的SN号，多个SN号用分号隔离。            | run acts -sn 10.117.183.37:17001<br/>run acts -sn 88Y02******57723;VEG02******16642 |
+|   run -rp    | 指定报告生成的路径，默认会在工作目录的reports下用时间戳或任务ID建立子目录。 | run acts -rp /suites/hits/xdevice_reports/2020.09.28-14.21.26 |
+| run -respath |             指定测试资源路径，默认为resource目录。             | run acts -respath /cloud/zidane/xts/release/suites/resource  |
+|   run -ta    | 指定模块运行参数，可以指定运行模块用例中指定的用例，多个用例用逗号隔离，目前支持JS驱动测试套。 | run acts -ta class:ohos.hardware.soundtrigger.SoundTriggerTest#testKeyphraseParcelUnparcel_noUsers |
+| run --retry  |        重新运行上一次任务的失败用例，生成新的测试报告。        | run –retryrun --retry --session 2020-10-30-17-15-11（任务目录名） |
 
 ### 测试报告
 
@@ -480,7 +480,7 @@ run指令基本使用方法如下。
 
    ipcamera设备有两种连接方式，一种是本地串口连接，一种是通过局域网ip连接。
 
-2. 配置NFS服务器
+2. 配置NFS服务器。
 
    NFS挂载方式有两种，一种是远程PC挂载方式，一种是本地局域网挂载方式。
 
