@@ -101,6 +101,10 @@ wakeup(detail: string): void
 
 **系统接口：** 此接口为系统接口。
 
+**需要权限：** ohos.permission.POWER_MANAGER
+
+API version 9-15，使用该接口无需权限；从API version 16开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
 **参数：**
@@ -117,6 +121,7 @@ wakeup(detail: string): void
 |---------|---------|
 | 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
@@ -137,6 +142,10 @@ suspend(isImmediate?: boolean): void
 
 **系统接口：** 此接口为系统接口。
 
+**需要权限：** ohos.permission.POWER_MANAGER
+
+API version 9-15，使用该接口无需权限；从API version 16开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
 **参数：**
@@ -153,6 +162,7 @@ suspend(isImmediate?: boolean): void
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 4900101 | Failed to connect to the service. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
@@ -263,6 +273,10 @@ setScreenOffTime(timeout: number): void
 
 **系统接口：** 此接口为系统接口。
 
+**需要权限：** ohos.permission.POWER_MANAGER
+
+API version 12-15，使用该接口无需权限；从API version 16开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
 **参数：**
@@ -279,6 +293,7 @@ setScreenOffTime(timeout: number): void
 |---------|---------|
 | 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1. Parameter verification failed. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
@@ -299,6 +314,10 @@ hibernate(clearMemory: boolean): void
 
 **系统接口：** 此接口为系统接口。
 
+**需要权限：** ohos.permission.POWER_MANAGER
+
+API version 12-15，使用该接口无需权限；从API version 16开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
 **参数：**
@@ -314,6 +333,7 @@ hibernate(clearMemory: boolean): void
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 4900101 | Failed to connect to the service. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 

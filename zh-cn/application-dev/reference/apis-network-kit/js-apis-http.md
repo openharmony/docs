@@ -73,6 +73,7 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
         remoteFileName: 'fileName.txt' // 可选，自API 11开始支持该属性。
       }
     ]
+    addressFamily: http.AddressFamily.DEFAULT // 可选，系统默认选择目标域名的IPv4地址或IPv6地址，自API 15开始支持该属性。
   },
   (err: BusinessError, data: http.HttpResponse) => {
     if (!err) {
@@ -1111,6 +1112,7 @@ httpRequest.off("dataSendProgress");
 | maxLimit<sup>11+</sup>   | number   | 否 | 响应消息的最大字节限制。默认值为5\*1024\*1024，以字节为单位。最大值为100\*1024\*1024，以字节为单位。  |
 | multiFormDataList<sup>11+</sup> | Array<[MultiFormData](#multiformdata11)> | 否 | 当'content-Type'为'multipart/form-data'时，则上传该字段定义的数据字段表单列表。 |
 | certificatePinning<sup>12+</sup> | [CertificatePinning](#certificatepinning12) \| CertificatePinning[] | 否 | 支持动态设置证书锁定配置，可以传入单个或多个证书PIN码。 |
+| addressFamily<sup>15+</sup> | [AddressFamily](#addressfamily15) | 否 | 支持解析目标域名时限定地址类型。 |
 
 ## RequestMethod
 
@@ -1549,3 +1551,15 @@ type HttpProxy = connection.HttpProxy
 |       类型       |            说明             |
 | ---------------- | --------------------------- |
 | connection.HttpProxy | 网络代理配置信息。     |
+
+## AddressFamily<sup>15+</sup>
+
+解析目标域名时限定地址类型的枚举。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       名称       |            说明             |
+| ---------------- | --------------------------- |
+| DEFAULT | 设置此选项后，系统将自行选择目标域名的IPv4地址或IPv6地址。     |
+| ONLY_V4 | 设置此选项后，系统将仅解析目标域名的IPv4地址，忽略IPv6地址。     |
+| ONLY_V6 | 设置此选项后，系统将仅解析目标域名的IPv6地址，忽略IPv4地址。     |

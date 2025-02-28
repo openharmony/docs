@@ -9,8 +9,6 @@ Common event types are defined in [Support enumeration of the ohos.commonEventMa
 > The current page contains only the system APIs of this module. For details about other public APIs, see [System Common Events](../common_event/commonEventManager-definitions.md).
 
 
-
-
 ## Ability Kit
 
 
@@ -41,6 +39,21 @@ When a new application starts to be installed by a specified user on the device,
 **Required subscriber permissions**: none
 
 **Value**: "usual.event.PACKAGE_INSTALLATION_STARTED"
+
+
+### COMMON_EVENT_BUNDLE_RESOURCES_CHANGED<sup>15+</sup>
+
+Indicates the common event of updating bundle management resource data.
+
+This common event is sent when the bundle management resource data is updated in scenarios such as language or theme switching.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Required subscriber permissions**: ohos.permission.GET_BUNDLE_RESOURCES
+
+**Value**: "usual.event.BUNDLE_RESOURCES_CHANGED"
 
 
 
@@ -473,6 +486,8 @@ When there is a change in the audio quality of the device, the event notificatio
 **Required subscriber permissions**: none
 
 **Value**: usual.event.AUDIO_QUALITY_CHANGE
+
+
 
 
 ## Reserved Common Event

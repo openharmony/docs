@@ -84,7 +84,8 @@ Provides attribute names and value types of a node element.
 | offset<sup>12+</sup>             | number                                                             | Yes  | No  | Pixel offset of the content area relative to the top coordinate of a scrollable component, such as **List** and **Grid**.|
 | hotArea<sup>12+</sup>             | [Rect](#rect)                                                              | Yes  | No  | Touchable area of an element.|
 | customComponentType<sup>16+</sup>             | string                                                             | Yes  | No  | Custom component type.|
-| accessibilityNextFocusId<sup>16+</sup>             | number                                                             | Yes  | No  | ID of the next component to be focused on.|
+| accessibilityNextFocusId<sup>16+</sup>             | number                | Yes  | No  | ID of the next component to be focused on. You can use **findElement('elementId')** to obtain the value of this attribute set on the component from the **AccessibilityElementInfo** object.|
+| accessibilityPreviousFocusId<sup>16+</sup>             | number                | Yes  | No  | ID of the previous component to be focused on. You can use **findElement('elementId')** to obtain the value of this attribute set on the component from the **AccessibilityElementInfo** object.|
 | extraInfo<sup>16+</sup>             | string                                                             | Yes  | No  | Extended attribute, which is used to define the attributes that are available only to specific components.|
 
 ## FocusDirection
@@ -1033,7 +1034,7 @@ Performs an action based on the specified action name. This API uses a promise t
 
 | Name        | Type                                    | Mandatory  | Description                                                      |
 | ----------- | ---------------------------------------- | ---- |----------------------------------------------------------|
-| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action). |
+| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).
 | parameters | object | No   | Parameters required for performing the target action. Empty by default.                            |
 
 **Return value**
@@ -1128,7 +1129,7 @@ Performs an action based on the specified action name. This API uses an asynchro
 
 | Name        | Type                                    | Mandatory  | Description            |
 | ----------- | ---------------------------------------- | ---- | -------------- |
-| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action). |
+| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**

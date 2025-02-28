@@ -112,7 +112,7 @@ pushPathByName(name: string, param: Object, animated?: boolean, policy?: SplitPo
 
 ### pushPathByName
 
-pushPathByName(name: string, param: Object, onPop?: Callback\<PopInfo>, animated?: boolean, policy?: SplitPolicy): void
+pushPathByName(name: string, param: Object, onPop?: base.Callback\<PopInfo>, animated?: boolean, policy?: SplitPolicy): void
 
 将name指定的NavDestination页面信息入栈，传递的数据为param，添加onPop回调接收入栈页面出栈时的返回结果，并进行处理。
 
@@ -126,7 +126,7 @@ pushPathByName(name: string, param: Object, onPop?: Callback\<PopInfo>, animated
 |:---------:|:-------------------------------------------------------------:|:------:|------|
 |   name    |                            string                             |   是    | NavDestination页面名称。   |
 |   param   |                            Object                             |   是    | NavDestination页面详细参数。 |
-|   onPop   | Callback\<[PopInfo](ts-basic-components-navigation.md#popinfo11)>  |   否    | Callback回调，用于页面出栈时触发该回调处理返回结果。 |
+|   onPop   | base.[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[PopInfo](ts-basic-components-navigation.md#popinfo11)>  |   否    | Callback回调，用于页面出栈时触发该回调处理返回结果。 |
 | animated  |                            boolean                            |   否    | 是否支持转场动画，默认值：true。 |
 |  policy   |                          [SplitPolicy](#splitpolicy枚举说明)                          |   否    | 当前入栈页面的策略，默认值：DETAIL_PAGE       |
 
@@ -562,7 +562,7 @@ disableAnimation(disable: boolean): void
 
 |  参数名   |             类型                | 必填 | 说明           |
 | ----- | ------ | ---- | ---------------------- |
-| disable | boolean | 否    | 是否关闭转场动画，默认值：false。 |
+| disable | boolean | 是    | 是否关闭转场动画，默认值：false。 |
 
 ### switchFullScreenState
 
@@ -578,7 +578,7 @@ switchFullScreenState(isFullScreen?: boolean): boolean
 
 |  参数名   |             类型                | 必填 | 说明           |
 | :----------: | :-----: | :--: | ----------------------------------------------------- |
-| isFullScreen | boolean |  是  | 是否切换为全屏。true表示全屏模式，false表示分栏模式。 |
+| isFullScreen | boolean |  否  | 是否切换为全屏。true表示全屏模式，false表示分栏模式。 |
 
 **返回值：**
 

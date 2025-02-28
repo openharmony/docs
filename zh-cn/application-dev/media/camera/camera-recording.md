@@ -21,7 +21,7 @@
    系统提供的media接口可以创建一个录像AVRecorder实例，通过该实例的[getInputSurface](../../reference/apis-media-kit/js-apis-media.md#getinputsurface9)方法获取SurfaceId，与录像输出流做关联，处理录像输出流输出的数据。
 
    ```ts
-   async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // aVRecorderConfig可参考下一章节
+   async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // aVRecorderConfig可参考下一章节。
      let avRecorder: media.AVRecorder | undefined = undefined;
      try {
        avRecorder = await media.createAVRecorder();
@@ -49,9 +49,9 @@
    通过[CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability)类中的videoProfiles属性，可获取当前设备支持的录像输出流。然后，定义创建录像的参数，通过[createVideoOutput](../../reference/apis-camera-kit/js-apis-camera.md#createvideooutput)方法创建录像输出流。
 
    > **说明：**
-   > 预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为640:480 = 4:3，则需要预览流中的分辨率的宽高比也为4:3，如分辨率选择640:480，或960:720，或1440:1080，以此类推
+   > 预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为640:480 = 4:3，则需要预览流中的分辨率的宽高比也为4:3，如分辨率选择640:480，或960:720，或1440:1080，以此类推。
    >
-   > 获取录像旋转角度的方法：通过[VideoOutput](../../reference/apis-camera-kit/js-apis-camera.md#videooutput)类中的[getVideoRotation](../../reference/apis-camera-kit/js-apis-camera.md#getvideorotation12)方法获取rotation实际的值
+   > 获取录像旋转角度的方法：通过[VideoOutput](../../reference/apis-camera-kit/js-apis-camera.md#videooutput)类中的[getVideoRotation](../../reference/apis-camera-kit/js-apis-camera.md#getvideorotation12)方法获取rotation实际的值。
 
    ```ts
    async function getVideoOutput(cameraManager: camera.CameraManager, videoSurfaceId: string, cameraOutputCapability: camera.CameraOutputCapability): Promise<camera.VideoOutput | undefined> {
@@ -60,23 +60,23 @@
        console.error("createOutput videoProfilesArray == null || undefined");
        return undefined;
      }
-     // AVRecorderProfile
+     // AVRecorderProfile。
      let aVRecorderProfile: media.AVRecorderProfile = {
-       fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
-       videoBitrate : 100000, // 视频比特率
-       videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持avc格式
-       videoFrameWidth : 640,  // 视频分辨率的宽
-       videoFrameHeight : 480, // 视频分辨率的高
-       videoFrameRate : 30 // 视频帧率
+       fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4。
+       videoBitrate : 100000, // 视频比特率。
+       videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持avc格式。
+       videoFrameWidth : 640,  // 视频分辨率的宽。
+       videoFrameHeight : 480, // 视频分辨率的高。
+       videoFrameRate : 30 // 视频帧率。
      };
-     // 创建视频录制的参数，预览流与录像输出流的分辨率的宽(videoFrameWidth)高(videoFrameHeight)比要保持一致
+     // 创建视频录制的参数，预览流与录像输出流的分辨率的宽(videoFrameWidth)高(videoFrameHeight)比要保持一致。
      let aVRecorderConfig: media.AVRecorderConfig = {
        videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
        profile: aVRecorderProfile,
        url: 'fd://35',
-       rotation: 90 // rotation的值90，是通过getPhotoRotation接口获取到的值，具体请参考说明中获取录像旋转角度的方法
+       rotation: 90 // rotation的值90，是通过getPhotoRotation接口获取到的值，具体请参考说明中获取录像旋转角度的方法。
      };
-     // 创建avRecorder
+     // 创建avRecorder。
      let avRecorder: media.AVRecorder | undefined = undefined;
      try {
        avRecorder = await media.createAVRecorder();
@@ -87,9 +87,9 @@
      if (avRecorder === undefined) {
        return undefined;
      }
-     // 设置视频录制的参数
+     // 设置视频录制的参数。
      avRecorder.prepare(aVRecorderConfig);
-     // 创建VideoOutput对象
+     // 创建VideoOutput对象。
      let videoOutput: camera.VideoOutput | undefined = undefined;
      // createVideoOutput传入的videoProfile对象的宽高需要和aVRecorderProfile保持一致。
      let videoProfile: undefined | camera.VideoProfile = videoProfilesArray.find((profile: camera.VideoProfile) => {

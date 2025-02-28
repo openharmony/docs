@@ -211,7 +211,7 @@ try {
 
 ```js
 import { TouchEvent } from '@kit.InputKit';
-// Disable listening for all callbacks.
+// Cancel listening for all callbacks.
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
   return false;
@@ -271,7 +271,7 @@ try {
 
 ```js
 import { MouseEvent } from '@kit.InputKit';
-// Disable listening for all callbacks.
+// Cancel listening for all callbacks.
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
   return false;
@@ -411,7 +411,7 @@ try {
 ```
 
 ```js
-// Disable listening for all callbacks.
+// Cancel listening for all callbacks.
 import { Pinch } from '@kit.InputKit';
 
 let callback = (pinchEvent: Pinch) => {
@@ -514,7 +514,7 @@ try {
 ```
 
 ```js
-// Disable listening for all callbacks.
+// Cancel listening for all callbacks.
 import { ThreeFingersSwipe } from '@kit.InputKit';
 
 let callback = (threeFingersSwipe: ThreeFingersSwipe) => {
@@ -617,7 +617,7 @@ try {
 ```
 
 ```js
-// Disable listening for all callbacks.
+// Cancel listening for all callbacks.
 import { FourFingersSwipe } from '@kit.InputKit';
 
 let callback = (fourFingersSwipe: FourFingersSwipe) => {
@@ -723,7 +723,7 @@ try {
 ```
 
 ```js
-// Disable listening for all callbacks.
+// Cancel listening for all callbacks.
 import { Rotate } from '@kit.InputKit';
 
 let callback = (rotateEvent: Rotate) => {
@@ -829,7 +829,7 @@ try {
 ```
 
 ```js
-// Disable listening for all callbacks.
+// Cancel listening for all callbacks.
 import { Pinch } from '@kit.InputKit';
 
 let callback = (pinchEvent: Pinch) => {
@@ -932,7 +932,7 @@ try {
 ```
 
 ```js
-// Disable listening for all callbacks.
+// Cancel listening for all callbacks.
 import { ThreeFingersTap } from '@kit.InputKit';
 
 let callback = (threeFingersTap: ThreeFingersTap) => {
@@ -1040,7 +1040,7 @@ try {
 ```
 
 ```js
-// Disable listening for all callbacks.
+// Cancel listening for all callbacks.
 import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
@@ -1147,7 +1147,7 @@ try {
 ```
 
 ```js
-// Disable listening for all callbacks.
+// Cancel listening for all callbacks.
 import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
@@ -1157,6 +1157,110 @@ try {
     console.log(`Monitor on success ${JSON.stringify(event)}`);
   });
   inputMonitor.off("touchscreenPinch", fingers);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputMonitor.on('keyPressed')<sup>16+</sup>
+
+on(type: 'keyPressed', keys: Array&lt;KeyCode&gt;, receiver: Callback&lt;KeyEvent&gt;): void
+
+Listens for the press and release events of the specified key, which can be the **META_LEFT**, **META_RIGHT**, power, or volume key.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name  | Type                                                       | Mandatory| Description                                |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------ |
+| type     | string                                                      | Yes  | Event type. This parameter has a fixed value of **keyPressed**.|
+| keys     | Array<[KeyCode](js-apis-keycode.md#keycode)> | Yes  | Key code list. The options are **KEYCODE_META_LEFT**, **KEYCODE_META_RIGHT**, **KEYCODE_POWER**, **KEYCODE_VOLUME_DOWN**, and **KEYCODE_VOLUME_UP**.                     |
+| receiver | Callback&lt;[KeyEvent](js-apis-keyevent.md#keyevent)&gt;    | Yes  | Callback used to receive reported data.        |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Input Key Monitor Error Codes](errorcode-inputkeymonitor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Permission denied, non-system app called system api.         |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 4100001  | Event listening not supported for the key.                   |
+
+**Example**
+
+```js
+import { inputMonitor, KeyEvent, KeyCode } from '@kit.InputKit';
+
+let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
+try {
+  inputMonitor.on('keyPressed', keys, (event: KeyEvent ) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  });
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputMonitor.off('keyPressed')<sup>16+</sup>
+
+off(type: 'keyPressed', receiver?: Callback&lt;KeyEvent&gt;): void
+
+Cancels listening for the press and release events of the specified key, which can be the **META_LEFT**, **META_RIGHT**, power, or volume key. This API must be used together with **inputMonitor.on ('keyPressed')**.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name  | Type                                                     | Mandatory| Description                                                        |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                    | Yes  | Event type. This parameter has a fixed value of **keyPressed**.                        |
+| receiver | Callback&lt;[KeyEvent](js-apis-keyevent.md#keyevent)&gt; | No  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Permission denied, non-system app called system api.         |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```js
+// Disable listening for a single callback.
+import { inputMonitor, KeyEvent, KeyCode } from '@kit.InputKit';
+
+let callback = (event: KeyEvent) => {
+  console.log(`Monitor on success ${JSON.stringify(event)}`);
+};
+let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
+try {
+  inputMonitor.on('keyPressed', keys, callback);
+  inputMonitor.off("keyPressed", callback);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+```js
+// Cancel listening for all callbacks.
+import { inputMonitor, KeyEvent, KeyCode } from '@kit.InputKit';
+
+let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
+try {
+  inputMonitor.on('keyPressed', keys, (event: KeyEvent) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  });
+  inputMonitor.off("keyPressed");
 } catch (error) {
   console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }

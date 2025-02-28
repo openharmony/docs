@@ -1,6 +1,6 @@
 # LazyForEach: Lazy Data Loading
 
-For details about API parameters, see [LazyForEach](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md) APIs.
+For details about API parameters, see [LazyForEach](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md).
 
 **LazyForEach** iterates over provided data sources and creates corresponding components during each iteration. When **LazyForEach** is used in a scrolling container, the framework creates components as required within the visible area of the scrolling container. When a component is out of the visible area, the framework destroys and reclaims the component to reduce memory usage.
 
@@ -14,7 +14,8 @@ For details about API parameters, see [LazyForEach](https://gitee.com/openharmon
 - The ID generation function must generate a unique value for each piece of data. Rendering issues will arise with components assigned duplicate IDs.
 - **LazyForEach** must use the **DataChangeListener** object to re-render UI. If the first parameter **dataSource** is re-assigned a value, an exception occurs. When **dataSource** uses a state variable, the change of the state variable does not trigger the UI re-renders performed by **LazyForEach**.
 - For better rendering performance, when the **onDataChange** API of the **DataChangeListener** object is used to update the UI, an ID different from the original one needs to be generated to trigger component re-rendering.
-- **LazyForEach** must be used with the [@Reusable](https://developer.huawei.com/consumer/en/doc/best-practices-V5/bpta-component-reuse-V5#section5601835174020) decorator to trigger node reuse. Use @Reusable to decorate the components on the **LazyForEach** list. For details, see [Reuse Rules](https://developer.huawei.com/consumer/en/doc/best-practices-V5/bpta-component-reuse-V5#section5923195311402).
+- Using [\@Reusable](./arkts-reusable.md) to decorate components on the LazyForEach list can trigger node reuse. For details, see [List Scrolling Used with LazyForEach](./arkts-reusable.md#list-scrolling-used-with-lazyforeach).
+- Use LazyForEach and [\@ReusableV2](./arkts-new-reusableV2.md) together to trigger node reuse. For details, see [Using in LazyForEach](./arkts-new-reusableV2.md#using-in-lazyforeach).
 
 ## Key Generation Rules
 
@@ -659,10 +660,10 @@ which is shown in the following example:
 //Array after modification.
 ["Hello a","Hello c","Hello d","Hello b","Hello g","Hello f","Hello e","Hello h","Hello 1","Hello 2","Hello i","Hello j","Hello m","Hello n","Hello o","Hello p","Hello q","Hello r"]
 ```
-**Hello b** is changed from item 2 to item 4. Therefore, the first **operation** is written in **{ type: DataOperationType.MOVE, index: { from: 1, to: 3 } }**. 
-**Hello e** whose index is 4 and **Hello g** whose index is 6 are exchanged in the original array. Therefore, the second **operation** is written in **{ type: DataOperationType.EXCHANGE, index: { start: 4, end: 6 } }**. 
-**Hello 1** and **Hello 2** are inserted after **Hello h** whose index is 7 in the original array. Therefore, the third **operation** is written in **{ type: DataOperationType.ADD, index: 8, count: 2 }**. 
-**Hello k** whose index is 10 and **Hello l** whose index is 11 are deleted in the original array. Therefore, the fourth **operation** is written in **{ type: DataOperationType.DELETE, index: 10, count: 2 }**. 
+**Hello b** is changed from item 2 to item 4. Therefore, the first **operation** is written in **{ type: DataOperationType.MOVE, index: { from: 1, to: 3 } }**.
+**Hello e** whose index is 4 and **Hello g** whose index is 6 are exchanged in the original array. Therefore, the second **operation** is written in **{ type: DataOperationType.EXCHANGE, index: { start: 4, end: 6 } }**.
+**Hello 1** and **Hello 2** are inserted after **Hello h** whose index is 7 in the original array. Therefore, the third **operation** is written in **{ type: DataOperationType.ADD, index: 8, count: 2 }**.
+**Hello k** whose index is 10 and **Hello l** whose index is 11 are deleted in the original array. Therefore, the fourth **operation** is written in **{ type: DataOperationType.DELETE, index: 10, count: 2 }**.
 
 3. When **onDatasetChange** is called, the data can be operated only once for each index. If the data is operated multiple times, **LazyForEach** enables only the first operation to take effect.
 4. In operations where you can specify keys on your own, **LazyForEach** does not call the key generator to obtain keys. As such, make sure the specified keys are correct.
@@ -1046,7 +1047,7 @@ struct Parent {
 ```
 
 **Figure 11** Drag and sort in LazyForEach 
-![LazyForEach-Drag-Sort](figures/ForEach-Drag-Sort.gif)
+![LazyForEach-Drag-Sort](./figures/ForEach-Drag-Sort.gif)
 
 ## FAQs
 
@@ -1576,7 +1577,7 @@ struct MyComponent {
 ```
 
 When **List** is scrolled to the bottom, screen flicks like the following. 
-![LazyForEach-Screen-Flicker](figures/LazyForEach-Screen-Flicker.gif)
+![LazyForEach-Screen-Flicker](./figures/LazyForEach-Screen-Flicker.gif)
 
 Replacing **onDataReloaded** by **onDatasetChange** cannot only fix this issue but also improves load performance.
 
@@ -1649,7 +1650,7 @@ struct MyComponent {
 ```
 
 Fixed result 
-![LazyForEach-Screen-Flicker-Repair](figures/LazyForEach-Screen-Flicker-Repair.gif)
+![LazyForEach-Screen-Flicker-Repair](./figures/LazyForEach-Screen-Flicker-Repair.gif)
 
 ### Component Reuse Rendering Exception
 

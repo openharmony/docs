@@ -43,6 +43,8 @@ The number of **PasteData** records has reached the maximum.
 
 ## 12900003 Another Copy or Paste Operation in Progress
 
+Similar to the error code [27787277](#27787277-another-copy-or-paste-operation-in-progress).
+
 **Error Message**
 
 Another copy or paste operation is in progress.
@@ -61,6 +63,8 @@ The copy and paste APIs are both asynchronous APIs. If the data to be copied or 
 2. Wait until the last copy or paste operation has finished, and then copy or paste data again.
 
 ## 12900004 Copy Prohibited
+
+Similar to the error code [27787278](#27787278-copy-prohibited).
 
 **Error Message**
 
@@ -187,3 +191,45 @@ The copied data fails to be obtained.
 **Solution**
 
 Contact technical support.
+
+## 27787277 Another Copy or Paste Operation in Progress
+
+Similar to the error code [12900003](#12900003-another-copy-or-paste-operation-in-progress).
+
+**Error Message**
+
+Another copy or paste operation is in progress.
+
+**Description**
+
+This error code is reported when a new copy or paste attempt is made before the previous one is completed.
+
+**Possible Causes**
+
+The copy and paste APIs are both asynchronous APIs. If the data to be copied or pasted is in large amount, the time required may be long. New copy or paste operations can be performed only after the previous operations have been completed.
+
+**Solution**
+
+1. Before you copy or paste data, check the status of the last copy or paste operation.
+2. Wait until the last copy or paste operation has finished, and then copy or paste data again.
+
+## 27787278 Copy Prohibited
+
+Similar to the error code [12900004](#12900004-copy-prohibited).
+
+**Error Message**
+
+Replication is prohibited.
+
+**Description**
+
+This error code is reported when an attempt is made to copy data that cannot be copied.
+
+**Possible Causes**
+
+The data is read-only and cannot be copied.
+
+**Solution**
+
+1. Make sure the target data allows the copy action.
+2. Make sure you only copy data that allows for copy.

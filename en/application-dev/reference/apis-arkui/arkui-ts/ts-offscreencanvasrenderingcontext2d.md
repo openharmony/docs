@@ -1,6 +1,6 @@
 # OffscreenCanvasRenderingContext2D
 
-Use **OffscreenCanvasRenderingContext2D** to draw rectangles, images, and text offscreen onto a canvas. Drawing offscreen onto a canvas is a process where content to draw onto the canvas is first drawn in the buffer, and then converted into a picture, and finally the picture is drawn on the canvas. This process increases the drawing efficiency.
+**OffscreenCanvasRenderingContext2D** allows you to perform offscreen drawing on a canvas. This involves drawing content such as rectangles, images, and text in a buffer first, converting that content into an image, and then rendering the image onto the canvas. Because offscreen drawing uses the CPU for rendering, it can be slower than GPU-accelerated drawing. If the drawing speed is a critical concern, avoid using offscreen drawing.
 
 >  **NOTE**
 >
@@ -24,7 +24,7 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, settings?: Rend
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | width    | number                                   | Yes   | Width of the offscreen canvas.<br>Default unit: vp                       |
 | height   | number                                   | Yes   | Height of the offscreen canvas.<br>Default unit: vp                       |
-| settings | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | No   | Settings of the **OffscreenCanvasRenderingContext2D** object. For details, see **RenderingContextSettings**.<br>Default value: **null**|
+| settings | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | No   | Settings of the **OffscreenCanvasRenderingContext2D** object.<br>Default value: **null**|
 | unit<sup>12+</sup> | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | No| Unit mode of the **OffscreenCanvasRenderingContext2D** object. The value cannot be dynamically changed once set. The configuration method is the same as that of [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12).<br>Default value: **DEFAULT**|
 
 ## Attributes
@@ -37,13 +37,13 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, settings?: Rend
 
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
-| [fillStyle](#fillstyle) | string \|number<sup>10+</sup> \|[CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | No| No| Style to fill an area.<br>- When the type is **string**, this attribute indicates the color of the filling area.<br>Default value: **'black'**<br>- When the type is **number**, this attribute indicates the color of the filling area.<br>Default value: **'#000000'**<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.|
+| [fillStyle](#fillstyle) | string \|number<sup>10+</sup> \|[CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | No| No| Style to fill an area.<br>- When the type is **string**, this attribute indicates the color of the filling area.<br>Default value: **'#000000'**<br>- When the type is number, this indicates the fill color and does not support fully transparent colors.<br>Default value: **0x000000**<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.|
 | [lineWidth](#linewidth)                  | number                                   | No| No| Line width.<br>Default value: **1** (px)<br>Default unit: vp<br>The value cannot be **0** or a negative number. If it is set to **0** or a negative number, the default value is used instead.|
-| [strokeStyle](#strokestyle)              | string \|number<sup>10+</sup> \|[CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | No| No| Stroke color.<br> <br>Default value: **'black'**<br> <br>Default value: **'#000000'**<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.|
+| [strokeStyle](#strokestyle)              | string \|number<sup>10+</sup> \|[CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | No| No| Stroke color.<br> <br>Default value: **'#000000'**<br>- When the type is number, this indicates the stroke color and does not support fully transparent colors.<br>Default value: **0x000000**<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.|
 | [lineCap](#linecap) | [CanvasLineCap](ts-canvasrenderingcontext2d.md#canvaslinecap) | No| No| Style of the line endpoints. The options are as follows:<br>- **butt**: The endpoints of the line are squared off.<br>- **round**: The endpoints of the line are rounded.<br>- **square**: The endpoints of the line are squared off, and each endpoint has added a rectangle whose length is the same as the line thickness and whose width is half of the line thickness.<br>Default value: **'butt'**|
 | [lineJoin](#linejoin) | [CanvasLineJoin](ts-canvasrenderingcontext2d.md#canvaslinejoin) | No| No| Style of the shape used to join line segments. The options are as follows:<br>- **round**: The intersection is a sector, whose radius at the rounded corner is equal to the line width.<br>- **bevel**: The intersection is a triangle. The rectangular corner of each line is independent.<br>- **miter**: The intersection has a miter corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**.<br>Default value: **'miter'**|
 | [miterLimit](#miterlimit) | number | No| No| Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet.<br>Default value: **10** (px)<br>Unit: px<br>The value cannot be **0** or a negative number. If it is set to **0** or a negative number, the default value is used instead.|
-| [font](#font) | string | No| No| Font style.<br>Syntax: ctx.font='font-size font-family'<br>- (Optional) **font-size**: font size and line height. The unit can be px or vp.<br>(Optional) **font-family**: font family.<br>Syntax: ctx.font='font-style font-weight font-size font-family'<br>- (Optional) **font-style**: font style. Available values are **normal** and **italic**.<br>- (Optional) **font-weight**: font weight. Available values are as follows: **normal**, **bold**, **bolder**, **lighter**, **100**, **200**, **300**, **400**, **500**, **600**, **700**, **800**, **900**.<br>- (Optional) **font-size**: font size and line height. The unit can be px or vp and must be specified.<br>- (Optional) **font-family**: font family. Available values are **sans-serif**, **serif**, and **monospace**.<br>Default value: **'normal normal 14px sans-serif'**|
+| [font](#font) | string | No| No| Font style.<br>Syntax: ctx.font='font-size font-family'<br>- (Optional) **font-size**: font size and line height. The unit can be px or vp.<br>(Optional) **font-family**: font family.<br>Syntax: ctx.font='font-style font-weight font-size font-family'<br>- (Optional) **font-style**: font style. Available values are **normal** and **italic**.<br>- (Optional) **font-weight**: font weight. Available values are as follows: **normal**, **bold**, **bolder**, **lighter**, **100**, **200**, **300**, **400**, **500**, **600**, **700**, **800**, **900**.<br>- (Optional) **font-size**: font size and line height. The unit can be px or vp and must be specified.<br>- (Optional) **font-family**: font family. Available values are **sans-serif**, **serif**, and **monospace**. Custom fonts are also supported but can only be used on the main thread. They are not supported in worker threads or in DevEco Studio Previewer. For details, see the [custom font example](#font).<br>Default value: **'normal normal 14px sans-serif'**|
 | [textAlign](#textalign) | [CanvasTextAlign](ts-canvasrenderingcontext2d.md#canvastextalign) | No| No| Text alignment mode. Available values are as follows:<br>- **left**: The text is left-aligned.<br>- **right**: The text is right-aligned.<br>- **center**: The text is center-aligned.<br>- **start**: The text is aligned with the start bound.<br>- **end**: The text is aligned with the end bound.<br>**NOTE**<br><br>In the **ltr** layout mode, the value **'start'** equals **'left'**. In the **rtl** layout mode, the value **'start'** equals **'right'**.<br>Default value: **'start'**|
 | [textBaseline](#textbaseline)            | [CanvasTextBaseline](ts-canvasrenderingcontext2d.md#canvastextbaseline) | No| No| Horizontal alignment mode of text. Available values are as follows:<br>- **alphabetic**: The text baseline is the normal alphabetic baseline.<br>- **top**: The text baseline is on the top of the text bounding box.<br>- **hanging**: The text baseline is a hanging baseline over the text.<br>- **middle**: The text baseline is in the middle of the text bounding box.<br>**'ideographic'**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excess character.<br>- **bottom**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line.<br>Default value: **'alphabetic'**|
 | [globalAlpha](#globalalpha) | number | No| No| Opacity.<br>**0.0**: completely transparent.<br>**1.0**: completely opaque.<br>Default value: **1.0**|
@@ -346,6 +346,26 @@ struct MiterLimit {
 
 ### font
 
+Before using the **font** property to load custom fonts, you must first register the custom font in the **EntryAbility.ets** file located in the **src/main/ets/entryability/** directory. The following is an example of how to do this.
+
+> The value of **familyName** must be a continuous string without spaces, for example, **"customFont"**. Otherwise, the **font** property will fail to load the custom font.
+> 
+> The **familySrc** path should point to the font file located in the **font** folder, which is at the same level as the **pages** folder.
+
+```ts
+onWindowStageCreate(windowStage: window.WindowStage): void {
+  windowStage.loadContent('pages/Index', (err) => {
+    windowStage.getMainWindow().then(res => {
+      const uiCtc = res.getUIContext()
+      uiCtc.getFont().registerFont({
+        familyName: 'customFont',
+        familySrc: '/font/myFont.ttf'
+      })
+    })
+  });
+}
+```
+
 ```ts
 // xxx.ets
 @Entry
@@ -360,13 +380,16 @@ struct Fonts {
       Canvas(this.context)
         .width('100%')
         .height('100%')
-        .backgroundColor('#ffff00')
+        .backgroundColor('rgb(213,213,213)')
         .onReady(() =>{
           let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.font = '30px sans-serif'
           offContext.fillText("Hello px", 20, 60)
           offContext.font = '30vp sans-serif'
           offContext.fillText("Hello vp", 20, 100)
+          // Use a custom font by specifying its familyName.
+          offContext.font = '30vp customFont'
+          offContext.fillText("Hello", 20, 140)
           let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
         })
@@ -377,8 +400,7 @@ struct Fonts {
 }
 ```
 
-![en-us_image_0000001194032476](figures/en-us_image_0000001194032476.png)
-
+![new_font](figures/new_font.jpeg)
 
 ### textAlign
 
@@ -445,8 +467,8 @@ struct TextBaseline {
       Canvas(this.context)
         .width('100%')
         .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
+        .backgroundColor('rgb(213,213,213)')
+        .onReady(() => {
           let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.strokeStyle = '#0000ff'
           offContext.moveTo(0, 120)
@@ -475,7 +497,7 @@ struct TextBaseline {
 }
 ```
 
-![en-us_image_0000001193872518](figures/en-us_image_0000001193872518.png)
+![textBaseline](figures/textBaseline.jpg)
 
 
 ### globalAlpha
@@ -623,12 +645,12 @@ struct ShadowBlur {
       Canvas(this.context)
         .width('100%')
         .height('100%')
-        .backgroundColor('#ffff00')
+        .backgroundColor('rgb(213,213,213)')
         .onReady(() =>{
           let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.shadowBlur = 30
           offContext.shadowColor = 'rgb(0,0,0)'
-          offContext.fillStyle = 'rgb(255,0,0)'
+          offContext.fillStyle = 'rgb(39,135,217)'
           offContext.fillRect(20, 20, 100, 80)
           let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
@@ -640,7 +662,7 @@ struct ShadowBlur {
 }
 ```
 
-![en-us_image_0000001194352452](figures/en-us_image_0000001194352452.png)
+![shadowBlur](figures/shadowBlur.jpg)
 
 
 ### shadowColor
@@ -659,12 +681,12 @@ struct ShadowColor {
       Canvas(this.context)
         .width('100%')
         .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
+        .backgroundColor('rgb(213,213,213)')
+        .onReady(() => {
           let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.shadowBlur = 30
-          offContext.shadowColor = 'rgb(0,0,255)'
-          offContext.fillStyle = 'rgb(255,0,0)'
+          offContext.shadowColor = 'rgb(255,192,0)'
+          offContext.fillStyle = 'rgb(39,135,217)'
           offContext.fillRect(30, 30, 100, 100)
           let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
@@ -676,7 +698,7 @@ struct ShadowColor {
 }
 ```
 
-![en-us_image_0000001238952399](figures/en-us_image_0000001238952399.png)
+![shadowColor](figures/shadowColor.jpg)
 
 
 ### shadowOffsetX
@@ -878,48 +900,49 @@ justifyContent: FlexAlign.Center }) {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
     private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
-    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
+    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
     build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.
-Center }) {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .onReady(() => {
             let offContext = this.offCanvas.getContext("2d", this.settings)
-            let offctx = offContext
             let img = this.img
 
-            offctx.drawImage(img, 0, 0, 100, 100);
+            offContext.drawImage(img, 0, 0, 100, 100);
 
-            offctx.filter = 'grayscale(50%)';
-            offctx.drawImage(img, 100, 0, 100, 100);
+            offContext.filter = 'grayscale(50%)';
+            offContext.drawImage(img, 100, 0, 100, 100);
 
-            offctx.filter = 'sepia(60%)';
-            offctx.drawImage(img, 200, 0, 100, 100);
+            offContext.filter = 'sepia(60%)';
+            offContext.drawImage(img, 200, 0, 100, 100);
 
-            offctx.filter = 'saturate(30%)';
-            offctx.drawImage(img, 0, 100, 100, 100);
+            offContext.filter = 'saturate(30%)';
+            offContext.drawImage(img, 0, 100, 100, 100);
 
-            offctx.filter = 'hue-rotate(90degree)';
-            offctx.drawImage(img, 100, 100, 100, 100);
+            offContext.filter = 'hue-rotate(90degree)';
+            offContext.drawImage(img, 100, 100, 100, 100);
 
-            offctx.filter = 'invert(100%)';
-            offctx.drawImage(img, 200, 100, 100, 100);
+            offContext.filter = 'invert(100%)';
+            offContext.drawImage(img, 200, 100, 100, 100);
 
-            offctx.filter = 'opacity(25%)';
-            offctx.drawImage(img, 0, 200, 100, 100);
+            offContext.filter = 'opacity(25%)';
+            offContext.drawImage(img, 0, 200, 100, 100);
 
-            offctx.filter = 'brightness(0.4)';
-            offctx.drawImage(img, 100, 200, 100, 100);
+            offContext.filter = 'brightness(0.4)';
+            offContext.drawImage(img, 100, 200, 100, 100);
 
-            offctx.filter = 'contrast(200%)';
-            offctx.drawImage(img, 200, 200, 100, 100);
+            offContext.filter = 'contrast(200%)';
+            offContext.drawImage(img, 200, 200, 100, 100);
 
-            offctx.filter = 'blur(5px)';
-            offctx.drawImage(img, 0, 300, 100, 100);
+            offContext.filter = 'blur(5px)';
+            offContext.drawImage(img, 0, 300, 100, 100);
+
+            // Applying multiple filters
+            offContext.filter = 'opacity(50%) contrast(200%) grayscale(50%)';
+            offContext.drawImage(img, 100, 300, 100, 100);
 
             let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
@@ -933,7 +956,7 @@ Center }) {
 
 ![filterDemo](figures/filterDemo.jpeg)
 
-## Method
+## Methods
 
 
 ### fillRect
@@ -973,7 +996,7 @@ Fills a rectangle on the canvas.
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
+          .backgroundColor('rgb(213,213,213)')
           .onReady(() =>{
             let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.fillRect(30,30,100,100)
@@ -987,7 +1010,7 @@ Fills a rectangle on the canvas.
   }
   ```
 
-  ![en-us_image_0000001194192436](figures/en-us_image_0000001194192436.png)
+  ![fillRect](figures/fillRect.jpg)
 
 
 ### strokeRect
@@ -1251,11 +1274,11 @@ Returns a **TextMetrics** object used to obtain the width of specified text.
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .onReady(() => {
             let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.font = '50px sans-serif'
             offContext.fillText("Hello World!", 20, 100)
-            offContext.fillText("width:" + this.context.measureText("Hello World!").width, 20, 200)
+            offContext.fillText("width:" + offContext.measureText("Hello World!").width, 20, 200)
             let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
         })
@@ -1266,7 +1289,7 @@ Returns a **TextMetrics** object used to obtain the width of specified text.
   }
   ```
 
-  ![en-us_image_0000001194032480](figures/en-us_image_0000001194032480.png)
+  ![offscreencanvasrenderingcontext2d-measureText](figures/offscreencanvasrenderingcontext2d-measureText.jpg)
 
 
 ### stroke
@@ -1401,8 +1424,8 @@ Creates a drawing path.
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .backgroundColor('rgb(213,213,213)')
+          .onReady(() => {
             let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.beginPath()
             offContext.lineWidth = 6
@@ -1420,7 +1443,7 @@ Creates a drawing path.
   }
   ```
 
-  ![en-us_image_0000001193872522](figures/en-us_image_0000001193872522.png)
+  ![beginPath](figures/beginPath.jpg)
 
 
 ### moveTo
@@ -1617,7 +1640,7 @@ Creates a pattern for image filling based on a specified source image and repeti
   struct CreatePattern {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
+    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg")
     private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
 
     build() {
@@ -1625,8 +1648,8 @@ Creates a pattern for image filling based on a specified source image and repeti
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .backgroundColor('rgb(213,213,213)')
+          .onReady(() => {
             let offContext = this.offCanvas.getContext("2d", this.settings)
             let pattern = offContext.createPattern(this.img, 'repeat')
             offContext.fillStyle = pattern as CanvasPattern
@@ -1641,7 +1664,7 @@ Creates a pattern for image filling based on a specified source image and repeti
   }
   ```
 
-  ![en-us_image_0000001194352456](figures/en-us_image_0000001194352456.png)
+  ![createPattern](figures/createPattern.jpg)
 
 
 ### bezierCurveTo
@@ -1740,8 +1763,8 @@ Draws a quadratic curve on the canvas.
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .backgroundColor('rgb(213,213,213)')
+          .onReady(() => {
             let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.beginPath()
             offContext.moveTo(20, 20)
@@ -1757,7 +1780,7 @@ Draws a quadratic curve on the canvas.
   }
   ```
 
-  ![en-us_image_0000001194032482](figures/en-us_image_0000001194032482.png)
+  ![quadraticCurveTo](figures/quadraticCurveTo.jpg)
 
 
 ### arc
@@ -2257,6 +2280,8 @@ reset(): void
 
 Resets this **OffscreenCanvasRenderingContext2D** object to its default state and clears the background buffer, drawing state stack, defined paths, and styles.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
@@ -2310,7 +2335,7 @@ Saves this layer.
   // xxx.ets
   @Entry
   @Component
-  struct ResetTransform {
+  struct saveLayer {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
@@ -2323,12 +2348,18 @@ Saves this layer.
           .backgroundColor('#ffff00')
           .onReady(() => {
             let offContext = this.offCanvas.getContext("2d", this.settings)
-            offContext.setTransform(1,0.5, -0.5, 1, 10, 10)
-            offContext.fillStyle = 'rgb(0,0,255)'
-            offContext.fillRect(0, 0, 100, 100)
-            offContext.resetTransform()
-            offContext.fillStyle = 'rgb(255,0,0)'
-            offContext.fillRect(0, 0, 100, 100)
+            offContext.fillStyle = "#0000ff"
+            offContext.fillRect(50,100,300,100)
+            offContext.fillStyle = "#00ffff"
+            offContext.fillRect(50,150,300,100)
+            offContext.globalCompositeOperation = 'destination-over'
+            offContext.saveLayer()
+            offContext.globalCompositeOperation = 'source-over'
+            offContext.fillStyle = "#ff0000"
+            offContext.fillRect(100,50,100,300)
+            offContext.fillStyle = "#00ff00"
+            offContext.fillRect(150,50,100,300)
+            offContext.restoreLayer()
             let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
@@ -2338,7 +2369,7 @@ Saves this layer.
     }
   }
   ```
-   ![en-us_image_resetTransform](figures/en-us_image_ResetTransform.png)
+  ![en-us_image_CanvasSavelayer](figures/en-us_image_CanvasSavelayer.png)
 
 ### restoreLayer<sup>12+</sup>
 
@@ -2371,6 +2402,7 @@ Resets the current transform to the identity matrix.
   struct ResetTransform {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2378,13 +2410,16 @@ Resets the current transform to the identity matrix.
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.context.setTransform(1,0.5, -0.5, 1, 10, 10)
-            this.context.fillStyle = 'rgb(0,0,255)'
-            this.context.fillRect(0, 0, 100, 100)
-            this.context.resetTransform()
-            this.context.fillStyle = 'rgb(255,0,0)'
-            this.context.fillRect(0, 0, 100, 100)
+          .onReady(() => {
+            let offContext = this.offCanvas.getContext("2d", this.settings)
+            offContext.setTransform(1,0.5, -0.5, 1, 10, 10)
+            offContext.fillStyle = 'rgb(0,0,255)'
+            offContext.fillRect(0, 0, 100, 100)
+            offContext.resetTransform()
+            offContext.fillStyle = 'rgb(255,0,0)'
+            offContext.fillRect(0, 0, 100, 100)
+            let image = this.offCanvas.transferToImageBitmap()
+            this.context.transferFromImageBitmap(image)
           })
       }
       .width('100%')
@@ -2392,6 +2427,7 @@ Resets the current transform to the identity matrix.
     }
   }
   ```
+  ![en-us_image_0000001239032417](figures/en-us_image_ResetTransform.png)
 
 ### rotate
 
@@ -2513,7 +2549,7 @@ Defines a transformation matrix. To transform a graph, you only need to set para
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 > **NOTE**
-> The following formulas calculate coordinates of the transformed graph. **x** and **y** represent coordinates before transformation, and **x'** and **y'** represent coordinates after transformation.
+> The following formulas calculate the coordinates of a transformed graph. **x** and **y** represent the coordinates before transformation, and **x'** and **y'** represent the coordinates after transformation.
 >
 > - x' = scaleX \* x + skewY \* y + translateX
 >
@@ -2523,10 +2559,10 @@ Defines a transformation matrix. To transform a graph, you only need to set para
 
 | Name  | Type    | Mandatory| Description|
 | ---- | ------ | ---- | -------------------- |
-| a    | number | Yes   | X-axis scale.|
+| a    | number | Yes   | **scaleX**: x-axis scale.|
 | b    | number | Yes   | **skewY**: y-axis skew. |
-| c    | number | Yes   | **skewX**: y-axis skew. |
-| d    | number | Yes   | Y-axis scale.|
+| c    | number | Yes   | **skewX**: x-axis skew. |
+| d    | number | Yes   | **scaleY**: y-axis scale.|
 | e    | number | Yes   | **translateX**: distance to translate on the x-axis.<br>Default unit: vp|
 | f    | number | Yes   | **translateY**: distance to translate on the y-axis.<br>Default unit: vp|
 
@@ -2546,8 +2582,8 @@ Defines a transformation matrix. To transform a graph, you only need to set para
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .backgroundColor('rgb(213,213,213)')
+          .onReady(() => {
             let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.fillStyle = 'rgb(0,0,0)'
             offContext.fillRect(0, 0, 100, 100)
@@ -2567,7 +2603,7 @@ Defines a transformation matrix. To transform a graph, you only need to set para
   }
   ```
 
-  ![en-us_image_0000001239032431](figures/en-us_image_0000001239032431.png)
+  ![transform](figures/transform.jpg)
 
 
 ### setTransform
@@ -2586,10 +2622,10 @@ Resets the existing transformation matrix and creates a new transformation matri
 
 | Name  | Type    | Mandatory | Description                  |
 | ---- | ------ | ---- | -------------------- |
-| a    | number | Yes   | X-axis scale.|
+| a    | number | Yes   | **scaleX**: x-axis scale.|
 | b    | number | Yes   | **skewY**: y-axis skew. |
-| c    | number | Yes   | **skewX**: y-axis skew. |
-| d    | number | Yes   | Y-axis scale.|
+| c    | number | Yes   | **skewX**: x-axis skew. |
+| d    | number | Yes   | **scaleY**: y-axis scale.|
 | e    | number | Yes   | **translateX**: distance to translate on the x-axis.<br>Default unit: vp|
 | f    | number | Yes   | **translateY**: distance to translate on the y-axis.<br>Default unit: vp|
 
@@ -2628,9 +2664,6 @@ Resets the existing transformation matrix and creates a new transformation matri
   ```
 
   ![en-us_image_0000001193872526](figures/en-us_image_0000001193872526.png)
-
-
-### setTransform
 
 setTransform(transform?: Matrix2D): void
 
@@ -2983,6 +3016,10 @@ Obtains the [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) object c
 
 **Example**
 
+> **NOTE**
+>
+> DevEco Studio Previewer does not support displaying content drawn using **setPixelMap**.
+
   ```ts
   // xxx.ets
   @Entry
@@ -3308,7 +3345,7 @@ Creates a data URL that contains a representation of an image. This API involves
 
 | Name    | Type  | Mandatory  | Description                                      |
 | ------- | ------ | ---- | ---------------------------------------- |
-| type    | string | No | Image format.<br>The options are as follows: "image/png", "image/jpeg", "image/webp".<br>Default value: **"image/png"**           |
+| type    | string | No | Image format.<br>The options are as follows: **"image/png"**, **"image/jpeg"**, **"image/webp"**.<br>Default value: **"image/png"**           |
 | quality | any | No | Image quality, which ranges from 0 to 1, when the image format is **image/jpeg** or **image/webp**. If the set value is beyond the value range, the default value **0.92** is used.<br>Default value: **0.92**|
 
 **Return value**

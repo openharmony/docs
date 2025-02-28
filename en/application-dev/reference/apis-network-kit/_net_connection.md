@@ -63,6 +63,7 @@ Provides the C APIs of the network connection module for network management.
 | (\*[OH_NetConn_CustomDnsResolver](#oh_netconn_customdnsresolver)) (const char \*host, const char \*serv, const struct addrinfo \*hint, struct addrinfo \*\*res) | Pointer to the custom DNS resolver.| 
 | [NetConn_NetConnCallback](#netconn_netconncallback) | Defines network status callbacks.|
 | [NetConn_NetSpecifier](#netconn_netspecifier) | Defines the network feature set, including a network capability set and a network ID.|
+| [NetConn_ErrorCode](#netconn_errorcode) | Network connection error code.|
 
 ### Enums
 
@@ -70,6 +71,7 @@ Provides the C APIs of the network connection module for network management.
 | -------- | -------- |
 | [NetConn_NetCap](#netconn_netcap) {<br>NETCONN_NET_CAPABILITY_MMS = 0,<br>NETCONN_NET_CAPABILITY_NOT_METERED = 11,<br>NETCONN_NET_CAPABILITY_INTERNET = 12,<br>NETCONN_NET_CAPABILITY_NOT_VPN = 15,<br>NETCONN_NET_CAPABILITY_VALIDATED = 16<br>} | Network capability set.| 
 | [NetConn_NetBearerType](#netconn_netbearertype) {<br>NETCONN_BEARER_CELLULAR = 0,<br>NETCONN_BEARER_WIFI = 1,<br>NETCONN_BEARER_ETHERNET = 3<br>NETCONN_BEARER_VPN = 4<br>} | Network carrier type.|
+| [NetConn_ErrorCode](#netconn_errorcode) {<br>NETCONN_SUCCESS = 0,<br>NETCONN_PERMISSION_DENIED = 201,<br>NETCONN_PARAMETER_ERROR = 401,<br>NETCONN_OPERATION_FAILED = 2100002,<br>NETCONN_INTERNAL_ERROR= 2100003<br>} | Network connection error code.|
 
 
 ### Functions
@@ -96,6 +98,8 @@ Provides the C APIs of the network connection module for network management.
 | [OH_NetConn_RegisterNetConnCallback](#oh_netconn_registernetconncallback) ([NetConn_NetSpecifier](_net_conn___net_specifier.md) \*specifier, [NetConn_NetConnCallback](_net_conn___net_conn_callback.md) \*netConnCallback, uint32_t timeoutMS, uint32_t \*callbackId) | Registers a callback for network status changes.|
 | [OH_NetConn_RegisterDefaultNetConnCallback](#oh_netconn_registerdefaultnetconncallback) ([NetConn_NetConnCallback](_net_conn___net_conn_callback.md) \*netConnCallback, uint32_t \*callbackId) | Registers a callback for status changes of the default network.|
 | [OH_NetConn_UnregisterNetConnCallback](#oh_netconn_unregisternetconncallback) (uint32_t callbackId) | Unregisters the callback for network status changes.|
+| [OH_NetConn_SetPacUrl](#oh_netconn_setpacurl) (const char \*pacUrl) | Sets the URL of the system-level proxy auto-config (PAC) script.|
+| [OH_NetConn_GetPacUrl](#oh_netconn_getpacurl) (char \*pacUrl) | Obtains the URL of the system-level PAC script.|
 
 
 ## Type Description
@@ -285,6 +289,19 @@ Defines the network feature set, including a network capability set and a networ
 **Since**: 12
 
 
+### NetConn_ErrorCode
+
+```
+typedef enum NetConn_ErrorCode NetConn_ErrorCode
+```
+
+**Description**
+
+Enumerates network connection error codes.
+
+**Since**: 15
+
+
 ## Enum Description
 
 
@@ -329,6 +346,27 @@ Network capability set.
 | NETCONN_NET_CAPABILITY_NOT_VPN | Non-VPN.| 
 | NETCONN_NET_CAPABILITY_VALIDATED | Verified.| 
 | NETCONN_NET_CAPABILITY_CHECKING_CONNECTIVITY  | Connectivity check.<br>**Since**: 12| 
+
+
+### NetConn_ErrorCode
+
+```
+enum NetConn_ErrorCode
+```
+
+**Description**
+
+Enumerates network connection error codes.
+
+**Since**: 15
+
+|         Value          |         Description           |
+| ------------------------ | ----------------------- |
+| NETCONN_SUCCESS          | Success.             |
+| NETCONN_PERMISSION_DENIED| Permission verification failed.          |
+| NETCONN_PARAMETER_ERROR  | Parameter check failed.          |
+| NETCONN_OPERATION_FAILED | Service connection failed.          |
+| NETCONN_INTERNAL_ERROR   | Internal server error.          |
 
 
 ## Function Description
@@ -1044,3 +1082,71 @@ Unregisters the callback for network status changes.
 **Required permissions**:
 
 ohos.permission.GET_NETWORK_INFO
+
+
+### OH_NetConn_SetPacUrl()
+
+```
+NetConn_ErrorCode OH_NetConn_SetPacUrl(const char *pacUrl)
+```
+
+**Description**
+
+Sets the URL of the system-level proxy auto-config (PAC) script.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| pacUrl   |  URL of the PAC script. Note that this URL will not be verified by the API.|
+
+**Returns**
+
+**NETCONN_SUCCESS**: success.
+
+**NETCONN_PERMISSION_DENIED**: no permission.
+
+**NETCONN_PARAMETER_ERROR**: invalid parameter.
+
+**NETCONN_OPERATION_FAILED**: service connection failed.
+
+**NETCONN_INTERNAL_ERROR**: internal error.
+
+**Required permissions**:
+
+ohos.permission.SET_PAC_URL
+
+
+### OH_NetConn_GetPacUrl()
+
+```
+NetConn_ErrorCode OH_NetConn_GetPacUrl(char *pacUrl)
+```
+
+**Description**
+
+Obtains the URL of the system-level PAC script.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| pacUrl   |  URL of the PAC script.|
+
+**Returns**
+
+**NETCONN_SUCCESS**: success.
+
+**NETCONN_PERMISSION_DENIED**: no permission.
+
+**NETCONN_OPERATION_FAILED**: service connection failed.
+
+**NETCONN_INTERNAL_ERROR**: internal error.

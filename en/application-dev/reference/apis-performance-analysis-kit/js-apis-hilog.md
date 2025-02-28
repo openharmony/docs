@@ -225,6 +225,44 @@ If `"hello"` is filled in `%{public}s` and `3` in `%{private}d`, the output log 
 08-05 12:21:47.579  2695 2703 F A00001/testTag: hello World <private>
 ```
 
+## hilog.setMinLogLevel<sup>16+</sup>
+
+setMinLogLevel(level: LogLevel): void;
+
+Sets the minimum log level. When a process prints logs, both the minimum log level and the global log level are verified. Therefore, the minimum log level cannot be lower than the global log level. The default value of [global log level](../../dfx/hilog.md#displaying-and-setting-log-levels) is **Info**.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.HiviewDFX.HiLog
+
+**Parameters**
+
+| Name| Type                 | Mandatory| Description                                                        |
+| ------ | --------------------- | ---- | ------------------------------------------------------------ |
+| level  | [LogLevel](#loglevel) | Yes  | Log level.                                                  |
+
+**Example**
+
+Print five HiLog logs of different levels and call the **setMinLogLevel** API twice during the printing.
+
+```js
+hilog.info(0x0001, "testTag", 'this is an info level log, id: %{public}d', 1);
+hilog.setMinLogLevel(hilog.LogLevel.WARN);
+hilog.info(0x0001, "testTag", 'this is an info level log, id: %{public}d', 2);
+hilog.error(0x0001, 'testTag', 'this is an error level log, id: %{public}d', 3);
+hilog.setMinLogLevel(hilog.LogLevel.DEBUG);
+hilog.debug(0x0001, "testTag", 'this is a debug level log, id: %{public}d', 4);
+hilog.info(0x0001, "testTag", 'this is an info level log, id: %{public}d', 5);
+```
+
+The default value of the global log level is **Info**. Therefore, the first log is printed normally. When the minimum log level of the process is set to **Warn**, the second log fails to be printed because its level is lower than the minimum-log-level log level, and the third log is printed normally. When the minimum log level of the process is set to **Debug**, the fourth log fails to be printed because its level is lower than the global log level, and the fifth log is printed. The result is as follows:
+
+```
+08-07 23:50:01.532   13694-13694   A00001/testTag                  com.example.hilogemo  I     this is an info level log, id: 1
+08-07 23:50:01.532   13694-13694   A00001/testTag                  com.example.hilogemo  E     this is an error level log, id: 3
+08-07 23:50:01.532   13694-13694   A00001/testTag                  com.example.hilogemo  I     this is an info level log, id: 5
+```
+
 ## Parameter Format
 
 Parameters in the log are printed in the following format:

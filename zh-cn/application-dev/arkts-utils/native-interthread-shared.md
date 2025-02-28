@@ -11,7 +11,7 @@
 
 核心代码片段如下所示：
 
-ArkTS文件定义
+ArkTS文件定义。
 
 ```ts
 // SendableObjTest.ets
@@ -24,7 +24,7 @@ export class SendableObjTest {
 ```
 
 
-Naitve实现加载ArkTS模块的能力
+Naitve实现加载ArkTS模块的能力。
 
 ```cpp
 // napi_init.cpp
@@ -81,7 +81,7 @@ static void *CreateArkRuntimeFunc(void *arg)
 
 下面代码例子说明了如何序列化和反序列化传递对象，注意因为Sendable共享对象是引用传递，所以序列化不会产生另外一份拷贝数据，而是直接传递对象引用到反序列化线程，所以在性能上相比非Sendable对象的序列化和反序列化更为高效。
 
-ArkTS文件定义
+ArkTS文件定义。
 
 ```ts
 // SendableObjTest.ets
@@ -93,7 +93,7 @@ export class SendableObjTest {
 }
 ```
 
-Naitve实现两个线程的序列化反序列化Sendable的逻辑
+Naitve实现两个线程的序列化反序列化Sendable的逻辑。
 
 ```cpp
 // napi_init.cpp
@@ -211,7 +211,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void) {
 export const testSendSendable: () => void;
 ```
 
-UI主线程发起调用
+UI主线程发起调用。
 
 ```ts
 // Index.ets

@@ -308,7 +308,7 @@ let params: Record<string, hiAppEvent.ParamType> = {
 };
 // 给应用事件追加自定义参数
 hiAppEvent.setEventParam(params, "test_domain", "test_event").then(() => {
-  hilog.info(0x0000, 'hiAppEvent', `success to set svent param`);
+  hilog.info(0x0000, 'hiAppEvent', `success to set event param`);
 }).catch((err: BusinessError) => {
   hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
 });
@@ -343,7 +343,7 @@ setEventConfig(name: string, config: Record&lt;string, ParamType&gt;): Promise&l
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.3.Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
@@ -358,7 +358,7 @@ let params: Record<string, hiAppEvent.ParamType> = {
   "log_type": "0"
 };
 
-hiAppEvent.setEventConfig("MAIN_THREAD_JANK", params).then(() => {
+hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => {
   hilog.info(0x0000, 'hiAppEvent', `success to set event config`);
 }).catch((err: BusinessError) => {
   hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
@@ -377,7 +377,7 @@ let params: Record<string, hiAppEvent.ParamType> = {
   "sample_count": "21",
   "report_times_per_app": "3",
 };
-hiAppEvent.setEventConfig("MAIN_THREAD_JANK", params).then(() => {
+hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => {
   hilog.info(0x0000, 'hiAppEvent', `success to set event config`);
 }).catch((err: BusinessError) => {
   hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
@@ -392,7 +392,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 let params: Record<string, hiAppEvent.ParamType> = {
   "log_type": "2"
 };
-hiAppEvent.setEventConfig("MAIN_THREAD_JANK", params).then(() => {
+hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => {
   hilog.info(0x0000, 'hiAppEvent', `success to set event config`);
 }).catch((err: BusinessError) => {
   hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
@@ -562,7 +562,7 @@ setUserProperty(name: string, value: string): void
 | 参数名     | 类型                      | 必填 | 说明           |
 | --------- | ------------------------- | ---- | -------------- |
 | name      | string                    | 是   | 用户属性的key。只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度非空且不超过256个字符。  |
-| value     | string                    | 是   | 用户属性的值。长度不超过1024，当值为null、undefine或空，则清除用户属性。  |
+| value     | string                    | 是   | 用户属性的值。长度不超过1024，当值为null或空字符串时，则清除用户属性。  |
 
 **错误码：**
 

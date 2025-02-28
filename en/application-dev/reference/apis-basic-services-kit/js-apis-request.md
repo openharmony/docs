@@ -106,7 +106,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     url: 'http://www.example.com', // Replace the URL with the HTTP address of the real server.
     header: { 'Accept': '*/*' },
     method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "image/jpeg" }], // Set type to the MIME type of the HTTP protocol.
     data: [{ name: "name123", value: "123" }],
   };
   try {
@@ -163,7 +163,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     url: 'http://www.example.com', // Replace the URL with the HTTP address of the real server.
     header: { 'Accept': '*/*' },
     method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "image/jpeg" }], // Set type to the MIME type of the HTTP protocol.
     data: [{ name: "name123", value: "123" }],
   };
   try {
@@ -227,7 +227,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     url: 'http://www.example.com', // Replace the URL with the HTTP address of the real server.
     header: { 'Accept': '*/*' },
     method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "image/jpeg" }], // Set type to the MIME type of the HTTP protocol.
     data: [{ name: "name123", value: "123" }],
   };
   request.upload(uploadConfig).then((data) => {
@@ -277,7 +277,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     url: 'http://www.example.com', // Replace the URL with the HTTP address of the real server.
     header: { 'Accept': '*/*' },
     method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "image/jpeg" }], // Set type to the MIME type of the HTTP protocol.
     data: [{ name: "name123", value: "123" }],
   };
   request.upload(uploadConfig, (err, data) => {
@@ -292,8 +292,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 ## UploadTask
 
 Implements file uploads. Before using any APIs of this class, you must obtain an **UploadTask** object through [request.uploadFile<sup>9+</sup>](#requestuploadfile9) in promise mode or [request.uploadFile<sup>9+</sup>](#requestuploadfile9-1) in callback mode.
-
-
 
 ### on('progress')
 
@@ -392,8 +390,9 @@ Subscribes to upload completion or failure events. This API uses an asynchronous
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Callback types for subscribing to the upload events, including **'complete'\|'fail'**.<br>\- **'complete'**: the upload is complete.<br>\- **'fail'**: the upload fails. |
+| type | string | Yes| Callback types for subscribing to the upload events, including **'complete'\|'fail'**.<br>\- **'complete'**: the upload is complete.<br>\- **'fail'**: the upload fails.|
 | callback | Callback&lt;Array&lt;[TaskState](#taskstate9)&gt;&gt; | Yes| Callback used to return the result.  |
+
 
 **Error codes**
 
@@ -444,6 +443,7 @@ Parameters of the callback function
 | -------- | -------- | -------- | -------- |
 | uploadedSize | number | Yes| Size of the uploaded files, in bytes.|
 | totalSize | number | Yes| Total size of the files to upload, in bytes.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -581,7 +581,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ### delete<sup>9+</sup>
 delete(): Promise&lt;boolean&gt;
 
-Deletes this upload task. This API uses a promise to return the result.
+Deletes this upload task. This API uses a promise to return the result. 
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -614,7 +614,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 > **NOTE**
 >
-> The scenarios for triggering error code 401 do not actually exist. Therefore, `401 the parameters check fails` is removed from API version 12.
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
 
 
 ### delete<sup>9+</sup>
@@ -656,7 +656,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 > **NOTE**
 >
-> The scenarios for triggering error code 401 do not actually exist. Therefore, `401 the parameters check fails` is removed from API version 12.
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
 
 
 ### remove<sup>(deprecated)</sup>
@@ -749,7 +749,7 @@ Describes the configuration of an upload task.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| url | string | Yes| Resource URL. The value contains a maximum of 2048 characters.|
+| url | string | Yes| Resource URL. From API version 6 to 14, the value contains a maximum of 2048 characters; from API version 15, the value contains a maximum of 8192 characters.|
 | header | Object | Yes| HTTP or HTTPS header added to an upload request.|
 | method | string | Yes|  HTTP request method. The value can be **POST** or **PUT**. The default value is **POST**. Use the **PUT** method to modify resources and the **POST** method to add resources.|
 | index<sup>11+</sup> | number | No| Path index of the task. The default value is **0**.|
@@ -765,9 +765,9 @@ Implements a **TaskState** object, which is the callback parameter of the [on('c
 
 | Name| Type| Mandatory| Description                                                                                                                                       |
 | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------------------------------------------------|
-| path | string | Yes| File path.                                                                                                                                     |
+| path | string | Yes| File path.                                        |
 | responseCode | number | Yes| Return value of an upload task. The value **0** means that the task is successful, and other values means that the task fails. For details about the task result, see **message**. You are advised to create an upload task by using [request.agent.create<sup>10+</sup>](#requestagentcreate10-1) and handle exceptions based on standard error codes.|
-| message | string | Yes| Description of the upload task result.                                                                                                                               |
+| message | string | Yes| Description of the upload task result.                          |
 
 The following table describes the enum values of **responseCode**.
 
@@ -1101,6 +1101,7 @@ Unsubscribes from download progress events.
 | receivedSize | number | Yes| Current download progress, in bytes.                                                          |
 | totalSize | number | Yes| Total size of the files to download, in bytes. If the server uses the chunk mode for data transmission and the total file size cannot be obtained from the request header, the value of **totalSize** is treated as **-1**.|
 
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -1425,7 +1426,7 @@ try {
 
 > **NOTE**
 >
-> The scenarios for triggering error code 401 do not actually exist. Therefore, `401 the parameters check fails` is removed from API version 12.
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
 
 
 ### delete<sup>9+</sup>
@@ -1478,7 +1479,7 @@ try {
 
 > **NOTE**
 >
-> The scenarios for triggering error code 401 do not actually exist. Therefore, `401 the parameters check fails` is removed from API version 12.
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
 
 
 ### getTaskInfo<sup>9+</sup>
@@ -1529,7 +1530,7 @@ try {
 
 > **NOTE**
 >
-> The scenarios for triggering error code 401 do not actually exist. Therefore, `401 the parameters check fails` is removed from API version 12.
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
 
 
 ### getTaskInfo<sup>9+</sup>
@@ -1582,7 +1583,7 @@ try {
 
 > **NOTE**
 >
-> The scenarios for triggering error code 401 do not actually exist. Therefore, `401 the parameters check fails` is removed from API version 12.
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
 
 
 ### getTaskMimeType<sup>9+</sup>
@@ -1633,7 +1634,7 @@ try {
 
 > **NOTE**
 >
-> The scenarios for triggering error code 401 do not actually exist. Therefore, `401 the parameters check fails` is removed from API version 12.
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
 
 
 ### getTaskMimeType<sup>9+</sup>
@@ -1686,7 +1687,7 @@ try {
 
 > **NOTE**
 >
-> The scenarios for triggering error code 401 do not actually exist. Therefore, `401 the parameters check fails` is removed from API version 12.
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
 
 
 ### suspend<sup>9+</sup>
@@ -1737,7 +1738,7 @@ try {
 
 > **NOTE**
 >
-> The scenarios for triggering error code 401 do not actually exist. Therefore, `401 the parameters check fails` is removed from API version 12.
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
 
 
 ### suspend<sup>9+</sup>
@@ -1790,7 +1791,7 @@ try {
 
 > **NOTE**
 >
-> The scenarios for triggering error code 401 do not actually exist. Therefore, `401 the parameters check fails` is removed from API version 12.
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
 
 
 ### restore<sup>9+</sup>
@@ -1841,7 +1842,7 @@ try {
 
 > **NOTE**
 >
-> The scenarios for triggering error code 401 do not actually exist. Therefore, `401 the parameters check fails` is removed from API version 12.
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
 
 
 ### restore<sup>9+</sup>
@@ -1894,7 +1895,7 @@ try {
 
 > **NOTE**
 >
-> The scenarios for triggering error code 401 do not actually exist. Therefore, `401 the parameters check fails` is removed from API version 12.
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
 
 
 ### remove<sup>(deprecated)</sup>
@@ -2304,7 +2305,7 @@ Defines the download task configuration.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| url | string | Yes| Resource URL. The value contains a maximum of 2048 characters.|
+| url | string | Yes| Resource URL. From API version 6 to 14, the value contains a maximum of 2048 characters; from API version 15, the value contains a maximum of 8192 characters.|
 | header | Object | No| HTTPS flag header to be included in the download request.|
 | enableMetered | boolean | No| Whether download is allowed on a metered connection. The default value is **false**. In general cases, a mobile data connection is metered, while a Wi-Fi connection is not.<br>- **true**: allowed<br>- **false**: not allowed|
 | enableRoaming | boolean | No| Whether download is allowed on a roaming network. The default value is **false**.<br>- **true**: allowed<br>- **false**: not allowed|
@@ -2379,9 +2380,9 @@ If the network does not meet the preset conditions, the tasks that have not been
 ## BroadcastEvent<sup>11+</sup>
 
 Defines a custom system event. You can use a common event API to obtain the event.
-The upload and download SA has the **ohos.permission.SEND_TASK_COMPLETE_EVENT** permission. You can configure the level-2 configuration file to which the metadata of an event points to intercept other event senders.
+The upload and download SA has the ohos.permission.SEND_TASK_COMPLETE_EVENT permission. You can configure the level-2 configuration file to which the metadata of an event points to intercept other event senders.
 
-You can use the **CommonEventData** type to transmit data related to common events. The members in **CommonEventData** are different from those described in [CommonEventData](js-apis-inner-commonEvent-commonEventData.md). Specifically, **CommonEventData.code** indicates the task status, which is **0x40 COMPLETE** or **0x41 FAILED**, and **CommonEventData.data** indicates the task ID.
+Use the **CommonEventData** type to transmit data related to common events. The members in **CommonEventData** are different from those described in [CommonEventData](js-apis-inner-commonEvent-commonEventData.md). Specifically, **CommonEventData.code** indicates the task status, which is **0x40 COMPLETE** or **0x41 FAILED**, and **CommonEventData.data** indicates the task ID.
 
 <!--Del-->
 For details about event configuration information, see [Subscribing to Common Events in Static Mode (for System Applications Only)](../../basic-services/common-event/common-event-static-subscription.md).<!--DelEnd-->
@@ -2428,14 +2429,14 @@ Provides the configuration information of an upload or download task.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | action | [Action](#action10) | Yes| Task action.<br>- **UPLOAD**<br>- **DOWNLOAD**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| url | string | Yes| Resource URL. The value contains a maximum of 2048 characters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| url | string | Yes| Resource URL. From API version 6 to 14, the value contains a maximum of 2048 characters; from API version 15, the value contains a maximum of 8192 characters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | title | string | No| Task title. The value contains a maximum of 256 characters. The default value is **upload** or **download** in lowercase. Set the value to that of **action**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | description | string | No| Task description. The value contains a maximum of 1024 characters. The default value is a null string.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | mode | [Mode](#mode10) | No| Task mode. The default mode is background.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | overwrite | boolean | No| Whether to overwrite an existing file during the download. The default value is **false**.<br>- **true**: Overwrite the existing file.<br>- **false**: Do not overwrite the existing file. In this case, the download fails.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | method | string | No| Standard HTTP method for the task. The value can be **GET**, **POST**, or **PUT**, which is case-insensitive.<br>- If the task is an upload, use **PUT** or **POST**. The default value is **PUT**.<br>- If the task is a download, use **GET** or **POST**. The default value is **GET**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | headers | object | No| HTTP headers to be included in the task.<br>- If the task is an upload, the default **Content-Type** is **multipart/form-data**.<br>- If the task is a download, the default **Content-Type** is **application/json**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| data | string \| Array&lt;[FormItem](#formitem10)&gt; | No| Task data.<br>- If the task is a download, the value is a string, typically in JSON format (an object will be converted to a JSON string); the default value is null.<br>- If the task is an upload, the value is Array<[FormItem](#formitem10)>; the default value is null.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| data | string \| Array&lt;[FormItem](#formitem10)&gt; | No| Task data.<br>- If the task is a download, the value is a string, typically in JSON format (an object will be converted to a JSON string); the default value is null.<br>- If the task is an upload, the value is Array&lt;[FormItem](#formitem10)&gt;. Since API version 15, a maximum of 100 files can be uploaded in a single task. This parameter is left empty by default.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | saveas | string | No| Path for storing downloaded files. The options are as follows:<br>- Relative path, which is in the cache directory of the caller, for example, **./xxx/yyy/zzz.html** or **xxx/yyy/zzz.html**.<br>- Internal protocol path, which can be **internal://** or its subdirectory. **internal** indicates the cache directory of the caller (that is, the input **context**), and **internal://cache** corresponds to **context.cacheDir**, for example, **internal://cache/path/to/file.txt**.<br>- Application sandbox directory. Only the **base** directory and its subdirectories are supported, for example, **/data/storage/el1/base/path/to/file.txt**.<br>- File protocol path, which must match the application bundle name. Only the **base** directory and its subdirectories are supported, for example, **file://com.example.test/data/storage/el2/base/file.txt**.<br>The default value is the cache directory of the caller (that is, the input **context**). The default file name is the part truncated from the last slash (/) in the URL.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | network | [Network](#network10) | No| Network used for the task. The default value is **ANY** (Wi-Fi or cellular).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | metered | boolean | No| Whether the task is allowed on a metered connection. The default value is **false**.<br>- **true**: task allowed on a metered connection.<br>- **false**: task not allowed on a metered connection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -2451,6 +2452,7 @@ Provides the configuration information of an upload or download task.
 | token | string | No| Token of the task. If the task has a token configured, this token is required for query of the task. The value contains 8 to 2048 bytes. This parameter is left empty by default.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | priority<sup>11+</sup> | number | No| Priority of the task. For tasks in the same mode, a smaller value indicates a higher priority.<br>Default value: **0**|
 | extras | object | No| Additional information of the task. This parameter is left empty by default.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| multipart<sup>15+</sup> | boolean | No| Whether to upload files in multipart/form-data format using a single request. A single request is used for each file if the value is **false** and for multiple files if the value is **true**. The default value is **false**.|
 
 ## State<sup>10+</sup>  
 
@@ -2546,17 +2548,17 @@ Defines the data structure of the task information for query. The fields availab
 | mimeType | string | Yes| MIME type in the task configuration.|
 | progress | [Progress](#progress10) | Yes| Task progress.|
 | gauge | boolean | Yes| Whether to send progress notifications. This parameter applies only to background tasks.|
-| ctime | number | Yes | Unix timestamp when the task is created, in milliseconds. The value is generated by the system of the current device.<br/>**NOTE**<br>When [request.agent.search<sup>10+</sup>](#requestagentsearch10-1) is used for query, this value must be within the range of [after,before] for the task ID to be obtained. For details about **before** and **after**, see [Filter](#filter10). |
+| ctime | number | Yes| Unix timestamp when the task is created, in milliseconds. The value is generated by the system of the current device.<br>Note: When [request.agent.search<sup>10+</sup>](#requestagentsearch10-1) is used for query, this value must be within the range of [after,before] for the task ID to be obtained. For details about **before** and **after**, see [Filter](#filter10).|
 | mtime | number | Yes| Unix timestamp when the task state changes, in milliseconds. The value is generated by the system of the current device.|
 | retry | boolean | Yes| Whether automatic retry is enabled for the task. This parameter applies only to background tasks.|
 | tries | number | Yes| Number of retries of the task.|
 | faults | [Faults](#faults10) | Yes| Failure cause of the task.|
 | reason | string | Yes| Reason why the task is waiting, failed, stopped, or paused.|
 | extras | object | No| Extra information of the task.|
-
+| notification<sup>15+</sup> | [Notification](#notification15) | No| Custom settings for the notification bar.|
 
 ## HttpResponse<sup>12+</sup> 
-Data structure of the task response header.
+Describes the data structure of the task response header.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2568,6 +2570,28 @@ Data structure of the task response header.
 | statusCode | number | Yes| HTTP response status code.|
 | reason | string | Yes| HTTP response cause.|
 | headers | Map&lt;string, Array&lt;string&gt;&gt; | Yes| HTTP response header.|
+
+## Notification<sup>15+</sup>
+
+Describes the custom information of the notification bar.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+| Name     | Type    | Mandatory| Description                                     |
+|---------|--------|----|-----------------------------------------|
+| title   | string | No | Custom title, with a maximum of 1024 bytes. The default title is used if the value is not set.|
+| text    | string | No | Custom text, with a maximum of 3072 bytes. The default title is used if the value is not set. |
+
+## GroupConfig<sup>15+</sup>
+
+Describes group configuration options for download tasks.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+| Name          | Type                                           | Mandatory| Description                                                          |
+|--------------|-----------------------------------------------|----|--------------------------------------------------------------|
+| gauge        | boolean                                       | No | Progress notification policy of a background task. Set value to **true**, the progress, success, and failure notifications are displayed; set value to **false**, only the success and failure notifications are displayed. The default value is **false**.|
+| notification | [Notification](#notification15) | No | Custom settings for the notification bar.                                                   |
 
 ## Task<sup>10+</sup> 
 Implements an upload or download task. Before using this API, you must obtain a **Task** object, from a promise through [request.agent.create<sup>10+</sup>](#requestagentcreate10-1) or from a callback through [request.agent.create<sup>10+</sup>](#requestagentcreate10).
@@ -4249,6 +4273,57 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   });
   ```
 
+### setMaxSpeed<sup>16+</sup>
+
+setMaxSpeed(speed: number): Promise\<void\>
+
+Sets the maximum number of bytes that can be transmitted by a task per second. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                |
+|-------|--------|----|------------------------------------|
+| speed | number | Yes | Maximum number of bytes that can be transmitted by a task per second, with a minimum of 16384 bytes.|
+
+**Return value**
+
+| Type             | Description                        |
+|-----------------|----------------------------|
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID   | Error Message                                                                                                                          |
+|----------|--------------------------------------------------------------------------------------------------------------------------------|
+| 401      | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 13400003 | task service ability error.                                                                                                    |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let config: request.agent.Config = {
+    action: request.agent.Action.DOWNLOAD,
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
+    saveas: "./",
+  };
+  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    // Set the maximum transmission speed.
+    task.setMaxSpeed(10 * 1024 * 1024).then(() => {
+      console.info(`Succeeded in setting the max speed of the task. result: ${task.tid}`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to set the max speed of the task. result: ${task.tid}`);
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
 ## request.agent.create<sup>10+</sup>
 
 create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;): void
@@ -4569,6 +4644,7 @@ Queries a task details based on the task ID. This API uses an asynchronous callb
 | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **TaskInfo** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
+
 For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
@@ -4613,6 +4689,7 @@ Queries a task details based on the task ID. This API uses a promise to return t
 | Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise used to return the **TaskInfo** object.|
 
 **Error codes**
+
 For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
@@ -4651,6 +4728,7 @@ Queries the task details based on the task ID and token. This API uses an asynch
 | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **TaskInfo** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
+
 For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
@@ -4696,6 +4774,7 @@ Queries the task details based on the task ID and token. This API uses a promise
 | Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise used to return the **TaskInfo** object.|
 
 **Error codes**
+
 For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
@@ -4731,6 +4810,7 @@ Searches for task IDs based on [Filter](#filter10). This API uses an asynchronou
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the task ID. Otherwise, **err** is an error object.|
 
 **Error codes**
+
 For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
@@ -4768,6 +4848,7 @@ Searches for task IDs based on [Filter](#filter10). This API uses an asynchronou
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the task ID. Otherwise, **err** is an error object.|
 
 **Error codes**
+
 For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
@@ -4815,6 +4896,7 @@ Searches for task IDs based on [Filter](#filter10). This API uses a promise to r
 | Promise&lt;Array&lt;string&gt;&gt; | Promise Promise used to return task ID matches.|
 
 **Error codes**
+
 For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
@@ -4835,5 +4917,150 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     console.info(`Succeeded in searching a upload task. `);
   }).catch((err: BusinessError) => {
     console.error(`Failed to search a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+## request.agent.createGroup<sup>15+</sup>
+
+createGroup(config: GroupConfig): Promise\<string\>
+
+Creates a group based on [GroupConfig<sup>15+</sup>](#groupconfig15) and returns the group ID. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+| Name   | Type                                         | Mandatory| Description       |
+|--------|---------------------------------------------|----|-----------|
+| config | [GroupConfig<sup>15+</sup>](#groupconfig15) | Yes | Group options for a download task.|
+
+**Return value**
+
+| Type               | Description                              |
+|-------------------|----------------------------------|
+| Promise\<string\> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID   | Error Message                                                                                          |
+|----------|------------------------------------------------------------------------------------------------|
+| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 13400003 | task service ability error.                                                                    |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  // Prepare the GroupConfig object.
+  let config: request.agent.GroupConfig = {
+      notification: {},
+  };
+  // Call the createGroup API to create a group.
+  request.agent.createGroup(config).then((gid: string) => {
+    console.info(`Succeeded in creating a download task group. `);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a download group, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+## request.agent.attachGroup<sup>15+</sup>
+
+attachGroup(gid: string, tids: string[]): Promise\<void\>
+
+Attaches multiple download task IDs to a specified group ID. This API uses a promise to return the result.
+
+If any task ID does not meet the attachment conditions, all tasks in the list will not be added to the group.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+| Name | Type      | Mandatory| Description                 |
+|------|----------|----|---------------------|
+| gid  | string   | Yes | Target group ID.            |
+| tids | string[] | Yes | List of task IDs to attach.|
+
+**Return value**
+
+| Type             | Description        |
+|-----------------|------------|
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID   | Error Message                                                                                          |
+|----------|------------------------------------------------------------------------------------------------|
+| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 13400003 | task service ability error                                                                     |
+| 21900005 | task mode error                                                                                |
+| 21900007 | task state error                                                                               |
+| 21900008 | group deleted or not found                                                                     |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  // Prepare the group ID and task ID list.
+  let groupId: string = "123456789";
+  let taskIds: string[] = ["1111", "2222", "3333", "4444"];
+  // Call the attachGroup API to add a task ID list to the group.
+  request.agent.attachGroup(groupId, taskIds).then(() => {
+    console.info(`Succeeded in attaching tasks to the download task group.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to attach tasks to the download group, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+## request.agent.deleteGroup<sup>15+</sup>
+
+deleteGroup(gid: string): Promise\<void\>
+
+Deletes a specified group. No task can be added to the group. This API uses a promise to return the result.
+
+When all tasks in a group are succeeded, failed, or removed and the group is deleted , the completion and failure notifications of this group are displayed.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+| Name | Type      | Mandatory| Description     |
+|------|----------|----|---------|
+| gid  | string   | Yes | Target group ID.|
+
+**Return value**
+
+| Type             | Description        |
+|-----------------|------------|
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID   | Error Message                                                                                          |
+|----------|------------------------------------------------------------------------------------------------|
+| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 13400003 | task service ability error                                                                     |
+| 21900008 | group deleted or not found                                                                     |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  // Prepare the group ID.
+  let groupId: string = "123456789";
+  
+  // Call the deleteGroup API to delete a group.
+  request.agent.deleteGroup(groupId).then(() => {
+    console.info(`Succeeded in deleting the download task group.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to delete the download group, Code: ${err.code}, message: ${err.message}`);
   });
   ```

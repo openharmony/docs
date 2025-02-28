@@ -513,7 +513,7 @@ Scroll每帧滚动前触发的回调。
 
 ## Scroller
 
-可滚动容器组件的控制器，可以将此组件绑定至容器组件，然后通过它控制容器组件的滚动，同一个控制器不可以控制多个容器组件，目前支持绑定到List、Scroll、ScrollBar、Grid、WaterFlow上。
+可滚动容器组件的控制器，可以将此组件绑定至容器组件，然后通过它控制容器组件的滚动。同一个控制器不可以控制多个容器组件，目前支持绑定到ArcList、ArcScrollBar、List、Scroll、ScrollBar、Grid、WaterFlow上。
 
 >**说明：**
 >
@@ -651,7 +651,7 @@ scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign, options?: Sc
 
 >  **说明：**
 >
->  仅支持Grid、List、WaterFlow组件。
+>  仅支持ArcList、Grid、List、WaterFlow组件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -676,7 +676,7 @@ scrollBy(dx: Length, dy: Length)
 
 >  **说明：**
 >
->  支持Scroll、List、Grid、WaterFlow组件。
+>  支持ArcList、Scroll、List、Grid、WaterFlow组件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -697,7 +697,7 @@ isAtEnd(): boolean
 
 >  **说明：**
 >
->  支持Scroll、List、Grid、WaterFlow组件。
+>  支持ArcList、Scroll、List、Grid、WaterFlow组件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -717,7 +717,7 @@ getItemRect(index: number): RectResult
 
 >  **说明：**
 >
->  支持Scroll、List、Grid、WaterFlow组件。
+>  支持ArcList、Scroll、List、Grid、WaterFlow组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

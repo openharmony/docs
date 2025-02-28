@@ -124,7 +124,7 @@ typedef void(* Print_WriteResultCallback) (const char *jobId, uint32_t code)
 enum Print_ErrorCode
 ```
 **描述**
-枚举错误码.
+枚举错误码。
 
 **起始版本：** 12
 

@@ -432,22 +432,19 @@ occupyEvents(eventFlags: number): Promise&lt;void&gt;
 ```ts
 // ExtensionProvider.ts
 import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
+import { uiExtension } from '@kit.ArkUI';
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     const extensionWindow = session.getUIExtensionWindowProxy();
     // 占用事件
-    try {
-      let promise = extensionWindow.occupyEvents(uiExtension.EventFlag.EVENT_CLICK | uiExtension.EventFlag.EVENT_LONG_PRESS);
-      promise.then(() => {
-        console.info('Succeeded in occupy events');
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to  occupy events. Cause code: ${err.code}, message: ${err.message}`);
-      });
-    } catch (e) {
-      console.error(`Occupy events got exception`);
-    }
+    setTimeout(() => {
+      try {
+        extensionWindow.occupyEvents(uiExtension.EventFlag.EVENT_CLICK | uiExtension.EventFlag.EVENT_LONG_PRESS);
+      } catch (e) {
+        console.error(`Occupy events got exception code: ${e.code}, message: ${e.message}`);
+      }
+    }, 500);
   }
 }
 ```

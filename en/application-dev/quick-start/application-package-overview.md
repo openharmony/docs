@@ -21,7 +21,7 @@ The system provides an efficient management mechanism for application packages. 
 There are two types of modules by usage scenario:
 
 - **Modules of the ability type**: used to implement application functionality. Each module of the ability type is built into a Harmony Ability Package (HAP), in .hap format. As a basic unit for application installation, a HAP can be installed and run separately. An application contains one or more HAPs. Depending on the module from each it is built, a HAP is of the entry or feature type.
-  - Entry HAP: built from an entry module, which serves as the application's main module and implements the application's entry screen, entry icon, or headline feature. In an application package, there can be only one entry HAP per device type.
+  - Entry HAP: built from an entry module, which serves as the application's main module and implements the application's entry screen, entry icon, or headline feature. Each application package distributed to devices of the same type may contain either zero or one entry HAP.
   - Feature HAP: built from a dynamic feature module. An application can contain zero, one, or more feature HAPs.
 
 - **Modules of the library type**: used to implement code and resource sharing. This type of module can be referenced by other modules multiple times and, when used smartly, can reduce development and maintenance costs. Modules of the library type are classified as static or shared. Each is built into a shared package.

@@ -6,7 +6,7 @@
 
 反复执行复制操作时，剪贴板缓存中会存储多余数据从而导致内存增加，为了优化内存以及后续支持指定数据类型粘贴，剪贴板提供了延迟复制粘贴的功能。
 
-用户复制使用延迟粘贴技术的应用内的数据时，该条真实数据不会立即写入剪贴板服务的缓存中，而是等需要粘贴时，再从应用获取数据。
+用户复制使用延迟复制技术的应用内的数据时，该条真实数据不会立即写入剪贴板服务的缓存中，而是等需要粘贴时，再从应用获取数据。
 
 ## 约束限制
 
@@ -31,7 +31,7 @@
 
 ### 开发步骤
 
- 下面以超链接hyperlink类型数据场景为例，说明如何延迟发送数据。
+ 下面以纯文本类型和HTML类型数据为例，说明如何向剪贴板服务设置延迟复制数据。
 
  为了代码可读性，代码中省略了各个步骤操作结果的校验，实际开发中需要确认每次调用的成功。
 
@@ -44,70 +44,108 @@
    #include <database/udmf/uds.h>
    ```
 
-2. 定义OH_UdmfRecordProvider的数据提供函数和实例注销回调函数。
+2. 定义`OH_UdmfRecordProvider`的数据提供函数和实例注销回调函数。
    
    ```c
    // 1. 获取数据时触发的提供剪贴板数据的回调函数。
    void* GetDataCallback(void* context, const char* type) {
-      if (strcmp(type, UDMF_META_HYPERLINK) == 0) {
-          // 2. 创建超链接hyperlink数据的UDS数据结构。
-          OH_UdsHyperlink* hyperlink = OH_UdsHyperlink_Create();
-          // 3. 设置hyperlink中的URL和描述信息。
-          OH_UdsHyperlink_SetUrl(hyperlink, "www.demo.com");
-          OH_UdsHyperlink_SetDescription(hyperlink, "This is www.demo.com description.");
-          return hyperlink;
-      }
-      return nullptr;
+       // 纯文本类型
+       if (strcmp(type, UDMF_META_PLAIN_TEXT) == 0) {
+           // 创建纯文本类型的Uds对象。
+           OH_UdsPlainText* udsText = OH_UdsPlainText_Create();
+           // 设置纯文本内容。
+           OH_UdsPlainText_SetContent(udsText, "hello world");
+           return udsText;
+       }
+       // HTML类型
+       else if (strcmp(type, UDMF_META_HTML) == 0) {
+           // 创建HTML类型的Uds对象。
+           OH_UdsHtml* udsHtml = OH_UdsHtml_Create();
+           // 设置HTML内容。
+           OH_UdsHtml_SetContent(udsHtml, "<div>hello world</div>");
+           return udsHtml;
+       }
+       return nullptr;
    }
-   // 4. OH_UdmfRecordProvider销毁时触发的回调函数。
-   void ProviderFinalizeCallback(void* context) { printf("OH_UdmfRecordProvider finalize."); }
+   // 2. OH_UdmfRecordProvider销毁时触发的回调函数。
+   void ProviderFinalizeCallback(void* context) {
+       printf("OH_UdmfRecordProvider finalize.");
+   }
    ```
 
-3. 在剪贴板中准备延迟复制数据。需要注意，此步骤完成后超链接类型数据并未真正写入数据库，只有当数据使用者从OH_UdmfRecord中获取OH_UdsHyperlink时，才会触发上文定义的`GetDataCallback`数据提供函数，从中得到数据。
+3. 在剪贴板中准备延迟复制数据。需要注意，此步骤完成后纯文本类型数据与HTML类型数据并未真正写入剪贴板服务，只有当数据使用者从`OH_UdmfRecord`中获取`OH_UdsPlainText`或`OH_UdsHtml`时，才会触发上文定义的`GetDataCallback`数据提供函数，从中得到数据。
    
    ```c
-   // 5. 创建一个OH_UdmfRecord对象，并将OH_UdmfRecordProvider配置到其中。
+   // 3. 创建OH_UdmfRecord对象。
    OH_UdmfRecord* record = OH_UdmfRecord_Create();
 
-   // 6. 创建一个统一数据提供者，并配置它提供数据、销毁时的两个回调函数。
+   // 4. 创建OH_UdmfRecordProvider对象，并设置用于提供延迟数据、析构的两个回调函数。
    OH_UdmfRecordProvider* provider = OH_UdmfRecordProvider_Create();
    OH_UdmfRecordProvider_SetData(provider, (void*)record, GetDataCallback, ProviderFinalizeCallback);
-   const char* types[1] = { UDMF_META_HYPERLINK };
-   OH_UdmfRecord_SetProvider(record, types, 1, provider);
 
-   // 7. 创建OH_UdmfData对象，并向OH_UdmfData中添加OH_UdmfRecord。
+   // 5. 将provider绑定到record，并设置支持的数据类型。
+   const char* types[2] = { UDMF_META_PLAIN_TEXT, UDMF_META_HTML };
+   OH_UdmfRecord_SetProvider(record, types, 2, provider);
+
+   // 6. 创建OH_UdmfData对象，并向OH_UdmfData中添加OH_UdmfRecord。
    OH_UdmfData* setData = OH_UdmfData_Create();
    OH_UdmfData_AddRecord(setData, record);
 
-   // 8. 创建OH_Pasteboard对象，将数据写入剪贴板中。
+   // 7. 创建OH_Pasteboard对象，将数据写入剪贴板中。
    OH_Pasteboard* pasteboard = OH_Pasteboard_Create();
    OH_Pasteboard_SetData(pasteboard, setData);
    ```
 
-4. 在剪贴板中获取延迟复制数据。
+4. 从剪贴板获取延迟复制数据。
    
    ```c
-   // 9. 剪贴板中获取延迟复制数据
+   // 8. 从剪贴板获取OH_UdmfData。
    int status = -1;
    OH_UdmfData* getData = OH_Pasteboard_GetData(pasteboard, &status);
 
-   // 10. 获取数据中records
-   unsigned int count = 0;
-   OH_UdmfRecord** getRecords = OH_UdmfData_GetRecords(getData, &count);
+   // 9. 获取OH_UdmfData中的所有OH_UdmfRecord。
+   unsigned int recordCount = 0;
+   OH_UdmfRecord** getRecords = OH_UdmfData_GetRecords(getData, &recordCount);
 
-   // 11. 创建OH_UdsHyperlink对象，并从records中获取超链接类型数据
-   OH_UdsHyperlink* getHyperlink = OH_UdsHyperlink_Create();
-   OH_UdmfRecord_GetHyperlink(getRecords[0], getHyperlink);
+   // 10. 遍历OH_UdmfRecord。
+   for (unsigned int recordIndex = 0; recordIndex < recordCount; ++recordIndex) {
+       OH_UdmfRecord* record = getRecords[recordIndex];
 
-   // 12. 获取超链接类型数据中的URL和描述信息。
-   const char* getUrl = OH_UdsHyperlink_GetUrl(getHyperlink);
-   const char* getDescription = OH_UdsHyperlink_GetDescription(getHyperlink);
+       // 11. 查询OH_UdmfRecord中的数据类型。
+       unsigned typeCount = 0;
+       char** recordTypes = OH_UdmfRecord_GetTypes(record, &typeCount);
+
+       // 12. 遍历数据类型。
+       for (unsigned int typeIndex = 0; typeIndex < typeCount; ++typeCount) {
+           char* recordType = recordTypes[typeIndex];
+
+           // 纯文本类型
+           if (strcmp(recordType, UDMF_META_PLAIN_TEXT) == 0) {
+               // 创建纯文本类型的Uds对象
+               OH_UdsPlainText* udsText = OH_UdsPlainText_Create();
+               // 从record中获取纯文本类型的Uds对象
+               OH_UdmfRecord_GetPlainText(record, udsText);
+               // 从Uds对象中获取内容
+               const char* content = OH_UdsPlainText_GetContent(udsText);
+           }
+           // HTML类型
+           else if (strcmp(recordType, UDMF_META_HTML) == 0) {
+               // 创建HTML类型的Uds对象
+               OH_UdsHtml* udsHtml = OH_UdsHtml_Create();
+               // 从record中获取HTML类型的Uds对象
+               OH_UdmfRecord_GetHtml(record, udsHtml);
+               // 从Uds对象中获取内容
+               const char* content = OH_UdsHtml_GetContent(udsHtml);
+           }
+       }
+   }
    ```
 
-5. 使用完毕后删除相关对象。
+5. 使用完毕后需要及时释放相关对象的内存。
    
    ```c
-   OH_UdsHyperlink_Destroy(getHyperlink);
+   OH_UdsPlainText_Destroy(udsText);
+   OH_UdsHtml_Destroy(udsHtml);
    OH_UdmfRecordProvider_Destroy(provider);
    OH_UdmfRecord_Destroy(record);
    OH_UdmfData_Destroy(setData);

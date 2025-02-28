@@ -2,6 +2,12 @@
 
 The **animateToImmediately** API implements immediate delivery for [explicit animations](ts-explicit-animation.md). When multiple property animations are loaded at once, you can call this API to immediately execute the transition animation for state changes caused by the specified closure function.
 
+Unlike [animateTo](../js-apis-arkui-UIContext.md#animateto), which waits for the VSync signal, **animateToImmediately** instantly sends animation commands to the rendering layer for execution. This is particularly useful in scenarios where you need to prioritize certain animations or update part of the UI in advance, especially when your application's main thread is occupied with time-consuming operations. However, it is important to note that **animateToImmediately** is limited to property animations on the rendering layer and does not affect frame-by-frame animations on the UI side.
+
+In addition, **animateToImmediately** captures the current state at the time of the call and sends it alongside the animation to the rendering layer. This means that the rendering output will reflect the state at the time of the call. Therefore, before calling this API, ensure that the current state is complete and correctly configured, to prevent rendering issues due to incorrect initial frames.
+
+In general cases, using **animateToImmediately** is not advised. Opt for [animateTo](../js-apis-arkui-UIContext.md#animateto) to avoid disrupting the display timing of the framework and to prevent potential display issues caused by incomplete state settings at the start of the animation.
+
 > **NOTE**
 >
 > This feature is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
@@ -27,6 +33,8 @@ Delivers an explicit animation immediately.
 | event  | () => void                                                   | Yes      | Closure function that displays the animation. The system automatically inserts a transition animation for state changes caused by the closure function.|
 
 ## Example
+
+This example demonstrates how to use the **animateToImmediately** API to deliver an explicit animation immediately.
 
 ```ts
 // xxx.ets

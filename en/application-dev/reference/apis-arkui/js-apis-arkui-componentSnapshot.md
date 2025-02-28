@@ -410,7 +410,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message               |
 | ------ | ------------------- |
-| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Invalid ID. |
 | 160002 | Timeout. |
 
@@ -463,5 +463,36 @@ struct SnapshotExample {
 
 | Name          | Type            | Mandatory          | Description                        |
 | ---------------|------------     | -----------------------------| -----------------------------|
-| scale           | number | No| Scale ratio for rendering pixel maps during a snapshot. Note that a high scale ratio may increase the time taken for the snapshot or even result in a snapshot failure.<br> Default value: **1**<br>**NOTE**<br>Avoid capturing images that are excessively large, ideally not larger than the screen size. If the dimensions of the image to capture exceed device-specific underlying limits, the snapshot will fail.   |
-| waitUntilRenderFinished    | boolean | No| Whether to enforce waiting for all rendering commands to complete before the system takes the snapshot. This option can ensure that the content of the snapshot is in the most up-to-date state and should be enabled whenever possible. However, it's important to note that enabling this option may result in a longer response time from the API. The specific duration depends on the amount of redraw area required by the page at that particular moment.<br> Default value: **false**        |
+| scale           | number | No| Scale ratio for rendering pixel maps during a snapshot. Note that a high scale ratio may increase the time taken for the snapshot or even result in a snapshot failure.<br> Default value: **1**<br>**NOTE**<br>Avoid capturing images that are excessively large, ideally not larger than the screen size. If the size of the image to capture exceeds device-specific underlying limits, the capture will fail.   |
+| waitUntilRenderFinished    | boolean | No| Whether to force the system to wait for all rendering commands to complete before taking the snapshot. This option ensures the snapshot reflects the most up-to-date content and should be enabled whenever possible. Note that enabling this option may increase the time required for the snapshot to complete, which depends on the size of the area that needs to be redrawn at the time.<br>Default value: **false**        |
+| region<sup>16+</sup> | [SnapshotRegion](#snapshotregion16)\|[LocalizedSnapshotRegion ](#localizedsnapshotregion16) | No| Rectangular region for the snapshot. The default region is the entire component.<br>If **LocalizedSnapshotRegion** is used, the region will be horizontally flipped based on the layout direction. Specifically, for RTL layouts, the specified region will be mirrored to accommodate the RTL direction.|
+
+## SnapshotRegion<sup>16+</sup>
+
+Defines the rectangular region for capturing the component snapshot.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+| Name  | Type  | Mandatory| Description                                   |
+| ------ | ------ | ---- | --------------------------------------- |
+| left   | number | Yes  | X-coordinate of the upper left corner of the rectangular region, in px.|
+| top    | number | Yes  | Y-coordinate of the upper left corner of the rectangular region, in px.|
+| right  | number | Yes  | X-coordinate of the lower right corner of the rectangular region, in px.|
+| bottom | number | Yes  | Y-coordinate of the lower right corner of the rectangular region, in px.|
+
+## LocalizedSnapshotRegion<sup>16+</sup>
+
+Defines the rectangular region for capturing the component snapshot, with coordinates adjusted based on the layout direction (LTR or RTL).
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+| Name  | Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| start  | number | Yes  | For LTR layouts: X-coordinate of the upper left corner of the rectangular region, in px.<br>For RTL layouts: X-coordinate of the lower right corner of the rectangular region, in px.|
+| top    | number | Yes  | For LTR layouts: Y-coordinate of the upper left corner of the rectangular region, in px.<br>For RTL layouts: Y-coordinate of the lower right corner of the rectangular region, in px.|
+| end    | number | Yes  | For LTR layouts: X-coordinate of the upper right corner of the rectangular region, in px.<br>For RTL layouts: X-coordinate of the lower left corner of the rectangular region, in px.|
+| bottom | number | Yes  | For LTR layouts: Y-coordinate of the upper right corner of the rectangular region, in px.<br>For RTL layouts: Y-coordinate of the lower left corner of the rectangular region, in px.|

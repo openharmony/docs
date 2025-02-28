@@ -45,7 +45,7 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = await genSymKeyByData(keyData);
     let macAlgName = 'SHA256'; // 摘要算法名
-    let message = 'hmacTestMessgae'; // 待进行HMAC的数据
+    let message = 'hmacTestMessage'; // 待进行HMAC的数据
     let mac = cryptoFramework.createMac(macAlgName);
     await mac.init(key);
     // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
@@ -75,7 +75,7 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = genSymKeyByData(keyData);
     let macAlgName = 'SHA256'; // 摘要算法名
-    let message = 'hmacTestMessgae'; // 待进行HMAC的数据
+    let message = 'hmacTestMessage'; // 待进行HMAC的数据
     let mac = cryptoFramework.createMac(macAlgName);
     mac.initSync(key);
     // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
@@ -210,7 +210,7 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
         algName: "HMAC",
         mdName: "SHA256",
     };
-    let message = 'hmacTestMessgae'; // 待进行HMAC的数据
+    let message = 'hmacTestMessage'; // 待进行HMAC的数据
     let mac = cryptoFramework.createMac(spec);
     await mac.init(key);
     // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制

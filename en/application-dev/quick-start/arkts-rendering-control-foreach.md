@@ -2,7 +2,7 @@
 
 **ForEach** enables rendering of repeated content based on array type data. It must be used in a container component, and the component it returns must be one allowed inside the container component. For example, for rendering of list items, **ForEach** must be used in the [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) component.
 
-For details about API parameters, see [ForEach](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md) APIs.
+For details about API parameters, see [ForEach](../reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md).
 
 > **NOTE**
 >

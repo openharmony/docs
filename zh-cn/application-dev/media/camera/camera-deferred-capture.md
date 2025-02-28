@@ -65,10 +65,10 @@
        return;
      }
      console.info('photoOutPutCallBack photoAssetAvailable');
-     // 开发者可通过photoAsset调用媒体库相关接口，自定义处理图片
-     // 处理方式一：调用媒体库落盘接口保存一阶段图，二阶段图就绪后媒体库会主动帮应用替换落盘图片
+     // 开发者可通过photoAsset调用媒体库相关接口，自定义处理图片。
+     // 处理方式一：调用媒体库落盘接口保存一阶段图，二阶段图就绪后媒体库会主动帮应用替换落盘图片。
      mediaLibSavePhoto(photoAsset);
-     // 处理方式二：调用媒体库接口请求图片并注册一阶段图或二阶段图buffer回调，自定义使用
+     // 处理方式二：调用媒体库接口请求图片并注册一阶段图或二阶段图buffer回调，自定义使用。
      mediaLibRequestBuffer(photoAsset);
    }
 
@@ -96,17 +96,17 @@
          console.error('Error occurred when preparing data');
          return;
        }
-       // 应用获取到图片buffer后可自定义处理
+       // 应用获取到图片buffer后可自定义处理。
        console.info('on image data prepared');
      }
    }
 
    async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset) {
      let requestOptions: photoAccessHelper.RequestOptions = {
-       // 按照业务需求配置回图模式
-       // FAST_MODE：仅接收一阶段低质量图回调
-       // HIGH_QUALITY_MODE：仅接收二阶段全质量图回调
-       // BALANCE_MODE：接收一阶段及二阶段图片回调
+       // 按照业务需求配置回图模式。
+       // FAST_MODE：仅接收一阶段低质量图回调。
+       // HIGH_QUALITY_MODE：仅接收二阶段全质量图回调。
+       // BALANCE_MODE：接收一阶段及二阶段图片回调。
        deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
      }
      const handler = new MediaDataHandler();

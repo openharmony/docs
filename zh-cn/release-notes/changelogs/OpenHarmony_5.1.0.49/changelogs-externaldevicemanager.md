@@ -131,3 +131,40 @@ OH_Usb_SendPipeRequest和OH_Usb_SendPipeRequestWithAshmem接口开发适配指�
     int32_t returnValue = OH_Usb_SendPipeRequestWithAshmem(&pipe, ashmem);
     ...
 ```
+
+## cl.usbddk.2 SendControlWriteRequest接口行为变更，传入错误参数时，返回值由USB_DDK_SUCCESS变更为USB_DDK_INVALID_PARAMETER 
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+调用OH_Usb_SendControlWriteRequest接口时，如果入参setup初始化时，未按照USB标准协议赋值，会导传输结果失败，但接口会返回成功，开发者无法感知实际情况。
+
+**变更影响**
+
+此变更无需应用适配。
+
+对于开发者的影响：
+
+变更前：调用OH_Usb_SendControlWriteRequest如果入参setup初始化时，未按照USB标准协议赋值，实际传输失败，接口返回值为USB_DDK_SUCCESS。
+
+变更后：调用OH_Usb_SendControlWriteRequest如果入参setup初始化时，未按照USB标准协议赋值，实际传输失败，接口返回值为USB_DDK_INVALID_PARAMETER。
+
+**起始API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony 5.1.0.49开始。
+
+**变更的接口/组件**
+
+drivers/external_device_manager: OH_Usb_SendControlWriteRequest。
+
+**适配指导**
+
+只要开发者传入正确的参数，接口功能不变，因此无需开发者适配。
+构造符合USB传输协议规范的入参。

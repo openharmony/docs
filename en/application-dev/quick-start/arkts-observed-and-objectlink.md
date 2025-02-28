@@ -1,7 +1,7 @@
 # \@Observed and \@ObjectLink Decorators: Observing Property Changes in Nested Class Objects
 
 
-The aforementioned decorators can observe only the changes of the first layer. However, in real-world application development, an application may encapsulate its own data model. In this case, for multi-layer nesting, for example, a two-dimensional array, an array item class, or a class inside another class as a property, the property changes at the second layer cannot be observed. This is where the \@Observed and \@ObjectLink decorators come in handy.
+The decorators including [\@State](./arkts-state.md), [\@Prop](./arkts-prop.md), [\@Link](./arkts-link.md), [\@Provide and \@Consume](./arkts-provide-and-consume.md) can only observe the top-layer changes. However, in actual application development, the application encapsulates its own data model based on the requirements. In this case, for multi-layer nesting, for example, a two-dimensional array, an array item class, or a class inside another class as a property, the property changes at the second layer cannot be observed. This is where the \@Observed and \@ObjectLink decorators come in handy.
 
 \@Observed and \@ObjectLink are used together to observe nested scenarios, aiming at offsetting the limitation that the decorator can observe only one layer. You are advised to have a basic understanding of the observation capability of the decorators before reading this topic. For details, see [\@State](./arkts-state.md).
 
@@ -31,7 +31,7 @@ The aforementioned decorators can observe only the changes of the first layer. H
 
 | \@ObjectLink Decorator| Description                                      |
 | ----------------- | ---------------------------------------- |
-| Decorator parameters            | None.                                       |
+| Decorator parameters            | None.                                      |
 | Allowed variable types        | Objects of \@Observed decorated classes. The type must be specified.<br>\@ObjectLink does not support simple types. To use simple types, you can use [\@Prop](arkts-prop.md).<br>Objects of classes that extend Date, [Array](#two-dimensional-array), [Map](#extended-map-class), and [Set](#extended-set-class) (the latter two are supported since API version 11). For an example, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of @Observed decorated classes and **undefined** or **null**, for example, **ClassA \| ClassB**, **ClassA \| undefined**, or **ClassA \| null**. For details, see [Union Type @ObjectLink](#union-type-objectlink).<br>An \@ObjectLink decorated variable accepts changes to its properties, but assignment is not allowed. In other words, an \@ObjectLink decorated variable is read-only and cannot be changed.|
 | Initial value for the decorated variable        | Not allowed.                                    |
 
@@ -188,11 +188,11 @@ For a class that extends **Set**, the value changes of the **Set** instance can 
 
 1. Initial rendering:
 
-   a. \@Observed causes all instances of the decorated class to be wrapped with an opaque proxy object, which takes over the setter and getter methods of the properties of the class.
+   a. \@Observed causes all instances of the decorated class to be wrapped with an opaque proxy object, which takes over the **setter** and **getter** methods of the properties of the class.
 
    b. The \@ObjectLink decorated variable in the child component is initialized from the parent component and accepts the instance of the \@Observed decorated class. The \@ObjectLink decorated wrapped object registers itself with the \@Observed decorated class.
 
-2. Property update: When the property of the \@Observed decorated class is updated, the framework executes **setter()** and **getter()** of the proxy, traverses the \@ObjectLink decorated wrapped objects that depend on it, and notifies the data update.
+2. Property update: When the property of the \@Observed decorated class is updated, the framework executes the **setter** and **getter** methods of the proxy, traverses the \@ObjectLink decorated wrapped objects that depend on it, and notifies the data update.
 
 
 ## Constraints
@@ -498,7 +498,7 @@ Event handles in **GrandFather**:
 
 - **this.user.bag = new Bag(10)** and **this.user = new User(new Bag(20))**: Change to the \@State decorated variable **user** and its properties.
 
-- this.child.bookName.size += ... : Change at the second layer. Though \@State cannot observe changes at the second layer, the change of a property of \@Observed decorated **Bag**, which is property **size** in this example, can be observed by \@ObjectLink.
+- **this.child.bookName.size += ...**: Change at the second layer. Though \@State cannot observe changes at the second layer, the change of a property of \@Observed decorated **Bag**, which is property **size** in this example, can be observed by \@ObjectLink.
 
 
 Event handles in **Father**:
@@ -623,36 +623,36 @@ struct Parent {
 
 ```ts
 @Observed
-class StringArray extends Array<string> {
+class ObservedArray<T> extends Array<T> {
+  constructor(args: T[]) {
+    super(...args);
+  }
 }
 ```
 
-Use **new StringArray()** to create an instance of **StringArray**. The **new** operator makes \@Observed take effect, which can observe the property changes of **StringArray**.
+Declare a class **ObservedArray\<T\>** inherited from Array and use **new** to create an instance of **ObservedArray\<string\>**, and then the property changes can be observed.
 
-Declare a class that extends from **Array**: **class StringArray extends Array\<string> {}** and create an instance of **StringArray**. The use of the **new** operator is required for the \@Observed class decorator to work properly.
-
+The following example shows how to use \@Observed to observe the changes of a two-dimensional array.
 
 ```ts
 @Observed
-class StringArray extends Array<string> {
+class ObservedArray<T> extends Array<T> {
+  constructor(args: T[]) {
+    super(...args);
+  }
 }
 
 @Component
-struct ItemPage {
-  @ObjectLink itemArr: StringArray;
+struct Item {
+  @ObjectLink itemArr: ObservedArray<string>;
 
   build() {
     Row() {
-      Text('ItemPage')
-        .width(100).height(100)
-
-      ForEach(this.itemArr,
-        (item: string | Resource) => {
-          Text(item)
-            .width(100).height(100)
-        },
-        (item: string) => item
-      )
+      ForEach(this.itemArr, (item: string, index: number) => {
+        Text(`${index}: ${item}`)
+          .width(100)
+          .height(100)
+      }, (item: string) => item)
     }
   }
 }
@@ -660,39 +660,38 @@ struct ItemPage {
 @Entry
 @Component
 struct IndexPage {
-  @State arr: Array<StringArray> = [new StringArray(), new StringArray(), new StringArray()];
+  @State arr: Array<ObservedArray<string>> = [new ObservedArray<string>(['apple']), new ObservedArray<string>(['banana']), new ObservedArray<string>(['orange'])];
 
   build() {
     Column() {
-      ItemPage({ itemArr: this.arr[0] })
-      ItemPage({ itemArr: this.arr[1] })
-      ItemPage({ itemArr: this.arr[2] })
-      Divider()
-
-
-      ForEach(this.arr,
-        (itemArr: StringArray) => {
-          ItemPage({ itemArr: itemArr })
-        },
-        (itemArr: StringArray) => itemArr[0]
-      )
+      ForEach(this.arr, (itemArr: ObservedArray<string>) => {
+        Item({ itemArr: itemArr })
+      })
 
       Divider()
 
-      Button('update')
+      Button('push two-dimensional array item')
+        .margin(10)
         .onClick(() => {
-          console.error('Update all items in arr');
-          if ((this.arr[0] as StringArray)[0] !== undefined) {
-            // We should have a real ID to use with ForEach, but we do not.
-            // Therefore, we need to make sure the pushed strings are unique.
-            this.arr[0].push(`${this.arr[0].slice(-1).pop()}${this.arr[0].slice(-1).pop()}`);
-            this.arr[1].push(`${this.arr[1].slice(-1).pop()}${this.arr[1].slice(-1).pop()}`);
-            this.arr[2].push(`${this.arr[2].slice(-1).pop()}${this.arr[2].slice(-1).pop()}`);
-          } else {
-            this.arr[0].push('Hello');
-            this.arr[1].push('World');
-            this.arr[2].push('!');
-          }
+          this.arr[0].push('strawberry');
+        })
+
+      Button('push array item')
+        .margin(10)
+        .onClick(() => {
+          this.arr.push(new ObservedArray<string>(['pear']));
+        })
+
+      Button('change two-dimensional array first item')
+        .margin(10)
+        .onClick(() => {
+          this.arr[0][0] = 'APPLE';
+        })
+
+      Button('change array first item')
+        .margin(10)
+        .onClick(() => {
+          this.arr[0] = new ObservedArray<string>(['watermelon']);
         })
     }
   }

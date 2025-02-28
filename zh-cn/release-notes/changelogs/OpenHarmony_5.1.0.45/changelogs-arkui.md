@@ -329,7 +329,7 @@ struct ChildComponent {
 }
 ```
 
-## cl.arkui.5 通用属性backgroundEffect在modifier中radius参数单位修改
+## cl.arkui.6 Image组件的borderRadius接口支持百分比输入
 
 **访问级别**
 
@@ -337,65 +337,45 @@ struct ChildComponent {
 
 **变更原因**
 
- 直接使用backgroundEffect时对应的模糊参数radius单位为vp。通过modifier或者CAPI使用时，单位为px。现将单位同一为vp。
+为了增强功能的灵活性，Image组件的borderRadius接口支持百分比输入，功能与通用属性的borderRadius对齐。
 
 **变更影响**
 
-该变更为不兼容变更。
+此变更涉及应用适配。
 
-变更前：backgroundEffect通过modifier使用时单位为px。<br/>
-![addComponentContent_before](figures/backgroundEffect_before.png)
-
-变更后：backgroundEffect通过modifier使用时单位为vp。<br/>
-![addComponentContent_after](figures//backgroundEffect_after.png)
-
-
+| 变更前                                                                                                                     | 变更后                                                                                                                   |
+| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Image组件的borderRadius接口输入百分比不生效。<br>![borderRadiusNotSupportPercentage](figures/borderRadiusNotSupportPercentage.png)| Image组件的borderRadius接口输入百分比，百分比依据组件宽度生效。<br>![borderRadiusSupportPercentage](figures/borderRadiusSupportPercentage.png) |
 
 **起始API Level**
 
-API 12
+7
 
 **变更发生版本**
 
-从OpenHarmony 5.1.0.45 版本开始。
+从OpenHarmony SDK 5.1.0.45 版本开始。
 
 **变更的接口/组件**
 
-backgroundEffect
+Image组件的borderRadius接口。
 
 **适配指导**
 
-在modifier中使用px2vp方法把radius参数转换为vp。
+如果代码中依赖borderRadius传入百分比不生效的行为，建议传入0，或者不设置borderRadius，例如：borderRadius(0)。
 
 ```ts
-
-import { CommonModifier } from '@kit.ArkUI';
-
-class ColumnModifier extends CommonModifier {
-  public radius: number = 0;
-  applyNormalAttribute(instance: CommonAttribute): void {
-    instance.backgroundEffect({ radius: this.radius })
-  }
-}
-
 @Entry
 @Component
 struct Index {
-  @State testSize: number = 200;
-  @State modifier:ColumnModifier = new ColumnModifier();
-  onPageShow(): void {
-    // 变更前
-    // this.modifier.radius = 10;
-    // 变更后适配
-    this.modifier.radius = px2vp(10);
-  }
   build() {
     Column() {
-      Stack() {
-        Image($r('app.media.test')).width(this.testSize).height(this.testSize)
-        Column().width(this.testSize).height(this.testSize).attributeModifier(this.modifier)
-      }.width('100%')
+      Image($r("app.media.startIcon"))
+        .width(100)
+        .height(100)
+        .borderRadius("10%")
     }
+    .height('100%')
+    .width('100%')
   }
 }
 ```
