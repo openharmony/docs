@@ -190,7 +190,7 @@ MenuItem组件
 
 默认效果变更，无需适配。
 
-## cl.arkui.6 Toast新增与软键盘最小8vp间距
+## cl.arkui.6 Toast避让行为变更
 
 **访问级别**
 
@@ -204,14 +204,23 @@ MenuItem组件
 
 此变更不涉及应用适配。
 
-- 变更前：Toast与软键盘无最小间距。
-
-- 变更后：Toast与软键盘保持至少8vp间距。
+变更点1：default模式弹出键盘时的避让行为变更。
 
 | 变更前 | 变更后 |
 |---------|---------|
-|![变更前](figures/toast/toast-avoid-before.png)       |![变更后](figures/toast/toast-avoid-after.png)  |
+|无论Toast是否会被键盘遮挡，Toast总是上移一定的高度。<br>  ![变更前](figures/toast/toast-avoid-before.png)       |如果Toast的位置高于键盘，其位置保持不变。否则，将其上移至键盘上方80vp的位置。<br>![变更后](figures/toast/toast-avoid-after.png)  |
 
+变更点2：保持Toast在屏幕内显示。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| 部分场景下Toast可能超出屏幕显示。<br> ![变更前](figures/toast/toast-avoid-before2.png)       | 当屏幕可用空间不够时，缩小Toast底部避让的距离。<br> ![变更后](figures/toast/toast-avoid-after2.png)       |
+
+变更点3：Toast与软键盘保持最小8vp间距。
+
+| 变更前 | 变更后 |
+|---------|---------|
+|Toast与软键盘无最小间距。<br> ![变更前](figures/toast/toast-avoid-before3.png)       |Toast与软键盘保持至少8vp间距。<br> ![变更后](figures/toast/toast-avoid-after3.png)  |
 
 **起始API Level**
 
