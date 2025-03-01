@@ -48,7 +48,7 @@
 
 描述普通实况通知的状态。
 
-**系统能力**：SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Security.AccessToken
 
 **系统接口**：此接口为系统接口。
 
