@@ -37,3 +37,4 @@
   - [键鼠穿越管理错误码](errorcode-multimodalinput.md)
   - [全局快捷键管理错误码](errorcode-inputconsumer.md)
   - [按键前置监听错误码](errorcode-inputkeymonitor.md)
+  - [输入设备错误码](errorcode-inputdevice.md)
