@@ -124,22 +124,22 @@ import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function testPromise(args1: number, args2: number): Promise<number> {
-  return new Promise<number>((testFuncA, testFuncB)=>{
-    testFuncA(args1 + args2);
+  return new Promise<number>((resolve, reject)=>{
+    resolve(args1 + args2);
   });
 }
 
 @Concurrent
 async function testPromise1(args1: number, args2: number): Promise<number> {
-  return new Promise<number>((testFuncA, testFuncB)=>{
-    testFuncA(args1 + args2);
+  return new Promise<number>((resolve, reject)=>{
+    resolve(args1 + args2);
   });
 }
 
 @Concurrent
 async function testPromise2(args1: number, args2: number): Promise<number> {
-  return await new Promise<number>((testFuncA, testFuncB)=>{
-    testFuncA(args1 + args2);
+  return await new Promise<number>((resolve, reject)=>{
+    resolve(args1 + args2);
   });
 }
 
