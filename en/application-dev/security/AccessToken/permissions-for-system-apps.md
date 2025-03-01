@@ -5227,7 +5227,7 @@ Allows a system application to perform anti-fraud detection.
 
 **Enable via ACL**: true
 
-**Valid since**: 16
+**Valid since**: 18
 
 ### ohos.permission.ANTIFRAUD_PICTURE_DETECT
 
@@ -5239,7 +5239,7 @@ Allows a system application to perform face swapping detection for images.
 
 **Enable via ACL**: true
 
-**Valid since**: 16
+**Valid since**: 18
 
 ### ohos.permission.ANTIFRAUD_MODEL_DOWNLOAD
 
@@ -5251,4 +5251,4 @@ Allows a system application to use model download APIs.
 
 **Enable via ACL**: true
 
-**Valid since**: 16
+**Valid since**: 18

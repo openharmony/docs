@@ -5196,7 +5196,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ### ohos.permission.ANTIFRAUD_PICTURE_DETECT
 
@@ -5208,7 +5208,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ### ohos.permission.ANTIFRAUD_MODEL_DOWNLOAD
 
@@ -5220,4 +5220,4 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
