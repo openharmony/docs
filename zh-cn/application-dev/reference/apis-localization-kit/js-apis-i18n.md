@@ -443,6 +443,50 @@ static getUsingLocalDigit(): boolean
   let status: boolean = i18n.System.getUsingLocalDigit();  // 判断本地化数字开关是否打开
   ```
 
+### getSimplifiedLanguage<sup>15+</sup>
+
+static getSimplifiedLanguage(language?: string): string
+
+获取语言的简化表示。如："en-Latn-US"的简化表示是"en"，"en-Latn-GB"的简化表示为"en-GB"。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明            |
+| -------- | ------ | ---- | ------------- |
+| language | string | 否    | 合法的语言ID。默认值：系统语言。 |
+
+**返回值：**
+
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| string | 不传入language时，会根据系统语言和地区判断是否存在系统支持的方言，若存在则返回方言的简化表示；若不存在，则返回系统语言的简化表示。<br>传入language时，返回language的简化表示。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let simplifiedLanguage: string = i18n.System.getSimplifiedLanguage("zh-Hans-CN");  // simplifiedLanguage = zh
+    let simplifiedSystemLanguage: string = i18n.System.getSimplifiedLanguage();  // simplifiedSystemLanguage = zh-Hans, 如果当前系统语言为简体中文
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getSimplifiedLanguage failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
+
 ## i18n.isRTL
 
 isRTL(locale: string): boolean
@@ -835,7 +879,7 @@ get(field: string): number
 | day_of_year | 一年中的第几天。 |
 | day_of_week | 一周中的第几天(星期)。 |
 | milliseconds_in_day | 一天中的第几毫秒。 |
-| zone_offset | 以毫秒计时的时区固定偏移量(不含夏令时)。 |
+| zone_offset | 以毫秒计时的时区固定偏移量（不含夏令时）。 |
 | dst_offset | 以毫秒计时的夏令时偏移量。 |
 | dow_local | 本地星期。 |
 | extended_year | 扩展的年份数值，支持负数。 |

@@ -179,6 +179,19 @@ focusScopePriority(scopeId: string, priority?: FocusPriority): T
 | PRIOR | 容器内优先获焦的优先级。优先级高于AUTO。 |
 | PREVIOUS | 上一次容器整体失焦时获焦节点的优先级。优先级高于PRIOR。 |
 
+### KeyProcessingMode<sup>15+</sup>
+
+设置按键事件处理的优先级。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 值    | 说明        |
+| -----------| ----------- | --------- |
+| FOCUS_NAVIGATION  | 0 | 默认值，当前组件不消费按键时，tab/方向键优先在当前容器内走焦。 |
+| ANCESTOR_EVENT  | 1  |  当前组件不消费按键时，tab/方向键优先冒泡给父组件。 |
+
 ## focusScopeId<sup>12+</sup>
 
 focusScopeId(id: string, isGroup?: boolean)

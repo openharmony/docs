@@ -15,7 +15,7 @@ Defines APIs for Neural Network Runtime. The AI inference framework uses the nat
 
 **Since**: 9
 
-**Related module**: [NeuralNetworkRuntime](_neural_network_runtime.md)
+**Related module**: [NeuralNeworkRuntime](_neural_network_runtime.md)
 
 
 ## Summary
@@ -30,7 +30,7 @@ Defines APIs for Neural Network Runtime. The AI inference framework uses the nat
 | [OH_NN_ReturnCode](_neural_network_runtime.md#oh_nn_returncode)[OH_NNQuantParam_SetZeroPoints](_neural_network_runtime.md#oh_nnquantparam_setzeropoints) ([NN_QuantParam](_neural_network_runtime.md#nn_quantparam) \*quantParams, const int32_t \*zeroPoints, size_t quantCount) | Sets the zero point for an [NN_QuantParam](_neural_network_runtime.md#nn_quantparam) instance.| 
 | [OH_NN_ReturnCode](_neural_network_runtime.md#oh_nn_returncode)[OH_NNQuantParam_SetNumBits](_neural_network_runtime.md#oh_nnquantparam_setnumbits) ([NN_QuantParam](_neural_network_runtime.md#nn_quantparam) \*quantParams, const uint32_t \*numBits, size_t quantCount) | Sets the number of quantization bits for an [NN_QuantParam](_neural_network_runtime.md#nn_quantparam) instance.| 
 | [OH_NN_ReturnCode](_neural_network_runtime.md#oh_nn_returncode)[OH_NNQuantParam_Destroy](_neural_network_runtime.md#oh_nnquantparam_destroy) ([NN_QuantParam](_neural_network_runtime.md#nn_quantparam) \*\*quantParams) | Destroys an [NN_QuantParam](_neural_network_runtime.md#nn_quantparam) instance.| 
-| [OH_NNModel](_neural_network_runtime.md#oh_nnmodel) \* [OH_NNModel_Construct](_neural_network_runtime.md#oh_nnmodel_construct) (void) | Creates a model instance of the [OH_NNModel](_neural_network_runtime.md#oh_nnmodel) type and constructs a model instance by using the APIs provided by **OH_NNModel**.| 
+| [OH_NNModel](_neural_network_runtime.md#oh_nnmodel) \* [OH_NNModel_Construct](_neural_network_runtime.md#oh_nnmodel_construct) (void) | Creates a model instance of the [NN_QuantParam](_neural_network_runtime.md#nn_quantparam) type and constructs a model instance by using the APIs provided by **OH_NNModel**.| 
 | [OH_NN_ReturnCode](_neural_network_runtime.md#oh_nn_returncode)[OH_NNModel_AddTensorToModel](_neural_network_runtime.md#oh_nnmodel_addtensortomodel) ([OH_NNModel](_neural_network_runtime.md#oh_nnmodel) \*model, const [NN_TensorDesc](_neural_network_runtime.md#nn_tensordesc) \*tensorDesc) | Adds a tensor to a model instance.| 
 | [OH_NN_ReturnCode](_neural_network_runtime.md#oh_nn_returncode)[OH_NNModel_SetTensorData](_neural_network_runtime.md#oh_nnmodel_settensordata) ([OH_NNModel](_neural_network_runtime.md#oh_nnmodel) \*model, uint32_t index, const void \*dataBuffer, size_t length) | Sets the tensor value.| 
 | [OH_NN_ReturnCode](_neural_network_runtime.md#oh_nn_returncode)[OH_NNModel_SetTensorQuantParams](_neural_network_runtime.md#oh_nnmodel_settensorquantparams) ([OH_NNModel](_neural_network_runtime.md#oh_nnmodel) \*model, uint32_t index, [NN_QuantParam](_neural_network_runtime.md#nn_quantparam) \*quantParam) | Sets the quantization parameters of a tensor. For details, see [NN_QuantParam](_neural_network_runtime.md#nn_quantparam).| 

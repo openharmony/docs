@@ -1,6 +1,6 @@
 # @ohos.net.connection (Network Connection Management)
 
-The network connection management module provides basic network management capabilities. You can obtain the default active data network or the list of all active data networks, enable or disable the airplane mode, and obtain network capability information.
+The **connection** module provides basic network management capabilities. With the APIs provided by this module, you can obtain the default active data network or the list of all active data networks, enable or disable the airplane mode, and obtain network capability information.
 
 > **NOTE**
 >

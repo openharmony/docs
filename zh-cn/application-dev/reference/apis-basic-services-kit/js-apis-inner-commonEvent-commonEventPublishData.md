@@ -19,5 +19,5 @@
 | data                  | string               | 否  | 是  | 表示公共事件的自定义结果数据。数据大小不超过64KB。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | subscriberPermissions | Array\<string>       | 否  | 是  | 表示订阅者的权限。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。             |
 | isOrdered             | boolean              | 否  | 是  | 表示是否是有序事件。           |
-| isSticky              | boolean              | 否  | 是  | 表示是否是粘性事件。仅系统应用或系统服务允许发送粘性事件。 |
+| isSticky              | boolean              | 否  | 是  | 表示是否是粘性事件。仅系统应用或系统服务允许发送粘性事件。<br>**需要权限**:  [ohos.permission.COMMONEVENT_STICKY](../../security/AccessToken/permissions-for-all.md#ohospermissioncommonevent_sticky) |
 | parameters            | {[key: string]: any} | 否  | 是  | 表示公共事件的附加信息。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |

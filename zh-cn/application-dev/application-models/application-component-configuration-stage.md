@@ -7,7 +7,7 @@
 应用需要在工程的AppScope目录下的[app.json5配置文件](../quick-start/app-configuration-file.md)中配置bundleName标签，该标签用于标识应用的唯一性。推荐采用反域名形式命名（如com.example.demo，建议第一级为域名后缀com，第二级为厂商/个人名，第三级为应用名，也可以多级）。
 
 ## 图标和标签配置
-图标和标签通常一起配置，对应[app.json5配置文件](../quick-start/app-configuration-file.md)和[module.json5配置文件](../quick-start/module-configuration-file.md)中的icon和label标签。DevEco Studio从5.0.3.800版本开始，不再对module.json5中的icon和label做强制校验，因此module.json5与app.json5只需要选择其一配置。
+图标和标签通常一起配置，对应[app.json5配置文件](../quick-start/app-configuration-file.md)和[module.json5配置文件](../quick-start/module-configuration-file.md)中的icon和label。在DevEco Studio 5.0.3.800版本及之后，[module.json5配置文件](../quick-start/module-configuration-file.md)中的icon和label不再强制要求配置，而[app.json5配置文件](../quick-start/app-configuration-file.md)中的icon和label仍然是必选参数。因此，[module.json5配置文件](../quick-start/module-configuration-file.md)中的icon和label可以省略。
 
 ### 生成机制
 * HAP中包含UIAbility

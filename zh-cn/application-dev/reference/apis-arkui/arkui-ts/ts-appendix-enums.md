@@ -48,6 +48,7 @@
 | BOTTOM_START<sup>12+</sup> | 图像显示在Image组件的底部起始端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples13](figures/image_fit_bottom_start.png) |
 | BOTTOM<sup>12+</sup>    | 图像显示在Image组件的底部横向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples14](figures/image_fit_bottom.png) |
 | BOTTOM_END<sup>12+</sup>| 图像显示在Image组件的底部尾端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples15](figures/image_fit_bottom_end.png) |
+| MATRIX<sup>15+</sup>| 配合[imageMatrix](ts-basic-components-image.md#imagematrix15)使用，使图像在Image组件自定义位置显示，保持原有尺寸显示。不支持svg图源。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## BorderStyle
 
@@ -251,6 +252,7 @@
 | -------- | ---------- |
 | Unknown  | 输入设备类型未知。  |
 | Keyboard | 输入设备类型为键盘。 |
+| JOYSTICK<sup>15+</sup> | 输入设备类型为游戏手柄。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 
 ## Edge
 
@@ -274,13 +276,13 @@
 
 | 名称   | 说明   |
 | ---- | ---- |
-| Mon  | 星期一  |
-| Tue  | 星期二  |
-| Wed  | 星期三  |
-| Thur | 星期四  |
-| Fri  | 星期五  |
-| Sat  | 星期六  |
-| Sun  | 星期日  |
+| Mon  | 星期一。  |
+| Tue  | 星期二。  |
+| Wed  | 星期三。  |
+| Thur | 星期四。  |
+| Fri  | 星期五。  |
+| Sat  | 星期六。  |
+| Sun  | 星期日。  |
 
 ## Direction
 
@@ -377,8 +379,8 @@
 
 | 名称   | 说明             |
 | ---- | -------------- |
-| FILL | 缩放当前子组件以填充满父组件 |
-| FIT  | 缩放当前子组件以自适应父组件 |
+| FILL | 缩放当前子组件以填充满父组件。 |
+| FIT  | 缩放当前子组件以自适应父组件。 |
 
 ## Visibility
 
@@ -1075,7 +1077,7 @@ Nullable\<T> {
 
 ## HeightBreakpoint<sup>13+</sup>
 
-表示窗口不同高宽比阈值下对应的高度断点枚举值。通过[getWindowHeightBreakpoint](../js-apis-arkui-UIContext.md#getwindowheightbreakpoint13)返回
+表示窗口不同高宽比阈值下对应的高度断点枚举值。通过[getWindowHeightBreakpoint](../js-apis-arkui-UIContext.md#getwindowheightbreakpoint13)返回。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1086,6 +1088,25 @@ Nullable\<T> {
 | HEIGHT_SM | 0   | 窗口高宽比小于0.8。 |
 | HEIGHT_MD | 1   | 窗口高宽比大于等于0.8，且小于1.2。 |
 | HEIGHT_LG | 2   | 窗口高宽比大于等于1.2。 |
+
+## AxisModel<sup>15+</sup>
+
+定义焦点轴事件的轴类型。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 值   | 描述                               |
+| ------- | ---- | ---------------------------------- |
+| ABS_X  | 0    | 游戏手柄X轴。 |
+| ABS_Y  | 1    | 游戏手柄Y轴。 |
+| ABS_Z  | 2    | 游戏手柄Z轴。 |
+| ABS_RZ | 3    | 游戏手柄RZ轴。 |
+| ABS_GAS | 4    | 游戏手柄GAS轴。 |
+| ABS_BRAKE | 5    | 游戏手柄BRAKE轴。 |
+| ABS_HAT0X | 6    | 游戏手柄HAT0X轴。 |
+| ABS_HAT0Y | 7    | 游戏手柄HAT0Y轴。 |
 
 ## RenderFit<sup>10+</sup>
 
@@ -1119,9 +1140,11 @@ Nullable\<T> {
 > - 示意图中，蓝色区域表示内容，橙黄色区域表示节点大小。
 > - 不同的内容填充方式在宽高动画过程中效果不一致，开发者需要选择合适的内容填充方式以实现需要的动画效果。
 
-### PageFlipMode<sup>15+</sup>
+## PageFlipMode<sup>15+</sup>
 
 表示鼠标滚轮翻页模式。
+
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -1131,3 +1154,17 @@ Nullable\<T> {
 | -------- | ---- | ---------------------- |
 | CONTINUOUS | 0   | 连续翻页模式，鼠标滚轮连续滚动时连续翻多页。 |
 | SINGLE | 1   | 单次翻页模式，在一次翻页动画结束前不响应滚轮事件。 |
+
+## InteractionHand<sup>15+</sup>
+
+定义事件是由左手点击触发还是右手点击触发。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 值   | 说明                   |
+| -------- | ---- | ---------------------- |
+| NONE     | 0   | 未知。 |
+| LEFT     | 1   | 左手。 |
+| RIGHT    | 2   | 右手。 |

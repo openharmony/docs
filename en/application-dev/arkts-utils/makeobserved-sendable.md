@@ -1,12 +1,12 @@
 # ArkUI Data Updates
 
-When data downloaded from the Internet or generated locally needs to be sent to the UI thread for display, the ArkUI annotation and [\@Sendable decorator](../arkts-utils/arkts-sendable.md#sendable-decorator) cannot modify variables and objects at the same time, in this scenario, you need to use [makeObserved](../quick-start/arkts-new-makeObserved.md) to import the observable Sendable shared data to ArkUI.
+When data, regardless of whether it is downloaded from the Internet or generated locally, needs to be sent to the UI thread for display, the annotations and the [\@Sendable decorator](../arkts-utils/arkts-sendable.md#sendable-decorator) in ArkUI cannot simultaneously decorate variables and objects. Therefore, for such scenarios, it is necessary to use [makeObserved](../quick-start/arkts-new-makeObserved.md) to import observable Sendable data into ArkUI.
 
 This example describes the following scenarios:
-- **makeObserved** has the observation capability after data of the @Sendable type is passed in, and the change of the data can trigger UI re-rendering.
-- Obtain an entire data from the subthread and replace the entire observable data of the UI thread.
-- Re-execute **makeObserved** from the data obtained from the subthread to change the data to observable data.
-- When data is passed from the main thread to a subthread, only unobservable data is passed. The return value of **makeObserved** cannot be directly passed to a subthread.
+- When **makeObserved** is used with @Sendable data, it enables observability of changes that can trigger UI refreshes.
+- A complete set of data is fetched from a child thread and used to replace the observable data in the UI thread entirely.
+- The data fetched from the child thread is reprocessed with **makeObserved** to become observable.
+- Only non-observable data is passed from the UI main thread back to the child thread. The return value of **makeObserved** is not directly passed to child threads.
 
 ```ts
 // SendableData.ets
@@ -27,7 +27,7 @@ import { UIUtils } from '@kit.ArkUI';
 
 @Concurrent
 function threadGetData(param: string): SendableData {
-  // Process data in the subthread.
+  // Process data in the child thread.
   let ret = new SendableData();
   console.info(`Concurrent threadGetData, param ${param}`);
   ret.name = param + "-o";
@@ -39,23 +39,23 @@ function threadGetData(param: string): SendableData {
 @Entry
 @ComponentV2
 struct Index {
-  // Use makeObserved to add the observation capability to a common object or a @Sendable decorated object.
+  // Use makeObserved to add observation to a regular object or a @Sendable object.
   @Local send: SendableData = UIUtils.makeObserved(new SendableData());
 
   build() {
     Column() {
       Text(this.send.name)
       Button("change name").onClick(() => {
-        // Change of the attribute can be observed.
+        // Changes to properties are observable.
         this.send.name += "0";
       })
 
       Button("task").onClick(() => {
-        // Places a function to be executed in the internal queue of the task pool. The function will be distributed to the worker thread for execution.
-        **NOTE**<br>Data can be constructed and processed in subthreads. However, observable data can be processded only in the main thread.
-        // Therefore, only the'name' attribute of'this.send' is transferred to the subthread.
+        // Enqueue the function to be executed in the task pool, waiting to be dispatched to a worker thread.
+        // Data construction and processing can be done in the child thread, but observable data cannot be passed to the child thread (observable data can only be manipulated in the UI main thread).
+        // Therefore, only the 'name' property of 'this.send' is passed to the child thread.
         taskpool.execute(threadGetData, this.send.name).then(val => {
-          // Used together with @Local to observe the change of this.send.
+          // Used together with @Local to observe changes to 'this.send'.
           this.send = UIUtils.makeObserved(val as SendableData);
         })
       })

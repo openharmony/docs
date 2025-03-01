@@ -31,7 +31,7 @@ Row(value?:{space?:  string&nbsp;|&nbsp;number })
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### alignItems
 
@@ -97,7 +97,7 @@ reverse(isReversed: Optional\<boolean\>)
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 

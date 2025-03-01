@@ -34,13 +34,13 @@
    
    方式一：通过`OH_AVCodec_GetCapability`获取框架推荐的音视频编解码器能力实例。与`OH_XXX_CreateByMime`系列接口框架推荐策略一致。
    ```c++
-   // 获取系统推荐的音频AAC解码器能力实例
+   // 获取系统推荐的音频AAC解码器能力实例。
    OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, false);
    ```
    
    方式二：通过`OH_AVCodec_GetCapabilityByCategory`获取指定软件或硬件的编解码能力实例。
    ```c++
-   // 获取指定硬件的视频AVC编码器能力实例
+   // 获取指定硬件的视频AVC编码器能力实例。
    OH_AVCapability *capability = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true, HARDWARE);
    ```
    若获取能力实例成功，则可继续向下执行。开发者无需关注该实例的回收问题，框架会自行回收。
@@ -60,12 +60,12 @@
 
 H.264软件解码器和H.264硬件解码器共存时，创建H.264软件解码器示例：
 ```c++
-// 1. 获取H.264软件解码器能力实例
+// 1. 获取H.264软件解码器能力实例。
 OH_AVCapability *capability = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, false, SOFTWARE);
 if (capability != nullptr) {
-   // 2. 获取H.264软件解码器名称
+   // 2. 获取H.264软件解码器名称。
    const char *codecName = OH_AVCapability_GetName(capability);
-   // 3. 创建H.264软件解码器实例
+   // 3. 创建H.264软件解码器实例。
    OH_AVCodec *videoDec = OH_VideoDecoder_CreateByName(codecName);
 }
 ```
@@ -87,18 +87,18 @@ if (capability != nullptr) {
 视频编码，软硬件差异化配置帧率示例：
 
 ```c++
-// 1. 确认推荐的H.264编码器的软硬件类别
+// 1. 确认推荐的H.264编码器的软硬件类别。
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 bool isHardward = OH_AVCapability_IsHardware(capability);
-// 2. 基于软硬件类别差异化配置
+// 2. 基于软硬件类别差异化配置。
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
 OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, 1920, 1080);
 double frameRate = isHardward ? 60.0 : 30.0;
 if (!OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate)) {
-   // 异常处理
+   // 异常处理。
 }
 if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
-   // 异常处理
+   // 异常处理。
 }
 OH_AVFormat_Destroy(format);
 ```
@@ -115,25 +115,25 @@ OH_AVFormat_Destroy(format);
 
 ```c++
 constexpr int32_t NEEDED_VDEC_NUM = 8;
-// 1. 创建硬件解码器实例
+// 1. 创建硬件解码器实例。
 OH_AVCapability *capHW = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, false, HARDWARE);
 int32_t vDecNumHW = min(OH_AVCapability_GetMaxSupportedInstances(capHW), NEEDED_VDEC_NUM);
 int32_t createdVDecNum = 0;
 for (int i = 0; i < vDecNumHW; i++) {
    OH_AVCodec *videoDec = OH_VideoDecoder_CreateByName(OH_AVCapability_GetName(capHW));
    if (videoDec != nullptr) {
-      // 维护在videoDecVector中
+      // 维护在videoDecVector中。
       createdVDecNum++;
    }
 }
 if (createdVDecNum < NEEDED_VDEC_NUM) {
-   // 2. 不够时，创建软件解码器实例
+   // 2. 不够时，创建软件解码器实例。
    OH_AVCapability *capSW = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, false, SOFTWARE);
    int32_t vDecNumSW = min(OH_AVCapability_GetMaxSupportedInstances(capSW), NEEDED_VDEC_NUM - createdVDecNum);
    for (int i = 0; i < vDecNumSW; i++) {
       OH_AVCodec *videoDec = OH_VideoDecoder_CreateByName(OH_AVCapability_GetName(capSW));
       if (videoDec != nullptr) {
-         // 维护在videoDecVector中
+         // 维护在videoDecVector中。
          createdVDecNum++;
       }
    }
@@ -157,31 +157,31 @@ OH_BitrateMode bitrateMode = BITRATE_MODE_CBR;
 int32_t bitrate = 3000000;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 if (capability == nullptr) {
-   // 异常处理
+   // 异常处理。
 }
-// 1. 确认待配置码控模式是否支持
+// 1. 确认待配置码控模式是否支持。
 bool isSupported = OH_AVCapability_IsEncoderBitrateModeSupported(capability, bitrateMode);
 if (!isSupported) {
-   // 异常处理
+   // 异常处理。
 }
-// 2. 获取码率范围，判断待配置码率参数是否在范围内
+// 2. 获取码率范围，判断待配置码率参数是否在范围内。
 OH_AVRange bitrateRange = {-1, -1};
 int32_t ret = OH_AVCapability_GetEncoderBitrateRange(capability, &bitrateRange);
 if (ret != AV_ERR_OK || bitrateRange.maxVal <= 0) {
-   // 异常处理
+   // 异常处理。
 }
 if (bitrate > bitrateRange.maxVal || bitrate < bitrateRange.minVal) {
-   // 3.（可选）调整待配置码率参数
+   // 3.（可选）调整待配置码率参数。
 }
-// 4. 配置编码参数
+// 4. 配置编码参数。
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
 OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, 1920, 1080);
 if (OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, bitrateMode) &&
    OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, static_cast<int64_t>(bitrate)) == false) {
-   // 异常处理
+   // 异常处理。
 }
 if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
-   // 异常处理
+   // 异常处理。
 }
 OH_AVFormat_Destroy(format);
 ```
@@ -193,31 +193,31 @@ OH_BitrateMode bitrateMode = BITRATE_MODE_CQ;
 int32_t quality = 0;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 if (capability == nullptr) {
-   // 异常处理
+   // 异常处理。
 }
-// 1. 确认待配置码控模式是否支持
+// 1. 确认待配置码控模式是否支持。
 bool isSupported = OH_AVCapability_IsEncoderBitrateModeSupported(capability, bitrateMode);
 if (!isSupported) {
-   // 异常处理
+   // 异常处理。
 }
-// 2. 获取质量范围，判断待配置质量参数是否在范围内
+// 2. 获取质量范围，判断待配置质量参数是否在范围内。
 OH_AVRange qualityRange = {-1, -1};
 int32_t ret = OH_AVCapability_GetEncoderQualityRange(capability, &qualityRange);
 if (ret != AV_ERR_OK || qualityRange.maxVal < 0) {
-   // 异常处理
+   // 异常处理。
 }
 if (quality > qualityRange.maxVal || quality < qualityRange.minVal) {
-   // 3.（可选）调整待配置质量参数
+   // 3.（可选）调整待配置质量参数。
 }
-// 5. 配置编码参数
+// 5. 配置编码参数。
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
 OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, 1920, 1080);
 if (OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, bitrateMode) &&
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality) == false) {
-   // 异常处理
+   // 异常处理。
 }
 if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
-   // 异常处理
+   // 异常处理。
 }
 OH_AVFormat_Destroy(format);
 ```
@@ -233,9 +233,9 @@ OH_AVFormat_Destroy(format);
 ```c++
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, true);
 if (capability == nullptr) {
-   // 异常处理
+   // 异常处理。
 }
-// 确认支持的编码复杂度范围
+// 确认支持的编码复杂度范围。
 OH_AVRange complexityRange = {-1, -1};
 int32_t ret = OH_AVCapability_GetEncoderComplexityRange(capability, &complexityRange);
 ```
@@ -258,14 +258,14 @@ int32_t channelCount = 2;
 int32_t bitrate = 261000;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, true);
 if (capability == nullptr) {
-   // 异常处理
+   // 异常处理。
 }
-// 1. 确认待配置采样率是否支持
+// 1. 确认待配置采样率是否支持。
 const int32_t *sampleRates = nullptr;
 uint32_t sampleRateNum = 0;
 int32_t ret = OH_AVCapability_GetAudioSupportedSampleRates(capability, &sampleRates, &sampleRateNum);
 if (ret != AV_ERR_OK || sampleRates == nullptr || sampleRateNum == 0) {
-   // 异常处理
+   // 异常处理。
 }
 bool isMatched = false;
 for (int i = 0; i < sampleRateNum; i++) {
@@ -274,36 +274,36 @@ for (int i = 0; i < sampleRateNum; i++) {
    }
 }
 if (!isMatched) {
-   // 2.（可选）调整待配置采样率
+   // 2.（可选）调整待配置采样率。
 }
-// 3. 获取通道数范围，判断待配置通道数参数是否在范围内
+// 3. 获取通道数范围，判断待配置通道数参数是否在范围内。
 OH_AVRange channelRange = {-1, -1};
 ret = OH_AVCapability_GetAudioChannelCountRange(capability, &channelRange);
 if (ret != AV_ERR_OK || channelRange.maxVal <= 0) {
-   // 异常处理
+   // 异常处理。
 }
 if (channelCount > channelRange.maxVal || channelCount < channelRange.minVal ) {
-   // 4.（可选）调整待配置通道数
+   // 4.（可选）调整待配置通道数。
 }
-// 5. 获取码率范围，判断待配置码率参数是否在范围内
+// 5. 获取码率范围，判断待配置码率参数是否在范围内。
 OH_AVRange bitrateRange = {-1, -1};
 ret = OH_AVCapability_GetEncoderBitrateRange(capability, &bitrateRange);
 if (ret != AV_ERR_OK || bitrateRange.maxVal <= 0) {
-   // 异常处理
+   // 异常处理。
 }
 if (bitrate > bitrateRange.maxVal || bitrate < bitrateRange.minVal ) {
-   // 7.（可选）调整待配置码率值
+   // 7.（可选）调整待配置码率值。
 }
-// 8. 配置编码参数
+// 8. 配置编码参数。
 OH_AVCodec *audioEnc = OH_AudioEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC);
 OH_AVFormat *format = OH_AVFormat_Create();
 if (OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, sampleRate) &&
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, channelCount) &&
    OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, static_cast<int64_t>(bitrate)) == false) {
-   // 异常处理
+   // 异常处理。
 }
 if (OH_AudioEncoder_Configure(audioEnc, format) != AV_ERR_OK) {
-   // 异常处理
+   // 异常处理。
 }
 OH_AVFormat_Destroy(format);
 ```
@@ -326,14 +326,14 @@ OH_AVFormat_Destroy(format);
 OH_AVCProfile profile = AVC_PROFILE_MAIN;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 if (capability == nullptr) {
-   // 异常处理
+   // 异常处理。
 }
-// 1. 确认待配置档次是否支持
+// 1. 确认待配置档次是否支持。
 const int32_t *profiles = nullptr;
 uint32_t profileNum = 0;
 int32_t ret = OH_AVCapability_GetSupportedProfiles(capability, &profiles, &profileNum);
 if (ret != AV_ERR_OK || profiles == nullptr || profileNum == 0) {
-   // 异常处理
+   // 异常处理。
 }
 bool isMatched = false;
 for (int i = 0; i < profileNum; i++) {
@@ -341,33 +341,33 @@ for (int i = 0; i < profileNum; i++) {
       isMatched = true;
    }
 }
-// 2. 查询待配置档次能支持的级别范围
+// 2. 查询待配置档次能支持的级别范围。
 const int32_t *levels = nullptr;
 uint32_t levelNum = 0;
 ret = OH_AVCapability_GetSupportedLevelsForProfile(capability, profile, &levels, &levelNum);
 if (ret != AV_ERR_OK || levels == nullptr || levelNum == 0) {
-   // 异常处理
+   // 异常处理。
 }
 OH_AVCLevel maxLevel = static_cast<OH_AVCLevel>(levels[levelNum -1]);
-// 3.（可选）基于支持的最大级别做业务逻辑区分
+// 3.（可选）基于支持的最大级别做业务逻辑区分。
 switch (maxLevel) {
    case AVC_LEVEL_31:
-      // level 3.1-3.2，宽、高最大可配1280x720
+      // level 3.1-3.2，宽、高最大可配1280x720。
       break;
    case AVC_LEVEL_51:
-      // level 4.0以上，宽、高最大可配1920x1080
+      // level 4.0以上，宽、高最大可配1920x1080。
       break;
    default:
-      // 报错，不做编码
+      // 报错，不做编码。
 }
-// 4. 配置档次参数
+// 4. 配置档次参数。
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
 OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, 1920, 1080);
 if (!OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile)) {
-   // 异常处理
+   // 异常处理。
 }
 if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
-   // 异常处理
+   // 异常处理。
 }
 OH_AVFormat_Destroy(format);
 ```
@@ -375,12 +375,12 @@ OH_AVFormat_Destroy(format);
 已知需要的编码档次和级别组合，直接查询支持情况示例如下：
 
 ```c++
-// 1. 获取H.264编码器能力实例
+// 1. 获取H.264编码器能力实例。
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 if (capability == nullptr) {
-   // 异常处理
+   // 异常处理。
 }
-// 2. 查询编码档次和级别是否支持
+// 2. 查询编码档次和级别是否支持。
 bool isSupported = OH_AVCapability_AreProfileAndLevelSupported(capability, AVC_PROFILE_MAIN, AVC_LEVEL_51);
 ```
 
@@ -410,10 +410,10 @@ bool isSupported = OH_AVCapability_AreProfileAndLevelSupported(capability, AVC_P
 int32_t width = 1920;
 int32_t height = 1080;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
-// 1. 确认视频宽高是否支持
+// 1. 确认视频宽高是否支持。
 bool isSupported = OH_AVCapability_IsVideoSizeSupported(capability, width, height);
 if (!isSupported) {
-   // 2. (可选) 按已知视频高或已知视频宽查询详细限制，并调整
+   // 2. (可选) 按已知视频高或已知视频宽查询详细限制，并调整。
 }
 ```
 
@@ -424,31 +424,31 @@ if (!isSupported) {
 ```c++
 int32_t width = 1920;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
-// 1. 确认视频宽符合宽对齐要求
+// 1. 确认视频宽符合宽对齐要求。
 int32_t widthAlignment = 0;
 int32_t ret = OH_AVCapability_GetVideoWidthAlignment(capability, &widthAlignment);
 if (ret != AV_ERR_OK || widthAlignment <= 0) {
-   // 异常处理
+   // 异常处理。
 } else if (width % widthAlignment != 0) {
-   // 2. (可选) 对齐视频宽
+   // 2. (可选) 对齐视频宽。
    width = (width + widthAlignment - 1) / widthAlignment * widthAlignment;
 }
-// 3. 确认视频宽处在可支持宽范围内
+// 3. 确认视频宽处在可支持宽范围内。
 OH_AVRange widthRange = {-1, -1};
 ret = OH_AVCapability_GetVideoWidthRange(capability, &widthRange);
 if (ret != AV_ERR_OK || widthRange.maxVal <= 0) {
-   // 异常处理
+   // 异常处理。
 } else if (width < widthRange.minVal || width > widthRange.maxVal) {
-   // 4. (可选) 调整视频宽
+   // 4. (可选) 调整视频宽。
    width = min(max(width, widthRange.minVal), widthRange.maxVal);
 }
-// 5. 基于视频宽，获取可选视频高的范围
+// 5. 基于视频宽，获取可选视频高的范围。
 OH_AVRange heightRange = {-1, -1};
 ret = OH_AVCapability_GetVideoHeightRangeForWidth(capability, width, &heightRange);
 if (ret != AV_ERR_OK || heightRange.maxVal <= 0) {
-   // 异常处理
+   // 异常处理。
 }
-// 6. 从可选高度范围中挑选合适的高度配置
+// 6. 从可选高度范围中挑选合适的高度配置。
 ```
 
 已知视频高，找到正确的尺寸配置，示例如下：
@@ -456,31 +456,31 @@ if (ret != AV_ERR_OK || heightRange.maxVal <= 0) {
 ```c++
 int32_t height = 1080;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
-// 1. 确认视频高符合高对齐要求
+// 1. 确认视频高符合高对齐要求。
 int32_t heightAlignment = 0;
 int32_t ret = OH_AVCapability_GetVideoHeightAlignment(capability, &heightAlignment);
 if (ret != AV_ERR_OK || heightAlignment <= 0) {
-   // 异常处理
+   // 异常处理。
 } else if (height % heightAlignment != 0) {
-   // 2. (可选) 对齐视频高
+   // 2. (可选) 对齐视频高。
    height = (height + heightAlignment - 1) / heightAlignment * heightAlignment;
 }
-// 3. 确认视频高处在可支持高范围内
+// 3. 确认视频高处在可支持高范围内。
 OH_AVRange heightRange = {-1, -1};
 ret = OH_AVCapability_GetVideoHeightRange(capability, &heightRange);
 if (ret != AV_ERR_OK || heightRange.maxVal <= 0) {
-   // 异常处理
+   // 异常处理。
 } else if (height < heightRange.minVal || height > heightRange.maxVal) {
-   // 4. (可选) 调整视频高
+   // 4. (可选) 调整视频高。
    height = min(max(height, heightRange.minVal), heightRange.maxVal);
 }
-// 5. 基于视频高，获取可选视频宽的范围
+// 5. 基于视频高，获取可选视频宽的范围。
 OH_AVRange widthRange = {-1, -1};
 ret = OH_AVCapability_GetVideoWidthRangeForHeight(capability, height, &widthRange);
 if (ret != AV_ERR_OK || widthRange.maxVal <= 0) {
-   // 异常处理
+   // 异常处理。
 }
-// 6. 从可选宽度范围中挑选合适的宽度配置
+// 6. 从可选宽度范围中挑选合适的宽度配置。
 ```
 
 ### 设置正确的视频帧率
@@ -502,13 +502,13 @@ if (ret != AV_ERR_OK || widthRange.maxVal <= 0) {
 ```c++
 int32_t frameRate = 120;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
-// 1. 获取支持的帧率范围
+// 1. 获取支持的帧率范围。
 OH_AVRange frameRateRange = {-1, -1};
 int32_t ret = OH_AVCapability_GetVideoFrameRateRange(capability, &frameRateRange);
 if (ret != AV_ERR_OK || frameRateRange.maxVal <= 0) {
-   // 异常处理
+   // 异常处理。
 }
-// 2. 判断是否在可选帧率范围内
+// 2. 判断是否在可选帧率范围内。
 bool isSupported = frameRate >= frameRateRange.minVal && frameRate <= frameRateRange.maxVal;
 ```
 
@@ -519,26 +519,26 @@ constexpr int32_t width = 1920;
 constexpr int32_t height = 1080;
 int32_t frameRate = 120;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
-// 1. 确认待配置尺寸是否能达到理想帧率
+// 1. 确认待配置尺寸是否能达到理想帧率。
 bool isSupported = OH_AVCapability_AreVideoSizeAndFrameRateSupported(capability, width, height, frameRate);
 if (!isSupported) {
-   // 2. 基于待配置视频尺寸，查询支持的帧率范围，并基于查询到的帧率调整待配置帧率
+   // 2. 基于待配置视频尺寸，查询支持的帧率范围，并基于查询到的帧率调整待配置帧率。
    OH_AVRange frameRateRange = {-1, -1};
    int32_t ret = OH_AVCapability_GetVideoFrameRateRangeForSize(capability, width, height, &frameRateRange);
    if (ret != AV_ERR_OK || frameRateRange.maxVal <= 0) {
-      // 异常处理
+      // 异常处理。
    }
    frameRate = min(max(frameRate, frameRateRange.minVal), frameRateRange.maxVal);
 }
 
-// 3. 配置尺寸和帧率参数
+// 3. 配置尺寸和帧率参数。
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
 OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, width, height);
 if (!OH_AVFormat_SetIntValue(format, OH_MD_KEY_FRAME_RATE, frameRate)) {
-   // 异常处理
+   // 异常处理。
 }
 if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
-   // 异常处理
+   // 异常处理。
 }
 OH_AVFormat_Destroy(format);
 ```
@@ -555,16 +555,16 @@ OH_AVFormat_Destroy(format);
 constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 if (capability == nullptr) {
-   // 异常处理
+   // 异常处理。
 }
-// 1. 获取当前视频编解码器支持的像素格式
+// 1. 获取当前视频编解码器支持的像素格式。
 const int32_t *pixFormats = nullptr;
 uint32_t pixFormatNum = 0;
 int32_t ret = OH_AVCapability_GetVideoSupportedPixelFormats(capability, &pixFormats, &pixFormatNum);
 if (ret != AV_ERR_OK || pixFormats == nullptr || pixFormatNum == 0) {
-   // 异常处理
+   // 异常处理。
 }
-// 2. 校验是否支持对应像素格式
+// 2. 校验是否支持对应像素格式。
 bool isMatched = false;
 for (int i = 0; i < pixFormatNum; i++) {
    if (pixFormats[i] == DEFAULT_PIXELFORMAT) {
@@ -572,7 +572,7 @@ for (int i = 0; i < pixFormatNum; i++) {
    }
 }
 if (!isMatched) {
-   // 3. 替换其他像素格式输入或选择其他编解码器
+   // 3. 替换其他像素格式输入或选择其他编解码器。
 }
 ```
 
@@ -591,24 +591,24 @@ constexpr int32_t NEEDED_LTR_NUM = 2;
 OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, 1920, 1080);
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 if (capability == nullptr) {
-   // 异常处理
+   // 异常处理。
 }
-// 1. 查询是否支持长期参考帧特性
+// 1. 查询是否支持长期参考帧特性。
 bool isSupported = OH_AVCapability_IsFeatureSupported(capability,VIDEO_ENCODER_LONG_TERM_REFERENCE);
 if (isSupported) {
-   // 2. 查询支持的长期参考帧个数
+   // 2. 查询支持的长期参考帧个数。
    OH_AVFormat *properties = OH_AVCapability_GetFeatureProperties(capability, VIDEO_ENCODER_LONG_TERM_REFERENCE);
    int32_t maxLTRCount = -1;
    bool ret = OH_AVFormat_GetIntValue(properties, OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT, &maxLTRCount);
    if (ret && maxLTRCount >= NEEDED_LTR_NUM) {
       if (!OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT, NEEDED_LTR_NUM)) {
-         // 异常处理
+         // 异常处理。
       }
    }
 }
-// 3. 编码器创建和配置
+// 3. 编码器创建和配置。
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
 if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
-   // 异常处理
+   // 异常处理。
 }
 ```

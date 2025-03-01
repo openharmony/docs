@@ -10,10 +10,10 @@
 
 - 音频录制
 
-  通过录制传入PCM，然后编码出对应格式的码流，最后封装成想要的格式。
+  通过录制传入PCM，然后编码出对应格式的码流，最后[封装](audio-video-muxer.md#媒体数据封装)成想要的格式。
 - 音频编辑
 
-  编辑PCM后导出音频文件的场景，需要编码成对应音频格式后再封装成文件。
+  编辑PCM后导出音频文件的场景，需要编码成对应音频格式后再[封装](audio-video-muxer.md#媒体数据封装)成文件。
 > **说明：**
 >
 > AAC编码器默认采用的VBR可变码率模式，与配置的预期参数可能存在偏差。
@@ -60,9 +60,9 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    应用可以通过名称或媒体类型创建编码器。
 
     ```cpp
-    // c++标准库命名空间
+    // c++标准库命名空间。
     using namespace std;
-    // 通过 codecname 创建编码器
+    // 通过 codecname 创建编码器。
     OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, true);
     const char *name = OH_AVCapability_GetName(capability);
     OH_AVCodec *audioEnc_ = OH_AudioCodec_CreateByName(name);
@@ -71,12 +71,12 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```cpp
     // 设置判定是否为编码；设置true表示当前是编码。
     bool isEncoder = true;
-    // 通过媒体类型创建编码器
+    // 通过媒体类型创建编码器。
     OH_AVCodec *audioEnc_ = OH_AudioCodec_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC, isEncoder);
     ```
     
     ```cpp
-    // 初始化队列
+    // 初始化队列。
     class AEncBufferSignal {
     public:
         std::mutex inMutex_;
@@ -108,21 +108,21 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    > 回调中不建议进行耗时操作。
 
     ```cpp
-    // OH_AVCodecOnError回调函数的实现
+    // OH_AVCodecOnError回调函数的实现。
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
         (void)codec;
         (void)errorCode;
         (void)userData;
     }
-    // OH_AVCodecOnStreamChanged回调函数的实现
+    // OH_AVCodecOnStreamChanged回调函数的实现。
     static void OnOutputFormatChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
     {
         (void)codec;
         (void)format;
         (void)userData;
     }
-    // OH_AVCodecOnNeedInputBuffer回调函数的实现
+    // OH_AVCodecOnNeedInputBuffer回调函数的实现。
     static void OnInputBufferAvailable(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *data, void *userData)
     {
         (void)codec;
@@ -133,12 +133,12 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         signal->inBufferQueue_.push(data);
         signal->inCond_.notify_all();
     }
-    // OH_AVCodecOnNewOutputBuffer回调函数的实现
+    // OH_AVCodecOnNewOutputBuffer回调函数的实现。
     static void OnOutputBufferAvailable(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *data, void *userData)
     {
         (void)codec;
-        // 将对应输出buffer的index送入OutputQueue_队列
-        // 将对应编码完成的数据data送入outBuffer队列
+        // 将对应输出buffer的index送入OutputQueue_队列。
+        // 将对应编码完成的数据data送入outBuffer队列。
         AEncBufferSignal *signal = static_cast<AEncBufferSignal *>(userData);
         unique_lock<mutex> lock(signal->outMutex_);
         signal->outQueue_.push(index);
@@ -146,10 +146,10 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     signal_ = new AEncBufferSignal();
     OH_AVCodecCallback cb_ = {&OnError, &OnOutputFormatChanged, &OnInputBufferAvailable, &OnOutputBufferAvailable};
-    // 配置异步回调
+    // 配置异步回调。
     int32_t ret = OH_AudioCodec_RegisterCallback(audioEnc_, cb_, signal_);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
     ```
 
@@ -175,32 +175,32 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     <!--RP4-->
     ```cpp
     int32_t ret;
-    // 配置音频采样率（必须）
+    // 配置音频采样率（必须）。
     constexpr uint32_t DEFAULT_SAMPLERATE = 44100;
-    // 配置音频码率（必须）
+    // 配置音频码率（必须）。
     constexpr uint64_t DEFAULT_BITRATE = 32000;
-    // 配置音频声道数（必须）
+    // 配置音频声道数（必须）。
     constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
-    // 配置音频声道类型（必须）
+    // 配置音频声道类型（必须）。
     constexpr OH_AudioChannelLayout CHANNEL_LAYOUT = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
-    // 配置音频位深（必须）
+    // 配置音频位深（必须）。
     constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_S16LE;
-    // 每20ms一帧音频数据
+    // 每20ms一帧音频数据。
     constexpr float TIME_PER_FRAME = 0.02;
-    // 配置最大输入长度, 每帧音频数据的大小（可选）
+    // 配置最大输入长度, 每帧音频数据的大小（可选）。
     constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = DEFAULT_SAMPLERATE * TIME_PER_FRAME * DEFAULT_CHANNEL_COUNT * sizeof(short); // aac
     OH_AVFormat *format = OH_AVFormat_Create();
-    // 写入format
+    // 写入format。
     OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_CHANNEL_COUNT, DEFAULT_CHANNEL_COUNT);
     OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_SAMPLE_RATE, DEFAULT_SAMPLERATE);
     OH_AVFormat_SetLongValue(format,OH_MD_KEY_BITRATE, DEFAULT_BITRATE);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUDIO_SAMPLE_FORMAT, SAMPLE_FORMAT);
     OH_AVFormat_SetLongValue(format,OH_MD_KEY_CHANNEL_LAYOUT, CHANNEL_LAYOUT);
     OH_AVFormat_SetIntValue(format,OH_MD_KEY_MAX_INPUT_SIZE, DEFAULT_MAX_INPUT_SIZE);
-    // 配置编码器
+    // 配置编码器。
     ret = OH_AudioCodec_Configure(audioEnc_, format);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
     ```
     <!--RP4End-->
@@ -208,22 +208,22 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
     ```cpp
     int32_t ret;
-    // 配置音频采样率（必须）
+    // 配置音频采样率（必须）。
     constexpr uint32_t DEFAULT_SAMPLERATE = 44100;
-    // 配置音频码率（必须）
+    // 配置音频码率（必须）。
     constexpr uint64_t DEFAULT_BITRATE = 261000;
-    // 配置音频声道数（必须）
+    // 配置音频声道数（必须）。
     constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
-    // 配置音频声道类型（必须）
+    // 配置音频声道类型（必须）。
     constexpr OH_AudioChannelLayout CHANNEL_LAYOUT = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
-    // 配置音频位深（必须） flac只有SAMPLE_S16LE和SAMPLE_S32LE
+    // 配置音频位深（必须） flac只有SAMPLE_S16LE和SAMPLE_S32LE。
     constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_S32LE;
-    // 配置音频compliance level (默认值0，取值范围-2~2)
+    // 配置音频compliance level (默认值0，取值范围-2~2)。
     constexpr int32_t COMPLIANCE_LEVEL = 0;
-    // 配置音频精度（必须） SAMPLE_S16LE和SAMPLE_S24LE和SAMPLE_S32LE
+    // 配置音频精度（必须） SAMPLE_S16LE和SAMPLE_S24LE和SAMPLE_S32LE。
     constexpr OH_BitsPerSample BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
     OH_AVFormat *format = OH_AVFormat_Create();
-    // 写入format
+    // 写入format。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, DEFAULT_CHANNEL_COUNT);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, DEFAULT_SAMPLERATE);
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, DEFAULT_BITRATE);
@@ -231,10 +231,10 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUDIO_SAMPLE_FORMAT, SAMPLE_FORMAT); 
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_CHANNEL_LAYOUT, CHANNEL_LAYOUT);
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_COMPLIANCE_LEVEL, COMPLIANCE_LEVEL); 
-    // 配置编码器
+    // 配置编码器。
     ret = OH_AudioCodec_Configure(audioEnc_, format);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
     ```
 
@@ -245,7 +245,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```cpp
     ret = OH_AudioCodec_Prepare(audioEnc_);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
     ```
 
@@ -254,14 +254,14 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```c++
     unique_ptr<ifstream> inputFile_ = make_unique<ifstream>();
     unique_ptr<ofstream> outFile_ = make_unique<ofstream>();
-    // 打开待编码二进制文件路径（此处以输入为PCM文件为例）
+    // 打开待编码二进制文件路径（此处以输入为PCM文件为例）。
     inputFile_->open(inputFilePath.data(), ios::in | ios::binary); 
-    // 配置编码文件输出路径（此处以输出为编码码流文件为例）
+    // 配置编码文件输出路径（此处以输出为编码码流文件为例）。
     outFile_->open(outputFilePath.data(), ios::out | ios::binary);
-    // 开始编码
+    // 开始编码。
     ret = OH_AudioCodec_Start(audioEnc_);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
     ```
 
@@ -289,12 +289,12 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    > aac编码的每帧样点数建议使用20ms的PCM样点数，即采样率*0.02。flac编码的样点数建议根据采样率按照表格传入，大于这个值也会返回错误码，如果小于有可能出现编码文件损坏问题。
 
    ```c++
-    // 每帧样点数
+    // 每帧样点数。
     constexpr int32_t SAMPLES_PER_FRAME = DEFAULT_SAMPLERATE * TIME_PER_FRAME;
-    // 声道数，对于amr编码声道数只支持单声道的音频输入
+    // 声道数，对于amr编码声道数只支持单声道的音频输入。
     constexpr int32_t DEFAULT_CHANNEL_COUNT = 2;
-    // 每帧输入数据的长度，声道数 * 每帧样点数 * 每个样点的字节数（以采样格式SAMPLE_S16LE为例）
-    // 如果最后一帧数据不满足长度，建议进行丢弃或填充处理
+    // 每帧输入数据的长度，声道数 * 每帧样点数 * 每个样点的字节数（以采样格式SAMPLE_S16LE为例）。
+    // 如果最后一帧数据不满足长度，建议进行丢弃或填充处理。
     constexpr int32_t INPUT_FRAME_BYTES = DEFAULT_CHANNEL_COUNT * SAMPLES_PER_FRAME * sizeof(short);
     uint32_t index = signal_->inQueue_.front();
     auto buffer = signal_->inBufferQueue_.front();
@@ -308,10 +308,10 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         attr.flags = AVCODEC_BUFFER_FLAGS_EOS;
     }
     OH_AVBuffer_SetBufferAttr(buffer, &attr);
-    // 送入编码输入队列进行编码, index为对应队列下标
+    // 送入编码输入队列进行编码, index为对应队列下标。
     ret = OH_AudioCodec_PushInputBuffer(audioEnc_, index);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
     ```
    在上方案例中，attr.flags代表缓冲区标记的类别。
@@ -331,21 +331,21 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```c++
     uint32_t index = signal_->outQueue_.front();
     OH_AVBuffer *avBuffer = signal_->outBufferQueue_.front();
-    // 获取buffer attributes
+    // 获取buffer attributes。
     OH_AVCodecBufferAttr attr = {0};
     ret = OH_AVBuffer_GetBufferAttr(avBuffer, &attr);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
-    // 将编码完成数据data写入到对应输出文件中
+    // 将编码完成数据data写入到对应输出文件中。
     outputFile_->write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(avBuffer)), attr.size);
-    // 释放已完成写入的数据
+    // 释放已完成写入的数据。
     ret = OH_AudioCodec_FreeOutputBuffer(audioEnc_, index);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
     if (attr.flags == AVCODEC_BUFFER_FLAGS_EOS) {
-        // 结束
+        // 结束。
     }
     ```
 
@@ -361,15 +361,15 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    * 在执行过程中遇到可继续执行的错误时（即OH_AudioCodec_IsValid 为true）可以调用，然后重新调用OH_AudioCodec_Start。
 
     ```c++
-    // 刷新编码器 audioEnc_
+    // 刷新编码器 audioEnc_。
     ret = OH_AudioCodec_Flush(audioEnc_);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
-    // 重新开始编码
+    // 重新开始编码。
     ret = OH_AudioCodec_Start(audioEnc_);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
     ```
 
@@ -378,15 +378,15 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     调用OH_AudioCodec_Reset()后，编码器回到初始化的状态，需要调用OH_AudioCodec_Configure()重新配置，然后调用OH_AudioCodec_Start()重新开始编码。
 
     ```c++
-    // 重置编码器 audioEnc_
+    // 重置编码器 audioEnc_。
     ret = OH_AudioCodec_Reset(audioEnc_);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
-    // 重新配置编码器参数
+    // 重新配置编码器参数。
     ret = OH_AudioCodec_Configure(audioEnc_, format);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
     ```
 
@@ -395,10 +395,10 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     停止后，可以通过Start重新进入已启动状态（started），但需要注意的是，如果编码器之前已输入数据，则需要重新输入编码器数据。
 
     ```c++
-    // 终止编码器 audioEnc_
+    // 终止编码器 audioEnc_。
     ret = OH_AudioCodec_Stop(audioEnc_);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
     ```
 
@@ -408,12 +408,12 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     > 资源不能重复销毁
 
     ```c++
-    // 调用OH_AudioCodec_Destroy, 注销编码器
+    // 调用OH_AudioCodec_Destroy, 注销编码器。
     ret = OH_AudioCodec_Destroy(audioEnc_);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     } else {
-        audioEnc_ = NULL; // 不可重复destroy
+        audioEnc_ = NULL; // 不可重复destroy。
     }
     ```
 

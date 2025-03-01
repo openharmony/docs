@@ -70,7 +70,7 @@ DRM会话管理（MediaKeySession）支持媒体密钥管理及媒体解密等�
     ```c++
     DRM_MediaKeyRequest mediaKeyRequest;
     DRM_MediaKeyRequestInfo info;
-    // initData对应码流中的pssh数据，请按实际数据填入
+    // initData对应码流中的pssh数据，请按实际数据填入。
     unsigned char initData[128] = {0x00};
     memset_s(&info, sizeof(DRM_MediaKeyRequestInfo), 0, sizeof(DRM_MediaKeyRequestInfo));
     info.initDataLen = sizeof(initData);
@@ -91,7 +91,7 @@ DRM会话管理（MediaKeySession）支持媒体密钥管理及媒体解密等�
     */
     unsigned char mediaKeyId[26] = {0x00};
     int32_t mediaKeyIdLen = 26;
-    // 媒体密钥请求响应长度最大为12288，请按实际数据输入
+    // 媒体密钥请求响应长度最大为12288，请按实际数据输入。
     unsigned char mediaKeyResponse[12288] = {0x00};
     int32_t mediaKeyResponseLen = 12288;
     ret = OH_MediaKeySession_ProcessMediaKeyResponse(mediaKeySession, mediaKeyResponse,
@@ -130,7 +130,7 @@ DRM会话管理（MediaKeySession）支持媒体密钥管理及媒体解密等�
     if (ret != DRM_ERR_OK) {
         printf("OH_MediaKeySession_GenerateOfflineReleaseRequest failed.");
     }
-    // keyReleaseResponse是使用请求体releaseRequest通过网络请求从DRM服务获取的离线媒体密钥释放响应，请根据实际值传入
+    // keyReleaseResponse是使用请求体releaseRequest通过网络请求从DRM服务获取的离线媒体密钥释放响应，请根据实际值传入。
     unsigned char keyReleaseResponse[12288] = {0x00};
     int32_t keyReleaseResponseLen = 12288;
     ret = OH_MediaKeySession_ProcessOfflineReleaseResponse(mediaKeySession, mediaKeyId, mediaKeyIdLen,
@@ -143,7 +143,7 @@ DRM会话管理（MediaKeySession）支持媒体密钥管理及媒体解密等�
 9. （可选）恢复离线媒体密钥到当前会话。
 
     ```c++
-    // 将指定媒体密钥标识的媒体密钥加载到当前会话，被加载的媒体密钥可以是当前会话的也可以是其他会话的
+    // 将指定媒体密钥标识的媒体密钥加载到当前会话，被加载的媒体密钥可以是当前会话的也可以是其他会话的。
     ret = OH_MediaKeySession_RestoreOfflineMediaKeys(mediaKeySession, mediaKeyId, mediaKeyIdLen);
     if (ret != DRM_ERR_OK) {
         printf("OH_MediaKeySession_RestoreOfflineMediaKeys failed.");

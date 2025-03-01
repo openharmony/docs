@@ -3,6 +3,8 @@
 ## Overview
 A wireless local area network (WLAN) uses the radio, infrared, or other technologies to transmit data between devices that are not physically connected with each other. It is widely used in offices and public places where mobile devices are used.
 
+Wireless Fidelity (Wi-Fi) is a communication technology that transmits data between devices through radio waves. It allows users to access the Internet and share data without the need for wired connections. 
+
 The WLAN system provides users with WLAN access (STA mode), peer-to-peer data transmission (P2P mode), and hotspot sharing (AP mode).
 
 ## Working Principles

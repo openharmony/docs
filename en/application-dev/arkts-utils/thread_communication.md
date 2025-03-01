@@ -1,27 +1,27 @@
 # Communication Between Threads
 
-## Introduction
+## Overview
 
-During application development, some time-consuming tasks are executed in subthreads to prevent the main thread from being blocked, delivering a better user experience. Generally, a subthread can independently complete its task. However, in most cases, data needs to be transferred from the main thread to the subthread, or the task execution result needs to be returned from the subthread to the main thread. Therefore, communication between the main thread and subthread is necessary. This topic describes several example scenarios to show how to implement data communication between the main thread and subthreads in OpenHarmony application development.
+During application development, some time-consuming tasks are executed in child threads to prevent the UI main thread from being blocked, delivering a better user experience. Generally, a child thread can independently complete its task. However, in most cases, data needs to be transferred from the host thread to the child thread, or the task execution result needs to be returned from the child thread to the host thread. Therefore, communication between the host thread and child thread is necessary. This topic describes several example scenarios to show how to implement data communication between the host thread and child threads in OpenHarmony application development.
 
 ## Independent Execution of a Task
 
-If a time-consuming task can be executed independently by a subthread, the subthread only needs to return the execution result to the main thread after the task is executed. You can perform the following operations to implement this scenario.
+If a time-consuming task can be executed independently by a child thread, the child thread only needs to return the execution result to the host thread after the task is executed. You can perform the following operations to implement this scenario.
 
 First, import the TaskPool module.
 
 ```typescript
 import { taskpool } from '@kit.ArkTS';
 ```
-Then, implement the task that the subthread needs to perform.
+Then, implement the task that the child thread needs to perform.
 ```typescript
 @Concurrent // Methods executed in the task must be decorated by @Concurrent. Otherwise, they cannot be called.
 export function loadPicture(count: number): IconItemSource[] {
   let iconItemSourceList: IconItemSource[] = [];
-  // Traverse and add six IconItem data records.
+  // Add six IconItem data records.
   for (let index = 0; index < count; index++) {
     const numStart: number = index * 6;
-    // Six images are used cyclically.
+    // Use six images in the loop.
     iconItemSourceList.push(new IconItemSource($r('app.media.nearby'), `item${numStart + 1}`));
     iconItemSourceList.push(new IconItemSource($r('app.media.scan'), `item${numStart + 2}`));
     iconItemSourceList.push(new IconItemSource($r('app.media.shop'), `item${numStart + 3}`));
@@ -39,7 +39,7 @@ Finally, call **execute** in the **TaskPool** class to execute the task.
 let lodePictureTask: taskpool.Task = new taskpool.Task(loadPicture, 30);
 // Execute the task and return the result.
 taskpool.execute(lodePictureTask).then((res: IconItemSource[]) => {
-  // Execution result of the loadPicture API.
+  // Execution result of the loadPicture method.
   this.iconItemSourceList = res; 
 })
 ......
@@ -47,7 +47,7 @@ taskpool.execute(lodePictureTask).then((res: IconItemSource[]) => {
 
 ## Simultaneous Execution of Multiple Tasks
 
-If multiple tasks are executed simultaneously, their execution time and result return time vary according to the task complexity. If the main thread requires the execution results of all tasks, you can use the following code snippet:
+When multiple tasks are executed concurrently, their execution times can vary due to differences in complexity, and the timing of their completion is unpredictable. If the host thread requires the execution results of all tasks, you can use the following code snippet:
 ```typescript
 ......
 let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup();
@@ -63,30 +63,30 @@ taskpool.execute(taskGroup).then((ret: IconItemSource[][]) => {
 })
 ......
 ```
-In this scenario, all the tasks to be executed are placed in a task group. After all the tasks in the task group are executed, the execution result of each task is placed in an array and returned to the main thread. The main thread can obtain all task execution results at a time.
+In this scenario, all the tasks to be executed are placed in a task group. After all the tasks in the task group are executed, the execution result of each task is placed in an array and returned to the host thread. The host thread can obtain all task execution results at a time.
 
-In addition, if a task needs to process a large amount of data (for example, a list contains 10,000 data records), it is time-consuming to process all the data in one task. In this case, you can split the data into multiple sublists, allocate one task for each sublist, and combine the results of all the tasks. This pattern reduces the processing time and improves user experience.
+In addition, if a task needs to process a large amount of data (for example, a list contains 10,000 data records), it is time-consuming to process all the data in one task. Instead, you can split the original data into multiple sublists and assign each sublist to an independent task. After all tasks are completed, you can combine the results into a complete dataset. This approach can reduce processing time and enhance user experience.
 
-## Communication with the Main Thread During Task Execution
+## Communication Between the Task and Host Thread
 
-If a subthread needs to periodically notify the main thread of the task status and data changes, or needs to return a large amount of data by segment (for example, a large amount of data read from the database), you can perform the following operations:
+When a task needs to do more than just return a final result—such as periodically updating the host thread on its status, reporting data changes, or returning large volumes of data in segments (for example, fetching large datasets from a database)—you can use the approach described in this topic.
 
-First, implement a method to receive messages sent by the task.
+Implement a method to receive messages sent by the task.
 ```typescript
 function notice(data: number): void {
-  console.info("The subthread task has been executed. Total images loaded:", data)
+  console.info("Child thread task completed. Total images loaded:", data)
 }
 ```
-Then, add **sendData()** to the task to enable the subthread to send messages to the main thread.
+Then, add **sendData()** to the task to enable the child thread to send messages to the host thread.
 ```typescript
-// Use sendData to notify the main thread of information in real time.
+// Use sendData to notify the host thread of information in real time.
 @Concurrent
 export function loadPictureSendData(count: number): IconItemSource[] {
   let iconItemSourceList: IconItemSource[] = [];
-  // Traverse and add six IconItem data records.
+  // Add six IconItem data records.
   for (let index = 0; index < count; index++) {
     const numStart: number = index * 6;
-    // Six images are used cyclically.
+    // Use six images in the loop.
     iconItemSourceList.push(new IconItemSource($r('app.media.nearby'), `item${numStart + 1}`));
     iconItemSourceList.push(new IconItemSource($r('app.media.scan'), `item${numStart + 2}`));
     iconItemSourceList.push(new IconItemSource($r('app.media.shop'), `item${numStart + 3}`));
@@ -98,37 +98,37 @@ export function loadPictureSendData(count: number): IconItemSource[] {
   return iconItemSourceList;
 }
 ```
-Finally, use **onReceiveData()** to enable the main thread to receive messages.
+In the host thread, use **onReceiveData()** to receive messages.
 ```typescript
 ......
 let lodePictureTask: taskpool.Task = new taskpool.Task(loadPictureSendData, 30);
-// Use notice to receive messages sent by the task.
+// Use notice to receive messages from the task.
 lodePictureTask.onReceiveData(notice);
 taskpool.execute(lodePictureTask).then((res: IconItemSource[]) => {
   this.iconItemSourceList = res;
 })
 ......
 ```
-In this way, the main thread can receive the data sent by the task through **notice()**.
+This allows the host thread to receive data sent by the task through **notice()**.
 
-## Instant Communication Between the Worker Thread and Main Thread
+## Real-Time Communication Between the Worker Thread and Host Thread
 
-In ArkTS, Worker provides a limited number of threads that exist for a longer time than TaskPool threads. Multiple tasks may be executed in one [Worker thread](https://docs.openharmony.cn/pages/v4.0/en/application-dev/arkts-utils/worker-introduction.md/), and the execution duration or returned result of each task may be different. The host thread needs to call different methods in the Worker thread according to the actual situation, and the Worker thread needs to return the result to the host thread in time. You can perform the following operations to implement this scenario.
+In ArkTS, Worker differ from TaskPool in that it has a limited number of threads but can run for extended periods. Multiple tasks may be executed in one [Worker thread](https://docs.openharmony.cn/pages/v4.0/en/application-dev/arkts-utils/worker-introduction.md/), and the execution duration or returned result of each task may be different. The host thread needs to call different methods in the Worker thread according to the actual situation, and the Worker thread needs to return the result to the host thread in time. You can perform the following operations to implement this scenario.
 
 First, create a Worker thread to execute different tasks based on parameters.
 ```typescript
 import { worker, MessageEvents, ThreadWorkerGlobalScope } from '@kit.ArkTS';
  
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
-// The Worker thread receives messages from the main thread and calls the corresponding method based on the data type.
+// The Worker thread receives messages from the host thread and calls the corresponding method based on the data type.
 workerPort.onmessage = (e: MessageEvents): void => {
   if (typeof e.data === "string") {
     try {
-      // The method to call does not carry an input parameter.
+      // Call the method without parameters.
       let res: string = workerPort.callGlobalCallObjectMethod("picData", "setUp", 0) as string;
       console.error("worker: ", res);
     } catch (error) {
-      // Exception handling.
+      // Handle exceptions.
       console.error("worker: error code is " + error.code + " error message is " + error.message);
     }
   } else if (e.data instanceof Array) {
@@ -137,7 +137,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
   }
 }
 ```
-Then, create a **Worker** object in the main thread. When the button is touched, **postMessage** is called to send a message to the Worker thread, and **onmessage** of the **Worker** class is used to receive data returned by the Worker thread.
+Then, create a **Worker** object in the host thread. When the button is touched, **postMessage** is called to send a message to the Worker thread, and **onmessage** of the **Worker** class is used to receive data returned by the Worker thread.
 ```typescript
 import { worker, MessageEvents } from '@kit.ArkTS';
 ......
@@ -149,7 +149,7 @@ aboutToAppear() {
   this.initWorker();
   for (let index = 0; index < 20; index++) {
     const numStart: number = index * 6;
-    // Six images are used cyclically.
+    // Use six images in the loop.
     this.iconItemSourceList.push(new IconItemSource($r('app.media.nearby'), `item${numStart + 1}`));
     this.iconItemSourceList.push(new IconItemSource($r('app.media.scan'), `item${numStart + 2}`));
     this.iconItemSourceList.push(new IconItemSource($r('app.media.shop'), `item${numStart + 3}`));
@@ -182,13 +182,13 @@ Button ('Change the number of images to five', { type: ButtonType.Normal, stateE
   })
 ......
 ```
-In the sample code, the Worker thread performs two different processing. When the input data is of the string type, it calls **callGlobalCallObjectMethod** to synchronously call the method in the main thread. When the input data is of the array type, it returns the first four data records of the array to the main thread. In this way, instant communication between the main thread and Worker thread can be implemented.
+In the sample code, the Worker thread performs two different processing. When the input data is of the string type, it calls **callGlobalCallObjectMethod** to synchronously call the method in the host thread (which is the UI main thread in this case). When the input data is of the array type, it returns the first four data records of the array to the host thread. This enables real-time communication between the host thread and the Worker thread, allowing the host thread to conveniently use the execution results of the Worker.
 
-## Worker Thread Synchronously Calls a Method of the Main Thread
+## Worker Thread Synchronously Calls a Method of the Host Thread
 
-If the Worker thread needs to call the method that has been implemented in the main thread, you can perform the following operations:
+If an interface is already implemented in the host thread and needs to be called by Worker, you can achieve this by using the approach described in this topic.
 
-First, implement the method in the main thread, create a **Worker** object, and register the method on the **Worker** object.
+Implement the interface in the host thread and create a Worker object. Register the interface to be called on the Worker object.
 ```typescript
 import { worker } from '@kit.ArkTS';
 // Create a Worker object.
@@ -200,7 +200,7 @@ class PicData {
   public setUp(): string {
     for (let index = 0; index < 20; index++) {
       const numStart: number = index * 6;
-      // Six images are used cyclically.
+      // Use six images in the loop.
       this.iconItemSourceList.push(new IconItemSource($r('app.media.nearby'), `item${numStart + 1}`));
       this.iconItemSourceList.push(new IconItemSource($r('app.media.scan'), `item${numStart + 2}`));
       this.iconItemSourceList.push(new IconItemSource($r('app.media.shop'), `item${numStart + 3}`));
@@ -213,7 +213,7 @@ class PicData {
 }
  
 let picData = new PicData();
-// Register the method on the Worker object.
+// Register the object to be called on the Worker object.
 workerInstance.registerGlobalCallObject("picData", picData);
 workerInstance.postMessage("run setUp in picData");
 ```
@@ -221,14 +221,13 @@ Then, use [callGlobalCallObjectMethod](../reference/apis-arkts/js-apis-worker.md
 ```typescript
 ......
 try {
-  // The method to call does not carry an input parameter.
+  // Call the method without parameters.
   let res: string = workerPort.callGlobalCallObjectMethod("picData", "setUp", 0) as string;
   console.error("worker: ", res);
 } catch (error) {
-  // Exception handling.
+  // Handle exceptions.
   console.error("worker: error code is " + error.code + " error message is " + error.message);
 }
 ......
 ```
-
 

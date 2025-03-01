@@ -42,7 +42,7 @@ The **OH_NativeImage** module provides the capabilities of **NativeImage**. Func
 
 | Name| Description| 
 | -------- | -------- |
-| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000, NATIVE_ERROR_CONSUMER_DISCONNECTED = 41211000,NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED = 41212000,NATIVE_ERROR_UNSUPPORTED = 50102000,<br>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_HDI_ERROR = 50007000,NATIVE_ERROR_BINDER_ERROR = 50401000,NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br>} | Enumerates the error codes. | 
+| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br>NATIVE_ERROR_OK = 0, NATIVE_ERROR_MEM_OPERATION_ERROR = 30001000, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000, NATIVE_ERROR_CONSUMER_DISCONNECTED = 41211000,NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED = 41212000,NATIVE_ERROR_UNSUPPORTED = 50102000,<br>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_HDI_ERROR = 50007000,NATIVE_ERROR_BINDER_ERROR = 50401000,NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br>} | Enumerates the error codes. | 
 
 ### Functions
 
@@ -60,6 +60,7 @@ The **OH_NativeImage** module provides the capabilities of **NativeImage**. Func
 | int32_t [OH_NativeImage_UnsetOnFrameAvailableListener](#oh_nativeimage_unsetonframeavailablelistener) ([OH_NativeImage](#oh_nativeimage) \*image) | Deregisters the listener used to listen for frame availability events.<br>This function is not thread-safe.| 
 | void [OH_NativeImage_Destroy](#oh_nativeimage_destroy) ([OH_NativeImage](#oh_nativeimage) \*\*image) | Destroys an **OH_NativeImage** instance created by calling **OH_NativeImage_Create**. After the instance is destroyed,<br>the pointer to the **OH_NativeImage** instance is assigned **NULL**.<br>This function is not thread-safe.| 
 | int32_t [OH_NativeImage_GetTransformMatrixV2](#oh_nativeimage_gettransformmatrixv2) ([OH_NativeImage](#oh_nativeimage) \*image, float matrix[16]) | Obtains, based on the rotation angle set by the producer, the transform matrix of the texture image that recently called the **OH_NativeImage_UpdateSurfaceImage** function.<br>The matrix is updated only after [OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage) is called.<br>This function is not thread-safe.| 
+| int32_t [OH_NativeImage_GetBufferMatrix](#oh_nativeimage_getbuffermatrix) ([OH_NativeImage](#oh_nativeimage) \*image, float matrix[16]) | Obtains the transformation matrix calculated based on the rotation angle set by the producer and the actual valid content area of the buffer.| 
 | int32_t [OH_NativeImage_AcquireNativeWindowBuffer](#oh_nativeimage_acquirenativewindowbuffer) ([OH_NativeImage](#oh_nativeimage) \*image, [OHNativeWindowBuffer](_native_window.md#ohnativewindowbuffer) \*\*nativeWindowBuffer, int \*fenceFd) | Obtains an **OHNativeWindowBuffer** instance through an **OH_NativeImage** instance on the consumer side.<br>This function cannot be used together with [OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage).<br>This function creates an **OHNativeWindowBuffer**.<br>When using the **OHNativeWindowBuffer**, call [OH_NativeWindow_NativeObjectReference](_native_window.md#oh_nativewindow_nativeobjectreference) to increase its reference count by one.<br>When finishing using the **OHNativeWindowBuffer**, call [OH_NativeWindow_NativeObjectUnreference](_native_window.md#oh_nativewindow_nativeobjectunreference) to decrease the reference count by one.<br>This function must be used in pair with [OH_NativeImage_ReleaseNativeWindowBuffer](#oh_nativeimage_releasenativewindowbuffer). Otherwise, memory leak occurs.<br>When **fenceFd** is used up, you must close it.<br>This function is not thread-safe.| 
 | int32_t [OH_NativeImage_ReleaseNativeWindowBuffer](#oh_nativeimage_releasenativewindowbuffer) ([OH_NativeImage](#oh_nativeimage) \*image, [OHNativeWindowBuffer](_native_window.md#ohnativewindowbuffer) \*nativeWindowBuffer, int fenceFd) | Releases an **OHNativeWindowBuffer** instance through an **OH_NativeImage** instance.<br>The system will close **fenFd**. You do not need to close it.<br>This function is not thread-safe.| 
 | [OH_NativeImage](#oh_nativeimage) \* [OH_ConsumerSurface_Create](#oh_consumersurface_create) () | Creates an **OH_NativeImage** instance as the consumer of the surface.<br>This function is used only for memory cycling of the surface consumer. Memory rendering is not proactively performed in the created **OH_NativeImage** instance.<br>This function cannot be used together with [OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage).<br>This function must be used in pair with **OH_NativeImage_AcquireNativeWindowBuffer** and **OH_NativeImage_ReleaseNativeWindowBuffer**.<br>This function must be used in pair with [OH_NativeImage_Destroy](#oh_nativeimage_destroy). Otherwise, memory leak occurs.<br>This function is not thread-safe.| 
@@ -170,6 +171,7 @@ Enumerates the error codes.
 | Value| Description| 
 | -------- | -------- |
 | NATIVE_ERROR_OK  | The operation is successful.  | 
+| NATIVE_ERROR_MEM_OPERATION_ERROR<sup>15+</sup> | An error occurs during memory manipulation.| 
 | NATIVE_ERROR_INVALID_ARGUMENTS  | An input parameter is invalid.  | 
 | NATIVE_ERROR_NO_PERMISSION  | You do not have the permission to perform the operation.  | 
 | NATIVE_ERROR_NO_BUFFER  | No buffer is available.  | 
@@ -191,6 +193,39 @@ Enumerates the error codes.
 
 
 ## Function Description
+
+### OH_NativeImage_GetBufferMatrix()
+
+```
+int32_t OH_NativeImage_GetBufferMatrix (OH_NativeImage* image, float matrix[16] )
+```
+
+**Description**
+
+Obtains the transformation matrix calculated based on the rotation angle set by the producer and the actual valid content area of the buffer.
+
+This function returns a transformation matrix that is determined by the buffer's rotation angle and actual valid content area during the consumption of the buffer by [OH_NativeImage](#oh_nativeimage), specifically when invoking the function [OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage) or [OH_NativeImage_AcquireNativeWindowBuffer](#oh_nativeimage_acquirenativewindowbuffer).
+
+This function is not thread-safe.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeImage
+
+**Valid since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| image | Pointer to an [OH_NativeImage](#oh_nativeimage) instance.| 
+| matrix | Buffer used to store the 4 x 4 transformation matrix obtained.| 
+
+**Returns**
+
+Returns **NATIVE_ERROR_OK** if the operation is successful.
+
+Returns **NATIVE_ERROR_INVALID_ARGUMENTS** (error code: 40001000) if **image** is a null pointer.
+
+Returns **NATIVE_ERROR_MEM_OPERATION_ERROR** (error code: 30001000) if the transformation matrix fails to be obtained due to a memory manipulation error.
 
 ### OH_ConsumerSurface_SetDefaultUsage()
 

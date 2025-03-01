@@ -920,7 +920,7 @@ lockCloudContainer(): Promise&lt;number&gt;
 
 | 类型                | 说明                                    |
 | ------------------- | ---------------------------------------|
-| Promise&lt;number&gt; | Promise对象，如果加锁成功，返回锁的有效时长，如果加锁失败，返回0，单位：ms。 |
+| Promise&lt;number&gt; | Promise对象，如果加锁成功，返回锁的有效时长；如果加锁失败，返回0，单位：ms。 |
 
 **错误码：**
 

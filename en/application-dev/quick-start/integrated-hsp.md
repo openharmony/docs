@@ -52,7 +52,7 @@ Multiple applications in a group can use the same dynamic shared package. To red
 
 3. Packaging configuration for creators (.tgz Package)
 
-    (1) Configure project signature information. For details, see [Signing Your App/Atomic Service](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-signing-V13).
+    (1) Configure project signature information. For details, see [Signing Your App/Atomic Service](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-signing-V5).
 
     (2) Configure the release mode.
 
@@ -93,4 +93,4 @@ Multiple applications in a group can use the same dynamic shared package. To red
     }
     ```
     > **NOTE**
-    > Before installing and running an application, the user must configure the project signature information. For details, see [App/Service Signature](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-signing-V13).
+    > Before installing and running an application, the user must configure the project signature information. For details, see [App/Service Signature](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-signing-V5).

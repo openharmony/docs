@@ -3,9 +3,8 @@
 The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
 
 > **NOTE**
->
-> - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs provided by this module are no longer maintained since API version 9. You are advised to use profile APIs of [@ohos.bluetooth.ble](js-apis-bluetooth-ble.md).
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs provided by this module are no longer maintained since API version 9. You are advised to use profile APIs of [@ohos.bluetooth.ble](js-apis-bluetooth-ble.md).
 
 
 
@@ -3408,6 +3407,9 @@ Defines the parameters of the **CharacteristicWriteReq** event received by the s
 | deviceId           | string | Yes   | No   | Address of the remote device that sends the **CharacteristicWriteReq** event, for example, XX:XX:XX:XX:XX:XX.|
 | transId            | number | Yes   | No   | Transmission ID of the write request. The response returned by the server must use the same transmission ID.      |
 | offset             | number | Yes   | No   | Start position for writing the characteristic value. For example, **k** means to write from the kth byte. The response returned by the server must use the same offset.|
+| isPrep             | boolean | Yes   | No   | Whether the write request is executed immediately. The value **true** means to execute the write request immediately.|
+| needRsp            | boolean | Yes   | No   | Whether to send a response to the GATT client. The value **true** means to send a response.|
+| value              | ArrayBuffer | Yes   | No   | Binary value of the descriptor to write.|
 | characteristicUuid | string | Yes   | No   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
 | serviceUuid        | string | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
 

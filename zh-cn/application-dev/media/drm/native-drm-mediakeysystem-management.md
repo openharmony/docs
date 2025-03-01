@@ -33,7 +33,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备DRM�
 4.（可选）获取设备支持的DRM解决方案的名称和唯一标识的列表。
 
    ```c++
-    uint32_t count = 1; // count是当前设备实际支持的DRM插件的个数，用户根据实际情况设置
+    uint32_t count = 1; // count是当前设备实际支持的DRM插件的个数，用户根据实际情况设置。
     DRM_MediaKeySystemDescription descriptions[1];
     memset(descriptions, 0, sizeof(descriptions));
     Drm_ErrCode ret = OH_MediaKeySystem_GetMediaKeySystems(descriptions, &count);
@@ -55,7 +55,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备DRM�
 6.（可选）声明MediaKeySystem事件监听回调。
 
    ```c++
-     // 适用于多个MediaKeySystem实例的场景
+     // 适用于多个MediaKeySystem实例的场景。
     static Drm_ErrCode SystemCallBack(DRM_EventType eventType, uint8_t *info, int32_t infoLen, char *extra)
     {
         printf("SystemCallBack");
@@ -71,7 +71,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备DRM�
 7.（可选）设置MediaKeySystem事件监听回调。
 
    ```c++
-     // 适用于多个MediaKeySystem实例的场景
+     // 适用于多个MediaKeySystem实例的场景。
     Drm_ErrCode ret = OH_MediaKeySystem_SetMediaKeySystemCallback(mediaKeySystem, SystemCallBack);
     if (ret != DRM_ERR_OK) {
         printf("OH_MediaKeySystem_SetMediaKeySystemCallback failed.");
@@ -98,13 +98,13 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备DRM�
 9. 检查设备DRM证书状态，设备DRM证书不存在或状态异常，则生成设备DRM证书请求，处理设备DRM证书响应。
 
    ```c++
-    unsigned char request[12288] = { 0x00 };  // 设备DRM证书request最大长度为12288，按实际大小申请
+    unsigned char request[12288] = { 0x00 };  // 设备DRM证书request最大长度为12288，按实际大小申请。
     int32_t requestLen = 12288;
-    // DRM服务URL的最大长度为2048
+    // DRM服务URL的最大长度为2048。
     char defaultUrl[2048] = { 0x00 };
     int32_t defaultUrlLen = 2048;
     DRM_CertificateStatus certStatus = CERT_STATUS_INVALID;
-    // 检查设备DRM证书状态
+    // 检查设备DRM证书状态。
     ret = OH_MediaKeySystem_GetCertificateStatus(mediaKeySystem, &certStatus);
     if (ret == DRM_ERR_OK && certStatus == CERT_STATUS_NOT_PROVISIONED) {
         ret = OH_MediaKeySystem_GenerateKeySystemRequest(mediaKeySystem, request, &requestLen, defaultUrl,
@@ -147,7 +147,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备DRM�
    > 不同的DRM方案的配置属性信息可能存在差别，支持的属性名包含："vendor"、"version"、"description"、"algorithms"、"maxSessionNum"、"currentHDCPLevel"。需解决方案支持属性值设置能力才能设置DRM配置属性信息。
 
    ```c++
-    ret = OH_MediaKeySystem_SetConfigurationString(mediaKeySystem, "version", "2.0"); // 设置字符串类型的配置信息
+    ret = OH_MediaKeySystem_SetConfigurationString(mediaKeySystem, "version", "2.0"); // 设置字符串类型的配置信息。
     if (ret == DRM_ERR_OK) {
         printf("MediaKeySystem_SetConfigurationString success");
     } else {
@@ -155,14 +155,14 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备DRM�
     }
     char value[32];
     int32_t valueLen = 32;
-    // 获取字符串类型的配置信息
+    // 获取字符串类型的配置信息。
     ret = OH_MediaKeySystem_GetConfigurationString(mediaKeySystem, "version", value, valueLen);
     if (ret == DRM_ERR_OK) {
         printf("OH_MediaKeySystem_GetConfigurationString success");
     } else {
         printf("OH_MediaKeySystem_GetConfigurationString failed. %d ", ret);
     }
-    // 设置字符数组类型的配置信息，请根据实际数据和长度传入
+    // 设置字符数组类型的配置信息，请根据实际数据和长度传入。
     uint8_t description[4] = {0x00, 0x00, 0x00, 0x00};
     ret = OH_MediaKeySystem_SetConfigurationByteArray(mediaKeySystem, "description", description, sizeof(description)/sizeof(uint8_t));
     if (ret == DRM_ERR_OK) {
@@ -170,7 +170,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备DRM�
     } else {
         printf("OH_MediaKeySystem_SetConfigurationByteArray failed. %d ", ret);
     }
-     // 获取字符数组类型的配置信息，根据DRM解决方案实际情况填入
+     // 获取字符数组类型的配置信息，根据DRM解决方案实际情况填入。
     uint8_t descriptionValue[32];
     int32_t descriptionValueLen = 32;
     ret = OH_MediaKeySystem_GetConfigurationByteArray(mediaKeySystem, "description", descriptionValue, &descriptionValueLen);

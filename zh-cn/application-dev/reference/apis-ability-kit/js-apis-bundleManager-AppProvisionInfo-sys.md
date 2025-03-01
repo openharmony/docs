@@ -10,9 +10,9 @@
 
 ## AppProvisionInfo
 
-**系统能力:** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
-**系统接口：**  此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称                      | 类型   | 只读 | 可选 | 说明                 |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
@@ -31,9 +31,9 @@
 
 ## Validity
 
-**系统能力:** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
-**系统接口：**  此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称                      | 类型   | 只读 | 可选 | 说明                 |
 | ------------------------- | ------ | ---- | ---- | -------------------- |

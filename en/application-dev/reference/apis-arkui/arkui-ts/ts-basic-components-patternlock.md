@@ -197,6 +197,23 @@ Sets the background circle style for the dots in a grid when they are in the act
 | color | [ResourceColor](ts-types.md#resourcecolor) | No| Color of the background circle.<br>Default value: same as the value of **pathColor**|
 | radius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No| Radius of the background circle.<br>Default value: 11/6 of **circleRadius**|
 | enableWaveEffect | boolean | No| Whether to enable the wave effect.<br>Default value: **true**|
+| enableForeground<sup>14+</sup> | boolean | No| Whether the background circle is displayed in the foreground.<br>Default value: **true**|
+
+### skipUnselectedPoint<sup>14+</sup>
+
+skipUnselectedPoint(skipped: boolean)
+
+Sets whether unselected dots in the grid are automatically selected when the password path passes over them.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| skipped  | boolean | Yes  | Whether unselected dots in the grid are automatically selected when the password path passes over them. Default value: **false**|
 
 ## Events
 

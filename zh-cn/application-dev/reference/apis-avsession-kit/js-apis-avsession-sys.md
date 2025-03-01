@@ -819,7 +819,7 @@ on(type: 'sessionServiceDie', callback: () => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -854,7 +854,7 @@ off(type: 'sessionServiceDie', callback?: () => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -1376,7 +1376,7 @@ on(type: 'deviceAvailable', callback: (device: OutputDeviceInfo) => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -1412,7 +1412,7 @@ off(type: 'deviceAvailable', callback?: (device: OutputDeviceInfo) => void): voi
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -1444,7 +1444,7 @@ on(type: 'deviceOffline', callback: (deviceId: string) => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -1482,7 +1482,7 @@ off(type: 'deviceOffline', callback?: (deviceId: string) => void): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -1519,7 +1519,7 @@ getAVCastController(sessionId: string, callback: AsyncCallback\<AVCastController
 
 **需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -1572,7 +1572,7 @@ getAVCastController(sessionId: string): Promise\<AVCastController>
 
 **需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -2085,7 +2085,7 @@ on(type: 'videoSizeChange', callback: (width:number, height:number) => void): vo
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -2120,7 +2120,7 @@ off(type: 'videoSizeChange'): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -2159,7 +2159,7 @@ aVCastController.off('videoSizeChange');
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 | 名称            | 类型                      | 必填 | 说明                                                                  |
 | --------------- |-------------------------| ---- |--------------------------------------------------------------------- |

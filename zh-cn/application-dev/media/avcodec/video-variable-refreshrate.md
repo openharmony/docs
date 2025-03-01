@@ -28,16 +28,16 @@
 
     ```cpp
     OH_AVFormat *format = OH_AVFormat_Create();
-    int32_t width = 1280; // 视频帧宽度
-    int32_t height = 720; // 视频帧高度
-    int32_t fps = 60; // 视频帧率
+    int32_t width = 1280; // 视频帧宽度。
+    int32_t height = 720; // 视频帧高度。
+    int32_t fps = 60; // 视频帧率。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_FRAME_RATE, fps);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR, 1);
     int32_t ret = OH_VideoDecoder_Configure(videoDec, format);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
     OH_AVFormat_Destroy(format);
     ```

@@ -62,7 +62,7 @@ RelationalStore提供了一套完整的对本地数据库进行管理的机制�
 | int OH_Data_Asset_DestroyOne(Data_Asset *asset) | 销毁一个资产类型实例并回收内存。 |
 | Data_Asset **OH_Data_Asset_CreateMultiple(uint32_t count) | 创造指定数量的资产类型实例。使用完毕后需要调用OH_Data_Asset_DestroyMultiple释放内存。 |
 | int OH_Data_Asset_DestroyMultiple(Data_Asset **assets, uint32_t count) | 销毁指定数量的资产类型实例并回收内存。 |
-| int OH_Rdb_Subscribe(OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_DataObserver *observer) | 为数据库注册观察者, 当分布式数据库中的数据发生更改时，将调用回调。 |
+| int OH_Rdb_Subscribe(OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_DataObserver *observer) | 为数据库注册观察者，当分布式数据库中的数据发生更改时，将调用回调。 |
 | int OH_Rdb_Unsubscribe(OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_DataObserver *observer) | 从数据库中删除指定类型的指定观察者。 |
 | int OH_Rdb_SubscribeAutoSyncProgress(OH_Rdb_Store *store, const Rdb_ProgressObserver *observer) | 订阅RDB存储的自动同步进程, 当收到自动同步进度的通知时，将调用回调。 |
 | int OH_Rdb_UnsubscribeAutoSyncProgress(OH_Rdb_Store *store, const Rdb_ProgressObserver *observer) | 取消订阅RDB存储的自动同步进程。 |
@@ -327,7 +327,7 @@ libnative_rdb_ndk.z.so
    OH_Rdb_CloudSync(store_, Rdb_SyncMode::SYNC_MODE_TIME_FIRST, table, TABLE_COUNT, &observer);
    ```
 
-10. 将数据观察者注册到指定的存储对象(store)上，并订阅指定类型(type)的事件。在数据发生变化时，系统会调用相应的回调函数来处理进度观察。调用OH_Rdb_Subscribe接口订阅数据变化事件。使用该接口需要实现云服务功能。示例代码如下所示：
+10. 将数据观察者注册到指定的存储对象（store）上，并订阅指定类型（type）的事件。在数据发生变化时，系统会调用相应的回调函数来处理进度观察。调用OH_Rdb_Subscribe接口订阅数据变化事件。使用该接口需要实现云服务功能。示例代码如下所示：
     
     ```c
     // 定义回调函数
@@ -378,7 +378,7 @@ libnative_rdb_ndk.z.so
     valueBucket->destroy(valueBucket);
     ```
 
-11. 从指定的存储对象(store)中取消对指定类型(type)的事件的订阅。取消后，系统将不再调用相应的回调函数来处理进度观察。调用OH_Rdb_Unsubscribe接口取消订阅数据变化事件。使用该接口需要实现云服务功能。示例代码如下所示：
+11. 从指定的存储对象（store）中取消对指定类型（type）的事件的订阅。取消后，系统将不再调用相应的回调函数来处理进度观察。调用OH_Rdb_Unsubscribe接口取消订阅数据变化事件。使用该接口需要实现云服务功能。示例代码如下所示：
     
     ```c
     // 定义回调函数
@@ -405,7 +405,7 @@ libnative_rdb_ndk.z.so
     ```
 
 
-12. 将进度观察者注册到指定的存储对象(store)上，以便订阅自动同步进度的事件。当存储对象进行自动同步时，系统会调用相应的回调函数处理进度观察。调用OH_Rdb_SubscribeAutoSyncProgress接口订阅自动同步进度事件。使用该接口需要实现云服务功能。示例代码如下所示：
+12. 将进度观察者注册到指定的存储对象（store）上，以便订阅自动同步进度的事件。当存储对象进行自动同步时，系统会调用相应的回调函数处理进度观察。调用OH_Rdb_SubscribeAutoSyncProgress接口订阅自动同步进度事件。使用该接口需要实现云服务功能。示例代码如下所示：
     
     ```c
     // 定义回调函数
@@ -417,7 +417,7 @@ libnative_rdb_ndk.z.so
     OH_Rdb_SubscribeAutoSyncProgress(store_, &observer);
     ```
 
-13. 从指定的存储对象(store)中取消订阅自动同步进度的事件。取消后，系统将不再调用相应的回调函数来处理进度观察。调用OH_Rdb_UnsubscribeAutoSyncProgress接口取消订阅自动同步进度事件。使用该接口需要实现云服务功能。示例代码如下所示：
+13. 从指定的存储对象（store）中取消订阅自动同步进度的事件。取消后，系统将不再调用相应的回调函数来处理进度观察。调用OH_Rdb_UnsubscribeAutoSyncProgress接口取消订阅自动同步进度事件。使用该接口需要实现云服务功能。示例代码如下所示：
     
     ```c
     // 定义回调函数

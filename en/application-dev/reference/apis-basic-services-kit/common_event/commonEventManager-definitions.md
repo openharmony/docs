@@ -1962,5 +1962,5 @@ Indicates the common event of that the SPN information had changed.
 
 **Value**: "usual.event.SPN_INFO_CHANGED"
 
-<!--no_check-->
+
 

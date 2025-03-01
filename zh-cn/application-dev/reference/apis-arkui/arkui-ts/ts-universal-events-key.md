@@ -29,6 +29,27 @@ onKeyEvent(event: (event: KeyEvent) => void): T
 | -------- | -------- |
 | T | 返回当前组件。 |
 
+## onKeyEvent<sup>15+</sup>
+onKeyEvent(event: Callback\<KeyEvent, boolean>): T
+
+当绑定该方法的组件获得焦点后，按键操作将触发此回调。若此回调的返回值为`true`，则视为按键事件已被处理。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                          | 必填 | 说明               |
+| ------ | ----------------------------- | ---- | ------------------ |
+| event  | [Callback](./ts-types.md#callback12)<[KeyEvent](#keyevent对象说明), boolean> | 是   | 按键事件的回调。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## onKeyPreIme<sup>12+</sup>
 
 onKeyPreIme(event: Callback<KeyEvent, boolean>): T
@@ -52,6 +73,31 @@ onKeyPreIme(event: Callback<KeyEvent, boolean>): T
 | 类型 | 说明 |
 | -------- | -------- |
 | T | 返回当前组件。 |
+
+## onKeyEventDispatch<sup>15+</sup>
+
+onKeyEventDispatch(event: Callback\<KeyEvent, boolean>): T
+
+对应组件收到按键事件时，会触发该回调，该按键事件不会分发给其子组件。不支持构造KeyEvent进行分发，只支持分发已有的按键事件。
+
+该回调的返回值为`true`时，视作该按键事件已被消费，不会冒泡给父组件处理。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                          | 必填 | 说明               |
+| ------ | ----------------------------- | ---- | ------------------ |
+| event  | [Callback](./ts-types.md#callback12)<[KeyEvent](#keyevent对象说明), boolean> | 是   | 处理按键事件分发的回调。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 
 ## KeyEvent对象说明
 

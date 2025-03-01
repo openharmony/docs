@@ -2591,4 +2591,31 @@ Deletes a registered object and its callback.
 | webTag | The name of a **Web** component. |
 | objName | The name of the injected object.|
 
-<!--no_check-->
+### OH_NativeArkWeb_LoadData()
+
+```
+ArkWeb_ErrorCode OH_NativeArkWeb_LoadData (const char* webTag,const char* data,const char* mimeType,const char* encoding,const char* baseUrl,const char* historyUrl)
+```
+**Description**
+
+Loads data or URLs. This function must be called in the main thread.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| webTag | The name of a \<Web> component. |
+| data   | String being base64 or URL encoded, which cannot be empty. |
+| mimeType  | Media type, such as **text/html**, which cannot be empty. |
+| encoding  | Encoding type, such as **UTF-8**, which cannot be empty. |
+| baseUrl   | URL (HTTP/HTTPS/data compliant), which is assigned by the **Web** component to **window.origin**. |
+| historyUrl  | Historical URL. If this parameter is not empty, it can be managed in historical records to implement page going backward and forward. |
+
+
+**Returns**
+
+Error codes of ArkWeb NDK APIs.

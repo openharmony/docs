@@ -1,6 +1,6 @@
 # @ohos.net.http (Data Request)
 
-The **http** module provides the HTTP data request capability. An application can initiate a data request over HTTP. Common HTTP methods include **GET**, **POST**, **OPTIONS**, **HEAD**, **PUT**, **DELETE**, **TRACE**, and **CONNECT**.
+The **http** module provides APIs for implementing HTTP data request capabilities. An application can initiate a data request over HTTP. Common HTTP methods include **GET**, **POST**, **OPTIONS**, **HEAD**, **PUT**, **DELETE**, **TRACE**, and **CONNECT**.
 
 > **NOTE**
 >
@@ -13,7 +13,7 @@ The **http** module provides the HTTP data request capability. An application ca
 import { http } from '@kit.NetworkKit';
 ```
 
-## Examples
+## Example
 
 ```ts
 // Import the http namespace.
@@ -119,7 +119,7 @@ Creates an HTTP request. You can use this API to initiate or destroy an HTTP req
 
 | Type       | Description                                                        |
 | :---------- | :----------------------------------------------------------- |
-| HttpRequest | **HttpRequest** object, which contains the **request**, **requestInStream**, **destroy**, **on**, or **off** method.|
+| HttpRequest | An **HttpRequest** object, which contains the **request**, **requestInStream**, **destroy**, **on**, or **off** method.|
 
 **Example**
 
@@ -983,7 +983,7 @@ Registers an observer for events indicating progress of receiving HTTP streaming
 | Name  | Type                   | Mandatory| Description                             |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | Yes  | Event type. The value is **dataReceiveProgress**.|
-| callback | AsyncCallback\<[DataReceiveProgressInfo](#datareceiveprogressinfo11)\>   | Yes  | Callback used to return the data receiving progress.|
+| callback | AsyncCallback\<[DataReceiveProgressInfo](#datareceiveprogressinfo11)\>   | Yes  | Callback used to return the result.  |
 
 **Example**
 
@@ -1013,7 +1013,7 @@ Unregisters the observer for events indicating progress of receiving HTTP stream
 | Name  | Type              | Mandatory| Description                                  |
 | -------- | ------------------ | ---- | -------------------------------------- |
 | type     | string             | Yes  | Event type. The value is **dataReceiveProgress**.|
-| callback | Callback\<[DataReceiveProgressInfo](#datareceiveprogressinfo11)\>   | No  | Callback used to return the data receiving progress.   |
+| callback | Callback\<[DataReceiveProgressInfo](#datareceiveprogressinfo11)\>   | No  | Callback used to return the result.     |
 
 **Example**
 
@@ -1040,7 +1040,7 @@ Registers an observer for events indicating progress of sending HTTP requests.
 | Name  | Type                   | Mandatory| Description                             |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | Yes  | Event type. The value is **dataSendProgress**.|
-| callback | AsyncCallback\<[DataSendProgressInfo](#datasendprogressinfo11)\>   | Yes  | Callback used to return the data sending progress.|
+| callback | AsyncCallback\<[DataSendProgressInfo](#datasendprogressinfo11)\>   | Yes  | Callback used to return the result.  |
 
 **Example**
 
@@ -1070,7 +1070,7 @@ Unregisters the observer for events indicating progress of sending HTTP requests
 | Name  | Type              | Mandatory| Description                                  |
 | -------- | ------------------ | ---- | -------------------------------------- |
 | type     | string             | Yes  | Event type. The value is **dataSendProgress**.|
-| callback | Callback\<[DataSendProgressInfo](#datasendprogressinfo11)\>  | No| Callback used to return the data sending progress.|
+| callback | Callback\<[DataSendProgressInfo](#datasendprogressinfo11)\>  | No| Callback used to return the result.  |
 
 **Example**
 
@@ -1297,15 +1297,15 @@ Defines an object that stores the response to an HTTP request. Before invoking A
 
 **Usage of Keywords in the Response Header**
 
-- `Cache-Control`: specifies the cache policy, for example, `no-cache`, `no-store`, `max-age`, `public`, or `private`.
+- **`Cache-Control`**: specifies the cache policy, for example, `no-cache`, `no-store`, `max-age`, `public`, or `private`.
 
-- `Expires`: specifies the expiration time of a resource. The value is in the GMT format.
+- **`Expires`**: specifies the expiration time of a resource. The value is in the GMT format.
 
-- `ETag`: identifies the resource version. The client can use the `If-None-Match` request header to check whether the resource has been modified.
+- **`ETag`**: identifies the resource version. The client can use the `If-None-Match` request header to check whether the resource has been modified.
 
-- `Last-Modified`: specifies the last modification time of a resource. The client can use the `If-Modified-Since` request header to check whether a resource has been modified.
+- **`Last-Modified`**: specifies the last modification time of a resource. The client can use the `If-Modified-Since` request header to check whether a resource has been modified.
 
-- `Vary`: specifies the parts of the request header that affect the cached response. This field is used to distinguish different cache versions.
+- **`Vary`**: specifies the parts of the request header that affect the cached response. This field is used to distinguish different cache versions.
 
 When using these keywords, ensure that the response header is correctly configured on the server. The client determines whether to use the cached resource and how to verify whether the resource is the latest based on the response header. Correct cache policies help to improve application performance and user experience.
 
@@ -1313,29 +1313,29 @@ When using these keywords, ensure that the response header is correctly configur
 
 `Cache-Control` is a common header, but it is usually used on the server. It allows you to define when, how, and how long a response should be cached. The following are some common `Cache-Control` directives:
 
-1. `no-cache`: indicates that the response can be stored in the cache, but it must be verified with the origin server before each reuse. If the resource remains unchanged, the response status code is 304 (Not Modified). In this case, the resource content is not sent, and the resource in the cache is used. If the resource has expired, the response status code is 200 and the resource content is sent.
+1. **`no-cache`**: indicates that the response can be stored in the cache, but it must be verified with the origin server before each reuse. If the resource remains unchanged, the response status code is 304 (Not Modified). In this case, the resource content is not sent, and the resource in the cache is used. If the resource has expired, the response status code is 200 and the resource content is sent.
 
-2. `no-store`: indicates that resources cannot be cached. Resources must be obtained from the server for each request.
+2. **`no-store`**: indicates that resources cannot be cached. Resources must be obtained from the server for each request.
 
-3. `max-age`: specifies the maximum cache duration, in seconds. For example, `Cache-Control: max-age=3600` indicates that the valid cache duration is 3,600 seconds (that is, 1 hour).
+3. **`max-age`**: specifies the maximum cache duration, in seconds. For example, `Cache-Control: max-age=3600` indicates that the valid cache duration is 3,600 seconds (that is, 1 hour).
 
-4. `public` indicates that the response can be cached by any object, for example, the client that sends the request or the proxy server.
+4. **`public`**: indicates that the response can be cached by any object, for example, the client that sends the request or the proxy server.
 
-5. `private`: indicates that the response can be cached only by a single user and cannot be used as a shared cache (that is, the response cannot be cached by the proxy server).
+5. **`private`**: indicates that the response can be cached only by a single user and cannot be used as a shared cache (that is, the response cannot be cached by the proxy server).
 
-6. `must-revalidate`: indicates that the response can be cached and can only be reused 
+6. **`must-revalidate`**: indicates that the response can be cached and can only be reused 
 
-7. `no-transform`: indicates that the proxy server is not allowed to modify the response content.
+7. **`no-transform`**: indicates that the proxy server is not allowed to modify the response content.
 
-8. `proxy-revalidate`: works in a way similar to `must-revalidate`, but applies only to shared caches.
+8. **`proxy-revalidate`**: works in a way similar to `must-revalidate`, but applies only to shared caches.
 
-9. `s-maxage`: works in a way similar to `max-age`, but applies only to shared caches.
+9. **`s-maxage`**: works in a way similar to `max-age`, but applies only to shared caches.
 
 ### flush<sup>9+</sup>
 
 flush(callback: AsyncCallback\<void\>): void
 
-Flushes cached data to the file system so that the data can be accessed in the next HTTP request. This API uses an asynchronous callback to return the result. Cached data includes the response header (header), response body (result), cookies, request time (requestTime), and response time (responseTime).
+Flushes data in the cache to the file system so that the cached data can be accessed in the next HTTP request. This API uses an asynchronous callback to return the result. Cached data includes the response header (header), response body (result), cookies, request time (requestTime), and response time (responseTime).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1376,7 +1376,7 @@ httpRequest.request("EXAMPLE_URL", (err: BusinessError, data: http.HttpResponse)
 
 flush(): Promise\<void\>
 
-Flushes cached data to the file system so that the data can be accessed in the next HTTP request. This API uses a promise to return the result.
+Flushes data in the cache to the file system so that the cached data can be accessed in the next HTTP request. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

@@ -10,7 +10,7 @@ The **uriPermissionManager** module provides APIs for granting permissions on a 
 
 ## Modules to Import
 
-  
+
 ```ts
 import { uriPermissionManager } from '@kit.AbilityKit';
 ```
@@ -20,13 +20,10 @@ import { uriPermissionManager } from '@kit.AbilityKit';
 
 grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: string, callback: AsyncCallback&lt;number&gt;): void
 
-Grants the URI permission to an application. If the call is successful, the application obtains the permission to access the file specified by the URI. Once the application exits, the permission will be automatically revoked. For details about how to access the file based on the URI, see [Sharing an Application File](../../file-management/share-app-file.md). This API uses an asynchronous callback to return the result.
+Grants the URI permission to an application. The permission will be revoked once the application exits. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
->
-> If an application has the ohos.permission.PROXY_AUTHORIZATION_URI permission, it can grant access to the URIs not belonging to it. If the application does not have this permission, it can only grant access to its own URIs.
-
-**System API**: This is a system API.
+An application can grant its own URIs to another application. If it has the ohos.permission.PROXY_AUTHORIZATION_URI permission, it can also grant the any accessible URI of another application.
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -34,12 +31,12 @@ Grants the URI permission to an application. If the call is successful, the appl
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | uri | string | Yes| URI of the file. The scheme has a fixed value of **file**. For details, see [FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).| 
-  | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | Yes| Read or write permission on the file to grant.| 
-  | targetBundleName | string | Yes| Bundle name of the target application.| 
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uri | string | Yes| URI of the file, for example, **fileshare:///com.samples.filesharetest.FileShare/person/10**.|
+| flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | Yes| Read or write permission on the file to grant.|
+| targetBundleName | string | Yes| Bundle name of the application, to which the permission is granted.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.|
 
 **Error codes**
 
@@ -82,13 +79,10 @@ Grants the URI permission to an application. If the call is successful, the appl
 
 grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: string): Promise&lt;number&gt;
 
-Grants the URI permission to an application. If the call is successful, the application obtains the permission to access the file specified by the URI. Once the application exits, the permission will be automatically revoked. For details about how to access the file based on the URI, see [Sharing an Application File](../../file-management/share-app-file.md). This API uses a promise to return the result.
+Grants the URI permission to an application. The permission will be revoked once the application exits. This API uses a promise to return the result.
 
-> **NOTE**
->
-> If an application has the ohos.permission.PROXY_AUTHORIZATION_URI permission, it can grant access to the URIs not belonging to it. If the application does not have this permission, it can only grant access to its own URIs.
-
-**System API**: This is a system API.
+An application can grant its own URIs to another application. If it has the ohos.permission.PROXY_AUTHORIZATION_URI permission, it can also grant the any accessible URI of another application.
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -96,31 +90,31 @@ Grants the URI permission to an application. If the call is successful, the appl
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | uri | string | Yes| URI of the file. The scheme has a fixed value of **file**. For details, see [FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).| 
-  | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | Yes| Read or write permission on the file to grant.| 
-  | targetBundleName | string | Yes| Bundle name of the target application.|  
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uri | string | Yes| URI of the file, for example, **fileshare:///com.samples.filesharetest.FileShare/person/10**.|
+| flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | Yes| Read or write permission on the file to grant.|
+| targetBundleName | string | Yes| Bundle name of the application, to which the permission is granted.|
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-  | ID| Error Message|
-  | ------- | -------------------------------- |
-  | 201 | Permission denied. |
-  | 202 | Not System App. Interface caller is not a system app. |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-  | 16000050 | Internal error. |
-  | 16000058 | Invalid URI flag. |
-  | 16000059 | Invalid URI type. |
-  | 16000060 | A sandbox application cannot grant URI permission. |
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 16000050 | Internal error. |
+| 16000058 | Invalid URI flag. |
+| 16000059 | Invalid URI type. |
+| 16000060 | A sandbox application cannot grant URI permission. |
 
 **Example**
     
@@ -148,132 +142,35 @@ Grants the URI permission to an application. If the call is successful, the appl
   });
   ```
 
-## uriPermissionManager.grantUriPermission<sup>14+</sup>
-
-grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: string, appCloneIndex: number): Promise&lt;void&gt;
-
-Grants the URI permission to an application. If the call is successful, the application obtains the permission to access the file specified by the URI. Once the application exits, the permission will be automatically revoked. For details about how to access the file based on the URI, see [Sharing an Application File](../../file-management/share-app-file.md). This API uses a promise to return the result.
-
-> **NOTE**
-> 
->- If an application has the ohos.permission.PROXY_AUTHORIZATION_URI permission, it can grant access to the URIs not belonging to it. If the application does not have this permission, it can only grant access to its own URIs.
->- This API can be used to grant URI access permission to a cloned application. You need to specify the application bundle name and index of the cloned application.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**Required permissions**: ohos.permission.PROXY_AUTHORIZATION_URI
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | uri | string | Yes| URI of the file. The scheme has a fixed value of **file**. For details, see [FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).| 
-  | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | Yes| Read or write permission on the file to grant.| 
-  | targetBundleName | string | Yes| Bundle name of the target application.|
-  | appCloneIndex | number | Yes| Index of the cloned application. The value range is [0, 1000]. The value **0** indicates the application itself.|
-
-**Return value**
-
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise that returns no value.  | 
-
-**Error codes**
-
-  For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
-
-  | ID| Error Message|
-  | ------- | -------------------------------- |
-  | 201 | Permission denied. |
-  | 202 | Not System App. Interface caller is not a system app. |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-  | 16000050 | Internal error. |
-  | 16000058 | Invalid URI flag. |
-  | 16000059 | Invalid URI type. |
-  | 16000060 | A sandbox application cannot grant URI permission. |
-  | 16000081 | Get target application info failed. |
-
-**Example**
-
-  ```ts
-  import { AbilityConstant, UIAbility, Want, wantConstant, uriPermissionManager } from '@kit.AbilityKit';
-  import { fileUri } from '@kit.CoreFileKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    }
-
-    onForeground(): void {
-      let targetBundleName: string = 'com.example.demo1';
-      let filePath: string = this.context.filesDir + "/test.txt";
-      let uri: string = fileUri.getUriFromPath(filePath);
-      // grant uri permission to main application
-      try {
-        let appCloneIndex: number = 0;
-        uriPermissionManager.grantUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName,
-          appCloneIndex)
-          .then(() => {
-            console.log('grantUriPermission succeeded.');
-          }).catch((error: BusinessError) => {
-          console.error(`grantUriPermission failed. error: ${JSON.stringify(error)}.`);
-        });
-      } catch (error) {
-        console.error(`grantUriPermission failed. error: ${JSON.stringify(error)}.`);
-      }
-
-      // grant uri permission to clone application
-      try {
-        let appCloneIndex: number = 1;
-        uriPermissionManager.grantUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName,
-          appCloneIndex)
-          .then(() => {
-            console.log('grantUriPermission succeeded.');
-          }).catch((error: BusinessError) => {
-          console.error(`grantUriPermission failed. error: ${JSON.stringify(error)}.`);
-        });
-      } catch (error) {
-        console.error(`grantUriPermission failed. error: ${JSON.stringify(error)}.`);
-      }
-    }
-  }
-
-  ```
-
 ## uriPermissionManager.revokeUriPermission
 
 revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallback&lt;number&gt;): void
 
 Revokes the URI permission from an application. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> 
-> This API can be used to revoke the URI permission of another application obtained by this application or URI permission granted by this application.
-
-**System API**: This is a system API.
+This API can be used to revoke the URI permission of another application obtained by this application or URI permission granted by this application.
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | uri | string | Yes| URI of the file. The scheme has a fixed value of **file**. For details, see [FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).| 
-  | targetBundleName | string | Yes| Bundle name of the application, from which the permission is revoked.| 
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uri | string | Yes| URI of the file, for example, **fileshare:///com.samples.filesharetest.FileShare/person/10**.|
+| targetBundleName | string | Yes| Bundle name of the application, from which the permission is revoked.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-  | ID| Error Message|
-  | ------- | -------------------------------- |
-  | 202 | Not System App. Interface caller is not a system app. |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-  | 16000050 | Internal error. |
-  | 16000059 | Invalid URI type. |
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 16000050 | Internal error. |
+| 16000059 | Invalid URI type. |
 
 **Example**
     
@@ -295,37 +192,35 @@ revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt
 
 Revokes the URI permission from an application. This API uses a promise to return the result.
 
-> **NOTE**
-> 
-> This API can be used to revoke the URI permission of another application obtained by this application or URI permission granted by this application.
 
-**System API**: This is a system API.
+This API can be used to revoke the URI permission of another application obtained by this application or URI permission granted by this application.
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | uri | string | Yes| URI of the file. The scheme has a fixed value of **file**. For details, see [FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).| 
-  | targetBundleName | string | Yes| Bundle name of the target application.|  
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uri | string | Yes| URI of the file, for example, **fileshare:///com.samples.filesharetest.FileShare/person/10**.|
+| targetBundleName | string | Yes| Bundle name of the application, from which the permission is revoked.|
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-  | ID| Error Message|
-  | ------- | -------------------------------- |
-  | 202 | Not System App. Interface caller is not a system app. |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-  | 16000050 | Internal error. |
-  | 16000059 | Invalid URI type. |
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 16000050 | Internal error. |
+| 16000059 | Invalid URI type. |
 
 
 **Example**
@@ -343,89 +238,4 @@ Revokes the URI permission from an application. This API uses a promise to retur
     }).catch((error: BusinessError) => {
     console.log('Verification failed.');
   });
-  ```
-## uriPermissionManager.revokeUriPermission<sup>14+</sup>
-
-revokeUriPermission(uri: string, targetBundleName: string, appCloneIndex: number): Promise&lt;void&gt;
-
-Revokes the URI permission from an application. This API uses a promise to return the result.
-
-> **NOTE**
-> 
->- This API can be used to revoke the URI permission of another application obtained by this application or URI permission granted by this application.
->- This API can be used to revoke the URI permissions granted to a cloned application. You need to specify the application bundle name and index of the cloned application.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | uri | string | Yes| URI of the file. The scheme has a fixed value of **file**. For details, see [FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).| 
-  | targetBundleName | string | Yes| Bundle name of the target application.|
-  | appCloneIndex | number | Yes| Index of the cloned application. The value range is [0, 1000]. The value **0** indicates the application itself.|
-
-**Return value**
-
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise that returns no value.| 
-
-**Error codes**
-
-  For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
-
-  | ID| Error Message|
-  | ------- | -------------------------------- |
-  | 202 | Not System App. Interface caller is not a system app. |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-  | 16000050 | Internal error. |
-  | 16000059 | Invalid URI type. |
-  | 16000081 | Get target application info failed. |
-
-**Example**
-
-  ```ts
-
-  import { AbilityConstant, UIAbility, Want, wantConstant, uriPermissionManager } from '@kit.AbilityKit';
-  import { fileUri } from '@kit.CoreFileKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    }
-
-    onForeground(): void {
-      let targetBundleName: string = 'com.example.demo1';
-      let filePath: string = this.context.filesDir + "/test.txt";
-      let uri: string = fileUri.getUriFromPath(filePath);
-      // revoke uri permission of main application
-      try {
-        let appCloneIndex: number = 0;
-        uriPermissionManager.revokeUriPermission(uri, targetBundleName, appCloneIndex)
-          .then(() => {
-            console.log('revokeUriPermission succeeded.');
-          }).catch((error: BusinessError) => {
-          console.error(`revokeUriPermission failed. error: ${JSON.stringify(error)}.`);
-        });
-      } catch (error) {
-        console.error(`revokeUriPermission failed. error: ${JSON.stringify(error)}.`);
-      }
-
-      // revoke uri permission of clone application
-      try {
-        let appCloneIndex: number = 0;
-        uriPermissionManager.revokeUriPermission(uri, targetBundleName, appCloneIndex)
-          .then(() => {
-            console.log('revokeUriPermission succeeded.');
-          }).catch((error: BusinessError) => {
-          console.error(`revokeUriPermission failed. error: ${JSON.stringify(error)}.`);
-        });
-      } catch (error) {
-        console.error(`revokeUriPermission failed. error: ${JSON.stringify(error)}.`);
-      }
-    }
-  }
   ```

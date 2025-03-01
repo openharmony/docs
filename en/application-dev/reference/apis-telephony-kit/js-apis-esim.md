@@ -61,7 +61,7 @@ Launches the download page for the user to add a single profile. This API uses a
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| profile | DownloadableProfile | Yes  | Profile that can be downloaded.|
+| profile | [DownloadableProfile](js-apis-esim-sys.md#downloadableprofile14) | Yes  | Profile that can be downloaded.|
 
 **Returns**
 

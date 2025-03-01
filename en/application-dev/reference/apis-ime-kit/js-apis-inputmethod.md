@@ -779,6 +779,105 @@ Describes the window information of the input method keyboard.
 | top  | number | No| No| Vertical coordinate of the upper left corner of the input method keyboard window, in px.|
 | width  | number | No| No| Width of the input method keyboard window, in px.|
 | height  | number | No| No| Height of the input method keyboard window, in px.|
+
+## EnabledState<sup>15+</sup>
+
+Indicates whether the input method is enabled.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name| Value|Description|
+| -------- | -------- |-------- |
+| DISABLED   | 0 |Disabled.|
+| BASIC_MODE  | 1 |Basic mode.|
+| FULL_EXPERIENCE_MODE  | 2 |Full experience mode.|
+## MessageHandler<sup>15+</sup>
+
+Represents a custom communication object.
+
+> **NOTE**
+>
+> You can register this object to receive custom communication data sent by the input method application. When the custom communication data is received, the [onMessage](#onmessage15) callback in this object is triggered.
+>
+> This object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#onterminated15) callback of the penultimate registered object is triggered.
+>
+> If this object is unregistered, its [onTerminated](#onterminated15) callback will be triggered.
+
+### onMessage<sup>15+</sup>
+
+onMessage(msgId: string, msgParam?: ArrayBuffer): void
+
+Receives custom data sent by the input method application.
+
+> **NOTE**
+>
+> This callback is triggered when the registered MeesageHandler receives custom communication data sent by the input method application.
+>
+> The **msgId** parameter is mandatory, and the **msgParam** parameter is optional. If only the custom **msgId** data is received, confirm it with the data sender.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type       | Optional| Description                            |
+| -------- | ----------- | ---- | -------------------------------- |
+| msgId    | string      | No  | Identifier of the received custom communication data.|
+| msgParam | ArrayBuffer | Yes  | Message body of the received custom communication data.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let messageHandler: inputmethod.MessageHandler = {
+        onTerminated(): void {
+            console.log('OnTerminated.');
+        },
+        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+        }
+    }
+    inputMethodController.recvMessage(messageHandler);
+} catch(err) {
+  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+}
+```
+
+### onTerminated<sup>15+</sup>
+
+onTerminated(): void
+
+Listens for MessageHandler termination.
+
+> **NOTE**
+>
+> When an application registers a new MessageHandler object, the **OnTerminated** callback of the previous registered MessageHandler object is triggered.
+>
+> When an application unregisters a MessageHandler object, the **OnTerminated** callback of the current registered MessageHandler object is triggered.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let messageHandler: inputmethod.MessageHandler = {
+        onTerminated(): void {
+            console.log('OnTerminated.');
+        },
+        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+        }
+    }
+    inputMethodController.recvMessage(messageHandler);
+} catch(err) {
+  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+}
+```
+
 ## InputMethodController
 
 In the following API examples, you must first use [getController](#inputmethodgetcontroller9) to obtain an **InputMethodController** instance, and then call the APIs using the obtained instance.
@@ -1782,6 +1881,110 @@ inputMethodController.hideSoftKeyboard().then(() => {
 }).catch((err: BusinessError) => {
   console.error(`Failed to hide softKeyboard: ${JSON.stringify(err)}`);
 });
+```
+
+### sendMessage<sup>15+</sup>
+
+sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
+
+Sends the custom communication to the input method application. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API can be called only when the edit box is attached to the input method and enter the edit mode, and the input method application is in full experience mode.
+>
+> The maximum length of **msgId** is 256 B, and the maximum length of **msgParam** is 128 KB.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type       | Optional| Description                                      |
+| -------- | ----------- | ---- | ------------------------------------------ |
+| msgId    | string      | No  | Identifier of the custom data to be sent to the input method application.|
+| msgParam | ArrayBuffer | Yes  | Message body of the custom data to be sent to the input method application.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Incorrect parameter types. 2. Incorrect parameter length. |
+| 12800003 | input method client error.                  |
+| 12800009 | input method client detached.               |
+| 12800014 | the input method is in basic mode.          |
+| 12800015 | the other side does not accept the request. |
+| 12800016 | input method client is not editable.        |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let msgId: string = "testMsgId";
+let msgParam: ArrayBuffer = new ArrayBuffer(128);
+inputMethodController.sendMessage(msgId, msgParam).then(() => {
+  console.log('Succeeded send message.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to send message: ${JSON.stringify(err)}`);
+});
+```
+
+### recvMessage<sup>15+</sup>
+
+recvMessage(msgHandler?: MessageHandler): void
+
+Registers or unregisters MessageHandler.
+
+> **NOTE**
+>
+> The [MessageHandler](#messagehandler15) object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#onterminated15) callback of the penultimate registered object is triggered.
+>
+> If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#onterminated15) callback will be triggered.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                                        |
+| ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| msgHandler | [MessageHandler](#messagehandler15) | No  | This object receives custom communication data from the input method application through [onMessage](#onmessage15) and receives a message for terminating the subscription to this object through [onTerminated](#onterminated15). If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#onterminated15) callback will be triggered.|
+
+**Return value**
+
+| Type| Description        |
+| ---- | ------------ |
+| void | No value is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | parameter error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+let messageHandler: inputmethod.MessageHandler = {
+    onTerminated(): void {
+        console.log('OnTerminated.');
+    },
+    onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+        console.log('recv message.');
+    }
+}
+inputMethodController.recvMessage(messageHandler);
+inputMethodController.recvMessage();
 ```
 
 ### stopInput<sup>(deprecated)</sup>
@@ -3328,5 +3531,40 @@ inputMethodSetting.displayOptionalInputMethod().then(() => {
   console.log('Succeeded in displaying optionalInputMethod.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to displayOptionalInputMethod: ${JSON.stringify(err)}`);
+})
+```
+
+### getInputMethodState<sup>15+</sup>
+
+getInputMethodState(): Promise&lt;EnabledState&gt;
+
+Obtains the input method state. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type                                   | Description                                                        |
+| --------------------------------------- | ------------------------------------------------------------ |
+| Promise\<[EnabledState](#enabledstate15)> | Promise used to return the result. **EnabledState.DISABLED** indicates that the input method is disabled, **EnabledState.BASIC_MODE** indicates that the input method is in basic mode, and **EnabledState.FULL_EXPERIENCE_MODE** indicates that the input method is in full experience mode.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 12800004 | not an input method.              |
+| 12800008 | input method manager service error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+inputMethodSetting.getInputMethodState().then((status: inputMethod.EnabledState) => {
+  console.log(`Succeeded in getInputMethodState, status: ${status}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getInputMethodState: ${JSON.stringify(err)}`);
 })
 ```

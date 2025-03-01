@@ -58,8 +58,6 @@ enableWifi(): void
 
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 (ohos.permission.MANAGE_WIFI_CONNECTION 仅系统应用可用 或 ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION 仅企业应用可用)
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **错误码：**
@@ -71,7 +69,7 @@ enableWifi(): void
 | 201 | Permission denied.          |
 | 801  | Capability not supported.|
 | 2501000 | Operation failed.          |
-| 2501003  | Operation failed because the service is being closed.|
+| 2501003  | Failed for wifi is closing.|
 
 **示例：**
 
@@ -788,8 +786,6 @@ removeDevice(id: number): void
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
 **参数：**
 
   | **参数名** | **类型** | **必填** | **说明** |
@@ -923,8 +919,6 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
@@ -981,8 +975,6 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
 **参数：**
 
 | **参数名** | **类型** | **必填** | **说明** |
@@ -1029,8 +1021,6 @@ getDeviceConfigs(): &nbsp;Array&lt;WifiDeviceConfig&gt;
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
@@ -1070,8 +1060,6 @@ connectToNetwork(networkId: number): void
 应用使用该接口连接到热点。
 
 **需要权限：** ohos.permission.MANAGE_WIFI_CONNECTION 仅系统应用可用 或 ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION 仅企业应用可用
-
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -1332,8 +1320,6 @@ disconnect(): void
 
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 (ohos.permission.MANAGE_WIFI_CONNECTION 仅系统应用可用 或
    ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION 仅企业应用可用)
-
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 

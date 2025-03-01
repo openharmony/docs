@@ -8,7 +8,7 @@
         - [System Language and Region Setting](i18n-system-language-region.md)
         - [Preferred Language Setting](i18n-preferred-language.md)
         <!--Del-->
-        - [User Preference Setting (for System Applications Only)](i18n-user-preferences.md)
+        - [Setting User Preferences (for System Applications Only)](i18n-user-preferences.md)
         <!--DelEnd-->
     - [Date and Time Formatting](i18n-time-date.md)
     - [Number and Unit of Measurement Formatting](i18n-numbers-weights-measures.md)

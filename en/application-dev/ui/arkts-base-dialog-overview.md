@@ -14,7 +14,7 @@ A dialog box is a modal window designed to temporarily display information or pe
 | [Alert dialog box (AlertDialog)](arkts-fixes-style-dialog.md#alert-dialog-box-alertdialog)| Usually used to display information or operations that users need to pay attention to or must focus on. For example, when a user performs a sensitive action, such a dialog box can be displayed for confirmation.|
 | [Action sheet (ActionSheet)](arkts-fixes-style-dialog.md#action-sheet-actionsheet)| Used when there is a list of information that requires user attention or confirmation.|
 |[Picker dialog box (PickerDialog)](arkts-fixes-style-dialog.md#picker-dialog-box-pickerdialog)| Used when users need to select dates, time, or text.|
-| [showDialog](arkts-fixes-style-dialog.md#common-dialog-box-showdialog)| Used when processing of results returned asynchronously is required after the dialog box is closed.|
+| [Common dialog box (showDialog)](arkts-fixes-style-dialog.md#common-dialog-box-showdialog)| Used when processing of results returned asynchronously is required after the dialog box is closed.|
 | [Action menu (showActionMenu)](arkts-fixes-style-dialog.md#action-menu-showactionmenu)| Used when processing of results returned asynchronously is required after the action menu is closed.|
 
 ## Specifications Constraints

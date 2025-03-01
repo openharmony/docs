@@ -84,7 +84,7 @@ PopupButtonOptions定义按钮的相关属性和事件。
 
 ##  PopupIconOptions
 
-PopupIconOptions定义icon（右上角图标）的属性。
+PopupIconOptions定义icon（左上角图标）的属性。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

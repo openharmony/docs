@@ -4,8 +4,8 @@ The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth L
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs provided by this module are no longer maintained since API version 10. You are advised to use profile APIs of [@ohos.bluetooth.ble](js-apis-bluetooth-ble.md).
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs provided by this module are no longer maintained since API version 10. You are advised to use profile APIs of [@ohos.bluetooth.ble](js-apis-bluetooth-ble.md).
 
 
 
@@ -2330,8 +2330,8 @@ Subscribes to the HFP connection state changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates HFP connection state changes.|
-| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | Yes   | Callback used to return the HFP connection state change.                              |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates A2DP connection state changes.|
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | Yes   | Callback used to return the A2DP connection state change.                              |
 
 **Error codes**
 
@@ -2376,7 +2376,7 @@ Unsubscribes from the HFP connection state changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates HFP connection state changes.|
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates A2DP connection state changes.|
 | callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | No   | Callback to unregister.                              |
 
 **Error codes**
@@ -2426,8 +2426,8 @@ Subscribes to the HidHost connection state changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates HidHost connection state changes.|
-| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | Yes   | Callback used to return the HidHost connection state change.                              |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates A2DP connection state changes.|
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | Yes   | Callback used to return the A2DP connection state change.                              |
 
 **Error codes**
 
@@ -2471,7 +2471,7 @@ Unsubscribes from the HidHost connection state changes.
 
 | Name  | Type                                                 | Mandatory| Description                                                     |
 | -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
-| type     | string                                                | Yes  | Event type. The value **connectionStateChange** indicates HidHost connection state changes.|
+| type     | string                                                | Yes  | Event type. The value **connectionStateChange** indicates A2DP connection state changes.|
 | callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | No  | Callback to unregister.                                     |
 
 **Error codes**
@@ -2527,8 +2527,8 @@ Subscribes to the PAN connection state changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates PAN connection state changes.|
-| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | Yes   | Callback used to return the PAN connection state change.                              |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates A2DP connection state changes.|
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | Yes   | Callback used to return the A2DP connection state change.                              |
 
 **Error codes**
 
@@ -2572,7 +2572,7 @@ Unsubscribes from the PAN connection state changes.
 
 | Name  | Type                                                 | Mandatory| Description                                                     |
 | -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
-| type     | string                                                | Yes  | Event type. The value **connectionStateChange** indicates PAN connection state changes.|
+| type     | string                                                | Yes  | Event type. The value **connectionStateChange** indicates A2DP connection state changes.|
 | callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | No  | Callback to unregister.                                     |
 
 **Error codes**
@@ -3221,7 +3221,7 @@ Subscribes to the descriptor read request events.
 | Name     | Type                                      | Mandatory  | Description                               |
 | -------- | ---------------------------------------- | ---- | --------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorRead** indicates a descriptor read request event.|
-| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequestdeprecated)&gt; | Yes   | Callback used to return a descriptor read request event from the GATT client.       |
+| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequestdeprecated)&gt; | Yes   | Callback used to return a characteristic read request event from the GATT client.       |
 
 **Error codes**
 
@@ -3321,7 +3321,7 @@ Subscribes to the descriptor write request events.
 | Name     | Type                                      | Mandatory  | Description                                |
 | -------- | ---------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorWrite** indicates a descriptor write request event.|
-| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequestdeprecated)&gt; | Yes   | Callback used to return a descriptor write request from the GATT client.        |
+| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequestdeprecated)&gt; | Yes   | Callback used to return a characteristic write request from the GATT client.        |
 
 **Error codes**
 
@@ -4739,6 +4739,9 @@ Defines the parameters of the **CharacteristicWriteReq** event received by the s
 | deviceId           | string | Yes   | No   | Address of the remote device that sends the **CharacteristicWriteReq** event, for example, XX:XX:XX:XX:XX:XX.|
 | transId            | number | Yes   | No   | Transmission ID of the write request. The response returned by the server must use the same transmission ID.      |
 | offset             | number | Yes   | No   | Start position for writing the characteristic value. For example, **k** means to write from the kth byte. The response returned by the server must use the same offset.|
+| isPrep             | boolean | Yes   | No   | Whether the write request is executed immediately. The value **true** means to execute the write request immediately.|
+| needRsp            | boolean | Yes   | No   | Whether to send a response to the GATT client. The value **true** means to send a response.|
+| value              | ArrayBuffer | Yes   | No   | Binary value of the descriptor to write.|
 | characteristicUuid | string | Yes   | No   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
 | serviceUuid        | string | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
 
@@ -4876,7 +4879,7 @@ Defines the scan configuration parameters.
 
 ## ScanDuty<sup>(deprecated)</sup>
 
-Enumerates the scan duty options.
+Enumerates the scan modes.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.ScanDuty](js-apis-bluetooth-ble.md#scanduty) instead.

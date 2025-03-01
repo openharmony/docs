@@ -13,7 +13,7 @@
 该模块提供以下端云服务相关的常用功能：
 
 - [Config](#config)：提供配置端云协同的方法，包括云同步打开、关闭、清理数据、数据变化通知。
-- [sharing<sup>11+</sup>](#sharing11)：提供端云共享的方法，包括发起共享、取消共享、退出共享、更改共享数据权限、查找共享参与者、确认邀请、更改已确认的邀请、查找共享资源。
+- [sharing](#sharing11)：提供端云共享的方法，包括发起共享、取消共享、退出共享、更改共享数据权限、查找共享参与者、确认邀请、更改已确认的邀请、查找共享资源。
 
 > **说明：** 
 >
@@ -51,14 +51,14 @@ import { cloudData } from '@kit.ArkData';
 | eventId   | string | 是   | 如果传值为"cloud_data_change"，表示云数据变更。              |
 | extraData | string | 是   | 透传数据，extraData是json结构的字符串，其中必须包括"data"字段，"data"中是通知变更所需要的信息，包含账号、应用名、数据库名、数据库类型和数据库表名，所有字段均不能为空。
 
-**样例：**
+**示例：**
 
 ```ts
-//accountId:用户打开的云账号ID
-//bundleName:应用包名
-//containerName:云上数据库名称
-//databaseScopes:云上数据库类型
-//recordTypes:云上数据库表名
+// accountId:用户打开的云账号ID
+// bundleName:应用包名
+// containerName:云上数据库名称
+// databaseScopes:云上数据库类型
+// recordTypes:云上数据库表名
 
 interface ExtraData {
   eventId: "cloud_data_change",
@@ -119,7 +119,7 @@ static enableCloud(accountId: string, switches: Record<string, boolean>, callbac
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | accountId | string                          | 是   | 具体打开的云账号ID。                                         |
-| switches  | Record<string, boolean>         | 是   | 各应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
+| switches  | Record<string, boolean>         | 是   | 各应用的端云协同开关信息。true为打开该应用端云开关，false为关闭该应用端云开关。 |
 | callback  | AsyncCallback&lt;void&gt;       | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -169,7 +169,7 @@ static enableCloud(accountId: string, switches: Record<string, boolean>): Promis
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | accountId | string                          | 是   | 具体打开的云账号ID。                                         |
-| switches  | Record<string, boolean>         | 是   | 各应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
+| switches  | Record<string, boolean>         | 是   | 各应用的端云协同开关信息。true为打开该应用端云开关，false为关闭该应用端云开关。 |
 
 **返回值：**
 
@@ -322,7 +322,7 @@ static changeAppCloudSwitch(accountId: string, bundleName: string, status: boole
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | accountId | string                          | 是   | 具体打开的云账号ID。 |
 | bundleName| string                         | 是   | 应用名。 |
-| status    | boolean                        | 是   | 应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
+| status    | boolean                        | 是   | 应用的端云协同开关信息。true为打开该应用端云开关，false为关闭该应用端云开关。 |
 | callback  | AsyncCallback&lt;void&gt;       | 是   | 回调函数。                   |
 
 **错误码：**
@@ -373,7 +373,7 @@ static changeAppCloudSwitch(accountId: string, bundleName: string, status: boole
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | accountId | string                          | 是   | 具体打开的云账号ID。 |
 | bundleName| string                         | 是   | 应用名。 |
-| status    | boolean                        | 是   | 应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
+| status    | boolean                        | 是   | 应用的端云协同开关信息。true为打开该应用端云开关，false为关闭该应用端云开关。 |
 
 **返回值：**
 

@@ -470,7 +470,7 @@ Updates a contact based on the specified contact information. This API uses an a
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                 | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | contact  | [Contact](#contact)                     | Yes  | Contact information. Contact ID, which is mandatory.                                        |
-| attrs    | [ContactAttributes](#contactattributes) | No  | List of contact attributes.                                          |
+| attrs    | [ContactAttributes](#contactattributes) | Yes  | List of contact attributes.                                          |
 | callback | AsyncCallback&lt;void&gt;               | Yes  | Callback used to return the result. If the operation is successful, the ID of the updated contact is returned. If the operation fails, an error code is returned.    |
 
 **Error codes**
@@ -1499,7 +1499,7 @@ Queries a contact based on the specified key and holder. This API uses an asynch
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                  | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.                      |
-| holder   | [Holder](#holder)                        | No  | Application that creates the contacts.                                      |
+| holder   | [Holder](#holder)                        | Yes  | Application that creates the contacts.                                      |
 | callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result. If the operation is successful, the queried contact is returned. If the operation fails, an error code is returned.  |
 
 **Error codes**
@@ -3937,11 +3937,11 @@ Defines an application that creates the contact.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name       | Type  | Readable| Writable| Mandatory| Description        |
-| ----------- | ------ | ---- | ---- | ---- | ------------ |
-| bundleName  | string | Yes  | No  | Yes  | Bundle name. The value is **com.ohos.contacts**.|
-| displayName | string | Yes  | No  | No  | Application name.  |
-| holderId    | number | Yes  | Yes  | No  | Application ID.    |
+| Name       | Type  | Readable| Writable| Description        |
+| ----------- | ------ | ---- | ---- | ------------ |
+| bundleName  | string | Yes  | No  | Bundle name. The value is **com.ohos.contacts**.|
+| displayName | string | Yes  | No  | Application name.  |
+| holderId    | number | Yes  | Yes  | Application ID.    |
 
 
 **Example**

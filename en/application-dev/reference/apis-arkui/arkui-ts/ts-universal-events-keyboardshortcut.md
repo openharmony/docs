@@ -24,8 +24,8 @@ Sets a keyboard shortcut for the component.
 
 | Name  | Type                                 | Mandatory  | Description                                    |
 | ----- | ------------------------------------- | ---- | ---------------------------------------- |
-| value | string \| [FunctionKey](ts-appendix-enums.md#functionkey10) | Yes| Character key (which can be entered through the keyboard) or [function key](ts-appendix-enums.md#functionkey10).<br>An empty string means to disable the keyboard shortcut.<br>|
-| keys  | Array\<[ModifierKey](ts-appendix-enums.md#modifierkey10)> | Yes| Modifier keys.<br>This parameter can be left empty only when **value** is set to a [function key](ts-appendix-enums.md#functionkey10).<br>|
+| value | string \| [FunctionKey](ts-appendix-enums.md#functionkey) | Yes| Character key (which can be entered through the keyboard) or [function key](ts-appendix-enums.md#functionkey).<br>An empty string means to disable the keyboard shortcut.<br>|
+| keys  | Array\<[ModifierKey](ts-appendix-enums.md#modifierkey)> | Yes| Modifier keys.<br>This parameter can be left empty only when **value** is set to a [function key](ts-appendix-enums.md#functionkey#functionkey).<br>|
 | action  | () => void    | No   | Callback for a custom event after the keyboard shortcut is triggered.<br>                              |
 
 **Return value**

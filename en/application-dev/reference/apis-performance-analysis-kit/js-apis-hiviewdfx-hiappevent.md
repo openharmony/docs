@@ -79,7 +79,7 @@ Defines a data processor for reporting events.
 | userProperties      | string[]                | No  | Name array of user properties that can be reported by the data processor. **name** corresponds to the **name** parameter of the [setUserProperty](#hiappeventsetuserproperty11) API.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
 | eventConfigs        | [AppEventReportConfig](#appeventreportconfig11)[]  | No  | Array of events that can be reported by the data processor.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                |
 | configId<sup>12+</sup> | number | No| Configuration ID for data processor. The input value must be greater than or equal to **0**. If the input value is less than **0**, the default value 0 is used. If the input value is greater than 0, the value uniquely identifies a data processor with its name.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| customConfigs<sup>12+</sup> | Record\<string, string> | No| Custom extended parameters. If the input parameter name and value do not meet the specifications, extended parameters are not configured by default. The specifications are as follows:<br>- A parameter name is a string that contains a maximum of 32 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter.<br>- A parameter value is a string contains a maximum of 1024 characters.<br>- The number of parameters must be less than 32.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| customConfigs<sup>12+</sup> | Record\<string, string> | No| Custom extended parameters. If the input parameter name and value do not meet the specifications, extended parameters are not configured by default. The specifications are as follows:<br>- A parameter name is a string that contains a maximum of 32 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign (`$`). It must start with a letter or dollar sign (`$`) and end with a digit or letter.<br>- A parameter value is a string contains a maximum of 1024 characters.<br>- The number of parameters must be less than 32.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 
 ## AppEventReportConfig<sup>11+</sup>
 
@@ -261,7 +261,7 @@ Defines parameters for an **AppEventInfo** object.
 | domain    | string                  | Yes  | Event domain. The value is a string of up to 32 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a letter and cannot end with an underscore (_).|
 | name      | string                  | Yes  | Event name. The value is string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign (`$`). It must start with a letter or dollar sign (`$`) and end with a digit or letter.|
 | eventType | [EventType](#eventtype) | Yes  | Event type.                                                  |
-| params    | object                  | Yes  | Event parameter object, which consists of a parameter name and a parameter value. In system events, the fields contained in **params** are defined by system. For details about the fields, you can see the introduction to system events, for example, [Crash Event Overview](../../dfx/hiappevent-watcher-crash-events.md). For application events, you need to define the logging parameters. The specifications are as follows:<br>- A parameter name is a string that contains a maximum of 32 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign (`$`). It must start with a letter or dollar sign (`$`) and end with a digit or letter.<br>- The parameter value can be a string, number, boolean, or array. If the parameter value is a string, its maximum length is 8*1024 characters. If this limit is exceeded, excess characters will be discarded. If the parameter value is a number, the value must be within the range of **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. Otherwise, uncertain values may be generated. If the parameter value is an array, the elements in the array must be of the same type, which can only be string, number, or boolean. In addition, the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.<br>- The maximum number of parameters is 32. If this limit is exceeded, excess parameters will be discarded.|
+| params    | object                  | Yes  | Event parameter object. An event parameter has a parameter name and a parameter value. In system events, the fields contained in **params** are defined by system. For details about the fields, you can see the introduction to system events, for example, [Crash Event Overview](../../dfx/hiappevent-watcher-crash-events.md). For application events, you need to define the logging parameters. The specifications are as follows:<br>- A parameter name is a string that contains a maximum of 32 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign (`$`). It must start with a letter or dollar sign (`$`) and end with a digit or letter.<br>- The parameter value can be a string, number, boolean, or array. If the parameter value is a string, its maximum length is 8*1024 characters. If this limit is exceeded, excess characters will be discarded. If the parameter value is a number, the value must be within the range of **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. Otherwise, uncertain values may be generated. If the parameter value is an array, the elements in the array must be of the same type, which can only be string, number, or boolean. In addition, the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.<br>- The maximum number of parameters is 32. If this limit is exceeded, excess parameters will be discarded. |
 
 ## hiAppEvent.setEventParam<sup>12+</sup>
 
@@ -277,7 +277,7 @@ Sets custom event parameters. This API uses a promise to return the result. In t
 
 | Name| Type                          | Mandatory| Description          |
 | ------ | ------------------------------ | ---- | -------------- |
-| params | Record&lt;string, [ParamType](#paramtype12)&gt; | Yes| Custom parameter object. The parameter name and value are defined as follows:<br>- A parameter name is a string that contains a maximum of 32 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter.<br>- The parameter value is of the [ParamType](#paramtype12) and contains a maximum of 1024 characters.<br>- The number of parameters must be less than 64.|
+| params | Record&lt;string, [ParamType](#paramtype12)&gt; | Yes| Custom parameter object. The parameter name and value are defined as follows:<br>- A parameter name is a string that contains a maximum of 32 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign (`$`). It must start with a letter or dollar sign (`$`) and end with a digit or letter.<br>- The parameter value is of the [ParamType](#paramtype12) and contains a maximum of 1024 characters.<br>- The number of parameters must be less than 64. |
 | domain | string                        | Yes| Event domain. The event domain can be associated with application events and system events (hiAppEvent.domain.OS).|
 | name   | string                        | No| Event name. The default value is an empty string, which indicates all event names in the associated event domain. The event name can be associated with application events and system events. System events can be associated only with crash events (hiAppEvent.event.APP_CRASH) and freeze events (hiAppEvent.event.APP_FREEZE).|
 
@@ -308,7 +308,92 @@ let params: Record<string, hiAppEvent.ParamType> = {
 };
 // Add custom parameters to the application event.
 hiAppEvent.setEventParam(params, "test_domain", "test_event").then(() => {
-  hilog.info(0x0000, 'hiAppEvent', `success to set svent param`);
+  hilog.info(0x0000, 'hiAppEvent', `success to set event param`);
+}).catch((err: BusinessError) => {
+  hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## hiAppEvent.setEventConfig<sup>15+</sup>
+
+setEventConfig(name: string, config: Record&lt;string, ParamType&gt;): Promise&lt;void&gt;
+
+Sets the custom threshold triggering condition for an event. This API uses a promise to return the result. In the same lifecycle, you can customize the parameters related to the event threshold triggering condition based on the event name. Currently, only the **MAIN_THREAD_JANK** event is supported. For details about the parameter configuration, see [Main Thread Jank Event Overview](../../dfx/hiappevent-watcher-mainthreadjank-events.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
+
+**Parameters**
+
+| Name| Type                          | Mandatory| Description          |
+| ------ | ------------------------------ | ---- | -------------- |
+| name   | string                        | Yes| Event name.|
+| config | Record<string, ParamType> | Yes| Custom parameter object. The parameter name and value are defined as follows:<br>- The parameter name contains a maximum of 1024 characters, which is of the string type and cannot be empty.<br>- The parameter value is of the ParamType and contains a maximum of 1024 characters.|
+
+**Return value**
+
+| Type               | Description         |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Application Event Logging Error Codes](errorcode-hiappevent.md).
+
+| ID| Error Message                                     |
+| -------- | --------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.3.Parameter verification failed. |
+
+**Example**
+
+The following describes how to customize the **log_type** parameter for the **MAIN_THREAD_JANK** event.
+
+Set **log_type** to **0** to collect the stack or trace:
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let params: Record<string, hiAppEvent.ParamType> = {
+  "log_type": "0"
+};
+
+hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => {
+  hilog.info(0x0000, 'hiAppEvent', `success to set event config`);
+}).catch((err: BusinessError) => {
+  hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
+});
+```
+
+Set **log_type** to **1** to collect only the call stack:
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let params: Record<string, hiAppEvent.ParamType> = {
+  "log_type": "1",
+  "sample_interval": "100",
+  "ignore_startup_time": "11",
+  "sample_count": "21",
+  "report_times_per_app": "3",
+};
+hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => {
+  hilog.info(0x0000, 'hiAppEvent', `success to set event config`);
+}).catch((err: BusinessError) => {
+  hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
+});
+```
+
+Set **log_type** to **2** to collect only the trace:
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let params: Record<string, hiAppEvent.ParamType> = {
+  "log_type": "2"
+};
+hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => {
+  hilog.info(0x0000, 'hiAppEvent', `success to set event config`);
 }).catch((err: BusinessError) => {
   hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
 });

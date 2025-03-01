@@ -18,7 +18,7 @@ Not supported
 
 ## Chip
 
-Chip({options:ChipOptions})
+Chip({options:ChipOptions}): void
 
 **Decorator**: @Builder
 
@@ -57,8 +57,8 @@ Defines the type and style parameters of the chip.
 | onClicked      | Callback\<void> | No  | Event triggered when the chip is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                      |
 | direction | [Direction](ts-appendix-enums.md#direction) | No| Layout direction.<br>Default value: **Direction.Auto**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | closeOptions<sup>14+</sup> | [CloseOptions](#closeoptions14) | No| Accessibility settings of the default close icon.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility description of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| accessibilityLevel<sup>14+</sup> | string | No| Accessibility level of the chip.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessible description of the chip. You can provide comprehensive text explanations to help users understand the operation they are about to perform and its potential consequences, especially when these cannot be inferred from the component's attributes and accessibility text alone. If a component contains both text information and the accessible description, the text is announced first and then the accessible description, when the component is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| accessibilityLevel<sup>14+</sup> | string | No| Accessibility level of the chip. It determines whether the component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: It is treated as "yes" by the system.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | accessibilitySelectedType<sup>14+</sup> | [AccessibilitySelectedType](#accessibilityselectedtype14) | No| Type of selected state for the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 > **NOTE**
@@ -141,9 +141,9 @@ Inherits [IconCommonOptions](#iconcommonoptions).
 | Name  | Type      | Mandatory| Description              |
 | ------ | ---------- | ---- | ------------------ |
 | action | () => void | No  | Action of the suffix icon.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| accessibilityText<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility text of the suffix icon.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility description of the suffix icon.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| accessibilityLevel<sup>14+</sup> | string | No| Accessibility level of the suffix icon.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| accessibilityText<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility text, that is, accessibility label name, of the suffix icon. If a component does not contain text information, it will not be announced by the screen reader when selected. In this case, the screen reader user cannot know which component is selected. To solve this problem, you can set accessibility text for components without text information. When such a component is selected, the screen reader announces the specified accessibility text, informing the user which component is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessible description of the suffix icon. You can provide comprehensive text explanations to help users understand the operation they are about to perform and its potential consequences, especially when these cannot be inferred from the component's attributes and accessibility text alone. If a component contains both text information and the accessible description, the text is announced first and then the accessible description, when the component is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| accessibilityLevel<sup>14+</sup> | string | No| Accessibility level of the suffix icon. It determines whether the component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: It is treated as "yes" when **action** is set for the component and as "no" otherwise.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## AccessibilityOptions<sup>14+</sup>
 
@@ -155,9 +155,9 @@ Defines the accessibility options of the suffix icon.
 
 | Name| Type| Mandatory| Description|
 | ------ | ---------- | ---- | ------------------ |
-| accessibilityText | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility text.|
-| accessibilityDescription | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility description.|
-| accessibilityLevel | string | No| Accessibility level.<br>Default value: **"auto"**|
+| accessibilityText | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility text, that is, accessible label name. If a component does not contain text information, it will not be announced by the screen reader when selected. In this case, the screen reader user cannot know which component is selected. To solve this problem, you can set accessibility text for components without text information. When such a component is selected, the screen reader announces the specified accessibility text, informing the user which component is selected.|
+| accessibilityDescription | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility description. You can provide comprehensive text explanations to help users understand the operation they are about to perform and its potential consequences, especially when these cannot be inferred from the component's attributes and accessibility text alone. If a component contains both text information and the accessible description, the text is announced first and then the accessible description, when the component is selected.|
+| accessibilityLevel | string | No| Accessibility level. It determines whether the component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: It is treated as "yes" by the system.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**|
 
 ## ChipSuffixSymbolGlyphOptions<sup>14+</sup>
 
@@ -247,9 +247,9 @@ Defines the spacing between the localized text and the left and right icons.
 
 ## Example
 
-### Example 1
+### Example 1: Setting a Custom Suffix Icon
 
-This example defines a custom chip for the deletion icon.
+This example shows how to implement a custom suffix icon for a chip.
 
 ```ts
 import { Chip, ChipSize } from '@kit.ArkUI';
@@ -291,9 +291,9 @@ struct Index {
 
 ![](figures/chip1.png)
 
-### Example 2
+### Example 2: Using the Default Suffix Icon
 
-This example implements the default chip for the deletion icon.
+This example demonstrates how to display a default suffix delete icon by setting **allowClose** to **true**.
 
 ```ts
 import { Chip, ChipSize } from '@kit.ArkUI';
@@ -330,9 +330,9 @@ struct Index {
 
 ![](figures/chip2.png)
 
-### Example 3
+### Example 3: Displaying No Suffix Icon
 
-This example shows how to hide the chip for the deletion icon.
+This example shows how to hide the suffix delete icon by setting **allowClose** to **false**.
 
 ```ts
 import { Chip, ChipSize } from '@kit.ArkUI';
@@ -372,9 +372,9 @@ struct Index {
 
 ![](figures/chip3.png)
 
-### Example 4
+### Example 4: Implementing the Activated State
 
-This example implements a chip in the activated state.
+This example shows how to implement the activated state for a chip by configuring **activated**.
 
 ```ts
 import { Chip, ChipSize } from '@kit.ArkUI';
@@ -427,7 +427,7 @@ struct Index {
 
 ![](figures/chip4.gif)
 
-### Example 5
+### Example 5: Setting the Symbol Icon
 
 This example implements symbol-type prefix and suffix icons for the **Chip** component.
 
@@ -485,9 +485,9 @@ struct Index {
 
 ![](figures/chip5.gif)
 
-### Example 6
+### Example 6: Implementing a Mirroring Effect
 
-This example mirrors the layout of the **Chip** component.
+This example shows how to achieve a mirroring effect for a chip by configuring **direction**.
 
 ```ts
 
@@ -534,12 +534,12 @@ struct ChipPage {
 
 ![](figures/chip6.png)
 
-### Example 7
+### Example 7: Implementing Accessibility for an Image-Type Suffix Icon
 
 This example implements the accessibility feature for a chip with an image-type suffix icon.
 
 ```ts
-
+// xxx.ets
 import { Chip, SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Builder
@@ -598,8 +598,8 @@ struct ChipExample2 {
   build() {
     NavDestination() {
       Scroll() {
-        SectionGroup({ title: 'Suffix icon readout' }) {
-          SectionItem({ title: 'Custom Readout' }) {
+        SectionGroup({ title: 'Suffix icon announcement' }) {
+          SectionItem({ title: 'Custom announcement' }) {
             Chip({
               label: { text: 'Chip' },
               suffixIcon: {
@@ -626,7 +626,7 @@ struct ChipExample2 {
 }
 ```
 
-### Example 8
+### Example 8: Implementing Accessibility for a Symbol-Type Suffix Icon
 
 This example implements the accessibility feature for a chip with a symbol-type suffix icon.
 
@@ -690,7 +690,7 @@ struct ChipExample2 {
   build() {
     NavDestination() {
       Scroll() {
-          SectionGroup({ title: 'Suffix symbol readout' }) {
+          SectionGroup({ title: 'Suffix symbol announcement' }) {
             SectionItem({ title: 'activatedAccessibility' }) {
               Chip({
                 label: { text: 'Chip' },

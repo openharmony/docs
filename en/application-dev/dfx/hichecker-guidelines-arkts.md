@@ -2,7 +2,7 @@
 
 ## Overview
 
-HiChecker is provided to check issues that may be easily ignored during application development. Such issues include time-consuming thread calling and ability resource leakage in application processes. The issues are recorded in logs or lead to process crashes so that you can find and rectify them.
+HiChecker is provided to check issues that may be easily ignored during application development. Such issues include time-consuming thread calling and ability resource leakage in application processes. The issues are recorded in logs or lead to process crashes explicitly so that you can find and rectify them.
 
 ## Basic Concepts
 
@@ -16,18 +16,18 @@ HiChecker is provided to check issues that may be easily ignored during applicat
 
 ## Constraints
 
-- Currently, the alarm rules supports only logs (default) and app crashes. 
+- Currently, the alarm rules support only logs (default) and application crashes. 
 - HiChecker supports stack unwinding in C but not in JavaScript. 
 
 ## Available APIs
 
 The check APIs are provided by the HiChecker module. For details about the APIs, see [HiChecker](../reference/apis-performance-analysis-kit/js-apis-hichecker.md).
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| hichecker.addCheckRule(rule: bigint) | Adds a rule. |
-| hichecker.removeCheckRule(rule: bigint) | Removes a rule. |
-| hichecker.containsCheckRule(rule: bigint) | Queries a rule. |
+| hichecker.addCheckRule(rule: bigint) | Adds a rule.|
+| hichecker.removeCheckRule(rule: bigint) | Removes a rule.|
+| hichecker.containsCheckRule(rule: bigint) | Queries a rule.|
 
 ## How to Develop
 

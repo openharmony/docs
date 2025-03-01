@@ -1,4 +1,4 @@
-# Working with Array Using Node-API
+# Working with Arrays Using Node-API
 
 ## Introduction
 
@@ -36,11 +36,11 @@ The following table describes the APIs for managing ArkTS arrays.
 
 ## Example
 
-If you are just starting out with Node-API, see [Node-API Development Process](use-napi-process.md). The following demonstrates only the C++ and ArkTS code for array management APIs.
+If you are just starting out with Node-API, see [Node-API Development Process](use-napi-process.md). The following demonstrates only the C++ and ArkTS code for array management APIs.  
 
 ### napi_create_array
 
-Use **napi_create_array** to create an ArkTS array.
+Call **napi_create_array** to create an ArkTS array.
 
 CPP code:
 
@@ -81,7 +81,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_array:%{public}s', JSON
 
 ### napi_create_array_with_length
 
-Use **napi_create_array_with_length** to create an ArkTS array of the specified length.
+Call **napi_create_array_with_length** to create an ArkTS array of the specified length.
 
 CPP code:
 
@@ -124,7 +124,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_array_with_length:%{pub
 
 ### napi_get_array_length
 
-Use **napi_get_array_length** to obtain the length of an array.
+Call **napi_get_array_length** to obtain the length of an array.
 
 CPP code:
 
@@ -172,7 +172,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API get_array_length:%{public}d', testN
 
 ### napi_is_array
 
-Use **napi_is_array** to check whether the given ArkTS value is an array.
+Call **napi_is_array** to check whether the given ArkTS value is an array.
 
 CPP code:
 
@@ -225,7 +225,7 @@ try {
 
 ### napi_set_element
 
-Use **napi_set_element** to set an element at the specified index in an ArkTS array.
+Call **napi_set_element** to set an element at the specified index in an ArkTS array.
 For the object that uses the index value as the key, you can use **napi_set_element** to set the property value.
 
 CPP code:
@@ -287,7 +287,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr[4]: %{public}s
 
 ### napi_get_element
 
-Use **napi_get_element** to obtain the element at the specified index in an ArkTS array. The index must be within the valid range of the array. Otherwise, **undefined** will be returned.
+Call **napi_get_element** to obtain the element at the specified index in an ArkTS array. The index must be within the valid range of the array. Otherwise, **undefined** will be returned.
 
 CPP code:
 
@@ -343,7 +343,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_element arr[null]: %{publi
 
 ### napi_has_element
 
-Use **napi_has_element** to check whether an ArkTS array has the element at the specified index. If the specified index exceeds the valid range of the array, **false** will be returned, which indicates that the element does not exist.
+Call **napi_has_element** to check whether an ArkTS array has the element at the specified index. If the specified index exceeds the valid range of the array, **false** will be returned, which indicates that the element does not exist.
 
 CPP code:
 
@@ -389,7 +389,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_element arr[7]: %{public}s
 
 ### napi_delete_element
 
-Use **napi_delete_element** to delete the element at the specified index from an ArkTS array.
+Call **napi_delete_element** to delete the element at the specified index from an ArkTS array.
 
 CPP code:
 
@@ -425,6 +425,7 @@ export const napiDeleteElement: <T>(arr: Array<T>, index: number) => boolean;
 ArkTS code:
 
 ```ts
+// Import napiHasElement and napiGetElement.
 import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
 
@@ -437,7 +438,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_element arr[0]: %{public}d
 
 ### napi_create_typedarray
 
-Use **napi_create_typedarray** to create an ArkTS **TypedArray** object of the specified type from an existing **ArrayBuffer** object.
+Call **napi_create_typedarray** to create an ArkTS **TypedArray** object of the specified type from an existing **ArrayBuffer** object.
 
 CPP code:
 
@@ -569,7 +570,7 @@ EXTERN_C_END
 
 ### napi_is_typedarray
 
-Use **napi_is_typedarray** to check whether the **napi_value** given from ArkTS is a **TypedArray** object.
+Call **napi_is_typedarray** to check whether the **napi_value** given from ArkTS is a **TypedArray** object.
 
 CPP code:
 
@@ -602,7 +603,7 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const isTypedarray: <T>(data: T) => boolean | void;
+export const isTypedarray: (data: Object) => boolean | void;
 ```
 
 ArkTS code:
@@ -613,8 +614,8 @@ import testNapi from 'libentry.so'
 try {
   let value = new Uint8Array([1, 2, 3, 4]);
   let data = "123";
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_typedarray: %{public}s', testNapi.isTypedarray<number>(value));
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_typedarray: %{public}s', testNapi.isTypedarray<string>(data));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_typedarray: %{public}s', testNapi.isTypedarray(value));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_typedarray: %{public}s', testNapi.isTypedarray(data));
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_typedarray error: %{public}s', error.message);
 }
@@ -622,7 +623,7 @@ try {
 
 ### napi_get_typedarray_info
 
-Use **napi_get_typedarray_info** to obtain properties of a **TypedArray** object.
+Call **napi_get_typedarray_info** to obtain properties of a **TypedArray** object.
 
 CPP code:
 
@@ -661,13 +662,13 @@ static napi_value GetTypedarrayInfo(napi_env env, napi_callback_info info)
         napi_create_int32(env, length, &napiLength);
         result = napiLength;
         break;
-    case INFO_ARRAY_BUFFER:
+    case INFO_BYTE_OFFSET:
         // Byte offset of the first TypedArray element in the native array.
         napi_value napiByteOffset;
         napi_create_int32(env, byteOffset, &napiByteOffset);
         result = napiByteOffset;
         break;
-    case INFO_BYTE_OFFSET:
+    case INFO_ARRAY_BUFFER:
         // ArrayBuffer under TypedArray.
         result = arraybuffer;
         break;
@@ -703,7 +704,7 @@ enum InfoType {
 };
 let arrbuff = testNapi.getTypedarrayInfo(int8Array, InfoType.ARRAY_BUFFER) as ArrayBuffer;
 // Convert arrbuffer to an array.
-let arr = Array.prototype.slice.call(new Int8Array(arrbuff));
+let arr = new Array(new Int8Array(arrbuff));
 hilog.info(0x0000, 'Node-API', 'get_typedarray_info_arraybuffer: %{public}s', arr.toString());
 hilog.info(0x0000, 'Node-API', 'get_typedarray_info_isIn8Array: %{public}s', testNapi.getTypedarrayInfo(int8Array, InfoType.TYPE).toString());
 hilog.info(0x0000, 'Node-API', 'get_typedarray_info_length: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.LENGTH));
@@ -712,7 +713,7 @@ hilog.info(0x0000, 'Node-API', 'get_typedarray_info_byte_offset: %{public}d', te
 
 ### napi_create_dataview
 
-Use **napi_create_dataview** to create a **DataView** object to facilitate access and operation of binary data. You need to specify a buffer pointing to the binary data and the number of bytes included.
+Call **napi_create_dataview** to create a **DataView** object to facilitate access and operation of binary data. You need to specify a buffer pointing to the binary data and the number of bytes included.
 
 CPP code:
 
@@ -774,7 +775,7 @@ hilog.info(0x0000, 'testTag','Test Node-API dataView first data: %{public}d', da
 
 ### napi_is_dataview
 
-Use **napi_is_dataview** to check whether the **napi_value** given from ArkTS is a **DataView** object.
+Call **napi_is_dataview** to check whether the **napi_value** given from ArkTS is a **DataView** object.
 
 CPP code:
 
@@ -829,7 +830,7 @@ try {
 
 ### napi_get_dataview_info
 
-Use **napi_get_dataview_info** to obtain properties of a **DataView** object.
+Call **napi_get_dataview_info** to obtain properties of a **DataView** object.
 
 CPP code:
 

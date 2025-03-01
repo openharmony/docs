@@ -1,6 +1,6 @@
 # @ohos.file.storageStatistics (应用空间统计)
 
-该模块提供空间查询相关的常用功能：包括对内外卡的空间查询，对应用分类数据统计的查询，对应用数据的查询等。
+该模块提供空间查询相关的常用功能：包括对内外卡的空间查询、对应用分类数据统计的查询、对应用数据的查询等。
 
 > **说明：**
 >
@@ -24,7 +24,7 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
   | 类型                                        | 说明                       |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise对象，返回指定卷上的应用存储空间大小（单位为Byte）      |
+  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise对象，返回指定卷上的应用存储空间大小（单位为Byte）。      |
 
 **错误码：**
 
@@ -59,7 +59,7 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
   | 参数名    | 类型                                                       | 必填  | 说明                                 |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
-  | callback | AsyncCallback&lt;[BundleStats](#bundlestats9)&gt;          | 是   | 获取指定卷上的应用存储空间大小之后的回调        |
+  | callback | AsyncCallback&lt;[BundleStats](#bundlestats9)&gt;          | 是   | 获取指定卷上的应用存储空间大小之后的回调。        |
 
 **错误码：**
 
@@ -97,7 +97,7 @@ getTotalSize(): Promise&lt;number&gt;
 
 | 类型                  | 说明                                                |
 | --------------------- | --------------------------------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回内置存储的总空间大小（单位为Byte） |
+| Promise&lt;number&gt; | Promise对象，返回内置存储的总空间大小（单位为Byte）。 |
 
 **错误码：**
 
@@ -131,7 +131,7 @@ getTotalSize(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名   | 类型                        | 必填 | 说明                               |
 | -------- | --------------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | 是   | 获取内置存储的总空间大小之后的回调 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 获取内置存储的总空间大小之后的回调。 |
 
 **错误码：**
 
@@ -169,7 +169,7 @@ getTotalSizeSync(): number
 
 | 类型   | 说明                                   |
 | ------ | -------------------------------------- |
-| number | 返回内置存储的总空间大小（单位为Byte） |
+| number | 返回内置存储的总空间大小（单位为Byte）。 |
 
 **错误码：**
 
@@ -205,7 +205,7 @@ getFreeSize(): Promise&lt;number&gt;
 
 | 类型                  | 说明                                                  |
 | --------------------- | ----------------------------------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回内置存储的可用空间大小（单位为Byte） |
+| Promise&lt;number&gt; | Promise对象，返回内置存储的可用空间大小（单位为Byte）。 |
 
 **错误码：**
 
@@ -239,7 +239,7 @@ getFreeSize(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名   | 类型                        | 必填 | 说明                                 |
 | -------- | --------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback&lt;number&gt; | 是   | 获取内置存储的可用空间大小之后的回调 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 获取内置存储的可用空间大小之后的回调。 |
 
 **错误码：**
 
@@ -277,7 +277,7 @@ getFreeSizeSync(): number
 
 | 类型   | 说明                                     |
 | ------ | ---------------------------------------- |
-| number | 返回内置存储的可用空间大小（单位为Byte） |
+| number | 返回内置存储的可用空间大小（单位为Byte）。 |
 
 **错误码：**
 
@@ -307,6 +307,6 @@ try {
 
 | 名称      | 类型   | 必填 | 说明           |
 | --------- | ------ | --- | -------------- |
-| appSize   | number | 是 | 应用安装文件大小（单位为Byte）    |
-| cacheSize | number | 是 | 应用缓存文件大小（单位为Byte）   |
-| dataSize  | number | 是 | 应用文件存储大小（除应用安装文件和缓存文件）（单位为Byte） |
+| appSize   | number | 是 | 应用安装文件大小（单位为Byte）。    |
+| cacheSize | number | 是 | 应用缓存文件大小（单位为Byte）。   |
+| dataSize  | number | 是 | 应用文件存储大小（除应用安装文件和缓存文件）（单位为Byte）。 |

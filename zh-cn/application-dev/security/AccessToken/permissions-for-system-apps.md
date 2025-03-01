@@ -4143,6 +4143,18 @@
 
 **起始版本**：15
 
+### ohos.permission.ACCESS_ACCOUNT_SERVICE_EXTENSION_ABILITY
+
+允许系统应用调用账号ServiceExtensionAbility所提供的服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
 ### ohos.permission.STORAGE_MANAGER_CRYPT
 
 允许系统应用和系统服务调用接口完成加解密操作。

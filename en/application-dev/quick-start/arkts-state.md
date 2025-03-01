@@ -821,7 +821,7 @@ struct ConsumerChild {
 }
 ```
 
-In the preceding example, each time you click **Button('change to self')**, the same class constant is assigned to a state variable of the **Class** type, triggering re-rendering. In state management V1, a proxy is added to the @Observed decorated class objects and the \@State decorated objects of the Class, Date, Map, Set, or Array type to observe the changes of top-level properties or API invoking. 
+In the preceding example, each time you click **Button('change to self')**, the same class constant is assigned to a state variable of the **Class** type, triggering re-rendering. In state management V1, a proxy is added to the @Observed decorated class objects and the @State decorated objects of the Class, Date, Map, Set, or Array type to observe the changes of top-level properties or API invoking. 
 **dataObjFromList** is of a **Proxy** type but **list[0]** is of an **Object** type. As a result, when **list[0]** is assigned to **dataObjFromList**, the value changes trigger re-rendering. 
 To avoid unnecessary value changes and re-renders, use \@Observed to decorate the class, or use [UIUtils.getTarget()](./arkts-new-getTarget.md) to obtain the original value and determine whether the original and new values are the same. If they are the same, do not perform value changes. 
 Method 1: Add \@Observed decorator.

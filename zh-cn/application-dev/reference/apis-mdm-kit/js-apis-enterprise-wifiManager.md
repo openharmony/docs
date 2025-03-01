@@ -22,7 +22,7 @@ import { wifiManager } from '@kit.MDMKit';
 
 isWifiActiveSync(admin: Want): boolean
 
-指定设备管理应用查询Wi-Fi开启状态。
+查询设备Wi-Fi开启状态。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -32,9 +32,9 @@ isWifiActiveSync(admin: Want): boolean
 
 **参数：**
 
-| 参数名 | 类型                                                    | 必填 | 说明           |
-| ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| 参数名 | 类型                                                    | 必填 | 说明                   |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -74,7 +74,7 @@ try {
 
 setWifiProfileSync(admin: Want, profile: WifiProfile): void
 
-指定设备管理应用为设备配置Wi-Fi，使连接到指定网络。
+为设备配置Wi-Fi，使连接到指定网络。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -84,10 +84,10 @@ setWifiProfileSync(admin: Want, profile: WifiProfile): void
 
 **参数：**
 
-| 参数名  | 类型                                                    | 必填 | 说明           |
-| ------- | ------------------------------------------------------- | ---- | -------------- |
-| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
-| profile | [WifiProfile](#wifiprofile)                             | 是   | WLAN配置信息。 |
+| 参数名  | 类型                                                    | 必填 | 说明                   |
+| ------- | ------------------------------------------------------- | ---- | ---------------------- |
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| profile | [WifiProfile](#wifiprofile)                             | 是   | WLAN配置信息。         |
 
 **错误码**：
 

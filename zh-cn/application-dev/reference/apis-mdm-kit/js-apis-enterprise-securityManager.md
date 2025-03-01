@@ -20,7 +20,7 @@ import { securityManager } from '@kit.MDMKit';
 
 uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 
-指定设备管理应用卸载用户证书，使用Promise异步回调。
+卸载用户证书，使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -30,8 +30,8 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 
 | 参数名  | 类型                                                    | 必填 | 说明                              |
 | ------- | ------------------------------------------------------- | ---- | --------------------------------- |
-| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                    |
-| certUri | string                                                  | 是   | 证书uri，由安装用户证书接口返回。 |
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                    |
+| certUri | string                                                  | 是   | 证书uri，由安装用户证书接口[installUserCertificate](#securitymanagerinstallusercertificate)设置返回。 |
 
 **返回值：**
 
@@ -72,7 +72,7 @@ securityManager.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
 
 installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt;
 
-指定设备管理应用安装用户证书，使用Promise异步回调。
+安装用户证书，使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -82,8 +82,8 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 
 | 参数名      | 类型                                                    | 必填 | 说明           |
 | ----------- | ------------------------------------------------------- | ---- | -------------- |
-| admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
-| certificate | [CertBlob](#certblob)                                   | 是   | 证书信息。     |
+| admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| certificate | [CertBlob](#certblob)                                   | 是   | 证书信息。证书文件应放在应用沙箱路径等应用有权限访问的路径下。     |
 
 **返回值：**
 
@@ -143,7 +143,7 @@ getSecurityStatus(admin: Want, item: string): string
 
 | 参数名 | 类型                                                    | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | item   | string                                                  | 是   | 安全策略名称。<br/>- patch：设备安全补丁。<br/>- encryption：设备文件系统加密。 <!--RP1--><!--RP1End-->|
 
 **返回值：**
@@ -180,11 +180,11 @@ try {
 }
 ```
 
-## securityManager.setPasswordPolicy<sup>12+</sup>
+## securityManager.setPasswordPolicy
 
 setPasswordPolicy(admin: Want, policy: PasswordPolicy): void
 
-指定设备管理应用设置设备口令策略。
+设置设备口令策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -194,7 +194,7 @@ setPasswordPolicy(admin: Want, policy: PasswordPolicy): void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | policy | [PasswordPolicy](#passwordpolicy) | 是 | 设备口令策略。 |
 
 **错误码**：
@@ -230,11 +230,11 @@ try {
 }
 ```
 
-## securityManager.getPasswordPolicy<sup>12+</sup>
+## securityManager.getPasswordPolicy
 
 getPasswordPolicy(admin: Want): PasswordPolicy
 
-指定设备管理应用获取设备口令策略。
+获取设备口令策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -244,7 +244,7 @@ getPasswordPolicy(admin: Want): PasswordPolicy
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 
 **返回值：**
 
@@ -280,11 +280,11 @@ try {
 }
 ```
 
-## securityManager.setAppClipboardPolicy<sup>12+</sup>
+## securityManager.setAppClipboardPolicy
 
 setAppClipboardPolicy(admin: Want, tokenId: number, policy: ClipboardPolicy): void
 
-指定设备管理应用设置设备剪贴板策略。
+设置设备剪贴板策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -294,8 +294,8 @@ setAppClipboardPolicy(admin: Want, tokenId: number, policy: ClipboardPolicy): vo
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
-| tokenId | number | 是 | 目标应用的身份标识。可通过应用的[ApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md)获得。当前只支持最多100个tokenId被保存策略。 |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
+| tokenId | number | 是 | 目标应用的身份标识。可通过[bundleManager.getApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md)再去获取accessTokenId获得。当前只支持最多100个tokenId被保存策略。 |
 | policy | [ClipboardPolicy](#clipboardpolicy) | 是 | 剪贴板策略。 |
 
 **错误码**：
@@ -326,11 +326,11 @@ try {
 }
 ```
 
-## securityManager.getAppClipboardPolicy<sup>12+</sup>
+## securityManager.getAppClipboardPolicy
 
 getAppClipboardPolicy(admin: Want, tokenId?: number): string
 
-指定设备管理应用获取设备剪贴板策略。
+获取设备剪贴板策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -340,14 +340,14 @@ getAppClipboardPolicy(admin: Want, tokenId?: number): string
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
-| tokenId | number | 否 | 目标应用的身份标识。可通过应用的[ApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md)获得。 |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。      |
+| tokenId | number | 否 | 目标应用的身份标识。可通过[bundleManager.getApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md)再去获取accessTokenId获得。当前只支持最多100个tokenId被保存策略。 |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| ClipboardPolicy | 设备剪贴板策略。|
+| [ClipboardPolicy](#clipboardpolicy) | 设备剪贴板策略。|
 
 **错误码**：
 
@@ -381,7 +381,7 @@ try {
 
 setWatermarkImage(admin: Want, bundleName: string, source: string | image.PixelMap, accountId: number): void
 
-指定应用设置水印策略，当前仅支持2in1使用。
+设置水印策略，当前仅支持2in1使用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -391,10 +391,10 @@ setWatermarkImage(admin: Want, bundleName: string, source: string | image.PixelM
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。      |
 | bundleName | string    | 是   | 被设置水印的应用包名。                                                       |
 | source | string \| [image.PixelMap](../apis-image-kit/js-apis-image.md)  | 是   | string表示图像路径，图像路径为应用沙箱路径等应用有权限访问的路径。<br>image.PixelMap表示图像对象，图像像素占用大小不能超过500KB。                                                       |
-| accountId     | number     | 是   | 用户ID。 |
+| accountId     | number     | 是   | 用户ID。accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。 |
 
 **错误码**：
 
@@ -430,7 +430,7 @@ try {
 
 cancelWatermarkImage(admin: Want, bundleName: string, accountId: number): void
 
-指定应用取消水印策略，当前仅支持2in1使用。
+取消水印策略，当前仅支持2in1使用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -440,9 +440,9 @@ cancelWatermarkImage(admin: Want, bundleName: string, accountId: number): void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。        |
 | bundleName | string    | 是   | 被取消水印的应用包名。                                                       |
-| accountId     | number     | 是   | 用户ID。 |
+| accountId     | number     | 是   | 用户ID。accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。 |
 
 **错误码**：
 

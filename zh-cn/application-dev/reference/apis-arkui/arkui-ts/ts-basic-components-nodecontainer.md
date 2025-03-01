@@ -9,7 +9,7 @@
 > 该组件下仅支持挂载自定义节点[FrameNode](../js-apis-arkui-frameNode.md)或者是[BuilderNode](../js-apis-arkui-builderNode.md)中获取的根节点FrameNode。
 > 不支持挂载查询获得的原生系统组件[代理节点](../js-apis-arkui-frameNode.md#ismodifiable12)。
 >
-> 当前不支持使用[动态属性设置](./ts-universal-attributes-attribute-modifier.md)
+> 当前不支持使用[动态属性设置](./ts-universal-attributes-attribute-modifier.md)。
 ## 子组件
 
 不支持子组件。
@@ -31,11 +31,11 @@ NodeContainer(controller: NodeController)
 | controller | [NodeController](../js-apis-arkui-nodeController.md) | 是   | NodeController用于控制NodeContainer中的节点的上树和下树，反映NodeContainer容器的生命周期。 |
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)
+支持[通用属性](ts-component-general-attributes.md)。
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 

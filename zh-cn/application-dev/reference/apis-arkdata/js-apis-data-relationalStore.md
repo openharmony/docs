@@ -238,7 +238,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 删除数据库文件，使用callback异步回调。
 
-删除成功后，建议将数据库对象置为null。建立数据库时，若在[StoreConfig](#storeconfig)中配置了自定义路径，则调用此接口进行删库无效，必须使用 [deleteRdbStore<sup>10+</sup>](#relationalstoredeleterdbstore10) 接口进行删库。
+删除成功后，建议将数据库对象置为null。建立数据库时，若在[StoreConfig](#storeconfig)中配置了自定义路径，则调用此接口进行删库无效，必须使用 [deleteRdbStore](#relationalstoredeleterdbstore10) 接口进行删库。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -311,7 +311,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 使用指定的数据库文件配置删除数据库，使用Promise异步回调。
 
-删除成功后，建议将数据库对象置为null。建立数据库时，若在[StoreConfig](#storeconfig)中配置了自定义路径，则调用此接口进行删库无效，必须使用 [deleteRdbStore<sup>10+</sup>](#relationalstoredeleterdbstore10-1) 接口进行删库。
+删除成功后，建议将数据库对象置为null。建立数据库时，若在[StoreConfig](#storeconfig)中配置了自定义路径，则调用此接口进行删库无效，必须使用 [deleteRdbStore](#relationalstoredeleterdbstore10-1) 接口进行删库。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -559,7 +559,7 @@ class EntryAbility extends UIAbility {
 | name          | string        | 是   | 数据库文件名，也是数据库唯一标识符。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core   |
 | securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core|
 | encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取，暂不支持。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，dataGroupId共沙箱的方式不支持多进程访问加密数据库，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，<!--RP3-->暂不支持指定dataGroupId在对应的沙箱路径下创建RdbStore实例。<!--RP3End--><br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。dataGroupId共沙箱的方式不支持多进程访问加密数据库，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | autoCleanDirtyData<sup>11+</sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata11)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 | allowRebuild<sup>12+</sup> | boolean | 否 | 指定数据库是否支持异常时自动删除，并重建一个空库空表，默认不删除。<br/>true:自动删除。<br/>false:不自动删除。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
@@ -4473,7 +4473,7 @@ execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;Va
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | sql      | string                               | 是   | 指定要执行的SQL语句。                                        |
 | txId      | number                               | 是   | 通过[beginTrans](#begintrans12)获取的事务ID，如果传0，该语句默认在单独事务内。                                      |
-| args | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。该参数不填，或者填null或undefined，都认为是sql参数语句完整。 |
+| args | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。该参数不填，填null或者填undefined，都认为是sql参数语句完整。 |
 
 **返回值**：
 
@@ -4534,7 +4534,7 @@ executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 
 执行包含指定参数的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，返回值类型为ValueType。
 
-该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表）,返回结果类型由执行具体sql的结果决定。
+该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表），返回结果类型由执行具体sql的结果决定。
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
@@ -5659,7 +5659,7 @@ if(store != undefined) {
 
 obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void
 
-根据远程设备的本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 使用callback异步回调。
+根据远程设备的本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，使用callback异步回调。
 
 > **说明：**
 >
@@ -5788,7 +5788,7 @@ if(store != undefined && deviceId != undefined) {
 
 sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-在设备之间同步数据, 使用callback异步回调。
+在设备之间同步数据，使用callback异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -9606,7 +9606,7 @@ executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 
 执行包含指定参数的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，返回值类型为ValueType。
 
-该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表）,返回结果类型由执行具体sql的结果决定。
+该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表），返回结果类型由执行具体sql的结果决定。
 
 此接口不支持执行查询、附加数据库和事务操作，查询可以使用[querySql](#querysql14)、[query](#query14)接口代替、附加数据库可以使用[attach](#attach12)接口代替。
 

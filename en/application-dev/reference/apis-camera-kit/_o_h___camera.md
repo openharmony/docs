@@ -99,6 +99,7 @@ You can refer to the corresponding development guide and samples based on your d
 | typedef enum [Camera_SmoothZoomMode](#camera_smoothzoommode) [Camera_SmoothZoomMode](#camera_smoothzoommode) | Defines an enum for the smooth zoom modes.| 
 | typedef enum [Camera_PreconfigType](#camera_preconfigtype) [Camera_PreconfigType](#camera_preconfigtype) | Defines an enum for the preconfigured resolution types.| 
 | typedef enum [Camera_PreconfigRatio](#camera_preconfigratio) [Camera_PreconfigRatio](#camera_preconfigratio) | Defines an enum for the preconfigured aspect ratios.| 
+| typedef enum [Camera_HostDeviceType](#camera_hostdevicetype)[Camera_HostDeviceType](#camera_hostdevicetype) | Defines an enum for the remote device types.| 
 | typedef struct [Camera_Size](_camera___size.md) [Camera_Size](#camera_size) | Defines a struct for the parameters related to the size.| 
 | typedef struct [Camera_Profile](_camera___profile.md) [Camera_Profile](#camera_profile) | Defines a struct for the profile of a camera stream.| 
 | typedef struct [Camera_FrameRateRange](_camera___frame_rate_range.md) [Camera_FrameRateRange](#camera_frameraterange) | Defines a struct for the frame rate range.| 
@@ -177,6 +178,7 @@ You can refer to the corresponding development guide and samples based on your d
 | [Camera_VideoStabilizationMode](#camera_videostabilizationmode) {<br>STABILIZATION_MODE_OFF = 0,<br>STABILIZATION_MODE_LOW = 1,<br>STABILIZATION_MODE_MIDDLE = 2,<br>STABILIZATION_MODE_HIGH = 3,<br>STABILIZATION_MODE_AUTO = 4<br>} | Enumerates the video stabilization modes.| 
 | [Camera_ImageRotation](#camera_imagerotation) {<br>IAMGE_ROTATION_0 = 0,<br>IAMGE_ROTATION_90 = 90,<br>IAMGE_ROTATION_180 = 180,<br>IAMGE_ROTATION_270 = 270 } | Enumerates the image rotation angles.| 
 | [Camera_QualityLevel](#camera_qualitylevel) {<br>QUALITY_LEVEL_HIGH = 0,<br>QUALITY_LEVEL_MEDIUM = 1,<br>QUALITY_LEVEL_LOW = 2 } | Enumerates the image quality levels.| 
+| [Camera_HostDeviceType](#camera_hostdevicetype) {<br>HOST_DEVICE_TYPE_UNKNOWN_TYPE = 0,<br>HOST_DEVICE_TYPE_PHONE = 0x0E,<br>HOST_DEVICE_TYPE_TABLET = 0x11 } | Enumerates the remote device types.| 
 | [Camera_QualityPrioritization](#camera_qualityprioritization) {<br>HIGH_QUALITY  = 0,<br>POWER_BALANCE  = 1} | Enumerates the priority levels for video recording quality.| 
 | [Camera_MetadataObjectType](#camera_metadataobjecttype) { FACE_DETECTION = 0 } | Enumerates the metadata object types.| 
 | [Camera_TorchMode](#camera_torchmode) { OFF = 0, ON = 1, AUTO = 2 } | Enumerates the flashlight modes.| 
@@ -338,6 +340,8 @@ You can refer to the corresponding development guide and samples based on your d
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_SetFrameRate](#oh_videooutput_setframerate) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, int32_t minFps, int32_t maxFps) | Sets the frame rates for a **VideoOutput** instance.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_GetActiveFrameRate](#oh_videooutput_getactiveframerate) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [Camera_FrameRateRange](_camera___frame_rate_range.md) \*frameRateRange) | Obtains the active frame rates of a **VideoOutput** instance.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_SetQualityPrioritization](#oh_capturesession_setqualityprioritization) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_QualityPrioritization](#camera_qualityprioritization) qualityPrioritization) | Sets the priority level for video recording quality.| 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraDevice_GetHostDeviceName](#oh_cameradevice_gethostdevicename) ([Camera_Device](_camera___device.md) \*camera, char \*\*hostDeviceName) | Obtains the name of a remote device.| 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraDevice_GetHostDeviceType](#oh_cameradevice_gethostdevicetype) ([Camera_Device](_camera___device.md) \*camera, [Camera_HostDeviceType](#camera_hostdevicetype) \*hostDeviceType) | Obtains the type of a remote device.| 
 
 ## Type Description
 
@@ -524,6 +528,19 @@ typedef struct Camera_FrameShutterInfo Camera_FrameShutterInfo
 Defines a struct for the frame shutter information.
 
 **Since**: 11
+
+
+### Camera_HostDeviceType
+
+```
+typedef enum Camera_HostDeviceTypeCamera_HostDeviceType
+```
+
+**Description**
+
+Defines an enum for the remote device types.
+
+**Since**: 16
 
 
 ### Camera_ImageRotation
@@ -1751,6 +1768,25 @@ Enumerates the camera output formats.
 | CAMERA_FORMAT_JPEG | JPEG.| 
 | CAMERA_FORMAT_YCBCR_P010 | YCBCR P010.<br>**Since**: 12| 
 | CAMERA_FORMAT_YCRCB_P010 | YCRCB P010.<br>**Since**: 12| 
+
+
+### Camera_HostDeviceType
+
+```
+enum Camera_HostDeviceType
+```
+
+**Description**
+
+Enumerates the remote device types.
+
+**Since**: 16
+
+| Value| Description| 
+| -------- | -------- |
+| HOST_DEVICE_TYPE_UNKNOWN_TYPE | Unknown type.| 
+| HOST_DEVICE_TYPE_PHONE | Mobile phone.| 
+| HOST_DEVICE_TYPE_TABLET | Tablet.| 
 
 
 ### Camera_ImageRotation
@@ -6428,3 +6464,63 @@ In [Camera_ErrorCode](#camera_errorcode-1):
 - **CAMERA_OK**: The operation is successful.
 
 - **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+
+### OH_CameraDevice_GetHostDeviceName()
+
+```
+Camera_ErrorCode OH_CameraDevice_GetHostDeviceName(Camera_Device* camera, char** hostDeviceName)
+```
+
+**Description**
+
+Obtains the name of a remote device.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| camera | Pointer to a [Camera_Device](_camera___device.md) object.| 
+| hostDeviceName | Double pointer to the name of the remote device.| 
+
+**Returns**
+
+In [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful, and the remote device name is returned.
+
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
+
+
+### OH_CameraDevice_GetHostDeviceType()
+
+```
+Camera_ErrorCode OH_CameraDevice_GetHostDeviceType(Camera_Device* camera, Camera_HostDeviceType* hostDeviceType)
+```
+
+**Description**
+
+Obtains the type of a remote device.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| camera | Pointer to a [Camera_Device](_camera___device.md) object.| 
+| hostDeviceType | Double pointer to the remote device type, which is defined in [Camera_HostDeviceType](#camera_hostdevicetype).| 
+
+**Returns**
+
+In [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful, and the remote device type is returned.
+
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.

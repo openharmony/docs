@@ -36,7 +36,7 @@
 > **说明：**
 >
 > - 如果system_basic等级的权限，ACL使能为false，则normal等级应用无法申请该权限。
-> - 当前可通过DevEco Studio完成[ACL方式跨级别申请权限](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing-0000001587684945)，但该方法仅用于应用调试阶段使用，不可用于发布上架应用市场。如果需要开发商用版本的应用，请在对应的应用市场进行发布证书和Profile文件的申请。
+> - 当前可通过DevEco Studio完成[ACL方式跨级别申请权限](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-signing-V14)，但该方法仅用于应用调试阶段使用，不可用于发布上架应用市场。如果需要开发商用版本的应用，请在对应的应用市场进行发布证书和Profile文件的申请。
 
 ## system_basic等级应用申请权限的方式
 

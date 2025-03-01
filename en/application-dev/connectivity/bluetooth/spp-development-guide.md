@@ -17,7 +17,7 @@ The following table describes the related APIs.
 
 | API                            | Description                                                                      |
 | ---------------------------------- | ------------------------------------------------------------------------------ |
-| sppListen()                        | Creates an SPP listening socket for the server.                                                      |
+| sppListen()                        | Creates a listening socket for the server.                                                      |
 | sppAccept()                        | Accepts a connection request from the client over a socket of the server.                                                 |
 | sppConnect()                       | Initiates an SPP connection to a remote device from the client.                                                    |
 | sppCloseServerSocket()             | Closes the listening socket of the server.                                                          |

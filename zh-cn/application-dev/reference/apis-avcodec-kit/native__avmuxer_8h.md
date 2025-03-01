@@ -19,7 +19,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [OH_AVMuxer](_a_v_muxer.md#oh_avmuxer) [OH_AVMuxer](_a_v_muxer.md#oh_avmuxer) | 为封装接口定义native层对象。  | 
+| typedef struct [OH_AVMuxer](_a_v_muxer.md#oh_avmuxer) [OH_AVMuxer](_a_v_muxer.md#oh_avmuxer) | 定义封装接口native层对象类型。  | 
 
 
 ### 函数

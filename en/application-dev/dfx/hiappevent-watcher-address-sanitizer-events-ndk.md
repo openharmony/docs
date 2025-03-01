@@ -41,9 +41,9 @@ The following describes how to subscribe an address sanitizer event for an array
 2. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
 
    ```cmake
-   # Add the jsoncpp.cpp file, which is used to parse the JSON strings in the subscription events.
+   # Add the **jsoncpp.cpp** file, which is used to parse the JSON strings in the subscription events.
    add_library(entry SHARED napi_init.cpp jsoncpp.cpp)
-   # Add libhiappevent_ndk.z.so and libhilog_ndk.z.so (log output). 
+   # Add **libhiappevent_ndk.z.so** and **libhilog_ndk.z.so** (log output). 
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libhiappevent_ndk.z.so)
    ```
 

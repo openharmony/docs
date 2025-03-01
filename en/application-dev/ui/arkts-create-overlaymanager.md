@@ -49,11 +49,11 @@ struct OverlayExample {
   @StorageLink("componentOffset") componentOffset: Position = {x: 0, y: 80}
 
   build() {
-    Column() {
-      Button("++componentContentIndex: " + this.componentContentIndex).onClick(()=>{
+    Column({space:10}) {
+      Button("Increment componentContentIndex: " + this.componentContentIndex).onClick(()=>{
         ++this.componentContentIndex
       })
-      Button("--componentContentIndex: " + this.componentContentIndex).onClick(()=>{
+      Button("Decrement componentContentIndex: " + this.componentContentIndex).onClick(()=>{
         --this.componentContentIndex
       })
       Button("Add ComponentContent" + this.contentArray.length).onClick(()=>{
@@ -64,10 +64,10 @@ struct OverlayExample {
         this.contentArray.push(componentContent)
         this.overlayNode.addComponentContent(componentContent, this.componentContentIndex)
       })
-      Button("++arrayIndex: " + this.arrayIndex).onClick(()=>{
+      Button("Increment arrayIndex: " + this.arrayIndex).onClick(()=>{
         ++this.arrayIndex
       })
-      Button("--arrayIndex: " + this.arrayIndex).onClick(()=>{
+      Button("Decrement arrayIndex: " + this.arrayIndex).onClick(()=>{
         --this.arrayIndex
       })
       Button("Delete ComponentContent" + this.arrayIndex).onClick(()=>{
@@ -112,6 +112,8 @@ struct OverlayExample {
   }
 }
 ```
+![overlayManager-demo1](figures/overlaymanager-demo_1.gif)
+
 The following example shows how to display a floating bubble that always stays on the left side of the screen, and clicking it displays an alert dialog box.
 
 ```ts
@@ -134,12 +136,12 @@ function builderOverlay(params: Params) {
       params.context.showAlertDialog(
         {
           title: 'title',
-          message: 'text',
+          message: 'Text',
           autoCancel: true,
           alignment: DialogAlignment.Center,
           gridCount: 3,
           confirm: {
-            value: 'button',
+            value: 'Button',
             action: () => {}
           },
           cancel: () => {}
@@ -183,3 +185,4 @@ struct OverlayExample {
 }
 
 ```
+![overlayManager-demo2](figures/overlaymanager-demo_2.gif)

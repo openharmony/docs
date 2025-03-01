@@ -88,7 +88,7 @@ API version 11开始，Checkbox默认样式由圆角方形变为圆形。
 
 ## 添加事件
 
-除支持[通用事件](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md)外，Toggle还用于选中和取消选中后触发某些操作，可以绑定onChange事件来响应操作后的自定义行为。
+除支持[通用事件](../reference/apis-arkui/arkui-ts/ts-component-general-events.md)外，Toggle还用于选中和取消选中后触发某些操作，可以绑定onChange事件来响应操作后的自定义行为。
 
 
 ```ts

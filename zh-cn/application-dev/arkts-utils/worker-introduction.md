@@ -77,7 +77,7 @@ const worker2: worker.Worker = new worker.Worker('entry/ets/workers/worker.ets')
 
 构造函数中的scriptURL要求如下：
 
-- scriptURL的组成包含 {moduleName}/ets 和相对路径 relativePath。
+- scriptURL的组成包含{moduleName}/ets和相对路径relativePath。
 - relativePath是Worker线程文件相对于"{moduleName}/src/main/ets/"目录的相对路径。
 
 1） 加载Ability中Worker线程文件场景

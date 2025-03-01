@@ -7,7 +7,7 @@
 
 - FA模型中，客户端是由[DataAbilityHelper](../reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md)提供对外接口，服务端是由[DataAbility](dataability-overview.md)提供数据库的读写服务。
 
-- Stage模型中，客户端是由[DataShareHelper](../reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md)提供对外接口，服务端是由[DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)提供数据库的读写服务。
+- Stage模型中，客户端是由[DataShareHelper](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#datasharehelper)提供对外接口，服务端是由[DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)提供数据库的读写服务。
 
 服务端由FA模型升级到Stage模型后，会导致FA模型的客户端在API 9(含)之后的版本上无法访问服务端。
 

@@ -43,6 +43,9 @@ onMouse(event: (event: MouseEvent) => void)
 | displayY<sup>10+</sup> | number                         | 鼠标位置相对于应用屏幕左上角的y轴坐标。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | screenX<sup>(deprecated)</sup> | number                 | 鼠标位置相对于应用窗口左上角的x轴坐标。<br>从API Version 10开始不再维护，建议使用windowX代替。 |
 | screenY<sup>(deprecated)</sup> | number                 | 鼠标位置相对于应用窗口左上角的y轴坐标。<br>从API Version 10开始不再维护，建议使用windowY代替。 |
+| rawDeltaX<sup>15+</sup> | number | 相对于先前上报的鼠标指针位置的X轴偏移量。当鼠标指针处于屏幕边缘时，该值可能小于两次上报的X坐标之差。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| rawDeltaY<sup>15+</sup> | number | 相对于先前上报的鼠标指针位置的Y轴偏移量。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| pressedButtons<sup>15+</sup> | MouseButton[] | 所有鼠标上按着的按钮集合。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
 
@@ -114,7 +117,11 @@ struct MouseEventExample {
             }
             this.mouseText = 'onMouse:\nButton = ' + this.mouseBtn +
             '\nAction = ' + this.action + '\nXY=(' + event.x + ',' + event.y + ')' +
-            '\nwindowXY=(' + event.windowX + ',' + event.windowY + ')';
+            '\nwindowXY=(' + event.windowX + ',' + event.windowY + ')' +
+            '\ntargetDisplayId = ' + event.targetDisplayId +
+            '\nrawDeltaX = ' + event.rawDeltaX +
+            '\nrawDeltaY = ' + event.rawDeltaY +
+            '\nlength = ' + event.pressedButtons?.length;
           }
         })
       Text(this.mouseText)
@@ -127,4 +134,4 @@ struct MouseEventExample {
 
 鼠标点击时：
 
-![mouse1](figures/mouse1.png)
+![mouse](figures/mouse.gif)

@@ -41,7 +41,7 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 
 ## 属性
 
-除支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](../apis-arkui/arkui-ts/ts-component-general-attributes.md)外，还支持以下属性：
 
 ### muted
 
@@ -58,7 +58,7 @@ muted(isMuted: boolean)
 
 | 参数名  | 类型    | 必填 | 说明                         |
 | ------- | ------- | ---- | ---------------------------- |
-| isMuted | boolean | 是   | 是否静音。<br/>默认值：false<br/>false：非静音<br/>true：静音|
+| isMuted | boolean | 是   | 是否静音。<br/>默认值：false<br/>false：非静音<br/>true：静音。|
 
 ### objectFit
 
@@ -75,7 +75,7 @@ objectFit(value: ImageFit)
 
 | 参数名 | 类型                                                                          | 必填 | 说明                             |
 | ------ | ----------------------------------------------------------------------------- | ---- | -------------------------------- |
-| value  | [ImageFit](../apis-arkui/arkui-ts/ts-appendix-enums.md#imagefit) | 是   | 视频显示模式。<br/>默认值：Cover |
+| value  | [ImageFit](../apis-arkui/arkui-ts/ts-appendix-enums.md#imagefit) | 是   | 视频显示模式。<br/>默认值：Cover。 |
 
 ### autoPlayPeriod<sup>13+</sup>
 
@@ -112,7 +112,7 @@ autoPlay(isAutoPlay: boolean)
 
 | 参数名  | 类型    | 必填 | 说明                         |
 | ------- | ------- | ---- | ---------------------------- |
-| isAutoPlay| boolean| 是   | 是否自动播放。<br/>false：不自动播放<br/>true：自动播放<br/>默认值：false|
+| isAutoPlay| boolean| 是   | 是否自动播放。<br/>false：不自动播放<br/>true：自动播放<br/>默认值：false。|
 
 ### repeatPlay<sup>13+</sup>
 
@@ -129,11 +129,11 @@ repeatPlay(isRepeatPlay: boolean)
 
 | 参数名  | 类型    | 必填 | 说明                         |
 | ------- | ------- | ---- | ---------------------------- |
-| isRepeatPlay| boolean| 是   | 是否循环播放。<br/>false：不循环播放<br/>true：循环播放<br/>默认值：false|
+| isRepeatPlay| boolean| 是   | 是否循环播放。<br/>false：不循环播放<br/>true：循环播放<br/>默认值：false。|
 
 ## 事件
 
-除支持[通用事件](../apis-arkui/arkui-ts/ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](../apis-arkui/arkui-ts/ts-component-general-events.md)外，还支持以下事件：
 
 ### onComplete<sup>13+</sup>
 
@@ -423,7 +423,7 @@ let context = getContext(this)
 let data: photoAccessHelper.MovingPhoto
 async function loading() {
   try {
-    // 需要确保imageFileUri和videoFileUri对应的资源在应用沙箱存在
+    // 需要确保imageFileUri和videoFileUri对应的资源在应用沙箱存在。
     let imageFileUri = 'file://{bundleName}/data/storage/el2/base/haps/entry/files/xxx.jpg';
     let videoFileUri = 'file://{bundleName}/data/storage/el2/base/haps/entry/files/xxx.mp4';
     data = await photoAccessHelper.MediaAssetManager.loadMovingPhoto(context, imageFileUri, videoFileUri);

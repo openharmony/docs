@@ -6,7 +6,7 @@ HiLog is a subsystem that provides logging for the system framework, services, a
 
 ## Available APIs
 
-HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides APIs to output logs of different levels. For details about the APIs, see [hilog](../reference/apis-performance-analysis-kit/_hi_log.md)).
+HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides APIs to output logs of different levels. For details about the APIs, see [hilog](../reference/apis-performance-analysis-kit/_hi_log.md).
 
 | API/Macro| Description|
 | -------- | -------- |
@@ -18,6 +18,7 @@ HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides
 | \#define OH_LOG_ERROR(type, ...) ((void)OH_LOG_Print((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | Outputs ERROR logs. This is a function-like macro.|
 | \#define OH_LOG_FATAL(type, ...) ((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | Outputs FATAL logs. This is a function-like macro.|
 | void OH_LOG_SetCallback(LogCallback callback) | Registers a callback function to return all logs for the process.|
+| void OH_LOG_SetMinLogLevel(LogLevel level)|Sets the minimum log level. When a process prints logs, both the minimum log level and the global log level are verified. Therefore, the minimum log level cannot be lower than the global log level. The default value of [global log level](hilog.md#displaying-and-setting-log-levels) is **Info**.|
 
 ### Parameters
 
@@ -75,16 +76,21 @@ The maximum size of a log file is 4096 bytes. Excess content will be discarded.
    #define LOG_TAG "MY_TAG" // Global tag, which identifies the module log tag.
    ```
 
-3. Print logs, for example, print ERROR logs.
+3. Print logs.
 
    ```c++
-   OH_LOG_ERROR(LOG_APP, "Failed to visit %{private}s, reason:%{public}d.", url, errno);
+   OH_LOG_INFO(LOG_APP, "Failed to visit %{private}s, reason:%{public}d.", url, errno);
+   // Set the minimum log level to Warn.
+   OH_LOG_SetMinLogLevel(LOG_WARN);
+   OH_LOG_INFO(LOG_APP, "this is an info level log");
+   OH_LOG_ERROR(LOG_APP, "this is an info level log");
    ```
 
 4. The output is as follows:
 
    ```
-   12-11 12:21:47.579  2695 2695 E A03200/MY_TAG: Failed to visit <private>, reason:11.
+   01-02 08:39:38.915   9012-9012     A03200/MY_TAG                   pid-9012              I     Failed to visit <private>, reason:11.
+   01-02 08:39:38.915   9012-9012     A03200/MY_TAG                   pid-9012              E     this is an info level log
    ```
 
 ### Registering a Log Callback
@@ -109,7 +115,7 @@ static void Test(void)
    // 1. Register a callback.
     OH_LOG_SetCallback(MyHiLog);
     
-   // 2. Call the hilog API to print logs. Logs are output to HiLog and returned to MyHiLog() through the registered callback. Then, MyHiLog() is called to process the logs.
+   // 2. Call the hilog API to print logs. Logs are output to HiLog and returned to **MyHiLog()** through the registered callback. Then, **MyHiLog()** is called to process the logs.
    HiLog::Info(LABEL, "hello world");
 }
 ```

@@ -921,7 +921,7 @@ try {
 on(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionResponse&gt;,
         options?: Options): void
 
-Subscribes to data of the significant motion sensor.
+Subscribes to the significant motion sensor data.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -1826,7 +1826,7 @@ try {
 
 once(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionResponse&gt;): void
 
-Obtains data of the significant motion sensor once.
+Obtains the significant motion sensor data once.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -2889,7 +2889,7 @@ try {
 
 off(type: SensorId.SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionResponse&gt;): void
 
-Unsubscribes from data of the significant motion sensor.
+Unsubscribes from valid motion sensor data.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -6658,7 +6658,7 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback);
 
 off(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionResponse&gt;): void
 
-Unsubscribes from sensor data changes.
+Unsubscribes from the significant motion sensor data.
 
 > **NOTE**
 >

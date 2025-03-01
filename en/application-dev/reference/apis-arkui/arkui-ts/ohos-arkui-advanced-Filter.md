@@ -48,6 +48,8 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | name | [ResourceStr](ts-types.md#resourcestr) | Yes| Name of the filter criterion.|
@@ -57,6 +59,8 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | MULTI_LINE_FILTER | 0 | Multi-line collapsible.|
@@ -65,6 +69,8 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 ## FilterResult
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -76,6 +82,8 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 The [universal events](ts-universal-events-click.md) are not supported.
 
 ## Example
+
+This example shows how to implement a multi-line collapsible filter by setting **FilterType** to **MULTI_LINE_FILTER**.
 
 ```ts
 import { Filter, FilterParams, FilterResult, FilterType } from '@kit.ArkUI'

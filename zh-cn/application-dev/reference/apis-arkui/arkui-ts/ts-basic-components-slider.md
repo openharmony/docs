@@ -58,7 +58,7 @@ Slider(options?: SliderOptions)
 
 ## 属性
 
-支持除触摸热区以外的[通用属性](ts-universal-attributes-size.md)。
+支持除触摸热区以外的[通用属性](ts-component-general-attributes.md)。
 
 ### blockColor
 
@@ -476,11 +476,11 @@ Slider组件滑块形状枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-+| 名称     | 值 |说明                          |
-+| ------ | -- | ----------------------------- |
-+| SLIDE_AND_CLICK | 0 | 用户可拖拽滑块或者点击滑轨使滑块移动，鼠标或手指按下即发生移动。|
-+| SLIDE_ONLY | 1 | 不允许用户通过点击滑轨使滑块移动。|
-+| SLIDE_AND_CLICK_UP | 2 |用户可拖拽滑块或者点击滑轨使滑块移动，鼠标或手指抬起时，若与屏幕按压位置一致，则触发移动。|
+| 名称     | 值 |说明                          |
+| ------ | -- | ----------------------------- |
+| SLIDE_AND_CLICK | 0 | 用户可拖拽滑块或者点击滑轨使滑块移动，鼠标或手指按下即发生移动。|
+| SLIDE_ONLY | 1 | 不允许用户通过点击滑轨使滑块移动。|
+| SLIDE_AND_CLICK_UP | 2 |用户可拖拽滑块或者点击滑轨使滑块移动，鼠标或手指抬起时，若与屏幕按压位置一致，则触发移动。|
 
 ## SlideRange<sup>12+</sup>对象说明
 
@@ -505,7 +505,7 @@ Slider组件滑块形状枚举。
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onChange
 

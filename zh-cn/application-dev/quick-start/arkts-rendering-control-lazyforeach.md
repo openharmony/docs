@@ -7,6 +7,7 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 ## 使用限制
 
 - LazyForEach必须在容器组件内使用，仅有[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持数据懒加载（可配置cachedCount属性，即只加载可视部分以及其前后少量数据用于缓冲），其他组件仍然是一次性加载所有的数据。
+- LazyForEach依赖生成的键值判断是否刷新子组件，若键值不发生改变，则无法触发LazyForEach刷新对应的子组件。
 - 容器组件内使用LazyForEach的时候，只能包含一个LazyForEach。以List为例，同时包含ListItem、ForEach、LazyForEach的情形是不推荐的；同时包含多个LazyForEach也是不推荐的。
 - LazyForEach在每次迭代中，必须创建且只允许创建一个子组件；即LazyForEach的子组件生成函数有且只有一个根组件。
 - 生成的子组件必须是允许包含在LazyForEach父容器组件中的子组件。
@@ -1739,6 +1740,80 @@ struct ChildComponent {
 反例中，在`@ComponentV2`装饰的组件`MyComponent`中，`LazyForEach`列表中使用了`@Reusable`装饰的组件`ChildComponent`，导致组件渲染失败，观察日志可以看到组件触发了`onAppear`，但是没有触发`aboutToAppear`。
 
 将`@ComponentV2`修改为`@Component`可以修复渲染异常。修复后，当滑动事件触发组件节点下树时，对应的可复用组件`ChildComponent`从组件树上被加入到复用缓存中而不是被销毁，并触发`aboutToRecycle`事件，打印日志信息。当滑动需要显示新的节点时，会将可复用的组件从复用缓存中重新加入到节点树，并触发`aboutToReuse`刷新组件数据，并打印日志信息。
+
+### 组件不刷新
+
+开发者需要定义合适的键值生成函数，返回与目标数据相关联的键值。目标数据发生改变时，LazyForEach识别到键值改变才会刷新对应组件。
+
+```ts
+/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: string[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): string {
+    return this.dataArray[index];
+  }
+
+  public pushData(data: string): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+
+  public updateAllData(): void {
+    this.dataArray = this.dataArray.map((item: string) => item + `!`);
+    this.notifyDataReload();
+  }
+}
+
+@Entry
+@Component
+struct MyComponent {
+  private data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0; i <= 20; i++) {
+      this.data.pushData(`Hello ${i}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Button(`update all`)
+        .onClick(() => {
+          this.data.updateAllData();
+        })
+      List({ space: 3 }) {
+        LazyForEach(this.data, (item: string) => {
+          ListItem() {
+            Text(item).fontSize(50)
+          }
+        })
+      }.cachedCount(5)
+    }
+  }
+}
+```
+
+点击按钮更新数据，组件不刷新。  
+![LazyForEach-Refresh-Not-Expected](./figures/LazyForEach-Refresh-Not-Expected.gif)
+
+LazyForEach依赖生成的键值判断是否刷新子组件，如果更新的数据没有改变键值（如示例中开发者没有定义键值生成函数，此时键值仅与组件索引index有关，更新数据时键值不变），则LazyForEach不会刷新对应组件。
+
+```ts
+LazyForEach(this.data, (item: string) => {
+  ListItem() {
+    Text(item).fontSize(50)
+  }
+}, (item: string) => item) // 定义键值生成函数
+```
+
+定义键值生成函数后，点击按钮更新数据，组件刷新。  
+![LazyForEach-Refresh-Not-Expected-Repair](./figures/LazyForEach-Refresh-Not-Expected-Repair.gif)
 
 ## 附件
 

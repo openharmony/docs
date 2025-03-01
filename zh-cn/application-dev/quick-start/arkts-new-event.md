@@ -39,7 +39,7 @@
   @ComponentV2
   struct Index {
     @Event changeFactory: ()=>void = ()=>{}; //正确用法
-    @Event message: string = "abcd"; // 错误用法，装饰非方法类型变量，@Event无作用
+    @Event message: string = "abcd"; // 错误用法，装饰非函数类型变量，@Event无作用
   }
   @Component
   struct Index {

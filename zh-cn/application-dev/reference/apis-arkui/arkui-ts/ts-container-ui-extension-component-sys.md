@@ -38,7 +38,7 @@ UIExtensionComponent(want: Want, options?: UIExtensionOptions)
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)。
+支持[通用属性](ts-component-general-attributes.md)。
 
 ## 事件
 

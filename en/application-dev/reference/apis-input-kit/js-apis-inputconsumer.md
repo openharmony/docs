@@ -40,6 +40,14 @@ Obtains all system shortcut keys. This API uses a promise to return the result.
 | ---------- |  ---------------------------------------- |
 | Promise&lt;Array&lt;HotkeyOptions&gt;&gt;                    | Promise used to return the list of all system shortcut keys.|
 
+**Error codes**:
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code| Error Message                 |
+| -------- | ------------------------- |
+| 801      | Capability not supported. |
+
 **Example**
 
 ```js
@@ -71,8 +79,9 @@ For details about the error codes, see [Input Consumer Error Codes](errorcode-in
 | Error Code | Error Message            |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 4200002  | Parameter error. The hotkey has been used by the system. You can call the [inputConsumer.getAllSystemHotkeys](#inputconsumergetallsystemhotkeys14) interface to query all system hotkeys. |
-| 4200003  | Parameter error. The hotkey has been subscribed to by another. |
+| 801 | Capability not supported. |
+| 4200002  | The hotkey has been used by the system. |
+| 4200003  | The hotkey has been subscribed to by another. |
 
 **Example**
 
@@ -117,6 +126,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | Error Code | Error Message            |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not supported. |
 
 **Example**
 

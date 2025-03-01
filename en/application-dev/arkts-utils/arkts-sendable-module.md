@@ -2,30 +2,34 @@
 
 A shared module, marked with **use shared**, is loaded only once in a process.
 
-A non-shared module is loaded only once in the same thread and multiple times in different threads. New module objects are generated in all these threads. Therefore, a shared module can be used to implement a singleton of a process.
+A non-shared module is loaded once in the same thread and multiple times in different threads, creating a new module object in each thread. Shared modules, however, can be used to implement process-wide singletons.
 
 
 ## Constraints
 
-- Similar to **use strict**, **use shared** must be written at the top of the file after the **import** statement but before other statements.
+- Similar to **use strict**, **use shared** must be placed at the top level of ArkTS files and should appear after **import** statements but before any other code.
 
-  The shared attribute cannot be passed on. That is, importing a shared module does not make a non-shared module shared.
+  The shared property cannot be passed on. That is, importing a shared module does not make a non-shared module shared.
 
 
-- A shared module supports only .ets files.
+- Shared modules are only supported in .ets files.
 
-- **side-effects-import** is not allowed within a shared module.
+- **side-effects-import** is not allowed in shared modules.
 
-  After a module is shared between threads, functions are lazy loaded to dependent non-shared modules. This type of import does not involve variable export and therefore is not loaded.
+  A shared module is loaded only once within a single process and can be used across multiple threads.
+
+  When a shared module is loaded, non-shared modules that it imports are not loaded immediately. Instead, these non-shared modules are lazy-imported within the current thread when their exported variables are accessed. This lazy loading ensures that non-shared modules remain isolated between threads, with each thread potentially loading the module once if needed.
+
+  side-effects-import, which does not involve exported variables, is never loaded and therefore is not supported.
 
   ```ts
   // side-effects-import is not allowed.
   import "./sharedModule"
   ```
 
-- Variables exported by a shared module must be sendable objects.
+- All variables exported by shared modules must be Sendable objects.
 
-  Shared modules can be shared among concurrent instances. Therefore, all objects exported by a module must be shareable. For details about shareable objects, see [Sendable Usage Rules and Constraints](sendable-constraints.md).
+  Since shared modules are shared across concurrent instances, all exported objects must be Sendable. For details, see [Usage Rules and Constraints for Sendable](sendable-constraints.md).
 
 - Modules cannot be directly exported from a shared module.
 
@@ -42,20 +46,20 @@ A non-shared module is loaded only once in the same thread and multiple times in
   ```
 
 
-- A shared module can reference a shared module or a non-shared module. The reference and reference scenarios of shared modules are not restricted.
+- Shared modules can import or be imported by both shared and non-shared modules. There are no restrictions on importing or being imported by shared modules.
 
-- napi_load_module, napi_load_module_with_info, and dynamic loading do not support the loading of shared modules.
+- **napi_load_module**, **napi_load_module_with_info**, and dynamic loading do not support loading of shared modules.
 
 
-## Example
+## Usage Example
 
-1. Export the sendable object in a shared module.
+1. Export a Sendable object from a shared module.
 
    ```ts
    // Shared module sharedModule.ets
    import { ArkTSUtils } from '@kit.ArkTS';
    
-   // Declare the current module as a shared module. Only sendable data can be exported.
+   // Declare the current module as shared. Only Sendable data can be exported.
    "use shared"
    
    // Shared module. SingletonA is globally unique.
@@ -80,29 +84,11 @@ A non-shared module is loaded only once in the same thread and multiple times in
    export let singletonA = new SingletonA();
    ```
 
-2. Operate the object exported from the shared module in multiple threads.
+2. Operate an object exported from the shared module across multiple threads.
 
    ```ts
-   import { ArkTSUtils, taskpool } from '@kit.ArkTS';
+   import { taskpool } from '@kit.ArkTS';
    import { singletonA } from './sharedModule';
-   
-   @Sendable
-   export class A {
-     private count_: number = 0;
-     lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock();
-   
-     public async getCount(): Promise<number> {
-       return this.lock_.lockAsync(() => {
-         return this.count_;
-       })
-     }
-   
-     public async increaseCount() {
-       await this.lock_.lockAsync(() => {
-         this.count_++;
-       })
-     }
-   }
    
    @Concurrent
    async function increaseCount() {

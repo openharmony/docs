@@ -1,10 +1,12 @@
 # ForEach
 
-**ForEach** enables rendering of repeated content based on array type data. It must be used in a container component, and the component it returns must be one allowed inside the container component. For example, for rendering of list items, **ForEach** must be used in the [List](../../../reference/apis-arkui/arkui-ts/ts-container-list.md) component.
-
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+For details about the development, see [ForEach: Rendering Repeated Content](../../../quick-start/arkts-rendering-control-foreach.md).
+
+**ForEach** enables rendering of repeated content based on array type data. It must be used in a container component, and the component it returns must be one allowed inside the container component. For example, for rendering of list items, **ForEach** must be used in the [List](../../../reference/apis-arkui/arkui-ts/ts-container-list.md) component.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -22,6 +24,14 @@
 >
 > - The **itemGenerator** function can contain an **if/else** statement, and an **if/else** statement can contain **ForEach**.
 > - On initial rendering, **ForEach** loads all data of the data source, creates a component for each data item, and mounts the created components to the render tree. If the data source contains a large number of items or performance is a critical concern, you are advised to use **LazyForEach**.
+
+**Example**
+```ts
+// arr is an array of strings.
+// The first parameter is a component creation function.
+// The second parameter is a key generation function.
+ForEach(this.arr, (item: string, index: number) => {Text(item)}, (item: string, index: number) => item + index)
+```
 
 ## onMove<sup>12+</sup>
 

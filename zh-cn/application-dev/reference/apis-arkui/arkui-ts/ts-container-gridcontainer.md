@@ -52,12 +52,12 @@ GridContainer(value?: GridContainerOptions)
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)和Column组件的[属性方法](ts-container-column.md#属性)。
+支持[通用属性](ts-component-general-attributes.md)和Column组件的[属性方法](ts-container-column.md#属性)。
 
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 

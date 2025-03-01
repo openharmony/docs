@@ -446,3 +446,13 @@ delete arrayBufferPtr; // This operation is not allowed and may cause a double f
 **napi_object_freeze** is equivalent to **Object.freeze**. After an object is frozen, all its properties are immutable. **napi_object_seal** is equivalent to **Object.seal**. After an object is sealed, no properties can be added or deleted, but the existing property values are mutable.
 
 If the semantics are violated in strict mode (default), an error will be thrown.
+
+## Reference
+
+[Communication Between Native Child Threads and the UI Main Thread](https://developer.huawei.com/consumer/en/doc/best-practices-V5/bpta-native-sub-main-comm-V5)
+
+[How do I directly call ArkTS APIs in a C++ subthread on the native side without triggering callbacks on the ArkTS side?](https://developer.huawei.com/consumer/en/doc/harmonyos-faqs-V5/faqs-ndk-8-V5)
+
+[Are napi_env and napi_value instances shared across worker threads?] (https://developer.huawei.com/consumer/en/doc/harmonyos-faqs-V5/faqs-ndk-55-V5)
+
+[How do I create a subthread on the native side? What are the restrictions? How does the native subthread communicate with the main thread?](https://developer.huawei.com/consumer/en/doc/harmonyos-faqs-V5/faqs-ndk-68-V5)

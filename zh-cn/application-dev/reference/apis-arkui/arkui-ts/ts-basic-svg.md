@@ -13,13 +13,13 @@ SVG(Scalable Vector Graphics)是可缩放矢量图形，它是一种基于XML(�
 
 | 元素 | 说明 | 特有属性 |
 | :-------- | :-------- | :-------- |
-| \<rect\> | 矩形 | x：x轴方向偏移分量； <br>y：y轴方向偏移分量；<br>width：宽度； <br>height：高度；<br>rx：圆角x轴半径； <br>ry：圆角y轴半径|
-| \<circle\> | 圆形 | cx：圆心x轴坐标；<br> cy：圆心y轴坐标；<br> r：圆形半径 |  |
-| \<ellipse\> | 椭圆 | cx：x轴坐标；<br> cy：y轴坐标；<br> rx：x轴半径；<br> ry：y轴半径<br> |  |
-| \<line\> | 线 | x1：起点x轴坐标；<br> y1：起点y轴坐标；<br> x2：终点x轴坐标；<br> y2：终点y轴坐标 |  |
-| \<polyline\> | 折线 | points：顶点坐标 |  |
-| \<polygon\> | 多边形 | points：顶点坐标 |  |
-| \<path\> | 路径 | d：路径 |  |
+| \<rect\> | 矩形 | x：x轴方向偏移分量； <br>y：y轴方向偏移分量；<br>width：宽度； <br>height：高度；<br>rx：圆角x轴半径； <br>ry：圆角y轴半径。|
+| \<circle\> | 圆形 | cx：圆心x轴坐标；<br> cy：圆心y轴坐标；<br> r：圆形半径。 |  |
+| \<ellipse\> | 椭圆 | cx：x轴坐标；<br> cy：y轴坐标；<br> rx：x轴半径；<br> ry：y轴半径。 |  |
+| \<line\> | 线 | x1：起点x轴坐标；<br> y1：起点y轴坐标；<br> x2：终点x轴坐标；<br> y2：终点y轴坐标。 |  |
+| \<polyline\> | 折线 | points：顶点坐标。 |  |
+| \<polygon\> | 多边形 | points：顶点坐标。 |  |
+| \<path\> | 路径 | d：路径。 |  |
 
 ## 图形效果
 
@@ -29,34 +29,34 @@ SVG(Scalable Vector Graphics)是可缩放矢量图形，它是一种基于XML(�
 
 | 元素 | 说明 | 特有属性 |
 | :-------- | :-------- | :-------- |
-| \<filter\> | 定义滤镜 | x：滤镜区域x轴偏移分量，默认值为0； <br>y：滤镜区域y轴偏移分量，默认值为0； <br>width：滤镜区域宽； <br>height：滤镜区域高|
-| \<feOffset\> | 定义沿x、y方向偏移距离 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）;<br> result：经过滤镜处理之后的输出，可以作为下一个滤镜的输入，dx，dy |
-| \<feGaussianBlur\> | 定义高斯模糊效果 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）;<br> result：经过滤镜处理之后的输出，可以作为下一个滤镜的输入，edgemode，stddeviation|
-| \<feBlend\> | 定义两张输入图像混合模式 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）;<br> result：经过滤镜处理之后的输出，可以作为下一个滤镜的输入；<br>in2：第二图源（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result），mode |
-| \<feComposite\> | 定义两张输入图像合成方式，<br>算法：result = k1 * in * in2 + k2 * in + k3 * in2 + k4 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）；<br>in2：第二图源（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result），operator( over \| in \| out \| atop \| xor \| lighter \| arithmetic )，k1，k2，k3，k4 |  |
-| \<feColorMatrix\> | 基于转换矩阵对颜色进行变换 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）；<br> result：经过滤镜处理之后的输出，可以作为下一个滤镜的输入；<br>type ( matrix \| saturate \| hueRotate)、 values |
-| \<feFlood\> | 定义填充颜色和透明度 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）；<br> result：经过滤镜处理之后的输出，可以作为下一个滤镜的输入；flood-color、flood-opacity |
+| \<filter\> | 定义滤镜 | x：滤镜区域x轴偏移分量，默认值为0； <br>y：滤镜区域y轴偏移分量，默认值为0； <br>width：滤镜区域宽； <br>height：滤镜区域高。 |
+| \<feOffset\> | 定义沿x、y方向偏移距离 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）;<br> result：经过滤镜处理之后的输出，可以作为下一个滤镜的输入，dx，dy。 |
+| \<feGaussianBlur\> | 定义高斯模糊效果 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）;<br> result：经过滤镜处理之后的输出，可以作为下一个滤镜的输入，edgemode，stddeviation。 |
+| \<feBlend\> | 定义两张输入图像混合模式 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）;<br> result：经过滤镜处理之后的输出，可以作为下一个滤镜的输入；<br>in2：第二图源（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result），mode。 |
+| \<feComposite\> | 定义两张输入图像合成方式，<br>算法：result = k1 * in * in2 + k2 * in + k3 * in2 + k4 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）；<br>in2：第二图源（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result），operator( over \| in \| out \| atop \| xor \| lighter \| arithmetic )，k1，k2，k3，k4。 |
+| \<feColorMatrix\> | 基于转换矩阵对颜色进行变换 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）；<br> result：经过滤镜处理之后的输出，可以作为下一个滤镜的输入；<br>type ( matrix \| saturate \| hueRotate)、 values。 |
+| \<feFlood\> | 定义填充颜色和透明度 | in：滤镜原始输入（仅支持SourceGraphic、SourceAlpha、其它滤镜效果的result）；<br> result：经过滤镜处理之后的输出，可以作为下一个滤镜的输入；flood-color、flood-opacity。 |
 
 ### 遮罩
 
 遮罩标签：\<mask\>
 | 元素 | 说明 | 特有属性 |
 | :-------- | :-------- | :-------- |
-| \<mask\> | 定义遮罩 | x：遮罩区域x轴偏移分量； <br>y：遮罩区域y轴偏移分量； <br>width：遮罩区域宽； <br>height：遮罩区域高 |
+| \<mask\> | 定义遮罩 | x：遮罩区域x轴偏移分量； <br>y：遮罩区域y轴偏移分量； <br>width：遮罩区域宽； <br>height：遮罩区域高。 |
 
 ### 裁剪
 
 裁剪标签：\<clippath\>
 | 元素 | 说明 | 特有属性 |
 | :-------- | :-------- | :-------- |
-| \<clippath\> | 定义一条剪切路径 | x：裁剪区域x轴偏移分量；<br>y：裁剪区域y轴偏移分量； <br>width：裁剪区域宽； <br>height：裁剪区域高 |
+| \<clippath\> | 定义一条剪切路径 | x：裁剪区域x轴偏移分量；<br>y：裁剪区域y轴偏移分量； <br>width：裁剪区域宽； <br>height：裁剪区域高。 |
 
 ### 图案
 
 裁剪标签：\<pattern\>
 | 元素 | 说明 | 特有属性 |
 | :-------- | :-------- | :-------- |
-| \<pattern\> | 定义填充图案 | x：填充区域x轴偏移分量； <br>y：填充区域y轴偏移分量； <br>width：填充区域宽； <br>height：填充区域高 |
+| \<pattern\> | 定义填充图案 | x：填充区域x轴偏移分量； <br>y：填充区域y轴偏移分量； <br>width：填充区域宽； <br>height：填充区域高。 |
 
 ### 渐变色
 
@@ -73,7 +73,7 @@ SVG(Scalable Vector Graphics)是可缩放矢量图形，它是一种基于XML(�
 图片标签：\<image\>
 | 元素 | 说明 | 特有属性 |
 | :-------- | :-------- | :-------- |
-| \<image\> | 用于图像显示 | x：图像x轴偏移；<br> y：图像y轴偏移；<br> width：图像宽；<br> height：图像高；<br> href：目标图片(支持：jpg、jpeg、png、bmp、webp、heic、base64，不支持svg) |
+| \<image\> | 用于图像显示 | x：图像x轴偏移；<br> y：图像y轴偏移；<br> width：图像宽；<br> height：图像高；<br> href：目标图片(支持：jpg、jpeg、png、bmp、webp、heic、base64，不支持svg)。 |
 
 ## 动画
 

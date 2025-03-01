@@ -21,7 +21,7 @@ import { SymbolGlyphModifier, DividerModifier, ToolBar, ToolBarOptions, ToolBarM
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)
 
 ## ToolBar
 
@@ -164,7 +164,7 @@ ToolBarSymbolGlyphOptions定义图标的属性。
 | activated| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 工具栏symbol图标激活态样式。<br/>默认值：fontColor：$r('sys.color.icon_emphasize')，fontSize：24vp。 |
 
 ## 事件
-支持[通用事件](ts-universal-events-click.md)
+支持[通用事件](ts-component-general-events.md)
 
 ## 示例
 

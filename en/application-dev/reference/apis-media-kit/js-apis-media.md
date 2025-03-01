@@ -506,17 +506,17 @@ Enumerates the [media error codes](errorcode-media.md).
 | AVERR_SERVICE_DIED                    | 5400105 | The service process is dead.                  |
 | AVERR_UNSUPPORT_FORMAT                | 5400106 | The format of the media asset is not supported.      |
 | AVERR_AUDIO_INTERRUPTED<sup>11+</sup> | 5400107 | The audio focus is interrupted.                  |
-| AVERR_IO_HOST_NOT_FOUND<sup>14+</sup> | 5411001 | Failed to parse the server address or connect to the server. <br>**Atomic service API**: This API can be used in atomic services since API version 14.       |
-| AVERR_IO_CONNECTION_TIMEOUT<sup>14+</sup> | 5411002 | Network connection times out. <br>**Atomic service API**: This API can be used in atomic services since API version 14.      |
-| AVERR_IO_NETWORK_ABNORMAL<sup>14+</sup> | 5411003 | Data or links are abnormal due to network exceptions. <br>**Atomic service API**: This API can be used in atomic services since API version 14.      |
-| AVERR_IO_NETWORK_UNAVAILABLE<sup>14+</sup> | 5411004 | The network is disabled. <br>**Atomic service API**: This API can be used in atomic services since API version 14.      |
-| AVERR_IO_NO_PERMISSION<sup>14+</sup> | 5411005 | No access permission. <br>**Atomic service API**: This API can be used in atomic services since API version 14.    |
-| AVERR_IO_REQUEST_DENIED<sup>14+</sup> | 5411006 | The client request parameter is incorrect or exceeds the processing capability. <br>**Atomic service API**: This API can be used in atomic services since API version 14.      |
-| AVERR_IO_RESOURCE_NOT_FOUND<sup>14+</sup> | 5411007 | No network resource is available. <br>**Atomic service API**: This API can be used in atomic services since API version 14.      |
-| AVERR_IO_SSL_CLIENT_CERT_NEEDED<sup>14+</sup> | 5411008 | The server fails to verify the client certificate. <br>**Atomic service API**: This API can be used in atomic services since API version 14.      |
-| AVERR_IO_SSL_CONNECTION_FAILED<sup>14+</sup> | 5411009 | The SSL connection fails. <br>**Atomic service API**: This API can be used in atomic services since API version 14.      |
-| AVERR_IO_SSL_SERVER_CERT_UNTRUSTED<sup>14+</sup> | 5411010 | The client fails to verify the server certificate. <br>**Atomic service API**: This API can be used in atomic services since API version 14.      |
-| AVERR_IO_UNSUPPORTED_REQUEST<sup>14+</sup> | 5411011 | The request is not supported due to a network protocol error. <br>**Atomic service API**: This API can be used in atomic services since API version 14.      |
+| AVERR_IO_HOST_NOT_FOUND<sup>14+</sup> | 5411001 | Failed to parse the server address or connect to the server.       |
+| AVERR_IO_CONNECTION_TIMEOUT<sup>14+</sup> | 5411002 | Network connection times out.       |
+| AVERR_IO_NETWORK_ABNORMAL<sup>14+</sup> | 5411003 | Data or links are abnormal due to network exceptions.       |
+| AVERR_IO_NETWORK_UNAVAILABLE<sup>14+</sup> | 5411004 | The network is disabled.       |
+| AVERR_IO_NO_PERMISSION<sup>14+</sup> | 5411005 | No access permission.     |
+| AVERR_IO_REQUEST_DENIED<sup>14+</sup> | 5411006 | The client request parameter is incorrect or exceeds the processing capability.       |
+| AVERR_IO_RESOURCE_NOT_FOUND<sup>14+</sup> | 5411007 | No network resource is available.       |
+| AVERR_IO_SSL_CLIENT_CERT_NEEDED<sup>14+</sup> | 5411008 | The server fails to verify the client certificate.       |
+| AVERR_IO_SSL_CONNECTION_FAILED<sup>14+</sup> | 5411009 | The SSL connection fails.       |
+| AVERR_IO_SSL_SERVER_CERT_UNTRUSTED<sup>14+</sup> | 5411010 | The client fails to verify the server certificate.       |
+| AVERR_IO_UNSUPPORTED_REQUEST<sup>14+</sup> | 5411011 | The request is not supported due to a network protocol error.       |
 
 ## MediaType<sup>8+</sup>
 
@@ -761,17 +761,17 @@ In API versions 9 to 13, error code 5400103 is reported when the network or serv
 | 5400104  | Time out              |
 | 5400105  | Service died.         |
 | 5400106  | Unsupported format.     |
-| 5411001  | IO can not find host.    |
-| 5411002  | IO connection timeout.  |
-| 5411003  | IO network abnormal.     |
-| 5411004  | IO network unavailable.  |
-| 5411005  | IO no permission.        |
-| 5411006  | IO request denied.  |
-| 5411007  | IO resource not found. |
-| 5411008  | IO SSL client cert needed.    |
-| 5411009  | IO SSL connect fail.     |
-| 5411010  | IO SSL server cert untrusted.    |
-| 5411011  | IO unsupported request.      |
+| 5411001  | Can not find host.    |
+| 5411002  | Connection time out.  |
+| 5411003  | NetWork abnormal.     |
+| 5411004  | NetWork unavailable.  |
+| 5411005  | No permission.        |
+| 5411006  | Network access denied.  |
+| 5411007  | Cannot find available network resources. |
+| 5411008  | SSL client cert needed.    |
+| 5411009  | SSL connection failed.     |
+| 5411010  | SSL server cert needed.    |
+| 5411011  | Unsupportted request.      |
 
 **Example**
 

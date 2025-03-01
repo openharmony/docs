@@ -878,10 +878,10 @@ Failed to uninstall the HAP because uninstalling the native package failed.
 The app does not support the creation of an appClone instance.
 
 **错误描述**<br/>
-多开模式非分身的应用，不能创建分身实例
+多开模式非分身的应用，不能创建分身实例。
 
 **可能原因**<br/>
-没有配置分身模式，或者多开模式配置为其他模式
+没有配置分身模式，或者多开模式配置为其他模式。
 
 **处理步骤**<br/>
 1. 检查更新应用是否支持分身。

@@ -35,7 +35,7 @@
 | typedef struct NativeWindow [OHNativeWindow](#ohnativewindow) | 提供对NativeWindow的访问功能。  | 
 | typedef struct NativeWindowBuffer [OHNativeWindowBuffer](#ohnativewindowbuffer) | 提供NativeWindowBuffer结构体声明。 | 
 | typedef void(\* [OH_OnFrameAvailable](#oh_onframeavailable)) (void \*context) | 有buffer可获取时触发的回调函数。  | 
-| typedef struct [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md)  [OH_OnFrameAvailableListener](#oh_onframeavailablelistener) | 一个OH_NativeImage的监听者，通过{\@Link OH_NativeImage_SetOnFrameAvailableListener}接口注册 该监听结构体，当有buffer可获取时，将触发回调给用户。  | 
+| typedef struct [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md)  [OH_OnFrameAvailableListener](#oh_onframeavailablelistener) | 一个OH_NativeImage的监听者，通过[OH_NativeImage_SetOnFrameAvailableListener](#oh_nativeimage_setonframeavailablelistener)接口注册 该监听结构体，当有buffer可获取时，将触发回调给用户。 |
 | typedef enum [OHNativeErrorCode](#ohnativeerrorcode)  [OHNativeErrorCode](#ohnativeerrorcode) | 接口错误码说明（仅用于查询）。  | 
 
 ### 枚举

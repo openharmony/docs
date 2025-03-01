@@ -431,19 +431,6 @@ Allows a device administrator application to manage the device administrator.
 
 **Valid since**: 12
 
-## ohos.permission.QUERY_AUDIT_EVENT
-
-Allows an MDM application to query audit events.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-<!--Del-->
-**Enable via ACL**: true<!--DelEnd-->
-
-**Valid since**: 12
-
 ## ohos.permission.ENTERPRISE_RECOVERY_KEY
 
 Allows an application to manage the enterprise recovery keys.

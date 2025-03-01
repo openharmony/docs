@@ -75,14 +75,14 @@ For details about the error codes, see [Ability Error Codes](../apis-ability-kit
 **Example**
 
 ```ts
-import { FenceExtensionAbility, FenceExtensionContext, geoLocationManager } from '@kit.LocationKit';
+import { FenceExtensionAbility, geoLocationManager } from '@kit.LocationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
 
-class MyFenceExtensionAbility extends FenceExtensionAbility {
+export class MyFenceExtensionAbility extends FenceExtensionAbility {
   onFenceStatusChange(transition: geoLocationManager.GeofenceTransition, additions: Record<string, string>): void {
     // Receive the geofence status change event and process the service logic.
-    hilog.info(0x0000, "TAG",
-      `on geofence transition,id:${transition.geofenceId},event:${transition.transitionEvent},additions:${JSON.stringify(additions)}`);
+    console.info(`on geofence transition,id:${transition.geofenceId},event:${transition.transitionEvent},additions:${JSON.stringify(additions)}`);
     let want: Want = {
       bundleName: "com.example.myapp",
       abilityName: "MyServiceExtensionAbility"
@@ -91,18 +91,18 @@ class MyFenceExtensionAbility extends FenceExtensionAbility {
       this.context.startAbility(want)
         .then(() => {
           // Carry out normal service processing.
-          hilog.info(0x0000, "TAG", 'startAbility succeed');
+          console.info('startAbility succeed');
         })
         .catch((error: BusinessError) => {
           // Process service logic errors.
-          hilog.info(0x0000, "TAG", 'startAbility failed, error.code: ' + JSON.stringify(error.code) +
+          console.info('startAbility failed, error.code: ' + JSON.stringify(error.code) +
             ' error.message: ' + JSON.stringify(error.message));
         });
     } catch (paramError) {
       // Process input parameter errors.
       let code = (paramError as BusinessError).code;
       let message = (paramError as BusinessError).message;
-      hilog.info(0x0000, "TAG", 'startAbility failed, error.code: ' + JSON.stringify(code) +
+      console.info('startAbility failed, error.code: ' + JSON.stringify(code) +
         ' error.message: ' + JSON.stringify(message));
     }
   }

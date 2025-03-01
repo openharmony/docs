@@ -4,7 +4,7 @@ hiperf is a command-line tool provided to capture performance data of a specific
 
 ## Environment Setup
 
-- The [environment setup](hdc.md#environment-setup) is complete.
+- The environment for OpenHarmony Device Connector (hdc) has been set up. For details, see [Environment Setup](hdc.md#environment-setup).
 
 - The devices are properly connected.
 
@@ -20,7 +20,7 @@ hiperf is a command-line tool provided to capture performance data of a specific
 | --mixlog | Outputs mixed logs.|
 | --much | Output as many logs as possible.|
 | --nodebug | Outputs no log.|
-| --verbose | Outputs debug logs.|
+| --verbose | Outputs verbose logs.|
 
 ## help
 
@@ -49,7 +49,7 @@ Lists all the supported events on the device. The event names are used for the *
 | -h/--help  | Displays the help information.|
 | hw | Lists the hardware events.|
 | sw | Lists the software events.|
-| tp | Lists the tracepoint events.|
+| tp | Tracepoint event.|
 | cache | Lists the hardware cache events.|
 | raw | Lists the original PMU events.|
 

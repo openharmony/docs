@@ -28,7 +28,7 @@ enableBluetooth(): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息            |
 | -------- | ------------------ |
@@ -63,7 +63,7 @@ disableBluetooth(): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |
@@ -102,7 +102,7 @@ getState(): BluetoothState
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |
@@ -138,11 +138,11 @@ on(type: 'stateChange', callback: Callback&lt;BluetoothState&gt;): void
 | 参数名   | 类型                                               | 必填  | 说明                                                       |
 | -------- | ------------------------------------------------- | ----- | ---------------------------------------------------------- |
 | type     | string                                            | 是    | 填写"stateChange"字符串，表示蓝牙状态改变事件。               |
-| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | 是    | 表示回调函数的入参，蓝牙状态。回调函数由用户创建通过该接口注册。 |
+| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | 是    | 表示回调函数的入参，蓝牙状态。回调函数由用户创建并通过该接口注册。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |
@@ -187,7 +187,7 @@ off(type: 'stateChange', callback?: Callback&lt;BluetoothState&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |

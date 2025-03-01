@@ -1,10 +1,10 @@
-# Freezing a Sendable Object
+# Freezing Sendable Objects
 
-Sendable objects can be frozen. Frozen objects become read-only objects and cannot be added, deleted, or modified. Therefore, no lock is required for concurrent access between multiple instances. You can call the [Object.freeze](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) API to freeze objects.
+Sendable objects can be frozen, making them read-only and preventing any additions, deletions, or modifications to their properties. Once frozen, these objects can be safely accessed across multiple concurrent instances without the need for locks. This is achieved using the [Object.freeze](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) method.
 
-## Samples
+## Usage Example
 
-1. Provides the Object.freeze method encapsulated in TS files.
+1. Encapsulate the **Object.freeze** method in a TS file.
 
    ```ts
    // helper.ts
@@ -13,7 +13,7 @@ Sendable objects can be frozen. Frozen objects become read-only objects and cann
    }
    ```
 
-2. Call the freeze method to freeze the object and send the object to the subthread.
+2. Call the **freeze** method to freeze an object and send it to a child thread.
 
    ```ts
    // Index.ets
@@ -22,10 +22,10 @@ Sendable objects can be frozen. Frozen objects become read-only objects and cann
     
    @Sendable
    export class GlobalConfig {
-       // Configuration attributes and methods.
+     // Configuration properties and methods
      init() {
-           // Initialize the logic.
-           freezeObj(this) // Freeze this object after the initialization is complete.
+       // Initialization logic
+       freezeObj(this) // Freeze the object after the initialization is complete.
      }
    }
     
@@ -51,7 +51,7 @@ Sendable objects can be frozen. Frozen objects become read-only objects and cann
    }
    ```
 
-3. Subthreads directly operate objects without locking them.
+3. Perform operations on the frozen object directly in the child thread without locking.
 
    ```ts
    // Worker.ets
