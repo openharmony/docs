@@ -143,8 +143,8 @@ Asset_Attr* OH_Asset_ParseAttr (const Asset_Result * result, Asset_Tag tag )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| const Asset_Result * result | 从OH_Asset_Query中获取的查询结果。  |
-| Asset_Tag tag | 待获取的属性标签。  |
+| result | 从OH_Asset_Query中获取的查询结果。  |
+| tag | 待获取的属性标签。  |
 
 **返回：**
 
@@ -165,8 +165,8 @@ int32_t OH_Asset_PostQuery (const Asset_Attr * handle, uint32_t handleCnt )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| const Asset_Attr * handle | 待处理的查询句柄，当前包含OH_Asset_PreQuery执行成功返回的挑战值。  |
-| uint32_t handleCnt | 句柄属性集合中元素的个数。  |
+| handle | 待处理的查询句柄，当前包含OH_Asset_PreQuery执行成功返回的挑战值。  |
+| handleCnt | 句柄属性集合中元素的个数。  |
 
 **返回：**
 
@@ -202,9 +202,9 @@ int32_t OH_Asset_PreQuery (const Asset_Attr * query, uint32_t queryCnt, Asset_Bl
 
 | 名称 | 描述 |
 | -------- | -------- |
-| const Asset_Attr * query | 关键资产的查询条件。  |
-| uint32_t queryCnt | 关键资产查询条件的个数。  |
-| Asset_Blob * challenge | 挑战值，在后续调用OH_Asset_Query时使用。  |
+| query | 关键资产的查询条件。  |
+| queryCnt | 关键资产查询条件的个数。  |
+| challenge | 挑战值，在后续调用OH_Asset_Query时使用。  |
 
 **返回：**
 
@@ -254,9 +254,9 @@ int32_t OH_Asset_Query (const Asset_Attr * query, uint32_t queryCnt, Asset_Resul
 
 | 名称 | 描述 |
 | -------- | -------- |
-| const Asset_Attr * query | 关键资产的查询条件。  |
-| uint32_t queryCnt | 关键资产查询条件的个数。  |
-| Asset_ResultSet * resultSet | 查询结果列表。  |
+| query | 关键资产的查询条件。  |
+| queryCnt | 关键资产查询条件的个数。  |
+| resultSet | 查询结果列表。  |
 
 **返回：**
 
@@ -306,8 +306,8 @@ int32_t OH_Asset_Remove (const Asset_Attr * query, uint32_t queryCnt )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| const Asset_Attr * query | 待删除关键资产的搜索条件。  |
-| uint32_t queryCnt | 待删除关键资产搜索条件的个数。  |
+| query | 待删除关键资产的搜索条件。  |
+| queryCnt | 待删除关键资产搜索条件的个数。  |
 
 **返回：**
 
@@ -351,10 +351,10 @@ int32_t OH_Asset_Update (const Asset_Attr * query, uint32_t queryCnt, const Asse
 
 | 名称 | 描述 |
 | -------- | -------- |
-| const Asset_Attr * query | 待更新关键资产的搜索条件。  |
-| uint32_t queryCnt | 待更新关键资产搜索条件的个数。  |
-| const Asset_Attr * attributesToUpdate | 待更新关键资产的属性集合。  |
-| uint32_t updateCnt | 待更新关键资产的属性数量。  |
+| query | 待更新关键资产的搜索条件。  |
+| queryCnt | 待更新关键资产搜索条件的个数。  |
+| attributesToUpdate | 待更新关键资产的属性集合。  |
+| updateCnt | 待更新关键资产的属性数量。  |
 
 **返回：**
 
