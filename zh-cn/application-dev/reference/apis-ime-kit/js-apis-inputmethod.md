@@ -796,28 +796,21 @@ Enter键的功能类型。
 
 自定义通信对象。
 
-> **说明**
+> **说明：**
 >
-> 开发者可通过注册此对象来接收输入法应用发送的自定义通信数据，接收到自定义通信数据时会触发此对象中[onMessage](#messagehandleronmessage15)回调函数。
+> 开发者可通过注册此对象来接收输入法应用发送的自定义通信数据，接收到自定义通信数据时会触发此对象中[onMessage](#onmessage15)回调函数。
 >
-> 此对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated15)回调函数。
+> 此对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#onterminated15)回调函数。
 >
-> 若取消注册全局已注册的对象时，会触发被取消对象中[onTerminated](#messagehandleronterminated15)回调函数。
+> 若取消注册全局已注册的对象时，会触发被取消对象中[onTerminated](#onterminated15)回调函数。
 
-**系统能力：** SystemCapability.MiscServices.InputMethodFramework
-
-| 名称         | 类型     | 可选 | 说明                               |
-| ------------ | -------- | ---- | ---------------------------------- |
-| onTerminated | function | 否   | 对象终止接收的回调函数。           |
-| onMessage    | function | 否   | 对象接收自定义通信数据的回调函数。 |
-
-## MessageHandler.onMessage<sup>15+</sup>
+### onMessage<sup>15+</sup>
 
 onMessage(msgId: string, msgParam?: ArrayBuffer): void
 
 接收输入法应用发送的自定义数据回调函数。
 
-> **说明**
+> **说明：**
 >
 > 当已注册的MeesageHandler接收到来自输入法应用发送的自定义通信数据时，会触发该回调函数。
 >
@@ -837,8 +830,9 @@ onMessage(msgId: string, msgParam?: ArrayBuffer): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let inputMethodController = inputMethod.getController();
 try {
-    let messageHandler: inputmethod.MessageHandler = {
+    let messageHandler: inputMethod.MessageHandler = {
         onTerminated(): void {
             console.log('OnTerminated.');
         },
@@ -852,13 +846,13 @@ try {
 }
 ```
 
-## MessageHandler.onTerminated<sup>15+</sup>
+### onTerminated<sup>15+</sup>
 
 onTerminated(): void
 
 监听对象终止回调函数。
 
-> **说明**
+> **说明：**
 >
 > 当应用注册新的MessageHandler对象时，会触发上一个已注册MessageHandler对象的OnTerminated回调函数。
 >
@@ -871,8 +865,9 @@ onTerminated(): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let inputMethodController = inputMethod.getController();
 try {
-    let messageHandler: inputmethod.MessageHandler = {
+    let messageHandler: inputMethod.MessageHandler = {
         onTerminated(): void {
             console.log('OnTerminated.');
         },
@@ -1953,9 +1948,9 @@ recvMessage(msgHandler?: MessageHandler): void
 
 > **说明：**
 >
-> [MessageHandler](#messagehandler15)对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated15)回调函数。
+> [MessageHandler](#messagehandler15)对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#onterminated15)回调函数。
 >
-> 未填写参数，则取消全局已注册的[MessageHandler](#messagehandler15)，并会触发被取消注册对象中[onTerminated](#messagehandleronterminated15)回调函数。
+> 未填写参数，则取消全局已注册的[MessageHandler](#messagehandler15)，并触发被取消注册对象中[onTerminated](#onterminated15)回调函数。
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
@@ -1963,7 +1958,7 @@ recvMessage(msgHandler?: MessageHandler): void
 
 | 参数名     | 类型                                | 必填 | 说明                                                         |
 | ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| msgHandler | [MessageHandler](#messagehandler15) | 否   | 该对象将通过[onMessage](#messagehandleronmessage15)接收来自输入法应用所发送的自定义通信数据，以及[onTerminated](#messagehandleronterminated15)接收终止此对象订阅的消息。若不填写此参数，则取消全局已注册的[MessageHandler](#messagehandler15)对象，并触发其[onTerminated](#messagehandleronterminated15)回调函数。 |
+| msgHandler | [MessageHandler](#messagehandler15) | 否   | 该对象通过[onMessage](#onmessage15)接收来自输入法应用所发送的自定义通信数据，并通过[onTerminated](#onterminated15)接收终止此对象订阅的消息。<br>若不填写此参数，则取消全局已注册的[MessageHandler](#messagehandler15)对象，同时触发其[onTerminated](#onterminated15)回调函数。 |
 
 **返回值：**
 
