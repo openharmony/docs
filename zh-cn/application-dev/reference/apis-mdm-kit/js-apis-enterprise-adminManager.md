@@ -18,7 +18,7 @@ import { adminManager } from '@kit.MDMKit';
 
 disableAdmin(admin: Want, userId?: number): Promise\<void>
 
-将当前/指定用户下指定的普通管理应用去激活。使用promise异步回调。
+将当前设备指定用户的设备管理应用去激活。使用promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -32,14 +32,14 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 | 参数名 | 类型                                                    | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 普通设备管理应用。                                           |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
 | userId | number                                                  | 否   | 用户ID， 取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
 
 | 类型           | 说明                                                         |
 | -------------- | ------------------------------------------------------------ |
-| Promise\<void> | 无返回结果的Promise对象。当去激活普通管理应用失败时，会抛出错误对象。 |
+| Promise\<void> | 无返回结果的Promise对象。当去激活设备管理应用失败时，会抛出错误对象。 |
 
 **错误码**:
 
@@ -57,8 +57,8 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 adminManager.disableAdmin(wantTemp, 100).catch((err: BusinessError) => {
@@ -70,7 +70,7 @@ adminManager.disableAdmin(wantTemp, 100).catch((err: BusinessError) => {
 
 subscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): void
 
-指定的设备管理应用订阅系统管理事件。
+订阅系统管理事件。
 
 **需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -82,10 +82,10 @@ subscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): voi
 
 **参数：**
 
-| 参数名        | 类型                                                    | 必填 | 说明           |
-| ------------- | ------------------------------------------------------- | ---- | -------------- |
-| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
-| managedEvents | Array\<[ManagedEvent](#managedevent)>                   | 是   | 订阅事件数组。 |
+| 参数名        | 类型                                                    | 必填 | 说明                   |
+| ------------- | ------------------------------------------------------- | ---- | ---------------------- |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| managedEvents | Array\<[ManagedEvent](#managedevent)>                   | 是   | 订阅事件数组。         |
 
 **错误码**：
 
@@ -103,8 +103,8 @@ subscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): voi
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
@@ -120,7 +120,7 @@ try {
 
 unsubscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): void
 
-指定的设备管理应用取消订阅系统管理事件。
+取消订阅系统管理事件。
 
 **需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -132,10 +132,10 @@ unsubscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): v
 
 **参数：**
 
-| 参数名        | 类型                                                    | 必填 | 说明               |
-| ------------- | ------------------------------------------------------- | ---- | ------------------ |
-| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。     |
-| managedEvents | Array\<[ManagedEvent](#managedevent)>                   | 是   | 取消订阅事件数组。 |
+| 参数名        | 类型                                                    | 必填 | 说明                   |
+| ------------- | ------------------------------------------------------- | ---- | ---------------------- |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| managedEvents | Array\<[ManagedEvent](#managedevent)>                   | 是   | 取消订阅事件数组。     |
 
 **错误码**：
 
@@ -153,8 +153,8 @@ unsubscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): v
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
@@ -168,7 +168,7 @@ try {
 
 ## adminManager.setDelegatedPolicies<sup>14+</sup>
 
-setDelegatedPolicies(admin: Want, bundleName: string, policies: Array&lt;string&gt;): void;
+setDelegatedPolicies(admin: Want, bundleName: string, policies: Array&lt;string&gt;): void
 
 委托其他应用来设置设备的管控策略。
 
@@ -184,7 +184,7 @@ setDelegatedPolicies(admin: Want, bundleName: string, policies: Array&lt;string&
 
 | 参数名        | 类型                                                    | 必填 | 说明               |
 | ------------- | ------------------------------------------------------- | ---- | ------------------ |
-| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。     |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 | bundleName | string                   | 是   | 被委托应用包名。被委托应用仅支持enterprise_mdm和enterprise_normal两种类型，应用的分发类型具体请参考[指南](https://gitee.com/nezha-father/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md)。 |
 | policies |  Array&lt;string&gt;                   | 是   | [委托策略列表](#可委托策略列表)。 |
 
@@ -205,8 +205,8 @@ setDelegatedPolicies(admin: Want, bundleName: string, policies: Array&lt;string&
 ```ts
 import { Want } from '@kit.AbilityKit';
 let admin: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let policies: Array<string> = ["disabled_hdc"];
 
@@ -220,7 +220,7 @@ try {
 
 ## adminManager.getDelegatedPolicies<sup>14+</sup>
 
-getDelegatedPolicies(admin: Want, bundleName: string): Array&lt;string&gt;;
+getDelegatedPolicies(admin: Want, bundleName: string): Array&lt;string&gt;
 
 查询被委托应用可访问的策略列表。
 
@@ -234,10 +234,10 @@ getDelegatedPolicies(admin: Want, bundleName: string): Array&lt;string&gt;;
 
 **参数：**
 
-| 参数名        | 类型                                                    | 必填 | 说明               |
-| ------------- | ------------------------------------------------------- | ---- | ------------------ |
-| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。     |
-| bundleName | string                   | 是   | 被委托应用包名。被委托应用仅支持enterprise_mdm和enterprise_normal两种类型，应用的分发类型具体请参考[指南](https://gitee.com/nezha-father/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md)。 |
+| 参数名     | 类型                                                    | 必填 | 说明                                                         |
+| ---------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
+| bundleName | string                                                  | 是   | 被委托应用包名。被委托应用仅支持enterprise_mdm和enterprise_normal两种类型，应用的分发类型具体请参考[指南](https://gitee.com/nezha-father/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md)。 |
 
 
 **返回值：**
@@ -262,8 +262,8 @@ getDelegatedPolicies(admin: Want, bundleName: string): Array&lt;string&gt;;
 ```ts
 import { Want } from '@kit.AbilityKit';
 let admin: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 try {
@@ -276,7 +276,7 @@ try {
 
 ## adminManager.getDelegatedBundleNames<sup>14+</sup>
 
-getDelegatedBundleNames(admin: Want, policy: string): Array&lt;string&gt;;
+getDelegatedBundleNames(admin: Want, policy: string): Array&lt;string&gt;
 
 查询可以访问某个委托策略的被委托应用，输出被委托应用列表。
 
@@ -292,7 +292,7 @@ getDelegatedBundleNames(admin: Want, policy: string): Array&lt;string&gt;;
 
 | 参数名        | 类型                                                    | 必填 | 说明               |
 | ------------- | ------------------------------------------------------- | ---- | ------------------ |
-| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。     |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 | policy | string                   | 是   | 委托策略。 |
 
 
@@ -318,8 +318,8 @@ getDelegatedBundleNames(admin: Want, policy: string): Array&lt;string&gt;;
 ```ts
 import { Want } from '@kit.AbilityKit';
 let admin: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 try {
@@ -332,7 +332,7 @@ try {
 
 ## adminManager.startAdminProvision<sup>15+</sup>
 
-startAdminProvision(admin: Want, type: AdminType, context: common.Context, parameters: Record\<string, string>): void;
+startAdminProvision(admin: Want, type: AdminType, context: common.Context, parameters: Record\<string, string>): void
 
 设备管理应用拉起BYOD管理员激活页面进行激活。
 
@@ -348,7 +348,7 @@ startAdminProvision(admin: Want, type: AdminType, context: common.Context, param
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | type  | [AdminType](#admintype15)             | 是    | 激活的设备管理应用类型，仅支持ADMIN_TYPE_BYOD类型。  |
 | context  | [common.Context](../apis-ability-kit/js-apis-app-ability-common.md) | 是 | 管理应用的上下文信息。 |
 | parameters  | Record\<string, string> | 是 | 自定义参数信息，其中Key值必须包含："activateId"。 |
@@ -368,8 +368,8 @@ startAdminProvision(admin: Want, type: AdminType, context: common.Context, param
 import { common, Want } from '@kit.AbilityKit';
 import adminManager from '@ohos.enterprise.adminManager';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let context = getContext(this) as common.UIAbilityContext;
 let recordParameters: Record<string, string> = {
@@ -412,7 +412,7 @@ try {
 
 | 名称                | 值  | 说明    |
 | ----------------- | ---- | ----- |
-| ADMIN_TYPE_BYOD  | 0x02 | 自带设备管理应用。 |
+| ADMIN_TYPE_BYOD  | 0x02 | BYOD设备管理应用。 |
 
 ## 附录
 ### 可委托策略列表
@@ -421,9 +421,9 @@ try {
 |disallow_add_local_account| [accountManager.disallowOsAccountAddition](js-apis-enterprise-accountManager.md#accountmanagerdisallowosaccountaddition)<br>[accountManager.isOsAccountAdditionDisallowed](js-apis-enterprise-accountManager.md#accountmanagerisosaccountadditiondisallowed) | 不传accountId参数，禁止设备创建本地用户。<br>不传accountId参数，查询是否禁止设备创建本地用户。|
 |disallow_add_os_account_by_user| [accountManager.disallowOsAccountAddition](js-apis-enterprise-accountManager.md#accountmanagerdisallowosaccountaddition)<br>[accountManager.isOsAccountAdditionDisallowed](js-apis-enterprise-accountManager.md#accountmanagerisosaccountadditiondisallowed) | 需传入accountId参数，禁止指定用户添加账号。<br>需传入accountId参数，查询是否禁止指定用户添加账号。|
 |disallow_running_bundles|[applicationManager.addDisallowedRunningBundlesSync](js-apis-enterprise-applicationManager.md#applicationmanageradddisallowedrunningbundlessync)<br>[applicationManager.removeDisallowedRunningBundlesSync](js-apis-enterprise-applicationManager.md#applicationmanagerremovedisallowedrunningbundlessync)<br>[applicationManager.getDisallowedRunningBundlesSync](js-apis-enterprise-applicationManager.md#applicationmanagergetdisallowedrunningbundlessync)|添加应用至应用运行黑名单，添加至黑名单的应用不允许在当前/指定用户下运行。<br>从应用运行黑名单中移除应用。<br>获取当前/指定用户下的应用运行黑名单。 |
-|manage_auto_start_apps|[applicationManager.addAutoStartApps](js-apis-enterprise-applicationManager.md#applicationmanageraddautostartapps)<br>[applicationManager.removeAutoStartApps](js-apis-enterprise-applicationManager.md#applicationmanagerremoveautostartapps)<br>[applicationManager.getAutoStartApps](js-apis-enterprise-applicationManager.md#applicationmanagergetautostartapps)|添加开机自启动应用名单。该能力当前仅支持2in1设备。<br>从开机自启动应用名单中移除应用。该能力当前仅支持2in1设备。<br>查询开机自启动应用名单。该能力当前仅支持2in1设备。
-|allowed_bluetooth_devices|[bluetoothManager.addAllowedBluetoothDevices](js-apis-enterprise-bluetoothManager.md#bluetoothmanageraddallowedbluetoothdevices)<br>[bluetoothManager.removeAllowedBluetoothDevices](js-apis-enterprise-bluetoothManager.md#bluetoothmanagerremoveallowedbluetoothdevices)<br>[bluetoothManager.getAllowedBluetoothDevices](js-apis-enterprise-bluetoothManager.md#bluetoothmanagergetallowedbluetoothdevices)|添加蓝牙设备可用白名单。<br>从蓝牙设备可用白名单中移除。<br>查询蓝牙设备可用白名单。
-|set_browser_policies|[browser.setPolicySync](js-apis-enterprise-browser.md#browsersetpolicysync)<br>[browser.getPoliciesSync](js-apis-enterprise-browser.md#browsergetpoliciessync)|为指定的浏览器设置浏览器子策略。<br>获取指定浏览器的策略。
+|manage_auto_start_apps|[applicationManager.addAutoStartApps](js-apis-enterprise-applicationManager.md#applicationmanageraddautostartapps)<br>[applicationManager.removeAutoStartApps](js-apis-enterprise-applicationManager.md#applicationmanagerremoveautostartapps)<br>[applicationManager.getAutoStartApps](js-apis-enterprise-applicationManager.md#applicationmanagergetautostartapps)|添加开机自启动应用名单。该能力当前仅支持2in1设备。<br>从开机自启动应用名单中移除应用。该能力当前仅支持2in1设备。<br>查询开机自启动应用名单。该能力当前仅支持2in1设备。|
+|allowed_bluetooth_devices|[bluetoothManager.addAllowedBluetoothDevices](js-apis-enterprise-bluetoothManager.md#bluetoothmanageraddallowedbluetoothdevices)<br>[bluetoothManager.removeAllowedBluetoothDevices](js-apis-enterprise-bluetoothManager.md#bluetoothmanagerremoveallowedbluetoothdevices)<br>[bluetoothManager.getAllowedBluetoothDevices](js-apis-enterprise-bluetoothManager.md#bluetoothmanagergetallowedbluetoothdevices)|添加蓝牙设备可用白名单。<br>从蓝牙设备可用白名单中移除。<br>查询蓝牙设备可用白名单。|
+|set_browser_policies|[browser.setPolicySync](js-apis-enterprise-browser.md#browsersetpolicysync)<br>[browser.getPoliciesSync](js-apis-enterprise-browser.md#browsergetpoliciessync)|为指定的浏览器设置浏览器子策略。<br>获取指定浏览器的策略。|
 |allowed_install_bundles|[bundleManager.addAllowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanageraddallowedinstallbundlessync)<br>[bundleManager.removeAllowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagerremoveallowedinstallbundlessync)<br>[bundleManager.getAllowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagergetallowedinstallbundlessync)|添加应用至包安装白名单，添加至白名单的应用允许在当前/指定用户下安装，否则不允许安装。<br>从包安装白名单中移除应用。<br>获取当前/指定用户下的包安装白名单。|
 |disallowed_install_bundles|[bundleManager.addDisallowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanageradddisallowedinstallbundlessync)<br>[bundleManager.removeDisallowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagerremoveallowedinstallbundlessync)<br>[bundleManager.getDisallowedInstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagergetdisallowedinstallbundlessync)|添加应用至包安装黑名单，添加至黑名单的应用不允许在当前/指定用户下安装。<br>从包安装黑名单中移除应用。<br>获取当前/指定用户下的包安装黑名单。|
 |disallowed_uninstall_bundles|[bundleManager.addDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanageradddisalloweduninstallbundlessync)<br>[bundleManager.removeDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagerremovedisalloweduninstallbundlessync)<br>[bundleManager.getDisallowedUninstallBundlesSync](js-apis-enterprise-bundleManager.md#bundlemanagergetdisalloweduninstallbundlessync)|添添加应用至包卸载黑名单，添加至黑名单的应用不允许在当前/指定用户下卸载。<br>从包卸载黑名单中移除应用。<br>获取当前/指定用户下包卸载黑名单接口。|
@@ -442,8 +442,8 @@ try {
 |disallowed_tethering|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入tethering，禁用/启用网络共享能力。<br>feature传入tethering，查询是否禁用网络共享能力。|
 |inactive_user_freeze|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入inactiveUserFreeze，禁用/启用非活跃用户运行能力。<br>feature传入inactiveUserFreeze，查询是否禁用非活跃用户运行能力。|
 |snapshot_skip|[restrictions.addDisallowedListForAccount](js-apis-enterprise-restrictions.md#restrictionsadddisallowedlistforaccount14)<br>[restrictions.removeDisallowedListForAccount](js-apis-enterprise-restrictions.md#restrictionsremovedisallowedlistforaccount14)<br>[restrictions.getDisallowedListForAccount](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedlistforaccount14)|feature传入snapshotSkip，禁用屏幕快照能力的应用名单。<br>feature传入snapshotSkip，从禁用屏幕快照能力的应用名单中移除。<br>feature传入snapshotSkip，查询禁用屏幕快照能力的应用名单。|
-|password_policy|[securityManager.setPasswordPolicy](js-apis-enterprise-securityManager.md#securitymanagersetpasswordpolicy12)<br>[securityManager.getPasswordPolicy](js-apis-enterprise-securityManager.md#securitymanagergetpasswordpolicy12)|设置设备口令策略。<br>获取设备口令策略|
-|clipboard_policy|[securityManager.setAppClipboardPolicy](js-apis-enterprise-securityManager.md#securitymanagersetappclipboardpolicy12)<br>[securityManager.getAppClipboardPolicy](js-apis-enterprise-securityManager.md#securitymanagergetappclipboardpolicy12)|设置设备剪贴板策略。<br>获取设备剪贴板策略。|
+|password_policy|[securityManager.setPasswordPolicy](js-apis-enterprise-securityManager.md#securitymanagersetpasswordpolicy)<br>[securityManager.getPasswordPolicy](js-apis-enterprise-securityManager.md#securitymanagergetpasswordpolicy)|设置设备口令策略。<br>获取设备口令策略|
+|clipboard_policy|[securityManager.setAppClipboardPolicy](js-apis-enterprise-securityManager.md#securitymanagersetappclipboardpolicy)<br>[securityManager.getAppClipboardPolicy](js-apis-enterprise-securityManager.md#securitymanagergetappclipboardpolicy)|设置设备剪贴板策略。<br>获取设备剪贴板策略。|
 |watermark_image_policy|[securityManager.setWatermarkImage](js-apis-enterprise-securityManager.md#securitymanagersetwatermarkimage14)<br>[securityManager.cancelWatermarkImage](js-apis-enterprise-securityManager.md#securitymanagercancelwatermarkimage14)|设置水印策略，当前仅支持2in1使用。<br>取消水印策略，当前仅支持2in1使用。|
 |ntp_server|[systemManager.setNTPServer](js-apis-enterprise-systemManager.md#systemmanagersetntpserver)<br>[systemManager.getNTPServer](js-apis-enterprise-systemManager.md#systemmanagergetntpserver)|设置NTP服务器的策略。<br>获取NTP服务器信息。|
 |set_update_policy|[systemManager.setOtaUpdatePolicy](js-apis-enterprise-systemManager.md#systemmanagersetotaupdatepolicy)<br>[systemManager.getOtaUpdatePolicy](js-apis-enterprise-systemManager.md#systemmanagergetotaupdatepolicy)|设置升级策略。<br>查询升级策略。|

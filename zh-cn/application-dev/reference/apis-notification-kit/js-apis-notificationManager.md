@@ -1609,6 +1609,8 @@ openNotificationSettings(context: UIAbilityContext): Promise\<void\>
 
 拉起应用的通知设置界面，该页面以半模态形式呈现，可用于设置通知开关、通知提醒方式等。使用Promise异步回调。
 
+该接口不支持wearable设备。
+
 **模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Notification.NotificationSettings
@@ -1631,6 +1633,7 @@ openNotificationSettings(context: UIAbilityContext): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600003  | Failed to connect to the service.          |
 | 1600018  | the notification settings window is already displayed.           |

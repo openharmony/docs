@@ -1,10 +1,10 @@
 # XML Conversion
 
 
-Converting XML text into JavaScript objects makes it easier to process and manipulate data. In addition, JavaScript objects are more suitable than XML text for JavaScript applications.
+Converting XML text into JavaScript objects can simplify data handling and manipulation, making it more suitable for use in JavaScript applications.
 
 
-The common library provides the **ConvertXML** class to convert XML text into JavaScript objects. The input is XML strings and conversion options, and the output is a JavaScript object. For details about the conversion options, see [@ohos.convertxml (XML-to-JavaScript Conversion)](../reference/apis-arkts/js-apis-convertxml.md).
+The ArkTS common library provides the **ConvertXML** class to convert XML text into JavaScript objects. The input is the XML string to be converted and conversion options, and the output is the resulting JavaScript object. For details about the conversion options, see [@ohos.convertxml (XML-to-JavaScript Conversion)](../reference/apis-arkts/js-apis-convertxml.md).
 
 
 ## Precautions
@@ -14,15 +14,19 @@ To ensure successful XML parsing and conversion, the input XML data must comply 
 
 ## How to Develop
 
-To convert an XML file into a JavaScript object to obtain the tag values, proceed as follows:
+To convert an XML document into a JavaScript object and obtain the tag values, proceed as follows:
 
-1. Import the **convertxml** module.
+1. Import the module.
 
    ```ts
    import { convertxml } from '@kit.ArkTS';
    ```
 
-2. Enter the XML file to be converted and set conversion options. For details about the supported conversion options and their meanings, see [ConvertOptions](../reference/apis-arkts/js-apis-convertxml.md#convertoptions).
+2. Input the XML document to be converted and set conversion options. For details about the supported conversion options and their meanings, see [ConvertOptions](../reference/apis-arkts/js-apis-convertxml.md#convertoptions).
+
+   > **NOTE**
+   >
+   > If the XML text to convert contains the ampersand (&), replace it with the entity reference **\&amp;**.
 
    ```ts
    let xml: string =

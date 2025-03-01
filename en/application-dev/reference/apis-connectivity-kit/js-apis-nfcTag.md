@@ -178,7 +178,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | -------- | ----------------------------------------- |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201  | Tag running state is abnormal in service. |
+| 3100201  | The tag running state is abnormal in the service. |
 
 ## tag.getNfcBTag<sup>(deprecated)</sup>
 
@@ -234,7 +234,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | -------- | ----------------------------------------- |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201  | Tag running state is abnormal in service. |
+| 3100201  | The tag running state is abnormal in the service. |
 
 ## tag.getNfcFTag<sup>(deprecated)</sup>
 
@@ -290,7 +290,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | -------- | ----------------------------------------- |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201  | Tag running state is abnormal in service. |
+| 3100201  | The tag running state is abnormal in the service. |
 
 ## tag.getNfcVTag<sup>(deprecated)</sup>
 
@@ -346,7 +346,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | -------- | ----------------------------------------- |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201  | Tag running state is abnormal in service. |
+| 3100201  | The tag running state is abnormal in the service. |
 
 ## tag.getIsoDep<sup>9+</sup>
 
@@ -378,7 +378,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | -------- | ----------------------------------------- |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201  | Tag running state is abnormal in service. |
+| 3100201  | The tag running state is abnormal in the service. |
 
 ## tag.getNdef<sup>9+</sup>
 
@@ -410,7 +410,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | -------- | ----------------------------------------- |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201  | Tag running state is abnormal in service. |
+| 3100201  | The tag running state is abnormal in the service. |
 
 ## tag.getMifareClassic<sup>9+</sup>
 
@@ -442,7 +442,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | -------- | ----------------------------------------- |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201  | Tag running state is abnormal in service. |
+| 3100201  | The tag running state is abnormal in the service. |
 
 ## tag.getMifareUltralight<sup>9+</sup>
 
@@ -473,7 +473,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | -------- | ----------------------------------------- |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201  | Tag running state is abnormal in service. |
+| 3100201  | The tag running state is abnormal in the service. |
 
 ## tag.getNdefFormatable<sup>9+</sup>
 
@@ -504,7 +504,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | -------- | ----------------------------------------- |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201  | Tag running state is abnormal in service. |
+| 3100201  | The tag running state is abnormal in the service. |
 
 ## tag.getBarcodeTag<sup>16+</sup>
 
@@ -538,7 +538,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201 | Tag running state is abnormal in service. |
+| 3100201 | The tag running state is abnormal in the service. |
 
 
 ## tag.getTagInfo<sup>9+</sup>
@@ -765,7 +765,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100203  | The off() can be called only when the on() has been called. |
+| 3100203  | The off() API can be called only when the on() has been called. |
 
 **Example**
 

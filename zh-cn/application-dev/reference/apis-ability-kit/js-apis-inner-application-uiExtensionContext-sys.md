@@ -249,3 +249,57 @@ export default class UIExtAbility extends UIExtensionAbility {
   }
 }
 ```
+
+## UIExtensionContext.setHostPageOverlayForbidden<sup>15+</sup>
+
+setHostPageOverlayForbidden(isForbidden: boolean) : void
+
+是否允许[UIExtensionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)拉起的页面被使用方的页面覆盖。
+
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+>
+> 该接口需要在窗口创建之前调用。建议在[UIExtensionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)的[onCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityoncreate)生命周期内调用。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------ |
+| isForbidden | boolean | 是 | 是否允许[UIExtensionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)拉起的页面被使用方的页面覆盖。true表示不允许，false表示允许。 |
+
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------ | ------ |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**示例**：
+
+```ts
+import { UIExtensionAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  OnCreate() {
+    try {
+      this.context.setHostPageOverlayForbidden(true)
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`setHostPageOverlayForbidden failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```

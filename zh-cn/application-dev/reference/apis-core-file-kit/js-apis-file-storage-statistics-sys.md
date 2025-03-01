@@ -1,6 +1,6 @@
 # @ohos.file.storageStatistics (应用空间统计)(系统接口)
 
-该模块提供空间查询相关的常用功能：包括对内外卡的空间查询，对应用分类数据统计的查询，对应用数据的查询等。
+该模块提供空间查询相关的常用功能：包括对内外卡的空间查询、对应用分类数据统计的查询、对应用数据的查询等。
 
 > **说明：**
 >
@@ -23,19 +23,19 @@ getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
   | 参数名     | 类型   | 必填 | 说明 |
   | ---------- | ------ | ---- | ---- |
-  | volumeUuid | string | 是   | 卷设备uuid |
+  | volumeUuid | string | 是   | 卷设备uuid。 |
 
 **返回值：**
 
   | 类型                  | 说明             |
   | --------------------- | ---------------- |
-  | Promise&lt;number&gt; | Promise对象，返回指定卷设备的总空间大小（单位为Byte） |
+  | Promise&lt;number&gt; | Promise对象，返回指定卷设备的总空间大小（单位为Byte）。 |
 
 **错误码：**
 
@@ -77,14 +77,14 @@ getTotalSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;):
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
   | 参数名     | 类型                                 | 必填 | 说明                       |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | volumeUuid | string                               | 是   | 卷设备uuid                       |
-  | callback   | AsyncCallback&lt;number&gt;          | 是   | 获取指定卷设备总空间之后的回调 |
+  | volumeUuid | string                               | 是   | 卷设备uuid。                       |
+  | callback   | AsyncCallback&lt;number&gt;          | 是   | 获取指定卷设备总空间之后的回调。 |
 
 **错误码：**
 
@@ -129,19 +129,19 @@ getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
   | 参数名     | 类型   | 必填 | 说明 |
   | ---------- | ------ | ---- | ---- |
-  | volumeUuid | string | 是   | 卷设备uuid |
+  | volumeUuid | string | 是   | 卷设备uuid。 |
 
 **返回值：**
 
   | 类型                  | 说明               |
   | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | Promise对象，返回指定卷的可用空间大小（单位为Byte） |
+  | Promise&lt;number&gt; | Promise对象，返回指定卷的可用空间大小（单位为Byte）。 |
 
 **错误码：**
 
@@ -183,14 +183,14 @@ getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): 
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
   | 参数名     | 类型                                 | 必填 | 说明                         |
   | ---------- | ------------------------------------ | ---- | ---------------------------- |
-  | volumeUuid | string                               | 是   | 卷设备uuid                         |
-  | callback   | AsyncCallback&lt;number&gt;          | 是   | 获取指定卷可用空间之后的回调 |
+  | volumeUuid | string                               | 是   | 卷设备uuid。                         |
+  | callback   | AsyncCallback&lt;number&gt;          | 是   | 获取指定卷可用空间之后的回调。 |
 
 **错误码：**
 
@@ -235,20 +235,20 @@ getBundleStats(packageName: string, index?: number): Promise&lt;BundleStats&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
   | 参数名      | 类型   | 必填 | 说明     |
   | ----------- | ------ | ---- | -------- |
-  | packageName | string | 是   | 应用包名 |
+  | packageName | string | 是   | 应用包名。 |
   | index<sup>12+</sup> | number | 否   | 分身应用的索引号，默认值为0（表示未分身的主应用）。分身应用索引号在分身创建时默认占用从1开始且当前未被占用的最小索引号，并赋值给该应用的[BundleResourceInfo](../apis-ability-kit/js-apis-bundleManager-BundleResourceInfo-sys.md#bundleresourceinfo)的appIndex属性，后续可以通过调用[getBundleResourceInfo](../apis-ability-kit/js-apis-bundleResourceManager-sys.md#bundleresourcemanagergetbundleresourceinfo12)接口获得。|
 
 **返回值：**
 
   | 类型                                       | 说明                       |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](js-apis-file-storage-statistics.md#bundlestats9)&gt; | Promise对象，返回指定卷上的应用存储数据的空间大小（单位为Byte） |
+  | Promise&lt;[Bundlestats](js-apis-file-storage-statistics.md#bundlestats9)&gt; | Promise对象，返回指定卷上的应用存储数据的空间大小（单位为Byte）。 |
 
 **错误码：**
 
@@ -301,14 +301,14 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;,
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
   | 参数名   | 类型                                                      | 必填 | 说明                                 |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
   | packageName | string | 是   | 应用包名 |
-  | callback | AsyncCallback&lt;[Bundlestats](js-apis-file-storage-statistics.md#bundlestats9)&gt; | 是   | 获取指定卷上的应用存储数据的空间大小之后的回调 |
+  | callback | AsyncCallback&lt;[Bundlestats](js-apis-file-storage-statistics.md#bundlestats9)&gt; | 是   | 获取指定卷上的应用存储数据的空间大小之后的回调。 |
   | index<sup>12+</sup> | number | 否   | 分身应用的索引号，默认值为0（表示未分身的主应用）。分身应用索引号在分身创建时默认占用从1开始且当前未被占用的最小索引号，并赋值给该应用的[BundleResourceInfo](../apis-ability-kit/js-apis-bundleManager-BundleResourceInfo-sys.md#bundleresourceinfo)的appIndex属性，后续可以通过调用[getBundleResourceInfo](../apis-ability-kit/js-apis-bundleResourceManager-sys.md#bundleresourcemanagergetbundleresourceinfo12)接口获得。|
 
 **错误码：**
@@ -364,13 +364,13 @@ getSystemSize(): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **返回值：**
 
   | 类型                  | 说明             |
   | --------------------- | ---------------- |
-  | Promise&lt;number&gt; | Promise对象，返回系统数据的空间大小（单位为Byte） |
+  | Promise&lt;number&gt; | Promise对象，返回系统数据的空间大小（单位为Byte）。 |
 
 **错误码：**
 
@@ -405,13 +405,13 @@ getSystemSize(callback: AsyncCallback&lt;number&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
   | 参数名     | 类型                                 | 必填 | 说明                       |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | callback   |  AsyncCallback&lt;number&gt;         | 是   | 获取系统数据的空间大小之后的回调 |
+  | callback   |  AsyncCallback&lt;number&gt;         | 是   | 获取系统数据的空间大小之后的回调。 |
 
 **错误码：**
 
@@ -449,13 +449,13 @@ getUserStorageStats(): Promise&lt;StorageStats&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **返回值：**
 
   | 类型                  | 说明             |
   | --------------------- | ---------------- |
-  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise对象，返回当前用户各类别存储空间大小（单位为Byte） |
+  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise对象，返回当前用户各类别存储空间大小（单位为Byte）。 |
 
 **错误码：**
 
@@ -490,13 +490,13 @@ getUserStorageStats(callback: AsyncCallback&lt;StorageStats&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
   | 参数名     | 类型                                 | 必填 | 说明                       |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | 是   | 返回用户各类别存储空间大小之后的回调 |
+  | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | 是   | 返回用户各类别存储空间大小之后的回调。 |
 
 **错误码：**
 
@@ -534,19 +534,19 @@ getUserStorageStats(userId: number): Promise&lt;StorageStats&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
   | 参数名     | 类型   | 必填 | 说明 |
   | ---------- | ------ | ---- | ---- |
-  | userId | number | 是   | 用户id|
+  | userId | number | 是   | 用户id。|
 
 **返回值：**
 
   | 类型                  | 说明             |
   | --------------------- | ---------------- |
-  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise对象，返回指定用户各类别存储空间大小（单位为Byte） |
+  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise对象，返回指定用户各类别存储空间大小（单位为Byte）。 |
 
 **错误码：**
 
@@ -583,14 +583,14 @@ getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;)
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
   | 参数名     | 类型                                 | 必填 | 说明                       |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | userId | number                               | 是   | 用户id |
-  | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | 是   | 返回指定用户各类别存储空间大小之后的回调 |
+  | userId | number                               | 是   | 用户id。 |
+  | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | 是   | 返回指定用户各类别存储空间大小之后的回调。 |
 
 **错误码：**
 
@@ -624,13 +624,13 @@ getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;)
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 | 名称      | 类型   | 只读  | 可写  | 说明           |
 | --------- | ------ | ---- | ----- | -------------- |
-| total   | number | 是 | 否 | 内置存储总空间大小（单位为Byte）    |
-| audio | number  |是 | 否 | 音频数据大小 （单位为Byte）  |
-| video  | number | 是 | 否 | 视频数据大小（单位为Byte） |
-| image   | number | 是 | 否 | 图像数据大小 （单位为Byte）   |
-| file | number | 是 | 否 | 文件数据大小 （单位为Byte）  |
-| app  | number | 是 | 否 | 应用数据大小（单位为Byte） |
+| total   | number | 是 | 否 | 内置存储总空间大小（单位为Byte）。    |
+| audio | number  |是 | 否 | 音频数据大小 （单位为Byte）。  |
+| video  | number | 是 | 否 | 视频数据大小（单位为Byte）。 |
+| image   | number | 是 | 否 | 图像数据大小 （单位为Byte）。   |
+| file | number | 是 | 否 | 文件数据大小 （单位为Byte）。  |
+| app  | number | 是 | 否 | 应用数据大小（单位为Byte）。 |

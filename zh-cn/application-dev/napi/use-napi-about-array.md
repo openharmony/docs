@@ -131,7 +131,7 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value GetArrayLength(napi_env env, napi_callback_info info) 
+static napi_value GetArrayLength(napi_env env, napi_callback_info info)
 {
     // 获取ArkTS侧传入的参数
     size_t argc = 1;
@@ -179,7 +179,7 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value IsArray(napi_env env, napi_callback_info info) 
+static napi_value IsArray(napi_env env, napi_callback_info info)
 {
     // 获取ArkTS侧传入的参数
     size_t argc = 1;
@@ -577,7 +577,7 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value IsTypedarray(napi_env env, napi_callback_info info) 
+static napi_value IsTypedarray(napi_env env, napi_callback_info info)
 {
     // 获取ArkTS侧传入的参数
     size_t argc = 1;
@@ -657,7 +657,7 @@ static napi_value GetTypedarrayInfo(napi_env env, napi_callback_info info)
         result = int8_type;
         break;
     case INFO_LENGTH:
-        // TypedArray中的元素数
+        // TypedArray中元素的字节长度
         napi_value napiLength;
         napi_create_int32(env, length, &napiLength);
         result = napiLength;
@@ -720,7 +720,7 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value CreateDataView(napi_env env, napi_callback_info info) 
+static napi_value CreateDataView(napi_env env, napi_callback_info info)
 {
     // 获取ArkTS侧传入的参数
     size_t argc = 1;
@@ -838,7 +838,7 @@ cpp部分代码
 #include "napi/native_api.h"
 
 static napi_value GetDataViewInfo(napi_env env, napi_callback_info info)
-{ 
+{
     // 获取ArkTS侧传入的参数
     size_t argc = 2;
     napi_value args[2] = {nullptr};

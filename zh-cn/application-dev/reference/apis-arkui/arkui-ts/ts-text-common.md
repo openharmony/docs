@@ -209,7 +209,7 @@ equals(id: TextMenuItemId): boolean
 | content | [ResourceStr](ts-types.md#resourcestr) | 是   | 菜单名称。 |
 | icon | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单图标。<br/>不支持网络图片。 |
 | id | [TextMenuItemId](#textmenuitemid12) | 是   | 菜单id。 |
-| labelInfo<sup>16+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 快捷键提示。<br/>该字段仅2in1设备支持。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| labelInfo<sup>15+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 快捷键提示。<br/>该字段仅2in1设备支持。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## EditMenuOptions
 
@@ -291,7 +291,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, o
 | -- | -- | -- | -- |
 | value | string | 是 | 文本框内正式上屏的文本内容。 |
 | previewText | [PreviewText](#previewtext12) | 否 | 预上屏文本信息，包含预上屏起始位置和文本内容。 |
-| options<sup>16+</sup> | [TextChangeOptions](#textchangeoptions16对象说明) | 否 | 文本内容变化信息，包含变化前后的选区范围、变化前的文本内容和预上屏文本信息。 |
+| options<sup>15+</sup> | [TextChangeOptions](#textchangeoptions15对象说明) | 否 | 文本内容变化信息，包含变化前后的选区范围、变化前的文本内容和预上屏文本信息。 |
 
 ## TextDataDetectorType<sup>11+</sup>枚举说明
 
@@ -735,11 +735,11 @@ type RectWidthStyle = RectWidthStyle
 | --------------------------------- | --------------------------------- |
 | [RectWidthStyle](../../apis-arkgraphics2d/js-apis-graphics-text.md#rectwidthstyle) | 矩形区域宽度规格枚举。 |
 
-## TextChangeOptions<sup>16+</sup>对象说明
+## TextChangeOptions<sup>15+</sup>对象说明
 
 变化前的文本信息，以及变化后的选区范围。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -750,11 +750,11 @@ type RectWidthStyle = RectWidthStyle
 | oldContent  | string | 是   | 变化前的文本内容。 |
 | oldPreviewText | [PreviewText](#previewtext12) | 是 | 变化前的预上屏信息。 |
 
-## EditableTextChangeValue<sup>16+</sup>
+## EditableTextChangeValue<sup>15+</sup>
 
 文本变化的详细信息，包括预上屏。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -762,7 +762,7 @@ type RectWidthStyle = RectWidthStyle
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | content  | string | 是   | 当前的文本内容。 |
 | previewText  | [PreviewText](#previewtext12) | 否   | 预上屏的内容信息。 |
-| options  | [TextChangeOptions](#textchangeoptions16对象说明) | 否   | 变化的文本内容信息。 |
+| options  | [TextChangeOptions](#textchangeoptions15对象说明) | 否   | 变化的文本内容信息。 |
 
 ## TextMenuShowMode<sup>16+</sup>
 

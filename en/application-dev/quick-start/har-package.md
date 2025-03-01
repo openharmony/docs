@@ -10,7 +10,7 @@ A Harmony Archive (HAR) is a static shared package that can contain code, C++ li
 ## Constraints
 
 - An HAR can only be referenced as a dependency of an application module. It cannot be installed or run independently on a device.
-- An HAR does not support the declaration of the [ExtensionAbility](../application-models/extensionability-overview.md) component in the configuration file, but supports the [UIAbility](../application-models/uiability-overview.md) component.
+- An HAR does not support the declaration of the [ExtensionAbility](../application-models/extensionability-overview.md) component in the configuration file, but supports the [UIAbility](../application-models/uiability-overview.md) component.<br>**NOTE**<br>If the [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) API is used to start the UIAbility in the HAR, the value of **moduleName** in the API parameter must be the module name of the [HAP](hap-package.md) or [HSP](in-app-hsp.md) that depends on the HAR.
 - An HAR does not support the declaration of the [pages](./module-configuration-file.md#pages) tag in the configuration file. Still, it can include pages, which can be redirected through a [named route](../ui/arkts-routing.md#named-route).
 - An HAR does not support referencing resources in the **AppScope** folder. This is because the content in the **AppScope** folder is not packaged into the HAR during building.
 - An HAR can depend on other HARs, but does not support cyclic dependency or dependency transfer.
@@ -114,7 +114,7 @@ export { nativeAdd } from './src/main/ets/utils/nativeTest';
 
 ### Exporting Resources
 Specifically, DevEco Studio collects resource files from the HAP module and its dependent modules, and overwrites the resource files with the same name (if any) based on the following priorities (in descending order):
-- AppScope (only for the stage model of API version 9)
+- AppScope (supported only by the stage model)
 - Modules in the HAP
 - Dependent HAR modules<br>If resource conflicts occur between dependent HAR modules, they are overwritten based on the dependency sequence indicated under **dependencies** in the **oh-package.json5** file. The module that is higher in the dependency sequence list has a higher priority. For example, in the following example, if **dayjs** and **lottie** folders contain files with the same name, resources in **dayjs** are used preferentially.
 > **NOTE**
@@ -290,7 +290,7 @@ struct Index {
 ```
 ## Building an HAR
 
-HAR can be used as a second-party or third-party library for other applications. To protect code assets, you are advised to [enable code obfuscation](../arkts-utils/source-obfuscation.md#enabling-code-obfuscation).
+HAR can be used as a second-party or third-party library for other applications. To protect code assets, you are advised to [enable code obfuscation](../arkts-utils/source-obfuscation.md).
 
 To better protect your source code, enable obfuscation for the HAR so that DevEco Studio compiles, obfuscates, and compresses code during HAR building.
 
@@ -362,7 +362,3 @@ After the ArkTS file in the HAR module is built, the product is a JS file by def
 ## Publishing an HAR
 
 For details, see [Publishing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-har-publish-V13).
-
-##  
-
--  

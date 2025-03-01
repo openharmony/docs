@@ -932,7 +932,7 @@ setTouchpadScrollDirection(state: boolean): Promise\<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| state | boolean| 是    |  state为触控板滚轴的方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反。<br>默认为true|
+| state | boolean| 是    |  state为触控板滚轴的方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反。<br>默认为true。|
 
 **返回值**：
 
@@ -1917,7 +1917,7 @@ try {
 
 ## pointer.setPointerSizeSync<sup>10+</sup>
 
-setPointerSizeSync(size: number): void;
+setPointerSizeSync(size: number): void
 
 设置鼠标光标大小，使用同步方式进行设置。
 
@@ -2156,7 +2156,7 @@ try {
 
 ## pointer.setPointerColorSync<sup>10+</sup>
 
-setPointerColorSync(color: number): void;
+setPointerColorSync(color: number): void
 
 设置鼠标光标颜色，使用同步方式进行设置。
 

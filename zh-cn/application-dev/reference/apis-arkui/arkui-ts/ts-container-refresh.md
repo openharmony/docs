@@ -47,7 +47,7 @@ Refresh(value: RefreshOptions)
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### refreshOffset<sup>12+</sup>
 
@@ -99,7 +99,7 @@ pullDownRatio(ratio: [Optional](ts-universal-attributes-custom-property.md#optio
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onStateChange
 

@@ -16,7 +16,7 @@ import { overlay } from '@kit.AbilityKit';
 
 ## overlay.setOverlayEnabledByBundleName
 
-setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: boolean): Promise\<void>
+setOverlayEnabledByBundleName(bundleName: string, moduleName: string, isEnabled: boolean): Promise\<void>
 
 设置指定应用的overlay module的禁用使能状态。使用Promise异步回调，成功返回应用的处置状态，失败返回对应错误信息。
 
@@ -79,7 +79,7 @@ try {
 
 ## overlay.setOverlayEnabledByBundleName
 
-setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: boolean, callback: AsyncCallback\<void>): void
+setOverlayEnabledByBundleName(bundleName: string, moduleName: string, isEnabled: boolean, callback: AsyncCallback\<void>): void
 
 设置指定应用的overlay module的禁用使能状态。使用callback异步回调，成功返回应用的处置状态，失败返回对应错误信息。
 

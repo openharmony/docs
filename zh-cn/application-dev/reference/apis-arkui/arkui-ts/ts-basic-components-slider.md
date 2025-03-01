@@ -58,7 +58,7 @@ Slider(options?: SliderOptions)
 
 ## 属性
 
-支持除触摸热区以外的[通用属性](ts-universal-attributes-size.md)。
+支持除触摸热区以外的[通用属性](ts-component-general-attributes.md)。
 
 ### blockColor
 
@@ -442,6 +442,30 @@ slideRange(value: SlideRange)
 | ------ | ----------------------------------- | ---- | ---------------- |
 | value  | [SlideRange](#sliderange12对象说明) | 是   | 设置有效滑动区间 |
 
+### enableHapticFeedback<sup>16+</sup>
+
+enableHapticFeedback(enabled: boolean)
+
+设置是否开启触控反馈。
+
+开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+
+```json
+"requestPermissions": [
+  {
+    "name": "ohos.permission.VIBRATE",
+  }
+ ]
+```
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                                          | 必填  | 说明                                                                                  |
+| ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
+| enabled  | boolean | 是   | 设置是否开启触控反馈。<br/>默认值：true，true表示开启触控反馈，false表示不开启触控反馈。|
+
 ### digitalCrownSensitivity<sup>16+</sup>
 
 digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
@@ -523,7 +547,7 @@ Slider组件滑块形状枚举。
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onChange
 
@@ -595,31 +619,6 @@ type SliderTriggerChangeCallback = (value: number, mode: SliderChangeMode) => vo
 | ------ | ------ | ---------------- | ---------------- |
 | value | number | 是 | 设置当前的进度值。 |
 | mode | [SliderChangeMode](#sliderchangemode枚举说明) | 是 | 设置事件触发的相关状态值。 |
-
-### enableHapticFeedback<sup>16+</sup>
-
-enableHapticFeedback(enabled: boolean)
-
-设置是否开启触控反馈。
-
-开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
-
-```json
-"requestPermissions": [
-  {
-    "name": "ohos.permission.VIBRATE",
-  }
- ]
-```
-
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名 | 类型                                          | 必填  | 说明                                                                                  |
-| ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| enabled  | boolean | 是   | 设置是否开启触控反馈。<br/>默认值：true，true表示开启触控反馈，false表示不开启触控反馈。|
-
 
 ## 示例
 

@@ -3,7 +3,7 @@
 
 ## 概述
 
-定义基站围栏模块的回调函数
+定义基站围栏模块的回调函数。
 
 用户在开启基站围栏功能前，需要先注册该回调函数。当基站围栏状态发生变化时，会通过回调函数进行上报。 详情可参考[ICellfenceInterface](interface_i_cellfence_interface.md)。
 

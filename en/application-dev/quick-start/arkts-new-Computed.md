@@ -1,6 +1,6 @@
 # \@Computed Decorator: Computed Property
 
-\@Computed decorator: Computed property means that the computation is performed only once when the value changes. It is mainly used to solve the performance problem caused by repeated computation when the UI reuses the property for multiple times.
+When \@Computed is used, the computation is performed only once when the value changes. It is mainly used to solve the performance problem caused by repeated computation when the UI reuses the property for multiple times.
 
 
 The change of a state variable can trigger the recomputing of its associated \@Computed. Before reading this topic, you are advised to read [\@ComponentV2](./arkts-new-componentV2.md), [\@ObservedV2 and \@Trace](./arkts-new-observedV2-and-trace.md), and [\@Local](./arkts-new-local.md).
@@ -12,7 +12,7 @@ The change of a state variable can trigger the recomputing of its associated \@C
 
 ## Overview
 
-\@Computed is a method-type decorator that decorates the **getter** method. \@Computed detects the change of the computed property. When this property changes, \@Computed is solved only once.
+\@Computed is a method decorator that decorates the **getter** method. \@Computed detects the change of the computed property. When this property changes, \@Computed is solved only once.
 For complex computing, \@Computed provides better performance.
 
 
@@ -28,9 +28,9 @@ get varName(): T {
 
 | \@Computed Method-Type Decorator| Description                                                 |
 | ------------------ | ----------------------------------------------------- |
-| Supported type          | **getter** accessor.|
+| Supported type          | The **getter** accessor.|
 | Initialization from the parent component     | Forbidden.|
-| Child component initialization     | \@Param  |
+| Child component initialization     | \@Param. |
 | Execution time       | When \@ComponentV2 is initialized, the computed property will be triggered. When the computed value changes, the computed property will be also triggered.|
 |Value assignment allowed        | No. @Computed decorated properties are read-only. For details, see [Constraints](#constraints).|
 
@@ -118,7 +118,7 @@ get varName(): T {
 
 ## Use Scenarios
 ### When the computed property changes, the **getter** accessor decorated by \@Computed is solved only once.
-1. Using Computed Property in a Custom Component
+1. Using computed property in a custom component.
 
 - Click the first button to change the value of **lastName**, triggering **\@Computed fullName** recomputation.
 - The **this.fullName** is bound to two **Text** components. The **fullName** log shows that the computation occurs only once.
@@ -163,7 +163,7 @@ Note that the computed property itself has performance overhead. In actual appli
 - For the preceding simple computation, computed property is not needed.
 - If the computed property is used only once in the view, you can solve the problem directly.
 
-2. Using Computed Property in Classes Decorated by \@ObservedV2
+2. Using computed property in classes decorated by \@ObservedV2.
 - Click the button to change the value of **lastName** and the **\@Computed fullName** will be recomputed only once.
 
 ```ts

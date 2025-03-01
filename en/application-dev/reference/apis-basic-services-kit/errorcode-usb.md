@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Permission denied. Call requestRight to get the permission first.
+Permission denied. Call requestRight or requestAccessoryRight to get the permission or USBDevicePipe access right first.
 
 **Description**
 
@@ -149,3 +149,87 @@ This error code is reported if an accessory is opened repeatedly.
 **Procedure**
 
 The accessory has been opened. Continue to perform subsequent operations.
+
+## 14400007 Resource Busy
+
+**Error Message**
+
+Resource busy.
+
+**Description**
+
+This error code is reported if the requested resource is in use.
+
+**Procedure**
+
+Check whether [usbManager.claimInterface](js-apis-usbManager.md#usbmanagerclaiminterface) is successfully called.
+
+## 14400008 No Device (Disconnected)
+
+**Error Message**
+
+No such device (it may have been disconnected).
+
+**Description**
+
+This error code is reported if libusb fails to identify the correct device information.
+
+**Procedure**
+
+Check whether the device type is correct and whether the device is successfully connected.
+
+## 14400009 Insufficient Memory
+
+**Error Message**
+
+Insufficient memory.
+
+**Description**
+
+This error code is reported if no memory is available when libusb applies for memory. The maximum size of data transferred by libusb at a time is 1 KB.
+
+**Procedure**
+
+Clear memory in a timely manner.
+
+## 14400010 Unrecognized Error
+
+**Error Message**
+
+Other USB error. Possible causes:Unrecognized discard error code.
+
+**Description**
+
+This error code is reported if an error unrecognized by libusb has occurred.
+
+**Procedure**
+
+Correct the error by referring to the related documentation, and try again.
+
+## 14400011 No Ongoing Transfer Found
+
+**Error Message**
+
+If the transfer is not in progress, already complete, or already cancelled. 
+
+**Description**
+
+This error code is reported if the current data transfer has been canceled or completed.
+
+**Procedure**
+
+Initiate a new data transfer request.
+
+## 144000012 I/O Error
+
+**Error Message**
+
+Transmission I/O error.
+
+**Description**
+
+This error code is reported if libusb fails to perform a read/write operation.
+
+**Procedure**
+
+Try again.

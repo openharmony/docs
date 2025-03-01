@@ -6,7 +6,7 @@
 >
 > - 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> - 从API Version 16开始，位置控件不再维护，推荐调用[requestPermissionsFromUser](../../apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9-1)拉起权限弹窗，请求用户授权。
+> - 从API Version 15开始，位置控件不再维护，推荐调用[requestPermissionsFromUser](../../apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9-1)拉起权限弹窗，请求用户授权。
 
 ## 子组件
 
@@ -140,7 +140,7 @@ LocationButtonCallback = (event: ClickEvent, result: LocationButtonOnClickResult
 
 onClick(event: LocationButtonCallback)
 
-点击动作触发该回调
+点击动作触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

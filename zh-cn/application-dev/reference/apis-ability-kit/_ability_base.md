@@ -15,14 +15,14 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [ability_base_common.h](ability__base__common_8h.md) | 声明AbilityBase相关错误码。<br/>**引用文件**：<AbilityKit/ability_runtime/ability_runtime_common.h><br/>**库**：libability_runtime.so |
-| [want.h](want__8h.md) | 声明[Want](want__8h.md)相关能力。<br/>**引用文件**：<AbilityKit/ability_runtime/application_context.h><br/>**库**：libability_runtime.so |
+| [ability_base_common.h](ability__base__common_8h.md) | 声明AbilityBase相关错误码。<br/>**引用文件**：<AbilityKit/ability_base/ability_base_common.h><br/>**库**：libability_base_want.so |
+| [want.h](want__8h.md) | 声明[Want](want__8h.md)相关能力。<br/>**引用文件**：<AbilityKit/ability_base/want.h><br/>**库**：libability_base_want.so |
 
 ### 枚举
 
 | 名称                                                         | 描述                   |
 | ------------------------------------------------------------ | ---------------------- |
-| [AbilityBase_ErrorCode](#abilitybase_errorcode) {<br>    ABILITY_RUNTIME_ERROR_CODE_NO_ERROR = 0,<br>    ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID = 401,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST = 16000011,<br/>} | 定义AbilityBase相关错误码。 |
+| [AbilityBase_ErrorCode](#abilitybase_errorcode) {<br>    ABILITY_BASE_ERROR_CODE_NO_ERROR = 0,<br>    ABILITY_BASE_ERROR_CODE_PARAM_INVALID = 401,<br/>} | 定义AbilityBase相关错误码。 |
 
 ### 结构体
 

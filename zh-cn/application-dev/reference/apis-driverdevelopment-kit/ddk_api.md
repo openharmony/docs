@@ -11,7 +11,7 @@
 
 **相关模块：**
 
-[BASE DDK](_base_ddk.md)
+[Base DDK](_base_ddk.md)
 
 
 ## 汇总

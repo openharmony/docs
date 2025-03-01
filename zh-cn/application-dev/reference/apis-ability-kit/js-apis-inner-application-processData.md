@@ -17,7 +17,7 @@ import { appManager } from '@kit.AbilityKit';
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                     | 类型     | 必填 | 说明                       |
-| ----------------------- | ---------| ---- | ---- | ------------------------- |
+| ----------------------- | ---------| ---- | ------------------------- |
 | pid         | number   | 是   | 进程ID。                    |
 | bundleName  | string   | 是   | 应用包名。                  |
 | uid         | number   | 是   | 应用的uid。                  |

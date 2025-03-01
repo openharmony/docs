@@ -1,7 +1,7 @@
 # 弧形按钮 (ArcButton)
 
 
-ArcButton是弧形按钮组件，用于穿戴设备圆形屏幕使用。为手表用户提供强调、普通、警告等样式按钮。具体用法请参考[ArcButton](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md)。
+ArcButton是弧形按钮组件，用于圆形屏幕使用。为手表用户提供强调、普通、警告等样式按钮。具体用法请参考[ArcButton](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md)。
 
 
 ## 创建按钮
@@ -28,7 +28,7 @@ ArcButton有上弧形按钮和下弧形按钮两种类型。使用[position](../
 
 - 下弧形按钮（默认类型）。
 
-  通过将[position](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md#arcbuttonoptions)属性设置为ArcButtonPosition.BOTTOM_EDGE，可以将按钮设置为上弧形按钮。
+  通过将[position](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md#arcbuttonoptions)属性设置为ArcButtonPosition.BOTTOM_EDGE，可以将按钮设置为下弧形按钮。
 
   ```ts
   ArcButton({
@@ -102,7 +102,7 @@ ArcButton有上弧形按钮和下弧形按钮两种类型。使用[position](../
     options: new ArcButtonOptions({
       label: 'OK',
       shadowEnabled: true,
-      shadowColor: ColorMetrics.resourceColor('#707070')
+      shadowColor: ColorMetrics.resourceColor('#ffec1022')
     })
   })
   ```
@@ -153,7 +153,7 @@ struct BrightnessPage {
   build() {
     RelativeContainer() {
       Text('设置亮度')
-        .fontColor(Color.Black)
+        .fontColor(Color.White)
         .id('id_brightness_set_text')
         .fontSize(24)
         .margin({ top: 16 })
@@ -162,7 +162,7 @@ struct BrightnessPage {
         })
 
       Text(`${this.brightnessValue} %`)
-        .fontColor(Color.Black)
+        .fontColor(Color.White)
         .id('id_brightness_min_text')
         .margin({ left: 16 })
         .alignRules({
@@ -208,7 +208,7 @@ struct BrightnessPage {
     }
     .height('100%')
     .width('100%')
-    .backgroundColor(Color.White)
+    .backgroundColor(Color.Black)
   }
 }
   ```

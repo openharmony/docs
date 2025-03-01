@@ -104,7 +104,7 @@ obj.x = null;
 // 例2：使用高性能容器类操作属性
 import HashMap from '@ohos.util.HashMap';
 
-let myMap = new HashMap();
+let myMap = new HashMap<string, string>();
 
 myMap.set("x", "xxx");
 myMap.set("y", "yyy");

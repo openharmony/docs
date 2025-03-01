@@ -87,7 +87,7 @@ Image新增[imageAIOptions](ts-image-common.md#imageaioptions)参数，为组件
 
 ## 属性
 
-属性的详细使用指导请参考[添加属性](../../../ui/arkts-graphics-display.md#添加属性)。除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+属性的详细使用指导请参考[添加属性](../../../ui/arkts-graphics-display.md#添加属性)。除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 > **说明：**
 >
@@ -135,9 +135,9 @@ objectFit(value: ImageFit)
 
 imageMatrix(matrix: ImageMatrix)
 
-设置图片的变换矩阵。svg类型图源不支持该属性。
+设置图片的变换矩阵。通过ImageMatrix对象使用平移、旋转、缩放等函数，实现宫格缩略图的最佳呈现。svg类型图源不支持该属性。
 
-设置resizable、objectRepeat、orientation属性时，该属性设置不生效。
+设置resizable、objectRepeat属性时，该属性设置不生效。
 
 该属性只针对图源做处理，不会触发Image组件的回调事件。
 
@@ -149,7 +149,7 @@ imageMatrix(matrix: ImageMatrix)
 
 | 参数名 | 类型                                                 | 必填 | 说明           |
 | ------ | --------------------------------------------------- | ---- | -------------- |
-| matrix  | [ImageMatrix](../js-apis-matrix4.md#matrix4transit) | 是   | 图片的变换矩阵。|
+| matrix  | ImageMatrix | 是   | 图片的变换矩阵。|
 
 ### objectRepeat
 
@@ -271,7 +271,7 @@ fitOriginalSize(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                             |
 | ------ | ------- | ---- | ------------------------------------------------ |
-| value  | boolean | 是   | 图片的显示尺寸是否跟随图源尺寸<br/>默认值：false <br/>**说明：**<br/>当不设置fitOriginalSize或者设置fitOriginalSize为false时，组件显示大小不跟随图源大小。<br/> 当设置fitOriginalSize为true时，组件显示大小跟随图源大小。 |
+| value  | boolean | 是   | 图片的显示尺寸是否跟随图源尺寸。<br/>默认值：false <br/>**说明：**<br/>当不设置fitOriginalSize或者设置fitOriginalSize为false时，组件显示大小不跟随图源大小。<br/> 当设置fitOriginalSize为true时，组件显示大小跟随图源大小。 |
 
 ### fillColor
 
@@ -295,13 +295,11 @@ fillColor(value: ResourceColor)
 
 ### fillColor<sup>15+</sup>
 
-fillColor(value: ResourceColor|ColorContent)
+fillColor(color: ResourceColor|ColorContent)
 
 设置填充颜色，设置后填充颜色会覆盖在图片上。仅对svg图源生效，设置后会替换svg图片中所有可绘制元素的填充颜色。如需对png图片进行修改颜色，可以使用[colorFilter](#colorfilter9)。如果想重置填充颜色可以传入[ColorContent](#colorcontent15)类型。
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
-
-**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -311,7 +309,7 @@ fillColor(value: ResourceColor|ColorContent)
 
 | 参数名 | 类型                                       | 必填 | 说明           |
 | ------ | ------------------------------------------ | ---- | -------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor)\|[ColorContent](#colorcontent15) | 是   | 设置填充颜色。 <br/>**说明：**<br/> 默认不对组件进行填充。当传入异常值时，系统将使用默认的主题色：浅色模式下为黑色，深色模式下为白色。 |
+| color  | [ResourceColor](ts-types.md#resourcecolor)\|[ColorContent](#colorcontent15) | 是   | 设置填充颜色。 <br/>**说明：**<br/> 默认不对组件进行填充。当传入异常值时，系统将使用默认的主题色：浅色模式下为黑色，深色模式下为白色。 |
 
 ### autoResize
 
@@ -423,7 +421,7 @@ enableAnalyzer(enable:&nbsp;boolean)
 
 不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。
 
-分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)进行分析，目前仅支持[RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7)类型，使用方式见[示例4](#示例4)。
+分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)进行分析，目前仅支持[RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7)类型，使用方式见[示例4](#示例4开启图像ai分析)。
 
 alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支持分析，隐私遮罩属性[obscured](ts-universal-attributes-obscured.md)打开时不支持分析。
 
@@ -501,7 +499,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| value  | [DynamicRangeMode](#dynamicrangemode12-1) | 是   | 图像显示的动态范围。<br/>默认值：dynamicRangeMode.Standard |
+| value  | [DynamicRangeMode](#dynamicrangemode12枚举说明) | 是   | 图像显示的动态范围。<br/>默认值：dynamicRangeMode.Standard |
 
 ### orientation<sup>14+</sup>
 
@@ -589,7 +587,7 @@ orientation(orientation: ImageRotateOrientation)
 
 ![edgewidths](figures/edgewidths.png)
 
-## DynamicRangeMode<sup>12+</sup>
+## DynamicRangeMode<sup>12+</sup>枚举说明
 
 期望展示的图像动态范围。
 
@@ -674,6 +672,20 @@ type DrawingLattice = Lattice
 | ------ | ---------- |
 | [Lattice](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#lattice12) | 返回一个矩阵网格对象。 |
 
+## ImageMatrix<sup>15+<sup>
+
+type ImageMatrix = Matrix4Transit
+
+当前的矩阵对象。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型     | 说明       |
+| ------ | ---------- |
+| [Matrix4Transit](../js-apis-matrix4.md#matrix4transit) | 返回当前的矩阵对象。 |
+
 ## ColorContent<sup>15+</sup>
 
 指定颜色填充内容。
@@ -682,13 +694,13 @@ type DrawingLattice = Lattice
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 类型       | 只读 | 必填 | 说明           |
+| 名称 | 类型       | 只读 | 必填 | 说明           |
 | ------ | --------- | ---- | --- | ------------- |
 | ORIGIN  | ColorContent | 是 | 否 | 重置[fillColor](#fillcolor)接口，效果上与不设置[fillColor](#fillcolor)一致。 |
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onComplete
 
@@ -1367,7 +1379,7 @@ struct ImageExample11 {
 
 ### 示例12（通过imageMatrix为图片设置旋转、平移等）
 
-该示例通过[imageMatrix](ts-basic-components-image.md#imagematrix16)接口和[objectFit](ts-basic-components-image.md#objectfit)实现了给图片设置变换效果。
+该示例通过[imageMatrix](#imagematrix15)接口和[objectFit](#objectfit)实现了给图片设置变换效果。
 
 ```ts
 import { matrix4 } from '@kit.ArkUI'
@@ -1376,8 +1388,8 @@ import { matrix4 } from '@kit.ArkUI'
 @Component
 struct Test {
   private matrix1 = matrix4.identity()
-    .translate({ x: -200, y: -200 })
-    .scale({ x: 0.2, y: 0.2 })
+    .translate({ x: -400, y: -750 })
+    .scale({ x: 0.5, y: 0.5 })
     .rotate({
       x: 2,
       y: 0.5,
@@ -1389,41 +1401,37 @@ struct Test {
 
   build() {
     Row() {
-      Column({ space: 20 }) {
-        Text("无变换")
-          .fontSize('30px')
-        Image($r("app.media.test"))
-          .border({ width: 5, color: Color.Orange })
-          .objectFit(ImageFit.None)
-          .width(150)
-          .height(150)
-        Text("Image直接变换")
-          .height(30)
-          .width(150)
-          .fontSize('30px')
-        Image($r("app.media.test"))
-          .border({ width: 5, color: Color.Orange })
-          .objectFit(ImageFit.None)
-          .translate({ x: 50, y: 50 })
-          .scale({ x: 0.2, y: 0.2 })
-          .rotate({
-            x: 2,
-            y: 0.5,
-            z: 3,
-            centerX: 10,
-            centerY: 10,
-            angle: -10
-          })
-          .width(150)
-          .height(150)
-        Text("Image通过imageMatrix变换")
-          .fontSize('30px')
-        Image($r("app.media.test"))
-          .objectFit(ImageFit.MATRIX)
-          .imageMatrix(this.matrix1)
-          .border({ width: 5, color: Color.Orange })
-          .width(150)
-          .height(150)
+      Column({ space: 50 }) {
+        Column({ space: 5 }) {
+          Image($r("app.media.example"))
+            .border({ width:2, color: Color.Black })
+            .objectFit(ImageFit.Contain)
+            .width(150)
+            .height(150)
+          Text("图片无变换")
+            .fontSize('25px')
+        }
+        Column({ space: 5 }) {
+          Image($r("app.media.example"))
+            .border({ width:2, color: Color.Black })
+            .objectFit(ImageFit.None)
+            .translate({ x: 10, y: 10 })
+            .scale({ x: 0.5, y: 0.5 })
+            .width(100)
+            .height(100)
+          Text("Image直接变换，默认显示图源左上角。")
+            .fontSize('25px')
+        }
+        Column({ space: 5 }) {
+          Image($r("app.media.example"))
+            .objectFit(ImageFit.MATRIX)
+            .imageMatrix(this.matrix1)
+            .border({ width:2, color: Color.Black })
+            .width(150)
+            .height(150)
+          Text("通过imageMatrix变换，调整图源位置，实现最佳呈现。")
+            .fontSize('25px')
+        }
       }
       .width('100%')
     }

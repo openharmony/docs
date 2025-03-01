@@ -79,7 +79,7 @@
    ```ts
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { fileIo as fs } form '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
 
    let avProfile: media.AVRecorderProfile = {
      audioBitrate: 100000, // 音频比特率
@@ -156,7 +156,7 @@
 ```ts
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo as fs } form '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 export class AudioRecorderDemo {
   private avRecorder: media.AVRecorder | undefined = undefined;

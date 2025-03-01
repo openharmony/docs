@@ -1184,7 +1184,7 @@ encodeInto(input?: string): Uint8Array
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| input  | string | 否   | 需要编码的字符串，默认值是空字符串。 |
+| input  | string | 否   | 需要编码的字符串，默认值是空字符串。当入参是空字符串时，返回值是undefined。 |
 
 **返回值：**
 
@@ -1249,6 +1249,10 @@ let uint8 = new Uint8Array(buffer);
 let result = textEncoder.encodeIntoUint8Array('abcd', uint8);
 console.info("uint8 = " + uint8);
 // 输出结果: uint8 = 97,98,99,100
+console.info("result.read = " + result.read);
+// 输出结果: result.read = 4
+console.info("result.written = " + result.written);
+// 输出结果: result.written = 4
 ```
 
 ### encodeInto<sup>(deprecated)</sup>

@@ -847,7 +847,7 @@ Obtains the network address.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-**System capability**: SystemCapability.Communication.NetStack
+**System capability**: SystemCapability.Communication.NetManager
 
 |       Type      |            Description            |
 | ---------------- | --------------------------- |

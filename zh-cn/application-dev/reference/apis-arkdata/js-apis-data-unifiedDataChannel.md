@@ -1213,22 +1213,26 @@ type DataProgressListener = (progressInfo: ProgressInfo, data: UnifiedData | nul
 
 | 参数名      | 类型                            | 必填    | 说明           |
 |----------|-------------------------------|-------|--------------|
-| progress | [ProgressInfo](#progressinfo15) | 是     | 定义进度上报的进度信息。 |
-| data     | [UnifiedData](#unifieddata)  \| null  |  是    | 进度达到100时获取的数据，进度未到100时返回null。 |
+| progressInfo| [ProgressInfo](#progressinfo15) | 是     | 定义进度上报的进度信息。 |
+| data        | [UnifiedData](#unifieddata)  \| null  |  是    | 进度达到100时获取的数据，进度未到100时返回null。 |
 
 ## GetDataParams<sup>15+</sup>
 
 表示从UDMF获取数据时的参数，包含目标路径、文件冲突选项、进度条类型等。
 
+具体使用示例可见[拖拽异步获取数据](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#示例3拖拽异步获取数据)。
+
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
+**参数：**
+
+| 参数名                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
 |----------------------|-------------------------------------------------| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
 | progressIndicator    | [ProgressIndicator](#progressindicator15)       | 是 | 定义进度条指示选项，可选择是否采用系统默认进度显示。                                                                                                                         |
 | dataProgressListener | [DataProgressListener](#dataprogresslistener15) | 是 | 表示获取统一数据时的进度和数据监听器。                                                                                                                                |
-| destUri              | string                                          | 否 | 拷贝文件的目标路径。若不支持文件处理，则不需要设置此参数,默认为空；若支持文件处理，须设置一个已经存在的目录。若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理。 不填写时获取到到的uri为源端路径URI，填写后获取到的uri为目标路径uri |
+| destUri              | string                                          | 否 | 拷贝文件的目标路径。若不支持文件处理，则不需要设置此参数,默认为空；若支持文件处理，须设置一个已经存在的目录。若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理。不填写时获取到到的uri为源端路径URI，填写后获取到的uri为目标路径uri。|
 | fileConflictOptions  | [FileConflictOptions](#fileconflictoptions15)   | 否   | 定义文件拷贝冲突时的选项，默认为OVERWRITE。                                                                                                                         |
 
 ## unifiedDataChannel.insertData

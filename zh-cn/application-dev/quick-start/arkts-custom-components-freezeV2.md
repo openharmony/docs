@@ -350,7 +350,7 @@ struct NavigationContentMsgStack {
 
 ### Repeat virtualScroll
 
-对Repeat virtualScroll缓存池中的自定义组件进行冻结，避免不必要的组件刷新。建议提前阅读[Repeat组件生成及复用virtualScroll规则](./arkts-new-rendering-control-repeat.md#virtualscroll规则-1)。
+对Repeat virtualScroll缓存池中的自定义组件进行冻结，避免不必要的组件刷新。建议提前阅读[Repeat组件生成及复用virtualScroll规则](./arkts-new-rendering-control-repeat.md#子组件渲染逻辑-1)。
 
 ```ts
 @Entry

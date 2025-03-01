@@ -469,6 +469,173 @@ options.signal = s;
 | aborted | boolean | 是   | 是   | 设置为true以中止操作。                                           |
 | reason  | \<T>    | 是   | 是   | 中止的原因。此值将用于拒绝[lockAsync](#lockasync)返回的Promise。 |
 
+### ConditionVariable<sup>16+</sup>
+
+实现异步等待功能的类，允许执行异步等待通知操作。
+
+**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+#### constructor<sup>16+</sup>
+
+constructor()
+
+默认构造函数。创建一个异步等待通知操作的对象。
+
+**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**示例：**
+
+```ts
+let conditionVariable = new ArkTSUtils.locks.ConditionVariable();
+```
+
+#### request<sup>16+</sup>
+
+static request(name: string): ConditionVariable
+
+使用指定的名称查找或创建（如果未找到）异步等待通知操作的对象。
+
+**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 名称 | 类型   | 必填 | 说明                             |
+| ---- | ------ | ---- | -------------------------------- |
+| name | string | 是   | 按指定名称查找或创建等待通知操作的对象名称，字符串无特别限制。 |
+
+**返回值：**
+
+| 类型                    | 说明                             |
+| ----------------------- | -------------------------------- |
+| [ConditionVariable](#conditionvariable16) | 返回查找到或创建后的异步等待通知操作的实例。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+let conditionVariable = ArkTSUtils.locks.ConditionVariable.request("conditionName");
+```
+
+#### wait<sup>16+</sup>
+
+wait(): Promise\<void>
+
+异步调用进入等待中，将在被唤醒后继续执行。使用Promise异步回调。
+
+**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型        | 说明                        |
+| ----------- | --------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+let conditionVariable = ArkTSUtils.locks.AsyncLock.ConditionVariable();
+conditionVariable.wait().then(() => {
+  console.info(`Thread being awakened, then continue...`); //被唤醒后输出日志
+});
+```
+
+#### waitFor<sup>16+</sup>
+
+waitFor(timeout : number) : Promise\<void>
+
+异步调用进入等待中, 将在被唤醒或者等待时间结束后继续执行。使用Promise异步回调。
+
+**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 名称 | 类型   | 必填 | 说明       |
+| -------- | -------- | ---- | ---------- |
+| timeout | number | 是   | 等待时间，单位为ms，正整数。 |
+
+**返回值：**
+
+| 类型        | 说明                        |
+| ----------- | --------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+let conditionVariable = ArkTSUtils.locks.AsyncLock.ConditionVariable();
+conditionVariable.waitFor(3000).then(() => {
+  console.info(`Thread being awakened, then continue...`); //被唤醒后输出日志
+});
+```
+
+#### notifyAll<sup>16+</sup>
+
+notifyAll() : void
+
+通知所有等待的线程。
+
+**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**示例：**
+
+```ts
+let conditionVariable = ArkTSUtils.locks.AsyncLock.ConditionVariable();
+conditionVariable.waitFor(3000).then(() => {
+  console.info(`Thread being awakened, then continue...`); //被唤醒后输出日志
+});
+conditionVariable.notifyAll();
+```
+
+#### notifyOne<sup>16+</sup>
+
+notifyOne() : void
+
+通知第一个等待的线程。
+
+**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**示例：**
+
+```ts
+let conditionVariable = ArkTSUtils.locks.AsyncLock.ConditionVariable();
+conditionVariable.waitFor(3000).then(() => {
+  console.info(`Thread a being awakened, then continue...`); //被唤醒后输出日志
+});
+conditionVariable.waitFor().then(() => {
+  console.info(`Thread twob being awakened, then continue...`); //被唤醒后输出日志
+});
+conditionVariable.notifyOne();
+```
+
 ## ArkTSUtils.ASON
 
 为支持将JSON字符串解析成共享数据，即[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)，ArkTS语言基础库新增了ASON工具。ASON支持开发者解析JSON字符串，并生成共享数据进行跨并发域传输，同时ASON也支持将共享数据转换成JSON字符串。

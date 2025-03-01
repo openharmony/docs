@@ -317,7 +317,6 @@ JSVM deref_item
 ### OH_JSVM_DefineClassWithOptions
 > **NOTE**<br>The parent class passed in must be created by using an **OH_JSVM_DefineClass** API. Otherwise, the **JSVM_INVALID_ARG** error will be returned.
 **DefineClassOptions** supports the following options:
-
 - **JSVM_DEFINE_CLASS_NORMAL**: defines a class in normal mode. The default status is **JSVM_DEFINE_CLASS_NORMAL**.
 - **JSVM_DEFINE_CLASS_WITH_COUNT**: reserves **internal-field** slot for the created class.
 - **JSVM_DEFINE_CLASS_WITH_PROPERTY_HANDLER**: sets a listener property for the created class and sets a callback to be invoked when it is called as a function.

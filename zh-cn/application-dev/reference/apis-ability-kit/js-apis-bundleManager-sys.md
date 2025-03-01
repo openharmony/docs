@@ -139,10 +139,10 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 | 名称 | 值 | 说明 |
 |----------------|---|---|
-| FLAG_INSTALLED|  0x00000001 | 表示指定用户安装应用的状态，1表示指定用户安装了，0表示未安装。|
-| FLAG_OTHER_INSTALLED<sup>15+</sup>|  0x00000010 | 表示除指定用户外，其他用户的应用安装状态，1表示其他用户安装了，0表示未安装。|
-| FLAG_PREINSTALLED_APP<sup>15+</sup>|  0x00000020 | 表示应用的预置属性，1表示预置应用，0表示非预置应用。|
-| FLAG_PREINSTALLED_APP_UPDATE<sup>15+</sup>|  0x00000040 | 表示该预置应用是否已更新，1表示该预置应用更新了，0表示未更新。|
+| FLAG_INSTALLED|  0x00000001 | 表示指定用户安装应用的状态为已安装状态。 |
+| FLAG_OTHER_INSTALLED<sup>15+</sup>|  0x00000010 | 表示除指定用户外，其他用户的应用安装状态为已安装。|
+| FLAG_PREINSTALLED_APP<sup>15+</sup>|  0x00000020 | 表示应用的预置属性为预置应用。|
+| FLAG_PREINSTALLED_APP_UPDATE<sup>15+</sup>|  0x00000040 | 表示该预置应用的更新状态为已更新。|
 
 ## bundleManager.getBundleInfo<sup>14+</sup>
 
@@ -5462,6 +5462,73 @@ try {
 } catch (err) {
   let message = (err as BusinessError).message;
   hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', message);
+}
+```
+
+## bundleManager.migrateData<sup>16+</sup>
+
+migrateData(sourcePaths: Array&lt;string&gt;, destinationPath: string): Promise&lt;void&gt;
+
+拷贝文件，将文件从源路径拷贝到目标路径。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MIGRATE_DATA
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名       | 类型   | 必填 | 说明                                                     |
+| ----------- | ------ | ---- | -------------------------------------------------------- |
+| sourcePaths | Array&lt;string&gt; | 是 | 需要迁移的源路径数组，支持传入如/example1/test.txt的单文件路径，或/example2/test的目录路径。 |
+| destinationPath | string | 是 | 目标路径，仅支持传入一个目录路径，例如：/example2/test。 |
+
+**返回值：**
+
+| 类型       | 说明                 |
+| ---------- | -------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 17700080 | The source paths are invalid. |
+| 17700081 | The destination path is invalid. |
+| 17700082 | User authentication failed. |
+| 17700083 | Waiting for user authentication timeout. |
+| 17700084 | There are inaccessible path in the source paths. |
+| 17700085 | The destination path cannot be accessed. |
+| 17700086 | System error occurred during copy execution. |
+
+**示例：**
+
+```ts
+import { bundleManager, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  // 开发者需将source1、source2、dest内容更新为实际文件路径或目录路径。
+  let source1: string = this.context.tempDir;
+  let source2: string = "/xxxx/xxxx/xxxx/xxxx/log.txt";
+  let dest: string = this.context.cacheDir;
+  let sourcePaths: Array<string> = [source1, source2];
+
+  bundleManager.migrateData(sourcePaths, dest)
+    .then(() => {
+      console.info(`migrateData succeed`);
+    })
+    .catch((err: BusinessError) => {
+      console.error(`migrateData err : `, JSON.stringify(err));
+    })
+} catch(err) {
+  console.error(`migrateData call err : `, JSON.stringify(err));
 }
 ```
 

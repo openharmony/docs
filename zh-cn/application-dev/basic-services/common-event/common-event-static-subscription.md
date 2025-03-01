@@ -6,17 +6,21 @@
 
 开发者可以通过在[`onReceiveEvent()`](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md#staticsubscriberextensionabilityonreceiveevent)回调中执行业务逻辑，实现当应用接收到特定公共事件时执行业务逻辑的目的。例如，应用希望在设备开机时执行一些初始化任务，那么该应用可以静态订阅开机事件，在收到开机事件后会拉起该应用，然后执行初始化任务。
 
-静态订阅是通过配置文件声明和实现继承自[`StaticSubscriberExtensionAbility`](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)的类实现对公共事件的订阅。
+静态订阅是通过配置文件声明和实现继承自[StaticSubscriberExtensionAbility](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)的类实现对公共事件的订阅。
 
 > **说明：**
 >
-> 需要注意的是，静态订阅公共事件对系统功耗有一定影响，建议谨慎使用。
+> 静态订阅公共事件对系统功耗有一定影响，建议谨慎使用。
+
+## 生命周期
+
+[StaticSubscriberExtensionAbility](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)在[`onReceiveEvent()`](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md#staticsubscriberextensionabilityonreceiveevent)执行完`15秒`后销毁。
 
 ## 开发步骤
 
 1. 静态订阅者声明。
 
-   声明一个静态订阅者，首先需要在工程中新建一个ExtensionAbility，该ExtensionAbility从StaticSubscriberExtensionAbility派生。
+   声明一个静态订阅者，首先需要在工程中新建一个ExtensionAbility，该ExtensionAbility从[StaticSubscriberExtensionAbility](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)派生。
 
    开发者可以在[`onReceiveEvent()`](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md#staticsubscriberextensionabilityonreceiveevent)回调中实现业务逻辑。
 

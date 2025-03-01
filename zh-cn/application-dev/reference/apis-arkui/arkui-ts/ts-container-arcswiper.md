@@ -44,7 +44,7 @@ ArcSwiper(controller?: ArcSwiperController)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性，不支持[Menu控制](ts-universal-attributes-menu.md)。 
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性，不支持[Menu控制](ts-universal-attributes-menu.md)。 
 
 ### index
 
@@ -468,7 +468,7 @@ type GestureSwipeHandler = (index: number, event: SwiperAnimationEvent) => void
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onChange
 
@@ -689,3 +689,5 @@ struct TestNewInterface {
   }
 }
 ```
+
+![arcSwiper](figures/arcSwiper.gif)

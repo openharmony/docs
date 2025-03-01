@@ -4,7 +4,7 @@
 
 根据用户文件的常见类型，选择器（FilePicker）分别提供以下选项：
 
-- [PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpickerdeprecated)：适用于图片或视频类型文件的选择与保存（该接口在后续版本不再演进）。请使用[PhotoAccessHelper的PhotoViewPicker](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker)来选择图片文件。请使用[安全控件创建媒体资源](../media/medialibrary/photoAccessHelper-savebutton.md)。
+- [PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpickerdeprecated)：适用于图片或视频类型文件的选择与保存（该接口在后续版本不再演进）。请使用[PhotoAccessHelper的PhotoViewPicker](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker)来选择图片文件。请使用[安全控件保存媒体库资源](../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 - [DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker)：适用于文件类型文件的选择与保存。DocumentViewPicker对接的选择资源来自于FilePicker, 负责文件类型的资源管理，文件类型不区分后缀，比如浏览器下载的图片、文档等，都属于文件类型。
 
@@ -35,8 +35,8 @@
    documentSelectOptions.defaultFilePathUri = "file://docs/storage/Users/currentUser/test";
    // 选择文件的后缀类型['后缀类型描述|后缀类型']（可选） 若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔（可选），后缀类型名不能超过100,选择所有文件：'所有文件(*.*)|.*'。
     documentSelectOptions.fileSuffixFilters = ['图片(.png, .jpg)|.png,.jpg', '文档|.txt', '视频|.mp4', '.pdf']; 
-   //选择是否对指定文件或目录授权，true为授权，当为true时，defaultFilePathUri为必选参数，拉起文管授权界面；false为非授权，拉起常规文管界面（可选）,仅支持2in1设备。
-   documentSelectOptions.authMode = true;
+   //选择是否对指定文件或目录授权，true为授权，当为true时，defaultFilePathUri为必选参数，拉起文管授权界面；false为非授权(默认为false)，拉起常规文管界面（可选）仅支持2in1设备。
+   documentSelectOptions.authMode = false;
    //批量授权模式，默认为false（非批量授权模式）。当multAuthMode为true时为批量授权模式。当multAuthMode为true时，只有multiUriArray参数生效，其他参数不生效。仅支持手机设备。
    documentSelectOptions.multiAuthMode = false;
    //需要传入批量授权的uri数组（仅支持文件，文件夹不生效）。配合multAuthMode使用。当multAuthMode为false时，配置该参数不生效。仅支持手机设备。

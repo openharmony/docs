@@ -213,3 +213,37 @@ ArkUI 滚动类组件（List、Scroll、Grid、WaterFlow）和Refresh组件。
 **适配指导**
 
 变更后下拉过界效果更优，无需适配。
+
+## cl.arkui.5 轴事件支持BEGIN、END及CANCEL类型回调触发
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+开发者无法监听到轴事件的BEGIN、END、CANCEL类型的事件回调。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：开发者通过OH_NativeXComponent_RegisterUIInputEventCallback接口监听轴事件回调，无法收到BEGIN、END、CANCEL类型的事件回调。
+
+变更后：开发者通过OH_NativeXComponent_RegisterUIInputEventCallback接口监听轴事件回调，可以收到BEGIN、END、CANCEL类型的事件回调。
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.50开始。
+
+**变更的接口/组件**
+
+OH_NativeXComponent_RegisterUIInputEventCallback接口。
+
+**适配指导**
+
+默认行为变更，无需适配。

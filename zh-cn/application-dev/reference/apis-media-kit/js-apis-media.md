@@ -327,6 +327,11 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, ca
 
 创建音频池实例，使用callback方式异步获取返回值。
 
+> **说明：**
+>
+> - API 16以下版本，创建的SoundPool对象底层为单实例模式，一个应用进程只能够创建1个SoundPool实例。
+> - API 16及API 16以上版本，创建的SoundPool对象底层为多实例模式，一个应用进程最多能够创建128个SoundPool实例。
+
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
 **参数：**
@@ -372,6 +377,11 @@ media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool)
 createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): Promise\<SoundPool>
 
 创建音频池实例，通过Promise获取返回值。
+
+> **说明：**
+>
+> - API 16以下版本，创建的SoundPool对象底层为单实例模式，一个应用进程只能够创建1个SoundPool实例。
+> - API 16及API 16以上版本，创建的SoundPool对象底层为多实例模式，一个应用进程最多能够创建128个SoundPool实例。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -751,13 +761,13 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 201      | Permission denied     |
+| 201      | Permission denied.     |
 | 401      | The parameter check failed. |
 | 801      | Capability not supported. |
 | 5400101  | No memory. |
 | 5400102  | Operation not allowed.|
-| 5400103  | I/O error             |
-| 5400104  | Time out              |
+| 5400103  | I/O error.             |
+| 5400104  | Time out.              |
 | 5400105  | Service died.         |
 | 5400106  | Unsupported format.     |
 | 5411001  | IO can not find host.    |
@@ -1524,7 +1534,7 @@ media.createAVPlayer(async (err: BusinessError, player: media.AVPlayer) => {
     if (avPlayer) {
       try {
         playbackInfo = await avPlayer.getPlaybackInfo();
-        console.info(`AVPlayer getPlaybackInfo = ${JSON.stringify(playbackInfo)}`); // 打印整个PlaybackInfo的值
+        console.info(`AVPlayer getPlaybackInfo = ${JSON.stringify(playbackInfo)}`); // 打印整个PlaybackInfo的值。
       } catch (error) {
         console.error(`error = ${error}`);
       }
@@ -1617,7 +1627,7 @@ avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDe
   if (arrList != null) {
     for (let i = 0; i < arrList.length; i++) {
       if (i != 0) {
-        // 获取音频轨道列表
+        // 获取音频轨道列表。
         audioTrackIndex = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
       }
     }
@@ -1626,7 +1636,7 @@ avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDe
   }
 });
 
-// 选择其中一个音频轨道
+// 选择其中一个音频轨道。
 avPlayer.selectTrack(parseInt(audioTrackIndex.toString()));
 ```
 
@@ -1673,7 +1683,7 @@ avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDe
   if (arrList != null) {
     for (let i = 0; i < arrList.length; i++) {
       if (i != 0) {
-        // 获取音频轨道列表
+        // 获取音频轨道列表。
         audioTrackIndex = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
       }
     }
@@ -1682,7 +1692,7 @@ avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDe
   }
 });
 
-// 选择其中一个音频轨道
+// 选择其中一个音频轨道。
 avPlayer.selectTrack(parseInt(audioTrackIndex.toString()));
 // 取消选择上次选中的音频轨道，并恢复到默认音频轨道。
 avPlayer.deselectTrack(parseInt(audioTrackIndex.toString()));
@@ -1719,14 +1729,14 @@ setDecryptionConfig(mediaKeySession: drm.MediaKeySession, secureVideoPath: boole
 ```ts
 import { drm } from '@kit.DrmKit';
 
-// 创建MediaKeySystem系统
+// 创建MediaKeySystem系统。
 let keySystem:drm.MediaKeySystem = drm.createMediaKeySystem('com.clearplay.drm');
-// 创建MediaKeySession解密会话
+// 创建MediaKeySession解密会话。
 let keySession:drm.MediaKeySession = keySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
-// 生成许可证请求、设置许可证响应等
-// 安全视频通路标志
+// 生成许可证请求、设置许可证响应等。
+// 安全视频通路标志。
 let secureVideoPath:boolean = false;
-// 设置解密配置
+// 设置解密配置。
 avPlayer.setDecryptionConfig(keySession, secureVideoPath);
 ```
 
@@ -3113,8 +3123,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 function printfItemDescription(obj: media.MediaDescription, key: string) {
   let property: Object = obj[key];
-  console.info('audio key is ' + key); // 通过key值获取对应的value。key值具体可见[MediaDescriptionKey]
-  console.info('audio value is ' + property); //对应key值得value。其类型可为任意类型，具体key对应value的类型可参考[MediaDescriptionKey]
+  console.info('audio key is ' + key); // 通过key值获取对应的value。key值具体可见[MediaDescriptionKey]。
+  console.info('audio value is ' + property); //对应key值得value。其类型可为任意类型，具体key对应value的类型可参考[MediaDescriptionKey]。
 }
 
 let avPlayer: media.AVPlayer | undefined = undefined;
@@ -3125,7 +3135,7 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
     avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
       if (arrList != null) {
         for (let i = 0; i < arrList.length; i++) {
-          printfItemDescription(arrList[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  //打印出每条轨道MD_KEY_TRACK_TYPE的值
+          printfItemDescription(arrList[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  //打印出每条轨道MD_KEY_TRACK_TYPE的值。
         }
       } else {
         console.error(`Failed to get TrackDescription, error:${error}`);
@@ -3154,8 +3164,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 function printfPlaybackInfo(obj: media.PlaybackInfo, key: string) {
   let property: Object = obj[key];
-  console.info('key is ' + key); // 通过key值获取对应的value。key值具体可见[PlaybackInfoKey]
-  console.info('value is ' + property); //对应key值得value。其类型可为任意类型，具体key对应value的类型可参考[PlaybackInfoKey]
+  console.info('key is ' + key); // 通过key值获取对应的value。key值具体可见[PlaybackInfoKey]。
+  console.info('value is ' + property); //对应key值得value。其类型可为任意类型，具体key对应value的类型可参考[PlaybackInfoKey]。
 }
 
 let avPlayer: media.AVPlayer | undefined = undefined;
@@ -3167,8 +3177,8 @@ media.createAVPlayer(async (err: BusinessError, player: media.AVPlayer) => {
     if (avPlayer) {
       try {
         playbackInfo = await avPlayer.getPlaybackInfo();
-        console.info(`AVPlayer getPlaybackInfo = ${JSON.stringify(playbackInfo)}`); // 打印整个PlaybackInfo的值
-        printfPlaybackInfo(playbackInfo, media.PlaybackInfoKey.SERVER_IP_ADDRESS); // 打印ip的值
+        console.info(`AVPlayer getPlaybackInfo = ${JSON.stringify(playbackInfo)}`); // 打印整个PlaybackInfo的值。
+        printfPlaybackInfo(playbackInfo, media.PlaybackInfoKey.SERVER_IP_ADDRESS); // 打印ip的值。
       } catch (error) {
         console.error(`error = ${error}`);
       }
@@ -3234,7 +3244,7 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 配置参数以实际硬件设备支持的范围为准
+// 配置参数以实际硬件设备支持的范围为准。
 let avRecorderProfile: media.AVRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
@@ -3252,7 +3262,7 @@ let avRecorderConfig: media.AVRecorderConfig = {
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : avRecorderProfile,
   url : 'fd://', // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45
-  rotation : 0, // 合理值0、90、180、270，非合理值prepare接口将报错
+  rotation : 0, // 合理值0、90、180、270，非合理值prepare接口将报错。
   location : { latitude : 30, longitude : 130 }
 }
 
@@ -3309,7 +3319,7 @@ prepare(config: AVRecorderConfig): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 配置参数以实际硬件设备支持的范围为准
+// 配置参数以实际硬件设备支持的范围为准。
 let avRecorderProfile: media.AVRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
@@ -3327,7 +3337,7 @@ let avRecorderConfig: media.AVRecorderConfig = {
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : avRecorderProfile,
   url : 'fd://',  // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45
-  rotation : 0, // 合理值0、90、180、270，非合理值prepare接口报错
+  rotation : 0, // 合理值0、90、180、270，非合理值prepare接口报错。
   location : { latitude : 30, longitude : 130 }
 }
 
@@ -3370,7 +3380,7 @@ getInputSurface(callback: AsyncCallback\<string>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-let surfaceID: string; // 该surfaceID用于传递给相机接口创造videoOutput
+let surfaceID: string; // 该surfaceID用于传递给相机接口创造videoOutput。
 
 avRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
   if (err) {
@@ -3415,7 +3425,7 @@ getInputSurface(): Promise\<string>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-let surfaceID: string; // 该surfaceID用于传递给相机接口创造videoOutput
+let surfaceID: string; // 该surfaceID用于传递给相机接口创造videoOutput。
 
 avRecorder.getInputSurface().then((surfaceId: string) => {
   console.info('Succeeded in getting InputSurface');
@@ -4470,7 +4480,7 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   |录像资源的回调类型，支持的事件：'photoAssetAvailable'。 |
-| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | 是 | 系统创建的资源文件对应的PhotoAsset对象|
+| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | 是 | 系统创建的资源文件对应的PhotoAsset对象。|
 
 **错误码：**
 
@@ -4488,7 +4498,7 @@ import { common } from '@kit.AbilityKit'
 let photoAsset: photoAccessHelper.PhotoAsset;
 let context = getContext(this) as common.UIAbilityContext
 
-// 例:处理photoAsset回调，保存video
+// 例:处理photoAsset回调，保存video。
 async function saveVideo(asset: photoAccessHelper.PhotoAsset) {
   console.info("saveVideo called");
   try {
@@ -4501,12 +4511,12 @@ async function saveVideo(asset: photoAccessHelper.PhotoAsset) {
     console.error(`apply saveVideo failed with error: ${err.code}, ${err.message}`);
   }
 }
-// 注册photoAsset监听
+// 注册photoAsset监听。
 avRecorder.on('photoAssetAvailable',  (asset: photoAccessHelper.PhotoAsset) => {
   console.info('photoAssetAvailable called');
   if (asset != undefined) {
     photoAsset = asset;
-    // 处理photoAsset回调
+    // 处理photoAsset回调。
     // 例: this.saveVideo(asset);
   } else {
     console.error('photoAsset is undefined');
@@ -4527,6 +4537,7 @@ off(type: 'photoAssetAvailable', callback?: Callback<photoAccessHelper.PhotoAsse
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 录音配置变化的回调类型，支持的事件：'photoAssetAvailable'。 |
+| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | 否 | 系统创建的资源文件对应的PhotoAsset对象。|
 
 **示例：**
 
@@ -4566,8 +4577,8 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
-| state  | [AVRecorderState](#avrecorderstate9) | 必填 | 当前播放状态。     |
-| reason | [StateChangeReason](#statechangereason9) | 必填 | 当前播放状态的切换原因。 |
+| state  | [AVRecorderState](#avrecorderstate9) | 必填 | 当前录制状态。     |
+| reason | [StateChangeReason](#statechangereason9) | 必填 | 当前录制状态的切换原因。 |
 
 ## AVRecorderConfig<sup>9+</sup>
 
@@ -4680,14 +4691,14 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 | 名称       | 类型                             | 可读 | 可写 | 说明                                                         |
 | ---------- | -------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| mimeType   | [CodecMimeType](#codecmimetype8) | 是   | 否   | 编码器MIME类型名称                                           |
-| type       | string                           | 是   | 否   | 编码器类型，audio表示音频编码器，video表示视频编码器         |
-| bitRate    | [Range](#range11)                | 是   | 否   | 比特率，包含该编码器的最大和最小值                           |
-| frameRate  | [Range](#range11)                | 是   | 否   | 视频帧率，包含帧率的最大和最小值，仅视频编码器拥有           |
-| width      | [Range](#range11)                | 是   | 否   | 视频帧的宽度，包含宽度的最大和最小值，仅视频编码器拥有       |
-| height     | [Range](#range11)                | 是   | 否   | 视频帧的高度，包含高度的最大和最小值，仅视频编码器拥有       |
-| channels   | [Range](#range11)                | 是   | 否   | 音频采集声道数，包含声道数的最大和最小值，仅音频编码器拥有   |
-| sampleRate | Array\<number>                    | 是   | 否   | 音频采样率，包含所有可以使用的音频采样率值，仅音频编码器拥有 |
+| mimeType   | [CodecMimeType](#codecmimetype8) | 是   | 否   | 编码器MIME类型名称。                                           |
+| type       | string                           | 是   | 否   | 编码器类型，audio表示音频编码器，video表示视频编码器。         |
+| bitRate    | [Range](#range11)                | 是   | 否   | 比特率，包含该编码器的最大和最小值。                           |
+| frameRate  | [Range](#range11)                | 是   | 否   | 视频帧率，包含帧率的最大和最小值，仅视频编码器拥有。          |
+| width      | [Range](#range11)                | 是   | 否   | 视频帧的宽度，包含宽度的最大和最小值，仅视频编码器拥有。       |
+| height     | [Range](#range11)                | 是   | 否   | 视频帧的高度，包含高度的最大和最小值，仅视频编码器拥有。       |
+| channels   | [Range](#range11)                | 是   | 否   | 音频采集声道数，包含声道数的最大和最小值，仅音频编码器拥有。   |
+| sampleRate | Array\<number>                    | 是   | 否   | 音频采样率，包含所有可以使用的音频采样率值，仅音频编码器拥有。 |
 
 ## Range<sup>11+</sup>
 
@@ -4697,8 +4708,8 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 | 名称 | 类型   | 可读 | 可写 | 说明         |
 | ---- | ------ | ---- | ---- | ------------ |
-| min  | number | 是   | 否   | 范围的最小值 |
-| max  | number | 是   | 否   | 范围的最大值 |
+| min  | number | 是   | 否   | 范围的最小值。 |
+| max  | number | 是   | 否   | 范围的最大值。 |
 
 ## FileGenerationMode<sup>12+</sup>
 
@@ -4762,7 +4773,7 @@ prepare(config: AVTranscoderConfig): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 配置参数以实际硬件设备支持的范围为准
+// 配置参数以实际硬件设备支持的范围为准。
 let avTranscoderConfig: media.AVTranscoderConfig = {
   audioBitrate : 200000,
   audioCodec : media.CodecMimeType.AUDIO_AAC,
@@ -5068,7 +5079,7 @@ off(type:'error', callback?: ErrorCallback): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 转码错误事件回调类型'error'。 <br>- 'error'：转码过程中发生错误，触发该事件。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 错误事件回调方法 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 错误事件回调方法。 |
 
 **示例：**
 
@@ -5091,7 +5102,7 @@ on(type: 'complete', callback: Callback\<void>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 完成事件回调类型，支持的事件：'complete'，在转码过程中系统会自动触发此事件。 |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback) | 是   | 完成事件回调方法 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback) | 是   | 完成事件回调方法。 |
 
 **示例：**
 
@@ -5114,7 +5125,7 @@ off(type:'complete', callback?: Callback\<void>): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 转码完成事件回调类型，支持的事件：'complete'，用户操作和系统都会触发此事件。 |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback) | 否   | 完成事件回调方法 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback) | 否   | 完成事件回调方法。 |
 
 **示例：**
 
@@ -5130,13 +5141,13 @@ avTranscoder.off('complete');
 
 | 名称            | 类型                                    | 只读 | 可选 | 说明                                                         |
 | --------------- | ---------------------------------------- |---- | ---- | ------------------------------------------------------------ |
-| audioBitrate | number     | 否 | 是 | 输出音频的码率，单位为比特率（bps）。用户不设置，则默认设置为48Kbps|
+| audioBitrate | number     | 否 | 是 | 输出音频的码率，单位为比特率（bps）。用户不设置，则默认设置为48Kbps。|
 | audioCodec | [CodecMimeType](#codecmimetype8)     | 否 | 是  | 输出音频的编码格式，当前仅支持AAC。                   |
 | fileFormat         | [ContainerFormatType](#containerformattype8) | 否 | 否   | 输出视频文件的封装格式，当前视频文件仅支持MP4。|
 | videoBitrate         | number | 否 |  是  | 输出视频的码率，单位为比特率（bps）。用户不设置，则默认码率按输出视频的分辨率设置，[240p，480P]默认码率值为1Mbps，(480P,720P]默认码率值为2Mbps，(720P,1080P]默认码率值为4Mbps，1080P及以上默认值为8Mbps。|
 | videoCodec        | [CodecMimeType](#codecmimetype8) | 否 | 是   | 输出视频的编码格式，当前仅支持AVC和HEVC。|
-| videoFrameWidth        | number | 否 |  是   | 输出视频帧的宽，单位为像素（px）。用户不设置，则默认设置为源视频帧的宽|
-| videoFrameHeight        | number | 否 |  是   | 输出视频帧的高，单位为像素（px）。用户不设置，则默认设置为源视频帧的高|
+| videoFrameWidth        | number | 否 |  是   | 输出视频帧的宽，单位为像素（px）。用户不设置，则默认设置为源视频帧的宽。|
+| videoFrameHeight        | number | 否 |  是   | 输出视频帧的高，单位为像素（px）。用户不设置，则默认设置为源视频帧的高。|
 
 
 
@@ -5588,7 +5599,7 @@ play(): void
 **示例：**
 
 ```ts
-audioPlayer.on('play', () => {    //设置'play'事件回调
+audioPlayer.on('play', () => {    //设置'play'事件回调。
   console.info('audio play called');
 });
 audioPlayer.play();
@@ -5608,7 +5619,7 @@ pause(): void
 **示例：**
 
 ```ts
-audioPlayer.on('pause', () => {    //设置'pause'事件回调
+audioPlayer.on('pause', () => {    //设置'pause'事件回调。
   console.info('audio pause called');
 });
 audioPlayer.pause();
@@ -5628,7 +5639,7 @@ stop(): void
 **示例：**
 
 ```ts
-audioPlayer.on('stop', () => {    //设置'stop'事件回调
+audioPlayer.on('stop', () => {    //设置'stop'事件回调。
   console.info('audio stop called');
 });
 audioPlayer.stop();
@@ -5648,7 +5659,7 @@ reset(): void
 **示例：**
 
 ```ts
-audioPlayer.on('reset', () => {    //设置'reset'事件回调
+audioPlayer.on('reset', () => {    //设置'reset'事件回调。
   console.info('audio reset called');
 });
 audioPlayer.reset();
@@ -5674,14 +5685,14 @@ seek(timeMs: number): void
 **示例：**
 
 ```ts
-audioPlayer.on('timeUpdate', (seekDoneTime: number) => {    //设置'timeUpdate'事件回调
+audioPlayer.on('timeUpdate', (seekDoneTime: number) => {    //设置'timeUpdate'事件回调。
   if (seekDoneTime == null) {
     console.error('Failed to seek');
     return;
   }
   console.info('Succeeded in seek. seekDoneTime: ' + seekDoneTime);
 });
-audioPlayer.seek(30000);    //seek到30000ms的位置
+audioPlayer.seek(30000);    //seek到30000ms的位置。
 ```
 
 ### setVolume<sup>(deprecated)</sup>
@@ -5704,10 +5715,10 @@ setVolume(vol: number): void
 **示例：**
 
 ```ts
-audioPlayer.on('volumeChange', () => {    //设置'volumeChange'事件回调
+audioPlayer.on('volumeChange', () => {    //设置'volumeChange'事件回调。
   console.info('audio volumeChange called');
 });
-audioPlayer.setVolume(1);    //设置音量到100%
+audioPlayer.setVolume(1);    //设置音量到100%。
 ```
 
 ### release<sup>(deprecated)</sup>
@@ -5839,52 +5850,52 @@ on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeCh
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let audioPlayer: media.AudioPlayer = media.createAudioPlayer();  //创建一个音频播放实例
-audioPlayer.on('dataLoad', () => {            //设置'dataLoad'事件回调，src属性设置成功后，触发此回调
+let audioPlayer: media.AudioPlayer = media.createAudioPlayer();  //创建一个音频播放实例。
+audioPlayer.on('dataLoad', () => {            //设置'dataLoad'事件回调，src属性设置成功后，触发此回调。
   console.info('audio set source called');
-  audioPlayer.play();                       //开始播放，并触发'play'事件回调
+  audioPlayer.play();                       //开始播放，并触发'play'事件回调。
 });
-audioPlayer.on('play', () => {                //设置'play'事件回调
+audioPlayer.on('play', () => {                //设置'play'事件回调。
   console.info('audio play called');
-  audioPlayer.seek(30000);                  //调用seek方法，并触发'timeUpdate'事件回调
+  audioPlayer.seek(30000);                  //调用seek方法，并触发'timeUpdate'事件回调。
 });
-audioPlayer.on('pause', () => {               //设置'pause'事件回调
+audioPlayer.on('pause', () => {               //设置'pause'事件回调。
   console.info('audio pause called');
-  audioPlayer.stop();                       //停止播放，并触发'stop'事件回调
+  audioPlayer.stop();                       //停止播放，并触发'stop'事件回调。
 });
-audioPlayer.on('reset', () => {               //设置'reset'事件回调
+audioPlayer.on('reset', () => {               //设置'reset'事件回调。
   console.info('audio reset called');
-  audioPlayer.release();                    //释放播放实例资源
+  audioPlayer.release();                    //释放播放实例资源。
   audioPlayer = undefined;
 });
-audioPlayer.on('timeUpdate', (seekDoneTime: number) => {  //设置'timeUpdate'事件回调
+audioPlayer.on('timeUpdate', (seekDoneTime: number) => {  //设置'timeUpdate'事件回调。
   if (seekDoneTime == null) {
     console.error('Failed to seek');
     return;
   }
   console.info('Succeeded in seek, and seek time is ' + seekDoneTime);
-  audioPlayer.setVolume(0.5);                //设置音量为50%，并触发'volumeChange'事件回调
+  audioPlayer.setVolume(0.5);                //设置音量为50%，并触发'volumeChange'事件回调。
 });
-audioPlayer.on('volumeChange', () => {         //设置'volumeChange'事件回调
+audioPlayer.on('volumeChange', () => {         //设置'volumeChange'事件回调。
   console.info('audio volumeChange called');
-  audioPlayer.pause();                       //暂停播放，并触发'pause'事件回调
+  audioPlayer.pause();                       //暂停播放，并触发'pause'事件回调。
 });
-audioPlayer.on('finish', () => {               //设置'finish'事件回调
+audioPlayer.on('finish', () => {               //设置'finish'事件回调。
   console.info('audio play finish');
-  audioPlayer.stop();                        //停止播放，并触发'stop'事件回调
+  audioPlayer.stop();                        //停止播放，并触发'stop'事件回调。
 });
-audioPlayer.on('error', (error: BusinessError) => {  //设置'error'事件回调
+audioPlayer.on('error', (error: BusinessError) => {  //设置'error'事件回调。
   console.error(`audio error called, error: ${error}`);
 });
 
-// 用户选择音频设置fd(本地播放)
+// 用户选择音频设置fd(本地播放)。
 let fdPath = 'fd://';
-// path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
+// path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上。
 let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 fs.open(path).then((file) => {
   fdPath = fdPath + '' + file.fd;
   console.info('Succeeded in opening fd, fd is' + fdPath);
-  audioPlayer.src = fdPath;  //设置src属性，并触发'dataLoad'事件回调
+  audioPlayer.src = fdPath;  //设置src属性，并触发'dataLoad'事件回调。
 }, (err: BusinessError) => {
   console.error('Failed to open fd, err is' + err);
 }).catch((err: BusinessError) => {
@@ -5913,14 +5924,14 @@ on(type: 'timeUpdate', callback: Callback\<number>): void
 **示例：**
 
 ```ts
-audioPlayer.on('timeUpdate', (newTime: number) => {    //设置'timeUpdate'事件回调
+audioPlayer.on('timeUpdate', (newTime: number) => {    //设置'timeUpdate'事件回调。
   if (newTime == null) {
     console.error('Failed to do timeUpadate');
     return;
   }
   console.info('Succeeded in doing timeUpadate. seekDoneTime: ' + newTime);
 });
-audioPlayer.play();    //开始播放后，自动触发时间戳更新事件
+audioPlayer.play();    //开始播放后，自动触发时间戳更新事件。
 ```
 
 ### on('audioInterrupt')<sup>(deprecated)</sup>
@@ -5974,10 +5985,10 @@ on(type: 'error', callback: ErrorCallback): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-audioPlayer.on('error', (error: BusinessError) => {  //设置'error'事件回调
+audioPlayer.on('error', (error: BusinessError) => {  //设置'error'事件回调。
   console.error(`audio error called, error: ${error}`);
 });
-audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
+audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件。
 ```
 
 ## AudioState<sup>(deprecated)</sup>
@@ -6040,7 +6051,7 @@ setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 
 | 参数名    | 类型                 | 必填 | 说明                      |
 | --------- | -------------------- | ---- | ------------------------- |
-| surfaceId | string               | 是   | SurfaceId                 |
+| surfaceId | string               | 是   | SurfaceId.                 |
 | callback  | AsyncCallback\<void> | 是   | 回调函数。当设置SurfaceId成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -6075,7 +6086,7 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 
 | 参数名    | 类型   | 必填 | 说明      |
 | --------- | ------ | ---- | --------- |
-| surfaceId | string | 是   | SurfaceId |
+| surfaceId | string | 是   | SurfaceId. |
 
 **返回值：**
 
@@ -6524,7 +6535,7 @@ media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
 });
 let seekTime: number = 5000;
 if (videoPlayer) {
-  (videoPlayer as media.VideoPlayer).seek(seekTime).then((seekDoneTime: number) => { // seekDoneTime表示seek完成后的时间点
+  (videoPlayer as media.VideoPlayer).seek(seekTime).then((seekDoneTime: number) => { // seekDoneTime表示seek完成后的时间点。
     console.info('Succeeded in doing seek');
   }).catch((error: BusinessError) => {
     console.error(`video catchCallback, error:${error}`);
@@ -6817,7 +6828,7 @@ if (videoPlayer) {
   (videoPlayer as media.VideoPlayer).setSpeed(speed).then((result: number) => {
     console.info('Succeeded in setting Speed');
   }).catch((error: BusinessError) => {
-    console.error(`Failed to set Speed, error:${error}`);//todo:: error
+    console.error(`Failed to set Speed, error:${error}`);//todo:: error.
   });
 }
 ```
@@ -6978,10 +6989,10 @@ on(type: 'error', callback: ErrorCallback): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-videoPlayer.on('error', (error: BusinessError) => {  // 设置'error'事件回调
+videoPlayer.on('error', (error: BusinessError) => {  // 设置'error'事件回调。
   console.error(`video error called, error: ${error}`);
 });
-videoPlayer.url = 'fd://error';  //设置错误的播放地址，触发'error'事件
+videoPlayer.url = 'fd://error';  //设置错误的播放地址，触发'error'事件。
 ```
 
 ## VideoPlayState<sup>(deprecated)</sup>
@@ -7047,10 +7058,10 @@ let audioRecorderConfig: media.AudioRecorderConfig = {
   audioSampleRate : 22050,
   numberOfChannels : 2,
   format : media.AudioOutputFormat.AAC_ADTS,
-  uri : 'fd://1',       // 文件需先由调用者创建，并给予适当的权限
+  uri : 'fd://1',       // 文件需先由调用者创建，并给予适当的权限。
   location : { latitude : 30, longitude : 130},
 }
-audioRecorder.on('prepare', () => {    //设置'prepare'事件回调
+audioRecorder.on('prepare', () => {    //设置'prepare'事件回调。
   console.info('prepare called');
 });
 audioRecorder.prepare(audioRecorderConfig);
@@ -7070,7 +7081,7 @@ start(): void
 **示例：**
 
 ```ts
-audioRecorder.on('start', () => {    //设置'start'事件回调
+audioRecorder.on('start', () => {    //设置'start'事件回调。
   console.info('audio recorder start called');
 });
 audioRecorder.start();
@@ -7090,7 +7101,7 @@ pause():void
 **示例：**
 
 ```ts
-audioRecorder.on('pause', () => {    //设置'pause'事件回调
+audioRecorder.on('pause', () => {    //设置'pause'事件回调。
   console.info('audio recorder pause called');
 });
 audioRecorder.pause();
@@ -7110,7 +7121,7 @@ resume():void
 **示例：**
 
 ```ts
-audioRecorder.on('resume', () => {    //设置'resume'事件回调
+audioRecorder.on('resume', () => {    //设置'resume'事件回调。
   console.info('audio recorder resume called');
 });
 audioRecorder.resume();
@@ -7130,7 +7141,7 @@ stop(): void
 **示例：**
 
 ```ts
-audioRecorder.on('stop', () => {    //设置'stop'事件回调
+audioRecorder.on('stop', () => {    //设置'stop'事件回调。
   console.info('audio recorder stop called');
 });
 audioRecorder.stop();
@@ -7150,7 +7161,7 @@ release(): void
 **示例：**
 
 ```ts
-audioRecorder.on('release', () => {    //设置'release'事件回调
+audioRecorder.on('release', () => {    //设置'release'事件回调。
   console.info('audio recorder release called');
 });
 audioRecorder.release();
@@ -7173,7 +7184,7 @@ reset(): void
 **示例：**
 
 ```ts
-audioRecorder.on('reset', () => {    //设置'reset'事件回调
+audioRecorder.on('reset', () => {    //设置'reset'事件回调。
   console.info('audio recorder reset called');
 });
 audioRecorder.reset();
@@ -7202,42 +7213,42 @@ on(type: 'prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset'
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let audioRecorder: media.AudioRecorder = media.createAudioRecorder();  // 创建一个音频录制实例
+let audioRecorder: media.AudioRecorder = media.createAudioRecorder();  // 创建一个音频录制实例。
 let audioRecorderConfig: media.AudioRecorderConfig = {
   audioEncoder : media.AudioEncoder.AAC_LC,
   audioEncodeBitRate : 22050,
   audioSampleRate : 22050,
   numberOfChannels : 2,
   format : media.AudioOutputFormat.AAC_ADTS,
-  uri : 'fd://xx',  // 文件需先由调用者创建，并给予适当的权限
+  uri : 'fd://xx',  // 文件需先由调用者创建，并给予适当的权限。
   location : { latitude : 30, longitude : 130}
 }
-audioRecorder.on('error', (error: BusinessError) => {  // 设置'error'事件回调
+audioRecorder.on('error', (error: BusinessError) => {  // 设置'error'事件回调。
   console.error(`audio error called, error: ${error}`);
 });
-audioRecorder.on('prepare', () => {  // 设置'prepare'事件回调
+audioRecorder.on('prepare', () => {  // 设置'prepare'事件回调。
   console.info('prepare called');
-  audioRecorder.start();  // 开始录制，并触发'start'事件回调
+  audioRecorder.start();  // 开始录制，并触发'start'事件回调。
 });
-audioRecorder.on('start', () => {  // 设置'start'事件回调
+audioRecorder.on('start', () => {  // 设置'start'事件回调。
   console.info('audio recorder start called');
 });
-audioRecorder.on('pause', () => {  // 设置'pause'事件回调
+audioRecorder.on('pause', () => {  // 设置'pause'事件回调。
   console.info('audio recorder pause called');
 });
-audioRecorder.on('resume', () => {  // 设置'resume'事件回调
+audioRecorder.on('resume', () => {  // 设置'resume'事件回调。
   console.info('audio recorder resume called');
 });
-audioRecorder.on('stop', () => {  // 设置'stop'事件回调
+audioRecorder.on('stop', () => {  // 设置'stop'事件回调。
   console.info('audio recorder stop called');
 });
-audioRecorder.on('release', () => {  // 设置'release'事件回调
+audioRecorder.on('release', () => {  // 设置'release'事件回调。
   console.info('audio recorder release called');
 });
-audioRecorder.on('reset', () => {  // 设置'reset'事件回调
+audioRecorder.on('reset', () => {  // 设置'reset'事件回调。
   console.info('audio recorder reset called');
 });
-audioRecorder.prepare(audioRecorderConfig)  // 设置录制参数 ，并触发'prepare'事件回调
+audioRecorder.prepare(audioRecorderConfig)  // 设置录制参数 ，并触发'prepare'事件回调。
 ```
 
 ### on('error')<sup>(deprecated)</sup>
@@ -7269,13 +7280,13 @@ let audioRecorderConfig: media.AudioRecorderConfig = {
   audioSampleRate : 22050,
   numberOfChannels : 2,
   format : media.AudioOutputFormat.AAC_ADTS,
-  uri : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
+  uri : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限。
   location : { latitude : 30, longitude : 130}
 }
-audioRecorder.on('error', (error: BusinessError) => {  // 设置'error'事件回调
+audioRecorder.on('error', (error: BusinessError) => {  // 设置'error'事件回调。
   console.error(`audio error called, error: ${error}`);
 });
-audioRecorder.prepare(audioRecorderConfig);  // prepare不设置参数，触发'error'事件
+audioRecorder.prepare(audioRecorderConfig);  // prepare不设置参数，触发'error'事件。
 ```
 
 ## AudioRecorderConfig<sup>(deprecated)</sup>
@@ -7461,7 +7472,7 @@ import { image } from '@kit.ImageKit';
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
 
-// 初始化入参
+// 初始化入参。
 let timeUs: number = 0
 
 let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC
@@ -7471,7 +7482,7 @@ let param: media.PixelMapParams = {
   height : 300,
 }
 
-// 获取缩略图
+// 获取缩略图。
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
   if(generator != null){
     avImageGenerator = generator;
@@ -7529,7 +7540,7 @@ import { image } from '@kit.ImageKit';
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
 
-// 初始化入参
+// 初始化入参。
 let timeUs: number = 0
 
 let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC
@@ -7539,7 +7550,7 @@ let param: media.PixelMapParams = {
   height : 300,
 }
 
-// 获取缩略图
+// 获取缩略图。
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
   if(generator != null){
     avImageGenerator = generator;
@@ -7584,7 +7595,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
-//释放资源
+//释放资源。
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
   if(generator != null){
     avImageGenerator = generator;
@@ -7875,10 +7886,10 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let avCaptureConfig: media.AVScreenCaptureRecordConfig = {
-    fd: 0, // 文件需要先有调用者创建，赋予写权限，将文件fd传给此参数
+    fd: 0, // 文件需要先有调用者创建，赋予写权限，将文件fd传给此参数。
     frameWidth: 640,
     frameHeight: 480
-    // 补充其他参数
+    // 补充其他参数。
 }
 
 avScreenCaptureRecorder.init(avCaptureConfig).then(() => {
@@ -7967,7 +7978,7 @@ skipPrivacyMode(windowIDs: Array\<number>): Promise\<void>
 
 | 参数名 | 类型    | 必填 | 说明                                                      |
 | ------ | ------- | ---- | --------------------------------------------------------- |
-| windowIDs | Array\<number> | 是   | 需要豁免隐私的窗口列表，包括主窗口id和子窗口id，窗口属性获取方法可以参考[窗口API引用](../apis-arkui/js-apis-window.md#getwindowproperties9) |
+| windowIDs | Array\<number> | 是   | 需要豁免隐私的窗口列表，包括主窗口id和子窗口id，窗口属性获取方法可以参考[窗口API引用](../apis-arkui/js-apis-window.md#getwindowproperties9)。 |
 
 **返回值：**
 

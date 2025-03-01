@@ -300,7 +300,7 @@ struct Page_Context {
                   }
                 })
                 .catch((err: BusinessError) => {
-                  console.error(`CeateMudleContext failed, err code:${err.code}, err msg: ${err.message}`);
+                  console.error(`CreateModuleContext failed, err code:${err.code}, err msg: ${err.message}`);
                 });
             })
           }

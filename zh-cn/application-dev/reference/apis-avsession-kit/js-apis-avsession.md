@@ -131,6 +131,20 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 | TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。 |
 | TYPE_DLNA<sup>12+</sup>      | 4    | DLNA协议。表示媒体正在其他设备上展示。 |
 
+## DistributedSessionType<sup>16+</sup>
+
+远端分布式设备支持的会话类型。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+| 名称                                     | 值 | 说明                        |
+|----------------------------------------|---|---------------------------|
+| TYPE_SESSION_REMOTE      | 0 | 远端设备会话。       |
+| TYPE_SESSION_MIGRATE_IN  | 1 | 迁移至本端的设备会话。 |
+| TYPE_SESSION_MIGRATE_OUT | 2 | 迁移至远端的设备会话。 |
+
 ## AVSessionType<sup>10+<sup>
 
 type AVSessionType = 'audio' | 'video' | 'voice_call' | 'video_call'
@@ -6432,8 +6446,8 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 
 | 参数名    | 类型                                  | 必填 | 说明                           |
 | ------- | ------------------------------------- | ---- | ------------------------------ |
-| command | string | 是   | 需要设置的自定义控制命令的名称 |
-| args | {[key: string]: Object} | 是   | 需要传递的控制命令键值对 |
+| command | string | 是   | 需要设置的自定义控制命令的名称。 |
+| args | {[key: string]: Object} | 是   | 需要传递的控制命令键值对。 |
 | callback | AsyncCallback\<void>                  | 是   | 回调函数。当命令发送成功，err为undefined，否则返回错误对象。                     |
 
 > **说明：**
@@ -7999,15 +8013,6 @@ constructor(context: Context)
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context | 是   | 应用上下文（仅支持[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)）。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception. |
-
 **示例：**
 
 ```ts
@@ -8064,7 +8069,7 @@ select(options?: AVCastPickerOptions): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -8107,8 +8112,7 @@ on(type: 'pickerStateChange', callback: Callback<AVCastPickerState\>) : void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -8147,8 +8151,7 @@ off(type: 'pickerStateChange', callback?: Callback<AVCastPickerState\>) : void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 

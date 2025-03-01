@@ -26,14 +26,14 @@ Ellipse(options?: EllipseOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [EllipseOptions](ts-drawing-components-ellipse.md#ellipseoptions14对象说明) | 否 | 椭圆绘制尺寸 |
+| options | [EllipseOptions](ts-drawing-components-ellipse.md#ellipseoptions16对象说明) | 否 | 椭圆绘制尺寸 |
 
-## EllipseOptions<sup>14+</sup>对象说明
+## EllipseOptions<sup>16+</sup>对象说明
 用于描述椭圆绘制尺寸。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -44,7 +44,7 @@ Ellipse(options?: EllipseOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### fill
 

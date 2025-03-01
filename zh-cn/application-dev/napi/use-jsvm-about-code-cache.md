@@ -10,9 +10,16 @@ JSVM 提供了生成并使用 code cache 加速编译过程的方法, 其获取�
 
 通过上述流程, 将会在使用 code cache 的那次编译中, 极大减少编译时间, 其原理为将编译完成的 script 序列化, 然后使用 code cache 编译时就不再需要重新解析/编译已经被序列化的函数, 只需要进行一次反序列化即可, 编译就简化为了一次数据读取。
 
+## code cache 校验规格说明
+| 规格       | 规格说明                                            |
+| ---------- | -------------------------------------------------- |
+| 完整性校验  | 校验 cache 实际长度，是否与生成时一致                 |
+| 兼容性校验  | 校验生成 cache 的 JSVM 版本与编译选项是否与当前一致    |
+| 一致性校验  | 校验生成 cache 的 js 源码，是否与当前输入源码长度一致  |
+
 ## 场景示例
 
-下面的伪代码是一个典型的使用方法, 其中第二次编译, 如果 cacheRejected 的值没有被置为 true, 那么说明 code cache 使用成功, 这次运行将会极大加快。
+下面的伪代码是一个典型的使用方法, 其中第二次编译, 如果 cacheRejected 为 true, 那么说明 code cache 被拒绝无法生效, 运行时间会与无 code cache 时间一致；为 false 则这次运行将会极大加快。
 
 其中使用到的 JSVM-API 可以参考 [JSVM 数据类型与接口说明](./jsvm-data-types-interfaces.md), 这里仅展示调用的步骤。
 外层跨语言交互的部分可以参考 [使用 JSVM-API 实现 JS 与 C/C++ 语言交互开发流程](./use-jsvm-process.md)。
@@ -22,10 +29,11 @@ JSVM 提供了生成并使用 code cache 加速编译过程的方法, 其获取�
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
 
-void UseCodeCache(JSVM_Env env, JSVM_CallbackInfo info) {
+JSVM_Value UseCodeCache(JSVM_Env env, JSVM_CallbackInfo info) {
     // 编译参数准备
     JSVM_Value jsSrc;
     JSVM_Script script;
+    JSVM_Value result;
     size_t length = 0;
     const uint8_t* dataPtr = nullptr;
     bool cacheRejected = true;
@@ -47,13 +55,12 @@ void UseCodeCache(JSVM_Env env, JSVM_CallbackInfo info) {
         OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script);
 
         // 执行js代码
-        JSVM_Value result;
         OH_JSVM_RunScript(env, script, &result);
         int value = 0;
         OH_JSVM_GetValueInt32(env, result, &value);
         OH_LOG_INFO(LOG_APP, "first run result: %{public}d\n", value);
 
-        if (dataPtr && lengthPtr && *dataPtr == nullptr) {
+        if (dataPtr == nullptr) {
             // 将js源码编译出的脚本保存到 cache, 可以避免重复编译, 带来性能提升
             OH_JSVM_CreateCodeCache(env, script, &dataPtr, &length);
         }
@@ -73,7 +80,6 @@ void UseCodeCache(JSVM_Env env, JSVM_CallbackInfo info) {
         OH_JSVM_CompileScript(env, jsSrc, dataPtr, length, true, &cacheRejected, &script);
 
         // 执行js代码
-        JSVM_Value result;
         OH_JSVM_RunScript(env, script, &result);
         int value = 0;
         OH_JSVM_GetValueInt32(env, result, &value);
@@ -82,14 +88,15 @@ void UseCodeCache(JSVM_Env env, JSVM_CallbackInfo info) {
         OH_JSVM_CloseHandleScope(env, handleScope);
     }
     OH_LOG_INFO(LOG_APP, "cache rejected: %{public}d\n", cacheRejected);
+    return result;
 }
 
-// Register a WasmDemo callback.
+// Register a callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = UseCodeCache}
 };
 static JSVM_CallbackStruct *method = param;
-// Register the C++ WasmDemo callback as a JSVM globalThis.UseCodeCache property for the JS to call.
+// Register the C++ callback as a JSVM globalThis.UseCodeCache property for the JS to call.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"UseCodeCache", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };

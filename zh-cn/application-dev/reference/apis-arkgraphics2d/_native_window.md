@@ -387,7 +387,7 @@ int32_t OH_NativeWindow_SetColorSpace (OHNativeWindow *window, OH_NativeBuffer_C
 
 **返回：**
 
-返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode)。
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode-1)。
 
 
 ### OH_NativeWindow_SetMetadataValue()
@@ -416,7 +416,7 @@ int32_t OH_NativeWindow_SetMetadataValue (OHNativeWindow *window, OH_NativeBuffe
 
 **返回：**
 
-返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode)。
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode-1)。
 
 ### OH_NativeWindow_GetColorSpace()
 
@@ -442,7 +442,7 @@ int32_t OH_NativeWindow_GetColorSpace (OHNativeWindow *window, OH_NativeBuffer_C
 
 **返回：**
 
-返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode)。
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode-1)。
 
 
 ### OH_NativeWindow_GetMetadataValue()
@@ -471,7 +471,7 @@ int32_t OH_NativeWindow_GetMetadataValue (OHNativeWindow *window, OH_NativeBuffe
 
 **返回：**
 
-返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode)。
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode-1)。
 
 
 ### OH_NativeWindow_WriteToParcel()

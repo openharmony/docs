@@ -5,13 +5,13 @@
 
 ## Creating a Symbol Glyph
 
-You create a symbol glyph by referencing a resource through $r. Currently, only the preset symbol resources are supported.
+You create a symbol glyph by referencing a resource through $r. Currently, only the preset symbol resources are supported.<!--RP1--><!--RP1End-->
 
   ```ts
   SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
-      .fontSize(96)
-      .renderingStrategy(SymbolRenderingStrategy.SINGLE)
-      .fontColor([Color.Black, Color.Green, Color.White])
+    .fontSize(96)
+    .renderingStrategy(SymbolRenderingStrategy.SINGLE)
+    .fontColor([Color.Black, Color.Green, Color.White])
   ```
   ![symbol_folder_badge_plus](figures/symbol_ohos_folder_badge_plus.png)
 
@@ -81,8 +81,8 @@ To embed a symbol glyph within a text string, use [SymbolSpan](../reference/apis
       Text("Light")
       Text() {
         SymbolSpan($r('sys.symbol.ohos_trash'))
-        .fontWeight(FontWeight.Lighter)
-        .fontSize(96)
+          .fontWeight(FontWeight.Lighter)
+          .fontSize(96)
       }
     }
 
@@ -218,7 +218,7 @@ To embed a symbol glyph within a text string, use [SymbolSpan](../reference/apis
 
 In addition to using the **effectStrategy** attribute, which triggers an animation once it is activated, you can control the animation playback and choose from a variety of effect strategies using the following two methods.
 
-For details about how **effectStrategy** works with **symbolEffect**, see [SymbolGlyph.symbolEffect](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#symboleffect12-1).
+For details about how **effectStrategy** works with **symbolEffect**, see [SymbolGlyph.symbolEffect](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#symboleffect12-1). 
 
 - Use the **symbolEffect** attribute to set both the effect strategy and playback state of **SymbolGlyph**.
 
@@ -261,11 +261,11 @@ You can add universal events, such as [onClick](../reference/apis-arkui/arkui-ts
 ```ts
 @State wifiColor: ResourceColor = Color.Black;
 SymbolGlyph($r('sys.symbol.ohos_wifi'))
-.fontSize(96)
-.fontColor([this.wifiColor])
-.onClick(()=>{
-  this.wifiColor = Color.Gray
-})
+  .fontSize(96)
+  .fontColor([this.wifiColor])
+  .onClick(() => {
+    this.wifiColor = Color.Gray;
+  })
 ```
 ![symbolGlyph_onClick](figures/symbolGlyph_onClick.gif)
 
@@ -279,23 +279,25 @@ This example shows how to implement a playlist with the use of **symbolEffect**,
 @Component
 struct Index {
   @State triggerValueReplace: number = 0;
-  @State symbolSources: Resource[] = [$r('sys.symbol.repeat'), $r('sys.symbol.repeat_1'), $r('sys.symbol.arrow_left_arrow_right')]
+  @State symbolSources: Resource[] =
+    [$r('sys.symbol.repeat'), $r('sys.symbol.repeat_1'), $r('sys.symbol.arrow_left_arrow_right')];
   @State symbolSourcesIndex: number = 0;
-  @State symbolText: string[] = ['Play in order','Loop song','Shuffle']
+  @State symbolText: string[] = ['Play in order', 'Loop song', 'Shuffle'];
   @State symbolTextIndex: number = 0;
-  @State fontColorValue:ResourceColor = Color.Grey;
-  @State fontColorValue1:ResourceColor = '#E8E8E8';
+  @State fontColorValue: ResourceColor = Color.Grey;
+  @State fontColorValue1: ResourceColor = '#E8E8E8';
 
   build() {
-    Column( { space: 10 }) {
+    Column({ space: 10 }) {
       Row() {
-        Text(){
+        Text() {
           Span('Playlist')
             .fontSize(20)
             .fontWeight(FontWeight.Bolder)
           Span('(101)')
         }
       }
+
       Row() {
         Row({ space: 5 }) {
           SymbolGlyph(this.symbolSources[this.symbolSourcesIndex])
@@ -305,7 +307,7 @@ struct Index {
           Text(this.symbolText[this.symbolTextIndex])
             .fontColor(this.fontColorValue)
         }
-        .onClick(()=>{
+        .onClick(() => {
           this.symbolTextIndex++;
           this.symbolSourcesIndex++;
           this.triggerValueReplace++;
@@ -320,17 +322,19 @@ struct Index {
         .width('75%')
 
         Row({ space: 5 }) {
-          Text(){
+          Text() {
             SymbolSpan($r('sys.symbol.arrow_down_circle_badge_vip_circle_filled'))
               .fontColor([this.fontColorValue])
               .fontSize(20)
           }
-          Text(){
+
+          Text() {
             SymbolSpan($r('sys.symbol.heart_badge_plus'))
               .fontColor([this.fontColorValue])
               .fontSize(20)
           }
-          Text(){
+
+          Text() {
             SymbolSpan($r('sys.symbol.ohos_trash'))
               .fontColor([this.fontColorValue])
               .fontSize(20)
@@ -338,12 +342,14 @@ struct Index {
         }
         .width('25%')
       }
+
       Divider().width(5).color(this.fontColorValue1).width('98%')
-      Row(){
-        Row(){
+      Row() {
+        Row() {
           Text("Song 1")
         }.width('82%')
-        Row({ space: 5}) {
+
+        Row({ space: 5 }) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
@@ -352,12 +358,14 @@ struct Index {
             .fontSize(20)
         }
       }
+
       Divider().width(5).color(this.fontColorValue1).width('98%')
-      Row(){
-        Row(){
+      Row() {
+        Row() {
           Text("Song 2")
         }.width('82%')
-        Row({ space: 5}) {
+
+        Row({ space: 5 }) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
@@ -366,12 +374,14 @@ struct Index {
             .fontSize(20)
         }
       }
+
       Divider().width(5).color(this.fontColorValue1).width('98%')
-      Row(){
-        Row(){
+      Row() {
+        Row() {
           Text("Song 3")
         }.width('82%')
-        Row({ space: 5}) {
+
+        Row({ space: 5 }) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
@@ -380,12 +390,14 @@ struct Index {
             .fontSize(20)
         }
       }
+
       Divider().width(5).color(this.fontColorValue1).width('98%')
-      Row(){
-        Row(){
+      Row() {
+        Row() {
           Text("Song 4")
         }.width('82%')
-        Row({ space: 5}) {
+
+        Row({ space: 5 }) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
@@ -394,12 +406,14 @@ struct Index {
             .fontSize(20)
         }
       }
+
       Divider().width(5).color(this.fontColorValue1).width('98%')
-      Row(){
-        Row(){
+      Row() {
+        Row() {
           Text("Song 5")
         }.width('82%')
-        Row({ space: 5}) {
+
+        Row({ space: 5 }) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
@@ -408,12 +422,14 @@ struct Index {
             .fontSize(20)
         }
       }
+
       Divider().width(5).color(this.fontColorValue1).width('98%')
-      Row(){
-        Row(){
+      Row() {
+        Row() {
           Text("Song 6")
         }.width('82%')
-        Row({ space: 5}) {
+
+        Row({ space: 5 }) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
@@ -422,12 +438,14 @@ struct Index {
             .fontSize(20)
         }
       }
+
       Divider().width(5).color(this.fontColorValue1).width('98%')
-      Row(){
-        Row(){
+      Row() {
+        Row() {
           Text("Song 7")
         }.width('82%')
-        Row({ space: 5}) {
+
+        Row({ space: 5 }) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
@@ -436,8 +454,9 @@ struct Index {
             .fontSize(20)
         }
       }
+
       Divider().width(5).color(this.fontColorValue1).width('98%')
-      Column(){
+      Column() {
         Text("Close")
       }
       .alignItems(HorizontalAlign.Center)
@@ -447,8 +466,8 @@ struct Index {
     .width('100%')
     .height(400)
     .padding({
-      left:10,
-      top:10
+      left: 10,
+      top: 10
     })
   }
 }

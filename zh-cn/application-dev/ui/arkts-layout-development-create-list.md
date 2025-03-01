@@ -7,6 +7,7 @@
 
 使用列表可以轻松高效地显示结构化、可滚动的信息。通过在[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)组件中按垂直或者水平方向线性排列子组件[ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md)或[ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md)，为列表中的行或列提供单个视图，或使用[循环渲染](../quick-start/arkts-rendering-control-foreach.md)迭代一组行或列，或混合任意数量的单个视图和ForEach结构，构建一个列表。List组件支持使用条件渲染、循环渲染、懒加载等[渲染控制](../quick-start/arkts-rendering-control-overview.md)方式生成子组件。
 
+在圆形屏幕设备上，推荐使用[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)组件，使用方式可参考[创建弧形列表 (ArcList)](./arkts-layout-development-create-arclist.md)。
 
 ## 布局与约束
 
@@ -348,12 +349,45 @@ List() {
 .scrollBar(BarState.Auto)
 ```
 
+## 添加外置滚动条
+
+列表[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)可与[ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md)组件配合使用，为列表添加外置滚动条。两者通过绑定同一个[Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller)滚动控制器对象实现联动。
+
+1. 首先，需要创建一个[Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller)类型的对象listScroller。
+
+   ```ts
+   private listScroller: Scroller = new Scroller();
+   ```
+
+2. 然后，列表通过[scroller](../reference/apis-arkui/arkui-ts/ts-container-list.md#listoptions16对象说明)参数绑定滚动控制器。
+
+   ```ts
+   // listScroller初始化List组件的scroller参数，绑定listScroller与列表。
+   List({ scroller: this.listScroller }) {
+   // ...
+   }
+   ```
+
+3. 最后，滚动条通过[scroller](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md#scrollbaroptions对象说明)参数绑定滚动控制器。
+
+   ```ts
+   // listScroller初始化ScrollBar组件的scroller参数，绑定listScroller与列表。
+   ScrollBar({ scroller: this.listScroller })
+   ```
+
+  **图11** 列表的外置滚动条 
+
+![ScrollBar](figures/list_scrollbar.gif)
+
+>**说明：**
+>- 滚动条组件[ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md)，还可配合其他可滚动组件使用，如[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md)、[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)。
+>- 在圆形屏幕设备上，[list](../reference/apis-arkui/arkui-ts/ts-container-grid.md)可以与弧形滚动条组件[ArcScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-arcscrollbar.md)配合使用为列表添加弧形外置滚动条，使用方式可参考[创建弧形列表 (ArcList)](./arkts-layout-development-create-arclist.md)的[添加外置滚动条ArcScrollBar](./arkts-layout-development-create-arclist.md#添加外置滚动条arcscrollbar)章节。
 
 ## 支持分组列表
 
 在列表中支持数据的分组展示，可以使列表显示结构清晰，查找方便，从而提高使用效率。分组列表在实际应用中十分常见，如下图所示联系人列表。
 
-  **图11** 联系人分组列表 
+  **图12** 联系人分组列表 
 
 ![zh-cn_image_0000001511580948](figures/zh-cn_image_0000001511580948.png)
 
@@ -398,7 +432,7 @@ struct ContactsList {
 
 粘性标题不仅有助于阐明列表中数据的表示形式和用途，还可以帮助用户在大量信息中进行数据定位，从而避免用户在标题所在的表的顶部与感兴趣区域之间反复滚动。
 
-  **图12** 粘性标题  
+  **图13** 粘性标题  
 
 ![zh-cn_image_0000001511740552](figures/zh-cn_image_0000001511740552.gif)
 
@@ -481,7 +515,7 @@ struct ContactsList {
 
 控制滚动位置在实际应用中十分常见，例如当新闻页列表项数量庞大，用户滚动列表到一定位置时，希望快速滚动到列表底部或返回列表顶部。此时，可以通过控制滚动位置来实现列表的快速定位，如下图所示。
 
-  **图13** 返回列表顶部  
+  **图14** 返回列表顶部  
 
 ![zh-cn_image_0000001511900520](figures/zh-cn_image_0000001511900520.gif)
 
@@ -521,7 +555,7 @@ Stack({ alignContent: Alignment.Bottom }) {
 
 除了字母索引之外，滚动列表结合多级分类索引在应用开发过程中也很常见，例如购物应用的商品分类页面，多级分类也需要监听列表的滚动位置。
 
-**图14** 字母索引响应联系人列表滚动  
+**图15** 字母索引响应联系人列表滚动  
 
 ![zh-cn_image_0000001563060769](figures/zh-cn_image_0000001563060769.gif)
 
@@ -563,7 +597,7 @@ struct ContactsList {
 
 侧滑菜单在许多应用中都很常见。例如，通讯类应用通常会给消息列表提供侧滑删除功能，即用户可以通过向左侧滑列表的某一项，再点击删除按钮删除消息，如下图所示。其中，列表项头像右上角标记设置参考[给列表项添加标记](#给列表项添加标记)。
 
-**图15** 侧滑删除列表项  
+**图16** 侧滑删除列表项  
 
 ![zh-cn_image_0000001563060773](figures/zh-cn_image_0000001563060773.gif)
 
@@ -607,7 +641,7 @@ ListItem的[swipeAction属性](../reference/apis-arkui/arkui-ts/ts-container-lis
 
 添加标记是一种无干扰性且直观的方法，用于显示通知或将注意力集中到应用内的某个区域。例如，当消息列表接收到新消息时，通常对应的联系人头像的右上方会出现标记，提示有若干条未读消息，如下图所示。
 
-  **图16** 给列表项添加标记  
+  **图17** 给列表项添加标记  
 
 ![zh-cn_image_0000001511580952](figures/zh-cn_image_0000001511580952.png)
 
@@ -665,7 +699,7 @@ ListItem() {
 
 如下图所示，当用户点击添加按钮时，提供用户新增列表项内容选择或填写的交互界面，用户点击确定后，列表中新增对应的项目。
 
-  **图17** 新增待办  
+  **图18** 新增待办  
 
 ![zh-cn_image_0000001511740556](figures/zh-cn_image_0000001511740556.gif)
 
@@ -790,7 +824,7 @@ ListItem() {
 
 如下图所示，当用户长按列表项进入删除模式时，提供用户删除列表项选择的交互界面，用户勾选完成后点击删除按钮，列表中删除对应的项目。
 
-  **图18** 长按删除待办事项  
+  **图19** 长按删除待办事项  
 
 ![zh-cn_image_0000001562820877](figures/zh-cn_image_0000001562820877.gif)
 
@@ -922,7 +956,7 @@ List() {
 
 列表项的折叠与展开用途广泛，常用于信息清单的展示、填写等应用场景。
 
-  **图19** 列表项的折叠与展开 
+  **图20** 列表项的折叠与展开 
 
 ![zh-cn_image_0000001949866104](figures/zh-cn_image_0000001949866104.gif)
 
@@ -1088,6 +1122,50 @@ List() {
           })
         }
       })
+    }
+    ```
+
+## 切换布局方向
+
+部分业务场景需要列表底部插入数据时，自动向上滚动，把新插入的节点展示出来。例如，直播评论、即时聊天等应用场景。而List组件正常布局时, 在内容下方增加节点，内容是保持不变的。此时，可以通过切换布局方向来实现所需效果。
+
+  **图20** 实时消息滚动显示
+
+![zh-cn_image_0000001949866105](figures/zh-cn_image_0000001949866105.gif)
+
+1. 定义列表项数据结构。
+
+    ```ts
+    interface Message {
+      id: number
+      content: string
+      sender: string
+    }
+    ```
+
+2. 构造列表结构，同时把stackFromEnd接口值设置为true，即可实现list列表在底部插入数据时，内容向上滚动。
+
+    ```ts
+    @State messages: Message[] = [
+        { id: 1, content: '欢迎来到直播间！', sender: '系统' },
+        { id: 2, content: '大家好啊~', sender: '主播' }
+    ]
+    build() {
+      Column() {
+        List({ space: 10 }) {
+          ForEach(this.messages, (item: Message) => {
+            ListItem() {
+              this.MessageItem(item)
+            }
+          }, (item: Message) => item.id.toString())
+        }
+        .stackFromEnd(true)
+        .layoutWeight(1)
+        .alignListItem(ListItemAlign.Center)
+        // ...
+      }
+      .width('100%')
+      .height('100%')
     }
     ```
 

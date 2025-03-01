@@ -296,7 +296,7 @@ class MyAbility extends UIAbility {
 
 ## PrepareTermination<sup>15+</sup>
 
-应用被用户关闭时的动作枚举值，需要配合[AbilityStage](js-apis-app-ability-abilityStage.md)的[onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)方法使用。
+应用被用户关闭时的动作枚举值，需要配合[AbilityStage](js-apis-app-ability-abilityStage.md)的[onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)或者[onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15)方法使用。
 
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 

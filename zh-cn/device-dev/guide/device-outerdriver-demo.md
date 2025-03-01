@@ -48,39 +48,39 @@ device\_info.hcs中的信息主要提供给HDF框架使用，包含了Input模�
 input :: host {
             hostName = "input_host";
             priority = 100;
-            device_input_manager :: device {              // Input管理层设备描述信息
+            device_input_manager :: device {              // Input管理层设备描述信息。
                 device0 :: deviceNode {
-                    policy = 2;                           // 向内核用户态均发布服务
-                    priority = 100;                       // input管理层驱动优先级默认为100
-                    preload = 0;                          // 加载该驱动
-                    permission = 0660;                    // 驱动创建设备节点权限
-                    moduleName = "HDF_INPUT_MANAGER";     // 与驱动入口的moduleName匹配
-                    serviceName = "hdf_input_host";       // HDF框架生成的节点名
-                    deviceMatchAttr = "";                 // manager目前不需要私有配置，因此为空
+                    policy = 2;                           // 向内核用户态均发布服务。
+                    priority = 100;                       // input管理层驱动优先级默认为100。
+                    preload = 0;                          // 加载该驱动。
+                    permission = 0660;                    // 驱动创建设备节点权限。
+                    moduleName = "HDF_INPUT_MANAGER";     // 与驱动入口的moduleName匹配。
+                    serviceName = "hdf_input_host";       // HDF框架生成的节点名。
+                    deviceMatchAttr = "";                 // manager目前不需要私有配置，因此为空。
                 }
             }
 
-            device_hdf_touch :: device {                  // Input公共驱动层设备描述信息
+            device_hdf_touch :: device {                  // Input公共驱动层设备描述信息。
                 device0 :: deviceNode {
-                    policy = 2;                           // 向内核用户态均发布服务
-                    priority = 120;                       // input公共驱动优先级默认为120
-                    preload = 0;                          // 加载该驱动
-                    permission = 0660;                    // 驱动创建设备节点权限
-                    moduleName = "HDF_TOUCH";             // 与驱动入口的moduleName匹配
-                    serviceName = "hdf_input_event1";     // HDF框架生成的节点名
-                    deviceMatchAttr = "touch_device1";    // 与私有配置信息中的“match_attr”字段保持一致
+                    policy = 2;                           // 向内核用户态均发布服务。
+                    priority = 120;                       // input公共驱动优先级默认为120。
+                    preload = 0;                          // 加载该驱动。
+                    permission = 0660;                    // 驱动创建设备节点权限。
+                    moduleName = "HDF_TOUCH";             // 与驱动入口的moduleName匹配。
+                    serviceName = "hdf_input_event1";     // HDF框架生成的节点名。
+                    deviceMatchAttr = "touch_device1";    // 与私有配置信息中的“match_attr”字段保持一致。
                 }
             }
 
-            device_touch_chip :: device {                 // Input器件驱动层信息
+            device_touch_chip :: device {                 // Input器件驱动层信息。
                 device0 :: deviceNode {
-                    policy = 0;                           // 向内核用户态均不发布服务
-                    priority = 130;                       // input器件驱动优先级默认为130
-                    preload = 0;                          // 加载该驱动
-                    permission = 0660;                    // 驱动创建设备节点权限
-                    moduleName = "HDF_TOUCH_GT911";       // 与驱动入口的moduleName匹配
-                    serviceName = "hdf_touch_gt911_service";// HDF框架生成的节点名
-                    deviceMatchAttr = "zsj_gt911_5p5";    // 与私有配置信息中的“match_attr”字段保持一致
+                    policy = 0;                           // 向内核用户态均不发布服务。
+                    priority = 130;                       // input器件驱动优先级默认为130。
+                    preload = 0;                          // 加载该驱动。
+                    permission = 0660;                    // 驱动创建设备节点权限。
+                    moduleName = "HDF_TOUCH_GT911";       // 与驱动入口的moduleName匹配。
+                    serviceName = "hdf_touch_gt911_service";// HDF框架生成的节点名。
+                    deviceMatchAttr = "zsj_gt911_5p5";    // 与私有配置信息中的“match_attr”字段保持一致。
                 }
             }
   }
@@ -112,61 +112,61 @@ input\_config.hcs中的信息由驱动代码进行读取解析，主要由公共
 root {                                                              
     input_config {
         touchConfig {
-            touch0 {                                                 // 第一款触摸屏
-                boardConfig {                                        // 板级硬件信息
-                    match_attr = "touch_device1";                    // 与设备描述配置信息中公共驱动层私有配置信息的“match_attr”字段保持一致    
+            touch0 {                                                 // 第一款触摸屏。
+                boardConfig {                                        // 板级硬件信息。
+                    match_attr = "touch_device1";                    // 与设备描述配置信息中公共驱动层私有配置信息的“match_attr”字段保持一致。    
                     inputAttr {
                         /* 0:touch 1:key 2:keyboard 3:mouse 4:button 5:crown 6:encoder */
-                        inputType = 0;                               // input类型为touch
-                        solutionX = 480;                             // 分辨率X信息
-                        solutionY = 960;                             // 分辨率Y信息
-                        devName = "main_touch";                      // 设备名称
+                        inputType = 0;                               // input类型为touch。
+                        solutionX = 480;                             // 分辨率X信息。
+                        solutionY = 960;                             // 分辨率Y信息。
+                        devName = "main_touch";                      // 设备名称。
                     }
                     busConfig {
                         /* 0:i2c 1:spi */
-                        busType = 0;                                 // GT911采用I2C通信
-                        busNum = 6;                                  // 与主机芯片第6路I2C通信
-                        clkGpio = 86;                                // 主机芯片SCL管脚
-                        dataGpio = 87;                               // 主机芯片SDA管脚
-                        i2cClkIomux = [0x114f0048, 0x403];           // SCL管脚配置信息
-                        i2cDataIomux = [0x114f004c, 0x403];          // SDA管脚配置信息
+                        busType = 0;                                 // GT911采用I2C通信。
+                        busNum = 6;                                  // 与主机芯片第6路I2C通信。
+                        clkGpio = 86;                                // 主机芯片SCL管脚。
+                        dataGpio = 87;                               // 主机芯片SDA管脚。
+                        i2cClkIomux = [0x114f0048, 0x403];           // SCL管脚配置信息。
+                        i2cDataIomux = [0x114f004c, 0x403];          // SDA管脚配置信息。
                     }
                     pinConfig {
-                        rstGpio = 3;                                 // 复位管脚连接主机芯片的3号管脚
-                        intGpio = 4;                                 // 中断管脚连接主机芯片的4号管脚
-                        rstRegCfg = [0x112f0094, 0x400];             // 复位管脚配置信息
-                        intRegCfg = [0x112f0098, 0x400];             // 中断管脚配置信息
+                        rstGpio = 3;                                 // 复位管脚连接主机芯片的3号管脚。
+                        intGpio = 4;                                 // 中断管脚连接主机芯片的4号管脚。
+                        rstRegCfg = [0x112f0094, 0x400];             // 复位管脚配置信息。
+                        intRegCfg = [0x112f0098, 0x400];             // 中断管脚配置信息。
                     }
                     powerConfig {
                         /* 0:unused 1:ldo 2:gpio 3:pmic */
-                        vccType = 2;                                  // GPIO供电
-                        vccNum = 20;                                  // gpio20
-                        vccValue = 1800;                              // 电压幅值为1800mV
-                        vciType = 1;                                  // LDO供电
-                        vciNum = 12;                                  // ldo12
-                        vciValue = 3300;                              // 电压幅值为3300mV 
+                        vccType = 2;                                  // GPIO供电。
+                        vccNum = 20;                                  // gpio20。
+                        vccValue = 1800;                              // 电压幅值为1800mV。
+                        vciType = 1;                                  // LDO供电。
+                        vciNum = 12;                                  // ldo12。
+                        vciValue = 3300;                              // 电压幅值为3300mV。
                     }
 
                     featureConfig {
-                        capacitanceTest = 0;                          // 容值测试
-                        gestureMode = 0;                              // 手势模式
-                        gloverMode = 0;                               // 手套模式
-                        coverMode = 0;                                // 皮套模式
-                        chargerMode = 0;                              // 充电模式
-                        knuckleMode = 0;                              // 指关节模式
+                        capacitanceTest = 0;                          // 容值测试。
+                        gestureMode = 0;                              // 手势模式。
+                        gloverMode = 0;                               // 手套模式。
+                        coverMode = 0;                                // 皮套模式。
+                        chargerMode = 0;                              // 充电模式。
+                        knuckleMode = 0;                              // 指关节模式。
                     }
                 }
-                chipConfig {                                          // 器件私有信息配置
-                    template touchChip {                              // 模板
+                chipConfig {                                          // 器件私有信息配置。
+                    template touchChip {                              // 模板。
                         match_attr = "";
-                        chipName = "gt911";                           // 触摸屏IC型号
-                        vendorName = "zsj";                           // 供应商
-                        chipInfo = "AAAA11222";                       // 1~4字符代表产品名，5~6字符代表IC型号，7~9字符代表模型型号
-                        busType = 0;                                  // 0代表I2C，1代表SPI
-                        deviceAddr = 0x5D;                            // 器件IC通信地址
-                        irqFlag = 2;                                  // 1代表上升沿触发，2代表下降沿触发，4代表高电平触发，8代表低电平触发
-                        maxSpeed = 400;                               // 最大通信速率为400Hz
-                        chipVersion = 0;                              // 触摸屏IC版本号
+                        chipName = "gt911";                           // 触摸屏IC型号。
+                        vendorName = "zsj";                           // 供应商。
+                        chipInfo = "AAAA11222";                       // 1~4字符代表产品名，5~6字符代表IC型号，7~9字符代表模型型号。
+                        busType = 0;                                  // 0代表I2C，1代表SPI。
+                        deviceAddr = 0x5D;                            // 器件IC通信地址。
+                        irqFlag = 2;                                  // 1代表上升沿触发，2代表下降沿触发，4代表高电平触发，8代表低电平触发。
+                        maxSpeed = 400;                               // 最大通信速率为400Hz。
+                        chipVersion = 0;                              // 触摸屏IC版本号。
                         powerSequence {
                              /* 上电时序的配置含义说明：
                                [类型, 状态, 方向 , 延时]
@@ -175,21 +175,21 @@ root {
                                <dir> 0代表输入方向，1代表输出方向，2代表无操作
                                <delay> 代表延时多少毫秒, 例如20代表延时20ms
                              */
-                            powerOnSeq = [4, 0, 1, 0,                 // 中断管脚配置为输出，且进行拉低
-                                         3, 0, 1, 10,                 // 复位管脚配置为输出，且进行拉低，延时10ms
-                                         3, 1, 2, 60,                 // 复位管脚无操作，且进行拉高，延时60ms
-                                         4, 2, 0, 0];                 // 中断管脚配置为输入
-                            suspendSeq = [3, 0, 2, 10];               // 复位管脚无操作，且进行拉低，延时10ms
-                            resumeSeq = [3, 1, 2, 10];                // 复位管脚无操作，且进行拉高，延时10ms
-                            powerOffSeq = [3, 0, 2, 10,               // 复位管脚无操作，且进行拉低，延时10ms
-                                           1, 0, 2, 20];              // 电源正极管脚无操作，且进行拉低，延时20ms
+                            powerOnSeq = [4, 0, 1, 0,                 // 中断管脚配置为输出，且进行拉低。
+                                         3, 0, 1, 10,                 // 复位管脚配置为输出，且进行拉低，延时10ms。
+                                         3, 1, 2, 60,                 // 复位管脚无操作，且进行拉高，延时60ms。
+                                         4, 2, 0, 0];                 // 中断管脚配置为输入。
+                            suspendSeq = [3, 0, 2, 10];               // 复位管脚无操作，且进行拉低，延时10ms。
+                            resumeSeq = [3, 1, 2, 10];                // 复位管脚无操作，且进行拉高，延时10ms。
+                            powerOffSeq = [3, 0, 2, 10,               // 复位管脚无操作，且进行拉低，延时10ms。
+                                           1, 0, 2, 20];              // 电源正极管脚无操作，且进行拉低，延时20ms。
                         }
                     }
 
                     chip0 :: touchChip {
-                        match_attr = "zsj_gt911_5p5";                 // 与设备描述配置信息中器件私有配置信息的“match_attr”字段保持一致
-                        chipInfo = "ZIDN45100";                       // 产品名+模组编号+芯片编号的组合信息 用于给用户态区分当前器件
-                        chipVersion = 0;                              // IC型号的版本
+                        match_attr = "zsj_gt911_5p5";                 // 与设备描述配置信息中器件私有配置信息的“match_attr”字段保持一致。
+                        chipInfo = "ZIDN45100";                       // 产品名+模组编号+芯片编号的组合信息 用于给用户态区分当前器件。
+                        chipVersion = 0;                              // IC型号的版本。
                     }
                 }
             }
@@ -206,18 +206,18 @@ Input模型对Input设备开发流程进行了抽象，开发者只需要适配�
 
 Input模型由三层驱动组成，开发者适配一款全新触摸屏驱动只需要适配器件驱动层即可，重点实现差异化接口，本小节以代码示例的形式展示开发者需要重点完成的工作。
 
-1.  触摸屏器件差异化接口适配
+1.  触摸屏器件差异化接口适配。
 
     示例代码路径：./drivers/framework/model/input/driver/touchscreen/touch\_gt911.c
 
     ```
-    static struct TouchChipOps g_gt911ChipOps = {                                  // 器件IC接口
-        .Init = ChipInit,                                                          // 初始化
-        .Detect = ChipDetect,                                                      // 器件检测
-        .Resume = ChipResume,                                                      // 唤醒
-        .Suspend = ChipSuspend,                                                    // 休眠
-        .DataHandle = ChipDataHandle,                                              // 器件数据读取
-        .UpdateFirmware = UpdateFirmware,                                          // 固件升级
+    static struct TouchChipOps g_gt911ChipOps = {                                  // 器件IC接口。
+        .Init = ChipInit,                                                          // 初始化。
+        .Detect = ChipDetect,                                                      // 器件检测。
+        .Resume = ChipResume,                                                      // 唤醒。
+        .Suspend = ChipSuspend,                                                    // 休眠。
+        .DataHandle = ChipDataHandle,                                              // 器件数据读取。
+        .UpdateFirmware = UpdateFirmware,                                          // 固件升级。
     };
     
     /* 不同触摸屏厂家使用的IC不一样，对应的寄存器操作也不一样，因此器件驱动层代码重点适配差异化接口部分，如下示例代码展示了GT911的数据解析*/
@@ -266,7 +266,7 @@ Input模型由三层驱动组成，开发者适配一款全新触摸屏驱动只
     }
     ```
 
-2.  器件层驱动初始化及注册驱动至HDF框架
+2.  器件层驱动初始化及注册驱动至HDF框架。
 
     示例代码路径：./drivers/framework/model/input/driver/touchscreen/touch\_gt911.c
 
@@ -290,10 +290,10 @@ Input模型由三层驱动组成，开发者适配一款全新触摸屏驱动只
     }
     struct HdfDriverEntry g_touchGoodixChipEntry = {
         .moduleVersion = 1,
-        .moduleName = "HDF_TOUCH_GT911",   // 该moduleName与device_info.hcs文件中器件驱动层的moduleName信息相匹配
-        .Init = HdfGoodixChipInit,         // 器件驱动初始化函数
+        .moduleName = "HDF_TOUCH_GT911",   // 该moduleName与device_info.hcs文件中器件驱动层的moduleName信息相匹配。
+        .Init = HdfGoodixChipInit,         // 器件驱动初始化函数。
     };
-    HDF_INIT(g_touchGoodixChipEntry);      // 注册器件驱动至HDF框架
+    HDF_INIT(g_touchGoodixChipEntry);      // 注册器件驱动至HDF框架。
     ```
 
     器件私有驱动层主要实现了各器件厂商差异较大的部分，如器件休眠唤醒、数据解析以及固件升级等。
@@ -323,18 +323,18 @@ Input模型由三层驱动组成，开发者适配一款全新触摸屏驱动只
 如下所示为开机启动日志部分截取
 
 ```
-[I/HDF_INPUT_DRV] HdfInputManagerInit: enter                            // 管理驱动层初始化                    
-[I/HDF_INPUT_DRV] HdfInputManagerInit: exit succ                        // 初始化成功                    
+[I/HDF_INPUT_DRV] HdfInputManagerInit: enter                            // 管理驱动层初始化。                 
+[I/HDF_INPUT_DRV] HdfInputManagerInit: exit succ                        // 初始化成功。                   
 [I/osal_cdev] add cdev hdf_input_host success                                                                                                                   
-[I/HDF_LOG_TAG] HdfTouchDriverProbe: enter                              // 公共驱动层初始化                    
-[I/HDF_LOG_TAG] HdfTouchDriverProbe: main_touch exit succ               // 初始化成功                     
+[I/HDF_LOG_TAG] HdfTouchDriverProbe: enter                              // 公共驱动层初始化。                    
+[I/HDF_LOG_TAG] HdfTouchDriverProbe: main_touch exit succ               // 初始化成功。                     
 [I/osal_cdev] add cdev hdf_input_event1 success                                                                                                                 
-[I/HDF_INPUT_DRV] HdfGoodixChipInit: enter                              // 器件驱动层初始化                                        
+[I/HDF_INPUT_DRV] HdfGoodixChipInit: enter                              // 器件驱动层初始化。                                        
 [I/HDF_INPUT_DRV] ChipDetect: IC FW version is 0x1060                           
 [I/HDF_INPUT_DRV] Product_ID: 911_1060, x_sol = 960, y_sol = 480                
 [I/HDF_LOG_TAG] ChipDriverInit: chipDetect succ, ret = 0                                                        
 [I/HDF_LOG_TAG] InputDeviceInstance: inputDev->devName = main_touch                      
-[I/HDF_INPUT_DRV] HdfGoodixChipInit: exit succ, chipName = gt911        // 初始化成功 
+[I/HDF_INPUT_DRV] HdfGoodixChipInit: exit succ, chipName = gt911        // 初始化成功。 
 ```
 
 ## Input模型工作流程解析<a name="section1578569154917"></a>
@@ -354,7 +354,7 @@ Input模型由三层驱动组成，开发者适配一款全新触摸屏驱动只
 static int32_t ParseAttr(struct DeviceResourceIface *parser, const struct DeviceResourceNode *attrNode, BoardAttrCfg *attr)
 {
     int32_t ret;
-    ret = parser->GetUint8(attrNode, "inputType", &attr->devType, 0);     // 获取inputType字段信息，保存在BoardAttrCfg结构体中
+    ret = parser->GetUint8(attrNode, "inputType", &attr->devType, 0);     // 获取inputType字段信息，保存在BoardAttrCfg结构体中。
     CHECK_PARSER_RET(ret, "GetUint8");
     ...
     return HDF_SUCCESS;
@@ -380,7 +380,7 @@ struct HdfDriverEntry g_hdfInputEntry = {
     .Release = HdfInputManagerRelease,
 };
 
-HDF_INIT(g_hdfInputEntry);                                               //驱动注册入口
+HDF_INIT(g_hdfInputEntry);                                               //驱动注册入口。
 ```
 
 ### 公共驱动层初始化及注册驱动至HDF框架<a name="section16194201755019"></a>
@@ -415,7 +415,7 @@ struct HdfDriverEntry g_hdfTouchEntry = {
     .Release = HdfTouchDriverRelease,
 };
                                
-HDF_INIT(g_hdfTouchEntry);                                              //驱动注册入口
+HDF_INIT(g_hdfTouchEntry);                                              //驱动注册入口。
 ```
 
 ### 器件驱动层初始化及注册驱动至HDF框架<a name="section1090743312505"></a>

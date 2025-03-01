@@ -73,7 +73,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(isPromise())JS";
 ```
 
-Expected Result
+Expected result:
 ```
 JSVM OH_JSVM_IsPromise success:0
 ```
@@ -159,7 +159,7 @@ const char *srcCallNativeResolveRejectDeferred1 = R"JS(resolveRejectDeferred('su
 const char *srcCallNativeResolveRejectDeferred2 = R"JS(resolveRejectDeferred('success','fail', false))JS";
 ```
 
-Expected Result
+Expected result:
 ```
 JSVM CreatePromise success:1
 OH_JSVM_ResolveDeferred resolve
@@ -257,7 +257,7 @@ static void RunDemo(JSVM_VM vm, JSVM_Env env) {
 }
 ```
 
-Expected Result
+Expected result:
 ```
 Before promise resolved, x1: 0, x2: 0
 After promise resolved, x1: 2, x2: 3

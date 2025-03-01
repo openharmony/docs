@@ -51,7 +51,7 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 
 | Transfer/Access     | Description                                      |
 | ---------- | ---------------------------------------- |
-| Initialization and update from the parent component| Forbidden.|
+| Initialization and update from the parent component| Forbidden. Only the attribute corresponding to the key in AppStorage can be initialized. If there is no corresponding key, the local default value is used for initialization.|
 | Child component initialization    | Supported. The \@StorageProp decorated variable can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access from outside the component | Not supported.                                      |
 
@@ -161,17 +161,17 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 
 1. The parameter of \@StorageProp and \@StorageLink must be of the string type. Otherwise, an error is reported during compilation.
 
-```ts
-AppStorage.setOrCreate('PropA', 47);
+    ```ts
+    AppStorage.setOrCreate('PropA', 47);
 
-// Incorrect format. An error is reported during compilation.
-@StorageProp() storageProp: number = 1;
-@StorageLink() storageLink: number = 2;
+    // Incorrect format. An error is reported during compilation.
+    @StorageProp() storageProp: number = 1;
+    @StorageLink() storageLink: number = 2;
 
-// Correct format.
-@StorageProp('PropA') storageProp: number = 1;
-@StorageLink('PropA') storageLink: number = 2;
-```
+    // Correct format.
+    @StorageProp('PropA') storageProp: number = 1;
+    @StorageLink('PropA') storageLink: number = 2;
+    ```
 
 2. \@StorageProp and \@StorageLink cannot decorate variables of the function type. Otherwise, the framework throws a runtime error.
 

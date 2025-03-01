@@ -67,11 +67,11 @@ createFormBindingData(obj?: Object | string): FormBindingData
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 
 **示例：**

@@ -1,8 +1,8 @@
-# Network Firewall (For System Applications Only)
+# Network Firewall
 
 ## Introduction
 
-Network firewalls provide the following functions:
+The network firewall module provides the following functions:
 - Basic firewall management functions, such as enabling and disabling of firewalls and firewall rules, and audit.
 - Firewall rule configuration, including the rule name, description, operation, applicable application, protocol type, address, port, and outbound/inbound direction.
 - DNS policy configuration, including the domain names allowed or not allowed for resolution and the DNS server (active or standby) used for resolution (application level).
@@ -21,14 +21,16 @@ Typical firewall scenarios include:
 1. Restricting network access for specific applications
 2. Restricting network communication to specific IP addresses, protocols, and ports
 3. Restricting network communication of specific applications to specific IP addresses, protocols, and ports
-4. Putting interception rules into effect immediately after delivery (This function is applicable only to the TCP protocol. An intercepted TCP connection must be disconnected.)
+4. Putting interception rules into effect immediately after delivery (This function is applicable only to the TCP protocol. An intercepted TCP connection must be disconnected.)  
 - Domain name-based access control
 1. Restricting DNS resolution of an application for specific domain names (This function is applicable to standard unencrypted DNS protocols, but not encrypted and private DNS protocols.)
 2. Restricting DNS resolution of specific applications for specific domain names (This function is applicable to standard unencrypted DNS protocols, but not encrypted and private DNS protocols.)
 3. Putting interception rules into effect immediately after delivery (This function is applicable only to the TCP protocol. An intercepted TCP connection must be disconnected.)
+<!--Del-->
 - Traceable network access
 1. Query of interception records for system applications
 2. Automatic saving of interception rules and automatic recovery upon startup
+<!--DelEnd-->
 
 The following describes the development procedure specific to each application scenario.
 
@@ -38,19 +40,19 @@ For the complete list of APIs and example code, see [Network Firewall](../refere
 
 | Name                                                                                              | Description             |
 | -------------------------------------------------------------------------------------------------- | ----------------- |
-| setNetFirewallPolicy(userId: number, policy: NetFirewallPolicy): Promise\<void>                    | Sets the firewall status.   |
-| getNetFirewallPolicy(userId: number): Promise\<NetFirewallPolicy>                                  | Obtains the firewall status.   |
-| addNetFirewallRule(rule: NetFirewallRule): Promise\<number>                                        | Adds firewall rules.   |
-| updateNetFirewallRule(rule: NetFirewallRule): Promise\<void>                                       | Updates firewall rules.   |
-| removeNetFirewallRule(userId: number, ruleId: number): Promise\<void>                              | Removes firewall rules.   |
+| setNetFirewallPolicy(userId: number, policy: NetFirewallPolicy): Promise\<void>                    | Sets a firewall policy.   |
+| getNetFirewallPolicy(userId: number): Promise\<NetFirewallPolicy>                                  | Obtains a firewall policy.   |
+| addNetFirewallRule(rule: NetFirewallRule): Promise\<number>                                        | Adds a firewall rule.   |
+| updateNetFirewallRule(rule: NetFirewallRule): Promise\<void>                                       | Updates a firewall rule.  |
+| removeNetFirewallRule(userId: number, ruleId: number): Promise\<void>                              | Removes a firewall rule.   |
 | getNetFirewallRules(userId: number, requestParam: RequestParam): Promise\<FirewallRulePage>        | Performs pagination query on firewall rules.|
 | getNetFirewallRule(userId: number, ruleId: number): Promise\<NetFirewallRule>                      | Queries a firewall rule.|
-| getInterceptedRecords(userId: number, requestParam: RequestParam): Promise\<InterceptedRecordPage> | Queries firewall interception records.|
+| <!--DelRow-->getInterceptedRecords(userId: number, requestParam: RequestParam): Promise\<InterceptedRecordPage> | Queries firewall interception records.|
 
-## IP Address-based Access Control
+## IP address-based access control
 
 1. Use a network cable to connect the device to a network port.
-2. Import the **netfirewall** namespace from **@ohos.net.netFirewall**.
+2. Import the **netFirewall** namespace from **@kit.NetworkKit**.
 3. Call **setNetFirewallPolicy** to enable the firewall.
 4. Call **addNetFirewallRule** to add firewall rules.
 
@@ -132,12 +134,12 @@ netFirewall.addNetFirewallRule(ipRule).then((result: number) => {
 ## Domain Name-based Access Control
 
 1. Use a network cable to connect the device to a network port.
-2. Import the **netFirewall** namespace from **@ohos.net.netfirewall**.
+2. Import the **netFirewall** namespace from **@kit.NetworkKit**.
 3. Call **setNetFirewallPolicy** to enable the firewall in user mode.
 4. Call **addNetFirewallRule** to add firewall rules in user mode.
 
 ```ts
-// Import the netfirewall namespace from @kit.NetworkKit.
+// Import the netFirewall namespace from @kit.NetworkKit.
 import { netFirewall } '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -181,10 +183,11 @@ netFirewall.addNetFirewallRule(domainRule).then((result: number) => {
 });
 ```
 
+<!--Del-->
 ## Query of Firewall Interception Records
 
 1. Use a network cable to connect the device to a network port.
-2. Import the **netfirewall** namespace from **@ohos.net.netFirewall**.
+2. Import the **netFirewall** namespace from **@kit.NetworkKit**.
 3. Call **getInterceptRecords** to query firewall interception records in user mode.
 
 ```ts
@@ -205,3 +208,4 @@ netFirewall.getInterceptedRecords(100, interceptRecordParam).then((result: netFi
   console.error("get intercept records failed: " + JSON.stringify(error));
 });
 ```
+<!--DelEnd-->
