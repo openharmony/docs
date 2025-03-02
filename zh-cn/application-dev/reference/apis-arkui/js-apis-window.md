@@ -8954,6 +8954,83 @@ try {
 }
 ```
 
+### setFollowParentWindowLayoutEnabled<sup>17+</sup>
+
+setFollowParentWindowLayoutEnabled(enabled: boolean): Promise&lt;void&gt;
+
+设置子窗或模态窗口（即WindowType为TYPE_DIALOG的窗口）的布局信息（position和size）是否跟随主窗，使用Promise异步回调。
+
+1、只支持主窗的一级子窗或模态窗口使用该接口。
+
+2、当子窗或模态窗口调用该接口后，立即使其布局信息与主窗完全一致并保持，除非传入false再次调用该接口，否则效果将持续。
+
+3、当子窗或模态窗口调用该接口后，再调用moveTo、resize等修改布局信息的接口将不生效。
+
+4、当子窗或模态窗口不再使用该功能后，不保证子窗或模态窗口的布局信息（position和size）为确定的值，需要应用重新进行设置。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型  | 必填  | 说明  |
+| --- | --- | --- | --- |
+| enabled | boolean | 是   | 设置是否启用跟随主窗布局。true表示启用，false表示不启用。|
+
+**返回值：**
+
+| 类型  | 说明  |
+| --- | --- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| --- | --- |
+| 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+```ts
+// EntryAbility.ets
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    windowStage.loadContent('pages/Index', (loadError) => {
+      if (loadError.code) {
+        console.error(`Failed to load the content. Cause code: ${loadError.code}, message: ${loadError.message}`);
+        return;
+      }
+      console.info("Succeeded in loading the content.");
+      windowStage.createSubWindow("subWindow").then((subWindow: window.Window) => {
+        if (subWindow == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        subWindow.setFollowParentWindowLayoutEnabled(true).then(() => {
+          console.info("after set follow parent window layout")
+        }).catch((error: BusinessError) => {
+          console.error(`setFollowParentWindowLayoutEnabled failed. ${error.code} ${error.message}`);
+        })
+      }).catch((error: BusinessError) => {
+        console.error(`createSubWindow failed. ${error.code} ${error.message}`);
+      })
+    });
+  }
+}
+```
+
 ### setWindowSystemBarProperties<sup>(deprecated)</sup>
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
