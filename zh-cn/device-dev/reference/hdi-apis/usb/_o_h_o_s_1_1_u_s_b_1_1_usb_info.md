@@ -153,4 +153,4 @@ USBDeviceInfo UsbInfo::devInfo
 ```
 **描述**
 
-USB设备信息
+USB设备信息。
