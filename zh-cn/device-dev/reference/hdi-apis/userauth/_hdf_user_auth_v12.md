@@ -5,7 +5,7 @@
 
 提供用户认证驱动的标准API接口。
 
-用户认证驱动为用户认证服务提供统一的访问接口。获取用户认证驱动代理后，用户认证服务可以调用相关接口注册执行器，管理用户认证凭据， 完成PIN码和生物特征认证。
+用户认证驱动为用户认证服务提供统一的访问接口。获取用户认证驱动代理后，用户认证服务可以调用相关接口注册执行器，管理用户认证凭据，完成PIN码和生物特征认证。
 
 **起始版本：** 4.1
 
@@ -38,7 +38,7 @@
 | struct&nbsp;&nbsp;[EnrolledInfo](_enrolled_info_v12.md) | 注册信息。 | 
 | struct&nbsp;&nbsp;[EnrollResultInfo](_enroll_result_info_v12.md) | 录入结果信息。 | 
 | struct&nbsp;&nbsp;[ScheduleInfoV1_1](_schedule_info_v1__1_v12.md) | 调度信息。 | 
-| struct&nbsp;&nbsp;[UserInfo](_user_info_v12.md) | 用户信息 | 
+| struct&nbsp;&nbsp;[UserInfo](_user_info_v12.md) | 用户信息。 | 
 | struct&nbsp;&nbsp;[ExtUserInfo](_ext_user_info_v12.md) | 用户信息。 | 
 | struct&nbsp;&nbsp;[AuthSolutionV1_2](_auth_solution_v1__2_v12.md) | 认证方案。 | 
 | struct&nbsp;&nbsp;[EnrollParamV1_2](_enroll_param_v1__2_v12.md) | 注册认证凭据参数。 | 
