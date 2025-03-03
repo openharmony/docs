@@ -182,6 +182,61 @@ struct Index {
 }
 ```
 
+同时，也可等待生产者的生产任务全部执行完成，通过序列化通信将结果发送给UI线程，UI线程接收完毕后再由消费者统一消费结果。
+
+```ts
+import { taskpool } from '@kit.ArkTS';
+
+// 跨线程并发任务
+@Concurrent
+async function produce(): Promise<number> {
+  // 添加生产相关逻辑
+  console.info("producing...");
+  return Math.random();
+}
+
+class Consumer {
+  public consume(value: Object) {
+    // 添加消费相关逻辑
+    console.info("consuming value: " + value);
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button() {
+          Text("start")
+        }.onClick(async () => {
+          let dataArray = new Array<number>();
+          let produceTask: taskpool.Task = new taskpool.Task(produce);
+          let consumer: Consumer = new Consumer();
+          for (let index: number = 0; index < 10; index++) {
+            // 执行生产异步并发任务
+            let result = await taskpool.execute(produceTask) as number;
+            dataArray.push(result);
+          }
+          for (let index: number = 0; index < dataArray.length; index++) {
+            consumer.consume(dataArray[index]);
+          }
+        })
+        .width('20%')
+        .height('20%')
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
 
 ## TaskPool和Worker
 
