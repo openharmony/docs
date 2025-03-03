@@ -86,7 +86,7 @@ ArkWeb_ErrorCode(* ArkWeb_ControllerAPI::postWebMessage) (const char *webTag, co
 ```
 **描述：**
 
-将端口发送到HTML主页面.
+将端口发送到HTML主页面。
 
 **参数:**
 
