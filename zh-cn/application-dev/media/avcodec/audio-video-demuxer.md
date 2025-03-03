@@ -250,7 +250,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    // 注意：
    // 1. mpegts、mpg 格式文件使用OH_AVDemuxer_SeekToTime功能时，跳转到的位置可能为非关键帧。可在跳转后调用OH_AVDemuxer_ReadSampleBuffer，通过获取到的OH_AVCodecBufferAttr判断当前帧是否为关键帧。若非关键帧影响应用侧显示等功能，可在跳转后循环读取，获取到后续第一帧关键帧后，再进行解码等处理。
    // 2. ogg格式文件使用OH_AVDemuxer_SeekToTime功能时，会跳转到传入时间millisecond所在时间间隔(秒)的起始处，可能会导致一定数量的帧误差。
-   // 3. demuxer的seek处理只针对解码行为一致的码流进行处理，如果需要解码器冲重新配置参数或者重新输入配置信息才可以正确解码的码流，seek后可能会出现花屏、解码卡死等问题。
+   // 3. demuxer的seek处理只针对解码行为一致的码流进行处理，如果需要解码器重新配置参数或者重新输入参数集信息才可以正确解码的码流，seek后可能会出现花屏、解码卡死等问题，需要调用方重新输入参数集数据才能正常播放。
    OH_AVDemuxer_SeekToTime(demuxer, 0, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
    ```
 
