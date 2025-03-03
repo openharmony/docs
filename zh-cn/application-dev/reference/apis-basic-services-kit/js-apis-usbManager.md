@@ -26,14 +26,6 @@ getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 | ---------------------------------------------------- | ------- |
 | Array&lt;Readonly&lt;[USBDevice](#usbdevice)&gt;&gt; | 设备信息列表。 |
 
-**错误码：**
-
-以下错误码的详细介绍参见[USB服务错误码](errorcode-usb.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 22      | Failed to obtain the remote object |
-
 **示例：**
 
 ```ts
@@ -202,10 +194,6 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 88080382      | Invalid interface or invalid device name provided. |
-| 88080385      | Failed to initialize the interface. |
-| 88080484      | Permisson denied. |
-| 88080497      | Failed to initialize or assign value to the pointer. |
 
 **返回值：**
 
@@ -297,19 +285,24 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 注册通信接口成功返回0；注册通信接口失败返回其他错误码。|
+
+返回值错误码如下：
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
 | 88080385      | Failed to initialize the interface. |
 | 88080482      | The value is invalid for the service. |
 | 88080484      | Permisson denied. |
 | -1      | Failed to invoke the OS underlying function. |
 | -3      | Invalid parameter. |
 | -202      | The device module has no device. |
-| -204      | Failed to initialize a device moudule. |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| number | 注册通信接口成功返回0；注册通信接口失败返回其他错误码。 |
+| -204      | Failed to initialize a device moudule.  |
 
 **示例：**
 
@@ -351,18 +344,22 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types. |
-| 88080482 | The value is invalid for the service. |
-| 88080484 | Permisson denied. |
-| -1       | Failed to invoke the OS underlying function. |
-| -202     | The device module has no device. |
-| -204     | Failed to initialize a device moudule. |
-| -210     | Failed to operate a device module. |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 释放接口成功返回0；释放接口失败返回其他错误码。 |
+
+返回值错误码如下：
+
+| 错误码ID | 错误信息                                      |
+| 88080482 | The value is invalid for the service. |
+| 88080484 | Permisson denied. |
+| -1       | Failed to invoke the OS underlying function. |
+| -202     | The device module has no device. |
+| -204     | Failed to initialize a device moudule. |
+| -210     | Failed to operate a device module. |
 
 **示例：**
 
@@ -407,18 +404,22 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 88080484 | Permisson denied. |
-| 88080385 | Failed to initialize the interface. |
-| -3       | Invalid parameter. |
-| -17      | I/O error. |
-| -202     | The device module has no device. |
-| -204     | Failed to initialize a device moudule. |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 设置设备配置成功返回0；设置设备配置失败返回其他错误码。 |
+
+返回值错误码如下：
+
+| 错误码ID | 错误信息                                      |
+| 88080484 | Permisson denied. |
+| 88080385 | Failed to initialize the interface. |
+| -3       | Invalid parameter. |
+| -17      | I/O error. |
+| -202     | The device module has no device. |
+| -204     | Failed to initialize a device moudule. |
 
 **示例：**
 
@@ -460,17 +461,21 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 88080385 | Failed to initialize the interface. |
-| 88080484 | Permisson denied. |
-| -1       | Failed to invoke the OS underlying function. |
-| -202     | The device module has no device. |
-| -204     | Failed to initialize a device moudule. |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 设置设备接口成功返回0；设置设备接口失败返回其他错误码。 |
+
+返回值错误码如下：
+
+| 错误码ID | 错误信息                                      |
+| 88080385 | Failed to initialize the interface. |
+| 88080484 | Permisson denied. |
+| -1       | Failed to invoke the OS underlying function. |
+| -202     | The device module has no device. |
+| -204     | Failed to initialize a device moudule. |
 
 **示例：**
 
@@ -512,16 +517,20 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 88080385 | Failed to initialize the interface. |
-| 88080482 | The value is invalid for the service. |
-| 88080484 | Permisson denied. |
-| -202     | The device module has no device. |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
 | Uint8Array | 返回获取的原始数据；失败返回undefined。 |
+
+返回值错误码如下：
+
+| 错误码ID | 错误信息                                      |
+| 88080385 | Failed to initialize the interface. |
+| 88080482 | The value is invalid for the service. |
+| 88080484 | Permisson denied. |
+| -202     | The device module has no device. |
 
 **示例：**
 
@@ -559,18 +568,22 @@ getFileDescriptor(pipe: USBDevicePipe): number
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 88080385 | Failed to initialize the interface. |
-| 88080393 | Failed to read interface parcel. |
-| 88080482 | The value is invalid for the service. |
-| 88080484 | Permisson denied. |
-| 88080497 | Failed to initialize or assign value to the pointer. |
-| -202     | The device module has no device. |
 
 **返回值：**
 
 | 类型     | 说明                   |
 | ------ | -------------------- |
 | number | 返回设备对应的文件描述符；失败返回-1。 |
+返回值错误码如下：
+
+| 错误码ID | 错误信息                                      |
+| -1       | Failed to invoke the OS underlying function. |
+| 88080385 | Failed to initialize the interface. |
+| 88080393 | Failed to read interface parcel. |
+| 88080482 | The value is invalid for the service. |
+| 88080484 | Permisson denied. |
+| 88080497 | Failed to initialize or assign value to the pointer. |
+| -202     | The device module has no device. |
 
 **示例：**
 
@@ -614,6 +627,16 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回-1。 |
+
+返回值错误码如下：
+
+| 错误码ID | 错误信息                                      |
 | 88080385 | Failed to initialize the interface. |
 | 88080393 | Failed to read interface parcel. |
 | 88080482 | The value is invalid for the service. |
@@ -623,12 +646,6 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 | -3       | Invalid parameter. |
 | -6       | Failed to memory allocation. |
 | -202     | The device module has no device. |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回-1。 |
 
 **示例：**
 
@@ -688,6 +705,16 @@ usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, ti
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types. |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回-1。 |
+
+返回值错误码如下：
+
+| 错误码ID | 错误信息                                      |
 | 88080385 | Failed to initialize the interface. |
 | 88080392 | Failed to write interface parcel. |
 | 88080482 | The value is invalid for the service. |
@@ -697,12 +724,6 @@ usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, ti
 | -6       | Failed to memory allocation. |
 | -18      | Incorrect file discriptor. |
 | -202     | The device module has no device. |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回-1。 |
 
 **示例：**
 
@@ -772,6 +793,16 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回-1。 |
+
+返回值错误码如下：
+
+| 错误码ID | 错误信息                                      |
 | 88080385 | Failed to initialize the interface. |
 | 88080393 | Failed to read interface parcel. |
 | 88080482 | The value is invalid for the service. |
@@ -783,12 +814,6 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 | -7       | Timeout occurs. |
 | -17      | I/O error. |
 | -202     | The device module has no device. |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回-1。 |
 
 **示例：**
 
@@ -1024,19 +1049,24 @@ closePipe(pipe: USBDevicePipe): number
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 22       | Invoke the interface repeatedly. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 88080482 | The value is invalid for the service. |
-| 88080484 | Permisson denied. |
-| 88080497 | Failed to initialize or assign value to the pointer. |
-| -1       | Failed to invoke the OS underlying function. |
-| -202     | The device module has no device. |
+
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 关闭设备消息控制通道成功返回0；关闭设备消息控制通道失败返回其他错误码。 |
+
+返回值错误码如下：
+
+| 错误码ID | 错误信息                                      |
+| 22       | Invoke the interface repeatedly. |
+| 88080482 | The value is invalid for the service. |
+| 88080484 | Permisson denied. |
+| 88080497 | Failed to initialize or assign value to the pointer. |
+| -1       | Failed to invoke the OS underlying function. |
+| -202     | The device module has no device. |
 
 **示例：**
 
@@ -1078,17 +1108,21 @@ hasAccessoryRight(accessory: USBAccessory): boolean
 | 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
 | 14400005 | Database operation exception.                                |
 | 14401001 | The target USBAccessory not matched.                         |
-| 88080385 | Failed to initialize the interface. |
-| 88080393 | Failed to read interface parcel. |
-| 88080482 | The value is invalid for the service. |
-| 88080484 | Permisson denied. |
-| 88080510 | Failed to get token info. |
 
 **返回值：**
 
 | 类型    | 说明                          |
 | ------- | ----------------------------- |
 | boolean | true表示应用程序有权访问USB配件，false表示应用程序无权访问USB配件。 |
+
+返回值错误码如下：
+
+| 错误码ID | 错误信息                                      |
+| 88080385 | Failed to initialize the interface. |
+| 88080393 | Failed to read interface parcel. |
+| 88080482 | The value is invalid for the service. |
+| 88080484 | Permisson denied. |
+| 88080510 | Failed to get token info. |
 
 **示例：**
 
@@ -1129,17 +1163,21 @@ requestAccessoryRight(accessory: USBAccessory): Promise&lt;boolean&gt;
 | 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
 | 14400005 | Database operation exception.                                |
 | 14401001 | The target USBAccessory not matched.                         |
-| 88080382 | Invalid interface or invalid device name provided. |
-| 88080392 | Failed to write interface parcel. |
-| 88080393 | Failed to read interface parcel. |
-| 88080482 | The value is invalid for the service. |
-| 88080510 | Failed to get token info. |
 
 **返回值：**
 
 | 类型             | 说明                          |
 | ---------------- | ----------------------------- |
 | Promise&lt;boolean&gt; | Promise对象，返回应用程序访问配件权限的申请结果。返回true表示权限申请成功；返回false表示权限申请失败。 |
+
+返回值错误码如下：
+
+| 错误码ID | 错误信息                                      |
+| 88080382 | Invalid interface or invalid device name provided. |
+| 88080392 | Failed to write interface parcel. |
+| 88080393 | Failed to read interface parcel. |
+| 88080482 | The value is invalid for the service. |
+| 88080510 | Failed to get token info. |
 
 **示例：**
 
@@ -1180,11 +1218,6 @@ cancelAccessoryRight(accessory: USBAccessory): void;
 | 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
 | 14400005 | Database operation exception.                                |
 | 14401001 | The target USBAccessory not matched.                         |
-| 88080382 | Invalid interface or invalid device name provided. |
-| 88080392 | Failed to write interface parcel. |
-| 88080393 | Failed to read interface parcel. |
-| 88080482 | The value is invalid for the service. |
-| 88080510 | Failed to get token info. |
 
 **示例：**
 
@@ -1214,10 +1247,7 @@ getAccessoryList(): Array<Readonly&lt;USBAccessory&gt;>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 22       | Invalid value. |
 | 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
-| 88080482 | The value is invalid for the service. |
-| 88080497 | Failed to initialize or assign value to the pointer. |
 
 **返回值：**
 
@@ -1266,15 +1296,19 @@ openAccessory(accessory: USBAccessory): USBAccessoryHandle;
 | 14401001 | The target USBAccessory not matched.                         |
 | 14401002 | Failed to open the native accessory node.                    |
 | 14401003 | Cannot reopen the accessory.                                 |
-| 88080482 | The value is invalid for the service. |
-| 88080497 | Failed to initialize or assign value to the pointer. |
-| 88080510 | Failed to get token info. |
 
 **返回值：**
 
 | 类型               | 说明        |
 | ------------------ | ----------- |
 | [USBAccessoryHandle](#usbaccessoryhandle14) | USB配件句柄。 |
+
+返回值错误码如下：
+
+| 错误码ID | 错误信息                                      |
+| 88080482 | The value is invalid for the service. |
+| 88080497 | Failed to initialize or assign value to the pointer. |
+| 88080510 | Failed to get token info. |
 
 **示例：**
 
@@ -1314,9 +1348,6 @@ closeAccessory(accessoryHandle: USBAccessoryHandle): void;
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
-| 88080392 | Failed to write interface parcel. |
-| 88080393 | Failed to read interface parcel. |
-| 88080482 | The value is invalid for the service. |
 
 **示例：**
 
