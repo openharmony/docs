@@ -4362,6 +4362,7 @@ static requestMovingPhoto(context: Context, asset: PhotoAsset, requestOptions: R
 | -------- | ---------------------------------------- |
 | 201      |  Permission denied         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 801   | Capability not supported.       |
 | 14000011       | System inner fail         |
 
 **示例：**
@@ -5226,7 +5227,7 @@ title参数规格为：
 | 名称                   | 类型                        | 只读 | 可选 | 说明                                         |
 | ---------------------- |----------------------------| ---- | ---- | ------------------------------------------- |
 | deliveryMode           | [DeliveryMode](#deliverymode11) | 否   | 否   | 请求资源分发模式，可以指定对于该资源的请求策略，可被配置为快速模式，高质量模式，均衡模式三种策略。 |
-| compatibleMode<sup>15+</sup>      | [CompatibleMode](#compatiblemode15) | 否   | 是   | 配置HDR视频转码模式，可指定配置为转码和不转码两种策略。 |
+| compatibleMode<sup>15+</sup>      | [CompatibleMode](#compatiblemode15) | 否   | 是   | 配置HDR视频资源转码模式，可指定配置为转码和不转码两种策略。默认为原视频资源内容模式即不转码。 |
 | mediaAssetProgressHandler<sup>15+</sup> | [MediaAssetProgressHandler](#mediaassetprogresshandler15) | 否   | 是   | 配置HDR视频转码为SDR视频时的进度级回调。 |
 
 ## MediaChangeRequest<sup>11+</sup>
@@ -5497,7 +5498,7 @@ async function example() {
 | 名称  |  值 |  说明 |
 | ----- | ---- | ---- |
 | ORIGINAL_FORMAT_MODE |  0 |  原视频资源内容模式。  |
-| COMPATIBLE_FORMAT_MODE    |  1 |  兼容模式，从HDR视频转换为SDR视频。    |
+| COMPATIBLE_FORMAT_MODE    |  1 |  兼容模式，从HDR视频资源转换为SDR视频资源。    |
 
 ## CompleteButtonText<sup>14+</sup>
 
