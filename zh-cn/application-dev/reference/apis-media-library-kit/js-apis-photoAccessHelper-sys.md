@@ -1631,7 +1631,7 @@ saveGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
-| info  | [GalleryFormInfo](#galleryforminfo16)        | 是   | 图库卡片信息，包括图库卡片的id、卡片绑定的图片或相册的uri集合。              |
+| info  | [GalleryFormInfo](#galleryforminfo18)        | 是   | 图库卡片信息，包括图库卡片的id、卡片绑定的图片或相册的uri集合。              |
 
 **返回值：**
 
@@ -1698,7 +1698,7 @@ updateGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
-| info  | [GalleryFormInfo](#galleryforminfo16)        | 是   | 图库卡片信息，包括图库卡片的id、卡片绑定的图片或相册的uri集合。              |
+| info  | [GalleryFormInfo](#galleryforminfo18)        | 是   | 图库卡片信息，包括图库卡片的id、卡片绑定的图片或相册的uri集合。              |
 
 **返回值：**
 
@@ -1767,7 +1767,7 @@ removeGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
-| info  | [GalleryFormInfo](#galleryforminfo16)        | 是   | 图库卡片信息，包括图库卡片的id、卡片绑定的图片或相册的uri集合。              |
+| info  | [GalleryFormInfo](#galleryforminfo18)        | 是   | 图库卡片信息，包括图库卡片的id、卡片绑定的图片或相册的uri集合。              |
 
 **返回值：**
 
