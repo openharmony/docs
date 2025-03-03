@@ -109,7 +109,7 @@ PasteButtonCallback = (event: ClickEvent, result: PasteButtonOnClickResult, erro
 
 点击粘贴按钮触发该回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -137,7 +137,7 @@ onClick(event: PasteButtonCallback)
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| event | [PasteButtonCallback](#pastebuttoncallback) |是 |见PasteButtonCallback。|
+| event | [PasteButtonCallback](#pastebuttoncallback) |是 |见PasteButtonCallback。<br>在API10-17时，参数类型为：(event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明), result: [PasteButtononClickResult](#pastebuttononclickresult枚举说明)) => void。<br>从API18开始，变更为PasteButtonCallback。|
 
 ## 示例
 
