@@ -16296,7 +16296,7 @@ int32_t OH_ArkUI_GetGestureParam_DirectMask(ArkUI_GestureRecognizer* recognizer,
 
 获取手势识别器的滑动方向。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -16319,7 +16319,7 @@ int32_t OH_ArkUI_GetGestureParam_FingerCount(ArkUI_GestureRecognizer* recognizer
 
 获取手势识别器的手指数。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -16342,7 +16342,7 @@ int32_t OH_ArkUI_GetGestureParam_limitFingerCount(ArkUI_GestureRecognizer* recog
 
 获取手势识别器是否有手指数限制。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -16365,7 +16365,7 @@ int32_t OH_ArkUI_GetGestureParam_repeat(ArkUI_GestureRecognizer* recognizer, boo
 
 获取手势识别器是否连续触发事件回调。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -16388,7 +16388,7 @@ int32_t OH_ArkUI_GetGestureParam_distance(ArkUI_GestureRecognizer* recognizer, d
 
 获取手势识别器的手指允许的移动距离范围。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -16411,7 +16411,7 @@ int32_t OH_ArkUI_GetGestureParam_speed(ArkUI_GestureRecognizer* recognizer, doub
 
 获取手势识别器的识别滑动的最小速度。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -16434,7 +16434,7 @@ int32_t OH_ArkUI_GetGestureParam_duration(ArkUI_GestureRecognizer* recognizer, i
 
 获取手势识别器的触发长按的最短时间。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -16457,7 +16457,7 @@ int32_t OH_ArkUI_GetGestureParam_angle(ArkUI_GestureRecognizer* recognizer, doub
 
 获取手势识别器的旋转手势的最小改变度数。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -16480,7 +16480,7 @@ int32_t OH_ArkUI_GetGestureParam_distanceThreshold(ArkUI_GestureRecognizer* reco
 
 获取手势识别器的手势移动阈值。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
