@@ -361,13 +361,13 @@ enableHapticFeedback(isEnabled: boolean)
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
 | isEnabled  | boolean | 是   | 是否支持触控反馈。<br/>默认值：true，true表示开启触控反馈，false表示不开启触控反馈。<br/>设置为true后是否生效，还取决于系统的硬件是否支持。 |
 
-### keyboardAppearance<sup>16+</sup>
+### keyboardAppearance<sup>15+</sup>
 
 keyboardAppearance(appearance: Optional\<KeyboardAppearance\>)
 
 设置键盘外观。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -375,7 +375,7 @@ keyboardAppearance(appearance: Optional\<KeyboardAppearance\>)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
-| appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance16枚举说明)\> | 是   | 键盘的外观。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
+| appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15枚举说明)\> | 是   | 键盘的外观。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
 
 ### stopBackPress<sup>16+</sup>
 
