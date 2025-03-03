@@ -5,7 +5,7 @@
 
 提供API以启用或禁用WLAN热点、扫描热点、连接到WLAN热点或断开与WLAN热点的连接，设置国家代码，并管理网络设备。
 
-模块包路径：ohos.hdi.wlan.v1_1;
+模块包路径：ohos.hdi.wlan.v1_1
 
 引用：
 
