@@ -32,6 +32,7 @@ getFont(): Font
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFont();
 ```
@@ -53,6 +54,7 @@ getComponentUtils(): ComponentUtils
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getComponentUtils();
 ```
@@ -75,6 +77,7 @@ getUIInspector(): UIInspector
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getUIInspector();
 ```
@@ -97,6 +100,7 @@ getUIObserver(): UIObserver
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getUIObserver();
 ```
@@ -119,6 +123,7 @@ getMediaQuery(): MediaQuery
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getMediaQuery();
 ```
@@ -141,6 +146,7 @@ getRouter(): Router
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getRouter();
 ```
@@ -163,6 +169,7 @@ getPromptAction(): PromptAction
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getPromptAction();
 ```
@@ -185,6 +192,7 @@ getOverlayManager(): OverlayManager
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getOverlayManager();
 ```
@@ -213,6 +221,7 @@ setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.setOverlayManagerOptions({ renderRootOverlay: true });
 ```
@@ -235,6 +244,7 @@ getOverlayManagerOptions(): OverlayManagerOptions
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getOverlayManagerOptions();
 ```
@@ -487,6 +497,7 @@ getFrameNodeById(id: string): FrameNode | null
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFrameNodeById("TestNode")
 ```
@@ -519,6 +530,7 @@ getAttachedFrameNodeById(id: string): FrameNode | null
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getAttachedFrameNodeById("TestNode")
 ```
@@ -690,6 +702,7 @@ showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButto
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.showAlertDialog(
   {
@@ -730,6 +743,7 @@ showActionSheet(value: ActionSheetOptions): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.showActionSheet({
   title: 'ActionSheet title',
@@ -787,6 +801,7 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 let selectedDate: Date = new Date("2010-1-1")
 uiContext.showDatePickerDialog({
@@ -971,6 +986,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { AnimatorOptions, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -1018,6 +1034,7 @@ runScopedTask(callback: () => void): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.runScopedTask(
   () => {
@@ -1045,6 +1062,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -1083,6 +1101,7 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -1123,6 +1142,7 @@ getAtomicServiceBar(): Nullable\<AtomicServiceBar>
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -1157,6 +1177,7 @@ getDragController(): DragController
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getDragController();
 ```
@@ -1196,6 +1217,7 @@ getFocusController(): FocusController
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFocusController();
 ```
@@ -1232,6 +1254,7 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFilteredInspectorTree(['id', 'src', 'content']);
 ```
@@ -1271,6 +1294,7 @@ getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFilteredInspectorTreeById('testId', 0, ['id', 'src', 'content']);
 ```
@@ -1293,6 +1317,7 @@ getCursorController(): CursorController
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.CursorController();
 ```
@@ -1315,6 +1340,7 @@ getContextMenuController(): ContextMenuController
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getContextMenuController();
 ```
@@ -1337,6 +1363,7 @@ getMeasureUtils(): MeasureUtils
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getMeasureUtils();
 ```
@@ -1359,6 +1386,7 @@ getComponentSnapshot(): ComponentSnapshot
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getComponentSnapshot();
 ```
@@ -1387,7 +1415,8 @@ vp2px(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.vp2px(200);
 ```
 
@@ -1415,7 +1444,8 @@ px2vp(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.px2vp(200);
 ```
 
@@ -1443,7 +1473,8 @@ fp2px(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.fp2px(200);
 ```
 
@@ -1471,7 +1502,8 @@ px2fp(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.px2fp(200);
 ```
 
@@ -1499,7 +1531,8 @@ lpx2px(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.lpx2px(200);
 ```
 
@@ -1527,7 +1560,8 @@ px2lpx(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.px2lpx(200);
 ```
 
@@ -1799,6 +1833,8 @@ requireDynamicSyncScene(id: string): Array&lt;DynamicSyncScene&gt;
 | Array&lt;DynamicSyncScene&gt; | 获取DynamicSyncScene对象数组。 |
 
 **示例：**
+
+<!--code_no_check-->
 ```ts
 uiContext.DynamicSyncScene("dynamicSyncScene")
 ```
@@ -2209,6 +2245,8 @@ isFollowingSystemFontScale(): boolean
 | boolean | 当前UI上下文是否跟随系统字体倍率。 |
 
 **示例：**
+
+<!--code_no_check-->
 ```ts
 uiContext.isFollowingSystemFontScale()
 ```
@@ -2230,6 +2268,8 @@ getMaxFontScale(): number
 | number | 当前UI上下文最大字体倍率。 |
 
 **示例：**
+
+<!--code_no_check-->
 ```ts
 uiContext.getMaxFontScale()
 ```
@@ -2441,6 +2481,7 @@ registerFont(options: font.FontOptions): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { Font } from '@kit.ArkUI';
 
@@ -2472,6 +2513,7 @@ getSystemFontList(): Array\<string>
 
 **示例：** 
 
+<!--code_no_check-->
 ```ts
 import { Font } from '@kit.ArkUI';
 
@@ -2505,6 +2547,7 @@ getFontByName(fontName: string): font.FontInfo
 
 **示例：** 
 
+<!--code_no_check-->
 ```ts
 import { Font } from '@kit.ArkUI';
 
@@ -2621,6 +2664,7 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { ComponentUtils } from '@kit.ArkUI';
 
@@ -2658,6 +2702,7 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { UIInspector } from '@kit.ArkUI';
 
@@ -2700,6 +2745,7 @@ on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { UIObserver } from '@kit.ArkUI';
 
@@ -2728,6 +2774,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 
 **示例：** 
 
+<!--code_no_check-->
 ```ts
 import { UIObserver } from '@kit.ArkUI';
 
@@ -2755,6 +2802,7 @@ on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callbac
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { UIObserver } from '@kit.ArkUI';
 
@@ -2784,6 +2832,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { UIObserver } from '@kit.ArkUI';
 
@@ -3913,6 +3962,7 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { MediaQuery } from '@kit.ArkUI';
 
@@ -5299,6 +5349,7 @@ getState(): router.RouterState
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 
@@ -5333,6 +5384,7 @@ getStateByIndex(index: number): router.RouterState | undefined
 
 **示例：** 
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 
@@ -5369,6 +5421,7 @@ getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#outerst
 
 **示例：** 
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 let router: Router = uiContext.getRouter();
@@ -5408,6 +5461,7 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5436,6 +5490,7 @@ hideAlertBeforeBackPage(): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 
@@ -5460,6 +5515,8 @@ getParams(): Object
 | object | 发起跳转的页面往当前页传入的参数。 |
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 import { Router } from '@kit.ArkUI';
@@ -5499,6 +5556,7 @@ showToast(options: promptAction.ShowToastOptions): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5543,6 +5601,8 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 | 100001 | Internal error. |
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 import { PromptAction } from '@kit.ArkUI';
@@ -5610,6 +5670,7 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 
@@ -5664,6 +5725,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction, promptAction  } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5724,6 +5786,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction,promptAction  } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5783,6 +5846,7 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 
