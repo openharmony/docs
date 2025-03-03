@@ -220,7 +220,7 @@ If the transfer is not in progress, already complete, or already cancelled.
 
 重新发起新的传输请求。
 
-## 144000012 I/O错误
+## 14400012 I/O错误
 
 **错误信息**
 
