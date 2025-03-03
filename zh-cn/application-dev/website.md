@@ -834,7 +834,6 @@
           - [安全控件概述](security/AccessToken/security-component-overview.md)
           - [使用粘贴控件](security/AccessToken/pastebutton.md)
           - [使用保存控件](security/AccessToken/savebutton.md)
-          - [使用位置控件](security/AccessToken/locationbutton.md)
       - Asset Store Kit（关键资产存储服务）<!--asset-store-kit-->
         - [Asset Store Kit简介](security/AssetStoreKit/asset-store-kit-overview.md)
         - 常见场景<!--asset-scenarios-->
