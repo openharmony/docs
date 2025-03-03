@@ -19,7 +19,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OnDataEvent](#ondataevent) ([in] struct [HdfSensorEvents](_hdf_sensor_events_v20.md) event) | 上报传感器数据的回调函数 | 
+| [OnDataEvent](#ondataevent) ([in] struct [HdfSensorEvents](_hdf_sensor_events_v20.md) event) | 上报传感器数据的回调函数。 | 
 
 
 ## 成员函数说明
@@ -33,7 +33,7 @@ ISensorCallback::OnDataEvent ([in] struct HdfSensorEvents event)
 
 **描述：**
 
-上报传感器数据的回调函数
+上报传感器数据的回调函数。
 
 **起始版本：** 4.1
 
