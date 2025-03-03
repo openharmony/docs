@@ -40,7 +40,7 @@
 
       ```ts
       const context : Context = getContext(this);
-      // 获取resourceManager资源管理器
+      // 获取resourceManager资源管理器。
       const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
       ```
 
@@ -49,7 +49,7 @@
       ```ts
       resourceMgr.getRawFileContent('test.jpg').then((fileData : Uint8Array) => {
          console.log("Succeeded in getting RawFileContent")
-         // 获取图片的ArrayBuffer
+         // 获取图片的ArrayBuffer。
          const buffer = fileData.buffer.slice(0);
       }).catch((err : BusinessError) => {
          console.error("Failed to get RawFileContent")
@@ -61,7 +61,7 @@
 
       ```ts
       const context : Context = getContext(this);
-      // 获取resourceManager资源管理器
+      // 获取resourceManager资源管理器。
       const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
       ```
 
@@ -81,14 +81,14 @@
    - 方法一：通过沙箱路径创建ImageSource。沙箱路径可以通过步骤2的方法一获取。
 
       ```ts
-      // path为已获得的沙箱路径
+      // path为已获得的沙箱路径。
       const imageSource : image.ImageSource = image.createImageSource(filePath);
       ```
 
    - 方法二：通过文件描述符fd创建ImageSource。文件描述符可以通过步骤2的方法二获取。
 
       ```ts
-      // fd为已获得的文件描述符
+      // fd为已获得的文件描述符。
       const imageSource : image.ImageSource = image.createImageSource(fd);
       ```
 
@@ -113,9 +113,9 @@
       let img = await getContext(this).resourceManager.getMediaContent($r('app.media.picture'));
       let imageSource:image.ImageSource = image.createImageSource(img.buffer.slice(0));
       let options: image.DecodingOptionsForPicture = {
-         desiredAuxiliaryPictures: [image.AuxiliaryPictureType.GAINMAP] // GAINMAP为需要解码的辅助图类型
+         desiredAuxiliaryPictures: [image.AuxiliaryPictureType.GAINMAP] // GAINMAP为需要解码的辅助图类型。
       };
-      // 创建picture
+      // 创建picture。
       imageSource.createPicture(options).then((picture: image.Picture) => {
          console.log("Create picture succeeded.")
       }).catch((err: BusinessError) => {
@@ -126,16 +126,16 @@
 5. 对picture进行操作，如获取辅助图等。对于picture和辅助图的操作具体请参考[Image API参考文档](../../reference/apis-image-kit/js-apis-image.md#picture13)。
 
    ```ts
-   // 获取辅助图对象
+   // 获取辅助图对象。
    let type: image.AuxiliaryPictureType = image.AuxiliaryPictureType.GAINMAP;
    let auxPicture: image.AuxiliaryPicture | null = picture.getAuxiliaryPicture(type);
-   // 获取辅助图信息
+   // 获取辅助图信息。
    let auxinfo: image.AuxiliaryPictureInfo = auxPicture.getAuxiliaryPictureInfo();
    console.info('GetAuxiliaryPictureInfo Type: ' + auxinfo.auxiliaryPictureType +
       ' height: ' + auxinfo.size.height + ' width: ' + auxinfo.size.width +
       ' rowStride: ' +  auxinfo.rowStride +  ' pixelFormat: ' + auxinfo.pixelFormat +
       ' colorSpace: ' +  auxinfo.colorSpace);
-   // 将辅助图数据读到ArrayBuffer
+   // 将辅助图数据读到ArrayBuffer。
    auxPicture.readPixelsToBuffer().then((pixelsBuffer: ArrayBuffer) => {
       console.info('Read pixels to buffer success.');
    }).catch((error: BusinessError) => {
@@ -156,7 +156,7 @@
 
    ```ts
    const context : Context = getContext(this);
-   // 获取resourceManager资源管理
+   // 获取resourceManager资源管理。
    const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
    ```
 
@@ -166,7 +166,7 @@
      ```ts
       resourceMgr.getRawFileContent('test.jpg').then((fileData : Uint8Array) => {
          console.log("Succeeded in getting RawFileContent")
-         // 获取图片的ArrayBuffer
+         // 获取图片的ArrayBuffer。
          const buffer = fileData.buffer.slice(0);
          const imageSource : image.ImageSource = image.createImageSource(buffer);
       }).catch((err : BusinessError) => {
@@ -189,7 +189,7 @@
 
    ```ts
    let options: image.DecodingOptionsForPicture = {
-      desiredAuxiliaryPictures: [image.AuxiliaryPictureType.GAINMAP] // GAINMAP为需要解码的辅助图类型
+      desiredAuxiliaryPictures: [image.AuxiliaryPictureType.GAINMAP] // GAINMAP为需要解码的辅助图类型。
    };
    imageSource.createPicture(options).then((picture: image.Picture) => {
       console.log("Create picture succeeded.")
@@ -201,16 +201,16 @@
 4. 对picture进行操作，如获取辅助图等。对于picture和辅助图的操作具体请参考[Image API参考文档](../../reference/apis-image-kit/js-apis-image.md#picture13)。
 
    ```ts
-   // 获取辅助图对象
+   // 获取辅助图对象。
    let type: image.AuxiliaryPictureType = image.AuxiliaryPictureType.GAINMAP;
    let auxPicture: image.AuxiliaryPicture | null = picture.getAuxiliaryPicture(type);
-   // 获取辅助图信息
+   // 获取辅助图信息。
    let auxinfo: image.AuxiliaryPictureInfo = auxPicture.getAuxiliaryPictureInfo();
    console.info('GetAuxiliaryPictureInfo Type: ' + auxinfo.auxiliaryPictureType +
       ' height: ' + auxinfo.size.height + ' width: ' + auxinfo.size.width +
       ' rowStride: ' +  auxinfo.rowStride +  ' pixelFormat: ' + auxinfo.pixelFormat +
       ' colorSpace: ' +  auxinfo.colorSpace);
-   // 将辅助图数据写入ArrayBuffer
+   // 将辅助图数据写入ArrayBuffer。
    auxPicture.readPixelsToBuffer().then((pixelsBuffer: ArrayBuffer) => {
       console.info('Read pixels to buffer success.');
    }).catch((error: BusinessError) => {
