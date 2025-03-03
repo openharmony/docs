@@ -901,10 +901,6 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void
 | 14400008 | No such device (it may have been disconnected). |
 | 14400009 | Insufficient memory. |
 | 14400012 | Transmission I/O error. |
-| 88080482 | The value is invalid for the service. |
-| 88080385 | Failed to initialize the interface. |
-| 88080392 | Failed to write interface parcel. |
-| 88080497 | Failed to initialize or assign value to the pointer. |
 
 **示例：**
 
@@ -988,10 +984,6 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;
 | 14400008 | No such device (it may have been disconnected). |
 | 14400010 | Other USB error. Possible causes:<br>1.Unrecognized discard error code. |
 | 14400011 | The transfer is not in progress, or is already complete or cancelled.|
-| 88080392 | Failed to write interface parcel. |
-| 88080482 | The value is invalid for the service. |
-| 88080484 | Permisson denied. |
-| 88080497 | Failed to initialize or assign value to the pointer. |
 
 **返回值：**
 
