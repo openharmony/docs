@@ -102,7 +102,7 @@
           - [PersistenceV2: 持久化存储UI状态](quick-start/arkts-new-persistencev2.md)
           - [!!语法：双向绑定](quick-start/arkts-new-binding.md)
           - [自定义组件冻结功能](quick-start/arkts-custom-components-freezeV2.md)
-          - [Repeat：子组件复用](quick-start/arkts-new-rendering-control-repeat.md)
+          - [Repeat：可复用的循环渲染](quick-start/arkts-new-rendering-control-repeat.md)
           - [getTarget接口：获取状态管理框架代理前的原始对象](quick-start/arkts-new-getTarget.md)
           - [makeObserved接口：将非观察数据变为可观察数据](quick-start/arkts-new-makeObserved.md)
         - [MVVM模式（状态管理V2）](quick-start/arkts-mvvm-V2.md)
@@ -1083,6 +1083,7 @@
             - [NetConnection开发指导(C/C++)](network/native-netmanager-guidelines.md)
             - [流量管理](network/net-statistics.md)
             - [VPN应用开发指南](network/net-vpnExtension.md)
+            - [网络防火墙](network/net-netfirewall.md)
           <!--Del-->
             - [网络防火墙（仅对系统应用开放）](network/net-netfirewall.md)
             - [网络共享（仅对系统应用开放）](network/net-sharing.md)
@@ -1171,6 +1172,7 @@
       - Multimodal Awareness Kit（多模态融合感知服务）<!--multimodal-awareness-kit-->
         - [Multimodal Awareness Kit简介](device/stationary/multimodalawareness-kit-intro.md)
         - [Stationary开发指导](device/stationary/stationary-guidelines.md)
+        - [获取用户动作开发指导](device/stationary/motion-guidelines.md)
       - Sensor Service Kit（传感器服务）<!--sensor-service-kit-->
         - [Sensor Service Kit开发简介](device/sensor/sensorservice-kit-intro.md)
         - 传感器<!--sensor-->
@@ -2076,6 +2078,7 @@
         - [@ohos.data.uniformDataStruct (标准化数据结构)](reference/apis-arkdata/js-apis-data-uniformDataStruct.md)
         - [@ohos.data.uniformTypeDescriptor (标准化数据定义与描述)](reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md)
         - [@ohos.data.ValuesBucket (数据集)](reference/apis-arkdata/js-apis-data-valuesBucket.md)
+        - [@ohos.data.intelligence (智慧数据平台)](reference/apis-arkdata/js-apis-data-intelligence.md)
         <!--Del-->
         - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)(系统接口)](reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)
         <!--DelEnd-->
@@ -2143,6 +2146,7 @@
         - [分布式键值数据库错误码](reference/apis-arkdata/errorcode-distributedKVStore.md)
         - [用户首选项错误码](reference/apis-arkdata/errorcode-preferences.md)
         - [统一数据管理框架错误码](reference/apis-arkdata/errorcode-udmf.md)
+        - [智慧数据平台错误码](reference/apis-arkdata/errorcode-intelligence.md)
     - ArkTS（方舟编程语言）<!--arkts-api-->
       - ArkTS API<!--arkts-arkts-->
         - [@arkts.collections (ArkTS容器集)](reference/apis-arkts/js-apis-arkts-collections.md)
@@ -2268,6 +2272,7 @@
             - [组件快捷键事件](reference/apis-arkui/arkui-ts/ts-universal-events-keyboardshortcut.md)
             - [自定义事件分发](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-child-touch-test.md)
             - [自定义事件拦截](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-touch-intercept.md)
+            - [焦点轴事件](reference/apis-arkui/arkui-ts/ts-universal-events-focus_axis.md)
           - [通用属性](reference/apis-arkui/arkui-ts/ts-component-general-attributes.md)
             - [尺寸设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)
             - [位置设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md)
@@ -2378,6 +2383,7 @@
           - [List (系统接口)](reference/apis-arkui/arkui-ts/ts-container-list-sys.md)
           <!--DelEnd-->
         - 导航与切换<!--navigation-and-switching-->
+          - [Indicator](reference/apis-arkui/arkui-ts/ts-swiper-components-indicator.md)
           - [Navigation](reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)
           - [NavDestination](reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md)
           - [MultiNavigation](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-MultiNavigation.md)
@@ -2777,6 +2783,7 @@
             - [native_gesture.h](reference/apis-arkui/native__gesture_8h.md)
             - [native_interface.h](reference/apis-arkui/native__interface_8h.md)
             - [native_interface_accessibility.h](reference/apis-arkui/native__interface__accessibility_8h.md)
+            - [native_interface_focus.h](reference/apis-arkui/native__interface__focus_8h.md)
             - [native_interface_xcomponent.h](reference/apis-arkui/native__interface__xcomponent_8h.md)
             - [native_key_event.h](reference/apis-arkui/native__key_event_8h.md)
             - [native_node.h](reference/apis-arkui/native__node_8h.md)
@@ -3278,6 +3285,7 @@
           - [@ohos.net.vpn (VPN管理)](reference/apis-network-kit/js-apis-net-vpn.md)
           - [@ohos.net.webSocket (WebSocket连接)](reference/apis-network-kit/js-apis-webSocket.md)
           - [@ohos.net.networkSecurity (Network Security)](reference/apis-network-kit/js-apis-networkSecurity.md)
+          - [@ohos.net.netFirewall (网络防火墙)](reference/apis-network-kit/js-apis-net-netfirewall.md)
           - [@ohos.app.ability.VpnExtensionAbility(三方VPN能力)](reference/apis-network-kit/js-apis-VpnExtensionAbility.md)
           - [VpnExtensionContext](reference/apis-network-kit/js-apis-inner-application-VpnExtensionContext.md)
           <!--Del-->
@@ -3665,6 +3673,9 @@
       - Multimodal Awareness Kit（多模态融合感知服务）<!--multimodal-awareness-api-->
         - ArkTS API<!--multimodal-awareness-arkts-->
           - [@ohos.stationary (设备状态感知框架)](reference/apis-multimodalawareness-kit/js-apis-stationary.md)
+          - [@ohos.multimodalAwareness.motion (动作感知能力)](reference/apis-multimodalawareness-kit/js-apis-awareness-motion.md)
+        - 错误码<!--multimodal-awareness-arkts-errcode-->
+          - [行为动作感知错误码](reference/apis-multimodalawareness-kit/errorcode-motion.md)
       - Sensor Service Kit（传感器服务）<!--sensor-service-api-->
         - ArkTS API<!--sensor-service-arkts-->
           - [@ohos.sensor(传感器)](reference/apis-sensor-service-kit/js-apis-sensor.md)
