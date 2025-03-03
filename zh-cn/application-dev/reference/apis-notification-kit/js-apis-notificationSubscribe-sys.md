@@ -926,7 +926,7 @@ notificationSubscribe.removeAll(userId).then(() => {
 
 ## NotificationKey
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
 
