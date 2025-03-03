@@ -288,7 +288,7 @@ try {
     toolType: 0,
   }
 
-  let touchEventUpData: .TouchEvent = {
+  let touchEventUpData: TouchEvent = {
     action: 1,
     sourceType: 0,
     touch: touchEvent,
