@@ -114,6 +114,13 @@
 | int32_t [OH_ArkUI_PointerEvent_SetClonedEventChangedFingerId](#oh_arkui_pointerevent_setclonedeventchangedfingerid) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, int32_t fingerId) | 设置当前带有指向性的克隆输入事件的触摸点ID。  | 
 | int32_t [OH_ArkUI_PointerEvent_SetClonedEventFingerIdByIndex](#oh_arkui_pointerevent_setclonedeventfingeridbyindex) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, int32_t fingerId, int32_t pointerIndex) | 设置带有指向性的克隆输入事件特定接触点的触摸点ID。  | 
 | int32_t [OH_ArkUI_PointerEvent_PostClonedEvent](#oh_arkui_pointerevent_postclonedevent) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) \*node, const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 转发克隆事件到特定节点。  | 
+| int64_t [OH_ArkUI_PointerEvent_GetPressedTimeByIndex](#oh_arkui_pointerevent_getpressedtimebyindex) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, int32_t pointerIndex) | 获取特定触摸点的按压时间。  | 
+| float [OH_ArkUI_MouseEvent_GetRawDeltaX](#oh_arkui_mouseevent_getrawdeltax) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取X轴相对于前一个上报的鼠标事件的鼠标指针位置的偏移量。当鼠标指针位于屏幕边缘时，该值可能小于两次上报的X坐标的差。  | 
+| float [OH_ArkUI_MouseEvent_GetRawDeltaY](#oh_arkui_mouseevent_getrawdeltay) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取相对于前一个上报的鼠标事件的鼠标指针位置的Y轴偏移量。当鼠标指针位于屏幕边缘时，该值可能小于两次上报的Y坐标的差。  | 
+| int32_t [OH_ArkUI_MouseEvent_GetPressedButtons](#oh_arkui_mouseevent_getpressedbuttons) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, int32_t* pressedButtons, int32_t* length) | 从鼠标事件中获取按下的按钮。  | 
+| int32_t [OH_ArkUI_UIInputEvent_GetTargetDisplayId](#oh_arkui_uiinputevent_gettargetdisplayid) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取发生UI输入事件的屏幕ID。 | 
+| int32_t [OH_ArkUI_AxisEvent_SetPropagation](#oh_arkui_axisevent_setpropagation)(const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, bool propagation) | 设置是否激活轴事件冒泡。|
+| int32_t [OH_ArkUI_AxisEvent_GetScrollStep](#oh_arkui_axisevent_getscrollstep)(const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取鼠标滚轮轴滚动步长配置。|
 
 
 ## 类型定义说明
@@ -317,7 +324,7 @@ enum ArkUI_InteractionHand
 
 定义事件是由左手点击触发还是右手点击触发。
 
-**起始版本：** 16
+**起始版本：** 15
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -1517,6 +1524,119 @@ int32_t OH_ArkUI_FocusAxisEvent_SetStopPropagation (const ArkUI_UIInputEvent * e
 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
+### OH_ArkUI_PointerEvent_GetPressedTimeByIndex()
+
+```
+int64_t OH_ArkUI_PointerEvent_GetPressedTimeByIndex (const ArkUI_UIInputEvent* event, uint32_t pointerIndex)
+```
+**描述：**
+
+获取特定触摸点的按压时间。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。  | 
+| pointerIndex | 指示多点触控数据列表中目标触控点的索引。  | 
+
+**返回：**
+
+返回特定触摸点的按下时间；如果发生任何参数错误，则返回0。
+
+
+### OH_ArkUI_MouseEvent_GetRawDeltaX()
+
+```
+float OH_ArkUI_MouseEvent_GetRawDeltaX (const ArkUI_UIInputEvent* event)
+```
+**描述：**
+
+获取X轴相对于前一个上报的鼠标事件的鼠标指针位置的偏移量。当鼠标指针位于屏幕边缘时，该值可能小于两次上报的X坐标的差。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。  | 
+
+**返回：**
+
+返回相对于前一个上报的鼠标事件的鼠标指针位置的X轴偏移量；如果发生任何参数错误，则返回0.0f。
+
+
+### OH_ArkUI_MouseEvent_GetRawDeltaY()
+
+```
+float OH_ArkUI_MouseEvent_GetRawDeltaY (const ArkUI_UIInputEvent* event)
+```
+**描述：**
+
+获取Y轴相对于前一个上报的鼠标事件的鼠标指针位置的偏移量。当鼠标指针位于屏幕边缘时，该值可能小于两次上报的Y坐标的差。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。  | 
+
+**返回：**
+
+返回相对于前一个上报的鼠标事件的鼠标指针位置的Y轴偏移量；如果发生任何参数错误，则返回0.0f。
+
+
+### OH_ArkUI_MouseEvent_GetPressedButtons()
+
+```
+int32_t OH_ArkUI_MouseEvent_GetPressedButtons (const ArkUI_UIInputEvent* event, int32_t* pressedButtons, int32_t* length)
+```
+**描述：**
+
+从鼠标事件中获取按下的按钮。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。  | 
+| pressedButtons | 指示按下按钮的列表。需要先创建一个int数组，用来储存按下的按钮。 |
+| length | 作为输入参数表示传入的pressedButtons数组长度，作为输出参数表示实际按下按键的个数。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。[ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR](_ark_u_i___native_module.md) 给定的缓冲区不够。
+
+
+### OH_ArkUI_UIInputEvent_GetTargetDisplayId()
+
+```
+int32_t OH_ArkUI_UIInputEvent_GetTargetDisplayId (const ArkUI_UIInputEvent* event)
+```
+**描述：**
+
+获取发生UI输入事件的屏幕ID。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。  | 
+
+**返回：**
+
+返回屏幕ID；如果发生任何参数错误，则返回0。
+
+
 ### OH_ArkUI_PointerEvent_GetInteractionHand()
 
 ```
@@ -1526,7 +1646,7 @@ int32_t OH_ArkUI_PointerEvent_GetInteractionHand (const ArkUI_UIInputEvent * eve
 
 获取当前触摸事件是左手点击触发还是右手点击触发。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
@@ -1549,7 +1669,7 @@ int32_t OH_ArkUI_PointerEvent_GetInteractionHandByIndex (const ArkUI_UIInputEven
 
 获取当前触摸事件是左手点击触发还是右手点击触发。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
@@ -1914,3 +2034,48 @@ int32_t OH_ArkUI_PointerEvent_PostClonedEvent(ArkUI_NodeHandle node, const ArkUI
 [ARKUI_ERROR_CODE_NON_CLONED_POINTER_EVENT](_ark_u_i___native_module.md) 输入的事件指针不是克隆事件。
 [ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL](_ark_u_i___native_module.md) 组件状态异常。
 [ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT](_ark_u_i___native_module.md) 未命中可响应事件的组件。
+
+
+### OH_ArkUI_AxisEvent_SetPropagation()
+
+```
+int32_t OH_ArkUI_AxisEvent_SetPropagation (const ArkUI_UIInputEvent * event, bool propagation)
+```
+**描述：**
+
+设置是否激活轴事件冒泡。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。 | 
+| propagation | 表示是否激活事件冒泡。  | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+
+### OH_ArkUI_AxisEvent_GetScrollStep()
+
+```
+int32_t OH_ArkUI_AxisEvent_GetScrollStep (const ArkUI_UIInputEvent * event)
+```
+**描述：**
+
+获取鼠标滚轮轴滚动步长配置。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 指向 ArkUI_UIInputEvent事件指针。 | 
+
+**返回：**
+
+返回鼠标滚轮轴滚动步长配置。

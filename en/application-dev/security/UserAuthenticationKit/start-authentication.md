@@ -61,6 +61,7 @@ The user authentication widget supports the following types of authentication:
 - Facial + fingerprint + lock screen password authentication
 
 > **NOTE**
+>
 > Currently, the text on the navigation button (**WidgetParam.navigationButtonText**) can be set only for a single fingerprint or facial authentication.
 
 

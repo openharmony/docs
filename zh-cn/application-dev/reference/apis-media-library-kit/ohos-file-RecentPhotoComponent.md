@@ -168,14 +168,14 @@ struct PickerDemo {
   }
 
   private onRecentPhotoCheckResult(recentPhotoExists: boolean): void {
-    // 存在符合条件的照片或视频
+    // 存在符合条件的照片或视频。
     if (recentPhotoExists) {
       console.info('The photo is exist.');
     }
   }
 
   private onRecentPhotoClick(recentPhotoInfo: BaseItemInfo): boolean {
-    // 照片或视频返回
+    // 照片或视频返回。
     if (recentPhotoInfo) {
       console.info('The photo uri is ' + recentPhotoInfo.uri);
       return true;
@@ -184,7 +184,7 @@ struct PickerDemo {
   }
 
   private onRecentPhotoCheckResult(recentPhotoExists: boolean, info: RecentPhotoInfo): void {
-    // 是否存在符合条件的照片或视频，若存在则可以拿到该照片或视频的相关信息
+    // 是否存在符合条件的照片或视频，若存在则可以拿到该照片或视频的相关信息。
   }
 
   build() {

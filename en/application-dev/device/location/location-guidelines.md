@@ -12,8 +12,6 @@ The following table lists the APIs used to obtain the device location informatio
 
 This module supports only the WGS-84 coordinate system.
 
-**Table 2** APIs for obtaining device location information
-
 | API| Description| 
 | -------- | -------- |
 | [on(type: 'locationChange', request: LocationRequest &#124; ContinuousLocationRequest, callback: Callback&lt;Location&gt;): void](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanageronlocationchange) | Registers a listener for location changes with a location request initiated.| 

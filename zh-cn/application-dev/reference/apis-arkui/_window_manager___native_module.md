@@ -813,7 +813,7 @@ int32_t OH_WindowManager_Snapshot (int32_t windowId, OH_PixelmapNative * pixelMa
 
 | 名称 | 描述 |
 | -------- | -------- |
-| windowId | 创建窗口时的窗口id。默认值为0。该参数为整数。 |
+| windowId | 创建窗口时的窗口id。默认值为0。该参数为整数。窗口id非法或者窗口已经销毁，不能获取指定窗口截图，需要传入有效的窗口id才能成功获取指定窗口截图。请通过窗口对象调用getWindowProperties接口（ArkTS接口）获取有效的窗口id。 |
 | pixelMap | 返回指向指定窗口的截图的指针，作为出参使用。 |
 
 **返回：**

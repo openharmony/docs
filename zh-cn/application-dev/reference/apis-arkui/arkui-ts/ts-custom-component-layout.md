@@ -20,8 +20,8 @@ ArkUI框架会在自定义组件布局时，将该自定义组件的子节点自
 
 | 参数名            | 类型                                                         |必填| 说明               |
 |----------------|------------------------------------------------------------|---|------------------|
-| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            |是 |父组件布局信息。         |
-| children       | Array&lt;[Layoutable](#layoutable10)&gt;                   |是 |子组件布局信息。         |
+| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            |是 |测量后的自身布局信息。         |
+| children       | Array&lt;[Layoutable](#layoutable10)&gt;                   |是 |测量后的子组件布局信息。         |
 | constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) |是 |父组件constraint信息。 |
 
 **示例：**
@@ -42,8 +42,8 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 
 | 参数名         | 类型                                                       | 必填|说明                                                         |
 | -------------- | ---------------------------------------------------------- | ---|------------------------------------------------------------ |
-| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            | 是|父组件布局信息。                                             |
-| children       | Array&lt;[Measurable](#measurable10)&gt;                   | 是|子组件布局信息。<br/>**说明：** <br/>如果没有设置子组件的布局信息，子组件会维持上一次的布局信息，当子组件从来没有设置过尺寸时，尺寸默认为0。 |
+| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            | 是|测量后的自身布局信息。  <br/>**说明：** <br/>第一次布局时以自身设置的属性为准。                                    |
+| children       | Array&lt;[Measurable](#measurable10)&gt;                   | 是|测量后的子组件布局信息。<br/>**说明：** <br/>如果没有设置子组件的布局信息，子组件会维持上一次的布局信息，当子组件从来没有设置过尺寸时，尺寸默认为0。 |
 | constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 是|父组件constraint信息。                                       |
 
 **返回值：** 

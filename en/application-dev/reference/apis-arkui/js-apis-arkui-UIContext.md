@@ -327,7 +327,7 @@ struct AnimateToExample {
         })
         .onClick(() => {
           this.uiContext?.animateTo({ duration: 0 }, () => {
-            // The value of this.rotateAngle is 90 before the animation. In an animation with a duration of 0, changing the property stops any previous animations for that property and applies the new value immediately.
+            // Modify the property in the animation closure where duration is set to 0. This stops the previous animation and applies the new value.
             this.rotateAngle = 0
           })
         })
@@ -2314,7 +2314,7 @@ struct TabsExample {
         .height('100%')
         .barOverlap (true) // Make the tab bar overlap the TabContent component. This means that when the tab bar is hidden upwards or downwards, the area it occupies will not appear empty.
         .clip (true) // Clip any child components that extend beyond the Tabs component's boundaries, preventing accidental touches on the tab bar when it is hidden.
-      }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'Scroller linked with TabsControllers'))
+      }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'Scroller'))
 
       TabContent() {
         Scroll(this.parentScroller) {
@@ -2342,7 +2342,7 @@ struct TabsExample {
         .scrollBar(BarState.Off)
         .scrollable(ScrollDirection.Vertical)
         .edgeEffect(EdgeEffect.Spring)
-      }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'Nested Scroller linked with TabsController'))
+      }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'Nested Scroller'))
     }
     .width('100%')
     .height('100%')
@@ -8585,6 +8585,69 @@ struct CustomDialogUser {
   }
 }
 ```
+
+### setKeyProcessingMode<sup>15+</sup>
+
+setKeyProcessingMode(mode: KeyProcessingMode): void
+
+Sets the mode for processing key events.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------- | ------- | ------- | ------- |
+| mode | [KeyProcessingMode](./arkui-ts/ts-universal-attributes-focus.md#keyprocessingmode15)| Yes| Mode for processing key events.|
+
+```ts
+
+// This example demonstrates how to set the focus behavior after the page is loaded.
+@Entry
+@Component
+struct Index {
+
+  aboutToAppear() {
+    this.getUIContext().getFocusController().setKeyProcessingMode(KeyProcessingMode.ANCESTOR_EVENT)
+  }
+
+  build() {
+    Row() {
+      Row() {
+        Button('Button1').id('Button1').onKeyEvent((event) => {
+          console.log("Button1");
+          return true
+        })
+        Button('Button2').id('Button2').onKeyEvent((event) => {
+          console.log("Button2");
+          return true
+        })
+      }
+      .width('100%')
+      .height('100%')
+      .id('Row1')
+      .onKeyEventDispatch((event) => {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Button1');
+        return context.dispatchKeyEvent('Button1', event);
+      })
+    }
+    .height('100%')
+    .width('100%')
+    .onKeyEventDispatch((event) => {
+      if (event.type == KeyType.Down) {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Row1');
+        return context.dispatchKeyEvent('Row1', event);
+      }
+      return true;
+    })
+  }
+}
+```
+
 ## PointerStyle<sup>12+</sup>
 
 type PointerStyle = pointer.PointerStyle
@@ -9933,11 +9996,11 @@ struct MarqueeExample {
   }
 }
 ```
-## dispatchKeyEvent<sup>16+</sup>
+## dispatchKeyEvent<sup>15+</sup>
 
 Dispatches a key event to the specified component. To ensure predictable behavior, the target component must be within the subtree of the dispatching component.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

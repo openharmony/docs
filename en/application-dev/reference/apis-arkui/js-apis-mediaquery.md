@@ -49,7 +49,7 @@ Sets the media query condition. This API returns the corresponding media query l
 ```ts
 import { mediaquery } from '@kit.ArkUI';
 
-let listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
+let listener:mediaquery.MediaQueryListener = this.getUIContext().getMediaQuery().matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
 ```
 
 

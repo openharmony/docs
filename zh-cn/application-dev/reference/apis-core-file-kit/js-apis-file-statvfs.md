@@ -1,6 +1,6 @@
 # @ohos.file.statvfs (文件系统空间统计)
 
-该模块提供文件系统相关存储信息的功能，向应用程序提供获取文件系统总字节数、空闲字节数的JS接口。
+该模块提供文件系统相关存储信息的功能：向应用程序提供获取文件系统总字节数、空闲字节数的JS接口。
 
 > **说明：**
 >
@@ -231,3 +231,4 @@ getTotalSizeSync(path: string): number
   let number = statfs.getTotalSizeSync(path);
   console.info("getTotalSizeSync succeed, Size: " + number);
   ```
+  

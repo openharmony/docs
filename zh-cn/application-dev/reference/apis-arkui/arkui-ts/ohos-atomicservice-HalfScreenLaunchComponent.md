@@ -45,7 +45,7 @@ HalfScreenLaunchComponent({
 | appId | string | 是 | - | 原子化服务appId。 |
 | options | [AtomicServiceOptions](../../apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md) | 否 | - | 拉起原子化服务参数，默认为空。 |
 | onError |[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否 | - | 被拉起的原子化服务扩展在运行过程中发生异常时触发本回调。 |
-| onTerminated | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](ts-container-ui-extension-component-sys.md#terminationinfo12)> | 否 | - |  回调函数，入参用于接收原子化服务的返回结果，类型为[TerminationInfo](ts-container-ui-extension-component-sys.md#terminationinfo12)。 |
+| onTerminated | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<TerminationInfo> | 否 | - |  回调函数，入参用于接收原子化服务的返回结果，类型为TerminationInfo。 |
 
 ## 示例
 

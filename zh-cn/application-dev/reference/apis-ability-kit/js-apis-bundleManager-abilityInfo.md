@@ -20,8 +20,8 @@ Ability信息，三方应用可以通过[bundleManager.getBundleInfoForSelf](js-
 | descriptionId         | number                                                   | 是   | 否   | Ability的描述资源id。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | icon                  | string                                                   | 是   | 否   | Ability的图标资源描述符，如"icon": "$media:icon"。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | iconId                | number                                                   | 是   | 否   | Ability的图标资源id。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| process               | string                                                   | 是   | 否   | Ability的进程，如果不设置，默认为包的名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| exported             | boolean                                                  | 是   | 否   | 判断Ability是否可以被其他应用调用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| process               | string                                                   | 是   | 否   | Ability的进程名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| exported             | boolean                                                  | 是   | 否   | 判断Ability是否可以被其他应用调用，取值为true表示Ability可以被其他应用调用，取值为false表示Ability不可以被其他应用调用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | type                  | [bundleManager.AbilityType](js-apis-bundleManager.md#abilitytype)      | 是   | 否   | Ability类型。<br />**模型约束：** 此接口仅可在FA模型下使用。 |
 | orientation           | [bundleManager.DisplayOrientation](js-apis-bundleManager.md#displayorientation)  | 是   | 否   | Ability的显示模式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | launchType            | [bundleManager.LaunchType](js-apis-bundleManager.md#launchtype)        | 是   | 否   | Ability的启动模式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -32,10 +32,10 @@ Ability信息，三方应用可以通过[bundleManager.getBundleInfoForSelf](js-
 | deviceTypes           | Array\<string>                                           | 是   | 否   | Ability支持的设备类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | applicationInfo       | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md)     | 是   | 否   | 应用程序的配置信息，通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY和GET_BUNDLE_INFO_WITH_APPLICATION获取。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | metadata              | Array\<[Metadata](js-apis-bundleManager-metadata.md)>           | 是   | 否   | Ability的元信息，通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY和GET_BUNDLE_INFO_WITH_METADATA获取。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| enabled               | boolean                                                  | 是   | 否   | Ability是否可用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| enabled               | boolean                                                  | 是   | 否   | Ability是否可用，取值为true表示Ability可用，取值为false表示Ability不可用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | supportWindowModes    | Array\<[bundleManager.SupportWindowMode](js-apis-bundleManager.md#supportwindowmode)> | 是   | 否   | Ability支持的窗口模式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | windowSize|[WindowSize](#windowsize)                                            |    是   | 否   | Ability窗口尺寸。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| excludeFromDock<sup>12+</sup>             | boolean                                                  | 是   | 否   | 判断Ability是否可以在dock区域隐藏图标。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| excludeFromDock<sup>12+</sup>             | boolean                                                  | 是   | 否   | 判断Ability是否可以在dock区域隐藏图标，取值为true表示可以隐藏，取值为false不可以隐藏。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | skills<sup>12+</sup>             | Array\<[Skill](js-apis-bundleManager-skill.md)>                                                 | 是   | 否   | Ability的Skills信息。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 | appIndex<sup>12+</sup>    | number    | 是   | 否   | 应用包的分身索引标识，仅在分身应用中生效。 |
 | orientationId<sup>14+</sup>    | number      | 是   | 否   | Ability的显示模式资源id。当orientationId不为0时表示当前显示模式为自定义配置，需要使用orientationId去资源管理获取对应的资源。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |

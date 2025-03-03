@@ -1,5 +1,5 @@
-# ArkTS Utils Overview
+# Overview of the ArkTS Common Library
 
-The ArkTS base class library is a collection of APIs with comprehensive functions and a series of key and practical functional modules.
+The ArkTS common library is a rich set of APIs designed to provide a series of essential and practical functional modules.
 
-The ArkTS basic class library mainly provides [XML generation, parsing, and conversion](xml-overview.md), [binary buffer](buffer.md), [multiple container class libraries](container-overview.md), and [URL string parsing](../reference/apis-arkts/js-apis-url.md), and [high-precision floating-point computing](../reference/apis-arkts/js-apis-arkts-decimal.md) to help developers simplify development and improve development efficiency.
+The ArkTS common library mainly provides [XML generation, parsing, and conversion](xml-overview.md), [binary buffers](buffer.md), [multiple container libraries](container-overview.md), and [URL string parsing](../reference/apis-arkts/js-apis-url.md), and [high-precision floating-point operating](../reference/apis-arkts/js-apis-arkts-decimal.md) to help you streamline your work and boost your efficiency.

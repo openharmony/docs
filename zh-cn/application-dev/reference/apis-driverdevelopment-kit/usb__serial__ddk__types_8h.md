@@ -13,7 +13,7 @@
 
 **起始版本：** 16
 
-**相关模块：**[Serial DDK](_serial_ddk.md)
+**相关模块：**[USB Serial DDK](_serial_ddk.md)
 
 
 ## 汇总

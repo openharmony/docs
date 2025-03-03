@@ -4566,6 +4566,20 @@
 
 **起始版本**：16
 
+### ohos.permission.ACCESS_STARTUPGUIDE
+
+允许系统应用访问开机向导应用的普通数据、普通公共事件。
+
+仅手机、平板、2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -4835,6 +4849,54 @@
 **授权方式**：system_grant
 
 **ACL使能**：false
+
+**起始版本**：16
+
+### ohos.permission.ACCESS_USER_ACCOUNT_INFO
+
+允许系统应用获取账号提供的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：false
+
+**起始版本**：16
+
+### ohos.permission.ACCESS_DEVAUTH_CRED_MGR
+
+允许系统应用或系统服务访问设备互信认证SA的凭据管理模块。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.ACCESS_DEVAUTH_CRED_PRIVILEGE
+
+允许系统应用或系统服务访问设备互信认证SA的凭据管理模块和凭据认证模块并查询和认证其他业务凭据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.ACCESS_DEVAUTH_CRED_AUTH
+
+允许系统应用或系统服务访问设备互信认证SA的凭据认证模块。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
 
 **起始版本**：16
 

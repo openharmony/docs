@@ -32,6 +32,8 @@ TaskPool支持开发者在宿主线程封装任务抛给任务队列，系统选
 
 - 不支持在TaskPool工作线程中使用[AppStorage](../quick-start/arkts-appstorage.md)。
 
+- TaskPool支持开发者在宿主线程封装任务抛给任务队列，理论上可以支持任意多的任务，但任务的执行受限于任务的优先级以及系统资源的影响，在工作线程扩容到最大后，可能会导致任务的执行效率下降。
+
 ## \@Concurrent装饰器
 
 在使用[TaskPool](../reference/apis-arkts/js-apis-taskpool.md)时，执行的并发函数需要使用该装饰器修饰，否则无法通过相关校验。

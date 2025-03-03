@@ -8,21 +8,23 @@
 
 **变更原因**
 
-当使用router.replace、router.back或router.clear接口进行页面跳转时，原页面将被销毁，页面上的所有节点将被标记为InDestroying。变更后，此过程将不再触发布局和绘制流程。由于命令式节点无法清除InDestroying标志位，因此在新页面上复用这些节点时，无法显示更新后的内容。
+当使用router.replace、router.back或router.clear接口进行页面跳转时，原页面将被销毁，页面上的所有节点将被标记为InDestroying，无法在后续的流程中进行布局和绘制。由于命令式节点无法清除InDestroying标志位，因此在新页面上复用这些节点时，无法显示更新后的内容。
 
 **变更影响**
 
-此变更涉及应用适配，以下生命周期接口的行为将会受到影响。如果开发者在这些生命周期接口中实现了业务代码，由于变更前后的不同，通过BuilderNode进行跨页面复用时，生命周期接口的触发情况存在差异。若想保持原有的业务行为，则需要进行相应的适配。
+此变更涉及应用适配。
 
-| 模块            | 变更说明                                                                                                                                                                                                                                                                                                                                                                                        |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| FrameNode       | 使用router.replace、router.back或router.clear发生页面跳转后，被复用的FrameNode无法在新页面中进行布局和绘制，变更前onMeasure、onLayout和onDraw生命周期函数不触发，变更后将会触发。                                                                                                                                                                                                               |
-| RenderNode      | 使用router.replace、router.back或router.clear发生页面跳转后，被复用的RenderNode无法在新页面中进行绘制，draw回调接口不触发，变更后将会触发。                                                                                                                                                                                                                                                     |
-| CustomSpan      | 使用router.replace、router.back或router.clear发生页面跳转后，被复用的CustomSpan无法在新页面中进行布局和绘制，onMeasure和onDraw生命周期函数不触发，变更后将会触发。                                                                                                                                                                                                                              |
-| CustomComponent | 使用router.replace、router.back或router.clear发生页面跳转后，当自定义组件CustomComponent用于BuilderNode进行复用时，自定义组件无法在新页面中进行布局，onMeasureSize生命周期函数不触发，变更后将会触发。                                                                                                                                                                                          |
-| LazyForEach     | 使用router.replace、router.back或router.clear发生页面跳转后，当LazyForEach用于BuilderNode进行复用时，BuilderNode无法在新页面中进行布局，getData不触发。                                                                                                                                                                                                                                         |
-| DrawModifier    | 使用router.replace、router.back或router.clear发生页面跳转后，在BuilderNode中使用的DrawModifier，由于BuilderNode及其子节点无法在新页面中进行布局和绘制，drawFront、drawContent和drawBehind生命周期函数不触发，变更后将会触发。                                                                                                                                                                   |
-| C API           | 使用router.replace、router.back或router.clear发生页面跳转后，当C API自定义组件用于BuilderNode进行复用时，由于BuilderNode及其子节点无法在新页面中进行布局和绘制，ARKUI_NODE_CUSTOM_EVENT_ON_MEASURE、ARKUI_NODE_CUSTOM_EVENT_ON_LAYOUT、ARKUI_NODE_CUSTOM_EVENT_ON_DRAW、ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW、ARKUI_NODE_CUSTOM_EVENT_ON_OVERLAY_DRAW生命周期函数不触发，变更后将会触发。 |
+以下生命周期接口的行为将会受到影响。如果开发者在这些生命周期接口中实现了业务代码，由于变更前后的不同，通过BuilderNode进行跨页面复用时，生命周期接口的触发情况存在差异。若想保持原有的业务行为，则需要进行相应的适配。
+
+| 模块            | 变更前                                                                                                                                                                                                                                                                                                                                                                          | 变更后                                                                                                                                                                                                                                                                                                                                                                        |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FrameNode       | 使用router.replace、router.back或router.clear发生页面跳转后，被复用的FrameNode无法在新页面中进行布局和绘制，onMeasure、onLayout和onDraw生命周期函数不触发                                                                                                                                                                                                                       | 使用router.replace、router.back或router.clear发生页面跳转后，被复用的FrameNode能够在新页面中进行布局和绘制，onMeasure、onLayout和onDraw生命周期函数将会触发。                                                                                                                                                                                                                 |
+| RenderNode      | 使用router.replace、router.back或router.clear发生页面跳转后，被复用的RenderNode无法在新页面中进行绘制，draw回调接口不触发。                                                                                                                                                                                                                                                     | 使用router.replace、router.back或router.clear发生页面跳转后，被复用的RenderNode能够在新页面中进行绘制，draw回调接口将会触发。                                                                                                                                                                                                                                                 |
+| CustomSpan      | 使用router.replace、router.back或router.clear发生页面跳转后，被复用的CustomSpan无法在新页面中进行布局和绘制，onMeasure和onDraw生命周期函数不触发。                                                                                                                                                                                                                              | 使用router.replace、router.back或router.clear发生页面跳转后，被复用的CustomSpan能够在新页面中进行布局和绘制，onMeasure和onDraw生命周期函数将会触发。                                                                                                                                                                                                                          |
+| CustomComponent | 使用router.replace、router.back或router.clear发生页面跳转后，当自定义组件CustomComponent用于BuilderNode进行复用时，自定义组件无法在新页面中进行布局，onMeasureSize生命周期函数不触发。                                                                                                                                                                                          | 使用router.replace、router.back或router.clear发生页面跳转后，当自定义组件CustomComponent用于BuilderNode进行复用时，自定义组件能够在新页面中进行布局，onMeasureSize生命周期函数将会触发。                                                                                                                                                                                      |
+| LazyForEach     | 使用router.replace、router.back或router.clear发生页面跳转后，当LazyForEach用于BuilderNode进行复用时，BuilderNode无法在新页面中进行布局，getData不触发。                                                                                                                                                                                                                         | 使用router.replace、router.back或router.clear发生页面跳转后，当LazyForEach用于BuilderNode进行复用时，BuilderNode能够在新页面中进行布局，getData将会触发。                                                                                                                                                                                                                     |
+| DrawModifier    | 使用router.replace、router.back或router.clear发生页面跳转后，在BuilderNode中使用的DrawModifier，由于BuilderNode及其子节点无法在新页面中进行布局和绘制，drawFront、drawContent和drawBehind生命周期函数不触发。                                                                                                                                                                   | 使用router.replace、router.back或router.clear发生页面跳转后，在BuilderNode中使用的DrawModifier，BuilderNode及其子节点能够在新页面中进行布局和绘制，drawFront、drawContent和drawBehind生命周期函数将会触发。                                                                                                                                                                   |
+| C API           | 使用router.replace、router.back或router.clear发生页面跳转后，当C API自定义组件用于BuilderNode进行复用时，由于BuilderNode及其子节点无法在新页面中进行布局和绘制，ARKUI_NODE_CUSTOM_EVENT_ON_MEASURE、ARKUI_NODE_CUSTOM_EVENT_ON_LAYOUT、ARKUI_NODE_CUSTOM_EVENT_ON_DRAW、ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW、ARKUI_NODE_CUSTOM_EVENT_ON_OVERLAY_DRAW生命周期函数不触发。 | 使用router.replace、router.back或router.clear发生页面跳转后，当C API自定义组件用于BuilderNode进行复用时，BuilderNode及其子节点能够在新页面中进行布局和绘制，ARKUI_NODE_CUSTOM_EVENT_ON_MEASURE、ARKUI_NODE_CUSTOM_EVENT_ON_LAYOUT、ARKUI_NODE_CUSTOM_EVENT_ON_DRAW、ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW、ARKUI_NODE_CUSTOM_EVENT_ON_OVERLAY_DRAW生命周期函数将会触发。 |
 
 **变更发生版本**
 
@@ -719,3 +721,276 @@
       }
     }
     ```
+
+## cl.arkui.2 Progress组件动态改变宽高时，内容区宽高变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+容器宽高改变，Progress组件内容区未能实时触发刷新，需要更新别的属性后宽高才会改变。
+
+**变更影响**
+
+此变更无需应用适配。
+
+| 变更前                                                                                                                                                        | 变更后                                                                                                                |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| 当容器的宽度或高度发生变化时，Progress组件的内容区域未能实时更新。需要更改其他属性后，其尺寸才会相应调整。<br>![progress_before](figures/progress_before.png) | 当容器的宽高发生变化时，Progress组件的内容区域宽高也会随之相应调整。<br>![progress_after](figures/progress_after.png) |
+
+**起始API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony 5.1.0.53 版本开始。
+
+**变更的接口/组件**
+
+Progress。
+
+**适配指导**
+
+展示效果变更，无需适配，但应注意变更后的效果是否符合开发者预期。
+
+## cl.arkui.3 无障碍绿框绘制区域和聚焦区域修改为组件触摸热区
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+无论是否开启无障碍，触碰操作控件的范围都应保持一致，无需为无障碍单独定义操控范围。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+- 变更前：无障碍绿框绘制区域、聚焦区域为组件区域。
+
+- 变更后：无障碍绿框绘制区域、聚焦区域为组件触摸热区。
+
+**起始API Level**
+
+16
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.53开始。
+
+**变更的接口/组件**
+
+arkui无障碍
+
+**适配指导**
+
+此处无需应用适配，热区显示大小的调整，无论是否配置热区，均为内部逻辑调整绿框显示位置或大小。
+
+## cl.arkui.4 拖拽缩放比例UX规则变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规范变更。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：通过设备栅格数来设置跟手图的大小。
+
+  | 设备大小 | 跟手图大小 |
+  | :------- | :--------- |
+  | 4栅格    | 2栅格      |
+  | 8栅格    | 3栅格      |
+  | 12栅格   | 4栅格      |
+
+变更后：根据不同类型设备的最短边来设置缩放规则。
+
+| 拖拽对象         | 判断规则                          | 缩放规则                                                                                                                               |
+| :--------------- | :-------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------- |
+| 图文选择跟随文本 | 设备最短边小于600vp。             | 跟手图最大高度不超过屏幕短边长度的1/2且最大宽度不超过屏幕短边长度，跟手图在超出限制时需按比例缩小，同时满足高度和宽度的限制条件。      |
+| 图文选择跟随文本 | 设备最短边大于600vp，小于840vp。  | 跟手图最大高度不超过屏幕短边长度的1/4且最大宽度不超过屏幕短边长度的1/2，跟手图在超出限制时需按比例缩小，同时满足高度和宽度的限制条件。 |
+| 图文选择跟随文本 | 设备最短边大于840vp，小于1440vp。 | 跟手图最大高度不超过屏幕短边长度的1/3且最大宽度不超过屏幕短边长度的2/3，跟手图在超出限制时需按比例缩小，同时满足高度和宽度的限制条件。 |
+| 图文选择跟随文本 | 设备最短边大于1440vp。            | 跟手图最大高度不超过屏幕短边长度的1/3且最大宽度不超过屏幕短边长度的2/3，跟手图在超出限制时需按比例缩小，同时满足高度和宽度的限制条件。 |
+| 图片拖拽缩放     | 设备最短边小于600vp。             | 跟手图最大高度不超过屏幕短边长度的1/2且最大宽度不超过屏幕短边长度的1/2，跟手图在超出限制时需按比例缩小，同时满足高度和宽度的限制条件。 |
+| 图片拖拽缩放     | 设备最短边大于600vp，小于840vp。  | 跟手图最大高度不超过屏幕短边长度的1/4且最大宽度不超过屏幕短边长度的1/4，跟手图在超出限制时需按比例缩小，同时满足高度和宽度的限制条件。 |
+| 图片拖拽缩放     | 设备最短边大于840vp，小于1440vp。 | 跟手图最大高度不超过屏幕短边长度的1/3且最大宽度不超过屏幕短边长度的1/3，跟手图在超出限制时需按比例缩小，同时满足高度和宽度的限制条件。 |
+| 图片拖拽缩放     | 设备最短边大于1440vp。            | 跟手图最大高度不超过屏幕短边长度的1/3且最大宽度不超过屏幕短边长度的1/3，跟手图在超出限制时需按比例缩小，同时满足高度和宽度的限制条件。 |
+
+**起始API Level**
+
+13
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.53开始。
+
+**变更的接口/组件**
+
+UX规格变更，不涉及接口和组件。
+
+**适配指导**
+
+默认行为变更，无需适配。
+
+## cl.arkui.5 在使用手写笔操作时，应用从onTouch回调中获取到的TouchEvent，其中touches数组内的TouchObject的id值发生变更。
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+在手写笔场景下，TouchEvent中changedTouches数组内的TouchObject的id，与touches数组内的TouchObject的id不一致。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+- 变更前：在使用手写笔操作时，应用在onTouch回调中获取到的TouchEvent中，touches数组中TouchObject的id和changedTouches中的TouchObject的id不一致。
+  
+- 变更后：在使用手写笔操作时，应用在onTouch回调中获取到的TouchEvent中，touches数组中TouchObject的id和changedTouches中的TouchObject的id保持一致。
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.53开始。
+
+**变更的接口/组件**
+
+| 文件               | 接口                                       |
+| ------------------ | ------------------------------------------ |
+| common.d.ts        | onTouch回调中的TouchEvent                  |
+| common.d.ts        | onTouchIntercept回调中的TouchEvent         |
+
+**适配指导**
+
+默认行为变更，应用无需适配。
+
+## cl.arkui.6 tablet和2in1设备的onPageHide和onHidden生命周期函数变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+优化tablet和2in1设备的onPageHide和onHidden生命周期函数，确保函数内部修改状态变量时能够触发页面刷新，也能够触发状态变量的监听函数。
+
+**变更影响**
+
+此变更涉及应用适配。
+
+- 变更前：
+  1. 在onPageHide/onHidden中修改状态变量可能不会触发对应的监听函数，示例如下：
+     ```ts
+     @Component
+     struct TestComponent {
+       @Prop @Watch('onPageVisibilityChange') isPageShow: boolean;
+       onPageVisibilityChange(): void {
+         // 期望状态变量的修改会触发当前函数，实际不一定会触发。
+         console.log(`onPageVisibilityChange ${this.isPageShow}`)
+       }
+       build() {
+         Text('test')
+       }
+     }
+     @Component
+     struct DestA {
+       @State isPageShow: boolean = false;
+       build() {
+         NavDestination() {
+           Stack() {
+             TestComponent({isPageShow: this.isPageShow})
+           }
+         }.onShown(() => {
+           this.isPageShow = true;
+         })
+         .onHidden(() => {
+           // 退后台时会触发该生命周期，进一步改变状态变量
+           this.isPageShow = false;
+         })
+       }
+     }
+     @Entry
+     @Component
+     struct TestPage {
+       private stack: NavPathStack = new NavPathStack();
+       aboutToAppear(): void {
+         this.stack.pushPath({name: 'page'})
+       }
+       @Builder
+       MyPageMap(name: string) {
+         DestA()
+       }
+       build() {
+         Navigation(this.stack) {
+         }.hideNavBar(true)
+         .navDestination(this.MyPageMap)
+       }
+     }
+     ```
+  2. 在onPageHide/onHidden中修改状态变量可能不会刷新页面，示例如下：
+     ```ts
+     @Component
+     struct TestComponent {
+       build() {
+         Text('test1')
+       }
+       aboutToDisappear(): void {
+         console.log(`TestComponent aboutToDisappear`)
+       }
+     }
+     @Entry
+     @Component
+     struct TestPage {
+       @State isPageShow: boolean = true;
+       build() {
+         // 期望状态变量的修改会导致TestComponent会被销毁，实际不一定会被销毁。
+         if (this.isPageShow) {
+           TestComponent()
+         } else {
+           Text('test2')
+         }
+       }
+       onPageShow(): void {
+         this.isPageShow = true;
+       }
+       onPageHide(): void {
+         // 退后台时会触发该生命周期，进一步改变状态变量
+         this.isPageShow = false;
+       }
+     }
+     ```
+
+- 变更后：
+  1. 在onPageHide/onHidden中修改状态变量能够触发对应的监听函数；
+  2. 在onPageHide/onHidden中修改状态变量能够刷新页面。
+
+**起始API Level**
+
+onPageHide：API version 7，onHidden：API version 10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.53开始。
+
+**变更发生的接口/组件**
+
+[onPageHide](../../../application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpagehide)，所在文件：api/@internal/component/ets/common.d.ts；[onHidden](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md#onhidden10)，所在文件：api/@internal/component/ets/nav_destination.d.ts。
+
+**适配指导**
+
+仅**tablet**和**2ni1**设备需要做以下适配：
+检查是否在onPageHide/onHidden生命周期函数中修改状态变量，本次变更之后能够保证触发页面刷新，触发监听函数。

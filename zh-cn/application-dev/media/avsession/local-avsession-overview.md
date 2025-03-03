@@ -41,7 +41,7 @@ import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 例如，媒体会话提供方通过AVSessionManager创建媒体会话的示例如下所示：
  
 ```ts
-// 创建session
+// 创建session。
 let context: Context = getContext(this);
 async function createSession() {
   let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
@@ -52,12 +52,12 @@ async function createSession() {
 例如，媒体会话控制方通过AVSessionManager创建媒体会话控制器的示例如下所示：
 
 ```ts
-// 创建controller
+// 创建controller。
 async function createController() {
-  // 获取到所有存活session的描述符列表
+  // 获取到所有存活session的描述符列表。
   let descriptorsArray: Array<AVSessionManager.AVSessionDescriptor> = await AVSessionManager.getAllSessionDescriptors();
   if (descriptorsArray.length > 0) {
-    // 为了演示，我们简单取第一个描述符的sessionId用来创建对应的controller
+    // 为了演示，我们简单取第一个描述符的sessionId用来创建对应的controller。
     let sessionId: string = descriptorsArray[0].sessionId;
     let avSessionController: AVSessionManager.AVSessionController = await AVSessionManager.createController(sessionId);
     console.info(`controller create done : sessionId : ${avSessionController.sessionId}`);

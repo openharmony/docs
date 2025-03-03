@@ -24,7 +24,7 @@ struct Index {
   async function example(){
     try {
       this.outputText = '支持的类型为：\n';
-      //参数为1表示获取支持的图片类型格式，参数为2表示获取支持的视频类型格式
+      //参数为1表示获取支持的图片类型格式，参数为2表示获取支持的视频类型格式。
       let imageFormat  = await phAccessHelper.getSupportedPhotoFormats(1);
       let result = "";
       for (let i = 0; i < imageFormat.length; i++) {
@@ -63,18 +63,18 @@ struct Index {
     icon: SaveIconStyle.FULL_FILLED,
     text: SaveDescription.SAVE_IMAGE,
     buttonType: ButtonType.Capsule
-  } // 设置安全控件按钮属性
+  } // 设置安全控件按钮属性。
 
   build() {
     Row() {
       Column() {
-        SaveButton(this.saveButtonOptions) // 创建安全控件按钮
+        SaveButton(this.saveButtonOptions) // 创建安全控件按钮。
           .onClick(async (event, result: SaveButtonOnClickResult) => {
              if (result == SaveButtonOnClickResult.SUCCESS) {
                try {
                  let context = getContext();
                  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-                 // 需要确保fileUri对应的资源存在
+                 // 需要确保fileUri对应的资源存在。
                  let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
                  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createImageAssetRequest(context, fileUri);
                  await phAccessHelper.applyChanges(assetChangeRequest);
@@ -116,23 +116,23 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
   try {
-    // 指定待保存到媒体库的位于应用沙箱的图片uri
+    // 指定待保存到媒体库的位于应用沙箱的图片uri。
     let srcFileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
     let srcFileUris: Array<string> = [
       srcFileUri
     ];
-    // 指定待保存照片的创建选项，包括文件后缀和照片类型，标题和照片子类型可选
+    // 指定待保存照片的创建选项，包括文件后缀和照片类型，标题和照片子类型可选。
     let photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig> = [
       {
-        title: 'test', // 可选
+        title: 'test', // 可选。
         fileNameExtension: 'jpg',
         photoType: photoAccessHelper.PhotoType.IMAGE,
-        subtype: photoAccessHelper.PhotoSubtype.DEFAULT, // 可选
+        subtype: photoAccessHelper.PhotoSubtype.DEFAULT, // 可选。
       }
     ];
-    // 基于弹窗授权的方式获取媒体库的目标uri
+    // 基于弹窗授权的方式获取媒体库的目标uri。
     let desFileUris: Array<string> = await phAccessHelper.showAssetsCreationDialog(srcFileUris, photoCreationConfigs);
-    // 将来源于应用沙箱的照片内容写入媒体库的目标uri
+    // 将来源于应用沙箱的照片内容写入媒体库的目标uri。
     let desFile: fileIo.File = await fileIo.open(desFileUris[0], fileIo.OpenMode.WRITE_ONLY);
     let srcFile: fileIo.File = await fileIo.open(srcFileUri, fileIo.OpenMode.READ_ONLY);
     await fileIo.copyFile(srcFile.fd, desFile.fd);
