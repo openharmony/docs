@@ -259,7 +259,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 };
 ```
 
-## EnterpriseAdminExtensionAbility.onAccountAdded<sup>16+</sup>
+## EnterpriseAdminExtensionAbility.onAccountAdded<sup>18+</sup>
 
 onAccountAdded(accountId: number): void
 
@@ -283,7 +283,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 };
 ```
 
-## EnterpriseAdminExtensionAbility.onAccountSwitched<sup>16+</sup>
+## EnterpriseAdminExtensionAbility.onAccountSwitched<sup>18+</sup>
 
 onAccountSwitched(accountId: number): void
 
@@ -307,7 +307,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 };
 ```
 
-## EnterpriseAdminExtensionAbility.onAccountRemoved<sup>16+</sup>
+## EnterpriseAdminExtensionAbility.onAccountRemoved<sup>18+</sup>
 
 onAccountRemoved(accountId: number): void
 
