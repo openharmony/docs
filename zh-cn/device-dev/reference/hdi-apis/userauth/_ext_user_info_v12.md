@@ -18,7 +18,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | int [userId](#userid) | 用户ID。 | 
-| struct [UserInfo](_user_info_v12.md)[userInfo](#userinfo) | 该用户的用户信息 | 
+| struct [UserInfo](_user_info_v12.md)[userInfo](#userinfo) | 该用户的用户信息。 | 
 
 
 ## 类成员变量说明
@@ -45,4 +45,4 @@ struct UserInfo ExtUserInfo::userInfo
 **描述**
 
 
-该用户的用户信息
+该用户的用户信息。
