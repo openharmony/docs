@@ -1615,7 +1615,7 @@ async function example() {
 }
 ```
 
-### saveGalleryFormInfo<sup>16+</sup>
+### saveGalleryFormInfo<sup>18+</sup>
 
 saveGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 
@@ -1682,7 +1682,7 @@ async function example() {
 }
 ```
 
-### updateGalleryFormInfo<sup>16+</sup>
+### updateGalleryFormInfo<sup>18+</sup>
 
 updateGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 
@@ -1751,7 +1751,7 @@ async function example() {
 }
 ```
 
-### removeGalleryFormInfo<sup>16+</sup>
+### removeGalleryFormInfo<sup>18+</sup>
 
 removeGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 
@@ -6980,7 +6980,7 @@ async function example() {
 |formId       |string  |是 | 卡片的ID，由图库创建卡片时提供。 |
 |uri          |string  |是 | 卡片绑定的图片的uri。创建卡片时uri可为空或图片的uri，移除卡片时uri不做校验，传空即可。  |
 
-## GalleryFormInfo<sup>16+</sup>
+## GalleryFormInfo<sup>18+</sup>
 
 图库卡片相关信息。
 
