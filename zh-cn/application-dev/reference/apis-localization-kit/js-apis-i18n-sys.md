@@ -335,7 +335,7 @@ static setUsingLocalDigit(flag: boolean): void
   ```
 
 
-### setTemperatureType<sup>16+</sup>
+### setTemperatureType<sup>18+</sup>
 
 static setTemperatureType(type: TemperatureType): void
 
@@ -351,7 +351,7 @@ static setTemperatureType(type: TemperatureType): void
 
 | 参数名  | 类型      | 必填   | 说明                              |
 | ---- | ------- | ---- | ------------------------------- |
-| type | [TemperatureType](./js-apis-i18n.md#temperaturetype16) | 是 | 温度单位。 |
+| type | [TemperatureType](./js-apis-i18n.md#temperaturetype18) | 是 | 温度单位。 |
 
 **错误码：**
 
@@ -380,7 +380,7 @@ static setTemperatureType(type: TemperatureType): void
   }
   ```
 
-### setFirstDayOfWeek<sup>16+</sup>
+### setFirstDayOfWeek<sup>18+</sup>
 
 static setFirstDayOfWeek(type: WeekDay): void
 
@@ -396,7 +396,7 @@ static setFirstDayOfWeek(type: WeekDay): void
 
 | 参数名  | 类型      | 必填   | 说明                              |
 | ---- | ------- | ---- | ------------------------------- |
-| type | [WeekDay](./js-apis-i18n.md#weekday16) | 是 | 周期起始日。 |
+| type | [WeekDay](./js-apis-i18n.md#weekday18) | 是 | 周期起始日。 |
 
 **错误码：**
 
