@@ -30,7 +30,7 @@ USB类开放能力如下，具体请查阅[API参考文档](../../reference/apis
 | releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number | 释放注册过的通信接口。                                                   |
 | getFileDescriptor(pipe: USBDevicePipe): number                 | 获取文件描述符。                                             |
 | getRawDescriptor(pipe: USBDevicePipe): Uint8Array              | 获取原始的USB描述符。                                        |
-| usbcontrolTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: number): Promise&lt;number&gt; | 控制传输。                                                   |
+| usbControlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: number): Promise&lt;number&gt; | 控制传输。                                                   |
 
 
 ## 开发步骤
@@ -195,4 +195,4 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
 
 针对USB管理开发，有以下相关实例可供参考：
 
-- [`DeviceManagementCollection`：设备管理合集（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/BasicFeature/DeviceManagement/DeviceManagementCollection)
+- [`DeviceManagementCollection`：设备管理合集（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/DeviceManagementCollection)
