@@ -196,15 +196,15 @@ enum OH_Preferences_ErrCode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| PREFERENCES_OK | 操作执行成功 | 
-| PREFERENCES_ERROR_INVALID_PARAM | 参数不合法 | 
-| PREFERENCES_ERROR_NOT_SUPPORTED | 系统能力不支持 | 
-| PREFERENCES_ERROR_BASE | 基准错误码 | 
-| PREFERENCES_ERROR_DELETE_FILE | 删除文件失败 | 
-| PREFERENCES_ERROR_STORAGE | 存储异常 | 
-| PREFERENCES_ERROR_MALLOC | 申请内存失败 | 
-| PREFERENCES_ERROR_KEY_NOT_FOUND | Key不存在 | 
-| PREFERENCES_ERROR_GET_DATAOBSMGRCLIENT | 获取数据变更订阅服务失败 | 
+| PREFERENCES_OK | 操作执行成功。 | 
+| PREFERENCES_ERROR_INVALID_PARAM | 参数不合法。 | 
+| PREFERENCES_ERROR_NOT_SUPPORTED | 系统能力不支持。 | 
+| PREFERENCES_ERROR_BASE | 基准错误码。 | 
+| PREFERENCES_ERROR_DELETE_FILE | 删除文件失败。 | 
+| PREFERENCES_ERROR_STORAGE | 存储异常。 | 
+| PREFERENCES_ERROR_MALLOC | 申请内存失败。 | 
+| PREFERENCES_ERROR_KEY_NOT_FOUND | Key不存在。 | 
+| PREFERENCES_ERROR_GET_DATAOBSMGRCLIENT | 获取数据变更订阅服务失败。 | 
 
 
 ### Preference_ValueType
@@ -221,11 +221,11 @@ enum Preference_ValueType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| PREFERENCE_TYPE_NULL | 空类型 | 
-| PREFERENCE_TYPE_INT | 整型类型 | 
-| PREFERENCE_TYPE_BOOL | 布尔类型 | 
-| PREFERENCE_TYPE_STRING | 字符串类型 | 
-| PREFERENCE_TYPE_BUTT | 结束类型 | 
+| PREFERENCE_TYPE_NULL | 空类型。 | 
+| PREFERENCE_TYPE_INT | 整型类型。 | 
+| PREFERENCE_TYPE_BOOL | 布尔类型。 | 
+| PREFERENCE_TYPE_STRING | 字符串类型。 | 
+| PREFERENCE_TYPE_BUTT | 结束类型。 | 
 
 
 ## 函数说明
@@ -698,7 +698,7 @@ OH_PreferencesOption* OH_PreferencesOption_Create (void )
 
 **描述**
 
-创建一个Preferences配置选项的[OH_PreferencesOption](#oh_preferencesoption)实例对象以及指向它的指针。 当不再需要使用指针时，请使用[OH_PreferencesOption_Destroy](#oh_preferencesoption_destroy)销毁实例对象，否则会导致内存泄漏。
+创建一个Preferences配置选项的[OH_PreferencesOption](#oh_preferencesoption)实例对象以及指向它的指针。<br>当不再需要使用指针时，请使用[OH_PreferencesOption_Destroy](#oh_preferencesoption_destroy)销毁实例对象，否则会导致内存泄漏。
 
 **起始版本：** 13
 
