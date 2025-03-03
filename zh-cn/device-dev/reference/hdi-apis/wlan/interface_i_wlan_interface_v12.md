@@ -73,7 +73,7 @@ IWlanInterface::RegisterActionFrameReceiver ([in] String ifName, [in] unsigned c
 | 名称 | 描述 | 
 | -------- | -------- |
 | ifName | 表示网卡(NIC)名称 | 
-| txChannel | 表示数据匹配操作框架 | 
+| match | 表示数据匹配操作框架 | 
 
 **返回：**
 
@@ -127,7 +127,7 @@ IWlanInterface::SendActionFrame ([in] String ifName, [in] unsigned int freq, [in
 | -------- | -------- |
 | ifName | 表示网卡(NIC)名称 | 
 | freq | 表示发送通道频率 | 
-| ifName | 表示动作帧数据 | 
+| frameData | 表示动作帧数据 | 
 
 **返回：**
 

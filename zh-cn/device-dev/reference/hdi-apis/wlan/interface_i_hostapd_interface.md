@@ -489,7 +489,7 @@ IHostapdInterface::SetMacFilter ([in] String ifName, [in] String mac, [in] int i
 ### StartAp()
 
 ```
-IHostapdInterface::StartAp ()
+IHostapdInterface::StartAp ([in] String ifName, [in] int id)
 ```
 
 **描述**
@@ -516,7 +516,7 @@ IHostapdInterface::StartAp ()
 ### StopAp()
 
 ```
-IHostapdInterface::StopAp ()
+IHostapdInterface::StopAp ([in] String ifName, [in] int id)
 ```
 
 **描述**
