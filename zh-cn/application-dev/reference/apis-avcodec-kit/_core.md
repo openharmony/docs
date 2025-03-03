@@ -111,7 +111,7 @@ typedef enum OH_AmbAttributeSet OH_AmbAttributeSet
 
 高保真立体声混响设置。
 
-用int64整数来表示高保真立体声混响属性。
+用int64_t整数来表示高保真立体声混响属性。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -145,7 +145,7 @@ typedef enum OH_AudioChannelSet OH_AudioChannelSet
 
 音频声道集合。
 
-将每一个声道映射为int64的变量。
+将每一个声道映射为int64_t的变量。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -273,7 +273,7 @@ enum OH_AmbAttributeSet
 
 高保真立体声混响设置。
 
-用int64整数来表示高保真立体声混响属性。
+用int64_t整数来表示高保真立体声混响属性。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -371,7 +371,7 @@ enum OH_AudioChannelSet
 
 音频声道集合。
 
-将每一个声道映射为int64的变量。
+将每一个声道映射为int64_t的变量。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -486,7 +486,7 @@ enum OH_AVPixelFormat
 | -------- | -------- |
 | AV_PIXEL_FORMAT_YUVI420 | yuv 420 planar。 | 
 | AV_PIXEL_FORMAT_NV12 | NV12. yuv 420 semiplanar。 | 
-| AV_PIXEL_FORMAT_NV21 | NV21. yuv 420 semiplanar。 | 
+| AV_PIXEL_FORMAT_NV21 | NV21. yvu 420 semiplanar。 | 
 | AV_PIXEL_FORMAT_SURFACE_FORMAT | 像素格式从surface获取。 | 
 | AV_PIXEL_FORMAT_RGBA | RGBA8888。 | 
 
