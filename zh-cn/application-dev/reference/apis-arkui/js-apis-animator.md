@@ -56,8 +56,7 @@ create(options: AnimatorOptions): AnimatorResult
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[createAnimator](js-apis-arkui-UIContext.md#createanimator)接口明确UI上下文。
 
 ```ts
-import { Animator as animator, AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Animator as animator, AnimatorOptions } from '@kit.ArkUI';
 
 let options: AnimatorOptions = {
   duration: 1500,
