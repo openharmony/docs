@@ -359,7 +359,7 @@ try {
 
 importKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void
 
-导入明文密钥，使用Callback方式回调异步返回结果 。
+导入明文密钥，使用Callback方式回调异步返回结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -550,7 +550,7 @@ try {
 
 attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void
 
-获取密钥证书，使用Callback方式回调异步返回结果 。
+获取密钥证书，使用Callback方式回调异步返回结果。
 
 **需要权限**：ohos.permission.ATTEST_KEY，该权限仅系统应用可申请。
 
@@ -686,7 +686,7 @@ async function generateKeyThenattestKey(alias: string) {
 
 attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
 
-获取密钥证书，使用Promise方式异步返回结果 。
+获取密钥证书，使用Promise方式异步返回结果。
 
 **需要权限**：ohos.permission.ATTEST_KEY，该权限仅系统应用可申请。
 
@@ -1104,7 +1104,7 @@ async function anonAttestKey(): Promise<void> {
 
 importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void
 
-导入加密密钥，使用Callback方式回调异步返回结果 。
+导入加密密钥，使用Callback方式回调异步返回结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1646,7 +1646,7 @@ try {
 
 isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<boolean>) : void
 
-判断密钥是否存在，使用Callback回调异步返回结果 。
+判断密钥是否存在，使用Callback回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Huks.Core
 
@@ -1704,7 +1704,7 @@ huks.isKeyItemExist(keyAlias, emptyOptions, (error, data) => {
 
 isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
-判断密钥是否存在，使用Promise回调异步返回结果 。
+判断密钥是否存在，使用Promise回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Huks.Extension
 
@@ -1766,7 +1766,7 @@ huks.isKeyItemExist(keyAlias, emptyOptions).then((data) => {
 
 hasKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<boolean>) : void
 
-判断密钥是否存在，使用Callback回调异步返回结果 。
+判断密钥是否存在，使用Callback回调异步返回结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1830,7 +1830,7 @@ try {
 
 hasKeyItem(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
-判断密钥是否存在，使用Promise回调异步返回结果 。
+判断密钥是否存在，使用Promise回调异步返回结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2227,7 +2227,7 @@ finishSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 
 abortSession(handle: number, options: HuksOptions, callback: AsyncCallback\<void>) : void
 
-abortSession操作密钥接口，使用Callback回调异步返回结果 。
+abortSession操作密钥接口，使用Callback回调异步返回结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2305,7 +2305,7 @@ async function huksAbort() {
                 console.error(`callback: generateKeyItem failed`);
             } else {
                 console.info(`callback: generateKeyItem success`);
-                huks.initSession(keyAlias, options, (error, data) => { // 以initSession阶段进行abortSession为例
+                huks.initSession(keyAlias, options, (error, data) => { // 以initSession阶段进行abortSession为例。
                     if (error) {
                         console.error(`callback: initSession failed`);
                     } else {
@@ -2498,7 +2498,7 @@ async function huksAbort() {
 
 async function testAbort() {
     await generateKey();
-    await huksInit(); // 以initSession阶段进行abortSession为例
+    await huksInit(); // 以initSession阶段进行abortSession为例。
     await huksAbort();
 }
 ```
@@ -2842,7 +2842,7 @@ API version 10-11系统能力为SystemCapability.Security.Huks.Extension；从AP
 | 名称                            | 值   | 说明                      |
 | ------------------------------- | ---- | ------------------------- |
 | HUKS_USER_AUTH_TYPE_FINGERPRINT | 1 << 0 | 表示用户认证类型为指纹。  |
-| HUKS_USER_AUTH_TYPE_FACE        | 1 << 1 | 表示用户认证类型为人脸 。 |
+| HUKS_USER_AUTH_TYPE_FACE        | 1 << 1 | 表示用户认证类型为人脸。 |
 | HUKS_USER_AUTH_TYPE_PIN         | 1 << 2  | 表示用户认证类型为PIN码。 |
 
 ## HuksUserAuthMode<sup>12+</sup>
@@ -2888,7 +2888,7 @@ API version 10-11系统能力为SystemCapability.Security.Huks.Extension；从AP
 
 ## HuksChallengePosition<sup>9+</sup>
 
-表示challenge类型为用户自定义类型时，生成的challenge有效长度仅为8字节连续的数据，且仅支持4种位置 。
+表示challenge类型为用户自定义类型时，生成的challenge有效长度仅为8字节连续的数据，且仅支持4种位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3268,7 +3268,7 @@ let result = huks.deleteKey(keyAlias, emptyOptions);
 
 importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-导入明文密钥，使用Callback方式回调异步返回结果 。
+导入明文密钥，使用Callback方式回调异步返回结果。
 
 > **说明：**
 >
@@ -3544,7 +3544,7 @@ let result = huks.getKeyProperties(keyAlias, emptyOptions);
 
 isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<boolean>) : void
 
-判断密钥是否存在，使用Callback回调异步返回结果 。
+判断密钥是否存在，使用Callback回调异步返回结果。
 
 > **说明：**
 >
@@ -3577,7 +3577,7 @@ huks.isKeyExist(keyAlias, emptyOptions, (err, data) => {
 
 isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
-判断密钥是否存在，使用Promise回调异步返回结果 。
+判断密钥是否存在，使用Promise回调异步返回结果。
 
 > **说明：**
 >

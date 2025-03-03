@@ -65,15 +65,15 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    媒体会话控制方可以获取当前系统中所有的AVSessionDescriptor，并创建每个会话对应的AVSessionController，从而对系统中的音视频应用进行统一的播放控制。
 
    ```ts
-   //导入AVSessionManager模块
+   //导入AVSessionManager模块。
    import { avSession as AVSessionManager } from '@kit.AVSessionKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
-   // 全局变量定义
+   // 全局变量定义。
    let g_controller = new Array<AVSessionManager.AVSessionController>();
    let g_centerSupportCmd:Set<AVSessionManager.AVControlCommandType> = new Set(['play', 'pause', 'playNext', 'playPrevious', 'fastForward', 'rewind', 'seek','setSpeed', 'setLoopMode', 'toggleFavorite']);
    let g_validCmd:Set<AVSessionManager.AVControlCommandType>;
-   // 获取会话描述符，创建控制器
+   // 获取会话描述符，创建控制器。
    AVSessionManager.getAllSessionDescriptors().then((descriptors) => {
      descriptors.forEach((descriptor) => {
        AVSessionManager.createController(descriptor.sessionId).then((controller) => {
@@ -86,7 +86,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
      console.error(`Failed to get all session descriptors. Code: ${err.code}, message: ${err.message}`);
    });
 
-   // 获取历史会话的描述符
+   // 获取历史会话的描述符。
    AVSessionManager.getHistoricalSessionDescriptors().then((descriptors) => {
      console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
      if (descriptors.length > 0){
@@ -116,9 +116,9 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    import { BusinessError } from '@kit.BasicServicesKit';
 
    let g_controller = new Array<AVSessionManager.AVSessionController>();
-   // 注册会话创建监听，创建控制器
+   // 注册会话创建监听，创建控制器。
    AVSessionManager.on('sessionCreate', (session) => {
-     // 新增会话，需要创建控制器
+     // 新增会话，需要创建控制器。
      AVSessionManager.createController(session.sessionId).then((controller) => {
        g_controller.push(controller);
      }).catch((err: BusinessError) => {
@@ -126,7 +126,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
      });
    });
 
-   // 注册系统会话销毁监听
+   // 注册系统会话销毁监听。
    AVSessionManager.on('sessionDestroy', (session) => {
      let index = g_controller.findIndex((controller) => {
        return controller.sessionId === session.sessionId;
@@ -136,21 +136,21 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
        g_controller.splice(index, 1);
      }
    });
-   // 注册系统最高优先级会话变更监听
+   // 注册系统最高优先级会话变更监听。
    AVSessionManager.on('topSessionChange', (session) => {
      let index = g_controller.findIndex((controller) => {
        return controller.sessionId === session.sessionId;
      });
-     // 将该会话显示排到第一个
+     // 将该会话显示排到第一个。
      if (index !== 0) {
        g_controller.sort((a, b) => {
          return a.sessionId === session.sessionId ? -1 : 0;
        });
      }
    });
-   // 注册服务异常监听
+   // 注册服务异常监听。
    AVSessionManager.on('sessionServiceDie', () => {
-     // 服务端异常，应用清理资源
+     // 服务端异常，应用清理资源。
      console.info(`服务端异常`);
    })
    ```
@@ -180,7 +180,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    let controller = g_controller[0];
    let g_validCmd:Set<AVSessionManager.AVControlCommandType>;
    let g_centerSupportCmd:Set<AVSessionManager.AVControlCommandType> = new Set(['play', 'pause', 'playNext', 'playPrevious', 'fastForward', 'rewind', 'seek','setSpeed', 'setLoopMode', 'toggleFavorite']);
-   // 注册会话激活状态变更监听
+   // 注册会话激活状态变更监听。
    controller.on('activeStateChange', (isActive) => {
      if (isActive) {
        console.info(`控制器卡片按键高亮`);
@@ -188,7 +188,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
        console.info(`控制器卡片按键变更为无效`);
      }
    });
-   // 注册会话销毁监听
+   // 注册会话销毁监听。
    controller.on('sessionDestroy', () => {
      console.info(`on sessionDestroy : SUCCESS `);
      controller.destroy().then(() => {
@@ -198,15 +198,15 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
      });
    });
 
-   // 注册元数据更新监听
+   // 注册元数据更新监听。
    controller.on('metadataChange', ['assetId', 'title', 'description'], (metadata: AVSessionManager.AVMetadata) => {
      console.info(`on metadataChange assetId : ${metadata.assetId}`);
    });
-   // 注册播放状态更新监听
+   // 注册播放状态更新监听。
    controller.on('playbackStateChange', ['state', 'speed', 'loopMode'], (playbackState: AVSessionManager.AVPlaybackState) => {
      console.info(`on playbackStateChange state : ${playbackState.state}`);
    });
-   // 注册会话支持的命令变更监听
+   // 注册会话支持的命令变更监听。
    controller.on('validCommandChange', (cmds) => {
      console.info(`validCommandChange : SUCCESS : size : ${cmds.length}`);
      console.info(`validCommandChange : SUCCESS : cmds : ${cmds.values()}`);
@@ -218,23 +218,23 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
        }
      }
    });
-   // 注册输出设备变更监听
+   // 注册输出设备变更监听。
    controller.on('outputDeviceChange', (state, device) => {
      console.info(`outputDeviceChange device are : ${JSON.stringify(device)}`);
    });
-   // 注册会话自定义事件变更监听
+   // 注册会话自定义事件变更监听。
    controller.on('sessionEvent', (eventName, eventArgs) => {
      console.info(`Received new session event, event name is ${eventName}, args are ${JSON.stringify(eventArgs)}`);
    });
-   // 注册会话自定义媒体数据包变更监听
+   // 注册会话自定义媒体数据包变更监听。
    controller.on('extrasChange', (extras) => {
      console.info(`Received custom media packet, packet data is ${JSON.stringify(extras)}`);
    });
-   // 注册会话自定义播放列表变更监听
+   // 注册会话自定义播放列表变更监听。
    controller.on('queueItemsChange', (items) => {
      console.info(`Caught queue items change, items length is ${items.length}`);
    });
-   // 注册会话自定义播放标题变更监听
+   // 注册会话自定义播放标题变更监听。
    controller.on('queueTitleChange', (title) => {
      console.info(`Caught queue title change, title is ${title}`);
    });
@@ -245,38 +245,38 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    ```ts
    import { avSession as AVSessionManager } from '@kit.AVSessionKit';
    async function getInfoFromSessionByController() {
-     // 假设我们已经有了一个对应session的controller，如何创建controller可以参考之前的案例
+     // 假设我们已经有了一个对应session的controller，如何创建controller可以参考之前的案例。
      let controller = await AVSessionManager.createController("")
-     // 获取sessionId
+     // 获取sessionId。
      let sessionId = controller.sessionId;
      console.info(`get sessionId by controller : isActive : ${sessionId}`);
-     // 获取session激活状态
+     // 获取session激活状态。
      let isActive = await controller.isActive();
      console.info(`get activeState by controller : ${isActive}`);
-     // 获取session的媒体信息
+     // 获取session的媒体信息。
      let metadata = await controller.getAVMetadata();
      console.info(`get media title by controller : ${metadata.title}`);
      console.info(`get media artist by controller : ${metadata.artist}`);
-     // 获取session的播放信息
+     // 获取session的播放信息。
      let avPlaybackState = await controller.getAVPlaybackState();
      console.info(`get playbackState by controller : ${avPlaybackState.state}`);
      console.info(`get favoriteState by controller : ${avPlaybackState.isFavorite}`);
-     // 获取session的播放列表信息
+     // 获取session的播放列表信息。
      let queueItems = await controller.getAVQueueItems();
      console.info(`get queueItems length by controller : ${queueItems.length}`);
-     // 获取session的播放标题信息
+     // 获取session的播放标题信息。
      let queueTitle = await controller.getAVQueueTitle();
      console.info(`get queueTitle by controller : ${queueTitle}`);
-     // 获取session的自定义媒体数据包
+     // 获取session的自定义媒体数据包。
      let extras = await controller.getExtras();
      console.info(`get custom media packets by controller : ${JSON.stringify(extras)}`);
-     // 获取session对应应用提供的ability信息
+     // 获取session对应应用提供的ability信息。
      let agent = await controller.getLaunchAbility();
      console.info(`get want agent info by controller : ${JSON.stringify(agent)}`);
-     // 获取session的当前播放位置信息
+     // 获取session的当前播放位置信息。
      let currentTime = controller.getRealPlaybackPositionSync();
      console.info(`get current playback time by controller : ${currentTime}`);
-     // 获取session支持的有效命令
+     // 获取session支持的有效命令。
      let validCommands = await controller.getValidCommands();
      console.info(`get valid commands by controller : ${JSON.stringify(validCommands)}`);
    }
@@ -291,40 +291,40 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    import { BusinessError } from '@kit.BasicServicesKit';
 
    async function  sendCommandToSessionByController() {
-     // 假设我们已经有了一个对应session的controller，如何创建controller可以参考之前的案例
+     // 假设我们已经有了一个对应session的controller，如何创建controller可以参考之前的案例。
      let controller = await AVSessionManager.createController("")
-     // 获取这个session支持的命令种类
+     // 获取这个session支持的命令种类。
      let validCommandTypeArray = await controller.getValidCommands();
      console.info(`get validCommandArray by controller : length : ${validCommandTypeArray.length}`);
-     // 下发播放命令
-     // 如果可用命令包含播放，则下发播放命令，正常session都应该提供并实现播放功能
+     // 下发播放命令。
+     // 如果可用命令包含播放，则下发播放命令，正常session都应该提供并实现播放功能。
      if (validCommandTypeArray.indexOf('play') >= 0) {
        let avCommand: AVSessionManager.AVControlCommand = {command:'play'};
        controller.sendControlCommand(avCommand);
      }
-     // 下发暂停命令
+     // 下发暂停命令。
      if (validCommandTypeArray.indexOf('pause') >= 0) {
        let avCommand: AVSessionManager.AVControlCommand = {command:'pause'};
        controller.sendControlCommand(avCommand);
      }
-     // 下发上一首命令
+     // 下发上一首命令。
      if (validCommandTypeArray.indexOf('playPrevious') >= 0) {
        let avCommand: AVSessionManager.AVControlCommand = {command:'playPrevious'};
        controller.sendControlCommand(avCommand);
      }
-     // 下发下一首命令
+     // 下发下一首命令。
      if (validCommandTypeArray.indexOf('playNext') >= 0) {
        let avCommand: AVSessionManager.AVControlCommand = {command:'playNext'};
        controller.sendControlCommand(avCommand);
      }
-     // 下发自定义控制命令
+     // 下发自定义控制命令。
      let commandName = 'custom command';
      await controller.sendCommonCommand(commandName, {command : 'This is my custom command'}).then(() => {
        console.info(`SendCommonCommand successfully`);
      }).catch((err: BusinessError) => {
        console.error(`Failed to send common command. Code: ${err.code}, message: ${err.message}`);
      })
-     // 设置指定播放列表单项的ID，供session选择播放
+     // 设置指定播放列表单项的ID，供session选择播放。
      let queueItemId = 0;
      await controller.skipToQueueItem(queueItemId).then(() => {
        console.info(`SkipToQueueItem successfully`);
@@ -341,10 +341,10 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    import { BusinessError } from '@kit.BasicServicesKit';
 
    async function destroyController() {
-     // 假设我们已经有了一个对应session的controller，如何创建controller可以参考之前的案例
+     // 假设我们已经有了一个对应session的controller，如何创建controller可以参考之前的案例。
      let controller = await AVSessionManager.createController("")
      
-     // 销毁当前的controller，销毁后这个controller将不在可用
+     // 销毁当前的controller，销毁后这个controller将不在可用。
      controller.destroy((err: BusinessError) => {
        if (err) {
          console.error(`Failed to destroy controller. Code: ${err.code}, message: ${err.message}`);

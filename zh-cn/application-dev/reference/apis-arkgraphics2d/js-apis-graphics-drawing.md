@@ -1030,7 +1030,7 @@ addPolygon(points: Array\<common2D.Point>, close: boolean): void
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
 | points | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)>   | 是   | 坐标点数组。 |
-| close  | boolean                                                        | 是   | 表示是否将路径闭合，即是否添加路径起始点到终点的连线，true表示将路径闭合，false表示不将路径闭合。 |
+| close  | boolean                                                        | 是   | 表示是否将路径闭合，即是否添加路径起始点到终点的连线。true表示将路径闭合，false表示不将路径闭合。 |
 
 **错误码：**
 
@@ -1117,7 +1117,7 @@ op(path: Path, pathOp: PathOp): boolean
 
 | 类型   | 说明                |
 | ------ | ------------------ |
-| boolean | 返回路径合并是否成功的结果，true表示合并成功，false表示合并失败。 |
+| boolean | 返回路径合并是否成功的结果。true表示合并成功，false表示合并失败。 |
 
 **错误码：**
 
@@ -1225,7 +1225,7 @@ getPositionAndTangent(forceClosed: boolean, distance: number, position: common2D
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| boolean |表示是否成功获取距离路径起始点distance处的点的坐标和正切值的结果，true表示获取成功，false表示获取失败，position和tangent不会被改变。 |
+| boolean |表示是否成功获取距离路径起始点distance处的点的坐标和正切值的结果。true表示获取成功，false表示获取失败，position和tangent不会被改变。 |
 
 **错误码：**
 
@@ -2638,7 +2638,7 @@ drawRegion(region: Region): void
 
 | 参数名 | 类型                | 必填 | 说明        |
 | ------ | ------------------- | ---- | ----------- |
-| region   | [Region](#region12) | 是   | 绘制的区域  |
+| region   | [Region](#region12) | 是   | 绘制的区域。  |
 
 **错误码：**
 
@@ -3858,8 +3858,8 @@ let imgFilter1 = drawing.ImageFilter.createFromColorFilter(clolorfilter, imgFilt
 | INVERSE_WINDING  | 2    | WINDING涂色规则取反。 |
 | INVERSE_EVEN_ODD  | 3    | EVEN_ODD涂色规则取反。 |
 
-> **说明：**
-> ![WINDING&EVEN_ODD](./figures/zh-ch_image_PathFillType_Winding_Even_Odd.png)
+> **说明：**<br>
+> ![WINDING&EVEN_ODD](./figures/zh-ch_image_PathFillType_Winding_Even_Odd.png)<br>
 > 如图所示圆环为路径，箭头指示路径的方向，p为区域内任意一点，蓝色线条为点p出发的射线，黑色箭头所指为对应填充规则下使用蓝色填充路径的结果。WINDING填充规则下，射线与路径的交点计数为2，不为0，点p被涂色；EVEN_ODD填充规则下，射线与路径的相交次数为2，是偶数，点p不被涂色。
 
 ## PointMode<sup>12+</sup>
@@ -4206,7 +4206,7 @@ static makeFromRawFile(rawfile: Resource): Typeface
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| [Typeface](#typeface) | 返回Typeface对象(异常情况下会返回空指针)。 |
+| [Typeface](#typeface) | 返回Typeface对象（异常情况下会返回空指针）。 |
 
 **错误码：**
 
@@ -5369,7 +5369,7 @@ console.info("font is theme font followed: " + font.isThemeFontFollowed());
 | UNDERLINE_POSITION_VALID      | 1 << 1    | 表示[FontMetrics](#fontmetrics)结构中的underlinePosition（下划线位置）字段有效。  |
 | STRIKETHROUGH_THICKNESS_VALID | 1 << 2    | 表示[FontMetrics](#fontmetrics)结构中strikethroughThickness（删除线厚度）是有效的。|
 | STRIKETHROUGH_POSITION_VALID  | 1 << 3    | 表示[FontMetrics](#fontmetrics)结构中strikethroughPosition（删除线位置）字段有效。  |
-| BOUNDS_INVALID                | 1 << 4    | 表示[FontMetrics](#fontmetrics)结构中的边界度量值（如top, bottom, xMin, xMax）无效。  |
+| BOUNDS_INVALID                | 1 << 4    | 表示[FontMetrics](#fontmetrics)结构中的边界度量值（如top、bottom、xMin、xMax）无效。  |
 
 ## FontMetrics
 
@@ -7908,7 +7908,7 @@ setMatrix(values: Array\<number>): void
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| values  | Array\<number> | 是   | 长度为9的浮点数组，表示矩阵对象参数。数组中的值按下标从小,到大分别表示水平缩放系数、水平倾斜系数、水平位移系数、垂直倾斜系数、垂直缩放系数、垂直位移系数、X轴透视系数、Y轴透视系数、透视缩放系数。 |
+| values  | Array\<number> | 是   | 长度为9的浮点数组，表示矩阵对象参数。数组中的值按下标从小，到大分别表示水平缩放系数、水平倾斜系数、水平位移系数、垂直倾斜系数、垂直缩放系数、垂直位移系数、X轴透视系数、Y轴透视系数、透视缩放系数。 |
 
 **错误码：**
 

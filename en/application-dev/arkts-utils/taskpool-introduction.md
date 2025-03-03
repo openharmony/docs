@@ -1,40 +1,40 @@
-# TaskPool Introduction
+# TaskPool
 
-TaskPool provides a multithreaded environment for applications. It helps reduce resource consumption and improve system performance. It also frees you from caring about the lifecycle of thread instances. For details about the APIs and their usage, see [TaskPool](../reference/apis-arkts/js-apis-taskpool.md).
+TaskPool is designed to provide a multithreaded runtime environment for applications. It helps reduce overall resource consumption and improve system performance. It also frees you from caring about the lifecycle of thread instances. For details about the APIs and their usage, see [TaskPool](../reference/apis-arkts/js-apis-taskpool.md).
 
 ## TaskPool Operating Mechanism
 
-TaskPool operating mechanism
+The figure below illustrates the operating mechanism of TaskPool.
 
 ![image_0000001964858368](figures/image_0000001964858368.png)
 
-With TaskPool, you can encapsulate tasks in the main thread and throw the tasks to the task queue. The system selects proper worker threads to distribute and execute the tasks, and then returns the result to the main thread. TaskPool provides APIs to execute and cancel tasks, and set the task priority. It minimizes system resource usage through unified thread management, dynamic scheduling, and load balancing. By default, the system starts a worker thread and increases the thread quantity as the number of tasks increases. The maximum number of worker threads that can be created depends on the number of physical cores of the device. The actual number is managed internally to ensure optimal scheduling and execution efficiency. If no task is distributed for a long period of time, the system reduces the number of worker threads.
+With TaskPool, you can encapsulate tasks in the host thread and submit the tasks to the task queue. The system selects appropriate worker threads to distribute and execute the tasks, and then returns the result to the host thread. TaskPool provides APIs to execute and cancel tasks, and set the task priority. It minimizes system resource usage through unified thread management, dynamic scheduling, and load balancing. By default, the system starts a worker thread and increases the thread quantity as the number of tasks increases. The maximum number of worker threads that can be created depends on the number of physical cores of the device. The actual number is managed internally to ensure optimal scheduling and execution efficiency. If no task is distributed for an extended period, the system reduces the number of worker threads.
 
 ## Precautions for TaskPool
 
-- A task function must be decorated with [\@Concurrent](#concurrent-decorator) and can be used only in .ets files.
+- Functions implementing tasks must be decorated with [\@Concurrent](#concurrent-decorator) and are supported only in .ets files.
 
-- Since API version 11, when an instance object with a method is passed across concurrent instances, the class must be annotated with the decorator [@Sendable](arkts-sendable.md#sendable) and can be used only in .ets files.
+- Starting from API version 11, when passing instances with methods across concurrent instances, the class must be decorated with [@Sendable](arkts-sendable.md#sendable) and are supported only in .ets files.
 
-- A task function in the TaskPool worker thread must finish the execution within 3 minutes (excluding the time used for Promise or async/await asynchronous call, for example, the duration of I/O tasks such as network download and file read/write). Otherwise, it forcibly exits.
+- A task function must finish the execution in a TaskPool worker thread within 3 minutes (excluding the time used for Promise or async/await asynchronous call, such as the duration of I/O tasks like network download and file read/write operation). Otherwise, it is forcibly terminated.
 
-- The input parameters of the function for implementing the task must meet the types supported by serialization. For details, see [Inter-Thread Communication Object](interthread-communication-overview.md).
+- Parameters of functions implementing tasks must be of types supported by serialization. For details, see [Inter-Thread Communication](interthread-communication-overview.md).
 
 - Parameters of the ArrayBuffer type are transferred in TaskPool by default. You can set the transfer list by calling [setTransferList()](../reference/apis-arkts/js-apis-taskpool.md#settransferlist10).
 
-- The context objects in different threads are different. Therefore, **TaskPool** worker threads can use only thread-safe libraries, rather than UI-related non-thread-safe libraries.
+- The context objects in different threads are different. Therefore, TaskPool worker threads can use only thread-safe libraries. For example, non-thread-safe UI-related libraries cannot be used.
 
 - A maximum of 16 MB data can be serialized.
 
-- Among all the values of [Priority](../reference/apis-arkts/js-apis-taskpool.md#priority), **IDLE** is used to mark time-consuming tasks (such as data synchronization and backup) that need to run in the background Tasks marked with **IDLE** are executed only when all threads are idle and occupy only one thread for execution.
+- Among all the values of [Priority](../reference/apis-arkts/js-apis-taskpool.md#priority), **IDLE** is used to mark time-consuming tasks that need to run in the background (such as data synchronization and backup), and it has the lowest priority. Tasks marked with this priority are executed only when all threads are idle and occupy only one thread for execution.
 
-- Promises cannot be transferred across threads. If the TaskPool returns a promise in the pending or rejected state, a failure message is returned. For a promise in the fulfilled state, the TaskPool parses the returned result. If the result can be transferred across threads, a success message is returned.
+- Promises cannot be transferred across threads. If TaskPool returns a Promise in the pending or rejected state, a failure message is returned. For a Promise in the fulfilled state, TaskPool parses the returned result. If the result can be transferred across threads, a success message is returned.
 
-- [AppStorage](../quick-start/arkts-appstorage.md) cannot be used in the TaskPool worker thread.
+- [AppStorage](../quick-start/arkts-appstorage.md) cannot be used in TaskPool worker threads.
 
 ## \@Concurrent Decorator
 
-To pass function verification, the concurrent functions executed in a [TaskPool](../reference/apis-arkts/js-apis-taskpool.md) must be decorated using \@Concurrent.
+To pass function verification, concurrent functions executed in a [TaskPool](../reference/apis-arkts/js-apis-taskpool.md) must be decorated using \@Concurrent.
 
 > **NOTE**
 >
@@ -45,14 +45,14 @@ To pass function verification, the concurrent functions executed in a [TaskPool]
 | \@Concurrent Decorator| Description|
 | -------- | -------- |
 | Decorator parameters| None.|
-| Use Scenario| The decorator can be used only in projects of the stage model. It can be used only in .ets files.|
-| Decorated function types| This decorator can be used for asynchronous functions and common functions. It cannot be used for generators, arrow functions, or methods. It does not support class member functions or anonymous functions.|
-| Variable types in decorated functions| Local variables, input parameters, and variables imported through **import** are supported. Closure variables are not allowed.|
-| Return value types in decorated functions| For details about the supported types, see [Inter-Thread Communication Object](interthread-communication-overview.md).|
+| Use scenario| Used only in projects of the stage model and only in .ets files.|
+| Decorated function types| Used for async functions or regular functions. It cannot be used for generators, arrow functions, or class methods. It does not support class member functions or anonymous functions.|
+| Variable types in decorated functions| Local variables, parameters, and variables imported via **import** are allowed. Closure variables are prohibited.|
+| Return value types in decorated functions| Supported types are listed in [Inter-Thread Communication](interthread-communication-overview.md). |
 
-> **Note**
+> **NOTE**
 >
-> Functions marked by \@Concurrent cannot access closures. Therefore, functions marked by \@Concurrent cannot call other functions of the current file. For example:
+> Functions decorated with \@Concurrent cannot access closures. Therefore, they cannot call other functions within the same file. The following provides an example.
 >
 > ```ts
 > function bar() {
@@ -60,15 +60,15 @@ To pass function verification, the concurrent functions executed in a [TaskPool]
 > 
 > @Concurrent
 > function foo() {
-> bar (); // The closure principle is violated. An error is reported.
+> bar(); // This violates the closure principle. An error is reported.
 > }
 > ```
 
-### Decorator Example
+### Decorator Usage Examples
 
-#### Commonly used by concurrent functions
+#### General Use of Concurrent Functions
 
-A concurrent function is a common function that calculates the sum of two numbers. The taskpool executes the function and returns the result.
+A concurrent function that calculates the sum of two numbers is executed by TaskPool and returns the result.
 
 Example:
 
@@ -111,9 +111,9 @@ struct Index {
 }
 ```
 
-#### Promise returned by concurrent functions
+#### Concurrent Functions Returning Promises
 
-Pay attention to the performance of returning Promise in the concurrent function. The concurrent synchronous function processes and returns Promise with the result.
+Pay attention to the behavior of returning Promises in concurrent functions. In the following example, concurrent functions like **testPromise** and **testPromise1** handle these Promises and return results.
 
 Example:
 
@@ -222,9 +222,9 @@ struct Index {
 }
 ```
 
-#### Using a User-Defined Class or Function in a Concurrent Function
+#### Using Custom Classes or Functions in Concurrent Functions
 
-User-defined classes or functions used in concurrent functions must be defined in different files. Otherwise, they will be considered as closures, as shown in the following example.
+Custom classes or functions used in concurrent functions must be defined in separate files. Otherwise, they will be considered as closures, as shown in the following example.
 
 Example:
 
@@ -251,21 +251,21 @@ class TestB {
 
 @Concurrent
 function TestFunc() {
-  // Case 1: Directly call a class or function defined in the same file in a concurrent function.
+  // Case 1: Directly call a class or function defined in the same file within a concurrent function.
 
-  // Directly call the add () function defined in the same file. The error message "Only imported variables and local variables can be used in @Concurrent decorated functions. <ArkTSCheck>" is displayed in red.
+  // Directly call the add() function defined in the same file. The following error message is displayed: "Only imported variables and local variables can be used in @Concurrent decorated functions. <ArkTSCheck>"
   // add(1);
-  // Use the TestA defined in the same file. The error message "Only imported variables and local variables can be used in @Concurrent decorated functions. <ArkTSCheck>" is displayed.
+  // Directly use the TestA constructor defined in the same file. The following error message is displayed: "Only imported variables and local variables can be used in @Concurrent decorated functions. <ArkTSCheck>"
   // let a = new TestA("aaa");
-  // Directly access the nameStr member of TestB defined in the same file. The error message "Only imported variables and local variables can be used in @Concurrent decorated functions. <ArkTSCheck>" is displayed in red.
+  // Directly access the nameStr member of TestB defined in the same file. The following error message is displayed: "Only imported variables and local variables can be used in @Concurrent decorated functions. <ArkTSCheck>"
   // console.info("TestB name is: " + TestB.nameStr);
 
-  // Case 2: In the concurrent function, call the class or function defined in the Test.ets file and import the current file.
+  // Case 2: In the concurrent function, call classes or functions defined in the Test.ets file and imported into the current file.
 
-  // Output result: res1 is: 2
+  // Output: res1 is: 2
   console.info("res1 is: " + testAdd(1));
   let tmpStr = new MyTestA("TEST A");
-  // Output result: res2 is: TEST A
+  // Output: res2 is: TEST A
   console.info("res2 is: " + tmpStr.name);
   // Output: res3 is: MyTestB
   console.info("res3 is: " + MyTestB.nameStr);
@@ -321,9 +321,9 @@ export class MyTestB {
 }
 ```
 
-#### Using Promise in a Concurrent Asynchronous Function
+#### Using Promises in Concurrent Asynchronous Functions
 
-If Promise is used in the concurrent asynchronous function, you are advised to use await to capture exceptions that may occur in Promise. A recommended example is provided below.
+If Promise is used in concurrent asynchronous functions, you are advised to use await to enable TaskPool to capture any exceptions that may occur within the Promise. The recommended usage is shown in the following example.
 
 Example:
 

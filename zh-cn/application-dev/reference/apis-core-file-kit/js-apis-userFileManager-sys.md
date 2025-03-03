@@ -1,6 +1,6 @@
 # @ohos.filemanagement.userFileManager (用户数据管理)(系统接口)
 
-该模块提供用户数据管理能力，包括访问、修改用户公共媒体数据信息等常用功能。
+该模块提供用户数据管理能力：包括访问、修改用户公共媒体数据信息等常用功能。
 
 > **说明：**
 >
@@ -47,7 +47,7 @@ let mgr = userFileManager.getUserFileMgr(context);
 
 ### getPhotoAssets
 
-getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void;
+getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void
 
 获取图片和视频资源，使用callback方式返回结果。
 
@@ -99,7 +99,7 @@ async function example() {
 
 ### getPhotoAssets
 
-getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
+getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;
 
 获取图片和视频资源，使用Promise方式返回结果。
 
@@ -155,7 +155,7 @@ async function example() {
 ```
 ### createPhotoAsset
 
-createPhotoAsset(displayName: string, albumUri: string, callback: AsyncCallback&lt;FileAsset&gt;): void;
+createPhotoAsset(displayName: string, albumUri: string, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 指定待创建的图片或者视频的文件名和所在相册的uri，创建图片或视频资源，使用callback方式返回结果。
 
@@ -207,7 +207,7 @@ async function example() {
 
 ### createPhotoAsset
 
-createPhotoAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;): void;
+createPhotoAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 指定待创建的图片或者视频的文件名，创建图片或视频资源，使用callback方式返回结果。
 
@@ -250,7 +250,7 @@ async function example() {
 
 ### createPhotoAsset
 
-createPhotoAsset(displayName: string, albumUri?: string): Promise&lt;FileAsset&gt;;
+createPhotoAsset(displayName: string, albumUri?: string): Promise&lt;FileAsset&gt;
 
 指定待创建的图片或者视频的文件名和所在相册的uri，创建图片或视频资源，使用Promise方式返回结果。
 
@@ -297,7 +297,7 @@ async function example() {
 
 ### createPhotoAsset
 
-createPhotoAsset(displayName: string, createOption: PhotoCreateOptions, callback: AsyncCallback&lt;FileAsset&gt;): void;
+createPhotoAsset(displayName: string, createOption: PhotoCreateOptions, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 指定待创建的图片或者视频的文件名和创建选项，创建图片或视频资源，使用callback方式返回结果。
 
@@ -344,7 +344,7 @@ async function example() {
 
 ### createPhotoAsset
 
-createPhotoAsset(displayName: string, createOption: PhotoCreateOptions): Promise&lt;FileAsset&gt;;
+createPhotoAsset(displayName: string, createOption: PhotoCreateOptions): Promise&lt;FileAsset&gt;
 
 指定待创建的图片或者视频的文件名和创建选项，创建图片或视频资源，使用Promise方式返回结果。
 
@@ -394,7 +394,7 @@ async function example() {
 
 ### createAudioAsset<sup>10+</sup>
 
-createAudioAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;): void;
+createAudioAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 创建音频文件资源，使用callback方式返回结果。
 
@@ -437,7 +437,7 @@ async function example() {
 
 ### createAudioAsset<sup>10+</sup>
 
-createAudioAsset(displayName: string): Promise&lt;FileAsset&gt;;
+createAudioAsset(displayName: string): Promise&lt;FileAsset&gt;
 
 创建音频文件资源，使用Promise方式返回结果。
 
@@ -483,7 +483,7 @@ async function example() {
 
 ### createAlbum<sup>10+</sup>
 
-createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void;
+createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 
 创建相册，使用callback方式返回结果。
 
@@ -522,7 +522,7 @@ async function example() {
 
 ### createAlbum<sup>10+</sup>
 
-createAlbum(name: string): Promise&lt;Album&gt;;
+createAlbum(name: string): Promise&lt;Album&gt;
 
 创建相册，使用Promise方式返回结果。
 
@@ -566,7 +566,7 @@ async function example() {
 
 ### deleteAlbums<sup>10+</sup>
 
-deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): void;
+deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 删除相册，使用callback方式返回结果。
 
@@ -612,7 +612,7 @@ async function example() {
 
 ### deleteAlbums<sup>10+</sup>
 
-deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;;
+deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;
 
 删除相册，使用Promise方式返回结果。
 
@@ -662,7 +662,7 @@ async function example() {
 
 ### getAlbums<sup>10+</sup>
 
-getAlbums(type: AlbumType, subType: AlbumSubType, options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
+getAlbums(type: AlbumType, subType: AlbumSubType, options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void
 
 根据检索选项和相册类型获取相册，使用callback方式返回结果。
 
@@ -723,7 +723,7 @@ async function example() {
 
 ### getAlbums<sup>10+</sup>
 
-getAlbums(type: AlbumType, subType: AlbumSubType, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
+getAlbums(type: AlbumType, subType: AlbumSubType, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void
 
 根据相册类型获取相册，使用callback方式返回结果。
 
@@ -775,7 +775,7 @@ async function example() {
 
 ### getAlbums<sup>10+</sup>
 
-getAlbums(type: AlbumType, subType: AlbumSubType, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
+getAlbums(type: AlbumType, subType: AlbumSubType, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 
 根据检索选项和相册类型获取相册，使用Promise方式返回结果。
 
@@ -840,7 +840,7 @@ async function example() {
 
 ### getPhotoAlbums
 
-getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
+getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void
 
 获取相册，使用callback方式返回结果。
 
@@ -898,7 +898,7 @@ async function example() {
 
 ### getPhotoAlbums
 
-getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
+getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 
 获取相册，使用Promise方式返回结果。
 
@@ -954,7 +954,7 @@ async function example() {
 
 ### getPrivateAlbum
 
-getPrivateAlbum(type: PrivateAlbumType, callback: AsyncCallback&lt;FetchResult&lt;PrivateAlbum&gt;&gt;): void;
+getPrivateAlbum(type: PrivateAlbumType, callback: AsyncCallback&lt;FetchResult&lt;PrivateAlbum&gt;&gt;): void
 
 获取系统相册，使用 callback 方式返回系统相册的数组。
 
@@ -997,7 +997,7 @@ async function example() {
 
 ### getPrivateAlbum
 
-getPrivateAlbum(type: PrivateAlbumType): Promise&lt;FetchResult&lt;PrivateAlbum&gt;&gt;;
+getPrivateAlbum(type: PrivateAlbumType): Promise&lt;FetchResult&lt;PrivateAlbum&gt;&gt;
 
 获取系统相册，使用Promise方式返回结果。
 
@@ -1044,7 +1044,7 @@ async function example() {
 
 ### getAudioAssets
 
-getAudioAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void;
+getAudioAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void
 
 获取音频文件，使用callback方式返回结果。
 
@@ -1096,7 +1096,7 @@ async function example() {
 
 ### getAudioAssets
 
-getAudioAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
+getAudioAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;
 
 
 获取音频文件，使用promise方式返回结果。
@@ -1154,7 +1154,7 @@ async function example() {
 
 ### delete
 
-delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
+delete(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除媒体文件，删除的文件进入到回收站。
 
@@ -1213,7 +1213,7 @@ async function example() {
 
 ### delete
 
-delete(uri: string): Promise&lt;void&gt;;
+delete(uri: string): Promise&lt;void&gt;
 
 删除媒体文件,删除的文件进入到回收站。
 
@@ -1270,7 +1270,7 @@ async function example() {
 
 ### getActivePeers
 
-getActivePeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void;
+getActivePeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void
 
 获取在线对端设备的信息，使用callback方式返回异步结果。
 
@@ -1302,7 +1302,7 @@ async function example() {
 
 ### getActivePeers
 
-getActivePeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;;
+getActivePeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;
 
 获取在线对端设备的信息，使用promise方式返回异步结果。
 
@@ -1337,7 +1337,7 @@ async function example() {
 
 ### getAllPeers
 
-getAllPeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void;
+getAllPeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void
 
 获取所有对端设备的信息，使用callback方式返回异步结果。
 
@@ -1369,7 +1369,7 @@ async function example() {
 
 ### getAllPeers
 
-getAllPeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;;
+getAllPeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;
 
 获取所有对端设备的信息，使用promise方式返回异步结果。
 
@@ -1615,7 +1615,7 @@ on(uri: string, forSubUri: boolean, callback: Callback&lt;ChangeData&gt;) : void
 | 参数名    | 类型                                        | 必填 | 说明                                                         |
 | --------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri       | string                                      | 是   | FileAsset的uri, Album的uri或[DefaultChangeUri](#defaultchangeuri10)的值。 |
-| forSubUri | boolean                                     | 是   | 是否模糊监听，uri为相册uri时，forSubUri 为true能监听到相册中文件的变化，如果是false只能监听相册本身变化。uri为fileAsset时，forSubUri 为true、false没有区别。uri为DefaultChangeUri时，forSubUri必须为true，如果为false将找不到该uri，收不到任何消息。 |
+| forSubUri | boolean                                     | 是   | 是否模糊监听。uri为相册uri时，forSubUri 为true能监听到相册中文件的变化；如果是false只能监听相册本身变化。uri为fileAsset时，forSubUri 为true、false没有区别。uri为DefaultChangeUri时，forSubUri必须为true；如果为false将找不到该uri，收不到任何消息。 |
 | callback  | Callback&lt;[ChangeData](#changedata10)&gt; | 是   | 返回要监听的[ChangeData](#changedata10)。注：uri可以注册多个不同的callback监听，[off<sup>10+</sup>](#off10)可以关闭该uri所有监听，也可以关闭指定callback的监听。 |
 
 **错误码：**
@@ -1742,8 +1742,8 @@ on(type: ChangeEvent, callback: Callback&lt;void&gt;): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | [ChangeEvent](#changeevent)               | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
-| callback | Callback&lt;void&gt; | 是   | callback返回void                                                   |
+| type     | [ChangeEvent](#changeevent)               | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更。 <br/>'albumChange'：&nbsp;相册变更。<br/>'imageChange'：&nbsp;图片文件变更。<br/>'audioChange'： &nbsp;音频文件变更。<br/>'videoChange'：  &nbsp;视频文件变更。<br/>'remoteFileChange'：&nbsp;注册设备上文件变更。 |
+| callback | Callback&lt;void&gt; | 是   | callback返回void。                                                   |
 
 **示例：**
 
@@ -1789,7 +1789,7 @@ off(type: ChangeEvent, callback?: Callback&lt;void&gt;): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | [ChangeEvent](#changeevent)               | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更。 |
+| type     | [ChangeEvent](#changeevent)               | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更。 <br/>'albumChange'：&nbsp;相册变更。<br/>'imageChange'：&nbsp;图片文件变更。<br/>'audioChange'： &nbsp;音频文件变更。<br/>'videoChange'：  &nbsp;视频文件变更。<br/>'remoteFileChange'：&nbsp;注册设备上文件变更。 |
 | callback | Callback&lt;void&gt; | 否   | callback返回void。                                                   |
 
 **示例：**
@@ -1835,12 +1835,12 @@ async function example() {
 | 名称                      | 类型                     | 只读 | 可写 | 说明                                                   |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
 | uri                       | string                   | 是   | 否   | 媒体文件资源uri（如：file://media/Photo/1/IMG_datetime_0001/displayName.jpg），详情参见用户文件uri介绍中的[媒体文件uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。         |
-| fileType   | [FileType](#filetype) | 是   | 否   | 媒体文件类型                                               |
+| fileType   | [FileType](#filetype) | 是   | 否   | 媒体文件类型。                                               |
 | displayName               | string                   | 是   | 是   | 显示文件名，包含后缀名。                                 |
 
 ### get
 
-get(member: string): MemberType;
+get(member: string): MemberType
 
 获取FileAsset成员参数。
 
@@ -1850,7 +1850,7 @@ get(member: string): MemberType;
 
 | 参数名      | 类型                        | 必填   | 说明    |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | 是    | 成员参数名称例如：ImageVideoKey.DISPLAY_NAME。在get时，除了uri、photoType和displayName三个属性之外，其他的属性都需要在fetchColumns中填入需要get的PhotoKeys，例如：get title属性fetchColumns: ['title']。 |
+| member | string | 是    | 成员参数名称例如：ImageVideoKey.DISPLAY_NAME。在get时，除了uri、photoType和displayName三个属性之外，其他的属性都需要在fetchColumns中填入需要get的PhotoKeys。例如：get title属性fetchColumns: ['title']。 |
 
 **示例：**
 
@@ -1878,7 +1878,7 @@ async function example() {
 
 ### set
 
-set(member: string, value: string): void;
+set(member: string, value: string): void
 
 设置FileAsset成员参数。
 
@@ -2023,7 +2023,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名      | 类型                          | 必填   | 说明                                  |
 | -------- | --------------------------- | ---- | ----------------------------------- |
-| mode     | string                      | 是    | 打开文件方式，如：'r'（只读）, 'w'（只写）, 'rw'（读写）。 |
+| mode     | string                      | 是    | 打开文件方式。如：'r'（只读）, 'w'（只写）, 'rw'（读写）。 |
 | callback | AsyncCallback&lt;number&gt; | 是    | callback返回文件描述符。                            |
 
 **示例：**
@@ -2326,7 +2326,7 @@ favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名        | 类型                        | 必填   | 说明                                 |
 | ---------- | ------------------------- | ---- | ---------------------------------- |
-| isFavorite | boolean                   | 是    | 是否设置为收藏文件， true：设置为收藏文件，false：取消收藏。 |
+| isFavorite | boolean                   | 是    | 是否设置为收藏文件。true：设置为收藏文件；false：取消收藏。 |
 | callback   | AsyncCallback&lt;void&gt; | 是    | callback返回void。                              |
 
 **示例：**
@@ -2367,7 +2367,7 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| isFavorite | boolean | 是    | 是否设置为收藏文件， true：设置为收藏文件，false：取消收藏。 |
+| isFavorite | boolean | 是    | 是否设置为收藏文件。true：设置为收藏文件；false：取消收藏。 |
 
 **返回值：**
 
@@ -2414,7 +2414,7 @@ setHidden(hiddenState: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名        | 类型                        | 必填   | 说明                                 |
 | ---------- | ------------------------- | ---- | ---------------------------------- |
-| hiddenState | boolean                   | 是    | 是否设置为隐藏文件，true:将文件资产放入隐藏相册;false:从隐藏相册中恢复。 |
+| hiddenState | boolean                   | 是    | 是否设置为隐藏文件。true：将文件资产放入隐藏相册；false：从隐藏相册中恢复。 |
 | callback   | AsyncCallback&lt;void&gt; | 是    | callback返回void。                              |
 
 **错误码：**
@@ -2466,7 +2466,7 @@ setHidden(hiddenState: boolean): Promise&lt;void&gt;
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| hiddenState | boolean | 是    | 是否设置为隐藏文件，true:将文件资产放入隐藏相册;false:从隐藏相册中恢复。 |
+| hiddenState | boolean | 是    | 是否设置为隐藏文件。true：将文件资产放入隐藏相册；false：从隐藏相册中恢复。 |
 
 **返回值：**
 
@@ -2535,41 +2535,41 @@ Exif标签的详细信息请参考[image.PropertyKey](../apis-image-kit/js-apis-
 
 | 标签key值                                    | 标签说明              |
 | --------------------------------------- | ----------------- |
-| BitsPerSample | 每个像素比特数 |
-| Orientation | 图像方向 |
-| ImageLength | 图像长度 |
-| ImageWidth | 图像宽度 |
-| GPSLatitude | GPS纬度 |
-| GPSLongitude | GPS经度 |
-| GPSLatitudeRef | 经度引用，例如W或E |
-| GPSLongitudeRef | 纬度引用，例如N或S |
-| DateTimeOriginal | 拍摄时间 |
-| ExposureTime | 曝光时间 |
-| SceneType | 场景类型 |
-| ISOSpeedRatings | ISO感光度分值 |
-| FNumber | 光圈F值 |
-| DateTime | 修改时间 |
-| GPSTimeStamp | GPS时间戳 |
-| GPSDateStamp | GPS日期戳 |
-| ImageDescription | 图像描述 |
-| Make | 制造商 |
-| MakeNote | 制造商 |
-| Model | 型号 |
-| PhotoMode | 拍摄模式 |
-| SensitivityType | 感光类型 |
-| StandardOutputSensitivity | 标准输出感光度 |
-| RecommendedExposureIndex | 推荐曝光指数 |
-| ApertureValue | 光圈 |
-| MeteringMode | 测光模式 |
-| LightSource | 光源 |
-| Flash | 闪光灯 |
-| FocalLength | 镜头焦距 |
-| UserComment | 用户注释 |
-| PixelXDimension | 有效图像宽度 |
-| PixelYDimension | 有效图像高度 |
-| WhiteBalance | 白平衡 |
-| FocalLengthIn35mmFilm | 35mm等效焦距 |
-| ExposureBiasValue | 曝光补偿 |
+| BitsPerSample | 每个像素比特数。 |
+| Orientation | 图像方向。 |
+| ImageLength | 图像长度。 |
+| ImageWidth | 图像宽度。 |
+| GPSLatitude | GPS纬度。 |
+| GPSLongitude | GPS经度。 |
+| GPSLatitudeRef | 经度引用，例如W或E。 |
+| GPSLongitudeRef | 纬度引用，例如N或S。 |
+| DateTimeOriginal | 拍摄时间。 |
+| ExposureTime | 曝光时间。 |
+| SceneType | 场景类型。 |
+| ISOSpeedRatings | ISO感光度分值。 |
+| FNumber | 光圈F值。 |
+| DateTime | 修改时间。 |
+| GPSTimeStamp | GPS时间戳。 |
+| GPSDateStamp | GPS日期戳。 |
+| ImageDescription | 图像描述。 |
+| Make | 制造商。 |
+| MakeNote | 制造商。 |
+| Model | 型号。 |
+| PhotoMode | 拍摄模式。 |
+| SensitivityType | 感光类型。 |
+| StandardOutputSensitivity | 标准输出感光度。 |
+| RecommendedExposureIndex | 推荐曝光指数。 |
+| ApertureValue | 光圈。 |
+| MeteringMode | 测光模式。 |
+| LightSource | 光源。 |
+| Flash | 闪光灯。 |
+| FocalLength | 镜头焦距。 |
+| UserComment | 用户注释。 |
+| PixelXDimension | 有效图像宽度。 |
+| PixelYDimension | 有效图像高度。 |
+| WhiteBalance | 白平衡。 |
+| FocalLengthIn35mmFilm | 35mm等效焦距。 |
+| ExposureBiasValue | 曝光补偿。 |
 
 **示例：**
 
@@ -2625,41 +2625,41 @@ Exif标签的详细信息请参考[image.PropertyKey](../apis-image-kit/js-apis-
 
 | 标签key值                                    | 标签说明              |
 | --------------------------------------- | ----------------- |
-| BitsPerSample | 每个像素比特数 |
-| Orientation | 图像方向 |
-| ImageLength | 图像长度 |
-| ImageWidth | 图像宽度 |
-| GPSLatitude | GPS纬度 |
-| GPSLongitude | GPS经度 |
-| GPSLatitudeRef | 经度引用，例如W或E |
-| GPSLongitudeRef | 纬度引用，例如N或S |
-| DateTimeOriginal | 拍摄时间 |
-| ExposureTime | 曝光时间 |
-| SceneType | 场景类型 |
-| ISOSpeedRatings | ISO感光度分值 |
-| FNumber | 光圈F值 |
-| DateTime | 修改时间 |
-| GPSTimeStamp | GPS时间戳 |
-| GPSDateStamp | GPS日期戳 |
-| ImageDescription | 图像描述 |
-| Make | 制造商 |
-| MakeNote | 制造商 |
-| Model | 型号 |
-| PhotoMode | 拍摄模式 |
-| SensitivityType | 感光类型 |
-| StandardOutputSensitivity | 标准输出感光度 |
-| RecommendedExposureIndex | 推荐曝光指数 |
-| ApertureValue | 光圈 |
-| MeteringMode | 测光模式 |
-| LightSource | 光源 |
-| Flash | 闪光灯 |
-| FocalLength | 镜头焦距 |
-| UserComment | 用户注释 |
-| PixelXDimension | 有效图像宽度 |
-| PixelYDimension | 有效图像高度 |
-| WhiteBalance | 白平衡 |
-| FocalLengthIn35mmFilm | 35mm等效焦距 |
-| ExposureBiasValue | 曝光补偿 |
+| BitsPerSample | 每个像素比特数。 |
+| Orientation | 图像方向。 |
+| ImageLength | 图像长度。 |
+| ImageWidth | 图像宽度。 |
+| GPSLatitude | GPS纬度。 |
+| GPSLongitude | GPS经度。 |
+| GPSLatitudeRef | 经度引用，例如W或E。 |
+| GPSLongitudeRef | 纬度引用，例如N或S。 |
+| DateTimeOriginal | 拍摄时间。 |
+| ExposureTime | 曝光时间。 |
+| SceneType | 场景类型。 |
+| ISOSpeedRatings | ISO感光度分值。 |
+| FNumber | 光圈F值。 |
+| DateTime | 修改时间。 |
+| GPSTimeStamp | GPS时间戳。 |
+| GPSDateStamp | GPS日期戳。 |
+| ImageDescription | 图像描述。 |
+| Make | 制造商。 |
+| MakeNote | 制造商。 |
+| Model | 型号。 |
+| PhotoMode | 拍摄模式。 |
+| SensitivityType | 感光类型。 |
+| StandardOutputSensitivity | 标准输出感光度。 |
+| RecommendedExposureIndex | 推荐曝光指数。 |
+| ApertureValue | 光圈。 |
+| MeteringMode | 测光模式。 |
+| LightSource | 光源。 |
+| Flash | 闪光灯。 |
+| FocalLength | 镜头焦距。 |
+| UserComment | 用户注释。 |
+| PixelXDimension | 有效图像宽度。 |
+| PixelYDimension | 有效图像高度。 |
+| WhiteBalance | 白平衡。 |
+| FocalLengthIn35mmFilm | 35mm等效焦距。 |
+| ExposureBiasValue | 曝光补偿。 |
 
 **示例：**
 
@@ -2859,7 +2859,7 @@ isAfterLast(): boolean
 
 | 类型      | 说明                                 |
 | ------- | ---------------------------------- |
-| boolean | 当读到最后一条记录后，后续没有记录返回true，否则返回false。 |
+| boolean | 当读到最后一条记录后，后续没有记录返回true；否则返回false。 |
 
 **示例：**
 
@@ -3292,7 +3292,7 @@ async function example() {
 
 ## Album
 
-实体相册
+实体相册。
 
 ### 属性
 
@@ -3309,7 +3309,7 @@ async function example() {
 
 ### getPhotoAssets
 
-getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void;
+getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void
 
 获取相册中的文件。该方法使用callback形式来返回文件。
 
@@ -3362,7 +3362,7 @@ async function example() {
 
 ### getPhotoAssets
 
-getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
+getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;
 
 获取相册中的文件。该方法使用Promise来返回文件。
 
@@ -3419,7 +3419,7 @@ async function example() {
 
 ### commitModify
 
-commitModify(callback: AsyncCallback&lt;void&gt;): void;
+commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 更新相册属性修改到数据库中。该方法使用callback形式来返回结果。
 
@@ -3459,7 +3459,7 @@ async function example() {
 
 ### commitModify
 
-commitModify(): Promise&lt;void&gt;;
+commitModify(): Promise&lt;void&gt;
 
 更新相册属性修改到数据库中。该方法使用Promise来返回结果。
 
@@ -3502,7 +3502,7 @@ async function example() {
 
 ### addPhotoAssets<sup>10+</sup>
 
-addPhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+addPhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 往相册中添加图片或者视频，需要先预置相册和文件资源。该方法使用callback形式来返回结果。
 
@@ -3557,7 +3557,7 @@ async function example() {
 
 ### addPhotoAssets<sup>10+</sup>
 
-addPhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
+addPhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;
 
 往相册中添加图片或者视频，需要先预置相册和文件资源。该方法使用Promise来返回结果。
 
@@ -3616,7 +3616,7 @@ async function example() {
 
 ### removePhotoAssets<sup>10+</sup>
 
-removePhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+removePhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 从相册中移除图片或者视频，需要先预置相册和文件资源。该方法使用callback形式来返回结果。
 
@@ -3671,7 +3671,7 @@ async function example() {
 
 ### removePhotoAssets<sup>10+</sup>
 
-removePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
+removePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;
 
 从相册中移除图片或者视频，需要先预置相册和文件资源。该方法使用Promise来返回结果。
 
@@ -3730,7 +3730,7 @@ async function example() {
 
 ### recoverPhotoAssets<sup>10+</sup>
 
-recoverPhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+recoverPhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 从回收站中恢复图片或者视频，需要先在回收站中预置文件资源。该方法使用callback形式来返回结果。
 
@@ -3785,7 +3785,7 @@ async function example() {
 
 ### recoverPhotoAssets<sup>10+</sup>
 
-recoverPhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
+recoverPhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;
 
 从回收站中恢复图片或者视频，需要先在回收站中预置文件资源。该方法使用Promise来返回结果。
 
@@ -3844,7 +3844,7 @@ async function example() {
 
 ### deletePhotoAssets<sup>10+</sup>
 
-deletePhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+deletePhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 从回收站中彻底删除图片或者视频，需要先在回收站中预置文件资源。该方法使用callback形式来返回结果。
 
@@ -3901,7 +3901,7 @@ async function example() {
 
 ### deletePhotoAssets<sup>10+</sup>
 
-deletePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
+deletePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;
 
 从回收站中彻底删除图片或者视频，需要先在回收站中预置文件资源。该方法使用Promise来返回结果。
 
@@ -3980,7 +3980,7 @@ async function example() {
 
 ### getPhotoAssets
 
-getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void;
+getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void
 
 获取系统相册中的文件。该方法使用callback形式来返回文件。
 
@@ -4033,7 +4033,7 @@ async function example() {
 
 ### getPhotoAssets
 
-getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
+getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;
 
 获取系统相册中的文件。该方法使用Promise来返回文件。
 
@@ -4085,7 +4085,7 @@ async function example() {
 
 ### delete
 
-delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
+delete(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除系统相册中的文件，仅支持删除回收站相册中文件。
 
@@ -4131,7 +4131,7 @@ async function example() {
 
 ### delete
 
-delete(uri: string): Promise&lt;void&gt;;
+delete(uri: string): Promise&lt;void&gt;
 
 删除系统相册中的文件，仅支持删除回收站相册中文件。
 
@@ -4181,7 +4181,7 @@ async function example() {
 
 ### recover
 
-recover(uri: string, callback: AsyncCallback&lt;void&gt;): void;
+recover(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 恢复系统相册中的文件，仅支持恢复回收站相册中文件。
 
@@ -4227,7 +4227,7 @@ async function example() {
 
 ### recover
 
-recover(uri: string): Promise&lt;void&gt;;
+recover(uri: string): Promise&lt;void&gt;
 
 恢复系统相册中的文件，仅支持恢复回收站相册中文件。
 

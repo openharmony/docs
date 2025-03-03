@@ -1,35 +1,35 @@
-# Multithreaded Concurrency Overview
+# Overview of Multithreaded Concurrency
 
-Concurrency models are used to implement concurrent tasks in different scenarios. Common concurrency models are classified into shared memory models and message passing models.
+Concurrency models are programming paradigms designed to implement concurrent tasks in various scenarios. Common concurrency models include those based on shared memory and those based on message passing.
 
-A typical message passing model is actor. It supports high-scale concurrency while eliminating a series of complex and occasional issues caused by locks.
+The actor model, as a typical example of a message-passing concurrency model, eliminates the need for you to deal with the complex and sporadic issues associated with locks. It also offers relatively high concurrency, which has led to its widespread adoption and use.
 
 Currently, ArkTS provides two concurrency capabilities: TaskPool and Worker, both of which are implemented based on the actor model.
 
-For details about the comparison between the Actor concurrency model and the memory sharing concurrency model, see [Multithreaded Concurrency Model](#multithreaded concurrency model).
+For details about the comparison between the actor model and the shared memory concurrency model, see [Multithreaded Concurrency Models](#multithreaded-concurrency-models).
 
-## Multithreaded Concurrency Model
+## Multithreaded Concurrency Models
 
-In the memory sharing model, multiple threads execute complex tasks simultaneously. These threads depend on the same memory and have the permission to access the memory. Before accessing the memory, a thread must preempt and lock the memory. In this case, other threads have to wait for the thread to release the memory.
+Shared memory concurrency model: In this model, multiple threads execute tasks simultaneously. These threads rely on the same memory and have access permissions. Before accessing memory, threads must compete for and lock the memory's usage rights. Threads that fail to acquire the lock must wait for other threads to release the lock before proceeding.
 
-In the actor model, each thread is an independent actor, which has its own memory. Actors trigger the behavior of each other through message transfer. They cannot directly access the memory space of each other.
+Actor model: In this model, each thread is an independent actor, which has its own memory. Actors trigger the behavior of each other through message transfer. They cannot directly access the memory space of each other. 
 
-Different from the memory sharing model, the actor model provides independent memory space for each thread. As such, it avoids memory preemption and resulting function and performance problems.
+Different from the shared memory concurrency model, the actor model provides independent memory space for each thread. As such, it avoids memory preemption and resulting functional and performance issues.
 
 In the actor model, concurrent tasks and task results are transmitted through the inter-thread communication.
 
-This topic describes the differences between the two models when solving the producer-consumer problem.
+This topic uses the classic producer-consumer problem as an example to illustrate the differences between these two models in solving specific problems.
 
-### Memory Sharing Model
+### Shared Memory Model
 
-The following figure shows how the producer-consumer problem is resolved in the memory sharing model.
+The following figure illustrates how to solve the producer-consumer issue using the shared memory model.
 
 ![image_0000002001497485](figures/image_0000002001497485.png)
 
-To prevent dirty reads and writes caused by simultaneous access, only one producer or consumer can access a shared memory container at a time. This means that producers and consumers need to compete for the lock of the container. After a role obtains the lock, other roles have to wait.
+To prevent problems like dirty reads and writes caused by simultaneous access, only one producer or consumer can access a shared memory container at any given moment. This means that producers and consumers need to compete for the lock of the container. Once a role secures the lock, others must wait until the lock is released before they can attempt to access the container.
 
 ```ts
-// The pseudocode is used only as a logic example to help developers understand the differences between the memory sharing model and the Actor model.
+// The pseudocode is used here to help you understand the differences between the shared memory model and the actor model.
 class Queue {
   // ...
   push(value: number) {}
@@ -82,7 +82,7 @@ class BufferQueue {
   }
 }
  
-// Construct a globally shared memory segment.
+// Construct a globally shared memory buffer.
 let g_bufferQueue = new BufferQueue()
  
 class Producer {
@@ -90,7 +90,7 @@ class Producer {
   }
   run() {
     let value = Math.random()
-    // Initiate cross-thread access to the bufferQueue object.
+    // Access to the bufferQueue object across threads.
     g_bufferQueue.add(value)
   }
 }
@@ -99,11 +99,11 @@ class ConsumerTest {
   constructor() {
   }
   run() {
-    // Initiate cross-thread access to the bufferQueue object.
+    // Access to the bufferQueue object across threads.
     let num = 123;
     let res = g_bufferQueue.take(num)
     if (res != null) {
-      // Add consumption logic.
+      // Add consumption logic here.
     }
   }
 }
@@ -123,11 +123,11 @@ function Main(): void {
 
 ### Actor Model
 
-The following figure shows how the producer-consumer problem is resolved by using **TaskPool** in the actor model.
+The following figure demonstrates how to use the TaskPool concurrency capability based on the actor model to solve the producer-consumer issue.
 
 ![image_0000001964697544](figures/image_0000001964697544.png)
 
-In the Actor model, different roles do not share memory. The producer thread and UI thread have their own VM instances. The two VM instances have exclusive memory and are isolated from each other. After producing the result, the producer sends the result to the UI thread through serialization. After consuming the result, the UI thread sends a new production task to the producer thread.
+In the actor model, different roles operate independently without sharing memory. Each role, such as the producer thread and the UI thread, runs within its own virtual machine instance, each with its own exclusive memory space. After generating a result, the producer sends the result to the UI thread through serialization. The UI thread processes the result and then sends a new task to the producer thread.
 
 ```ts
 import { taskpool } from '@kit.ArkTS';
@@ -135,14 +135,14 @@ import { taskpool } from '@kit.ArkTS';
 // Cross-thread concurrent tasks
 @Concurrent
 async function produce(): Promise<number> {
-  // Add production logic.
+  // Add production logic here.
   console.info("producing...");
   return Math.random();
 }
 
 class Consumer {
   public consume(value: Object) {
-    // Add consumption logic.
+    // Add consumption logic here.
     console.info("consuming value: " + value);
   }
 }
@@ -185,4 +185,4 @@ struct Index {
 
 ## TaskPool and Worker
 
-For details about the operation mechanisms and precautions, see [TaskPool Introduction](taskpool-introduction.md) and [Worker Introduction](worker-introduction.md). For details about their differences in the implementation features and use cases, see [Comparison Between TaskPool and Worker](taskpool-vs-worker.md).
+ArkTS provides two concurrency capabilities for you to choose from: TaskPool and Worker. For details about their operation mechanisms and precautions, see [TaskPool](taskpool-introduction.md) and [Worker](worker-introduction.md). For details about their differences in the implementation features and use cases, see [Comparison Between TaskPool and Worker](taskpool-vs-worker.md).

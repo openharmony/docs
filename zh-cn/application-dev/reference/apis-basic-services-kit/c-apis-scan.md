@@ -57,11 +57,11 @@
 
 | 成员         | 描述     |
 | ------------ | -------- |
-| scannerId    | 扫描仪id |
-| manufacturer | 制造商   |
-| model        | 设备型号 |
-| discoverMode | 发现模式 |
-| serialNumber | 序列号   |
+| scannerId    | 扫描仪id。 |
+| manufacturer | 制造商。   |
+| model        | 设备型号。 |
+| discoverMode | 发现模式。 |
+| serialNumber | 序列号。   |
 
 ### Scan_PictureScanProgress
 
@@ -73,9 +73,9 @@
 
 | 成员     | 描述                    |
 | -------- | ----------------------- |
-| progress | 图片扫描进度，范围0~100 |
-| fd       | 图片文件句柄            |
-| isFinal  | 是否有下一张图片        |
+| progress | 图片扫描进度，范围0~100。 |
+| fd       | 图片文件句柄。            |
+| isFinal  | 是否有下一张图片。        |
 
 ### Scan_ScannerOptions
 
@@ -87,10 +87,10 @@
 
 | 成员         | 描述         |
 | ------------ | ------------ |
-| titles       | 选项标题     |
-| descriptions | 选项描述信息 |
-| ranges       | 选项范围     |
-| optionCount  | 选项个数     |
+| titles       | 选项标题。     |
+| descriptions | 选项描述信息。 |
+| ranges       | 选项范围。     |
+| optionCount  | 选项个数。     |
 
 ### Scan_ScannerDiscoveryCallback
 
@@ -102,8 +102,8 @@
 
 | 参数        | 描述       |
 | ----------- | ---------- |
-| devices     | 扫描仪设备 |
-| deviceCount | 设备个数   |
+| devices     | 扫描仪设备。 |
+| deviceCount | 设备个数。   |
 
 
 

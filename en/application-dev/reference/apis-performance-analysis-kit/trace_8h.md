@@ -74,15 +74,16 @@ Output:
 | -------- | -------- |
 | struct&nbsp;&nbsp;[HiTraceId](_hi_trace_id.md) | Defines the **HiTraceId** instance. | 
 
+
 ### Types
 
 | Name| Description| 
 | -------- | -------- |
-| typedef enum [HiTraceId_Valid](_hitrace.md#hitraceid_valid) [HiTraceId_Valid](_hitrace.md#hitraceid_valid) | Defines an enum for whether a **HiTraceId** instance is valid. | 
-| typedef enum [HiTrace_Version](_hitrace.md#hitrace_version) [HiTrace_Version](_hitrace.md#hitrace_version) | Defines an enum for the version number of **HiTrace**. | 
-| typedef enum [HiTrace_Flag](_hitrace.md#hitrace_flag) [HiTrace_Flag](_hitrace.md#hitrace_flag) | Defines an enum for the flag of **HiTrace**. | 
-| typedef enum [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) | Defines an enum for the tracepoint type of **HiTrace**. | 
-| typedef enum [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) |  | 
+| typedef enum [HiTraceId_Valid](_hitrace.md#hitraceid_valid)[HiTraceId_Valid](_hitrace.md#hitraceid_valid) | Defines an enum for whether a **HiTraceId** instance is valid. | 
+| typedef enum [HiTrace_Version](_hitrace.md#hitrace_version)[HiTrace_Version](_hitrace.md#hitrace_version) | Defines an enum for the HiTrace versions. | 
+| typedef enum [HiTrace_Flag](_hitrace.md#hitrace_flag)[HiTrace_Flag](_hitrace.md#hitrace_flag) | Defines an enum for the HiTrace flags. | 
+| typedef enum [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type)[HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) | Defines an enum for the HiTrace tracepoint types. | 
+| typedef enum [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode)[HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) | Defines an enum for the HiTrace communication modes. | 
 |  typedef struct [HiTraceId](_hi_trace_id.md)**HiTraceId** |  | 
 
 
@@ -91,10 +92,10 @@ Output:
 | Name| Description| 
 | -------- | -------- |
 | [HiTraceId_Valid](_hitrace.md#hitraceid_valid) { [HITRACE_ID_INVALID](_hitrace.md) = 0, [HITRACE_ID_VALID](_hitrace.md) = 1 } | Enumerates whether a **HiTraceId** instance is valid. | 
-| [HiTrace_Version](_hitrace.md#hitrace_version) { [HITRACE_VER_1](_hitrace.md) = 0 } | Enumerates the version numbers of **HiTrace**. | 
-| [HiTrace_Flag](_hitrace.md#hitrace_flag) {<br>[HITRACE_FLAG_DEFAULT](_hitrace.md) = 0, [HITRACE_FLAG_INCLUDE_ASYNC](_hitrace.md) = 1 &lt;&lt; 0, [HITRACE_FLAG_DONOT_CREATE_SPAN](_hitrace.md) = 1 &lt;&lt; 1, [HITRACE_FLAG_TP_INFO](_hitrace.md) = 1 &lt;&lt; 2,<br>[HITRACE_FLAG_NO_BE_INFO](_hitrace.md) = 1 &lt;&lt; 3, [HITRACE_FLAG_DONOT_ENABLE_LOG](_hitrace.md) = 1 &lt;&lt; 4, [HITRACE_FLAG_FAULT_TRIGGER](_hitrace.md) = 1 &lt;&lt; 5, [HITRACE_FLAG_D2D_TP_INFO](_hitrace.md) = 1 &lt;&lt; 6<br>} | Defines an enum for the flag of **HiTrace**. | 
-| [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) {<br>[HITRACE_TP_CS](_hitrace.md) = 0, [HITRACE_TP_CR](_hitrace.md) = 1, [HITRACE_TP_SS](_hitrace.md) = 2, [HITRACE_TP_SR](_hitrace.md) = 3,<br>[HITRACE_TP_GENERAL](_hitrace.md) = 4<br>} | Enumerates the tracepoint types of **HiTrace**. | 
-| [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) { [HITRACE_CM_DEFAULT](_hitrace.md) = 0, [HITRACE_CM_THREAD](_hitrace.md) = 1, [HITRACE_CM_PROCESS](_hitrace.md) = 2, [HITRACE_CM_DEVICE](_hitrace.md) = 3 } |  | 
+| [HiTrace_Version](_hitrace.md#hitrace_version) { [HITRACE_VER_1](_hitrace.md) = 0 } | Enumerates the HiTrace versions. | 
+| [HiTrace_Flag](_hitrace.md#hitrace_flag) {<br>[HITRACE_FLAG_DEFAULT](_hitrace.md) = 0, [HITRACE_FLAG_INCLUDE_ASYNC](_hitrace.md) = 1 &lt;&lt; 0, [HITRACE_FLAG_DONOT_CREATE_SPAN](_hitrace.md) = 1 &lt;&lt; 1, [HITRACE_FLAG_TP_INFO](_hitrace.md) = 1 &lt;&lt; 2,<br>[HITRACE_FLAG_NO_BE_INFO](_hitrace.md) = 1 &lt;&lt; 3, [HITRACE_FLAG_DONOT_ENABLE_LOG](_hitrace.md) = 1 &lt;&lt; 4, [HITRACE_FLAG_FAULT_TRIGGER](_hitrace.md) = 1 &lt;&lt; 5, [HITRACE_FLAG_D2D_TP_INFO](_hitrace.md) = 1 &lt;&lt; 6<br>} | Enumerates the HiTrace flags. | 
+| [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) {<br>[HITRACE_TP_CS](_hitrace.md) = 0, [HITRACE_TP_CR](_hitrace.md) = 1, [HITRACE_TP_SS](_hitrace.md) = 2, [HITRACE_TP_SR](_hitrace.md) = 3,<br>[HITRACE_TP_GENERAL](_hitrace.md) = 4<br>} | Enumerates the HiTrace tracepoint types. | 
+| [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) { [HITRACE_CM_DEFAULT](_hitrace.md) = 0, [HITRACE_CM_THREAD](_hitrace.md) = 1, [HITRACE_CM_PROCESS](_hitrace.md) = 2, [HITRACE_CM_DEVICE](_hitrace.md) = 3 } | Enumerates the HiTrace communication modes. | 
 
 
 ### Functions

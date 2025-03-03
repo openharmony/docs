@@ -792,14 +792,14 @@ statistics.getSockfdTxBytes(sockfd).then((stats: number) => {
 });
 ```
 
-## NetBearType
+## NetBearType<sup>12+</sup>
 
 type NetBearType = connection.NetBearType
 
 Enumerates network types.
 
-**System capability**: SystemCapability.Communication.NetStack
+**System capability**: SystemCapability.Communication.NetManager
 
 |       Type      |            Description            |
 | ---------------- | --------------------------- |
-| connection.NetBearType | Network type.   |
+| [connection.NetBearType](js-apis-net-connection.md#netbeartype) | Network type.   |

@@ -34,8 +34,7 @@ pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: Pick
 
 | 类型                                             | 说明                                                                                   |
 | ----------------------------------------------- | -------------------------------------------------------------------------------------- |
-| Promise\<PickerResult\>                         | 使用Promise的方式获取相机选择器的处理结果。具体返回值[PickerResult](#pickerresult)           |
-
+| Promise\<PickerResult\>                         | 使用Promise的方式获取相机选择器的处理结果。具体返回值[PickerResult](#pickerresult)。        |
 
 **示例：**
 
@@ -71,8 +70,8 @@ async function demo() {
 
 | 名称             | 值    | 说明     |
 | ----------------| ----  | ---------|
-| PHOTO           | photo | 拍照模式  |
-| VIDEO           | video | 录制模式  |
+| PHOTO           | photo | 拍照模式。  |
+| VIDEO           | video | 录制模式。 |
 
 
 ## PickerProfile

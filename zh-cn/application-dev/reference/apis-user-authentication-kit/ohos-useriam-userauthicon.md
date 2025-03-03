@@ -64,13 +64,17 @@ UserAuthIcon({
 ## 示例
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { userAuth, UserAuthIcon } from '@kit.UserAuthenticationKit';
 
 @Entry
 @Component
 struct Index {
+  rand = cryptoFramework.createRandom();
+  len: number = 16;
+  randData: Uint8Array = this.rand?.generateRandomSync(this.len)?.data;
   authParam: userAuth.AuthParam = {
-    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+    challenge: this.randData,
     authType: [userAuth.UserAuthType.FACE, userAuth.UserAuthType.PIN],
     authTrustLevel: userAuth.AuthTrustLevel.ATL3
   };

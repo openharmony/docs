@@ -5,13 +5,9 @@
 
 Provides functions related to rawfiles, including searching for, reading, and closing rawfiles.
 
-**System capability**: SystemCapability.Global.ResourceManager
-
-**Library**: librawfile.z.so
-
 **Since**: 8
 
-**Related module**: [Rawfile](rawfile.md)
+**Related module**: [Rawfile] (rawfile.md)
 
 
 ## Summary
@@ -29,8 +25,8 @@ Provides functions related to rawfiles, including searching for, reading, and cl
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [RawFile](rawfile.md#rawfile)[RawFile](rawfile.md#rawfile) | Provides access to rawfiles. | 
-| typedef struct [RawFile64](rawfile.md#rawfile64)[RawFile64](rawfile.md#rawfile64) | Provides access to large rawfiles. | 
+| typedef struct [RawFile](rawfile.md#rawfile) [RawFile](rawfile.md#rawfile) | Provides access to rawfiles. | 
+| typedef struct [RawFile64](rawfile.md#rawfile64) [RawFile64](rawfile.md#rawfile64) | Provides access to large rawfiles. | 
 
 
 ### Function

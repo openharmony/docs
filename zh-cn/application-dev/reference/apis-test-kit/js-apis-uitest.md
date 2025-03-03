@@ -16,6 +16,7 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块接口在<!--RP1-->[自动化测试脚本](../../application-test/arkxtest-guidelines.md)<!--RP1End-->中使用。
 > - 本模块接口不支持并发调用。
+> - 本模块接口适用于手机、平板、2in1、智能穿戴设备。
 
 
 ## 导入模块
@@ -1450,7 +1451,7 @@ inputText(text: string): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| text   | string | 是   | 输入的文本信息，当前支持英文和特殊字符。 |
+| text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
 
 **错误码：**
 
@@ -1626,6 +1627,10 @@ async function demo() {
 dragTo(target: Component): Promise\<void>
 
 将控件拖拽至目标控件处。
+
+> **说明**
+>
+> 该接口仅在手机、平板、2in1设备上生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2332,6 +2337,10 @@ drag(startx: number, starty: number, endx: number, endy: number, speed?: number)
 
 Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 
+> **说明**
+>
+> 该接口仅在手机、平板、2in1设备上生效。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
@@ -2369,7 +2378,7 @@ async function demo() {
 
 screenCap(savePath: string): Promise\<boolean>
 
-Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中。
+Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中。适用于支持截屏的场景。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2411,6 +2420,10 @@ async function demo() {
 setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 将当前场景的显示方向设置为指定的显示方向。适用于可旋转的应用场景。
+
+> **说明**
+>
+> 该接口仅在手机、平板、2in1设备上生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2480,6 +2493,10 @@ async function demo() {
 setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 启用/禁用设备旋转屏幕的功能。
+
+> **说明**
+>
+> 该接口仅在手机、平板、2in1设备上生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2612,6 +2629,10 @@ async function demo() {
 pressHome(): Promise\<void>
 
 设备返回到桌面。
+
+> **说明**
+>
+> 该接口仅在手机、平板、2in1设备上生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2808,7 +2829,7 @@ async function demo() {
 
 screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
-捕获当前屏幕的指定区域，并保存为PNG格式的图片至给出的保存路径中。
+捕获当前屏幕的指定区域，并保存为PNG格式的图片至给出的保存路径中。适用于支持截屏的场景。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3151,6 +3172,10 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 鼠标按住鼠标左键从起始坐标点拖拽至终点坐标点。
 
+> **说明**
+>
+> 该接口仅在手机、平板、2in1设备上生效。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
@@ -3197,7 +3222,7 @@ inputText(p: Point, text: string): Promise\<void>
 | 参数名 | 类型             | 必填 | 说明               |
 | ------ | ---------------- | ---- | ------------------ |
 | p      | [Point](#point9) | 是   | 输入文本的坐标点。 |
-| text   | string           | 是   | 输入的文本信息。   |
+| text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
 
 **错误码：**
 
@@ -3226,7 +3251,7 @@ touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: Touc
 
 模拟触摸板多指滑动手势，使用Promise异步回调。
 
-> 说明
+> **说明**
 >
 > 该接口仅在2in1设备上生效。
 
@@ -4114,8 +4139,8 @@ once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 
 | 参数名   | 类型                                         | 必填 | 说明                              |
 | -------- | -------------------------------------------- | ---- | --------------------------------- |
-| type     | string                                       | 是   | 订阅的事件类型，取值为'toastShow' |
-| callback | Callback\<[UIElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调函数          |
+| type     | string                                       | 是   | 订阅的事件类型，取值为'toastShow'。 |
+| callback | Callback\<[UIElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调函数。          |
 
 **错误码：**
 

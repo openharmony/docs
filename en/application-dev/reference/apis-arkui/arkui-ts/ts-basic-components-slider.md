@@ -90,7 +90,7 @@ trackColor(value: ResourceColor | LinearGradient)
 
 Sets the background color of the track.
 
-**LinearGradient** is supported since API version 12.
+Since API version 12, **LinearGradient** can be used to create a gradient effect for the track.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -106,9 +106,11 @@ Sets the background color of the track.
 
 ### selectedColor
 
-selectedColor(value: ResourceColor)
+selectedColor(value: ResourceColor | LinearGradient)
 
-Sets the color of the portion of the track between the minimum value and the thumb.
+Sets the color of the portion of the track between the minimum value and the thumb, representing the selected portion.
+
+Since API version 16, **LinearGradient** can be used to create a gradient effect for the selected portion.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -118,9 +120,9 @@ Sets the color of the portion of the track between the minimum value and the thu
 
 **Parameters**
 
-| Name| Type                                      | Mandatory| Description                                         |
-| ------ | ------------------------------------------ | ---- | --------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the portion of the track between the minimum value and the thumb.<br>Default value: **$r('sys.color.ohos_id_color_emphasize')**|
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient<sup>16+</sup>](ts-basic-components-datapanel.md#lineargradient10) | Yes  | Color of the portion of the track between the minimum value and the thumb.<br>**NOTE**<br>With gradient color settings, if the color stop values are invalid or if the color stops are empty, the gradient effect will not be applied.<br>Default value: **$r('sys.color.ohos_id_color_emphasize')**|
 
 ### showSteps
 
@@ -219,7 +221,7 @@ When **SliderBlockType.DEFAULT** is used, **blockBorderWidth** sets the border w
 
 When **SliderBlockType.IMAGE** is used, **blockBorderWidth** does not work as the slider has no border.
 
-WWhen **SliderBlockType.SHAPE** is used, **blockBorderWidth** sets the border width of the slider in a custom shape.
+When **SliderBlockType.SHAPE** is used, **blockBorderWidth** sets the border width of the slider in a custom shape.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -440,6 +442,46 @@ Sets the slide range.
 | ------ | ----------------------------------- | ---- | ---------------- |
 | value  | [SlideRange](#sliderange12) | Yes  | Slide range.|
 
+### enableHapticFeedback<sup>16+</sup>
+
+enableHapticFeedback(enabled: boolean)
+
+Specifies whether to enable haptic feedback.
+
+To enable haptic feedback, you must declare the ohos.permission.VIBRATE permission under **requestPermissions** in the **module.json5** file of the project.
+
+```json
+"requestPermissions": [
+  {
+    "name": "ohos.permission.VIBRATE",
+  }
+ ]
+```
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type                                         | Mandatory | Description                                                                                 |
+| ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
+| enabled  | boolean | Yes  | Whether to enable haptic feedback.<br>**true** (default): Haptic feedback is enabled.<br>**false**: Haptic feedback is disabled.|
+
+### digitalCrownSensitivity<sup>16+</sup>
+
+digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
+
+Sets the sensitivity to the digital crown rotation.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type                                                        | Mandatory| Description                                                   |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
+| sensitivity | [Optional\<CrownSensitivity>](ts-appendix-enums.md#crownsensitivity16) | Yes  | Sensitivity to the digital crown rotation.<br>Default value: **CrownSensitivity.MEDIUM**|
+
 ## SliderBlockStyle<sup>10+</sup>
 
 Describes the style of the slider in the block direction.
@@ -462,11 +504,11 @@ Enumerates the types of the slider in the block direction.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name   | Description                |
-| ------- | ---------------------- |
-| DEFAULT | Round slider.  |
-| IMAGE   | Slider with an image background.  |
-| SHAPE   | Slider in a custom shape.|
+| Name   | Value| Description                |
+| ------- | -- | ---------------------- |
+| DEFAULT | 0 | Round slider.  |
+| IMAGE   | 1 | Slider with an image background.  |
+| SHAPE   | 2 | Slider in a custom shape.|
 
 ## SliderInteraction<sup>12+</sup>
 
@@ -476,11 +518,11 @@ Enumerates the interaction modes between the user and the slider.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Description                         |
-| ------ | ----------------------------- |
-| SLIDE_AND_CLICK | Users can drag the slider or touch the track to move the slider. The slider moves as soon as the mouse or finger is pressed.|
-| SLIDE_ONLY | Users are not allowed to move the slider by touching the slider.|
-| SLIDE_AND_CLICK_UP | Users can drag the slider or touch the track to move the slider. The slider moves when the mouse is released or finger is lifted, if the release/lift position coincides with the screen press position.|
+| Name    | Value|Description                         |
+| ------ | -- | ----------------------------- |
+| SLIDE_AND_CLICK | 0 | Users can drag the slider or touch the track to move the slider. The slider moves as soon as the mouse or finger is pressed.|
+| SLIDE_ONLY | 1 | Users are not allowed to move the slider by touching the slider.|
+| SLIDE_AND_CLICK_UP | 2 |Users can drag the slider or touch the track to move the slider. The slider moves when the mouse is released or finger is lifted, if the release/lift position coincides with the screen press position.|
 
 ## SlideRange<sup>12+</sup>
 
@@ -498,7 +540,7 @@ Defines the callback type used in **SlideRange**.
 >  **NOTE**
 >
 >  - Currently, this API takes effect only when **MIN** ≤ **from** ≤ **to** ≤ **MAX** (the values of **MIN** and **MAX** do not depend on the values set, but on the actual values that take effect).
->  - You can set only **from** or **to**, or you can set both**from** and **to** at the same time.
+>  - You can set either **from** or **to**, or you can set both **from** and **to**.
 >  - When the API is effective, if the set **from** value is between the adjacent multiples of **step**, then **from** takes the value of the left interval multiple of **step** or **MIN** as the corrected value.
 >  - When the API is effective, if the set **to** value is between the adjacent multiples of **step**, then **to** takes the value of the right interval multiple of **step** or **MAX** as the corrected value.
 >  - After **from** and **to** have taken their corrected values, when **value** is **undefined** or **null**, it takes the same value as **from**; when **value** is a number type, and if **value** ≤ **from**, then it takes **from**; if **value** > **to**, then it takes **to**.
@@ -573,10 +615,10 @@ Defines the callback type used in **SliderConfiguration**.
 
 **Parameters**
 
-| Name| Type   | Read Only| Optional| Description             |
-| ------ | ------ | ---- | ---------------- | ---------------- |
-| value | number | No| No| Current progress.|
-| mode | [SliderChangeMode](#sliderchangemode)| No| No| State triggered by the event.|
+| Name| Type   | Mandatory| Description             |
+| ------ | ------ | ---------------- | ---------------- |
+| value | number | Yes| Current progress.|
+| mode | [SliderChangeMode](#sliderchangemode)| Yes| State triggered by the event.|
 
 ## Example
 
@@ -872,7 +914,7 @@ This example demonstrates how to customize the **Slider** component using a styl
         .fontSize(10)
       Text('Max: ' + config.max)
         .fontSize(10)
-      Text('Step: ' + config.step)
+      Text ('Step: ' + config.step)
         .fontSize(10)
     }
     .width('80%')

@@ -15,7 +15,7 @@ import backup from '@ohos.file.backup';
 
 ## FileMeta
 
-文件的元数据，包含一个应用名称以及文件uri。FileMeta在执行备份/恢复时是不可缺少的对象
+文件的元数据，包含一个应用名称以及文件uri。FileMeta在执行备份/恢复时是不可缺少的对象。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
@@ -26,7 +26,7 @@ import backup from '@ohos.file.backup';
 
 ## FileData
 
-文件的元数据，包含一个已经打开的文件描述符。FileData在执行备份/恢复时是不可缺少的对象
+文件的元数据，包含一个已经打开的文件描述符。FileData在执行备份/恢复时是不可缺少的对象。
 
 > **说明：**
 >
@@ -40,7 +40,7 @@ import backup from '@ohos.file.backup';
 
 ## FileManifestData<sup>12+</sup>
 
-文件的元数据，包含一个已经打开的文件描述符。FileManifestData所打开的内容是一个清单文件，用于描述应用增量备份/恢复时对应文件的基础信息。FileManifestData在执行增量备份/恢复时是不可缺少的对象
+文件的元数据，包含一个已经打开的文件描述符。FileManifestData所打开的内容是一个清单文件，用于描述应用增量备份/恢复时对应文件的基础信息。FileManifestData在执行增量备份/恢复时是不可缺少的对象。
 
 > **说明：**
 >
@@ -80,7 +80,7 @@ import backup from '@ohos.file.backup';
 
 | 名称     | 类型   | 必填 | 说明                                                   |
 | -------- | ------ | ---- | ------------------------------------------------------ |
-| priority | number | 否   | 数值越大优先级越高，优先级相同的情况下，先调用的先执行。 |
+| priority | number | 否   | 数值越大优先级越高；优先级相同的情况下，先调用的先执行。 |
 
 ## IncrementalBackupData<sup>12+</sup>
 
@@ -95,7 +95,7 @@ import backup from '@ohos.file.backup';
 ## File
 
 一个文件对象。
-继承[FileMeta](#filemeta)和[FileData](#filedata)
+继承[FileMeta](#filemeta)和[FileData](#filedata)。
 
 > **说明：**
 >
@@ -136,7 +136,7 @@ onFileReady : AsyncCallback&lt;File&gt;
 
 > **说明：**
 >
-> AsyncCallback回调中返回的File 所属file.backup.[File](#file)类型，返回的文件归备份服务所有，一旦文件关闭，备份服务将选择合适的时机去清理，但客户端必须关闭文件句柄。
+> AsyncCallback回调中返回的File所属file.backup.[File](#file)类型。返回的文件归备份服务所有，一旦文件关闭，备份服务将选择合适的时机去清理，但客户端必须关闭文件句柄。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
@@ -181,8 +181,8 @@ onBundleBegin : AsyncCallback&lt;string, void | string&gt;
 
 | 参数名     | 类型          | 必填 | 说明                                                        |
 | ---------- | ------------- | ---- | ----------------------------------------------------------- |
-| bundleName | string        | 是   | 服务返回的应用名称                                          |
-| err        | BusinessError | 否   | 当发生err时，为错误对象，否则为undefined data为bundle名称。 |
+| bundleName | string        | 是   | 服务返回的应用名称。                                          |
+| err        | BusinessError | 否   | 当发生err时，为错误对象；否则为undefined data为bundle名称。 |
 
 **错误码：**
 
@@ -238,7 +238,7 @@ onBundleEnd : AsyncCallback&lt;string, void | string&gt;
 
 | 参数名     | 类型          | 必填 | 说明                                                        |
 | ---------- | ------------- | ---- | ----------------------------------------------------------- |
-| bundleName | string        | 是   | 服务返回的应用名称                                          |
+| bundleName | string        | 是   | 服务返回的应用名称。                                          |
 | err        | BusinessError | 否   | 当发生err时，为错误对象，否则为undefined data为bundle名称。 |
 
 **错误码：**
@@ -346,8 +346,8 @@ onResultReport (bundleName: string, result: string)
 
 | 参数名     | 类型   | 必填 | 说明                            |
 | ---------- | ------ | ---- | ------------------------------- |
-| bundleName | string | 是   | 应用包名                        |
-| result     | string | 是   | json格式返回的应用备份/恢复信息 |
+| bundleName | string | 是   | 应用包名。                        |
+| result     | string | 是   | json格式返回的应用备份/恢复信息。 |
 
 **示例：**
 
@@ -372,8 +372,8 @@ onProcess (bundleName: string, process: string)
 
 | 参数名     | 类型   | 必填 | 说明                            |
 | ---------- | ------ | ---- | ------------------------------- |
-| bundleName | string | 是   | 应用包名                        |
-| process     | string | 是   | json格式返回应用备份/恢复的进度信息 |
+| bundleName | string | 是   | 应用包名。                        |
+| process     | string | 是   | json格式返回应用备份/恢复的进度信息。 |
 
 **示例：**
 
@@ -400,7 +400,7 @@ getBackupVersion(): string;
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| string | 返回备份恢复版本号信息。<br/>版本号格式为API版本.内部版本，例如API16，则版本号为16.0。 |
+| string | 返回备份恢复版本号信息。<br/>版本号格式为API版本。内部版本，例如API16，则版本号为16.0。 |
 
 **错误码：**
 
@@ -517,7 +517,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 
 | 类型                                 | 说明                            |
 | ------------------------------------ | ------------------------------- |
-| Promise&lt;[FileData](#filedata)&gt; | Promise对象，返回FileData对象。 |
+| Promise&lt;[FileData](#filedata)&gt; | Promise对象。返回FileData对象。 |
 
 **错误码：**
 
@@ -588,7 +588,7 @@ getLocalCapabilities(dataList:Array&lt;IncrementalBackupTime&gt;): Promise&lt;Fi
 
 | 类型                                 | 说明                            |
 | ------------------------------------ | ------------------------------- |
-| Promise&lt;[FileData](#filedata)&gt; | Promise对象，返回FileData对象。 |
+| Promise&lt;[FileData](#filedata)&gt; | Promise对象。返回FileData对象。 |
 
 **错误码：**
 
@@ -688,7 +688,7 @@ getBackupInfo(bundleToBackup: string): string;
 
 updateTimer(bundleName: string, timeout: number): void;
 
-调用时机为onBundleBegin之后，onBundleEnd之前
+调用时机为onBundleBegin之后，onBundleEnd之前。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -698,14 +698,14 @@ updateTimer(bundleName: string, timeout: number): void;
 
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
-| bundleName | string | 是   | 需要设置备份或恢复时长的应用名称 |
-| timeout | number | 是   | 备份或恢复的限制时长，入参范围[0,14400000]，单位:ms |
+| bundleName | string | 是   | 需要设置备份或恢复时长的应用名称。 |
+| timeout | number | 是   | 备份或恢复的限制时长，入参范围[0,14400000]，单位:ms。 |
 
 **返回值：**
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| boolean | 超时时间是否设置成功。true为设置成功，false为设置失败。 |
+| boolean | 超时时间是否设置成功。true为设置成功；false为设置失败。 |
 
 **错误码：**
 
@@ -742,7 +742,7 @@ updateTimer(bundleName: string, timeout: number): void;
 
 updateSendRate(bundleName: string, sendRate: number): boolean;
 
-调用时机为onBundleBegin之后，onBundleEnd之前
+调用时机为onBundleBegin之后，onBundleEnd之前。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -752,14 +752,14 @@ updateSendRate(bundleName: string, sendRate: number): boolean;
 
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
-| bundleName|string | 是   | 需要控制速率对应的应用名称
-| sendRate | number | 是   | 需要应用设置的fd发送速率大小，以秒为单位，范围0~800，默认60/秒，当为0时，表示停止发送，等到设置非0值时激活发送。如果设置值超过最大值800，按照800进行发送。 |
+| bundleName|string | 是   | 需要控制速率对应的应用名称。
+| sendRate | number | 是   | 需要应用设置的fd发送速率大小，以秒为单位，范围0~800，默认60/秒。当为0时，表示停止发送，等到设置非0值时激活发送。如果设置值超过最大值800，按照800进行发送。 |
 
 **返回值：**
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| boolean | 发送速率是否设置成功。true为设置成功，false为设置失败。 |
+| boolean | 发送速率是否设置成功。true为设置成功；false为设置失败。 |
 
 **错误码：**
 
@@ -900,7 +900,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 
 | 类型                                 | 说明                            |
 | ------------------------------------ | ------------------------------- |
-| Promise&lt;[FileData](#filedata)&gt; | Promise对象，返回FileData对象。 |
+| Promise&lt;[FileData](#filedata)&gt; | Promise对象。返回FileData对象。 |
 
 **错误码：**
 
@@ -1291,7 +1291,7 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
 | bundlesToBackup | string[] | 是   | 需要备份的应用名称的数组。 |
-| infos           | string[] | 否   | 备份时各应用所需扩展信息的数组, 与bundlesToBackup根据索引一一对应, 从API version 12开始支持。|
+| infos           | string[] | 否   | 备份时各应用所需扩展信息的数组, 与bundlesToBackup根据索引一一对应。从API version 12开始支持。|
 
 **返回值：**
 
@@ -1678,7 +1678,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 
 | 类型                                 | 说明                            |
 | ------------------------------------ | ------------------------------- |
-| Promise&lt;[FileData](#filedata)&gt; | Promise对象，返回FileData对象。 |
+| Promise&lt;[FileData](#filedata)&gt; | Promise对象。返回FileData对象。 |
 
 **错误码：**
 
@@ -1951,7 +1951,7 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
 | -------------------- | -------- | ---- | ---------------------------------- |
 | remoteCapabilitiesFd | number   | 是   | 用于恢复所需能力文件的文件描述符。 |
 | bundlesToBackup      | string[] | 是   | 需要恢复的应用包名称的数组。       |
-| infos<sup>12+</sup>  | string[] | 否   | 恢复时各应用所需要扩展信息的数组，与bundlesToBackup根据索引一一对应，从API version 12开始支持。 |
+| infos<sup>12+</sup>  | string[] | 否   | 恢复时各应用所需要扩展信息的数组，与bundlesToBackup根据索引一一对应。从API version 12开始支持。 |
 
 **返回值：**
 
@@ -2774,7 +2774,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 
 | 类型                                 | 说明                            |
 | ------------------------------------ | ------------------------------- |
-| Promise&lt;[FileData](#filedata)&gt; | Promise对象，返回FileData对象。 |
+| Promise&lt;[FileData](#filedata)&gt; | Promise对象。返回FileData对象。 |
 
 **错误码：**
 
@@ -3167,7 +3167,7 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt, infos: string[
 | 参数名          | 类型                                                           | 必填 | 说明                       |
 | --------------- | -------------------------------------------------------------- | ---- | -------------------------- |
 | bundlesToBackup | Array&lt;[IncrementalBackupData](#incrementalbackupdata12)&gt; | 是   | 需要增量备份的应用的数组。 |
-| infos  | string[] | 是   | 备份时各应用所需要扩展信息的数组, 与bundlesToBackup根据索引一一对应, 从API version 12开始支持。 |
+| infos  | string[] | 是   | 备份时各应用所需要扩展信息的数组, 与bundlesToBackup根据索引一一对应。从API version 12开始支持。 |
 
 **返回值：**
 
