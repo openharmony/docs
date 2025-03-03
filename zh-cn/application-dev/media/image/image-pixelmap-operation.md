@@ -18,9 +18,9 @@
 
    ```ts
    import { image } from '@kit.ImageKit';
-   // 获取图像像素的总字节数
+   // 获取图像像素的总字节数。
    let pixelBytesNumber : number = pixelMap.getPixelBytesNumber();
-   // 获取图像像素每行字节数
+   // 获取图像像素每行字节数。
    let rowBytes : number = pixelMap.getBytesNumberPerRow();
    // 获取当前图像像素密度。像素密度是指每英寸图片所拥有的像素数量。像素密度越大，图片越精细。
    let density : number = pixelMap.getDensity();
@@ -32,7 +32,7 @@
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
-   // 场景一：读取并修改整张图片数据
+   // 场景一：读取并修改整张图片数据。
    // 按照PixelMap的像素格式，读取PixelMap的图像像素数据，并写入缓冲区中。
    const buffer = new ArrayBuffer(pixelBytesNumber);
    pixelMap.readPixelsToBuffer(buffer).then(() => {
@@ -47,7 +47,7 @@
      console.error('Failed to write image pixel data. The error is: ' + error);
    })
 
-   // 场景二：读取并修改指定区域内的图片数据
+   // 场景二：读取并修改指定区域内的图片数据。
    // 固定按照BGRA_8888格式，读取PixelMap指定区域内的图像像素数据，并写入PositionArea.pixels缓冲区中，该区域由PositionArea.region指定。
    const area : image.PositionArea = {
      pixels: new ArrayBuffer(8),
