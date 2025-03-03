@@ -284,7 +284,7 @@
 | -------- | -------- |
 | static const char \*[MIME_TYPE_BMP](#mime_type_bmp) = "image/bmp" | bmp图片格式。 | 
 | static const char \*[MIME_TYPE_JPEG](#mime_type_jpeg) = "image/jpeg" | jpeg图片格式。 | 
-| static const char \*[MIME_TYPE_HEIC](#mime_type_heic) = "image/heic" | heif图片格式。 | 
+| static const char \*[MIME_TYPE_HEIC](#mime_type_heic) = "image/heic" | heic图片格式。 | 
 | static const char \*[MIME_TYPE_PNG](#mime_type_png) = "image/png" | png图片格式。 | 
 | static const char \*[MIME_TYPE_WEBP](#mime_type_webp) = "image/webp" | webp图片格式。 | 
 | static const char \*[MIME_TYPE_GIF](#mime_type_gif) = "image/gif" | gif图片格式。 | 
@@ -424,7 +424,7 @@
 | static const char \*[OHOS_IMAGE_PROPERTY_SCENE_VERSION](#ohos_image_property_scene_version) = "HwMnoteSceneVersion" | 场景算法版本信息。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_GIF_LOOP_COUNT](#ohos_image_property_gif_loop_count) = "GIFLoopCount" | GIF图片循环次数。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_X_IN_ORIGINAL](#ohos_image_property_x_in_original) = "XInOriginal" | 水印裁剪图左上角在原始图中的X坐标。  | 
-| static const char \*[OHOS_IMAGE_PROPERTY_Y_IN_ORIGINAL](#ohos_image_property_y_in_original) = "XInOriginal" | 水印裁剪图左上角在原始图中的Y坐标。  | 
+| static const char \*[OHOS_IMAGE_PROPERTY_Y_IN_ORIGINAL](#ohos_image_property_y_in_original) = "YInOriginal" | 水印裁剪图左上角在原始图中的Y坐标。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_FRAGMENT_WIDTH](#ohos_image_property_fragment_width) = "FragmentImageWidth"| 水印裁剪图的宽。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_FRAGMENT_HEIGHT](#ohos_image_property_fragment_height) = "FragmentImageHeight" | 水印裁剪图的高。  | 
 
@@ -4969,7 +4969,7 @@ static const char* MIME_TYPE_HEIC = "image/heic"
 
 **描述**
 
-heif图片格式。
+heic图片格式。
 
 **起始版本：** 12
 
