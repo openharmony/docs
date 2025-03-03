@@ -8127,7 +8127,7 @@ void OH_Drawing_DestroyTypographyStyle (OH_Drawing_TypographyStyle* )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)对象的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
+| OH_Drawing_TypographyStyle | 指向排版样式[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
 
 
 ### OH_Drawing_DisableFontCollectionFallback()
@@ -12990,7 +12990,7 @@ void OH_Drawing_SetTypographyTextAlign (OH_Drawing_TypographyStyle* , int  )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)对象的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
+| OH_Drawing_TypographyStyle | 指向排版样式[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
 | int | 设置文本对齐方式，设置1为右对齐，设置2为居中对齐，设置3为两端对齐，设置4为与文字方向相同，设置5为文字方向相反，设置0或其它为左对齐，具体可见[OH_Drawing_TextAlign](#oh_drawing_textalign)枚举。 | 
 
 
@@ -13012,7 +13012,7 @@ void OH_Drawing_SetTypographyTextBreakStrategy (OH_Drawing_TypographyStyle* , in
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)对象的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
+| OH_Drawing_TypographyStyle | 指向排版样式[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
 | int | 设置中断策略，支持可选的中断策略具体可见[OH_Drawing_BreakStrategy](#oh_drawing_breakstrategy)枚举。 | 
 
 
@@ -13034,7 +13034,7 @@ void OH_Drawing_SetTypographyTextDirection (OH_Drawing_TypographyStyle* , int  )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)对象的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
+| OH_Drawing_TypographyStyle | 指向排版样式[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
 | int | 设置文本方向，设置0为从右到左，设置1或其他值为从左到右，具体可见[OH_Drawing_TextDirection](#oh_drawing_textdirection)枚举。 | 
 
 
@@ -13409,7 +13409,7 @@ void OH_Drawing_SetTypographyTextLocale (OH_Drawing_TypographyStyle* style, cons
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向文本风格[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
+| OH_Drawing_TypographyStyle | 指向排版样式[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
 | char |  语言环境，数据类型为指向char的指针，如'en'代表英文，'zh-Hans'代表简体中文，'zh-Hant'代表繁体中文。 | 
 
 
@@ -13431,7 +13431,7 @@ void OH_Drawing_SetTypographyTextMaxLines (OH_Drawing_TypographyStyle* , int  )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)对象的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
+| OH_Drawing_TypographyStyle | 指向排版样式[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
 | int | 最大行数。 | 
 
 ### OH_Drawing_SetTypographyTextSplitRatio()
@@ -13518,7 +13518,7 @@ void OH_Drawing_SetTypographyTextWordBreakType (OH_Drawing_TypographyStyle* , in
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)对象的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
+| OH_Drawing_TypographyStyle | 指向排版样式[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
 | int | 设置断词方式，支持可选的断词方式样式具体可见[OH_Drawing_WordBreakType](#oh_drawing_wordbreaktype)枚举。 | 
 
 
@@ -15658,7 +15658,7 @@ OH_Drawing_TextAlign OH_Drawing_TypographyGetTextAlign (OH_Drawing_TypographySty
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 表示指向[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)对象的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
+| OH_Drawing_TypographyStyle | 表示指向排版样式[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
 
 **返回：**
 
@@ -15683,7 +15683,7 @@ OH_Drawing_TextDirection OH_Drawing_TypographyGetTextDirection (OH_Drawing_Typog
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 表示指向[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)对象的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
+| OH_Drawing_TypographyStyle | 表示指向排版样式[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
 
 **返回：**
 
@@ -15733,7 +15733,7 @@ size_t OH_Drawing_TypographyGetTextMaxLines (OH_Drawing_TypographyStyle* )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 表示指向[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)对象的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
+| OH_Drawing_TypographyStyle | 表示指向排版样式[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
 
 **返回：**
 
@@ -15922,7 +15922,7 @@ void OH_Drawing_TypographyHandlerPushTextStyle (OH_Drawing_TypographyCreate* , O
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_TypographyCreate | 指向[OH_Drawing_TypographyCreate](#oh_drawing_typographycreate)对象的指针，由[OH_Drawing_CreateTypographyHandler](#oh_drawing_createtypographyhandler)获取。 | 
-| OH_Drawing_TextStyle | 指向[OH_Drawing_TextStyle](#oh_drawing_textstyle)对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
+| OH_Drawing_TextStyle | 指向文本样式[OH_Drawing_TextStyle](#oh_drawing_textstyle)对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
 
 
 ### OH_Drawing_TypographyIsEllipsized()
@@ -15993,8 +15993,8 @@ void OH_Drawing_TypographyLayout (OH_Drawing_Typography* , double  )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Typography | 指向[OH_Drawing_Typography](#oh_drawing_typography)对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 | 
-| double | 文本最大宽度 | 
+| OH_Drawing_Typography | 指向排版对象[OH_Drawing_Typography](#oh_drawing_typography)的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 | 
+| double | 文本最大宽度。 | 
 
 
 ### OH_Drawing_TypographyMarkDirty()
@@ -16277,7 +16277,7 @@ OH_Drawing_TextHeightBehavior OH_Drawing_TypographyTextGetHeightBehavior (OH_Dra
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)对象的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
+| OH_Drawing_TypographyStyle | 指向排版样式[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
 
 **返回：**
 
@@ -16575,7 +16575,7 @@ void OH_Drawing_TypographyTextSetHeightBehavior (OH_Drawing_TypographyStyle* , O
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)对象的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
+| OH_Drawing_TypographyStyle | 指向排版样式[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
 | heightMode | 文本高度修饰符模式，为[OH_Drawing_TextHeightBehavior](#oh_drawing_textheightbehavior)类型的枚举值。 | 
 
 
@@ -16597,7 +16597,7 @@ void OH_Drawing_TypographyUpdateFontSize (OH_Drawing_Typography* , size_t from, 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Typography | 表示指向文本[OH_Drawing_Typography](#oh_drawing_typography)对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 | 
+| OH_Drawing_Typography | 表示指向排版对象[OH_Drawing_Typography](#oh_drawing_typography)的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 | 
 | from | 保留字段，暂未使用。 | 
 | to | 保留字段，暂未使用。 | 
 | fontSize | 表示更新后的字体大小。 | 
