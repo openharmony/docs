@@ -267,9 +267,8 @@ libnative_rdb_ndk.z.so
    | 参数名称 | 必填 | 取值范围和使用说明 |
    | ------ | -------- | ---------- |
    | time_col | 是 | 列名。类型必须为整数且不为空。 |
-   | interval | 否 | 老化任务线程的执行间隔时间，超过该时间后执行写操作，触发老化任务，删除符合老化条件的数据；若在间隔时间内执行写操作，不会触发老化任务。取值范围是[5 second, 1 year]，时间单位支持second、minute、hour、month、year，不区分大小写或复数形式(1 hour和1 hours均可)，默认是1 day。 |
-   | ttl | 否 | 数据保留时间。取值范围是[1 hour, 1 year]，时间单位支持second、minute、hour、month、year，不区分大小写或复数形式(1 hour和1 hours均可)，默认是3 month。 |
-   | data_limit | 否 | 数据大小限制。取值范围是[4KB, 1TB]，数据大小单位支持KB、MB、GB、TB，不区分大小写，默认是1GB。 |
+   | interval | 否 | 老化任务线程的执行间隔时间，超过该时间后执行写操作，触发老化任务，删除符合老化条件的数据；若在间隔时间内执行写操作，不会触发老化任务。取值范围是[5 second, 1 year]，时间单位支持second、minute、hour、day、month、year，不区分大小写或复数形式(1 hour和1 hours均可)，默认是1 day。 |
+   | ttl | 否 | 数据保留时间。取值范围是[1 hour, 1 year]，时间单位支持second、minute、hour、day、month、year，不区分大小写或复数形式(1 hour和1 hours均可)，默认是3 month。 |
    | max_num | 否 | 数据量限制。取值范围是[100, 1024]，默认是1024。 |
 
    示例代码如下：
