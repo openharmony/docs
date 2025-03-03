@@ -196,7 +196,7 @@ off(type: 'replyResult', callback?: Callback&lt;{ param: string;}&gt;): void;
 
 setHeartbeatPolicy(policy: StrategyForHeartbeat, delayTime: number): void;
 
-设置心跳广播策略
+设置心跳广播策略。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
