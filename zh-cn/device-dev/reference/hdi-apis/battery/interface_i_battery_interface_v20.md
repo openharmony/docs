@@ -139,7 +139,7 @@ IBatteryInterface::GetCapacity ([out] int capacity)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| capacity | 输出参数，表示电量的百分比值 | 
+| capacity | 输出参数，表示电量的百分比值。 | 
 
 **返回：**
 
