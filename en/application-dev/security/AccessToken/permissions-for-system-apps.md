@@ -4895,6 +4895,42 @@ Allows a system application to access user account information.
 
 **Valid since**: 16
 
+### ohos.permission.ACCESS_DEVAUTH_CRED_MGR
+
+Allows a system application or system service to access the credential management module for the device authentication (device_auth) SA.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_DEVAUTH_CRED_PRIVILEGE
+
+Allows a system application or system service to access the credential management module and credential authentication module for the device authentication (device_auth) SA and to query and authenticate other service credentials.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_DEVAUTH_CRED_AUTH
+
+Allows a system application or system service to access the credential authentication module for the device authentication (device_auth) SA.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ## user_grant Permissions (Available via ACL)
 
 The following lists the user_grant permissions that can be requested via the ACL.
