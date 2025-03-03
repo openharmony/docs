@@ -820,7 +820,7 @@ on(type: 'stateChange', callback: (state: PiPState, reason: string) => void): vo
 | 参数名        | 类型        | 必填   | 说明                                                                                                |
 |------------|-----------|------|---------------------------------------------------------------------------------------------------|
 | type       | string    | 是    | 监听事件，固定为'stateChange'，即画中画生命周期状态变化事件。                                                             |
-| callback   | function  | 是    | 回调生命周期状态变化事件以及原因：<br/>state：[PiPState](#pipstate)，表示当前画中画生命周期状态；<br/>reason：string，表示当前生命周期的切换原因。 |
+| callback   | function  | 是    | 回调生命周期状态变化事件以及原因。<br/>state：[PiPState](#pipstate)，表示当前画中画生命周期状态。<br/>reason：string，表示当前生命周期的切换原因。 |
 
 **示例：**
 
@@ -1039,7 +1039,7 @@ on(type: 'pipWindowSizeChange', callback: Callback&lt;PiPWindowSize&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401     | Params error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801   | Capability not supported.Failed to call the API due to limited device capabilities.                                                       |
 | 1300014    | PiP internal error.                                    |    
 
@@ -1047,7 +1047,7 @@ on(type: 'pipWindowSizeChange', callback: Callback&lt;PiPWindowSize&gt;): void
 
 ```ts
 try {
-  pipcontroller.on('pipWindowSizeChange', (size: PiPWindow.PiPWindowSize) => {
+  pipController.on('pipWindowSizeChange', (size: PiPWindow.PiPWindowSize) => {
     console.info('Succeeded in enabling the listener for pip window size changes. size: ' + JSON.stringify(size));
   });
 } catch (exception) {
@@ -1078,7 +1078,7 @@ off(type: 'pipWindowSizeChange', callback?: Callback&lt;PiPWindowSize&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401     | Params error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801   | Capability not supported.Failed to call the API due to limited device capabilities.                                                       |
 | 1300014    | PiP internal error.                                    |    
 
@@ -1090,16 +1090,16 @@ const callback = (size: PiPWindow.PiPWindowSize) => {
 }
 try {
   // 通过on接口开启监听
-  pipcontroller.on('pipWindowSizeChange', callback);
+  pipController.on('pipWindowSizeChange', callback);
 } catch (exception) {
   console.error(`Failed to enable the listener for pip window size changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 
 try {
   // 关闭指定callback的监听
-  pipcontroller.off('pipWindowSizeChange', callback);
+  pipController.off('pipWindowSizeChange', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-  pipcontroller.off('pipWindowSizeChange');
+  pipController.off('pipWindowSizeChange');
 } catch (exception) {
   console.error(`Failed to disable the listener for pip window size changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }

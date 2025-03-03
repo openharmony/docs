@@ -276,7 +276,7 @@ onAccessibilityEvent(event: AccessibilityEvent): void;
 
 | 参数名   | 类型                                       | 必填   | 说明              |
 | ----- | ---------------------------------------- | ---- | --------------- |
-| event | [AccessibilityEvent](#accessibilityevent) | 是    | 无障碍事件回调函数。无返回值。 |
+| event | [AccessibilityEvent](#accessibilityevent) | 是    | 无障碍事件。无返回值。 |
 
 **示例：**
 

@@ -61,7 +61,7 @@ Registers a listener for completion of component layout.
 | Name  | Type  | Mandatory| Description|
 | -------- | ------ | ---- | -------------------------------------|
 | type     | string | Yes  | Type of the listener. The value must be **'layout'** or **'draw'**.<br>**'layout'**: completion of component layout.<br>**'draw'**: completion of component drawing.|
-| callback | void   | Yes  | Callback invoked upon completion of component layout or drawing.|
+| callback | () => void   | Yes  | Callback invoked upon completion of component layout or drawing.|
 
 ### off
 
@@ -78,7 +78,7 @@ Unregisters the listener for completion of component layout.
 | Name  | Type  | Mandatory| Description|
 | -------- | ------ | ---- | -------------------------------------------- |
 | type     | string | Yes  | Type of the listener. The value must be **'layout'** or **'draw'**.<br>**'layout'**: completion of component layout.<br>**'draw'**: completion of component drawing.|
-| callback | void   | No  | Callback to unregister. If this parameter is not specified, all callbacks of the specified type are unregistered.|
+| callback | () => void   | No  | Callback to unregister. If this parameter is not specified, all callbacks of the specified type are unregistered.|
 
 ### on
 
@@ -95,7 +95,7 @@ Registers a listener for completion of component drawing.
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | Yes  | Type of the listener. The value must be **'layout'** or **'draw'**.<br>**'layout'**: completion of component layout.<br>**'draw'**: completion of component drawing.|
-| callback | void   | Yes  | Callback invoked upon completion of component layout or drawing.                                    |
+| callback | () => void   | Yes  | Callback invoked upon completion of component layout or drawing.                                    |
 
 ### off
 
@@ -112,7 +112,7 @@ Unregisters the listener for completion of component drawing.
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | Yes  | Type of the listener. The value must be **'layout'** or **'draw'**.<br>**'layout'**: completion of component layout.<br>**'draw'**: completion of component drawing.|
-| callback | void   | No  | Callback to unregister. If this parameter is not specified, all callbacks of the specified type are unregistered.|
+| callback | () => void   | No  | Callback to unregister. If this parameter is not specified, all callbacks of the specified type are unregistered. The callback must be the same object as the one registered with the **on** API to successfully unregister.|
 
 **Example**
 
@@ -149,16 +149,10 @@ Unregisters the listener for completion of component drawing.
       let onDrawComplete:()=>void=():void=>{
           // do something here
       }
-      let offLayoutComplete:()=>void=():void=>{
-          // do something here
-      }
-      let offDrawComplete:()=>void=():void=>{
-          // do something here
-      }
       let FuncLayout = onLayoutComplete // bind current js instance
       let FuncDraw = onDrawComplete // bind current js instance
-      let OffFuncLayout = offLayoutComplete // bind current js instance
-      let OffFuncDraw = offDrawComplete // bind current js instance
+      let OffFuncLayout = onLayoutComplete // bind current js instance
+      let OffFuncDraw = onDrawComplete // bind current js instance
 
       this.listener.on('layout', FuncLayout)
       this.listener.on('draw', FuncDraw)

@@ -391,3 +391,36 @@ struct Index {
   }
 }
 ```
+
+## cl.arkui.6 Search组件searchButton属性行为变更，设置为undefined后，获取searchButton属性的值为空
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+Search组件searchButton属性设置为undefined后，变更前获取searchButton属性值会取得上一次设置的值，此行为非预期行为，变更后改为获取到空值。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+| 变更前 | 变更后 |
+|------ |--------|
+|Search组件searchButton属性设置为undefined后，获取属性值为上一次设置的值，且会导致分隔线不消失。<br>![search_button_before](figures/search_button_before.png)|Search组件searchButton属性设置为undefined后，获取属性值为空，分隔线隐藏<br>![search_button_after](figures/search_button_after.png)|
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony 5.1.0.46 版本开始。
+
+**变更的接口/组件**
+
+search.d.ts文件searchButton接口。
+
+**适配指导**
+
+默认行为变更，无需适配。

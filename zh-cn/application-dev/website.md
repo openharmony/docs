@@ -987,7 +987,8 @@
           - [证书链对象的创建和校验](security/DeviceCertificateKit/create-verify-certchain-object.md)
         - 证书管理<!--certmanager-->
           - [证书管理概述](security/DeviceCertificateKit/certManager-overview.md)
-          - [证书管理开发指导](security/DeviceCertificateKit/certManager-guidelines.md)
+          - [应用证书凭据开发指导](security/DeviceCertificateKit/certManager-private-credential-guidelines.md)
+          - [CA证书开发指导](security/DeviceCertificateKit/certManager-ca-certs-guidelines.md)
           - [证书管理对话框开发指导](security/DeviceCertificateKit/certManagerDialog-guidelines.md)
       - Universal Keystore Kit（密钥管理服务）<!--huks-kit-->
         - [Universal Keystore Kit简介](security/UniversalKeystoreKit/huks-overview.md)

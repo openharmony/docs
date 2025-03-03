@@ -17,8 +17,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| enum [IntellVoiceEngineMessageType](_intelligent_voice_engine.md#intellvoiceenginemessagetype)[msgId](#msgid) | 回调消息类型。  | 
-| enum [IntellVoiceEngineErrors](_intelligent_voice_engine.md#intellvoiceengineerrors)[result](#result) | 回调消息结果。  | 
+| enum [IntellVoiceEngineMessageType](_intelligent_voice_engine.md#intellvoiceenginemessagetype) [msgId](#msgid) | 回调消息类型。  | 
+| enum [IntellVoiceEngineErrors](_intelligent_voice_engine.md#intellvoiceengineerrors) [result](#result) | 回调消息结果。  | 
 | String [info](#info) | 回调消息内容。  | 
 
 

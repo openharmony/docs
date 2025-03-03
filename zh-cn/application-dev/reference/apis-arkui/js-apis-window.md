@@ -880,30 +880,36 @@ getWindowsByCoordinate(displayId: number, windowNumber?: number, x?: number, y?:
 | 1300003 | This window manager service works abnormally. |
 
 ```ts
+import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-    let properties = windowClass.getWindowProperties();
-    window.getWindowsByCoordinate(properties.displayId).then((data) => {
+export default class EntryAbility extends UIAbility {
+    
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    let windowClass = windowStage.getMainWindowSync();
+    try {
+      let properties = windowClass.getWindowProperties();
+      window.getWindowsByCoordinate(properties.displayId).then((data) => {
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
         for (let window of data) {
-            // do something with window
+          // do something with window
         }
-    }).catch((err: BusinessError) => {
+      }).catch((err: BusinessError) => {
         console.error(`Failed to get window from point. Cause code: ${err.code}, message: ${err.message}`);
-    });
-
-    window.getWindowsByCoordinate(properties.displayId, 2, 500, 500).then((data) => {
+      });
+      window.getWindowsByCoordinate(properties.displayId, 2, 500, 500).then((data) => {
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
         for (let window of data) {
-            // do something with window
+          // do something with window
         }
-    }).catch((err: BusinessError) => {
+      }).catch((err: BusinessError) => {
         console.error(`Failed to get window from point. Cause code: ${err.code}, message: ${err.message}`);
-    });
-} catch (exception) {
-    console.error(`Failed to get window from point. Cause code: ${exception.code}, message: ${exception.message}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to get window from point. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
@@ -8536,7 +8542,7 @@ try {
 
 ### setExclusivelyHighlighted<sup>15+<sup>
 
-setExclusivelyHighlighted(isExclusivelyHighlight: boolean): Promise&lt;void&gt;
+setExclusivelyHighlighted(exclusivelyHighlighted: boolean): Promise&lt;void&gt;
 
 设置窗口独占激活态属性。独占激活态表示窗口获焦时，会导致当前父子窗口链中处于激活态的其他窗口失去激活态。使用Promise异步回调。
 
@@ -8550,7 +8556,7 @@ setExclusivelyHighlighted(isExclusivelyHighlight: boolean): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----------- | ------- | -- | -------------------------------------------------------- |
-| isExclusivelyHighlight | boolean | 是 | 窗口是否独占激活态。true表示独占激活态；false表示不独占激活态。  |
+| exclusivelyHighlighted | boolean | 是 | 窗口是否独占激活态。true表示独占激活态；false表示不独占激活态。  |
 
 **返回值：**
 
@@ -8575,9 +8581,9 @@ setExclusivelyHighlighted(isExclusivelyHighlight: boolean): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let isExclusivelyHighlight: boolean = true;
+let exclusivelyHighlighted: boolean = true;
 try {
-  let promise = windowClass.setExclusivelyHighlighted(isExclusivelyHighlight);
+  let promise = windowClass.setExclusivelyHighlighted(exclusivelyHighlighted);
   promise.then(() => {
     console.info('Succeeded in setting the window to be exclusively highlight.');
   }).catch((err: BusinessError) => {

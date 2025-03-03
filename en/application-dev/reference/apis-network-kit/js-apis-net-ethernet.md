@@ -45,7 +45,7 @@ Obtains the names and MAC addresses of all Ethernet NICs. This API uses a promis
 | ID| Error Message                                |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
-| 2200002 | Failed to connect to the service.       |
+| 2200002 | Operation failed. Cannot connect to service.       |
 | 2201005 | Device information does not exist.  |
 
 **Example**

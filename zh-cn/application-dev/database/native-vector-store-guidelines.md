@@ -143,7 +143,7 @@ libnative_rdb_ndk.z.so
 
    > **说明：**
    >
-   > 当应用完成查询数据操作，不再使用结果集（OH_Cursor）时，请及时调用close方法关闭结果集，释放系统为其分配的内存。
+   > 当应用完成查询数据操作，不再使用结果集（OH_Cursor）时，请及时调用destroy方法关闭结果集，释放系统为其分配的内存。
 
    示例代码如下：
 
@@ -252,7 +252,34 @@ libnative_rdb_ndk.z.so
    OH_Rdb_ExecuteV2(store_, "CREATE INDEX diskann_l2_idx ON test USING GSDISKANN(repr L2) WITH (queue_size=20, out_degree=50);", nullptr, nullptr);
    ```
 
-8. 删除数据库。示例代码如下：
+8. 配置数据老化功能。当应用的数据需要经常清理时，可以按时间或空间配置数据老化策略，从而实现数据的自动化清理。
+   
+   语法如下所示：
+
+   ```sql
+   CREATE TABLE table_name(column_name type [, ...]) [WITH(parameter = value [, ...])];
+   ```
+
+   其中，parameter为可配置的参数，value为对应取值，具体情况见下表。
+
+   **表4** 数据老化策略参数(parameter)
+
+   | 参数名称 | 必填 | 取值范围和使用说明 |
+   | ------ | -------- | ---------- |
+   | time_col | 是 | 列名。类型必须为整数且不为空。 |
+   | interval | 否 | 老化任务线程的执行间隔时间，超过该时间后执行写操作，触发老化任务，删除符合老化条件的数据；若在间隔时间内执行写操作，不会触发老化任务。取值范围是[5 second, 1 year]，时间单位支持second、minute、hour、month、year，不区分大小写或复数形式(1 hour和1 hours均可)，默认是1 day。 |
+   | ttl | 否 | 数据保留时间。取值范围是[1 hour, 1 year]，时间单位支持second、minute、hour、month、year，不区分大小写或复数形式(1 hour和1 hours均可)，默认是3 month。 |
+   | data_limit | 否 | 数据大小限制。取值范围是[4KB, 1TB]，数据大小单位支持KB、MB、GB、TB，不区分大小写，默认是1GB。 |
+   | max_num | 否 | 数据量限制。取值范围是[100, 1024]，默认是1024。 |
+
+   示例代码如下：
+
+   ```c
+   // 每隔五分钟执行写操作后，会触发数据老化任务
+   OH_Rdb_ExecuteV2(store_, "CREATE TABLE test2(id integer not null) WITH (time_col = 'id', interval = '5 minute');", nullptr, nullptr);
+   ```
+
+9. 删除数据库。示例代码如下：
 
    ```c
    OH_Rdb_CloseStore(store_);

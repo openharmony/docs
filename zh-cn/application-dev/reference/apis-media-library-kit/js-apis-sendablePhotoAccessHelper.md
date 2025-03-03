@@ -47,7 +47,7 @@ getPhotoAccessHelper(context: Context): PhotoAccessHelper
 **示例：**
 
 ```ts
-//此处获取的phAccessHelper实例为全局对象，后续使用到phAccessHelper的地方默认为使用此处获取的对象，如未添加此段代码报phAccessHelper未定义的错误请自行添加
+//此处获取的phAccessHelper实例为全局对象，后续使用到phAccessHelper的地方默认为使用此处获取的对象，如未添加此段代码报phAccessHelper未定义的错误请自行添加。
 let context = getContext(this);
 let phAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(context);
 ```
@@ -333,7 +333,7 @@ getAlbums(options: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 
 | 参数名  | 类型                                                      | 必填 | 说明     |
 | ------- | --------------------------------------------------------- | ---- | -------- |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 检索选项 |
+| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 检索选项。 |
 
 **返回值：**
 
@@ -438,7 +438,7 @@ async function example() {
 | 名称        | 类型                    | 只读 | 可选 | 说明                                                         |
 | ----------- | ----------------------- | ---- | ---- | ------------------------------------------------------------ |
 | uri         | string                  | 是   | 否   | 媒体文件资源uri（如：file://media/Photo/1/IMG_datetime_0001/displayName.jpg），详情参见用户文件uri介绍中的[媒体文件uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。 |
-| photoType   | [PhotoType](#phototype) | 是   | 否   | 媒体文件类型                                                 |
+| photoType   | [PhotoType](#phototype) | 是   | 否   | 媒体文件类型。                                               |
 | displayName | string                  | 是   | 否   | 显示文件名，包含后缀名。                                     |
 
 ### convertToPhotoAsset
@@ -453,7 +453,7 @@ convertToPhotoAsset():  photoAccessHelper.PhotoAsset
 
 | 类型                         | 说明                                                         |
 | ---------------------------- | ------------------------------------------------------------ |
-| photoAccessHelper.PhotoAsset | 返回非Sendable类型的[PhotoAsset](js-apis-photoAccessHelper.md#photoasset) |
+| photoAccessHelper.PhotoAsset | 返回非Sendable类型的[PhotoAsset](js-apis-photoAccessHelper.md#photoasset)。 |
 
 **错误码：**
 

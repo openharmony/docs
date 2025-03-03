@@ -3067,7 +3067,7 @@ getChangeCount(): number
 **示例：**
 
 ```ts
-import { BusinessError pasteboard } from '@kit.BasicServicesKit';
+import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {

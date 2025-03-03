@@ -1357,7 +1357,7 @@ audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, au
 ```
 ## AudioEffectManager<sup>15+</sup>
 
-音频效果管理。在使用AudioEffectManager的接口前，需要使用[getEffectManager](geteffectmanager15)获取AudioEffectManager实例。
+音频效果管理。在使用AudioEffectManager的接口前，需要使用[getEffectManager](#geteffectmanager15)获取AudioEffectManager实例。
 
 
 ### getSupportedAudioEffectProperty<sup>15+</sup>

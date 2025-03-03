@@ -12,7 +12,7 @@ UX规范变更。
 
 **变更影响**
 
-此变更涉及应用适配。
+此变更不涉及应用适配，建议保持系统默认效果。
 
 - 变更前：在滑动选项时，DatePicker、DatePickerDialog、TextPicker、TextPickerDialog组件无触控反馈（声音和振动）效果。
 
@@ -20,7 +20,7 @@ UX规范变更。
 
 **起始API Level**
 
-16
+8
 
 **变更发生版本**
 
@@ -28,7 +28,7 @@ UX规范变更。
 
 **适配指导**
 
-DatePicker、DatePickerDialog、TextPicker、TextPickerDialog默认支持触控反馈（声音和振动）效果，开发者可以通过如下代码关闭此效果。
+DatePicker、DatePickerDialog、TextPicker、TextPickerDialog默认支持触控反馈（声音和振动）效果，开发者可以通过如下代码关闭组件的触控反馈效果。如果开发者有自实现触控反馈，建议只保留一种，推荐使用组件的触控反馈。
 ```ts
 @Entry
 @Component

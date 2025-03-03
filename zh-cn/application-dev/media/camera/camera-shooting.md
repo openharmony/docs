@@ -48,7 +48,7 @@
    let context = getContext(this);
 
    function setPhotoOutputCb(photoOutput: camera.PhotoOutput) {
-   //设置回调之后，调用photoOutput的capture方法，就会将拍照的buffer回传到回调中
+   //设置回调之后，调用photoOutput的capture方法，就会将拍照的buffer回传到回调中。
      photoOutput.on('photoAvailable', (errCode: BusinessError, photo: camera.Photo): void => {
         console.info('getPhoto start');
         console.info(`err: ${JSON.stringify(errCode)}`);
@@ -72,7 +72,7 @@
           }
           // 如需要在图库中看到所保存的图片、视频资源，请使用用户无感的安全控件创建媒体资源。
 
-          // buffer处理结束后需要释放该资源，如果未正确释放资源会导致后续拍照获取不到buffer
+          // buffer处理结束后需要释放该资源，如果未正确释放资源会导致后续拍照获取不到buffer。
           imageObj.release(); 
         });
       });
@@ -85,7 +85,7 @@
 
    ```ts
    function configuringSession(photoSession: camera.PhotoSession): void {
-     // 判断设备是否支持闪光灯
+     // 判断设备是否支持闪光灯。
      let flashStatus: boolean = false;
      try {
        flashStatus = photoSession.hasFlash();
@@ -95,7 +95,7 @@
      }
      console.info(`Returned with the flash light support status: ${flashStatus}`);
      if (flashStatus) {
-       // 判断是否支持自动闪光灯模式
+       // 判断是否支持自动闪光灯模式。
        let flashModeStatus: boolean = false;
        try {
          let status: boolean = photoSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO);
@@ -105,7 +105,7 @@
          console.error(`Failed to check whether the flash mode is supported. error: ${JSON.stringify(err)}`);
        }
        if (flashModeStatus) {
-         // 设置自动闪光灯模式
+         // 设置自动闪光灯模式。
          try {
            photoSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO);
          } catch (error) {
@@ -114,7 +114,7 @@
          }
        }
      }
-     // 判断是否支持连续自动变焦模式
+     // 判断是否支持连续自动变焦模式。
      let focusModeStatus: boolean = false;
      try {
        let status: boolean = photoSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
@@ -124,7 +124,7 @@
        console.error(`Failed to check whether the focus mode is supported. error: ${JSON.stringify(err)}`);
      }
      if (focusModeStatus) {
-       // 设置连续自动变焦模式
+       // 设置连续自动变焦模式。
        try {
          photoSession.setFocusMode(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
        } catch (error) {
@@ -132,7 +132,7 @@
          console.error(`Failed to set the focus mode. error: ${JSON.stringify(err)}`);
        }
      }
-     // 获取相机支持的可变焦距比范围
+     // 获取相机支持的可变焦距比范围。
      let zoomRatioRange: Array<number> = [];
      try {
        zoomRatioRange = photoSession.getZoomRatioRange();
@@ -143,7 +143,7 @@
      if (zoomRatioRange.length <= 0 ) {
        return;
      }
-     // 设置可变焦距比
+     // 设置可变焦距比。
      try {
        photoSession.setZoomRatio(zoomRatioRange[0]);
      } catch (error) {
@@ -157,15 +157,15 @@
 
    通过photoOutput类的[capture](../../reference/apis-camera-kit/js-apis-camera.md#capture-2)方法，执行拍照任务。该方法有两个参数，第一个参数为拍照设置参数的setting，setting中可以设置照片的质量和旋转角度，第二参数为回调函数。
 
-   获取拍照旋转角度的方法为，通过通过[PhotoOutput](../../reference/apis-camera-kit/js-apis-camera.md#photooutput)类中的[getPhotoRotation](../../reference/apis-camera-kit/js-apis-camera.md#getphotorotation12)方法获取rotation实际的值
+   获取拍照旋转角度的方法为，通过通过[PhotoOutput](../../reference/apis-camera-kit/js-apis-camera.md#photooutput)类中的[getPhotoRotation](../../reference/apis-camera-kit/js-apis-camera.md#getphotorotation12)方法获取rotation实际的值。
 
    ```ts
    function capture(captureLocation: camera.Location, photoOutput: camera.PhotoOutput): void {
      let settings: camera.PhotoCaptureSetting = {
-       quality: camera.QualityLevel.QUALITY_LEVEL_HIGH,  // 设置图片质量高
-       rotation: camera.ImageRotation.ROTATION_0,  // 设置图片旋转角度的camera.ImageRotation.ROTATION_0是通过说明中获取拍照角度的getPhotoRotation方法获取的值进行设置
-       location: captureLocation,  // 设置图片地理位置
-       mirror: false  // 设置镜像使能开关(默认关)
+       quality: camera.QualityLevel.QUALITY_LEVEL_HIGH,  // 设置图片质量高。
+       rotation: camera.ImageRotation.ROTATION_0,  // 设置图片旋转角度的camera.ImageRotation.ROTATION_0是通过说明中获取拍照角度的getPhotoRotation方法获取的值进行设置。
+       location: captureLocation,  // 设置图片地理位置。
+       mirror: false  // 设置镜像使能开关(默认关)。
      };
      photoOutput.capture(settings, (err: BusinessError) => {
        if (err) {

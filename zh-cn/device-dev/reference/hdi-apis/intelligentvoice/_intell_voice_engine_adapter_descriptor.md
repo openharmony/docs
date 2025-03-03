@@ -19,7 +19,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| enum [IntellVoiceEngineAdapterType](_intelligent_voice_engine.md#intellvoiceengineadaptertype)[adapterType](#adaptertype) | 智能语音引擎适配器类型。  | 
+| enum [IntellVoiceEngineAdapterType](_intelligent_voice_engine.md#intellvoiceengineadaptertype) [adapterType](#adaptertype) | 智能语音引擎适配器类型。  | 
 
 
 ## 类成员变量说明

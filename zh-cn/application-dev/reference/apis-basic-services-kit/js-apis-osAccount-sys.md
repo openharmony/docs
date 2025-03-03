@@ -4662,7 +4662,6 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
-| 12300102 | Credential not enrolled. |
 
 **示例：**
   ```ts
@@ -4706,7 +4705,6 @@ getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCred
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType. |
-| 12300102 | Credential not enrolled. |
 
 **示例：**
   ```ts
@@ -4756,7 +4754,6 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 | 401 | Parameter error. Possible causes: Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType. |
-| 12300102 | Credential not enrolled. |
 
 **示例：**
   ```ts

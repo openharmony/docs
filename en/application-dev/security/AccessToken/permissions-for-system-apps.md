@@ -4414,25 +4414,25 @@ Allows an application to enable or access the SOS service.
 
 Allows a system application to start the page for setting privacy protection.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：16
+**Valid since**: 16
 
 ### ohos.permission.DLP_GET_HIDE_STATUS
 
 Allows a system application to use the information hiding APIs to obtain the information hiding status.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：16
+**Valid since**: 16
 
 ### ohos.permission.GET_ANIM_POLICY
 
@@ -4590,6 +4590,20 @@ peripherals connected to the host via a USB bus and:
 ### ohos.permission.ACCESS_CUSTOM_RINGTONE
 
 Allows an application to access the RBT library.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_STARTUPGUIDE
+
+Allows a system application to access common data and common events of the startup wizard.
+
+This permission is available only to the applications on smartphones, tablets, and 2-in-1 devices.
 
 **Permission level**: system_basic
 
@@ -4866,6 +4880,54 @@ Allows a system application to set the launch reason when starting another appli
 **Authorization mode**: system_grant
 
 **Enable via ACL**: false
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_USER_ACCOUNT_INFO
+
+Allows a system application to access user account information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: false
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_DEVAUTH_CRED_MGR
+
+Allows a system application or system service to access the credential management module for the device authentication (device_auth) SA.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_DEVAUTH_CRED_PRIVILEGE
+
+Allows a system application or system service to access the credential management module and credential authentication module for the device authentication (device_auth) SA and to query and authenticate other service credentials.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_DEVAUTH_CRED_AUTH
+
+Allows a system application or system service to access the credential authentication module for the device authentication (device_auth) SA.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
 
 **Valid since**: 16
 
