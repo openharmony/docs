@@ -55,7 +55,7 @@ static napi_value NewInstance(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const newInstance: (obj: Object, param: string) => Object
+export const newInstance: (obj: Object, param: string) => Object;
 ```
 
 ArkTS侧示例代码
