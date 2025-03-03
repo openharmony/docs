@@ -875,3 +875,120 @@ UX规格变更，不涉及接口和组件。
 **适配指导**
 
 默认行为变更，应用无需适配。
+
+## cl.arkui.6 tablet和2in1设备的onPageHide和onHidden生命周期函数变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+优化tablet和2in1设备的onPageHide和onHidden生命周期函数，确保函数内部修改状态变量时能够触发页面刷新，也能够触发状态变量的监听函数。
+
+**变更影响**
+
+此变更涉及应用适配。
+
+- 变更前：
+  1. 在onPageHide/onHidden中修改状态变量可能不会触发对应的监听函数，示例如下：
+     ```ts
+     @Component
+     struct TestComponent {
+       @Prop @Watch('onPageVisibilityChange') isPageShow: boolean;
+       onPageVisibilityChange(): void {
+         // 期望状态变量的修改会触发当前函数，实际不一定会触发。
+         console.log(`onPageVisibilityChange ${this.isPageShow}`)
+       }
+       build() {
+         Text('test')
+       }
+     }
+     @Component
+     struct DestA {
+       @State isPageShow: boolean = false;
+       build() {
+         NavDestination() {
+           Stack() {
+             TestComponent({isPageShow: this.isPageShow})
+           }
+         }.onShown(() => {
+           this.isPageShow = true;
+         })
+         .onHidden(() => {
+           // 退后台时会触发该生命周期，进一步改变状态变量
+           this.isPageShow = false;
+         })
+       }
+     }
+     @Entry
+     @Component
+     struct TestPage {
+       private stack: NavPathStack = new NavPathStack();
+       aboutToAppear(): void {
+         this.stack.pushPath({name: 'page'})
+       }
+       @Builder
+       MyPageMap(name: string) {
+         DestA()
+       }
+       build() {
+         Navigation(this.stack) {
+         }.hideNavBar(true)
+         .navDestination(this.MyPageMap)
+       }
+     }
+     ```
+  2. 在onPageHide/onHidden中修改状态变量可能不会刷新页面，示例如下：
+     ```ts
+     @Component
+     struct TestComponent {
+       build() {
+         Text('test1')
+       }
+       aboutToDisappear(): void {
+         console.log(`TestComponent aboutToDisappear`)
+       }
+     }
+     @Entry
+     @Component
+     struct TestPage {
+       @State isPageShow: boolean = true;
+       build() {
+         // 期望状态变量的修改会导致TestComponent会被销毁，实际不一定会被销毁。
+         if (this.isPageShow) {
+           TestComponent()
+         } else {
+           Text('test2')
+         }
+       }
+       onPageShow(): void {
+         this.isPageShow = true;
+       }
+       onPageHide(): void {
+         // 退后台时会触发该生命周期，进一步改变状态变量
+         this.isPageShow = false;
+       }
+     }
+     ```
+
+- 变更后：
+  1. 在onPageHide/onHidden中修改状态变量能够触发对应的监听函数；
+  2. 在onPageHide/onHidden中修改状态变量能够刷新页面。
+
+**起始API Level**
+
+onPageHide：API version 7，onHidden：API version 10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.53开始。
+
+**变更发生的接口/组件**
+
+[onPageHide](../../../application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpagehide)，所在文件：api/@internal/component/ets/common.d.ts；[onHidden](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md#onhidden10)，所在文件：api/@internal/component/ets/nav_destination.d.ts。
+
+**适配指导**
+
+仅**tablet**和**2ni1**设备需要做以下适配：
+检查是否在onPageHide/onHidden生命周期函数中修改状态变量，本次变更之后能够保证触发页面刷新，触发监听函数。
