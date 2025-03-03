@@ -59,12 +59,14 @@ This function allows your application to record fault events, statistics events,
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [HiAppEvent_AppEventInfo](_hi_app_event___app_event_info.md) [HiAppEvent_AppEventInfo](#hiappevent_appeventinfo) | Information about a single event, including the event domain, event name, event type, and custom parameter list in JSON string format. | 
+| typedef struct [HiAppEvent_AppEventInfo](_hi_app_event___app_event_info.md) [HiAppEvent_AppEventInfo](#hiappevent_appeventinfo) | Defines a struct for the information about a single event, including the event domain, event name, event type, and custom parameter list in JSON string format. | 
 | typedef struct [HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) [HiAppEvent_AppEventGroup](#hiappevent_appeventgroup) | Event array with the same event name. | 
 | typedef struct ParamListNode \* [ParamList](#paramlist) | Event parameter list node. | 
 | typedef struct [HiAppEvent_Watcher](#hiappevent_watcher) [HiAppEvent_Watcher](#hiappevent_watcher) | Watcher for application events. | 
+| typedef struct [HiAppEvent_Processor](#hiappevent_processor) [HiAppEvent_Processor](#hiappevent_processor) | Defines a struct for the processor for application events. |
+| typedef struct [HiAppEvent_Config](#hiappevent_config) [HiAppEvent_Config](#hiappevent_config) | Defines a struct for the configuration object used to set the conditions for triggering system events. |
 | typedef void(\* [OH_HiAppEvent_OnReceive](#oh_hiappevent_onreceive)) (const char \*domain, const struct [HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) \*appEventGroups, uint32_t groupLen) | Callback invoked to pass event content to the caller. | 
-| typedef void(\* [OH_HiAppEvent_OnTrigger](#oh_hiappevent_ontrigger)) (int row, int size) | Callback invoked if the event received by the watcher meets the conditions specified by **OH_HiAppEvent_SetTriggerCondition**. Specifically, if the **OH_HiAppEvent_OnReceive** callback is not set in the watcher, the event received by the watcher will be saved. If the saved event meets the conditions specified by OH_HiAppEvent_SetTriggerCondition, the callback is invoked. After the callback is complete, if a newly saved event meets the specified condition, the callback is invoked again. | 
+| typedef void(\* [OH_HiAppEvent_OnTrigger](#oh_hiappevent_ontrigger)) (int row, int size) | Defines a callback invoked if the event received by the watcher meets the conditions specified by **OH_HiAppEvent_SetTriggerCondition**. Specifically, if the **OH_HiAppEvent_OnReceive callback** is not set in the watcher, the event received by the watcher will be saved.  After the callback is complete, if a newly saved event meets the specified condition, the callback is invoked again. | 
 | typedef void(\* [OH_HiAppEvent_OnTake](#oh_hiappevent_ontake)) (const char \*const \*events, uint32_t eventLen) | Callback invoked to pass the events received by the watcher to the caller when OH_HiAppEvent_TakeWatcherData is used to obtain the events. | 
 
 
@@ -72,8 +74,8 @@ This function allows your application to record fault events, statistics events,
 
 | Name| Description| 
 | -------- | -------- |
-| [EventType](#eventtype) { **FAULT** = 1, **STATISTIC** = 2, **SECURITY** = 3, **BEHAVIOR** = 4 } | Event type. | 
-
+| [HiAppEvent_ErrorCode](#hiappevent_errorcode) {<br>HIAPPEVENT_SUCCESS = 0, HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH = 4, HIAPPEVENT_PROCESSOR_IS_NULL = -7, HIAPPEVENT_PROCESSOR_NOT_FOUND = -8,<br>HIAPPEVENT_INVALID_PARAM_VALUE = -9, HIAPPEVENT_EVENT_CONFIG_IS_NULL = -10, HIAPPEVENT_OPERATE_FAILED = -100, HIAPPEVENT_INVALID_UID = -200<br>} | Enumerates the error codes used in the HiAppEvent module. |
+| [EventType](#eventtype) { FAULT = 1, STATISTIC = 2, SECURITY = 3, BEHAVIOR = 4 } | Event type. |
 
 ### Functions
 
@@ -109,6 +111,21 @@ This function allows your application to record fault events, statistics events,
 | int [OH_HiAppEvent_AddWatcher](#oh_hiappevent_addwatcher) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher) | Adds a watcher. Once a watcher is added, it starts to listen for system messages. | 
 | int [OH_HiAppEvent_RemoveWatcher](#oh_hiappevent_removewatcher) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher) | Removes a watcher. Once a watcher is removed, it stops listening for system messages. | 
 | void [OH_HiAppEvent_ClearData](#oh_hiappevent_cleardata) (void) | Clears the events saved by all watchers. | 
+| [HiAppEvent_Processor](#hiappevent_processor) \* [OH_HiAppEvent_CreateProcessor](#oh_hiappevent_createprocessor) (const char \*name) | Creates a processor for application events. |
+| int [OH_HiAppEvent_SetReportRoute](#oh_hiappevent_setreportroute) ([HiAppEvent_Processor](#hiappevent_processor) \*processor, const char \*appId, const char \*routeInfo) | Sets the report route for the processor. |
+| int [OH_HiAppEvent_SetReportPolicy](#oh_hiappevent_setreportpolicy) ([HiAppEvent_Processor](#hiappevent_processor) \*processor, int periodReport, int batchReport, bool onStartReport, bool onBackgroundReport) | Sets the report policy for the processor. |
+| int [OH_HiAppEvent_SetReportEvent](#oh_hiappevent_setreportevent) ([HiAppEvent_Processor](#hiappevent_processor) \*processor, const char \*domain, const char \*name, bool isRealTime) | Sets the report event for the processor. |
+| int [OH_HiAppEvent_SetCustomConfig](#oh_hiappevent_setcustomconfig) ([HiAppEvent_Processor](#hiappevent_processor) \*processor, const char \*key, const char \*value) | Sets the custom extension parameters of the processor. |
+| int [OH_HiAppEvent_SetConfigId](#oh_hiappevent_setconfigid) ([HiAppEvent_Processor](#hiappevent_processor) \*processor, int configId) | Sets the configuration ID of the processor. |
+| int [OH_HiAppEvent_SetReportUserId](#oh_hiappevent_setreportuserid) ([HiAppEvent_Processor](#hiappevent_processor) \*processor, const char \*const \*userIdNames, int size) | Sets the report user ID of the processor. |
+| int [OH_HiAppEvent_SetReportUserProperty](#oh_hiappevent_setreportuserproperty) ([HiAppEvent_Processor](#hiappevent_processor) \*processor, const char \*const \*userPropertyNames, int size) | Sets the report user property of the processor. |
+| int64_t [OH_HiAppEvent_AddProcessor](#oh_hiappevent_addprocessor) ([HiAppEvent_Processor](#hiappevent_processor) \*processor) | Adds a processor. You can add a processor to migrate event data to the cloud. You can preset the implementation of the processor on the device and set its properties based on its constraints. |
+| void [OH_HiAppEvent_DestroyProcessor](#oh_hiappevent_destroyprocessor) ([HiAppEvent_Processor](#hiappevent_processor) \*processor) | Destroys a processor. |
+| int [OH_HiAppEvent_RemoveProcessor](#oh_hiappevent_removeprocessor) (int64_t processorId) | Removes a processor. Once a processor is removed, it stops reporting events. |
+| [HiAppEvent_Config](#hiappevent_config) \* [OH_HiAppEvent_CreateConfig](#oh_hiappevent_createconfig) (void) | Creates a pointer to the configuration object that sets the conditions for triggering system events. |
+| void [OH_HiAppEvent_DestroyConfig](#oh_hiappevent_destroyconfig) ([HiAppEvent_Config](#hiappevent_config) \*config) | Destroys a configuration object. |
+| int [OH_HiAppEvent_SetConfigItem](#oh_hiappevent_setconfigitem) ([HiAppEvent_Config](#hiappevent_config) \*config, const char \*itemName, const char \*itemValue) | Sets the items in the configuration object. |
+| int [OH_HiAppEvent_SetEventConfig](#oh_hiappevent_seteventconfig) (const char \*name, [HiAppEvent_Config](#hiappevent_config) \*config) | Sets the conditions for triggering system event subscription. |
 
 
 ## Macro Description
@@ -312,12 +329,35 @@ Defines an event array with the same event name.
 typedef struct HiAppEvent_AppEventInfoHiAppEvent_AppEventInfo
 ```
 **Description**
-Defines information about a single event, including the event domain, event name, event type, and custom parameter list in JSON string format.
+Defines a struct for the information about a single event, including the event domain, event name, event type, and custom parameter list in JSON string format.
 
-\@SystemCapability.HiviewDFX.HiAppEvent
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
 **Since**: 12
 
+### HiAppEvent_Config
+
+```
+typedef struct HiAppEvent_ConfigHiAppEvent_Config
+```
+
+**Description**
+Defines a struct for the configuration object used to set the conditions for triggering system events.
+
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
+
+**Since**: 16
+
+### HiAppEvent_Processor
+
+```
+typedef struct HiAppEvent_ProcessorHiAppEvent_Processor
+```
+
+**Description**
+Defines a struct for the processor for application events.
+
+**Since**: 16
 
 ### HiAppEvent_Watcher
 
@@ -338,11 +378,11 @@ Defines the watcher for application events.
 typedef void(* OH_HiAppEvent_OnReceive) (const char *domain, const struct HiAppEvent_AppEventGroup *appEventGroups, uint32_t groupLen)
 ```
 **Description**
-Defines the callback invoked to pass event content to the caller.
+Defines a callback invoked to pass event content to the caller.
 
 Note: The lifecycle of the object pointed by the pointer in the callback is limited to the callback function. Do not use the pointer outside of the callback function. If the information needs to be cached, perform a deep copy of the content pointed by the pointer.
 
-\@SystemCapability.HiviewDFX.HiAppEvent
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
 **Since**: 12
 
@@ -361,11 +401,11 @@ Note: The lifecycle of the object pointed by the pointer in the callback is limi
 typedef void(* OH_HiAppEvent_OnTake) (const char *const *events, uint32_t eventLen)
 ```
 **Description**
-Defines the callback invoked to pass the events received by the watcher to the caller when OH_HiAppEvent_TakeWatcherData is used to obtain the events.
+Defines a callback invoked to pass the events received by the watcher to the caller when OH_HiAppEvent_TakeWatcherData is used to obtain the events.
 
 Note: The lifecycle of the object pointed by the pointer in the callback is limited to the callback function. Do not use the pointer outside of the callback function. If the information needs to be cached, perform a deep copy of the content pointed by the pointer.
 
-\@SystemCapability.HiviewDFX.HiAppEvent
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
 **Since**: 12
 
@@ -382,10 +422,11 @@ Note: The lifecycle of the object pointed by the pointer in the callback is limi
 ```
 typedef void(* OH_HiAppEvent_OnTrigger) (int row, int size)
 ```
-**Description**
-Defines the callback invoked if the event received by the watcher meets the conditions specified by **OH_HiAppEvent_SetTriggerCondition**. Specifically, if the **OH_HiAppEvent_OnReceive** callback is not set in the watcher, the event received by the watcher will be saved. If the saved event meets the conditions specified by OH_HiAppEvent_SetTriggerCondition, the callback is invoked. After the callback is complete, if a newly saved event meets the specified condition, the callback is invoked again.
 
-\@SystemCapability.HiviewDFX.HiAppEvent
+**Description**
+Defines a callback invoked if the event received by the watcher meets the conditions specified by **OH_HiAppEvent_SetTriggerCondition**. Specifically, if the **OH_HiAppEvent_OnReceive** callback is not set in the watcher, the event received by the watcher will be saved.  After the callback is complete, if a newly saved event meets the specified condition, the callback is invoked again.
+
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
 **Since**: 12
 
@@ -430,9 +471,29 @@ You are advised to select different event types based on application scenarios.
 | SECURITY | Security event.| 
 | BEHAVIOR | Behavior event.| 
 
+### HiAppEvent_ErrorCode
+
+```
+enum HiAppEvent_ErrorCode
+```
+
+**Description**
+Enumerates the error codes used in the HiAppEvent module.
+
+**Since**: 16
+
+| Value| Description|
+| -------- | -------- |
+| HIAPPEVENT_SUCCESS  | The operation is successful.&nbsp;&nbsp; |
+| HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH  | The length of the parameter value is invalid.&nbsp;&nbsp; |
+| HIAPPEVENT_PROCESSOR_IS_NULL  | The processor is null.&nbsp;&nbsp; |
+| HIAPPEVENT_PROCESSOR_NOT_FOUND  | The processor is not found.&nbsp;&nbsp; |
+| HIAPPEVENT_INVALID_PARAM_VALUE  | The parameter value is invalid.&nbsp;&nbsp; |
+| HIAPPEVENT_EVENT_CONFIG_IS_NULL  | The event configuration is null.&nbsp;&nbsp; |
+| HIAPPEVENT_OPERATE_FAILED  | The operation failed.&nbsp;&nbsp; |
+| HIAPPEVENT_INVALID_UID  | The user ID is invalid.&nbsp;&nbsp; |
 
 ## Function Description
-
 
 ### OH_HiAppEvent_AddBoolArrayParam()
 
@@ -762,6 +823,28 @@ Adds an event parameter of the int8_t type to the parameter list.
 
 Pointer to the parameter list that contains the parameters added.
 
+### OH_HiAppEvent_AddProcessor()
+
+```
+int64_t OH_HiAppEvent_AddProcessor (HiAppEvent_Processor * processor)
+```
+
+**Description**
+Adds a processor. You can add a processor to migrate event data to the cloud. You can preset the implementation of the processor on the device and set its properties based on its constraints.
+
+Note that the configuration information of **Processor** must be provided by the data processor. Yet, as no data processor is preset in the device for interaction for the moment, migrating events to the cloud is unavailable.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| processor | Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**. |
+
+**Returns**
+
+Unique ID of the processor if the API is called successfully. The value is greater than 0; **-7** if the input parameter of the processor is empty; **-9** if the parameter value is invalid; **-200** if the user ID is invalid.
 
 ### OH_HiAppEvent_AddStringArrayParam()
 
@@ -818,7 +901,7 @@ int OH_HiAppEvent_AddWatcher (HiAppEvent_Watcher * watcher)
 **Description**
 Adds a watcher. Once a watcher is added, it starts to listen for system messages.
 
-\@SystemCapability.HiviewDFX.HiAppEvent
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
 **Since**: 12
 
@@ -841,7 +924,7 @@ void OH_HiAppEvent_ClearData (void )
 **Description**
 Clears the events saved by all watchers.
 
-\@SystemCapability.HiviewDFX.HiAppEvent
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
 **Since**: 12
 
@@ -869,6 +952,22 @@ This function is used to configure the event logging function and the storage qu
 
 Configuration result. The value **true** indicates that the configuration is successful, and the value **false** indicates the opposite.
 
+### OH_HiAppEvent_CreateConfig()
+
+```
+HiAppEvent_Config* OH_HiAppEvent_CreateConfig (void )
+```
+
+**Description**
+Creates a pointer to the configuration object that sets the conditions for triggering system events.
+
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
+
+**Since**: 16
+
+**Returns**
+
+Pointer to the configuration object that sets the conditions for triggering system events.
 
 ### OH_HiAppEvent_CreateParamList()
 
@@ -884,6 +983,28 @@ Creates a pointer to a parameter list object.
 
 Pointer to the parameter list object.
 
+### OH_HiAppEvent_CreateProcessor()
+
+```
+HiAppEvent_Processor* OH_HiAppEvent_CreateProcessor (const char * name)
+```
+
+**Description**
+Creates a processor for application events.
+
+Note: If a processor is no longer used, call **OH_HiAppEvent_DestroyProcessor** to destroy it.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| name | Processor name, which can contain only letters, digits, underscores (_), and dollar signs ($). It cannot start with a digit and cannot exceed 256 characters. |
+
+**Returns**
+
+Pointer to the new processor if the API is called successfully; **nullptr** if the **name** parameter is invalid.
 
 ### OH_HiAppEvent_CreateWatcher()
 
@@ -895,7 +1016,7 @@ Creates a watcher for application events.
 
 Note: If a created watcher is no longer used, you are required to destroy it by calling OH_HiAppEvent_DestroyWatcher.
 
-\@SystemCapability.HiviewDFX.HiAppEvent
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
 **Since**: 12
 
@@ -909,6 +1030,26 @@ Note: If a created watcher is no longer used, you are required to destroy it by 
 
 Pointer to the new watcher if the API is called successfully; **nullptr** if the **name** parameter is invalid.
 
+### OH_HiAppEvent_DestroyConfig()
+
+```
+void OH_HiAppEvent_DestroyConfig (HiAppEvent_Config * config)
+```
+
+**Description**
+Destroys a configuration object.
+
+Note: If a configuration object is no longer used, destroy it to release memory to prevent memory leaks. After the object is destroyed, set its pointer to null.
+
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| config | Pointer to the configuration object, that is, the pointer returned by the **OH_HiAppEvent_CreateConfig** API. |
 
 ### OH_HiAppEvent_DestroyParamList()
 
@@ -926,6 +1067,24 @@ Destroys a pointer to a parameter list object and releases its allocated memory.
 | -------- | -------- |
 | list | Pointer to the parameter list object. | 
 
+### OH_HiAppEvent_DestroyProcessor()
+
+```
+void OH_HiAppEvent_DestroyProcessor (HiAppEvent_Processor * processor)
+```
+
+**Description**
+Destroys a processor.
+
+Note: If a processor is no longer used, destroy it to release memory to prevent memory leaks. After the processor is destroyed, set its pointer to null.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| processor | Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**. |
 
 ### OH_HiAppEvent_DestroyWatcher()
 
@@ -935,9 +1094,9 @@ void OH_HiAppEvent_DestroyWatcher (HiAppEvent_Watcher * watcher)
 **Description**
 Destroys a created watcher.
 
-Note: If a created watcher is no longer used, destroy it to release memory to prevent memory leakage. After the watcher is destroyed, set its pointer to null.
+Note: If a created watcher is no longer used, destroy it to release memory to prevent memory leaks. After the watcher is destroyed, set its pointer to null.
 
-\@SystemCapability.HiviewDFX.HiAppEvent
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
 **Since**: 12
 
@@ -947,6 +1106,28 @@ Note: If a created watcher is no longer used, destroy it to release memory to pr
 | -------- | -------- |
 | watcher | Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher). | 
 
+### OH_HiAppEvent_RemoveProcessor()
+
+```
+int OH_HiAppEvent_RemoveProcessor (int64_t processorId)
+```
+
+**Description**
+Removes a processor. Once a processor is removed, it stops reporting events.
+
+Note: This API only stops the processor reporting events but does not destroy the processor. You can call **OH_HiAppEvent_DestroyProcessor** to destroy the processor and release the memory.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| processorId | Unique ID of a processor. |
+
+**Returns**
+
+**0** if the API is called successfully; **-8** if the processor is not found; **-100** if the operation fails; **-200** if the user ID is invalid.
 
 ### OH_HiAppEvent_RemoveWatcher()
 
@@ -958,7 +1139,7 @@ Removes a watcher. Once a watcher is removed, it stops listening for system mess
 
 Note: This API only enables the watcher to stop listening for system messages. It does not destroy the watcher. The watcher still resides in the memory until the OH_HiAppEvent_DestroyWatcher API is called.
 
-\@SystemCapability.HiviewDFX.HiAppEvent
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
 **Since**: 12
 
@@ -983,7 +1164,7 @@ Sets the type of events to listen for.
 
 This function can be called repeatedly. You can add multiple filtering conditions instead of replacing them. The watcher will receive notifications of events that meet any of the filtering conditions.
 
-\@SystemCapability.HiviewDFX.HiAppEvent
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
 **Since**: 12
 
@@ -993,7 +1174,7 @@ This function can be called repeatedly. You can add multiple filtering condition
 | -------- | -------- |
 | watcher | Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher). | 
 | domain | Domain of events to be listened for. | 
-| eventTypes | Types of events to be listened for. The bitwise AND matching mode is used. Multiple types of events can be intercepted. If the first bit is 1 (the value is 1), fault events can be intercepted. If the second bit is 1 (the value is 2), statistics events can be intercepted. If the third bit is 1 (the value is 4), security events can be intercepted, if the fourth digit is 1 (the value is 8), events of the listening behavior type are supported. If the fourth digit is 1 (the value is 15) or 0 (the value is 0), events of all types are supported. | 
+| eventTypes | Types of events to be listened for. The bitwise AND matching mode is used. Multiple types of events can be listened for. If the first bit is 1 (the value is **1**), fault events can be listened for. If the second bit is 1 (the value is **2**), statistics events can be listened for. If the third bit is 1 (the value is **4**), security events can be listened for, if the fourth digit is 1 (the value is **8**), behavior events can be listened for. If the fourth digit is 1 (the value is **15**) or 0 (the value is **0**), events of all types can be listened for. | 
 | names | Array of the event names. | 
 | namesLen | Length of the event name array. | 
 
@@ -1001,6 +1182,217 @@ This function can be called repeatedly. You can add multiple filtering condition
 
 **0** if the API is called successfully; **-1** if the **names** parameter is invalid; **-4** if the **domain** parameter is invalid; **-5** if the pointer of an input parameter is null.
 
+### OH_HiAppEvent_SetConfigId()
+
+```
+int OH_HiAppEvent_SetConfigId (HiAppEvent_Processor * processor, int configId )
+```
+
+**Description**
+Sets the configuration ID of the processor.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| processor | Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**. |
+| configId | Configuration ID of the processor, which is a natural number. |
+
+**Returns**
+
+**0** if the API is called successfully; **-7** if the input parameters of the processor are empty; **-9** if the parameter values are invalid; **-200** if the user ID is invalid.
+
+### OH_HiAppEvent_SetConfigItem()
+
+```
+int OH_HiAppEvent_SetConfigItem (HiAppEvent_Config * config, const char * itemName, const char * itemValue )
+```
+
+**Description**
+Sets the items in the configuration object.
+
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| config | Pointer to the configuration object, that is, the pointer returned by the **OH_HiAppEvent_CreateConfig** API. |
+| itemName | Name of the configuration item. |
+| itemValue | Value of the configuration item. |
+
+**Returns**
+
+**0** if the API is called successfully; **-9** if the configuration item is invalid; **-10** if the pointer to the configuration object is null.
+
+### OH_HiAppEvent_SetCustomConfig()
+
+```
+int OH_HiAppEvent_SetCustomConfig (HiAppEvent_Processor * processor, const char * key, const char * value )
+```
+
+**Description**
+Sets the custom extension parameters of the processor.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| processor | Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**. |
+| key | Parameter name, which contains a maximum of 32 characters. |
+| value | Parameter value, which contains a maximum of 1024 characters. |
+
+**Returns**
+
+**0** if the API is called successfully; **7** if the input parameter of the processor is empty; **9** if the parameter value is invalid; **200** if the user ID is invalid; **4** if the parameter value length is invalid.
+
+### OH_HiAppEvent_SetEventConfig()
+
+```
+int OH_HiAppEvent_SetEventConfig (const char * name, HiAppEvent_Config * config )
+```
+
+**Description**
+Sets the conditions for triggering system event subscription.
+
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| name | Name of the system event. |
+| config | Pointer to the configuration object, that is, the pointer returned by the **OH_HiAppEvent_CreateConfig** API. |
+
+**Returns**
+
+**0** if the API is called successfully; **-9** if the parameter is invalid.
+
+### OH_HiAppEvent_SetReportEvent()
+
+```
+int OH_HiAppEvent_SetReportEvent (HiAppEvent_Processor * processor, const char * domain, const char * name, bool isRealTime )
+```
+
+**Description**
+Sets the report event for the processor.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| processor | Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**. |
+| domain | Domain of the report event. |
+| name | Name of the report event. |
+| isRealTime | Whether to report events in real time. |
+
+**Returns**
+
+**0** if the API is called successfully; **-7** if the input parameters of the processor are empty; **-9** if the parameter values are invalid; **-200** if the user ID is invalid.
+
+### OH_HiAppEvent_SetReportPolicy()
+
+```
+int OH_HiAppEvent_SetReportPolicy (HiAppEvent_Processor * processor, int periodReport, int batchReport, bool onStartReport, bool onBackgroundReport )
+```
+
+**Description**
+Sets the report policy for the processor.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| processor | Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**. |
+| periodReport | Period for reporting events, in seconds. |
+| batchReport | Threshold for reporting events. When the number of events reaches the threshold, an event is reported. |
+| onStartReport | Whether to report an event when the processor is started. The default value is **false**. |
+| onBackgroundReport | Whether to report an event when an application enters the background. The default value is **false**. |
+
+**Returns**
+
+**0** if the API is called successfully; **-7** if the input parameters of the processor are empty; **-9** if the parameter values are invalid; **-200** if the user ID is invalid.
+
+### OH_HiAppEvent_SetReportRoute()
+
+```
+int OH_HiAppEvent_SetReportRoute (HiAppEvent_Processor * processor, const char * appId, const char * routeInfo )
+```
+
+**Description**
+Sets the report route for the processor.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| processor | Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**. |
+| appId | Application ID of the processor. |
+| routeInfo | Server location information. The default value is an empty string. The string length cannot exceed 8 KB. Otherwise, the default value is used. |
+
+**Returns**
+
+**0** if the API is called successfully; **7** if the input parameter of the processor is empty; **9** if the parameter value is invalid; **200** if the user ID is invalid; **4** if the parameter value length is invalid.
+
+### OH_HiAppEvent_SetReportUserId()
+
+```
+int OH_HiAppEvent_SetReportUserId (HiAppEvent_Processor * processor, const char *const * userIdNames, int size )
+```
+
+**Description**
+Sets the report user ID of the processor.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| processor | Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**. |
+| userIdNames | Name array of user IDs that can be reported by the processor. |
+| size | Length of the name array of user IDs. |
+
+**Returns**
+
+**0** if the API is called successfully; **7** if the input parameter of the processor is empty; **9** if the parameter value is invalid; **200** if the user ID is invalid; **4** if the parameter value length is invalid.
+
+### OH_HiAppEvent_SetReportUserProperty()
+
+```
+int OH_HiAppEvent_SetReportUserProperty (HiAppEvent_Processor * processor, const char *const * userPropertyNames, int size )
+```
+
+**Description**
+Sets the report user property of the processor.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| processor | Pointer to the processor, that is, the pointer returned by **OH_HiAppEvent_CreateProcessor**. |
+| userPropertyNames | Name array of user properties that can be reported by the processor. |
+| size | Length of the name array of user properties. |
+
+**Returns**
+
+**0** if the API is called successfully; **7** if the input parameter of the processor is empty; **9** if the parameter value is invalid; **200** if the user ID is invalid; **4** if the parameter value length is invalid.
 
 ### OH_HiAppEvent_SetTriggerCondition()
 
@@ -1010,7 +1402,7 @@ int OH_HiAppEvent_SetTriggerCondition (HiAppEvent_Watcher * watcher, int row, in
 **Description**
 Sets the conditions for triggering the **OH_HiAppEvent_OnTrigger** callback, including the number and size of newly received events and the timeout interval for triggering **onTrigger**. Ensure that at least one of the trigger conditions is set on the caller side.
 
-\@SystemCapability.HiviewDFX.HiAppEvent
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
 **Since**: 12
 
@@ -1019,8 +1411,8 @@ Sets the conditions for triggering the **OH_HiAppEvent_OnTrigger** callback, inc
 | Name| Description| 
 | -------- | -------- |
 | watcher | Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher). | 
-| row | Row count. If the input value is greater than 0 and the number of newly received events is greater than or equal to the value of this parameter, the configured onTrigger callback is called. If the input value is less than or equal to 0, the number of received events is not used as the condition to trigger the onTrigger callback. | 
-| size | Size value. If the input value is greater than 0 and the size of the newly received event is greater than or equal to the value of this parameter, the configured onTrigger callback is called. The size of a single event is the length of the JSON string converted from the event. If the input value is less than or equal to 0, the size of received events is not used as the condition to trigger the onTrigger callback. | 
+| row | Row count. If the input value is greater than 0 and the number of newly received events is greater than or equal to the value of this parameter, the configured **onTrigger** callback is called. If the input value is less than or equal to 0, the number of received events is not used as the condition to trigger the **onTrigger** callback. | 
+| size | Size value. If the input value is greater than 0 and the size of the newly received event is greater than or equal to the value of this parameter, the configured **onTrigger** callback is called. The size of a single event is the length of the JSON string converted from the event. If the input value is less than or equal to 0, the size of received events is not used as the condition to trigger the **onTrigger** callback. | 
 | timeOut | Timeout value, in seconds. If the input value is greater than 0, the system checks the watcher for newly received events based on the timeout interval. If there are any newly received events, the configured onTrigger callback is triggered. After the callback is complete, the system checks the watcher for newly received events when the timeout value expires. If the input value is less than or equal to 0, the timeout interval is not used as the condition to trigger the onTrigger callback. | 
 
 **Returns**
@@ -1036,7 +1428,7 @@ int OH_HiAppEvent_SetWatcherOnReceive (HiAppEvent_Watcher * watcher, OH_HiAppEve
 **Description**
 Sets the **onReceive** callback. When the listener detects the corresponding event, the onReceive callback is called.
 
-\@SystemCapability.HiviewDFX.HiAppEvent
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
 **Since**: 12
 
@@ -1060,7 +1452,7 @@ int OH_HiAppEvent_SetWatcherOnTrigger (HiAppEvent_Watcher * watcher, OH_HiAppEve
 **Description**
 Sets the **onTrigger** callback.
 
-\@SystemCapability.HiviewDFX.HiAppEvent
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
 **Since**: 12
 
@@ -1084,7 +1476,7 @@ int OH_HiAppEvent_TakeWatcherData (HiAppEvent_Watcher * watcher, uint32_t eventN
 **Description**
 Obtains the event saved by the watcher.
 
-\@SystemCapability.HiviewDFX.HiAppEvent
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
 **Since**: 12
 
@@ -1117,11 +1509,11 @@ Before application event logging, use this API to verify parameters of the event
 
 | Name| Description| 
 | -------- | -------- |
-| domain | Event domain. You can customize event domains as required. The value is a string of up to 32 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a letter and cannot end with an underscore (_). | 
-| name | Event name. You can customize event names as required. The value is string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter. | 
+| domain | Event domain. You can customize event domains as required. The value is a string that contains a maximum of 32 characters, including digits (0 to 9), letters (a to z), and underscore (\_). It must start with a letter and cannot end with an underscore (\_). | 
+| name | Event name. You can customize event names as required. The value is a string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z), underscore (\_), and dollar sign ('$'). It must start with a letter or dollar sign ('$') and end with a digit or letter. | 
 | type | Event type, which is defined in [EventType](#eventtype). | 
-| list | List of event parameters, each of which consists of a parameter name and a parameter value. The specifications are as follows:<br>1. A parameter name is a string that contains a maximum of 16 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter.<br>2. The parameter value can be string, number, Boolean, or array. The length of a parameter of the string type must be less than 8 × 1024 characters. If this limit is exceeded, the parameter will be discarded. The element type of an array parameter can only be string, number, or Boolean, and the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.<br>3. The maximum number of parameters is 32. If this limit is exceeded, excess parameters will be discarded.| 
+| list | List of event parameters, each of which consists of a parameter name and a parameter value. The specifications are as follows:<br>1. A parameter name is a string that contains a maximum of 32 characters, including digits (0 to 9), letters (a to z), underscore (\_), and dollar sign ('$'). It must start with a letter or dollar sign ('$') and end with a digit or letter.<br>2. The parameter value can be string, number, Boolean, or array. The length of a parameter of the string type must be less than 8 × 1024 characters. If this limit is exceeded, the parameter will be discarded. The element type of an array parameter can only be string, number, or Boolean, and the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.<br>3. The maximum number of parameters is 32. If this limit is exceeded, excess parameters will be discarded.| 
 
 **Returns**
 
-The value **0** indicates that the event parameter is valid, and the event will be written to the event file asynchronously. A value greater than **0** indicates that invalid parameters are present in the event, and the event will be written to the event file asynchronously after the invalid parameters are ignored. A value smaller than **0** indicates that the event parameter verification fails, and the event will not be written to the event file. 0 The event parameter is valid. -1 The event name is invalid. -4 The event domain name is invalid. -99 The application event logging is disabled. 1 The event parameter name is invalid. 4 The length of the event parameter string is invalid. 5 The number of event parameters is invalid. 6 The length of the event parameter array is invalid. 8 The event parameter name is duplicate.
+The value **0** indicates that the event parameter verification is successful, and the event will be written to the event file asynchronously. A value greater than **0** indicates that invalid parameters are present in the event, and the event will be written to the event file asynchronously after the invalid parameters are ignored. A value smaller than **0** indicates that the event parameter verification fails, and the event will not be written to the event file. 0 The event parameter is valid. -1 The event name is invalid. -4 The event domain name is invalid. -99 The application event logging is disabled. 1 The event parameter name is invalid. 4 The length of the event parameter string is invalid. 5 The number of event parameters is invalid. 6 The length of the event parameter array is invalid. 8 The event parameter name is duplicate.

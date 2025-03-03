@@ -27,7 +27,6 @@
 
 - ResultSet模块通过共享内存实现，用于存储查询数据得到的结果集，并提供了遍历结果集的方法。
 
-
 ## 实现说明
 
 
@@ -144,7 +143,7 @@
    | -------- | -------- | -------- |
    | name | Ability名称，对应Ability派生的ExtensionAbility类名。 | 是 |
    | type | Ability类型，DataShare对应的Ability类型为“dataShare”，表示基于datashare模板开发的。 | 是 |
-   | uri | 通信使用的URI，是客户端链接服务端的唯一标识。 | 是 |
+   | uri | 通信使用的URI，是客户端链接服务端的唯一标识。<br/> 支持添加后缀参数来设置具体的访问对象，URI添加后缀参数需在URI结尾以"?"符号开始参数。<br/> - 当前仅支持设置“user”参数。<br/> - "user"仅支持设置为整型，表示数据提供方的用户ID。不填写时，默认为数据访问方所在的用户ID。user的定义及获取参照[user](../reference/apis-basic-services-kit/js-apis-osAccount.md#getactivatedosaccountlocalids9)。<br/> - 目前跨用户访问需要数据访问方配有跨用户访问权限ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS才可成功访问。 | 是 |
    | exported | 对其他应用是否可见，设置为true时，才能与其他应用进行通信传输数据。 | 是 |
    | readPermission | 访问数据时需要的权限，不配置默认不进行读权限校验。 | 否 |
    | writePermission | 修改数据时需要的权限，不配置默认不进行写权限校验。 | 否 |

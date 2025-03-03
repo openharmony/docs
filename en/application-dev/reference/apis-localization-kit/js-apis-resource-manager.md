@@ -228,7 +228,7 @@ Enumerates the device types.
 | DEVICE_TYPE_CAR      | 0x02 | Automobile  |
 | DEVICE_TYPE_TV       | 0x04 | TV |
 | DEVICE_TYPE_WEARABLE | 0x06 | Wearable  |
-| DEVICE_TYPE_2IN1<sup>11+</sup>     | 0x07 | 2-in-1  |
+| DEVICE_TYPE_2IN1<sup>11+</sup>     | 0x07 | 2-in-1 device  |
 <!--RP1End-->
 
 ## ScreenDensity
@@ -271,12 +271,12 @@ Defines the device configuration.
 
 | Name                       | Type                           | Readable| Writable| Description              |
 | --------------------------- | ------------------------------- | ---- | ---- | ------------------ |
-| direction                   | [Direction](#direction)         | Yes  | Yes  | Screen orientation.<br>**Atomic service API**: This API can be used in atomic services since API version 11.        |
-| locale                      | string                          | Yes  | Yes  | Country or region.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| direction                   | [Direction](#direction)         | Yes  | Yes  | Screen orientation modes.<br>**Atomic service API**: This API can be used in atomic services since API version 11.        |
+| locale                      | string                          | Yes  | Yes  | Language locale.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | deviceType<sup>12+</sup>    | [DeviceType](#devicetype)       | Yes  | Yes  | Device type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
-| screenDensity<sup>12+</sup> | [ScreenDensity](#screendensity) | Yes  | Yes  | Screen density.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| screenDensity<sup>12+</sup> | [ScreenDensity](#screendensity) | Yes  | Yes  | Screen density<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
 | colorMode<sup>12+</sup>     | [ColorMode](#colormode12)       | Yes  | Yes  | Color mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.       |
-| mcc<sup>12+</sup>           | number                          | Yes  | Yes  | Mobile country code.<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
+| mcc<sup>12+</sup>           | number                          | Yes  | Yes  | Mobile country code (MCC).<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
 | mnc<sup>12+</sup>           | number                          | Yes  | Yes  | Mobile network code (MNC).<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
 
 
@@ -305,7 +305,7 @@ type RawFileDescriptor = _RawFileDescriptor
 
 | Type   | Description  |
 | ------  | ---- | 
-|[_RawFileDescriptor](rawFileDescriptor.md#rawfiledescriptor-1)|Defines the descriptor of the HAP where the raw file is located.|
+|[_RawFileDescriptor](rawFileDescriptor.md#rawfiledescriptor-1)|Descriptor of the HAP where the raw file is located.|
 
 ## Resource<sup>9+</sup>
 
@@ -327,7 +327,7 @@ Defines the capability of accessing application resources.
 >
 > - The methods involved in **ResourceManager** are applicable only to the TypeScript-based declarative development paradigm.
 >
-> - Resource files are defined in the **resources** directory of the project. You can obtain the corresponding strings and string arrays based on the specified resource ID, resource name, or resource object. You can use **$r(resource address).id**, for example, **$r('app.string.test').id**, to obtain the resource ID.
+> - Resource files are defined in the **resources** directory of the project. You can obtain the corresponding strings and string arrays based on the specified resource ID, resource name, or resource object. You can use `$r(resource address).id`, for example, `$r('app.string.test').id`, to obtain the resource ID.
 >
 > - Use the resource object for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources. Therefore, it takes a longer time than using the resource ID or resource name.
 >
@@ -396,7 +396,7 @@ Obtains a string based on the specified resource ID and formats the string based
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
 | resId | number | Yes   | Resource ID.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
+| ...args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
@@ -499,7 +499,7 @@ Obtains a string based on the specified resource object and formats the string b
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | Yes   | Resource object.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
+| ...args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
@@ -598,7 +598,7 @@ Obtains a string based on the specified resource name and formats the string bas
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
 | resName | string | Yes   | Resource name.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
+| ...args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
@@ -5427,7 +5427,7 @@ Checks whether a path is a subdirectory in the **rawfile** directory. This API r
 
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
-| path | string | Yes   | Path of a rawfile.|
+| path | string | Yes   | Path of a raw file.|
 
 **Return value**
 

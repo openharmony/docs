@@ -10,15 +10,15 @@ For details about how to use the APIs (such as parameter usage constraints and v
 
 | API                                             | Description                                        |
 | --------------------------------------------------- | -------------------------------------------- |
-| write(info: AppEventInfo, callback: AsyncCallback\<void>): void | Writes events to the event file through **AppEventInfo** objects. This API uses an asynchronous callback to return the result. |
-| write(info: AppEventInfo): Promise\<void>               | Writes events to the event file through **AppEventInfo** objects. This API uses a promise to return the result. |
+| write(info: AppEventInfo, callback: AsyncCallback\<void>): void | Writes events to the event file through **AppEventInfo** objects. This API uses an asynchronous callback to return the result.|
+| write(info: AppEventInfo): Promise\<void>               | Writes events to the event file through **AppEventInfo** objects. This API uses a promise to return the result.|
 
 **Subscription APIs**
 
 | API                                             | Description                                        |
 | --------------------------------------------------- | -------------------------------------------- |
-| addWatcher(watcher: Watcher): AppEventPackageHolder | Adds a watcher to listen for application events. |
-| removeWatcher(watcher: Watcher): void               | Removes a watcher to unsubscribe from application events. |
+| addWatcher(watcher: Watcher): AppEventPackageHolder | Adds a watcher to listen for application events.|
+| removeWatcher(watcher: Watcher): void               | Removes a watcher to unsubscribe from application events.|
 
 ## How to Develop
 

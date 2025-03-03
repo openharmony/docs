@@ -46,4 +46,3 @@ For details, see [API Reference](../../reference/apis-basic-services-kit/js-apis
      hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in removing sticky event.`);
    });
    ```
-

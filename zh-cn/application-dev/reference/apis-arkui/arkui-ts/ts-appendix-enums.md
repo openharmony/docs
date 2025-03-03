@@ -48,7 +48,7 @@
 | BOTTOM_START<sup>12+</sup> | 图像显示在Image组件的底部起始端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples13](figures/image_fit_bottom_start.png) |
 | BOTTOM<sup>12+</sup>    | 图像显示在Image组件的底部横向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples14](figures/image_fit_bottom.png) |
 | BOTTOM_END<sup>12+</sup>| 图像显示在Image组件的底部尾端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples15](figures/image_fit_bottom_end.png) |
-| MATRIX<sup>15+</sup>| 配合[imageMatrix](ts-basic-components-image.md#imagematrix15)使用，使图像在Image组件自定义位置显示，保持原有尺寸显示。不支持svg图源。<br/>**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| MATRIX<sup>15+</sup>| 配合[imageMatrix](ts-basic-components-image.md#imagematrix15)使用，使图像在Image组件自定义位置显示，保持原有尺寸显示。不支持svg图源。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## BorderStyle
 
@@ -253,7 +253,7 @@
 | -------- | ---------- |
 | Unknown  | 输入设备类型未知。  |
 | Keyboard | 输入设备类型为键盘。 |
-| JOYSTICK<sup>15+</sup> | 输入设备类型为游戏手柄。 |
+| JOYSTICK<sup>15+</sup> | 输入设备类型为游戏手柄。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 
 ## Edge
 
@@ -1091,6 +1091,25 @@ Nullable\<T> {
 | HEIGHT_MD | 1   | 窗口高宽比大于等于0.8，且小于1.2。 |
 | HEIGHT_LG | 2   | 窗口高宽比大于等于1.2。 |
 
+## AxisModel<sup>15+</sup>
+
+定义焦点轴事件的轴类型。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 值   | 描述                               |
+| ------- | ---- | ---------------------------------- |
+| ABS_X  | 0    | 游戏手柄X轴。 |
+| ABS_Y  | 1    | 游戏手柄Y轴。 |
+| ABS_Z  | 2    | 游戏手柄Z轴。 |
+| ABS_RZ | 3    | 游戏手柄RZ轴。 |
+| ABS_GAS | 4    | 游戏手柄GAS轴。 |
+| ABS_BRAKE | 5    | 游戏手柄BRAKE轴。 |
+| ABS_HAT0X | 6    | 游戏手柄HAT0X轴。 |
+| ABS_HAT0Y | 7    | 游戏手柄HAT0Y轴。 |
+
 ## PageFlipMode<sup>15+</sup>
 
 表示鼠标滚轮翻页模式。
@@ -1180,3 +1199,17 @@ Nullable\<T> {
 | UPDATE | 2    | 轴事件触发中。 |
 | END    | 3    | 轴事件结束。 |
 | CANCEL | 4    | 轴事件取消。 |
+
+## InteractionHand<sup>15+</sup>
+
+定义事件是由左手点击触发还是右手点击触发。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 值   | 说明                   |
+| -------- | ---- | ---------------------- |
+| NONE     | 0   | 未知。 |
+| LEFT     | 1   | 左手。 |
+| RIGHT    | 2   | 右手。 |

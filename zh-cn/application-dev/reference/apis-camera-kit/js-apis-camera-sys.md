@@ -154,7 +154,7 @@ function createDepthDataOutput(cameraOutputCapability: camera.CameraOutputCapabi
   try {
     depthDataOutput = cameraManager.createDepthDataOutput(profile);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The createDepthDataOutput call failed. error code: ${err.code}`);
   }
@@ -1037,7 +1037,7 @@ function isSketchSupported(previewOutput: camera.PreviewOutput): boolean {
     let isSupported: boolean = previewOutput.isSketchSupported();
     return isSupported;
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The isSketchSupported call failed. error code: ${err.code}`);
   }
@@ -1119,7 +1119,7 @@ function enableSketch(previewOutput: camera.PreviewOutput, session: camera.Sessi
     previewOutput.enableSketch(true);
     session.commitConfig();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The enableSketch call failed. error code: ${err.code}`);
   }
@@ -1167,7 +1167,7 @@ function attachSketchSurface(previewOutput: camera.PreviewOutput, session: camer
     session.commitConfig();
     previewOutput.attachSketchSurface(sketchSurfaceId);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The attachSketchSurface call failed. error code: ${err.code}`);
   }
@@ -1752,15 +1752,15 @@ import { common } from '@kit.AbilityKit';
 async function isQuickThumbnailSupported(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<boolean> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-  // 创建CaptureSession实例
+  // 创建CaptureSession实例。
   let session: camera.Session = cameraManager.createSession(mode);
-  // 开始配置会话
+  // 开始配置会话。
   session.beginConfig();
-  // 把CameraInput加入到会话
+  // 把CameraInput加入到会话。
   let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
   await cameraInput.open();
   session.addInput(cameraInput);
-  // 把photoOutput加入到会话
+  // 把photoOutput加入到会话。
   let photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
   session.addOutput(photoOutput);
   let isSupported: boolean = photoOutput.isQuickThumbnailSupported();
@@ -1806,15 +1806,15 @@ import { BusinessError } from '@kit.BasicServicesKit';
 async function enableQuickThumbnail(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-  // 创建CaptureSession实例
+  // 创建CaptureSession实例。
   let session: camera.Session = cameraManager.createSession(mode);
-  // 开始配置会话
+  // 开始配置会话。
   session.beginConfig();
-  // 把CameraInput加入到会话
+  // 把CameraInput加入到会话。
   let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
   await cameraInput.open();
   session.addInput(cameraInput);
-  // 把PhotoOutPut加入到会话
+  // 把PhotoOutPut加入到会话。
   let photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
   session.addOutput(photoOutput);
   let isSupported: boolean = photoOutput.isQuickThumbnailSupported();
@@ -1862,22 +1862,22 @@ function callback(err: BusinessError, pixelMap: image.PixelMap): void {
       console.error('photoOutput on thumbnail failed');
       return;
   }
-  // 显示或保存pixelMap
-  // do something
+  // 显示或保存pixelMap。
+  // do something.
 }
 
 async function registerQuickThumbnail(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-  // 创建CaptureSession实例
+  // 创建CaptureSession实例。
   let session: camera.Session = cameraManager.createSession(mode);
-  // 开始配置会话
+  // 开始配置会话。
   session.beginConfig();
-  // 把CameraInput加入到会话
+  // 把CameraInput加入到会话。
   let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
   await cameraInput.open();
   session.addInput(cameraInput);
-  // 把PhotoOutPut加入到会话
+  // 把PhotoOutPut加入到会话。
   let photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
   session.addOutput(photoOutput);
   let isSupported: boolean = photoOutput.isQuickThumbnailSupported();
@@ -1959,7 +1959,7 @@ function addMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types: Ar
   try {
     metadataOutput.addMetadataObjectTypes(types);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`addMetadataObjectTypes error. error code: ${err.code}`);
   }
@@ -2000,7 +2000,7 @@ function removeMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types:
   try {
     metadataOutput.removeMetadataObjectTypes(types);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`removeMetadataObjectTypes error. error code: ${err.code}`);
   }
@@ -2633,7 +2633,7 @@ function getZoomPointInfos(): Array<ZoomPointInfo> {
     let zoomPointInfos: Array<ZoomPointInfo> = sessionExtendsZoom.getZoomPointInfos();
 	return zoomPointInfos;
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getZoomPointInfos call failed. error code: ${err.code}`);
   }
@@ -2674,7 +2674,7 @@ function prepareZoom(sessionExtendsZoom: camera.Zoom): void {
   try {
     sessionExtendsZoom.prepareZoom();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The prepareZoom call failed. error code: ${err.code}`);
   }
@@ -2709,7 +2709,7 @@ function unprepareZoom(sessionExtendsZoom: camera.Zoom): void {
   try {
     sessionExtendsZoom.unprepareZoom();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The unprepareZoom call failed. error code: ${err.code}`);
   }
@@ -5017,7 +5017,7 @@ function isSlowMotionDetectionSupported(slowMotionVideoSession: camera.SlowMotio
   try {
     isSupported = slowMotionVideoSession.isSlowMotionDetectionSupported();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The isFocusModeSupported call failed. error code: ${err.code}`);
   }
@@ -5064,7 +5064,7 @@ function setSlowMotionDetectionArea(slowMotionVideoSession: camera.SlowMotionVid
   try {
     slowMotionVideoSession.setSlowMotionDetectionArea({topLeftX: 0.1, topLeftY: 0.1, width: 0.8, height: 0.8});
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setSlowMotionDetectionArea call failed. error code: ${err.code}`);
   }
@@ -5318,7 +5318,7 @@ function isExposureMeteringModeSupported(professionalPhotoSession: camera.Profes
   try {
     isSupported = professionalPhotoSession.isExposureModeSupported(camera.ExposureMeteringMode.CENTER);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The isExposureMeteringModeSupported call failed. error code: ${err.code}`);
   }
@@ -5367,7 +5367,7 @@ function getExposureMeteringMode(professionalPhotoSession: camera.ProfessionalPh
   try {
     exposureMeteringMode = professionalPhotoSession.getExposureMeteringMode();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getExposureMeteringMode call failed. error code: ${err.code}`);
   }
@@ -5410,7 +5410,7 @@ function setExposureMeteringMode(professionalPhotoSession: camera.ProfessionalPh
   try {
     professionalPhotoSession.setExposureMeteringMode(camera.ExposureMeteringMode.CENTER);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setExposureMeteringMode call failed. error code: ${err.code}`);
   }
@@ -5478,7 +5478,7 @@ function isFocusAssistSupported(professionalPhotoSession: camera.ProfessionalPho
   try {
     status = professionalPhotoSession.isFocusAssistSupported();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The isFocusAssistSupported call failed. error code: ${err.code}`);
   }
@@ -5528,7 +5528,7 @@ function isFocusRangeTypeSupported(session: camera.VideoSessionForSys, type: cam
   try {
     status = session.isFocusRangeTypeSupported(type);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The isFocusRangeTypeSupported call failed. error code: ${err.code}`);
   }
@@ -5578,7 +5578,7 @@ function isFocusDrivenTypeSupported(session: camera.VideoSessionForSys, type: ca
   try {
     status = session.isFocusDrivenTypeSupported(type);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The isFocusDrivenTypeSupported call failed. error code: ${err.code}`);
   }
@@ -5628,7 +5628,7 @@ function setFocusAssist(professionalPhotoSession: camera.ProfessionalPhotoSessio
   try {
     professionalPhotoSession.setFocusAssist(false);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setFocusAssist call failed. error code: ${err.code}`);
   }
@@ -5670,7 +5670,7 @@ function getFocusAssist(professionalPhotoSession: camera.ProfessionalPhotoSessio
   try {
     isFocusAssistOpened = professionalPhotoSession.getFocusAssist();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getFocusAssist call failed. error code: ${err.code}`);
   }
@@ -5715,7 +5715,7 @@ function setFocusRange(session: camera.VideoSessionForSys, type: camera.FocusRan
   try {
     session.setFocusRange(type);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setFocusRange call failed. error code: ${err.code}`);
   }
@@ -5757,7 +5757,7 @@ function getFocusRange(session: camera.VideoSessionForSys): camera.FocusRangeTyp
   try {
     focusRangeType = session.getFocusRange();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getFocusRange call failed. error code: ${err.code}`);
   }
@@ -5802,7 +5802,7 @@ function setFocusDriven(session: camera.VideoSessionForSys, type: camera.FocusDr
   try {
     session.setFocusDriven(type);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setFocusDriven call failed. error code: ${err.code}`);
   }
@@ -5844,7 +5844,7 @@ function getFocusDriven(session: camera.VideoSessionForSys): camera.FocusDrivenT
   try {
     focusDrivenType = session.getFocusDriven();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getFocusDriven call failed. error code: ${err.code}`);
   }
@@ -5892,7 +5892,7 @@ function setFocusDistance(professionalPhotoSession: camera.ProfessionalPhotoSess
     let distance: number = 0.5;
     professionalPhotoSession.setFocusDistance(distance);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setFocusDistance call failed. error code: ${err.code}`);
   }
@@ -5934,7 +5934,7 @@ function getFocusDistance(professionalPhotoSession: camera.ProfessionalPhotoSess
   try {
     distance = professionalPhotoSession.getFocusDistance();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getFocusDistance call failed. error code: ${err.code}`);
   }
@@ -5981,7 +5981,7 @@ function isManualIsoSupported(professionalPhotoSession: camera.ProfessionalPhoto
   try {
     status = professionalPhotoSession.isManualIsoSupported();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The isManualIsoSupported call failed. error code: ${err.code}`);
   }
@@ -6024,7 +6024,7 @@ function getIsoRange(professionalPhotoSession: camera.ProfessionalPhotoSession):
   try {
     isoRange = professionalPhotoSession.getIsoRange();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getIsoRange call failed. error code: ${err.code}`);
   }
@@ -6073,7 +6073,7 @@ function setIso(professionalPhotoSession: camera.ProfessionalPhotoSession): void
     let iso: number = 200;
     professionalPhotoSession.setIso(iso);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setIso call failed. error code: ${err.code}`);
   }
@@ -6115,7 +6115,7 @@ function getIso(professionalPhotoSession: camera.ProfessionalPhotoSession): numb
   try {
     iso = professionalPhotoSession.getIso();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getIso call failed. error code: ${err.code}`);
   }
@@ -6186,7 +6186,7 @@ function isWhiteBalanceModeSupported(professionalPhotoSession: camera.Profession
 	let mode: WhiteBalanceMode = camera.WhiteBalanceMode.DAYLIGHT;
     status = professionalPhotoSession.isWhiteBalanceModeSupported(mode);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The isWhiteBalanceModeSupported call failed. error code: ${err.code}`);
   }
@@ -6229,7 +6229,7 @@ function getWhiteBalanceRange(professionalPhotoSession: camera.ProfessionalPhoto
   try {
     range = professionalPhotoSession.getWhiteBalanceRange();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getWhiteBalanceRange call failed. error code: ${err.code}`);
   }
@@ -6278,7 +6278,7 @@ function setWhiteBalanceMode(professionalPhotoSession: camera.ProfessionalPhotoS
   try {
     professionalPhotoSession.setWhiteBalanceMode(camera.WhiteBalanceMode.DAYLIGHT);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setWhiteBalanceMode call failed. error code: ${err.code}`);
   }
@@ -6320,7 +6320,7 @@ function getWhiteBalanceMode(professionalPhotoSession: camera.ProfessionalPhotoS
   try {
     whiteBalanceMode = professionalPhotoSession.getWhiteBalanceMode();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getWhiteBalanceMode call failed. error code: ${err.code}`);
   }
@@ -6363,7 +6363,7 @@ function setWhiteBalance(professionalPhotoSession: camera.ProfessionalPhotoSessi
     let whiteBalance: number = 1000;
     professionalPhotoSession.setWhiteBalance(whiteBalance);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setWhiteBalance call failed. error code: ${err.code}`);
   }
@@ -6405,7 +6405,7 @@ function getWhiteBalance(professionalPhotoSession: camera.ProfessionalPhotoSessi
   try {
     whiteBalance = professionalPhotoSession.getWhiteBalance();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getWhiteBalance call failed. error code: ${err.code}`);
   }
@@ -7985,7 +7985,7 @@ function enableLcdFlash(session: camera.PhotoSessionForSys | camera.VideoSession
   try {
     session.enableLcdFlash(true);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setFlashMode call failed. error code: ${err.code}`);
   }
@@ -8510,7 +8510,7 @@ function isTryAENeeded(timeLapsePhotoSession: camera.TimeLapsePhotoSession): boo
   try {
     needed = timeLapsePhotoSession.isTryAENeeded();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The isTryAENeeded call failed. error code: ${err.code}`);
   }
@@ -8546,7 +8546,7 @@ function startTryAE(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
   try {
     timeLapsePhotoSession.startTryAE();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The startTryAE call failed. error code: ${err.code}`);
   }
@@ -8581,7 +8581,7 @@ function stopTryAE(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
   try {
     timeLapsePhotoSession.stopTryAE();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The stopTryAE call failed. error code: ${err.code}`);
   }
@@ -8623,7 +8623,7 @@ function getSupportedTimeLapseIntervalRange(timeLapsePhotoSession: camera.TimeLa
   try {
     intervalRange = timeLapsePhotoSession.getSupportedTimeLapseIntervalRange();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getSupportedTimeLapseIntervalRange call failed. error code: ${err.code}`);
   }
@@ -8666,7 +8666,7 @@ function getTimeLapseInterval(timeLapsePhotoSession: camera.TimeLapsePhotoSessio
   try {
     interval = timeLapsePhotoSession.getTimeLapseInterval();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getTimeLapseInterval call failed. error code: ${err.code}`);
   }
@@ -8709,7 +8709,7 @@ function setTimeLapseInterval(timeLapsePhotoSession: camera.TimeLapsePhotoSessio
     let interval: number = 10000;
     timeLapsePhotoSession.setTimeLapseInterval(interval);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setTimeLapseInterval call failed. error code: ${err.code}`);
   }
@@ -8751,7 +8751,7 @@ function getTimeLapseRecordState(timeLapsePhotoSession: camera.TimeLapsePhotoSes
   try {
     state = timeLapsePhotoSession.getTimeLapseRecordState();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getTimeLapseRecordState call failed. error code: ${err.code}`);
   }
@@ -8794,7 +8794,7 @@ function setTimeLapseRecordState(timeLapsePhotoSession: camera.TimeLapsePhotoSes
   try {
     timeLapsePhotoSession.setTimeLapseRecordState(camera.TimeLapseRecordState.RECORDING);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setTimeLapseRecordState call failed. error code: ${err.code}`);
   }
@@ -8836,7 +8836,7 @@ function getTimeLapsePreviewType(timeLapsePhotoSession: camera.TimeLapsePhotoSes
   try {
     type = timeLapsePhotoSession.getTimeLapsePreviewType();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getTimeLapsePreviewType call failed. error code: ${err.code}`);
   }
@@ -8879,7 +8879,7 @@ function setTimeLapsePreviewType(timeLapsePhotoSession: camera.TimeLapsePhotoSes
   try {
     timeLapsePhotoSession.setTimeLapsePreviewType(camera.TimeLapsePreviewType.LIGHT);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setTimeLapsePreviewType call failed. error code: ${err.code}`);
   }
@@ -9184,7 +9184,7 @@ function setLightPaintingType(lightPaintingPhotoSession: camera.LightPaintingPho
     let type: camera.LightPaintingType = camera.LightPaintingType.TRAFFIC_TRAILS;
     lightPaintingPhotoSession.setLightPaintingType(type);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setLightPaintingType call failed. error code: ${err.code}`);
   }
@@ -9274,7 +9274,7 @@ function getSupportedColorReservationTypes(session: camera.VideoSessionForSys): 
   try {
     colorReservationTypes = session.getSupportedColorReservationTypes();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The getSupportedColorReservationTypes call failed. error code: ${err.code}`);
   }
@@ -9325,7 +9325,7 @@ function setColorReservation(session: camera.VideoSessionForSys, type: camera.Co
   try {
     session.setColorReservation(type);
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setColorReservation call failed. error code: ${err.code}`);
   }
@@ -9367,7 +9367,7 @@ function getColorReservation(session: camera.VideoSessionForSys): camera.ColorRe
   try {
     colorReservation = session.getColorReservation();
   } catch (error) {
-    // 失败返回错误码error.code并处理
+    // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
     console.error(`The setColorReservation call failed. error code: ${err.code}`);
   }

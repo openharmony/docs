@@ -53,6 +53,8 @@ OH_HiTrace_CountTrace("hitraceTest", 500);
 <...>-2638 (----—) [002] .... 458.904382: tracing_mark_write: C|2638|H:hitraceTest 500
 ```
 
+**库：** libhitrace_ndk.z.so
+
 **引用文件：**
 
 &lt;hitrace/trace.h&gt;
@@ -68,6 +70,7 @@ OH_HiTrace_CountTrace("hitraceTest", 500);
 
 ## 汇总
 
+
 ### 结构体
 
 | 名称 | 描述 | 
@@ -79,11 +82,11 @@ OH_HiTrace_CountTrace("hitraceTest", 500);
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [HiTraceId_Valid](_hitrace.md#hitraceid_valid)[HiTraceId_Valid](_hitrace.md#hitraceid_valid) | HiTraceId是否有效标志。  | 
-| typedef enum [HiTrace_Version](_hitrace.md#hitrace_version)[HiTrace_Version](_hitrace.md#hitrace_version) | HiTrace版本号。  | 
-| typedef enum [HiTrace_Flag](_hitrace.md#hitrace_flag)[HiTrace_Flag](_hitrace.md#hitrace_flag) | HiTrace标志位。  | 
-| typedef enum [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type)[HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) | HiTrace打点类型。  | 
-| typedef enum [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode)[HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) | HiTrace通信模式枚举。  | 
+| typedef enum [HiTraceId_Valid](_hitrace.md#hitraceid_valid) [HiTraceId_Valid](_hitrace.md#hitraceid_valid) | HiTraceId是否有效标志。  | 
+| typedef enum [HiTrace_Version](_hitrace.md#hitrace_version) [HiTrace_Version](_hitrace.md#hitrace_version) | HiTrace版本号。  | 
+| typedef enum [HiTrace_Flag](_hitrace.md#hitrace_flag) [HiTrace_Flag](_hitrace.md#hitrace_flag) | HiTrace标志位。  | 
+| typedef enum [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) | HiTrace打点类型。  | 
+| typedef enum [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) | HiTrace通信模式枚举。  | 
 |  typedef struct [HiTraceId](_hi_trace_id.md)**HiTraceId** |  | 
 
 

@@ -116,7 +116,7 @@ setEnabled(isEnabled: boolean): void
 
 | 参数名     | 类型                           | 必填   | 说明  |
 | ------- | ---------------------------------- | ---- | ----- |
-| isEnabled   | boolean         | 是    | 手势识别器的使能状态。 |
+| isEnabled   | boolean         | 是    | 手势识别器的使能状态。true表示当前手势识别器能够回调应用事件，false表示当前手势识别器不回调应用事件。 |
 
 ### isEnabled
 
@@ -132,7 +132,7 @@ isEnabled(): boolean
 
 | 类型     | 说明        |
 | ------ | --------- |
-| boolean | 当前手势识别器的使能状态。 |
+| boolean | 当前手势识别器的使能状态。true表示当前手势识别器能够回调应用事件，false表示当前手势识别器不回调应用事件。 |
 
 ### getState
 

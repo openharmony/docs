@@ -41,7 +41,7 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
     console.info('convertKey success');
     return symKey;
   }
-  async function doHmac() {
+  async function doCmac() {
     // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = await genSymKeyByData(keyData);
@@ -49,7 +49,7 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
         algName: "CMAC",
         cipherName: "AES128",
     };
-    let message = 'hmacTestMessgae'; // 待进行CMAC的数据
+    let message = 'cmacTestMessage'; // 待进行CMAC的数据
     let mac = cryptoFramework.createMac(spec);
     await mac.init(key);
     // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
@@ -74,7 +74,7 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
     console.info('[Sync]convertKey success');
     return symKey;
   }
-  function doHmacBySync() {
+  function doCmacBySync() {
     // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = genSymKeyByData(keyData);
@@ -82,7 +82,7 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
         algName: "CMAC",
         cipherName: "AES128",
     };
-    let message = 'hmacTestMessgae'; // 待进行HMAC的数据
+    let message = 'cmacTestMessage'; // 待进行CMAC的数据
     let mac = cryptoFramework.createMac(spec);
     mac.initSync(key);
     // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
@@ -122,7 +122,7 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
     console.info('convertKey success');
     return symKey;
   }
-  async function doLoopHmac() {
+  async function doLoopCmac() {
     // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = await genSymKeyByData(keyData);
@@ -161,7 +161,7 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
     console.info('[Sync]convertKey success');
     return symKey;
   }
-  function doLoopHmacBySync() {
+  function doLoopCmacBySync() {
     // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = genSymKeyByData(keyData);

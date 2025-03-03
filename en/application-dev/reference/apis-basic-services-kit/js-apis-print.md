@@ -620,7 +620,7 @@ Prints files. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call the **uriPermissionManager.grantUriPermission()** API to authorize the print application. This API is a system API. [print](#print11-2) is recommended for third-party application.|
+| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call **uriPermissionManager.grantUriPermission()** to authorize the print application. This API is a system API. [print](#print11-2) is recommended for third-party application. |
 | context | Context | Yes| UIAbilityContext used to start the system print UI.|
 
 **Return value**
@@ -765,6 +765,8 @@ Defines the size of the printed page.
 | name | string | Yes| Paper size name.|
 | width | number | Yes| Page width, in millimeters.|
 | height | number | Yes| Page height, in millimeters.|
+
+
 
 ## PrintDirectionMode<sup>11+</sup>
 
@@ -1014,7 +1016,7 @@ Updates the printer capabilities to the printer discovery list. This API uses a 
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;void&gt; | Result of updating the printer capabilitise to the printer discovery list.|
+| Promise&lt;void&gt; | Result of updating the printer capabilities to the printer discovery list.|
 
 **Error codes**
 
@@ -1206,10 +1208,10 @@ Enumerates the print directions.
 
 | **Name**| **Value**| **Description**|
 | -------- | -------- | -------- |
-| ORIENTATION_MODE_PORTRAIT | 0 | Portrait mode.|
-| ORIENTATION_MODE_LANDSCAPE | 1 | Landscape mode.|
-| ORIENTATION_MODE_REVERSE_LANDSCAPE | 2 | Reverse landscape mode.|
-| ORIENTATION_MODE_REVERSE_PORTRAIT | 3 | Reverse portrait mode.|
+| ORIENTATION_MODE_PORTRAIT | 0 | Landscape mode.|
+| ORIENTATION_MODE_LANDSCAPE | 1 | Portrait mode.|
+| ORIENTATION_MODE_REVERSE_LANDSCAPE | 2 | Reverse portrait mode.|
+| ORIENTATION_MODE_REVERSE_PORTRAIT | 3 | Reverse landscape mode.|
 | ORIENTATION_MODE_NONE | 4 | Adaptive mode.|
 
 ## PrinterStatus<sup>14+</sup>
