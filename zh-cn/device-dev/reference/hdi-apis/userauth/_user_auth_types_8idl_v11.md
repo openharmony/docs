@@ -22,4 +22,4 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | struct&nbsp;&nbsp;[ScheduleInfoV1_1](_schedule_info_v1__1_v11.md) | 调度信息。  | 
-| struct&nbsp;&nbsp;[UserInfo](_user_info_v11.md) | 用户信息  | 
+| struct&nbsp;&nbsp;[UserInfo](_user_info_v11.md) | 用户信息。  | 
