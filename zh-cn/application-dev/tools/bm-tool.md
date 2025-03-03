@@ -689,7 +689,14 @@ Error: install failed due to grant request permissions failed.
 
 **处理步骤**
 
-1. 在UnsgnedDebugProfileTemplate.json文件中修改APL等级，调整成system_basic或system_core等级，重新签名打包即可。
+1. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
+```
+IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
+
+例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
+例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
+```
+2. 在UnsgnedDebugProfileTemplate.json文件中修改APL等级，修改APL等级为system_core等级，重新签名打包即可。
 
 
 ### 9568297 由于设备sdk版本较低导致安装失败
