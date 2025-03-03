@@ -220,3 +220,20 @@ IO传输异常，造成失败。
 
 请重试该操作。
 
+## 2902050
+
+**错误信息**
+
+Failed to start scan as Ble scan is already started by the app.
+
+**错误描述**
+
+开启扫描失败。
+
+**可能原因**
+
+Ble扫描已被app开启。
+
+**处理步骤**
+
+检查是否已经开启扫描。
