@@ -13997,7 +13997,7 @@ void* OH_ArkUI_GestureInterrupter_GetUserData(ArkUI_GestureInterruptInfo* event)
 
 获取手势中断事件中的用户自定义数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
