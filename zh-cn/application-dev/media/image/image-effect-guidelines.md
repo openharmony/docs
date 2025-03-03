@@ -125,7 +125,7 @@ target_link_libraries(entry PUBLIC
          // 调用native接口获取输入SurfaceId。
          this.mSurfaceId = imageEffect.getSurfaceId(this.mSurfaceId)
  
-         // 调用相机接口启动预览，将获取到的输入SurfaceId传递给相机框架
+         // 调用相机接口启动预览，将获取到的输入SurfaceId传递给相机框架。
          // ...
      })
      .width('100%')
@@ -232,7 +232,7 @@ target_link_libraries(entry PUBLIC
             root["name"] = "CustomBrightness";
             root["values"] = values;
         
-        　　 // 将json对象转成字符串infoStr
+        　　 // 将json对象转成字符串infoStr。
             // ...
 
             // 对*info赋值序列化字符串地址。
