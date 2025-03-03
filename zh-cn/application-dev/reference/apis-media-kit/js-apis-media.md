@@ -1545,7 +1545,7 @@ media.createAVPlayer(async (err: BusinessError, player: media.AVPlayer) => {
 });
 ```
 
-### getPlaybackPosition<sup>16+</sup>
+### getPlaybackPosition<sup>18+</sup>
 
 getPlaybackPosition(): number
 
@@ -2836,7 +2836,7 @@ off(type: 'amplitudeUpdate', callback?: Callback\<Array\<number>>): void
 avPlayer.off('amplitudeUpdate')
 ```
 
-### on('seiMessageReceived')<sup>16+</sup>
+### on('seiMessageReceived')<sup>18+</sup>
 
 on(type: 'seiMessageReceived', payloadTypes: Array\<number>, callback: OnSeiMessageHandle): void
 
@@ -2852,7 +2852,7 @@ on(type: 'seiMessageReceived', payloadTypes: Array\<number>, callback: OnSeiMess
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string | 是 | 事件回调类型，支持的事件为：'seiMessageReceived'。 |
 | payloadTypes | Array\<number> | 是 | SEI信息的订阅负载类型数组。当前仅支持负载类型为5，即payloadType = 5。|
-| callback | [OnSeiMessageHandle](#onseimessagehandle16) | 是 | 用于监听SEI信息事件的回调函数，接收订阅的负载类型。 |
+| callback | [OnSeiMessageHandle](#onseimessagehandle18) | 是 | 用于监听SEI信息事件的回调函数，接收订阅的负载类型。 |
 
 **示例：**
 
@@ -2873,7 +2873,7 @@ this.avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, 
 });
 ```
 
-### off('seiMessageReceived')<sup>16+</sup>
+### off('seiMessageReceived')<sup>18+</sup>
 
 off(type: 'seiMessageReceived', payloadTypes?: Array\<number>, callback?: OnSeiMessageHandle): void
 
@@ -2889,7 +2889,7 @@ off(type: 'seiMessageReceived', payloadTypes?: Array\<number>, callback?: OnSeiM
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 事件回调类型，支持的事件为：'seiMessageReceived'。 |
 | payloadTypes | Array\<number> | 否   | SEI信息的订阅负载类型。 |
-| callback | [OnSeiMessageHandle](#onseimessagehandle16) | 否   | 用于监听SEI信息事件的回调函数，接收订阅的负载类型。 |
+| callback | [OnSeiMessageHandle](#onseimessagehandle18) | 否   | 用于监听SEI信息事件的回调函数，接收订阅的负载类型。 |
 
 **示例：**
 
@@ -3020,7 +3020,7 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 | startTime | number | 否  | 显示当前字幕文本的开始时间（单位：毫秒）。 |
 | duration | number | 否 | 显示当前字幕文本的持续时间（单位：毫秒）。 |
 
-## SeiMessage<sup>16+</sup>
+## SeiMessage<sup>18+</sup>
 
 SEI信息内容，描述SEI信息的负载类型和数据。
 
@@ -3033,7 +3033,7 @@ SEI信息内容，描述SEI信息的负载类型和数据。
 | payloadType | number | 否  | 否  | SEI信息的负载类型。 |
 | payload | ArrayBuffer | 否  | 否  | SEI信息的负载数据。 |
 
-## OnSeiMessageHandle<sup>16+</sup>
+## OnSeiMessageHandle<sup>18+</sup>
 
 获取SEI信息，使用场景：订阅SEI信息事件，回调返回SEI详细信息。
 
@@ -3043,7 +3043,7 @@ SEI信息内容，描述SEI信息的负载类型和数据。
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| messages | Array\<[SeiMessage](#seimessage16)> | 是  | SEI信息。 |
+| messages | Array\<[SeiMessage](#seimessage18)> | 是  | SEI信息。 |
 | playbackPosition | number | 否  | 获取当前播放位置（单位：毫秒）。 |
 
 ## SeekMode<sup>8+</sup>
