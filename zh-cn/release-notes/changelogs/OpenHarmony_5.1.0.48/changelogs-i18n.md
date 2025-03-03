@@ -120,8 +120,7 @@ i18n.SystemLocaleManager.getRegionInfoArray
 
 **变更原因**
 
-语言地区匹配规则错误。
-例如地区为CN（中国），语言列表为zh-Hans（简体中文）、ug（维吾尔语）时推荐显示的语言应该为zh-Hans、ug，但由于地区参数传CN、语言参数传ug时接口返回false，推荐显示的语言仅包含zh-Hans。
+语言地区匹配规则错误。例如地区为CN（中国），语言列表为zh-Hans（简体中文）、ug（维吾尔语）时推荐显示的语言应该为zh-Hans、ug，但由于地区参数传CN、语言参数传ug时接口返回false，推荐显示的语言仅包含zh-Hans。
 
 **变更影响**
 
@@ -159,4 +158,4 @@ i18n.System.isSuggested
 
 **适配指导**
 
-默认行为变更，无需适配。
+在调用此接口的文件，需要确认语言地区匹配显示规则。
