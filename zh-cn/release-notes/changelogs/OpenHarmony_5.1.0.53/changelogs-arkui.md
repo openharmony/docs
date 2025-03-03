@@ -875,3 +875,57 @@ UX规格变更，不涉及接口和组件。
 **适配指导**
 
 默认行为变更，应用无需适配。
+
+## cl.arkui.6 TEXTURE模式XComponent的本地窗口缓冲区支持设置旋转变换
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+TEXTURE模式XComponent的本地窗口缓冲区旋转变换在设置后不生效，导致开发者无法通过设置缓冲区旋转变换来调整显示画面的旋转方向。
+
+**变更影响**
+
+此变更涉及应用适配。
+
+变更前：
+设置TEXTURE模式XComponent的本地窗口缓冲区旋转变换后，旋转变换在实际显示的画面中不生效。
+
+变更后：
+设置TEXTURE模式XComponent的本地窗口缓冲区旋转变换后，旋转变换在实际显示的画面中生效。
+
+| 写入缓冲区的原始图像 | 变更前设置了缓冲区逆时针旋转90度后的实际显示画面 | 变更后设置了缓冲区逆时针旋转90度后的实际显示画面 |
+| --------- | --------- | --------- |
+|![原始图片](figures/XComponentBufferImage.PNG)|![变更前](figures/XComponentBufferTransform_before.PNG)       |![变更后](figures/XComponentBufferTransform_after.PNG)  |
+
+**起始API Level**
+
+API 10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.53开始。
+
+**变更的接口/组件**
+
+ArkUI 内置组件XComponent。
+
+**适配指导**
+
+变更后，设置TEXTURE模式XComponent的本地窗口缓冲区旋转变换后，XComponent显示的内容将根据设置进行旋转。
+如开发者原先设置过TEXTURE模式XComponent的本地窗口缓冲区旋转变换，为避免显示内容旋转，
+应将原先设置本地窗口缓冲区旋转变换的相关调用语句去除。
+```
+OHNativeWindow* window;
+// 利用XComponent的surfaceId获取本地窗口
+OH_NativeWindow_CreateNativeWindowFromSurfaceId(surfaceId, &window);
+
+// ......
+
+// 应去除此处设置本地窗口缓冲区逆时针旋转90度的调用
+OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_TRANSFORM, NATIVEBUFFER_ROTATE_90);
+
+// ......
+```
