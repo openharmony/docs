@@ -838,3 +838,40 @@ UX规格变更，不涉及接口和组件。
 **适配指导**
 
 默认行为变更，无需适配。
+
+## cl.arkui.5 在使用手写笔操作时，应用从onTouch回调中获取到的TouchEvent，其中touches数组内的TouchObject的id值发生变更。
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+在手写笔场景下，TouchEvent中changedTouches数组内的TouchObject的id，与touches数组内的TouchObject的id不一致。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+- 变更前：在使用手写笔操作时，应用在onTouch回调中获取到的TouchEvent中，touches数组中TouchObject的id和changedTouches中的TouchObject的id不一致。
+  
+- 变更后：在使用手写笔操作时，应用在onTouch回调中获取到的TouchEvent中，touches数组中TouchObject的id和changedTouches中的TouchObject的id保持一致。
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.53开始。
+
+**变更的接口/组件**
+
+| 文件               | 接口                                       |
+| ------------------ | ------------------------------------------ |
+| common.d.ts        | onTouch回调中的TouchEvent                  |
+| common.d.ts        | onTouchIntercept回调中的TouchEvent         |
+
+**适配指导**
+
+默认行为变更，应用无需适配。
