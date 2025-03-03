@@ -387,10 +387,12 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     ```c++
     // 配置送显窗口参数
-    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window);    // 从XComponent获取window
+    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, nativeWindow);    // 从XComponent获取nativeWindow
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
+    // 配置视频与显示屏匹配模式（缓冲区按原比例缩放，使得缓冲区的较小边与窗口匹配，较长边超出窗口的部分被视为透明）。
+    OH_NativeWindow_NativeWindowSetScalingModeV2(nativeWindow, OH_SCALING_MODE_SCALE_CROP_V2);
     ```
 
 7. （可选）OH_VideoDecoder_SetParameter()动态配置解码器surface参数。
@@ -400,8 +402,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVFormat *format = OH_AVFormat_Create();
     // 配置显示旋转角度
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_ROTATION, 90);
-    // 配置视频与显示屏匹配模式（缩放与显示窗口适配，裁剪与显示窗口适配）
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_SCALING_MODE, SCALING_MODE_SCALE_CROP);
     int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
     OH_AVFormat_Destroy(format);
     ```
@@ -657,7 +657,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 异常处理
     }
     // Surface模式重新配置surface，而Buffer模式不需要配置surface
-    ret = OH_VideoDecoder_SetSurface(videoDec, window);
+    ret = OH_VideoDecoder_SetSurface(videoDec, nativeWindow);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
