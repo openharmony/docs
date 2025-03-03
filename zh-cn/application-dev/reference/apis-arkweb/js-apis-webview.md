@@ -9815,7 +9815,7 @@ static saveCookieSync(): void
 
 > **说明：**
 >
-> saveCookieSync方法主要用于同步保存持久化的cookie数据。默认情况下，2in1和Tablet设备不支持保存session cookie。
+> saveCookieSync 用于强制落盘需要持久化的cookies。默认情况下，2in1和Tablet设备不支持保存session cookie。
 
 **示例：**
 
