@@ -274,7 +274,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
   rendererFlags: 1
 }
 let soundID: number = 0;
-media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+media.createSoundPool(5, audioRendererInfo, async (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
     console.error(`Failed to createSoundPool`)
     return;
@@ -282,7 +282,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`)
     //test_01.mp3为rawfile目录资源下面的音频
-    let fileDescriptor = getContext().resourceManager.getRawFd('test_01.mp3');
+    let fileDescriptor = await getContext().resourceManager.getRawFd('test_01.mp3');
     soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length, (error: BusinessError, soundId_: number) => {
       if (error) {
         console.error(`Failed to load soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
@@ -387,7 +387,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
   rendererFlags: 1
 }
 let soundID: number = 0;
-media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+media.createSoundPool(5, audioRendererInfo, async (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
     console.error(`Failed to createSoundPool`)
     return;
@@ -395,7 +395,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`)
     //test_01.mp3为rawfile目录资源下面的音频
-    let fileDescriptor = getContext().resourceManager.getRawFd('test_01.mp3');
+    let fileDescriptor = await getContext().resourceManager.getRawFd('test_01.mp3');
     soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length).then((soundId: number) => {
       console.info('Succeeded in loading soundpool');
       soundID = soundId;
