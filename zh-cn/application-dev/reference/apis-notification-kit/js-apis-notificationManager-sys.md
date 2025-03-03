@@ -4368,7 +4368,7 @@ notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundl
 
 ## DoNotDisturbDate
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
 
@@ -4380,7 +4380,7 @@ notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundl
 
 ## DoNotDisturbType
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
 
@@ -4481,7 +4481,7 @@ notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundl
 
 ## SlotType
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称                                | 值     | 说明                                                         |
 | ----------------------------------- | ------ | ------------------------------------------------------------ |
@@ -4491,7 +4491,7 @@ notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundl
 ## NotificationControlFlagStatus<sup>12+</sup>
 每个bit位都可以控制通知的提示方式。当notificationControlFlags和下表中枚举值进行按位或操作，则表示关闭其提示方式。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
 
@@ -4506,7 +4506,7 @@ notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundl
 
 ## DoNotDisturbProfile<sup>12+</sup>
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
 
