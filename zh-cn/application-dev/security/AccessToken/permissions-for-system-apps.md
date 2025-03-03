@@ -4580,6 +4580,42 @@
 
 **起始版本**：16
 
+### ohos.permission.ANTIFRAUD_DETECT
+
+允许系统应用进行反诈检测。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：18
+
+### ohos.permission.ANTIFRAUD_PICTURE_DETECT
+
+允许系统应用进行图片换脸检测。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：18
+
+### ohos.permission.ANTIFRAUD_MODEL_DOWNLOAD
+
+允许系统应用使用模型下载相关接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：18
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -5185,39 +5221,3 @@
 **ACL使能**：true
 
 **起始版本**：14
-
-### ohos.permission.ANTIFRAUD_DETECT
-
-允许系统应用进行反诈检测。
-
-**权限级别**：system_basic
-
-**授权方式**system_grant
-
-**ACL使能**：true
-
-**起始版本**：18
-
-### ohos.permission.ANTIFRAUD_PICTURE_DETECT
-
-允许系统应用进行图片换脸检测。
-
-**权限级别**：system_basic
-
-**授权方式**system_grant
-
-**ACL使能**：true
-
-**起始版本**：18
-
-### ohos.permission.ANTIFRAUD_MODEL_DOWNLOAD
-
-允许系统应用使用模型下载相关接口。
-
-**权限级别**：system_basic
-
-**授权方式**system_grant
-
-**ACL使能**：true
-
-**起始版本**：18
