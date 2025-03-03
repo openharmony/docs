@@ -623,7 +623,7 @@ onError(callback: ImageErrorCallback)
 
 | 参数名   | 类型                                       | 必填 | 说明                       |
 | -------- | ------------------------------------------ | ---- | -------------------------- |
-| callback | [ImageErrorCallback](#imageerrorcallback9) | 是   | 图片加载异常时触发的回调。<br>**说明：**<br/> - 建议开发者使用此回调，可快速确认图片加载失败时的具体原因 |
+| callback | [ImageErrorCallback](#imageerrorcallback9) | 是   | 图片加载异常时触发的回调。<br>**说明：**<br/>建议开发者使用此回调，可快速确认图片加载失败时的具体原因。 |
 
 ### onFinish
 
