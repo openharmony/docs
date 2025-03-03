@@ -795,6 +795,15 @@
 | float [OH_ArkUI_ProgressLinearStyleOption_GetStrokeWidth](#oh_arkui_progresslinearstyleoption_getstrokewidth)([ArkUI_ProgressLinearStyleOption](#arkui_progresslinearstyleoption)\* option) | 获取线性进度条宽度。 |
 | float [OH_ArkUI_ProgressLinearStyleOption_GetStrokeRadius](#oh_arkui_progresslinearstyleoption_getstrokeradius)([ArkUI_ProgressLinearStyleOption](#arkui_progresslinearstyleoption)\* option) | 获取线性进度条圆角半径值。 |
 | int32_t [OH_ArkUI_NodeUtils_GetPositionToParent](#oh_arkui_nodeutils_getpositiontoparent) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md)\* globalOffset) | 获取目标节点相对于父节点的偏移值。  | 
+| int32_t [OH_ArkUI_GetGestureParam_DirectMask](#oh_arkui_getgestureparam_directmask) (ArkUI_GestureRecognizer \*recognizer, [ArkUI_GestureDirectionMask](#arkui_gesturedirectionmask)\* directMask) | 获取手势识别器的滑动方向。 |
+| int32_t [OH_ArkUI_GetGestureParam_FingerCount](#oh_arkui_getgestureparam_fingercount) (ArkUI_GestureRecognizer \*recognizer, int\* finger) | 获取手势识别器的手指数。 |
+| int32_t [OH_ArkUI_GetGestureParam_limitFingerCount](#oh_arkui_getgestureparam_limitfingercount) (ArkUI_GestureRecognizer \*recognizer, bool\* isLimited) | 获取手势识别器是否有手指数限制。  | 
+| int32_t [OH_ArkUI_GetGestureParam_repeat](#oh_arkui_getgestureparam_repeat) (ArkUI_GestureRecognizer \*recognizer, bool\* isRepeat) | 获取手势识别器是否连续触发事件回调。 |
+| int32_t [OH_ArkUI_GetGestureParam_distance](#oh_arkui_getgestureparam_distance) (ArkUI_GestureRecognizer \*recognizer, double\* distance) | 获取手势识别器的手指允许的移动距离范围。 |
+| int32_t [OH_ArkUI_GetGestureParam_speed](#oh_arkui_getgestureparam_speed) (ArkUI_GestureRecognizer \*recognizer, double\* speed) | 获取手势识别器的识别滑动的最小速度。 |
+| int32_t [OH_ArkUI_GetGestureParam_duration](#oh_arkui_getgestureparam_duration) (ArkUI_GestureRecognizer \*recognizer, int\* duration) | 获取手势识别器的触发长按的最短时间。 |
+| int32_t [OH_ArkUI_GetGestureParam_angle](#oh_arkui_getgestureparam_angle) (ArkUI_GestureRecognizer \*recognizer, double\* angle) | 获取手势识别器的旋转手势的最小改变度数。 |
+| int32_t [OH_ArkUI_GetGestureParam_distanceThreshold](#oh_arkui_getgestureparam_distancethreshold) (ArkUI_GestureRecognizer \*recognizer, double\* distanceThreshold) | 获取手势识别器的手势移动阈值。 |
 
 
 ## 宏定义说明
@@ -2340,6 +2349,7 @@ enum ArkUI_ErrorCode
 | ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER  | 非滚动类容器。  | 
 | ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH  | 存储区大小不足。  | 
 | ARKUI_ERROR_CODE_INVALID_STYLED_STRING  | 无效的属性字符串。  | 
+| ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED  | 不支持手势识别器类型。  | 
 
 
 ### ArkUI_FinishCallbackType
@@ -16275,3 +16285,210 @@ int32_t OH_ArkUI_NodeUtils_GetPositionToParent (ArkUI_NodeHandle node, ArkUI_Int
 
 ARKUI_ERROR_CODE_NO_ERROR 成功。
 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+### OH_ArkUI_GetGestureParam_DirectMask()
+
+```
+int32_t OH_ArkUI_GetGestureParam_DirectMask(ArkUI_GestureRecognizer* recognizer, ArkUI_GestureDirectionMask* directMask)
+```
+**描述：**
+
+获取手势识别器的滑动方向。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recognizer | 手势识别器指针。  | 
+| directMask | 手势识别器的滑动方向。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 参数错误。
+
+### OH_ArkUI_GetGestureParam_FingerCount()
+
+```
+int32_t OH_ArkUI_GetGestureParam_FingerCount(ArkUI_GestureRecognizer* recognizer, int* finger)
+```
+**描述：**
+
+获取手势识别器的手指数。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recognizer | 手势识别器指针。  | 
+| finger | 手势识别器的手指数。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 参数错误。
+
+### OH_ArkUI_GetGestureParam_limitFingerCount()
+
+```
+int32_t OH_ArkUI_GetGestureParam_limitFingerCount(ArkUI_GestureRecognizer* recognizer, bool* isLimited)
+```
+**描述：**
+
+获取手势识别器是否有手指数限制。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recognizer | 手势识别器指针。  | 
+| isLimited | 手势识别器是否有手指数限制。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 参数错误。
+
+### OH_ArkUI_GetGestureParam_repeat()
+
+```
+int32_t OH_ArkUI_GetGestureParam_repeat(ArkUI_GestureRecognizer* recognizer, bool* isRepeat)
+```
+**描述：**
+
+获取手势识别器是否连续触发事件回调。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recognizer | 手势识别器指针。  | 
+| isRepeat | 手势识别器是否连续触发事件回调。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED 不支持手势识别器类型。
+
+### OH_ArkUI_GetGestureParam_distance()
+
+```
+int32_t OH_ArkUI_GetGestureParam_distance(ArkUI_GestureRecognizer* recognizer, double* distance)
+```
+**描述：**
+
+获取手势识别器的手指允许的移动距离范围。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recognizer | 手势识别器指针。  | 
+| distance | 手势识别器的手指允许的移动距离范围。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED 不支持手势识别器类型。
+
+### OH_ArkUI_GetGestureParam_speed()
+
+```
+int32_t OH_ArkUI_GetGestureParam_speed(ArkUI_GestureRecognizer* recognizer, double* speed)
+```
+**描述：**
+
+获取手势识别器的识别滑动的最小速度。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recognizer | 手势识别器指针。  | 
+| speed | 手势识别器的识别滑动的最小速度。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED 不支持手势识别器类型。
+
+### OH_ArkUI_GetGestureParam_duration()
+
+```
+int32_t OH_ArkUI_GetGestureParam_duration(ArkUI_GestureRecognizer* recognizer, int* duration)
+```
+**描述：**
+
+获取手势识别器的触发长按的最短时间。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recognizer | 手势识别器指针。  | 
+| duration | 手势识别器的触发长按的最短时间。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED 不支持手势识别器类型。
+
+### OH_ArkUI_GetGestureParam_angle()
+
+```
+int32_t OH_ArkUI_GetGestureParam_angle(ArkUI_GestureRecognizer* recognizer, double* angle)
+```
+**描述：**
+
+获取手势识别器的旋转手势的最小改变度数。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recognizer | 手势识别器指针。  | 
+| angle | 手势识别器的旋转手势的最小改变度数。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED 不支持手势识别器类型。
+
+### OH_ArkUI_GetGestureParam_distanceThreshold()
+
+```
+int32_t OH_ArkUI_GetGestureParam_distanceThreshold(ArkUI_GestureRecognizer* recognizer, double* distanceThreshold)
+```
+**描述：**
+
+获取手势识别器的手势移动阈值。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recognizer | 手势识别器指针。  | 
+| distanceThreshold | 手势识别器的手势移动阈值。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED 不支持手势识别器类型。
