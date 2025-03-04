@@ -96,8 +96,8 @@ interface ExtraData {
 
 | 名称      | 值   | 说明              |
 | -------- |-----|-----------------|
-| RUNNING<sup>18+</sup> | 0  | 表示端云同步任务状态处于运行中。  |
-| FINISHED<sup>18+</sup> | 1   | 表示端云同步任务状态处于已完成。 |
+| RUNNING<sup>18+</sup> | 0  | 表示端云同步任务处于运行状态。 |
+| FINISHED<sup>18+</sup> | 1   | 表示端云同步任务处于完成状态。 |
 
 ## SyncInfo<sup>12+</sup>
 
@@ -109,7 +109,7 @@ interface ExtraData {
 | ---------- | ------------------------------------------------------------ | ---- | -------------------------- |
 | startTime  | Date                                                         | 是   | 最近一次端云同步的开始时间。 |
 | finishTime | Date                                                         | 是   | 最近一次端云同步的结束时间。 |
-| code       | [relationalStore.ProgressCode](js-apis-data-relationalStore.md#progresscode10) | 是   | 最近一次端云同步过程的状态。 |
+| code       | [relationalStore.ProgressCode](js-apis-data-relationalStore.md#progresscode10) | 是   | 最近一次端云同步任务的结果。 |
 | syncStatus | [SyncStatus](#syncstatus18) | 否 | 最近一次端云同步任务的状态。 |
 
 ## Config
