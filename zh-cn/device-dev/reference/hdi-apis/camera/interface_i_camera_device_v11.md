@@ -54,7 +54,7 @@ NO_ERROR 表示执行成功。
 ### GetStreamOperator_V1_1()
 
 ```
-ICameraDevice::GetStreamOperator_V1_1 ([in] IStreamOperatorCallback callbackObj, [out] IStreamOperator streamOperator )
+ICameraDevice::GetStreamOperator_V1_1 ([in] IStreamOperatorCallback callbackObj, [out] IStreamOperator streamOperator)
 ```
 
 **描述**

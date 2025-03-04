@@ -1205,9 +1205,17 @@
     - 硬件<!--system-hardware-->
       - Driver Development Kit（驱动开发服务）<!--driver-development-kit-->
         - [Driver Development Kit简介](device/driver/driverdevelopment-overview.md)
-        - [外设扩展驱动客户端开发指导](device/driver/externaldevice-guidelines.md)
-        - [外设扩展驱动开发指导](device/driver/driverextensionability.md)
+        - [环境准备](device/driver/environmental-preparation.md)
+        - 扩展外设基础驱动开发 <!--Development-of-basic-drivers-for-extended-peripherals-->
+          - [开发无UI界面基础驱动](device/driver/driverextensionability.md)
+          - [开发带UI界面基础驱动](device/driver/externaldevice-guidelines.md)
+        - 扩展外设专项驱动开发 <!--Specialized-driver-development-for-extended-peripherals-->
+          - [开发适用USB协议的设备驱动](device/driver/usb-ddk-guidelines.md)
+          - [开发适用HID协议的设备驱动](device/driver/hid-ddk-guidelines.md)
+          - [开发适用串口协议的设备驱动](device/driver/usb-serial-ddk-guidelines.md)
+          - [开发使用SCSI协议的设备驱动](device/driver/scsi-peripheral-ddk-guidelines.md)
         - [常见问题](device/driver/externaldevice-faqs.md)
+        - [扩展外设驱动开发术语](device/driver/terms.md)
       - Multimodal Awareness Kit（多模态融合感知服务）<!--multimodal-awareness-kit-->
         - [Multimodal Awareness Kit简介](device/stationary/multimodalawareness-kit-intro.md)
         - [Stationary开发指导](device/stationary/stationary-guidelines.md)
@@ -1255,6 +1263,9 @@
                 - [主线程超时事件介绍](dfx/hiappevent-watcher-mainthreadjank-events.md)
                 - [订阅主线程超时事件（ArkTS）](dfx/hiappevent-watcher-mainthreadjank-events-arkts.md)
                 - [订阅主线程超时事件（C/C++）](dfx/hiappevent-watcher-mainthreadjank-events-ndk.md)
+              - 任务执行超时事件<!--app-hicollie-events-->
+                - [任务执行超时事件介绍](dfx/hiappevent-watcher-apphicollie-events.md)
+                - [任务执行超时事件（C/C++）](dfx/hiappevent-watcher-apphicollie-events-ndk.md)
         <!--Del-->
           - [事件上报](dfx/hiappevent-event-reporting.md)
         <!--DelEnd-->
@@ -1744,11 +1755,6 @@
         - [QOS开发指导](napi/qos-guidelines.md)
       - 内存管理<!--memory-management-->
         - [Purgeable memory开发指导](napi/purgeable-memory-guidelines.md)
-      - 设备管理<!--device-management-->
-        - [USB DDK开发指导](napi/usb-ddk-guidelines.md)
-        - [HID DDK开发指导](napi/hid-ddk-guidelines.md)
-        - [USB Serial DDK开发指导](napi/usb-serial-ddk-guidelines.md)
-        - [SCSI Peripheral DDK开发指南](napi/scsi-peripheral-ddk-guidelines.md)
       - 包管理<!--bundle-management-->
         - [NativeBundle开发指导](napi/native-bundle-guidelines.md)
     - 调试和性能分析<!--debugging-profiling-->
@@ -4145,7 +4151,7 @@
           - [ImageEffect_Size](reference/apis-image-kit/_image_effect___size.md)
           - [ImageProcessing_ColorSpaceInfo](reference/apis-image-kit/_image_processing___color_space_info.md)
       - 错误码<!--image-arkts-errcode-->
-        - [图片错误码](reference/apis-image-kit/errorcode-image.md)
+        - [Image错误码](reference/apis-image-kit/errorcode-image.md)
     - Media Kit（媒体服务）<!--media-api-->
       - ArkTS API<!--media-arkts-->
         - [@ohos.multimedia.media (媒体服务)](reference/apis-media-kit/js-apis-media.md)
@@ -4292,6 +4298,7 @@
           - [effect_types.h](reference/apis-arkgraphics2d/effect__types_8h.md)
           - [buffer_handle.h](reference/apis-arkgraphics2d/buffer__handle_8h.md)
           - [external_window.h](reference/apis-arkgraphics2d/external__window_8h.md)
+          - [buffer_common.h](reference/apis-arkgraphics2d/buffer__common_8h.md)
           - [native_buffer.h](reference/apis-arkgraphics2d/native__buffer_8h.md)
           - [native_display_soloist.h](reference/apis-arkgraphics2d/native__display__soloist_8h.md)
           - [native_image.h](reference/apis-arkgraphics2d/native__image_8h.md)

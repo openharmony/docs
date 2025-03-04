@@ -1087,7 +1087,7 @@ setxattr(path: string, key: string, value: string): Promise&lt;void&gt;
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | 是   | 目录的应用沙箱路径。                                   |
-| key   | string | 是   | 扩展属性的key。                                   |
+| key   | string | 是   | 扩展属性的key，仅支持前缀为“user.”的字符串，且长度需小于256字节。  |
 | value   | string | 是   | 扩展属性的value。                                   |
 
 **返回值：**
@@ -1129,7 +1129,7 @@ setxattrSync(path: string, key: string, value: string): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | 是   | 目录的应用沙箱路径。                                   |
-| key   | string | 是   | 扩展属性的key。                                   |
+| key   | string | 是   | 扩展属性的key，仅支持前缀为“user.”的字符串，且长度需小于256字节。   |
 | value   | string | 是   | 扩展属性的value。                                   |
 
 **错误码：**
@@ -5517,11 +5517,17 @@ onStatus(networkId: string, status: number): void;
 
 ### setFilePointer<sup>10+</sup>
 
-setFilePointer(): void
+setFilePointer(filePointer:number): void
 
 设置文件偏置指针。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名     | 类型      | 必填   | 说明         |
+  | ------- | ----------- | ---- | ----------------------------- |
+  | filePointer  | number | 是   | RandomAccessFile对象的偏置指针。  |
 
 **错误码：**
 
@@ -5908,7 +5914,7 @@ start(): void
 
 stop(): void
 
-停止监听。
+停止监听，移除Watcher对象。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 

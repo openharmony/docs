@@ -106,7 +106,7 @@ autoPlay(autoPlay: boolean, options: AutoPlayOptions)
 | 参数名 | 类型    | 必填 | 说明                                   |
 | ------ | ------- | ---- | -------------------------------------- |
 | autoPlay  | boolean | 是   | 子组件是否自动播放。<br/>默认值：false |
-| options  | [AutoPlayOptions](#autoplayoptions16对象说明)&nbsp; | 否   | 配置手指或者鼠标等按下屏幕时子组件是否停止自动播放。<br/>默认值：{ stopWhenTouched: true } 停止自动播放 |
+| options  | [AutoPlayOptions](#autoplayoptions16对象说明)&nbsp; | 否   | 配置手指或者鼠标等按下屏幕时子组件是否停止自动播放。当stopWhenTouched设置为true时，多指按下场景中任意一个手指抬起后，将自动继续播放。<br/>默认值：{ stopWhenTouched: true } 停止自动播放 |
 
 ### interval
 
