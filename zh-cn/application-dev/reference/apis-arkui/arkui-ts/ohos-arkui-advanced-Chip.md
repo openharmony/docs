@@ -12,7 +12,7 @@
 
 ## Chip
 
-Chip({options:ChipOptions})
+Chip(options:ChipOptions)
 
 **装饰器类型：**@Builder
 
