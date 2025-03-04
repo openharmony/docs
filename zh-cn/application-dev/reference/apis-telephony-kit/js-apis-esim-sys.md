@@ -2,10 +2,10 @@
 
 穿戴设备支持eSIM，电话服务提供API给eSIM卡管理和eSIM卡服务使用。
 
->**说明：** 
+> **说明：** 
 >
->本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.telephony.esim (eSIM卡管理)](js-apis-esim.md)
+> 本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.telephony.esim (eSIM卡管理)](js-apis-esim.md)。
 
 ## 导入模块
 
@@ -29,23 +29,25 @@ getEid\(slotId: number\): string
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2   |
+| slotId | number | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。   |
 
 **返回值：**
 
 | 类型                  | 说明                                |
 | --------------------- | ---------------------------------- |
 | string | 返回指定卡槽标识eUICC硬件的EID。 |
+
 **错误码：**
 
 | 错误码ID                 | 错误信息                         |
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
+
 **示例：**
 
 ```ts
@@ -71,13 +73,13 @@ getOsuStatus\(slotId: number\): Promise\<OsuStatus\>
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId | number | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[OsuStatus](#osustatus14)\> |  Promise对象，返回操作系统升级的状态。<br/> 1.正在升级 <br/>   2. 升级失败<br/>  3.升级成功<br/>  4.当前版本是最新版本<br/> 5.升级服务不可用 |
+| Promise\<[OsuStatus](#osustatus14)\> |  Promise对象，返回操作系统升级的状态。<br/> 1. 正在升级。 <br/>   2. 升级失败。<br/>  3. 升级成功。<br/>  4. 当前版本是最新版本。<br/> 5. 升级服务不可用。 |
 
 **错误码：**
 
@@ -85,7 +87,7 @@ getOsuStatus\(slotId: number\): Promise\<OsuStatus\>
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -119,24 +121,24 @@ startOsu\(slotId: number\): Promise\<OsuStatus\>
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId | number | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[OsuStatus](#osustatus14)\> |  Promise对象，返回操作系统升级的状态。<br/> 1.正在升级 <br/>   2. 升级失败<br/>  3.升级成功<br/>  4.当前版本是最新版本<br/> 5.升级服务不可用 |
+| Promise\<[OsuStatus](#osustatus14)\> |  Promise对象，返回操作系统升级的状态。<br/> 1. 正在升级。 <br/>   2. 升级失败。<br/>  3. 升级成功。<br/>  4. 当前版本是最新版本。<br/> 5. 升级服务不可用。 |
 
 **错误码：**
+
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
-
 
 **示例：**
 
@@ -168,10 +170,10 @@ getDownloadableProfileMetadata\(slotId: number, portIndex: number,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId              | number                                        | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId              | number                                        | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex           | number                                        | 是 | 插槽的端口索引。     |
 | profile             | [DownloadableProfile](#downloadableprofile14) | 是 | 可下载的配置文件信息。|
-| forceDisableProfile | boolean | 是 | 如果值为true，则必须停用活动SIM才能执行操作。如果值为false，则提示用户首先同意此操作。|
+| forceDisableProfile | boolean | 是 | 如果值为true，必须停用活动SIM才能执行操作。<br/>如果值为false，提示用户首先同意此操作。|
 
 **返回值：**
 
@@ -185,7 +187,7 @@ getDownloadableProfileMetadata\(slotId: number, portIndex: number,
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -231,9 +233,9 @@ getDownloadableProfiles\(slotId: number, portIndex: number,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId              | number  | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId              | number  | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex           | number  | 是 | 插槽的端口索引。 |
-| forceDisableProfile | boolean | 是 | 如果值为true，则必须停用活动SIM才能执行操作。如果值为false，则提示用户首先同意此操作。|
+| forceDisableProfile | boolean | 是 | 如果值为true，必须停用活动SIM才能执行操作。<br/>如果值为false，提示用户首先同意此操作。|
 
 **返回值：**
 
@@ -247,7 +249,7 @@ getDownloadableProfiles\(slotId: number, portIndex: number,
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -268,7 +270,7 @@ eSIM.getDownloadableProfiles(0, 0, true).then((data: eSIM.GetDownloadableProfile
 ## eSIM.downloadProfile<sup>14+</sup>
 
 downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile,
-      configuration: DownloadConfiguration\): Promise\<DownloadProfileResult\>;
+      configuration: DownloadConfiguration\): Promise\<DownloadProfileResult\>
 
 下载配置文件。使用Promise异步回调。
 
@@ -282,7 +284,7 @@ downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId        | number                                            | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId        | number                                            | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex     | number                                            | 是 | 插槽的端口索引。 |
 | profile       | [DownloadableProfile](#downloadableprofile14)     | 是 | 可下载的配置文件信息。 |
 | configuration | [DownloadConfiguration](#downloadconfiguration14) | 是 | 下载的配置信息。 |
@@ -299,7 +301,7 @@ downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -350,7 +352,7 @@ getEuiccProfileInfoList\(slotId: number\): Promise\<GetEuiccProfileInfoListResul
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId | number | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
@@ -364,7 +366,7 @@ getEuiccProfileInfoList\(slotId: number\): Promise\<GetEuiccProfileInfoListResul
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -384,7 +386,7 @@ eSIM.getEuiccProfileInfoList(0).then((data: eSIM.GetEuiccProfileInfoListResult) 
 
 ## eSIM.getEuiccInfo<sup>14+</sup>
 
-getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>;
+getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>
 
 获取eUICC信息。使用Promise异步回调。
 
@@ -398,7 +400,7 @@ getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId | number | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
@@ -412,7 +414,7 @@ getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>;
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -432,7 +434,7 @@ eSIM.getEuiccInfo(0).then((data: eSIM.EuiccInfo) => {
 
 ## eSIM.deleteProfile<sup>14+</sup>
 
-deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>;
+deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>
 
 删除配置文件。使用Promise异步回调。
 
@@ -446,8 +448,8 @@ deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| iccid  | string | 是 | 配置文件的Id |
+| slotId | number | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| iccid  | string | 是 | 配置文件的id。 |
 
 **返回值：**
 
@@ -461,7 +463,7 @@ deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>;
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -482,9 +484,9 @@ eSIM.deleteProfile(0, testId).then(() => {
 ## eSIM.switchToProfile<sup>14+</sup>
 
 switchToProfile\(slotId: number, portIndex: number, iccid: string,
-    forceDisableProfile: boolean\): Promise\<ResultCode\>;
+    forceDisableProfile: boolean\): Promise\<ResultCode\>
 
-切换到（启用）给定的配置文件。使用Promise异步回调。
+切换到(启用)给定的配置文件。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -496,10 +498,10 @@ switchToProfile\(slotId: number, portIndex: number, iccid: string,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId              | number  | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId              | number  | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex           | number  | 是 | 插槽的端口索引。 |
-| iccid               | string  | 是 | 配置文件的Id。   |
-| forceDisableProfile | boolean | 是 | 如果值为true，则必须停用活动SIM才能执行操作。如果值为false，则提示用户首先同意此操作。|
+| iccid               | string  | 是 | 配置文件的id。   |
+| forceDisableProfile | boolean | 是 | 如果值为true，则必须停用活动SIM才能执行操作。<br/>如果值为false，则提示用户首先同意此操作。|
 
 **返回值：**
 
@@ -513,7 +515,7 @@ switchToProfile\(slotId: number, portIndex: number, iccid: string,
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -533,7 +535,7 @@ eSIM.switchToProfile(0, 0, testId, true).then(() => {
 
 ## eSIM.setProfileNickname<sup>14+</sup>
 
-setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<ResultCode\>;
+setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<ResultCode\>
 
 设置给定配置文件的昵称。使用Promise异步回调。
 
@@ -547,8 +549,8 @@ setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId   | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| iccid    | string | 是 | 配置文件的Id。 |
+| slotId   | number | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| iccid    | string | 是 | 配置文件的id。 |
 | nickname | string | 是 | 昵称。 |
 
 **返回值：**
@@ -563,7 +565,7 @@ setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -583,7 +585,7 @@ eSIM.setProfileNickname(0, testId, testName).then(() => {
 
 ## eSIM.resetMemory<sup>14+</sup>
 
-resetMemory\(slotId: number, options?: ResetOption\): Promise\<ResultCode\>;
+resetMemory\(slotId: number, options?: ResetOption\): Promise\<ResultCode\>
 
 清除所有特定配置文件并重置eUICC。使用Promise异步回调。
 
@@ -597,7 +599,7 @@ resetMemory\(slotId: number, options?: ResetOption\): Promise\<ResultCode\>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId  | number                        | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId  | number                        | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | options | [ResetOption](#resetoption14) | 否 | 重置状态。 |
 
 **返回值：**
@@ -612,7 +614,7 @@ resetMemory\(slotId: number, options?: ResetOption\): Promise\<ResultCode\>;
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -632,7 +634,7 @@ eSIM.resetMemory(0).then(() => {
 
 ## eSIM.reserveProfilesForFactoryRestore<sup>14+</sup>
 
-reserveProfilesForFactoryRestore\(slotId: number\): Promise\<ResultCode\>;
+reserveProfilesForFactoryRestore\(slotId: number\): Promise\<ResultCode\>
 
 恢复出厂设置，并保留profiles。使用Promise异步回调。
 
@@ -646,7 +648,7 @@ reserveProfilesForFactoryRestore\(slotId: number\): Promise\<ResultCode\>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId | number | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
@@ -660,7 +662,7 @@ reserveProfilesForFactoryRestore\(slotId: number\): Promise\<ResultCode\>;
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -680,7 +682,7 @@ eSIM.reserveProfilesForFactoryRestore(0).then(() => {
 
 ## eSIM.setDefaultSmdpAddress<sup>14+</sup>
 
-setDefaultSmdpAddress\(slotId: number, address: string\): Promise\<ResultCode\>;
+setDefaultSmdpAddress\(slotId: number, address: string\): Promise\<ResultCode\>
 
 设置或更新eUICC中存储的默认SM-DP+地址。使用Promise异步回调。
 
@@ -694,7 +696,7 @@ setDefaultSmdpAddress\(slotId: number, address: string\): Promise\<ResultCode\>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId  | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId  | number | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | address | string | 是 | 要设置的默认SM-DP+地址。 |
 
 **返回值：**
@@ -709,7 +711,7 @@ setDefaultSmdpAddress\(slotId: number, address: string\): Promise\<ResultCode\>;
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -729,7 +731,7 @@ eSIM.setDefaultSmdpAddress(0, testAddress).then(() => {
 
 ## eSIM.getDefaultSmdpAddress<sup>14+</sup>
 
-getDefaultSmdpAddress\(slotId: number\): Promise\<string\>;
+getDefaultSmdpAddress\(slotId: number\): Promise\<string\>
 
 获取存储在eUICC中的默认SM-DP+地址。使用Promise异步回调。
 
@@ -743,7 +745,7 @@ getDefaultSmdpAddress\(slotId: number\): Promise\<string\>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId | number | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
@@ -757,7 +759,7 @@ getDefaultSmdpAddress\(slotId: number\): Promise\<string\>;
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -777,7 +779,7 @@ eSIM.getDefaultSmdpAddress(0).then((data: string) => {
 
 ## eSIM.cancelSession<sup>14+</sup>
 
-cancelSession\(slotId: number, transactionId: string, cancelReason: CancelReason\): Promise\<ResultCode\>;  
+cancelSession\(slotId: number, transactionId: string, cancelReason: CancelReason\): Promise\<ResultCode\>
 
 取消会话。使用Promise异步回调。
 
@@ -791,8 +793,8 @@ cancelSession\(slotId: number, transactionId: string, cancelReason: CancelReason
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId        | number                          | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| transactionId | string                          | 是 | 业务ID。|
+| slotId        | number                          | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| transactionId | string                          | 是 | 业务id。|
 | cancelReason  | [CancelReason](#cancelreason14) | 是 | 取消会话的原因。|
 
 **返回值：**
@@ -849,7 +851,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 
 | 名称 | 类型 | 必填 | 说明 |
 | ----- | ----- | ----- | -----|
-| activationCode   | string             |  是  | 激活码，对于不基于激活码的配置文件，可能为空。 |
+| activationCode   | string             |  是  | 激活码。对于不基于激活码的配置文件，可能为空。 |
 | confirmationCode | string             |  否  | 确认码。      |
 | carrierName      | string             |  否  | 订阅名称。    |
 | accessRules      | Array\<AccessRule> |  否  | 访问规则数组。 |
@@ -867,7 +869,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 | downloadableProfile | DownloadableProfile  |  是  | 可下载的配置文件信息。   |
 | pprType             | number               |  是  | 配置文件策略规则类型。 |
 | pprFlag             | boolean              |  是  | 配置文件策略规则标记。 |
-| iccid               | string               |  是  | 配置文件的iccId。     |
+| iccid               | string               |  是  | 配置文件的iccid。     |
 | serviceProviderName | string               |  是  | 配置文件的服务提供商名称。 |
 | profileName         | string               |  是  | 配置文件名称。 |
 | profileClass        | ProfileClass         |  是  | 配置文件类。   |
@@ -899,7 +901,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 | ----- | ----- | ----- | -----|
 | responseResult | ResultCode     |  是  | 操作结果码。 |
 | solvableErrors | SolvableErrors |  是  | 可解决错误。 |
-| cardId         | number         |  是  | 获取卡Id。   |
+| cardId         | number         |  是  | 获取卡id。   |
 
 ## GetEuiccProfileInfoListResult<sup>14+</sup>
 
@@ -940,13 +942,13 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 
 | 名称 | 类型 | 必填 | 说明 |
 | ----- | ----- | ----- | -----|
-| iccid               | string             |  是  | 配置文件的iccId。 |
+| iccid               | string             |  是  | 配置文件的iccid。 |
 | nickName            | string             |  是  | 昵称。 |
 | serviceProviderName | string             |  是  | 配置文件的服务提供商名称。 |
 | profileName         | string             |  是  | 配置文件名称。   |
 | state               | ProfileState       |  是  | 配置文件的状态。 |
 | profileClass        | ProfileClass       |  是  | 配置文件类。     |
-| operatorId          | OperatorId         |  是  | 配置文件的操作ID。|
+| operatorId          | OperatorId         |  是  | 配置文件的操作id。|
 | policyRules         | PolicyRules        |  是  | 配置文件策略。   |
 | accessRules         | Array\<AccessRule> |  是  | 配置文件规则。   |
 
@@ -1018,7 +1020,7 @@ euicc信息。
 | RESULT_CONFIRMATION_CODE_INCORRECT                       | 212 | 确认码不正确。 |
 | RESULT_EXCEEDED_CONFIRMATION_CODE_TRY_LIMIT              | 213 | 已达到最大确认码尝试次数。      |
 | RESULT_NO_PROFILE_ON_SERVER                              | 214 | 服务器上没有可供下载的配置文件。 |
-| RESULT_TRANSACTION_ID_INVALID                            | 215 | 事务ID无效。    |
+| RESULT_TRANSACTION_ID_INVALID                            | 215 | 事务id无效。    |
 | RESULT_SERVER_ADDRESS_INVALID                            | 216 | 服务器地址无效。 |
 | RESULT_GET_BOUND_PROFILE_PACKAGE_FAILED                  | 217 | 获取BPP失败。    |
 | RESULT_USER_CANCEL_DOWNLOAD                              | 218 | 最终用户取消下载。   |
@@ -1027,7 +1029,7 @@ euicc信息。
 | RESULT_SMDP_ADDRESS_INCORRECT                            | 226 | 认证响应服务器地址不匹配。   |
 | RESULT_ANALYZE_AUTHENTICATION_SERVER_RESPONSE_FAILED     | 228 | 解析服务器身份验证响应错误。 |
 | RESULT_ANALYZE_AUTHENTICATION_CLIENT_RESPONSE_FAILED     | 229 | 解析客户端身份验证响应错误。 |
-| RESULT_ANALYZE_AUTHENTICATION_CLIENT_MATCHING_ID_REFUSED | 231 | 由于匹配ID被拒绝，解析客户端身份验证响应错误。 |
+| RESULT_ANALYZE_AUTHENTICATION_CLIENT_MATCHING_ID_REFUSED | 231 | 由于匹配id被拒绝，解析客户端身份验证响应错误。 |
 | RESULT_PROFILE_TYPE_ERROR_AUTHENTICATION_STOPPED         | 233 | 由于配置文件类型中的错误，身份验证已停止。     |
 | RESULT_CARRIER_SERVER_REFUSED_ERRORS                     | 249 | 运营商服务器拒绝原因码为3.8的错误。 |
 | RESULT_CERTIFICATE_INVALID                               | 251 | 证书无效。 |
@@ -1098,7 +1100,7 @@ euicc信息。
 
 ## SolvableErrors<sup>14+</sup>
 
-可解决错误码。
+解决错误码。
 
 **系统接口：** 此接口为系统接口。
 
