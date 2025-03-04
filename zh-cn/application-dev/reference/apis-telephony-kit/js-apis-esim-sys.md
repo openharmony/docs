@@ -45,7 +45,7 @@ getEid\(slotId: number\): string
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -179,7 +179,7 @@ getDownloadableProfileMetadata\(slotId: number, portIndex: number,
 | slotId              | number                                        | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex           | number                                        | 是 | 插槽的端口索引。     |
 | profile             | [DownloadableProfile](#downloadableprofile14) | 是 | 可下载的配置文件信息。|
-| forceDisableProfile | boolean | 是 | 如果值为true，必须停用活动SIM才能执行操作。<br/>如果值为false，提示用户首先同意此操作。|
+| forceDisableProfile | boolean | 是 | 如果值为true，则必须停用活动SIM才能执行操作。如果值为false，则提示用户首先同意此操作。|
 
 **返回值：**
 
@@ -243,7 +243,7 @@ getDownloadableProfiles\(slotId: number, portIndex: number,
 | ------ | ------ | ----- | ----- |
 | slotId              | number  | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex           | number  | 是 | 插槽的端口索引。 |
-| forceDisableProfile | boolean | 是 | 如果值为true，必须停用活动SIM才能执行操作。<br/>如果值为false，提示用户首先同意此操作。|
+| forceDisableProfile | boolean | 是 | 如果值为true，则必须停用活动SIM才能执行操作。如果值为false，则提示用户首先同意此操作。|
 
 **返回值：**
 
@@ -519,7 +519,7 @@ switchToProfile\(slotId: number, portIndex: number, iccid: string,
 | slotId              | number  | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex           | number  | 是 | 插槽的端口索引。 |
 | iccid               | string  | 是 | 配置文件的Id。   |
-| forceDisableProfile | boolean | 是 | 如果值为true，则必须停用活动SIM才能执行操作。<br/>如果值为false，则提示用户首先同意此操作。|
+| forceDisableProfile | boolean | 是 | 如果值为true，则必须停用活动SIM才能执行操作。如果值为false，则提示用户首先同意此操作。|
 
 **返回值：**
 
