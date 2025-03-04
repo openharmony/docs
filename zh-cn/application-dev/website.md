@@ -1205,9 +1205,17 @@
     - 硬件<!--system-hardware-->
       - Driver Development Kit（驱动开发服务）<!--driver-development-kit-->
         - [Driver Development Kit简介](device/driver/driverdevelopment-overview.md)
-        - [外设扩展驱动客户端开发指导](device/driver/externaldevice-guidelines.md)
-        - [外设扩展驱动开发指导](device/driver/driverextensionability.md)
+        - [环境准备](device/driver/environmental-preparation.md)
+        - 扩展外设基础驱动开发 <!--Development-of-basic-drivers-for-extended-peripherals-->
+          - [开发无UI界面基础驱动](device/driver/driverextensionability.md)
+          - [开发带UI界面基础驱动](device/driver/externaldevice-guidelines.md)
+        - 扩展外设专项驱动开发 <!--Specialized-driver-development-for-extended-peripherals-->
+          - [开发适用USB协议的设备驱动](device/driver/usb-ddk-guidelines.md)
+          - [开发适用HID协议的设备驱动](device/driver/hid-ddk-guidelines.md)
+          - [开发适用串口协议的设备驱动](device/driver/usb-serial-ddk-guidelines.md)
+          - [开发使用SCSI协议的设备驱动](device/driver/scsi-peripheral-ddk-guidelines.md)
         - [常见问题](device/driver/externaldevice-faqs.md)
+        - [扩展外设驱动开发术语](device/driver/terms.md)
       - Multimodal Awareness Kit（多模态融合感知服务）<!--multimodal-awareness-kit-->
         - [Multimodal Awareness Kit简介](device/stationary/multimodalawareness-kit-intro.md)
         - [Stationary开发指导](device/stationary/stationary-guidelines.md)
