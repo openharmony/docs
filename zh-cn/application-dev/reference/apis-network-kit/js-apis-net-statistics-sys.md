@@ -15,7 +15,7 @@ import { statistics } from '@kit.NetworkKit';
 
 ## statistics.on('netStatsChange')<sup>10+</sup>
 
-on(type: 'netStatsChange', callback: Callback\<NetStatsChangeInfo\>): void
+on(type: 'netStatsChange', callback: Callback\<NetStatsChangeInfo\>): void;
 
 订阅流量改变事件通知。
 
@@ -367,7 +367,7 @@ statistics.getTrafficStatsByUid(uidInfo).then((statsInfo: statistics.NetStatsInf
 
 ## statistics.getTrafficStatsByNetwork<sup>12+</sup>
 
-getTrafficStatsByNetwork(networkInfo: NetworkInfo): Promise\<UidNetStatsInfo>
+getTrafficStatsByNetwork(networkInfo: NetworkInfo): Promise\<UidNetStatsInfo>;
 
 获取指定时间段内所有应用在指定网络中的流量使用详情，使用 Promise 方式作为异步方法。
 
@@ -425,7 +425,7 @@ statistics.getTrafficStatsByNetwork(networkInfo).then((statsInfo: statistics.Uid
 
 ## statistics.getTrafficStatsByUidNetwork<sup>12+</sup>
 
-getTrafficStatsByUidNetwork(uid: number, networkInfo: NetworkInfo): Promise\<NetStatsInfoSequence>
+getTrafficStatsByUidNetwork(uid: number, networkInfo: NetworkInfo): Promise\<NetStatsInfoSequence>;
 
 获取指定时间段内，应用在指定网络中的流量使用详情，使用 Promise 方式作为异步方法。
 
