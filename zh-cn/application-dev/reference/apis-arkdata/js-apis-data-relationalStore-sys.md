@@ -592,7 +592,7 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 
 > **说明：**
 > 
-> 指定资产下载能力作为按条件端云同步的一种形式，从API version 16开始支持，同步模式选择[SYNC_MODE_CLOUD_FIRST](js-apis-data-relationalStore.md#syncmode)，谓词中支持使用主键（必须）和资产（可选）作为同步条件；选择资产作为同步条件时，谓词仅支持[equalTo](js-apis-data-relationalStore.md#equalto)；指定资产的数量较多时（最多支持指定50个资产），建议谓词中仅使用主键作为同步条件。
+> 指定资产下载能力作为按条件端云同步的一种形式，从API version 18开始支持，同步模式选择[SYNC_MODE_CLOUD_FIRST](js-apis-data-relationalStore.md#syncmode)，谓词中支持使用主键（必须）和资产（可选）作为同步条件；选择资产作为同步条件时，谓词仅支持[equalTo](js-apis-data-relationalStore.md#equalto)；指定资产的数量较多时（最多支持指定50个资产），建议谓词中仅使用主键作为同步条件。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -673,7 +673,7 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 
 >**说明：**
 > 
->指定资产下载能力作为按条件端云同步的一种形式，从API version 16开始支持，同步模式选择[SYNC_MODE_CLOUD_FIRST](js-apis-data-relationalStore.md#syncmode)，谓词中支持使用主键（必须）和资产（可选）作为同步条件；选择资产作为同步条件时，谓词仅支持[equalTo](js-apis-data-relationalStore.md#equalto)；指定资产的数量较多时（最多支持指定50个资产），建议谓词中仅使用主键作为同步条件。
+>指定资产下载能力作为按条件端云同步的一种形式，从API version 18开始支持，同步模式选择[SYNC_MODE_CLOUD_FIRST](js-apis-data-relationalStore.md#syncmode)，谓词中支持使用主键（必须）和资产（可选）作为同步条件；选择资产作为同步条件时，谓词仅支持[equalTo](js-apis-data-relationalStore.md#equalto)；指定资产的数量较多时（最多支持指定50个资产），建议谓词中仅使用主键作为同步条件。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
