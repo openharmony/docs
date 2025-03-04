@@ -11,7 +11,7 @@
 
 输入：
 
-- x，n维tensor
+- x，n维tensor。
 
 - weight，全连接的权重张量。
 

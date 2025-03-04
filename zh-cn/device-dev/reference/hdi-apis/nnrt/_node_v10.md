@@ -43,7 +43,7 @@ nodeAttr参数是一段被序列化的数据，并调用OHOS的hdi的反序列�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| String [name](#name) | 算子节点的名称 。 | 
+| String [name](#name) | 算子节点的名称。 | 
 | enum [NodeType](_n_n_rt_v10.md#nodetype)[nodeType](#nodetype) | 算子节点的类型，详情请参考：[NodeType](_n_n_rt_v10.md#nodetype)。 | 
 | byte[] [nodeAttr](#nodeattr) | 算子节点的参数对应的序列化数组。 | 
 | unsigned int[] [inputIndex](#inputindex) | 算子节点的输入节点下标。 | 
@@ -75,7 +75,7 @@ String Node::name
 **描述**
 
 
-算子节点的名称 。
+算子节点的名称。
 
 
 ### nodeAttr
