@@ -39,7 +39,6 @@ queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 201      | The permission check failed.             |
-| 401      | The parameter check failed.              |
 | 22900001 | ExternalDeviceManager service exception. |
 
 **示例：**
