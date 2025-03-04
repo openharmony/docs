@@ -20,14 +20,6 @@ getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
 **系统能力：**  SystemCapability.USB.USBManager
 
-**错误码：**
-
-以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
-
-| 错误码ID | 错误信息                  |
-| -------- | ------------------------- |
-| 801      | Capability not supported. |
-
 **返回值：**
 
 | 类型                                                   | 说明      |
@@ -121,8 +113,7 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801      | Capability not supported.                                    |
-| 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first.|
+| 14400001 | Permission denied. Call requestRight to get the permission first. |
 
 **示例：**
 
@@ -161,7 +152,6 @@ hasRight(deviceName: string): boolean
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801      | Capability not supported.                                    |
 
 **返回值：**
 
@@ -204,7 +194,6 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801      | Capability not supported.                                    |
 
 **返回值：**
 
@@ -247,7 +236,6 @@ removeRight(deviceName: string): boolean
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801      | Capability not supported.                                    |
 
 **返回值：**
 
@@ -275,9 +263,11 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 
 注册通信接口。
 
-1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及interfaces；
-2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及interfaces；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
+
+> **说明：** 
+>
+> 单次批量传输的传输数据总量（包括pipe、endpoint、buffer、timeout）请控制在200KB以下。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -296,7 +286,6 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801      | Capability not supported.                                    |
 
 **返回值：**
 
@@ -344,7 +333,6 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types. |
-| 801      | Capability not supported.                                    |
 
 **返回值：**
 
@@ -375,9 +363,7 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 
 设置设备配置。
 
-1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及config；
-2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及config；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -395,7 +381,6 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801      | Capability not supported.                                    |
 
 **返回值：**
 
@@ -443,7 +428,6 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801      | Capability not supported.                                    |
 
 **返回值：**
 
@@ -491,7 +475,6 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801      | Capability not supported.                                    |
 
 **返回值：**
 
@@ -535,7 +518,6 @@ getFileDescriptor(pipe: USBDevicePipe): number
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801      | Capability not supported.                                    |
 
 **返回值：**
 
@@ -575,7 +557,7 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备，需要调用connectDevice获取。|
-| controlparam | [USBControlParams](#usbcontrolparamsdeprecated) | 是 | 控制传输参数，按需设置参数，参数传参类型请参考USB协议。|
+| controlparam | [USBControlParams](#usbcontrolparams) | 是 | 控制传输参数，按需设置参数，参数传参类型请参考USB协议。|
 | timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择 。 |
 
 **错误码：**
@@ -591,7 +573,6 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回其他错误码如下：<br>- 88080385：接口未初始化。<br>- 88080482：服务过程中遇到无效值或参数。<br>- 88080484：没有权限。<br>- 88080492：写入服务数据包过程发生错误。<br>- 88080493：读取服务数据包过程发生错误。<br>- 88080497：服务内部逻辑执行发生错误。<br>- -1：调用底层接口失败。|
-
 
 **示例：**
 
@@ -651,7 +632,6 @@ usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, ti
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types. |
-| 801      | Capability not supported.                                    |
 
 **返回值：**
 
@@ -699,15 +679,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 批量传输。
 
-1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
-2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
-4.获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
-5.调用usbManager.bulkTransfer接口。
-
-> **说明：** 
->
-> 单次批量传输的传输数据总量（包括pipe、endpoint、buffer、timeout）请控制在200KB以下。
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；再调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；然后调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe之后，再次获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；再调用usb.bulkTransfer接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -727,7 +699,6 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801      | Capability not supported.                                    |
 
 **返回值：**
 
@@ -767,180 +738,6 @@ for (let i = 0; i < device.configs[0].interfaces.length; i++) {
 }
 ```
 
-## usbManager.usbSubmitTransfer<sup>16+</sup>
-
-usbSubmitTransfer(transfer: USBDataTransferParams): void
-
-提交异步传输请求。
-
-本接口为异步接口，调用后立刻返回，实际读写操作的结果以回调的方式返回。
-
-1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
-2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
-4.获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
-5.调用usbManager.usbSubmitTransfer接口。
-
-**系统能力：**  SystemCapability.USB.USBManager
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| transfer | [UsbDataTransferParams](#usbdatatransferparams16) | 是 | 作为通用USB数据传输接口，客户端需要填充这个对象中的参数，用以发起传输请求。|
-
-**错误码：**
-
-以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes:Mandatory parameters are left unspecified; Incorrect parameter types. |
-| 801 | Capability not supported. |
-| 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
-| 14400007 | Resource busy. |
-| 14400008 | No such device (it may have been disconnected). |
-| 14400009 | Insufficient memory. |
-| 14400012 | Transmission I/O error. |
-
-**示例：**
-
-> **说明：** 
->
-> 以下示例代码需要放入具体的方法中执行，只是调用usbSubmitTransfer接口的必要流程，实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
-
-```ts
-//usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
-//把获取到的设备对象作为参数传入usbManager.connectDevice;当usbManager.connectDevice接口成功返回之后；
-//才可以调用第三个接口usbManager.claimInterface.当usbManager.claimInterface 调用成功以后,再调用该接口。
-let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
-if (devicesList.length == 0) {
-  console.log(`device list is empty`);
-  return;
-}
-let device: usbManager.USBDevice = devicesList[0];
-usbManager.requestRight(device.name);
-let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
-//获取endpoint端点地址
-let endpoint = device.configs[0].interfaces[0]?.endpoints.find((value) => {
-  return value.direction === 0 && value.type === 2
-})
-//获取设备的第一个id
-let ret: number = usbManager.claimInterface(devicepipe, device.configs[0].interfaces[0], true);
-
-let transferParams: usbManager.UsbDataTransferParams = {
-  devPipe: devicepipe,
-  flags: usbManager.UsbTransferFlags.USB_TRANSFER_SHORT_NOT_OK,
-  endpoint: 1,
-  type: usbManager.UsbEndpointTransferType.TRANSFER_TYPE_BULK,
-  timeout: 2000,
-  length: 10, 
-  callback: () => {},
-  userData: new Uint8Array(10),
-  buffer: new Uint8Array(10),
-  isoPacketCount: 0,
-};
-try {
-  transferParams.endpoint=endpoint?.address as number;
-  transferParams.callback=(err, callBackData: usbManager.SubmitTransferCallback)=>{
-    console.info('callBackData =' +JSON.stringify(callBackData));
-  }
-  usbManager.usbSubmitTransfer(transferParams); 
-  console.info('USB transfer request submitted.');
-} catch (error) {
-  console.error('USB transfer failed:', error);
-}
-```
-
-
-## usbManager.usbCancelTransfer<sup>16+</sup>
-
-usbCancelTransfer(transfer: USBDataTransferParams): void;
-
-取消异步传输请求。
-
-1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
-2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
-4.获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
-5.调用usbManager.usbCancelTransfer接口。
-
-**系统能力：**  SystemCapability.USB.USBManager
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| transfer | [UsbDataTransferParams](#usbdatatransferparams16) | 是 | 在取消传输的接口中，只需要填充USBDevicePipe和endpoint即可。|
-
-**错误码：**
-
-以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes:Mandatory parameters are left unspecified; Incorrect parameter types. |
-| 801 | Capability not supported. |
-| 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
-| 14400008 | No such device (it may have been disconnected). |
-| 14400010 | Other USB error. Possible causes:<br>1.Unrecognized discard error code. |
-| 14400011 | The transfer is not in progress, or is already complete or cancelled.|
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| &lt;void&gt; | 无 |
-
-**示例：**
-
-> **说明：** 
->
-> 以下示例代码需要放入具体的方法中执行，只是调用usbCancelTransfer接口的必要流程，实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
-
-```ts
-//usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
-//把获取到的设备对象作为参数传入usbManager.connectDevice;当usbManager.connectDevice接口成功返回之后；
-//才可以调用第三个接口usbManager.claimInterface.当usbManager.claimInterface 调用成功以后,再调用该接口。
-let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
-if (devicesList.length == 0) {
-  console.log(`device list is empty`);
-  return;
-}
-let device: usbManager.USBDevice = devicesList[0];
-usbManager.requestRight(device.name);
-let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
-//获取endpoint端点地址
-let endpoint = device.configs[0].interfaces[0]?.endpoints.find((value) => {
-  return value.direction === 0 && value.type === 2
-})
-//获取设备的第一个id
-let ret: number = usbManager.claimInterface(devicepipe, device.configs[0].interfaces[0], true);
-let transferParams: usbManager.UsbDataTransferParams = {
-  devPipe: devicepipe,
-  flags: usbManager.UsbTransferFlags.USB_TRANSFER_SHORT_NOT_OK,
-  endpoint: 1,
-  type: usbManager.UsbEndpointTransferType.TRANSFER_TYPE_BULK,
-  timeout: 2000,
-  length: 10, 
-  callback: () => {},
-  userData: new Uint8Array(10),
-  buffer: new Uint8Array(10),
-  isoPacketCount: 0,
-};
-try {
-  transferParams.endpoint=endpoint?.address as number;
-  transferParams.callback=(err, callBackData: usbManager.SubmitTransferCallback)=>{
-    console.info('callBackData =' +JSON.stringify(callBackData));
-  }
-  usbManager.usbSubmitTransfer(transferParams);
-  usbManager.usbCancelTransfer(transferParams);
-  console.info('USB transfer request submitted.');
-} catch (error) {
-  console.error('USB transfer failed:', error);
-}
-```
-
 ## usbManager.closePipe
 
 closePipe(pipe: USBDevicePipe): number
@@ -964,7 +761,6 @@ closePipe(pipe: USBDevicePipe): number
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801      | Capability not supported.                                    |
 
 **返回值：**
 
@@ -984,268 +780,6 @@ usbManager.requestRight(devicesList[0].name);
 let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
 let ret: number = usbManager.closePipe(devicepipe);
 console.log(`closePipe = ${ret}`);
-```
-
-## usbManager.hasAccessoryRight<sup>14+</sup>
-
-hasAccessoryRight(accessory: USBAccessory): boolean
-
-检查应用程序是否有权访问USB配件。
-
-需要调用[usbManager.getAccessoryList](#usbmanagergetaccessorylist14)获取配件列表，得到[USBAccessory](#usbaccessory14)作为参数。
-
-**系统能力：**  SystemCapability.USB.USBManager
-
-**参数：**
-
-| 参数名    | 类型         | 必填 | 说明                                  |
-| --------- | ------------ | ---- | ------------------------------------- |
-| accessory | [USBAccessory](#usbaccessory14) | 是   | USB配件，需要通过[getAccessoryList](#usbmanagergetaccessorylist14)获取。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801      | Capability not supported.                                    |
-| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
-| 14400005 | Database operation exception.                                |
-| 14401001 | The target USBAccessory not matched.                         |
-
-**返回值：**
-
-| 类型    | 说明                          |
-| ------- | ----------------------------- |
-| boolean | true表示应用程序有权访问USB配件，false表示应用程序无权访问USB配件。 |
-
-**示例：**
-
-```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
-try {
-  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flag = usbManager.hasAccessoryRight(accList[0])
-  hilog.info(0, 'testTag ui', `hasAccessoryRight success, ret:${flag}`)
-} catch (error) {
-  hilog.info(0, 'testTag ui', `hasAccessoryRight error ${error.code}, message is ${error.message}`)
-}
-```
-
-## usbManager.requestAccessoryRight<sup>14+</sup>
-
-requestAccessoryRight(accessory: USBAccessory): Promise&lt;boolean&gt;
-
-为指定应用程序申请访问USB配件的访问权限。
-
-需要调用[usbManager.getAccessoryList](#usbmanagergetaccessorylist14)获取配件列表，得到[USBAccessory](#usbaccessory14)作为参数。
-
-**系统能力：**  SystemCapability.USB.USBManager
-
-**参数：**
-
-| 参数名    | 类型         | 必填 | 说明                                  |
-| --------- | ------------ | ---- | ------------------------------------- |
-| accessory | [USBAccessory](#usbaccessory14) | 是   | USB配件，需要通过[getAccessoryList](#usbmanagergetaccessorylist14)获取。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801      | Capability not supported.                                    |
-| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
-| 14400005 | Database operation exception.                                |
-| 14401001 | The target USBAccessory not matched.                         |
-
-**返回值：**
-
-| 类型             | 说明                          |
-| ---------------- | ----------------------------- |
-| Promise&lt;boolean&gt; | Promise对象，返回应用程序访问配件权限的申请结果。返回true表示权限申请成功；返回false表示权限申请失败。 |
-
-**示例：**
-
-```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
-try {
-  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flag = usbManager.requestAccessoryRight(accList[0])
-  hilog.info(0, 'testTag ui', `requestAccessoryRight success, ret:${flag}`)
-} catch (error) {
-  hilog.info(0, 'testTag ui', `requestAccessoryRight error ${error.code}, message is ${error.message}`)
-}
-```
-
-## usbManager.cancelAccessoryRight<sup>14+</sup>
-
-cancelAccessoryRight(accessory: USBAccessory): void;
-
-取消当前应用程序访问USB配件的权限。
-
-需要调用[usbManager.getAccessoryList](#usbmanagergetaccessorylist14)获取配件列表，得到[USBAccessory](#usbaccessory14)作为参数。
-
-**系统能力：**  SystemCapability.USB.USBManager
-
-**参数：**
-
-| 参数名    | 类型         | 必填 | 说明                                  |
-| --------- | ------------ | ---- | ------------------------------------- |
-| accessory | [USBAccessory](#usbaccessory14) | 是   | USB配件，需要通过[getAccessoryList](#usbmanagergetaccessorylist14)获取。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801      | Capability not supported.                                    |
-| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
-| 14400005 | Database operation exception.                                |
-| 14401001 | The target USBAccessory not matched.                         |
-
-**示例：**
-
-```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
-try {
-  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flag = usbManager.requestAccessoryRight(accList[0])
-  usbManager.cancelAccessoryRight(accList[0])
-  hilog.info(0, 'testTag ui', `cancelAccessoryRight success`)
-} catch (error) {
-  hilog.info(0, 'testTag ui', `cancelAccessoryRight error ${error.code}, message is ${error.message}`)
-}
-```
-
-## usbManager.getAccessoryList<sup>14+</sup>
-
-getAccessoryList(): Array<Readonly&lt;USBAccessory&gt;>
-
-获取当前已接入主机的USB配件列表。
-
-**系统能力：**  SystemCapability.USB.USBManager
-
-**错误码：**
-
-以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 801      | Capability not supported.                                    |
-| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
-
-**返回值：**
-
-| 类型                          | 说明                                               |
-| ----------------------------- | -------------------------------------------------- |
-| Array<Readonly&lt;USBAccessory&gt;> | 只读的USB配件列表。当前仅支持列表中包含1个USB配件。 |
-
-**示例：**
-
-```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
-try {
-  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  hilog.info(0, 'testTag ui', `getAccessoryList success, accList: ${JSON.stringify(accList)}`)
-} catch (error) {
-  hilog.info(0, 'testTag ui', `getAccessoryList error ${error.code}, message is ${error.message}`)
-}
-```
-
-## usbManager.openAccessory<sup>14+</sup>
-
-openAccessory(accessory: USBAccessory): USBAccessoryHandle;
-
-获取配件句柄并打开配件文件描述符。
-
-需要调用[usbManager.getAccessoryList](#usbmanagergetaccessorylist14)获取配件列表，得到[USBAccessory](#usbaccessory14)作为参数。
-
-**系统能力：**  SystemCapability.USB.USBManager
-
-**参数：**
-
-| 参数名    | 类型         | 必填 | 说明                                  |
-| --------- | ------------ | ---- | ------------------------------------- |
-| accessory | [USBAccessory](#usbaccessory14) | 是   | USB配件，需要通过[getAccessoryList](#usbmanagergetaccessorylist14)获取。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801      | Capability not supported.                                    |
-| 14400001 | Permission denied. Call requestAccessoryRight to get the right first. |
-| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
-| 14401001 | The target USBAccessory not matched.                         |
-| 14401002 | Failed to open the native accessory node.                    |
-| 14401003 | Cannot reopen the accessory.                                 |
-
-**返回值：**
-
-| 类型               | 说明        |
-| ------------------ | ----------- |
-| [USBAccessoryHandle](#usbaccessoryhandle14) | USB配件句柄。 |
-
-**示例：**
-
-```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
-try {
-  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flag = usbManager.requestAccessoryRight(accList[0])
-  let handle = usbManager.openAccessory(accList[0])
-  hilog.info(0, 'testTag ui', `openAccessory success`)
-} catch (error) {
-  hilog.info(0, 'testTag ui', `openAccessory error ${error.code}, message is ${error.message}`)
-}
-```
-
-## usbManager.closeAccessory<sup>14+</sup>
-
-closeAccessory(accessoryHandle: USBAccessoryHandle): void;
-
-关闭配件文件描述符。
-
-需要调用[usbManager.openAccessory](#usbmanageropenaccessory14)获取配件列表，得到[USBAccessoryHandle](#usbaccessoryhandle14)作为参数。
-
-**系统能力：**  SystemCapability.USB.USBManager
-
-**参数：**
-
-| 参数名          | 类型               | 必填 | 说明                                   |
-| --------------- | ------------------ | ---- | -------------------------------------- |
-| accessoryHandle | [USBAccessoryHandle](#usbaccessoryhandle14) | 是   | USB配件句柄。需要通过[openAccessory](#usbmanageropenaccessory14)获取。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801      | Capability not supported.                                    |
-| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
-
-**示例：**
-
-```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
-try {
-  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flag = usbManager.requestAccessoryRight(accList[0])
-  let handle = usbManager.openAccessory(accList[0])
-  usbManager.closeAccessory(handle)
-  hilog.info(0, 'testTag ui', `closeAccessory success`)
-} catch (error) {
-  hilog.info(0, 'testTag ui', `closeAccessory error ${error.code}, message is ${error.message}`)
-}
 ```
 
 ## USBEndpoint
@@ -1330,13 +864,9 @@ USB设备消息传输通道，用于确定设备。
 | busNum     | number |是 | 总线地址。 |
 | devAddress | number |是 | 设备地址。 |
 
-## USBControlParams<sup>(deprecated)</sup>
+## USBControlParams
 
 控制传输参数。
-
-**说明：**
-
-> 从 API version 9开始支持，从API version 16开始废弃。建议使用 [USBDeviceRequestParams](#usbdevicerequestparams12) 替代。
 
 **系统能力：** SystemCapability.USB.USBManager
 
@@ -1400,111 +930,3 @@ USB设备消息传输通道，用于确定设备。
 | USB_REQUEST_DIR_TO_DEVICE   | 0    | 写数据，主设备往从设备。 |
 | USB_REQUEST_DIR_FROM_DEVICE | 0x80 | 读数据，从设备往主设备。 |
 
-## USBAccessory<sup>14+</sup>
-
-USB配件信息。
-
-**系统能力：** SystemCapability.USB.USBManager
-
-| 名称         | 类型   | 必填 | 说明             |
-| ------------ | ------ | ---- | ---------------- |
-| manufacturer | string | 是   | 配件的生产厂商。 |
-| product      | string | 是   | 配件的产品类型。 |
-| description  | string | 是   | 配件的描述。     |
-| version      | string | 是   | 配件的版本。     |
-| serialNumber | string | 是   | 配件的SN号。     |
-
-## USBAccessoryHandle<sup>14+</sup>
-
-USB配件句柄。
-
-**系统能力：** SystemCapability.USB.USBManager
-
-| 名称        | 类型   | 必填 | 说明                                      |
-| ----------- | ------ | ---- | ----------------------------------------- |
-| accessoryFd | number | 是   | 配件文件描述符。合法的accessoryFd是正整数。 |
-
-## UsbDataTransferParams<sup>16+</sup>
-
-作为通用USB数据传输接口，客户端需要填充这个对象中的参数，用以发起传输请求。
-
-**系统能力：** SystemCapability.USB.USBManager
-
-| 名称         | 类型   | 必填    |说明    |
-| ---------- | ------ | ----- |----- |
-| devPipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址，需要调用connectDevice获取。 |
-| flags | [UsbTransferFlags](#usbtransferflags16) |是 | USB传输标志。 |
-| endpoint | number | 是 | 端点地址，正整数。 |
-| type | [UsbEndpointTransferType](#usbendpointtransfertype16) |是 | 传输类型。 |
-| timeout | number | 是 | 超时时间，单位为毫秒。 |
-| length | number |是 | 数据缓冲区的长度，必须是非负数（期望长度），单位为字节。 |
-| callback | AsyncCallback<[SubmitTransferCallback](#submittransfercallback16)> |是 | 传输完成时的回调信息。|
-| userData | Uint8Array | 否 | 用户上下文数据。 |
-| buffer | Uint8Array | 是 | 用于存储读或者写请求时的数据。 |
-| isoPacketCount | number | 是 | 实时传输时数据包的数量，仅用于具有实时传输端点的I/O。必须是非负数，单位为个数。 |
-
-## UsbTransferFlags<sup>16+</sup>
-
-USB传输标志。
-
-**系统能力：** SystemCapability.USB.USBManager
-
-| 名称                         | 值   | 说明   |
-| ---------------------------- | ---- | ------ |
-| USB_TRANSFER_SHORT_NOT_OK    | 0    | 将短帧报告为错误。 |
-| USB_TRANSFER_FREE_BUFFER | 1    | 自动释放传输缓冲区。 |
-| USB_TRANSFER_FREE_TRANSFER  | 2    | 完成回调后自动传输。 |
-| USB_TRANSFER_ADD_ZERO_PACKET     | 3    | 传输将增加一个额外的数据包。 |
-
-## UsbEndpointTransferType<sup>16+</sup>
-
-Usb传输类型。
-
-**系统能力：** SystemCapability.USB.USBManager
-
-| 名称                         | 值   | 说明   |
-| ---------------------------- | ---- | ------ |
-| TRANSFER_TYPE_ISOCHRONOUS | 1    | 实时传输。 |
-| TRANSFER_TYPE_BULK  | 2    | 批量传输。 |
-| TRANSFER_TYPE_INTERRUPT     | 3    | 中断传输。|
-
-## SubmitTransferCallback<sup>16+</sup>
-
-Usb异步传输回调。
-
-**系统能力：** SystemCapability.USB.USBManager
-
-| 名称         | 类型 | 说明    |
-| ---------- | ------ | ----- |
-| actualLength | number | 读写操作的实际长度值，单位为字节。 |
-| status | [UsbTransferStatus](#usbtransferstatus16) | 读写操作完成的状态。 |
-| isoPacketDescs | Array<Readonly<[UsbIsoPacketDescriptor](#usbisopacketdescriptor16)>> | 实时传输的分包信息。 |
-
-## UsbTransferStatus<sup>16+</sup>
-
-libusb实际处理完成后通过回调返回的状态码。
-
-**系统能力：** SystemCapability.USB.USBManager
-
-| 名称                         | 值   | 说明   |
-| ---------------------------- | ---- | ------ |
-| TRANSFER_COMPLETED    | 0    | 传输完成。|
-| TRANSFER_ERROR | 1    | 传输失败。 |
-| TRANSFER_TIMED_OUT  | 2    | 传输超时。 |
-| TRANSFER_CANCELLED     | 3    |传输已被取消。 |
-| TRANSFER_STALL  | 4    | 检测到暂停（批量/中断端点）。|
-| TRANSFER_NO_DEVICE     | 5    | 设备已断开。|
-| TRANSFER_OVERFLOW     | 6    | 设备发送的数据比请求的多。|
-
-
-## UsbIsoPacketDescriptor<sup>16+</sup>
-
-实时传输模式回调返回的分包信息。
-
-**系统能力：** SystemCapability.USB.USBManager
-
-| 名称         | 类型 | 说明    |
-| ---------- | ------ | ----- |
-| length | number | 读写操作的期望长度值，单位为字节。 |
-| actualLength | number| 读写操作的实际长度值，单位为字节。 |
-| status | [UsbTransferStatus](#usbtransferstatus16) | 实时传输分包的状态码。 |
