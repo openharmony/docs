@@ -33,8 +33,8 @@
 | -------- | -------- |
 | boolean [keepDims](#keepdims) | 维度是否保持不变。  | 
 | enum [ReduceMode](_n_n_rt_v10.md#reducemode)[mode](#mode) | 减小张量维度的算法，详情请参考：[ReduceMode](_n_n_rt_v10.md#reducemode)。  | 
-| boolean [reduceToEnd](#reducetoend) | 如果为true，则从axis取第一个元素并设置为i， 然后axis会被修改为[i,i+1,...,n-1,n]， 例如reduceToEnd=True，axis=[2,4]，x的维度为7，则axis会被修改为[2,3,4,5,6]  | 
-| float [coeff](#coeff) | 系数  | 
+| boolean [reduceToEnd](#reducetoend) | 如果为true，则从axis取第一个元素并设置为i， 然后axis会被修改为[i,i+1,...,n-1,n]， 例如reduceToEnd=True，axis=[2,4]，x的维度为7，则axis会被修改为[2,3,4,5,6]。  | 
+| float [coeff](#coeff) | 系数。  | 
 
 
 ## 类成员变量说明
@@ -47,7 +47,7 @@ float ReduceFusion::coeff
 ```
 **描述**
 
-系数
+系数。
 
 
 ### keepDims
@@ -77,4 +77,4 @@ boolean ReduceFusion::reduceToEnd
 ```
 **描述**
 
-如果为true，则从axis取第一个元素并设置为i， 然后axis会被修改为[i,i+1,...,n-1,n]， 例如reduceToEnd=True，axis=[2,4]，x的维度为7，则axis会被修改为[2,3,4,5,6]
+如果为true，则从axis取第一个元素并设置为i， 然后axis会被修改为[i,i+1,...,n-1,n]， 例如reduceToEnd=True，axis=[2,4]，x的维度为7，则axis会被修改为[2,3,4,5,6]。
