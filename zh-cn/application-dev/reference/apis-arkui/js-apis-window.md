@@ -2183,7 +2183,7 @@ getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
 获取当前应用窗口避让区。避让区指系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
-该接口一般适用于三种场景：1、在onWindowStageCreate方法中，获取应用启动时的初始布局避让区域时可调用该接口；2、当应用内子窗需要临时显示，对显示内容做布局避让时可调用该接口；3、创建悬浮窗、模态窗或WindowType窗口类型为系统窗口时，调用[setSystemAvoidAreaEnabled](#setsystemavoidareaenabled16)方法使能后，该接口对此类窗口亦生效。
+该接口一般适用于三种场景：1、在onWindowStageCreate方法中，获取应用启动时的初始布局避让区域时可调用该接口；2、当应用内子窗需要临时显示，对显示内容做布局避让时可调用该接口；3、创建悬浮窗、模态窗或WindowType窗口类型为系统窗口时，调用[setSystemAvoidAreaEnabled](#setsystemavoidareaenabled18)方法使能后，该接口对此类窗口亦生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2221,7 +2221,7 @@ try {
 }
 ```
 
-### setSystemAvoidAreaEnabled<sup>16+</sup>
+### setSystemAvoidAreaEnabled<sup>18+</sup>
 
 setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
 
@@ -2231,7 +2231,7 @@ setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Window.SessionManger
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2286,7 +2286,7 @@ try {
 }
 ```
 
-### isSystemAvoidAreaEnabled<sup>16+</sup>
+### isSystemAvoidAreaEnabled<sup>18+</sup>
 
 isSystemAvoidAreaEnabled(): boolean
 
@@ -2294,7 +2294,7 @@ isSystemAvoidAreaEnabled(): boolean
 
 **系统能力：** SystemCapability.Window.SessionManger
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
