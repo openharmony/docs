@@ -96,7 +96,7 @@ int32_t(* InputReporter::UnregisterHotPlugCallback) (void)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| 无。 |  | 
+| 无。 | 无。 | 
 
 **返回：**
 
