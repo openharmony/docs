@@ -343,7 +343,6 @@
     <!--DelEnd-->
   - 安全<!--arkui-security-->
     - [安全控件通用属性](arkui-ts/ts-securitycomponent-attributes.md)
-    - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)
     - [PasteButton](arkui-ts/ts-security-components-pastebutton.md)
     - [SaveButton](arkui-ts/ts-security-components-savebutton.md)
     <!--Del-->
@@ -398,6 +397,7 @@
     - [AbilityComponent](arkui-ts/ts-container-ability-component-sys.md)
     <!--DelEnd-->
     - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
+    - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)
     - [Panel](arkui-ts/ts-container-panel.md)
     - [NavRouter](arkui-ts/ts-basic-components-navrouter.md)
     - [Navigator](arkui-ts/ts-container-navigator.md)
@@ -457,9 +457,11 @@
     - [ArkUI_RotationOptions](_ark_u_i___rotation_options.md)
     - [ArkUI_ScaleOptions](_ark_u_i___scale_options.md)
     - [ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)
+    - [ArkUI_TextChangeEvent](_ark_u_i___text_change_event.md)
     - [ARKUI_TextPickerCascadeRangeContent](_a_r_k_u_i___text_picker_cascade_range_content.md)
     - [ARKUI_TextPickerRangeContent](_a_r_k_u_i___text_picker_range_content.md)
     - [ArkUI_TranslationOptions](_ark_u_i___translation_options.md)
+    - [OH_ComponentSnapshot](_ark_u_i___node_component_snapshot.md)
     - [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md)
     - [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md)
     - [OH_NativeXComponent_MouseEvent](_o_h___native_x_component___mouse_event.md)

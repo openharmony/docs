@@ -29,14 +29,14 @@ USB驱动模块接口定义中使用的自定义数据类型, 包括分发的命
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [USB_MAX_INTERFACES](_u_s_b.md#usb_max_interfaces)&nbsp;&nbsp;&nbsp;32 | USB设备最大接口数量 | 
+| [USB_MAX_INTERFACES](_u_s_b.md#usb_max_interfaces)&nbsp;&nbsp;&nbsp;32 | USB设备最大接口数量。 | 
 
 
 ### 类型定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef void(\* [UsbdRequestCallback](_u_s_b.md#usbdrequestcallback)) (uint8_t \*requestArg) | 请求回调函数 | 
+| typedef void(\* [UsbdRequestCallback](_u_s_b.md#usbdrequestcallback)) (uint8_t \*requestArg) | 请求回调函数。 | 
 
 
 ### 枚举
@@ -51,6 +51,6 @@ USB驱动模块接口定义中使用的自定义数据类型, 包括分发的命
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| static const int32_t [USB_ENDPOINT_DIR_MASK](_u_s_b.md#usb_endpoint_dir_mask) = 0x80 | 从地址中提取USB Endpoint方向的位掩码 | 
-| static const int32_t [USB_ENDPOINT_DIR_IN](_u_s_b.md#usb_endpoint_dir_in) = 0x80 | USB Endpoint从设备到主机的数据方向 | 
-| static const int32_t [USB_ENDPOINT_DIR_OUT](_u_s_b.md#usb_endpoint_dir_out) = 0 | USB Endpoint从主机到设备的数据方向 | 
+| static const int32_t [USB_ENDPOINT_DIR_MASK](_u_s_b.md#usb_endpoint_dir_mask) = 0x80 | 从地址中提取USB Endpoint方向的位掩码。 | 
+| static const int32_t [USB_ENDPOINT_DIR_IN](_u_s_b.md#usb_endpoint_dir_in) = 0x80 | USB Endpoint从设备到主机的数据方向。 | 
+| static const int32_t [USB_ENDPOINT_DIR_OUT](_u_s_b.md#usb_endpoint_dir_out) = 0 | USB Endpoint从主机到设备的数据方向。 | 

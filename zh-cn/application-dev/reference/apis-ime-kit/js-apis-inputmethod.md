@@ -829,8 +829,9 @@ onMessage(msgId: string, msgParam?: ArrayBuffer): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let inputMethodController = inputMethod.getController();
 try {
-    let messageHandler: inputmethod.MessageHandler = {
+    let messageHandler: inputMethod.MessageHandler = {
         onTerminated(): void {
             console.log('OnTerminated.');
         },
@@ -863,8 +864,9 @@ onTerminated(): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let inputMethodController = inputMethod.getController();
 try {
-    let messageHandler: inputmethod.MessageHandler = {
+    let messageHandler: inputMethod.MessageHandler = {
         onTerminated(): void {
             console.log('OnTerminated.');
         },
@@ -1975,7 +1977,9 @@ recvMessage(msgHandler?: MessageHandler): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-let messageHandler: inputmethod.MessageHandler = {
+
+let inputMethodController = inputMethod.getController();
+let messageHandler: inputMethod.MessageHandler = {
     onTerminated(): void {
         console.log('OnTerminated.');
     },

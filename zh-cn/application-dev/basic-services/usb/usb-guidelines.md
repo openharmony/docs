@@ -20,8 +20,8 @@ USB类开放能力如下，具体请查阅[API参考文档](../../reference/apis
 | hasRight(deviceName: string): boolean                         | 判断是否有权访问该设备。 |
 | requestRight(deviceName: string): Promise&lt;boolean&gt;       | 请求软件包的临时权限以访问设备。使用Promise异步回调。                        |
 | removeRight(deviceName: string): boolean | 移除软件包对设备的访问权限。|
-| connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt; | 根据`getDevices()`返回的设备信息打开USB设备。                |
-| getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;          | 获取接入主设备的USB设备列表。如果没有设备接入，那么将会返回一个空的列表。                                            |
+| connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt; | 根据`getDevices()`返回的设备信息打开USB设备。如果USB服务异常，可能返回`undefined`，注意需要对接口返回值做判空处理。                |
+| getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;          | 获取接入主设备的USB设备列表。如果没有设备接入，那么将会返回一个空的列表。开发者模式关闭时，如果没有设备接入，接口可能返回`undefined`，注意需要对接口返回值做判空处理。                                            |
 | setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number | 设置设备的配置。                                             |
 | setInterface(pipe: USBDevicePipe, iface: USBInterface): number   | 设置设备的接口。                                             |
 | claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): number | 注册通信接口。                                                   |
@@ -29,7 +29,7 @@ USB类开放能力如下，具体请查阅[API参考文档](../../reference/apis
 | closePipe(pipe: USBDevicePipe): number                         | 关闭设备消息控制通道。                                       |
 | releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number | 释放注册过的通信接口。                                                   |
 | getFileDescriptor(pipe: USBDevicePipe): number                 | 获取文件描述符。                                             |
-| getRawDescriptor(pipe: USBDevicePipe): Uint8Array              | 获取原始的USB描述符。                                        |
+| getRawDescriptor(pipe: USBDevicePipe): Uint8Array              | 获取原始的USB描述符。如果USB服务异常，可能返回`undefined`，注意需要对接口返回值做判空处理。                                        |
 | usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, timeout?: number): Promise&lt;number&gt; | 控制传输。                                                   |
 
 

@@ -2629,17 +2629,26 @@ onMessage(msgId: string, msgParam?: ArrayBuffer): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    let messageHandler: inputmethod.MessageHandler = {
-        onTerminated(): void {
+  inputMethodEngine.getInputMethodAbility()
+    .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
+      let keyboardController = kbController;
+      let inputClient = client;
+      try {
+        let messageHandler: inputMethodEngine.MessageHandler = {
+          onTerminated(): void {
             console.log('OnTerminated.');
-        },
-        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+          },
+          onMessage(msgId: string, msgParam?:ArrayBuffer): void {
             console.log('recv message.');
+          }
         }
-    }
-    inputMethodController.recvMessage(messageHandler);
+        inputClient.recvMessage(messageHandler);
+      } catch(err) {
+        console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+      }
+  });
 } catch(err) {
-  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+    console.error(`Failed to InputMethodAbility: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2663,17 +2672,26 @@ onTerminated(): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    let messageHandler: inputmethod.MessageHandler = {
-        onTerminated(): void {
+  inputMethodEngine.getInputMethodAbility()
+    .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
+      let keyboardController = kbController;
+      let inputClient = client;
+      try {
+        let messageHandler: inputMethodEngine.MessageHandler = {
+          onTerminated(): void {
             console.log('OnTerminated.');
-        },
-        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+          },
+          onMessage(msgId: string, msgParam?:ArrayBuffer): void {
             console.log('recv message.');
+          }
         }
-    }
-    inputMethodController.recvMessage(messageHandler);
+        inputClient.recvMessage(messageHandler);
+      } catch(err) {
+        console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+      }
+  });
 } catch(err) {
-  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+    console.error(`Failed to InputMethodAbility: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -4479,16 +4497,30 @@ recvMessage(msgHandler?: MessageHandler): void;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-let messageHandler: inputmethod.MessageHandler = {
-    onTerminated(): void {
-        console.log('OnTerminated.');
-    },
-    onMessage(msgId: string, msgParam?:ArrayBuffer): void {
-        console.log('recv message.');
-    }
+
+try {
+  inputMethodEngine.getInputMethodAbility()
+    .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
+      let keyboardController = kbController;
+      let inputClient = client;
+      try {
+        let messageHandler: inputMethodEngine.MessageHandler = {
+          onTerminated(): void {
+            console.log('OnTerminated.');
+          },
+          onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+          }
+        }
+        inputClient.recvMessage(messageHandler);
+        inputClient.recvMessage();
+      } catch(err) {
+        console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+      }
+  });
+} catch(err) {
+    console.error(`Failed to InputMethodAbility: ${JSON.stringify(err)}`);
 }
-inputMethodController.recvMessage(messageHandler);
-inputMethodController.recvMessage();
 ```
 
 ### EditorAttribute

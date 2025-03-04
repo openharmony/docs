@@ -10,11 +10,16 @@
 
 Repeat基于数组类型数据来进行循环渲染，一般与容器组件配合使用。Repeat组件包含两种模式：**non-virtualScroll模式**和**virtualScroll模式**。
 
-- **non-virtualScroll模式**：Repeat在初始化页面时加载列表中的所有子组件。
-相较于[ForEach](arkts-rendering-control-foreach.md)组件，non-virtualScroll模式在以下两个维度实现了优化升级：首先，针对特定数组更新场景的渲染性能进行了优化；其次，将组件生成函数中的索引管理职责转移至框架层面。
-<br/>non-virtualScroll模式适合**渲染短数据列表、组件全部加载**的场景下使用。详细描述见[non-virtualScroll模式](#non-virtualscroll模式)。
-- **virtualScroll模式（开启[virtualScroll](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscroll)开关）**：Repeat根据容器组件的**有效加载范围（可视区域+预加载区域）** 加载子组件。当容器滑动/数组改变时，Repeat会根据父容器组件传递的参数重新计算有效加载范围，实时管理列表节点的创建与销毁。
-<br/>virtualScroll模式适合**渲染需要懒加载的长数据列表、通过组件复用优化性能表现**的场景下使用。详细描述见[virtualScroll模式](#virtualscroll模式)。
+- **non-virtualScroll模式**：Repeat在初始化页面时加载列表中的所有子组件，适合**短数据列表/组件全部加载**的场景。详细描述见[non-virtualScroll模式](#non-virtualscroll模式)。
+- **virtualScroll模式**（开启[virtualScroll](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscroll)开关）：Repeat根据容器组件的**有效加载范围（可视区域+预加载区域）** 加载子组件。当容器滑动/数组改变时，Repeat会根据父容器组件传递的参数重新计算有效加载范围，实时管理列表节点的创建与销毁。
+<br/>该模式适合**需要懒加载的长数据列表/通过组件复用优化性能表现**的场景。详细描述见[virtualScroll模式](#virtualscroll模式)。
+
+> **说明：**
+> 
+> Repeat与ForEach、LazyForEach的区别：
+> 
+> - 相较于[ForEach](arkts-rendering-control-foreach.md)组件，non-virtualScroll模式在以下两个维度实现了优化升级：首先，针对特定数组更新场景的渲染性能进行了优化；其次，将子组件的内容/索引管理职责转移至框架层面。
+> - 相较于[LazyForEach](arkts-rendering-control-lazyforeach.md)组件，virtualScroll模式直接监听状态变量的变化，而LazyForEach需要开发者实现[IDataSource](../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md#idatasource10)接口，手动管理子组件内容/索引的修改。除此之外，Repeat还增强了节点复用能力，提高了长列表滑动和数据更新的渲染性能。Repeat增加了模板（template）的能力，在同一个数组中，根据开发者自定义的模板类型（template type）渲染不同的子组件。
 
 下面的示例代码使用Repeat组件的virtualScroll模式进行循环渲染。
 
