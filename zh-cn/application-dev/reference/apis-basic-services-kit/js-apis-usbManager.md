@@ -16,7 +16,7 @@ import { usbManager } from '@kit.BasicServicesKit';
 
 getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
-获取接入主设备的USB设备列表。如果没有设备接入，那么将会返回一个空的列表。
+获取接入主设备的USB设备列表。如果没有设备接入，那么将会返回一个空的列表。开发者模式关闭时，如果没有设备接入，接口可能返回`undefined`，注意需要对接口返回值做判空处理。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -96,7 +96,7 @@ devicesList 返回的数据结构,此处提供一个简单的示例，如下
 
 connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
-根据getDevices()返回的设备信息打开USB设备。
+根据getDevices()返回的设备信息打开USB设备。如果USB服务异常，可能返回`undefined`，注意需要对接口返回值做判空处理。
 
 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及device，再调用[usbManager.requestRight](#usbmanagerrequestright)请求使用该设备的权限。
 
@@ -167,7 +167,10 @@ hasRight(deviceName: string): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | true表示有访问设备的权限，false表示没有访问设备的权限。 |
+| boolean | true表示有访问设备的权限，false表示没有访问设备的权限。调用失败返回其他错误码如下：
+            88080385  接口未初始化。
+            88080492  写入服务数据包过程发生错误。
+            88080493  读取服务数据包过程发送错误。 |
 
 **示例：**
 
@@ -210,7 +213,14 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise对象，返回临时权限的申请结果。返回true表示临时权限申请成功；返回false则表示临时权限申请失败。 |
+| Promise&lt;boolean&gt; | Promise对象，返回临时权限的申请结果。返回true表示临时权限申请成功；返回false则表示临时权限申请失败。调用失败返回其他错误码如下：
+                           88080385  接口未初始化。
+                           88080392  写入接口数据包过程发生错误。
+                           88080393  读取接口数据包过程发送错误。
+                           88080492  写入服务数据包过程发生错误。
+                           88080493  读取服务数据包过程发生错误。
+                           88080497  服务内部逻辑执行发生错误。 |
+
 
 **示例：**
 
@@ -253,7 +263,14 @@ removeRight(deviceName: string): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 返回权限移除结果。返回true表示权限移除成功；返回false则表示权限移除失败。 |
+| boolean | 返回权限移除结果。返回true表示权限移除成功；返回false则表示权限移除失败。调用失败返回其他错误码如下：
+            88080382 接口操作过程中遇到无效值或参数。
+            88080385  接口未初始化。
+            88080392  写入接口数据包过程发生错误。
+            88080393  读取接口数据包过程发送错误。
+            88080492  写入服务数据包过程发生错误。
+            88080493  读取服务数据包过程发生错误。
+            88080497  服务内部逻辑执行发生错误。 |
 
 **示例：**
 
@@ -302,20 +319,15 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 注册通信接口成功返回0；注册通信接口失败返回其他错误码。|
-
-返回值错误码如下：
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 63       | The data volume exceeds the expected maxinum. |
-| 88080385 | Failed to initialize the interface. |
-| 88080482 | The value is invalid for the service. |
-| 88080484 | Permisson denied. |
-| 88080492 | Failed to write service parcel. |
-| 88080493 | Failed to read service parcel. |
-| 88080497 | The remote object does not exist. |
-| -1       | Failed to invoke the OS underlying function. |
+| number | 注册通信接口成功返回0；注册通信接口失败返回其他错误码如下：
+           63        数据量超过预期的最大值。
+           88080385  接口未初始化。
+           88080482  服务过程中遇到无效值或参数。
+           88080484  没有权限。
+           88080492  写入服务数据包过程发生错误。
+           88080493  读取服务数据包过程发生错误。
+           88080497  服务内部逻辑执行发生错误。
+           -1        调用底层接口失败。 |
 
 **示例：**
 
@@ -363,20 +375,16 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 释放接口成功返回0；释放接口失败返回其他错误码。 |
-
-返回值错误码如下：
-
-| 错误码ID | 错误信息                                      |
-| 63       | The data volume exceeds the expected maxinum. |
-| 88080381 | Interface invalid operation. |
-| 88080385 | Failed to initialize the interface. |
-| 88080482 | The value is invalid for the service. |
-| 88080484 | Permisson denied. |
-| 88080492 | Failed to write service parcel. |
-| 88080493 | Failed to read service parcel. |
-| 88080497 | The remote object does not exist. |
-| -1       | Failed to invoke the OS underlying function. |
+| number | 释放接口成功返回0；释放接口失败返回其他错误码如下：
+           63        数据量超过预期的最大值。
+           88080381  无效的接口操作。
+           88080385  接口未初始化。
+           88080482  服务过程中遇到无效值或参数。
+           88080484  没有权限。
+           88080492  写入服务数据包过程发生错误。
+           88080493  读取服务数据包过程发生错误。
+           88080497  服务内部逻辑执行发生错误。
+           -1        调用底层接口失败。  |
 
 **示例：**
 
@@ -427,21 +435,16 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 设置设备配置成功返回0；设置设备配置失败返回其他错误码。 |
-
-返回值错误码如下：
-
-| 错误码ID | 错误信息                                      |
-| 63       | The data volume exceeds the expected maxinum. |
-| 88080385 | Failed to initialize the interface. |
-| 88080482 | The value is invalid for the service. |
-| 88080484 | Permisson denied. |
-| 88080492 | Failed to write service parcel. |
-| 88080493 | Failed to read service parcel. |
-| 88080497 | The remote object does not exist. |
-| -1       | Failed to invoke the OS underlying function. |
-| -17      | I/O error. |
-
+| number | 设置设备配置成功返回0；设置设备配置失败返回其他错误码如下： 
+           63        数据量超过预期的最大值。
+           88080385  接口未初始化。
+           88080482  服务过程中遇到无效值或参数。
+           88080484  没有权限。
+           88080492  写入服务数据包过程发生错误。
+           88080493  读取服务数据包过程发生错误。
+           88080497  服务内部逻辑执行发生错误。
+           -1        调用底层接口失败。 
+           -17       I/O失败。  |
 
 **示例：**
 
@@ -489,19 +492,15 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 设置设备接口成功返回0；设置设备接口失败返回其他错误码。 |
-
-返回值错误码如下：
-
-| 错误码ID | 错误信息                                      |
-| 63       | The data volume exceeds the expected maxinum. |
-| 88080385 | Failed to initialize the interface. |
-| 88080482 | The value is invalid for the service. |
-| 88080484 | Permisson denied. |
-| 88080492 | Failed to write service parcel. |
-| 88080493 | Failed to read service parcel. |
-| 88080497 | The remote object does not exist. |
-| -1       | Failed to invoke the OS underlying function. |
+| number | 设置设备接口成功返回0；设置设备接口失败返回其他错误码如下：
+           63        数据量超过预期的最大值。
+           88080385  接口未初始化。
+           88080482  服务过程中遇到无效值或参数。
+           88080484  没有权限。
+           88080492  写入服务数据包过程发生错误。
+           88080493  读取服务数据包过程发生错误。
+           88080497  服务内部逻辑执行发生错误。
+           -1        调用底层接口失败。 | |
 
 **示例：**
 
@@ -524,7 +523,7 @@ console.log(`setInterface = ${ret}`);
 
 getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 
-获取原始的USB描述符。
+获取原始的USB描述符。如果USB服务异常，可能返回`undefined`，注意需要对接口返回值做判空处理。
 
 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
@@ -550,11 +549,6 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 | 类型 | 说明 |
 | -------- | -------- |
 | Uint8Array | 返回获取的原始数据；失败返回undefined。 |
-
-返回值错误码如下：
-
-| 错误码ID | 错误信息                                      |
-| undefined| The interface undefined. |
 
 **示例：**
 
@@ -598,19 +592,15 @@ getFileDescriptor(pipe: USBDevicePipe): number
 
 | 类型     | 说明                   |
 | ------ | -------------------- |
-| number | 返回设备对应的文件描述符；失败返回-1。 |
-返回值错误码如下：
-
-| 错误码ID | 错误信息                                      |
-| 63       | The data volume exceeds the expected maxinum. |
-| 88080385 | Failed to initialize the interface. |
-| 88080392 | Failed to write interface parcel. |
-| 88080482 | The value is invalid for the service. |
-| 88080484 | Permisson denied. |
-| 88080492 | Failed to write service parcel. |
-| 88080493 | Failed to read service parcel. |
-| 88080497 | The remote object does not exist. |
-| -1       | Failed to invoke the OS underlying function. |
+| number | 返回设备对应的文件描述符；失败返回其他错误码如下：
+           63        数据量超过预期的最大值。
+           88080385  接口未初始化。
+           88080482  服务过程中遇到无效值或参数。
+           88080484  没有权限。
+           88080492  写入服务数据包过程发生错误。
+           88080493  读取服务数据包过程发生错误。
+           88080497  服务内部逻辑执行发生错误。
+           -1        调用底层接口失败。  |
 
 **示例：**
 
@@ -659,18 +649,14 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回-1。 |
-
-返回值错误码如下：
-
-| 错误码ID | 错误信息                                      |
-| 88080385 | Failed to initialize the interface. |
-| 88080482 | The value is invalid for the service. |
-| 88080484 | Permisson denied. |
-| 88080492 | Failed to write service parcel. |
-| 88080493 | Failed to read service parcel. |
-| 88080497 | The remote object does not exist. |
-| -1       | Failed to invoke the OS underlying function. |
+| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回其他错误码如下：
+                          88080385  接口未初始化。
+                          88080482  服务过程中遇到无效值或参数。
+                          88080484  没有权限。
+                          88080492  写入服务数据包过程发生错误。
+                          88080493  读取服务数据包过程发生错误。
+                          88080497  服务内部逻辑执行发生错误。
+                          -1        调用底层接口失败。 |
 
 **示例：**
 
@@ -736,18 +722,14 @@ usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, ti
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回-1。 |
-
-返回值错误码如下：
-
-| 错误码ID | 错误信息                                      |
-| 88080385 | Failed to initialize the interface. |
-| 88080482 | The value is invalid for the service. |
-| 88080484 | Permisson denied. |
-| 88080492 | Failed to write service parcel. |
-| 88080493 | Failed to read service parcel. |
-| 88080497 | The remote object does not exist. |
-| -1       | Failed to invoke the OS underlying function. |
+| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回其他错误码如下：
+                          88080385  接口未初始化。
+                          88080482  服务过程中遇到无效值或参数。
+                          88080484  没有权限。
+                          88080492  写入服务数据包过程发生错误。
+                          88080493  读取服务数据包过程发生错误。
+                          88080497  服务内部逻辑执行发生错误。
+                          -1        调用底层接口失败。 |
 
 **示例：**
 
@@ -823,21 +805,17 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回-1。 |
-
-返回值错误码如下：
-
-| 错误码ID | 错误信息                                      |
-| 63       | The data volume exceeds the expected maxinum. |
-| 88080385 | Failed to initialize the interface. |
-| 88080482 | The value is invalid for the service. |
-| 88080484 | Permisson denied. |
-| 88080492 | Failed to write service parcel. |
-| 88080493 | Failed to read service parcel. |
-| 88080497 | The remote object does not exist. |
-| -1       | Failed to invoke the OS underlying function. |
-| -3       | Invalid parameter. |
-| -202     | The device module has no device. |
+| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回其他错误码如下：
+                          63        数据量超过预期的最大值。
+                          88080385  接口未初始化。
+                          88080482  服务过程中遇到无效值或参数。
+                          88080484  没有权限。
+                          88080492  写入服务数据包过程发生错误。
+                          88080493  读取服务数据包过程发生错误。
+                          88080497  服务内部逻辑执行发生错误。
+                          -1        调用底层接口失败。
+                          -3        参数无效
+                          -202      设备未找到 |
 
 **示例：**
 
@@ -1070,23 +1048,18 @@ closePipe(pipe: USBDevicePipe): number
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported.                                    |
 
-
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 关闭设备消息控制通道成功返回0；关闭设备消息控制通道失败返回其他错误码。 |
-
-返回值错误码如下：
-
-| 错误码ID | 错误信息                                      |
-| 63       | The data volume exceeds the expected maxinum. |
-| 88080393 | Failed to read interface parcel. |
-| 88080482 | The value is invalid for the service. |
-| 88080484 | Permisson denied. |
-| 88080493 | Failed to read service parcel. |
-| 88080497 | The remote object does not exist. |
-| -1       | Failed to invoke the OS underlying function. |
+| number | 关闭设备消息控制通道成功返回0；关闭设备消息控制通道失败返回其他错误码如下：
+           63        数据量超过预期的最大值。
+           88080393  读取接口数据包过程发生错误。
+           88080482  服务过程中遇到无效值或参数。
+           88080484  没有权限。
+           88080493  读取服务数据包过程发生错误。
+           88080497  服务内部逻辑执行发生错误。
+           -1        调用底层接口失败。 |
 
 **示例：**
 
@@ -1136,7 +1109,6 @@ hasAccessoryRight(accessory: USBAccessory): boolean
 | ------- | ----------------------------- |
 | boolean | true表示应用程序有权访问USB配件，false表示应用程序无权访问USB配件。 |
 
-
 **示例：**
 
 ```ts
@@ -1182,7 +1154,7 @@ requestAccessoryRight(accessory: USBAccessory): Promise&lt;boolean&gt;
 
 | 类型             | 说明                          |
 | ---------------- | ----------------------------- |
-| Promise&lt;boolean&gt; | Promise对象，返回应用程序访问配件权限的申请结果。返回true表示权限申请成功；返回false表示权限申请失败。 |                               |
+| Promise&lt;boolean&gt; | Promise对象，返回应用程序访问配件权限的申请结果。返回true表示权限申请成功；返回false表示权限申请失败。 |
 
 **示例：**
 
@@ -1296,7 +1268,6 @@ openAccessory(accessory: USBAccessory): USBAccessoryHandle;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 22       | Invalid value. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported.                                    |
 | 14400001 | Permission denied. Call requestAccessoryRight to get the right first. |
