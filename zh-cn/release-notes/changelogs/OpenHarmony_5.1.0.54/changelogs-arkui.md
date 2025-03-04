@@ -259,3 +259,39 @@ frameNode 生命周期。
 **适配指导**
 
 默认行为变更无需适配。
+
+## cl.arkui.4 禁用键盘Ctrl按键和触控板轴事件触发缩放手势变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规格变化。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：键盘Ctrl按键和触控板双指水平滑动或者垂直滑动时，可以触发缩放手势。
+
+变更前：键盘Ctrl按键和触控板双指水平滑动或者垂直滑动时，不可以触发缩放手势。
+
+**起始API Level**
+
+接口起始版本为API version 7。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.54开始。
+
+**变更的接口/组件**
+
+ArkTS：PinchGestureInterface、PinchGestureHandler
+
+C API：createPinchGesture
+
+**适配指导**
+
+默认UX变更无需适配。
