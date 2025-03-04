@@ -20,17 +20,17 @@
 | unsigned int [imageWidth](#imagewidth) | 图像宽度  | 
 | unsigned int [imageHeight](#imageheight) | 图像高度  | 
 | unsigned int [dataPrecision](#dataprecision) | 像素位宽  | 
-| unsigned int [numComponents](#numcomponents) | jpeg图像中颜色分量的数量。  | 
+| unsigned int [numComponents](#numcomponents) | jpeg图像中颜色分量的数量  | 
 | unsigned int [restartInterval](#restartinterval) | 在一次扫描中作为独立序列处理的MCU的个数  | 
 | boolean [arithCode](#arithcode) | Huffman编码为false，arithmetic编码为true  | 
-| boolean [progressiveMode](#progressivemode) | 是否SOF指定渐进模式。  | 
+| boolean [progressiveMode](#progressivemode) | 是否SOF指定渐进模式  | 
 | struct [CodecJpegCompInfo](_codec_jpeg_comp_info_v20.md)[] [compInfo](#compinfo) | Jpeg压缩信息  | 
 | struct [CodecJpegHuffTable](_codec_jpeg_huff_table_v20.md)[] [dcHuffTbl](#dchufftbl) | Dc huffman表信息  | 
 | struct [CodecJpegHuffTable](_codec_jpeg_huff_table_v20.md)[] [acHuffTbl](#achufftbl) | Ac huffman表信息  | 
 | struct [CodecJpegQuantTable](_codec_jpeg_quant_table_v20.md)[] [quantTbl](#quanttbl) | Quant表信息  | 
-| struct [CodecImageRegion](_codec_image_region_v20.md)[region](#region) | 图像区域信息。  | 
+| struct [CodecImageRegion](_codec_image_region_v20.md)[region](#region) | 图像区域信息  | 
 | unsigned int [sampleSize](#samplesize) | 图像样本大小  | 
-| unsigned int [compressPos](#compresspos) | Jpeg压缩数据的偏移量。  | 
+| unsigned int [compressPos](#compresspos) | Jpeg压缩数据的偏移量  | 
 
 
 ## 类成员变量说明
