@@ -9865,7 +9865,7 @@ struct WebComponent {
 }
 ```
 
-### saveCookieSync<sup>16+</sup>
+### saveCookieSync<sup>15+</sup>
 
 static saveCookieSync(): void
 
