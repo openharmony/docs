@@ -15,7 +15,7 @@
 
 此变更不涉及应用适配。
 
-**变更前**
+变更前:
 
 ```ts
 // 使用Array创建Buffer对象时，Array数据中包含负数以及大于255的数值时，返回的Buffer对象中对应位置的数值会错误地置为0。
@@ -23,7 +23,7 @@ let bufObj = buffer.from([1, 2, 3, 4, -1, -2, 5, 265]);
 console.info(JSON.stringify(bufObj)); // {"type":"Buffer","data":[1,2,3,4,0,0,5,0]}
 
 ```
-**变更后**
+变更后:
 
 ```ts
 // 使用Array创建Buffer对象时，Array数据中包含负数以及大于255的数值时，返回的Buffer对象中对应位置的数值按照(value & 255)的规则进行取值低八位，使其严格适配0-255的数值区间。
