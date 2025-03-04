@@ -287,7 +287,7 @@ navBarPosition(value: NavBarPosition)
 
 mode(value: NavigationMode)
 
-设置导航栏的显示模式。支持Stack、Split与Auto模式。
+设置导航栏的显示模式。支持单页面模式、分栏模式和自适应模式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
