@@ -379,27 +379,33 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 **示例：**
 
 ```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let windowClass: window.Window | undefined = undefined;
-let config: window.Configuration = {
-  name: "test",
-  windowType: window.WindowType.TYPE_DIALOG,
-  ctx: this.context
-};
-try {
-  window.createWindow(config, (err: BusinessError, data) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
-      return;
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    let windowClass: window.Window | undefined = undefined;
+    let config: window.Configuration = {
+      name: "test",
+      windowType: window.WindowType.TYPE_DIALOG,
+      ctx: this.context // context对象也可在组件中通过getContext()方法获取
+    };
+    try {
+      window.createWindow(config, (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        windowClass = data;
+        console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
+        windowClass.resize(500, 1000);
+      });
+    } catch (exception) {
+      console.error(`Failed to create the window. Cause code: ${exception.code}, message: ${exception.message}`);
     }
-    windowClass = data;
-    console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
-    windowClass.resize(500, 1000);
-  });
-} catch (exception) {
-  console.error(`Failed to create the window. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
 }
 ```
 
@@ -446,24 +452,28 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 **示例：**
 
 ```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let windowClass: window.Window | undefined = undefined;
-let config: window.Configuration = {
-  name: "test",
-  windowType: window.WindowType.TYPE_DIALOG,
-  ctx: this.context
-};
-try {
-  let promise = window.createWindow(config);
-  promise.then((data) => {
-    windowClass = data;
-    console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to create the Window. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to create the window. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    let config: window.Configuration = {
+      name: "test",
+      windowType: window.WindowType.TYPE_DIALOG,
+      ctx: this.context // context对象也可以在组件中通过getContext()方法获取
+    };
+    try {
+      window.createWindow(config).then((value:window.Window) => {
+        console.info('Succeeded in creating the window. Data: ' + JSON.stringify(value));
+        value.resize(500, 1000);
+      }).catch((err:BusinessError)=> {
+        console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to create the window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
