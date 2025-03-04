@@ -155,8 +155,7 @@ AtomicServiceSearch中“功能区”的初始化参数。
 | 名称             | 类型         | 必填 | 说明                               |
 | ---------------- | ---------------- | ---- | ---------------------------------- |
 | inputFilterValue | [ResourceStr](ts-types.md#resourcestr) | 是 | 正则表达式。 |
-| error | Callback<string> | 否 | 正则匹配失败时，返回被过滤的内容。默认值为`undefined`。 |
-
+| error | Callback&lt;string&gt; | 否 | 正则匹配失败时，返回被过滤的内容。默认值为`undefined`。 |
 
 ## SearchButtonParams
 
