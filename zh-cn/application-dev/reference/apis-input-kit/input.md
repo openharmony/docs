@@ -191,8 +191,8 @@
 | [Input_Result](#input_result) [OH_Input_GetAllSystemHotkeys](#oh_input_getallsystemhotkeys) ([Input_Hotkey](#input_hotkey) \*\*hotkey, int32_t \*count) | 获取设置的所有快捷键。  | 
 | void [OH_Input_SetRepeat](#oh_input_setrepeat) ([Input_Hotkey](#input_hotkey) \*hotkey, bool isRepeat) | 设置是否上报重复key事件。  | 
 | [Input_Result](#input_result) [OH_Input_GetRepeat](#oh_input_getrepeat) (const [Input_Hotkey](#input_hotkey) \*hotkey, bool \*isRepeat) | 获取是否上报重复key事件。  | 
-| [Input_Result](#input_result) [OH_Input_AddHotkeyMonitor](#oh_input_addhotkeymonitor) (const [Input_Hotkey](#input_hotkey) \*hotkey, [Input_HotkeyCallback](#input_hotkeycallback) callback) | 订阅快捷键事件。  | 
-| [Input_Result](#input_result) [OH_Input_RemoveHotkeyMonitor](#oh_input_removehotkeymonitor) (const [Input_Hotkey](#input_hotkey) \*hotkey, [Input_HotkeyCallback](#input_hotkeycallback) callback) | 取消订阅快捷键。此接口在智能穿戴、轻量级智能穿戴设备不生效。  | 
+| [Input_Result](#input_result) [OH_Input_AddHotkeyMonitor](#oh_input_addhotkeymonitor) (const [Input_Hotkey](#input_hotkey) \*hotkey, [Input_HotkeyCallback](#input_hotkeycallback) callback) | 订阅快捷键事件。此接口在智能穿戴、轻量级智能穿戴设备不生效。  | 
+| [Input_Result](#input_result) [OH_Input_RemoveHotkeyMonitor](#oh_input_removehotkeymonitor) (const [Input_Hotkey](#input_hotkey) \*hotkey, [Input_HotkeyCallback](#input_hotkeycallback) callback) | 取消订阅快捷键。  | 
 | [Input_Result](#input_result) [OH_Input_GetDeviceIds](#oh_input_getdeviceids) (int32_t \*deviceIds, int32_t inSize, int32_t \*outSize) | 获取所有输入设备的ID列表。  | 
 | [Input_Result](#input_result) [OH_Input_GetDevice](#oh_input_getdevice) (int32_t deviceId, [Input_DeviceInfo](#input_deviceinfo) \*\*deviceInfo) | 获取输入设备信息。  | 
 | [Input_DeviceInfo](#input_deviceinfo) \* [OH_Input_CreateDeviceInfo](#oh_input_createdeviceinfo) (void) | 创建输入设备信息的对象。  | 
@@ -1026,7 +1026,7 @@ Input_Result OH_Input_AddHotkeyMonitor (const Input_Hotkey * hotkey, Input_Hotke
 ```
 **描述**
 
-订阅快捷键事件。
+订阅快捷键事件。此接口在智能穿戴、轻量级智能穿戴设备不生效。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -1051,6 +1051,7 @@ INPUT_OCCUPIED_BY_SYSTEM 该快捷键已被系统占用，可以通过接口[OH_
 
 INPUT_OCCUPIED_BY_OTHER 已被抢占订阅。
 
+INPUT_DEVICE_NOT_SUPPORTED 表示功能不受支持。
 
 ### OH_Input_AddInputEventInterceptor()
 
@@ -2948,7 +2949,7 @@ Input_Result OH_Input_RemoveHotkeyMonitor (const Input_Hotkey * hotkey, Input_Ho
 ```
 **描述**
 
-取消订阅快捷键。此接口在智能穿戴、轻量级智能穿戴设备不生效。
+取消订阅快捷键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2965,7 +2966,7 @@ Input_Result OH_Input_RemoveHotkeyMonitor (const Input_Hotkey * hotkey, Input_Ho
 
 OH_Input_RemoveHotkeyMonitor 函数错误码。 INPUT_SUCCESS 表示取消订阅组合按键成功。
 
-INPUT_PARAMETER_ERROR 表示参数检查失败。 INPUT_DEVICE_NOT_SUPPORTED 表示功能不受支持。
+INPUT_PARAMETER_ERROR 表示参数检查失败。
 
 
 ### OH_Input_RemoveInputEventInterceptor()
