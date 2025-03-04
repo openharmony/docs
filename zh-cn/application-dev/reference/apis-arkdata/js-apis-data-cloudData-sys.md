@@ -96,8 +96,8 @@ interface ExtraData {
 
 | 名称      | 值   | 说明              |
 | -------- |-----|-----------------|
-| RUNNING<sup>16+</sup> | 0  | 表示端云同步任务状态处于运行中。  |
-| FINISHED<sup>16+</sup> | 1   | 表示端云同步任务状态处于已完成。 |
+| RUNNING<sup>18+</sup> | 0  | 表示端云同步任务状态处于运行中。  |
+| FINISHED<sup>18+</sup> | 1   | 表示端云同步任务状态处于已完成。 |
 
 ## SyncInfo<sup>12+</sup>
 
