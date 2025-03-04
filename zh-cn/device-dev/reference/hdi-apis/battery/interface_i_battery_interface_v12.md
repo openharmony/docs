@@ -35,9 +35,9 @@
 | [GetBatteryInfo](#getbatteryinfo) ([out] struct [BatteryInfo](_battery_info_v12.md) info) | 获取电池的全部信息。 | 
 | [SetChargingLimit](#setcharginglimit) ([in] struct [ChargingLimit](_charging_limit_v12.md)[] chargingLimit) | 设置电池充电电流或电压限制。 | 
 | [GetChargeType](#getchargetype) ([out] enum [ChargeType](battery_v12.md#chargetype) type) | 获取插入的充电器类型。 | 
-| [SetBatteryConfig](#setbatteryconfig) ([in] String sceneName, [in] String value) | 根据场景名称设置电池配置 | 
+| [SetBatteryConfig](#setbatteryconfig) ([in] String sceneName, [in] String value) | 根据场景名称设置电池配置。 | 
 | [GetBatteryConfig](#getbatteryconfig) ([in] String sceneName, [out] String value) | 根据场景名称获取电池配置 。 | 
-| [IsBatteryConfigSupported](#isbatteryconfigsupported) ([in] String sceneName, [out] boolean value) | 通过场景名称检查电池配置是否启用 | 
+| [IsBatteryConfigSupported](#isbatteryconfigsupported) ([in] String sceneName, [out] boolean value) | 通过场景名称检查电池配置是否启用。 | 
 
 
 ## 成员函数说明
@@ -76,7 +76,7 @@ IBatteryInterface::GetBatteryConfig ([in] String sceneName, [out] String value )
 
 **描述**
 
-根据场景名称获取电池配置 。
+根据场景名称获取电池配置。
 
 **起始版本：** 4.1
 
@@ -139,7 +139,7 @@ IBatteryInterface::GetCapacity ([out] int capacity)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| capacity | 输出参数，表示电量的百分比值 | 
+| capacity | 输出参数，表示电量的百分比值。 | 
 
 **返回：**
 
@@ -468,7 +468,7 @@ IBatteryInterface::IsBatteryConfigSupported ([in] String sceneName, [out] boolea
 
 **描述**
 
-通过场景名称检查电池配置是否启用
+通过场景名称检查电池配置是否启用。
 
 **起始版本：** 4.1
 
@@ -519,7 +519,7 @@ IBatteryInterface::SetBatteryConfig ([in] String sceneName, [in] String value )
 
 **描述**
 
-根据场景名称设置电池配置
+根据场景名称设置电池配置。
 
 **起始版本：** 4.1
 
