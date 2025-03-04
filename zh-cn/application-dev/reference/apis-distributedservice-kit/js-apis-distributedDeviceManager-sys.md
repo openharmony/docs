@@ -33,8 +33,8 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 | 名称         | 值  | 说明              |
 | ----------- | ---- | --------------- |
-| TEMP_STOP_HEARTBEAT      | 100    | 临时停止心跳广播，超时后自动恢复             |
-| START_HEARTBEAT          | 101    | 开始心跳广播                               |
+| TEMP_STOP_HEARTBEAT      | 100    | 临时停止心跳广播，超时后自动恢复。             |
+| START_HEARTBEAT          | 101    | 开始心跳广播。                               |
 
 ## DeviceManager
 
@@ -208,7 +208,7 @@ setHeartbeatPolicy(policy: StrategyForHeartbeat, delayTime: number): void;
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  | policy        | StrategyForHeartbeat          | 是    | 心跳广播策略。       |
+  | policy        |  &nbsp;[StrategyForHeartbeat](#strategyforheartbeat15)&nbsp;         | 是    | 心跳广播策略。       |
   | delayTime     | number          | 是    | 临时关闭心跳广播的时长。            |
 
 **错误码：**
