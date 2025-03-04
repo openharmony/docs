@@ -43,7 +43,7 @@ dialCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -94,7 +94,7 @@ dialCall\(phoneNumber: string, options: DialCallOptions, callback: AsyncCallback
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -140,7 +140,7 @@ dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise\<void\>
 | 参数名      |                 类型                | 必填 |                说明                    |
 | ----------- | ----------------------------------- | ---- | -------------------------------------- |
 | phoneNumber | string                              | 是   | 电话号码。                             |
-| options     | [DialCallOptions](#dialcalloptions9)| 否   | 通话参数，携带呼叫的其他配置信息。<br/>不填该参数则默认使用如下配置，参考[DialCallOptions](#dialcalloptions9)。<br/>- 帐户id：卡槽1。 <br/>- 音视频类型：语音通话。 <br/>- 拨号场景：普通呼叫。 <br/>- 拨号类型：运营商通话。  |
+| options     | [DialCallOptions](#dialcalloptions9)| 否   | 通话参数，携带呼叫的其他配置信息。<br/>不填该参数则默认使用如下配置，参考[DialCallOptions](#dialcalloptions9)。<br/>- 帐户Id：卡槽1。 <br/>- 音视频类型：语音通话。 <br/>- 拨号场景：普通呼叫。 <br/>- 拨号类型：运营商通话。  |
 
 **返回值：**
 
@@ -156,7 +156,7 @@ dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -209,7 +209,7 @@ muteRinger\(callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -289,7 +289,7 @@ answerCall\(callId: number, callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明                                            |
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
-| callId   | number                    | 是   | 呼叫id。可以通过订阅callDetailsChange事件获得。 |
+| callId   | number                    | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回接听电话的结果。            |
 
 **错误码：**
@@ -300,7 +300,7 @@ answerCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -337,7 +337,7 @@ answerCall(callId?: number\): Promise\<void\>
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| callId | number | 否   | 呼叫id。可以通过订阅callDetailsChange事件获得。从API Version 9开始为可选参数。<br/>不填该参数则接通最近一通正在响铃的来电。|
+| callId | number | 否   | 呼叫Id。可以通过订阅callDetailsChange事件获得。从API Version 9开始为可选参数。<br/>不填该参数则接通最近一通正在响铃的来电。|
 
 **返回值：**
 
@@ -353,7 +353,7 @@ answerCall(callId?: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -398,7 +398,7 @@ answerCall\(callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -435,7 +435,7 @@ hangUpCall\(callId: number, callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明                                            |
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
-| callId   | number                    | 是   | 呼叫id。可以通过订阅callDetailsChange事件获得。 |
+| callId   | number                    | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回挂断电话的结果。            |
 
 **错误码：**
@@ -446,7 +446,7 @@ hangUpCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -483,7 +483,7 @@ hangUpCall\(callId?: number\): Promise\<void\>
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| callId | number | 否   | 呼叫id。可以通过订阅callDetailsChange事件获得。从API Version 9开始为可选参数。</br>不填该参数则挂断最近一通正在进行/拨号/连接的通话。|
+| callId | number | 否   | 呼叫Id。可以通过订阅callDetailsChange事件获得。从API Version 9开始为可选参数。</br>不填该参数则挂断最近一通正在进行/拨号/连接的通话。|
 
 **返回值：**
 
@@ -499,7 +499,7 @@ hangUpCall\(callId?: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -544,7 +544,7 @@ hangUpCall\(callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -582,7 +582,7 @@ rejectCall\(callId: number, callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明                                            |
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
-| callId   | number                    | 是   | 呼叫id。可以通过订阅callDetailsChange事件获得。 |
+| callId   | number                    | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回拒接电话的结果。                           |
 
 **错误码：**
@@ -593,7 +593,7 @@ rejectCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -631,7 +631,7 @@ rejectCall\(callId: number, options: RejectMessageOptions, callback: AsyncCallba
 
 | 参数名   | 类型                                           | 必填 | 说明                                            |
 | -------- | ---------------------------------------------- | ---- | ----------------------------------------------- |
-| callId   | number                                         | 是   | 呼叫id。可以通过订阅callDetailsChange事件获得。 |
+| callId   | number                                         | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
 | options  | [RejectMessageOptions](#rejectmessageoptions7) | 是   | 拒绝消息选项。                                  |
 | callback | AsyncCallback&lt;void&gt;                      | 是   | 以回调函数的方式返回拒接电话的结果。            |
 
@@ -643,7 +643,7 @@ rejectCall\(callId: number, options: RejectMessageOptions, callback: AsyncCallba
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -683,7 +683,7 @@ rejectCall\(callId?: number, options?: RejectMessageOptions\): Promise\<void\>
 
 | 参数名  | 类型                                           | 必填 | 说明                                                         |
 | ------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callId  | number                                         | 否   | 呼叫id。可以通过订阅callDetailsChange事件获得。从API Version 9开始为可选参数。<br/>不填该参数则拒接最近一通正在响铃的来电。|
+| callId  | number                                         | 否   | 呼叫Id。可以通过订阅callDetailsChange事件获得。从API Version 9开始为可选参数。<br/>不填该参数则拒接最近一通正在响铃的来电。|
 | options | [RejectMessageOptions](#rejectmessageoptions7) | 否   | 拒绝消息选项。不填该参数则不会发送拒接短信。|
 
 **返回值：**
@@ -700,7 +700,7 @@ rejectCall\(callId?: number, options?: RejectMessageOptions\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -748,7 +748,7 @@ rejectCall\(callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -796,7 +796,7 @@ rejectCall\(options: RejectMessageOptions, callback: AsyncCallback\<void\>\): vo
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -836,7 +836,7 @@ holdCall\(callId: number, callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| callId   | number                    | 是   | 呼叫id。   |
+| callId   | number                    | 是   | 呼叫Id。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回保持电话的结果。 |
 
 **错误码：**
@@ -847,7 +847,7 @@ holdCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -884,7 +884,7 @@ holdCall\(callId: number\): Promise\<void\>
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| callId | number | 是   | 呼叫id。 |
+| callId | number | 是   | 呼叫Id。 |
 
 **返回值：**
 
@@ -900,7 +900,7 @@ holdCall\(callId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -934,7 +934,7 @@ unHoldCall\(callId: number, callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| callId   | number                    | 是   | 呼叫id。   |
+| callId   | number                    | 是   | 呼叫Id。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回取消保持电话的结果。 |
 
 **错误码：**
@@ -945,7 +945,7 @@ unHoldCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -982,7 +982,7 @@ unHoldCall\(callId: number\): Promise\<void\>
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| callId | number | 是   | 呼叫id。 |
+| callId | number | 是   | 呼叫Id。 |
 
 **返回值：**
 
@@ -998,7 +998,7 @@ unHoldCall\(callId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1032,7 +1032,7 @@ switchCall\(callId: number, callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| callId   | number                    | 是   | 呼叫id。   |
+| callId   | number                    | 是   | 呼叫Id。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回交换电话的结果。 |
 
 **错误码：**
@@ -1043,7 +1043,7 @@ switchCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1080,7 +1080,7 @@ switchCall\(callId: number\): Promise\<void\>
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| callId | number | 是   | 呼叫id。 |
+| callId | number | 是   | 呼叫Id。 |
 
 **返回值：**
 
@@ -1096,7 +1096,7 @@ switchCall\(callId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1128,7 +1128,7 @@ combineConference\(callId: number, callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| callId   | number                    | 是   | 呼叫id。   |
+| callId   | number                    | 是   | 呼叫Id。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回合并会议的结果。 |
 
 **错误码：**
@@ -1138,7 +1138,7 @@ combineConference\(callId: number, callback: AsyncCallback\<void\>\): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1174,7 +1174,7 @@ combineConference\(callId: number\): Promise\<void\>
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| callId | number | 是   | 呼叫id。 |
+| callId | number | 是   | 呼叫Id。 |
 
 **返回值：**
 
@@ -1189,7 +1189,7 @@ combineConference\(callId: number\): Promise\<void\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1224,7 +1224,7 @@ kickOutFromConference\(callId: number, callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| callId   | number                    | 是   | 呼叫id。   |
+| callId   | number                    | 是   | 呼叫Id。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回移出会议的结果。 |
 
 **错误码：**
@@ -1235,7 +1235,7 @@ kickOutFromConference\(callId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1271,7 +1271,7 @@ kickOutFromConference\(callId: number\): Promise\<void\>
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| callId | number | 是   | 呼叫id。 |
+| callId | number | 是   | 呼叫Id。 |
 
 **返回值：**
 
@@ -1287,7 +1287,7 @@ kickOutFromConference\(callId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1309,7 +1309,7 @@ call.kickOutFromConference(1).then(() => {
 
 getMainCallId\(callId: number, callback: AsyncCallback\<number\>\): void
 
-获取主呼叫id。使用callback异步回调。
+获取主呼叫Id。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1319,8 +1319,8 @@ getMainCallId\(callId: number, callback: AsyncCallback\<number\>\): void
 
 | 参数名   | 类型                        | 必填 | 说明                     |
 | -------- | --------------------------- | ---- | ------------------------ |
-| callId   | number                      | 是   | 呼叫id。                 |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回主呼叫id。 |
+| callId   | number                      | 是   | 呼叫Id。                 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回主呼叫Id。 |
 
 **错误码：**
 
@@ -1329,7 +1329,7 @@ getMainCallId\(callId: number, callback: AsyncCallback\<number\>\): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1355,7 +1355,7 @@ call.getMainCallId(1, (err: BusinessError, data: number) => {
 
 getMainCallId\(callId: number\): Promise\<number\>
 
-获取主呼叫id。使用Promise异步回调。
+获取主呼叫Id。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1365,13 +1365,13 @@ getMainCallId\(callId: number\): Promise\<number\>
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| callId | number | 是   | 呼叫id。 |
+| callId | number | 是   | 呼叫Id。 |
 
 **返回值：**
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;number&gt; | 以Promise形式异步返回主呼叫id。 |
+| Promise&lt;number&gt; | 以Promise形式异步返回主呼叫Id。 |
 
 **错误码：**
 
@@ -1380,7 +1380,7 @@ getMainCallId\(callId: number\): Promise\<number\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1403,7 +1403,7 @@ call.getMainCallId(1).then((data: number) => {
 
 getSubCallIdList\(callId: number, callback: AsyncCallback\<Array\<string\>\>\): void
 
-获取子呼叫id列表。使用callback异步回调。
+获取子呼叫Id列表。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1413,8 +1413,8 @@ getSubCallIdList\(callId: number, callback: AsyncCallback\<Array\<string\>\>\): 
 
 | 参数名   | 类型                           | 必填 | 说明                         |
 | -------- | ------------------------------ | ---- | ---------------------------- |
-| callId   | number                         | 是   | 呼叫id。                     |
-| callback | AsyncCallback<Array<string\>\> | 是   | 回调函数。返回子呼叫id列表。 |
+| callId   | number                         | 是   | 呼叫Id。                     |
+| callback | AsyncCallback<Array<string\>\> | 是   | 回调函数。返回子呼叫Id列表。 |
 
 **错误码：**
 
@@ -1423,7 +1423,7 @@ getSubCallIdList\(callId: number, callback: AsyncCallback\<Array\<string\>\>\): 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1448,7 +1448,7 @@ call.getSubCallIdList(1, (err: BusinessError, data: Array<string>) => {
 
 getSubCallIdList\(callId: number\): Promise\<Array\<string\>\>
 
-获取子呼叫id列表。使用Promise异步回调。
+获取子呼叫Id列表。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1458,13 +1458,13 @@ getSubCallIdList\(callId: number\): Promise\<Array\<string\>\>
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| callId | number | 是   | 呼叫id。 |
+| callId | number | 是   | 呼叫Id。 |
 
 **返回值：**
 
 | 类型                          | 说明                                |
 | ----------------------------- | ----------------------------------- |
-| Promise&lt;Array<string\>&gt; | 以Promise形式异步返回子呼叫id列表。 |
+| Promise&lt;Array<string\>&gt; | 以Promise形式异步返回子呼叫Id列表。 |
 
 **错误码：**
 
@@ -1473,7 +1473,7 @@ getSubCallIdList\(callId: number\): Promise\<Array\<string\>\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1495,7 +1495,7 @@ call.getSubCallIdList(1).then((data: Array<string>) => {
 
 getCallIdListForConference\(callId: number, callback: AsyncCallback\<Array\<string\>\>\): void
 
-获取会议的呼叫id列表。使用callback异步回调。
+获取会议的呼叫Id列表。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1505,8 +1505,8 @@ getCallIdListForConference\(callId: number, callback: AsyncCallback\<Array\<stri
 
 | 参数名   | 类型                                | 必填 | 说明                             |
 | -------- | ----------------------------------- | ---- | -------------------------------- |
-| callId   | number                              | 是   | 呼叫id。                         |
-| callback | AsyncCallback&lt;Array<string\>&gt; | 是   | 回调函数。返回会议的呼叫id列表。 |
+| callId   | number                              | 是   | 呼叫Id。                         |
+| callback | AsyncCallback&lt;Array<string\>&gt; | 是   | 回调函数。返回会议的呼叫Id列表。 |
 
 **错误码：**
 
@@ -1515,7 +1515,7 @@ getCallIdListForConference\(callId: number, callback: AsyncCallback\<Array\<stri
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1540,7 +1540,7 @@ call.getCallIdListForConference(1, (err: BusinessError, data: Array<string>) => 
 
 getCallIdListForConference\(callId: number\): Promise\<Array\<string\>\>
 
-获取会议的呼叫id列表。使用Promise异步回调。
+获取会议的呼叫Id列表。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1550,13 +1550,13 @@ getCallIdListForConference\(callId: number\): Promise\<Array\<string\>\>
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| callId | number | 是   | 呼叫id。 |
+| callId | number | 是   | 呼叫Id。 |
 
 **返回值：**
 
 | 类型                          | 说明                                    |
 | ----------------------------- | --------------------------------------- |
-| Promise&lt;Array<string\>&gt; | 以Promise形式异步返回会议的呼叫id列表。 |
+| Promise&lt;Array<string\>&gt; | 以Promise形式异步返回会议的呼叫Id列表。 |
 
 **错误码：**
 
@@ -1565,7 +1565,7 @@ getCallIdListForConference\(callId: number\): Promise\<Array\<string\>\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1599,7 +1599,7 @@ getCallWaitingStatus\(slotId: number, callback: AsyncCallback\<CallWaitingStatus
 
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| slotId   | number                                                      | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。                       |
+| slotId   | number                                                      | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。                       |
 | callback | AsyncCallback&lt;[CallWaitingStatus](#callwaitingstatus7)\> | 是   | 回调函数。<br/>返回呼叫等待状态。<br/>- 0：禁用呼叫等待。 <br/>- 1：启用呼叫等待。 |
 
 **错误码：**
@@ -1610,7 +1610,7 @@ getCallWaitingStatus\(slotId: number, callback: AsyncCallback\<CallWaitingStatus
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1647,7 +1647,7 @@ getCallWaitingStatus\(slotId: number\): Promise\<CallWaitingStatus\>
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
@@ -1663,7 +1663,7 @@ getCallWaitingStatus\(slotId: number\): Promise\<CallWaitingStatus\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1697,7 +1697,7 @@ setCallWaiting\(slotId: number, activate: boolean, callback: AsyncCallback\<void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| slotId   | number               | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。                       |
+| slotId   | number               | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。                       |
 | activate | boolean              | 是   | 呼叫等待是否处于启用状态。<br/>- false：禁用呼叫等待。<br/>- true：启用呼叫等待。 |
 | callback | AsyncCallback<void\> | 是   | 以回调函数的方式返回设置呼叫等待的结果。                     |
 
@@ -1709,7 +1709,7 @@ setCallWaiting\(slotId: number, activate: boolean, callback: AsyncCallback\<void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1746,7 +1746,7 @@ setCallWaiting\(slotId: number, activate: boolean\): Promise\<void\>
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| slotId   | number  | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。                       |
+| slotId   | number  | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。                       |
 | activate | boolean | 是   | 呼叫等待是否处于启用状态。<br/>- false：禁用呼叫等待。<br/>- true：启用呼叫等待。 |
 
 **返回值：**
@@ -1763,7 +1763,7 @@ setCallWaiting\(slotId: number, activate: boolean\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1795,7 +1795,7 @@ startDTMF\(callId: number, character: string, callback: AsyncCallback\<void\>\):
 
 | 参数名    | 类型                 | 必填 | 说明       |
 | --------- | -------------------- | ---- | ---------- |
-| callId    | number               | 是   | 呼叫id。   |
+| callId    | number               | 是   | 呼叫Id。   |
 | character | string               | 是   | DTMF码。   |
 | callback  | AsyncCallback<void\> | 是   | 以回调函数的方式返回启动双音多频的结果。 |
 
@@ -1806,7 +1806,7 @@ startDTMF\(callId: number, character: string, callback: AsyncCallback\<void\>\):
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1841,7 +1841,7 @@ startDTMF\(callId: number, character: string\): Promise\<void\>
 
 | 参数名    | 类型   | 必填 | 说明     |
 | --------- | ------ | ---- | -------- |
-| callId    | number | 是   | 呼叫id。 |
+| callId    | number | 是   | 呼叫Id。 |
 | character | string | 是   | DTMF码。 |
 
 **返回值：**
@@ -1857,7 +1857,7 @@ startDTMF\(callId: number, character: string\): Promise\<void\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1889,7 +1889,7 @@ stopDTMF\(callId: number, callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| callId   | number                    | 是   | 呼叫id。   |
+| callId   | number                    | 是   | 呼叫Id。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回停止双音多频的结果。 |
 
 **错误码：**
@@ -1899,7 +1899,7 @@ stopDTMF\(callId: number, callback: AsyncCallback\<void\>\): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1934,7 +1934,7 @@ stopDTMF\(callId: number\): Promise\<void\>
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| callId | number | 是   | 呼叫id。 |
+| callId | number | 是   | 呼叫Id。 |
 
 **返回值：**
 
@@ -1949,7 +1949,7 @@ stopDTMF\(callId: number\): Promise\<void\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1986,7 +1986,7 @@ postDialProceed\(callId: number, proceed: boolean, callback: AsyncCallback\<void
 
 | 参数名   | 类型                      | 必填 | 说明                                                           |
 | -------- | ------------------------- | ---- | -------------------------------------------------------------- |
-| callId   | number                    | 是   | 呼叫id。                                                       |
+| callId   | number                    | 是   | 呼叫Id。                                                       |
 | proceed  | boolean                   | 是   | 用户选择是否发送DTMF(Dual Tone Multi Frequency，双音多频)音。|
 | callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回继续进行通话的结果。                    |
 
@@ -1998,7 +1998,7 @@ postDialProceed\(callId: number, proceed: boolean, callback: AsyncCallback\<void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2034,7 +2034,7 @@ postDialProceed\(callId: number, proceed: boolean\): Promise\<void\>
 
 | 参数名   | 类型                      | 必填 | 说明                    |
 | -------- | ------------------------- | ---- | ----------------------- |
-| callId   | number                    | 是   | 呼叫id。                |
+| callId   | number                    | 是   | 呼叫Id。                |
 | proceed  | boolean                   | 是   | 用户选择是否发送DTMF音。|
 
 **返回值：**
@@ -2051,7 +2051,7 @@ postDialProceed\(callId: number, proceed: boolean\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2095,7 +2095,7 @@ isInEmergencyCall\(callback: AsyncCallback\<boolean\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2185,7 +2185,7 @@ on\(type: 'callDetailsChange', callback: Callback\<CallAttributeOptions\>\): voi
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2226,7 +2226,7 @@ on\(type: 'callEventChange', callback: Callback\<CallEventOptions\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2267,7 +2267,7 @@ on\(type: 'callDisconnectedCause', callback: Callback\<DisconnectedDetails\>\): 
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2308,7 +2308,7 @@ on\(type: 'mmiCodeResult', callback: Callback\<MmiCodeResults\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2349,7 +2349,7 @@ off\(type: 'callDetailsChange', callback?: Callback\<CallAttributeOptions\>\): v
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2390,7 +2390,7 @@ off\(type: 'callEventChange', callback?: Callback\<CallEventOptions\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2431,7 +2431,7 @@ off\(type: 'callDisconnectedCause', callback?: Callback\<DisconnectedDetails\>\)
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2472,7 +2472,7 @@ off\(type: 'mmiCodeResult', callback?: Callback\<MmiCodeResults\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2514,7 +2514,7 @@ on\(type: 'audioDeviceChange', callback: Callback\<AudioDeviceCallbackInfo\>\): 
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2556,7 +2556,7 @@ off\(type: 'audioDeviceChange', callback?: Callback\<AudioDeviceCallbackInfo\>\)
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2597,7 +2597,7 @@ on\(type: 'postDialDelay', callback: Callback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2638,7 +2638,7 @@ off\(type: 'postDialDelay', callback?: Callback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2675,7 +2675,7 @@ isNewCallAllowed\(callback: AsyncCallback\<boolean\>\): void
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2749,7 +2749,7 @@ separateConference\(callId: number, callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| callId   | number                    | 是   | 呼叫id。   |
+| callId   | number                    | 是   | 呼叫Id。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回分离会议电话的结果。 |
 
 **错误码：**
@@ -2759,7 +2759,7 @@ separateConference\(callId: number, callback: AsyncCallback\<void\>\): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2795,7 +2795,7 @@ separateConference\(callId: number\): Promise\<void\>
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| callId | number | 是   | 呼叫id。 |
+| callId | number | 是   | 呼叫Id。 |
 
 **返回值：**
 
@@ -2810,7 +2810,7 @@ separateConference\(callId: number\): Promise\<void\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2845,7 +2845,7 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType, callback: A
 
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| slotId   | number                                                       | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | type     | [CallRestrictionType](#callrestrictiontype8)                 | 是   | 呼叫限制类型。                        |
 | callback | AsyncCallback&lt;[RestrictionStatus](#restrictionstatus8)&gt; | 是   | 回调函数。返回限制状态。               |
 
@@ -2857,7 +2857,7 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType, callback: A
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2894,7 +2894,7 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType\): Promise\<
 
 | 参数名 | 类型                                         | 必填 | 说明                                   |
 | ------ | -------------------------------------------- | ---- | -------------------------------------- |
-| slotId | number                                       | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | type   | [CallRestrictionType](#callrestrictiontype8) | 是   | 呼叫限制类型。                        |
 
 **返回值：**
@@ -2911,7 +2911,7 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType\): Promise\<
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2945,7 +2945,7 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo, callback: AsyncCa
 
 | 参数名   | 类型                                        | 必填 | 说明                                   |
 | -------- | ------------------------------------------- | ---- | -------------------------------------- |
-| slotId   | number                                      | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId   | number                                      | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | info     | [CallRestrictionInfo](#callrestrictioninfo8) | 是   | 呼叫限制信息。                         |
 | callback | AsyncCallback&lt;void&gt;                   | 是   | 以回调函数的方式返回设置呼叫限制状态的结果。 |
 
@@ -2957,7 +2957,7 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo, callback: AsyncCa
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2999,7 +2999,7 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo\): Promise\<void\>
 
 | 参数名 | 类型                                         | 必填 | 说明                                   |
 | ------ | -------------------------------------------- | ---- | -------------------------------------- |
-| slotId | number                                       | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | info   | [CallRestrictionInfo](#callrestrictioninfo8) | 是   | 呼叫限制信息。                         |
 
 **返回值：**
@@ -3016,7 +3016,7 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3055,7 +3055,7 @@ setCallRestrictionPassword\(slotId: number, oldPassword: string, newPassword: st
 
 | 参数名          | 类型                                        | 必填 | 说明                                   |
 | --------------- | ------------------------------------------- | ---- | ------------------------------------ |
-| slotId          | number                                      | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId          | number                                      | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | oldPassword     | string                                      | 是   | 呼叫限制旧密码。                       |
 | newPassword     | string                                      | 是   | 呼叫限制新密码。                       |
 | callback        | AsyncCallback&lt;void&gt;                   | 是   | 以回调函数的方式返回修改呼叫限制密码的结果。    |
@@ -3068,7 +3068,7 @@ setCallRestrictionPassword\(slotId: number, oldPassword: string, newPassword: st
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3104,7 +3104,7 @@ setCallRestrictionPassword\(slotId: number, oldPassword: string, newPassword: st
 
 | 参数名          | 类型                                        | 必填 | 说明                                   |
 | --------------- | ------------------------------------------- | ---- | ------------------------------------ |
-| slotId          | number                                      | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId          | number                                      | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | oldPassword     | string                                      | 是   | 呼叫限制旧密码。                       |
 | newPassword     | string                                      | 是   | 呼叫限制新密码。                       |
 
@@ -3122,7 +3122,7 @@ setCallRestrictionPassword\(slotId: number, oldPassword: string, newPassword: st
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3156,7 +3156,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType, callback: AsyncCall
 
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| slotId   | number                                                       | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | type     | [CallTransferType](#calltransfertype8)                       | 是   | 呼叫转移类型。                         |
 | callback | AsyncCallback&lt;[CallTransferResult](#calltransferresult8)&gt; | 是   | 回调函数。返回呼叫转移信息。           |
 
@@ -3168,7 +3168,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType, callback: AsyncCall
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3205,7 +3205,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType\): Promise\<CallTran
 
 | 参数名 | 类型                                   | 必填 | 说明                                   |
 | ------ | -------------------------------------- | ---- | -------------------------------------- |
-| slotId | number                                 | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId | number                                 | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | type   | [CallTransferType](#calltransfertype8) | 是   | 呼叫转移类型。                         |
 
 **返回值：**
@@ -3222,7 +3222,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType\): Promise\<CallTran
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3256,7 +3256,7 @@ setCallTransfer\(slotId: number, info: CallTransferInfo, callback: AsyncCallback
 
 | 参数名   | 类型                                  | 必填 | 说明                                   |
 | -------- | ------------------------------------- | ---- | -------------------------------------- |
-| slotId   | number                                | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId   | number                                | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | info     | [CallTransferInfo](#calltransferinfo8) | 是   | 呼叫转移信息。                        |
 | callback | AsyncCallback&lt;void&gt;             | 是   | 以回调函数的方式返回设置呼叫转移信息的结果。      |
 
@@ -3268,7 +3268,7 @@ setCallTransfer\(slotId: number, info: CallTransferInfo, callback: AsyncCallback
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3310,7 +3310,7 @@ setCallTransfer\(slotId: number, info: CallTransferInfo\): Promise\<void\>
 
 | 参数名 | 类型                                  | 必填 | 说明                                   |
 | ------ | ------------------------------------- | ---- | -------------------------------------- |
-| slotId | number                                | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId | number                                | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | info   | [CallTransferInfo](#calltransferinfo8) | 是   | 呼叫转移信息。                        |
 
 **返回值：**
@@ -3327,7 +3327,7 @@ setCallTransfer\(slotId: number, info: CallTransferInfo\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -3376,7 +3376,7 @@ isRinging\(callback: AsyncCallback\<boolean\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3462,7 +3462,7 @@ setMuted\(callback: AsyncCallback\<void\>\): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3545,7 +3545,7 @@ cancelMuted\(callback: AsyncCallback\<void\>\): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3632,7 +3632,7 @@ setAudioDevice\(device: AudioDevice, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3687,7 +3687,7 @@ setAudioDevice\(device: AudioDevice): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3722,7 +3722,7 @@ joinConference\(mainCallId: number, callNumberList: Array\<string\>, callback: A
 
 | 参数名         | 类型                      | 必填 | 说明            |
 | -------------- | ------------------------- | ---- | --------------- |
-| mainCallId     | number                    | 是   | 主通话id。      |
+| mainCallId     | number                    | 是   | 主通话Id。      |
 | callNumberList | Array<string\>            | 是   | 呼叫号码列表。 |
 | callback       | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回加入会议的结果。      |
 
@@ -3733,7 +3733,7 @@ joinConference\(mainCallId: number, callNumberList: Array\<string\>, callback: A
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3770,7 +3770,7 @@ joinConference\(mainCallId: number, callNumberList: Array\<string\>\): Promise\<
 
 | 参数名         | 类型           | 必填 | 说明            |
 | -------------- | -------------- | ---- | --------------- |
-| mainCallId     | number         | 是   | 主通话id。      |
+| mainCallId     | number         | 是   | 主通话Id。      |
 | callNumberList | Array<string\> | 是   | 呼叫号码列表。 |
 
 **返回值：**
@@ -3786,7 +3786,7 @@ joinConference\(mainCallId: number, callNumberList: Array\<string\>\): Promise\<
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3821,7 +3821,7 @@ updateImsCallMode\(callId: number, mode: ImsCallMode, callback: AsyncCallback\<v
 
 | 参数名   | 类型                         | 必填 | 说明           |
 | -------- | ---------------------------- | ---- | -------------- |
-| callId   | number                       | 是   | 呼叫id。       |
+| callId   | number                       | 是   | 呼叫Id。       |
 | mode     | [ImsCallMode](#imscallmode8) | 是   | Ims呼叫模式。 |
 | callback | AsyncCallback&lt;void&gt;    | 是   | 以回调函数的方式返回更新Ims呼叫模式的结果。     |
 
@@ -3832,7 +3832,7 @@ updateImsCallMode\(callId: number, mode: ImsCallMode, callback: AsyncCallback\<v
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3866,7 +3866,7 @@ updateImsCallMode\(callId: number, mode: ImsCallMode\): Promise\<void\>
 
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- | -------------- |
-| callId | number                       | 是   | 呼叫id。       |
+| callId | number                       | 是   | 呼叫Id。       |
 | mode   | [ImsCallMode](#imscallmode8) | 是   | Ims呼叫模式。 |
 
 **返回值：**
@@ -3882,7 +3882,7 @@ updateImsCallMode\(callId: number, mode: ImsCallMode\): Promise\<void\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3916,7 +3916,7 @@ enableImsSwitch\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明                                   |
 | -------- | ------------------------- | ---- | -------------------------------------- |
-| slotId   | number                    | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回启用Ims开关的结果。          |
 
 **错误码：**
@@ -3927,7 +3927,7 @@ enableImsSwitch\(slotId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3963,7 +3963,7 @@ enableImsSwitch\(slotId: number\): Promise\<void\>
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
@@ -3979,7 +3979,7 @@ enableImsSwitch\(slotId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4013,7 +4013,7 @@ disableImsSwitch\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明                                   |
 | -------- | ------------------------- | ---- | -------------------------------------- |
-| slotId   | number                    | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回禁用Ims开关的结果。               |
 
 **错误码：**
@@ -4024,7 +4024,7 @@ disableImsSwitch\(slotId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4060,7 +4060,7 @@ disableImsSwitch\(slotId: number\): Promise\<void\>
 
 | 参数名 | 类型   | 必填 | 说明                                    |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。  |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。  |
 
 **返回值：**
 
@@ -4076,7 +4076,7 @@ disableImsSwitch\(slotId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4108,7 +4108,7 @@ isImsSwitchEnabled\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 
 | 参数名   | 类型                         | 必填 | 说明                                   |
 | -------- | ---------------------------- | ---- | -------------------------------------- |
-| slotId   | number                       | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId   | number                       | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 以回调函数的方式返回判断Ims开关是否启用的结果。true表示Ims开关启用，false表示未启用。 |
 
 **错误码：**
@@ -4118,7 +4118,7 @@ isImsSwitchEnabled\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4152,7 +4152,7 @@ isImsSwitchEnabled\(slotId: number\): Promise\<boolean\>
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
@@ -4167,7 +4167,7 @@ isImsSwitchEnabled\(slotId: number\): Promise\<boolean\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4199,7 +4199,7 @@ isImsSwitchEnabledSync\(slotId: number\): boolean
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
@@ -4214,7 +4214,7 @@ isImsSwitchEnabledSync\(slotId: number\): boolean
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 202      | Non-system applications use system APIs.                     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types; |
 | 8300001  | Invalid parameter value.                                     |
 | 8300002  | Operation failed. Cannot connect to service.                 |
 | 8300003  | System internal error.                                       |
@@ -4250,7 +4250,7 @@ closeUnfinishedUssd\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明                                    |
 | -------- | ------------------------- | ---- | -------------------------------------- |
-| slotId   | number                    | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。  |
+| slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。  |
 | callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回取消未激活完成的非结构化补充数据业务的结果。                              |
 
 **错误码：**
@@ -4261,7 +4261,7 @@ closeUnfinishedUssd\(slotId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4298,7 +4298,7 @@ closeUnfinishedUssd\(slotId: number\): Promise\<void\>
 
 | 参数名 | 类型   | 必填 | 说明                                    |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。  |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。  |
 
 **返回值：**
 
@@ -4314,7 +4314,7 @@ closeUnfinishedUssd\(slotId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4350,7 +4350,7 @@ setVoNRState\(slotId: number, state: VoNRState, callback: AsyncCallback\<void\>\
 
 | 参数名      | 类型                           | 必填 | 说明                                                 |
 | ----------- | ----------------------------- | ---- | ---------------------------------------------------- |
-| slotId      | number                        | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。                |
+| slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。                |
 | state       | [VoNRState](#vonrstate10)     | 是   | 开关状态。                                            |
 | callback    | AsyncCallback&lt;void&gt;  | 是   | 以回调函数的方式返回设置NR语音的开关状态的结果。 |
 
@@ -4362,7 +4362,7 @@ setVoNRState\(slotId: number, state: VoNRState, callback: AsyncCallback\<void\>\
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4401,7 +4401,7 @@ setVoNRState\(slotId: number, state: VoNRState\): Promise\<void\>
 
 | 参数名      | 类型                           | 必填 | 说明                                        |
 | ----------- | ----------------------------- | ---- | ------------------------------------------- |
-| slotId      | number                        | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。     |
+| slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。     |
 | state       | [VoNRState](#vonrstate10)     | 是   | 开关状态。                                   |
 
 **返回值：**
@@ -4418,7 +4418,7 @@ setVoNRState\(slotId: number, state: VoNRState\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4455,7 +4455,7 @@ getVoNRState\(slotId: number, callback: AsyncCallback\<VoNRState\>\): void
 
 | 参数名      |                     类型                      | 必填  | 说明                                                   |
 | ----------- | --------------------------------------------- | ---- | ------------------------------------------------------ |
-| slotId      | number                                        | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。                  |
+| slotId      | number                                        | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。                  |
 | callback    | AsyncCallback&lt;[VoNRState](#vonrstate10)&gt;| 是   | 回调函数。返回NR语音开关的状态。                         |
 
 **错误码：**
@@ -4466,7 +4466,7 @@ getVoNRState\(slotId: number, callback: AsyncCallback\<VoNRState\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4504,7 +4504,7 @@ getVoNRState\(slotId: number\): Promise\<VoNRState\>
 
 | 参数名      | 类型                           | 必填 | 说明                                        |
 | ----------- | ----------------------------- | ---- | ------------------------------------------- |
-| slotId      | number                        | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。     |
+| slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。     |
 
 **返回值：**
 
@@ -4520,7 +4520,7 @@ getVoNRState\(slotId: number\): Promise\<VoNRState\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4556,7 +4556,7 @@ canSetCallTransferTime\(slotId: number, callback: AsyncCallback\<boolean\>\): vo
 
 | 参数名      | 类型                           | 必填 | 说明                                                  |
 | ----------- | ----------------------------- | ---- | ----------------------------------------------------- |
-| slotId      | number                        | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。                 |
+| slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。                 |
 | callback    | AsyncCallback&lt;boolean&gt;  | 是   | 回调函数。返回true表示可以设置，返回false表示不可以设置。|
 
 **错误码：**
@@ -4567,7 +4567,7 @@ canSetCallTransferTime\(slotId: number, callback: AsyncCallback\<boolean\>\): vo
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4605,7 +4605,7 @@ canSetCallTransferTime\(slotId: number\): Promise\<boolean\>
 
 | 参数名      | 类型                           | 必填 | 说明                                        |
 | ----------- | ----------------------------- | ---- | ------------------------------------------- |
-| slotId      | number                        | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。     |
+| slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。     |
 
 **返回值：**
 
@@ -4621,7 +4621,7 @@ canSetCallTransferTime\(slotId: number\): Promise\<boolean\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4668,7 +4668,7 @@ inputDialerSpecialCode\(inputCode: string, callback: AsyncCallback\<void\>\): vo
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4719,7 +4719,7 @@ inputDialerSpecialCode\(inputCode: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4764,7 +4764,7 @@ removeMissedIncomingCallNotification\(callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 | 8300999  | Unknown error code.                          |
@@ -4842,7 +4842,7 @@ sendCallUiEvent\(callId: number, eventName: string\): Promise\<void\>
 
 | 参数名    | 类型   | 必填 | 说明     |
 | --------- | ------ | ---- | -------- |
-| callId    | number | 是   | 呼叫id。 |
+| callId    | number | 是   | 呼叫Id。 |
 | eventName | string | 是   | 事件名称。 |
 
 **返回值：**
@@ -4885,7 +4885,7 @@ call.sendCallUiEvent(callId, 'eventName').then(() => {
 
 |        名称              | 类型                               | 必填 | 说明                                                                                             |
 | ------------------------ | ---------------------------------- | ---- | ----------------------------------------------------------------------------------------------- |
-| accountId <sup>8+</sup>  | number                             | 否   | 帐户id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。<br/>。此接口为系统接口。                                   |
+| accountId <sup>8+</sup>  | number                             | 否   | 帐户Id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。<br/>。此接口为系统接口。                                   |
 | videoState <sup>8+</sup> | [VideoStateType](#videostatetype7) | 否   | 视频状态类型。此接口为系统接口。                                                                  |
 | dialScene <sup>8+</sup>  | [DialScene](#dialscene8)           | 否   | 拨号场景。此接口为系统接口。                                                                      |
 | dialType <sup>8+</sup>   | [DialType](#dialtype8)             | 否   | 拨号类型。此接口为系统接口。                                                                      |
@@ -4900,7 +4900,7 @@ call.sendCallUiEvent(callId, 'eventName').then(() => {
 
 |        名称              | 类型                               | 必填 | 说明                                         |
 | ------------------------ | ---------------------------------- | ---- | ------------------------------------------- |
-| accountId <sup>9+</sup>  | number                             | 否   | 帐户id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。    |
+| accountId <sup>9+</sup>  | number                             | 否   | 帐户Id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。    |
 | videoState <sup>9+</sup> | [VideoStateType](#videostatetype7) | 否   | 视频状态类型。                               |
 | dialScene <sup>9+</sup>  | [DialScene](#dialscene8)           | 否   | 拨号场景。                                   |
 | dialType <sup>9+</sup>   | [DialType](#dialtype8)             | 否   | 拨号类型。                                   |
@@ -5059,12 +5059,12 @@ IP多媒体系统调用模式。
 | --------------- | ---------------------------------------- | ---- | -------------- |
 | accountNumber   | string                                   | 是   | 帐号号码。       |
 | speakerphoneOn  | boolean                                  | 是   | 扬声器接通电话。 |
-| accountId       | number                                   | 是   | 帐户id。         |
+| accountId       | number                                   | 是   | 帐户Id。         |
 | videoState      | [VideoStateType](#videostatetype7)       | 是   | 视频状态类型。   |
 | startTime       | number                                   | 是   | 开始时间。       |
 | isEcc           | boolean                                  | 是   | 是否是Ecc。      |
 | callType        | [CallType](#calltype7)                   | 是   | 通话类型。       |
-| callId          | number                                   | 是   | 呼叫id。         |
+| callId          | number                                   | 是   | 呼叫Id。         |
 | callState       | [DetailedCallState](#detailedcallstate7) | 是   | 详细呼叫状态。   |
 | conferenceState | [ConferenceState](#conferencestate7)     | 是   | 会议状态。       |
 | voipCallAttribute<sup>11+</sup> | [VoipCallAttribute](#voipcallattribute11)     | 否   | VoIP通话信息。       |
@@ -5197,7 +5197,7 @@ VoIP通话信息。
 
 |   名称  | 类型                                       | 必填 | 说明           |
 | ------- | ------------------------------------------ | ---- | -------------- |
-| eventId | [CallAbilityEventId](#callabilityeventid8) | 是   | 呼叫能力事件id。 |
+| eventId | [CallAbilityEventId](#callabilityeventid8) | 是   | 呼叫能力事件Id。 |
 
 ## CallAbilityEventId<sup>8+</sup>
 
@@ -5460,7 +5460,7 @@ answerCall(videoState: VideoStateType, callId: number\): Promise\<void\>
 | 参数名                   | 类型                | 必填 | 说明                                                         |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
 | videoState| [VideoStateType](#videostatetype7)| 是   | 接听通话类型。                                                 |
-| callId    | number                            | 是   | 呼叫id。可以通过订阅callDetailsChange事件获得。                 |
+| callId    | number                            | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。                 |
 
 **返回值：**
 
@@ -5476,7 +5476,7 @@ answerCall(videoState: VideoStateType, callId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5510,7 +5510,7 @@ cancelCallUpgrade\(callId: number\): Promise\<void\>
 
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- | -------------- |
-| callId | number                       | 是   | 呼叫id。可以通过订阅callDetailsChange事件获得。|
+| callId | number                       | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。|
 
 **返回值：**
 
@@ -5526,7 +5526,7 @@ cancelCallUpgrade\(callId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5560,8 +5560,8 @@ controlCamera\(callId: number, cameraId: string\): Promise\<void\>
 
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- | -------------- |
-| callId | number                       | 是   | 呼叫id。可以通过订阅callDetailsChange事件获得。       |
-| cameraId | string                     | 是   | 相机id。cameraId获取方式可参考[相机管理](../apis-camera-kit/js-apis-camera.md#getsupportedcameras)。|
+| callId | number                       | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。       |
+| cameraId | string                     | 是   | 相机Id。cameraId获取方式可参考[相机管理](../apis-camera-kit/js-apis-camera.md#getsupportedcameras)。|
 
 **返回值：**
 
@@ -5577,7 +5577,7 @@ controlCamera\(callId: number, cameraId: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5611,8 +5611,8 @@ setPreviewSurface\(callId: number, surfaceId: string\): Promise\<void\>
 
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- | -------------- |
-| callId | number                       | 是   | 呼叫id。可以通过订阅callDetailsChange事件获得。       |
-| surfaceId | string                    | 是   | 预览窗口id。surfaceId获取方式可参考[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。   |
+| callId | number                       | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。       |
+| surfaceId | string                    | 是   | 预览窗口Id。surfaceId获取方式可参考[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。   |
 
 **返回值：**
 
@@ -5628,7 +5628,7 @@ setPreviewSurface\(callId: number, surfaceId: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5662,8 +5662,8 @@ setDisplaySurface\(callId: number, surfaceId: string\): Promise\<void\>
 
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- | -------------- |
-| callId | number                       | 是   | 呼叫id。可以通过订阅callDetailsChange事件获得。       |
-| surfaceId | string                    | 是   | 画面窗口id。surfaceId获取方式可参考[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。   |
+| callId | number                       | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。       |
+| surfaceId | string                    | 是   | 画面窗口Id。surfaceId获取方式可参考[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。   |
 
 **返回值：**
 
@@ -5679,7 +5679,7 @@ setDisplaySurface\(callId: number, surfaceId: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5713,7 +5713,7 @@ setDeviceDirection\(callId: number, deviceDirection: DeviceDirection\): Promise\
 
 | 参数名 | 类型                                             | 必填 | 说明           |
 | ------ | ----------------------------------------------- | ---- | -------------- |
-| callId | number                                          | 是   | 呼叫id。可以通过订阅callDetailsChange事件获得。|
+| callId | number                                          | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。|
 | deviceDirection  | [DeviceDirection](#devicedirection11) | 是   | 画面方向。该参数根据设备方向获取。     |
 
 **返回值：**
@@ -5730,7 +5730,7 @@ setDeviceDirection\(callId: number, deviceDirection: DeviceDirection\): Promise\
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5775,7 +5775,7 @@ on\(type: 'imsCallModeChange', callback: Callback\<ImsCallModeInfo\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5818,7 +5818,7 @@ off\(type: 'imsCallModeChange', callback?: Callback\<ImsCallModeInfo\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5861,7 +5861,7 @@ on\(type: 'callSessionEvent', callback: Callback\<CallSessionEvent\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5904,7 +5904,7 @@ off\(type: 'callSessionEvent', callback?: Callback\<CallSessionEvent\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5947,7 +5947,7 @@ on\(type: 'peerDimensionsChange', callback: Callback\<PeerDimensionsDetail\>\): 
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -5990,7 +5990,7 @@ off\(type: 'peerDimensionsChange', callback?: Callback\<PeerDimensionsDetail\>\)
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -6033,7 +6033,7 @@ on\(type: 'cameraCapabilitiesChange', callback: Callback\<CameraCapabilities\>\)
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -6074,7 +6074,7 @@ off\(type: 'cameraCapabilitiesChange', callback?: Callback\<CameraCapabilities\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -6147,7 +6147,7 @@ call.off('cameraCapabilitiesChange', (data: call.CameraCapabilities) => {
 
 | 名称    |                    类型                             | 必填 | 说明           |
 | ------- | -------------------------------------------------- | ---- | ------------- |
-| callId  | number                                             | 是   | 呼叫id。         |
+| callId  | number                                             | 是   | 呼叫Id。         |
 | isRequestInfo| boolean                                       | 是   | 该信息是否为请求信息。|
 | imsCallMode  | [ImsCallMode](#imscallmode8)                  | 是   | 视频通话模式。    |
 | result  | [VideoRequestResultType](#videorequestresulttype11)| 是   | 通话结束提示信息。|
@@ -6162,7 +6162,7 @@ call.off('cameraCapabilitiesChange', (data: call.CameraCapabilities) => {
 
 | 名称    |                    类型                             | 必填 | 说明           |
 | ------- | -------------------------------------------------- | ---- | ------------- |
-| callId  | number                                             | 是   | 呼叫id。         |
+| callId  | number                                             | 是   | 呼叫Id。         |
 | eventId  | [CallSessionEventId](#callsessioneventid11)       | 是   | 视频通话事件。    |
 
 ## PeerDimensionsDetail<sup>11+</sup>
@@ -6175,7 +6175,7 @@ call.off('cameraCapabilitiesChange', (data: call.CameraCapabilities) => {
 
 | 名称    |     类型      | 必填 | 说明           |
 | ------- | ------------ | ---- | ------------- |
-| callId  | number       | 是   | 呼叫id。         |
+| callId  | number       | 是   | 呼叫Id。         |
 | width   | number       | 是   | 对端画面图像尺寸宽(像素)。  |
 | height  | number       | 是   | 对端画面图像尺寸高(像素)。  |
 
@@ -6189,7 +6189,7 @@ call.off('cameraCapabilitiesChange', (data: call.CameraCapabilities) => {
 
 | 名称    |     类型      | 必填 | 说明           |
 | ------- | ------------ | ---- | ------------- |
-| callId  | number       | 是   | 呼叫id。         |
+| callId  | number       | 是   | 呼叫Id。         |
 | width   | number       | 是   | 本端画面图像尺寸宽(像素)。  |
 | height  | number       | 是   | 本端画面图像尺寸高(像素)。  |
 
