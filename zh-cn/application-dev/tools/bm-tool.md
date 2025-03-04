@@ -669,10 +669,25 @@ Error: signature verification failed due to not trusted app source.
 * 场景一：
 	1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)。在连接设备后，重新为应用进行签名。
 	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
-		```
-		//UDID获取命令
-		hdc shell bm get -u
-		```
+
+        1. 获取当前设备的UDID。
+
+        ```
+          //UDID获取命令
+          hdc shell bm get -u
+        ```
+
+        2. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
+
+        ```
+          IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
+
+          例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
+          例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
+        ```
+
+        3. 在UnsgnedDebugProfileTemplate.json文件的device-ids字段中，添加当前设备的UDID。
+
 * 场景二：使用[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)重新签名应用。
 
 
