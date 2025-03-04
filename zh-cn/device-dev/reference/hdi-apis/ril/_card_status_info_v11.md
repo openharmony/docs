@@ -17,7 +17,7 @@ SIM卡状态信息。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int [index](#index) | SIM卡索引  | 
+| int [index](#index) | SIM卡索引。  | 
 | int [simType](#simtype) | SIM卡类型。 | 
 | int [simState](#simstate) | SIM卡状态。 | 
 
@@ -32,7 +32,7 @@ int CardStatusInfo::index
 ```
 **描述**
 
-SIM卡索引
+SIM卡索引。
 
 
 ### simState
@@ -56,7 +56,7 @@ SIM卡状态。
 
 - 4：需要输入PIN2码。
 
-- 5：需要输入PUK2码 
+- 5：需要输入PUK2码。 
 
 
 ### simType
@@ -72,4 +72,4 @@ SIM卡类型。
 
 - 1：普通SIM卡。
 
-- 2：USIM，支持4G网络 
+- 2：USIM，支持4G网络。
