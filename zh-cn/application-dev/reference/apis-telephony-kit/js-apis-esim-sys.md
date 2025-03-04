@@ -29,7 +29,7 @@ getEid\(slotId: number\): string
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。   |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。   |
 
 **返回值：**
 
@@ -45,7 +45,7 @@ getEid\(slotId: number\): string
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -75,7 +75,7 @@ getOsuStatus\(slotId: number\): Promise\<OsuStatus\>
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
@@ -91,7 +91,7 @@ getOsuStatus\(slotId: number\): Promise\<OsuStatus\>
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -125,7 +125,7 @@ startOsu\(slotId: number\): Promise\<OsuStatus\>
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | 是   | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
@@ -141,7 +141,7 @@ startOsu\(slotId: number\): Promise\<OsuStatus\>
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -176,7 +176,7 @@ getDownloadableProfileMetadata\(slotId: number, portIndex: number,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId              | number                                        | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId              | number                                        | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex           | number                                        | 是 | 插槽的端口索引。     |
 | profile             | [DownloadableProfile](#downloadableprofile14) | 是 | 可下载的配置文件信息。|
 | forceDisableProfile | boolean | 是 | 如果值为true，必须停用活动SIM才能执行操作。<br/>如果值为false，提示用户首先同意此操作。|
@@ -195,7 +195,7 @@ getDownloadableProfileMetadata\(slotId: number, portIndex: number,
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -241,7 +241,7 @@ getDownloadableProfiles\(slotId: number, portIndex: number,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId              | number  | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId              | number  | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex           | number  | 是 | 插槽的端口索引。 |
 | forceDisableProfile | boolean | 是 | 如果值为true，必须停用活动SIM才能执行操作。<br/>如果值为false，提示用户首先同意此操作。|
 
@@ -259,7 +259,7 @@ getDownloadableProfiles\(slotId: number, portIndex: number,
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -294,7 +294,7 @@ downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId        | number                                            | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId        | number                                            | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex     | number                                            | 是 | 插槽的端口索引。 |
 | profile       | [DownloadableProfile](#downloadableprofile14)     | 是 | 可下载的配置文件信息。 |
 | configuration | [DownloadConfiguration](#downloadconfiguration14) | 是 | 下载的配置信息。 |
@@ -313,7 +313,7 @@ downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -364,7 +364,7 @@ getEuiccProfileInfoList\(slotId: number\): Promise\<GetEuiccProfileInfoListResul
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId | number | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
@@ -380,7 +380,7 @@ getEuiccProfileInfoList\(slotId: number\): Promise\<GetEuiccProfileInfoListResul
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -414,7 +414,7 @@ getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId | number | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
@@ -430,7 +430,7 @@ getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -464,8 +464,8 @@ deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId | number | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
-| iccid  | string | 是 | 配置文件的id。 |
+| slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| iccid  | string | 是 | 配置文件的Id。 |
 
 **返回值：**
 
@@ -481,7 +481,7 @@ deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -516,9 +516,9 @@ switchToProfile\(slotId: number, portIndex: number, iccid: string,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId              | number  | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId              | number  | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex           | number  | 是 | 插槽的端口索引。 |
-| iccid               | string  | 是 | 配置文件的id。   |
+| iccid               | string  | 是 | 配置文件的Id。   |
 | forceDisableProfile | boolean | 是 | 如果值为true，则必须停用活动SIM才能执行操作。<br/>如果值为false，则提示用户首先同意此操作。|
 
 **返回值：**
@@ -535,7 +535,7 @@ switchToProfile\(slotId: number, portIndex: number, iccid: string,
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -569,8 +569,8 @@ setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId   | number | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
-| iccid    | string | 是 | 配置文件的id。 |
+| slotId   | number | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| iccid    | string | 是 | 配置文件的Id。 |
 | nickname | string | 是 | 昵称。 |
 
 **返回值：**
@@ -587,7 +587,7 @@ setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -621,7 +621,7 @@ resetMemory\(slotId: number, options?: ResetOption\): Promise\<ResultCode\>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId  | number                        | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId  | number                        | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | options | [ResetOption](#resetoption14) | 否 | 重置状态。 |
 
 **返回值：**
@@ -638,7 +638,7 @@ resetMemory\(slotId: number, options?: ResetOption\): Promise\<ResultCode\>
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -672,7 +672,7 @@ reserveProfilesForFactoryRestore\(slotId: number\): Promise\<ResultCode\>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId | number | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
@@ -688,7 +688,7 @@ reserveProfilesForFactoryRestore\(slotId: number\): Promise\<ResultCode\>
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -722,7 +722,7 @@ setDefaultSmdpAddress\(slotId: number, address: string\): Promise\<ResultCode\>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId  | number | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId  | number | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | address | string | 是 | 要设置的默认SM-DP+地址。 |
 
 **返回值：**
@@ -739,7 +739,7 @@ setDefaultSmdpAddress\(slotId: number, address: string\): Promise\<ResultCode\>
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -773,7 +773,7 @@ getDefaultSmdpAddress\(slotId: number\): Promise\<string\>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId | number | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 
 **返回值：**
 
@@ -789,7 +789,7 @@ getDefaultSmdpAddress\(slotId: number\): Promise\<string\>
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
-| 401 | Parameter error. Possible causes:  1. Mandatory parameters are left unspecified.   2. Incorrect parameter types.  3. Invalid parameter value.|
+| 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
 | 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
@@ -823,8 +823,8 @@ cancelSession\(slotId: number, transactionId: string, cancelReason: CancelReason
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
-| slotId        | number                          | 是 | 卡槽id。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
-| transactionId | string                          | 是 | 业务id。|
+| slotId        | number                          | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
+| transactionId | string                          | 是 | 业务ID。|
 | cancelReason  | [CancelReason](#cancelreason14) | 是 | 取消会话的原因。|
 
 **返回值：**
@@ -901,7 +901,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 | downloadableProfile | DownloadableProfile  |  是  | 可下载的配置文件信息。   |
 | pprType             | number               |  是  | 配置文件策略规则类型。 |
 | pprFlag             | boolean              |  是  | 配置文件策略规则标记。 |
-| iccid               | string               |  是  | 配置文件的iccid。     |
+| iccid               | string               |  是  | 配置文件的iccId。     |
 | serviceProviderName | string               |  是  | 配置文件的服务提供商名称。 |
 | profileName         | string               |  是  | 配置文件名称。 |
 | profileClass        | ProfileClass         |  是  | 配置文件类。   |
@@ -933,7 +933,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 | ----- | ----- | ----- | -----|
 | responseResult | ResultCode     |  是  | 操作结果码。 |
 | solvableErrors | SolvableErrors |  是  | 可解决错误。 |
-| cardId         | number         |  是  | 获取卡id。   |
+| cardId         | number         |  是  | 获取卡Id。   |
 
 ## GetEuiccProfileInfoListResult<sup>14+</sup>
 
@@ -974,13 +974,13 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 
 | 名称 | 类型 | 必填 | 说明 |
 | ----- | ----- | ----- | -----|
-| iccid               | string             |  是  | 配置文件的iccid。 |
+| iccid               | string             |  是  | 配置文件的iccId。 |
 | nickName            | string             |  是  | 昵称。 |
 | serviceProviderName | string             |  是  | 配置文件的服务提供商名称。 |
 | profileName         | string             |  是  | 配置文件名称。   |
 | state               | ProfileState       |  是  | 配置文件的状态。 |
 | profileClass        | ProfileClass       |  是  | 配置文件类。     |
-| operatorId          | OperatorId         |  是  | 配置文件的操作id。|
+| operatorId          | OperatorId         |  是  | 配置文件的操作ID。|
 | policyRules         | PolicyRules        |  是  | 配置文件策略。   |
 | accessRules         | Array\<AccessRule> |  是  | 配置文件规则。   |
 
@@ -1052,7 +1052,7 @@ euicc信息。
 | RESULT_CONFIRMATION_CODE_INCORRECT                       | 212 | 确认码不正确。 |
 | RESULT_EXCEEDED_CONFIRMATION_CODE_TRY_LIMIT              | 213 | 已达到最大确认码尝试次数。      |
 | RESULT_NO_PROFILE_ON_SERVER                              | 214 | 服务器上没有可供下载的配置文件。 |
-| RESULT_TRANSACTION_ID_INVALID                            | 215 | 事务id无效。    |
+| RESULT_TRANSACTION_ID_INVALID                            | 215 | 事务ID无效。    |
 | RESULT_SERVER_ADDRESS_INVALID                            | 216 | 服务器地址无效。 |
 | RESULT_GET_BOUND_PROFILE_PACKAGE_FAILED                  | 217 | 获取BPP失败。    |
 | RESULT_USER_CANCEL_DOWNLOAD                              | 218 | 最终用户取消下载。   |
@@ -1061,7 +1061,7 @@ euicc信息。
 | RESULT_SMDP_ADDRESS_INCORRECT                            | 226 | 认证响应服务器地址不匹配。   |
 | RESULT_ANALYZE_AUTHENTICATION_SERVER_RESPONSE_FAILED     | 228 | 解析服务器身份验证响应错误。 |
 | RESULT_ANALYZE_AUTHENTICATION_CLIENT_RESPONSE_FAILED     | 229 | 解析客户端身份验证响应错误。 |
-| RESULT_ANALYZE_AUTHENTICATION_CLIENT_MATCHING_ID_REFUSED | 231 | 由于匹配id被拒绝，解析客户端身份验证响应错误。 |
+| RESULT_ANALYZE_AUTHENTICATION_CLIENT_MATCHING_ID_REFUSED | 231 | 由于匹配ID被拒绝，解析客户端身份验证响应错误。 |
 | RESULT_PROFILE_TYPE_ERROR_AUTHENTICATION_STOPPED         | 233 | 由于配置文件类型中的错误，身份验证已停止。     |
 | RESULT_CARRIER_SERVER_REFUSED_ERRORS                     | 249 | 运营商服务器拒绝原因码为3.8的错误。 |
 | RESULT_CERTIFICATE_INVALID                               | 251 | 证书无效。 |
