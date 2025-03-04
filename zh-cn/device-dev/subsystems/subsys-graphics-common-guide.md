@@ -319,7 +319,7 @@ UIButton组件，提供可点击功能，同时可设置不同状态下样式。
 
 省略号模式指文本内容显示不下时，在末尾显示省略号。
 
-1. 创建label，设置大小和位置。
+1. 创建label，设置大小和位置信息。
      
    ```
    UILabel* label = new UILabel();
@@ -327,7 +327,7 @@ UIButton组件，提供可点击功能，同时可设置不同状态下样式。
    label->Resize(width, height);
    ```
 
-2. 设置字形。
+2. 设置字形信息。
      
    ```
    label->SetFont("SourceHanSansSC-Regular.otf", 30);
@@ -343,7 +343,7 @@ UIButton组件，提供可点击功能，同时可设置不同状态下样式。
 
 4. 检查label DOT模式效果，如下图所示，末尾显示省略号。
     
-     **图9** DOT模式显示效果
+     **图9** DOT模式显示效果图
 
      ![zh-cn_image_0000001200029619](figures/zh-cn_image_0000001200029619.png)
 
@@ -351,7 +351,7 @@ UIButton组件，提供可点击功能，同时可设置不同状态下样式。
 
 文本滚动显示。
 
-1. 创建label，设置大小和位置。
+1. 创建label，设置大小和位置信息。
      
    ```
    UILabel* label = new UILabel();
@@ -359,7 +359,7 @@ UIButton组件，提供可点击功能，同时可设置不同状态下样式。
    label->Resize(width, height);
    ```
 
-2. 设置字形。
+2. 设置字形信息。
      
    ```
    label->SetFont("SourceHanSansSC-Regular.otf", 30);
@@ -376,6 +376,6 @@ UIButton组件，提供可点击功能，同时可设置不同状态下样式。
 
 4. 检查label滚动模式效果，如下图所示。
      
-     **图10** 滚动模式显示效果
+     **图10** 滚动模式显示效果图
 
      ![zh-cn_image_0000001200109273](figures/zh-cn_image_0000001200109273.gif)
