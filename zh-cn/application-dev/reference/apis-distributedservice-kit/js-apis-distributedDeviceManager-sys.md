@@ -33,8 +33,8 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 | 名称         | 值  | 说明              |
 | ----------- | ---- | --------------- |
-| TEMP_STOP_HEARTBEAT      | 100    | 临时停止心跳广播，超时后自动恢复             |
-| START_HEARTBEAT          | 101    | 开始心跳广播                               |
+| TEMP_STOP_HEARTBEAT      | 100    | 临时停止心跳广播，超时后自动恢复。             |
+| START_HEARTBEAT          | 101    | 开始心跳广播。                               |
 
 ## DeviceManager
 
