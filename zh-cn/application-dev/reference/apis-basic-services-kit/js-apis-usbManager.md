@@ -265,10 +265,6 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 
 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及interfaces；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
-> **说明：** 
->
-> 单次批量传输的传输数据总量（包括pipe、endpoint、buffer、timeout）请控制在200KB以下。
-
 **系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
@@ -680,6 +676,10 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 批量传输。
 
 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；再调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；然后调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe之后，再次获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；再调用usb.bulkTransfer接口。
+
+> **说明：** 
+>
+> 单次批量传输的传输数据总量（包括pipe、endpoint、buffer、timeout）请控制在200KB以下。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
