@@ -74,7 +74,7 @@ git clone https://gitee.com/openharmony/third_party_libjpeg-turbo.git           
 
 ### UI Test应用运行入口
 
-展开项目树
+展开项目树。
 
 ```
 simulator
