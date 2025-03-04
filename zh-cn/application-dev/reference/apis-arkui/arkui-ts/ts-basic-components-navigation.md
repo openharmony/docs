@@ -2054,6 +2054,7 @@ export struct PageTwo {
 
 该示例主要演示设置每个NavDestination子页面的自定义转场动画及可交互转场动画。
 
+<!--code_no_check-->
 ```ts
 // Index.ets
 import { CustomTransition, AnimateCallback } from './CustomNavigationUtils'
@@ -2153,6 +2154,7 @@ struct NavigationExample {
 }
 ```
 
+<!--code_no_check-->
 ```ts
 // PageOne.ets
 import { CustomTransition } from './CustomNavigationUtils';
@@ -2263,6 +2265,7 @@ export struct PageOne {
   }
 }
 ```
+<!--code_no_check-->
 ```ts
 // PageTwo.ets
 import { CustomTransition } from './CustomNavigationUtils'
@@ -3813,6 +3816,8 @@ export struct NavDestinationExample {
 ### 示例13（自定义转场动画）
 
 该示例主要实现Navigation简单的自定义转场动画。
+
+<!--code_no_check-->
 ```ts
 // Index.ets
 import { AnimateCallback, CustomTransition } from './CustomTransitionUtils'
