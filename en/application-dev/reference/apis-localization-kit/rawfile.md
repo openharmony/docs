@@ -32,10 +32,10 @@ Provides the function of operating rawfile directories and rawfiles. You can use
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [RawDir](#rawdir)[RawDir](#rawdir) | Provides access to the **rawfile** directory.| 
-| typedef struct [RawFile](#rawfile)[RawFile](#rawfile) | Provides access to rawfiles.| 
-| typedef struct [RawFile64](#rawfile64)[RawFile64](#rawfile64) | Provides access to large rawfiles.| 
-| typedef struct [NativeResourceManager](#nativeresourcemanager)[NativeResourceManager](#nativeresourcemanager) | Represents the native **ResourceManager**.| 
+| typedef struct [RawDir](#rawdir) [RawDir](#rawdir) | Provides access to the **rawfile** directory.| 
+| typedef struct [RawFile](#rawfile) [RawFile](#rawfile) | Provides access to rawfiles.| 
+| typedef struct [RawFile64](#rawfile64) [RawFile64](#rawfile64) | Provides access to large rawfiles.| 
+| typedef struct [NativeResourceManager](#nativeresourcemanager) [NativeResourceManager](#nativeresourcemanager) | Represents the native **ResourceManager**.| 
 
 
 ### Functions
@@ -75,7 +75,7 @@ Provides the function of operating rawfile directories and rawfiles. You can use
 ### NativeResourceManager
 
 ```
-typedef struct NativeResourceManagerNativeResourceManager
+typedef struct NativeResourceManager NativeResourceManager
 ```
 
 **Description**
@@ -90,7 +90,7 @@ This class encapsulates the native implementation of the JavaScript resource man
 ### RawDir
 
 ```
-typedef struct RawDirRawDir
+typedef struct RawDir RawDir
 ```
 
 **Description**
@@ -103,7 +103,7 @@ Provides access to the **rawfile** directory.
 ### RawFile
 
 ```
-typedef struct RawFileRawFile
+typedef struct RawFile RawFile
 ```
 
 **Description**
@@ -116,7 +116,7 @@ Provides access to rawfiles.
 ### RawFile64
 
 ```
-typedef struct RawFile64RawFile64
+typedef struct RawFile64 RawFile64
 ```
 
 **Description**
@@ -272,7 +272,7 @@ The file descriptor obtained can be used to read the file.
 | Name| Description| 
 | -------- | -------- |
 | rawFile | Pointer to [RawFile64](#rawfile64).| 
-| File descriptor of the rawfile, start position of the rawfile in the HAP, and length of the rawfile.|  | 
+| descriptor | File descriptor of the rawfile, start position of the rawfile in the HAP, and length of the rawfile.| 
 
 **Returns**
 
@@ -287,7 +287,9 @@ const char* OH_ResourceManager_GetRawFileName (RawDir * rawDir, int index )
 
 **Description**
 
-Obtain the name of the rawfile file through the index. You can use this method to traverse the rawfile directory.
+Obtains the name of a file in **rawfile** based on the index.
+
+You can use this function to traverse the **rawfile** directory.
 
 **Since**: 8
 
@@ -463,7 +465,7 @@ Obtains the native **ResourceManager** based on the JS **ResourceManager** to im
 
 | Name| Description| 
 | -------- | -------- |
-| env | Pointer to the JS native API (napi) environment.| 
+| env | Pointer to the JavaScript Native API (napi) environment.| 
 | jsResMgr | JS **ResourceManager**.| 
 
 **Returns**

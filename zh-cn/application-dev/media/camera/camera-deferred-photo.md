@@ -100,7 +100,7 @@
          return;
        }
        console.info('photoOutPutCallBack deferredPhotoProxyAvailable');
-       // 获取缩略图 pixelMap
+       // 获取缩略图 pixelMap。
        proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
          AppStorage.setOrCreate('proxyThumbnail', thumbnail);
        });
@@ -121,11 +121,11 @@
    
    async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy) {    
      try {
-       // 创建 photoAsset
+       // 创建 photoAsset。
        let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);
        let testFileName = 'testFile' + Date.now() + '.jpg';
        let photoAsset = await accessHelper.createAsset(testFileName);
-       // 将缩略图代理类传递给媒体库
+       // 将缩略图代理类传递给媒体库。
        let mediaRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
        mediaRequest.addResource(photoAccessHelper.ResourceType.PHOTO_PROXY, proxyObj);
        let res = await accessHelper.applyChanges(mediaRequest);

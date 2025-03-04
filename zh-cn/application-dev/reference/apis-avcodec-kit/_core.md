@@ -111,7 +111,7 @@ typedef enum OH_AmbAttributeSet OH_AmbAttributeSet
 
 高保真立体声混响设置。
 
-用int64整数来表示高保真立体声混响属性。
+用int64_t整数来表示高保真立体声混响属性。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -145,7 +145,7 @@ typedef enum OH_AudioChannelSet OH_AudioChannelSet
 
 音频声道集合。
 
-将每一个声道映射为int64的变量。
+将每一个声道映射为int64_t的变量。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -273,7 +273,7 @@ enum OH_AmbAttributeSet
 
 高保真立体声混响设置。
 
-用int64整数来表示高保真立体声混响属性。
+用int64_t整数来表示高保真立体声混响属性。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -371,7 +371,7 @@ enum OH_AudioChannelSet
 
 音频声道集合。
 
-将每一个声道映射为int64的变量。
+将每一个声道映射为int64_t的变量。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -486,7 +486,7 @@ enum OH_AVPixelFormat
 | -------- | -------- |
 | AV_PIXEL_FORMAT_YUVI420 | yuv 420 planar。 | 
 | AV_PIXEL_FORMAT_NV12 | NV12. yuv 420 semiplanar。 | 
-| AV_PIXEL_FORMAT_NV21 | NV21. yuv 420 semiplanar。 | 
+| AV_PIXEL_FORMAT_NV21 | NV21. yvu 420 semiplanar。 | 
 | AV_PIXEL_FORMAT_SURFACE_FORMAT | 像素格式从surface获取。 | 
 | AV_PIXEL_FORMAT_RGBA | RGBA8888。 | 
 
@@ -1154,7 +1154,7 @@ bool OH_AVFormat_GetStringValue (struct OH_AVFormat *format, const char *key, co
 | -------- | -------- |
 | format | 指向OH_AVFormat实例的指针。 | 
 | key | 读取数据的键。 | 
-| out | 读取string指针，out数据的生命周期与format内string对应，out最大输出字符串长度为256字节。 如果开发者需要长时间保持它，必须进行拷贝内存。 | 
+| out | 读取string指针，out数据的生命周期与format内string对应，如果开发者需要长时间保持它，必须进行拷贝内存。out最大输出字符串长度为256字节，如果长度超过256字节，会报false。 | 
 
 **返回：**
 
@@ -1167,7 +1167,8 @@ bool OH_AVFormat_GetStringValue (struct OH_AVFormat *format, const char *key, co
 3. 输入key为空指针；
 4. 输入out为空指针；
 5. malloc出的out字符串资源不足；
-6. 获取的key不存在或者未设置。
+6. 获取的key不存在或者未设置；
+7. 输出out的长度超过256字节。
 
 
 ### OH_AVFormat_SetBuffer()
@@ -1191,7 +1192,7 @@ bool OH_AVFormat_SetBuffer (struct OH_AVFormat *format, const char *key, const u
 | format | 指向OH_AVFormat实例的指针。 | 
 | key | 写入数据的键。 | 
 | addr | 写入数据的地址，生命周期由开发者管理。 | 
-| size | 写入数据的长度，范围为(0, 1)MB。 | 
+| size | 写入数据的长度，范围为(0, 1]MB。 | 
 
 **返回：**
 
@@ -1362,7 +1363,7 @@ bool OH_AVFormat_SetStringValue (struct OH_AVFormat *format, const char *key, co
 | -------- | -------- |
 | format | 指向OH_AVFormat实例的指针。 | 
 | key | 写入数据的键。 | 
-| value | 写入字符串数据（长度超出256字节系统做截断处理）。 | 
+| value | 写入字符串数据（使用建议：设置字符长度不超过256字节）。 | 
 
 **返回：**
 

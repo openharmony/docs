@@ -19,7 +19,7 @@ zh-cn/release-notes/changelogs/ @ang-huawei
 zh-cn/release-notes/changelogs/**/changelogs-ability.md  @ang-huawei  @huipeizi
 
 [设备开发]
-zh-cn/device-dev/ @li-yan339 @zengyawen
+zh-cn/device-dev/ @li-yan339 @zengyawen @fang-jinxu
 
 [入门-快速入门]
 zh-cn/application-dev/quick-start/start-overview.md @ge-yafang
@@ -677,7 +677,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-fore
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-blur-style.md		@lightningHo	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-click-effect.md		@lightningHo	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md	@lmleon			@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md @jiangtao92	@sunfei2021	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md @harmony_zhangjian	@sunfei2021	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-outline.md @luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md	@jiangtao92	@zhaojian2021	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md	@jiangtao92	@zhaojian2021	@fredyuan0912	@HelloCrease

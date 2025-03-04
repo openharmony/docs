@@ -48,6 +48,7 @@
        - [固定样式弹出框](arkts-fixes-style-dialog.md)
      - [菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)
      - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
+     - [不依赖UI组件的全局气泡提示 (openPopup)](arkts-popup-and-menu-components-uicontext-popup.md)
      - 绑定模态页面<!--arkts-bind-modal-->
         - [绑定模态页面概述](arkts-modal-overview.md)
         - [绑定半模态页面 (bindSheet)](arkts-sheet-page.md)

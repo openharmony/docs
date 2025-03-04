@@ -1213,18 +1213,22 @@ type DataProgressListener = (progressInfo: ProgressInfo, data: UnifiedData | nul
 
 | 参数名      | 类型                            | 必填    | 说明           |
 |----------|-------------------------------|-------|--------------|
-| progress | [ProgressInfo](#progressinfo15) | 是     | 定义进度上报的进度信息。 |
-| data     | [UnifiedData](#unifieddata)  \| null  |  是    | 进度达到100时获取的数据，进度未到100时返回null。 |
+| progressInfo| [ProgressInfo](#progressinfo15) | 是     | 定义进度上报的进度信息。 |
+| data        | [UnifiedData](#unifieddata)  \| null  |  是    | 进度达到100时获取的数据，进度未到100时返回null。 |
 
 ## GetDataParams<sup>15+</sup>
 
 表示从UDMF获取数据时的参数，包含目标路径、文件冲突选项、进度条类型等。
 
+具体使用示例可见[拖拽异步获取数据](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#示例3拖拽异步获取数据)。
+
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
+**参数：**
+
+| 参数名                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
 |----------------------|-------------------------------------------------| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
 | progressIndicator    | [ProgressIndicator](#progressindicator15)       | 是 | 定义进度条指示选项，可选择是否采用系统默认进度显示。                                                                                                                         |
 | dataProgressListener | [DataProgressListener](#dataprogresslistener15) | 是 | 表示获取统一数据时的进度和数据监听器。                                                                                                                                |

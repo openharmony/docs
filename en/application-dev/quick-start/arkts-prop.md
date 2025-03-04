@@ -19,11 +19,11 @@ For the \@Prop decorated variable of a child component, the change synchronizati
 
 - Whenever the data source changes, the \@Prop decorated variable gets updated, and any locally made changes are overwritten. In other words, the change is synchronized from the parent component to the (owning) child component, but not the other way around.
 
+
+
 ## Restrictions
 
 - When decorating variables, \@Prop makes a deep copy, during which all types, except primitive types, Map, Set, Date, and Array, will be lost. For example, for complex types provided by N-API, such as [PixelMap](../reference/apis-image-kit/js-apis-image.md#pixelmap7), because they are partially implemented in the native code, complete data cannot be obtained through a deep copy in ArkTS.
-
-- The \@Prop decorator cannot be used in custom components decorated by \@Entry.
 
 
 ## Rules of Use
@@ -186,11 +186,11 @@ struct ParentComponent {
 To understand the value initialization and update mechanism of the \@Prop decorated variable, it is necessary to understand the parent component and the initial render and update process of the child component that owns the \@Prop decorated variable.
 
 1. Initial render:
-   1. The execution of the parent component's **build()** function creates an instance of the child component, and the parent component provides a source for the @Prop decorated variable.
+   1. The execution of the parent component's **build()** function creates an instance of the child component, and the parent component provides a source for the \@Prop decorated variable.
    2. The @Prop decorated variable is initialized.
 
 2. Update:
-   1. When the @Prop decorated variable is modified locally, the change does not propagate back to its parent component.
+   1. When the \@Prop decorated variable is modified locally, the change does not propagate back to its parent component.
    2. When the data source of the parent component is updated, the \@Prop decorated variable in the child component is reset, and its local value changes are overwritten.
 
 > **NOTE**
@@ -208,6 +208,8 @@ In this example, the \@Prop decorated **count** variable in the **CountDownCompo
 
 
 Updating **countDownStartValue** in the **ParentComponent** will update the value of the @Prop decorated **count**.
+
+
 
 ```ts
 @Component
@@ -257,13 +259,13 @@ struct ParentComponent {
 In the preceding example:
 
 
-1. On initial render, when the **CountDownComponent** child component is created, its @Prop decorated **count** variable is initialized from the \@State decorated **countDownStartValue** variable in the **ParentComponent**.
+1. On initial render, when the **CountDownComponent** child component is created, its \@Prop decorated **count** variable is initialized from the \@State decorated **countDownStartValue** variable in the **ParentComponent**.
 
-2. When the "+1" or "-1" button is touched, the @State decorated **countDownStartValue** of the **ParentComponent** changes. This will cause the **ParentComponent** to re-render. At the minimum, the **CountDownComponent** will be updated because of the change in the **count** variable value.
+2. When the "+1" or "-1" button is touched, the \@State decorated **countDownStartValue** of the **ParentComponent** changes. This will cause the **ParentComponent** to re-render. At the minimum, the **CountDownComponent** will be updated because of the change in the **count** variable value.
 
-3. Because of the change in the **count** variable value, the **CountDownComponent** child component will re-render. At a minimum, the **if** statement's condition (**this.counter> 0**) is evaluated, and the **Text** child component inside the **if** statement would be updated.
+3. Because of the change in the **count** variable value, the **CountDownComponent** child component will re-render. At a minimum, the **if** statement's condition (**this.counter > 0**) is evaluated, and the **Text** child component inside the **if** statement would be updated.
 
-4. When **Try again** in the **CountDownComponent** child component is touched, the value of the **count** variable is modified, but the change remains within the child component and does not affect the **countDownStartValue** in the parent component.
+4. When **Try again** in the **CountDownComponent** child component is touched, the value of the **count** variable is decorated, but the change remains within the child component and does not affect the **countDownStartValue** in the parent component.
 
 5. Updating **countDownStartValue** will overwrite the local value changes of the @Prop decorated **count** in the **CountDownComponent** child component.
 
@@ -272,6 +274,8 @@ In the preceding example:
 
 
 The \@State decorated array an array item in the parent component can be used as data source to initialize and update a @Prop decorated variable. In the following example, the \@State decorated array **arr** in the parent component **Index** initializes the \@Prop decorated **value** variable in the child component **Child**.
+
+
 
 ```ts
 @Component
@@ -543,9 +547,9 @@ To enable an \@Component decorated component to be reusable, \@Prop allows for o
 
 The following example includes two @Prop decorated variables in the child component.
 
-- The @Prop decorated variable **customCounter** has no local initialization, and therefore it requires a synchronization source in its parent component. When the source value changes, the @Prop decorated variable is updated.
+- **customCounter** is not initialized locally. Therefore, the parent component needs to provide the data source to deinitialize \@Prop. When the data source of the parent component changes, \@Prop is updated.
 
-- The @Prop decorated variable **customCounter2** has local initialization. In this case, specifying a synchronization source in the parent component is allowed but not mandatory.
+- **customCounter2** has local initialization. In this case, specifying a synchronization source in the parent component is allowed but not mandatory.
 
 
 ```ts
@@ -1133,4 +1137,3 @@ struct Child {
   }
 }
 ```
-

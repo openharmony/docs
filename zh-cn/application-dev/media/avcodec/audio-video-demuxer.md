@@ -248,8 +248,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```c++
    // 调整轨道到指定时间点，后续从该时间点进行解封装。
    // 注意：
-   // 1. mpegts格式文件使用OH_AVDemuxer_SeekToTime功能时，跳转到的位置可能为非关键帧。可在跳转后调用OH_AVDemuxer_ReadSampleBuffer，通过获取到的OH_AVCodecBufferAttr判断当前帧是否为关键帧。若非关键帧影响应用侧显示等功能，可在跳转后循环读取，获取到后续第一帧关键帧后，再进行解码等处理。
+   // 1. mpegts、mpg 格式文件使用OH_AVDemuxer_SeekToTime功能时，跳转到的位置可能为非关键帧。可在跳转后调用OH_AVDemuxer_ReadSampleBuffer，通过获取到的OH_AVCodecBufferAttr判断当前帧是否为关键帧。若非关键帧影响应用侧显示等功能，可在跳转后循环读取，获取到后续第一帧关键帧后，再进行解码等处理。
    // 2. ogg格式文件使用OH_AVDemuxer_SeekToTime功能时，会跳转到传入时间millisecond所在时间间隔(秒)的起始处，可能会导致一定数量的帧误差。
+   // 3. demuxer的seek处理只针对解码行为一致的码流进行处理，如果seek后需要解码器重新配置参数，或者需要重新送入参数集的数据才可以正确解码的码流，seek后可能会出现花屏、解码卡死等问题。
    OH_AVDemuxer_SeekToTime(demuxer, 0, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
    ```
 
@@ -284,6 +285,8 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    int32_t ret;
    while (!audioIsEnd || !videoIsEnd) {
       // 在调用 OH_AVDemuxer_ReadSampleBuffer 接口获取数据前，需要先调用 OH_AVDemuxer_SelectTrackByID 选中需要获取数据的轨道。
+      // 注意：
+      // avi格式由于容器标准不支持封装时间戳信息，demuxer解出的帧中不含pts信息，需要调用方根据帧率及解码出帧后的显示顺序自行计算显示时间戳信息。
       // 获取音频sample。
       if(!audioIsEnd) {
          ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, audioTrackIndex, buffer);

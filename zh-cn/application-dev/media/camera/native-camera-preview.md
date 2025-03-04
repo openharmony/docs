@@ -9,7 +9,7 @@
 1. 导入NDK接口，接口中提供了相机相关的属性和方法，导入方法如下。
      
    ```c++
-    // 导入NDK接口头文件
+    // 导入NDK接口头文件。
     #include "hilog/log.h"
     #include "ohcamera/camera.h"
     #include "ohcamera/camera_input.h"

@@ -296,7 +296,7 @@ struct Page2 {
 
 **变更影响**
 
-该变更为不兼容变更。
+此变更需要应用适配。
 
 | 变更前 | 变更后 |
 |---------|---------|
@@ -305,7 +305,7 @@ struct Page2 {
 
 **起始API Level**
 
-API 7
+API 12
 
 **变更发生版本**
 
@@ -313,7 +313,7 @@ API 7
 
 **变更的接口/组件**
 
-Checkbox/Radio/Rating/Slider/Toggle
+Checkbox/Radio/Rating/Slider/Toggle/DataPanel/Gauge/LoadingProgress/Progress
 
 **适配指导**
 

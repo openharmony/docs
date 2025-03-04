@@ -32,6 +32,8 @@ Builder of the custom content area.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name | Description                                                        |
@@ -51,52 +53,75 @@ You need a custom class to implement the **ContentModifier** API.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name | Type   | Description             |
 | ------ | ------ | ---------------- |
-| enabled | boolean | Whether to enable the content modifier and respond to operations such as **triggerChange**. The value **true** means to enable the content modifier and respond to operations such as **triggerChange**, and **false** means the opposite. |
-| contentModifier | ContentModifier\<T> | Content modifier that sends the component information required by users to the custom content area. |
+| enabled | boolean | Whether to enable the content modifier and respond to operations such as **triggerChange**. The value **true** means to enable the content modifier and respond to operations such as **triggerChange**, and **false** means the opposite.|
+| contentModifier | ContentModifier\<T> | Content modifier that sends the component information required by users to the custom content area.|
 
 
 ## Example
-This example implements a custom check box. This check box comes in the custom pentagon style instead of the original check box style. When selected, the check box shows a red triangle pattern inside, and the title displays the word "Selected;" when deselected, the check box hides the red triangle pattern inside, and the title displays the word "Unselected."
+
+This example demonstrates how to create a custom check box using **ContentModifier**. This check box comes in the custom pentagon style instead of the original check box style. When selected, the check box shows a red triangle pattern inside, and the title displays the word "Selected;" when deselected, the check box hides the red triangle pattern inside, and the title displays the word "Unselected."
+
 ```ts
 // xxx.ets
 class MyCheckboxStyle implements ContentModifier<CheckBoxConfiguration> {
   selectedColor: Color = Color.White
+
   constructor(selectedColor: Color) {
     this.selectedColor = selectedColor;
   }
-  applyContent() : WrappedBuilder<[CheckBoxConfiguration]>
-  {
+
+  applyContent(): WrappedBuilder<[CheckBoxConfiguration]> {
     return wrapBuilder(buildCheckbox)
   }
 }
 
-@Builder function buildCheckbox(config: CheckBoxConfiguration) {
-  Column({space:10}) {
-      Text(config.name + (config.selected ? "(Selected)" : "(Not selected)"))
-      Shape() {
-        Path().width(200).height(60).commands('M100 0 L0 100 L50 200 L150 200 L200 100 Z').fillOpacity(0).strokeWidth(3)
-        Path().width(10).height(10).commands('M50 0 L100 100 L0 100 Z')
-          .visibility(config.selected ? Visibility.Visible : Visibility.Hidden)
-          .fill(config.selected ? (config.contentModifier as MyCheckboxStyle).selectedColor : Color.Black)
-          .stroke((config.contentModifier as MyCheckboxStyle).selectedColor)
-          .margin({left:11,top:10})
-      }
-      .width(300)
-      .height(200)
-      .viewPort({ x: 0, y: 0, width: 310, height: 310 })
-      .strokeLineJoin(LineJoinStyle.Miter)
-      .strokeMiterLimit(5)
-      .onClick(()=>{
-            if (config.selected) {
-              config.triggerChange(false)
-            } else {
-              config.triggerChange(true)
-            }
-      }).margin({left:150})
+@Builder
+function buildCheckbox(config: CheckBoxConfiguration) {
+  Column({ space: 10 }) {
+    Text(config.name + (config.selected ? "(Selected)" : "(Not selected)"))
+    Shape() {
+      // Pentagon check box style
+      Path()
+        .width(200)
+        .height(60)
+        .commands('M100 0 L0 100 L50 200 L150 200 L200 100 Z')
+        .fillOpacity(0)
+        .strokeWidth(3)
+      // Red triangle pattern style
+      Path()
+        .width(10)
+        .height(10)
+        .commands('M50 0 L100 100 L0 100 Z')
+        .visibility(config.selected ? Visibility.Visible : Visibility.Hidden)
+        .fill(config.selected ? (config.contentModifier as MyCheckboxStyle).selectedColor : Color.Black)
+        .stroke((config.contentModifier as MyCheckboxStyle).selectedColor)
+        .margin({ left: 11, top: 10 })
     }
+    .width(300)
+    .height(200)
+    .viewPort({
+      x: 0,
+      y: 0,
+      width: 310,
+      height: 310
+    })
+    .strokeLineJoin(LineJoinStyle.Miter)
+    .strokeMiterLimit(5)
+    .onClick(() => {
+      // Trigger the check box state change upon click.
+      if (config.selected) {
+        config.triggerChange(false)
+      } else {
+        config.triggerChange(true)
+      }
+    })
+    .margin({ left: 150 })
   }
+}
 
 @Entry
 @Component
@@ -105,11 +130,11 @@ struct Index {
     Row() {
       Column() {
         Checkbox({ name: 'Check box status', group: 'checkboxGroup' })
-        .select(true)
-        .contentModifier(new MyCheckboxStyle(Color.Red))
-        .onChange((value: boolean) => {
-          console.info('Checkbox change is' + value)
-        })
+          .select(true)
+          .contentModifier(new MyCheckboxStyle(Color.Red))
+          .onChange((value: boolean) => {
+            console.info('Checkbox change is' + value)
+          })
       }
       .width('100%')
     }
