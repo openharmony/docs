@@ -10,6 +10,8 @@
 > 不支持挂载查询获得的原生系统组件[代理节点](../js-apis-arkui-frameNode.md#ismodifiable12)。
 >
 > 当前不支持使用[动态属性设置](./ts-universal-attributes-attribute-modifier.md)。
+>
+> 该组件下的节点树构建中会使用UI实例[UIContext](../js-apis-arkui-UIContext.md)，当实例切换时可能会因为实例不匹配而出现问题，因此该组件当前不支持跨实例的节点复用。
 ## 子组件
 
 不支持子组件。
