@@ -32,15 +32,15 @@ Repeat组件virtualScroll场景中，Repeat将从提供的数据源中按需迭�
 Repeat<string>(this.arr)
 ```
 
-### Repeat: \<T\>(arr: RepeatArray\<T\>)<sup>16+</sup>
+### Repeat: \<T\>(arr: RepeatArray\<T\>)<sup>18+</sup>
 
 > **说明：**
 >
-> 从API version 16开始，Repeat数据源参数支持RepeatArray类型。
+> 从API version 18开始，Repeat数据源参数支持RepeatArray类型。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -48,7 +48,7 @@ Repeat<string>(this.arr)
 
 | 参数名 | 类型       | 必填 | 说明      |
 | ------ | ---------- | -------- | -------- |
-| arr    | [RepeatArray\<T\>](#repeatarrayt16) | 是 | 数据源，为`RepeatArray<T>`类型的数组，由开发者决定数据类型。 |
+| arr    | [RepeatArray\<T\>](#repeatarrayt18) | 是 | 数据源，为`RepeatArray<T>`类型的数组，由开发者决定数据类型。 |
 
 ## 事件
 
@@ -205,15 +205,15 @@ List() {
 }
 ```
 
-## RepeatArray\<T\><sup>16+</sup>
+## RepeatArray\<T\><sup>18+</sup>
 
 type RepeatArray\<T\> = Array\<T\> | ReadonlyArray\<T\> | Readonly\<Array\<T\>\>
 
 Repeat数据源参数联合类型。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
