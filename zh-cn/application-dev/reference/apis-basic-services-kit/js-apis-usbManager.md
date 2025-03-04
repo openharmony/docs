@@ -766,7 +766,7 @@ for (let i = 0; i < device.configs[0].interfaces.length; i++) {
 }
 ```
 
-## usbManager.usbSubmitTransfer<sup>16+</sup>
+## usbManager.usbSubmitTransfer<sup>18+</sup>
 
 usbSubmitTransfer(transfer: USBDataTransferParams): void
 
@@ -786,7 +786,7 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| transfer | [UsbDataTransferParams](#usbdatatransferparams16) | 是 | 作为通用USB数据传输接口，客户端需要填充这个对象中的参数，用以发起传输请求。|
+| transfer | [UsbDataTransferParams](#usbdatatransferparams18) | 是 | 作为通用USB数据传输接口，客户端需要填充这个对象中的参数，用以发起传输请求。|
 
 **错误码：**
 
@@ -852,7 +852,7 @@ try {
 ```
 
 
-## usbManager.usbCancelTransfer<sup>16+</sup>
+## usbManager.usbCancelTransfer<sup>18+</sup>
 
 usbCancelTransfer(transfer: USBDataTransferParams): void;
 
@@ -870,7 +870,7 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| transfer | [UsbDataTransferParams](#usbdatatransferparams16) | 是 | 在取消传输的接口中，只需要填充USBDevicePipe和endpoint即可。|
+| transfer | [UsbDataTransferParams](#usbdatatransferparams18) | 是 | 在取消传输的接口中，只需要填充USBDevicePipe和endpoint即可。|
 
 **错误码：**
 
@@ -1335,7 +1335,7 @@ USB设备消息传输通道，用于确定设备。
 
 **说明：**
 
-> 从 API version 9开始支持，从API version 16开始废弃。建议使用 [USBDeviceRequestParams](#usbdevicerequestparams12) 替代。
+> 从 API version 9开始支持，从API version 18开始废弃。建议使用 [USBDeviceRequestParams](#usbdevicerequestparams12) 替代。
 
 **系统能力：** SystemCapability.USB.USBManager
 
@@ -1423,7 +1423,7 @@ USB配件句柄。
 | ----------- | ------ | ---- | ----------------------------------------- |
 | accessoryFd | number | 是   | 配件文件描述符。合法的accessoryFd是正整数。 |
 
-## UsbDataTransferParams<sup>16+</sup>
+## UsbDataTransferParams<sup>18+</sup>
 
 作为通用USB数据传输接口，客户端需要填充这个对象中的参数，用以发起传输请求。
 
@@ -1432,17 +1432,17 @@ USB配件句柄。
 | 名称         | 类型   | 必填    |说明    |
 | ---------- | ------ | ----- |----- |
 | devPipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址，需要调用connectDevice获取。 |
-| flags | [UsbTransferFlags](#usbtransferflags16) |是 | USB传输标志。 |
+| flags | [UsbTransferFlags](#usbtransferflags18) |是 | USB传输标志。 |
 | endpoint | number | 是 | 端点地址，正整数。 |
-| type | [UsbEndpointTransferType](#usbendpointtransfertype16) |是 | 传输类型。 |
+| type | [UsbEndpointTransferType](#usbendpointtransfertype18) |是 | 传输类型。 |
 | timeout | number | 是 | 超时时间，单位为毫秒。 |
 | length | number |是 | 数据缓冲区的长度，必须是非负数（期望长度），单位为字节。 |
-| callback | AsyncCallback<[SubmitTransferCallback](#submittransfercallback16)> |是 | 传输完成时的回调信息。|
+| callback | AsyncCallback<[SubmitTransferCallback](#submittransfercallback18)> |是 | 传输完成时的回调信息。|
 | userData | Uint8Array | 否 | 用户上下文数据。 |
 | buffer | Uint8Array | 是 | 用于存储读或者写请求时的数据。 |
 | isoPacketCount | number | 是 | 实时传输时数据包的数量，仅用于具有实时传输端点的I/O。必须是非负数，单位为个数。 |
 
-## UsbTransferFlags<sup>16+</sup>
+## UsbTransferFlags<sup>18+</sup>
 
 USB传输标志。
 
@@ -1455,7 +1455,7 @@ USB传输标志。
 | USB_TRANSFER_FREE_TRANSFER  | 2    | 完成回调后自动传输。 |
 | USB_TRANSFER_ADD_ZERO_PACKET     | 3    | 传输将增加一个额外的数据包。 |
 
-## UsbEndpointTransferType<sup>16+</sup>
+## UsbEndpointTransferType<sup>18+</sup>
 
 Usb传输类型。
 
@@ -1467,7 +1467,7 @@ Usb传输类型。
 | TRANSFER_TYPE_BULK  | 2    | 批量传输。 |
 | TRANSFER_TYPE_INTERRUPT     | 3    | 中断传输。|
 
-## SubmitTransferCallback<sup>16+</sup>
+## SubmitTransferCallback<sup>18+</sup>
 
 Usb异步传输回调。
 
@@ -1476,10 +1476,10 @@ Usb异步传输回调。
 | 名称         | 类型 | 说明    |
 | ---------- | ------ | ----- |
 | actualLength | number | 读写操作的实际长度值，单位为字节。 |
-| status | [UsbTransferStatus](#usbtransferstatus16) | 读写操作完成的状态。 |
-| isoPacketDescs | Array<Readonly<[UsbIsoPacketDescriptor](#usbisopacketdescriptor16)>> | 实时传输的分包信息。 |
+| status | [UsbTransferStatus](#usbtransferstatus18) | 读写操作完成的状态。 |
+| isoPacketDescs | Array<Readonly<[UsbIsoPacketDescriptor](#usbisopacketdescriptor18)>> | 实时传输的分包信息。 |
 
-## UsbTransferStatus<sup>16+</sup>
+## UsbTransferStatus<sup>18+</sup>
 
 libusb实际处理完成后通过回调返回的状态码。
 
@@ -1496,7 +1496,7 @@ libusb实际处理完成后通过回调返回的状态码。
 | TRANSFER_OVERFLOW     | 6    | 设备发送的数据比请求的多。|
 
 
-## UsbIsoPacketDescriptor<sup>16+</sup>
+## UsbIsoPacketDescriptor<sup>18+</sup>
 
 实时传输模式回调返回的分包信息。
 
@@ -1506,4 +1506,4 @@ libusb实际处理完成后通过回调返回的状态码。
 | ---------- | ------ | ----- |
 | length | number | 读写操作的期望长度值，单位为字节。 |
 | actualLength | number| 读写操作的实际长度值，单位为字节。 |
-| status | [UsbTransferStatus](#usbtransferstatus16) | 实时传输分包的状态码。 |
+| status | [UsbTransferStatus](#usbtransferstatus18) | 实时传输分包的状态码。 |
