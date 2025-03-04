@@ -3987,6 +3987,7 @@
           - [effect_types.h](reference/apis-arkgraphics2d/effect__types_8h.md)
           - [buffer_handle.h](reference/apis-arkgraphics2d/buffer__handle_8h.md)
           - [external_window.h](reference/apis-arkgraphics2d/external__window_8h.md)
+          - [buffer_common.h](reference/apis-arkgraphics2d/buffer__common_8h.md)
           - [native_buffer.h](reference/apis-arkgraphics2d/native__buffer_8h.md)
           - [native_display_soloist.h](reference/apis-arkgraphics2d/native__display__soloist_8h.md)
           - [native_image.h](reference/apis-arkgraphics2d/native__image_8h.md)
