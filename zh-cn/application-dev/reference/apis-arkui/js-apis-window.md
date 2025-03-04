@@ -2107,7 +2107,7 @@ try {
 
 getWindowDensityInfo(): WindowDensityInfo
 
-获取当前窗口所在屏幕的系统显示大小缩放系数、系统默认显示大小缩放系数和自定义显示大小缩放系数信息。
+获取当前窗口所在屏幕的系统显示大小缩放系数、系统默认显示大小缩放系数和自定义显示大小缩放系数信息。WindowDensityInfo中各参数返回-1则代表无效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
