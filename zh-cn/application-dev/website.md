@@ -1216,7 +1216,7 @@
           - [开发使用SCSI协议的设备驱动](device/driver/scsi-peripheral-ddk-guidelines.md)
         - [常见问题](device/driver/externaldevice-faqs.md)
         - [扩展外设驱动开发术语](device/driver/terms.md)
-  - Multimodal Awareness Kit（多模态融合感知服务）<!--multimodal-awareness-kit-->
+      - Multimodal Awareness Kit（多模态融合感知服务）<!--multimodal-awareness-kit-->
         - [Multimodal Awareness Kit简介](device/stationary/multimodalawareness-kit-intro.md)
         - [Stationary开发指导](device/stationary/stationary-guidelines.md)
         - [获取用户动作开发指导](device/stationary/motion-guidelines.md)
