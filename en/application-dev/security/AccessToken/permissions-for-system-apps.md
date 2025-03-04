@@ -4649,6 +4649,18 @@ Allows a system application to use model download APIs.
 
 **Valid since**: 18
 
+### ohos.permission.ACCESS_APP_CLONE_DIR
+
+Allows a system application to access the installation file path copied from another device.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
