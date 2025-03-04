@@ -4613,6 +4613,42 @@ This permission is available only to the applications on smartphones, tablets, a
 
 **Valid since**: 16
 
+### ohos.permission.ANTIFRAUD_DETECT
+
+Allows a system application to perform anti-fraud detection.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+### ohos.permission.ANTIFRAUD_PICTURE_DETECT
+
+Allows a system application to perform face swapping detection for images.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+### ohos.permission.ANTIFRAUD_MODEL_DOWNLOAD
+
+Allows a system application to use model download APIs.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.

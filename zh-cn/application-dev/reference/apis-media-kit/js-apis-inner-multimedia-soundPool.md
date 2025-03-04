@@ -39,7 +39,7 @@ import { audio } from '@kit.AudioKit';
 >
 > 在使用SoundPool实例的方法时，建议开发者注册相关回调，主动获取当前状态变化。
 > - [on('loadComplete')](#onloadcomplete)：监听资源加载完成。
-> - [on('playFinishedWithStreamId')](#onplayfinishedwithstreamid16)：监听播放完成，同时返回播放结束的音频的streamId。
+> - [on('playFinishedWithStreamId')](#onplayfinishedwithstreamid18)：监听播放完成，同时返回播放结束的音频的streamId。
 > - [on('playFinished')](#onplayfinished)：监听播放完成。
 > - [on('error')](#onerror)：监听错误事件。
 
@@ -1505,15 +1505,15 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
-### on('playFinishedWithStreamId')<sup>16+</sup>
+### on('playFinishedWithStreamId')<sup>18+</sup>
 
 on(type: 'playFinishedWithStreamId', callback: Callback\<number>): void
 
 音频池资源播放完成监听，同时返回播放结束的音频的streamId。
 
-当仅单独注册[on('playFinished')](#onplayfinished)事件回调或者[on('playFinishedWithStreamId')](#onplayfinishedwithstreamid16)事件回调时，当音频播放完成的时候，都会触发注册的回调。
+当仅单独注册[on('playFinished')](#onplayfinished)事件回调或者[on('playFinishedWithStreamId')](#onplayfinishedwithstreamid18)事件回调时，当音频播放完成的时候，都会触发注册的回调。
 
-当同时注册[on('playFinished')](#onplayfinished)事件回调和[on('playFinishedWithStreamId')](#onplayfinishedwithstreamid16)事件回调时，当音频播放完成的时候，仅会触发'playFinishedWithStreamId'事件回调，不会触发'playFinished'事件回调。
+当同时注册[on('playFinished')](#onplayfinished)事件回调和[on('playFinishedWithStreamId')](#onplayfinishedwithstreamid18)事件回调时，当音频播放完成的时候，仅会触发'playFinishedWithStreamId'事件回调，不会触发'playFinished'事件回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -1549,7 +1549,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool: me
 
 ```
 
-### off('playFinishedWithStreamId')<sup>16+</sup>
+### off('playFinishedWithStreamId')<sup>18+</sup>
 
 off(type: 'playFinishedWithStreamId'): void
 
