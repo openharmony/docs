@@ -38,7 +38,7 @@ target_link_libraries(entry PUBLIC libohinput.so)
 ```json
 "requestPermissions": [
     {
-        "name": "ohos.permission.INTERCEPT_INPUT_EVENT"
+        "name": "ohos.permission.INPUT_MONITORING"
     }
 ]
 ```
