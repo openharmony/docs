@@ -9,6 +9,8 @@ WLAN模块数据，包括Feature对象信息、站（STA）信息、扫描信息
 
 模块包路径：ohos.hdi.wlan.v1_1
 
+**起始版本：** 3.2
+
 **相关模块：**[WLAN](_w_l_a_n_v11.md)
 
 
