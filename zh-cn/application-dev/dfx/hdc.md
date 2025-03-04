@@ -1119,7 +1119,7 @@ hdc -l5 start
 
 | 平台 | 路径 | 备注 |
 | -------- | -------- | -------- |
-| Windows | %temp% | 实际路径参考，实际使用请替换用户名变量<br/>C:\Users\用户名\AppData\Local\Temp |
+| Windows | %temp% | 实际路径参考：`C:\Users\用户名\AppData\Local\Temp` <br/>（实际使用请替换用户名变量）。 |
 | Linux | /tmp | - |
 | MacOS | $TMPDIR | - |
 
