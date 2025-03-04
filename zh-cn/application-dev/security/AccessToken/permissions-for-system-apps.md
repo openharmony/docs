@@ -4898,7 +4898,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ### ohos.permission.ACCESS_USER_ACCOUNT_INFO
 
