@@ -485,7 +485,7 @@ promise.then((data: number) => {
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | slotId           | number                                                       | 是   | 用于发送短信的SIM卡槽ID：<br/>- 0：卡槽1。<br/>- 1：卡槽2。      |
 | destinationHost  | string                                                       | 是   | 短信的发送地址。                                             |
-| content          | string \| Array&lt;number&gt;                                | 是   | 如果内容是字符串，这是一条文本短信。<br/>如果内容是字节数组，这是一条数据短信。 |
+| content          | string \| Array&lt;number&gt;                                | 是   | 如果内容是字符串，则这是一条文本短信。如果内容是字节数组，则这是一条数据短信。 |
 | serviceCenter    | string                                                       | 否   | 短信中心地址。默认使用SIM卡中的短信中心地址。                |
 | destinationPort  | number                                                       | 否   | 如果发送数据消息，destinationPort 是必需的。否则是可选的。   |
 | sendCallback     | AsyncCallback&lt;[ISendShortMessageCallback](#isendshortmessagecallback)&gt; | 否   | 短信发送结果回调，返回短信发送的结果，参考[ISendShortMessageCallback](#isendshortmessagecallback)。发送数据短信时，此项必填。|
