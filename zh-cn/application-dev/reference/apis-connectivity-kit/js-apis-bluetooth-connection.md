@@ -1396,6 +1396,54 @@ try {
 ```
 
 
+## connection.getLastConnectionTime<sup>15+</sup>
+
+getLastConnectionTime(deviceId: string): Promise&lt;number&gt;
+
+获取蓝牙远端设备最近一次连接的时间点。使用Promise异步回调。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**参数：**
+
+| 参数名    | 类型      | 必填   | 说明                               |
+| ------ | ------- | ---- | -------------------------------- |
+| deviceId | string  | 是    | 表示远端设备MAC地址。例如："XX:XX:XX:XX:XX:XX"。 |
+
+**返回值：**
+
+| 类型                  | 说明         |
+| ------------------- | ------------- |
+| Promise&lt;number&gt; | 以Promise形式返回设置蓝牙远端设备最近一次连接的时间点结果，返回promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { connection } from '@kit.ConnectivityKit';
+// promise
+try {
+    connection.getLastConnectionTime('11:22:33:44:55:66').then((time: number) => {
+        console.info('connectionTime: ${time}');
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
 ## BondStateParam
 
 描述配对状态参数。
