@@ -66,7 +66,7 @@ onKeyPreIme(event: Callback<KeyEvent, boolean>): T
 | keyText                               | string                                   | 按键的键值。                     |
 | keySource                             | [KeySource](ts-appendix-enums.md#keysource) | 触发当前按键的输入设备类型。             |
 | deviceId                              | number                                   | 触发当前按键的输入设备ID。             |
-| metaKey                               | number                                   | 按键发生时元键的状态，1表示按压态，0表示未按压态。 |
+| metaKey                               | number                                   | 按键发生时元键（即键盘左下角紧挨Ctrl键，或Fn标记了窗口logo的按键）的状态，1表示按压态，0表示未按压态。 |
 | timestamp                             | number                                   | 事件时间戳。触发事件时距离系统启动的时间间隔，单位：ns。 |
 | stopPropagation                       | () => void                               | 阻塞事件冒泡传递。                  |
 | intentionCode<sup>10+</sup>           | [IntentionCode](../../apis-input-kit/js-apis-intentioncode.md) | 按键对应的意图。       |
