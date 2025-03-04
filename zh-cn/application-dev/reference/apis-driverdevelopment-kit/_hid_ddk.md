@@ -93,8 +93,8 @@
 | int32_t [OH_Hid_GetRawName](#oh_hid_getrawname) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, char \*data, uint32_t bufSize) | 获取设备原始名称。 | 
 | int32_t [OH_Hid_GetPhysicalAddress](#oh_hid_getphysicaladdress) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, char \*data, uint32_t bufSize) | 获取设备物理地址。 | 
 | int32_t [OH_Hid_GetRawUniqueId](#oh_hid_getrawuniqueid) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, uint8_t \*data, uint32_t bufSize) | 获取设备原始唯一标识符。 | 
-| <!--DelRow-->int32_t [OH_Hid_SendReport](#oh_hid_sendreport) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, [Hid_ReportType](#hid_reporttype) reportType, const uint8_t \*data, uint32_t length) | 向设备发送报告。 | 
-| <!--DelRow-->int32_t [OH_Hid_GetReport](#oh_hid_getreport) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, [Hid_ReportType](#hid_reporttype) reportType, uint8_t \*data, uint32_t bufSize) | 获取设备报告。 | 
+| int32_t [OH_Hid_SendReport](#oh_hid_sendreport) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, [Hid_ReportType](#hid_reporttype) reportType, const uint8_t \*data, uint32_t length) | 向设备发送报告。 | 
+| int32_t [OH_Hid_GetReport](#oh_hid_getreport) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, [Hid_ReportType](#hid_reporttype) reportType, uint8_t \*data, uint32_t bufSize) | 获取设备报告。 | 
 | int32_t [OH_Hid_GetReportDescriptor](#oh_hid_getreportdescriptor) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, uint8_t \*buf, uint32_t bufSize, uint32_t \*bytesRead) | 获取设备报告描述符。 | 
 
 
@@ -928,7 +928,7 @@ ohos.permission.ACCESS_DDK_HID
 
 - HID_DDK_INVALID_OPERATION 不支持此操作。
 
-<!--Del-->
+
 ### OH_Hid_GetReport()
 
 ```
@@ -971,7 +971,7 @@ ohos.permission.ACCESS_DDK_HID
 - HID_DDK_IO_ERROR I/O操作失败。
 
 - HID_DDK_INVALID_OPERATION 不支持此操作。
-<!--DelEnd-->
+
 
 ### OH_Hid_GetReportDescriptor()
 
@@ -1202,7 +1202,7 @@ ohos.permission.ACCESS_DDK_HID
 
 - HID_DDK_SERVICE_ERROR 与DDK服务通信失败。
 
-<!--Del-->
+
 ### OH_Hid_SendReport()
 
 ```
@@ -1244,7 +1244,7 @@ ohos.permission.ACCESS_DDK_HID
 
 - HID_DDK_INVALID_OPERATION 不支持此操作。
 
-<!--DelEnd-->
+
 ### OH_Hid_SetNonBlocking()
 
 ```
