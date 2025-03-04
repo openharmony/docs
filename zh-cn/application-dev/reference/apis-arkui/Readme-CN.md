@@ -343,7 +343,6 @@
     <!--DelEnd-->
   - 安全<!--arkui-security-->
     - [安全控件通用属性](arkui-ts/ts-securitycomponent-attributes.md)
-    - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)
     - [PasteButton](arkui-ts/ts-security-components-pastebutton.md)
     - [SaveButton](arkui-ts/ts-security-components-savebutton.md)
     <!--Del-->
@@ -398,6 +397,7 @@
     - [AbilityComponent](arkui-ts/ts-container-ability-component-sys.md)
     <!--DelEnd-->
     - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
+    - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)
     - [Panel](arkui-ts/ts-container-panel.md)
     - [NavRouter](arkui-ts/ts-basic-components-navrouter.md)
     - [Navigator](arkui-ts/ts-container-navigator.md)
