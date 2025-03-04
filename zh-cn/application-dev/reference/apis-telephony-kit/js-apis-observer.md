@@ -711,7 +711,7 @@ off\(type: 'cellularDataFlowChange', callback?: Callback\<DataFlowType\>\): void
 
 | 参数名   | 类型                                                                | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                             | 是   | 蜂窝数据业务的上下行数据流状态状态事件，参数固定为'cellularDataFlowChange'。   |
+| type     | string                                                             | 是   | 蜂窝数据业务的上下行数据流状态事件，参数固定为'cellularDataFlowChange'。   |
 | callback | Callback\<[DataFlowType](js-apis-telephony-data.md#dataflowtype)\> | 否   | 以callback形式异步返回结果，参考data的[DataFlowType](js-apis-telephony-data.md#dataflowtype)。 |
 
 **错误码：**
@@ -823,9 +823,9 @@ off\(type: 'simStateChange', callback?: Callback\<SimStateData\>\): void
 
 移除订阅sim状态更改事件，使用callback方式作为异步方法。
 
->**说明：**
+> **说明：**
 >
->可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Telephony.StateRegistry
 
