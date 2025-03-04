@@ -94,23 +94,23 @@ interface ExtraData {
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
 
-| 名称      | 说明              |
-| -------- |-----------------|
-| RUNNING<sup>16+</sup> | 表示端云同步任务状态处于运行中。  |
-| FINISHED<sup>16+</sup> | 表示端云同步任务状态处于已完成。 |
+| 名称      | 值   | 说明              |
+| -------- |-----|-----------------|
+| RUNNING<sup>16+</sup> | 0  | 表示端云同步任务状态处于运行中。  |
+| FINISHED<sup>16+</sup> | 1   | 表示端云同步任务状态处于已完成。 |
 
 ## SyncInfo<sup>12+</sup>
 
-返回数据，上一次端云同步所需要的信息。
+返回数据，最近一次端云同步所需要的信息。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
 
 | 名称       | 类型                                                         | 必填 | 说明                       |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| startTime  | Date                                                         | 是   | 上一次端云同步的开始时间。 |
-| finishTime | Date                                                         | 是   | 上一次端云同步的结束时间。 |
-| code       | [relationalStore.ProgressCode](js-apis-data-relationalStore.md#progresscode10) | 是   | 上一次端云同步过程的状态。 |
-| syncStatus | [SyncStatus](#syncstatus16) | 否 | 上一次端云同步任务的状态。 |
+| startTime  | Date                                                         | 是   | 最近一次端云同步的开始时间。 |
+| finishTime | Date                                                         | 是   | 最近一次端云同步的结束时间。 |
+| code       | [relationalStore.ProgressCode](js-apis-data-relationalStore.md#progresscode10) | 是   | 最近一次端云同步过程的状态。 |
+| syncStatus | [SyncStatus](#syncstatus16) | 否 | 最近一次端云同步任务的状态。 |
 
 ## Config
 
