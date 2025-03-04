@@ -298,3 +298,16 @@
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：16
+
+## ohos.permission.VISIBLE_WINDOW_INFO
+
+允许应用获取当前屏幕的可见窗口信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：18
