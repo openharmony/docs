@@ -39,12 +39,12 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [UsbDdkEndpointDescriptor](_usb_ddk_endpoint_descriptor.md) | 端点描述符。 |
-| [UsbDdkInterfaceDescriptor](_usb_ddk_interface_descriptor.md) | 接口描述符。 |
-| [UsbDdkInterface](_usb_ddk_interface.md) | USB接口。 |
-| [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) | 配置描述符。 |
-| [UsbDeviceMemMap](_usb_device_mem_map.md) | 设备内存映射，通过[OH_Usb_CreateDeviceMemMap()](_usb_ddk.md#oh_usb_createdevicememmap)创建设备内存映射，使用内存映射后的缓冲区，获得更好的性能。 |
-| [Usb_DeviceArray](_usb_device_array.md) | 设备ID清单，用于存放[OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices16)接口获取到的设备ID列表和设备数量。 |
+| [UsbDdkEndpointDescriptor](_usb_ddk.md#usbddkendpointdescriptor) | 端点描述符。 |
+| [UsbDdkInterfaceDescriptor](_usb_ddk.md#usbddkinterfacedescriptor) | 接口描述符。 |
+| [UsbDdkInterface](_usb_ddk.md#usbddkinterface) | USB接口。 |
+| [UsbDdkConfigDescriptor](_usb_ddk.md#usbddkconfigdescriptor) | 配置描述符。 |
+| [UsbDeviceMemMap](_usb_ddk.md#usbdevicememmap) | 设备内存映射，通过[OH_Usb_CreateDeviceMemMap()](_usb_ddk.md#oh_usb_createdevicememmap)创建设备内存映射，使用内存映射后的缓冲区，获得更好的性能。 |
+| [Usb_DeviceArray](_usb_ddk.md#usb_devicearray) | 设备ID清单，用于存放[OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices16)接口获取到的设备ID列表和设备数量。 |
 
 ### 枚举
 

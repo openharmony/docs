@@ -88,8 +88,81 @@ uint64_t JsDeviceIdToNative(uint64_t deviceId)
 }
 ~~~
 
-## 枚举类型说明
+## 类型定义说明
 
+### UsbDdkEndpointDescriptor
+
+```
+typedef struct UsbDdkEndpointDescriptor usbDdkEndpointDescriptor
+```
+
+**描述**
+
+端点描述符。
+
+**起始版本：** 10
+
+### UsbDdkInterfaceDescriptor
+
+```
+typedef struct UsbDdkInterfaceDescriptor usbDdkInterfaceDescriptor
+```
+
+**描述**
+
+接口描述符。
+
+**起始版本：** 10
+
+### UsbDdkInterface
+
+```
+typedef struct UsbDdkInterface usbDdkInterface
+```
+
+**描述**
+
+USB接口。
+
+**起始版本：** 10
+
+### UsbDdkConfigDescriptor
+
+```
+typedef struct UsbDdkConfigDescriptor usbDdkConfigDescriptor
+```
+
+**描述**
+
+配置描述符。
+
+**起始版本：** 10
+
+### UsbDeviceMemMap
+
+```
+typedef struct UsbDeviceMemMap usbDeviceMemMap
+```
+
+**描述**
+
+ 设备内存映射，通过[OH_Usb_CreateDeviceMemMap()](_usb_ddk.md#oh_usb_createdevicememmap)创建设备内存映射，使用内存映射后的缓冲区，获得更好的性能。
+
+**起始版本：** 10
+
+### Usb_DeviceArray
+
+```
+typedef struct Usb_DeviceArray usb_DeviceArray
+```
+
+**描述**
+
+设备ID清单，用于存放[OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices16)接口获取到的设备ID列表和设备数量。
+
+**起始版本：** 10
+
+## 枚举类型说明
 
 ### UsbDdkErrCode
 
