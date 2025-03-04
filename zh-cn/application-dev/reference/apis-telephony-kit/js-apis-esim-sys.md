@@ -39,6 +39,8 @@ getEid\(slotId: number\): string
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID                 | 错误信息                         |
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
@@ -82,6 +84,8 @@ getOsuStatus\(slotId: number\): Promise\<OsuStatus\>
 | Promise\<[OsuStatus](#osustatus14)\> |  Promise对象，返回操作系统升级的状态。<br/> 1. 正在升级。 <br/>   2. 升级失败。<br/>  3. 升级成功。<br/>  4. 当前版本是最新版本。<br/> 5. 升级服务不可用。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -130,6 +134,8 @@ startOsu\(slotId: number\): Promise\<OsuStatus\>
 | Promise\<[OsuStatus](#osustatus14)\> |  Promise对象，返回操作系统升级的状态。<br/> 1. 正在升级。 <br/>   2. 升级失败。<br/>  3. 升级成功。<br/>  4. 当前版本是最新版本。<br/> 5. 升级服务不可用。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -182,6 +188,8 @@ getDownloadableProfileMetadata\(slotId: number, portIndex: number,
 | Promise\<[GetDownloadableProfileMetadataResult](#getdownloadableprofilemetadataresult14)\> | Promise对象，返回填充可下载配置文件的元数据。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -245,6 +253,8 @@ getDownloadableProfiles\(slotId: number, portIndex: number,
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
@@ -296,6 +306,8 @@ downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile
 | Promise\<[DownloadProfileResult](#downloadprofileresult14)\> | Promise对象，返回下载配置文件的结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -362,6 +374,8 @@ getEuiccProfileInfoList\(slotId: number\): Promise\<GetEuiccProfileInfoListResul
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
@@ -409,6 +423,8 @@ getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>
 | Promise\<[EuiccInfo](#euiccinfo14)\> | Promise对象，返回eUicc信息。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -458,6 +474,8 @@ deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>
 | Promise\<[ResultCode](#resultcode14)\> | Promise对象，返回删除配置文件的结果码。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -511,6 +529,8 @@ switchToProfile\(slotId: number, portIndex: number, iccid: string,
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
@@ -561,6 +581,8 @@ setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
@@ -610,6 +632,8 @@ resetMemory\(slotId: number, options?: ResetOption\): Promise\<ResultCode\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
@@ -657,6 +681,8 @@ reserveProfilesForFactoryRestore\(slotId: number\): Promise\<ResultCode\>
 | Promise\<[ResultCode](#resultcode14)\> | Promise对象，返回恢复出厂设置的结果码。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -707,6 +733,8 @@ setDefaultSmdpAddress\(slotId: number, address: string\): Promise\<ResultCode\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
@@ -754,6 +782,8 @@ getDefaultSmdpAddress\(slotId: number\): Promise\<string\>
 | Promise\<string\> | Promise对象，返回SM-DP+地址。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
@@ -804,6 +834,8 @@ cancelSession\(slotId: number, transactionId: string, cancelReason: CancelReason
 | Promise\<[ResultCode](#resultcode14)\> | Promise对象，返回取消会话的结果码。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID                 | 错误信息                               |
 | --------------------- | ---------------------------------- |
