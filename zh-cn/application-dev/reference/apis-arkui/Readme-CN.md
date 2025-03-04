@@ -457,6 +457,7 @@
     - [ArkUI_RotationOptions](_ark_u_i___rotation_options.md)
     - [ArkUI_ScaleOptions](_ark_u_i___scale_options.md)
     - [ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)
+    - [ArkUI_TextChangeEvent](_ark_u_i___text_change_event.md)
     - [ARKUI_TextPickerCascadeRangeContent](_a_r_k_u_i___text_picker_cascade_range_content.md)
     - [ARKUI_TextPickerRangeContent](_a_r_k_u_i___text_picker_range_content.md)
     - [ArkUI_TranslationOptions](_ark_u_i___translation_options.md)
