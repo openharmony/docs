@@ -1888,7 +1888,7 @@ async function example() {
 }
 ```
 
-### getThumbnailData<sup>16+</sup>
+### getThumbnailData<sup>18+</sup>
 
 getThumbnailData(type: photoAccessHelper.ThumbnailType): Promise&lt;ArrayBuffer&gt;
 
