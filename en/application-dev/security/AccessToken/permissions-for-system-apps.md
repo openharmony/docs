@@ -4613,6 +4613,42 @@ This permission is available only to the applications on smartphones, tablets, a
 
 **Valid since**: 16
 
+### ohos.permission.ANTIFRAUD_DETECT
+
+Allows a system application to perform anti-fraud detection.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+### ohos.permission.ANTIFRAUD_PICTURE_DETECT
+
+Allows a system application to perform face swapping detection for images.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+### ohos.permission.ANTIFRAUD_MODEL_DOWNLOAD
+
+Allows a system application to use model download APIs.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
@@ -4892,6 +4928,42 @@ Allows a system application to access user account information.
 **Authorization mode**: system_grant
 
 **Enable via ACL**: false
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_DEVAUTH_CRED_MGR
+
+Allows a system application or system service to access the credential management module for the device authentication (device_auth) SA.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_DEVAUTH_CRED_PRIVILEGE
+
+Allows a system application or system service to access the credential management module and credential authentication module for the device authentication (device_auth) SA and to query and authenticate other service credentials.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_DEVAUTH_CRED_AUTH
+
+Allows a system application or system service to access the credential authentication module for the device authentication (device_auth) SA.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
 
 **Valid since**: 16
 

@@ -5606,6 +5606,12 @@ setSubTitle(title: string): void
 
 设置时刻副标题内容。
 
+副标题参数规格为：
+
+- 相册名字符串长度为1~255。
+- 不允许出现的非法英文字符，包括：<br> . \ / : * ? " ' ` < > | { } [ ]
+- 英文字符大小写不敏感。
+
 **系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.WRITE\_IMAGEVIDEO
@@ -5645,75 +5651,16 @@ async function example() {
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> =
       await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
     if (albumFetchResult.getCount() === 0) {
-      console.error(TAG, 'No album');
+      console.error('No album');
       return;
     }
     let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     albumFetchResult.close();
     let changeHighlightAlbumRequest: photoAccessHelper.HighlightAlbum = new photoAccessHelper.HighlightAlbum(highlightAlbum);
-    changeHighlightAlbumRequest.setSubTitle(this.input);
+    changeHighlightAlbumRequest.setSubTitle("testName");
     console.info('setSubTitle success');
   } catch (err) {
     console.error(`setSubTitle with error: ${err}`);
-  }
-}
-```
-
-### deleteHighlightAlbums<sup>16+</sup>
-
-static deleteHighlightAlbums(context: Context, albums: Array&lt;Album&gt;): Promise&lt;void&gt;
-
-删除指定时刻相册。
-
-**系统接口**：此接口为系统接口。
-
-**需要权限**：ohos.permission.WRITE\_IMAGEVIDEO
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-**参数：**
-
-| 参数名        | 类型      | 必填   | 说明                                 |
-| ---------- | ------- | ---- | ---------------------------------- |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
-| albums       | Array&lt;[Album](#album)&gt;   | 是    | 需要删除的时刻相册。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
-
-| 错误码ID    | 错误信息                              |
-| :------- | :-------------------------------- |
-| 201      | Permission denied.                |
-| 202      | Called by non-system application. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 14000011 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.            |
-
-**示例：**
-
-```ts
-import { dataSharePredicates } from '@kit.ArkData';
-
-async function example() {
-  try {
-    console.info('deleteHighlightAlbums');
-    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
-    let albumFetchOption: photoAccessHelper.FetchOptions = {
-      fetchColumns: [],
-      predicates: new dataSharePredicates.DataSharePredicates()
-    };
-    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> =
-      await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
-    if (albumFetchResult.getCount() === 0) {
-      console.error(TAG, 'No album');
-      return;
-    }
-    let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
-    albumFetchResult.close();
-    photoAccessHelper.HighlightAlbum.deleteHighlightAlbums(getContext(this), [highlightAlbum]);
-    console.info('deleteHighlightAlbums success');
-  } catch (err) {
-    console.error(`deleteHighlightAlbums with error: ${err}`);
   }
 }
 ```
@@ -5764,7 +5711,7 @@ async function example() {
   let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> =
     await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
   if (albumFetchResult.getCount() === 0) {
-    console.error(TAG, 'No album');
+    console.error('No album');
     return;
   }
   let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
@@ -5820,7 +5767,7 @@ async function example() {
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = 
       await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
     if (albumFetchResult.getCount() === 0) {
-      console.error(TAG, 'No album');
+      console.error('No album');
       return;
     }
     let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
@@ -5841,9 +5788,9 @@ async function example() {
       new photoAccessHelper.MediaAnalysisAlbumChangeRequest(highlightAlbum);
     changeRequest.setOrderPosition(assets, indexes);
     await helper.applyChanges(changeRequest);
-    console.info(TAG, `setOrderPosition ${indexes}`);
+    console.info(`setOrderPosition ${indexes}`);
   } catch (err) {
-    console.error(TAG, `setOrderPosition error: ${err}`);
+    console.error(`setOrderPosition error: ${err}`);
   }
 }
 ```
@@ -5894,7 +5841,7 @@ async function example() {
   let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = 
     await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
   if (albumFetchResult.getCount() === 0) {
-    console.error(TAG, 'No album');
+    console.error('No album');
     return;
   }
   let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
@@ -5954,7 +5901,7 @@ async function example() {
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = 
       await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
     if (albumFetchResult.getCount() === 0) {
-      console.error(TAG, 'No album');
+      console.error('No album');
       return;
     }
     let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();

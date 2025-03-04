@@ -1032,6 +1032,8 @@ on(type: 'dataSendProgress', callback: Callback\<DataSendProgressInfo\>): void
 
 订阅HTTP网络请求数据发送进度事件。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -1061,6 +1063,8 @@ off(type: 'dataSendProgress', callback?: Callback\<DataSendProgressInfo\>): void
 
 > **说明：**
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -1237,6 +1241,8 @@ request方法回调函数的返回值类型。
 ## DataSendProgressInfo<sup>11+</sup>
 
 数据发送信息
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 

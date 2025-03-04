@@ -30,7 +30,7 @@ startWork(work: WorkInfo): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[workScheduler错误码](errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -85,7 +85,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[workScheduler错误码](errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -139,7 +139,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[workScheduler错误码](errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -185,7 +185,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[workScheduler错误码](errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -224,7 +224,7 @@ obtainAllWorks(callback : AsyncCallback\<void>) : Array\<WorkInfo>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[workScheduler错误码](errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -249,7 +249,7 @@ obtainAllWorks(callback : AsyncCallback&lt;Array&lt;WorkInfo&gt;&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[workScheduler错误码](errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -288,7 +288,7 @@ obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[workScheduler错误码](errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -319,7 +319,7 @@ stopAndClearWorks(): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[workScheduler错误码](errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -360,7 +360,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[workScheduler错误码](errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -387,7 +387,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<boolean>): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[workScheduler错误码](errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -433,7 +433,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[workScheduler错误码](errorcode-workScheduler.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -469,16 +469,16 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | bundleName      | string                            | 是    | 延迟任务所在应用的包名。           |
 | abilityName     | string                            | 是    | 包内ability名称。 |
 | networkType     | [NetworkType](#networktype)       | 否    | 网络类型。             |
-| isCharging      | boolean                           | 否    | 是否充电。<br>- true表示充电触发延迟回调，false表示不充电触发延迟回调。|
+| isCharging      | boolean                           | 否    | 是否充电。<br>- true表示充电触发延迟回调。<br>- false表示不充电触发延迟回调。|
 | chargerType     | [ChargingType](#chargingtype)     | 否    | 充电类型。             |
 | batteryLevel    | number                            | 否    | 电量。              |
 | batteryStatus   | [BatteryStatus](#batterystatus)   | 否    | 电池状态。             |
 | storageRequest  | [StorageRequest](#storagerequest) | 否    | 存储状态。             |
-| isRepeat        | boolean                           | 否    | 是否循环任务。<br>- true表示循环任务，false表示非循环任务。 |
+| isRepeat        | boolean                           | 否    | 是否循环任务。<br>- true表示循环任务。 <br>- false表示非循环任务。 |
 | repeatCycleTime | number                            | 否    | 循环间隔，单位为毫秒。             |
 | repeatCount     | number                            | 否    | 循环次数。             |
-| isPersisted     | boolean                           | 否    | 注册的延迟任务是否可保存在系统中。<br>- true表示可保存，即系统重启后，任务可恢复。false表示不可保存。|
-| isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态。<br>- true表示需要，false表示不需要。   |
+| isPersisted     | boolean                           | 否    | 注册的延迟任务是否可保存在系统中。<br>- true表示可保存，即系统重启后，任务可恢复。<br>- false表示不可保存。|
+| isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态。<br>- true表示需要。<br>- false表示不需要。   |
 | idleWaitTime    | number                            | 否    | 空闲等待时间，单位为毫秒。           |
 | parameters      | Record<string, number \| string \| boolean>  | 否    | 携带参数信息。 |
 
