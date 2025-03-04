@@ -5807,6 +5807,7 @@ const context: Context = getContext();
 let filePath: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.packToData(imageSourceApi, packOpts)
   .then((data: ArrayBuffer) => {
     console.info('Succeeded in packing the image.');
@@ -5866,6 +5867,7 @@ const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buf
 let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+  const imagePackerApi: image.ImagePacker = image.createImagePacker();
   imagePackerApi.packToData(pixelMap, packOpts)
     .then((data: ArrayBuffer) => {
       console.info('Succeeded in packing the image.');
@@ -5923,7 +5925,7 @@ async function Packing() {
   let imageSource: image.ImageSource = image.createImageSource(rawFile.buffer as ArrayBuffer, ops);
   let commodityPixelMap: image.PixelMap = await imageSource.createPixelMap();
   let pictureObj: image.Picture = image.createPicture(commodityPixelMap);
-
+  const imagePackerApi: image.ImagePacker = image.createImagePacker();
   let funcName = "Packing";
   if (imagePackerApi != null) {
     let opts: image.PackingOption = {
@@ -5973,6 +5975,7 @@ const context: Context = getContext();
 let filePath: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
+const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.packing(imageSourceApi, packOpts, (err: BusinessError, data: ArrayBuffer) => {
   if (err) {
     console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
@@ -6019,6 +6022,7 @@ const context: Context = getContext();
 let filePath: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.packing(imageSourceApi, packOpts)
   .then((data: ArrayBuffer) => {
     console.info('Succeeded in packing the image.');
@@ -6061,6 +6065,7 @@ const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buf
 let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+  const imagePackerApi: image.ImagePacker = image.createImagePacker();
   imagePackerApi.packing(pixelMap, packOpts, (err: BusinessError, data: ArrayBuffer) => {
     if (err) {
       console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
@@ -6112,6 +6117,7 @@ const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buf
 let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+  const imagePackerApi: image.ImagePacker = image.createImagePacker();
   imagePackerApi.packing(pixelMap, packOpts)
     .then((data: ArrayBuffer) => {
       console.info('Succeeded in packing the image.');
@@ -6144,6 +6150,7 @@ ArkTS有内存回收机制，ImagePacker对象不调用release方法，内存最
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.release((err: BusinessError)=>{
   if (err) {
     console.error(`Failed to release image packaging.code ${err.code},message is ${err.message}`);
@@ -6174,6 +6181,7 @@ ArkTS有内存回收机制，ImagePacker对象不调用release方法，内存最
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.release().then(() => {
   console.info('Succeeded in releasing image packaging.');
 }).catch((error: BusinessError) => {
@@ -6470,6 +6478,7 @@ async function PackToFile() {
   let pictureObj: image.Picture = image.createPicture(commodityPixelMap);
 
   let funcName = "PackToFile";
+  const imagePackerApi: image.ImagePacker = image.createImagePacker();
   if (imagePackerApi != null) {
     const context: Context = getContext();
     const filePath: string = context.filesDir + "/test.jpg";
