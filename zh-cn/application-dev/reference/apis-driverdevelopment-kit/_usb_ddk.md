@@ -93,7 +93,7 @@ uint64_t JsDeviceIdToNative(uint64_t deviceId)
 ### UsbDdkEndpointDescriptor
 
 ```
-typedef struct UsbDdkEndpointDescriptor usbDdkEndpointDescriptor
+typedef struct UsbDdkEndpointDescriptor UsbDdkEndpointDescriptor
 ```
 
 **描述**
@@ -105,7 +105,7 @@ typedef struct UsbDdkEndpointDescriptor usbDdkEndpointDescriptor
 ### UsbDdkInterfaceDescriptor
 
 ```
-typedef struct UsbDdkInterfaceDescriptor usbDdkInterfaceDescriptor
+typedef struct UsbDdkInterfaceDescriptor UsbDdkInterfaceDescriptor
 ```
 
 **描述**
@@ -117,7 +117,7 @@ typedef struct UsbDdkInterfaceDescriptor usbDdkInterfaceDescriptor
 ### UsbDdkInterface
 
 ```
-typedef struct UsbDdkInterface usbDdkInterface
+typedef struct UsbDdkInterface UsbDdkInterface
 ```
 
 **描述**
@@ -129,7 +129,7 @@ USB接口。
 ### UsbDdkConfigDescriptor
 
 ```
-typedef struct UsbDdkConfigDescriptor usbDdkConfigDescriptor
+typedef struct UsbDdkConfigDescriptor UsbDdkConfigDescriptor
 ```
 
 **描述**
@@ -141,7 +141,7 @@ typedef struct UsbDdkConfigDescriptor usbDdkConfigDescriptor
 ### UsbDeviceMemMap
 
 ```
-typedef struct UsbDeviceMemMap usbDeviceMemMap
+typedef struct UsbDeviceMemMap UsbDeviceMemMap
 ```
 
 **描述**
