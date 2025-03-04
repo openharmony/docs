@@ -1263,6 +1263,9 @@
                 - [主线程超时事件介绍](dfx/hiappevent-watcher-mainthreadjank-events.md)
                 - [订阅主线程超时事件（ArkTS）](dfx/hiappevent-watcher-mainthreadjank-events-arkts.md)
                 - [订阅主线程超时事件（C/C++）](dfx/hiappevent-watcher-mainthreadjank-events-ndk.md)
+              - 任务执行超时事件<!--app-hicollie-events-->
+                - [任务执行超时事件介绍](dfx/hiappevent-watcher-apphicollie-events.md)
+                - [任务执行超时事件（C/C++）](dfx/hiappevent-watcher-apphicollie-events-ndk.md)
         <!--Del-->
           - [事件上报](dfx/hiappevent-event-reporting.md)
         <!--DelEnd-->
