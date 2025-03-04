@@ -116,7 +116,7 @@ toybox的执行方式有两种：
 | 命令 | 说明 |
 | :- | :- |
 | cal     | 打印日历。<br />usage: cal [[month] year] |
-| date    | 设置/获取当前日期/时间。<br />usage: date [-u] [-r FILE] [-d DATE] [+DISPLAY\_FORMAT] [-D SET\_FORMAT] [SET] |
+| date    | 设置/获取当前日期/时间。<br />usage: date [-u] [-r FILE] [-d DATE] [+DISPLAY\_FORMAT] [SET] |
 | hwclock | 获取/设置硬件时钟。<br />usage: hwclock [-rswtluf] |
 | sleep   | 等待设置的时间后再退出。可以是小数。可选的后缀可以是“m”（分钟）、“h”（小时）、“d”（天）或“s”（秒，默认值）。<br />usage: sleep DURATION |
 | time    | 运行命令行并报告真实时间、用户时间和系统时间（以秒为单位）。(真实时间=时钟时间，用户时间=命令代码使用cpu的时间，系统时间=操作系统使用cpu的时间。)<br />usage: time [-pv] COMMAND [ARGS...] |
