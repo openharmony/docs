@@ -65,6 +65,7 @@
     - [effect_types.h](effect__types_8h.md)
     - [buffer_handle.h](buffer__handle_8h.md)
     - [external_window.h](external__window_8h.md)
+    - [buffer_common.h](buffer__common_8h.md)
     - [native_buffer.h](native__buffer_8h.md)
     - [native_display_soloist.h](native__display__soloist_8h.md)
     - [native_image.h](native__image_8h.md)
