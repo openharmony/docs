@@ -30,7 +30,7 @@
 ### OnCameraEvent()
 
 ```
-ICameraHostCallback::OnCameraEvent ([in] String cameraId, [in] enum CameraEvent event )
+ICameraHostCallback::OnCameraEvent ([in] String cameraId, [in] enum CameraEvent event)
 ```
 **描述**
 
@@ -49,7 +49,7 @@ ICameraHostCallback::OnCameraEvent ([in] String cameraId, [in] enum CameraEvent 
 ### OnCameraStatus()
 
 ```
-ICameraHostCallback::OnCameraStatus ([in] String cameraId, [in] enum CameraStatus status )
+ICameraHostCallback::OnCameraStatus ([in] String cameraId, [in] enum CameraStatus status)
 ```
 **描述**
 
@@ -68,7 +68,7 @@ ICameraHostCallback::OnCameraStatus ([in] String cameraId, [in] enum CameraStatu
 ### OnFlashlightStatus()
 
 ```
-ICameraHostCallback::OnFlashlightStatus ([in] String cameraId, [in] enum FlashlightStatus status )
+ICameraHostCallback::OnFlashlightStatus ([in] String cameraId, [in] enum FlashlightStatus status)
 ```
 **描述**
 

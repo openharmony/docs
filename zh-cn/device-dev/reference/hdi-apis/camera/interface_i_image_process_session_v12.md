@@ -34,7 +34,7 @@
 ### GetCoucurrency()
 
 ```
-IImageProcessSession::GetCoucurrency ([in] enum ExecutionMode mode, [out] int taskCount )
+IImageProcessSession::GetCoucurrency ([in] enum ExecutionMode mode, [out] int taskCount)
 ```
 **描述**
 
