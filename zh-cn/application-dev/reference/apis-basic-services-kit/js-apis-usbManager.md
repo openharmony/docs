@@ -836,7 +836,7 @@ requestAccessoryRight(accessory: USBAccessory): Promise&lt;boolean&gt;
 
 需要调用[usbManager.getAccessoryList](#usbmanagergetaccessorylist14)获取配件列表，得到[USBAccessory](#usbaccessory14)作为参数。
 
-**系统能力：** SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
 
@@ -921,7 +921,7 @@ getAccessoryList(): Array<Readonly&lt;USBAccessory&gt;>
 
 获取当前已接入主机的USB配件列表。
 
-**系统能力：** SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **错误码：**
 
@@ -957,7 +957,7 @@ openAccessory(accessory: USBAccessory): USBAccessoryHandle;
 
 需要调用[usbManager.getAccessoryList](#usbmanagergetaccessorylist14)获取配件列表，得到[USBAccessory](#usbaccessory14)作为参数。
 
-**系统能力**  SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
 
