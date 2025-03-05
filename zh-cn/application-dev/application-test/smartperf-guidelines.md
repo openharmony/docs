@@ -4,7 +4,7 @@
 
 SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作简单易用。该工具可以监测性能、功耗相关指标，包括FPS、CPU、GPU、RAM、Temp等，通过量化的指标项了解应用、整机性能状况。
 
-<!--Del-->在开发过程中，会使用到有屏或无屏设备，对此SmartPerf Device提供了两种方式：分别是Device-hap端和Device-daemon端。Device-hap端适用于有屏设备，支持可视化操作。测试时是通过悬浮窗的开始和暂停来实时展示性能指标数据，保存后可生成数据报告，在报告中可分析各指标数据详情。<!--DelEnd-->Device-daemon端支持shell命令行方式，同时适用于有屏和无屏设备。
+在开发过程中，会使用到有屏或无屏设备，对此SmartPerf Device提供了两种方式：分别是Device-hap端和Device-daemon端。Device-hap端适用于有屏设备，支持可视化操作。测试时是通过悬浮窗的开始和暂停来实时展示性能指标数据，保存后可生成数据报告，在报告中可分析各指标数据详情。Device-daemon端支持shell命令行方式，同时适用于有屏和无屏设备。
 
 ### 指标说明
 
@@ -17,20 +17,19 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 ## 实现原理
 
-下图展示了SmartPerf Device工具的主要功能组成。Device-hap端设置好采集项和采集参数后，启动应用，FPS、RAM、Trace等指标通过消息发送给Device-daemon端，Device-daemon端进行数据采集、持久化和数据分析<!--Del-->，将生成的报告回传给Device-hap端，Device-hap端进行可视化显示<!--DelEnd-->。
+下图展示了SmartPerf Device工具的主要功能组成。Device-hap端设置好采集项和采集参数后，启动应用，FPS、RAM、Trace等指标通过消息发送给Device-daemon端，Device-daemon端进行数据采集、持久化和数据分析，将生成的报告回传给Device-hap端，Device-hap端进行可视化显示。
 
 ![图片说明](figures/SmartPerfStru.png)
 
 ## 约束与限制
 
-1. Device-daemon端<!--Del-->、Device-hap端<!--DelEnd-->在API 9版本开始预置使用。
+1. Device-daemon端<!--Del-->、Device-hap端<!--DelEnd-->在API 9版本开始预置使用。<!--RP1--><!--RP1End-->
 
-2. Device-daemon端执行需连接硬件设备<!--Del-->，Device-hap端需在有屏幕设备使用<!--DelEnd-->。
+2. Device-daemon端执行需连接硬件设备，Device-hap端需在有屏幕设备使用。
 
-3. Device-daemon端执行前需完成[hdc环境配置](https://gitee.com/openharmony/developtools_hdc)。
+3.<!--RP2-->Device-daemon端执行前需完成[hdc环境配置](https://gitee.com/openharmony/developtools_hdc)。<!--RP2End--> 
 
-<!--Del-->
-
+<!--RP3-->
 ## SmartPerf Device-hap端
 
 下面的操作步骤和界面内容以RK3568设备为例。
@@ -1010,3 +1009,4 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   >**说明**
   >
   >- 该条命令里的100表示采集的次数（一秒采集一次），可以设置为其他正整数，10表示分段：目前支持设置 1-10（正整数）段采集。
+<!--RP3End--> 
