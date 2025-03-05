@@ -18,11 +18,11 @@ import { appManager } from '@kit.AbilityKit';
 
 | Name                     | Type  | Mandatory | Description      |
 | ------------------------- | ------ | ---- | --------- |
-| bundleName  | string | No  | Bundle name.|
-| uid          | number | No  | UID of the application.  |
-| state        | number | No  | Application state.<br>**0**: The application is being initialized.<br>**1**: The application has been initialized and is ready.<br>**2**: The application is running in the foreground.<br>**3**: The application is having the focus. (This state is reserved.)<br>**4**: The application is running in the background.<br>**5**: The application has exited.|
-| isSplitScreenMode | boolean | No| Whether the application is in split-screen mode.<br>**true**: The application is in split-screen mode.<br>**false**: The application is not in split-screen mode.|
-| isFloatingWindowMode | boolean | No| Whether the application is in floating window mode.<br>**true**: The application is in floating window mode.<br>**false**: The application is not in floating window mode.|
+| bundleName  | string | Yes  | Bundle name.|
+| uid          | number | Yes  | UID of the application.  |
+| state        | number | Yes  | Application state.<br>**0**: The application is being initialized.<br>**1**: The application has been initialized and is ready.<br>**2**: The application is running in the foreground.<br>**3**: The application is having the focus. (This state is reserved.)<br>**4**: The application is running in the background.<br>**5**: The application has exited.|
+| isSplitScreenMode | boolean | Yes| Whether the application is in split-screen mode.<br>**true**: The application is in split-screen mode.<br>**false**: The application is not in split-screen mode.|
+| isFloatingWindowMode | boolean | Yes| Whether the application is in floating window mode.<br>**true**: The application is in floating window mode.<br>**false**: The application is not in floating window mode.|
 
 **Example**
 

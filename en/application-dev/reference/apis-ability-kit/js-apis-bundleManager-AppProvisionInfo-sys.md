@@ -1,6 +1,6 @@
 # AppProvisionInfo (System API)
 
-The **AppProvisionInfo** module provides information in the [HarmonyAppProvision configuration file](../../security/app-provision-structure.md). The information can be obtained through [getAppProvisionInfo](js-apis-bundleManager.md#bundlemanagergetappprovisioninfo10).
+The **AppProvisionInfo** module provides information in the [HarmonyAppProvision configuration file](../../security/app-provision-structure.md). The information can be obtained through [getAppProvisionInfo](./js-apis-bundleManager-sys.md#bundlemanagergetappprovisioninfo10).
 
 > **NOTE**
 >
@@ -26,7 +26,7 @@ The **AppProvisionInfo** module provides information in the [HarmonyAppProvision
 | certificate              | string | Yes  | No  | Certificate public key in the configuration file.|
 | apl                      | string | Yes  | No  | APL in the configuration file, which can be **normal**, **system_basic**, or **system_core**.|
 | issuer                      | string | Yes  | No  | Issuer name in the configuration file.|
-|appIdentifier<sup>11+</sup>| string         | Yes  | No  | Unique ID of the application, which is allocated by the cloud. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.           |
+|appIdentifier<sup>11+</sup>| string         | Yes  | No  | Unique ID of the application. It is a random string allocated by AppGallery Connect during the creation of the application. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.           |
 | organization<sup>12+</sup> | string | Yes  | No  | Organization of the application.|
 
 ## Validity

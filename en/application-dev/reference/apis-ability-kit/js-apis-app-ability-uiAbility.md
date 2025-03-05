@@ -460,7 +460,13 @@ class MyUIAbility extends UIAbility {
 
 onPrepareToTerminate(): boolean
 
-Called when this UIAbility is about to terminate in case that the system parameter **persist.sys.prepare_terminate** is set to **true**. You can define an operation in this callback to determine whether to continue terminating the UIAbility. If a confirmation from the user is required, you can define a pre-termination operation in the callback and use it together with [terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself), for example, displaying a dialog box to ask the user whether to terminate the UIAbility. The UIAbility termination process is canceled when **persist.sys.prepare_terminate** is set to **true**.
+Called when this UIAbility is about to terminate. It allows for additional actions to be performed before the UIAbility is officially terminated. For example, you can prompt the user to confirm whether they want to terminate the UIAbility. If the user confirms, you can call [terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) to terminate it.
+
+Currently, this API takes effect only on 2-in-1 devices.
+
+> **NOTE**
+>
+> Since API version 15, this callback is not executed when [UIAbility.onPrepareToTerminateAsync](#uiabilityonpreparetoterminateasync15) is implemented. When [AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15) or [AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15) is implemented, this callback is not executed if the user right-clicks the dock bar or system tray to close the UIAbility.
 
 **Required permissions**: ohos.permission.PREPARE_APP_TERMINATE
 
@@ -472,7 +478,7 @@ Called when this UIAbility is about to terminate in case that the system paramet
 
 | Type| Description|
 | -- | -- |
-| boolean | Whether to terminate the UIAbility. The value **true** means that the termination process is canceled and the UIAbility is not terminated. The value **false** means to continue terminating the UIAbility.|
+| boolean | Whether to terminate the UIAbility. The value **true** means that the termination process is canceled. The value **false** means to continue terminating the UIAbility.|
 
 **Example**
 
@@ -502,6 +508,47 @@ export default class EntryAbility extends UIAbility {
       this.context.terminateSelf();
     })
 
+    return true; // The pre-termination operation is defined. The value true means that the UIAbility termination process is canceled.
+  }
+}
+```
+
+## UIAbility.onPrepareToTerminateAsync<sup>15+</sup>
+
+onPrepareToTerminateAsync(): Promise\<boolean>
+
+Called when this UIAbility is about to terminate. It allows for additional actions to be performed before the UIAbility is officially terminated. This API uses a promise to return the result. For example, you can prompt the user to confirm whether they want to terminate the UIAbility. If the user confirms, you can call [terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) to terminate it.
+
+Currently, this API takes effect only on 2-in-1 devices.
+
+> **NOTE**
+>
+> - When [AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15) or [AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15) is implemented, this callback is not executed if the user right-clicks the dock bar or system tray to close the UIAbility.
+>
+> - If an asynchronous callback crashes, it will be handled as a timeout. If the UIAbility does not respond within 10 seconds, it will be terminated forcibly.
+
+**Required permissions**: ohos.permission.PREPARE_APP_TERMINATE
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Return value**
+
+| Type| Description|
+| -- | -- |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the termination process is canceled. The value **false** means to continue terminating the UIAbility.|
+
+**Example**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+  async onPrepareToTerminateAsync(): Promise<boolean> {
+    await new Promise<boolean>((res, rej) => {
+      setTimeout (res, 2000); // Execute the operation 2 seconds later.
+    });
     return true; // The pre-termination operation is defined. The value true means that the UIAbility termination process is canceled.
   }
 }

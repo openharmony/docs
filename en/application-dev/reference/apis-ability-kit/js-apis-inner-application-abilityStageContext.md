@@ -35,7 +35,7 @@ class MyAbilityStage extends AbilityStage {
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name | Type | Readable | Writable | Description |
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | Yes | No | **ModuleInfo** object corresponding to the **AbilityStage**. |
-| config | [Configuration](js-apis-app-ability-configuration.md) | Yes | No | Configuration for the environment where the application is running. |
+| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | Yes| No| **ModuleInfo** object corresponding to the **AbilityStage**.|
+| config | [Configuration](js-apis-app-ability-configuration.md) | Yes| No| Configuration for the environment where the application is running.|
