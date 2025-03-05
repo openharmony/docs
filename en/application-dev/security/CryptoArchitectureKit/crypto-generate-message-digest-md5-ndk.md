@@ -1,4 +1,4 @@
-# Generating an MD Using SHA-256 (C/C++)
+# Generating an MD Using MD5 (C/C++)
 
 For details about the algorithm specifications, see [Supported Algorithms and Specifications](crypto-generate-message-digest-overview.md#supported-algorithms-and-specifications).
 
@@ -17,9 +17,9 @@ The following provides examples of MD operations with different data passing met
 
 ### Generating an MD by Passing In Full Data
 
-1. Call [OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_create) with the MD algorithm **SHA256** to generate an MD operation instance (**OH_CryptoDigest**).
+1. Call [OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_create) with the MD algorithm **MD5** to generate an MD operation instance (**OH_CryptoDigest**).
 
-2. Call [OH_CryptoDigest_Update](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_update) to pass in the data for generating an MD. The amount of data to be passed in by a single **OH_CryptoDigest_Update()** operation is not limited.
+2. Call [OH_CryptoDigest_Update](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_update) to pass in the data for generating an MD. The amount of data to be passed in by a single **Md.update()** call is not limited.
 
 3. Call [OH_CryptoDigest_Final](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_final) to generate an MD.
 
@@ -42,7 +42,7 @@ static OH_Crypto_ErrCode doTestMd()
     Crypto_DataBlob in = {.data = (uint8_t *)(testData), .len = strlen(testData)};
     Crypto_DataBlob out = {.data = nullptr, .len = 0};
     int mdLen = 0;
-    ret = OH_CryptoDigest_Create("SHA256", &ctx);
+    ret = OH_CryptoDigest_Create("MD5", &ctx);
     if (ret != CRYPTO_SUCCESS) {
         return ret;
     }
@@ -65,7 +65,7 @@ static OH_Crypto_ErrCode doTestMd()
 
 ### Generating an MD by Passing In Data by Segment
 
-1. Call [OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_create) with the MD algorithm **SHA256** to generate an MD operation instance (**OH_CryptoDigest**).
+1. Call [OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_create) with the MD algorithm **MD5** to generate an MD operation instance (**OH_CryptoDigest**).
 
 2. Call [OH_CryptoDigest_Update](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_update) multiple times to pass in 20 bytes each time.
 
@@ -93,7 +93,7 @@ static OH_Crypto_ErrCode doLoopMd()
     int isBlockSize = 20;
     int offset = 0;
 
-    ret = OH_CryptoDigest_Create("SHA256", &ctx);
+    ret = OH_CryptoDigest_Create("MD5", &ctx);
     if (ret != CRYPTO_SUCCESS) {
         return ret;
     }
