@@ -6663,7 +6663,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 > **说明：**
 >
-> 从API version 8开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9)替代。
+> 从API version 9开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6812,7 +6812,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The callback used to receive remote object death notifications is empty. |
   | 1900008  | The proxy or remote object is invalid. |
 
-### addDeathrecipient<sup>(deprecated)</sup>
+### addDeathRecipient<sup>(deprecated)</sup>
 
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
@@ -8736,6 +8736,15 @@ RemoteObject构造函数。
   | ---------- | ------ | ---- | ------------ |
   | descriptor | string | 是   | 接口描述符。 |
 
+**示例：**
+
+  ```ts
+  class TestRemoteObject extends rpc.RemoteObject {
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+  }
+  ```
 ### sendRequest<sup>(deprecated)</sup>
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
@@ -9360,7 +9369,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
   | 类型          | 说明                                          |
   | ------------- | --------------------------------------------- |
-  | IRemoteBroker | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
+  | [IRemoteBroker](#iremotebroker) | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
 
 **错误码：**
 
@@ -9431,7 +9440,7 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
   | 类型          | 说明                                                               |
   | ------------- | ------------------------------------------------------------------ |
-  | IRemoteBroker | 如果接口描述符对应的远端对象存在，则返回该远端对象，否则返回Null。 |
+  | [IRemoteBroker](#iremotebroker) | 如果接口描述符对应的远端对象存在，则返回该远端对象，否则返回Null。 |
 
 **示例：**
 
