@@ -4347,7 +4347,7 @@ try {
 | 名称        | 类型                  | 说明                                     |
 | --------- | ----------------------- | -------------------------------------- |
 | reportType  | [ScanReportType](#scanreporttype15)        | 表示扫描报告类型。    |
-| scanResult  | Array&lt;[ScanResult](##scanresult)&gt;    | 扫描结果数据。        |
+| scanResult  | Array&lt;[ScanResult](#scanresult)&gt;    | 扫描结果数据。        |
 
 ## ScanReportType<sup>15+</sup>
 
