@@ -23,7 +23,7 @@ iconSize(value: Dimension): T
 
 | 参数名 | 类型 | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [Dimension](ts-types.md#dimension10) | 是 |安全控件上图标的尺寸。<br/>默认值：16vp|
+| value | [Dimension](ts-types.md#dimension10) | 是 |安全控件上图标的尺寸。<br/>默认值：16vp。<br/>不支持设置百分比字符串。|
 
 **返回值：**
 
@@ -133,7 +133,7 @@ fontSize(value: Dimension): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [Dimension](ts-types.md#dimension10) |是 |安全控件上文字的尺寸。<br/>默认值：16fp|
+| value | [Dimension](ts-types.md#dimension10) |是 |安全控件上文字的尺寸。<br/>默认值：16fp。<br/>不支持设置百分比字符串。|
 
 **返回值：**
 
