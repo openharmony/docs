@@ -195,7 +195,7 @@
 | int [OH_RdbTrans_Commit](#oh_rdbtrans_commit) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans) | 提交事务。 |
 | int [OH_RdbTrans_Rollback](#oh_rdbtrans_rollback) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans) | 回滚事务。 |
 | int [OH_RdbTrans_Insert](#oh_rdbtrans_insert) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const char \*table, const [OH_VBucket](_o_h___v_bucket.md) \*row, int64_t \*rowId) | 将一行数据插入到目标表中。 |
-| int [OH_RdbTrans_BatchInsert](#oh_rdbtrans_batchinsert) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const char \*table, const [OH_Data_VBuckets](#oh_data_vbuckets) \*rows, int64_t \*changes) | 将一组数据批量插入到目标表中。 |
+| int [OH_RdbTrans_BatchInsert](#oh_rdbtrans_batchinsert) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const char \*table, const [OH_Data_VBuckets](#oh_data_vbuckets) \*rows, Rdb_ConflictResolution resolution, int64_t \*changes) | 将一组数据批量插入到目标表中。 |
 | int [OH_RdbTrans_Update](#oh_rdbtrans_update) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const [OH_VBucket](_o_h___v_bucket.md) \*row, const [OH_Predicates](_o_h___predicates.md) \*predicates, int64_t \*changes) | 根据指定的条件更新数据库中的数据。 |
 | int [OH_RdbTrans_Delete](#oh_rdbtrans_delete) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const [OH_Predicates](_o_h___predicates.md) \*predicates, int64_t \*changes) | 根据指定条件从数据库中删除数据。 |
 | [OH_Cursor](_o_h___cursor.md) \* [OH_RdbTrans_Query](#oh_rdbtrans_query) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const [OH_Predicates](_o_h___predicates.md) \*predicates, const char \*columns[], int len) | 根据指定的条件查询数据库中的数据。 |
@@ -1468,7 +1468,7 @@ int OH_Rdb_ExecuteV2 (OH_Rdb_Store *store, const char *sql, const OH_Data_Values
 
 返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库文件被锁定。
 
-返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库中的表被锁定。
+返回RDB_E_SQLITE_LOCKED表示SQLite错误码：数据库中的表被锁定。
 
 返回RDB_E_SQLITE_NOMEM表示SQLite错误码：数据库内存不足。
 
@@ -1546,7 +1546,7 @@ RDB_E_NOT_SUPPORTED 表示不支持当前操作。
 ### OH_RdbTrans_BatchInsert()
 
 ```
-int OH_RdbTrans_BatchInsert (OH_Rdb_Transaction *trans, const char *table, const OH_Data_VBuckets *rows, int64_t *changes )
+int OH_RdbTrans_BatchInsert (OH_Rdb_Transaction *trans, const char *table, const OH_Data_VBuckets *rows, Rdb_ConflictResolution resolution, int64_t *changes )
 ```
 
 **描述**
@@ -1562,6 +1562,7 @@ int OH_RdbTrans_BatchInsert (OH_Rdb_Transaction *trans, const char *table, const
 | trans | 表示指向[OH_Rdb_Transaction](#oh_rdb_transaction)实例的指针。 |
 | table | 表示目标表。 |
 | rows | 表示要插入到表中的一组数据。 |
+| resolution | 表示发生冲突时的解决策略。 |
 | changes | 输出参数，表示插入成功的次数。 |
 
 **返回：**
@@ -1586,7 +1587,7 @@ int OH_RdbTrans_BatchInsert (OH_Rdb_Transaction *trans, const char *table, const
 
 返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库文件被锁定。
 
-返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库中的表被锁定。
+返回RDB_E_SQLITE_LOCKED表示SQLite错误码：数据库中的表被锁定。
 
 返回RDB_E_SQLITE_NOMEM表示SQLite错误码：数据库内存不足。
 
@@ -1597,6 +1598,8 @@ int OH_RdbTrans_BatchInsert (OH_Rdb_Transaction *trans, const char *table, const
 返回RDB_E_SQLITE_TOO_BIG表示SQLite错误码：TEXT或BLOB超出大小限制。
 
 返回RDB_E_SQLITE_MISMATCH表示SQLite错误码：数据类型不匹配。
+
+返回RDB_E_SQLITE_CONSTRAINT表示SQLite错误码：SQLite约束。
 
 ### OH_RdbTrans_Commit()
 
@@ -1684,7 +1687,7 @@ int OH_RdbTrans_Delete (OH_Rdb_Transaction *trans, const OH_Predicates *predicat
 
 返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库文件被锁定。
 
-返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库中的表被锁定。
+返回RDB_E_SQLITE_LOCKED表示SQLite错误码：数据库中的表被锁定。
 
 返回RDB_E_SQLITE_NOMEM表示SQLite错误码：数据库内存不足。
 
@@ -1813,7 +1816,7 @@ int OH_RdbTrans_Execute (OH_Rdb_Transaction *trans, const char *sql, const OH_Da
 
 返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库文件被锁定。
 
-返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库中的表被锁定。
+返回RDB_E_SQLITE_LOCKED表示SQLite错误码：数据库中的表被锁定。
 
 返回RDB_E_SQLITE_NOMEM表示SQLite错误码：数据库内存不足。
 
@@ -1873,7 +1876,7 @@ int OH_RdbTrans_Insert (OH_Rdb_Transaction *trans, const char *table, const OH_V
 
 返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库文件被锁定。
 
-返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库中的表被锁定。
+返回RDB_E_SQLITE_LOCKED表示SQLite错误码：数据库中的表被锁定。
 
 返回RDB_E_SQLITE_NOMEM表示SQLite错误码：数据库内存不足。
 
@@ -2024,7 +2027,7 @@ int OH_RdbTrans_Update (OH_Rdb_Transaction *trans, const OH_VBucket *row, const 
 
 返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库文件被锁定。
 
-返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库中的表被锁定。
+返回RDB_E_SQLITE_LOCKED表示SQLite错误码：数据库中的表被锁定。
 
 返回RDB_E_SQLITE_NOMEM表示SQLite错误码：数据库内存不足。
 
