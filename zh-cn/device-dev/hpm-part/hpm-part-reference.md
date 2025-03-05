@@ -177,7 +177,7 @@ Part的全生命周期管理，可以通过hpm命令工具进行操作，hpm的�
 | 烧录 | hpm&nbsp;run&nbsp;flash | 烧录固件（依赖bundle.json的scripts中的flash脚本）。 | 
 | 发布 | hpm&nbsp;publish | 发布Part，发布的Part在仓库中必须唯一，且版本唯一（需要账号登录）。 | 
 | 执行扩展命令 | hpm&nbsp;run | 执行bundle.json文件中定义的scripts脚本命令，支持多个命令可用&nbsp;&amp;&amp;&nbsp;连接。 | 
-| 解压包 | hpm&nbsp;extract | 解压文件.&nbsp;支持格式'zip'、'tar','tgz'&nbsp;和'.tar.gz'。 | 
+| 解压包 | hpm&nbsp;extract | 解压文件，支持格式'zip'、'tar','tgz'&nbsp;和'.tar.gz'。 | 
 | 启动图形化界面 | hpm&nbsp;ui | 本地启动HPM&nbsp;UI，可通过-p参数指定端口，Windows平台下会启动默认的浏览器打开。 | 
 | 多语言切换 | hpm&nbsp;lang | 切换中英文操作界面（同时支持命令行和UI）。 | 
 | 转换为hpm包格式 | hpm&nbsp;x2h | 将一个maven格式或npm格式包转换成hpm的包格式，并发布到HPM。 | 
