@@ -10,7 +10,7 @@
   <!--DelEnd-->
   - global<!--localization-global-arkts-->
     - [RawFileDescriptor](js-apis-rawFileDescriptor.md) 
-    - [Resource]js-apis-resource.md)
+    - [Resource](js-apis-resource.md)
     - [SendableResource](js-apis-sendableResource.md)
 - C API<!--localization-c-->
   - 模块<!--localization-module-->
