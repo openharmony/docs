@@ -133,7 +133,7 @@ ICameraHost::PrelaunchWithOpMode ([in] struct PrelaunchConfig config, [in] int o
 | 名称 | 描述 | 
 | -------- | -------- |
 | config | 预启动配置. 详细可查看[PrelaunchConfig](_prelaunch_config_v11.md)。 | 
-| operationMode | 流操作模式. 详细可查看[OperationMode_V1_2](_camera_v12.md#operationmode_v1_2). | 
+| operationMode | 流操作模式. 详细可查看[OperationMode_V1_2](_camera_v12.md#operationmode_v1_2)。 | 
 
 **返回：**
 
