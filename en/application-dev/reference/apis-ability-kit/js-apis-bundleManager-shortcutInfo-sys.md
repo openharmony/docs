@@ -1,12 +1,12 @@
 # ShortcutInfo (System API)
 
-The **ShortcutInfo** module defines shortcut information configured in the configuration file. The information can be obtained through [getShortcutInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetshortcutinfo9).
+The ShortcutInfo module defines shortcut information configured in the configuration file. The information can be obtained through [getShortcutInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetshortcutinfo9).
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> For the FA model, the shortcut information is configured in the [config.json](../../quick-start/module-structure.md) file. For details about the shortcut information in the stage model, see [shortcuts](../../quick-start/module-configuration-file.md#shortcuts).
+> For the FA model, the shortcut information is configured in the [config.json](../../quick-start/module-structure.md#internal-structure-of-the-shortcuts-attribute) file. For details about the shortcut information in the stage model, see [shortcuts](../../quick-start/module-configuration-file.md#shortcuts).
 >
 > The APIs provided by this module are system APIs.
 
@@ -27,7 +27,7 @@ The **ShortcutInfo** module defines shortcut information configured in the confi
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
 
- **System API**: This is a system API.
+**System API**: This is a system API.
 
 | Name                   | Type                                      | Read-Only| Optional| Description                        |
 | ----------------------- | ------------------------------------------ | ---- | ---- | ---------------------------- |

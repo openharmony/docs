@@ -28,6 +28,6 @@ The ApplicationInfo module defines the application information. A third-party ap
 | Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | bundleName | string         | Yes  | No  | Bundle name of the application.                |
-| moduleName | string         | Yes  | No  | Module name of the application. By default, the name of the entry module is returned. If the entry module does not exist, the name of the feature module is returned.           |
+| moduleName | string         | Yes  | No  | Module name of the application. The value is **moduleName** configured for the entry module. If the entry module does not exist, the value is **moduleName** configured for the feature module.           |
 | iconId | number         | Yes  | No  | Icon ID of the application.           |
 | labelId | number         | Yes  | No  | Label ID of the application.           |

@@ -1,6 +1,6 @@
 # @ohos.bundle.bundleManager (bundleManager) (System API)
 
-The bundleManager module provides APIs for obtaining application information, including [BundleInfo](js-apis-bundleManager-BundleInfo-sys.md), [ApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md), [AbilityInfo](js-apis-bundleManager-abilityInfo.md), and [ExtensionAbility](js-apis-bundleManager-extensionAbilityInfo.md).
+The bundleManager module provides APIs for obtaining application information, including [BundleInfo](js-apis-bundleManager-bundleInfo.md), [ApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md), [AbilityInfo](js-apis-bundleManager-abilityInfo.md), and [ExtensionAbility](js-apis-bundleManager-extensionAbilityInfo.md).
 
 > **NOTE**
 >
@@ -26,9 +26,7 @@ import { bundleManager } from '@kit.AbilityKit';
 
 For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
-## Enums
-
-### BundleFlag
+## BundleFlag
 
 Enumerates the bundle flags, which indicate the type of bundle information to obtain.
 
@@ -52,7 +50,7 @@ Enumerates the bundle flags, which indicate the type of bundle information to ob
 | GET_BUNDLE_INFO_OF_ANY_USER<sup>12+</sup>      | 0x00002000 | Used to obtain the bundle information of an application installed by any user. It must be used together with **GET_BUNDLE_INFO_WITH_APPLICATION**. It is valid only in the [getBundleInfo](#bundlemanagergetbundleinfo14) and [getAllBundleInfo](#bundlemanagergetallbundleinfo) APIs.<br>**System API**: This enumerated value can be used in system APIs since API version 12.|
 | GET_BUNDLE_INFO_EXCLUDE_CLONE<sup>12+</sup> | 0x00004000 | Used to obtain the bundle information of a main application (excluding its clones). It is valid only in the [getAllBundleInfo](#bundlemanagergetallbundleinfo) API.|
 
-### ApplicationFlag
+## ApplicationFlag
 
 Enumerates the application flags, which indicate the type of application information to obtain.
 
@@ -67,7 +65,7 @@ Enumerates the application flags, which indicate the type of application informa
 | GET_APPLICATION_INFO_WITH_METADATA   | 0x00000002 | Used to obtain the application information with metadata.                     |
 | GET_APPLICATION_INFO_WITH_DISABLE    | 0x00000004 | Used to obtain the application information of disabled bundles.                 |
 
-### AbilityFlag
+## AbilityFlag
 
 Enumerates the ability flags, which indicate the type of ability information to obtain.
 
@@ -86,7 +84,7 @@ Enumerates the ability flags, which indicate the type of ability information to 
 | GET_ABILITY_INFO_WITH_APP_LINKING<sup>12+</sup>  | 0x00000040 | Used to obtain the ability information filtered by domain name verification.                        |
 | GET_ABILITY_INFO_WITH_SKILL<sup>12+</sup>   | 0x00000080 | Used to obtain the ability information with skills.                        |
 
-### ExtensionAbilityFlag
+## ExtensionAbilityFlag
 
 Enumerates the ExtensionAbility flags, which indicate the type of ExtensionAbility information to obtain.
 
@@ -102,7 +100,7 @@ Enumerates the ExtensionAbility flags, which indicate the type of ExtensionAbili
 | GET_EXTENSION_ABILITY_INFO_WITH_METADATA    | 0x00000004 | Used to obtain the ExtensionAbility information with metadata.                |
 | GET_EXTENSION_ABILITY_INFO_WITH_SKILL<sup>12+</sup>     | 0x00000010 | Used to obtain the ExtensionAbility information with skills.                |
 
-### ProfileType<sup>11+</sup>
+## ProfileType<sup>11+</sup>
 
 Enumerates the types of profiles (also called application files).
 
@@ -114,7 +112,7 @@ Enumerates the types of profiles (also called application files).
 | -------------- | ---- | --------------- |
 | INTENT_PROFILE  | 1    | Profile of the InsightIntent framework.   |
 
-### AppDistributionType<sup>12+</sup>
+## AppDistributionType<sup>12+</sup>
 
 Enumerates the application distribution types.
 
@@ -128,11 +126,11 @@ Enumerates the application distribution types.
 | ENTERPRISE        | 2    | Enterprise application that can be installed on personal devices.   |
 | ENTERPRISE_NORMAL | 3    | Common enterprise application that can be installed on enterprise devices only through an enterprise mobile device management (MDM) application. The applications of this type do not require device management privileges.   |
 | ENTERPRISE_MDM    | 4    | Enterprise MDM application that can be installed only on enterprise devices. The applications of this type must have device management privileges, such as remote locking devices and installing common enterprise applications on devices.   |
-| OS_INTEGRATION    | 5    | Preset system application.   |
+| OS_INTEGRATION    | 5    | Preinstalled system application.   |
 | CROWDTESTING      | 6    | Crowdtesting application.   |
 | NONE              | 7    | Other.          |
 
-### ApplicationInfoFlag<sup>12+</sup>
+## ApplicationInfoFlag<sup>12+</sup>
 Enumerates the application information flag, which describes the status between an application and user.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
@@ -141,11 +139,9 @@ Enumerates the application information flag, which describes the status between 
 
 | Name| Value| Description|
 |----------------|---|---|
-| FLAG_INSTALLED|  0x00000001 | Status between the application and user. The value **1** means that the application is installed by the specified user, and **0** means the opposite.|
+| FLAG_INSTALLED|  0x00000001 | The application is installed for the specified user.|
 
-## APIs
-
-### bundleManager.getBundleInfo<sup>14+</sup>
+## bundleManager.getBundleInfo<sup>14+</sup>
 
 getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<BundleInfo>): void
 
@@ -226,7 +222,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfo<sup>14+</sup>
+## bundleManager.getBundleInfo<sup>14+</sup>
 
 getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
@@ -281,7 +277,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfo<sup>14+</sup>
+## bundleManager.getBundleInfo<sup>14+</sup>
 
 getBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise\<BundleInfo>
 
@@ -362,7 +358,7 @@ try {
 
 ```
 
-### bundleManager.getApplicationInfo
+## bundleManager.getApplicationInfo
 
 getApplicationInfo(bundleName: string, appFlags: number, userId: number, callback: AsyncCallback\<ApplicationInfo>): void
 
@@ -422,7 +418,7 @@ try {
 }
 ```
 
-### bundleManager.getApplicationInfo
+## bundleManager.getApplicationInfo
 
 getApplicationInfo(bundleName: string, appFlags: number, callback: AsyncCallback\<ApplicationInfo>): void
 
@@ -479,7 +475,7 @@ try {
 }
 ```
 
-### bundleManager.getApplicationInfo
+## bundleManager.getApplicationInfo
 
 getApplicationInfo(bundleName: string, appFlags: number, userId?: number): Promise\<ApplicationInfo>
 
@@ -542,11 +538,11 @@ try {
 }
 ```
 
-### bundleManager.getAllBundleInfo
+## bundleManager.getAllBundleInfo
 
 getAllBundleInfo(bundleFlags: number, userId: number, callback: AsyncCallback<Array\<BundleInfo>>): void
 
-Obtains the information about all bundles based on the given bundle flags and user ID. This API uses an asynchronous callback to return the result.
+Obtains all the bundle information in the system based on the given bundle flags and user ID. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -596,11 +592,11 @@ try {
 }
 ```
 
-### bundleManager.getAllBundleInfo
+## bundleManager.getAllBundleInfo
 
 getAllBundleInfo(bundleFlags: number, callback: AsyncCallback<Array\<BundleInfo>>): void
 
-Obtains the information about all bundles based on the given bundle flags. This API uses an asynchronous callback to return the result.
+Obtains all the bundle information in the system based on the given bundle flags. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -647,11 +643,11 @@ try {
 }
 ```
 
-### bundleManager.getAllBundleInfo
+## bundleManager.getAllBundleInfo
 
 getAllBundleInfo(bundleFlags: number, userId?: number): Promise<Array\<BundleInfo>>
 
-Obtains the information about all bundles based on the given bundle flags and user ID. This API uses a promise to return the result.
+Obtains all the bundle information in the system based on the given bundle flags and user ID. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -703,11 +699,11 @@ try {
 }
 ```
 
-### bundleManager.getAllApplicationInfo
+## bundleManager.getAllApplicationInfo
 
 getAllApplicationInfo(appFlags: number, userId: number, callback: AsyncCallback<Array\<ApplicationInfo>>): void
 
-Obtains the information about all applications based on the given application flags and user ID. This API uses an asynchronous callback to return the result.
+Obtains all the application information in the system based on the given application flags and user ID. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -757,11 +753,11 @@ try {
 }
 ```
 
-### bundleManager.getAllApplicationInfo
+## bundleManager.getAllApplicationInfo
 
 getAllApplicationInfo(appFlags: number, callback: AsyncCallback<Array\<ApplicationInfo>>): void
 
-Obtains the information about all applications based on the given application flags. This API uses an asynchronous callback to return the result.
+Obtains all the application information in the system based on the given application flags. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -808,11 +804,11 @@ try {
 }
 ```
 
-### bundleManager.getAllApplicationInfo
+## bundleManager.getAllApplicationInfo
 
 getAllApplicationInfo(appFlags: number, userId?: number): Promise<Array\<ApplicationInfo>>
 
-Obtains the information about all applications based on the given application flags and user ID. This API uses a promise to return the result.
+Obtains all the application information in the system based on the given application flags and user ID. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -865,11 +861,11 @@ try {
 
 ```
 
-### bundleManager.queryAbilityInfo
+## bundleManager.queryAbilityInfo
 
 queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
 
-Obtains an array of ability information based on the given want, ability flags, and user ID. This API uses an asynchronous callback to return the result.
+Obtains the ability information based on the given Want, ability flags, and user ID. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -929,11 +925,11 @@ try {
 }
 ```
 
-### bundleManager.queryAbilityInfo
+## bundleManager.queryAbilityInfo
 
 queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
 
-Obtains an array of ability information based on the given want and ability flags. This API uses an asynchronous callback to return the result.
+Obtains the ability information based on the given Want and ability flags. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -990,11 +986,11 @@ try {
 }
 ```
 
-### bundleManager.queryAbilityInfo
+## bundleManager.queryAbilityInfo
 
 queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Array\<AbilityInfo>>
 
-Obtains the ability information based on the given want, ability flags, and user ID. This API uses a promise to return the result.
+Obtains the ability information based on the given Want, ability flags, and user ID. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1080,7 +1076,7 @@ try {
 }
 ```
 
-### bundleManager.queryAbilityInfoSync<sup>10+</sup>
+## bundleManager.queryAbilityInfoSync<sup>10+</sup>
 
 queryAbilityInfoSync(want: Want, abilityFlags: number, userId?: number): Array\<AbilityInfo>
 
@@ -1165,11 +1161,11 @@ try {
 }
 ```
 
-### bundleManager.queryAbilityInfo<sup>12+</sup>
+## bundleManager.queryAbilityInfo<sup>12+</sup>
 
 queryAbilityInfo(wants: Array\<Want>, abilityFlags: number, userId?: number): Promise<Array\<AbilityInfo>>
 
-Obtains the ability information based on the given want list, ability flags, and user ID.
+Obtains the ability information based on the given Want list, ability flags, and user ID. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1236,11 +1232,11 @@ let wants: Array<Want> = [ want, want1 ];
     }
 ```
 
-### bundleManager.queryExtensionAbilityInfo
+## bundleManager.queryExtensionAbilityInfo
 
 queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType, extensionAbilityFlags: number, userId: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void
 
-Obtains the ExtensionAbility information based on the given want, ExtensionAbility type, ExtensionAbility flags, and user ID. This API uses an asynchronous callback to return the result.
+Obtains the ExtensionAbility information based on the given Want, ExtensionAbility type, ExtensionAbility flags, and user ID. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1301,11 +1297,11 @@ try {
 }
 ```
 
-### bundleManager.queryExtensionAbilityInfo
+## bundleManager.queryExtensionAbilityInfo
 
 queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType, extensionAbilityFlags: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void
 
-Obtains the ExtensionAbility information based on the given want, ExtensionAbility type, and ExtensionAbility flags. This API uses an asynchronous callback to return the result.
+Obtains the ExtensionAbility information based on the given Want, ExtensionAbility type, and ExtensionAbility flags. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1363,11 +1359,11 @@ try {
 }
 ```
 
-### bundleManager.queryExtensionAbilityInfo
+## bundleManager.queryExtensionAbilityInfo
 
 queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType, extensionAbilityFlags: number, userId?: number): Promise<Array\<ExtensionAbilityInfo>>
 
-Obtains the ExtensionAbility information based on the given want, ExtensionAbility type, ExtensionAbility flags, and user ID. This API uses a promise to return the result.
+Obtains the ExtensionAbility information based on the given Want, ExtensionAbility type, ExtensionAbility flags, and user ID. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1456,7 +1452,7 @@ try {
 }
 ```
 
-### bundleManager.queryExtensionAbilityInfoSync<sup>10+</sup>
+## bundleManager.queryExtensionAbilityInfoSync<sup>10+</sup>
 
 queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: ExtensionAbilityType, extensionAbilityFlags: number, userId?: number): Array\<ExtensionAbilityInfo>
 
@@ -1543,7 +1539,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleNameByUid<sup>14+</sup>
+## bundleManager.getBundleNameByUid<sup>14+</sup>
 
 getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void
 
@@ -1591,7 +1587,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleNameByUid<sup>14+</sup>
+## bundleManager.getBundleNameByUid<sup>14+</sup>
 
 getBundleNameByUid(uid: number): Promise\<string>
 
@@ -1642,7 +1638,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleNameByUidSync<sup>14+</sup>
+## bundleManager.getBundleNameByUidSync<sup>14+</sup>
 
 getBundleNameByUidSync(uid: number): string
 
@@ -1690,7 +1686,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleArchiveInfo
+## bundleManager.getBundleArchiveInfo
 
 getBundleArchiveInfo(hapFilePath: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
@@ -1744,7 +1740,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleArchiveInfo
+## bundleManager.getBundleArchiveInfo
 
 getBundleArchiveInfo(hapFilePath: string,  bundleFlags: number): Promise\<BundleInfo>
 
@@ -1801,7 +1797,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleArchiveInfoSync<sup>10+</sup>
+## bundleManager.getBundleArchiveInfoSync<sup>10+</sup>
 
 getBundleArchiveInfoSync(hapFilePath: string, bundleFlags: number): BundleInfo
 
@@ -1855,11 +1851,13 @@ try {
 }
 ```
 
-### bundleManager.cleanBundleCacheFiles
+## bundleManager.cleanBundleCacheFiles
 
 cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback\<void>): void
 
-Clears the cache files based on the given bundle name. This API uses an asynchronous callback to return the result.
+Clears the bundle cache based on the given bundle name. This API uses an asynchronous callback to return the result.
+
+No permission is required when the caller clears its own cache.
 
 **System API**: This is a system API.
 
@@ -1908,11 +1906,13 @@ try {
 }
 ```
 
-### bundleManager.cleanBundleCacheFiles
+## bundleManager.cleanBundleCacheFiles
 
 cleanBundleCacheFiles(bundleName: string): Promise\<void>
 
-Clears the cache files based on the given bundle name. This API uses a promise to return the result.
+Clears the bundle cache based on the given bundle name. This API uses a promise to return the result.
+
+No permission is required when the caller clears its own cache.
 
 **System API**: This is a system API.
 
@@ -1964,7 +1964,7 @@ try {
 }
 ```
 
-### bundleManager.setApplicationEnabled
+## bundleManager.setApplicationEnabled
 
 setApplicationEnabled(bundleName: string, isEnabled: boolean, callback: AsyncCallback\<void>): void
 
@@ -2017,7 +2017,7 @@ try {
 }
 ```
 
-### bundleManager.setApplicationEnabled
+## bundleManager.setApplicationEnabled
 
 setApplicationEnabled(bundleName: string, isEnabled: boolean): Promise\<void>
 
@@ -2073,7 +2073,7 @@ try {
 }
 ```
 
-### bundleManager.setApplicationEnabled<sup>12+</sup>
+## bundleManager.setApplicationEnabled<sup>12+</sup>
 
 setApplicationEnabled(bundleName: string, appIndex: number, isEnabled: boolean): Promise\<void>
 
@@ -2131,7 +2131,7 @@ try {
 }
 ```
 
-### bundleManager.setApplicationEnabledSync<sup>10+</sup>
+## bundleManager.setApplicationEnabledSync<sup>10+</sup>
 
 setApplicationEnabledSync(bundleName: string, isEnabled: boolean): void
 
@@ -2178,7 +2178,7 @@ try {
 }
 ```
 
-### bundleManager.setAbilityEnabled
+## bundleManager.setAbilityEnabled
 
 setAbilityEnabled(info: AbilityInfo, isEnabled: boolean, callback: AsyncCallback\<void>): void
 
@@ -2245,7 +2245,7 @@ try {
 }
 ```
 
-### bundleManager.setAbilityEnabled
+## bundleManager.setAbilityEnabled
 
 setAbilityEnabled(info: AbilityInfo, isEnabled: boolean): Promise\<void>
 
@@ -2315,7 +2315,7 @@ try {
 }
 ```
 
-### bundleManager.setAbilityEnabled<sup>12+</sup>
+## bundleManager.setAbilityEnabled<sup>12+</sup>
 
 setAbilityEnabled(info: AbilityInfo, appIndex: number, isEnabled: boolean): Promise\<void>
 
@@ -2387,7 +2387,7 @@ try {
 }
 ```
 
-### bundleManager.setAbilityEnabledSync<sup>10+</sup>
+## bundleManager.setAbilityEnabledSync<sup>10+</sup>
 
 setAbilityEnabledSync(info: AbilityInfo, isEnabled: boolean): void
 
@@ -2453,7 +2453,7 @@ try {
 }
 ```
 
-### bundleManager.isApplicationEnabled
+## bundleManager.isApplicationEnabled
 
 isApplicationEnabled(bundleName: string, callback: AsyncCallback\<boolean>): void
 
@@ -2502,7 +2502,7 @@ try {
 }
 ```
 
-### bundleManager.isApplicationEnabled
+## bundleManager.isApplicationEnabled
 
 isApplicationEnabled(bundleName: string): Promise\<boolean>
 
@@ -2554,7 +2554,7 @@ try {
 }
 ```
 
-### bundleManager.isApplicationEnabled<sup>12+</sup>
+## bundleManager.isApplicationEnabled<sup>12+</sup>
 
 isApplicationEnabled(bundleName: string, appIndex: number): Promise\<boolean>
 
@@ -2608,7 +2608,7 @@ try {
 }
 ```
 
-### bundleManager.isApplicationEnabledSync<sup>10+</sup>
+## bundleManager.isApplicationEnabledSync<sup>10+</sup>
 
 isApplicationEnabledSync(bundleName: string): boolean
 
@@ -2657,7 +2657,7 @@ try {
 }
 ```
 
-### bundleManager.isAbilityEnabled
+## bundleManager.isAbilityEnabled
 
 isAbilityEnabled(info: AbilityInfo, callback: AsyncCallback\<boolean>): void
 
@@ -2720,7 +2720,7 @@ try {
 }
 ```
 
-### bundleManager.isAbilityEnabled
+## bundleManager.isAbilityEnabled
 
 isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
 
@@ -2786,7 +2786,7 @@ try {
 }
 ```
 
-### bundleManager.isAbilityEnabled<sup>12+</sup>
+## bundleManager.isAbilityEnabled<sup>12+</sup>
 
 isAbilityEnabled(info: AbilityInfo, appIndex: number): Promise\<boolean>
 
@@ -2854,7 +2854,7 @@ try {
 }
 ```
 
-### bundleManager.isAbilityEnabledSync<sup>10+</sup>
+## bundleManager.isAbilityEnabledSync<sup>10+</sup>
 
 isAbilityEnabledSync(info: AbilityInfo): boolean
 
@@ -2922,7 +2922,7 @@ try {
 }
 ```
 
-### bundleManager.getLaunchWantForBundle
+## bundleManager.getLaunchWantForBundle
 
 getLaunchWantForBundle(bundleName: string, userId: number, callback: AsyncCallback\<Want>): void
 
@@ -2978,7 +2978,7 @@ try {
 }
 ```
 
-### bundleManager.getLaunchWantForBundle
+## bundleManager.getLaunchWantForBundle
 
 getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 
@@ -3031,7 +3031,7 @@ try {
 }
 ```
 
-### bundleManager.getLaunchWantForBundle
+## bundleManager.getLaunchWantForBundle
 
 getLaunchWantForBundle(bundleName: string, userId?: number): Promise\<Want>
 
@@ -3091,7 +3091,7 @@ try {
 ```
 
 
-### bundleManager.getLaunchWantForBundleSync<sup>10+</sup>
+## bundleManager.getLaunchWantForBundleSync<sup>10+</sup>
 
 getLaunchWantForBundleSync(bundleName: string, userId?: number): Want
 
@@ -3165,11 +3165,11 @@ try {
 }
 ```
 
-### bundleManager.getPermissionDef
+## bundleManager.getPermissionDef
 
 getPermissionDef(permissionName: string, callback: AsyncCallback\<PermissionDef>): void
 
-Obtains the **PermissionDef** struct based on the given permission name. This API uses an asynchronous callback to return the result.
+Obtains the PermissionDef struct based on the given permission name. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -3216,11 +3216,11 @@ try {
 }
 ```
 
-### bundleManager.getPermissionDef
+## bundleManager.getPermissionDef
 
 getPermissionDef(permissionName: string): Promise\<PermissionDef>
 
-Obtains the **PermissionDef** struct based on the given permission name. This API uses a promise to return the result.
+Obtains the PermissionDef struct based on the given permission name. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -3270,7 +3270,7 @@ try {
 }
 ```
 
-### bundleManager.getPermissionDefSync<sup>10+</sup>
+## bundleManager.getPermissionDefSync<sup>10+</sup>
 
 getPermissionDefSync(permissionName: string): PermissionDef;
 
@@ -3321,11 +3321,11 @@ try {
 }
 ```
 
-### bundleManager.getAbilityLabel
+## bundleManager.getAbilityLabel
 
 getAbilityLabel(bundleName: string, moduleName: string, abilityName: string, callback: AsyncCallback\<string>): void
 
-Obtains the ability label based on the given bundle name, module name, and ability name. This API uses an asynchronous callback to return the result.
+Obtains the label based on the given bundle name, module name, and ability name. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -3382,11 +3382,11 @@ try {
 }
 ```
 
-### bundleManager.getAbilityLabel
+## bundleManager.getAbilityLabel
 
 getAbilityLabel(bundleName: string, moduleName: string, abilityName: string): Promise\<string>
 
-Obtains the ability label based on the given bundle name, module name, and ability name. This API uses a promise to return the result.
+Obtains the label based on the given bundle name, module name, and ability name. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -3446,7 +3446,7 @@ try {
 }
 ```
 
-### bundleManager.getAbilityLabelSync<sup>10+</sup>
+## bundleManager.getAbilityLabelSync<sup>10+</sup>
 
 getAbilityLabelSync(bundleName: string, moduleName: string, abilityName: string): string
 
@@ -3507,7 +3507,7 @@ try {
 }
 ```
 
-### bundleManager.getApplicationInfoSync
+## bundleManager.getApplicationInfoSync
 
 getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: number) : ApplicationInfo
 
@@ -3565,7 +3565,7 @@ try {
 }
 ```
 
-### bundleManager.getApplicationInfoSync
+## bundleManager.getApplicationInfoSync
 
 getApplicationInfoSync(bundleName: string, applicationFlags: number) : ApplicationInfo
 
@@ -3620,7 +3620,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfoSync<sup>14+</sup>
+## bundleManager.getBundleInfoSync<sup>14+</sup>
 
 getBundleInfoSync(bundleName: string, bundleFlags: number, userId: number): BundleInfo
 
@@ -3677,7 +3677,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfoSync<sup>14+</sup>
+## bundleManager.getBundleInfoSync<sup>14+</sup>
 
 getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 
@@ -3730,7 +3730,7 @@ try {
 }
 ```
 
-### bundleManager.getSharedBundleInfo<sup>10+</sup>
+## bundleManager.getSharedBundleInfo<sup>10+</sup>
 
 getSharedBundleInfo(bundleName: string,  moduleName: string, callback: AsyncCallback\<Array\<SharedBundleInfo\>\>): void
 
@@ -3785,7 +3785,7 @@ try {
 }
 ```
 
-### bundleManager.getSharedBundleInfo<sup>10+</sup>
+## bundleManager.getSharedBundleInfo<sup>10+</sup>
 
 getSharedBundleInfo(bundleName: string, moduleName: string): Promise\<Array\<SharedBundleInfo\>\>
 
@@ -3843,11 +3843,11 @@ try {
 }
 ```
 
-### bundleManager.getAllSharedBundleInfo<sup>10+</sup>
+## bundleManager.getAllSharedBundleInfo<sup>10+</sup>
 
 getAllSharedBundleInfo(callback: AsyncCallback\<Array\<SharedBundleInfo\>\>): void
 
-Obtains the information about all shared bundles. This API uses an asynchronous callback to return the result.
+Obtains all the shared bundle information. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -3891,11 +3891,11 @@ try {
 }
 ```
 
-### bundleManager.getAllSharedBundleInfo<sup>10+</sup>
+## bundleManager.getAllSharedBundleInfo<sup>10+</sup>
 
 getAllSharedBundleInfo(): Promise\<Array\<SharedBundleInfo\>\>
 
-Obtains the information about all shared bundles. This API uses a promise to return the result.
+Obtains all the shared bundle information. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -3937,7 +3937,7 @@ try {
 }
 ```
 
-### bundleManager.getAppProvisionInfo<sup>10+</sup>
+## bundleManager.getAppProvisionInfo<sup>10+</sup>
 
 getAppProvisionInfo(bundleName: string, callback: AsyncCallback\<AppProvisionInfo\>): void
 
@@ -3989,7 +3989,7 @@ try {
 }
 ```
 
-### bundleManager.getAppProvisionInfo<sup>10+</sup>
+## bundleManager.getAppProvisionInfo<sup>10+</sup>
 
 getAppProvisionInfo(bundleName: string, userId: number, callback: AsyncCallback\<AppProvisionInfo\>): void
 
@@ -4045,7 +4045,7 @@ try {
 }
 ```
 
-### bundleManager.getAppProvisionInfo<sup>10+</sup>
+## bundleManager.getAppProvisionInfo<sup>10+</sup>
 
 getAppProvisionInfo(bundleName: string, userId?: number): Promise\<AppProvisionInfo\>
 
@@ -4115,7 +4115,7 @@ try {
 }
 ```
 
-### bundleManager.getAppProvisionInfoSync<sup>10+</sup>
+## bundleManager.getAppProvisionInfoSync<sup>10+</sup>
 
 getAppProvisionInfoSync(bundleName: string, userId?: number): AppProvisionInfo
 
@@ -4179,7 +4179,7 @@ try {
 }
 ```
 
-### bundleManager.getSpecifiedDistributionType<sup>10+</sup>
+## bundleManager.getSpecifiedDistributionType<sup>10+</sup>
 getSpecifiedDistributionType(bundleName: string): string
 
 Obtains the distribution type of a bundle in synchronous mode. The return value is the **specifiedDistributionType** field value in [InstallParam](./js-apis-installer-sys.md#installparam) passed when **install** is called.
@@ -4229,7 +4229,7 @@ try {
 ```
 
 
-### bundleManager.getAdditionalInfo<sup>10+</sup>
+## bundleManager.getAdditionalInfo<sup>10+</sup>
 
 getAdditionalInfo(bundleName: string): string
 
@@ -4280,7 +4280,7 @@ try {
 }
 ```
 
-### bundleManager.queryExtensionAbilityInfoSync<sup>11+</sup>
+## bundleManager.queryExtensionAbilityInfoSync<sup>11+</sup>
 
 queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: string, extensionAbilityFlags: number, userId?: number): Array\<ExtensionAbilityInfo>
 
@@ -4370,7 +4370,7 @@ try {
 }
 ```
 
-### bundleManager.getJsonProfile<sup>12+</sup>
+## bundleManager.getJsonProfile<sup>12+</sup>
 
 getJsonProfile(profileType: ProfileType, bundleName: string, moduleName?: string, userId?: number): string
 
@@ -4434,7 +4434,7 @@ try {
 }
 ```
 
-### bundleManager.getRecoverableApplicationInfo<sup>11+</sup>
+## bundleManager.getRecoverableApplicationInfo<sup>11+</sup>
 
 getRecoverableApplicationInfo(callback: AsyncCallback\<Array\<RecoverableApplicationInfo\>\>): void
 
@@ -4482,7 +4482,7 @@ try {
 }
 ```
 
-### bundleManager.getRecoverableApplicationInfo<sup>11+</sup>
+## bundleManager.getRecoverableApplicationInfo<sup>11+</sup>
 
 getRecoverableApplicationInfo(): Promise\<Array\<RecoverableApplicationInfo\>\>
 
@@ -4528,7 +4528,7 @@ try {
 }
 ```
 
-### bundleManager.setAdditionalInfo<sup>11+</sup>
+## bundleManager.setAdditionalInfo<sup>11+</sup>
 
 setAdditionalInfo(bundleName: string, additionalInfo: string): void
 
@@ -4578,7 +4578,7 @@ try {
 }
 ```
 
-### bundleManager.getAllPreinstalledApplicationInfo<sup>12+</sup>
+## bundleManager.getAllPreinstalledApplicationInfo<sup>12+</sup>
 
 getAllPreinstalledApplicationInfo(): Promise\<Array\<PreinstalledApplicationInfo\>\>
 
@@ -4609,17 +4609,19 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { bundleManager } from '@kit.AbilityKit';
-import { Base } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-bundleManager.getAllPreinstalledApplicationInfo().then((data: Array<bundleManager.PreinstalledApplicationInfo>) => {
-    console.info("GetAllPreinstalledApplicationInfo success, data is :" + JSON.stringify(data));
-
-}).catch((err: Base.BusinessError) => {
-    console.error("GetAllPreinstalledApplicationInfo success errCode is :" + JSON.stringify(err.code));
-});
+try {
+    let data = bundleManager.getAllPreinstalledApplicationInfo();
+    hilog.info(0x0000, 'testTag', 'getAllPreinstalledApplicationInfo success, Data: %{public}s', JSON.stringify(data));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAllPreinstalledApplicationInfo failed: %{public}s', message);
+}
 ```
 
-### bundleManager.queryExtensionAbilityInfoSync<sup>11+</sup>
+## bundleManager.queryExtensionAbilityInfoSync<sup>11+</sup>
 
 queryExtensionAbilityInfoSync(extensionAbilityType: string, extensionAbilityFlags: number, userId?: number): Array\<ExtensionAbilityInfo>
 
@@ -4696,7 +4698,7 @@ try {
 }
 ```
 
-### bundleManager.getAllBundleInfoByDeveloperId<sup>12+</sup>
+## bundleManager.getAllBundleInfoByDeveloperId<sup>12+</sup>
 
 getAllBundleInfoByDeveloperId(developerId: string): Array\<BundleInfo>
 
@@ -4749,7 +4751,7 @@ try {
 }
 ```
 
-### bundleManager.getDeveloperIds<sup>12+</sup>
+## bundleManager.getDeveloperIds<sup>12+</sup>
 
 getDeveloperIds(appDistributionType?: number): Array\<String>
 
@@ -4801,7 +4803,7 @@ try {
 }
 ```
 
-### bundleManager.switchUninstallState<sup>12+</sup>
+## bundleManager.switchUninstallState<sup>12+</sup>
 
 switchUninstallState(bundleName: string, state: boolean): void
 
@@ -4847,7 +4849,7 @@ try {
 }
 ```
 
-### bundleManager.getExtResource<sup>12+</sup>
+## bundleManager.getExtResource<sup>12+</sup>
 
 getExtResource(bundleName: string): Promise\<Array\<string>>;
 
@@ -4905,7 +4907,7 @@ try {
 }
 ```
 
-### bundleManager.enableDynamicIcon<sup>12+</sup>
+## bundleManager.enableDynamicIcon<sup>12+</sup>
 
 enableDynamicIcon(bundleName: string, moduleName: string): Promise\<void>;
 
@@ -4964,7 +4966,7 @@ try {
 }
 ```
 
-### bundleManager.disableDynamicIcon<sup>12+</sup>
+## bundleManager.disableDynamicIcon<sup>12+</sup>
 
 disableDynamicIcon(bundleName: string): Promise\<void>;
 
@@ -5020,7 +5022,7 @@ try {
 }
 ```
 
-### bundleManager.getDynamicIcon<sup>12+</sup>
+## bundleManager.getDynamicIcon<sup>12+</sup>
 
 getDynamicIcon(bundleName: string): Promise\<string>;
 
@@ -5076,7 +5078,7 @@ try {
 }
 ```
 
-### bundleManager.getAppCloneIdentity<sup>14+</sup>
+## bundleManager.getAppCloneIdentity<sup>14+</sup>
 
 getAppCloneIdentity(uid: number): Promise\<AppCloneIdentity>;
 
@@ -5128,7 +5130,7 @@ try {
 }
 ```
 
-### bundleManager.getAppCloneBundleInfo<sup>12+</sup>
+## bundleManager.getAppCloneBundleInfo<sup>12+</sup>
 
 getAppCloneBundleInfo(bundleName: string, appIndex: number, bundleFlags: number, userId?: number): Promise\<BundleInfo>;
 
@@ -5191,7 +5193,7 @@ try {
 }
 ```
 
-### bundleManager.getAllAppCloneBundleInfo<sup>12+</sup>
+## bundleManager.getAllAppCloneBundleInfo<sup>12+</sup>
 
 getAllAppCloneBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise\<Array\<BundleInfo>>;
 
@@ -5253,7 +5255,7 @@ try {
     hilog.error(0x0000, 'testTag', 'getAllAppCloneBundleInfo failed. Cause: %{public}s', message);
 }
 ```
-### bundleManager.verifyAbc<sup>11+</sup>
+## bundleManager.verifyAbc<sup>11+</sup>
 
 verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: AsyncCallback\<void>): void
 
@@ -5307,7 +5309,7 @@ try {
 }
 ```
 
-### bundleManager.verifyAbc<sup>11+</sup>
+## bundleManager.verifyAbc<sup>11+</sup>
 
 verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void>
 
@@ -5364,7 +5366,7 @@ try {
 }
 ```
 
-### bundleManager.deleteAbc<sup>11+</sup>
+## bundleManager.deleteAbc<sup>11+</sup>
 
 deleteAbc(abcPath: string): Promise\<void>
 

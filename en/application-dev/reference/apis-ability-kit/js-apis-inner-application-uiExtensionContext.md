@@ -48,7 +48,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -66,8 +66,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -155,8 +154,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -236,7 +234,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden.  |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -254,8 +252,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -331,7 +328,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -349,8 +346,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -440,8 +436,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -525,7 +520,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -543,8 +538,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -1071,6 +1065,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 ```
 
 ## UIExtensionContext.openAtomicService<sup>12+<sup>
+
 openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;AbilityResult&gt;
 
 Starts an [EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md) in jump-out mode and returns the result. This API uses a promise to return the result.
@@ -1150,6 +1145,7 @@ export default class EntryAbility extends UIExtensionAbility {
 ```
 
 ## UIExtensionContext.openLink<sup>12+<sup>
+
 openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;AbilityResult&gt;): Promise&lt;void&gt;
 
 Starts a UIAbility through App Linking. This API uses a promise to return the result.
@@ -1197,7 +1193,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -1205,7 +1201,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000069 | The extension cannot start the third party application. |
 | 16200001 | The caller has been released. |
 | 16000053 | The ability is not on the top of the UI. |
-| 16000082 | The UIAbility is being started. |
 
 **Example**
 
@@ -1274,7 +1269,8 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.startUIServiceExtensionAbility<sup>13+<sup>
+## UIExtensionContext.startUIServiceExtensionAbility<sup>14+<sup>
+
 startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
 Starts a UIServiceExtensionAbility.
@@ -1284,14 +1280,13 @@ Starts a UIServiceExtensionAbility.
 > For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 >
 
-
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
-| Name  | Type                                                                        |Read Only| Optional| Description                     |
-| -------- | ---------------------------------------------------------------------------- | ---- |  ---- |------------------------- |
-| want     | [Want](js-apis-app-ability-want.md)                                        | Yes| No | Want information for starting the UIServiceExtensionAbility.|
+| Name  | Type                                                                        | Mandatory| Description                     |
+| -------- | --------------------------------------------------------------------------- | --- |------------------------- |
+| want     | [Want](js-apis-app-ability-want.md)                                        | Yes| Want information for starting the UIServiceExtensionAbility.|
 
 **Return value**
 
@@ -1307,16 +1302,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ----------------------------------------------------------------------------------------------------------- |
 | 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801 | The Ability is not supported. |
+| 801 | Capability not supported. |
 | 16000001 | The specified ability does not exist.                                                                       |
 | 16000002 | Incorrect ability type.                                                                                     |
-| 16000004 | Failed to start the invisible ability.                                                                          |
+| 16000004 | Failed to start the invisible ability.                                                                      |
 | 16000005 | The specified process does not have the permission.                                                         |
-| 16000006 | Cross-user operations are not allowed.                                                                      |
 | 16000008 | The crowdtesting application expires.                                                                       |
 | 16000011 | The context does not exist.                                                                                 |
 | 16000012 | The application is controlled.                                                                              |
-| 16000013 | The application is controlled by EDM.                                                                       |
+| 16000013 | The EDM prohibits the application from launching.                                                           |
+| 16000019 | No matching ability is found.                                                                               |
 | 16000050 | Internal error.                                                                                             |
 | 16200001 | The caller has been released.                                                                               |
 
@@ -1358,7 +1353,8 @@ struct Index {
 }
 ```
 
-## UIExtensionContext.connectUIServiceExtensionAbility<sup>13+<sup>
+## UIExtensionContext.connectUIServiceExtensionAbility<sup>14+<sup>
+
 connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnectCallback) : Promise&lt;UIServiceProxy&gt;
 
 Connects to a UIServiceExtensionAbility.
@@ -1368,15 +1364,14 @@ Connects to a UIServiceExtensionAbility.
 > For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 >
 
-
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
-| Name              | Type                            | Read Only| Optional| Description                |
-| -------------------- | -------------------------------- | ---- | -------------------- |  -------------------- |
-| want                 | Want                             | Yes | No| Want information used for connection.|
-| callback | [UIServiceExtensionConnectCallback](js-apis-inner-application-uiServiceExtensionconnectcallback.md) | Yes|No | Callback for connecting to the UIServiceExtensionAbility.    |
+| Name              | Type                            | Mandatory| Description                |
+| -------------------- | -------------------------------- | ---- |  -------------------- |
+| want                 | Want                             | Yes| Want information used for connection.|
+| callback | [UIServiceExtensionConnectCallback](js-apis-inner-application-uiServiceExtensionconnectcallback.md) | Yes| Callback for connecting to the UIServiceExtensionAbility.    |
 
 **Return value**
 
@@ -1392,15 +1387,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------- |
 | 201      | The application does not have permission to call the interface.        |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16000001 | The specified ability does not  |
+| 801      | Capability not supported.                                              |
+| 16000001 | The specified ability does not exist.                                  |
 | 16000002 | Incorrect ability type.                                                |
-| 16000004 | Failed to start the invisible ability.                                     |
+| 16000004 | Failed to start the invisible ability.                                 |
 | 16000005 | The specified process does not have the permission.                    |
-| 16000006 | Cross-user operations are not allowed.                                 |
 | 16000008 | The crowdtesting application expires.                                  |
 | 16000011 | The context does not exist.                                            |
+| 16000013 | The EDM prohibits the application from launching.                      |
 | 16000050 | Internal error.                                                        |
-| 16000053 | The ability is not on the top of the UI.                               |
 | 16000055 | Installation-free timed out.                                           |
 
 **Example**
@@ -1448,19 +1443,19 @@ struct Page_UIServiceExtensionAbility {
 }
 ```
 
-## UIExtensionContext.disconnectUIServiceExtensionAbility<sup>13+<sup>
+## UIExtensionContext.disconnectUIServiceExtensionAbility<sup>14+<sup>
+
 disconnectUIServiceExtensionAbility(proxy: UIServiceProxy): Promise&lt;void&gt;
 
 Disconnects a UIServiceExtensionAbility.
-
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
-| Name              | Type                            | Read Only| Optional| Description                |
-| -------------------- | -------------------------------- | ---- | -------------------- | -------------------- |
-| proxy  | [UIServiceProxy](js-apis-inner-application-uiserviceproxy.md)  | Yes| No | Proxy used returned by calling [connectUIServiceExtensionAbility](#uiextensioncontextconnectuiserviceextensionability13).|
+| Name              | Type                            | Mandatory| Description                |
+| -------------------- | -------------------------------- | ---- | -------------------- |
+| proxy  | [UIServiceProxy](js-apis-inner-application-uiserviceproxy.md)  | Yes | Proxy used returned by calling [connectUIServiceExtensionAbility](#uiextensioncontextconnectuiserviceextensionability13).|
 
 **Return value**
 

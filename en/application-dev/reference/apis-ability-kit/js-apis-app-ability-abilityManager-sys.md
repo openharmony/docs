@@ -630,7 +630,7 @@ Registers an observer to listen for ability start or exit events.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. It is fixed at **'abilityForegroundState'**.|
-| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys) | Yes| Observer used to listen for ability start or exit events.|
+| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys.md) | Yes| Observer used to listen for ability start or exit events.|
 
 **Error codes**
 
@@ -680,7 +680,7 @@ Unregisters the observer used to listen for ability start or exit events.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. It is fixed at **'abilityForegroundState'**.|
-| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys) | No| Observer used to listen for ability start or exit events. If this parameter is not set, all observers associated with the specified event are deregistered. If this parameter is set, only the specified observer is deregistered.|
+| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys.md) | No| Observer used to listen for ability start or exit events. If this parameter is not set, all observers associated with the specified event are deregistered. If this parameter is set, only the specified observer is deregistered.|
 
 **Error codes**
 

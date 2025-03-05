@@ -1,6 +1,6 @@
 # OverlayModuleInfo
 
-The **OverlayModuleInfo** module provides information about a module with the overlay feature. A third-party application can obtain such information through [overlay.getOverlayModuleInfo](js-apis-overlay.md#overlaygetoverlaymoduleinfo).
+The OverlayModuleInfo module provides information about a module with the overlay feature. A third-party application can obtain such information through [overlay.getOverlayModuleInfo](js-apis-overlay.md#overlaygetoverlaymoduleinfo).
 
 > **NOTE**
 >

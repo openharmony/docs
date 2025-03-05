@@ -183,7 +183,7 @@ Enumerates the error codes used by the native child process module.
 | NCP_ERR_INVALID_PARAM               | Invalid parameter.                                          |
 | NCP_ERR_NOT_SUPPORTED               | Creating a native child process is not supported.                                |
 | NCP_ERR_INTERNAL                    | Internal error.                                          |
-| NCP_ERR_BUSY                        | A new child process cannot be created during the startup of another native child process. You can try again after the child process is started.|
+| NCP_ERR_BUSY                        | A new child process cannot be created during the startup of another native child process. You can try again after the child process is started. |
 | NCP_ERR_TIMEOUT                     | Starting the native child process times out.                                 |
 | NCP_ERR_SERVICE_ERROR               | Server error.                                         |
 | NCP_ERR_MULTI_PROCESS_DISABLED      | The multi-process mode is disabled. A child process cannot be started.                             |

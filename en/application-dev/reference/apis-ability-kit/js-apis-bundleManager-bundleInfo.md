@@ -61,19 +61,28 @@ Describes the use scenario and timing for using the permission.
 | Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | abilities | Array\<string> | No  | No  | Abilities that use the permission.  |
-| when      | string         | No  | No  | Time when the permission is used.         |
+| when      | string         | No  | No  | Time when the permission is used. The value can be **inuse** or **always**.         |
 
 ## SignatureInfo
 
 Describes the signature information of the bundle.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Name     | Type          | Read-Only| Optional| Description                       |
+| --------- | -------------- | ---- | ---- | --------------------------- |
+| appId     | string         | Yes  | No  | Application ID.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                |
+|fingerprint| string         | Yes  | No  | Fingerprint information of the bundle. This field changes when the used signing certificate changes.<br>**Atomic service API**: This API can be used in atomic services since API version 11.           |
+|appIdentifier<sup>11+</sup>| string         | Yes  | No  | Unique ID of the application. It is a random string allocated by AppGallery Connect during the creation of the application. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.<br>**Atomic service API**: This API can be used in atomic services since API version 11.           |
+|certificate<sup>14+</sup>| string         | Yes  | Yes  | Public key of the application certificate.<br>**Atomic service API**: This API can be used in atomic services since API version 14.           |
+
+## AppCloneIdentity<sup>14+<sup>
+
+Describes the identity information of an application clone.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| appId     | string         | Yes  | No  | Application ID.                |
-|fingerprint| string         | Yes  | No  | Fingerprint information of the bundle. This field changes when the used signing certificate changes.           |
-|appIdentifier<sup>11+</sup>| string         | Yes  | No  | Unique ID of the application, which is allocated by the cloud. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.           |
-|certificate<sup>13+</sup>| string         | Yes  | Yes  | Public key of the application certificate.           |
+| bundleName | string         | Yes  | No  | Bundle name of the application.         |
+| appIndex | number | Yes  | No  | Index of the application clone.|
