@@ -17,11 +17,11 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [RegisterBuffer](#registerbuffer) ([in] NativeBuffer handle) | IPC后的初始化NativeBuffer | 
-| [SetMetadata](#setmetadata) ([in] NativeBuffer handle, [in] unsigned int key, [in] unsigned char[] value) | 通过键值对的方式设置随帧数据 | 
-| [GetMetadata](#getmetadata) ([in] NativeBuffer handle, [in] unsigned int key, [out] unsigned char[] value) | 通过键值对的方式设置随帧数据 | 
-| [ListMetadataKeys](#listmetadatakeys) ([in] NativeBuffer handle, [out] unsigned int[] keys) | 列出bufferhandle中设置的所有key值 | 
-| [EraseMetadataKey](#erasemetadatakey) ([in] NativeBuffer handle, [in] unsigned int key) | 按键值内存删除数据 | 
+| [RegisterBuffer](#registerbuffer) ([in] NativeBuffer handle) | IPC后的初始化NativeBuffer。 | 
+| [SetMetadata](#setmetadata) ([in] NativeBuffer handle, [in] unsigned int key, [in] unsigned char[] value) | 通过键值对的方式设置随帧数据。 | 
+| [GetMetadata](#getmetadata) ([in] NativeBuffer handle, [in] unsigned int key, [out] unsigned char[] value) | 通过键值对的方式设置随帧数据。 | 
+| [ListMetadataKeys](#listmetadatakeys) ([in] NativeBuffer handle, [out] unsigned int[] keys) | 列出bufferhandle中设置的所有key值。 | 
+| [EraseMetadataKey](#erasemetadatakey) ([in] NativeBuffer handle, [in] unsigned int key) | 按键值内存删除数据。 | 
 
 
 ## 成员函数说明
@@ -36,7 +36,7 @@ IMetadata::EraseMetadataKey ([in] NativeBuffer handle, [in] unsigned int key )
 **描述**
 
 
-按键值内存删除数据
+按键值内存删除数据。
 
 **起始版本：** 4.1
 
@@ -45,7 +45,7 @@ IMetadata::EraseMetadataKey ([in] NativeBuffer handle, [in] unsigned int key )
 | 名称 | 描述 | 
 | -------- | -------- |
 | handle | 待无效cache的handle指针。 | 
-| key | 要擦除的元数据密钥 | 
+| key | 要擦除的元数据密钥。 | 
 
 **返回：**
 
@@ -63,7 +63,7 @@ IMetadata::GetMetadata ([in] NativeBuffer handle, [in] unsigned int key, [out] u
 **描述**
 
 
-通过键值对的方式设置随帧数据
+通过键值对的方式设置随帧数据。
 
 **起始版本：** 4.1
 
@@ -72,8 +72,8 @@ IMetadata::GetMetadata ([in] NativeBuffer handle, [in] unsigned int key, [out] u
 | 名称 | 描述 | 
 | -------- | -------- |
 | handle | 待无效cache的handle指针。 | 
-| key | metadata key | 
-| value | metadata value | 
+| key | metadata key。 | 
+| value | metadata value。 | 
 
 **返回：**
 
@@ -91,7 +91,7 @@ IMetadata::ListMetadataKeys ([in] NativeBuffer handle, [out] unsigned int[] keys
 **描述**
 
 
-列出bufferhandle中设置的所有key值
+列出bufferhandle中设置的所有key值。
 
 **起始版本：** 4.1
 
@@ -100,7 +100,7 @@ IMetadata::ListMetadataKeys ([in] NativeBuffer handle, [out] unsigned int[] keys
 | 名称 | 描述 | 
 | -------- | -------- |
 | handle | 待无效cache的handle指针。 | 
-| keys | 数据键 | 
+| keys | 数据键。 | 
 
 **返回：**
 
@@ -118,7 +118,7 @@ IMetadata::RegisterBuffer ([in] NativeBuffer handle)
 **描述**
 
 
-IPC后的初始化NativeBuffer
+IPC后的初始化NativeBuffer。
 
 **起始版本：** 4.1
 
@@ -144,7 +144,7 @@ IMetadata::SetMetadata ([in] NativeBuffer handle, [in] unsigned int key, [in] un
 **描述**
 
 
-通过键值对的方式设置随帧数据
+通过键值对的方式设置随帧数据。
 
 **起始版本：** 4.1
 
@@ -153,8 +153,8 @@ IMetadata::SetMetadata ([in] NativeBuffer handle, [in] unsigned int key, [in] un
 | 名称 | 描述 | 
 | -------- | -------- |
 | handle | 待无效cache的handle指针。 | 
-| key | 数据键 | 
-| value | 数据值 | 
+| key | 数据键。 | 
+| value | 数据值。 | 
 
 **返回：**
 
