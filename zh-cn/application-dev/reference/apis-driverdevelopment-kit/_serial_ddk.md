@@ -328,7 +328,7 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_Init()
 
 ```
-int32_t OH_UsbSerial_Init (void )
+int32_t OH_UsbSerial_Init (void)
 ```
 
 **描述**
@@ -353,7 +353,7 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_Open()
 
 ```
-int32_t OH_UsbSerial_Open (uint64_t deviceId, uint8_t interfaceIndex, UsbSerial_DeviceHandle ** dev )
+int32_t OH_UsbSerial_Open (uint64_t deviceId, uint8_t interfaceIndex, UsbSerial_DeviceHandle ** dev)
 ```
 
 **描述**
@@ -367,7 +367,7 @@ int32_t OH_UsbSerial_Open (uint64_t deviceId, uint8_t interfaceIndex, UsbSerial_
 | 名称 | 描述 | 
 | -------- | -------- |
 | deviceId | 设备ID，代表要操作的设备。 | 
-| interfaceIndex | 接口索引，对应USB协议中的**bInterfaceNumber**。 | 
+| interfaceIndex | 接口索引，对应USB协议中的[bInterfaceNumber](usb__ddk__types_8h.md#binterfacenumber)。 | 
 | dev | 设备句柄。 | 
 
 **Permission：**
@@ -396,7 +396,7 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_Read()
 
 ```
-int32_t OH_UsbSerial_Read (UsbSerial_DeviceHandle * dev, uint8_t * buff, uint32_t bufferSize, uint32_t * bytesRead )
+int32_t OH_UsbSerial_Read (UsbSerial_DeviceHandle * dev, uint8_t * buff, uint32_t bufferSize, uint32_t * bytesRead)
 ```
 
 **描述**
@@ -440,7 +440,7 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_Release()
 
 ```
-int32_t OH_UsbSerial_Release (void )
+int32_t OH_UsbSerial_Release (void)
 ```
 
 **描述**
@@ -467,7 +467,7 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_SetBaudRate()
 
 ```
-int32_t OH_UsbSerial_SetBaudRate (UsbSerial_DeviceHandle * dev, uint32_t baudRate )
+int32_t OH_UsbSerial_SetBaudRate (UsbSerial_DeviceHandle * dev, uint32_t baudRate)
 ```
 
 **描述**
@@ -507,7 +507,7 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_SetFlowControl()
 
 ```
-int32_t OH_UsbSerial_SetFlowControl (UsbSerial_DeviceHandle * dev, UsbSerial_FlowControl flowControl )
+int32_t OH_UsbSerial_SetFlowControl (UsbSerial_DeviceHandle * dev, UsbSerial_FlowControl flowControl)
 ```
 
 **描述**
@@ -549,7 +549,7 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_SetParams()
 
 ```
-int32_t OH_UsbSerial_SetParams (UsbSerial_DeviceHandle * dev, UsbSerial_Params * params )
+int32_t OH_UsbSerial_SetParams (UsbSerial_DeviceHandle * dev, UsbSerial_Params * params)
 ```
 
 **描述**
@@ -589,7 +589,7 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_SetTimeout()
 
 ```
-int32_t OH_UsbSerial_SetTimeout (UsbSerial_DeviceHandle * dev, int timeout )
+int32_t OH_UsbSerial_SetTimeout (UsbSerial_DeviceHandle * dev, int timeout)
 ```
 
 **描述**
@@ -631,7 +631,7 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_Write()
 
 ```
-int32_t OH_UsbSerial_Write (UsbSerial_DeviceHandle * dev, uint8_t * buff, uint32_t bufferSize, uint32_t * bytesWritten )
+int32_t OH_UsbSerial_Write (UsbSerial_DeviceHandle * dev, uint8_t * buff, uint32_t bufferSize, uint32_t * bytesWritten)
 ```
 
 **描述**
