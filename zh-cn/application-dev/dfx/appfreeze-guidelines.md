@@ -839,7 +839,7 @@ appfreeze: com.huawei.hmsapp.xxx THREAD_BLOCK_6S at 20240408082432
 DisplayPowerInfo:powerState:AWAKE
 ```
 
-从 Foreground 值可看出 hiai 为后台应用，可推断出当真正的 3s 事件上报上来时，后台应用已卡 **18s** 前。
+从 Foreground 值可看出该应用此时处于后台，可推断出当真正的 3s 事件上报上来时，后台应用已卡 **18s** 前。
 
 ```
 Module name:com.xxx.xxx.xxx
