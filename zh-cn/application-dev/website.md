@@ -1188,7 +1188,17 @@
           - [压缩与解压](basic-services/compress/deflate-and-inflate.md)
       - Function Flow Runtime Kit（任务并发调度服务）<!--ffrt-kit-->
         - [Function Flow Runtime Kit概述](ffrt/ffrt-overview.md)
-        - [Function Flow Runtime 开发指导](ffrt/ffrt-development-guideline.md)
+        - [Function Flow Runtime并发范式](ffrt/ffrt-concurrency-paradigm.md)
+        - Function Flow Runtime开发样例(C)<!--ffrt-example-c-->
+          - [串行队列(C)](ffrt/ffrt-concurrency-serial-queue-c.md)
+          - [并发队列(C)](ffrt/ffrt-concurrency-concurrent-queue-c.md)
+          - [图依赖并发(C)](ffrt/ffrt-concurrency-graph-c.md)
+        - Function Flow Runtime开发样例(C++)<!--ffrt-example-cpp-->
+          - [串行队列(C++)](ffrt/ffrt-concurrency-serial-queue-cpp.md)
+          - [并发队列(C++)](ffrt/ffrt-concurrency-concurrent-queue-cpp.md)
+          - [图依赖并发(C++)](ffrt/ffrt-concurrency-graph-cpp.md)
+        - [Function Flow Runtime开发指导](ffrt/ffrt-development-guideline.md)
+        - [Function Flow Runtime C API](ffrt/ffrt-api-guideline-c.md)
       - Input Kit（多模输入服务）<!--input-kit-->
         - [Input Kit简介](device/input/input-overview.md)
         - [输入设备开发指导](device/input/inputdevice-guidelines.md)
