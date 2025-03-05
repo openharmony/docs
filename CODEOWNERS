@@ -254,7 +254,9 @@ zh-cn/application-dev/ui/arkts-common-components-custom-dialog.md			@luyuxuan1	@
 zh-cn/application-dev/ui/arkts-common-components-video-player.md	@keerecles	@ZhangYu-Home	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-common-components-xcomponent.md	@keerecles	@ZhangYu-Home	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/ui/arkts-popup-and-menu-components-popup.md			@luyuxuan1	@HelloCrease @zhanghaibo0
+zh-cn/application-dev/ui/arkts-popup-and-menu-components-uicontext-popup.md			@luyuxuan1	@HelloCrease @zhanghaibo0
 zh-cn/application-dev/ui/arkts-popup-and-menu-components-menu.md			@luyuxuan1	@HelloCrease @zhanghaibo0
+zh-cn/application-dev/ui/arkts-popup-and-menu-components-uicontext-menu.md			@luyuxuan1	@HelloCrease @zhanghaibo0
 zh-cn/application-dev/ui/arkts-routing.md	@raulnaruto_admin	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/ui/arkts-navigation-navigation.md	@jiangdayuan	@raulnaruto_admin	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-navigation-tabs.md	@yan-shuifeng	@cc520bf	@fredyuan0912	@HelloCrease
