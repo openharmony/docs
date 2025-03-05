@@ -15,7 +15,7 @@ import { eSIM } from '@kit.TelephonyKit';
 
 ## eSIM.getEid<sup>14+</sup>
 
-getEid\(slotId: number\): string
+getEid\(slotId: number\): Promise\<string\>
 
 获取指定卡槽标识eUICC硬件的EID。
 
@@ -1033,7 +1033,9 @@ euicc信息。
 | RESULT_CERTIFICATE_INVALID                               | 251 | 证书无效。 |
 | RESULT_OUT_OF_MEMORY                                     | 263 | 由于内存不足，配置文件安装失败。 |
 | RESULT_PPR_FORBIDDEN                                     | 268 | PPR规则禁止此操作。 |
+| RESULT_NOTHING_TO_DELETE                                 | 270 | 没有可删除的配置文件。 |
 | RESULT_PPR_NOT_MATCH                                     | 276 | 与PPR约束不匹配。   |
+| RESULT_CAT_BUSY                                          | 283 | 会话正在进行。   |
 | RESULT_PROFILE_EID_INVALID                               | 284 | 此eSIM配置文件已被使用或无效。 |
 | RESULT_DOWNLOAD_TIMEOUT                                  | 287 | 下载超时。                   |
 | RESULT_SGP_22_OTHER                                      | 400 | SGP.22中定义的其他错误。      |
