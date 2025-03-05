@@ -524,7 +524,7 @@ zh-cn/application-dev/telephony/telephony-sms.md @zhang_yixin13 @jiayanhong-hw @
 
 [开发-Test Kit]
 zh-cn/application-dev/application-test/arkxtest-guidelines.md @Brilliantry_Rui @inter515 @laonie666 @lv_yu_peng
-zh-cn/application-dev/application-test/smartperf-guidelines.md @Brilliantry_Rui @niuguoliang  @laonie666  @lv_yu_peng
+zh-cn/application-dev/application-test/smartperf-guidelines.md @Brilliantry_Rui  @inter515  @niuguoliang  @laonie666  @lv_yu_peng
 zh-cn/application-dev/application-test/wukong-guidelines.md @Brilliantry_Rui @qkfg @caixincen
 
 [开发-Webgl]
@@ -1243,7 +1243,7 @@ zh-cn/application-dev/reference/apis-telephony-kit/ @jiayanhong-hw @zhang_yixin1
 zh-cn/application-dev/reference/apis-tesk-kit/  @Brilliantry_Rui @inter515 @laonie666 @lv_yu_peng
 zh-cn/application-dev/reference/apis-tesk-kit/js-apis-testRunner.md  @Brilliantry_Rui @inter515 @laonie666 @lv_yu_peng
 zh-cn/application-dev/reference/apis-tesk-kit/js-apis-app-ability-abilityDelegatorRegistry.md @Brilliantry_Rui @inter515 @laonie666 @lv_yu_peng
-zh-cn/application-dev/reference/apis-tesk-kit/js-apis-uitest.md @inter515 @Brilliantry_Rui @inter515 @laonie666 @lv_yu_peng
+zh-cn/application-dev/reference/apis-tesk-kit/js-apis-uitest.md  @Brilliantry_Rui @inter515 @laonie666 @lv_yu_peng
 zh-cn/application-dev/reference/apis-tesk-kit/errorcode-uitest.md @Brilliantry_Rui @inter515 @laonie666 @lv_yu_peng
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-deviceAttest-sys.md @Brilliantry_Rui @jiyong
 
