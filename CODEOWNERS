@@ -409,9 +409,9 @@ zh-cn/application-dev/device/monitor-guidelines.md @Brilliantry_Rui @mayunteng @
 zh-cn/application-dev/device/interceptor-guidelines.md @Brilliantry_Rui @mayunteng @ustblx @hanruofei
 
 [开发-IPC Kit]
-zh-cn/application-dev/connectivity/ipc-rpc-overview.md @zhang_yixin13 @luodh0157  @zhaopeng_gitee @zhang-yang123321
-zh-cn/application-dev/connectivity/ipc-rpc-development-guideline.md @zhang_yixin13 @luodh0157  @zhaopeng_gitee @zhang-yang123321
-zh-cn/application-dev/connectivity/subscribe-remote-state.md @zhang_yixin13 @luodh0157  @zhaopeng_gitee @zhang-yang123321
+zh-cn/application-dev/connectivity/ipc-rpc-overview.md @zhang_yixin13 @xdx1921  @zhaopeng_gitee @zhang-yang123321
+zh-cn/application-dev/connectivity/ipc-rpc-development-guideline.md @zhang_yixin13 @xdx1921  @zhaopeng_gitee @zhang-yang123321
+zh-cn/application-dev/connectivity/subscribe-remote-state.md @zhang_yixin13 @xdx1921  @zhaopeng_gitee @zhang-yang123321
 
 
 
@@ -1105,7 +1105,7 @@ zh-cn/application-dev/reference/apis-input-kit/ @Brilliantry_Rui @mayunteng @ust
 
 
 [API参考-IPC Kit]
-zh-cn/application-dev/reference/apis-ipc-kit/js-apis-rpc.md @luodh0157 @zhang_yixin13 @zhaopeng_gitee @zhang-yang123321
+zh-cn/application-dev/reference/apis-ipc-kit/js-apis-rpc.md @xdx1921 @zhang_yixin13 @zhaopeng_gitee @zhang-yang123321
 
 [API参考-Localization Kit]
 zh-cn/application-dev/reference/apis-Localization-kit @Brilliantry_Rui @yliupy @yangqing3 @sunyaozu @lpw_work @lliule21
