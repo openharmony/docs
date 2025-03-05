@@ -49,7 +49,7 @@
 | -------- | -------- |
 | static const char \*[MIME_TYPE_BMP](_image___native_module.md#mime_type_bmp) = "image/bmp" | bmp图片格式。  | 
 | static const char \*[MIME_TYPE_JPEG](_image___native_module.md#mime_type_jpeg) = "image/jpeg" | jpeg图片格式。  | 
-| static const char \*[MIME_TYPE_HEIC](_image___native_module.md#mime_type_heic) = "image/heic" | heif图片格式。  | 
+| static const char \*[MIME_TYPE_HEIC](_image___native_module.md#mime_type_heic) = "image/heic" | heic图片格式。  | 
 | static const char \*[MIME_TYPE_PNG](_image___native_module.md#mime_type_png) = "image/png" | png图片格式。  | 
 | static const char \*[MIME_TYPE_WEBP](_image___native_module.md#mime_type_webp) = "image/webp" | webp图片格式。  | 
 | static const char \*[MIME_TYPE_GIF](_image___native_module.md#mime_type_gif) = "image/gif" | gif图片格式。  | 
