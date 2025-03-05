@@ -381,78 +381,6 @@
 
 **起始版本**：13
 
-## ohos.permission.USE_FRAUD_MESSAGES_PICKER
-
-允许应用使用诈骗短信选择器，获取短信内容。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**起始版本**：15
-
-## ohos.permission.USE_FRAUD_CALL_LOG_PICKER
-
-允许应用使用诈骗通话记录选择器，获取通话记录内容。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**起始版本**：15
-
-## ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
-
-允许系统JS引擎申请带MAP_FORT标识的匿名可执行内存。
-
-应用申请此权限后，系统引擎可申请带MAP_FORT的匿名可执行内存，做即时编译，提高与形式执行效率。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**起始版本**：14
-
-## ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
-
-允许设备管理应用管理个人设备限制策略。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-<!--Del-->
-**ACL使能**：true<!--DelEnd-->
-
-**起始版本**：15
-
-## ohos.permission.START_PROVISIONING_MESSAGE
-
-允许应用启动设备管理业务部署流程，将该应用激活为个人设备管理应用。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-<!--Del-->
-**ACL使能**：true<!--DelEnd-->
-
-**起始版本**：15
-
-<!--Del-->
-## ohos.permission.PRELOAD_FILE
-
-允许应用预加载文件以提升文件打开速度。
-
-仅当应用为文档编辑类应用可申请此权限。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**起始版本**：15
-<!--DelEnd-->
-
 ## ohos.permission.INPUT_KEYBOARD_CONTROLLER
 
 允许应用设置键盘功能键状态。
@@ -474,21 +402,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**起始版本**：15
-
-## ohos.permission.ACCESS_DISK_PHY_INFO
-
-允许应用获取硬盘的硬件信息。
-
-仅面向金融证券类应用开放，用于证券、股票交易。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-<!--Del-->
-**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：15
 
