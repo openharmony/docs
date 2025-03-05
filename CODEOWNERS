@@ -396,16 +396,16 @@ zh-cn/application-dev/inputmethod/inputmethod_application_guide.md @illybyy @mur
 zh-cn/application-dev/inputmethod/switch_inputmehod_guide.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp 
 
 [开发-Input kit]
-zh-cn/application-dev/device/input  @Brilliantry_Rui @mayunteng  
-zh-cn/application-dev/device/inputdevice-guidelines.md @Brilliantry_Rui @mayunteng 
-zh-cn/application-dev/device/pointerstyle-guidelines.md @Brilliantry_Rui @mayunteng 
-zh-cn/application-dev/device/inputmonitor-guidelines.md @Brilliantry_Rui @mayunteng 
-zh-cn/application-dev/device/inputeventclient-guidelines.md @Brilliantry_Rui @mayunteng 
-zh-cn/application-dev/device/inputconsumer-guidelines.md @Brilliantry_Rui @mayunteng 
-zh-cn/application-dev/device/shortkey-guidelines.md  @Brilliantry_Rui @mayunteng 
-zh-cn/application-dev/device/input-overview.md @Brilliantry_Rui @mayunteng 
-zh-cn/application-dev/device/monitor-guidelines.md @Brilliantry_Rui @mayunteng
-zh-cn/application-dev/device/interceptor-guidelines.md @Brilliantry_Rui @mayunteng
+zh-cn/application-dev/device/input  @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
+zh-cn/application-dev/device/inputdevice-guidelines.md @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
+zh-cn/application-dev/device/pointerstyle-guidelines.md @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
+zh-cn/application-dev/device/inputmonitor-guidelines.md @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
+zh-cn/application-dev/device/inputeventclient-guidelines.md @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
+zh-cn/application-dev/device/inputconsumer-guidelines.md @Brilliantry_Rui @mayunteng @ustblx @hanruofei
+zh-cn/application-dev/device/shortkey-guidelines.md  @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
+zh-cn/application-dev/device/input-overview.md @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
+zh-cn/application-dev/device/monitor-guidelines.md @Brilliantry_Rui @mayunteng @ustblx @hanruofei
+zh-cn/application-dev/device/interceptor-guidelines.md @Brilliantry_Rui @mayunteng @ustblx @hanruofei
 
 [开发-IPC Kit]
 zh-cn/application-dev/connectivity/ipc-rpc-overview.md @zhang_yixin13 @luodh0157  @zhaopeng_gitee @zhang-yang123321
@@ -523,9 +523,9 @@ zh-cn/application-dev/telephony/telephony-sms.md @zhang_yixin13 @jiayanhong-hw @
 
 
 [开发-Test Kit]
-zh-cn/application-dev/application-test/arkxtest-guidelines.md @Brilliantry_Rui @inter515 @laonie666
-zh-cn/application-dev/application-test/smartperf-guidelines.md @Brilliantry_Rui @niuguoliang  @laonie666
-zh-cn/application-dev/application-test/wukong-guidelines.md @Brilliantry_Rui @qkfg
+zh-cn/application-dev/application-test/arkxtest-guidelines.md @Brilliantry_Rui @inter515 @laonie666 @lv_yu_peng
+zh-cn/application-dev/application-test/smartperf-guidelines.md @Brilliantry_Rui @niuguoliang  @laonie666  @lv_yu_peng
+zh-cn/application-dev/application-test/wukong-guidelines.md @Brilliantry_Rui @qkfg @caixincen
 
 [开发-Webgl]
 zh-cn/application-dev/webgl/ @ge-yafang @zhangqiang183  @wind_zj @zxg-gitee
@@ -1100,7 +1100,7 @@ zh-cn/application-dev/reference/apis-ime-kit/ @illybyy @murphy1984 @feng-aiwen  
 
 
 [API参考-Input Kit]
-zh-cn/application-dev/reference/apis-input-kit/ @hhh2 @Brilliantry_Rui @mayunteng @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-input-kit/ @Brilliantry_Rui @mayunteng @ustblx @hanruofei
 
 
 [API参考-IPC Kit]
@@ -1240,10 +1240,11 @@ zh-cn/application-dev/reference/apis-telephony-kit/ @jiayanhong-hw @zhang_yixin1
 
 
 [API参考-Test Kit]
-zh-cn/application-dev/reference/apis-tesk-kit/js-apis-testRunner.md
-zh-cn/application-dev/reference/apis-tesk-kit/js-apis-app-ability-abilityDelegatorRegistry.md
-zh-cn/application-dev/reference/apis-tesk-kit/js-apis-uitest.md @inter515 @Brilliantry_Rui @inter515 
-zh-cn/application-dev/reference/apis-tesk-kit/errorcode-uitest.md @Brilliantry_Rui @inter515
+zh-cn/application-dev/reference/apis-tesk-kit/  @Brilliantry_Rui @inter515 @laonie666 @lv_yu_peng
+zh-cn/application-dev/reference/apis-tesk-kit/js-apis-testRunner.md  @Brilliantry_Rui @inter515 @laonie666 @lv_yu_peng
+zh-cn/application-dev/reference/apis-tesk-kit/js-apis-app-ability-abilityDelegatorRegistry.md @Brilliantry_Rui @inter515 @laonie666 @lv_yu_peng
+zh-cn/application-dev/reference/apis-tesk-kit/js-apis-uitest.md @inter515 @Brilliantry_Rui @inter515 @laonie666 @lv_yu_peng
+zh-cn/application-dev/reference/apis-tesk-kit/errorcode-uitest.md @Brilliantry_Rui @inter515 @laonie666 @lv_yu_peng
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-deviceAttest-sys.md @Brilliantry_Rui @jiyong
 
 [工具-元能力、包管理、通知等]
