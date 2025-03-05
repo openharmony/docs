@@ -1,6 +1,6 @@
 # AbilityStageMonitor
 
-The **AbilityStageMonitor** module provides conditions for matching **AbilityStage** instances. The most recently matched **AbilityStage** instance is saved in an **AbilityStageMonitor** instance. 
+The AbilityStageMonitor module provides conditions for matching **AbilityStage** instances. The most recently matched **AbilityStage** instance is saved in an **AbilityStageMonitor** instance.
 
 > **NOTE**
 > 

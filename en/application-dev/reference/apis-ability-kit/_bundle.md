@@ -80,10 +80,11 @@ char* OH_NativeBundle_GetAppIdentifier()
 
 **Description**
 
-Obtains the appIdentifier information about the current application. appIdentifier is the unique ID of the application, which is allocated by the cloud. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.
+Obtains the appIdentifier information about the current application. appIdentifier is the unique ID of the application. It is a random string allocated by AppGallery Connect during the creation of the application. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.
 
 **Since**: 11
 
 **Returns**
 
 Returns a string that describes the appIdentifier information of the application.
+

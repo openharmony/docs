@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **native_child_process.h** file declares the APIs used to create a native child process and establish an IPC channel between the parent and child processes.
+The **native_child_process.h** file declares the APIs used to create a native child process and establish an IPC channel between the main process and child process.
 
 **Library**: libchild_process.so
 
@@ -20,7 +20,7 @@ The **native_child_process.h** file declares the APIs used to create a native ch
 
 | Name                                                    | Description                                                                                                |
 | ------------------------------------------------------ | -------------------------------------------------------------------------------------------------- |
-| [native_child_process.h](native__child__process_8h.md) | Declares the APIs used to create a native child process and establish an IPC channel between the parent and child processes.<br>File to include: <AbilityKit/native_child_process.h><br>Library: libchild_process.so|
+| [native_child_process.h](native__child__process_8h.md) | Declares the APIs used to create a native child process and establish an IPC channel between the main process and child process.<br>File to include: <AbilityKit/native_child_process.h><br>Library: libchild_process.so|
 
 ### Types
 

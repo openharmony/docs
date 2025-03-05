@@ -799,7 +799,7 @@ Kills a process by bundle name and account ID. This API uses a promise to return
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -856,7 +856,7 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1544,7 +1544,7 @@ Enumerates the application states. This enum can be used together with [AbilityS
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name                | Value | Description                              |
 | -------------------- | --- | --------------------------------- |
