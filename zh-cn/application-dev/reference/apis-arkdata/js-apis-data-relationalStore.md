@@ -2304,12 +2304,30 @@ predicates.notLike("NAME", "os");
 
 ```ts
 // 设置数据库版本
-if(store != undefined) {
-  (store as relationalStore.RdbStore).version = 3;
-  // 获取数据库版本
-  console.info(`RdbStore version is ${store.version}`);
-  // 获取数据库是否重建
-  console.info(`RdbStore rebuilt is ${store.rebuilt}`);
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+let store: relationalStore.RdbStore | undefined = undefined;
+
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    const STORE_CONFIG: relationalStore.StoreConfig = {
+      name: "RdbTest.db",
+      securityLevel: relationalStore.SecurityLevel.S3,
+    };
+
+    store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
+
+    // 设置数据库版本
+    if(store != undefined) {
+      (store as relationalStore.RdbStore).version = 3;
+      // 获取数据库版本
+      console.info(`RdbStore version is ${store.version}`);
+      // 获取数据库是否重建
+      console.info(`RdbStore rebuilt is ${store.rebuilt}`);
+    }
+  }
 }
 ```
 
