@@ -895,7 +895,6 @@ The application has applied for an incorrect permission, causing the installatio
 2. The ability privilege level (APL) of the application is lower than the level of the permission that the application has applied for.
 
 **Solution**
-
 1. Check whether the application has applied for the <!--Del-->[<!--DelEnd-->MDM permission<!--Del-->](../../security/AccessToken/permissions-for-mdm-apps.md)<!--DelEnd-->, which is available only for MDM applications.
 2. Check whether the requested permission is open. For details, see [Permission List](../../security/AccessToken/permissions-for-all.md).
 
@@ -953,7 +952,6 @@ The **uninstallUpdates** API can only be used to uninstall the updates of a pres
 
 Check whether the specified application is a preset application.
 
-
 ## 17700059 Specified Developer ID Does Not Exist
 
 **Error Message**
@@ -1010,6 +1008,7 @@ When an API related to the app clone feature is called, the specified **appIndex
 2. Check whether the application has a clone of the specified index.
 3. Check whether **createAppClone** is called with an existing index.
 
+
 ## 17700065 Ability Specified by want in the ShortcutInfo Struct Cannot Be Started
 
 **Error Message**
@@ -1036,11 +1035,11 @@ The app does not support the creation of an appClone instance.
 
 **Description**
 
-An **AppClone** instance cannot be created for an application that is not in **appClone** mode.
+An AppClone instance cannot be created for an application that is not in appClone mode.
 
 **Possible Causes**
 
-The multi-app mode is set to another mode other than **appClone**.
+The multi-app mode is set to another mode other than appClone.
 
 **Solution**
 
@@ -1095,6 +1094,26 @@ The application does not have an ability, or does not have an ability for which 
 **Solution**
 
 Configure an ability with **entities** set to **entity.system.home** and **actions** set to **action.system.home** for the application.
+
+## 17700073 Installation Failure Caused by an Application with the Same Bundle Name but Different Signature Information
+
+**Error Message**
+
+Failed to install the HAP because an application with the same bundle name but different signature information exists on the device.
+
+**Description**
+
+The installation fails because an application with the same bundle name but different signature information exists on the device.
+
+**Possible Causes**
+1. An application with the same bundle name but different signature information exists on the device.
+2. An application with the same bundle name but different signature information has been uninstalled with data retained.
+
+**Solution**
+1. Uninstall the application with the same bundle name.
+2. Install the application that has been uninstalled with data retained, and then uninstall the application without data retained.
+
+
 
 ## 17700201 .abc File Verification Failure
 

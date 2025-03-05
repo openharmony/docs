@@ -58,7 +58,7 @@ Describes the use scenario and timing for using the permission.
 | Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | abilities | Array\<string> | No  | No  | Abilities that use the permission.  |
-| when      | string         | No  | No  | Time when the permission is used.         |
+| when      | string         | No  | No  | Time when the permission is used. The value can be **inuse** or **always**.         |
 
 ## SignatureInfo
 
@@ -72,5 +72,5 @@ Describes the signature information of the bundle.
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | appId     | string         | Yes  | No  | Application ID.                |
 |fingerprint| string         | Yes  | No  | Fingerprint information of the bundle. This field changes when the used signing certificate changes.           |
-|appIdentifier<sup>11+</sup>| string         | Yes  | No  | Unique ID of the application, which is allocated by the cloud. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.           |
+|appIdentifier<sup>11+</sup>| string         | Yes  | No  | Unique ID of the application. It is a random string allocated by AppGallery Connect during the creation of the application. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.           |
 

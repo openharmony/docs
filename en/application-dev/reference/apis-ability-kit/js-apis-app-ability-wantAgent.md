@@ -809,29 +809,33 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 // getWantAgent callback
 function getWantAgentCallback(err: BusinessError, data: WantAgent) {
   if (err) {
-    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    console.info(`getWantAgent failed, code: ${err.code}, message: ${err.message}`);
   } else {
     wantAgentData = data;
   }
   // trigger callback
   let triggerCallback = (err: BusinessError, data: wantAgent.CompleteData) => {
     if (err) {
-      console.error(`getUid failed! ${err.code} ${err.message}`);
+      console.error(`trigger failed, code: ${err.code}, message: ${err.message}`);
     } else {
-      console.info(`getUid ok! ${JSON.stringify(data)}`);
+      console.info(`trigger success, data: ${JSON.stringify(data)}`);
     }
   }
   try {
     wantAgent.trigger(wantAgentData, triggerInfo, triggerCallback);
   } catch (err) {
-    console.error(`getUid failed! ${err.code} ${err.message}`);
+    let code = (err as BusinessError).code;
+    let msg = (err as BusinessError).message;
+    console.error(`trigger failed, code: ${code}, message: ${msg}.`);
   }
 }
 
 try {
   wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch (err) {
-  console.error(`getWantAgent failed! ${(err as BusinessError).code} ${(err as BusinessError).message}`);
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`getWantAgent failed, code: ${code}, message: ${msg}.`);
 }
 ```
 
@@ -1268,6 +1272,7 @@ Describes the data returned by the operation of proactive triggering a WantAgent
 | -------- | -------- | -------- | -------- | -------- |
 | info           | WantAgent                       | No| No  | WantAgent object that is triggered.      |
 | want           | [Want](js-apis-app-ability-want.md#properties)                           | No| No  | Existing Want that is triggered.    |
-| finalCode      | number                          | No| No  | Execution result of the triggering operation. |
+| finalCode      | number                          | No| No  | Request code that triggers the WantAgent object.|
 | finalData      | string                          | No| No  | Final data collected by the common event. |
 | extraInfo      | Record\<string, Object>            | No|Yes  | Extra information.              |
+
