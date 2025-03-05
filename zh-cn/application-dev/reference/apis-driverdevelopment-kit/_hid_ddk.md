@@ -149,7 +149,7 @@
 
 最大报告缓冲区大小。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ## 类型定义说明
@@ -191,7 +191,7 @@ typedef struct Hid_DeviceHandleHid_DeviceHandle
 
 不透明的USB HID设备结构。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### Hid_EmitItem
@@ -269,7 +269,7 @@ typedef struct Hid_RawDevInfoHid_RawDevInfo
 
 原始设备信息定义。
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### Hid_RelAxesArray
@@ -589,7 +589,7 @@ enum Hid_ReportType
 
 报告（HID设备与主机之间交换的数据包）类型定义。
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -631,7 +631,7 @@ int32_t OH_Hid_Close (Hid_DeviceHandle ** dev)
 
 关闭设备。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -776,7 +776,7 @@ int32_t OH_Hid_GetPhysicalAddress (Hid_DeviceHandle * dev, char * data, uint32_t
 
 获取设备物理地址。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -817,7 +817,7 @@ int32_t OH_Hid_GetRawInfo (Hid_DeviceHandle * dev, Hid_RawDevInfo * rawDevInfo )
 
 获取设备原始信息。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -857,7 +857,7 @@ int32_t OH_Hid_GetRawName (Hid_DeviceHandle * dev, char * data, uint32_t bufSize
 
 获取设备原始名称。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -898,7 +898,7 @@ int32_t OH_Hid_GetRawUniqueId (Hid_DeviceHandle * dev, uint8_t * data, uint32_t 
 
 获取设备原始唯一标识符。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -939,7 +939,7 @@ int32_t OH_Hid_GetReport (Hid_DeviceHandle * dev, Hid_ReportType reportType, uin
 
 获取设备报告。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -983,7 +983,7 @@ int32_t OH_Hid_GetReportDescriptor (Hid_DeviceHandle * dev, uint8_t * buf, uint3
 
 获取设备报告描述符。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1027,7 +1027,7 @@ int32_t OH_Hid_Init (void )
 
 初始化HID DDK。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **Permission：**
 
@@ -1054,7 +1054,7 @@ int32_t OH_Hid_Open (uint64_t deviceId, uint8_t interfaceIndex, Hid_DeviceHandle
 
 打开deviceId和interfaceIndex指定的设备。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1097,7 +1097,7 @@ int32_t OH_Hid_Read (Hid_DeviceHandle * dev, uint8_t * data, uint32_t bufSize, u
 
 从设备读取报告，默认为阻塞模式（阻塞等待直到有数据可读取），可以调用[OH_Hid_SetNonBlocking](#oh_hid_setnonblocking)改变模式。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1141,7 +1141,7 @@ int32_t OH_Hid_ReadTimeout (Hid_DeviceHandle * dev, uint8_t * data, uint32_t buf
 
 在指定的超时时间内从设备读取报告。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1186,7 +1186,7 @@ int32_t OH_Hid_Release (void )
 
 释放HID DDK。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **Permission：**
 
@@ -1213,7 +1213,7 @@ int32_t OH_Hid_SendReport (Hid_DeviceHandle * dev, Hid_ReportType reportType, co
 
 向设备发送报告。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1255,7 +1255,7 @@ int32_t OH_Hid_SetNonBlocking (Hid_DeviceHandle * dev, int nonBlock )
 
 设置设备读取模式为非阻塞。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -1291,7 +1291,7 @@ int32_t OH_Hid_Write (Hid_DeviceHandle * dev, uint8_t * data, uint32_t length, u
 
 向设备写入报告。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
