@@ -33,18 +33,18 @@ The following provides examples of HMAC operations with different data passing m
 
 ### HMAC (Passing In Full Data)
 
-1. Use [cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac) with the MD algorithm SHA256 to create a **Mac** instance.
+1. Call [cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac) with the MD algorithm SHA256 to create a **Mac** instance.
 
-2. Use [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) and [SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1) to generate a symmetric key (**SymKey**) for HMAC.
+2. Call [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) and [SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1) to generate a symmetric key (**SymKey**) for HMAC.
    For details, see [Converting Binary Data into a Symmetric Key](crypto-convert-binary-data-to-sym-key.md).
 
-3. Use [Mac.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-6) to initialize the **Mac** instance using the shared symmetric key (**SymKey**).
+3. Call [Mac.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-6) to initialize the **Mac** instance using the shared symmetric key (**SymKey**).
 
-4. Use [Mac.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-8) to pass in the full data. The data to be passed in by a single **update()** operation is not size bound.
+4. Call [Mac.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-8) to pass in the full data. The data to be passed in by a single **update()** operation is not size bound.
 
-5. Use [Mac.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-2) to generate a MAC.
+5. Call [Mac.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-2) to generate a MAC.
 
-6. Use [Mac.getMacLength](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getmaclength) to obtain the length of the MAC, in bytes.
+6. Call [Mac.getMacLength](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getmaclength) to obtain the length of the MAC, in bytes.
 
 - Example: Pass in the full data to calculate a MAC using **await**.
 
@@ -108,18 +108,18 @@ The following provides examples of HMAC operations with different data passing m
 
 ### HMAC (Passing In Data by Segment)
 
-1. Use [cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac) with the MD algorithm SHA256 to create a **Mac** instance.
+1. Call [cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac) with the MD algorithm SHA256 to create a **Mac** instance.
 
-2. Use [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) and [SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1) to generate a symmetric key (**SymKey**) for HMAC.
+2. Call [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) and [SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1) to generate a symmetric key (**SymKey**) for HMAC.
    For details, see [Converting Binary Data into a Symmetric Key](crypto-convert-binary-data-to-sym-key.md).
 
-3. Use [Mac.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-7) to initialize the **Mac** instance using the shared symmetric key (**SymKey**).
+3. Call [Mac.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-7) to initialize the **Mac** instance using the shared symmetric key (**SymKey**).
 
 4. Call [Mac.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-9) multiple times to pass in 20 bytes each time.
 
-5. Use [Mac.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-3) to generate a MAC.
+5. Call [Mac.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-3) to generate a MAC.
 
-6. Use [Mac.getMacLength](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getmaclength) to obtain the length of the MAC, in bytes.
+6. Call [Mac.getMacLength](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getmaclength) to obtain the length of the MAC, in bytes.
 
 - Example: Pass in data by segment to calculate a MAC using **await**.
 
