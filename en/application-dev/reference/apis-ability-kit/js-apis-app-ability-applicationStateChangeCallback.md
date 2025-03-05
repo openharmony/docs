@@ -1,6 +1,6 @@
 # @ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)
 
-The **ApplicationStateChangeCallback** module provides callbacks for the application context to listen for application foreground/background state changes.
+The ApplicationStateChangeCallback module provides callbacks for the application context to listen for application foreground/background state changes.
 
 > **NOTE**
 >
