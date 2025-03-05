@@ -229,7 +229,7 @@ console.info('Synchronous Verification Result:', resultSync);
 >
 > 请务必将示例中的证书数据替换为实际的证书内容。
 
-## networkSecurity.isCleartextPermitted<sup>16+</sup>
+## networkSecurity.isCleartextPermitted<sup>18+</sup>
 
 isCleartextPermitted(): boolean
 
@@ -265,7 +265,7 @@ try {
 }
 ```
 
-## networkSecurity.isCleartextPermittedByHostName<sup>16+</sup>
+## networkSecurity.isCleartextPermittedByHostName<sup>18+</sup>
 
 isCleartextPermittedByHostName(hostName: string): boolean
 
