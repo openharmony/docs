@@ -234,3 +234,16 @@ Allows an application to obtain signature information of application packages.
 **Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 16
+
+## ohos.permission.VISIBLE_WINDOW_INFO
+
+Allows an application to obtain visible window information of the current screen.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**：true<!--DelEnd-->
+
+**Valid since**：18
