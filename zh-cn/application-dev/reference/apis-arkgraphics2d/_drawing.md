@@ -863,7 +863,7 @@ typedef enum OH_Drawing_PathEffectType OH_Drawing_PathEffectType
 
 路径效果的绘制样式枚举。
 
-**起始版本：** 16
+**起始版本：** 18
 
 ### OH_Drawing_Array
 
@@ -2262,7 +2262,7 @@ enum OH_Drawing_PathEffectType
 
 路径效果的绘制样式枚举。
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -3188,7 +3188,7 @@ OH_Drawing_PathEffect* OH_Drawing_CreateSumPathEffect (OH_Drawing_PathEffect* fi
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -3215,7 +3215,7 @@ OH_Drawing_PathEffect* OH_Drawing_CreatePathDashEffect (const OH_Drawing_Path* p
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -3244,7 +3244,7 @@ OH_Drawing_PathEffect* OH_Drawing_CreateDiscretePathEffect (float segLength, flo
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -3270,7 +3270,7 @@ OH_Drawing_PathEffect* OH_Drawing_CreateCornerPathEffect (float radius)
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -3298,7 +3298,7 @@ OH_Drawing_PathEffect* OH_Drawing_CreateComposePathEffect (OH_Drawing_PathEffect
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -3344,7 +3344,7 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawArcWithCenter (OH_Drawing_Canvas* canv
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -3372,7 +3372,7 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawNestedRoundRect (OH_Drawing_Canvas* ca
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -3399,7 +3399,7 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasQuickRejectPath (OH_Drawing_Canvas* canvas
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -3425,7 +3425,7 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasQuickRejectRect (OH_Drawing_Canvas* canvas
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -3451,7 +3451,7 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawPixelMapNine (OH_Drawing_Canvas* canva
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -3534,7 +3534,7 @@ void OH_Drawing_ErrorCodeReset (void )
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 16
+**起始版本：** 18
 
 ### OH_Drawing_FontSetThemeFontFollowed()
 
