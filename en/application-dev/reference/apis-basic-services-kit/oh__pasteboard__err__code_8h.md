@@ -29,4 +29,5 @@ Defines the error code information of the pasteboard.
 
 | Name| Description|
 | -------- | -------- |
-| [PASTEBOARD_ErrCode](_pasteboard.md#pasteboard_errcode) {<br/>[ERR_OK](_pasteboard.md) = 0, [ERR_PERMISSION_ERROR](_pasteboard.md) = 201, [ERR_INVALID_PARAMETER](_pasteboard.md) = 401, [ERR_DEVICE_NOT_SUPPORTED](_pasteboard.md) = 801,<br/>[ERR_INNER_ERROR](_pasteboard.md) = 12900000, [ERR_BUSY](_pasteboard.md) = 12900003<br/>} | Enumerates the error codes.  | 
+| [ERR_OK](_pasteboard.md) = 0, [ERR_PERMISSION_ERROR](_pasteboard.md) = 201, [ERR_INVALID_PARAMETER](_pasteboard.md) = 401, [ERR_DEVICE_NOT_SUPPORTED](_pasteboard.md) = 801,<br/>[ERR_INNER_ERROR](_pasteboard.md) = 12900000, [ERR_BUSY](_pasteboard.md) = 12900003, [ERR_PASTEBOARD_COPY_FILE_ERROR](_pasteboard.md) = 12900007, [ERR_PASTEBOARD_PROGRESS_START_ERROR](_pasteboard.md) = 12900008, [ERR_PASTEBOARD_PROGRESS_ABNORMAL](_pasteboard.md) = 12900009, [ERR_PASTEBOARD_GET_DATA_FAILED](_pasteboard.md) = 12900010<br/>} | Enumerates the error codes. |
+
