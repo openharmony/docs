@@ -65,7 +65,7 @@ IImageProcessSession::GetPendingImages ([out] List< String > imageIds)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| imageIds | 待处理图像的 ID。 | 
+| imageIds | 待处理的图像ID。 | 
 
 
 ### Interrupt()
