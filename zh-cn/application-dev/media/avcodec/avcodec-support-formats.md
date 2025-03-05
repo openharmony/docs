@@ -187,7 +187,7 @@ aac封装格式：
    | OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | 输出音频流格式         |  可选  |
    | OH_MD_KEY_CHANNEL_LAYOUT           | 通道布局              |  可选  |
    | OH_MD_KEY_BITRATE                  | 码率                  |  可选  |
-   | OH_MD_KEY_PROFILE                  | 编码档次              |  可选  |
-   | OH_MD_KEY_AAC_IS_ADTS              | 是否为ADTS格式        |  可选  |
+   | OH_MD_KEY_PROFILE                  | 编码档次              |  必须  |
+   | OH_MD_KEY_AAC_IS_ADTS              | 是否为ADTS格式        |  必须  |
    
 具体开发指导请参考[媒体数据封装](audio-video-muxer.md)。

@@ -1051,6 +1051,7 @@ enum OH_AVOutputFormat
 | AV_OUTPUT_FORMAT_AMR  | 输出文件格式为AMR格式。<br>**起始版本：** 12    | 
 | AV_OUTPUT_FORMAT_MP3  | 输出文件格式为MP3格式。<br>**起始版本：** 12   | 
 | AV_OUTPUT_FORMAT_WAV  | 输出文件格式为WAV格式。<br>**起始版本：** 12   | 
+| AV_OUTPUT_FORMAT_AAC  | 输出文件格式为AAC格式。<br>**起始版本：** 16   | 
 
 ### OH_AVSeekMode
 
