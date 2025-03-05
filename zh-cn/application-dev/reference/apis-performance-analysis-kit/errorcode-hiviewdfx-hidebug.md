@@ -119,13 +119,11 @@ dump子进程fork失败。
 
 **可能原因**
 
-1、低内存。
-
-2、其他。
+系统资源不足。
 
 **处理步骤**
 
-建议开发者重试，重试依然失败后，请联系官方处理。
+建议开发者重试。若重试后依然失败，请通过[日志分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-setup-hilog-V5#section2114542680)过滤error级别日志辅助问题定位。若依然无法解决，<!--RP1-->可向官方反馈。<!--RP1End-->
 
 ## 11400108 等待dump子进程结束失败
 
@@ -138,11 +136,11 @@ Failed to wait for the child process to finish.
 
 **可能原因**
 
-dump子进程异常退出。
+系统资源不足。
 
 **处理步骤**
 
-建议开发者重试，重试依然失败后，请联系官方处理。
+建议开发者重试。若重试后依然失败，请通过[日志分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-setup-hilog-V5#section2114542680)过滤error级别日志辅助问题定位。若依然无法解决，<!--RP1-->可向官方反馈。<!--RP1End-->
 
 ## 11400109 等待dump子进程超时
 
@@ -159,7 +157,7 @@ Timeout while waiting for the child process to finish.
 
 **处理步骤**
 
-建议开发者重试，重试依然失败后，请联系官方处理。
+建议开发者重试。若重试后依然失败，请通过[日志分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-setup-hilog-V5#section2114542680)过滤error级别日志辅助问题定位。若依然无法解决，<!--RP1-->可向官方反馈。<!--RP1End-->
 
 ## 11400110 磁盘空间不足
 
@@ -193,7 +191,7 @@ javascript虚拟机异常。
 
 **处理步骤**
 
-建议开发者重试，重试依然失败后，请联系官方处理。
+建议开发者重试。若重试后依然失败，请通过[日志分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-setup-hilog-V5#section2114542680)过滤error级别日志辅助问题定位。若依然无法解决，<!--RP1-->可向官方反馈。<!--RP1End-->
 
 ## 11400112 重复Dump采集
 
@@ -225,10 +223,8 @@ Failed to create dump file.
 
 1、进程目录下存在同名文件。
 
-2、进程目录创建失败。
-
-3、无父级目录写权限。
+2、系统资源不足。
 
 **处理步骤**
 
-检查进程目录是否存在异常，若目录无异常，请联系官方处理。
+建议开发者重试。若重试后依然失败，请通过[日志分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-setup-hilog-V5#section2114542680)过滤error级别日志辅助问题定位。若依然无法解决，<!--RP1-->可向官方反馈。<!--RP1End-->
