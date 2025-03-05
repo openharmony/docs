@@ -15,13 +15,13 @@ initialIndex仅支持设定起始index，并默认将列表头部对齐，这使
 
 该变更为不兼容变更。
 
-场景1：List设置initialIndex为0 (默认也是0)，并在首次布局前调用scrollToIndex(1)。
+场景1：List设置initialIndex为0 (默认也是0)，并在创建后，首次布局前（例如onAppear, onAttach回调时）调用scrollToIndex(1)。
 
 | 变更前 | 变更后 |
 |------ |--------|
 |List首次布局将从index为0的ListItem开始布局。</br>![listdemo1](figures/listdemo1.png)|List首次布局将从index为1的ListItem开始布局。</br>![listdemo2](figures/listdemo2.png)|
 
-场景2：List设置initialIndex为0 (默认也是0)，并在首次布局前调用scrollEdge(Edge.Bottom)。
+场景2：List设置initialIndex为0 (默认也是0)，并在创建后，首次布局前（例如onAppear, onAttach回调时）调用scrollEdge(Edge.Bottom)。
 
 | 变更前 | 变更后 |
 |------ |--------|
