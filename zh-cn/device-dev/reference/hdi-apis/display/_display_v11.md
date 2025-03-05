@@ -62,8 +62,8 @@ enum CompositionType : ohos.hdi.display.composer.v1_0.CompositionType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| COMPOSITION_SOLID_COLOR | Tunnel 组合类型，用于 tunnel. | 
-| COMPOSITION_BUTT_V1_1 | 无效的合成类型 | 
+| COMPOSITION_SOLID_COLOR | Tunnel 组合类型，用于 tunnel。 | 
+| COMPOSITION_BUTT_V1_1 | 无效的合成类型。 | 
 
 
 ### DispPowerStatus
@@ -81,8 +81,8 @@ enum DispPowerStatus : ohos.hdi.display.composer.v1_0.DispPowerStatus
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| POWER_STATUS_OFF_FAKE | 当 hwc 关闭时，电源状态为 ON | 
-| POWER_STATUS_BUTT_V1_1 | 电源状态无效 | 
+| POWER_STATUS_OFF_FAKE | 当 hwc 关闭时，电源状态为 ON。 | 
+| POWER_STATUS_BUTT_V1_1 | 电源状态无效。 | 
 
 
 ### PixelFormat
@@ -100,6 +100,6 @@ enum PixelFormat : ohos.hdi.display.composer.v1_0.PixelFormat
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| PIXEL_FMT_YCBCR_P010 | YCBCR420 半平面 10 位格式 | 
-| PIXEL_FMT_YCRCB_P010 | YCRCB420 半平面 10 位格式 | 
-| PIXEL_FMT_RAW10 | RAW 10bit 格式 | 
+| PIXEL_FMT_YCBCR_P010 | YCBCR420 半平面 10 位格式。 | 
+| PIXEL_FMT_YCRCB_P010 | YCRCB420 半平面 10 位格式。 | 
+| PIXEL_FMT_RAW10 | RAW 10bit 格式。 | 
