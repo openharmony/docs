@@ -118,12 +118,12 @@ color.json文件的内容如下：
 {
     "color": [
         {
-            "name": "color_hello",
-            "value": "#ffff0000"
+          "name": "color_hello",
+          "value": "#ffff0000"
         },
         {
-            "name": "color_world",
-            "value": "#ff0000ff"
+          "name": "color_world",
+          "value": "#ff0000ff"
         }
     ]
 }
@@ -135,12 +135,12 @@ float.json文件的内容如下：
 {
     "float": [
         {
-            "name": "font_hello",
-            "value": "28.0fp"
+          "name": "font_hello",
+          "value": "28.0fp"
         },
 	      {
-            "name": "font_world",
-            "value": "20.0fp"
+          "name": "font_world",
+          "value": "20.0fp"
         }
     ]
 }
