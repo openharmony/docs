@@ -133,7 +133,7 @@ float.json文件的内容如下：
 
 ```json
 {
-    "float":[
+    "float": [
         {
             "name":"font_hello",
             "value":"28.0fp"
@@ -150,7 +150,7 @@ string.json文件的内容如下：
 
 ```json
 {
-    "string":[
+    "string": [
         {
             "name":"string_hello",
             "value":"Hello"
@@ -175,10 +175,10 @@ plural.json文件的内容如下：
 
 ```json
 {
-    "plural":[
+    "plural": [
         {
             "name":"eat_apple",
-            "value":[
+            "value": [
                 {
                     "quantity":"one",
                     "value":"%d apple"
