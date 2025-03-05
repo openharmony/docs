@@ -39,16 +39,16 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 | type | 'classic' \| 'module' | 是   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | name | string   | 是   | 是 | Worker的名称，默认值为 undefined 。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | shared | boolean | 是   | 是 | 表示Worker共享功能，此接口暂不支持。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| priority<sup>16+</sup> | [ThreadWorkerPriority](#threadworkerpriority16) | 是   | 是 | 表示Worker线程优先级。 <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
+| priority<sup>18+</sup> | [ThreadWorkerPriority](#threadworkerpriority18) | 是   | 是 | 表示Worker线程优先级。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 
-## ThreadWorkerPriority<sup>16+</sup>
+## ThreadWorkerPriority<sup>18+</sup>
 
 Worker线程的优先级枚举，各优先级对应关系请参考[QoS等级](../../napi/qos-guidelines.md#qos等级定义)。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -630,7 +630,7 @@ workerInstance.onerror = (err: ErrorEvent) => {
 }
 ```
 
-### onAllErrors<sup>16+</sup>
+### onAllErrors<sup>18+</sup>
 
 onAllErrors?: ErrorCallback
 
@@ -638,7 +638,7 @@ onAllErrors?: ErrorCallback
 [onerror](#onerror9)仅捕获[onmessage](#onmessage9)回调中同步方法产生的异常，无法捕获多线程回调产生的异常和模块化相关异常，且onerror捕获异常后Worker线程进入销毁流程，不可以继续使用。<br/>
 onAllErrors可以捕获Worker线程的onmessage回调、timer回调以及文件执行等流程产生的全局异常，且onAllErrors捕获异常后Worker线程仍存活可以继续使用。推荐使用onAllErrors代替onerror。
 
-**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1599,13 +1599,13 @@ type MessageType = 'message' | 'messageerror';
 | 'message'  | 表示消息类型为message，值固定为'message'字符串。 |
 | 'messageerror'  | 表示消息类型为messageerror，值固定为'messageerror'字符串。 |
 
-## ErrorCallback<sup>16+</sup>
+## ErrorCallback<sup>18+</sup>
 
 type ErrorCallback = (err: ErrorEvent) => void
 
 表示异常回调类型。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2537,7 +2537,7 @@ workerPort.onerror = (err: ErrorEvent) => {
   }
 ```
 ### Stage模型
-> 此处以API version 16的工程为例。
+> 此处以API version 18的工程为例。
 ```ts
 // Index.ets
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
