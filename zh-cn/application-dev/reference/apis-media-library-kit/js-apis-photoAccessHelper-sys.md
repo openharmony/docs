@@ -1310,9 +1310,9 @@ async function example() {
 }
 ```
 
-### grantPhotoUriPermission<sup>12+</sup>
+### grantPhotoUriPermission<sup>15+</sup>
 
-grantPhotoUriPermission(appid: string, uri: string, photoPermissionType: PhotoPermissionType, hideSensitiveType: HideSensitiveType): Promise&lt;number&gt;
+grantPhotoUriPermission(tokenId: number, uri: string, photoPermissionType: PhotoPermissionType, hideSensitiveType: HideSensitiveType): Promise&lt;number&gt;
 
 给应用授予uri的访问权限，使用Promise方式返回结果。
 
@@ -1326,7 +1326,7 @@ grantPhotoUriPermission(appid: string, uri: string, photoPermissionType: PhotoPe
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| appid | string | 是 | 应用标识，将访问权限授予给appid标识的应用。 |
+| tokenId | number | 是 | 应用标识，将访问权限授予给tokenId标识的应用。 |
 | uri | string | 是 | 媒体资源的uri，uri表示的资源的访问权限将授予给应用。|
 | photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | 是 | 权限类型，将photoPermissionType表示的权限授予给应用。权限的覆盖规则参考枚举类。|
 | hideSensitiveType | [HideSensitiveType](#hidesensitivetype12) | 是 | 脱敏类型，预留参数，目前可传枚举类中任一值。|
@@ -1355,7 +1355,8 @@ async function example() {
   console.info('grantPhotoUriPermissionDemo');
 
   try {
-    let result = await phAccessHelper.grantPhotoUriPermission('com.example.myapplication01',
+    let tokenId = 502334412;
+    let result = await phAccessHelper.grantPhotoUriPermission(tokenId,
         'file://media/Photo/1/IMG_datetime_0001/displayName.jpg',
         photoAccessHelper.PhotoPermissionType.TEMPORARY_READ_IMAGEVIDEO,
         photoAccessHelper.HideSensitiveType.HIDE_LOCATION_AND_SHOTING_PARM);
@@ -1367,9 +1368,9 @@ async function example() {
 }
 ```
 
-### grantPhotoUrisPermission<sup>12+</sup>
+### grantPhotoUrisPermission<sup>15+</sup>
 
-grantPhotoUrisPermission(appid: string, uriList: Array&lt;string&gt;, photoPermissionType: PhotoPermissionType, hideSensitiveType: HideSensitiveType): Promise&lt;number&gt;
+grantPhotoUrisPermission(tokenId: number, uriList: Array&lt;string&gt;, photoPermissionType: PhotoPermissionType, hideSensitiveType: HideSensitiveType): Promise&lt;number&gt;
 
 给应用授予uri列表的访问权限，使用Promise方式返回结果。
 
@@ -1383,7 +1384,7 @@ grantPhotoUrisPermission(appid: string, uriList: Array&lt;string&gt;, photoPermi
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| appid | string | 是 | 应用标识，将访问权限授予给appid标识的应用。 |
+| tokenId | number | 是 | 应用标识，将访问权限授予给tokenId标识的应用。 |
 | uriList | Array&lt;string&gt; | 是 | 媒体资源的uri列表，uri列表中的资源的访问权限将授予给应用。uri列表最多容纳 1000 条uri。|
 | photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | 是 | 权限类型，将photoPermissionType表示的权限授予给应用。权限的覆盖规则参考枚举类。|
 | hideSensitiveType | [HideSensitiveType](#hidesensitivetype12) | 是 | 脱敏类型，预留参数，目前可传枚举类中任一值。|
@@ -1416,7 +1417,8 @@ async function example() {
     let uris: Array<string> = [
       'file://media/Photo/11/IMG_datetime_0001/displayName1.jpg',
       'file://media/Photo/22/IMG_datetime_0002/displayName2.jpg'];
-    let result = await phAccessHelper.grantPhotoUrisPermission('com.example.myapplication01', uris,
+    let tokenId = 502334412;
+    let result = await phAccessHelper.grantPhotoUrisPermission(tokenId, uris,
         photoAccessHelper.PhotoPermissionType.TEMPORARY_READ_IMAGEVIDEO,
         photoAccessHelper.HideSensitiveType.HIDE_LOCATION_AND_SHOTING_PARM);
 
@@ -1427,9 +1429,9 @@ async function example() {
 }
 ```
 
-### cancelPhotoUriPermission<sup>12+</sup>
+### cancelPhotoUriPermission<sup>15+</sup>
 
-cancelPhotoUriPermission(appid: string, uri: string, photoPermissionType: PhotoPermissionType): Promise&lt;number&gt;
+cancelPhotoUriPermission(tokenId: number, uri: string, photoPermissionType: PhotoPermissionType): Promise&lt;number&gt;
 
 取消应用对uri的访问权限，使用Promise方式返回结果。
 
@@ -1443,7 +1445,7 @@ cancelPhotoUriPermission(appid: string, uri: string, photoPermissionType: PhotoP
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| appid | string | 是 | 应用标识，将取消appid标识应用对媒体资源的访问权限。 |
+| tokenId | number | 是 | 应用标识，将取消tokenId标识应用对媒体资源的访问权限。 |
 | uri | string | 是 | 媒体资源的uri，取消应用对uri表示的资源的访问权限。|
 | photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | 是 | 权限类型，取消应用对媒体资源的访问权限为photoPermissionType。|
 
@@ -1471,7 +1473,8 @@ async function example() {
   console.info('cancelPhotoUriPermissionDemo');
 
   try {
-    let result = await phAccessHelper.cancelPhotoUriPermission('com.example.myapplication01',
+    let tokenId = 502334412;
+    let result = await phAccessHelper.cancelPhotoUriPermission(tokenId,
         'file://media/Photo/11/IMG_datetime_0001/displayName.jpg',
         photoAccessHelper.PhotoPermissionType.TEMPORARY_READ_IMAGEVIDEO);
 
