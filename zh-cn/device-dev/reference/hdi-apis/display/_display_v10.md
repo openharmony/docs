@@ -44,7 +44,7 @@
 | struct&nbsp;&nbsp;[ISurface](_i_surface_v10.md) | 用于存放窗口相关信息的结构体定义，提供给硬件加速使用，例如图像合成，位图搬移等操作。 | 
 | struct&nbsp;&nbsp;[ILine](_i_line_v10.md) | 线条描述结构体定义，用于硬件加速绘制直线。 | 
 | struct&nbsp;&nbsp;[ICircle](_i_circle_v10.md) | 圆形描述结构体定义，用于硬件加速绘制圆形。 | 
-| struct&nbsp;&nbsp;[Rectangle](_rectangle_v10.md) | 矩形描述结构体定义，用于硬件加速绘制矩形， | 
+| struct&nbsp;&nbsp;[Rectangle](_rectangle_v10.md) | 矩形描述结构体定义，用于硬件加速绘制矩形。 | 
 | struct&nbsp;&nbsp;[GfxOpt](_gfx_opt_v10.md) | 图像硬件加速相关的操作选项结构体定义，用于图像硬件加速时的操作选项。 | 
 | struct&nbsp;&nbsp;[HDRCapability](_h_d_r_capability_v10.md) | HDR属性结构体定义。 | 
 | struct&nbsp;&nbsp;[HDRMetaData](_h_d_r_meta_data_v10.md) | HDR元数据结构体定义。 | 
