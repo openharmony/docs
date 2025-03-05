@@ -307,65 +307,42 @@ getSharedLocalStorage(): LocalStorage | undefined
 **示例：**
 
 ```ts
-// index.ets
-import { router } from '@kit.ArkUI';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  storage: LocalStorage = new LocalStorage();
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    windowStage.loadContent('pages/Index', this.storage);
+  }
+}
+```
+
+```ts
+// Index.ets
 
 @Entry
 @Component
 struct SharedLocalStorage {
-  localStorage = this.getUIContext().getSharedLocalStorage()
+  localStorage = this.getUIContext().getSharedLocalStorage();
 
   build() {
     Row() {
       Column() {
         Button("Change Local Storage to 47")
           .onClick(() => {
-            this.localStorage?.setOrCreate("propA",47)
+            this.localStorage?.setOrCreate("propA", 47);
           })
         Button("Get Local Storage")
           .onClick(() => {
-            console.info(`localStorage: ${this.localStorage?.get("propA")}`)
-          })
-        Button("To Page")
-          .onClick(() => {
-            router.pushUrl({
-              url: 'pages/GetSharedLocalStorage'
-            })
+            console.info(`localStorage: ${this.localStorage?.get("propA")}`);
           })
       }
       .width('100%')
     }
     .height('100%')
-  }
-}
-
-// GetSharedLocalStorage.ets
-import {router} from '@kit.ArkUI';
-
-@Entry
-@Component
-struct GetSharedLocalStorage {
-  localStorage = this.getUIContext().getSharedLocalStorage()
-
-  build() {
-    Row() {
-      Column() {
-        Button("Change Local Storage to 100")
-          .onClick(() => {
-            this.localStorage?.setOrCreate("propA",100)
-          })
-        Button("Get Local Storage")
-          .onClick(() => {
-            console.info(`localStorage: ${this.localStorage?.get("propA")}`)
-          })
-
-        Button("Back Index")
-          .onClick(() => {
-            router.back()
-          })
-      }
-      .width('100%')
-    }
   }
 }
 ```
