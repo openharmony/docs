@@ -9,7 +9,7 @@ During the MD operation, you can use **update()** to pass in all the data at a t
 The following provides examples of MD operations with different data passing methods.
 
 
-### MD (Passing In Full Data)
+### Generating an MD by Passing In Full Data
 
 1. Call [cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd) with the MD algorithm **SHA256** to create a message digest (**Md**) instance.
 
@@ -57,7 +57,7 @@ The following provides examples of MD operations with different data passing met
   }
   ```
 
-### MD (Passing In Data by Segment)
+### Generating an MD by Passing In Data by Segment
 
 1. Call [cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd) with the MD algorithm **SHA256** to create a message digest (**Md**) instance.
 

@@ -1511,7 +1511,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
 function testConvertKeySync() {
-  // The symmetric key length is 64 bytes, that is, 512 bits.
+  // The symmetric key length is 64 bytes (512 bits).
   let keyMessage = '87654321abcdefgh87654321abcdefgh87654321abcdefgh87654321abcdefgh';
   let keyBlob: cryptoFramework.DataBlob = {
     data : new Uint8Array(buffer.from(keyMessage, 'utf-8').buffer)
@@ -1541,7 +1541,7 @@ The supported system capability is SystemCapability.Security.CryptoFramework in 
 
 | Name | Type  | Mandatory| Description                            |
 | ------- | ------ | ---- | -------------------------------- |
-| algName | string | Yes  | Algorithm used to create the **symkeyGenerator**.|
+| algName | string | Yes  | Algorithm used to create the **symKeyGenerator** instance.|
 
 **Return value**
 
@@ -4998,8 +4998,9 @@ Updates the message for MD operations. This API uses an asynchronous callback to
 
 > **NOTE**
 >
-> For details about the code for calling **update** multiple times in an MD operation, see [MD (Passing In Data by Segment)](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#md-passing-in-data-by-segment).
- 
+> For details about the code for calling **update** multiple times in an MD operation, see [Generating an MD by Passing In Data by Segment)](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#generating-an-md-by-passing-in-data-by-segment).
+
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.CryptoFramework.MessageDigest
@@ -5029,8 +5030,8 @@ Updates the message for MD operations. This API uses a promise to return the res
 
 > **NOTE**
 >
-> For details about the code for calling **update** multiple times in an MD operation, see [MD (Passing In Data by Segment)](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#md-passing-in-data-by-segment).
- 
+> For details about the code for calling **update** multiple times in an MD operation, see [Generating an MD by Passing In Data by Segment](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#generating-an-md-by-passing-in-data-by-segment).
+> 
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5064,7 +5065,7 @@ Updates the message for MD operations. This API returns the result synchronously
 
 > **NOTE**
 >
-> For details about the code for calling **updateSync** multiple times in an MD operation, see [MD (Passing In Data by Segment)](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#md-passing-in-data-by-segment).
+> For details about the code for calling **updateSync** multiple times in an MD operation, see [Generating an MD by Passing In Data by Segment](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#generating-an-md-by-passing-in-data-by-segment).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
