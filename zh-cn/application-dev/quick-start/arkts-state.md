@@ -476,7 +476,7 @@ struct MyComponent {
 ```ts
 
 export default class PlayDetailViewModel {
-  coverUrl: string = '#00ff00'
+  coverUrl: string = '#00ff00';
 
   changeCoverUrl= ()=> {
     this.coverUrl = '#00F5FF';
@@ -486,7 +486,7 @@ export default class PlayDetailViewModel {
 ```
 
 ```ts
-import PlayDetailViewModel from './PlayDetailViewModel'
+import PlayDetailViewModel from './PlayDetailViewModel';
 
 @Entry
 @Component
@@ -517,17 +517,17 @@ struct PlayDetailPage {
 ```ts
 
 export default class PlayDetailViewModel {
-  coverUrl: string = '#00ff00'
+  coverUrl: string = '#00ff00';
 
   changeCoverUrl= (model:PlayDetailViewModel)=> {
-    model.coverUrl = '#00F5FF'
+    model.coverUrl = '#00F5FF';
   }
 
 }
 ```
 
 ```ts
-import PlayDetailViewModel from './PlayDetailViewModel'
+import PlayDetailViewModel from './PlayDetailViewModel';
 
 @Entry
 @Component
@@ -552,13 +552,13 @@ struct PlayDetailPage {
 }
 ```
 
-### 状态变量的修改放在构造函数内未生效
+### 类的构造函数中通过捕获this修改变量无法观察
 
 在状态管理中，类会被一层“代理”进行包装。当在组件中改变该类的成员变量时，会被该代理进行拦截，在更改数据源中值的同时，也会将变化通知给绑定的组件，从而实现观测变化与触发刷新。
 
-当开发者把修改success的箭头函数放在构造函数中初始化时，此时this指向原本TestModel，还未被代理封装，所以后续触发query事件无法响应变化。
+当开发者把修改success的箭头函数放在构造函数中初始化时，此时TestModel实例还未被代理封装，this指向TestModel实例本身，所以后续触发query事件无法被状态管理观测到变化。
 
-当开发者把修改success的箭头函数放在query中时，此时已完成对象初始化和代理封装，此时this指向代理对象，触发query事件可以响应变化。
+当开发者把修改success的箭头函数放在query中时，此时已完成TestModel对象初始化和代理封装。通过`this.viewModel.query()`方式调用query时，query函数中的this指向viewModel代理对象，对代理对象成员属性isSuccess的更改能够被观测到，因此触发query事件可以被状态管理观测到变化。
 
 【反例】
 
