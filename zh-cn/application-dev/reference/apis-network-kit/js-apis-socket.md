@@ -877,9 +877,9 @@ udp.off('error');
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | address<sup>11+</sup> | string | 是   | 本地绑定的ip地址。                                           |
 | port    | number | 否   | 端口号 ，范围0~65535。如果不指定系统随机分配端口。           |
-| family  | number | 否   | 网络协议类型，可选类型：<br />- 1：IPv4<br />- 2：IPv6<br />- 3：Domain<sup>16+</sup><br />默认为1。如果地址为IPV6类型，该字段必须被显式指定为2。 如果地址为Domain类型，该字段必须被显式指定为3。|
+| family  | number | 否   | 网络协议类型，可选类型：<br />- 1：IPv4<br />- 2：IPv6<br />- 3：Domain<sup>18+</sup><br />默认为1。如果地址为IPV6类型，该字段必须被显式指定为2。 如果地址为Domain类型，该字段必须被显式指定为3。|
 
-## ProxyOptions<sup>16+</sup>
+## ProxyOptions<sup>18+</sup>
 
 Socket代理信息。
 
@@ -887,12 +887,12 @@ Socket代理信息。
 
 | 名称  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| type    | [ProxyTypes](#proxytypes) | 是   | 代理类型。                                 |
+| type    | [ProxyTypes](#proxytypes18) | 是   | 代理类型。                                 |
 | address | [NetAddress](#netaddress) | 是   | 代理地址信息。                             |
 | username  | string | 否   | 指定用户名，如果使用用户密码验证方式。  |
 | password  | string | 否   | 指定密码，如果使用用户密码验证方式。 |
 
-## ProxyTypes<sup>16+</sup>
+## ProxyTypes<sup>18+</sup>
 
 Socket代理类型。
 
@@ -913,7 +913,7 @@ UDPSocket发送参数。
 | ------- | ---------------------------------- | ---- | -------------- |
 | data    | string \| ArrayBuffer                          | 是   | 发送的数据。   |
 | address | [NetAddress](#netaddress) | 是   | 目标地址信息。 |
-| proxy<sup>16+</sup>   | [ProxyOptions](#proxyoptions) | 否   | 使用的代理信息。 |
+| proxy<sup>18+</sup>   | [ProxyOptions](#proxyoptions18) | 否   | 使用的代理信息。 |
 
 ## UDPExtraOptions
 
@@ -2733,7 +2733,7 @@ TCPSocket连接的参数。
 | ------- | ---------------------------------- | ---- | -------------------------- |
 | address | [NetAddress](#netaddress) | 是   | 绑定的地址以及端口。       |
 | timeout | number                             | 否   | 超时时间，单位毫秒（ms）。 |
-| proxy<sup>16+</sup>   | [ProxyOptions](#proxyoptions) | 否   | 使用的代理信息。 |
+| proxy<sup>18+</sup>   | [ProxyOptions](#proxyoptions18) | 否   | 使用的代理信息。 |
 
 ## TCPSendOptions
 
@@ -7292,7 +7292,7 @@ TLS连接的操作。
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | 是 | TLS安全相关操作。|
 | ALPNProtocols  | Array\<string\>                         | 否 | ALPN协议，支持["spdy/1", "http/1.1"]，默认为[]。      |
 | skipRemoteValidation<sup>12+</sup>  | boolean                         | 否 | 是否跳过对服务端进行证书认证，默认为false。      |
-| proxy<sup>16+</sup>   | [ProxyOptions](#proxyoptions) | 否   | 使用的代理信息。 |
+| proxy<sup>18+</sup>   | [ProxyOptions](#proxyoptions18) | 否   | 使用的代理信息。 |
 
 ## TLSSecureOptions<sup>9+</sup>
 
