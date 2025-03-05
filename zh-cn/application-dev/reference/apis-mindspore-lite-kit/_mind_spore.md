@@ -1924,6 +1924,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelSetLearningRate (OH_AI_ModelHandle model, floa
 
 | 名称 | 描述 |
 | -------- | -------- |
+| model | 模型对象指针。 |
 | learning_rate | 学习率。 |
 
 **返回：**
@@ -1997,6 +1998,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelUpdateWeights (OH_AI_ModelHandle model, const 
 
 | 名称 | 描述 |
 | -------- | -------- |
+| model | 模型对象指针。 |
 | new_weights | 要更新的权重Tensor。 |
 
 **返回：**
