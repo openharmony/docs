@@ -39,7 +39,7 @@ edm enable-admin -n <bundleName> -a <abilityName> [-t <adminType>]
 | -h/--help         | 帮助信息。                                                   |
 | -n/--bundle-name  | 必选参数，bundleName。                                       |
 | -a/--ability-name | 必选参数，abilityName。                                      |
-| -t/--admin-type   | 可选参数，adminType。<br/>取值如下：<br/>super - 表示激活为超级设备管理应用。<br/>byod - 表示激活为BYOD设备管理应用。<br/>缺省值为super。 |
+| -t/--admin-type   | 可选参数，adminType。<br/>取值如下：<br/>super - 表示激活为超级设备管理应用。<br/>byod - 表示激活为BYOD（自带设备办公）设备管理应用。<br/>缺省值为super。 |
 
  **示例**：
 

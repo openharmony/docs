@@ -393,16 +393,16 @@ try {
 
 
 
-| 名称                         | 值   | 说明           |
-| ---------------------------- | ---- | -------------- |
-| MANAGED_EVENT_BUNDLE_ADDED   | 0    | 应用安装事件。 |
-| MANAGED_EVENT_BUNDLE_REMOVED | 1    | 应用卸载事件。 |
-| MANAGED_EVENT_APP_START      | 2    | 应用启动事件。 |
-| MANAGED_EVENT_APP_STOP       | 3    | 应用停止事件。 |
-| MANAGED_EVENT_SYSTEM_UPDATE  | 4    | 系统更新事件。 |
-| MANAGED_EVENT_ACCOUNT_ADDED<sup>16+</sup>  | 5    | 账号新增事件。 |
-| MANAGED_EVENT_ACCOUNT_SWITCHED<sup>16+</sup>  | 6    | 账号切换事件。 |
-| MANAGED_EVENT_ACCOUNT_REMOVED<sup>16+</sup>  | 7    | 账号删除事件。 |
+| 名称                                         | 值   | 说明           |
+| -------------------------------------------- | ---- | -------------- |
+| MANAGED_EVENT_BUNDLE_ADDED                   | 0    | 应用安装事件。 |
+| MANAGED_EVENT_BUNDLE_REMOVED                 | 1    | 应用卸载事件。 |
+| MANAGED_EVENT_APP_START                      | 2    | 应用启动事件。 |
+| MANAGED_EVENT_APP_STOP                       | 3    | 应用停止事件。 |
+| MANAGED_EVENT_SYSTEM_UPDATE                  | 4    | 系统更新事件。 |
+| MANAGED_EVENT_ACCOUNT_ADDED<sup>18+</sup>    | 5    | 账号新增事件。 |
+| MANAGED_EVENT_ACCOUNT_SWITCHED<sup>18+</sup> | 6    | 账号切换事件。 |
+| MANAGED_EVENT_ACCOUNT_REMOVED<sup>18+</sup>  | 7    | 账号删除事件。 |
 
 ## AdminType<sup>15+</sup>
 
