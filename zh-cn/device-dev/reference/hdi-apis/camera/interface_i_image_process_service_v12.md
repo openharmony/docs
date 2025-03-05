@@ -43,7 +43,7 @@ IImageProcessService::CreateImageProcessSession ([in] int userId, [in] IImagePro
 | -------- | -------- |
 | userId | 用户ID。  | 
 | imageProcessCallback | 镜像进程回调。有关详细信息，请参阅 [IImageProcessCallback](interface_i_image_process_callback_v12.md)。  | 
-| imageProcessSession | 指示图像处理会话。有关详细信息，请参阅 [IImageProcessSession](interface_i_image_process_session_v12.md) | 
+| imageProcessSession | 指示图像处理会话。有关详细信息，请参阅 [IImageProcessSession](interface_i_image_process_session_v12.md)。 | 
 
 
 ### RegisterBackgroundPostCaptureCallback()
@@ -61,4 +61,4 @@ IImageProcessService::RegisterBackgroundPostCaptureCallback ([in] IImageProcessC
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| imageProcessSession | 指示图像处理会话。有关详细信息，请参阅 [IImageProcessSession](interface_i_image_process_session_v12.md) | 
+| imageProcessSession | 指示图像处理会话。有关详细信息，请参阅 [IImageProcessSession](interface_i_image_process_session_v12.md)。 | 
