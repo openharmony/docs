@@ -47,16 +47,16 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [Hid_EmitItem](_hid___emit_item.md)[Hid_EmitItem](#hid_emititem) | 事件信息。 | 
-| typedef struct [Hid_Device](_hid___device.md)[Hid_Device](#hid_device) | 设备基本信息。 | 
-| typedef struct [Hid_EventTypeArray](_hid___event_type_array.md)[Hid_EventTypeArray](#hid_eventtypearray) | 事件类型编码数组。 | 
-| typedef struct [Hid_KeyCodeArray](_hid___key_code_array.md)[Hid_KeyCodeArray](#hid_keycodearray) | 键值属性数组。 | 
-| typedef struct [Hid_AbsAxesArray](_hid___abs_axes_array.md)[Hid_AbsAxesArray](#hid_absaxesarray) | 绝对坐标属性数组。 | 
-| typedef struct [Hid_RelAxesArray](_hid___rel_axes_array.md)[Hid_RelAxesArray](#hid_relaxesarray) | 相对坐标属性数组。 | 
-| typedef struct [Hid_MscEventArray](_hid___msc_event_array.md)[Hid_MscEventArray](#hid_msceventarray) | 其它特殊事件属性数组。 | 
-| typedef struct [Hid_EventProperties](_hid___event_properties.md)[Hid_EventProperties](#hid_eventproperties) | 设备关注事件属性。 | 
-| typedef struct [Hid_DeviceHandle](#hid_devicehandle)[Hid_DeviceHandle](#hid_devicehandle) | 不透明的USB HID设备结构。 | 
-| typedef struct [Hid_RawDevInfo](_hid___raw_dev_info.md)[Hid_RawDevInfo](#hid_rawdevinfo) | 原始设备信息定义。 | 
+| typedef struct [Hid_EmitItem](_hid___emit_item.md) [Hid_EmitItem](#hid_emititem) | 事件信息。 | 
+| typedef struct [Hid_Device](_hid___device.md) [Hid_Device](#hid_device) | 设备基本信息。 | 
+| typedef struct [Hid_EventTypeArray](_hid___event_type_array.md) [Hid_EventTypeArray](#hid_eventtypearray) | 事件类型编码数组。 | 
+| typedef struct [Hid_KeyCodeArray](_hid___key_code_array.md) [Hid_KeyCodeArray](#hid_keycodearray) | 键值属性数组。 | 
+| typedef struct [Hid_AbsAxesArray](_hid___abs_axes_array.md) [Hid_AbsAxesArray](#hid_absaxesarray) | 绝对坐标属性数组。 | 
+| typedef struct [Hid_RelAxesArray](_hid___rel_axes_array.md) [Hid_RelAxesArray](#hid_relaxesarray) | 相对坐标属性数组。 | 
+| typedef struct [Hid_MscEventArray](_hid___msc_event_array.md) [Hid_MscEventArray](#hid_msceventarray) | 其它特殊事件属性数组。 | 
+| typedef struct [Hid_EventProperties](_hid___event_properties.md) [Hid_EventProperties](#hid_eventproperties) | 设备关注事件属性。 | 
+| typedef struct [Hid_DeviceHandle](#hid_devicehandle) [Hid_DeviceHandle](#hid_devicehandle) | 不透明的USB HID设备结构。 | 
+| typedef struct [Hid_RawDevInfo](_hid___raw_dev_info.md) [Hid_RawDevInfo](#hid_rawdevinfo) | 原始设备信息定义。 | 
 
 
 ### 枚举
@@ -158,7 +158,7 @@
 ### Hid_AbsAxesArray
 
 ```
-typedef struct Hid_AbsAxesArrayHid_AbsAxesArray
+typedef struct Hid_AbsAxesArray Hid_AbsAxesArray
 ```
 
 **描述**
@@ -171,7 +171,7 @@ typedef struct Hid_AbsAxesArrayHid_AbsAxesArray
 ### Hid_Device
 
 ```
-typedef struct Hid_DeviceHid_Device
+typedef struct Hid_Device Hid_Device
 ```
 
 **描述**
@@ -184,7 +184,7 @@ typedef struct Hid_DeviceHid_Device
 ### Hid_DeviceHandle
 
 ```
-typedef struct Hid_DeviceHandleHid_DeviceHandle
+typedef struct Hid_DeviceHandle Hid_DeviceHandle
 ```
 
 **描述**
@@ -197,7 +197,7 @@ typedef struct Hid_DeviceHandleHid_DeviceHandle
 ### Hid_EmitItem
 
 ```
-typedef struct Hid_EmitItemHid_EmitItem
+typedef struct Hid_EmitItem Hid_EmitItem
 ```
 
 **描述**
@@ -210,7 +210,7 @@ typedef struct Hid_EmitItemHid_EmitItem
 ### Hid_EventProperties
 
 ```
-typedef struct Hid_EventPropertiesHid_EventProperties
+typedef struct Hid_EventProperties Hid_EventProperties
 ```
 
 **描述**
@@ -223,7 +223,7 @@ typedef struct Hid_EventPropertiesHid_EventProperties
 ### Hid_EventTypeArray
 
 ```
-typedef struct Hid_EventTypeArrayHid_EventTypeArray
+typedef struct Hid_EventTypeArray Hid_EventTypeArray
 ```
 
 **描述**
@@ -236,7 +236,7 @@ typedef struct Hid_EventTypeArrayHid_EventTypeArray
 ### Hid_KeyCodeArray
 
 ```
-typedef struct Hid_KeyCodeArrayHid_KeyCodeArray
+typedef struct Hid_KeyCodeArray Hid_KeyCodeArray
 ```
 
 **描述**
@@ -249,7 +249,7 @@ typedef struct Hid_KeyCodeArrayHid_KeyCodeArray
 ### Hid_MscEventArray
 
 ```
-typedef struct Hid_MscEventArrayHid_MscEventArray
+typedef struct Hid_MscEventArray Hid_MscEventArray
 ```
 
 **描述**
@@ -262,7 +262,7 @@ typedef struct Hid_MscEventArrayHid_MscEventArray
 ### Hid_RawDevInfo
 
 ```
-typedef struct Hid_RawDevInfoHid_RawDevInfo
+typedef struct Hid_RawDevInfo Hid_RawDevInfo
 ```
 
 **描述**
@@ -275,7 +275,7 @@ typedef struct Hid_RawDevInfoHid_RawDevInfo
 ### Hid_RelAxesArray
 
 ```
-typedef struct Hid_RelAxesArrayHid_RelAxesArray
+typedef struct Hid_RelAxesArray Hid_RelAxesArray
 ```
 
 **描述**
