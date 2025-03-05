@@ -98,7 +98,7 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 根据getDevices()返回的设备信息打开USB设备。如果USB服务异常，可能返回`undefined`，注意需要对接口返回值做判空处理。
 
-1. 调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及device;
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及device;
 2. 调用[usbManager.requestRight](#usbmanagerrequestright)请求使用该设备的权限。
 
 **系统能力：**  SystemCapability.USB.USBManager
