@@ -1,6 +1,6 @@
 # @ohos.app.ability.appRecovery (appRecovery)
 
-The **appRecovery** module provides APIs for recovering faulty applications.
+The appRecovery module provides APIs for recovering faulty applications.
 
 > **NOTE**
 > 
@@ -237,7 +237,7 @@ import { appRecovery, Want } from '@kit.AbilityKit';
 @Component
 struct Index {
   build() {
-    Button ("Start to Recover Ability")
+    Button("Start to Recover Ability")
       .fontSize(40)
       .fontWeight(FontWeight.Bold)
       .onClick(()=> {
