@@ -19,9 +19,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_NativeBuffer_ColorXY](_o_h___native_buffer___color_x_y.md) [displaPrimaryRed](#displaprimaryred) | 红基色。 | 
-| [OH_NativeBuffer_ColorXY](_o_h___native_buffer___color_x_y.md) [displaPrimaryGreen](#displaprimarygreen) | 绿基色。 | 
-| [OH_NativeBuffer_ColorXY](_o_h___native_buffer___color_x_y.md) [displaPrimaryBlue](#displaprimaryblue) | 蓝基色。 | 
+| [OH_NativeBuffer_ColorXY](_o_h___native_buffer___color_x_y.md) [displayPrimaryRed](#displayprimaryred) | 红基色。 | 
+| [OH_NativeBuffer_ColorXY](_o_h___native_buffer___color_x_y.md) [displayPrimaryGreen](#displayprimarygreen) | 绿基色。 | 
+| [OH_NativeBuffer_ColorXY](_o_h___native_buffer___color_x_y.md) [displayPrimaryBlue](#displayprimaryblue) | 蓝基色。 | 
 | [OH_NativeBuffer_ColorXY](_o_h___native_buffer___color_x_y.md) [whitePoint](#whitepoint) | 白点。 | 
 | float [maxLuminance](#maxluminance) | 最大的光亮度。 | 
 | float [minLuminance](#minluminance) | 最小的光亮度。 | 
@@ -30,10 +30,10 @@
 ## 结构体成员变量说明
 
 
-### displaPrimaryBlue
+### displayPrimaryBlue
 
 ```
-OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displaPrimaryBlue
+OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displayPrimaryBlue
 ```
 
 **描述**
@@ -41,10 +41,10 @@ OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displaPrimaryBlue
 蓝基色。
 
 
-### displaPrimaryGreen
+### displayPrimaryGreen
 
 ```
-OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displaPrimaryGreen
+OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displayPrimaryGreen
 ```
 
 **描述**
@@ -52,10 +52,10 @@ OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displaPrimaryGreen
 绿基色。
 
 
-### displaPrimaryRed
+### displayPrimaryRed
 
 ```
-OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displaPrimaryRed
+OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displayPrimaryRed
 ```
 
 **描述**
