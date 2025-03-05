@@ -220,7 +220,7 @@ access(path: string, mode: AccessModeType, flag: AccessFlagType): Promise&lt;boo
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
-  fs.access(filePath, fs.AccessModeFlag.EXIST, fs.AccessFlagType.LOCAL).then((res: boolean) => {
+  fs.access(filePath, fs.AccessModeType.EXIST, fs.AccessFlagType.LOCAL).then((res: boolean) => {
     if (res) {
       console.info("file exists");
     } else {
@@ -362,7 +362,7 @@ accessSync(path: string, mode: AccessModeType, flag: AccessFlagType): boolean
   import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   try {
-    let res = fs.accessSync(filePath, fs.AccessModeFlag.EXIST, fs.AccessFlagType.LOCAL);
+    let res = fs.accessSync(filePath, fs.AccessModeType.EXIST, fs.AccessFlagType.LOCAL);
     if (res) {
       console.info("file exists");
     } else {
