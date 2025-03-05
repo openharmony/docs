@@ -138,7 +138,7 @@ float.json文件的内容如下：
             "name": "font_hello",
             "value": "28.0fp"
         },
-	    {
+	      {
             "name": "font_world",
             "value": "20.0fp"
         }
