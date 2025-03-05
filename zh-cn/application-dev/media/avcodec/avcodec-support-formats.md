@@ -180,7 +180,7 @@ wav封装格式：
    | OH_MD_KEY_BITRATE                  | 码率                  |  必须  |
 
 aac封装格式：
-   |                key                 |         描述         | g711mu  |
+   |                key                 |         描述         |  aac   |
    | ---------------------------------- | :------------------: | :----: |
    | OH_MD_KEY_AUD_SAMPLE_RATE          | 采样率                |  必须  |
    | OH_MD_KEY_AUD_CHANNEL_COUNT        | 声道数                |  必须  |
