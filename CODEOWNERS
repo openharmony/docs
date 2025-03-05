@@ -475,7 +475,7 @@ zh-cn/application-dev/device/stationary-guidelines.md @mayunteng_1 @hu-zhiqiong 
 
 
 [开发-Network Kit]
-zh-cn/application-dev/network/ @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
+zh-cn/application-dev/network/ @zhang_yixin13 @lbch_hw
 
 
 [开发-Neural NetWork Runtime Kit]
@@ -518,9 +518,9 @@ zh-cn/application-dev/device/sensor/sensor-guidelines-as.md @hu-zhiqiong @lixian
 
 
 [开发-Telephony Kit]
-zh-cn/application-dev/telephony/telephony-overview.md @zhang_yixin13 @jiayanhong-hw @w30013702 @dingxiaochen
-zh-cn/application-dev/telephony/telephony-call.md @zhang_yixin13 @jiayanhong-hw @w30013702 @dingxiaochen
-zh-cn/application-dev/telephony/telephony-sms.md @zhang_yixin13 @jiayanhong-hw @w30013702 @dingxiaochen
+zh-cn/application-dev/telephony/telephony-overview.md @zhang_yixin13 
+zh-cn/application-dev/telephony/telephony-call.md @zhang_yixin13 
+zh-cn/application-dev/telephony/telephony-sms.md @zhang_yixin13 
 
 
 [开发-Test Kit]
@@ -1192,7 +1192,7 @@ zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-stationary.
 
 
 [API参考-Network Kit]
-zh-cn/application-dev/reference/apis-network-kit/ @jiayanhong-hw @zhang_yixin13 @w30013702 @rain_myf
+zh-cn/application-dev/reference/apis-network-kit/ @@lbch_hw @zhang_yixin13 
 
 
 [API参考-Neural NetWork Runtime Kit]
@@ -1237,7 +1237,7 @@ zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-vibrator.md @h
 
 
 [API参考-Telephony Kit]
-zh-cn/application-dev/reference/apis-telephony-kit/ @jiayanhong-hw @zhang_yixin13 @w30013702 @dingxiaochen
+zh-cn/application-dev/reference/apis-telephony-kit/  @zhang_yixin13 
 
 
 [API参考-Test Kit]
