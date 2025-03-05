@@ -7822,15 +7822,32 @@ if(store != undefined) {
 
 <!--code_no_check-->
 ```ts
-let resultSet: relationalStore.ResultSet | undefined = undefined;
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("AGE", 18);
-if(store != undefined) {
-  (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((result: relationalStore.ResultSet) => {
-    resultSet = result;
-    console.info(`resultSet columnNames: ${resultSet.columnNames}`);
-    console.info(`resultSet columnCount: ${resultSet.columnCount}`);
-  });
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+let store: relationalStore.RdbStore | undefined = undefined;
+
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    const STORE_CONFIG: relationalStore.StoreConfig = {
+      name: "RdbTest.db",
+      securityLevel: relationalStore.SecurityLevel.S3,
+    };
+
+    store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
+
+    let resultSet: relationalStore.ResultSet | undefined = undefined;
+    let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+    predicates.equalTo("AGE", 18);
+    if(store != undefined) {
+      (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((result: relationalStore.ResultSet) => {
+        resultSet = result;
+        console.info(`resultSet columnNames: ${resultSet.columnNames}`);
+        console.info(`resultSet columnCount: ${resultSet.columnCount}`);
+      });
+    }
+  }
 }
 ```
 
