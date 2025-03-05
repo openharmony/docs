@@ -254,7 +254,7 @@ OH_AVFormat* OH_AVSource_GetCustomMetadataFormat (OH_AVSource *source)
 
 **系统能力：**: SystemCapability.Multimedia.Media.Spliter
 
-**起始版本：**: 16
+**起始版本：**: 18
 
 **参数:**
 
@@ -268,5 +268,6 @@ OH_AVFormat* OH_AVSource_GetCustomMetadataFormat (OH_AVSource *source)
 
 可能的故障原因：
 
-1. source指针无效，空指针或非OH_AVSource实例；
-2. source没有初始化。
+1. source指针无效；
+2. 空指针或非OH_AVSource实例；
+3. source没有初始化。

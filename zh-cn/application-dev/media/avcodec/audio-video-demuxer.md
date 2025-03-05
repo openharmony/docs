@@ -187,9 +187,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       return;
    }
    // 用户自定义已知的key，对应为string类型（int和float类型类似）。
-   const char *key1 = "com.openharmony.custom.meta.string";
-   std::string value1;
-   if (!OH_AVFormat_GetStringValue(customMetadataFormat, key1, &value1)) {
+   const char *customKey = "com.openharmony.custom.meta.string";
+   std::string customValue;
+   if (!OH_AVFormat_GetStringValue(customMetadataFormat, customKey, &customValue)) {
       printf("get custom metadata from custom metadata format failed");
       return;
    }
