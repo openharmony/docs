@@ -455,6 +455,7 @@
             - [固定样式弹出框](ui/arkts-fixes-style-dialog.md)
           - [菜单控制 (Menu)](ui/arkts-popup-and-menu-components-menu.md)
           - [气泡提示 (Popup)](ui/arkts-popup-and-menu-components-popup.md)
+          - [不依赖UI组件的全局气泡提示 (openPopup)](ui/arkts-popup-and-menu-components-uicontext-popup.md)
           - 绑定模态页面<!--arkts-bind-modal-->
             - [绑定模态页面概述](ui/arkts-modal-overview.md)
             - [绑定半模态页面 (bindSheet)](ui/arkts-sheet-page.md)
@@ -1167,8 +1168,10 @@
               - [USB中断传输](basic-services/usb/usbManager/usbHost/interruptTransfer.md)
               - [USB批量传输](basic-services/usb/usbManager/usbHost/bulkTransfer.md)
               - [USB同步传输](basic-services/usb/usbManager/usbHost/isochronousTransfer.md)
-          - [常见问题](basic-services/usb/faqs-usb.md)
-          - [术语](basic-services/usb/usb-glossary.md)
+          - 开发USB串口通信服务<!--usb-serial-dev-->
+            - [USB串口通信服务开发概述](basic-services/usb/usbSerial/usbSerial-overview.md)
+            - [USB串口配置管理](basic-services/usb/usbSerial/usbSerial-configuration.md)
+            - [USB串口通信管理](basic-services/usb/usbSerial/usbSerial-communication.md)
         <!--Del-->
         - 升级服务<!--update-->
           - [示例服务器开发概述](basic-services/update/sample-server-overview.md)
@@ -1206,10 +1209,10 @@
       - Driver Development Kit（驱动开发服务）<!--driver-development-kit-->
         - [Driver Development Kit简介](device/driver/driverdevelopment-overview.md)
         - [环境准备](device/driver/environmental-preparation.md)
-        - 扩展外设基础驱动开发 <!--Development-of-basic-drivers-for-extended-peripherals-->
+        - 扩展外设基础驱动开发 <!--development-of-basic-drivers-->
           - [开发无UI界面基础驱动](device/driver/driverextensionability.md)
           - [开发带UI界面基础驱动](device/driver/externaldevice-guidelines.md)
-        - 扩展外设专项驱动开发 <!--Specialized-driver-development-for-extended-peripherals-->
+        - 扩展外设专项驱动开发 <!--specialized-driver-development-->
           - [开发适用USB协议的设备驱动](device/driver/usb-ddk-guidelines.md)
           - [开发适用HID协议的设备驱动](device/driver/hid-ddk-guidelines.md)
           - [开发适用串口协议的设备驱动](device/driver/usb-serial-ddk-guidelines.md)
@@ -1589,10 +1592,11 @@
       - [Contacts Kit开发概述](contacts/contacts-intro.md)
     - Location Kit（位置服务）<!--location-kit-->
       - [Location Kit简介](device/location/location-kit-intro.md)
-      - [申请位置权限开发指导](device/location/location-permission-guidelines.md)
-      - [获取设备的位置信息开发指导](device/location/location-guidelines.md)
-      - [地理编码转化与逆地理编码转化开发指导](device/location/geocode-guidelines.md)
-      - [基于设备自身定位的地理围栏开发指导](device/location/geofence-guidelines.md)
+      - [申请位置权限开发指导(ArkTS)](device/location/location-permission-guidelines.md)
+      - [获取设备的位置信息开发指导(C/C++)](device/location/location-guidelines-capi.md)
+      - [获取设备的位置信息开发指导(ArkTS)](device/location/location-guidelines.md)
+      - [地理编码转化与逆地理编码转化开发指导(ArkTS)](device/location/geocode-guidelines.md)
+      - [基于设备自身定位的地理围栏开发指导(ArkTS)](device/location/geofence-guidelines.md)
       - [基于FenceExtensionAbility的云侧地理围栏开发指导](device/location/fenceExtensionAbility.md)
       - [相关实例](device/location/app-samples.md)
     - Notification Kit（用户通知服务）<!--notification-kit-->
@@ -2920,6 +2924,7 @@
           - [ArkUI_NativeDialogAPI_1](reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md)
           - [ArkUI_NativeDialogAPI_2](reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__2.md)
           - [ArkUI_NativeGestureAPI_1](reference/apis-arkui/_ark_u_i___native_gesture_a_p_i__1.md)
+          - [ArkUI_NativeGestureAPI_2](reference/apis-arkui/_ark_u_i___native_gesture_a_p_i__2.md)
           - [ArkUI_NativeNodeAPI_1](reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md)
           - [ArkUI_NodeComponentEvent](reference/apis-arkui/_ark_u_i___node_component_event.md)
           - [ArkUI_NumberValue](reference/apis-arkui/union_ark_u_i___number_value.md)
@@ -3943,6 +3948,7 @@
           - [OH_AudioSession_Strategy](reference/apis-audio-kit/_o_h___audio_session___strategy.md)
       - 错误码<!--audio-arkts-errcode-->
         - [Audio错误码](reference/apis-audio-kit/errorcode-audio.md)
+        - [Ringtone错误码](reference/apis-audio-kit/errorcode-ringtone.md)
     - AVCodec Kit（音视频编解码服务）<!--avcodec-api-->
       - C API<!--avcodec-c-->
         - 模块<!--avcodec-module-->
@@ -4379,6 +4385,8 @@
     - Contacts Kit（联系人服务）<!--contacts-->
       - ArkTS API<!--contacts-arkts-->
         - [@ohos.contact (联系人)](reference/apis-contacts-kit/js-apis-contact.md)
+      - 错误码<!--contacts-arkts-errcode-->
+        - [Contacts错误码](reference/apis-contacts-kit/errorcode-contacts.md)
     - Location Kit（位置服务）<!--location-api-->
       - ArkTS API<!--location-arkts-->
         - [@ohos.geoLocationManager (位置服务)](reference/apis-location-kit/js-apis-geoLocationManager.md)
