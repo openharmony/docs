@@ -110,7 +110,7 @@ interface ExtraData {
 | startTime  | Date                                                         | 是   | 最近一次端云同步的开始时间。 |
 | finishTime | Date                                                         | 是   | 最近一次端云同步的结束时间。 |
 | code       | [relationalStore.ProgressCode](js-apis-data-relationalStore.md#progresscode10) | 是   | 最近一次端云同步的结果。 |
-| syncStatus<sup>18+</sup> | [SyncStatus](#syncstatus18) | 否 | 最近一次端云同步的状态。默认值undefined |
+| syncStatus<sup>18+</sup> | [SyncStatus](#syncstatus18) | 否 | 最近一次端云同步的状态。默认值RUNNING |
 
 ## Config
 
