@@ -56,19 +56,19 @@ SCSI Peripheral DDK是为开发者提供专门用于开发SCSI设备驱动程序
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [ScsiPeripheral_Device](#scsiperipheral_device)[ScsiPeripheral_Device](#scsiperipheral_device) | 不透明的SCSI设备结构体。 | 
-| typedef struct [ScsiPeripheral_DeviceMemMap](_scsi_peripheral___device_mem_map.md)[ScsiPeripheral_DeviceMemMap](#scsiperipheral_devicememmap) | 通过调用OH_ScsiPeripheral_CreateDeviceMemMap创建的设备内存映射。 使用该设备内存映射的缓冲区可以提供更好的性能。 | 
-| typedef struct [ScsiPeripheral_IORequest](_scsi_peripheral___i_o_request.md)[ScsiPeripheral_IORequest](#scsiperipheral_iorequest) | 读/写操作的请求参数。 | 
-| typedef struct [ScsiPeripheral_Request](_scsi_peripheral___request.md)[ScsiPeripheral_Request](#scsiperipheral_request) | 请求参数结构体。 | 
-| typedef struct [ScsiPeripheral_Response](_scsi_peripheral___response.md)[ScsiPeripheral_Response](#scsiperipheral_response) | 响应参数结构体。 | 
-| typedef struct [ScsiPeripheral_TestUnitReadyRequest](_scsi_peripheral___test_unit_ready_request.md)[ScsiPeripheral_TestUnitReadyRequest](#scsiperipheral_testunitreadyrequest) | 命令（test unit ready）的请求结构体。 | 
-| typedef struct [ScsiPeripheral_InquiryRequest](_scsi_peripheral___inquiry_request.md)[ScsiPeripheral_InquiryRequest](#scsiperipheral_inquiryrequest) | SCSI命令（inquiry）的请求结构体。 | 
-| typedef struct [ScsiPeripheral_InquiryInfo](_scsi_peripheral___inquiry_info.md)[ScsiPeripheral_InquiryInfo](#scsiperipheral_inquiryinfo) | SCSI inquiry 数据。 | 
-| typedef struct [ScsiPeripheral_ReadCapacityRequest](_scsi_peripheral___read_capacity_request.md)[ScsiPeripheral_ReadCapacityRequest](#scsiperipheral_readcapacityrequest) | SCSI命令（read capacity）的请求结构体。 | 
-| typedef struct [ScsiPeripheral_CapacityInfo](_scsi_peripheral___capacity_info.md)[ScsiPeripheral_CapacityInfo](#scsiperipheral_capacityinfo) | SCSI read capacity 数据。 | 
-| typedef struct [ScsiPeripheral_RequestSenseRequest](_scsi_peripheral___request_sense_request.md)[ScsiPeripheral_RequestSenseRequest](#scsiperipheral_requestsenserequest) | SCSI命令（request sense）的请求结构体。 | 
-| typedef struct [ScsiPeripheral_BasicSenseInfo](_scsi_peripheral___basic_sense_info.md)[ScsiPeripheral_BasicSenseInfo](#scsiperipheral_basicsenseinfo) | sense data的基本信息。 | 
-| typedef struct [ScsiPeripheral_VerifyRequest](_scsi_peripheral___verify_request.md)[ScsiPeripheral_VerifyRequest](#scsiperipheral_verifyrequest) | SCSI命令（verify）的请求结构体。 | 
+| typedef struct [ScsiPeripheral_Device](#scsiperipheral_device) [ScsiPeripheral_Device](#scsiperipheral_device) | 不透明的SCSI设备结构体。 | 
+| typedef struct [ScsiPeripheral_DeviceMemMap](_scsi_peripheral___device_mem_map.md) [ScsiPeripheral_DeviceMemMap](#scsiperipheral_devicememmap) | 通过调用OH_ScsiPeripheral_CreateDeviceMemMap创建的设备内存映射。 使用该设备内存映射的缓冲区可以提供更好的性能。 | 
+| typedef struct [ScsiPeripheral_IORequest](_scsi_peripheral___i_o_request.md) [ScsiPeripheral_IORequest](#scsiperipheral_iorequest) | 读/写操作的请求参数。 | 
+| typedef struct [ScsiPeripheral_Request](_scsi_peripheral___request.md) [ScsiPeripheral_Request](#scsiperipheral_request) | 请求参数结构体。 | 
+| typedef struct [ScsiPeripheral_Response](_scsi_peripheral___response.md) [ScsiPeripheral_Response](#scsiperipheral_response) | 响应参数结构体。 | 
+| typedef struct [ScsiPeripheral_TestUnitReadyRequest](_scsi_peripheral___test_unit_ready_request.md) [ScsiPeripheral_TestUnitReadyRequest](#scsiperipheral_testunitreadyrequest) | 命令（test unit ready）的请求结构体。 | 
+| typedef struct [ScsiPeripheral_InquiryRequest](_scsi_peripheral___inquiry_request.md) [ScsiPeripheral_InquiryRequest](#scsiperipheral_inquiryrequest) | SCSI命令（inquiry）的请求结构体。 | 
+| typedef struct [ScsiPeripheral_InquiryInfo](_scsi_peripheral___inquiry_info.md) [ScsiPeripheral_InquiryInfo](#scsiperipheral_inquiryinfo) | SCSI inquiry 数据。 | 
+| typedef struct [ScsiPeripheral_ReadCapacityRequest](_scsi_peripheral___read_capacity_request.md) [ScsiPeripheral_ReadCapacityRequest](#scsiperipheral_readcapacityrequest) | SCSI命令（read capacity）的请求结构体。 | 
+| typedef struct [ScsiPeripheral_CapacityInfo](_scsi_peripheral___capacity_info.md) [ScsiPeripheral_CapacityInfo](#scsiperipheral_capacityinfo) | SCSI read capacity 数据。 | 
+| typedef struct [ScsiPeripheral_RequestSenseRequest](_scsi_peripheral___request_sense_request.md) [ScsiPeripheral_RequestSenseRequest](#scsiperipheral_requestsenserequest) | SCSI命令（request sense）的请求结构体。 | 
+| typedef struct [ScsiPeripheral_BasicSenseInfo](_scsi_peripheral___basic_sense_info.md) [ScsiPeripheral_BasicSenseInfo](#scsiperipheral_basicsenseinfo) | sense data的基本信息。 | 
+| typedef struct [ScsiPeripheral_VerifyRequest](_scsi_peripheral___verify_request.md) [ScsiPeripheral_VerifyRequest](#scsiperipheral_verifyrequest) | SCSI命令（verify）的请求结构体。 | 
 
 
 ### 枚举
@@ -200,7 +200,7 @@ vendor id的最大长度。
 ### ScsiPeripheral_BasicSenseInfo
 
 ```
-typedef struct ScsiPeripheral_BasicSenseInfoScsiPeripheral_BasicSenseInfo
+typedef struct ScsiPeripheral_BasicSenseInfo ScsiPeripheral_BasicSenseInfo
 ```
 
 **描述**
@@ -213,7 +213,7 @@ sense data的基本信息。
 ### ScsiPeripheral_CapacityInfo
 
 ```
-typedef struct ScsiPeripheral_CapacityInfoScsiPeripheral_CapacityInfo
+typedef struct ScsiPeripheral_CapacityInfo ScsiPeripheral_CapacityInfo
 ```
 
 **描述**
@@ -226,7 +226,7 @@ SCSI read capacity 数据。
 ### ScsiPeripheral_Device
 
 ```
-typedef struct ScsiPeripheral_DeviceScsiPeripheral_Device
+typedef struct ScsiPeripheral_Device ScsiPeripheral_Device
 ```
 
 **描述**
@@ -239,7 +239,7 @@ typedef struct ScsiPeripheral_DeviceScsiPeripheral_Device
 ### ScsiPeripheral_DeviceMemMap
 
 ```
-typedef struct ScsiPeripheral_DeviceMemMapScsiPeripheral_DeviceMemMap
+typedef struct ScsiPeripheral_DeviceMemMap ScsiPeripheral_DeviceMemMap
 ```
 
 **描述**
@@ -252,7 +252,7 @@ typedef struct ScsiPeripheral_DeviceMemMapScsiPeripheral_DeviceMemMap
 ### ScsiPeripheral_InquiryInfo
 
 ```
-typedef struct ScsiPeripheral_InquiryInfoScsiPeripheral_InquiryInfo
+typedef struct ScsiPeripheral_InquiryInfo ScsiPeripheral_InquiryInfo
 ```
 
 **描述**
@@ -265,7 +265,7 @@ SCSI inquiry 数据。
 ### ScsiPeripheral_InquiryRequest
 
 ```
-typedef struct ScsiPeripheral_InquiryRequestScsiPeripheral_InquiryRequest
+typedef struct ScsiPeripheral_InquiryRequest ScsiPeripheral_InquiryRequest
 ```
 
 **描述**
@@ -278,7 +278,7 @@ SCSI命令（inquiry）的请求结构体。
 ### ScsiPeripheral_IORequest
 
 ```
-typedef struct ScsiPeripheral_IORequestScsiPeripheral_IORequest
+typedef struct ScsiPeripheral_IORequest ScsiPeripheral_IORequest
 ```
 
 **描述**
@@ -291,7 +291,7 @@ typedef struct ScsiPeripheral_IORequestScsiPeripheral_IORequest
 ### ScsiPeripheral_ReadCapacityRequest
 
 ```
-typedef struct ScsiPeripheral_ReadCapacityRequestScsiPeripheral_ReadCapacityRequest
+typedef struct ScsiPeripheral_ReadCapacityRequest ScsiPeripheral_ReadCapacityRequest
 ```
 
 **描述**
@@ -304,7 +304,7 @@ SCSI命令（read capacity）的请求结构体。
 ### ScsiPeripheral_Request
 
 ```
-typedef struct ScsiPeripheral_RequestScsiPeripheral_Request
+typedef struct ScsiPeripheral_Request ScsiPeripheral_Request
 ```
 
 **描述**
@@ -317,7 +317,7 @@ typedef struct ScsiPeripheral_RequestScsiPeripheral_Request
 ### ScsiPeripheral_RequestSenseRequest
 
 ```
-typedef struct ScsiPeripheral_RequestSenseRequestScsiPeripheral_RequestSenseRequest
+typedef struct ScsiPeripheral_RequestSenseRequest ScsiPeripheral_RequestSenseRequest
 ```
 
 **描述**
@@ -330,7 +330,7 @@ SCSI命令（request sense）的请求结构体。
 ### ScsiPeripheral_Response
 
 ```
-typedef struct ScsiPeripheral_ResponseScsiPeripheral_Response
+typedef struct ScsiPeripheral_Response ScsiPeripheral_Response
 ```
 
 **描述**
@@ -343,7 +343,7 @@ typedef struct ScsiPeripheral_ResponseScsiPeripheral_Response
 ### ScsiPeripheral_TestUnitReadyRequest
 
 ```
-typedef struct ScsiPeripheral_TestUnitReadyRequestScsiPeripheral_TestUnitReadyRequest
+typedef struct ScsiPeripheral_TestUnitReadyRequest ScsiPeripheral_TestUnitReadyRequest
 ```
 
 **描述**
@@ -356,7 +356,7 @@ typedef struct ScsiPeripheral_TestUnitReadyRequestScsiPeripheral_TestUnitReadyRe
 ### ScsiPeripheral_VerifyRequest
 
 ```
-typedef struct ScsiPeripheral_VerifyRequestScsiPeripheral_VerifyRequest
+typedef struct ScsiPeripheral_VerifyRequest ScsiPeripheral_VerifyRequest
 ```
 
 **描述**
