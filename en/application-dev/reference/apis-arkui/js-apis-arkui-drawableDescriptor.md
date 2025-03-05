@@ -160,6 +160,24 @@ The **drawable.json** file is located under **entry/src/main/resources/base/medi
     }
     ```
 
+### constructor<sup>12+</sup>
+
+constructor(foreground?: DrawableDescriptor, background?: DrawableDescriptor, mask?: DrawableDescriptor);
+
+A constructor used to create a **LayeredDrawableDescriptor** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type             | Mandatory | Description                                      |
+| --------- | ---------------- | ---- | ------------------------------------------ |
+| foreground | [DrawableDescriptor](#drawabledescriptor)  | No  | Options for the foreground image of the layered drawable.|
+| background   | [DrawableDescriptor](#drawabledescriptor) | No  | Options for the background image of the layered drawable. |
+| mask | [DrawableDescriptor](#drawabledescriptor) | No| Options for the mask of the layered drawable.|
+
 ### getForeground
 getForeground(): DrawableDescriptor;
 

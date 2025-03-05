@@ -1,6 +1,6 @@
 # @ohos.ai.mindSporeLite (端侧AI框架)
 
-MindSpore Lite 是一个轻量化、高性能的端侧AI引擎，提供了标准的模型推理和训练接口，内置通用硬件高性能算子库，原生支持Neural Network Runtime Kit使能AI专用芯片加速推理，助力打造全场景智能应用。
+MindSpore Lite是一个轻量化、高性能的端侧AI引擎，提供了标准的模型推理和训练接口，内置通用硬件高性能算子库，原生支持Neural Network Runtime Kit使能AI专用芯片加速推理，助力打造全场景智能应用。
 
 本模块主要介绍MindSpore Lite AI引擎支持模型端侧推理/训练的相关能力。
 
@@ -679,8 +679,8 @@ cfg.optimizationLevel = mindSporeLite.OptimizationLevel.O0;
 | 名称 | 值   | 说明                                                       |
 | ---- | ---- | ---------------------------------------------------------- |
 | O0   | 0    | 无优化等级。                                               |
-| O2   | 2    | 将网络转换为float16, 保持批量归一化层和损失函数为float32。 |
-| O3   | 3    | 将网络转换为float16, 包括批量归一化层。                    |
+| O2   | 2    | 将网络转换为float16，保持批量归一化层和损失函数为float32。 |
+| O3   | 3    | 将网络转换为float16，包括批量归一化层。                    |
 | AUTO | 4    | 根据设备选择优化等级。                                     |
 
 

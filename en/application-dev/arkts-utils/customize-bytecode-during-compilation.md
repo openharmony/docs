@@ -1,24 +1,24 @@
 # Customizing Ark Bytecode During Compilation
 
-If you want to customize the content of the Ark bytecode file, you can use the ArkTS compilation toolchain to customize the Ark bytecode file.
+You can modify Ark bytecode files using the customization capabilities provided by the ArkTS compilation toolchain.
 
-## Capability Configuration Description
+## Configuration
 
-Prepare a dynamic library file for operating the ARK bytecode file. In the build-profile.json5 configuration file of the project, configure the [compilation option transformLib](arkoptions-guide.md) and set the option value to the path of the dynamic library, the compiler loads the dynamic library at the specified time and executes the specific Transform method in the library.
+Develop a dynamic library file to manipulate ARK bytecode files. In the **build-profile.json5** file of the project, add the [transformLib option](arkoptions-guide.md) and set its value to the path of the dynamic library. The compiler loads the dynamic library at the specified time and executes the **Transform** method in the library.
 
-## Capability execution mechanism
+## Execution
 
-If the transformLib option is not configured in the build-profile.json5 file of the project, the compiler directly generates the ARK bytecode file to the default location. If transformLib is configured and the corresponding dynamic library file can be correctly loaded, the compiler generates an ARK bytecode file to the default destination location, calls the Transform method in the dynamic library, and transfers the path of the ARK bytecode file as a parameter. The Transform method is used to customize the logic for regenerating the ARK bytecode file.
+If **transformLib** is not configured in the **build-profile.json5** file, the compiler generates the ARK bytecode file to the default location. If **transformLib** is configured and the dynamic library file is successfully loaded, the compiler generates an ARK bytecode file to the default location, and calls the **Transform** method in the dynamic library, passing the path of the ARK bytecode file as a parameter. The **Transform** method contains your custom logic to modify and regenerate the bytecode.
 
-The following development example is a dynamic library template. You need to implement the specific logic of Transform based on your requirements.
+Below is an example template of the dynamic library. You should implement the specific logic of the **Transform** method based on your service requirements.
 
 ## How to Develop
 
-1. Create the source code for modifying the dynamic library.
+1. Create the source code for the dynamic library.
 
    ```
    /**
-    * @brief Entry method for modifying the ARK bytecode file
+    * @brief Entry method for modifying the ARK bytecode file.
     * @param abc_path Path for storing the ARK bytecode file to be processed.
     */
    extern "C" int Transform(const char *abc_path)
@@ -28,30 +28,30 @@ The following development example is a dynamic library template. You need to imp
    }
    ```
 
-2. Use the C language compilation tool (G++) to compile the link library file of the corresponding platform.
+2. Use a C language compiler (g++) to compile the link library file.
 
-   Windows
+   Windows:
 
    ```
    g++ --share -o example.dll example.cpp
    ```
 
-   Linux
+   Linux:
 
    ```
    g++ --share -o example.so example.cpp
    ```
 
-   Mac platform:
+   macOS:
 
    ```
    g++ --shared -o example.so example.cpp
    ```
 
-3. Configure the transformLib option in the build-profile.json5 file in the IDE. The following uses the Windows environment as an example.
+3. In DevEco Studio, configure the **transformLib** option in the **build-profile.json5** file. (The following uses the Windows environment as an example.)
 
-   The path configured in the option is the path of the link library file generated in step 2 in the project (in this example, the path is in the dll directory).
+   Set the option to the path of the link library file generated in step 2. In this example, the path is in the **dll** directory.
 
-   !image_0000002079773605](figures/image_0000002079773605.png)
+   ![image_0000002079773605](figures/image_0000002079773605.png)
 
 4. Recompile the project to customize the Ark bytecode.

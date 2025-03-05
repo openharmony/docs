@@ -33,7 +33,7 @@
 ### NotifyDeviceStateChangeInfo()
 
 ```
-ICameraHost::NotifyDeviceStateChangeInfo ([in] int notifyType, [in] int deviceState )
+ICameraHost::NotifyDeviceStateChangeInfo ([in] int notifyType, [in] int deviceState)
 ```
 
 **描述**
@@ -61,7 +61,7 @@ NO_ERROR 表示执行成功。
 ### OpenCameraV1_2()
 
 ```
-ICameraHost::OpenCameraV1_2 ([in] String cameraId, [in] ICameraDeviceCallback callbackObj, [out] ICameraDevice device )
+ICameraHost::OpenCameraV1_2 ([in] String cameraId, [in] ICameraDeviceCallback callbackObj, [out] ICameraDevice device)
 ```
 
 **描述**
@@ -117,7 +117,7 @@ NO_ERROR 表示执行成功。
 ### PrelaunchWithOpMode()
 
 ```
-ICameraHost::PrelaunchWithOpMode ([in] struct PrelaunchConfig config, [in] int operationMode )
+ICameraHost::PrelaunchWithOpMode ([in] struct PrelaunchConfig config, [in] int operationMode)
 ```
 
 **描述**

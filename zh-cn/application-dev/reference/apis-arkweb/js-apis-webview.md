@@ -1534,11 +1534,15 @@ struct WebComponent {
 }
 ```
 
-### getHitTest
+### getHitTest<sup>(deprecated)</sup>
 
 getHitTest(): WebHitTestType
 
 获取当前被点击区域的元素类型。
+
+> **说明：**
+>
+> 从API version11开始支持，从API version 16开始废弃。建议使用[getLastHitTest](#getlasthittest16)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3113,11 +3117,15 @@ struct WebComponent {
 }
 ```
 
-### getHitTestValue
+### getHitTestValue<sup>(deprecated)</sup>
 
 getHitTestValue(): HitTestValue
 
 获取当前被点击区域的元素信息。
+
+> **说明：**
+>
+> 从API version11开始支持，从API version 16开始废弃。建议使用[getLastHitTest](#getlasthittest16)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -9857,13 +9865,17 @@ struct WebComponent {
 }
 ```
 
-### saveCookieSync<sup>16+</sup>
+### saveCookieSync<sup>15+</sup>
 
 static saveCookieSync(): void
 
 将当前存在内存中的cookie同步保存到磁盘中。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+> **说明：**
+>
+> saveCookieSync用于强制将需要持久化的cookies写入磁盘。默认情况下，2in1和Tablet设备不会持久化session cookie。
 
 **示例：**
 
@@ -11752,7 +11764,7 @@ Web组件发送的资源请求信息。
 
 ## WebHitTestType
 
-[getHitTest](#gethittest)接口用于指示游标节点。
+[getLastHitTest](#getlasthittest16)接口用于指示游标节点。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -11782,7 +11794,7 @@ Web组件发送的资源请求信息。
 
 ##  HitTestValue
 
-提供点击区域的元素信息。示例代码参考[getHitTestValue](#gethittestvalue)。
+提供点击区域的元素信息。示例代码参考[getLastHitTest](#getlasthittest16)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

@@ -4,8 +4,8 @@ The **connection** module provides APIs for operating and managing Bluetooth.
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.connection (Bluetooth Connection Module)](js-apis-bluetooth-connection.md).
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.connection (Bluetooth Connection Module)](js-apis-bluetooth-connection.md).
 
 
 ## Modules to Import
@@ -160,7 +160,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//callback
+// callback
 try {
     connection.cancelPairedDevice('11:22:33:44:55:66', (err: BusinessError) => {
         console.info('cancelPairedDevice, device name err:' + JSON.stringify(err));
@@ -213,7 +213,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//promise
+// promise
 try {
     connection.cancelPairedDevice('11:22:33:44:55:66').then(() => {
         console.info('cancelPairedDevice');
@@ -630,11 +630,9 @@ try {
 
 getRemoteProductId(deviceId: string): string
 
-Obtains the product ID of a remote Bluetooth device.
+Obtains the product ID of a remote Bluetooth device. Since API version 16, the **ohos.permission.ACCESS_BLUETOOTH** and **ohos.permission.MANAGE_BLUETOOTH** permissions are no longer verified.
 
 **System API**: This is a system API.
-
-**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -656,7 +654,6 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
-|201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
@@ -714,7 +711,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//promise
+// promise
 try {
     connection.setRemoteDeviceType('11:22:33:44:55:66', connection.DeviceType.DEVICE_TYPE_HEADSET).then(() => {
         console.info('setRemoteDeviceType success');
@@ -729,11 +726,9 @@ try {
 
 getRemoteDeviceType(deviceId: string): Promise&lt;DeviceType&gt;
 
-Obtains the type of a remote Bluetooth device. This API uses a promise to return the result.
+Obtains the type of a remote Bluetooth device. This API uses a promise to return the result. Since API version 16, the **ohos.permission.ACCESS_BLUETOOTH** permission is no longer verified.
 
 **System API**: This is a system API.
-
-**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -747,7 +742,7 @@ Obtains the type of a remote Bluetooth device. This API uses a promise to return
 
 | Type                 | Description        |
 | ------------------- | ------------- |
-| Promise&lt;[DeviceType](#devicetype12)&gt; | Promise used to returnthe device type obtained.|
+| Promise&lt;[DeviceType](#devicetype12)&gt; | Promise used to return the device type obtained.|
 
 **Error codes**
 
@@ -755,7 +750,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
-|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth disabled.                 |
@@ -764,7 +759,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//promise
+// promise
 try {
     connection.getRemoteDeviceType('11:22:33:44:55:66').then((data: connection.DeviceType) => {
         console.info('getRemoteDeviceType success, DeviceType:' + JSON.stringify(data));
@@ -803,6 +798,7 @@ Enumerates the Bluetooth pairing types.
 | PIN_TYPE_DISPLAY_PIN_CODE    | 5 | The user needs to enter the PIN displayed on the peer device for Bluetooth 2.0 devices.<br>This is a system API. |
 | PIN_TYPE_OOB_CONSENT    | 6 | The user needs to accept or reject the out of band (OOB) pairing request.<br>This is a system API. |
 | PIN_TYPE_PIN_16_DIGITS    | 7 | The user needs to enter the 16-digit PIN displayed on the peer device.<br>This is a system API. |
+
 
 
 ## DeviceType<sup>12+</sup>

@@ -1380,3 +1380,5 @@ Use [runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runj
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "JSBridgeObject SaySomething argc:%{public}s", say);
   }
   ```
+
+<!--no_check-->

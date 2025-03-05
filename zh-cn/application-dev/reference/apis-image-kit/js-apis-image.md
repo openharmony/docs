@@ -140,10 +140,10 @@ async function Marshalling_UnMarshalling() {
   if (pictureObj != null) {
     let parcelable: MySequence = new MySequence(pictureObj);
     let data: rpc.MessageSequence = rpc.MessageSequence.create();
-    // marshalling
+    // marshalling.
     data.writeParcelable(parcelable);
     let ret: MySequence = new MySequence(pictureObj);
-    // unmarshalling
+    // unmarshalling.
     data.readParcelable(ret);
   } else {
     console.info('PictureObj is null');
@@ -178,7 +178,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function CreatePixelMap() {
-  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
   let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
   image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
     console.info('Succeeded in creating pixelmap.');
@@ -210,7 +210,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function CreatePixelMap() {
-  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
   let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
   image.createPixelMap(color, opts, (error: BusinessError, pixelMap: image.PixelMap) => {
     if(error) {
@@ -303,16 +303,16 @@ async function CreatePixelMapFromParcel() {
     pixelMap = srcPixelMap;
   })
   if (pixelMap != undefined) {
-    // 序列化
+    // 序列化。
     let parcelable: MySequence = new MySequence(pixelMap);
     let data: rpc.MessageSequence = rpc.MessageSequence.create();
     data.writeParcelable(parcelable);
 
-    // 反序列化 rpc获取到data
+    // 反序列化 rpc获取到data。
     let ret: MySequence = new MySequence(pixelMap);
     data.readParcelable(ret);
 
-    // 获取到pixelmap
+    // 获取到pixelmap。
     let unmarshPixelmap = ret.pixel_map;
   }
 }
@@ -527,7 +527,7 @@ createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMa
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function CreatePixelMapSync() {
-  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
   let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
   let pixelMap : image.PixelMap = image.createPixelMapSync(color, opts);
   return pixelMap;
@@ -606,7 +606,7 @@ createPremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallbac
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function CreatePremultipliedPixelMap() {
-  const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
+  const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4。
   let bufferArr = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i += 4) {
     bufferArr[i] = 255;
@@ -641,8 +641,8 @@ createPremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 
 | 参数名   | 类型                                             | 必填 | 说明                       |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
-| src | [PixelMap](#pixelmap7) | 是   | 源PixelMap对象 |
-| dst | [PixelMap](#pixelmap7) | 是   | 目标PixelMap对象 |
+| src | [PixelMap](#pixelmap7) | 是   | 源PixelMap对象。 |
+| dst | [PixelMap](#pixelmap7) | 是   | 目标PixelMap对象。 |
 
 **返回值：**
 
@@ -667,7 +667,7 @@ createPremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function CreatePremultipliedPixelMap() {
-  const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
+  const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4。
   let bufferArr = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i += 4) {
     bufferArr[i] = 255;
@@ -720,7 +720,7 @@ createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallb
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function CreateUnpremultipliedPixelMap() {
-  const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
+  const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4。
   let bufferArr = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i += 4) {
     bufferArr[i] = 255;
@@ -781,7 +781,7 @@ createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function CreateUnpremultipliedPixelMap() {
-  const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
+  const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4。
   let bufferArr = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i += 4) {
     bufferArr[i] = 255;
@@ -880,7 +880,7 @@ import { image } from '@kit.ImageKit';
 
 async function GetHdrComposedPixelmap() {
   let funcName = "getHdrComposedPixelmap";
-  if (pictureObj != null) { //图片包含Hdr图
+  if (pictureObj != null) { //图片包含Hdr图。
     let hdrComposedPixelmap: image.PixelMap = await pictureObj.getHdrComposedPixelmap();
     if (hdrComposedPixelmap != null) {
       hdrComposedPixelmap.getImageInfo().then((imageInfo: image.ImageInfo) => {
@@ -919,7 +919,7 @@ import { image } from '@kit.ImageKit';
 
 async function GetGainmapPixelmap() {
   let funcName = "getGainmapPixelmap";
-  if (pictureObj != null) { //图片包含增益图
+  if (pictureObj != null) { //图片包含增益图。
     let gainPixelmap: image.PixelMap | null = pictureObj.getGainmapPixelmap();
     if (gainPixelmap != null) {
       gainPixelmap.getImageInfo().then((imageInfo: image.ImageInfo) => {
@@ -971,7 +971,7 @@ import { image } from '@kit.ImageKit';
 async function SetAuxiliaryPicture() {
   const context = getContext();
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg");//需要支持hdr的图片
+  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg");//需要支持hdr的图片。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -1074,7 +1074,7 @@ import { image } from '@kit.ImageKit';
 async function SetPictureObjMetadata() {
   const exifContext = getContext();
   const exifResourceMgr = exifContext.resourceManager;
-  const exifRawFile = await exifResourceMgr.getRawFileContent("exif.jpg");//含有exif metadata的图片
+  const exifRawFile = await exifResourceMgr.getRawFileContent("exif.jpg");//含有exif metadata的图片。
   let exifOps: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -1210,10 +1210,10 @@ async function Marshalling_UnMarshalling() {
   if (pictureObj != null) {
     let parcelable: MySequence = new MySequence(pictureObj);
     let data: rpc.MessageSequence = rpc.MessageSequence.create();
-    // marshalling
+    // marshalling.
     data.writeParcelable(parcelable);
     let ret: MySequence = new MySequence(pictureObj);
-    // unmarshalling
+    // unmarshalling.
     data.readParcelable(ret);
   } else {
     console.info('PictureObj is null');
@@ -1298,12 +1298,12 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function ReadPixelsToBuffer() {
-  const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+  const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
   if (pixelMap != undefined) {
     pixelMap.readPixelsToBuffer(readBuffer).then(() => {
-      console.info('Succeeded in reading image pixel data.'); // 符合条件则进入 
+      console.info('Succeeded in reading image pixel data.'); // 符合条件则进入。
     }).catch((error: BusinessError) => {
-      console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
+      console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入。
     })
   }
 }
@@ -1334,14 +1334,14 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function ReadPixelsToBuffer() {
-  const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+  const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
   if (pixelMap != undefined) {
     pixelMap.readPixelsToBuffer(readBuffer, (error: BusinessError, res: void) => {
       if(error) {
-        console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
+        console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入。
         return;
       } else {
-        console.info('Succeeded in reading image pixel data.');  //符合条件则进入
+        console.info('Succeeded in reading image pixel data.');  //符合条件则进入。
       }
     })
   }
@@ -1381,7 +1381,7 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function ReadPixelsToBufferSync() {
-  const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+  const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
   if (pixelMap != undefined) {
     pixelMap.readPixelsToBufferSync(readBuffer);
   }
@@ -1425,32 +1425,32 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function ReadPixelsRGBA() {
   const area: image.PositionArea = {
-    pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4
+    pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4。
     offset: 0,
     stride: 8,
     region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
   };
   if (pixelMap != undefined) {
     pixelMap.readPixels(area).then(() => {
-      console.info('Succeeded in reading the image data in the area.'); //符合条件则进入
+      console.info('Succeeded in reading the image data in the area.'); //符合条件则进入。
     }).catch((error: BusinessError) => {
-      console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
+      console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入。
     })
   }
 }
 
 async function ReadPixelsYUV() {
   const area: image.PositionArea = {
-    pixels: new ArrayBuffer(6),  // 6为需要创建的像素buffer大小，取值为：height * width *1.5
+    pixels: new ArrayBuffer(6),  // 6为需要创建的像素buffer大小，取值为：height * width *1.5。
     offset: 0,
     stride: 8,
     region: { size: { height: 2, width: 2 }, x: 0, y: 0 }
   };
   if (pixelMap != undefined) {
     pixelMap.readPixels(area).then(() => {
-      console.info('Succeeded in reading the image data in the area.'); //符合条件则进入
+      console.info('Succeeded in reading the image data in the area.'); //符合条件则进入。
     }).catch((error: BusinessError) => {
-      console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
+      console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入。
     })
   }
 }
@@ -1488,7 +1488,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function ReadPixelsRGBA() {
   const area: image.PositionArea = {
-    pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4
+    pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4。
     offset: 0,
     stride: 8,
     region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
@@ -1507,7 +1507,7 @@ async function ReadPixelsRGBA() {
 
 async function ReadPixelsYUV() {
   const area: image.PositionArea = {
-    pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5
+    pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5。
     offset: 0,
     stride: 8,
     region: { size: { height: 2, width: 2 }, x: 0, y: 0 }
@@ -1605,7 +1605,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function WritePixelsRGBA() {
   const area: image.PositionArea = {
-    pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4
+    pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4。
     offset: 0,
     stride: 8,
     region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
@@ -1625,7 +1625,7 @@ async function WritePixelsRGBA() {
 
 async function WritePixelsYUV() {
   const area: image.PositionArea = {
-    pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5
+    pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5。
     offset: 0,
     stride: 8,
     region: { size: { height: 2, width: 2 }, x: 0, y: 0 }
@@ -1675,7 +1675,7 @@ RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function WritePixelsRGBA() {
-  const area: image.PositionArea = { pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4
+  const area: image.PositionArea = { pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4。
     offset: 0,
     stride: 8,
     region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
@@ -1697,7 +1697,7 @@ async function WritePixelsRGBA() {
 }
 
 async function WritePixelsYUV() {
-  const area: image.PositionArea = { pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5
+  const area: image.PositionArea = { pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5。
     offset: 0,
     stride: 8,
     region: { size: { height: 2, width: 2 }, x: 0, y: 0 }
@@ -1798,7 +1798,7 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function WriteBufferToPixels() {
-  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
   let bufferArr: Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
     bufferArr[i] = i + 1;
@@ -1838,7 +1838,7 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function WriteBufferToPixels() {
-  const color: ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+  const color: ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4。
   let bufferArr: Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
     bufferArr[i] = i + 1;
@@ -1887,7 +1887,7 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function WriteBufferToPixelsSync() {
-  const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+  const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4。
   let bufferArr : Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
     bufferArr[i] = i + 1;
@@ -1988,7 +1988,7 @@ getImageInfoSync(): ImageInfo
 
 | 类型                              | 说明                                                        |
 | --------------------------------- | ----------------------------------------------------------- |
-| [ImageInfo](#imageinfo)           | 图像像素信息                                                |
+| [ImageInfo](#imageinfo)           | 图像像素信息。                                                |
 
 **错误码：**
 
@@ -3520,8 +3520,8 @@ setMetadata(key: HdrMetadataKey, value: HdrMetadataValue): Promise\<void>
 
 | 参数名        | 类型                             | 必填 | 说明             |
 | ------------- | -------------------------------- | ---- | ---------------- |
-| key | [HdrMetadataKey](#hdrmetadatakey12) | 是   | HDR元数据的关键字，用于设置对应值 |
-| value | [HdrMetadataValue](#hdrmetadatavalue12) | 是   | 元数据的值 |
+| key | [HdrMetadataKey](#hdrmetadatakey12) | 是   | HDR元数据的关键字，用于设置对应值。 |
+| value | [HdrMetadataValue](#hdrmetadatavalue12) | 是   | 元数据的值。 |
 
 **返回值：**
 
@@ -3556,7 +3556,7 @@ let staticMetadata: image.HdrStaticMetadata = {
   maxContentLightLevel: 2.1,
   maxFrameAverageLightLevel: 2.1,
 }
-const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
 let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
   pixelMap.setMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA, staticMetadata).then(() => {
@@ -3582,7 +3582,7 @@ pixelmap在跨线程传输时，断开原线程的引用。适用于需立即释
 
 | 参数名   | 类型               | 必填 | 说明                          |
 | ------- | ------------------ | ---- | ----------------------------- |
-| detached | boolean   | 是   | 是否断开原线程引用                  |
+| detached | boolean   | 是   | 是否断开原线程引用。                  |
 
 **错误码：**
 
@@ -3600,7 +3600,7 @@ import image from '@ohos.multimedia.image';
 import taskpool from '@ohos.taskpool';
 
 @Concurrent
-// 子线程方法
+// 子线程方法。
 async function loadPixelMap(rawFileDescriptor: number): Promise<PixelMap> {
   // 创建imageSource。
   const imageSource = image.createImageSource(rawFileDescriptor);
@@ -3618,7 +3618,7 @@ async function loadPixelMap(rawFileDescriptor: number): Promise<PixelMap> {
 @Component
 struct Demo {
   @State pixelMap: PixelMap | undefined = undefined;
-  // 主线程方法
+  // 主线程方法。
   private loadImageFromThread(): void {
     const resourceMgr = getContext(this).resourceManager;
     // 此处‘example.jpg’仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
@@ -3709,12 +3709,12 @@ async function Marshalling() {
     pixelMap = srcPixelMap;
   })
   if (pixelMap != undefined) {
-    // 序列化
+    // 序列化。
     let parcelable: MySequence = new MySequence(pixelMap);
     let data: rpc.MessageSequence = rpc.MessageSequence.create();
     data.writeParcelable(parcelable);
 
-    // 反序列化 rpc获取到data
+    // 反序列化 rpc获取到data。
     let ret: MySequence = new MySequence(pixelMap);
     data.readParcelable(ret);
   }
@@ -3797,12 +3797,12 @@ async function Unmarshalling() {
     pixelMap = srcPixelMap;
   })
   if (pixelMap != undefined) {
-    // 序列化
+    // 序列化。
     let parcelable: MySequence = new MySequence(pixelMap);
     let data : rpc.MessageSequence = rpc.MessageSequence.create();
     data.writeParcelable(parcelable);
 
-    // 反序列化 rpc获取到data
+    // 反序列化 rpc获取到data。
     let ret : MySequence = new MySequence(pixelMap);
     data.readParcelable(ret);
   }
@@ -3927,13 +3927,13 @@ YUV和RGB类型互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA88
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if (pixelMap != undefined) {
-  // 设置目标像素格式为NV12
+  // 设置目标像素格式为NV12。
   let targetPixelFormat = image.PixelMapFormat.NV12;
   pixelMap.convertPixelFormat(targetPixelFormat).then(() => {
-    // pixelMap转换成NV12格式成功
+    // pixelMap转换成NV12格式成功。
     console.info('PixelMapFormat convert Succeeded');
   }).catch((error: BusinessError) => {
-    // pixelMap转换成NV12格式失败
+    // pixelMap转换成NV12格式失败。
     console.error(`PixelMapFormat convert Failed. code is ${error.code}, message is ${error.message}`);
   })
 }
@@ -4147,7 +4147,7 @@ createImageSource(buf: ArrayBuffer): ImageSource
 **示例：**
 
 ```ts
-const buf: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+const buf: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
 const imageSourceApi: image.ImageSource = image.createImageSource(buf);
 ```
 
@@ -4213,7 +4213,7 @@ createImageSource(rawfile: resourceManager.RawFileDescriptor, options?: SourceOp
 import { resourceManager } from '@kit.LocalizationKit';
 
 const context: Context = getContext(this);
-// 获取resourceManager资源管理器
+// 获取resourceManager资源管理器。
 const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor: resourceManager.RawFileDescriptor) => {
@@ -4255,9 +4255,9 @@ CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
 ```ts
 const context: Context = getContext(this)
-let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')) // 获取图像资源
+let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')) // 获取图像资源。
 // 此处'app.media.startIcon'仅作示例，请开发者自行替换，否则imageArray创建失败会导致后续无法正常执行。
-let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2)  // 分片
+let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2)  // 分片。
 let splitBuff2 = imageArray.slice(imageArray.byteLength / 2)
 const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSource(new ArrayBuffer(imageArray.byteLength));
 imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLength).then(() => {
@@ -4300,9 +4300,9 @@ CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 ```ts
 const context: Context = getContext(this)
-let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')) // 获取图像资源
+let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')) // 获取图像资源。
 // 此处'app.media.startIcon'仅作示例，请开发者自行替换，否则imageArray创建失败会导致后续无法正常执行。
-let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2)  // 分片
+let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2)  // 分片。
 let splitBuff2 = imageArray.slice(imageArray.byteLength / 2)
 let sourceOptions: image.SourceOptions = { sourceDensity: 120};
 
@@ -4977,7 +4977,7 @@ import { image } from '@kit.ImageKit';
 
 async function CreatePicture() {
   let options: image.DecodingOptionsForPicture = {
-    desiredAuxiliaryPictures: [image.AuxiliaryPictureType.GAINMAP] //GAINMAP为需要解码的辅助图类型
+    desiredAuxiliaryPictures: [image.AuxiliaryPictureType.GAINMAP] //GAINMAP为需要解码的辅助图类型。 
   };
   let pictureObj: image.Picture = await imageSourceApi.createPicture(options);
   if (pictureObj != null) {
@@ -5137,6 +5137,128 @@ let decodingOptions: image.DecodingOptions = {
   index: 0
 };
 let pixelmap = imageSource.createPixelMapSync(decodingOptions);
+if (pixelmap != undefined) {
+  console.info('Succeeded in creating pixelMap object.');
+} else {
+  console.info('Failed to create pixelMap.');
+}
+```
+
+### createPixelMapUsingAllocator<sup>15+</sup>
+
+createPixelMapUsingAllocator(option?: DecodingOptions, allocatorType?: AllocatorType): Promise\<PixelMap\>
+
+使用指定的分配器根据图像解码参数异步创建PixelMap对象。使用Promise返回对象。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名        | 类型                                 | 必填 | 说明                     |
+| ------------- | ------------------------------------ | ---- | ------------------------ |
+| option        | [DecodingOptions](#decodingoptions7) | 否   | 解码参数。               |
+| allocatorType | [AllocatorType](#allocatortype15)   | 否   | 用于图像解码的内存类型。默认值为AllocatorType.AUTO。 |
+
+**返回值：**
+
+| 类型                             | 说明                        |
+| -------------------------------- | --------------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | Promise对象，返回PixelMap。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types;3.Parameter verification failed. |
+| 7700101  | Bad source.                                                  |
+| 7700102  | Unsupported mimetype.                                        |
+| 7700103  | Image too large.                                             |
+| 7700201  | Unsupported allocator type, e.g., use share memory to decode a HDR image as only DMA supported hdr metadata. |
+| 7700203  | Unsupported options, e.g., cannot convert image into desired pixel format. |
+| 7700301  | Decode failed.                                               |
+| 7700302  | Memory allocation failed.                                    |
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image';
+
+const context: Context = getContext(this);
+// 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+let filePath: string = context.filesDir + "/test.jpg";
+let imageSource = image.createImageSource(filePath);
+let decodingOptions: image.DecodingOptions = {
+  editable: true,
+  desiredSize: { width: 3072, height: 4096 },
+  rotate: 10,
+  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+  desiredRegion: { size: { height: 3072, width: 4096 }, x: 0, y: 0 },
+  index: 0
+};
+let pixelmap = await imageSource.createPixelMapUsingAllocator(decodingOptions, image.AllocatorType.AUTO);
+if (pixelmap != undefined) {
+  console.info('Succeeded in creating pixelMap object.');
+} else {
+  console.info('Failed to create pixelMap.');
+}
+```
+
+### createPixelMapUsingAllocatorSync<sup>15+</sup>
+
+createPixelMapUsingAllocatorSync(option?: DecodingOptions, allocatorType?: AllocatorType): PixelMap
+
+根据指定的分配器同步创建一个基于图像解码参数的PixelMap对象。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名        | 类型                                 | 必填 | 说明                     |
+| ------------- | ------------------------------------ | ---- | ------------------------ |
+| option        | [DecodingOptions](#decodingoptions7) | 否   | 解码参数。               |
+| allocatorType | [AllocatorType](#allocatortype15)   | 否   | 用于图像解码的内存类型。默认值为AllocatorType.AUTO。 |
+
+**返回值：**
+
+| 类型                   | 说明                   |
+| ---------------------- | ---------------------- |
+| [PixelMap](#pixelmap7) | 用于同步返回创建结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types;3.Parameter verification failed. |
+| 7700101  | Bad source.                                                  |
+| 7700102  | Unsupported mimetype.                                        |
+| 7700103  | Image too large.                                             |
+| 7700201  | Unsupported allocator type, e.g., use share memory to decode a HDR image as only DMA supported hdr metadata. |
+| 7700203  | Unsupported options, e.g., cannot convert image into desired pixel format. |
+| 7700301  | Decode failed.                                               |
+| 7700302  | Memory allocation failed.                                    |
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image';
+
+const context: Context = getContext(this);
+// 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+let filePath: string = context.filesDir + "/test.jpg";
+let imageSource = image.createImageSource(filePath);
+let decodingOptions: image.DecodingOptions = {
+  editable: true,
+  desiredSize: { width: 3072, height: 4096 },
+  rotate: 10,
+  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+  desiredRegion: { size: { height: 3072, width: 4096 }, x: 0, y: 0 },
+  index: 0
+};
+let pixelmap = imageSource.createPixelMapUsingAllocatorSync(decodingOptions, image.AllocatorType.AUTO);
 if (pixelmap != undefined) {
   console.info('Succeeded in creating pixelMap object.');
 } else {
@@ -5685,6 +5807,7 @@ const context: Context = getContext();
 let filePath: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.packToData(imageSourceApi, packOpts)
   .then((data: ArrayBuffer) => {
     console.info('Succeeded in packing the image.');
@@ -5740,10 +5863,11 @@ packToData(source: PixelMap, options: PackingOption): Promise\<ArrayBuffer>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
 let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+  const imagePackerApi: image.ImagePacker = image.createImagePacker();
   imagePackerApi.packToData(pixelMap, packOpts)
     .then((data: ArrayBuffer) => {
       console.info('Succeeded in packing the image.');
@@ -5801,7 +5925,7 @@ async function Packing() {
   let imageSource: image.ImageSource = image.createImageSource(rawFile.buffer as ArrayBuffer, ops);
   let commodityPixelMap: image.PixelMap = await imageSource.createPixelMap();
   let pictureObj: image.Picture = image.createPicture(commodityPixelMap);
-
+  const imagePackerApi: image.ImagePacker = image.createImagePacker();
   let funcName = "Packing";
   if (imagePackerApi != null) {
     let opts: image.PackingOption = {
@@ -5851,6 +5975,7 @@ const context: Context = getContext();
 let filePath: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
+const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.packing(imageSourceApi, packOpts, (err: BusinessError, data: ArrayBuffer) => {
   if (err) {
     console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
@@ -5897,6 +6022,7 @@ const context: Context = getContext();
 let filePath: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.packing(imageSourceApi, packOpts)
   .then((data: ArrayBuffer) => {
     console.info('Succeeded in packing the image.');
@@ -5935,10 +6061,11 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
 let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+  const imagePackerApi: image.ImagePacker = image.createImagePacker();
   imagePackerApi.packing(pixelMap, packOpts, (err: BusinessError, data: ArrayBuffer) => {
     if (err) {
       console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
@@ -5986,10 +6113,11 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
 let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+  const imagePackerApi: image.ImagePacker = image.createImagePacker();
   imagePackerApi.packing(pixelMap, packOpts)
     .then((data: ArrayBuffer) => {
       console.info('Succeeded in packing the image.');
@@ -6022,6 +6150,7 @@ ArkTS有内存回收机制，ImagePacker对象不调用release方法，内存最
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.release((err: BusinessError)=>{
   if (err) {
     console.error(`Failed to release image packaging.code ${err.code},message is ${err.message}`);
@@ -6052,6 +6181,7 @@ ArkTS有内存回收机制，ImagePacker对象不调用release方法，内存最
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.release().then(() => {
   console.info('Succeeded in releasing image packaging.');
 }).catch((error: BusinessError) => {
@@ -6216,7 +6346,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
 let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
 const context: Context = getContext(this);
 const path: string = context.filesDir + "/pixel_map.jpg";
@@ -6281,7 +6411,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
 let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
 const context: Context = getContext(this);
 const path: string = context.filesDir + "/pixel_map.jpg";
@@ -6348,6 +6478,7 @@ async function PackToFile() {
   let pictureObj: image.Picture = image.createPicture(commodityPixelMap);
 
   let funcName = "PackToFile";
+  const imagePackerApi: image.ImagePacker = image.createImagePacker();
   if (imagePackerApi != null) {
     const context: Context = getContext();
     const filePath: string = context.filesDir + "/test.jpg";
@@ -6406,7 +6537,7 @@ async function CreateAuxiliaryPicture() {
   let funcName = "CreateAuxiliaryPicture";
   const context = getContext();
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); //需要支持hdr的图片
+  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); //需要支持hdr的图片。
   let auxBuffer: ArrayBuffer = rawFile.buffer as ArrayBuffer;
   let auxSize: Size = {
     height: 180,
@@ -6469,7 +6600,7 @@ import { image } from '@kit.ImageKit';
 async function WritePixelsFromBuffer() {
   const context = getContext();
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); //需要支持hdr的图片
+  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); //需要支持hdr的图片。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -6519,7 +6650,7 @@ import { image } from '@kit.ImageKit';
 async function ReadPixelsToBuffer() {
   const context = getContext();
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); //需要支持hdr的图片
+  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); //需要支持hdr的图片。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -6607,7 +6738,7 @@ import { image } from '@kit.ImageKit';
 async function SetAuxPictureObjMetadata() {
   const exifContext = getContext();
   const exifResourceMgr = exifContext.resourceManager;
-  const exifRawFile = await exifResourceMgr.getRawFileContent("exif.jpg");//图片包含exif metadata
+  const exifRawFile = await exifResourceMgr.getRawFileContent("exif.jpg");//图片包含exif metadata。
   let exifOps: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -6832,7 +6963,7 @@ import { image } from '@kit.ImageKit';
 async function GetProperties() {
   const context = getContext();
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); //图片包含exif metadata
+  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); //图片包含exif metadata。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -6891,7 +7022,7 @@ import { image } from '@kit.ImageKit';
 async function SetProperties() {
   const context = getContext();
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); //图片包含exif metadata
+  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); //图片包含exif metadata。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -6939,7 +7070,7 @@ import { image } from '@kit.ImageKit';
 async function GetAllProperties() {
   const context = getContext();
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); //图片包含exif metadata
+  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); //图片包含exif metadata。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -6994,7 +7125,7 @@ import { image } from '@kit.ImageKit';
 async function clone() {
   const context = getContext();
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); //图片包含exif metadata
+  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); //图片包含exif metadata。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -7317,7 +7448,7 @@ off(type: 'imageArrival', callback?: AsyncCallback\<void>): void
 
 ```ts
 let callbackFunc = ()=>{
-    // do something
+    // do something.
 }
 receiver.on('imageArrival', callbackFunc)
 receiver.off('imageArrival', callbackFunc)
@@ -7544,7 +7675,7 @@ queueImage(interface: Image, callback: AsyncCallback\<void>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 creator.dequeueImage().then((img: image.Image) => {
-  //绘制图片
+  //绘制图片。
   img.getComponent(4).then((component : image.Component) => {
     let bufferArr: Uint8Array = new Uint8Array(component.byteBuffer);
     for (let i = 0; i < bufferArr.length; i += 4) {
@@ -7591,7 +7722,7 @@ queueImage(interface: Image): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 creator.dequeueImage().then((img: image.Image) => {
-  //绘制图片
+  //绘制图片。
   img.getComponent(4).then((component: image.Component) => {
     let bufferArr: Uint8Array = new Uint8Array(component.byteBuffer);
     for (let i = 0; i < bufferArr.length; i += 4) {
@@ -7658,7 +7789,7 @@ off(type: 'imageRelease', callback?: AsyncCallback\<void>): void
 
 ```ts
 let callbackFunc = ()=>{
-    // do something
+    // do something.
 }
 creator.on('imageRelease', callbackFunc)
 creator.off('imageRelease', callbackFunc)
@@ -7916,18 +8047,18 @@ img.release().then(() => {
 | 名称                   |   值   | 说明              |
 | ---------------------- | ------ | ----------------- |
 | UNKNOWN                | 0      | 未知格式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。        |
-| ARGB_8888<sup>16+</sup> | 1 | 格式为ARGB_8888 。 该格式当前仅支持PixelMap的接口。|
-| RGB_565                | 2      | 格式为RGB_565。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。     |
-| RGBA_8888              | 3      | 格式为RGBA_8888。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| BGRA_8888<sup>9+</sup> | 4      | 格式为BGRA_8888。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| RGB_888<sup>9+</sup>   | 5      | 格式为RGB_888。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
-| ALPHA_8<sup>9+</sup>   | 6      | 格式为ALPHA_8。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
-| RGBA_F16<sup>9+</sup>  | 7      | 格式为RGBA_F16。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。  |
-| NV21<sup>9+</sup>      | 8      | 格式为NV21。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。      |
-| NV12<sup>9+</sup>      | 9      | 格式为NV12。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。      |
-| RGBA_1010102<sup>12+</sup> | 10 | 格式为RGBA_1010102 |
-| YCBCR_P010<sup>12+</sup> | 11 | 格式为YCBCR_P010 |
-| YCRCB_P010<sup>12+</sup> | 12 | 格式为YCRCB_P010 |
+| ARGB_8888<sup>16+</sup> | 1 | 颜色信息由透明度与R（Red），G（Green），B（Blue）四部分组成，每个部分占8位，总共占32位。 该格式当前仅支持PixelMap的接口。|
+| RGB_565                | 2      | 颜色信息由R（Red），G（Green），B（Blue）三部分组成，R占5位，G占6位，B占5位，总共占16位。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。     |
+| RGBA_8888              | 3      | 颜色信息由R（Red），G（Green），B（Blue）与透明度四部分组成，每个部分占8位，总共占32位。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| BGRA_8888<sup>9+</sup> | 4      | 颜色信息由B（Blue），G（Green），R（Red）与透明度四部分组成，每个部分占8位，总共占32位。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| RGB_888<sup>9+</sup>   | 5      | 颜色信息由R（Red），G（Green），B（Blue）三部分组成，每个部分占8位，总共占24位。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
+| ALPHA_8<sup>9+</sup>   | 6      | 颜色信息仅包含透明度，每个像素占8位。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
+| RGBA_F16<sup>9+</sup>  | 7      | 颜色信息由R（Red），G（Green），B（Blue）与透明度四部分组成，每个部分占16位，总共占64位。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。  |
+| NV21<sup>9+</sup>      | 8      | 颜色信息由亮度分量Y和交错排列的色度分量V和U组成，其中Y分量占8位，UV分量因4：2：0采样平均占4位，总共平均占12位。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。      |
+| NV12<sup>9+</sup>      | 9      | 颜色信息由亮度分量Y和交错排列的色度分量U和V组成，其中Y分量占8位，UV分量因4：2：0采样平均占4位，总共平均占12位。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。      |
+| RGBA_1010102<sup>12+</sup> | 10 | 颜色信息由R（Red），G（Green），B（Blue）与透明度四部分组成，其中R、G、B分别占10位，透明度占2位，总共占32位。 |
+| YCBCR_P010<sup>12+</sup> | 11 | 颜色信息由亮度分量Y和色度分量Cb与Cr组成，每个分量有效10位，实际存储时，Y平面每个像素占16位数据（10位有效），UV平面交错排列，每4个像素占32位数据（每色度分量10位有效），平均有效占15位。 
+| YCRCB_P010<sup>12+</sup> | 12 | 颜色信息由亮度分量Y和色度分量Cr与Cb组成，每个分量有效10位，实际存储时，Y平面每个像素占16位数据（10位有效），UV平面交错排列，每4个像素占32位数据（每色度分量10位有效），平均有效占15位。  |
 
 ## AlphaType<sup>9+</sup>
 
@@ -8043,8 +8174,8 @@ PixelMap的初始化选项。
 | sampleSize         | number                             | 否   | 是   | 缩略图采样大小，默认值为1。当前只能取1。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | rotate             | number                             | 否   | 是   | 旋转角度。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
 | editable           | boolean                            | 否   | 是   | 是否可编辑。默认值为false。当取值为false时，图片不可二次编辑，如writepixels操作将失败。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。  |
-| desiredSize        | [Size](#size)                      | 否   | 是   | 期望输出大小。默认值为空。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
-| desiredRegion      | [Region](#region8)                 | 否   | 是   | 解码区域。默认值为空。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
+| desiredSize        | [Size](#size)                      | 否   | 是   | 期望输出大小，该值均为正整数，若与原尺寸比例不一致，则会进行拉伸/缩放到指定尺寸，默认值为空。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
+| desiredRegion      | [Region](#region8)                 | 否   | 是   | 解码图像中由Region指定的矩形区域，当原始图像很大而只需要图像的一部分时，可以设置该参数，默认值为空。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 否   | 是   | 解码的像素格式。默认值为RGBA_8888。仅支持设置：RGBA_8888、BGRA_8888和RGB_565。有透明通道图片格式不支持设置RGB_565，如PNG、GIF、ICO和WEBP。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | index              | number                             | 否   | 是   | 解码图片序号。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | fitDensity<sup>9+</sup> | number                        | 否   | 是   | 图像像素密度，单位为ppi。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
@@ -8074,8 +8205,8 @@ PixelMap的初始化选项。
 | 名称 | 类型          | 只读 | 可选| 说明         |
 | ---- | ------------- | ---- | ---- | ------------ |
 | size<sup>7+</sup> | [Size](#size) | 否   | 否   | 区域大小。   |
-| x<sup>7+</sup>    | number        | 否   | 否  | 区域横坐标。 |
-| y<sup>7+</sup>    | number        | 否  | 否  | 区域纵坐标。 |
+| x<sup>7+</sup>    | number        | 否   | 否  | 区域左上角横坐标。 |
+| y<sup>7+</sup>    | number        | 否  | 否  | 区域左上角纵坐标。 |
 
 ## PackingOption
 
@@ -8482,7 +8613,22 @@ PixelMap使用的HDR元数据值类型，和[HdrMetadataKey](#hdrmetadatakey12)�
 | MEDIUM              | 2      | 双线性插值算法，同时开启Mipmap。缩小图片时建议使用。   |
 | HIGH                | 3      | 三次插值算法。   |
 
+## AllocatorType<sup>15+</sup>
+
+枚举，用于图像解码的内存类型。
+
+**原子化服务API**：从API version 15 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称         | 值   | 说明                               |
+| ------------ | ---- | ---------------------------------- |
+| AUTO         | 0    | 系统决定内存申请方式。     |
+| DMA          | 1    | 使用DMA内存申请方式。            |
+| SHARE_MEMORY | 2    | 使用SHARE_MEMORY的内存申请方式。 |
+
 ## 补充说明
+
 ### SVG标签说明
 
 从API version 10开始支持SVG标签，使用版本为(SVG) 1.1，SVG文件需添加xml声明，应以“<?xml”开头，并且SVG标签需设置width，height。当前支持的标签列表有：

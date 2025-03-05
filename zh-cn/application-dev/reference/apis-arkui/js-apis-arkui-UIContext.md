@@ -32,6 +32,7 @@ getFont(): Font
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFont();
 ```
@@ -53,6 +54,7 @@ getComponentUtils(): ComponentUtils
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getComponentUtils();
 ```
@@ -75,6 +77,7 @@ getUIInspector(): UIInspector
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getUIInspector();
 ```
@@ -97,6 +100,7 @@ getUIObserver(): UIObserver
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getUIObserver();
 ```
@@ -119,6 +123,7 @@ getMediaQuery(): MediaQuery
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getMediaQuery();
 ```
@@ -141,6 +146,7 @@ getRouter(): Router
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getRouter();
 ```
@@ -163,6 +169,7 @@ getPromptAction(): PromptAction
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getPromptAction();
 ```
@@ -185,6 +192,7 @@ getOverlayManager(): OverlayManager
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getOverlayManager();
 ```
@@ -213,6 +221,7 @@ setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.setOverlayManagerOptions({ renderRootOverlay: true });
 ```
@@ -235,6 +244,7 @@ getOverlayManagerOptions(): OverlayManagerOptions
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getOverlayManagerOptions();
 ```
@@ -487,6 +497,7 @@ getFrameNodeById(id: string): FrameNode | null
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFrameNodeById("TestNode")
 ```
@@ -519,6 +530,7 @@ getAttachedFrameNodeById(id: string): FrameNode | null
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getAttachedFrameNodeById("TestNode")
 ```
@@ -690,6 +702,7 @@ showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButto
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.showAlertDialog(
   {
@@ -730,6 +743,7 @@ showActionSheet(value: ActionSheetOptions): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.showActionSheet({
   title: 'ActionSheet title',
@@ -787,6 +801,7 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 let selectedDate: Date = new Date("2010-1-1")
 uiContext.showDatePickerDialog({
@@ -971,6 +986,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { AnimatorOptions, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -1000,6 +1016,59 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 }
 ```
 
+### createAnimator<sup>16+</sup>
+
+createAnimator(options: AnimatorOptions | SimpleAnimatorOptions): AnimatorResult
+
+创建animator动画结果对象（AnimatorResult）。与[createAnimator](#createanimator)相比，新增对[SimpleAnimatorOptions](js-apis-animator.md#simpleanimatoroptions16)类型入参的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| options | [AnimatorOptions](js-apis-animator.md#animatoroptions) \| [SimpleAnimatorOptions](js-apis-animator.md#simpleanimatoroptions16) | 是    | 定义动画选项。 |
+
+**返回值：**
+
+| 类型                                       | 说明            |
+| ---------------------------------------- | ------------- |
+| [AnimatorResult](js-apis-animator.md#animatorresult) | Animator结果接口。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+
+**示例：**
+
+```ts
+import { SimpleAnimatorOptions, window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+// used in UIAbility
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    if (err.code) {
+      hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+      return;
+    }
+    hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    let uiContext = windowStage.getMainWindowSync().getUIContext();
+    let options: SimpleAnimatorOptions = new SimpleAnimatorOptions(100, 200).duration(2000);
+    uiContext.createAnimator(options);
+  });
+}
+```
+
 ### runScopedTask
 
 runScopedTask(callback: () => void): void
@@ -1018,6 +1087,7 @@ runScopedTask(callback: () => void): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.runScopedTask(
   () => {
@@ -1045,6 +1115,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -1083,6 +1154,7 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -1123,6 +1195,7 @@ getAtomicServiceBar(): Nullable\<AtomicServiceBar>
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -1157,6 +1230,7 @@ getDragController(): DragController
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getDragController();
 ```
@@ -1196,6 +1270,7 @@ getFocusController(): FocusController
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFocusController();
 ```
@@ -1232,6 +1307,7 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFilteredInspectorTree(['id', 'src', 'content']);
 ```
@@ -1271,6 +1347,7 @@ getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getFilteredInspectorTreeById('testId', 0, ['id', 'src', 'content']);
 ```
@@ -1293,6 +1370,7 @@ getCursorController(): CursorController
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.CursorController();
 ```
@@ -1315,6 +1393,7 @@ getContextMenuController(): ContextMenuController
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getContextMenuController();
 ```
@@ -1337,6 +1416,7 @@ getMeasureUtils(): MeasureUtils
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getMeasureUtils();
 ```
@@ -1359,6 +1439,7 @@ getComponentSnapshot(): ComponentSnapshot
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 uiContext.getComponentSnapshot();
 ```
@@ -1387,7 +1468,8 @@ vp2px(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.vp2px(200);
 ```
 
@@ -1415,7 +1497,8 @@ px2vp(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.px2vp(200);
 ```
 
@@ -1443,7 +1526,8 @@ fp2px(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.fp2px(200);
 ```
 
@@ -1471,7 +1555,8 @@ px2fp(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.px2fp(200);
 ```
 
@@ -1499,7 +1584,8 @@ lpx2px(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.lpx2px(200);
 ```
 
@@ -1527,7 +1613,8 @@ px2lpx(value : number) : number
 
 **示例：**
 
-```tx
+<!--code_no_check-->
+```ts
 uiContext.px2lpx(200);
 ```
 
@@ -1799,6 +1886,8 @@ requireDynamicSyncScene(id: string): Array&lt;DynamicSyncScene&gt;
 | Array&lt;DynamicSyncScene&gt; | 获取DynamicSyncScene对象数组。 |
 
 **示例：**
+
+<!--code_no_check-->
 ```ts
 uiContext.DynamicSyncScene("dynamicSyncScene")
 ```
@@ -2209,6 +2298,8 @@ isFollowingSystemFontScale(): boolean
 | boolean | 当前UI上下文是否跟随系统字体倍率。 |
 
 **示例：**
+
+<!--code_no_check-->
 ```ts
 uiContext.isFollowingSystemFontScale()
 ```
@@ -2230,6 +2321,8 @@ getMaxFontScale(): number
 | number | 当前UI上下文最大字体倍率。 |
 
 **示例：**
+
+<!--code_no_check-->
 ```ts
 uiContext.getMaxFontScale()
 ```
@@ -2495,6 +2588,10 @@ notifyDragStartRequest(requestStatus: draController.DragStartRequestStatus): voi
 **示例：**
 
 ```ts
+import { unifiedDataChannel } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
+import { dragController } from "@kit.ArkUI";
+
 // xxx.ets
 @Entry
 @Component
@@ -2557,6 +2654,60 @@ struct NormalEts {
 }
 ```
 
+### dispatchKeyEvent<sup>15+</sup>
+
+按键事件应分发给指定的组件。为了确保行为的可预测性，目标组件必须位于分发组件的子树中。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                          | 必填 | 说明               |
+| ------ | ----------------------------- | ---- | ------------------ |
+| node  | number \| string | 是   | 组件的id或者节点UniqueID。 |
+| event  |[KeyEvent](./arkui-ts/ts-universal-events-key.md#keyevent对象说明) | 是   | KeyEvent对象。 |
+
+**示例：**
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Row() {
+        Button('Button1').id('Button1').onKeyEvent((event) => {
+          console.log("Button1");
+          return true
+        })
+        Button('Button2').id('Button2').onKeyEvent((event) => {
+          console.log("Button2");
+          return true
+        })
+      }
+      .width('100%')
+      .height('100%')
+      .id('Row1')
+      .onKeyEventDispatch((event) => {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Button1');
+        return context.dispatchKeyEvent('Button1', event);
+      })
+
+    }
+    .height('100%')
+    .width('100%')
+    .onKeyEventDispatch((event) => {
+      if (event.type == KeyType.Down) {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Row1');
+        return context.dispatchKeyEvent('Row1', event);
+      }
+      return true;
+    })
+  }
+}
+```
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。
@@ -2579,6 +2730,7 @@ registerFont(options: font.FontOptions): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { Font } from '@kit.ArkUI';
 
@@ -2610,6 +2762,7 @@ getSystemFontList(): Array\<string>
 
 **示例：** 
 
+<!--code_no_check-->
 ```ts
 import { Font } from '@kit.ArkUI';
 
@@ -2643,6 +2796,7 @@ getFontByName(fontName: string): font.FontInfo
 
 **示例：** 
 
+<!--code_no_check-->
 ```ts
 import { Font } from '@kit.ArkUI';
 
@@ -2704,6 +2858,7 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { ComponentUtils } from '@kit.ArkUI';
 
@@ -2741,6 +2896,7 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { UIInspector } from '@kit.ArkUI';
 
@@ -2783,6 +2939,7 @@ on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { UIObserver } from '@kit.ArkUI';
 
@@ -2811,6 +2968,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 
 **示例：** 
 
+<!--code_no_check-->
 ```ts
 import { UIObserver } from '@kit.ArkUI';
 
@@ -2838,6 +2996,7 @@ on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callbac
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { UIObserver } from '@kit.ArkUI';
 
@@ -2867,6 +3026,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { UIObserver } from '@kit.ArkUI';
 
@@ -3996,6 +4156,7 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { MediaQuery } from '@kit.ArkUI';
 
@@ -5382,6 +5543,7 @@ getState(): router.RouterState
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 
@@ -5416,6 +5578,7 @@ getStateByIndex(index: number): router.RouterState | undefined
 
 **示例：** 
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 
@@ -5452,6 +5615,7 @@ getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#outerst
 
 **示例：** 
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 let router: Router = uiContext.getRouter();
@@ -5491,6 +5655,7 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5519,6 +5684,7 @@ hideAlertBeforeBackPage(): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { Router } from '@kit.ArkUI';
 
@@ -5543,6 +5709,8 @@ getParams(): Object
 | object | 发起跳转的页面往当前页传入的参数。 |
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 import { Router } from '@kit.ArkUI';
@@ -5613,6 +5781,7 @@ showToast(options: promptAction.ShowToastOptions): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5758,6 +5927,8 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5824,6 +5995,7 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 
@@ -5878,6 +6050,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction, promptAction  } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5938,6 +6111,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction,promptAction  } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5997,6 +6171,7 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 
@@ -6998,94 +7173,11 @@ closePopup\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt
 
 请参考[openPopup](#openpopup16)示例。
 
-## DragController<sup>11+</sup>
-以下API需先使用UIContext中的[getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取UIContext实例，再通过此实例调用对应方法。
-
-### executeDrag<sup>11+</sup>
-
-executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo, callback: AsyncCallback&lt;dragController.DragEventParam&gt;): void
-
-主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过回调返回拖拽事件结果。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。 |
-| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo) | 是   | 拖拽信息。                                                   |
-| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[dragController.DragEventParam](js-apis-arkui-dragController.md#drageventparam12)&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。 |
-
-**错误码：** 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
-
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
-| 100001   | Internal handling failed. |
-
-**示例：**
-
-```ts
-import { dragController } from "@kit.ArkUI"
-import { unifiedDataChannel } from '@kit.ArkData';
-
-@Entry
-@Component
-struct DragControllerPage {
-  @Builder DraggingBuilder() {
-    Column() {
-      Text("DraggingBuilder")
-    }
-    .width(100)
-    .height(100)
-    .backgroundColor(Color.Blue)
-  }
-
-  build() {
-    Column() {
-      Button('touch to execute drag')
-        .onTouch((event?:TouchEvent) => {
-          if(event){
-            if (event.type == TouchType.Down) {
-              let text = new unifiedDataChannel.Text()
-              let unifiedData = new unifiedDataChannel.UnifiedData(text)
-
-              let dragInfo: dragController.DragInfo = {
-                pointerId: 0,
-                data: unifiedData,
-                extraParams: ''
-              }
-              class tmp{
-                event:DragEvent|undefined = undefined
-                extraParams:string = ''
-              }
-              let eve:tmp = new tmp()
-              dragController.executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => {
-                if(eve.event){
-                  if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                  // ...
-                  } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
-                  // ...
-                  }
-                }
-              })
-            }
-          }
-        })
-    }
-  }
-}
-```
-
 ### openMenu<sup>16+</sup>
 
 openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: MenuOptions): Promise&lt;void&gt;
 
-创建并弹出以content作为内容的menu弹窗。通过该接口弹出的menu弹窗，其内容样式完全按照content中设置的样式显示。使用Promise异步回调。
+创建并弹出以content作为内容的menu弹窗。使用Promise异步回调。
 
 > **说明：**
 >
@@ -7093,6 +7185,7 @@ openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, o
 >
 > 2. 由于[updateMenu](#updatemenu16)和[closeMenu](#closemenu16)依赖content去更新或者关闭指定的menu弹窗，开发者需自行维护传入的content。
 >
+> 3. 如果在wrapBuilder中包含其他组件（例如：[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)、[Chip](arkui-ts/ohos-arkui-advanced-Chip.md#chip)组件），则ComponentContent应采用带有四个参数的构造函数[constructor](./js-apis-arkui-ComponentContent.md#constructor-2)，其中options参数应传递{ nestingBuilderSupported: true }。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -7110,7 +7203,7 @@ openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, o
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    无返回结果的Promise对象。 |
+|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
 
 **错误码：**
 
@@ -7186,7 +7279,7 @@ updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOption
 
 > **说明：**
 >
-> 不支持更新preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。
+> 不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。
 >
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
@@ -7198,14 +7291,14 @@ updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOption
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
 | content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | menu弹窗中显示的组件内容。 |
-| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 是 | menu弹窗样式。<br/>**说明：** <br/>不支持更新preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。 |
+| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 是 | menu弹窗样式。<br/>**说明：** <br/>不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。 |
 | partialUpdate | boolean | 否 | menu弹窗更新方式，默认值为false。<br/>**说明：** <br/>1. true为增量更新，保留当前值，更新options中的指定属性。 <br/>2. false为全量更新，除options中的指定属性，其他属性恢复默认值。 |
 
 **返回值：**
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    无返回结果的Promise对象。 |
+|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
 
 **错误码：**
 
@@ -7297,7 +7390,7 @@ closeMenu\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    无返回结果的Promise对象。 |
+|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
 
 **错误码：**
 
@@ -7361,6 +7454,89 @@ struct Index {
           let context = this.getUIContext()
           const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
           doSomething(context, this.getUniqueId(), contentNode)
+        })
+    }
+  }
+}
+```
+
+## DragController<sup>11+</sup>
+以下API需先使用UIContext中的[getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取UIContext实例，再通过此实例调用对应方法。
+
+### executeDrag<sup>11+</sup>
+
+executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo, callback: AsyncCallback&lt;dragController.DragEventParam&gt;): void
+
+主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过回调返回拖拽事件结果。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。 |
+| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo) | 是   | 拖拽信息。                                                   |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[dragController.DragEventParam](js-apis-arkui-dragController.md#drageventparam12)&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。 |
+
+**错误码：** 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal handling failed. |
+
+**示例：**
+
+```ts
+import { dragController } from "@kit.ArkUI"
+import { unifiedDataChannel } from '@kit.ArkData';
+
+@Entry
+@Component
+struct DragControllerPage {
+  @Builder DraggingBuilder() {
+    Column() {
+      Text("DraggingBuilder")
+    }
+    .width(100)
+    .height(100)
+    .backgroundColor(Color.Blue)
+  }
+
+  build() {
+    Column() {
+      Button('touch to execute drag')
+        .onTouch((event?:TouchEvent) => {
+          if(event){
+            if (event.type == TouchType.Down) {
+              let text = new unifiedDataChannel.Text()
+              let unifiedData = new unifiedDataChannel.UnifiedData(text)
+
+              let dragInfo: dragController.DragInfo = {
+                pointerId: 0,
+                data: unifiedData,
+                extraParams: ''
+              }
+              class tmp{
+                event:DragEvent|undefined = undefined
+                extraParams:string = ''
+              }
+              let eve:tmp = new tmp()
+              dragController.executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => {
+                if(eve.event){
+                  if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                  // ...
+                  } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
+                  // ...
+                  }
+                }
+              })
+            }
+          }
         })
     }
   }
@@ -7729,6 +7905,14 @@ cancelDataLoading(key: string): void
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | key | string | 是   | 拖拽数据的标识，用于区分每次拖拽。key可通过startDataLoading接口获取。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. |
 
 ## OverlayManager<sup>12+</sup>
 
@@ -9996,61 +10180,6 @@ struct MarqueeExample {
   }
 }
 ```
-## dispatchKeyEvent<sup>15+</sup>
-
-按键事件应分发给指定的组件。为了确保行为的可预测性，目标组件必须位于分发组件的子树中。
-
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名 | 类型                          | 必填 | 说明               |
-| ------ | ----------------------------- | ---- | ------------------ |
-| node  | number \| string | 是   | 组件的id或者节点UniqueID。 |
-| event  |[KeyEvent](./arkui-ts/ts-universal-events-key.md#keyevent对象说明) | 是   | KeyEvent对象。 |
-
-**示例：**
-
-```ts
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Row() {
-        Button('Button1').id('Button1').onKeyEvent((event) => {
-          console.log("Button1");
-          return true
-        })
-        Button('Button2').id('Button2').onKeyEvent((event) => {
-          console.log("Button2");
-          return true
-        })
-      }
-      .width('100%')
-      .height('100%')
-      .id('Row1')
-      .onKeyEventDispatch((event) => {
-        let context = this.getUIContext();
-        context.getFocusController().requestFocus('Button1');
-        return context.dispatchKeyEvent('Button1', event);
-      })
-
-    }
-    .height('100%')
-    .width('100%')
-    .onKeyEventDispatch((event) => {
-      if (event.type == KeyType.Down) {
-        let context = this.getUIContext();
-        context.getFocusController().requestFocus('Row1');
-        return context.dispatchKeyEvent('Row1', event);
-      }
-      return true;
-    })
-  }
-}
-```
-
 ## TextMenuController<sup>16+</sup>
 以下API需先使用UIContext中的[getTextMenuController()](js-apis-arkui-UIContext.md#gettextmenucontroller16)方法获取TextMenuController实例，再通过此实例调用对应方法。
 

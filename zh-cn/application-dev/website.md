@@ -344,6 +344,7 @@
               - [Sendable对象简介](arkts-utils/arkts-sendable.md)
               - [Sendable使用规则与约束](arkts-utils/sendable-constraints.md)
               - [异步锁](arkts-utils/arkts-async-lock-introduction.md)
+              - [异步等待](arkts-utils/arkts-condition-variable-introduction.md)
               - [ASON解析与生成](arkts-utils/ason-parsing-generation.md)
               - [共享容器](arkts-utils/arkts-collections-introduction.md)
               - [共享模块](arkts-utils/arkts-sendable-module.md)
@@ -986,7 +987,8 @@
           - [证书链对象的创建和校验](security/DeviceCertificateKit/create-verify-certchain-object.md)
         - 证书管理<!--certmanager-->
           - [证书管理概述](security/DeviceCertificateKit/certManager-overview.md)
-          - [证书管理开发指导](security/DeviceCertificateKit/certManager-guidelines.md)
+          - [应用证书凭据开发指导](security/DeviceCertificateKit/certManager-private-credential-guidelines.md)
+          - [CA证书开发指导](security/DeviceCertificateKit/certManager-ca-certs-guidelines.md)
           - [证书管理对话框开发指导](security/DeviceCertificateKit/certManagerDialog-guidelines.md)
       - Universal Keystore Kit（密钥管理服务）<!--huks-kit-->
         - [Universal Keystore Kit简介](security/UniversalKeystoreKit/huks-overview.md)
@@ -1153,9 +1155,20 @@
           - 应用账号<!--application-account-->
             - [管理应用账号](basic-services/account/manage-application-account.md)
         - USB服务<!--usb-->
-          - [USB服务开发概述](basic-services/usb/usb-overview.md)
+          <!--Del-->
+          - [USB服务简介](basic-services/usb/usb-overview.md)
           - [USB服务开发指导](basic-services/usb/usb-guidelines.md)
-          - [常见问题](basic-services/usb/../faqs/faqs-usb.md)
+          <!--DelEnd-->
+          - 开发USB服务<!--usb-dev-->
+            - [USB服务开发概述](basic-services/usb/usbManager/usbHost-overview.md)
+            - USB Host模式开发<!--usb-host-dev-->
+              - [USB设备管理](basic-services/usb/usbManager/usbHost/deviceManager.md)
+              - [USB控制传输](basic-services/usb/usbManager/usbHost/controlTransfer.md)
+              - [USB中断传输](basic-services/usb/usbManager/usbHost/interruptTransfer.md)
+              - [USB批量传输](basic-services/usb/usbManager/usbHost/bulkTransfer.md)
+              - [USB同步传输](basic-services/usb/usbManager/usbHost/isochronousTransfer.md)
+          - [常见问题](basic-services/usb/faqs-usb.md)
+          - [术语](basic-services/usb/usb-glossary.md)
         <!--Del-->
         - 升级服务<!--update-->
           - [示例服务器开发概述](basic-services/update/sample-server-overview.md)
@@ -1192,9 +1205,17 @@
     - 硬件<!--system-hardware-->
       - Driver Development Kit（驱动开发服务）<!--driver-development-kit-->
         - [Driver Development Kit简介](device/driver/driverdevelopment-overview.md)
-        - [外设扩展驱动客户端开发指导](device/driver/externaldevice-guidelines.md)
-        - [外设扩展驱动开发指导](device/driver/driverextensionability.md)
+        - [环境准备](device/driver/environmental-preparation.md)
+        - 扩展外设基础驱动开发 <!--Development-of-basic-drivers-for-extended-peripherals-->
+          - [开发无UI界面基础驱动](device/driver/driverextensionability.md)
+          - [开发带UI界面基础驱动](device/driver/externaldevice-guidelines.md)
+        - 扩展外设专项驱动开发 <!--Specialized-driver-development-for-extended-peripherals-->
+          - [开发适用USB协议的设备驱动](device/driver/usb-ddk-guidelines.md)
+          - [开发适用HID协议的设备驱动](device/driver/hid-ddk-guidelines.md)
+          - [开发适用串口协议的设备驱动](device/driver/usb-serial-ddk-guidelines.md)
+          - [开发使用SCSI协议的设备驱动](device/driver/scsi-peripheral-ddk-guidelines.md)
         - [常见问题](device/driver/externaldevice-faqs.md)
+        - [扩展外设驱动开发术语](device/driver/terms.md)
       - Multimodal Awareness Kit（多模态融合感知服务）<!--multimodal-awareness-kit-->
         - [Multimodal Awareness Kit简介](device/stationary/multimodalawareness-kit-intro.md)
         - [Stationary开发指导](device/stationary/stationary-guidelines.md)
@@ -1242,6 +1263,9 @@
                 - [主线程超时事件介绍](dfx/hiappevent-watcher-mainthreadjank-events.md)
                 - [订阅主线程超时事件（ArkTS）](dfx/hiappevent-watcher-mainthreadjank-events-arkts.md)
                 - [订阅主线程超时事件（C/C++）](dfx/hiappevent-watcher-mainthreadjank-events-ndk.md)
+              - 任务执行超时事件<!--app-hicollie-events-->
+                - [任务执行超时事件介绍](dfx/hiappevent-watcher-apphicollie-events.md)
+                - [任务执行超时事件（C/C++）](dfx/hiappevent-watcher-apphicollie-events-ndk.md)
         <!--Del-->
           - [事件上报](dfx/hiappevent-event-reporting.md)
         <!--DelEnd-->
@@ -1359,7 +1383,6 @@
         - [时域可分层视频编码](media/avcodec/video-encoding-temporal-scalability.md)
         - [典型场景的视频编码配置](media/avcodec/video-encoding-configuration-typical-scenarios.md)
         - [视频解码](media/avcodec/video-decoding.md)
-        - [视频可变帧率](media/avcodec/video-variable-refreshrate.md)
         - [创建视频解码器和NativeWindow初始化并行](media/avcodec/parallel-decoding-nativeWindow.md)
         - [视频可变帧率](media/avcodec/video-variable-refreshrate.md)
       - 媒体数据封装与解析<!--file-muxing-demuxing-->
@@ -1732,11 +1755,6 @@
         - [QOS开发指导](napi/qos-guidelines.md)
       - 内存管理<!--memory-management-->
         - [Purgeable memory开发指导](napi/purgeable-memory-guidelines.md)
-      - 设备管理<!--device-management-->
-        - [USB DDK开发指导](napi/usb-ddk-guidelines.md)
-        - [HID DDK开发指导](napi/hid-ddk-guidelines.md)
-        - [USB SERIAL DDK开发指导](napi/usb-serial-ddk-guidelines.md)
-        - [SCSI Peripheral DDK开发指南](napi/scsi-peripheral-ddk-guidelines.md)
       - 包管理<!--bundle-management-->
         - [NativeBundle开发指导](napi/native-bundle-guidelines.md)
     - 调试和性能分析<!--debugging-profiling-->
@@ -3843,30 +3861,30 @@
         - C API<!--performance-analysis-c-->
           - 模块<!--performance-analysis-module-->
             - [HiAppEvent](reference/apis-performance-analysis-kit/_hi_app_event.md)
+            - [HiCollie](reference/apis-performance-analysis-kit/_hi_collie.md)
             - [HiDebug](reference/apis-performance-analysis-kit/_hi_debug.md)
             - [HiLog](reference/apis-performance-analysis-kit/_hi_log.md)
             - [Hitrace](reference/apis-performance-analysis-kit/_hitrace.md)
-            - [HiCollie](reference/apis-performance-analysis-kit/_hi_hicollie.md)
           - 头文件<!--performance-analysis-headerfile-->
             - [hiappevent.h](reference/apis-performance-analysis-kit/hiappevent_8h.md)
             - [hiappevent_cfg.h](reference/apis-performance-analysis-kit/hiappevent__cfg_8h.md)
             - [hiappevent_event.h](reference/apis-performance-analysis-kit/hiappevent__event_8h.md)
             - [hiappevent_param.h](reference/apis-performance-analysis-kit/hiappevent__param_8h.md)
+            - [hicollie.h](reference/apis-performance-analysis-kit/hicollie_8h.md)
             - [hidebug.h](reference/apis-performance-analysis-kit/hidebug_8h.md)
             - [hidebug_type.h](reference/apis-performance-analysis-kit/hidebug__type_8h.md)
             - [log.h](reference/apis-performance-analysis-kit/log_8h.md)
             - [trace.h](reference/apis-performance-analysis-kit/trace_8h.md)
-            - [hicollie.h](reference/apis-performance-analysis-kit/hicollie_8h.md)
           - 结构体<!--performance-analysis-struct-->
             - [HiAppEvent_AppEventGroup](reference/apis-performance-analysis-kit/_hi_app_event___app_event_group.md)
             - [HiAppEvent_AppEventInfo](reference/apis-performance-analysis-kit/_hi_app_event___app_event_info.md)
+            - [HiCollie_DetectionParam](reference/apis-performance-analysis-kit/_hi_collie___detection_param.md)
+            - [HiCollie_SetTimerParam](reference/apis-performance-analysis-kit/_hi_collie___set_timer_param.md)
             - [HiDebug_MemoryLimit](reference/apis-performance-analysis-kit/_hi_debug___memory_limit.md)
             - [HiDebug_NativeMemInfo](reference/apis-performance-analysis-kit/_hi_debug___native_mem_info.md)
             - [HiDebug_SystemMemInfo](reference/apis-performance-analysis-kit/_hi_debug___system_mem_info.md)
             - [HiDebug_ThreadCpuUsage](reference/apis-performance-analysis-kit/_hi_debug___thread_cpu_usage.md)
             - [HiTraceId](reference/apis-performance-analysis-kit/_hi_trace_id.md)
-            - [HiCollie_DetectionParam](reference/apis-performance-analysis-kit/_hi_hicollie___detection_param.md)
-            - [HiCollie_SetTimerParam](reference/apis-performance-analysis-kit/_hi_hicollie___set_timer_param.md)
         - 错误码<!--performance-analysis-errcode-->
           - [Faultlogger错误码](reference/apis-performance-analysis-kit/errorcode-faultlogger.md)
           - [应用事件打点错误码](reference/apis-performance-analysis-kit/errorcode-hiappevent.md)
@@ -4133,7 +4151,7 @@
           - [ImageEffect_Size](reference/apis-image-kit/_image_effect___size.md)
           - [ImageProcessing_ColorSpaceInfo](reference/apis-image-kit/_image_processing___color_space_info.md)
       - 错误码<!--image-arkts-errcode-->
-        - [图片错误码](reference/apis-image-kit/errorcode-image.md)
+        - [Image错误码](reference/apis-image-kit/errorcode-image.md)
     - Media Kit（媒体服务）<!--media-api-->
       - ArkTS API<!--media-arkts-->
         - [@ohos.multimedia.media (媒体服务)](reference/apis-media-kit/js-apis-media.md)
@@ -4280,6 +4298,7 @@
           - [effect_types.h](reference/apis-arkgraphics2d/effect__types_8h.md)
           - [buffer_handle.h](reference/apis-arkgraphics2d/buffer__handle_8h.md)
           - [external_window.h](reference/apis-arkgraphics2d/external__window_8h.md)
+          - [buffer_common.h](reference/apis-arkgraphics2d/buffer__common_8h.md)
           - [native_buffer.h](reference/apis-arkgraphics2d/native__buffer_8h.md)
           - [native_display_soloist.h](reference/apis-arkgraphics2d/native__display__soloist_8h.md)
           - [native_image.h](reference/apis-arkgraphics2d/native__image_8h.md)

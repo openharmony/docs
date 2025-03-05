@@ -4315,18 +4315,6 @@
 
 **起始版本**：15
 
-### ohos.permission.SEND_REMOTE_MESSAGE
-
-允许应用通过Push服务发送远程消息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：16
-
 ### ohos.permission.STORAGE_MANAGER_CRYPT
 
 允许系统应用和系统服务调用接口完成加解密操作。
@@ -4565,6 +4553,80 @@
 **ACL使能**：true
 
 **起始版本**：16
+
+### ohos.permission.ACCESS_STARTUPGUIDE
+
+允许系统应用访问开机向导应用的普通数据、普通公共事件。
+
+仅手机、平板、2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.ANTIFRAUD_DETECT
+
+允许系统应用进行反诈检测。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：18
+
+### ohos.permission.ANTIFRAUD_PICTURE_DETECT
+
+允许系统应用进行图片换脸检测。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：18
+
+### ohos.permission.ANTIFRAUD_MODEL_DOWNLOAD
+
+允许系统应用使用模型下载相关接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：18
+
+### ohos.permission.ACCESS_APP_CLONE_DIR
+
+允许系统应用访问从其他设备复制的安装文件路径。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：18
+
+### ohos.permission.ACCESS_TRUST_LIST_OOBE_MANAGER
+
+允许应用管理在开机向导中可被拉起的应用名单。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：18
 
 ## system_grant，不允许ACL跨级申请
 
@@ -4835,6 +4897,54 @@
 **授权方式**：system_grant
 
 **ACL使能**：false
+
+**起始版本**：16
+
+### ohos.permission.ACCESS_USER_ACCOUNT_INFO
+
+允许系统应用获取账号提供的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：false
+
+**起始版本**：16
+
+### ohos.permission.ACCESS_DEVAUTH_CRED_MGR
+
+允许系统应用或系统服务访问设备互信认证SA的凭据管理模块。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.ACCESS_DEVAUTH_CRED_PRIVILEGE
+
+允许系统应用或系统服务访问设备互信认证SA的凭据管理模块和凭据认证模块并查询和认证其他业务凭据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.ACCESS_DEVAUTH_CRED_AUTH
+
+允许系统应用或系统服务访问设备互信认证SA的凭据认证模块。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
 
 **起始版本**：16
 

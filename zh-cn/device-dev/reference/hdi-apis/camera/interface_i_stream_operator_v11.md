@@ -32,7 +32,7 @@
 ### CommitStreams_V1_1()
 
 ```
-IStreamOperator::CommitStreams_V1_1 ([in] enum OperationMode_V1_1 mode, [in] unsigned char[] modeSetting )
+IStreamOperator::CommitStreams_V1_1 ([in] enum OperationMode_V1_1 mode, [in] unsigned char[] modeSetting)
 ```
 
 **描述**
@@ -87,7 +87,7 @@ NO_ERROR 表示执行成功。
 ### IsStreamsSupported_V1_1()
 
 ```
-IStreamOperator::IsStreamsSupported_V1_1 ([in] enum OperationMode_V1_1 mode, [in] unsigned char[] modeSetting, [in] struct StreamInfo_V1_1[] infos, [out] enum StreamSupportType type )
+IStreamOperator::IsStreamsSupported_V1_1 ([in] enum OperationMode_V1_1 mode, [in] unsigned char[] modeSetting, [in] struct StreamInfo_V1_1[] infos, [out] enum StreamSupportType type)
 ```
 
 **描述**

@@ -29,7 +29,7 @@
 ### CreateImageProcessSession()
 
 ```
-IImageProcessService::CreateImageProcessSession ([in] int userId, [in] IImageProcessCallback imageProcessCallback, [out] IImageProcessSession imageProcessSession )
+IImageProcessService::CreateImageProcessSession ([in] int userId, [in] IImageProcessCallback imageProcessCallback, [out] IImageProcessSession imageProcessSession)
 ```
 **描述**
 

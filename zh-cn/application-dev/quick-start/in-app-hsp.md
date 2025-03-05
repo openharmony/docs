@@ -36,13 +36,13 @@ MyApplication
 │   │   └── main
 │   │       ├── ets
 │   │       │   └── pages
-│   │       │       └── index.ets
-│   │       ├── resources
-│   │       └── module.json5
-│   ├── oh-package.json5
-│   ├── index.ets
-│   └── build-profile.json5 //模块级
-└── build-profile.json5     //工程级
+│   │       │       └── index.ets     //模块library的页面文件
+│   │       ├── resources             //模块library的资源目录
+│   │       └── module.json5          //模块library的配置文件
+│   ├── oh-package.json5              //模块级
+│   ├── index.ets                     //入口文件index.ets
+│   └── build-profile.json5           //模块级
+└── build-profile.json5               //工程级
 ```
 
 ## 开发
