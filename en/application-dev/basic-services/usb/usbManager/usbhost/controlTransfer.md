@@ -1,12 +1,12 @@
-# USB Bulk Transfer
+# USB Control Transfer
 
 ## When to Use
 
-Bulk transfer is used to transfer and receive a large amount of data without bandwidth or interval requirements, for example, file or image transfer. Devices such as printers and scanners support this type of transfer.
+The control transfer is used to obtain and set the device status, and control the device attribute status. You can determine whether the control transfer can read or write data based on the endpoint types supported by the device.
 
-## Environment Preparation
+## Preparing the Environment
 
-### Requirements
+### Environment Requirements
 
 - Development tool and configuration:
 
@@ -22,26 +22,27 @@ Bulk transfer is used to transfer and receive a large amount of data without ban
 
   HarmonyOS Device Connector (hdc) is a command-line tool for debugging. It can be used to interact with real devices or the Emulators on Windows, Linux, and macOS. For details about the configuration, see [hdc](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/hdc-V5).
 
-### Setting Up the Environment
+### Environment Setup
 
-- Download and install DevEco Studio on the PC. For details, see [Downloading Software](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-software-download-V5) and [Installing DevEco Studio](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-software-install-V5). The DevEco Studio version must be 4.1 or later.
+- Install [DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio) 4.1 or later on the PC.
 - Update the public-SDK to API version 16 or later. For details, see [Switching to Full SDK](https://gitee.com/openharmony/docs/blob/master/en/application-dev/faqs/full-sdk-switch-guide.md).
-- Install hdc on the PC. You can use it to interact with a real device or emulator on Windows, Linux, or macOS. For details, see [hdc](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/hdc-V5).
+- Install hdc on the PC. You can use it to interact with a real device or the Emulator on Windows, Linux, or macOS. For details, see [hdc](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/hdc-V5).
 - Use a USB cable to connect an OpenHarmony device to the PC.
 
 ## How to Develop
 
 ### Available APIs
 
-| API                                                                                                              | Description                   |
-|-------------------------------------------------------------------------------------------------------------------|-----------------------|
-| bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout ?: number): Promise&lt;number&gt;  | Performs bulk transfer.                |
+| API                                                      | Description    |
+| ------------------------------------------------------------ |--------|
+| usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, timeout?: number): Promise&lt;number&gt; | Performs control transfer. |
 
-For details about the APIs of device management and transfer modes, see [@ohos.usbManager (USB Manager)](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-usbManager.md).
+For details about the APIs of device management and transfer modes, see [@ohos.usbManager (USB Manager)](../../../../reference/apis-basic-services-kit/js-apis-usbManager.md).
 
 ### Development Procedure
 
-Connect a host to a device and use the **bulkTransfer** API to transfer data. The following steps describe how to implement a bulk transfer:
+Connect a host to a device and use the **usbControlTransfer** API to transfer data. The following steps describe how to implement a control transfer:
+
 
 1. Import modules.
 
@@ -50,10 +51,10 @@ Connect a host to a device and use the **bulkTransfer** API to transfer data. Th
    import { usbManager } from '@kit.BasicServicesKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
-   
+
 2. Obtain the USB device list.
-   
-    ```ts
+
+   ```ts
    // Obtain the USB device list.
    let deviceList : Array<usbManager.USBDevice> = usbManager.getDevices();
    /*
@@ -127,6 +128,7 @@ Connect a host to a device and use the **bulkTransfer** API to transfer data. Th
    // Open the device, and obtain the USB device pipe for data transfer.
    let pipe : usbManager.USBDevicePipe = usbManager.connectDevice(deviceList[0]);
    let interface1 : usbManager.USBInterface = deviceList[0].configs[0].interfaces[0];
+   
    /*
     Claim the corresponding interface from deviceList.
    interface1 must be one present in the device configuration.
@@ -138,34 +140,23 @@ Connect a host to a device and use the **bulkTransfer** API to transfer data. Th
 
     ```ts
     /*
-      Read data. Select the corresponding RX endpoint from deviceList for data transfer.
-    (endpoint.direction == 0x80); dataUint8Array indicates the data to read. The data type is Uint8Array.
+      Construct control transfer parameters.
     */
-    let inEndpoint : usbManager.USBEndpoint = interface1.endpoints[2];
-    let outEndpoint : usbManager.USBEndpoint = interface1.endpoints[1];
-    let dataUint8Array : Uint8Array = new Uint8Array(1024);
-    usbManager.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
-    if (dataLength >= 0) {
-      console.info("usb readData result Length : " + dataLength);
-    } else {
-      console.info("usb readData failed : " + dataLength);
-    }
-    }).catch((error : BusinessError) => {
-    console.info("usb readData error : " + JSON.stringify(error));
-    });
-    // Send data. Select the corresponding TX endpoint from deviceList for data transfer. (endpoint.direction == 0)
-    usbManager.bulkTransfer(pipe, outEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
-      if (dataLength >= 0) {
-        console.info("usb writeData result write length : " + dataLength);
-      } else {
-        console.info("writeData failed");
-      }
-    }).catch((error : BusinessError) => {
-      console.info("usb writeData error : " + JSON.stringify(error));
-    });
+    let param: usbManager.USBDeviceRequestParams = {
+      bmRequestType: 0x80,    // 0x80 indicates a standard request for data transfer from the device to the host.
+      bRequest: 0x06,    // 0x06 indicates a request for the descriptor.
+      wValue:0x01 << 8 | 0,    // The value is of two bytes. The high byte indicates the descriptor type. Here, 0x01 indicates the device descriptor. The low byte indicates the descriptor index. The value is set to 0 because it is not involved for the device descriptor.
+      wIndex: 0,    // Descriptor index. The value can be 0.
+      wLength: 18,    // Descriptor length. The value 18 indicates the length of a device descriptor. A maximum of 1024 characters are supported.
+      data: new Uint8Array(18)
+    };
+
+    usbManager.usbControlTransfer(pipe, param).then((ret: number) => {
+    console.info("usbControlTransfer = ${ret}");
+    })
     ```
 
-6. Release the USB interface, and close the USB device.
+6. Release the USB interface, and close the USB device pipe.
 
    ```ts
    usbManager.releaseInterface(pipe, interface1);
