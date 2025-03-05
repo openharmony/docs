@@ -4153,6 +4153,18 @@
 
 **起始版本**：14
 
+## ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
+
+允许系统JS引擎申请带MAP_FORT标识的匿名可执行内存。
+
+应用申请此权限后，系统引擎可申请带MAP_FORT的匿名可执行内存，做即时编译，提高与形式执行效率。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**起始版本**：14
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
