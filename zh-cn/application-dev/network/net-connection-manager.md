@@ -125,13 +125,13 @@ conn.unregister((err: BusinessError, data: void) => {
 
 ## 监控默认网络变化并主动重建网络连接
 
-根据当前网络状态及网络质量情况，默认网络会发生变化，如下所示。
-1. 在WiFi弱信号的情况下，默认网络会切换到蜂窝网络。
-2. 在蜂窝网络状态差的情况下，默认网络会切换到WiFi。
-3. 关闭WiFi后，默认网络会切换到蜂窝网络。
-4. 关闭蜂窝网络后，默认网络会切换到WiFi。
-5. 在WiFi弱信号的情况下，默认网络会切换到其他WiFi(存在跨网情况)。
-6. 在蜂窝网络状态差的情况下，默认网络会切换到其他蜂窝(存在跨网情况)。
+根据当前网络状态及网络质量情况，默认网络可能会发生变化，如下所示。
+1. 在WiFi弱信号的情况下，默认网络可能会切换到蜂窝网络。
+2. 在蜂窝网络状态差的情况下，默认网络可能会切换到WiFi。
+3. 关闭WiFi后，默认网络可能会切换到蜂窝网络。
+4. 关闭蜂窝网络后，默认网络可能会切换到WiFi。
+5. 在WiFi弱信号的情况下，默认网络可能会切换到其他WiFi(存在跨网情况)。
+6. 在蜂窝网络状态差的情况下，默认网络可能会切换到其他蜂窝(存在跨网情况)。
 
 本节旨在介绍监控默认网络的变化后，应用报文能够快速迁移到新默认网络上，具体做法如下。
 
@@ -357,7 +357,7 @@ connection.getDefaultNet().then((data:connection.NetHandle) => {
       let bearerTypesNum = Array.from(bearerTypes.values());
       for (let item of bearerTypesNum) {
         if (item == 0) {
-          // 蜂窝网。
+          // 蜂窝网络。
           console.log(JSON.stringify("BEARER_CELLULAR"));
         } else if (item == 1) {
           // Wi-Fi网络。
