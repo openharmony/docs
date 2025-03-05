@@ -15,9 +15,9 @@ For details about the corresponding algorithm specifications, see [PBKDF2](crypt
    - **iterations**: number of iterations. The value must be a positive integer.
    - **keySize**: length of the key to derive, in bytes. The value must be a positive integer.
 
-2. Use [cryptoFramework.createKdf](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatekdf11) with the string parameter **'PBKDF2|SHA256'** to create a **Kdf** object. The key derivation algorithm is **PBKDF2**, and HMAC algorithm is **SHA256**.
+2. Call [cryptoFramework.createKdf](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatekdf11) with the string parameter **'PBKDF2|SHA256'** to create a **Kdf** object. The key derivation algorithm is **PBKDF2**, and HMAC algorithm is **SHA256**.
 
-3. Use [Kdf.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-2) with the **PBKDF2Spec** object to generate a derived key.
+3. Call [Kdf.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-2) with the **PBKDF2Spec** object to generate a derived key.
    
    The following table lists how **Kdf.generateSecret** delivers the return value.
    
