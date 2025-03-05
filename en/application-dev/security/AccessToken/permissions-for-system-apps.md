@@ -4661,6 +4661,18 @@ Allows a system application to access the installation file path copied from ano
 
 **Valid since**: 18
 
+### ohos.permission.ACCESS_TRUST_LIST_OOBE_MANAGER
+
+Allows an application to access the list of applications that can be started in the out-of-box experience.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.

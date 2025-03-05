@@ -4616,6 +4616,18 @@
 
 **起始版本**：18
 
+### ohos.permission.ACCESS_TRUST_LIST_OOBE_MANAGER
+
+允许应用管理在开机向导中可被拉起的应用名单。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：18
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
