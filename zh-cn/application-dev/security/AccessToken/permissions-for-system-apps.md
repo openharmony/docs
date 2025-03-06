@@ -4501,5 +4501,29 @@
 
 **变更信息**：API 10-11，ACL使能为false；从API 12开始，变更为true。
 
+## ohos.permission.READ_DLP_HIDE_SWITCH
+
+允许系统应用从窥屏提示数据库读取数据。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.WRITE_DLP_HIDE_SWITCH
+
+允许系统应用向窥屏提示数据库写入数据。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
 ## system_grant，不允许ACL跨级申请
 

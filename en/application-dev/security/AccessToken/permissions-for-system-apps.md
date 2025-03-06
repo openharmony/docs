@@ -4673,6 +4673,30 @@ Allows an application to access the list of applications that can be started in 
 
 **Valid since**: 18
 
+### ohos.permission.READ_DLP_HIDE_SWITCH
+
+Allows a system application to read data from the Peep Protect database.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+### ohos.permission.WRITE_DLP_HIDE_SWITCH
+
+Allows a system application to write data to the Peep Protect database.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
