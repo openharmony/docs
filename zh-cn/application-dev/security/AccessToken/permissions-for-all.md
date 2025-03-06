@@ -405,7 +405,7 @@
 
 **起始版本**：15
 
-### ohos.permission.NDK_START_SELF_UI_ABILITY
+## ohos.permission.NDK_START_SELF_UI_ABILITY
 
 允许应用通过C API启动同应用的UIAbility。
 
