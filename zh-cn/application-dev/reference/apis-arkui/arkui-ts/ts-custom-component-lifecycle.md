@@ -397,7 +397,7 @@ onWillApplyTheme函数用于获取当前组件上下文的Theme对象，在创�
 
 > **说明：**
 >
-> 从API version 16开始，该接口支持在状态管理V2组件中使用。
+> 从API version 18开始，该接口支持在状态管理V2组件中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
