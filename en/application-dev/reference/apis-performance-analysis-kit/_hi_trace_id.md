@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines a struct for **HiTraceId**.
+Defines a **HiTraceId** instance.
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
