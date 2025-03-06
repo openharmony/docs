@@ -225,9 +225,9 @@ If `"hello"` is filled in `%{public}s` and `3` in `%{private}d`, the output log 
 08-05 12:21:47.579  2695 2703 F A00001/testTag: hello World <private>
 ```
 
-## Parameter Format
+## hilog.setMinLogLevel<sup>16+</sup>
 
-Parameters in the log are printed in the following format:
+setMinLogLevel(level: LogLevel): void;
 
 %{[private flag]}specifier
 
