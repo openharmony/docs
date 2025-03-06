@@ -20,38 +20,37 @@ import { ProgressButton } from '@kit.ArkUI'
 
 ## ProgressButton
 
-ProgressButton({progress: number, content: string, progressButtonWidth?: Length, clickCallback: () =&gt; void, enable: boolean})
+ProgressButton({progress: number, content: string, progressButtonWidth?: Length, clickCallback: () =&gt; void, enable:
+boolean,colorOptions?: ProgressButtonColorOptions,progressButtonRadius?:LengthMetrics })
 
 **装饰器类型：**\@Component
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                                | 类型                                                            | 必填 | 装饰器类型  | 说明                                                                              |
-|-----------------------------------|---------------------------------------------------------------|----|--------|---------------------------------------------------------------------------------|
-| progress                          | number                                                        | 是  | \@Prop | 下载按钮的当前进度值。                                                                     |
-| content                           | string                                                        | 是  | \@Prop | 下载按钮的文本。                                                                        |
-| progressButtonWidth               | [Length](ts-types.md#length)                                  | 否  | -      | 下载按钮的宽度。<br/>默认值：44。                                                            |
-| clickCallback                     | () =&gt; void                                                 | 是  | -      | 下载按钮的点击回调。                                                                      |
-| enable                            | boolean                                                       | 是  | \@Prop | 下载按钮是否可以点击。<br> enable为true时，表示可以点击。<br> enable为false时，表示不可点击。                  |
-| colorOptions<sup>16+<sup>         | [ProgressButtonColorOptions](#progressbuttoncoloroptions16)   | 否  | \@Prop | 下载按钮颜色。                                                                      |
-| progressButtonRadius<sup>16+<sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | \@Prop | 下载按钮的圆角（不支持百分比设置）。<br/>取值范围：[0, height/2]<br/>默认值：height/2<br/>设置非法数值时，按照默认值处理。 |
+| 名称                                | 类型                                                            | 必填 | 装饰器类型  | 说明                                                                                                                                   |
+|-----------------------------------|---------------------------------------------------------------|----|--------|--------------------------------------------------------------------------------------------------------------------------------------|
+| progress                          | number                                                        | 是  | \@Prop | 下载按钮的当前进度值。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                      |
+| content                           | string                                                        | 是  | \@Prop | 下载按钮的文本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                         |
+| progressButtonWidth               | [Length](ts-types.md#length)                                  | 否  | -      | 下载按钮的宽度。<br/>默认值：44。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                             |
+| clickCallback                     | () =&gt; void                                                 | 是  | -      | 下载按钮的点击回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                       |
+| enable                            | boolean                                                       | 是  | \@Prop | 下载按钮是否可以点击。<br> enable为true时，表示可以点击。<br> enable为false时，表示不可点击。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                   |
+| colorOptions<sup>18+<sup>         | [ProgressButtonColorOptions](#progressbuttoncoloroptions18)   | 否  | \@Prop | 下载按钮颜色。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                          |
+| progressButtonRadius<sup>18+<sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | \@Prop | 下载按钮的圆角（不支持百分比设置）。<br/>取值范围：[0, height/2]<br/>默认值：height/2<br/>设置非法数值时，按照默认值处理。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
-## ProgressButtonColorOptions<sup>16+<sup>
+## ProgressButtonColorOptions<sup>18+<sup>
 
 下载按钮颜色选项
 
-**原服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 属性              | 类型                                     | 必填 | 描述      |
-|-----------------|----------------------------------------|----|---------|
-| progressColor   | [ResourceStr](ts-types.md#resourcestr) | 否  | 进度条颜色。  |
-| borderColor     | [ResourceStr](ts-types.md#resourcestr) | 否  | 按钮描边颜色。 |
-| textColor       | [ResourceStr](ts-types.md#resourcestr) | 否  | 按钮文本颜色。 |
-| backgroundColor | [ResourceStr](ts-types.md#resourcestr) | 否  | 按钮背景色。  |
+| 属性              | 类型                                     | 必填 | 描述                                                          |
+|-----------------|----------------------------------------|----|-------------------------------------------------------------|
+| progressColor   | [ResourceStr](ts-types.md#resourcestr) | 否  | 进度条颜色。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。  |
+| borderColor     | [ResourceStr](ts-types.md#resourcestr) | 否  | 按钮描边颜色。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| textColor       | [ResourceStr](ts-types.md#resourcestr) | 否  | 按钮文本颜色。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| backgroundColor | [ResourceStr](ts-types.md#resourcestr) | 否  | 按钮背景色。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。  |
 
 ## 事件
 不支持[通用事件](ts-component-general-events.md)。
