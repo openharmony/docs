@@ -53,7 +53,6 @@
 | long [OH_ResourceManager_GetRawFileOffset](#oh_resourcemanager_getrawfileoffset) (const [RawFile](#rawfile) \*rawFile) | 获取rawfile当前的偏移量，单位为long。 | 
 | bool [OH_ResourceManager_GetRawFileDescriptor](#oh_resourcemanager_getrawfiledescriptor) (const [RawFile](#rawfile) \*rawFile, [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | 基于偏移量(单位为long)和文件长度(单位为long)打开rawfile，并获取rawfile文件描述符。 | 
 | bool [OH_ResourceManager_ReleaseRawFileDescriptor](#oh_resourcemanager_releaserawfiledescriptor) (const [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | 关闭rawfile文件描述符。 | 
-| bool [OH_ResourceManager_ReleaseRawFileDescriptorData](#OH_ResourceManager_ReleaseRawFileDescriptorData) (const [RawFileDescriptor](_raw_file_descriptor.md) \*descriptor) | 待补充 |
 | int64_t [OH_ResourceManager_ReadRawFile64](#oh_resourcemanager_readrawfile64) (const [RawFile64](#rawfile64) \*rawFile, void \*buf, int64_t length) | 读取较大的rawfile文件内容，从当前位置读取指定长度的数据。 | 
 | int [OH_ResourceManager_SeekRawFile64](#oh_resourcemanager_seekrawfile64) (const [RawFile64](#rawfile64) \*rawFile, int64_t offset, int whence) | 基于指定的偏移量，在较大的rawfile文件内搜索读写数据的位置。 | 
 | int64_t [OH_ResourceManager_GetRawFileSize64](#oh_resourcemanager_getrawfilesize64) ([RawFile64](#rawfile64) \*rawFile) | 获取较大rawfile文件的长度，单位为int64_t。 | 
@@ -611,9 +610,6 @@ int OH_ResourceManager_ReadRawFile (const RawFile * rawFile, void * buf, size_t 
 **返回：**
 
 返回读取的字节数，如果读取长度超过文件末尾长度或者rawfile为空时，则返回0。
-
-
-### OH_ResourceManager_ReleaseRawFileDescriptorData
 
 
 ### OH_ResourceManager_ReadRawFile64()
