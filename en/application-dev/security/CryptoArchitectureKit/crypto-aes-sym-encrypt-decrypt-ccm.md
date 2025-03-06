@@ -7,34 +7,37 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 **Encryption**
 
 
-1. Use [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) and [SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1) to generate a 128-bit AES symmetric key (**SymKey**).
+1. Call [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) and [SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1) to generate a 128-bit AES symmetric key (**SymKey**).
    
    In addition to the example in this topic, [AES](crypto-sym-key-generation-conversion-spec.md#aes) and [Randomly Generating a Symmetric Key](crypto-generate-sym-key-randomly.md) may help you better understand how to generate an AES symmetric key. Note that the input parameters in the reference documents may be different from those in the example below.
 
-2. Use [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) with the string parameter **'AES128|CCM'** to create a **Cipher** instance. The key type is AES128, and the block cipher mode is CCM.
+2. Call [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) with the string parameter **'AES128|CCM'** to create a **Cipher** instance for encryption. The key type is AES128, and the block cipher mode is CCM.
 
-3. Use [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In the **Cipher.init** API, set **opMode** to **CryptoMode.ENCRYPT_MODE** (encryption), **key** to **SymKey** (the key for encryption), and **params** to **CcmParamsSpec** corresponding to the CCM mode.
+3. Call [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In the **Cipher.init** API, set **opMode** to **CryptoMode.ENCRYPT_MODE** (encryption), **key** to **SymKey** (the key for encryption), and **params** to **CcmParamsSpec** corresponding to the CCM mode.
 
-4. Use [Cipher.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-1) to pass in the data to be encrypted (plaintext).
-   
+4. Call [Cipher.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-1) to pass in the data to be encrypted (plaintext).
+
    Currently, the amount of data to be passed in by a single **Cipher.update** is not limited. You can determine how to pass in data based on the data volume.
-   
-   The CCM mode does not support segment-based encryption and decryption.
-   
-5. Use [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to obtain the encrypted data.
+  
+   > **NOTE**<br>
+   > The CCM mode does not support segment-based encryption and decryption.
+
+5. Call [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to obtain the encrypted data.
    - If data has been passed in by **Cipher.update**, pass in **null** in the **data** parameter of **Cipher.doFinal**.
    - The output of **Cipher.doFinal** may be **null**. To avoid exceptions, always check whether the result is **null** before accessing specific data.
 
 6. Obtain [CcmParamsSpec.authTag](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ccmparamsspec) as the authentication information for decryption.
 
-   In CCM mode, extract the last 12 bytes from the encrypted data as the authentication information for initializing the **Cipher** instance in decryption. In the example, **authTag** is of 12 bytes.
+    In CCM mode, **authTag** must be of 12 bytes. It is used as the authentication information during decryption. In the example, **authTag** is of 12 bytes.
+
 
 **Decryption**
 
+1. Call [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) with the string parameter **'AES128|CCM'** to create a **Cipher** instance for decryption. The key type is AES128, and the block cipher mode is CCM.
 
-1. Use [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In the **Cipher.init** API, set **opMode** to **CryptoMode.DECRYPT_MODE** (decryption), **key** to **SymKey** (the key for decryption), and **params** to **CcmParamsSpec** corresponding to the CCM mode.
+2. Call [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In the **Cipher.init** API, set **opMode** to **CryptoMode.DECRYPT_MODE** (decryption), **key** to **SymKey** (the key for decryption), and **params** to **CcmParamsSpec** corresponding to the CCM mode.
 
-2. Use [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to obtain the decrypted data.
+3. Call [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to obtain the decrypted data.
 
 
 - Example (using asynchronous APIs):
@@ -107,9 +110,8 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
-   
   
-  function genCcmParamsSpec() {
+    function genCcmParamsSpec() {
       let rand: cryptoFramework.Random = cryptoFramework.createRandom();
       let ivBlob: cryptoFramework.DataBlob = rand.generateRandomSync(7);
       let aadBlob: cryptoFramework.DataBlob = rand.generateRandomSync(8);
@@ -146,16 +148,16 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
       let decryptUpdate = decoder.doFinalSync(cipherText);
       return decryptUpdate;
     }
-    async function genSymKeyByData(symKeyData: Uint8Array) {
+    function genSymKeyByData(symKeyData: Uint8Array) {
       let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
       let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
-      let symKey = await aesGenerator.convertKey(symKeyBlob);
-      console.info('convertKey success');
+      let symKey = aesGenerator.convertKeySync(symKeyBlob);
+      console.info('convertKeySync success');
       return symKey;
     }
-    async function main() {
+    function main() {
       let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]);
-      let symKey = await genSymKeyByData(keyData);
+      let symKey = genSymKeyByData(keyData);
       let message = "This is a test";
       let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
       let encryptText = encryptMessage(symKey, plainText);
@@ -168,7 +170,6 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
       }
     }
   ```
-
 
 
 
