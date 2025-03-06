@@ -19,8 +19,8 @@ HDR元数据结构体定义。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OHHDRMetadataKey](_native_window.md#ohhdrmetadatakey)  [key](#key) | HDR元数据关键字 | 
-| float [value](#value) | 关键字对应的值 | 
+| [OHHDRMetadataKey](_native_window.md#ohhdrmetadatakey)  [key](#key) | HDR元数据关键字。 | 
+| float [value](#value) | 关键字对应的值。 | 
 
 
 ## 结构体成员变量说明
