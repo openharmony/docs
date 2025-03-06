@@ -428,7 +428,7 @@ vendor
             HDF_LOGE("%s: device or property NULL!", __func__);
             return HDF_ERR_INVALID_OBJECT;
         }
-        //获取属性数据
+        //获取属性数据。
         ret = Mp1xxGpioReadDrs(stm32gpio, device->property);
         if (ret != HDF_SUCCESS) {
             HDF_LOGE("%s: get gpio device resource fail:%d", __func__, ret);
