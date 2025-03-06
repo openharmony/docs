@@ -1,6 +1,6 @@
 # Transition from Router to Navigation
 
-This topic guides you through the transition from using APIs in the **Router** module to using the **Navigation** component. The **Navigation** component stands out due its wider range of animations, higher flexibility in one-time development for multi-device deployment, and more adaptable stack operations.
+This topic guides you through the transition from using APIs in the **Router** module to using the **Navigation** component. The **Navigation** component stands out for its wider range of animations, higher flexibility in one-time development for multi-device deployment, and more adaptable stack operations.
 
 ## Page Structure
 
@@ -623,13 +623,17 @@ A registered callback is invoked when there is a change in the page state. You c
 **Navigation** also allows you to register for lifecycle events through the observer.
 
 ```ts
+// EntryAbility.ets
+import { BusinessError } from '@kit.BasicServicesKit';
+import { UIObserver } from '@kit.ArkUI';
+
 export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // ...
     windowStage.getMainWindow((err: BusinessError, data) => {
       // ...
-      windowClass = data;
+      let windowClass = data;
       // Obtain a UIContext instance.
       let uiContext: UIContext = windowClass.getUIContext();
       // Obtain a UIObserver instance.

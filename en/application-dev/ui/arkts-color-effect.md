@@ -34,7 +34,7 @@ struct LinearGradientDemo {
           // A positive value indicates a clockwise rotation from the origin, (0, 0). The default value of the linear gradient start angle is 180°.
           colors: [
             [0xf56c6c, 0.0], // Color and weight of color stop 1, corresponding to the start position of the component in the 180° direction.
-            [0xffffff, 1.0], // Color and weight of color stop 2, corresponding to the end position of the component in the 180° direction.
+            [0xffffff, 1.0],// Color and weight of color stop 2, corresponding to the end position of the component in the 180° direction.
           ]
         })
       }
@@ -135,7 +135,7 @@ struct SweepGradientDemo {
           // the color gradients of the area within angles from 0 to 0.25 are repeated in the area within angles from 0.25 to 1.
             [0xf56c6c, 0], // Color and weight of color stop 1. The corresponding angle is 0° (0 x 360°), and the corner is the center point.
             [0xffffff, 0.125], // Color and weight of color stop 2.
-            [0x409EFF, 0.25] // Color and weight of color stop 3.
+            [0x409EFF, 0.25]// Color and weight of color stop 3.
           ]
         })
       }
@@ -158,7 +158,7 @@ struct SweepGradientDemo {
           // In the current component, the sweep gradient center is the upper left corner of the component. Therefore, the angle range from color stop 1 to color stop 3 can cover the entire component.
             [0xf56c6c, 0], // Color and weight of color stop 1. The corresponding angle is 0° (0 x 360°)
             [0xffffff, 0.125], // Color and weight of color stop 2. The corresponding angle is 45° (0.125 x 360°).
-            [0x409EFF, 0.25] // Color and weight of color stop 3. The corresponding angle is 90° (0.25 x 360°).
+            [0x409EFF, 0.25]// Color and weight of color stop 3. The corresponding angle is 90° (0.25 x 360°).
           ]
         })
       }
@@ -243,12 +243,12 @@ struct radialGradientDemo {
           radius: 100, // Radius of the radial gradient.
           repeating: true, // The gradients are repeated outside the specified range to fill the entire component.
           colors: [
-            // With [50, 50] as the center point, the gradient changes from color stop 1 to color stop 2 within the range of radius 0 to 12.5;
-            // the gradient changes from color stop 2 to color stop 3 within the range of radius 12.5 to 25;
-            // the gradients in the range of radius 0 to 25 are repeated to fill the entire component.
+          // With [50, 50] as the center point, the gradient changes from color stop 1 to color stop 2 within the range of radius 0 to 12.5;
+          // the gradient changes from color stop 2 to color stop 3 within the range of radius 12.5 to 25;
+          // the gradients in the range of radius 0 to 25 are repeated to fill the entire component.
             [0xf56c6c, 0], // Color and weight of color stop 1. The corresponding radius is 0 (0 x 100).
             [0xffffff, 0.125], // Color and weight of color stop 2. The corresponding radius is 12.5 (0.125 x 100).
-            [0x409EFF, 0.25] // Color and weight of color stop 3. The corresponding radius is 25 (0.25 x 100).
+            [0x409EFF, 0.25]// Color and weight of color stop 3. The corresponding radius is 25 (0.25 x 100).
           ]
         })
       }

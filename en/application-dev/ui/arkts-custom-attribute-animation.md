@@ -14,7 +14,7 @@ ArkUI provides the [@AnimatableExtend](../quick-start/arkts-animatable-extend.md
 // Step 1: Use the @AnimatableExtend decorator to customize an animatable property API.
 @AnimatableExtend(Text)
 function animatableWidth(width: number) {
-  .width(width)// Call the system property API. The per-frame callback function modifies the value of the animatable property on each frame, achieving the effect of frame-by-frame layout.
+  .width(width) // Call the system property API to modify the property value on a frame-by-frame basis.
 }
 
 @Entry
@@ -26,10 +26,10 @@ struct AnimatablePropertyExample {
     Column() {
       Text("AnimatableProperty")
         .animatableWidth(this.textWidth)// Step 2: Set the custom animatable property API on the component.
-        .animation({ duration: 2000, curve: Curve.Ease })// Step 3: Bind an animation to the custom animatable property API.
+        .animation({ duration: 2000, curve: Curve.Ease }) // Step 3: Bind an animation to the custom animatable property.
       Button("Play")
         .onClick(() => {
-          this.textWidth = this.textWidth == 80 ? 160 : 80;// Change the parameters of the custom animatable property to create an animation.
+          this.textWidth = this.textWidth == 80 ? 160 : 80; // Step 4: Change the parameters of the custom animatable property to create an animation.
         })
     }.width("100%")
     .padding(10)
@@ -151,7 +151,8 @@ struct AnimatedShape {
   ]);
   @State pointVec2: PointVector = new PointVector([
     [this.squareStartPointX + this.squareEndTranslateX, this.squareStartPointY + this.squareStartPointY],
-    [this.squareStartPointX + this.squareWidth + this.squareEndTranslateX, this.squareStartPointY + this.squareStartPointY],
+    [this.squareStartPointX + this.squareWidth + this.squareEndTranslateX,
+      this.squareStartPointY + this.squareStartPointY],
     [this.squareStartPointX + this.squareWidth, this.squareStartPointY + this.squareWidth],
     [this.squareStartPointX, this.squareStartPointY + this.squareWidth]
   ]);
