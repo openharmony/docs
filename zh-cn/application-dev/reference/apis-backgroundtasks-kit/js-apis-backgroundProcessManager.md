@@ -22,7 +22,9 @@ function setProcessPriority(pid: number, priority: ProcessPriority): Promise<voi
 
 >  **说明：**
 >
-> 短时任务的申请和使用过程中的约束与限制请参考[指南](../../task-management/transient-task.md#约束与限制)。
+>  (1) 本接口只对通过调用OH_Ability_StartNativeChildProcess、OH_Ability_CreateNativeChildProcess创建的子进程生效  
+>  (2) 调用本接口的进程和需要被压制子进程uid需一致  
+>  (3) 如果主进程状态发生变化（可见性、前后台切换等），子进程会跟随主进程一同变化，子进程如需继续压制，需重新调用本接口
 
 **系统能力:** SystemCapability.Resourceschedule.BackgroundProcessManager
 
@@ -64,9 +66,12 @@ function resetProcessPriority(pid: number): Promise<void>;
 
 恢复进程管控策略为系统默认策略（跟随主进程策略）。
 
+
 >  **说明：**
 >
-> 短时任务的申请和使用过程中的约束与限制请参考[指南](../../task-management/transient-task.md#约束与限制)。
+>  (1) 本接口只对通过调用OH_Ability_StartNativeChildProcess、OH_Ability_CreateNativeChildProcess创建的子进程生效  
+>  (2) 调用本接口的进程和需要被压制子进程uid需一致  
+>  (3) 如果主进程状态发生变化（可见性、前后台切换等），子进程会跟随主进程一同变化，等效于执行一次resetProcessPriority动作
 
 **系统能力:** SystemCapability.Resourceschedule.BackgroundProcessManager
 
