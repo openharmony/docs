@@ -1,7 +1,7 @@
 # Application Link Description
 
 ## Description of uris
-**uris** declared in **skills** of the **module.json5** file contains the following fields.
+**uris** declared in [skills](../quick-start/module-configuration-file.md#skills) of the [module.json5 file](../quick-start/module-configuration-file.md) contains the following fields.
 
 > **NOTE**
 >
@@ -35,6 +35,11 @@ URIs can be expressed in different formats based on the available fields. Among 
 
 
 ### Description of linkFeature
+
+> **NOTE**
+>
+> The number of **linkFeature** declared in a bundle cannot exceed 150.
+
 
 The use of the **linkFeature** field enables an application to deliver a more user-friendly redirection experience. (The declaration of the **linkFeature** field must be reviewed by the application market before being released.) The use scenarios are as follows:
 
