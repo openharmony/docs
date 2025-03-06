@@ -33,6 +33,7 @@
 IOfflineStreamOperator::CancelCapture ([in] int captureId)
 ```
 **描述**
+
 取消捕获请求。
 
 **起始版本：** 3.2
@@ -56,6 +57,7 @@ NO_ERROR 表示执行成功。
 IOfflineStreamOperator::Release ()
 ```
 **描述**
+
 释放所有离线流。
 
 释放流的前置条件：
@@ -79,6 +81,7 @@ NO_ERROR 表示执行成功。
 IOfflineStreamOperator::ReleaseStreams ([in] int[] streamIds)
 ```
 **描述**
+
 释放离线流。
 
 **起始版本：** 3.2

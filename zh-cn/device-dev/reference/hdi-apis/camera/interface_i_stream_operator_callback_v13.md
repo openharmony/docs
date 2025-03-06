@@ -31,7 +31,7 @@
 ### OnCaptureEndedExt()
 
 ```
-IStreamOperatorCallback::OnCaptureEndedExt ([in] int captureId, [in] struct CaptureEndedInfoExt[] infos )
+IStreamOperatorCallback::OnCaptureEndedExt ([in] int captureId, [in] struct CaptureEndedInfoExt[] infos)
 ```
 
 **描述**
@@ -57,7 +57,7 @@ NO_ERROR 表示执行成功。
 ### OnCaptureReady()
 
 ```
-IStreamOperatorCallback::OnCaptureReady ([in] int captureId, [in] int[] streamIds, [in] unsigned long timestamp )
+IStreamOperatorCallback::OnCaptureReady ([in] int captureId, [in] int[] streamIds, [in] unsigned long timestamp)
 ```
 
 **描述**
@@ -84,7 +84,7 @@ NO_ERROR 表示执行成功。
 ### OnFrameShutterEnd()
 
 ```
-IStreamOperatorCallback::OnFrameShutterEnd ([in] int captureId, [in] int[] streamIds, [in] unsigned long timestamp )
+IStreamOperatorCallback::OnFrameShutterEnd ([in] int captureId, [in] int[] streamIds, [in] unsigned long timestamp)
 ```
 
 **描述**
@@ -111,7 +111,7 @@ NO_ERROR 表示执行成功。
 ### OnResult()
 
 ```
-IStreamOperatorCallback::OnResult ([in] int streamId, [in] unsigned char[] result )
+IStreamOperatorCallback::OnResult ([in] int streamId, [in] unsigned char[] result)
 ```
 
 **描述**

@@ -30,7 +30,7 @@
 ### OnError()
 
 ```
-IVideoProcessCallback::OnError ([in] String videoId, [in] enum ErrorCode errorCode )
+IVideoProcessCallback::OnError ([in] String videoId, [in] enum ErrorCode errorCode)
 ```
 
 **描述**

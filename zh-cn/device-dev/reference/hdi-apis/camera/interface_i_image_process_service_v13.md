@@ -28,7 +28,7 @@
 ### CreateImageProcessSessionExt()
 
 ```
-IImageProcessService::CreateImageProcessSessionExt ([in] int userId, [in] IImageProcessCallback imageProcessCallback, [out] IImageProcessSession imageProcessSession )
+IImageProcessService::CreateImageProcessSessionExt ([in] int userId, [in] IImageProcessCallback imageProcessCallback, [out] IImageProcessSession imageProcessSession)
 ```
 
 **描述**

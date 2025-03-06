@@ -5,7 +5,7 @@
 
 定义Camera设备功能回调操作。
 
-返回闪光灯状态
+返回闪光灯状态。
 
 **起始版本：** 4.1
 
@@ -39,4 +39,4 @@ ICameraHostCallback::OnFlashlightStatusV1_2 ([in] enum FlashlightStatus status)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| status | 闪光灯最新的状态. | 
+| status | 闪光灯最新的状态。 | 

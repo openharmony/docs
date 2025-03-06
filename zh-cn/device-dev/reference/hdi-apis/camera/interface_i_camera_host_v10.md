@@ -32,9 +32,10 @@
 ### GetCameraAbility()
 
 ```
-ICameraHost::GetCameraAbility ([in] String cameraId, [out] unsigned char[] cameraAbility )
+ICameraHost::GetCameraAbility ([in] String cameraId, [out] unsigned char[] cameraAbility)
 ```
 **描述**
+
 获取Camera设备能力集合。
 
 **起始版本：** 3.2
@@ -63,6 +64,7 @@ NO_ERROR 表示执行成功。
 ICameraHost::GetCameraIds ([out] String[] cameraIds)
 ```
 **描述**
+
 获取当前可用的Camera设备ID列表。
 
 **起始版本：** 3.2
@@ -90,6 +92,7 @@ NO_ERROR 表示执行成功；
 ICameraHost::OpenCamera ([in] String cameraId, [in] ICameraDeviceCallback callbackObj, [out] ICameraDevice device )
 ```
 **描述**
+
 打开Camera设备。
 
 打开指定的Camera设备，通过此接口可以获取到ICameraDevice对象，通过ICameraDevice对象可以操作具体的Camera设备。
@@ -121,6 +124,7 @@ NO_ERROR 表示执行成功。
 ICameraHost::SetCallback ([in] ICameraHostCallback callbackObj)
 ```
 **描述**
+
 设置ICameraHost回调接口，回调函数参考[ICameraHostCallback](interface_i_camera_host_callback_v10.md)。
 
 **起始版本：** 3.2
@@ -144,6 +148,7 @@ NO_ERROR 表示执行成功。
 ICameraHost::SetFlashlight ([in] String cameraId, [in] boolean isEnable )
 ```
 **描述**
+
 打开或关闭闪光灯。
 
 该接口只能由打开cameraId指定Camera设备的调用者调用。

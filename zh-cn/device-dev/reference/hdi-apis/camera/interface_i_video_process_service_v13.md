@@ -28,7 +28,7 @@
 ### CreateVideoProcessSession()
 
 ```
-IVideoProcessService::CreateVideoProcessSession ([in] int userId, [in] IVideoProcessCallback videoProcessCallback, [out] IVideoProcessSession videoProcessSession )
+IVideoProcessService::CreateVideoProcessSession ([in] int userId, [in] IVideoProcessCallback videoProcessCallback, [out] IVideoProcessSession videoProcessSession)
 ```
 
 **描述**

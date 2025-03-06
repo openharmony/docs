@@ -30,7 +30,7 @@
 ### GetResourceCost()
 
 ```
-ICameraHost::GetResourceCost ([in] String cameraId, [out] CameraDeviceResourceCost resourceCost )
+ICameraHost::GetResourceCost ([in] String cameraId, [out] CameraDeviceResourceCost resourceCost)
 ```
 
 **描述**
@@ -56,7 +56,7 @@ NO_ERROR 表示执行成功。
 ### OpenCamera_V1_3()
 
 ```
-ICameraHost::OpenCamera_V1_3 ([in] String cameraId, [in] ICameraDeviceCallback callbackObj, [out] ICameraDevice device )
+ICameraHost::OpenCamera_V1_3 ([in] String cameraId, [in] ICameraDeviceCallback callbackObj, [out] ICameraDevice device)
 ```
 
 **描述**
@@ -85,7 +85,7 @@ NO_ERROR 表示执行成功。
 ### OpenSecureCamera()
 
 ```
-ICameraHost::OpenSecureCamera ([in] String cameraId, [in] ICameraDeviceCallback callbackObj, [out] ICameraDevice device )
+ICameraHost::OpenSecureCamera ([in] String cameraId, [in] ICameraDeviceCallback callbackObj, [out] ICameraDevice device)
 ```
 
 **描述**

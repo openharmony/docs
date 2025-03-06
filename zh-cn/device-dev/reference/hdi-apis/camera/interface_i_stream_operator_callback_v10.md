@@ -31,9 +31,10 @@
 ### OnCaptureEnded()
 
 ```
-IStreamOperatorCallback::OnCaptureEnded ([in] int captureId, [in] struct CaptureEndedInfo[] infos )
+IStreamOperatorCallback::OnCaptureEnded ([in] int captureId, [in] struct CaptureEndedInfo[] infos)
 ```
 **描述**
+
 捕获结束回调，在捕获结束时调用。
 
 **起始版本：** 3.2
@@ -53,9 +54,10 @@ IStreamOperatorCallback::OnCaptureEnded ([in] int captureId, [in] struct Capture
 ### OnCaptureError()
 
 ```
-IStreamOperatorCallback::OnCaptureError ([in] int captureId, [in] struct CaptureErrorInfo[] infos )
+IStreamOperatorCallback::OnCaptureError ([in] int captureId, [in] struct CaptureErrorInfo[] infos)
 ```
 **描述**
+
 捕获错误回调，在捕获过程中发生错误时调用。
 
 **起始版本：** 3.2
@@ -71,9 +73,10 @@ IStreamOperatorCallback::OnCaptureError ([in] int captureId, [in] struct Capture
 ### OnCaptureStarted()
 
 ```
-IStreamOperatorCallback::OnCaptureStarted ([in] int captureId, [in] int[] streamIds )
+IStreamOperatorCallback::OnCaptureStarted ([in] int captureId, [in] int[] streamIds)
 ```
 **描述**
+
 捕获开始回调，在捕获开始时调用。
 
 **起始版本：** 3.2
@@ -93,9 +96,10 @@ IStreamOperatorCallback::OnCaptureStarted ([in] int captureId, [in] int[] stream
 ### OnFrameShutter()
 
 ```
-IStreamOperatorCallback::OnFrameShutter ([in] int captureId, [in] int[] streamIds, [in] unsigned long timestamp )
+IStreamOperatorCallback::OnFrameShutter ([in] int captureId, [in] int[] streamIds, [in] unsigned long timestamp)
 ```
 **描述**
+
 帧捕获回调。
 
 通过**Capture**的输入参数[CaptureInfo](_capture_info_v10.md)的enableShutterCallback_使能该回调， 使能后每次捕获均会触发此回调。

@@ -132,7 +132,7 @@ NO_ERROR 表示执行成功。
 ### Prepare()
 
 ```
-IVideoProcessSession::Prepare ([in] String videoId, [in] FileDescriptor fd, [out] StreamDescription[] streamDescs )
+IVideoProcessSession::Prepare ([in] String videoId, [in] FileDescriptor fd, [out] StreamDescription[] streamDescs)
 ```
 
 **描述**
@@ -159,7 +159,7 @@ NO_ERROR 表示执行成功。
 ### ProcessVideo()
 
 ```
-IVideoProcessSession::ProcessVideo ([in] String videoId, [in] unsigned long timestamp )
+IVideoProcessSession::ProcessVideo ([in] String videoId, [in] unsigned long timestamp)
 ```
 
 **描述**

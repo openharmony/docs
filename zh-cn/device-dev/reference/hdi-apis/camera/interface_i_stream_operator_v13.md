@@ -31,7 +31,7 @@
 ### DisableResult()
 
 ```
-IStreamOperator::DisableResult ([in] int streamId, [in] unsigned char[] results )
+IStreamOperator::DisableResult ([in] int streamId, [in] unsigned char[] results)
 ```
 
 **描述**
@@ -59,7 +59,7 @@ NO_ERROR 表示执行成功。
 ### EnableResult()
 
 ```
-IStreamOperator::EnableResult ([in] int streamId, [in] unsigned char[] results )
+IStreamOperator::EnableResult ([in] int streamId, [in] unsigned char[] results)
 ```
 
 **描述**

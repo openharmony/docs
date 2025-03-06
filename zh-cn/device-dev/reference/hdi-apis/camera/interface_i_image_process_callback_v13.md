@@ -28,7 +28,7 @@
 ### OnProcessDoneExt()
 
 ```
-IImageProcessCallback::OnProcessDoneExt ([in] String imageId, [in] ImageBufferInfoExt buffer )
+IImageProcessCallback::OnProcessDoneExt ([in] String imageId, [in] ImageBufferInfoExt buffer)
 ```
 
 **描述**
