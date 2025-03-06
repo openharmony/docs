@@ -899,9 +899,9 @@ setPlaybackRange(startTimeMs: number, endTimeMs: number, mode?: SeekMode) : Prom
 
 设置播放区间，并通过指定的[SeekMode](#seekmode8)跳转到区间开始位置。设置之后，只播放音视频文件设定区间内的内容。该方法异步方式返回执行结果，通过Promise获取返回值。可在**initialized**/**prepared**/**paused**/**stopped**/**completed**状态下使用。
 
-**系统能力：** SystemCapability.Multimedia.Media.AvPlayer
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统接口：** 该接口为系统接口
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
