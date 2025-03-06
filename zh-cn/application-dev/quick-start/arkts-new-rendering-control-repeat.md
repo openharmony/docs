@@ -993,6 +993,64 @@ struct DemoSwiper {
 
 ![Repeat-Demo-Swiper](./figures/Repeat-Demo-Swiper.gif)
 
+### 拖拽排序
+
+当Repeat在List组件下使用，并且设置了onMove事件，Repeat每次迭代都生成一个ListItem时，可以使能拖拽排序。non-virtualScroll模式和virtualScroll模式都支持设置拖拽排序。
+
+#### 使用限制
+- 拖拽排序离手后，如果数据位置发生变化，则会触发onMove事件，上报数据移动原始索引号和目标索引号。在onMove事件中，需要根据上报的起始索引号和目标索引号修改数据源。数据源修改前后，要保持每个数据的键值不变，只是顺序发生变化，才能保证落位动画正常执行。
+- 拖拽排序过程中，在离手之前，不允许修改数据源。
+
+#### 示例代码
+```ts
+@Entry
+@ComponentV2
+struct RepeatVirtualScrollOnMove {
+  @Local simpleList: Array<string> = [];
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 100; i++) {
+      this.simpleList.push(`${i}`);
+    }
+  }
+
+  build() {
+    Column() {
+      List() {
+        Repeat<string>(this.simpleList)
+          // 通过设置onMove，使能拖拽排序。
+          .onMove((from: number, to: number) => {
+            let temp = this.simpleList.splice(from, 1);
+            this.simpleList.splice(to, 0, temp[0]);
+          })
+          .each((obj: RepeatItem<string>) => {
+            ListItem() {
+              Text(obj.item)
+                .fontSize(16)
+                .textAlign(TextAlign.Center)
+                .size({height: 100, width: "100%"})
+            }.margin(10)
+            .borderRadius(10)
+            .backgroundColor("#FFFFFFFF")
+          })
+          .key((item: string, index: number) => {
+            return item;
+          })
+          .virtualScroll({ totalCount: this.simpleList.length })
+      }
+      .border({ width: 1 })
+      .backgroundColor("#FFDCDCDC")
+      .width('100%')
+      .height('100%')
+    }
+  }
+}
+```
+
+运行效果：
+
+![Repeat-Drag-Sort](figures/ForEach-Drag-Sort.gif)
+
 ## 常见问题
 
 ### 屏幕外的列表数据发生变化时，保证滚动条位置不变

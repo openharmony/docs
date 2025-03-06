@@ -205,6 +205,10 @@ List() {
 }
 ```
 
+## 属性
+
+从API version 18开始，继承自[DynamicNode](./ts-rendering-control-foreach.md#dynamicnode12)。
+
 ## RepeatArray\<T\><sup>18+</sup>
 
 type RepeatArray\<T\> = Array\<T\> | ReadonlyArray\<T\> | Readonly\<Array\<T\>\>
