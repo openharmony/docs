@@ -7,7 +7,7 @@
 
 **起始版本：** 5.0
 
-**相关模块：**[Camera](_camera.md)
+**相关模块：**[Camera](_camera_v13.md)
 
 
 ## 汇总
@@ -18,7 +18,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | int [streamId](#streamid) | 流id。  | 
-| enum [MediaStreamType](_camera.md#mediastreamtype)[type](#type) | 媒体流类型。  | 
+| enum [MediaStreamType](_camera_v13.md#mediastreamtype)[type](#type) | 媒体流类型。  | 
 | int [pixelFormat](#pixelformat) | pixel格式。  | 
 | int [width](#width) | 图片宽。  | 
 | int [height](#height) | 图片高。  | 

@@ -15,7 +15,7 @@
 
 **起始版本：** 5.0
 
-**相关模块：**[Camera](_camera.md)
+**相关模块：**[Camera](_camera_v13.md)
 
 
 ## 汇总
@@ -25,4 +25,4 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| interface&nbsp;&nbsp;[IVideoProcessSession](interface_i_video_process_session.md) | 图像处理会话进程。 | 
+| interface&nbsp;&nbsp;[IVideoProcessSession](interface_i_video_process_session_v13.md) | 图像处理会话进程。 | 

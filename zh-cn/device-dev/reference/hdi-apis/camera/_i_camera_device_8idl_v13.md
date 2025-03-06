@@ -17,7 +17,7 @@ Camera设备操作接口。
 
 **起始版本：** 5.0
 
-**相关模块：**[Camera](_camera.md)
+**相关模块：**[Camera](_camera_v13.md)
 
 
 ## 汇总
@@ -27,4 +27,4 @@ Camera设备操作接口。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| interface&nbsp;&nbsp;[ICameraDevice](interface_i_camera_device.md) | 定义Camera设备基本的操作。 | 
+| interface&nbsp;&nbsp;[ICameraDevice](interface_i_camera_device_v13.md) | 定义Camera设备基本的操作。 | 

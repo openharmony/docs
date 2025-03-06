@@ -19,7 +19,7 @@ Camera服务的管理类，对上层提供HDI接口。
 
 **起始版本：** 5.0
 
-**相关模块：**[Camera](_camera.md)
+**相关模块：**[Camera](_camera_v13.md)
 
 
 ## 汇总
@@ -29,4 +29,4 @@ Camera服务的管理类，对上层提供HDI接口。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| interface&nbsp;&nbsp;[ICameraHost](interface_i_camera_host.md) | 定义Camera设备功能操作。 | 
+| interface&nbsp;&nbsp;[ICameraHost](interface_i_camera_host_v13.md) | 定义Camera设备功能操作。 | 

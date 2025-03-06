@@ -15,7 +15,7 @@ Camera模块HDI接口使用的数据类型。
 
 **起始版本：** 3.2
 
-**相关模块：**[Camera](_camera.md)
+**相关模块：**[Camera](_camera_v13.md)
 
 
 ## 汇总
@@ -25,21 +25,21 @@ Camera模块HDI接口使用的数据类型。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[CameraDeviceResourceCost](_camera_device_resource_cost.md) | 相机设备资源开销，用于**ICameraDevice::[GetResourceCost()](interface_i_camera_host.md#getresourcecost)**。 | 
-| struct&nbsp;&nbsp;[StreamDescription](_stream_description.md) | 流描述信息，使用于[IVideoProcessSession::Prepare](interface_i_video_process_session.md#prepare)。 | 
-| struct&nbsp;&nbsp;[CaptureEndedInfoExt](_capture_ended_info_ext.md) | 拍照结束信息，使用于[IStreamOperatorCallback::OnCaptureEndedExt](interface_i_stream_operator_callback.md#oncaptureendedext)。 | 
-| struct&nbsp;&nbsp;[ImageBufferInfoExt](_image_buffer_info_ext.md) | 图片流信息，使用于[IImageProcessCallback::OnProcessDoneExt](interface_i_image_process_callback.md#onprocessdoneext)。 | 
+| struct&nbsp;&nbsp;[CameraDeviceResourceCost](_camera_device_resource_cost_v13.md) | 相机设备资源开销，用于**ICameraDevice::[GetResourceCost()](interface_i_camera_host.md#getresourcecost)**。 | 
+| struct&nbsp;&nbsp;[StreamDescription](_stream_description_v13.md) | 流描述信息，使用于[IVideoProcessSession::Prepare](interface_i_video_process_session.md#prepare)。 | 
+| struct&nbsp;&nbsp;[CaptureEndedInfoExt](_capture_ended_info_ext_v13.md) | 拍照结束信息，使用于[IStreamOperatorCallback::OnCaptureEndedExt](interface_i_stream_operator_callback.md#oncaptureendedext)。 | 
+| struct&nbsp;&nbsp;[ImageBufferInfoExt](_image_buffer_info_ext_v13.md) | 图片流信息，使用于[IImageProcessCallback::OnProcessDoneExt](interface_i_image_process_callback.md#onprocessdoneext)。 | 
 
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OperationMode](_camera.md#operationmode) : ohos.hdi.camera.v1_2.OperationMode_V1_2 {<br/>[PROFESSIONAL_V1_3](_camera.md) = PROFESSIONAL, [PROFESSIONAL_PHOTO](_camera.md) = 11, [PROFESSIONAL_VIDEO](_camera.md) = 12, [HIGH_FRAME_RATE](_camera.md) = 13,[HIGH_RESOLUTION_PHOTO](_camera.md) = 14, [SECURE](_camera.md) = 15, [QUICK_SHOT_PHOTO](_camera.md) = 16, [LIGHT_PAINTING](_camera.md) = 17,[PANORAMA_PHOTO](_camera.md) = 18, [TIMELAPSE_PHOTO](_camera.md) = 19, [APERTURE_VIDEO](_camera.md) = 20, [FLUORESCENCE_PHOTO](_camera.md) = 21,<br/>[SUN_BLOCK](_camera.md) = 22} | 流使用模式。 | 
-| [ExtendedStreamInfoType](_camera.md#extendedstreaminfotype) : ohos.hdi.camera.v1_2.ExtendedStreamInfoType_V1_2 {<br/>[EXTENDED_STREAM_INFO_RAW](_camera.md) = 2, [EXTENDED_STREAM_INFO_DEPTH](_camera.md) = 3, [EXTENDED_STREAM_INFO_META](_camera.md) = 4, [EXTENDED_STREAM_INFO_SECURE](_camera.md) = 5,<br/>[EXTENDED_STREAM_INFO_MAKER_INFO](_camera.md) = 6, [EXTENDED_STREAM_INFO_EXIF](_camera.md) = 7, [EXTENDED_STREAM_INFO_GAINMAP](_camera.md) = 8, [EXTENDED_STREAM_INFO_UNREFOCUS](_camera.md) = 9,<br/>[EXTENDED_STREAM_INFO_LINEAR](_camera.md) = 10, [EXTENDED_STREAM_INFO_FRAGMENT](_camera.md) =11, [EXTENDED_STREAM_INFO_UV](_camera.md) = 12} | 扩展流信息的类型。 | 
-| [StreamType](_camera.md#streamtype) {<br/>[STREAM_TYPE_PREVIEW](_camera.md) = 0, [STREAM_TYPE_VIDEO](_camera.md) = 1, [STREAM_TYPE_STILL_CAPTURE](_camera.md) = 2, [STREAM_TYPE_POST_VIEW](_camera.md) = 3,<br/>[STREAM_TYPE_ANALYZE](_camera.md) = 4, [STREAM_TYPE_CUSTOM](_camera.md) = 5, [STREAM_TYPE_DEPTH](_camera.md) = 6} | 流类型。 | 
-| [ExecutionMode](_camera.md#executionmode) : ohos.hdi.camera.v1_2.ExecutionMode { [DEFAULT](_camera.md) = 3 } | 执行模式的类型。 | 
-| [ErrorType](_camera.md#errortype) : ohos.hdi.camera.v1_0.ErrorType { [SENSOR_DATA_ERROR](_camera.md) = 5 } | 设备错误类型，用于设备错误回调**[OnError()](interface_i_video_process_callback.md#onerror)**。 | 
-| [MediaStreamType](_camera.md#mediastreamtype) { [MEDIA_STREAM_TYPE_VIDEO](_camera.md) = 0, [MEDIA_STREAM_TYPE_METADATA](_camera.md) = 1, [MEDIA_STREAM_TYPE_MAKER](_camera.md) = 2 } | 相机媒体流类型。 | 
-| [EncodeType](_camera.md#encodetype) : ohos.hdi.camera.v1_0.EncodeType { [ENCODE_TYPE_HEIC](_camera.md) = 4 } | 流数据的编码类型。 | 
-| [StreamError](_camera.md#streamerror) : ohos.hdi.camera.v1_0.StreamError { [HIGH_TEMPERATURE_ERROR](_camera.md) = 2 } | 流错误类型，用于流错误类型**[CaptureErrorInfo](_capture_error_info_v10.md)**。 | 
+| [OperationMode](_camera_v13.md#operationmode) : ohos.hdi.camera.v1_2.OperationMode_V1_2 {<br/>[PROFESSIONAL_V1_3](_camera_v13.md) = PROFESSIONAL, [PROFESSIONAL_PHOTO](_camera_v13.md) = 11, [PROFESSIONAL_VIDEO](_camera_v13.md) = 12, [HIGH_FRAME_RATE](_camera_v13.md) = 13,[HIGH_RESOLUTION_PHOTO](_camera_v13.md) = 14, [SECURE](_camera_v13.md) = 15, [QUICK_SHOT_PHOTO](_camera_v13.md) = 16, [LIGHT_PAINTING](_camera_v13.md) = 17,[PANORAMA_PHOTO](_camera_v13.md) = 18, [TIMELAPSE_PHOTO](_camera_v13.md) = 19, [APERTURE_VIDEO](_camera_v13.md) = 20, [FLUORESCENCE_PHOTO](_camera_v13.md) = 21,<br/>[SUN_BLOCK](_camera_v13.md) = 22} | 流使用模式。 | 
+| [ExtendedStreamInfoType](_camera_v13.md#extendedstreaminfotype) : ohos.hdi.camera.v1_2.ExtendedStreamInfoType_V1_2 {<br/>[EXTENDED_STREAM_INFO_RAW](_camera_v13.md) = 2, [EXTENDED_STREAM_INFO_DEPTH](_camera_v13.md) = 3, [EXTENDED_STREAM_INFO_META](_camera_v13.md) = 4, [EXTENDED_STREAM_INFO_SECURE](_camera_v13.md) = 5,<br/>[EXTENDED_STREAM_INFO_MAKER_INFO](_camera_v13.md) = 6, [EXTENDED_STREAM_INFO_EXIF](_camera_v13.md) = 7, [EXTENDED_STREAM_INFO_GAINMAP](_camera_v13.md) = 8, [EXTENDED_STREAM_INFO_UNREFOCUS](_camera_v13.md) = 9,<br/>[EXTENDED_STREAM_INFO_LINEAR](_camera_v13.md) = 10, [EXTENDED_STREAM_INFO_FRAGMENT](_camera_v13.md) =11, [EXTENDED_STREAM_INFO_UV](_camera_v13.md) = 12} | 扩展流信息的类型。 | 
+| [StreamType](_camera.md#streamtype) {<br/>[STREAM_TYPE_PREVIEW](_camera_v13.md) = 0, [STREAM_TYPE_VIDEO](_camera_v13.md) = 1, [STREAM_TYPE_STILL_CAPTURE](_camera_v13.md) = 2, [STREAM_TYPE_POST_VIEW](_camera_v13.md) = 3,<br/>[STREAM_TYPE_ANALYZE](_camera_v13.md) = 4, [STREAM_TYPE_CUSTOM](_camera_v13.md) = 5, [STREAM_TYPE_DEPTH](_camera_v13.md) = 6} | 流类型。 | 
+| [ExecutionMode](_camera_v13.md#executionmode) : ohos.hdi.camera.v1_2.ExecutionMode { [DEFAULT](_camera_v13.md) = 3 } | 执行模式的类型。 | 
+| [ErrorType](_camera_v13.md#errortype) : ohos.hdi.camera.v1_0.ErrorType { [SENSOR_DATA_ERROR](_camera_v13.md) = 5 } | 设备错误类型，用于设备错误回调**[OnError()](interface_i_video_process_callback_v13.md#onerror)**。 | 
+| [MediaStreamType](_camera_v13.md#mediastreamtype) { [MEDIA_STREAM_TYPE_VIDEO](_camera_v13.md) = 0, [MEDIA_STREAM_TYPE_METADATA](_camera_v13.md) = 1, [MEDIA_STREAM_TYPE_MAKER](_camera_v13.md) = 2 } | 相机媒体流类型。 | 
+| [EncodeType](_camera_v13.md#encodetype) : ohos.hdi.camera.v1_0.EncodeType { [ENCODE_TYPE_HEIC](_camera_v13.md) = 4 } | 流数据的编码类型。 | 
+| [StreamError](_camera_v13.md#streamerror) : ohos.hdi.camera.v1_0.StreamError { [HIGH_TEMPERATURE_ERROR](_camera_v13.md) = 2 } | 流错误类型，用于流错误类型**[CaptureErrorInfo](_capture_error_info_v10.md)**。 | 

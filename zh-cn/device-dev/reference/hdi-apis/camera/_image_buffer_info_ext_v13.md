@@ -3,11 +3,11 @@
 
 ## 概述
 
-图片流信息，使用于[IImageProcessCallback::OnProcessDoneExt](interface_i_image_process_callback.md#onprocessdoneext)。
+图片流信息，使用于[IImageProcessCallback::OnProcessDoneExt](interface_i_image_process_callback_v13.md#onprocessdoneext)。
 
 **起始版本：** 5.0
 
-**相关模块：**[Camera](_camera.md)
+**相关模块：**[Camera](_camera_v13.md)
 
 
 ## 汇总
