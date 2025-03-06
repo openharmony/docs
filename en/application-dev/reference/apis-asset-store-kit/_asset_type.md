@@ -245,7 +245,7 @@ Enumerates the keys of asset attributes.
 | ASSET_TAG_UPDATE_TIME | Asset update time, in timestamp format. The value is of the bytes type.<br>**Since**: 12|
 | ASSET_TAG_OPERATION_TYPE | Additional operation type. The value is of the uint32_t type.<br>**Since**: 12|
 | ASSET_TAG_REQUIRE_ATTR_ENCRYPTED | Whether to encrypt the additional information customized by the service. The value is of the Boolean type.<br>**Since**: 14|
-| ASSET_TAG_GROUP_ID | Group to which the asset belongs. The value is of the bytes type.<br>**Since**: 16|
+| ASSET_TAG_GROUP_ID | Group to which the asset belongs. The value is of the bytes type.<br>**Since**: 18|
 
 
 ### Asset_TagType

@@ -245,8 +245,8 @@ enum Asset_Tag
 | ASSET_TAG_UPDATE_TIME = ASSET_TYPE_BYTES \| 0x45 | 表示关键资产的更新时间（时间戳形式），其值为bytes类型。<br>**起始版本：** 12 |
 | ASSET_TAG_OPERATION_TYPE = ASSET_TYPE_NUMBER \| 0x46 | 表示附加的操作类型，其值为uint32_t类型。<br>**起始版本：** 12 |
 | ASSET_TAG_REQUIRE_ATTR_ENCRYPTED = ASSET_TYPE_BOOL \| 0x47 | 表示是否加密业务自定义附属信息，其值为bool类型。<br>**起始版本：** 14 |
-| ASSET_TAG_GROUP_ID = ASSET_TYPE_BYTES \| 0x48 | 表示关键资产所属群组，其值为bytes类型。<br>**起始版本：** 16 |
-| ASSET_TAG_WRAP_TYPE = ASSET_TYPE_NUMBER \| 0x49 | 表示关键资产支持的加密导入导出类型，其值为uint32_t类型。<br>**起始版本：** 16 |
+| ASSET_TAG_GROUP_ID = ASSET_TYPE_BYTES \| 0x48 | 表示关键资产所属群组，其值为bytes类型。<br>**起始版本：** 18 |
+| ASSET_TAG_WRAP_TYPE = ASSET_TYPE_NUMBER \| 0x49 | 表示关键资产支持的加密导入导出类型，其值为uint32_t类型。<br>**起始版本：** 18 |
 
 
 ### Asset_TagType
@@ -295,7 +295,7 @@ enum Asset_WrapType
 
 关键资产支持的加密导入导出类型。
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 |
 | -------- | -------- |
