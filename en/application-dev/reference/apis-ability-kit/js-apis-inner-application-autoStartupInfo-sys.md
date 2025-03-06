@@ -1,4 +1,4 @@
- # AutoStartupInfo (System API)
+# AutoStartupInfo (System API)
 
 The **AutoStartupInfo** module defines information about the application component that automatically starts upon system boot.
 

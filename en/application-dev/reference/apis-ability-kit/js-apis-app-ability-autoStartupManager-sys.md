@@ -1,6 +1,6 @@
 # @ohos.app.ability.autoStartupManager (autoStartupManager) (System API)
 
-The **autoStartupManager** module provides APIs for listening for auto-startup status changes of application components and setting application components to automatically start upon system boot.
+The autoStartupManager module provides APIs for listening for auto-startup status changes of application components and setting application components to automatically start upon system boot.
 
 > **NOTE**
 >

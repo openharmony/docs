@@ -12,6 +12,14 @@ The bundleManager module provides APIs for obtaining application information, in
 import { bundleManager } from '@kit.AbilityKit';
 ```
 
+## Required Permissions
+
+| Permission                                      | APL    | Description           |
+| ------------------------------------------ | ------------ | ------------------|
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to obtain basic information and other sensitive information about a bundle.|
+
+For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
+
 ## Enums
 
 ### BundleFlag
@@ -203,7 +211,7 @@ Enumerates the types of the multi-app mode.
 
 getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 
-Obtains the bundle information of this bundle based on the given bundle flags. This API uses a promise to return the result.
+Obtains the bundle information based on the given bundle flags. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -255,7 +263,7 @@ try {
 
 getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
-Obtains the bundle information of this bundle based on the given bundle flags. This API uses an asynchronous callback to return the result.
+Obtains the bundle information based on the given bundle flags. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -304,7 +312,7 @@ try {
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
-Obtains the JSON string array of the current application's configuration file in the [metadata](../../quick-start/module-configuration-file.md#metadata) based on a given module name, ability name, and metadata name. This API uses an asynchronous callback to return the result.
+Obtains the JSON string array of the configuration file based on the given module name, ability name, and metadata name (name configured in [metadata](../../quick-start/module-configuration-file.md#metadata)). This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > 
@@ -333,7 +341,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                             |
+| 17700026 | The specified bundle is disabled.                            |
 | 17700029 | The specified ability is disabled.                            |
 
 **Example**
@@ -365,7 +373,7 @@ try {
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string\>\>
 
-Obtains the JSON string array of the current application's configuration file in the [metadata](../../quick-start/module-configuration-file.md#metadata) based on a given module name, ability name, and metadata name. This API uses a promise to return the result.
+Obtains the JSON string array of the configuration file based on the given module name, ability name, and metadata name (name configured in [metadata](../../quick-start/module-configuration-file.md#metadata)). This API uses a promise to return the result.
 
 > **NOTE**
 > 
@@ -399,7 +407,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                             |
+| 17700026 | The specified bundle is disabled.                            |
 | 17700029 | The specified ability is disabled.                            |
 
 **Example**
@@ -413,6 +421,7 @@ let moduleName = 'entry';
 let abilityName = 'EntryAbility';
 
 try {
+  // Obtain the JSON string array of the configuration file based on the module name and ability name.
   bundleManager.getProfileByAbility(moduleName, abilityName).then((data) => {
     hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully. Data: %{public}s', JSON.stringify(data));
   }).catch((err: BusinessError) => {
@@ -434,6 +443,7 @@ let abilityName = 'EntryAbility';
 let metadataName = 'ability_metadata';
 
 try {
+  // Obtain the JSON string array of the configuration file based on the module name, ability name, and metadata name.
   bundleManager.getProfileByAbility(moduleName, abilityName, metadataName).then((data) => {
     hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully. Data: %{public}s', JSON.stringify(data));
   }).catch((err: BusinessError) => {
@@ -483,7 +493,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                             |
+| 17700026 | The specified bundle is disabled.                            |
 | 17700029 | The specified ability is disabled.                            |
 
 **Example**
@@ -497,6 +507,7 @@ let moduleName = 'entry';
 let abilityName = 'EntryAbility';
 
 try {
+  // Obtain the JSON string array of the configuration file based on the module name and ability name.
   let data = bundleManager.getProfileByAbilitySync(moduleName, abilityName);
   hilog.info(0x0000, 'testTag', 'getProfileByAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
@@ -515,6 +526,7 @@ let abilityName: string = 'EntryAbility';
 let metadataName: string = 'ability_metadata';
 
 try {
+  // Obtain the JSON string array of the configuration file based on the module name, ability name, and metadata name.
   let data = bundleManager.getProfileByAbilitySync(moduleName, abilityName, metadataName);
   hilog.info(0x0000, 'testTag', 'getProfileByAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
@@ -527,7 +539,7 @@ try {
 
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
-Obtains the JSON string array of the current application's configuration file in the [metadata](../../quick-start/module-configuration-file.md#metadata) based on a given module name, ExtensionAbility name, and metadata name. This API uses an asynchronous callback to return the result.
+Obtains the JSON string array of the configuration file based on the given module name, ExtensionAbility name, and metadata name (name configured in [metadata](../../quick-start/module-configuration-file.md#metadata)). This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > 
@@ -556,7 +568,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                             |
+| 17700026 | The specified bundle is disabled.                            |
 
 **Example**
 
@@ -621,7 +633,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                             |
+| 17700026 | The specified bundle is disabled.                            |
 
 **Example**
 
@@ -695,7 +707,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                             |
+| 17700026 | The specified bundle is disabled.                            |
 
 **Example**
 

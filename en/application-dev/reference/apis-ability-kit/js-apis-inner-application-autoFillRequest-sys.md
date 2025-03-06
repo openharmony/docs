@@ -24,6 +24,7 @@ Defines the information about an auto-fill request.
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type        | [AutoFillType](js-apis-inner-application-autoFillType-sys.md)       | Yes  | Type of the element to be automatically filled in.         |
 | viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | Yes  | Page data.             |
+| customData<sup>13+</sup>    | [CustomData](js-apis-inner-application-customData-sys.md)               | Yes  | Custom data.            |
 | isPopup<sup>12+</sup>    | boolean               | Yes  | Whether a dialog box is displayed for the auto-fill request.<br>**true**: A dialog box is displayed<br>**false**: A modal window is displayed             |
 
 ## SaveRequest
@@ -72,7 +73,7 @@ Called when an auto-fill request is successfully processed.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | ------------------------------ |
-| response | [FillResponse](../apis/#fillresponse)  | Yes| Information about the response to the auto-fill response.|
+| response | [FillResponse](#fillresponse)  | Yes| Information about the response to the auto-fill response.|
 
 **Error codes**
 
@@ -253,7 +254,7 @@ Called when an auto-fill request is canceled.
 
 | Name                   | Type  | Mandatory| Description                |
 | ------------------------- | ------ | ---- | -------------------- |
-| fillContent<sup>12+</sup> | string | Content returned to the input method framework when the auto-fill request is canceled.|
+| fillContent<sup>12+</sup> | string | No  | Content returned to the input method framework when the auto-fill request is canceled.|
 
 **Error codes**
 

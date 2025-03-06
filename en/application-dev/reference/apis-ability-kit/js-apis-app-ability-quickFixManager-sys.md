@@ -19,7 +19,7 @@ Defines the quick fix information at the HAP file level.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name       | Type                | Read-only| Mandatory| Description                                                        |
 | ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -33,7 +33,7 @@ Defines the quick fix information at the application level.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name       | Type                | Read-only| Mandatory| Description                                                        |
 | ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -54,14 +54,14 @@ Applies a quick fix patch. This API uses an asynchronous callback to return the 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the quick fix patch is installed, **err** is **undefined**. Otherwise, **err** is an error object.|
+  | Parameter| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
+  | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the quick fix patch is installed, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -110,19 +110,19 @@ Applies a quick fix patch. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
+  | Parameter| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise\<void> | Promise that returns no value.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -167,7 +167,7 @@ Obtains the quick fix information of the application. This API uses an asynchron
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -218,7 +218,7 @@ Obtains the quick fix information of the application. This API uses a promise to
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -228,9 +228,9 @@ Obtains the quick fix information of the application. This API uses a promise to
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | Promise used to return the quick fix information.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | Promise used to return the quick fix information.|
 
 **Error codes**
 
@@ -272,14 +272,14 @@ Revokes quick fix. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Name of the bundle for which the patch needs to be revoked.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If quick fix is revoked, **err** is **undefined**. Otherwise, **err** is an error object.|
+  | Parameter| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | bundleName | string | Yes| Name of the bundle for which the patch needs to be revoked.|
+  | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If quick fix is revoked, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -293,7 +293,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 18500001 | The bundle is not exist or no patch has applied. |
 | 18500009 | The application has a apply quick fix task that is being processed. |
 
-If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10).
+If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_quick_fix_revoke_result10).
 
 **Example**
 
@@ -317,19 +317,19 @@ Revokes quick fix. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Name of the bundle for which the patch needs to be revoked.|
+  | Parameter| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | bundleName | string | Yes| Name of the bundle for which the patch needs to be revoked.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise\<void> | Promise that returns no value.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -343,7 +343,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 18500001 | The bundle is not exist or no patch has applied. |
 | 18500009 | The application has a apply quick fix task that is being processed. |
 
-If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10). The table below lists the possible error codes and messages.
+If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_quick_fix_revoke_result10). The table below lists the possible error codes and messages.
 
 **Example**
 
@@ -359,5 +359,3 @@ quickFixManager.revokeQuickFix(bundleName).then(() => {
   console.info("revokeQuickFix " + bundleName +" failed, error code is ", JSON.stringify((err)));
 });
 ```
-
- <!--no_check--> 
