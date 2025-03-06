@@ -12,7 +12,7 @@ If the **type** field in **startAbilityByType** is set to **flight**, two intent
 
     | Name       | Type  | Mandatory| Description                                                        |
     | ------------- | ------ | ---- | ------------------------------------------------------------ |
-    | sceneType     | number | No  | Intent. The default value is **1**. In scenarios of flight query by flight number, set it to **1** or leave it empty.                    |
+    | sceneType     | number | No  | Intent scene, which indicates the purpose of the current request. The default value is **1**. In scenarios of flight query by flight number, set it to **1** or leave it empty.                    |
     | flightNo      | string | Yes  | Flight number, which is a two-digit code of the airline company plus a dight.|
     | departureDate | string | No  | Flight departure date, in the format of YYYY-MM-DD.                                    |
 
@@ -20,7 +20,7 @@ If the **type** field in **startAbilityByType** is set to **flight**, two intent
 
     | Name              | Type                  | Mandatory| Description                                                    |
     | -------------------- | ---------------------- | ---- | -------------------------------------------------------- |
-    | sceneType            | number                 | Yes  | Intent. In scenarios of flight query by origin and destination, set it to **2**.                                       |
+    | sceneType            | number                 | Yes  | Intent scene, which indicates the purpose of the current request. In scenarios of flight query by origin and destination, set it to **2**.                                       |
     | originLocation      | string                 | Yes  | Departure place.                                                |
     | destinationLocation  | string                  | Yes  | Destination.                                                |
     | departureDate | string                  | No  | Flight departure date, in the format of YYYY-MM-DD.                                                |
@@ -28,7 +28,7 @@ If the **type** field in **startAbilityByType** is set to **flight**, two intent
 
 ## Developing a Caller Application
 
-1. Import the **ohos.app.ability.common** module.
+1. Import the module.
     ```ts
     import { common } from '@kit.AbilityKit';
     ```
@@ -103,7 +103,7 @@ If the **type** field in **startAbilityByType** is set to **flight**, two intent
 2. Parse parameters and perform corresponding processing.
 
     ```ts
-    UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
+    UIAbility.onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
     ```
 
     The **want.uri** parameter carries the URI corresponding to **linkFeature** configured by the target application.
