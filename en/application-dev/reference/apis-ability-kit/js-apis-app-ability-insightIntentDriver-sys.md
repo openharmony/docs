@@ -22,7 +22,7 @@ Defines the parameter used to execute an InsightIntent call.
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -48,7 +48,7 @@ When [ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) of the Insi
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.EXECUTE_INSIGHT_INTENT
 
@@ -56,10 +56,10 @@ When [ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) of the Insi
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | param | [ExecuteParam](#executeparam) | Yes| Parameter used to execute the InsightIntent call.|
-  | callback | AsyncCallback<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Yes| Callback used to return the InsightIntent call execution result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| param | [ExecuteParam](#executeparam) | Yes| Parameter used to execute the InsightIntent call.|
+| callback | AsyncCallback<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Yes| Callback used to return the InsightIntent call execution result.|
 
 **Error codes**
 
@@ -131,7 +131,7 @@ When [ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) of the Insi
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.EXECUTE_INSIGHT_INTENT
 
@@ -139,9 +139,9 @@ When [ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) of the Insi
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | param | [ExecuteParam](#executeparam) | Yes| Parameter used to execute the InsightIntent call.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| param | [ExecuteParam](#executeparam) | Yes| Parameter used to execute the InsightIntent call.|
 
 **Return value**
 

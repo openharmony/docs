@@ -25,9 +25,9 @@ Called when all startup tasks are complete.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| error | [BusinessError](../apis-basic-services-kit/js-apis-base.md#businesserror) | Yes | Error message. |
+| error | [BusinessError](../apis-basic-services-kit/js-apis-base.md#businesserror) | Yes| Error message.|
 
 **Example**
 

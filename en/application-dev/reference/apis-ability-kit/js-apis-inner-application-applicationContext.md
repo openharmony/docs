@@ -1,6 +1,6 @@
 # ApplicationContext
 
-The ApplicationContext module, inherited from [Context](js-apis-inner-application-context.md), provides application-level context capabilities, including APIs for registering and deregistering the lifecycle of application components.
+The ApplicationContext module, inherited from [Context](js-apis-inner-application-context.md), provides application-level context capabilities, including APIs for registering and unregistering the lifecycle of application components.
 
 > **NOTE**
 >
@@ -109,7 +109,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void>): void
 
-Deregisters the listener that monitors the ability lifecycle of the application. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+Unregisters the listener that monitors the ability lifecycle of the application. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -120,7 +120,7 @@ Deregisters the listener that monitors the ability lifecycle of the application.
 | Name       | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
 | type | 'abilityLifecycle' | Yes  | Event type.|
-| callbackId    | number   | Yes  | ID of the listener to deregister.|
+| callbackId    | number   | Yes  | ID of the listener to unregister.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the deregistration is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
@@ -162,7 +162,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
-Deregisters the listener that monitors the ability lifecycle of the application. This API uses a promise to return the result. It can be called only by the main thread.
+Unregisters the listener that monitors the ability lifecycle of the application. This API uses a promise to return the result. It can be called only by the main thread.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -173,7 +173,7 @@ Deregisters the listener that monitors the ability lifecycle of the application.
 | Name       | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
 | type | 'abilityLifecycle' | Yes  | Event type.|
-| callbackId    | number   | Yes  | ID of the listener to deregister.|
+| callbackId    | number   | Yes  | ID of the listener to unregister.|
 
 **Return value**
 
@@ -277,7 +277,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): void
 
-Deregisters the listener for system environment changes. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+Unregisters the listener for system environment changes. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -288,7 +288,7 @@ Deregisters the listener for system environment changes. This API uses an asynch
 | Name        | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
 | type | 'environment' | Yes  | Event type.|
-| callbackId    | number   | Yes  | ID of the listener to deregister.  |
+| callbackId    | number   | Yes  | ID of the listener to unregister.  |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the deregistration is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
@@ -329,7 +329,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'environment', callbackId: number): Promise\<void\>
 
-Deregisters the listener for system environment changes. This API uses a promise to return the result. It can be called only by the main thread.
+Unregisters the listener for system environment changes. This API uses a promise to return the result. It can be called only by the main thread.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -340,7 +340,7 @@ Deregisters the listener for system environment changes. This API uses a promise
 | Name        | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
 | type | 'environment' | Yes  | Event type.|
-| callbackId    | number   | Yes  | ID of the listener to deregister.  |
+| callbackId    | number   | Yes  | ID of the listener to unregister.  |
 
 **Return value**
 
@@ -436,7 +436,11 @@ export default class MyAbility extends UIAbility {
 
 off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
-Deregisters all the listeners for application foreground/background state changes. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+Unregisters the listener for application foreground/background state changes. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+
+> **NOTE**
+>
+> A listener must have been registered by calling [ApplicationContext.on('applicationStateChange')](#applicationcontextonapplicationstatechange10).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -447,7 +451,7 @@ Deregisters all the listeners for application foreground/background state change
 | Name| Type         | Mandatory| Description                |
 | ------ | ------------- | ---- | -------------------- |
 | type   | 'applicationStateChange' | Yes  | Event type.|
-| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | No  | Callback used to return the result. You can define a callback for switching from the background to the foreground and a callback for switching from the foreground to the background.      |
+| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | No  | Callback used to return the result. The value can be a callback defined by **ApplicationContext.on('applicationStateChange')** or empty.<br>- If a defined callback is passed in, the listener for that callback is unregistered.<br>- If no value is passed in, all the listeners for the corresponding event are unregistered. |
 
 **Error codes**
 
@@ -459,6 +463,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+Assume that [ApplicationContext.on('applicationStateChange')](#applicationcontextonapplicationstatechange10) is used to register a callback named **applicationStateChangeCallback**. The following example shows how to unregister the corresponding listener.
+
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -467,7 +473,9 @@ export default class MyAbility extends UIAbility {
   onDestroy() {
     let applicationContext = this.context.getApplicationContext();
     try {
-      applicationContext.off('applicationStateChange');
+      // In this example, the callback field is set to applicationStateChangeCallback.
+      // If no value is passed in for the callback field, all the listeners registered for the application foreground/background state change event are canceled.
+      applicationContext.off('applicationStateChange', applicationStateChangeCallback);
     } catch (paramError) {
       console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
@@ -572,7 +580,7 @@ Kills all processes of this application. The application will not go through the
 
 > **NOTE**
 >
-> This API is used to forcibly exit an application in abnormal scenarios. To exit an application in the normal state, call [terminateSelf()](./js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1).
+> This API is used to forcibly exit an application in abnormal scenarios. To exit an application properly, call [terminateSelf()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -614,9 +622,9 @@ Kills all processes of this application. The application will not go through the
 
 > **NOTE**
 >
-> This API is used to forcibly exit an application in abnormal scenarios. To exit an application in the normal state, call [terminateSelf()](./js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1).
+> This API is used to forcibly exit an application in abnormal scenarios. To exit an application properly, call [terminateSelf()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1).
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -638,7 +646,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | ------- | -------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 | If the input parameter is not valid parameter. |
 | 16000011 | The context does not exist. |
 
 **Example**
@@ -664,7 +672,7 @@ Kills all processes of this application. The application will not go through the
 
 > **NOTE**
 >
-> This API is used to forcibly exit an application in abnormal scenarios. To exit an application in the normal state, call [terminateSelf()](./js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1).
+> This API is used to forcibly exit an application in abnormal scenarios. To exit an application properly, call [terminateSelf()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -887,7 +895,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000063 | The target to restart does not belong to the current application or is not a UIAbility. |
-| 16000064 | Restart too frequently. Try again at least 10s later. |
+| 16000064 | Restart too frequently. Try again at least 3s later. |
 
 **Example**
 

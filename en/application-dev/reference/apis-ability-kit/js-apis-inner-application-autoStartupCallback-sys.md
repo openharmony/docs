@@ -21,9 +21,9 @@ Called when auto-startup is set for an application component.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| info | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)   | Yes | Information about the target application component. |
+| info | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)   | Yes| Information about the target application component.|
 
 **Example**
 
@@ -59,9 +59,9 @@ Called when the auto-startup setting of an application component is canceled.
 
 **Parameters**
 
-| Name | Type           | Mandatory | Description                |
+| Name| Type           | Mandatory| Description                |
 | ------ | --------------- | ---- | -------------------- |
-| info   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)   | Yes  | Information about the target application component. |
+| info   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)   | Yes  | Information about the target application component.|
 
 **Example**
 
