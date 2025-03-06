@@ -1551,7 +1551,7 @@ getPlaybackPosition(): number
 
 获取当前播放位置，可以在prepared/playing/paused/completed状态调用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2842,7 +2842,7 @@ on(type: 'seiMessageReceived', payloadTypes: Array\<number>, callback: OnSeiMess
 
 订阅获取SEI信息事件，仅适用于HTTP-FLV直播，视频流中包含SEI信息时上报。需在prepare之前订阅，当用户重复订阅时，以最后一次订阅的回调接口为准。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2879,7 +2879,7 @@ off(type: 'seiMessageReceived', payloadTypes?: Array\<number>, callback?: OnSeiM
 
 取消订阅获取SEI信息事件。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -3024,7 +3024,7 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 
 SEI信息内容，描述SEI信息的负载类型和数据。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -3037,7 +3037,7 @@ SEI信息内容，描述SEI信息的负载类型和数据。
 
 获取SEI信息，使用场景：订阅SEI信息事件，回调返回SEI详细信息。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
