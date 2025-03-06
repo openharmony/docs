@@ -1156,11 +1156,11 @@ Nullable\<T> {
 > - 示意图中，蓝色区域表示内容，橙黄色区域表示节点大小。
 > - 不同的内容填充方式在宽高动画过程中效果不一致，开发者需要选择合适的内容填充方式以实现需要的动画效果。
 
-## CrownAction<sup>16+</sup>
+## CrownAction<sup>18+</sup>
 
 旋转表冠动作。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1170,11 +1170,11 @@ Nullable\<T> {
 | UPDATE	        | 1  | 表冠转动中。                            |
 | END	            | 2  | 表冠停止转动。                          |
 
-## CrownSensitivity<sup>16+</sup>
+## CrownSensitivity<sup>18+</sup>
 
 旋转表冠灵敏度。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
