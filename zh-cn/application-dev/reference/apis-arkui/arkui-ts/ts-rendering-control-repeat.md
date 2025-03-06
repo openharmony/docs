@@ -244,10 +244,10 @@ Repeat数据源参数联合类型。
 
 | 名称     | 类型   | 必填 | 说明                                                         |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
-| totalCount | number | 否   | 加载的数据项总数，可以大于/小于数据源长度。 |
+| totalCount | number | 否   | 加载的数据项总数，可以不等于数据源长度。 |
 | reusable<sup>18+</sup> | boolean | 否   | 是否开启复用功能，true表示开启，false表示不开启，默认开启。 |
 | onLazyLoading<sup>18+</sup> | (index: number) => void | 否   | 数据懒加载函数，向指定的数据源index中写入数据。 |
-| onTotalCount<sup>18+</sup> | () => number | 否   | 数据项总数计算函数，返回值可以大于/小于数据源长度。推荐使用onTotalCount代替totalCount。同时设置totalCount与onTotalCount时，忽略totalCount。 |
+| onTotalCount<sup>18+</sup> | () => number | 否   | 数据项总数计算函数，返回值可以不等于数据源长度。推荐使用onTotalCount代替totalCount。同时设置totalCount与onTotalCount时，忽略totalCount。 |
 
 **示例：**
 ```ts
