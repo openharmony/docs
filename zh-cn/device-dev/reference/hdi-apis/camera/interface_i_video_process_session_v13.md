@@ -9,7 +9,7 @@
 
 **起始版本：** 5.0
 
-**相关模块：**[Camera](_camera.md)
+**相关模块：**[Camera](_camera_v13.md)
 
 
 ## 汇总
@@ -20,7 +20,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [GetPendingVideos](#getpendingvideos) ([out] List&lt; String &gt; videoIds) | 获取未处理的挂起视频的ID。 | 
-| [Prepare](#prepare) ([in] String videoId, [in] FileDescriptor fd, [out] [StreamDescription](_stream_description.md)[]streamDescs) | 准备待处理的视频。 | 
+| [Prepare](#prepare) ([in] String videoId, [in] FileDescriptor fd, [out] [StreamDescription](_stream_description_v13.md)[]streamDescs) | 准备待处理的视频。 | 
 | [CreateStreams](#createstreams) ([in] struct StreamInfo_V1_1[] streamInfos) | 创建流。 | 
 | [CommitStreams](#commitstreams) ([in] unsigned char[] modeSetting) | 配置流。 | 
 | [ReleaseStreams](#releasestreams) ([in] struct StreamInfo_V1_1[] streamInfos) | 释放流。 | 

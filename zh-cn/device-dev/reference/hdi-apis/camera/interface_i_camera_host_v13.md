@@ -9,7 +9,7 @@
 
 **起始版本：** 5.0
 
-**相关模块：**[Camera](_camera.md)
+**相关模块：**[Camera](_camera_v13.md)
 
 
 ## 汇总
@@ -19,9 +19,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OpenCamera_V1_3](#opencamera_v1_3) ([in] String cameraId, [in] ICameraDeviceCallback callbackObj,<br/>[out] [ICameraDevice](interface_i_camera_device.md) device) | 打开Camera设备。 | 
-| [OpenSecureCamera](#opensecurecamera) ([in] String cameraId, [in] ICameraDeviceCallback callbackObj,<br/>[out] [ICameraDevice](interface_i_camera_device.md) device) | 使用安全模式打开相机。 | 
-| [GetResourceCost](#getresourcecost) ([in] String cameraId, [out] [CameraDeviceResourceCost](_camera_device_resource_cost.md) resourceCost) | 通过cameraHost获取在相机设备上打开相机的资源成本。 | 
+| [OpenCamera_V1_3](#opencamera_v1_3) ([in] String cameraId, [in] ICameraDeviceCallback callbackObj,<br/>[out] [ICameraDevice](interface_i_camera_device_v13.md) device) | 打开Camera设备。 | 
+| [OpenSecureCamera](#opensecurecamera) ([in] String cameraId, [in] ICameraDeviceCallback callbackObj,<br/>[out] [ICameraDevice](interface_i_camera_device_v13.md) device) | 使用安全模式打开相机。 | 
+| [GetResourceCost](#getresourcecost) ([in] String cameraId, [out] [CameraDeviceResourceCost](_camera_device_resource_cost_v13.md) resourceCost) | 通过cameraHost获取在相机设备上打开相机的资源成本。 | 
 
 
 ## 成员函数说明

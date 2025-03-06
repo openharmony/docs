@@ -9,7 +9,7 @@
 
 **起始版本：** 5.0
 
-**相关模块：**[Camera](_camera.md)
+**相关模块：**[Camera](_camera_v13.md)
 
 
 ## 汇总
@@ -21,7 +21,7 @@
 | -------- | -------- |
 | [OnCaptureReady](#oncaptureready) ([in] int captureId, [in] int[] streamIds, [in] unsigned long timestamp) | 下次拍照准备就绪时调用。 | 
 | [OnFrameShutterEnd](#onframeshutterend) ([in] int captureId, [in] int[] streamIds, [in] unsigned long timestamp) | 当前帧捕获结束时调用。 | 
-| [OnCaptureEndedExt](#oncaptureendedext) ([in] int captureId, [in] struct [CaptureEndedInfoExt](_capture_ended_info_ext.md)[] infos) | 当拍照结束时调用。 | 
+| [OnCaptureEndedExt](#oncaptureendedext) ([in] int captureId, [in] struct [CaptureEndedInfoExt](_capture_ended_info_ext_v13.md)[] infos) | 当拍照结束时调用。 | 
 | [OnResult](#onresult) ([in] int streamId, [in] unsigned char[] result) | 上报stream相关的metadata等信息的回调，上报方式查看**[SetResultMode()](interface_i_camera_device_v10.md#setresultmode)**。 | 
 
 
@@ -45,7 +45,7 @@ IStreamOperatorCallback::OnCaptureEndedExt ([in] int captureId, [in] struct Capt
 | 名称 | 描述 | 
 | -------- | -------- |
 | captureId | 用于标识回调对应的捕获请求。 | 
-| infos | 捕获结束相关信息，具体结束相关信息查看[CaptureEndedInfoExt](_capture_ended_info_ext.md)。 | 
+| infos | 捕获结束相关信息，具体结束相关信息查看[CaptureEndedInfoExt](_capture_ended_info_ext_v13.md)。 | 
 
 **返回：**
 

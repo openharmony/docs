@@ -9,7 +9,7 @@
 
 **起始版本：** 5.0
 
-**相关模块：**[Camera](_camera.md)
+**相关模块：**[Camera](_camera_v13.md)
 
 
 ## 汇总
@@ -19,7 +19,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [CreateVideoProcessSession](#createvideoprocesssession) ([in] int userId, [in] [IVideoProcessCallback](interface_i_video_process_callback.md) videoProcessCallback, [out] [IVideoProcessSession](interface_i_video_process_session.md) videoProcessSession) | 创建视频处理会话。 | 
+| [CreateVideoProcessSession](#createvideoprocesssession) ([in] int userId, [in] [IVideoProcessCallback](interface_i_video_process_callback_v13.md) videoProcessCallback, [out] [IVideoProcessSession](interface_i_video_process_session_v13.md) videoProcessSession) | 创建视频处理会话。 | 
 
 
 ## 成员函数说明
@@ -42,8 +42,8 @@ IVideoProcessService::CreateVideoProcessSession ([in] int userId, [in] IVideoPro
 | 名称 | 描述 | 
 | -------- | -------- |
 | userId | 用户ID。 | 
-| videoProcessCallback | 视频进程回调。有关详细信息，请参阅 [IVideoProcessCallback](interface_i_video_process_callback.md)。 | 
-| videoProcessSession | 视频处理会话。有关详细信息，请参阅[IVideoProcessSession](interface_i_video_process_session.md)。 | 
+| videoProcessCallback | 视频进程回调。有关详细信息，请参阅 [IVideoProcessCallback](interface_i_video_process_callback_v13.md)。 | 
+| videoProcessSession | 视频处理会话。有关详细信息，请参阅[IVideoProcessSession](interface_i_video_process_session_v13.md)。 | 
 
 **返回：**
 

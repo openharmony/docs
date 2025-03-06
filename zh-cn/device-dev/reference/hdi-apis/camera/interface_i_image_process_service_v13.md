@@ -9,7 +9,7 @@
 
 **起始版本：** 5.0
 
-**相关模块：**[Camera](_camera.md)
+**相关模块：**[Camera](_camera_v13.md)
 
 
 ## 汇总
@@ -19,7 +19,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [CreateImageProcessSessionExt](#createimageprocesssessionext) ([in] int userId, [in] [IImageProcessCallback](interface_i_image_process_callback.md) imageProcessCallback, [out] IImageProcessSession imageProcessSession) | 创建映像处理会话。 | 
+| [CreateImageProcessSessionExt](#createimageprocesssessionext) ([in] int userId, [in] [IImageProcessCallback](interface_i_image_process_callback_v13.md) imageProcessCallback, [out] IImageProcessSession imageProcessSession) | 创建映像处理会话。 | 
 
 
 ## 成员函数说明
@@ -42,7 +42,7 @@ IImageProcessService::CreateImageProcessSessionExt ([in] int userId, [in] IImage
 | 名称 | 描述 | 
 | -------- | -------- |
 | userId | 用户ID。 | 
-| imageProcessCallback | 镜像进程回调。有关详细信息，请参阅[IImageProcessCallback](interface_i_image_process_callback.md)。 | 
+| imageProcessCallback | 镜像进程回调。有关详细信息，请参阅[IImageProcessCallback](interface_i_image_process_callback_v13.md)。 | 
 | imageProcessSession | 指示图像处理会话。有关详细信息，请参阅**[IImageProcessSession](interface_i_image_process_session_v12.md)**。 | 
 
 **返回：**

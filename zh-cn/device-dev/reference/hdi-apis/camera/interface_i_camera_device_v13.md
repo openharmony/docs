@@ -9,7 +9,7 @@
 
 **起始版本：** 5.0
 
-**相关模块：**[Camera](_camera.md)
+**相关模块：**[Camera](_camera_v13.md)
 
 
 ## 汇总
@@ -19,7 +19,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [GetStreamOperator_V1_3](#getstreamoperator_v1_3) ([in] [IStreamOperatorCallback](interface_i_stream_operator_callback.md) callbackObj,<br/>[out] [IStreamOperator](interface_i_stream_operator.md) streamOperator) | 获取流操作句柄。 | 
+| [GetStreamOperator_V1_3](#getstreamoperator_v1_3) ([in] [IStreamOperatorCallback](interface_i_stream_operator_callback_v13.md) callbackObj,<br/>[out] [IStreamOperator](interface_i_stream_operator_v13.md) streamOperator) | 获取流操作句柄。 | 
 | [GetSecureCameraSeq](#getsecurecameraseq) ([out] unsigned long SeqId) | 获取安全相机序号。 | 
 
 
@@ -67,7 +67,7 @@ ICameraDevice::GetStreamOperator_V1_3 ([in] IStreamOperatorCallback callbackObj,
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| callbackObj | 设置流回调接口，详细可查看[IStreamOperatorCallback](interface_i_stream_operator_callback.md)， 用于上报捕获开始**[OnCaptureStarted()](interface_i_stream_operator_callback_v10.md#oncapturestarted)**，捕获结束**[OnCaptureEnded()](interface_i_stream_operator_callback_v10.md#oncaptureended)**， 捕获错误等信息**[OnCaptureError()](interface_i_stream_operator_callback_v10.md#oncaptureerror)**。 | 
+| callbackObj | 设置流回调接口，详细可查看[IStreamOperatorCallback](interface_i_stream_operator_callback_v13.md)， 用于上报捕获开始**[OnCaptureStarted()](interface_i_stream_operator_callback_v10.md#oncapturestarted)**，捕获结束**[OnCaptureEnded()](interface_i_stream_operator_callback_v10.md#oncaptureended)**， 捕获错误等信息**[OnCaptureError()](interface_i_stream_operator_callback_v10.md#oncaptureerror)**。 | 
 | streamOperator | 返回流操作句柄。 | 
 
 **返回：**
