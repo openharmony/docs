@@ -20,6 +20,8 @@
 
 TabContent()
 
+创建TabContent页签和内容。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -134,7 +136,7 @@ SubTabBarStyle的静态构造函数。
 
 static of(content: ResourceStr | ComponentContent): SubTabBarStyle
 
-SubTabBarStyle的静态构造函数。
+SubTabBarStyle的静态构造函数。支持ComponentContent设置自定义内容。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -308,6 +310,8 @@ id(value: string): SubTabBarStyle
 
 ## IndicatorStyle<sup>10+</sup>对象说明
 
+下划线风格对象。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -322,6 +326,8 @@ id(value: string): SubTabBarStyle
 
 ## SelectedMode<sup>10+</sup>枚举说明
 
+选中子页签的显示模式枚举。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -333,6 +339,8 @@ id(value: string): SubTabBarStyle
 
 ## BoardStyle<sup>10+</sup>对象说明
 
+背板风格对象。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -342,6 +350,8 @@ id(value: string): SubTabBarStyle
 | borderRadius | [Length](ts-types.md#length) | 否 | 背板的圆角半径（不支持百分比设置）。<br/>默认值：8.0<br/>单位：vp |
 
 ## LabelStyle<sup>10+</sup>对象说明
+
+label文本和字体的样式对象。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -536,7 +546,7 @@ id(value: string): BottomTabBarStyle
 
 iconStyle(style: TabBarIconStyle): BottomTabBarStyle
 
-置底部页签的label图标的样式。
+设置底部页签的label图标的样式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -556,16 +566,20 @@ iconStyle(style: TabBarIconStyle): BottomTabBarStyle
 
 ## TabBarSymbol<sup>12+</sup>对象说明
 
+页签内symbol图标样式对象。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型         | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 是 | 页签内symbol图标普通态样式。<br/>默认值：fontColor：#66182431，renderingStrategy：SymbolRenderingStrategy.MULTIPLE_OPACITY，fontSize：24vp |
-| selected | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 页签内symbol图标选中态样式。<br/>默认值：fontColor：#ff007dff，renderingStrategy：SymbolRenderingStrategy.MULTIPLE_OPACITY，fontSize：24vp |
+| normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 是 | 页签内symbol图标普通态样式。<br/>默认值：<br/>fontColor：#66182431 <br/>renderingStrategy：SymbolRenderingStrategy.MULTIPLE_OPACITY <br/>fontSize：24vp |
+| selected | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 页签内symbol图标选中态样式。<br/>默认值：<br/>fontColor：#ff007dff <br/>renderingStrategy：SymbolRenderingStrategy.MULTIPLE_OPACITY <br/>fontSize：24vp |
 
 ## LayoutMode<sup>10+</sup>枚举说明
+
+页签内容排布方式枚举。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -578,6 +592,8 @@ iconStyle(style: TabBarIconStyle): BottomTabBarStyle
 | HORIZONTAL | 页签内容左右排布。 |
 
 ## TabBarIconStyle<sup>12+</sup>对象说明
+
+Label图标样式对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
