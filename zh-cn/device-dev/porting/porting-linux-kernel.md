@@ -16,7 +16,7 @@
 
 我们可以把OpenHarmony简单的分为
 
-OpenHarmony = OpenHarmony内核态层 + OpenHarmony用户态层
+OpenHarmony = OpenHarmony内核态层 + OpenHarmony用户态层。
 
 ![zh-cn_image_0000001167753296](figures/zh-cn_image_0000001167753296.png)
 
@@ -31,23 +31,23 @@ OpenHarmony = OpenHarmony内核态层 + OpenHarmony用户态层
 
 为了表述方便，我们在下文部分地方用“OH”代替“OpenHarmony”。
 
-将OH内核态层继续分解
+将OH内核态层继续分解。
 
-OH内核态层 = OH Linux内核 + OH内核态特性（可选特性或者必选特性，如必选特性HDF，今后的可选特性HMDFS等）
+OH内核态层 = OH Linux内核 + OH内核态特性（可选特性或者必选特性，如必选特性HDF，今后的可选特性HMDFS等）。
 
-而OH Linux内核 = 标准LTS Linux 内核 + 三方SoC芯片平台代码 + OH内核态基础代码（支撑OH用户态层运行的最基础代码）
+而OH Linux内核 = 标准LTS Linux 内核 + 三方SoC芯片平台代码 + OH内核态基础代码（支撑OH用户态层运行的最基础代码）。
 
-因此OH内核态层 = 标准LTS Linux 内核 + 三方SoC芯片平台代码 + OH内核态基础代码 + OH内核态特性（如HDF）
+因此OH内核态层 = 标准LTS Linux 内核 + 三方SoC芯片平台代码 + OH内核态基础代码 + OH内核态特性（如HDF）。
 
 ![zh-cn_image_0000001210623027](figures/zh-cn_image_0000001210623027.png)
 
 而将前两项组合，标准LTS Linux 内核 + 三方SoC芯片平台代码，其实就是一个三方Linux内核的基础组成。从上面的推导可以看出，OpenHarmony 内核态层其实能够由两种方法得到：
 
-方法一：OH 内核态层 = 三方Linux内核 + OH内核态基础代码 + OH内核态特性（如HDF，今后的HMDFS等）
+方法一：OH 内核态层 = 三方Linux内核 + OH内核态基础代码 + OH内核态特性（如HDF，今后的HMDFS等）。
 
 也就是直接借助三方Linux内核，再加上基础OH内核态基础代码、以及HDF等OH内核态特性。
 
-方法二：OH 内核态层 = OH Linux内核 + OH内核态特性（如HDF，今后的HMDFS等）
+方法二：OH 内核态层 = OH Linux内核 + OH内核态特性（如HDF，今后的HMDFS等）。
 
 也就是直接采用OHLinux内核，然后再加入OH的其他内核态特性。
 
@@ -159,7 +159,7 @@ obj-$(CONFIG_HIEVENT)           += hievent/
 
      
    ```
-   # 进入树莓派kernel目录
+   # 进入树莓派kernel目录。
    PROJ_ROOT/drivers/hdf_core/adapter/khdf/linux/patch_hdf.sh \
    PROJ_ROOT  # 指定工程根目录路径 \
    PROJ_ROOT/out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b  # 打补丁的内核目录路径 \
@@ -188,10 +188,10 @@ obj-$(CONFIG_HIEVENT)           += hievent/
 
      
    ```
-   # 生成 .config 配置文件
+   # 生成 .config 配置文件。
    make ${MAKE_OPTIONS} rpi3b_oh_defconfig
    
-   # 更改HDF内核配置
+   # 更改HDF内核配置。
    make ${MAKE_OPTIONS} menuconfig
    # [*] Device Drivers
    # [*]   HDF driver framework support --->
@@ -268,18 +268,18 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
    3. 最后将数据卡插回树莓派。
          
        ```
-       # 让树莓派文件系统读取储存卡根目录
+       # 让树莓派文件系统读取储存卡根目录。
        mount -t vfat /dev/block/mmcblk0p1 /boot
        cd /boot/[测试文件目录]
-       # 允许修改系统文件
+       # 允许修改系统文件。
        mount -o remount,rw /
-       # 安装测试用库
+       # 安装测试用库。
        mv libhdf_test_common.z.so /system/lib
        mkdir /data/test
        mv * /data/test
        ```
 
-3. 执行测试
+3. 执行测试。
    1. 进入目录执行测试文件目录data/test。
          
        ```
