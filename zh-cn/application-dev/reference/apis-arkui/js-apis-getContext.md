@@ -6,6 +6,8 @@
 > - 该接口从API version 9开始支持。
 > - 该接口仅限Stage模型使用。
 
+## getContext
+
 getContext(component?: Object):Context
 
 获取与页面上下文组件关联的Context对象。
