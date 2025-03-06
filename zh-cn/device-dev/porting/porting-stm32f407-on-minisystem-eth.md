@@ -1,5 +1,3 @@
-
-
 # 轻量系统STM32F407芯片移植案例
 
 介绍基于`STM32F407IGT6`芯片在拓维信息[Niobe407](https://gitee.com/openharmony-sig/device_board_talkweb)开发板上移植OpenHarmony LiteOS-M轻量系统，提供交通、工业领域开发板解决方案。移植架构采用`Board`与`SoC`分离方案，使用`arm gcc`工具链`Newlib C`库，实现了`lwip`、`littlefs`、`hdf`等子系统及组件的适配，开发了配套应用示例代码，支持通过Kconfig图形化配置编译选项。

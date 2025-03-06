@@ -1,5 +1,3 @@
-
-
 # 物联网解决方案之芯海cst85芯片移植案例
 
 本文介绍基于芯海cst85芯片的cst85_wblink开发板移植OpenHarmony LiteOS-M轻量系统的移植案例。开发了Wi-Fi连接样例和XTS测试样例，同时实现了wifi_lite, lwip, startup, utils, xts, hdf等部件基于OpenHarmony LiteOS-M内核的适配。移植架构上采用Board和Soc分离的方案，工具链采用NewLib C库，LiteOS-M内核编译采用gn结合Kconfig图形化配置的方式。
