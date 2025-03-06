@@ -3,7 +3,7 @@
 
 ## 概述
 
-流描述信息，使用于[IVideoProcessSession::Prepare](interface_i_video_process_session.md#prepare)。
+流描述信息，使用于[IVideoProcessSession::Prepare](interface_i_video_process_session_v13.md#prepare)。
 
 **起始版本：** 5.0
 
