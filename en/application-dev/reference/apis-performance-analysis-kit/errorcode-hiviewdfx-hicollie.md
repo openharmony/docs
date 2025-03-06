@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Wrong thread context.The function can not be called from main thread.
+Wrong thread context. The function cannot be called from main thread.
 
 **Description**
 The API fails to be called from the thread.
@@ -33,3 +33,5 @@ The API fails to be called for the remote service.
 **Possible Causes**
 
 The service is not started or crashes.
+
+
