@@ -32,6 +32,7 @@
 int CaptureEndedInfoExt::frameCount_
 ```
 **描述**
+
 帧数。
 
 **起始版本：** 5.0
@@ -43,6 +44,7 @@ int CaptureEndedInfoExt::frameCount_
 boolean CaptureEndedInfoExt::isDeferredVideoEnhancementAvailable_
 ```
 **描述**
+
 是否使能二阶段视频增强处理。
 
 **起始版本：** 5.0
@@ -54,6 +56,7 @@ boolean CaptureEndedInfoExt::isDeferredVideoEnhancementAvailable_
 int CaptureEndedInfoExt::streamId_
 ```
 **描述**
+
 流id。
 
 **起始版本：** 5.0
@@ -65,6 +68,7 @@ int CaptureEndedInfoExt::streamId_
 String CaptureEndedInfoExt::videoId_
 ```
 **描述**
+
 视频id。
 
 **起始版本：** 5.0

@@ -35,6 +35,7 @@
 BufferHandleSequenceable ImageBufferInfo::depthMapHandle
 ```
 **描述**
+
 depthMapHandle的数据。
 
 
@@ -44,6 +45,7 @@ depthMapHandle的数据。
 BufferHandleSequenceable ImageBufferInfo::gainMapHandle
 ```
 **描述**
+
 gainMapHandle的数据。
 
 
@@ -53,6 +55,7 @@ gainMapHandle的数据。
 BufferHandleSequenceable ImageBufferInfo::imageHandle
 ```
 **描述**
+
 ImageHandle的数据。
 
 
@@ -62,6 +65,7 @@ ImageHandle的数据。
 boolean ImageBufferInfo::isDepthMapValid
 ```
 **描述**
+
 depthMapHandle是否有效。
 
 
@@ -71,6 +75,7 @@ depthMapHandle是否有效。
 boolean ImageBufferInfo::isGainMapValid
 ```
 **描述**
+
 gainMapHandle是否有效。
 
 
@@ -80,6 +85,7 @@ gainMapHandle是否有效。
 boolean ImageBufferInfo::isMetaDataValid
 ```
 **描述**
+
 metadata是否有效。
 
 
@@ -89,4 +95,5 @@ metadata是否有效。
 MapDataSequenceable ImageBufferInfo::metadata
 ```
 **描述**
+
 metadata的数据。

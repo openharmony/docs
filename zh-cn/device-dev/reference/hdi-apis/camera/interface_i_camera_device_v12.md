@@ -29,7 +29,7 @@
 ### GetStatus()
 
 ```
-ICameraDevice::GetStatus ([in] unsigned char[] metaIn, [out] unsigned char[] metaOut )
+ICameraDevice::GetStatus ([in] unsigned char[] metaIn, [out] unsigned char[] metaOut)
 ```
 
 **描述**

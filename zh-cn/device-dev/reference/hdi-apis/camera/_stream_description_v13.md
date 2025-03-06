@@ -34,6 +34,7 @@
 int StreamDescription::dataspace
 ```
 **描述**
+
 图片色域。
 
 **起始版本：** 5.0
@@ -45,6 +46,7 @@ int StreamDescription::dataspace
 int StreamDescription::height
 ```
 **描述**
+
 图片高。
 
 **起始版本：** 5.0
@@ -56,6 +58,7 @@ int StreamDescription::height
 int StreamDescription::pixelFormat
 ```
 **描述**
+
 pixel格式。
 
 **起始版本：** 5.0
@@ -67,6 +70,7 @@ pixel格式。
 int StreamDescription::streamId
 ```
 **描述**
+
 流id。
 
 **起始版本：** 5.0
@@ -78,6 +82,7 @@ int StreamDescription::streamId
 enum MediaStreamType StreamDescription::type
 ```
 **描述**
+
 媒体流类型。
 
 **起始版本：** 5.0
@@ -89,6 +94,7 @@ enum MediaStreamType StreamDescription::type
 int StreamDescription::width
 ```
 **描述**
+
 图片宽。
 
 **起始版本：** 5.0

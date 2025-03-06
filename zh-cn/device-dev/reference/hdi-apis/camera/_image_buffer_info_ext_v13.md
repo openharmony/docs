@@ -42,6 +42,7 @@
 BufferHandleSequenceable ImageBufferInfoExt::depthMapHandle
 ```
 **描述**
+
 depthmap处理信息。
 
 **起始版本：** 5.0
@@ -53,6 +54,7 @@ depthmap处理信息。
 BufferHandleSequenceable ImageBufferInfoExt::exifHandle
 ```
 **描述**
+
 exif处理信息。
 
 **起始版本：** 5.0
@@ -64,6 +66,7 @@ exif处理信息。
 BufferHandleSequenceable ImageBufferInfoExt::gainMapHandle
 ```
 **描述**
+
 gainMap信息。
 
 **起始版本：** 5.0
@@ -75,6 +78,7 @@ gainMap信息。
 BufferHandleSequenceable ImageBufferInfoExt::highBitDepthLinearImageHandle
 ```
 **描述**
+
 高位深度线性图像处理信息。
 
 **起始版本：** 5.0
@@ -86,6 +90,7 @@ BufferHandleSequenceable ImageBufferInfoExt::highBitDepthLinearImageHandle
 BufferHandleSequenceable ImageBufferInfoExt::imageHandle
 ```
 **描述**
+
 图片处理信息。
 
 **起始版本：** 5.0
@@ -97,6 +102,7 @@ BufferHandleSequenceable ImageBufferInfoExt::imageHandle
 boolean ImageBufferInfoExt::isDepthMapValid
 ```
 **描述**
+
 depthmap是否上报。
 
 **起始版本：** 5.0
@@ -108,6 +114,7 @@ depthmap是否上报。
 boolean ImageBufferInfoExt::isExifValid
 ```
 **描述**
+
 是否上报exif信息。
 
 **起始版本：** 5.0
@@ -119,6 +126,7 @@ boolean ImageBufferInfoExt::isExifValid
 boolean ImageBufferInfoExt::isGainMapValid
 ```
 **描述**
+
 gainMap是否上报。
 
 **起始版本：** 5.0
@@ -130,6 +138,7 @@ gainMap是否上报。
 boolean ImageBufferInfoExt::isHighBitDepthLinearImageValid
 ```
 **描述**
+
 是否上报高位深度线性图像。
 
 **起始版本：** 5.0
@@ -141,6 +150,7 @@ boolean ImageBufferInfoExt::isHighBitDepthLinearImageValid
 boolean ImageBufferInfoExt::isMakerInfoValid
 ```
 **描述**
+
 维测信息是否上报。
 
 **起始版本：** 5.0
@@ -152,6 +162,7 @@ boolean ImageBufferInfoExt::isMakerInfoValid
 boolean ImageBufferInfoExt::isUnrefocusImageValid
 ```
 **描述**
+
 人像模式是否上报unrefocusImage。
 
 **起始版本：** 5.0
@@ -163,6 +174,7 @@ boolean ImageBufferInfoExt::isUnrefocusImageValid
 BufferHandleSequenceable ImageBufferInfoExt::makerInfoHandle
 ```
 **描述**
+
 维测处理信息。
 
 **起始版本：** 5.0
@@ -174,6 +186,7 @@ BufferHandleSequenceable ImageBufferInfoExt::makerInfoHandle
 MapDataSequenceable ImageBufferInfoExt::metadata
 ```
 **描述**
+
 metadata信息。
 
 **起始版本：** 5.0
@@ -185,6 +198,7 @@ metadata信息。
 BufferHandleSequenceable ImageBufferInfoExt::unrefocusImageHandle
 ```
 **描述**
+
 unrefocusImage处理信息。
 
 **起始版本：** 5.0

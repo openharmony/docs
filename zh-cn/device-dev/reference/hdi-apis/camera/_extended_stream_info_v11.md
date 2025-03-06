@@ -34,6 +34,7 @@
 BufferProducerSequenceable ExtendedStreamInfo::bufferQueue
 ```
 **描述**
+
 图形提供的生产者句柄，用于快速缩略图。
 
 
@@ -43,6 +44,7 @@ BufferProducerSequenceable ExtendedStreamInfo::bufferQueue
 int ExtendedStreamInfo::dataspace
 ```
 **描述**
+
 图像颜色空间。
 
 
@@ -52,6 +54,7 @@ int ExtendedStreamInfo::dataspace
 int ExtendedStreamInfo::format
 ```
 **描述**
+
 图像格式。
 
 
@@ -61,6 +64,7 @@ int ExtendedStreamInfo::format
 int ExtendedStreamInfo::height
 ```
 **描述**
+
 图像高度。
 
 
@@ -70,6 +74,7 @@ int ExtendedStreamInfo::height
 enum ExtendedStreamInfoType ExtendedStreamInfo::type
 ```
 **描述**
+
 扩展流信息类型。
 
 
@@ -79,4 +84,5 @@ enum ExtendedStreamInfoType ExtendedStreamInfo::type
 int ExtendedStreamInfo::width
 ```
 **描述**
+
 图像宽度。
