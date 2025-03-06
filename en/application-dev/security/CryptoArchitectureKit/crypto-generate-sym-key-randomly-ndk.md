@@ -7,19 +7,18 @@ The symmetric key (**OH_CryptoSymKey**) object created can be used for subsequen
 
 ## Adding the Dynamic Library in the CMake Script
 ```txt
-   target_link_libraries(entry PUBLIC libohcrypto.so)
+target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 ## Randomly Generating an AES Key
 
 For details about the algorithm specifications, see [AES](crypto-sym-key-generation-conversion-spec.md#aes).
 
-1. Use [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create) with the string parameter **'AES256'** to create a symmetric key generator (**OH_CryptoSymKeyGenerator**) object for a 256-bit AES key.
+1. Call [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create) with the string parameter **'AES256'** to create a symmetric key generator (**OH_CryptoSymKeyGenerator**) object for a 256-bit AES key.
 
-2. Use [OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate) to randomly generate a symmetric key object (**OH_CryptoSymKey**).
+2. Call [OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate) to randomly generate a symmetric key object (**OH_CryptoSymKey**).
 
-3. Use [OH_CryptoSymKey_GetKeyData](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_getkeydata) to obtain the binary data of the key object.
-**Example**
+3. Call [OH_CryptoSymKey_GetKeyData](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_getkeydata) to obtain the binary data of the key object.
 
 
 ```c++
@@ -55,12 +54,11 @@ static OH_Crypto_ErrCode testGenerateSymKey()
 
 For details about the algorithm specifications, see [SM4](crypto-sym-key-generation-conversion-spec.md#sm4).
 
-1. Use [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create) with the string parameter **'SM4_128'** to create a symmetric key generator (**OH_CryptoSymKeyGenerator**) object for a 128-bit SM4 key.
+1. Call [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create) with the string parameter **'SM4_128'** to create a symmetric key generator (**OH_CryptoSymKeyGenerator**) object for a 128-bit SM4 key.
 
-2. Use [OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate) to randomly generate a symmetric key object (**OH_CryptoSymKey**).
+2. Call [OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate) to randomly generate a symmetric key object (**OH_CryptoSymKey**).
 
-3. Use [OH_CryptoSymKey_GetKeyData](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_getkeydata) to obtain the binary data of the key object.
-**Example**
+3. Call [OH_CryptoSymKey_GetKeyData](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_getkeydata) to obtain the binary data of the key object.
 
 
 ```c++
@@ -71,17 +69,17 @@ static OH_Crypto_ErrCode testGenerateSM4Key()
 {
     OH_CryptoSymKeyGenerator *ctx = nullptr;
     OH_CryptoSymKey *keyCtx = nullptr;
-    Crypto_DataBlob out = {.data = nullptr, .len = 0};
-    OH_Crypto_ErrCode ret = OH_CryptoSymKeyGenerator_Create("SM4_128", &ctx);
+    Crypto_DataBlob out = {.data = nullptr, .len = 0}; // Binary data of the symmetric key.
+    OH_Crypto_ErrCode ret = OH_CryptoSymKeyGenerator_Create("SM4_128", &ctx); // Create a symmetric key generator.
     if (ret != CRYPTO_SUCCESS) {
         return ret;
     }
-    ret = OH_CryptoSymKeyGenerator_Generate(ctx, &keyCtx);
+    ret = OH_CryptoSymKeyGenerator_Generate(ctx, &keyCtx); // Randomly generate a symmetric key object.
     if (ret != CRYPTO_SUCCESS) {
         OH_CryptoSymKeyGenerator_Destroy(ctx);
         return ret;
     }
-    ret = OH_CryptoSymKey_GetKeyData(keyCtx, &out);
+    ret = OH_CryptoSymKey_GetKeyData(keyCtx, &out); // Obtain the binary data of the symmetric key object.
     OH_CryptoSymKeyGenerator_Destroy(ctx);
     OH_CryptoSymKey_Destroy(keyCtx);
     if (ret != CRYPTO_SUCCESS) {
