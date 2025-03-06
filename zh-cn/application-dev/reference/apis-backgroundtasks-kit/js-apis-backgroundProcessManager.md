@@ -16,7 +16,9 @@ import { backgroundProcessManager } from '@kit.BackgroundTasksKit';
 
 ## backgroundProcessManager.setProcessPriority
 
+```ts
 function setProcessPriority(pid: number, priority: ProcessPriority): Promise<void>;
+```
 
 设置压制档位。
 
@@ -62,8 +64,9 @@ try {
 
 
 ## backgroundProcessManager.resetProcessPriority
-
+```ts
 function resetProcessPriority(pid: number): Promise<void>;
+```
 
 恢复进程管控策略为系统默认策略（跟随主进程策略）。
 
