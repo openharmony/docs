@@ -21,7 +21,7 @@ import { ProgressButton } from '@kit.ArkUI'
 ## ProgressButton
 
 ProgressButton({progress: number, content: string, progressButtonWidth?: Length, clickCallback: () =&gt; void, enable:
-boolean,colorOptions?: ProgressButtonColorOptions,progressButtonRadius?:LengthMetrics })
+boolean, colorOptions?: ProgressButtonColorOptions, progressButtonRadius?: LengthMetrics})
 
 **装饰器类型：**\@Component
 

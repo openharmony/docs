@@ -20,7 +20,7 @@ import { ColorMetrics, LengthMetrics, ProgressButtonV2,  ProgressButtonV2Color }
 ## ProgressButtonV2
 
 ProgressButtonV2({progress: number, content: ResourceStr, progressButtonWidth?: LengthMetrics, onClicked: ClickCallback,
-isEnabled: boolean,colorOptions?: ProgressButtonColorOptions,progressButtonRadius?:LengthMetrics })
+isEnabled: boolean, colorOptions?: ProgressButtonColorOptions, progressButtonRadius?: LengthMetrics})
 
 文本下载按钮，可显示具体下载进度。
 
