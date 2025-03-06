@@ -30,10 +30,9 @@
 ### OnCameraEvent()
 
 ```
-ICameraHostCallback::OnCameraEvent ([in] String cameraId, [in] enum CameraEvent event)
+ICameraHostCallback::OnCameraEvent ([in] String cameraId, [in] enum CameraEvent event )
 ```
 **描述**
-
 在相机事件发生时调用。
 
 **起始版本：** 3.2
@@ -49,10 +48,9 @@ ICameraHostCallback::OnCameraEvent ([in] String cameraId, [in] enum CameraEvent 
 ### OnCameraStatus()
 
 ```
-ICameraHostCallback::OnCameraStatus ([in] String cameraId, [in] enum CameraStatus status)
+ICameraHostCallback::OnCameraStatus ([in] String cameraId, [in] enum CameraStatus status )
 ```
 **描述**
-
 用于Camera设备状态变化时上报状态信息给调用者。
 
 **起始版本：** 3.2
@@ -68,10 +66,9 @@ ICameraHostCallback::OnCameraStatus ([in] String cameraId, [in] enum CameraStatu
 ### OnFlashlightStatus()
 
 ```
-ICameraHostCallback::OnFlashlightStatus ([in] String cameraId, [in] enum FlashlightStatus status)
+ICameraHostCallback::OnFlashlightStatus ([in] String cameraId, [in] enum FlashlightStatus status )
 ```
 **描述**
-
 用于在闪光灯状态变化时上报状态信息给调用者。
 
 **起始版本：** 3.2

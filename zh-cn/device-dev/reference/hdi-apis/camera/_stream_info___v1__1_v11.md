@@ -30,7 +30,6 @@
 struct ExtendedStreamInfo [] StreamInfo_V1_1::extendedStreamInfos
 ```
 **描述**
-
 可选扩展流信息。
 
 
@@ -40,5 +39,4 @@ struct ExtendedStreamInfo [] StreamInfo_V1_1::extendedStreamInfos
 struct StreamInfo StreamInfo_V1_1::v1_0
 ```
 **描述**
-
 流信息的上一版本。

@@ -28,10 +28,9 @@
 ### OnCaptureStartedV1_2()
 
 ```
-IStreamOperatorCallback::OnCaptureStartedV1_2 ([in] int captureId, [in] struct CaptureStartedInfo[] infos)
+IStreamOperatorCallback::OnCaptureStartedV1_2 ([in] int captureId, [in] struct CaptureStartedInfo[] infos )
 ```
 **描述**
-
 在捕获开始时调用。
 
 **起始版本：** 4.1

@@ -30,7 +30,6 @@
 int CaptureStartedInfo::exposureTime_
 ```
 **描述**
-
 曝光时间，单位为毫秒。
 
 
@@ -40,5 +39,4 @@ int CaptureStartedInfo::exposureTime_
 int CaptureStartedInfo::streamId_
 ```
 **描述**
-
 流的ID，用于在设备内唯一标识一条流。

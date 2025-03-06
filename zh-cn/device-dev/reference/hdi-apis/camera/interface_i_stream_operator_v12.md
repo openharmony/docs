@@ -21,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [UpdateStreams](#updatestreams) ([in] struct StreamInfo_V1_1[] streamInfos) | 更新流。 | 
+| [UpdateStreams](#updatestreams) ([in] struct StreamInfo_V1_1[] streamInfos) | 更新流. | 
 | [ConfirmCapture](#confirmcapture) ([in] int captureId) | 确认捕获。 | 
 
 
@@ -63,7 +63,7 @@ IStreamOperator::UpdateStreams ([in] struct StreamInfo_V1_1[] streamInfos)
 
 **描述**
 
-更新流。
+更新流.
 
 该函数必须在 Loop CancelCaptures **CancelCaptures** 之后调用。
 

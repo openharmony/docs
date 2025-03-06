@@ -34,10 +34,9 @@
 ### GetCoucurrency()
 
 ```
-IImageProcessSession::GetCoucurrency ([in] enum ExecutionMode mode, [out] int taskCount)
+IImageProcessSession::GetCoucurrency ([in] enum ExecutionMode mode, [out] int taskCount )
 ```
 **描述**
-
 获取具有spacific后处理执行模式的流程会话的Coucurrency任务计数。
 
 **起始版本：** 4.1
@@ -56,7 +55,6 @@ IImageProcessSession::GetCoucurrency ([in] enum ExecutionMode mode, [out] int ta
 IImageProcessSession::GetPendingImages ([out] List< String > imageIds)
 ```
 **描述**
-
 获取未处理的挂起图像的ID。
 
 **起始版本：** 4.1
@@ -65,7 +63,7 @@ IImageProcessSession::GetPendingImages ([out] List< String > imageIds)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| imageIds | 待处理的图像ID。 | 
+| imageIds | 待处理图像的 ID。 | 
 
 
 ### Interrupt()
@@ -74,7 +72,6 @@ IImageProcessSession::GetPendingImages ([out] List< String > imageIds)
 IImageProcessSession::Interrupt ()
 ```
 **描述**
-
 中断进程会话。
 
 **起始版本：** 4.1
@@ -86,7 +83,6 @@ IImageProcessSession::Interrupt ()
 IImageProcessSession::ProcessImage ([in] String imageId)
 ```
 **描述**
-
 按镜像ID处理特定镜像。
 
 **起始版本：** 4.1
@@ -104,7 +100,6 @@ IImageProcessSession::ProcessImage ([in] String imageId)
 IImageProcessSession::RemoveImage ([in] String imageId)
 ```
 **描述**
-
 按映像ID删除特定映像。
 
 **起始版本：** 4.1
@@ -122,7 +117,6 @@ IImageProcessSession::RemoveImage ([in] String imageId)
 IImageProcessSession::Reset ()
 ```
 **描述**
-
 重置进程会话。
 
 **起始版本：** 4.1
@@ -134,7 +128,6 @@ IImageProcessSession::Reset ()
 IImageProcessSession::SetExecutionMode ([in] ExecutionMode mode)
 ```
 **描述**
-
 设置处理后执行模式。
 
 **起始版本：** 4.1
