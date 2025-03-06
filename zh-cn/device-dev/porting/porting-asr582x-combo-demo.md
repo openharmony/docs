@@ -1,5 +1,3 @@
-
-
 # Combo解决方案之ASR芯片移植案例
 
 本方案基于OpenHarmony LiteOS-M内核，使用ASR582X芯片的[DEV.WIFI.A开发板](https://gitee.com/openharmony/device_board_lango)进行开发移植。作为典型的IOT Combo（Wi-Fi+BLE）解决方案，本文章介绍ASR582X的适配过程。
@@ -45,11 +43,11 @@ vendor
     "subsystems": []                      --- 子系统
 }
 ```
-这里的device_company和board用于关联出//device/board/<device_company>/<board>目录。
+这里的device_company和board用于关联出`//device/board/<device_company>/<board>`目录。
 
 ### 单板配置
 
-在关联到的<board>目录下，以`device/board/lango/dev_wifi_a`为例，需要在liteos_m目录下放置config.gni文件，这个配置文件用于描述该单板的信息，包括CPU、toolchain、kernel、compile flags等。例如：
+在关联到的\<board\>目录下，以`device/board/lango/dev_wifi_a`为例，需要在liteos_m目录下放置config.gni文件，这个配置文件用于描述该单板的信息，包括CPU、toolchain、kernel、compile flags等。例如：
 
 ```
 # 内核类型。
