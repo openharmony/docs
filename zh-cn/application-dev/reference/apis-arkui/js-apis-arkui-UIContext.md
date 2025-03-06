@@ -2419,13 +2419,13 @@ unbindTabsFromNestedScrollable(tabsController: TabsController, parentScroller: S
 
 参考[bindTabsToScrollable](#bindtabstoscrollable13)接口示例。
 
-### enableSwipeBack<sup>16+</sup>
+### enableSwipeBack<sup>18+</sup>
 
 enableSwipeBack(enabled: Optional\<boolean\>): void
 
 设置是否支持应用内横向滑动返回上一级。
 
-**原子化服务API:** 从API Version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API:** 从API Version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
