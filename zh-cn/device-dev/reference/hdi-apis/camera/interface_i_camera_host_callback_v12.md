@@ -31,6 +31,7 @@
 ICameraHostCallback::OnFlashlightStatusV1_2 ([in] enum FlashlightStatus status)
 ```
 **描述**
+
 当闪光状态发生变化时调用以报告最新状态。
 
 **起始版本：** 4.1

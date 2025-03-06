@@ -55,7 +55,7 @@ Camera模块涉及相机设备的操作、流的操作、离线流的操作和�
 | [ExtendedStreamInfoType](#extendedstreaminfotype) : ohos.hdi.camera.v1_2.ExtendedStreamInfoType_V1_2 {<br/>EXTENDED_STREAM_INFO_RAW = 2, EXTENDED_STREAM_INFO_DEPTH = 3, EXTENDED_STREAM_INFO_META = 4, EXTENDED_STREAM_INFO_SECURE = 5,<br/>EXTENDED_STREAM_INFO_MAKER_INFO = 6, EXTENDED_STREAM_INFO_EXIF = 7, EXTENDED_STREAM_INFO_GAINMAP = 8, EXTENDED_STREAM_INFO_UNREFOCUS = 9,<br/>EXTENDED_STREAM_INFO_LINEAR = 10, EXTENDED_STREAM_INFO_FRAGMENT =11, EXTENDED_STREAM_INFO_UV = 12} | 扩展流信息的类型。 | 
 | [StreamType](#streamtype) {<br/>STREAM_TYPE_PREVIEW = 0, STREAM_TYPE_VIDEO = 1, STREAM_TYPE_STILL_CAPTURE = 2, STREAM_TYPE_POST_VIEW = 3, STREAM_TYPE_ANALYZE = 4,<br/>STREAM_TYPE_CUSTOM = 5, STREAM_TYPE_DEPTH = 6} | 流类型。 | 
 | [ExecutionMode](#executionmode) : ohos.hdi.camera.v1_2.ExecutionMode { DEFAULT = 3 } | 执行模式的类型。 | 
-| [ErrorType](#errortype) : ohos.hdi.camera.v1_0.ErrorType { SENSOR_DATA_ERROR = 5 } | 设备错误类型，用于设备错误回调**[OnError()](interface_i_video_process_callback._v13md#onerror)**。 | 
+| [ErrorType](#errortype) : ohos.hdi.camera.v1_0.ErrorType { SENSOR_DATA_ERROR = 5 } | 设备错误类型，用于设备错误回调**[OnError()](interface_i_video_process_callback_v13.md#onerror)**。 | 
 | [MediaStreamType](#mediastreamtype) { MEDIA_STREAM_TYPE_VIDEO = 0,<br/>MEDIA_STREAM_TYPE_METADATA = 1, MEDIA_STREAM_TYPE_MAKER = 2 } | 相机媒体流类型。 | 
 | [EncodeType](#encodetype) : ohos.hdi.camera.v1_0.EncodeType { ENCODE_TYPE_HEIC = 4 } | 流数据的编码类型。 | 
 | [StreamError](#streamerror) : ohos.hdi.camera.v1_0.StreamError { HIGH_TEMPERATURE_ERROR = 2 } | 流错误类型，用于流错误类型**[CaptureErrorInfo](_capture_ended_info_v10.md)**。 | 

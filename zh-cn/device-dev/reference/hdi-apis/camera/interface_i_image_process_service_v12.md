@@ -32,6 +32,7 @@
 IImageProcessService::CreateImageProcessSession ([in] int userId, [in] IImageProcessCallback imageProcessCallback, [out] IImageProcessSession imageProcessSession)
 ```
 **描述**
+
 创建映像处理会话。
 
 **起始版本：** 4.1
