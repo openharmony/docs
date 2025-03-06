@@ -1,4 +1,3 @@
-
 # Combo解决方案之W800芯片移植案例
 
 本方案基于OpenHarmony LiteOS-M内核，使用联盛德W800芯片的润和软件海王星系列[Neptune100开发板](https://gitee.com/openharmony-sig/device_board_hihope)，进行开发移植。移植架构采用`Board`与`SoC`分离方案，支持通过Kconfig图形化配置编译选项，增加玄铁`ck804ef`架构移植，实现了`HDF`、`XTS`等子系统及组件的适配。
@@ -54,7 +53,7 @@
 
 ### 单板配置
 
-关联到的<board>目录下，在`device/board/hihope/neptune100/liteos_m`目录下放置`config.gni`文件，该配置文件用于描述该单板信息，包括CPU型号、交叉编译工具链及全局编译、链接参数等重要信息：
+关联到的\<board\>目录下，在`device/board/hihope/neptune100/liteos_m`目录下放置`config.gni`文件，该配置文件用于描述该单板信息，包括CPU型号、交叉编译工具链及全局编译、链接参数等重要信息：
 
 ```
 # Kernel type, e.g. "linux", "liteos_a", "liteos_m".
