@@ -729,7 +729,12 @@ class EntryAbility extends UIAbility {
       securityLevel: relationalStore.SecurityLevel.S3,
       tokenizer: relationalStore.Tokenizer.ICU_TOKENIZER
     };
-    store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
+    relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
+      store = rdbStore;
+      console.info('Get RdbStore successfully.')
+    }).catch((err: BusinessError) => {
+      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+    })
 
     const SQL_CREATE_TABLE = "CREATE VIRTUAL TABLE example USING fts4(name, content, tokenize=icu zh_CN)"
     if(store != undefined) {
@@ -762,7 +767,12 @@ class EntryAbility extends UIAbility {
       securityLevel: relationalStore.SecurityLevel.S3,
       tokenizer: relationalStore.Tokenizer.CUSTOM_TOKENIZER
     };
-    store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
+    relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
+      store = rdbStore;
+      console.info('Get RdbStore successfully.')
+    }).catch((err: BusinessError) => {
+      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+    })
 
     const SQL_CREATE_TABLE = "CREATE VIRTUAL TABLE example USING fts5(name, content, tokenize='customtokenizer')"
     if(store != undefined) {
@@ -2317,7 +2327,12 @@ class EntryAbility extends UIAbility {
       securityLevel: relationalStore.SecurityLevel.S3,
     };
 
-    store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
+    relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
+      store = rdbStore;
+      console.info('Get RdbStore successfully.')
+    }).catch((err: BusinessError) => {
+      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+    })
 
     // 设置数据库版本
     if(store != undefined) {
@@ -7835,7 +7850,12 @@ class EntryAbility extends UIAbility {
       securityLevel: relationalStore.SecurityLevel.S3,
     };
 
-    store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
+    relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
+      store = rdbStore;
+      console.info('Get RdbStore successfully.')
+    }).catch((err: BusinessError) => {
+      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+    })
 
     let resultSet: relationalStore.ResultSet | undefined = undefined;
     let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -8982,7 +9002,12 @@ class EntryAbility extends UIAbility {
       securityLevel: relationalStore.SecurityLevel.S3,
     };
 
-    store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
+    relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
+      store = rdbStore;
+      console.info('Get RdbStore successfully.')
+    }).catch((err: BusinessError) => {
+      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+    })
 
     if(store != undefined) {
       (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
