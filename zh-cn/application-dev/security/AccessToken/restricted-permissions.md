@@ -291,18 +291,6 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：12
 
-### ohos.permission.MANAGER_SWING_MOTION
-
-允许应用使用隔空手势自适配能力。
-
-<!--RP22--><!--RP22End-->
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**起始版本**：12
-
 ### ohos.permission.INPUT_MONITORING
 
 允许应用监听输入事件。
