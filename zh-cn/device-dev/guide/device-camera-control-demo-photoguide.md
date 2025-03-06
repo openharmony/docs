@@ -14,7 +14,7 @@
 **表 1**  API列表
 
 <a name="zh-cn_topic_0000001052170554_table2069447114914"></a>
-<table><thead align="left"><tr id="zh-cn_topic_0000001052170554_row4903852104914"><th class="cellrowborder" valign="top" width="14.93%" id="mcps1.2.4.1.1"><p id="zh-cn_topic_0000001052170554_p2903252174918"><a name="zh-cn_topic_0000001052170554_p2903252174918"></a><a name="zh-cn_topic_0000001052170554_p2903252174918"></a>类名</p>
+\<table\><thead align="left"><tr id="zh-cn_topic_0000001052170554_row4903852104914"><th class="cellrowborder" valign="top" width="14.93%" id="mcps1.2.4.1.1"><p id="zh-cn_topic_0000001052170554_p2903252174918"><a name="zh-cn_topic_0000001052170554_p2903252174918"></a><a name="zh-cn_topic_0000001052170554_p2903252174918"></a>类名</p>
 </th>
 <th class="cellrowborder" valign="top" width="61.660000000000004%" id="mcps1.2.4.1.2"><p id="zh-cn_topic_0000001052170554_p1595113912507"><a name="zh-cn_topic_0000001052170554_p1595113912507"></a><a name="zh-cn_topic_0000001052170554_p1595113912507"></a>接口名</p>
 </th>
@@ -22,7 +22,7 @@
 </th>
 </tr>
 </thead>
-<tbody><tr id="zh-cn_topic_0000001052170554_row492815717494"><td class="cellrowborder" valign="top" width="14.93%" headers="mcps1.2.4.1.1 "><p id="zh-cn_topic_0000001052170554_p1592812716495"><a name="zh-cn_topic_0000001052170554_p1592812716495"></a><a name="zh-cn_topic_0000001052170554_p1592812716495"></a>CameraKit</p>
+\<tbody\><tr id="zh-cn_topic_0000001052170554_row492815717494"><td class="cellrowborder" valign="top" width="14.93%" headers="mcps1.2.4.1.1 "><p id="zh-cn_topic_0000001052170554_p1592812716495"><a name="zh-cn_topic_0000001052170554_p1592812716495"></a><a name="zh-cn_topic_0000001052170554_p1592812716495"></a>CameraKit</p>
 </td>
 <td class="cellrowborder" valign="top" width="61.660000000000004%" headers="mcps1.2.4.1.2 "><p id="zh-cn_topic_0000001052170554_p1492837144919"><a name="zh-cn_topic_0000001052170554_p1492837144919"></a><a name="zh-cn_topic_0000001052170554_p1492837144919"></a>int32_t GetCameraIds(std::list&lt;string&gt; cameraList)</p>
 </td>

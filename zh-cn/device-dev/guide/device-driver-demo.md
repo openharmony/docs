@@ -31,7 +31,7 @@ HDF驱动框架为常用外围设备提供了标准的驱动框架，驱动开�
 **表 1**  文件说明
 
 <a name="table15887645104012"></a>
-<table><thead align="left"><tr id="row198881452404"><th class="cellrowborder" align="center" valign="top" width="13.489999999999998%" id="mcps1.2.4.1.1"><p id="p158742406488"><a name="p158742406488"></a><a name="p158742406488"></a>说明</p>
+\<table\><thead align="left"><tr id="row198881452404"><th class="cellrowborder" align="center" valign="top" width="13.489999999999998%" id="mcps1.2.4.1.1"><p id="p158742406488"><a name="p158742406488"></a><a name="p158742406488"></a>说明</p>
 </th>
 <th class="cellrowborder" align="center" valign="top" width="68.52000000000001%" id="mcps1.2.4.1.2"><p id="p6975142717432"><a name="p6975142717432"></a><a name="p6975142717432"></a>文件路径</p>
 </th>
@@ -39,7 +39,7 @@ HDF驱动框架为常用外围设备提供了标准的驱动框架，驱动开�
 </th>
 </tr>
 </thead>
-<tbody><tr id="row1088914458407"><td class="cellrowborder" align="left" valign="top" width="13.489999999999998%" headers="mcps1.2.4.1.1 "><p id="p78741540104813"><a name="p78741540104813"></a><a name="p78741540104813"></a>示例文件</p>
+\<tbody\><tr id="row1088914458407"><td class="cellrowborder" align="left" valign="top" width="13.489999999999998%" headers="mcps1.2.4.1.1 "><p id="p78741540104813"><a name="p78741540104813"></a><a name="p78741540104813"></a>示例文件</p>
 </td>
 <td class="cellrowborder" align="left" valign="top" width="68.52000000000001%" headers="mcps1.2.4.1.2 "><p id="p1066541692916"><a name="p1066541692916"></a><a name="p1066541692916"></a>/drivers/adapter/khdf/linux/platform/i2c/i2c_sample.c</p>
 </td>
