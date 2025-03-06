@@ -72,7 +72,7 @@ Called when an auto-fill request is successfully processed.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | ------------------------------ |
-| response | [FillResponse](../apis/#fillresponse)  | Yes| Information about the response to the auto-fill response.|
+| response | [FillResponse](#fillresponse)  | Yes| Information about the response to the auto-fill response.|
 
 **Error codes**
 
@@ -253,7 +253,7 @@ Called when an auto-fill request is canceled.
 
 | Name                   | Type  | Mandatory| Description                |
 | ------------------------- | ------ | ---- | -------------------- |
-| fillContent<sup>12+</sup> | string | Content returned to the input method framework when the auto-fill request is canceled.|
+| fillContent<sup>12+</sup> | string | No  | Content returned to the input method framework when the auto-fill request is canceled.|
 
 **Error codes**
 

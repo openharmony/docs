@@ -14,9 +14,7 @@ import { common } from '@kit.AbilityKit';
 ```
 
 ## PhotoEditorExtensionContext.saveEditedContentWithUri
-
 saveEditedContentWithUri(uri: string): Promise\<AbilityResult\>
-
 Saves an edited image, which is passed in through a URI.
 
 **Model restriction**: This API can be used only in the stage model.
@@ -50,6 +48,7 @@ import { common, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG = '[ExamplePhotoEditorAbility]';
 
@@ -101,9 +100,7 @@ struct Index {
 }
 ```
 ## PhotoEditorExtensionContext.saveEditedContentWithImage
-
 saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>
-
 Saves an edited image, which is passed in through a **PixelMap** object.
 
 **Model restriction**: This API can be used only in the stage model.

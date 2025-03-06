@@ -1,6 +1,6 @@
 # @ohos.app.ability.childProcessManager (childProcessManager)
 
-The **childProcessManager** module provides the child process management capability. Currently, it provides APIs to start a child process and is valid only for tables.
+The childProcessManager module provides the child process management capability. Currently, it provides APIs to start a child process and is valid only for 2-in-1 devices and tables.
 
 > **NOTE**
 >
@@ -195,7 +195,7 @@ The child process supports parameter transfer and asynchronous ArkTS API calls (
 | 801 | Capability not supported. |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. The API cannot be called in a child process. |
-| 16000062  | The number of child processes exceeds the upper limit. |
+| 16000062  | The number of native child process exceeds upper bound. |
 
 **Example**
 

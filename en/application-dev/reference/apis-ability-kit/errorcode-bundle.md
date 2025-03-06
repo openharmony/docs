@@ -895,7 +895,6 @@ The application has applied for an incorrect permission, causing the installatio
 2. The ability privilege level (APL) of the application is lower than the level of the permission that the application has applied for.
 
 **Solution**
-
 1. Check whether the application has applied for the <!--Del-->[<!--DelEnd-->MDM permission<!--Del-->](../../security/AccessToken/permissions-for-mdm-apps.md)<!--DelEnd-->, which is available only for MDM applications.
 2. Check whether the requested permission is open. For details, see [Permission List](../../security/AccessToken/permissions-for-all.md).
 
@@ -1009,6 +1008,7 @@ When an API related to the app clone feature is called, the specified **appIndex
 2. Check whether the application has a clone of the specified index.
 3. Check whether **createAppClone** is called with an existing index.
 
+
 ## 17700065 Ability Specified by want in the ShortcutInfo Struct Cannot Be Started
 
 **Error Message**
@@ -1035,11 +1035,11 @@ The app does not support the creation of an appClone instance.
 
 **Description**
 
-An **AppClone** instance cannot be created for an application that is not in **appClone** mode.
+An AppClone instance cannot be created for an application that is not in appClone mode.
 
 **Possible Causes**
 
-The multi-app mode is set to another mode other than **appClone**.
+The multi-app mode is set to another mode other than appClone.
 
 **Solution**
 

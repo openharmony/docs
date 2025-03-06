@@ -44,7 +44,7 @@ Starts an ability. This API uses an asynchronous callback to return the result. 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -118,7 +118,7 @@ Starts an ability. This API uses a promise to return the result. It can be calle
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -201,7 +201,7 @@ Starts an ability with the start options specified. This API uses an asynchronou
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -286,7 +286,7 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -370,7 +370,7 @@ Starts an ability with the account ID and start options specified. This API uses
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -459,7 +459,7 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -546,7 +546,7 @@ Starts a new ServiceExtensionAbility. This API uses an asynchronous callback to 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -617,7 +617,7 @@ Starts a new ServiceExtensionAbility. This API uses a promise to return the resu
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -700,7 +700,7 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -780,7 +780,7 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -862,7 +862,7 @@ Starts an ability with the caller information specified. The caller information 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -934,7 +934,7 @@ Starts an ability with the caller information and start options specified. The c
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1009,7 +1009,7 @@ Starts an ability with the caller information specified. The caller information 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1088,7 +1088,7 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1155,7 +1155,7 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1233,7 +1233,7 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1308,7 +1308,7 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1382,7 +1382,7 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1433,7 +1433,7 @@ Terminates this ability. This API uses a promise to return the result. It can be
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Return value**
 
@@ -1485,7 +1485,7 @@ Connects this ability to a ServiceExtensionAbility. It can be called only by the
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1564,6 +1564,8 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 Connects this ability to a ServiceExtensionAbility of a given account. It can be called only by the main thread.
 
+Currently, this API takes effect only on mobile phones and tablets.
+
 > **NOTE**
 >
 > For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md). 
@@ -1573,7 +1575,7 @@ Connects this ability to a ServiceExtensionAbility of a given account. It can be
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1658,7 +1660,7 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1718,7 +1720,7 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1793,7 +1795,7 @@ Observe the following when using this API:
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1911,7 +1913,7 @@ Starts an ability. If the ability has multiple instances, the latest instance is
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1987,7 +1989,7 @@ You can use this API to carry start options. It can be called only by the main t
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -2068,7 +2070,7 @@ This API uses a promise to return the result. It can be called only by the main 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -2153,7 +2155,7 @@ Observe the following when using this API:
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 

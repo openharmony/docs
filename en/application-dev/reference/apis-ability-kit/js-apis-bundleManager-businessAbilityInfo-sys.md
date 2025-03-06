@@ -1,6 +1,6 @@
 # BusinessAbilityInfo (System API)
 
-The **BusinessAbilityInfo** module provides basic information about a business ability.
+The BusinessAbilityInfo module provides basic information about a business ability.
 
 > **NOTE**
 >

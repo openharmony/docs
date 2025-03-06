@@ -1181,7 +1181,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets a label for this ability in the mission. This API uses an asynchronous callback to return the result.
+Sets a label for this UIAbility in the mission. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1223,7 +1223,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionLabel(label: string): Promise&lt;void&gt;
 
-Sets a label for this ability in the mission. This API uses a promise to return the result.
+Sets a label for this UIAbility in the mission. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1274,7 +1274,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the mission continuation state of this ability. This API uses an asynchronous callback to return the result.
+Sets the mission continuation state of this UIAbility. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1316,7 +1316,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&gt;
 
-Sets the mission continuation state of this ability. This API uses a promise to return the result.
+Sets the mission continuation state of this UIAbility. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1600,7 +1600,7 @@ export default class EntryAbility extends UIAbility {
 
 reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
-Reports an event indicating that page loading is complete (**loadContent()** is successfully called). This API uses an asynchronous callback to return the result.
+Reports an event indicating that page loading is complete (**loadContent** is successfully called). This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1783,7 +1783,7 @@ export default class EntryAbility extends UIAbility {
 
 showAbility(): Promise\<void>
 
-Shows the current ability. This API uses a promise to return the result. It takes effect only on 2-in-1 devices. It can be called only by the main thread.
+Shows the current ability. This API uses a promise to return the result. It takes effect only on 2-in-1 devices and tablets. It can be called only by the main thread.
 
 To call this API, the current ability must be started through [UIAbilityContext.startAbility](#uiabilitycontextstartability-1), in which [options.processMode](js-apis-app-ability-contextConstant.md#processmode12) must be set to **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM** or **ATTACH_TO_STATUS_BAR_ITEM**.
 
@@ -1880,7 +1880,7 @@ export default class EntryAbility extends UIAbility {
 
 hideAbility(): Promise\<void>
 
-Hides the current ability. This API uses a promise to return the result. It takes effect only on 2-in-1 devices. It can be called only by the main thread.
+Hides the current ability. This API uses a promise to return the result. It takes effect only on 2-in-1 devices and tablets. It can be called only by the main thread.
 
 To call this API, the current ability must be started through [UIAbilityContext.startAbility](#uiabilitycontextstartability-1), in which [options.processMode](js-apis-app-ability-contextConstant.md#processmode12) must be set to **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM** or **ATTACH_TO_STATUS_BAR_ITEM**.
 

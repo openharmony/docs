@@ -548,7 +548,7 @@ DAHelper.notifyChange('dataability:///com.example.DataAbility').then(() => {
 
 ## DataAbilityHelper.insert
 
-insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>): void
+insert(uri: string, valuesBucket: [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket), callback: AsyncCallback\<number>): void
 
 Inserts a single data record into the database. This API uses an asynchronous callback to return the result.
 
@@ -561,7 +561,7 @@ Inserts a single data record into the database. This API uses an asynchronous ca
 | Name        | Type                  | Mandatory| Description                                                  |
 | ------------ | ---------------------- | ---- | ------------------------------------------------------ |
 | uri          | string                 | Yes  | URI of the data to insert.                              |
-| valuesBucket | rdb.ValuesBucket       | Yes  | Data record to insert. If this parameter is **null**, a blank row will be inserted.|
+| valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)       | Yes  | Data record to insert. If this parameter is **null**, a blank row will be inserted.|
 | callback     | AsyncCallback\<number> | Yes  | Callback used to return the index of the inserted data record.                    |
 
 **Example**
@@ -592,7 +592,7 @@ DAHelper.insert('dataability:///com.example.DataAbility', valueBucket, (error, d
 
 ## DataAbilityHelper.insert
 
-insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
+insert(uri: string, valuesBucket: [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)): Promise\<number>
 
 Inserts a single data record into the database. This API uses a promise to return the result.
 
@@ -605,7 +605,7 @@ Inserts a single data record into the database. This API uses a promise to retur
 | Name        | Type            | Mandatory| Description                                                  |
 | ------------ | ---------------- | ---- | ------------------------------------------------------ |
 | uri          | string           | Yes  | URI of the data to insert.                              |
-| valuesBucket | rdb.ValuesBucket | Yes  | Data record to insert. If this parameter is **null**, a blank row will be inserted.|
+| valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket) | Yes  | Data record to insert. If this parameter is **null**, a blank row will be inserted.|
 
 **Return value**
 
@@ -834,7 +834,7 @@ DAHelper.delete('dataability:///com.example.DataAbility', (error, data) => {
 
 ## DataAbilityHelper.update
 
-update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
+update(uri: string, valuesBucket: [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket), predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
 
 Updates data in the database. This API uses an asynchronous callback to return the result.
 
@@ -847,7 +847,7 @@ Updates data in the database. This API uses an asynchronous callback to return t
 | Name        | Type                             | Mandatory| Description                                            |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | Yes  | URI of the data to update.                        |
-| valuesBucket | rdb.ValuesBucket                  | Yes  | New values.                              |
+| valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)                  | Yes  | New values.                              |
 | predicates   | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. You should define the processing logic when this parameter is **null**.|
 | callback     | AsyncCallback\<number>            | Yes  | Callback used to return the number of updated data records.                |
 
@@ -881,7 +881,7 @@ DAHelper.update('dataability:///com.example.DataAbility', va, da, (error, data) 
 
 ## DataAbilityHelper.update
 
-update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>
+update(uri: string, valuesBucket: [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket), predicates?: dataAbility.DataAbilityPredicates): Promise\<number>
 
 Updates data in the database. This API uses a promise to return the result.
 
@@ -894,7 +894,7 @@ Updates data in the database. This API uses a promise to return the result.
 | Name        | Type                             | Mandatory| Description                                            |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | Yes  | URI of the data to update.                        |
-| valuesBucket | rdb.ValuesBucket                  | Yes  | New values.                              |
+| valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)                  | Yes  | New values.                              |
 | predicates   | dataAbility.DataAbilityPredicates | No  | Filter criteria. You should define the processing logic when this parameter is **null**.|
 
 **Return value**
@@ -929,7 +929,7 @@ DAHelper.update('dataability:///com.example.DataAbility', va, da).then((data) =>
 
 ## DataAbilityHelper.update
 
-update(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>): void
+update(uri: string, valuesBucket: [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket), callback: AsyncCallback\<number>): void
 
 Uses a custom processing logic to update data records in the database. This API uses an asynchronous callback to return the result.
 
@@ -942,7 +942,7 @@ Uses a custom processing logic to update data records in the database. This API 
 | Name        | Type                             | Mandatory| Description                                            |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | Yes  | URI of the data to update.                        |
-| valuesBucket | rdb.ValuesBucket                  | Yes  | New values.                              |
+| valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)                  | Yes  | New values.                              |
 | callback     | AsyncCallback\<number>            | Yes  | Callback used to return the number of updated data records.                |
 
 **Example**

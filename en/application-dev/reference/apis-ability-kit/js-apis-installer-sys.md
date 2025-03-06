@@ -1,6 +1,6 @@
 # @ohos.bundle.installer (installer) (System API)
 
-The **bundle.installer** module provides APIs for you to install, uninstall, and recover bundles on devices.
+The bundle.installer module provides APIs for you to install, uninstall, and recover bundles on devices.
 
 > **NOTE**
 >
@@ -25,6 +25,7 @@ import installer from '@ohos.bundle.installer';
 | ohos.permission.UNINSTALL_BUNDLE | system_core | Allows an application to uninstall applications.|
 | ohos.permission.RECOVER_BUNDLE | system_core | Allows an application to restore pre-installed applications.|
 | ohos.permission.INSTALL_SELF_BUNDLE | system_core | Allows automatic updates of the enterprise MDM applications on enterprise devices.|
+
 
 For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
@@ -330,7 +331,7 @@ try {
 
 ## BundleInstaller.install
 
-install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<void\>
+install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise&lt;void&gt;
 
 Installs a bundle. This API uses a promise to return the result.
 
@@ -362,7 +363,7 @@ Installs a bundle. This API uses a promise to return the result.
 
 | Type           | Description                                  |
 | --------------- | -------------------------------------- |
-| Promise\<void\> | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -555,7 +556,7 @@ try {
 ```
 ## BundleInstaller.uninstall
 
-uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>
+uninstall(bundleName: string, installParam?: InstallParam) : Promise&lt;void&gt;
 
 Uninstalls a bundle. This API uses a promise to return the result.
 
@@ -576,7 +577,7 @@ Uninstalls a bundle. This API uses a promise to return the result.
 
 | Type           | Description                                  |
 | --------------- | -------------------------------------- |
-| Promise\<void\> | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -747,7 +748,7 @@ try {
 
 ## BundleInstaller.recover
 
-recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>
+recover(bundleName: string, installParam?: InstallParam) : Promise&lt;void&gt;
 
 Rolls back a bundle to the initial installation state. This API uses a promise to return the result.
 
@@ -768,7 +769,7 @@ Rolls back a bundle to the initial installation state. This API uses a promise t
 
 | Type           | Description                                  |
 | --------------- | -------------------------------------- |
-| Promise\<void\> | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -815,7 +816,7 @@ try {
 
 uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void>) : void
 
-Uninstalls a shared bundle. This API uses an asynchronous callback to return the result.
+Uninstalls a shared package. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -873,9 +874,9 @@ try {
 
 ## BundleInstaller.uninstall<sup>10+</sup>
 
-uninstall(uninstallParam: UninstallParam) : Promise\<void>
+uninstall(uninstallParam: UninstallParam) : Promise&lt;void&gt;
 
-Uninstalls a shared bundle. This API uses a promise to return the result.
+Uninstalls a shared package. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -893,7 +894,7 @@ Uninstalls a shared bundle. This API uses a promise to return the result.
 
 | Type         | Description                                  |
 | ------------- | -------------------------------------- |
-| Promise\<void\> | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -938,7 +939,7 @@ try {
 
 ## BundleInstaller.addExtResource<sup>12+</sup>
 
-addExtResource(bundleName: string, filePaths: Array\<string>): Promise\<void>;
+addExtResource(bundleName: string, filePaths: Array\<string>): Promise&lt;void&gt;;
 
 Adds extended resources based on the specified bundle name and HSP file path. This API uses a promise to return the result.
 
@@ -959,7 +960,7 @@ Adds extended resources based on the specified bundle name and HSP file path. Th
 
 | Type         | Description                                  |
 | ------------- | -------------------------------------- |
-| Promise\<void> | that returns no value.|
+| Promise&lt;void&gt; | that returns no value.|
 
 **Error codes**
 
@@ -1000,7 +1001,7 @@ try {
 
 ## BundleInstaller.removeExtResource<sup>12+</sup>
 
-removeExtResource(bundleName: string, moduleNames: Array\<string>): Promise\<void>;
+removeExtResource(bundleName: string, moduleNames: Array\<string>): Promise&lt;void&gt;;
 
 Removes extended resources based on the specified bundle name and HSP file path. This API uses a promise to return the result.
 
@@ -1021,7 +1022,7 @@ Removes extended resources based on the specified bundle name and HSP file path.
 
 | Type         | Description                                  |
 | ------------- | -------------------------------------- |
-| Promise\<void> | that returns no value.|
+| Promise&lt;void&gt; | that returns no value.|
 
 **Error codes**
 
@@ -1213,7 +1214,7 @@ try {
 
 ## BundleInstaller.updateBundleForSelf<sup>10+</sup>
 
-updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam): Promise\<void\>
+updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam): Promise&lt;void&gt;;
 
 Updates the current bundle. This API uses a promise to return the result. It can be called only by enterprise MDM applications on enterprise devices, and the HAPs in **hapFilePaths** must belong to the current application.
 
@@ -1234,7 +1235,7 @@ Updates the current bundle. This API uses a promise to return the result. It can
 
 | Type         | Description                                  |
 | ------------- | -------------------------------------- |
-| Promise\<void\> | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -1296,9 +1297,9 @@ try {
 
 ## BundleInstaller.uninstallUpdates<sup>12+</sup>
 
-uninstallUpdates(bundleName: string, installParam?: InstallParam): Promise\<void\>;
+uninstallUpdates(bundleName: string, installParam?: InstallParam): Promise&lt;void&gt;;
 
-Uninstalls and updates a pre-installed application and restores it to the initial installation status. This API uses a promise to return the result.
+Uninstalls and updates a preinstalled application and restores it to the initial installation status. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1317,7 +1318,7 @@ Uninstalls and updates a pre-installed application and restores it to the initia
 
 | Type           | Description                                  |
 | --------------- | -------------------------------------- |
-| Promise\<void\> | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -1364,7 +1365,7 @@ try {
 
 ## BundleInstaller.createAppClone<sup>12+</sup>
 
-createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): Promise\<number>;
+createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): Promise&lt;number&gt;;
 
 Creates an application clone. This API uses a promise to return the result.
 
@@ -1431,7 +1432,7 @@ try {
 
 ## BundleInstaller.destroyAppClone<sup>12+</sup>
 
-destroyAppClone(bundleName: string, appIndex: number, userId?: number): Promise\<void>;
+destroyAppClone(bundleName: string, appIndex: number, userId?: number): Promise&lt;void&gt;
 
 Destroys an application clone. This API uses a promise to return the result.
 
@@ -1453,7 +1454,7 @@ Destroys an application clone. This API uses a promise to return the result.
 
 | Type           | Description                                  |
 | --------------- | -------------------------------------- |
-| Promise\<void\> | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -1496,7 +1497,7 @@ try {
 
 ## BundleInstaller.installPreexistingApp<sup>12+</sup>
 
-installPreexistingApp(bundleName: string, userId?: number): Promise\<void>;
+installPreexistingApp(bundleName: string, userId?: number): Promise&lt;void&gt;;
 
 Installs a bundle. This API uses a promise to return the result.
 
@@ -1517,7 +1518,7 @@ Installs a bundle. This API uses a promise to return the result.
 
 | Type           | Description                                  |
 | --------------- | -------------------------------------- |
-| Promise\<void\> | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -1580,7 +1581,7 @@ Defines the parameters that need to be specified for bundle installation, uninst
 
 | Name                       | Type                          | Mandatory                        | Description              |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
-| userId                         | number                         | No                       | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [queryOsAccountLocalIdFromProcess](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID of the current process. |
+| userId                         | number                         | No                       | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [queryOsAccountLocalIdFromProcess](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID of the current process.|
 | installFlag                    | number                         | No                       | Installation flag. The value **0x00** means initial installation, **0x01** means overwrite installation, and **0x10** means installation-free. The default value is **0x00**.|
 | isKeepData                     | boolean                        | No                      | Whether to retain the data directory during bundle uninstall. The default value is **false**.|
 | hashParams        | Array<[HashParam](#hashparam)> | No| Hash parameters. By default, no value is passed.        |

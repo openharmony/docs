@@ -54,7 +54,7 @@
     - [@ohos.ability.ability (Ability)](js-apis-ability-ability.md)
     - [@ohos.ability.featureAbility (FeatureAbility)](js-apis-ability-featureAbility.md)
     - [@ohos.ability.particleAbility (ParticleAbility)](js-apis-ability-particleAbility.md)
-  - Both Models (Recommended)
+  - Both Models (Recommended)<!--both-models-->
     - [@ohos.abilityAccessCtrl (Ability Access Control)](js-apis-abilityAccessCtrl.md)
     - [@ohos.ability.screenLockFileManager (Sensitive Data Access Management Under Lock Screen)](js-apis-screenLockFileManager.md)
     - [@ohos.app.ability.appManager (appManager)](js-apis-app-ability-appManager.md)
@@ -158,16 +158,18 @@
       - [MissionListener (System API)](js-apis-inner-application-missionListener-sys.md)
       - [MissionParameter (System API)](js-apis-inner-application-missionParameter-sys.md)
       - [MissionSnapshot (System API)](js-apis-inner-application-missionSnapshot-sys.md)
-      - [MissionSnapshot (System API)](js-apis-inner-application-pageNodeInfo-sys.md)
+      - [MultiAppMode (System API)](js-apis-inner-application-multiAppMode-sys.md)
       - [PageNodeInfo (System API)](js-apis-inner-application-pageNodeInfo-sys.md)
       - [ProcessData (System API)](js-apis-inner-application-processData-sys.md)
+      - [RunningAppClone (System API)](js-apis-inner-application-runningAppClone-sys.md)
+      - [RunningMultiAppInfo (System API)](js-apis-inner-application-runningMultiAppInfo-sys.md)
       - [ServiceExtensionContext (System API)](js-apis-inner-application-serviceExtensionContext-sys.md)
       - [UIAbilityContext (System API)](js-apis-inner-application-uiAbilityContext-sys.md)
       - [UIExtensionContext (System API)](js-apis-inner-application-uiExtensionContext-sys.md)
       - [ViewData (System API)](js-apis-inner-application-viewData-sys.md)
       - [AutoFillRect (System API)](js-apis-inner-application-autoFillRect-sys.md)
       <!--DelEnd-->
-    - bundleManager
+    - bundleManager<!--bundlemanager-->
       - [abilityInfo](js-apis-bundleManager-abilityInfo.md)
       - [applicationInfo](js-apis-bundleManager-applicationInfo.md)
       - [bundleInfo](js-apis-bundleManager-bundleInfo.md)
@@ -193,15 +195,18 @@
       - [SharedBundleInfo (System API)](js-apis-bundleManager-sharedBundleInfo-sys.md)
       - [shortcutInfo (System API)](js-apis-bundleManager-shortcutInfo-sys.md)
       <!--DelEnd-->
-    - continuation
+    - continuation<!--continuation-->
       - [continuationExtraParams](js-apis-continuation-continuationExtraParams.md)
       - [continuationResult](js-apis-continuation-continuationResult.md)
-    - security
+    - security<!--ability-security-->
       - [PermissionRequestResult](js-apis-permissionrequestresult.md)
-    - wantAgent
+    - wantAgent<!--wantagent-->
       - [triggerInfo](js-apis-inner-wantAgent-triggerInfo.md)
       - [wantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)
-  - APIs No Longer Maintained
+      <!--Del-->
+      - [TriggerInfo (System API)](js-apis-inner-wantAgent-triggerInfo-sys.md)
+      <!--DelEnd-->
+  - APIs No Longer Maintained<!--ability-arkts-dep-->
     - [@ohos.ability.dataUriUtils (DataUriUtils)](js-apis-ability-dataUriUtils.md)
     - [@ohos.ability.errorCode (ErrorCode)](js-apis-ability-errorCode.md)
     - [@ohos.ability.wantConstant (wantConstant)](js-apis-ability-wantConstant.md)
@@ -224,7 +229,7 @@
     - [@ohos.distributedBundle (Distributed Bundle Management) (System API)](js-apis-Bundle-distributedBundle-sys.md)
     <!--DelEnd-->
     - [@system.package (Bundle Management)](js-apis-system-package.md)
-    - bundle
+    - bundle<!--bundle-->
       - [abilityInfo](js-apis-bundle-AbilityInfo.md)
       - [applicationInfo](js-apis-bundle-ApplicationInfo.md)
       - [bundleInfo](js-apis-bundle-BundleInfo.md)
@@ -241,18 +246,18 @@
       - [remoteAbilityInfo (System API)](js-apis-bundle-remoteAbilityInfo-sys.md)
       - [shortcutInfo (System API)](js-apis-bundle-ShortcutInfo-sys.md)
       <!--DelEnd-->
-- C APIs
-  - Modules
+- C APIs<!--ability-c-->
+  - Modules<!--ability-module-->
     - [AbilityAccessControl](_ability_access_control.md)
     - [Bundle](_bundle.md)
     - [ChildProcess](c-apis-ability-childprocess.md)
-  - Header Files
+  - Header Files<!--ability-headerfile-->
     - [ability_access_control.h](ability__access__control_8h.md)
     - [native_interface_bundle.h](native__interface__bundle.md)
     - [native_child_process.h](native__child__process_8h.md)
-  - Structs
+  - Structs<!--ability-struct-->
     - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
-- Error Codes
+- Error Codes<!--ability-arkts-errcode-->
   - [Ability Error Codes](errorcode-ability.md)
   - [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md)
   - [Bundle Error Codes](errorcode-bundle.md)
