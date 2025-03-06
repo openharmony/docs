@@ -40,7 +40,7 @@
   - [设置Web组件前进后退缓存](web-set-back-forward-cache.md)
   - [Web组件在不同窗口间迁移](web-component-migrate.md)
 - 管理网页文件上传与下载<!--web-manage-upload-download-->
-  - [上传文件](web-file-upload.md)
+  - [使用Web组件上传文件](web-file-upload.md)
   - [使用Web组件的下载能力](web-download.md)
 - 使用网页多媒体<!--web-use-multimedia-->
   - [使用WebRTC进行Web视频会议](web-rtc.md)
