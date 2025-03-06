@@ -456,7 +456,9 @@ ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
 ```
 ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralString (const NativeResourceManager * mgr, uint32_t resId, double num, char ** resultValue,  ... )
 ```
+
 **描述**
+
 通过指定资源ID，获取对应的单复数字符串。
 
 使用此接口后，需要调用free()方法来释放字符串的内存。
@@ -774,7 +776,9 @@ ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。
 ```
 ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralString (const NativeResourceManager * mgr, uint32_t resId, uint32_t num, char ** resultValue,  ... )
 ```
+
 **描述**
+
 通过指定资源ID，获取对应的单复数字符串。
 
 使用此接口后，需要调用free()方法来释放字符串的内存。
@@ -1172,7 +1176,9 @@ ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
 ```
 ResourceManager_ErrorCode OH_ResourceManager_GetPluralString (const NativeResourceManager * mgr, uint32_t resId, uint32_t num, char ** resultValue )
 ```
+
 **描述**
+
 通过指定资源ID，获取对应的单复数字符串。
 
 使用此接口后，需要调用free()方法来释放字符串的内存。
