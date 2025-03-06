@@ -38,14 +38,14 @@ struct WebComponent {
               // 下载任务的唯一标识。
               console.log("download update guid: " + webDownloadItem.getGuid());
               // 下载的进度。
-              console.log("download update guid: " + webDownloadItem.getPercentComplete());
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
               // 当前的下载速度。
               console.log("download update speed: " + webDownloadItem.getCurrentSpeed())
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 下载任务失败的错误码。
-              console.log("download failed guid: " + webDownloadItem.getLastErrorCode());
+              console.log("download failed last error code: " + webDownloadItem.getLastErrorCode());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -176,14 +176,14 @@ struct WebComponent {
               // 下载任务的唯一标识。
               console.log("download update guid: " + webDownloadItem.getGuid());
               // 下载的进度。
-              console.log("download update guid: " + webDownloadItem.getPercentComplete());
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
               // 当前的下载速度。
               console.log("download update speed: " + webDownloadItem.getCurrentSpeed())
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 下载任务失败的错误码。
-              console.log("download failed guid: " + webDownloadItem.getLastErrorCode());
+              console.log("download failed last error code: " + webDownloadItem.getLastErrorCode());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
