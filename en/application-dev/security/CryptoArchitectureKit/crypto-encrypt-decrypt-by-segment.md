@@ -4,7 +4,7 @@ The Crypto framework does not have a limit on the amount of the data to be passe
 
 ## Symmetric Encryption and Decryption
 
-Use [Cipher.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-1) to pass in and encrypt/decrypt the data of a symmetric key by segment.
+Call [Cipher.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-1) to pass in and encrypt/decrypt the data of a symmetric key by segment.
 
 You can set the amount of the data to be passed in each time (**updateLength** in the example) and call **update()** multiple times to pass in the data.
 
@@ -18,7 +18,7 @@ Example: [Encryption and Decryption by Segment with an SM4 Symmetric Key (GCM Mo
 
 ## Asymmetric Encryption and Decryption
 
-Use [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) and [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to pass in and encrypt/decrypt the data of an asymmetric key pair by segment.
+Call [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) and [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to pass in and encrypt/decrypt the data of an asymmetric key pair by segment.
 
 If the plaintext length is greater than the data length supported by a single encryption (see [Asymmetric Key Encryption and Decryption Algorithm Specifications](crypto-asym-encrypt-decrypt-spec.md)), divide the data to be encrypted into data segments of an appropriate length and encrypt each data segment. Specifically, create a **Cipher** instance and call [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) and [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1).
 

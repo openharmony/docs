@@ -17,15 +17,15 @@ The following provides examples of MD operations with different data passing met
 
 ### MD (Passing In Full Data)
 
-1. Use [OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_create) with the MD algorithm **SHA256** to generate an MD operation instance (**OH_CryptoDigest**).
+1. Call [OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_create) with the MD algorithm **SHA256** to generate an MD operation instance (**OH_CryptoDigest**).
 
-2. Use [OH_CryptoDigest_Update](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_update) to pass in the data for generating an MD. The amount of data to be passed in by a single **OH_CryptoDigest_Update()** operation is not limited.
+2. Call [OH_CryptoDigest_Update](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_update) to pass in the data for generating an MD. The amount of data to be passed in by a single **OH_CryptoDigest_Update()** operation is not limited.
 
-3. Use [OH_CryptoDigest_Final](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_final) to generate an MD.
+3. Call [OH_CryptoDigest_Final](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_final) to generate an MD.
 
-4. Use [OH_CryptoDigest_GetLength](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_getlength) to obtain the MD length, in bytes.
+4. Call [OH_CryptoDigest_GetLength](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_getlength) to obtain the MD length, in bytes.
 
-5. Use [OH_DigestCrypto_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_digestcrypto_destroy) to destroy the **OH_CryptoDigest** instance.
+5. Call [OH_DigestCrypto_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_digestcrypto_destroy) to destroy the **OH_CryptoDigest** instance.
 
 - **Example**
 
@@ -65,15 +65,15 @@ static OH_Crypto_ErrCode doTestMd()
 
 ### MD (Passing In Data by Segment)
 
-1. Use [OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_create) with the MD algorithm **SHA256** to generate an MD operation instance (**OH_CryptoDigest**).
+1. Call [OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_create) with the MD algorithm **SHA256** to generate an MD operation instance (**OH_CryptoDigest**).
 
 2. Call [OH_CryptoDigest_Update](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_update) multiple times to pass in 20 bytes each time.
 
-3. Use [OH_CryptoDigest_Final](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_final) to generate an MD.
+3. Call [OH_CryptoDigest_Final](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_final) to generate an MD.
 
-4. Use [OH_CryptoDigest_GetLength](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_getlength) to obtain the MD length, in bytes.
+4. Call [OH_CryptoDigest_GetLength](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_getlength) to obtain the MD length, in bytes.
 
-5. Use [OH_DigestCrypto_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_digestcrypto_destroy) to destroy the **OH_CryptoDigest** instance.
+5. Call [OH_DigestCrypto_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_digestcrypto_destroy) to destroy the **OH_CryptoDigest** instance.
 
 - **Example**
 
