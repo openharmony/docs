@@ -21,7 +21,7 @@ HiCollie提供了软件看门狗功能。针对系统服务死锁、应用主线
 | 接口名称 | 描述 |
 | -------- | -------- |
 | void RegisterXCollieChecker(const sptr&lt;XCollieChecker&gt; &amp;checker, unsigned int type) | 接口功能：线程卡死检测回调函数注册。<br/>输入参数：<br/>- **checker**：XCollieChecker实例指针。<br/>- **type**：卡死检测类型，取值设置为**XCOLLIE_THREAD**。<br/>输出参数：无。<br/>返回值：无。 |
-| int SetTimer(const std::string &amp;name, unsigned int timeout, std::function&lt;void(void*)&gt; func, void *arg, unsigned int flag) | 接口功能：添加定时器。<br/>输入参数：<br/>- **name**：定时器名称。<br/>- **timeout**：超时时间，单位为秒。<br/>- **func**：超时回调函数。<br/>- **arg**：超时回调函数参数指针。<br/>- **flag**：定时器操作类型。<br/>  XCOLLIE_FLAG_DEFAULT：其他三个选项功能之和<br/>  XCOLLIE_FLAG_NOOP：仅调用超时回调函数<br/>  XCOLLIE_FLAG_LOG：生成超时故障日志<br/>  XCOLLIE_FLAG_RECOVERY：进程退出<br/>输出参数：无。<br/>返回值：成功返回定时器标识，失败返回 **-1**。 |
+| int SetTimer(const std::string &amp;name, unsigned int timeout, std::function&lt;void(void*)&gt; func, void *arg, unsigned int flag) | 接口功能：添加定时器。<br/>输入参数：<br/>- **name**：定时器名称。<br/>- **timeout**：超时时间，单位为秒。<br/>- **func**：超时回调函数。<br/>- **arg**：超时回调函数参数指针。<br/>- **flag**：定时器操作类型。<br/>  XCOLLIE_FLAG_DEFAULT：其他三个选项功能之和。<br/>  XCOLLIE_FLAG_NOOP：仅调用超时回调函数。<br/>  XCOLLIE_FLAG_LOG：生成超时故障日志。<br/>  XCOLLIE_FLAG_RECOVERY：进程退出。<br/>输出参数：无。<br/>返回值：成功返回定时器标识，失败返回 **-1**。 |
 | bool UpdateTimer(int id, unsigned int timeout) | 接口功能：更新定时器。<br/>输入参数：<br/>- **id**：定时器标识。<br/>- **timeout**：超时时间，单位为秒。<br/>输出参数：无。<br/>返回值：成功返回**true**，失败返回**false**。 |
 | void CancelTimer(int id) | 接口功能：取消定时器。<br/>输入参数：<br/>- **id**：定时器标识。<br/>输出参数：无。<br/>返回值：无。 |
 
