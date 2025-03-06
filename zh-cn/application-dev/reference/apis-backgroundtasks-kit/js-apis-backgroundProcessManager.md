@@ -50,7 +50,6 @@ function setProcessPriority(pid: number, priority: ProcessPriority): Promise<voi
 import { BusinessError } from '@kit.BasicServicesKit';
 import { backgroundProcessManaer } from '@kit.BackgroundTasksKit'
 
-// 如何创建子进程
 let childProcessPid = 33333;
 try {
     backgroundProcessManaer.setProcessPriority(childProcessPid,
@@ -59,6 +58,8 @@ try {
     console.error(`setProcessPriority failed, errCode: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
+创建子进程方法可参考[子进程创建方法](../apis-ability-kit/c-apis-ability-childprocess.md)
+
 
 ## backgroundProcessManager.resetProcessPriority
 
@@ -95,7 +96,6 @@ function resetProcessPriority(pid: number): Promise<void>;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { backgroundProcessManaer } from '@kit.BackgroundTasksKit'
 
-// 
 let childProcessPid = 33333;
 try {
     backgroundProcessManaer.resetProcessPriority(childProcessPid);
