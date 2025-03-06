@@ -477,7 +477,17 @@ ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralString (const Native
 
 **返回：**
 
-SUCCESS 0 - 成功。 ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - 无效的资源ID。 ERROR_CODE_RES_NOT_FOUND_BY_ID 9001002 - 没有根据资源ID找到匹配的资源。 ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。 ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
+SUCCESS 0 - 成功。 
+
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。 
+
+ERROR_CODE_RES_ID_NOT_FOUND 9001001 - 无效的资源ID。 
+
+ERROR_CODE_RES_NOT_FOUND_BY_ID 9001002 - 没有根据资源ID找到匹配的资源。 
+
+ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。 
+
+ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
 
 
 ### OH_ResourceManager_GetDoublePluralStringByName()
@@ -504,7 +514,17 @@ ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralStringByName (const 
 
 **返回：**
 
-SUCCESS 0 - 成功。 ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。 ERROR_CODE_RES_ID_NOT_FOUND 9001003 - 无效的资源名称。 ERROR_CODE_RES_NOT_FOUND_BY_ID 9001004 - 没有根据资源名称找到匹配的资源。 ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。 ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
+SUCCESS 0 - 成功。 
+
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。 
+
+ERROR_CODE_RES_ID_NOT_FOUND 9001003 - 无效的资源名称。 
+
+ERROR_CODE_RES_NOT_FOUND_BY_ID 9001004 - 没有根据资源名称找到匹配的资源。 
+
+ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。 
+
+ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
 
 
 ### OH_ResourceManager_GetDrawableDescriptor()
@@ -797,7 +817,17 @@ ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralString (const NativeRes
 
 **返回：**
 
-SUCCESS 0 - 成功。 ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - 无效的资源ID。 ERROR_CODE_RES_NOT_FOUND_BY_ID 9001002 - 没有根据资源ID找到匹配的资源。 ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。 ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
+SUCCESS 0 - 成功。 
+
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。 
+
+ERROR_CODE_RES_ID_NOT_FOUND 9001001 - 无效的资源ID。 
+
+ERROR_CODE_RES_NOT_FOUND_BY_ID 9001002 - 没有根据资源ID找到匹配的资源。 
+
+ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。 
+
+ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
 
 
 ### OH_ResourceManager_GetIntPluralStringByName()
@@ -824,7 +854,17 @@ ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralStringByName (const Nat
 
 **返回：**
 
-SUCCESS 0 - 成功。 ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。 ERROR_CODE_RES_ID_NOT_FOUND 9001003 - 无效的资源名称。 ERROR_CODE_RES_NOT_FOUND_BY_ID 9001004 - 没有根据资源名称找到匹配的资源。 ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。 ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
+SUCCESS 0 - 成功。 
+
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。 
+
+ERROR_CODE_RES_ID_NOT_FOUND 9001003 - 无效的资源名称。 
+
+ERROR_CODE_RES_NOT_FOUND_BY_ID 9001004 - 没有根据资源名称找到匹配的资源。 
+
+ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。 
+
+ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
 
 
 ### OH_ResourceManager_GetLocales()
@@ -1200,7 +1240,17 @@ ResourceManager_ErrorCode OH_ResourceManager_GetPluralString (const NativeResour
 
 **返回：**
 
-SUCCESS 0 - 成功。 ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - 无效的资源ID。 ERROR_CODE_RES_NOT_FOUND_BY_ID 9001002 - 没有根据资源ID找到匹配的资源。 ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。 ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
+SUCCESS 0 - 成功。 
+
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。 
+
+ERROR_CODE_RES_ID_NOT_FOUND 9001001 - 无效的资源ID。 
+
+ERROR_CODE_RES_NOT_FOUND_BY_ID 9001002 - 没有根据资源ID找到匹配的资源。 
+
+ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。 
+
+ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
 
 
 ### OH_ResourceManager_GetPluralStringByName()
@@ -1230,7 +1280,17 @@ ResourceManager_ErrorCode OH_ResourceManager_GetPluralStringByName (const Native
 
 **返回：**
 
-SUCCESS 0 - 成功。 ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。 ERROR_CODE_RES_ID_NOT_FOUND 9001003 - 无效的资源名称。 ERROR_CODE_RES_NOT_FOUND_BY_ID 9001004 - 没有根据资源名称找到匹配的资源。 ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。 ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
+SUCCESS 0 - 成功。 
+
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。 
+
+ERROR_CODE_RES_ID_NOT_FOUND 9001003 - 无效的资源名称。 
+
+ERROR_CODE_RES_NOT_FOUND_BY_ID 9001004 - 没有根据资源名称找到匹配的资源。 
+
+ERROR_CODE_RES_REF_TOO_MUCH 9001006 - 资源被循环引用。 
+
+ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
 
 
 ### OH_ResourceManager_GetString()
