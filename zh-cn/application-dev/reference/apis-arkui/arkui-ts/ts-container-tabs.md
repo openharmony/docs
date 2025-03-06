@@ -4,9 +4,9 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API Version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
+>  该组件从API version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
 
 
 ## 子组件
@@ -434,8 +434,8 @@ TabBar栅格化方式设置的对象，包括栅格模式下的column边距和�
 
 | 名称          | 类型                                     | 必填   | 说明                                       |
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| margin | [Dimension](ts-types.md#dimension10)             | 否    | 栅格模式下的column边距（不支持百分比设置）。<br/>默认值:24.0<br/>单位：vp                        |
-| gutter      | [Dimension](ts-types.md#dimension10) | 否    | 栅格模式下的column间隔（不支持百分比设置）。<br/>默认值:24.0<br/>单位：vp                     |
+| margin | [Dimension](ts-types.md#dimension10)             | 否    | 栅格模式下的column边距（不支持百分比设置）。<br/>默认值：24.0<br/>单位：vp                        |
+| gutter      | [Dimension](ts-types.md#dimension10) | 否    | 栅格模式下的column间隔（不支持百分比设置）。<br/>默认值：24.0<br/>单位：vp                     |
 | sm | number            | 否    | 小屏下，页签占用的columns数量，必须是非负偶数。小屏为大于等于320vp但小于600vp。<br/>默认值为-1，代表页签占用TabBar全部宽度。 |
 | md   | number          | 否    | 中屏下，页签占用的columns数量，必须是非负偶数。中屏为大于等于600vp但小于800vp。<br/>默认值为-1，代表页签占用TabBar全部宽度。 |
 | lg   | number           | 否    | 大屏下，页签占用的columns数量，必须是非负偶数。大屏为大于等于840vp但小于1024vp。<br/>默认值为-1，代表页签占用TabBar全部宽度。 |
@@ -868,7 +868,7 @@ Tabs自定义切换动画相关信息。
 
 | 名称            | 类型         | 必填   | 说明                                       |
 | ------------- | ---------------------- | ---- |---------------------- |
-| timeout | number | 否 | Tabs自定义切换动画超时时间。从自定义动画开始切换计时，如果到达该时间后，开发者仍未调用[TabContentTransitionProxy](#tabcontenttransitionproxy11)的finishTransition接口通知Tabs组件自定义动画结束，那么组件就会认为此次自定义动画已结束，直接执行后续操作。单位ms，默认值为1000.|
+| timeout | number | 否 | Tabs自定义切换动画超时时间。从自定义动画开始切换计时，如果到达该时间后，开发者仍未调用[TabContentTransitionProxy](#tabcontenttransitionproxy11)的finishTransition接口通知Tabs组件自定义动画结束，那么组件就会认为此次自定义动画已结束，直接执行后续操作。单位ms，默认值为1000。|
 | transition | [Callback](./ts-types.md#callback12)\<[TabContentTransitionProxy](#tabcontenttransitionproxy11)> | 是 | 自定义切换动画具体内容。|
 
 ## TabContentTransitionProxy<sup>11+</sup>
@@ -964,7 +964,7 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息                                      |
 | --------   | -------------------------------------------- |
@@ -1770,9 +1770,9 @@ struct TabsExample {
 
 ```ts
 // EntryAbility.ets
-import { Configuration, UIAbility } from '@kit.AbilityKit'
-import { i18n } from '@kit.LocalizationKit'
-import { CommonUtil } from '../common/CommonUtil'
+import { Configuration, UIAbility } from '@kit.AbilityKit';
+import { i18n } from '@kit.LocalizationKit';
+import { CommonUtil } from '../common/CommonUtil';
 
 export default class EntryAbility extends UIAbility {
   onConfigurationUpdate(newConfig: Configuration): void {
@@ -1788,7 +1788,7 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // CommonUtil.ets
-import { i18n, intl } from '@kit.LocalizationKit'
+import { i18n, intl } from '@kit.LocalizationKit';
 
 export class CommonUtil {
   private static isRTL: boolean = i18n.isRTL((new intl.Locale()).language)
@@ -1807,8 +1807,8 @@ export class CommonUtil {
 
 ```ts
 // xxx.ets
-import { LengthMetrics } from '@kit.ArkUI'
-import { CommonUtil } from '../common/CommonUtil'
+import { LengthMetrics } from '@kit.ArkUI';
+import { CommonUtil } from '../common/CommonUtil';
 
 @Entry
 @Component
@@ -1947,7 +1947,7 @@ struct TabsExample {
 
 ```ts
 // xxx.ets
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -2275,7 +2275,7 @@ struct TabsExample {
 
 ```ts
 // xxx.ets
-import { CommonModifier } from '@kit.ArkUI'
+import { CommonModifier } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -2365,7 +2365,7 @@ struct TabsBarModifierExample {
 
 ```ts
 // xxx.ets
-import { CommonModifier } from '@kit.ArkUI'
+import { CommonModifier } from '@kit.ArkUI';
 
 @Entry
 @Component
