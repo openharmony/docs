@@ -82,7 +82,7 @@
 
 **起始版本**：12
 
-### ohos.permission.MANAGER_SWING_MOTION
+## ohos.permission.MANAGER_SWING_MOTION
 
 允许应用使用隔空手势自适配能力。
 
