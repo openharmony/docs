@@ -233,3 +233,52 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+
+## Context.createDisplayContext<sup>15+</sup>
+
+createDisplayContext(displayId: number): Context
+
+Creates the context based on the specified display ID, so as to obtain and use other application contexts with screen information (including [ScreenDensity](../apis-localization-kit/js-apis-resource-manager.md#screendensity) and [Direction](../apis-localization-kit/js-apis-resource-manager.md#direction)).
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                    |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| displayId | number | Yes   | Display ID.|
+
+**Return value**
+
+| Type   | Description                  |
+| ------- | ---------------------- |
+| [Context](#context) | Context with the specified screen information.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { common, UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let displayContext: common.Context;
+    try {
+      displayContext = this.context.createDisplayContext(0);
+    } catch (error) {
+      hilog.error(0x0000, 'testTag', 'createDisplayContext error is:%{public}s', JSON.stringify(error));
+    }
+  }
+}
+```

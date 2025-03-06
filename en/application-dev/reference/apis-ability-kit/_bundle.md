@@ -83,7 +83,7 @@ char* OH_NativeBundle_GetAppIdentifier()
 
 **Description**
 
-Obtains the appIdentifier information about the current application. appIdentifier is the unique ID of the application, which is allocated by the cloud. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.
+Obtains the appIdentifier information about the current application. appIdentifier is the unique ID of the application. It is a random string allocated by AppGallery Connect during the creation of the application. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.
 
 **Since**: 11
 
@@ -115,7 +115,7 @@ char* OH_NativeBundle_GetCompatibleDeviceType()
 
 **Description**
 
-Obtains the compatible device type of the application.
+Obtains the compatible device type of the current application. It helps you optimize the layout and font size when distributing mobile applications to tablets or 2-in-1 devices.
 
 **Since**: 14
 

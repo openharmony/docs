@@ -1,6 +1,6 @@
 # @ohos.app.appstartup.startupManager
 
-The startupManager module provides APIs for AppStartup to manage startup tasks. It can be called only in the main thread.
+The startupManager module provides APIs to manage startup tasks in AppStartup. It can be called only in the main thread.
 
 > **NOTE**
 >
@@ -17,28 +17,28 @@ import { startupManager }  from '@kit.AbilityKit';
 ## startupManager.run
 run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
 
-Runs AppStartup.
+Runs startup tasks.
 
 **System capability**: SystemCapability.Ability.AppStartup
 
 **Parameters**
 
-  | Name | Type | Mandatory | Description |
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | startupTasks | Array\<string\> | Yes | Array of class names of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup tasks to be executed. |
-  | config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | No | Timeout for starting AppStartup and startup task listener. |
+  | startupTasks | Array\<string\> | Yes| Array of class names of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup task.|
+  | config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | No| Configuration for the AppStartup timeout and startup task listener.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<void\> | Promise that returns no value. |
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-  | ID | Error Message |
+  | ID| Error Message|
   | ------- | -------------------------------- |
   | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
   | 16000050 | Internal error. |
@@ -121,27 +121,27 @@ export default class EntryAbility extends UIAbility {
 
 getStartupTaskResult(startupTask: string): Object
 
-Obtains the result of a startup task.
+Obtains the execution result of a startup task.
 
 **System capability**: SystemCapability.Ability.AppStartup
 
 **Parameters**
 
-  | Name | Type | Mandatory | Description |
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | Yes | Class name of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup task. All the startup tasks must implement the [StartupTask](js-apis-app-appstartup-startupTask.md) API. |
+  | startupTask | string | Yes| Class name of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup task. All the startup tasks must implement the [StartupTask](js-apis-app-appstartup-startupTask.md) API.|
 
 **Return value**
 
-  | Type | Description |
+  | Type| Description|
   | -------- | -------- |
-  | Object | Result of the startup task. |
+  | Object | Execution result of the startup task if a startup task name is passed.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-  | ID | Error Message |
+  | ID| Error Message|
   | ------- | -------------------------------- |
   | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -162,7 +162,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    let result = startupManager.getStartupTaskResult('StartupTask_001'); // Manually obtain the startup task result.
+    let result = startupManager.getStartupTaskResult("StartupTask_001"); // Manually obtain the startup task result.
     console.info("getStartupTaskResult result = " + result);
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
@@ -186,21 +186,21 @@ Checks whether a startup task is initialized.
 
 **Parameters**
 
-  | Name | Type | Mandatory | Description |
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | Yes | Class name of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup task.  |
+  | startupTask | string | Yes| Class name of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup task.|
 
 **Return value**
 
-  | Type | Description |
+  | Type| Description|
   | -------- | -------- |
-  | boolean | **true**: The startup task is initialized.<br>**false**: The startup task is not initialized. |
+  | boolean | Check result. The value **true** means that the task is initialized, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-  | ID | Error Message |
+  | ID| Error Message|
   | ------- | -------------------------------- |
   | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -249,15 +249,15 @@ Removes the initialization result of a startup task.
 
 **Parameters**
 
-  | Name | Type | Mandatory | Description |
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | Yes | Class name of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup task. |
+  | startupTask | string | Yes| Class name of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup task.|
   
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-  | ID | Error Message |
+  | ID| Error Message|
   | ------- | -------------------------------- |
   | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
