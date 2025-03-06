@@ -1,4 +1,4 @@
-# Camera（V1_2）
+# Camera (V1_2)
 
 
 ## 概述
