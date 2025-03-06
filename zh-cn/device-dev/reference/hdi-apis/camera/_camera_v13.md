@@ -17,14 +17,14 @@ Camera模块涉及相机设备的操作、流的操作、离线流的操作和�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ICameraDevice.idl](_i_camera_device_8idl.md) | Camera设备操作接口。 | 
-| [ICameraHost.idl](_i_camera_host_8idl.md) | Camera服务的管理类，对上层提供HDI接口。 | 
-| [IImageProcessService.idl](_i_image_process_service_8idl.md) | 声明用于图像处理服务的API。 | 
-| [IStreamOperator.idl](_i_stream_operator_8idl.md) | 流的操作接口。 | 
-| [IStreamOperatorCallback.idl](_i_stream_operator_callback_8idl.md) | [IStreamOperator](interface_i_stream_operator.md)相关的回调，这些回调均由调用者实现。 | 
-| [IVideoProcessCallback.idl](_i_video_process_callback_8idl.md) | 声明视频流进程的回调。 | 
-| [IVideoProcessService.idl](_i_video_process_service_8idl.md) | 声明用于视频处理服务的API。 | 
-| [IVideoProcessSession.idl](_i_video_process_session_8idl.md) | 声明用于视频处理会话的API。 | 
+| [ICameraDevice.idl](_i_camera_device_8idl_v13.md) | Camera设备操作接口。 | 
+| [ICameraHost.idl](_i_camera_host_8idl_v13.md) | Camera服务的管理类，对上层提供HDI接口。 | 
+| [IImageProcessService.idl](_i_image_process_service_8idl_v13.md) | 声明用于图像处理服务的API。 | 
+| [IStreamOperator.idl](_i_stream_operator_8idl_v13.md) | 流的操作接口。 | 
+| [IStreamOperatorCallback.idl](_i_stream_operator_callback_8idl_v13.md) | [IStreamOperator](interface_i_stream_operator_v13.md)相关的回调，这些回调均由调用者实现。 | 
+| [IVideoProcessCallback.idl](_i_video_process_callback_8idl_v13.md) | 声明视频流进程的回调。 | 
+| [IVideoProcessService.idl](_i_video_process_service_8idl_v13.md) | 声明用于视频处理服务的API。 | 
+| [IVideoProcessSession.idl](_i_video_process_session_8idl_v13.md) | 声明用于视频处理会话的API。 | 
 | [Types.idl](_types_8idl.md) | Camera模块HDI接口使用的数据类型。 | 
 
 
@@ -32,19 +32,19 @@ Camera模块涉及相机设备的操作、流的操作、离线流的操作和�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| interface&nbsp;&nbsp;[ICameraDevice](interface_i_camera_device.md) | 定义Camera设备基本的操作。 | 
-| interface&nbsp;&nbsp;[ICameraHost](interface_i_camera_host.md) | 定义Camera设备功能操作。 | 
-| interface&nbsp;&nbsp;[IImageProcessCallback](interface_i_image_process_callback.md) | 定义声明图像处理回调。 | 
-| interface&nbsp;&nbsp;[IImageProcessService](interface_i_image_process_service.md) | 声明图像处理进程服务。 | 
-| interface&nbsp;&nbsp;[IStreamOperator](interface_i_stream_operator.md) | 定义Camera设备流操作。 | 
-| interface&nbsp;&nbsp;[IStreamOperatorCallback](interface_i_stream_operator_callback.md) | 定义Camera设备流回调操作。 | 
-| interface&nbsp;&nbsp;[IVideoProcessCallback](interface_i_video_process_callback.md) | 定义声明图像处理回调。 | 
-| interface&nbsp;&nbsp;[IVideoProcessService](interface_i_video_process_service.md) | 声明视频处理进程服务。 | 
-| interface&nbsp;&nbsp;[IVideoProcessSession](interface_i_video_process_session.md) | 图像处理会话进程。 | 
-| struct&nbsp;&nbsp;[CameraDeviceResourceCost](_camera_device_resource_cost.md) | 相机设备资源开销，用于**ICameraDevice::[GetResourceCost()](interface_i_camera_host.md#getresourcecost)**。 | 
-| struct&nbsp;&nbsp;[StreamDescription](_stream_description.md) | 流描述信息，使用于[IVideoProcessSession::Prepare](interface_i_video_process_session.md#prepare)。 | 
-| struct&nbsp;&nbsp;[CaptureEndedInfoExt](_capture_ended_info_ext.md) | 拍照结束信息，使用于[IStreamOperatorCallback::OnCaptureEndedExt](interface_i_stream_operator_callback.md#oncaptureendedext)。 | 
-| struct&nbsp;&nbsp;[ImageBufferInfoExt](_image_buffer_info_ext.md) | 图片流信息，使用于[IImageProcessCallback::OnProcessDoneExt](interface_i_image_process_callback.md#onprocessdoneext)。 | 
+| interface&nbsp;&nbsp;[ICameraDevice](interface_i_camera_device_v13.md) | 定义Camera设备基本的操作。 | 
+| interface&nbsp;&nbsp;[ICameraHost](interface_i_camera_host_v13.md) | 定义Camera设备功能操作。 | 
+| interface&nbsp;&nbsp;[IImageProcessCallback](interface_i_image_process_callback_v13.md) | 定义声明图像处理回调。 | 
+| interface&nbsp;&nbsp;[IImageProcessService](interface_i_image_process_service_v13.md) | 声明图像处理进程服务。 | 
+| interface&nbsp;&nbsp;[IStreamOperator](interface_i_stream_operator_v13.md) | 定义Camera设备流操作。 | 
+| interface&nbsp;&nbsp;[IStreamOperatorCallback](interface_i_stream_operator_callback_v13.md) | 定义Camera设备流回调操作。 | 
+| interface&nbsp;&nbsp;[IVideoProcessCallback](interface_i_video_process_callback_v13.md) | 定义声明图像处理回调。 | 
+| interface&nbsp;&nbsp;[IVideoProcessService](interface_i_video_process_service_v13.md) | 声明视频处理进程服务。 | 
+| interface&nbsp;&nbsp;[IVideoProcessSession](interface_i_video_process_session_v13.md) | 图像处理会话进程。 | 
+| struct&nbsp;&nbsp;[CameraDeviceResourceCost](_camera_device_resource_cost_v13.md) | 相机设备资源开销，用于**ICameraDevice::[GetResourceCost()](interface_i_camera_host.md#getresourcecost)**。 | 
+| struct&nbsp;&nbsp;[StreamDescription](_stream_description_v13.md) | 流描述信息，使用于[IVideoProcessSession::Prepare](interface_i_video_process_session_v13.md#prepare)。 | 
+| struct&nbsp;&nbsp;[CaptureEndedInfoExt](_capture_ended_info_ext_v13.md) | 拍照结束信息，使用于[IStreamOperatorCallback::OnCaptureEndedExt](interface_i_stream_operator_callback_v13.md#oncaptureendedext)。 | 
+| struct&nbsp;&nbsp;[ImageBufferInfoExt](_image_buffer_info_ext_v13.md) | 图片流信息，使用于[IImageProcessCallback::OnProcessDoneExt](interface_i_image_process_callback_v13.md#onprocessdoneext)。 | 
 
 
 ### 枚举

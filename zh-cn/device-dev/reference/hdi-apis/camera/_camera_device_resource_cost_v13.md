@@ -3,9 +3,9 @@
 
 ## 概述
 
-相机设备资源开销，用于**ICameraDevice::[GetResourceCost()](interface_i_camera_host.md#getresourcecost)**。
+相机设备资源开销，用于**ICameraDevice::[GetResourceCost()](interface_i_camera_host_v13.md#getresourcecost)**。
 
-**相关模块：**[Camera](_camera.md)
+**相关模块：**[Camera](_camera_v13.md)
 
 
 ## 汇总
