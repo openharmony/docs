@@ -752,10 +752,10 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
 
 | 接口名                 | 描述                             |
 | ---------------------- | -------------------------------- |
-| SYS_SERVICE_INIT(func) | 标识核心系统服务的初始化启动入口 |
-| SYS_FEATURE_INIT(func) | 标识核心系统功能的初始化启动入口 |
-| APP_SERVICE_INIT(func) | 标识应用层服务的初始化启动入口   |
-| APP_FEATURE_INIT(func) | 标识应用层功能的初始化启动入口   |
+| SYS_SERVICE_INIT(func) | 标识核心系统服务的初始化启动入口。 |
+| SYS_FEATURE_INIT(func) | 标识核心系统功能的初始化启动入口。 |
+| APP_SERVICE_INIT(func) | 标识应用层服务的初始化启动入口。   |
+| APP_FEATURE_INIT(func) | 标识应用层功能的初始化启动入口。   |
 
 
 
