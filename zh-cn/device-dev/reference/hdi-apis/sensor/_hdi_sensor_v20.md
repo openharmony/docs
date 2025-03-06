@@ -5,7 +5,7 @@
 
 传感器设备驱动对传感器服务提供通用的接口能力。
 
-模块提供传感器服务对传感器驱动访问统一接口，服务获取驱动对象或者代理后，通过其提供的各类方法， 以传感器ID区分访问不同类型传感器设备，实现获取传感器设备信息、订阅/取消订阅传感器数据、 使能/去使能传感器、设置传感器模式、设置传感器精度、量程等可选配置等。
+模块提供传感器服务对传感器驱动访问统一接口，服务获取驱动对象或者代理后，通过其提供的各类方法，以传感器ID区分访问不同类型传感器设备，实现获取传感器设备信息、订阅/取消订阅传感器数据、 使能/去使能传感器、设置传感器模式、设置传感器精度、量程等可选配置等。
 
 **起始版本：** 4.1
 
@@ -109,9 +109,9 @@ enum HdfSensorTypeTag
 | HDF_SENSOR_TYPE_SIGNIFICANT_MOTION | 大幅度动作传感器。 | 
 | HDF_SENSOR_TYPE_PEDOMETER_DETECTION | 计步器检测传感器。 | 
 | HDF_SENSOR_TYPE_PEDOMETER | 计步器传感器。 | 
-| HDF_SENSOR_TYPE_POSTURE | 姿态传感器 | 
-| HDF_SENSOR_TYPE_HEADPOSTURE | 头部姿势传感器 | 
-| HDF_SENSOR_TYPE_DROP_DETECT | 跌落检测传感器 | 
+| HDF_SENSOR_TYPE_POSTURE | 姿态传感器。 | 
+| HDF_SENSOR_TYPE_HEADPOSTURE | 头部姿势传感器。 | 
+| HDF_SENSOR_TYPE_DROP_DETECT | 跌落检测传感器。 | 
 | HDF_SENSOR_TYPE_GEOMAGNETIC_ROTATION_VECTOR | 地磁旋转矢量传感器。 | 
 | HDF_SENSOR_TYPE_HEART_RATE | 心率传感器。 | 
 | HDF_SENSOR_TYPE_DEVICE_ORIENTATION | 设备方向传感器。 | 

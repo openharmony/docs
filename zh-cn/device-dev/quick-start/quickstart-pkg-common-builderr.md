@@ -5,7 +5,7 @@
 
 - **现象描述**
   
-  Linux编译服务器终端输入不识别的命令时，提示"ImportError: No module named apt_pkg"
+  Linux编译服务器终端输入不识别的命令时，提示"ImportError: No module named apt_pkg"。
 
 - **可能原因**
   
@@ -48,7 +48,7 @@
 
 - **可能原因2**
   
-  usr/bin目录下没有python软链接
+  usr/bin目录下没有python软链接。
 
   ![faq-python-error](figures/faq-python-error.png)
 

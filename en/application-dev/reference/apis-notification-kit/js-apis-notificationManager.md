@@ -57,9 +57,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // publish callback
 let publishCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("publish success");
+    console.info(`Succeeded in publishing notification.`);
   }
 }
 // NotificationRequest object
@@ -137,9 +137,9 @@ let notificationRequest: notificationManager.NotificationRequest = {
   }
 };
 notificationManager.publish(notificationRequest).then(() => {
-  console.info("publish success");
+  console.info(`Succeeded in publishing notification.`);
 }).catch((err: BusinessError) => {
-  console.error(`publish fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
 });
 
 ```
@@ -180,9 +180,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // cancel callback
 let cancelCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to cancel notification. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("cancel success");
+    console.info(`Succeeded in canceling notification.`);
   } 
 }
 notificationManager.cancel(0, "label", cancelCallback);
@@ -227,9 +227,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.cancel(0).then(() => {
-  console.info("cancel success");
+  console.info(`Succeeded in canceling notification.`);
 }).catch((err: BusinessError) => {
-  console.error(`cancel fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to cancel notification. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -268,9 +268,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // cancel callback
 let cancelCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to cancel notification. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("cancel success");
+    console.info(`Succeeded in canceling notification.`);
   }
 }
 notificationManager.cancel(0, cancelCallback);
@@ -309,9 +309,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // cancel callback
 let cancelAllCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`cancelAll failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to cancel all notification. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("cancelAll success");
+    console.info(`Succeeded in canceling all notification.`);
   }
 }
 notificationManager.cancelAll(cancelAllCallback);
@@ -348,9 +348,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.cancelAll().then(() => {
-  console.info("cancelAll success");
+  console.info(`Succeeded in canceling all notification.`);
 }).catch((err: BusinessError) => {
-  console.error(`cancelAll fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to cancel all notification. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -389,9 +389,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // addSlot callback
 let addSlotCallBack = (err: BusinessError): void => {
   if (err) {
-    console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to add slot. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("addSlot success");
+    console.info(`Succeeded in adding slot.`);
   }
 }
 notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION, addSlotCallBack);
@@ -435,9 +435,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION).then(() => {
-  console.info("addSlot success");
+  console.info(`Succeeded in adding slot.`);
 }).catch((err: BusinessError) => {
-  console.error(`addSlot fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to add slot. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -475,9 +475,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // getSlot callback
 let getSlotCallback = (err: BusinessError, data: notificationManager.NotificationSlot): void => {
   if (err) {
-    console.error(`getSlot failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to get slot. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info(`getSlot success, data is ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting slot, data is ` + JSON.stringify(data));
   }
 }
 let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
@@ -522,9 +522,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
 notificationManager.getSlot(slotType).then((data: notificationManager.NotificationSlot) => {
-  console.info("getSlot success, data: " + JSON.stringify(data));
+  console.info(`Succeeded in getting slot, data is ` + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`getSlot fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to get slot. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -562,9 +562,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // getSlots callback
 let getSlotsCallback = (err: BusinessError, data: Array<notificationManager.NotificationSlot>): void => {
   if (err) {
-    console.error(`getSlots failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to get slots. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info(`getSlots success, data is ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting slots, data is ` + JSON.stringify(data));
   }
 }
 notificationManager.getSlots(getSlotsCallback);
@@ -601,9 +601,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getSlots().then((data: Array<notificationManager.NotificationSlot>) => {
-  console.info("getSlots success, data: " + JSON.stringify(data));
+  console.info(`Succeeded in getting slots, data is ` + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`getSlots fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to get slots. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -641,9 +641,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // removeSlot callback
 let removeSlotCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`removeSlot failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to remove slot. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("removeSlot success");
+    console.info(`Succeeded in removing slot.`);
   }
 }
 let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
@@ -688,9 +688,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
 notificationManager.removeSlot(slotType).then(() => {
-  console.info("removeSlot success");
+  console.info(`Succeeded in removing slot.`);
 }).catch((err: BusinessError) => {
-  console.error(`removeSlot fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to remove slot. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -726,9 +726,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let removeAllSlotsCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`removeAllSlots failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to remove all slots. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("removeAllSlots success");
+    console.info(`Succeeded in removing all slots.`);
   }
 }
 notificationManager.removeAllSlots(removeAllSlotsCallback);
@@ -765,9 +765,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.removeAllSlots().then(() => {
-  console.info("removeAllSlots success");
+  console.info(`Succeeded in removing all slots.`);
 }).catch((err: BusinessError) => {
-  console.error(`removeAllSlots fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to remove all slots. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -849,7 +849,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 notificationManager.isNotificationEnabled().then((data: boolean) => {
   console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
+  console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -892,6 +892,8 @@ Sets the notification badge number. This API uses a promise to return the URI of
 
 If the **badgeNumber** is set to **0**, badges are cleared; if the value is greater than **99**, **99+** is displayed on the badge.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Parameters**
@@ -913,6 +915,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -925,9 +928,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let badgeNumber: number = 10;
 notificationManager.setBadgeNumber(badgeNumber).then(() => {
-  console.info("setBadgeNumber success");
+  console.info(`Succeeded in setting badge number.`);
 }).catch((err: BusinessError) => {
-  console.error(`setBadgeNumber fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -938,6 +941,8 @@ setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 Sets the notification badge number. This API uses an asynchronous callback to return the result.
 
 If the **badgeNumber** is set to **0**, badges are cleared; if the value is greater than **99**, **99+** is displayed on the badge.
+
+This API is not supported on TVs and wearables.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -955,6 +960,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -967,9 +973,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let setBadgeNumberCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`setBadgeNumber failed code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("setBadgeNumber success");
+    console.info(`Succeeded in setting badge number.`);
   }
 }
 let badgeNumber: number = 10;
@@ -1008,9 +1014,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let getActiveNotificationCountCallback = (err: BusinessError, data: number): void => {
   if (err) {
-    console.error(`getActiveNotificationCount failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to get active notification count. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info(`getActiveNotificationCount success, data is ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting active notification count, data is ` + JSON.stringify(data));
   }
 }
 
@@ -1048,9 +1054,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getActiveNotificationCount().then((data: number) => {
-  console.info("getActiveNotificationCount success, data: " + JSON.stringify(data));
+  console.info(`Succeeded in getting active notification count, data is ` + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`getActiveNotificationCount fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to get active notification count. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1086,9 +1092,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let getActiveNotificationsCallback = (err: BusinessError, data: Array<notificationManager.NotificationRequest>): void => {
   if (err) {
-    console.error(`getActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to get active notifications. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("getActiveNotifications success" + JSON.stringify(data));
+    console.info(`Succeeded in getting active notifications, data is ` + JSON.stringify(data));
   }
 }
 notificationManager.getActiveNotifications(getActiveNotificationsCallback);
@@ -1125,9 +1131,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
-  console.info("getActiveNotifications success, data: " + JSON.stringify(data));
+  console.info(`Succeeded in getting active notifications, data is ` + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`getActiveNotifications fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to get active notifications. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1164,9 +1170,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let cancelGroupCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`cancelGroup failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to cancel group. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("cancelGroup success");
+    console.info(`Succeeded in canceling group.`);
   }
 }
 let groupName: string = "GroupName";
@@ -1211,9 +1217,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let groupName: string = "GroupName";
 notificationManager.cancelGroup(groupName).then(() => {
-  console.info("cancelGroup success");
+  console.info(`Succeeded in canceling group.`);
 }).catch((err: BusinessError) => {
-  console.error(`cancelGroup fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to cancel group. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1299,7 +1305,7 @@ let templateName: string = 'downloadTemplate';
 notificationManager.isSupportTemplate(templateName).then((data: boolean) => {
   console.info("isSupportTemplate success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`isSupportTemplate fail: ${JSON.stringify(err)}`);
+  console.error(`isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1388,7 +1394,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 notificationManager.requestEnableNotification().then(() => {
   console.info("requestEnableNotification success");
 }).catch((err: BusinessError) => {
-  console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+  console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1593,7 +1599,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 notificationManager.isDistributedEnabled().then((data: boolean) => {
   console.info("isDistributedEnabled success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`isDistributedEnabled fail: ${JSON.stringify(err)}`);
+  console.error(`isDistributedEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1602,6 +1608,8 @@ notificationManager.isDistributedEnabled().then((data: boolean) => {
 openNotificationSettings(context: UIAbilityContext): Promise\<void\>
 
 Opens the notification settings page of the application, which is displayed in semi-modal mode and can be used to set the notification enabling and notification mode. This API uses a promise to return the URI of the file in the destination directory.
+
+This API is not supported on wearables.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1625,6 +1633,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600003  | Failed to connect to the service.          |
 | 1600018  | the notification settings window is already displayed.           |
@@ -1683,8 +1692,8 @@ Enumerates the notification level.
 | Name                             | Value         | Description              |
 | --------------------------------- | ----------- | ------------------ |
 | LEVEL_NONE                        | 0           | Notification is disabled.    |
-| LEVEL_MIN                         | 1           | Notification is enabled, but the notification icon is not displayed in the status bar, with no banner or alert tone.|
-| LEVEL_LOW                         | 2           | Notification is enabled, and the notification icon is displayed in the status bar, with no banner or alert tone.|
+| LEVEL_MIN                         | 1           | Notification is enabled, but the notification icon is not displayed in the status bar, with no banner and alert tone.|
+| LEVEL_LOW                         | 2           | Notification is enabled, and the notification icon is displayed in the status bar, with no banner and alert tone.|
 | LEVEL_DEFAULT                     | 3           | Notification is enabled, and the notification icon is displayed in the status bar, with an alert tone but no banner.|
 | LEVEL_HIGH                        | 4           | Notification is enabled, and the notification icon is displayed in the status bar, with an alert tone and banner.|
 

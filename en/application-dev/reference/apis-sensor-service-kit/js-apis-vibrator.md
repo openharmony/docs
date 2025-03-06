@@ -29,7 +29,7 @@ Starts vibration with the specified effect and attribute. This API uses an async
 
 | Name   | Type                                  | Mandatory| Description                                                        |
 | --------- | -------------------------------------- | ---- | :----------------------------------------------------------- |
-| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect. The options are as follows:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.|
+| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect. The following options are supported:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.<br>4. [VibrateFromPattern<sup>16+</sup>](#vibratefrompattern16): Vibration according to a custom vibration configuration.|
 | attribute | [VibrateAttribute](#vibrateattribute9) | Yes  | Vibration attribute.                                              |
 | callback  | AsyncCallback&lt;void&gt;              | Yes  | Callback used to return the result. If the vibration starts, **err** is **undefined**; otherwise, **err** is an error object.  |
 
@@ -58,7 +58,7 @@ try {
     duration: 1000,
   }, {
     id: 0,
-    usage: 'alarm'
+    usage: 'alarm' // The switch control is subject to the selected type.
   }, (error: BusinessError) => {
     if (error) {
       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
@@ -85,7 +85,7 @@ try {
     count: 1,
   }, {
     id: 0,
-    usage: 'alarm'
+    usage: 'alarm' // The switch control is subject to the selected type.
   }, (error: BusinessError) => {
     if (error) {
       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
@@ -116,7 +116,7 @@ try {
     hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
   }, {
     id: 0,
-    usage: 'alarm'
+    usage: 'alarm' // The switch control is subject to the selected type.
   }, (error: BusinessError) => {
     if (error) {
       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
@@ -148,7 +148,7 @@ Starts vibration with the specified effect and attribute. This API uses a promis
 
 | Name   | Type                                  | Mandatory| Description                                                        |
 | --------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect. The options are as follows:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.|
+| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect. The following options are supported:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.<br>4. [VibrateFromPattern<sup>16+</sup>](#vibratefrompattern16): Vibration according to a custom vibration configuration.|
 | attribute | [VibrateAttribute](#vibrateattribute9) | Yes  | Vibration attribute.                                              |
 
 **Return value**
@@ -182,7 +182,7 @@ try {
     duration: 1000
   }, {
     id: 0,
-    usage: 'alarm'
+    usage: 'alarm' // The switch control is subject to the selected type.
   }).then(() => {
     console.info('Succeed in starting vibration');
   }, (error: BusinessError) => {
@@ -207,7 +207,7 @@ try {
     count: 1,
   }, {
     id: 0,
-    usage: 'alarm'
+    usage: 'alarm' // The switch control is subject to the selected type.
   }).then(() => {
     console.info('Succeed in starting vibration');
   }, (error: BusinessError) => {
@@ -236,7 +236,7 @@ try {
     hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
   }, {
     id: 0,
-    usage: 'alarm'
+    usage: 'alarm' // The switch control is subject to the selected type.
   }).then(() => {
     console.info('Succeed in starting vibration');
   }, (error: BusinessError) => {
@@ -291,7 +291,7 @@ try {
     duration: 1000,
   }, {
     id: 0,
-    usage: 'alarm'
+    usage: 'alarm' // The switch control is subject to the selected type.
   }, (error: BusinessError) => {
     if (error) {
       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
@@ -333,7 +333,7 @@ try {
     count: 1,
   }, {
     id: 0,
-    usage: 'alarm'
+    usage: 'alarm' // The switch control is subject to the selected type.
   }, (error: BusinessError) => {
     if (error) {
       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
@@ -407,7 +407,7 @@ try {
     duration: 1000,
   }, {
     id: 0,
-    usage: 'alarm'
+    usage: 'alarm' // The switch control is subject to the selected type.
   }).then(() => {
     console.info('Succeed in starting vibration');
   }, (error: BusinessError) => {
@@ -445,7 +445,7 @@ try {
     count: 1,
   }, {
     id: 0,
-    usage: 'alarm'
+    usage: 'alarm' // The switch control is subject to the selected type.
   }).then(() => {
     console.info('Succeed in starting vibration');
   }, (error: BusinessError) => {
@@ -644,7 +644,7 @@ try {
           effectId: 'haptic.clock.timer',
           count: 1,
         }, {
-          usage: 'unknown'
+          usage: 'unknown' // The switch control is subject to the selected type.
         }, (error: BusinessError) => {
           if (error) {
             console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
@@ -710,7 +710,7 @@ try {
           effectId: 'haptic.clock.timer',
           count: 1,
         }, {
-          usage: 'unknown'
+          usage: 'unknown' // The switch control is subject to the selected type.
         }).then(() => {
           console.info('Succeed in starting vibration');
         }).catch((error: BusinessError) => {
@@ -813,6 +813,168 @@ try {
 }
 ```
 
+## vibrator.VibratorPatternBuilder<sup>16+</sup>
+
+addContinuousEvent(time: number, duration: number, options?: ContinuousParam): VibratorPatternBuilder;
+
+Adds a long or short vibration event as a **VibratorPattern** object.
+
+**Required permissions**: ohos.permission.VIBRATE
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+**Parameters**
+
+| Name  | Type           | Mandatory| Description                    |
+| -------- | --------------- | ---- | ------------------------ |
+| time     | number          | Yes  | Start time of the long vibration.    |
+| duration | number          | Yes  | Duration of the long vibration.    |
+| options  | ContinuousParam | No  | Optional parameters.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```ts
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let builder = new vibrator.VibratorPatternBuilder();
+try {
+  let pointsMe: vibrator.VibratorCurvePoint[] = [
+	{ time: 0, intensity: 0, frequency: -7 },
+	{ time: 42, intensity: 1, frequency: -6 },
+	{ time: 128, intensity: 0.94, frequency: -4 },
+	{ time: 217, intensity: 0.63, frequency: -14 },
+	{ time: 763, intensity: 0.48, frequency: -14 },
+	{ time: 1125, intensity: 0.53, frequency: -10 },
+	{ time: 1503, intensity: 0.42, frequency: -14 },
+	{ time: 1858, intensity: 0.39, frequency: -14 },
+	{ time: 2295, intensity: 0.34, frequency: -17 },
+	{ time: 2448, intensity: 0.21, frequency: -14 },
+	{ time: 2468, intensity: 0, frequency: -21 }
+  ] // No less than four VibratorCurvePoint objects must be set. The maximum value is 16.
+  let param: vibrator.ContinuousParam = {
+	intensity: 97,
+	frequency: 34,
+	points:pointsMe,
+	index: 0
+  }
+  builder.addContinuousEvent(0, 2468, param);
+  console.info(`addContinuousEvent builder is ${builder.build()}`);
+} catch(error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`Exception. Code ${e.code}`);
+}
+```
+
+## vibrator.addTransientEvent<sup>16+</sup>
+
+addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilder;
+
+Adds a long or short vibration event as a **VibratorPattern** object.
+
+**Required permissions**: ohos.permission.VIBRATE
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+**Parameters**
+
+| Name | Type           | Mandatory| Description                    |
+| ------- | --------------- | ---- | ------------------------ |
+| time    | number          | Yes  | Start time of long vibration.    |
+| options | ContinuousParam | No  | Optional parameters.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**Example**
+
+```ts
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let builder = new vibrator.VibratorPatternBuilder();
+try {
+  let param: vibrator.TransientParam = {
+	intensity: 80,
+	frequency: 70,
+	index: 0
+  }
+  builder.addTransientEvent(0, param);
+  console.log(`addTransientEvent builder is ${builder.build()}`);
+} catch(error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+## vibrator.build<sup>16+</sup>
+
+build(): VibratorPattern;
+
+Constructor used to create a **VibratorPattern** object, which determines the vibration sequence of short or long events.
+
+**Required permissions**: ohos.permission.VIBRATE
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+**Return value**
+
+| Type                                 | Description                              |
+| ------------------------------------- | ---------------------------------- |
+| [VibratorPattern](#vibratorpattern16) | **VibratorPattern** object.|
+
+**Example**
+
+```ts
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let builder = new vibrator.VibratorPatternBuilder();
+try {
+  let param: vibrator.TransientParam = {
+	intensity: 80,
+	frequency: 70,
+	index: 0
+  }
+  builder.addTransientEvent(0, param);
+  console.log(`addTransientEvent builder is ${builder.build()}`);
+} catch(error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+try {
+  vibrator.startVibration({
+	type: "pattern",
+	pattern: builder.build()
+  }, {
+	usage: "alarm", // The switch control is subject to the selected type.
+  }, (error) => {
+	if (error) {
+	  let e: BusinessError = error as BusinessError;
+	  console.error(`Vibrate fail. Code: ${e.code}, message: ${e.message}`);
+	} else {
+	  console.info(`vibrate success`);
+	}
+  });
+} catch(error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
 ## EffectId
 
 Enumerates the preset vibration effect IDs.
@@ -860,6 +1022,7 @@ Describes the vibration effect.
 | [VibrateTime](#vibratetime9) | Vibration with the specified duration.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | [VibratePreset](#vibratepreset9) | Vibration with a preset effect.|
 | [VibrateFromFile](#vibratefromfile10) | Vibration according to a custom vibration configuration file.|
+| VibrateFromPattern<sup>16+</sup> | Triggers vibration with the custom effect. This API uses an asynchronous callback to return the result.|
 
 ## VibrateTime<sup>9+</sup>
 
@@ -884,8 +1047,8 @@ Describes the preset vibration.
 | -------- | -------- | ---- |------------------------------ |
 | type     | 'preset' |  Yes | The value **preset** means vibration with the specified effect.|
 | effectId | string   |  Yes | Preset vibration effect ID.            |
-| count    | number   |  No | Number of repeated vibrations. The default value is **1**. This parameter is optional.|
-| intensity<sup>12+</sup> | number | No| Vibration intensity. The value ranges from 0 to 100. The default value is **100**. This parameter is optional. If vibration intensity adjustment is not supported, the default vibration intensity will be used.|
+| count    | number   |  No | Number of repeated vibrations. This parameter is optional. The default value is **1**. |
+| intensity<sup>12+</sup> | number | No| Vibration intensity. This parameter is optional. The value range is [0, 100]. The default value is **100**. If vibration intensity adjustment is not supported, the default vibration intensity will be used.|
 
 ## VibrateFromFile<sup>10+</sup>
 
@@ -909,6 +1072,92 @@ Describes the FD of a custom vibration configuration file. Ensure that the file 
 | fd       | number   |  Yes   | FD of the custom vibration configuration file.               |
 | offset   | number   |  No   | Offset from the start position of the file, in bytes. The default value is the start position of the file, and the value cannot exceed the valid range of the file.|
 | length   | number   |  No   | Resource length, in bytes. The default value is the length from the offset position to the end of the file, and the value cannot exceed the valid range of the file.|
+
+## VibratorEventType<sup>16+</sup>
+
+Vibration event type.
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+| Name      | Type  | Mandatory| Description             |
+| ---------- | ------ | ---- | ----------------- |
+| CONTINUOUS | number | Yes  | The value **0** indicates long vibration.|
+| TRANSIENT  | number | Yes  | The value **1** indicates short vibration.|
+
+## VibratorCurvePoint<sup>16+</sup>
+
+Defines the gain relative to the vibration intensity.
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+| Name     | Type  | Mandatory| Description                                                        |
+| --------- | ------ | ---- | ------------------------------------------------------------ |
+| time      | number | Yes  | Start time offset.                                              |
+| intensity | number | No  | Gain relative to the vibration intensity. This parameter is optional. The value range is [0, 1]. If this parameter is left empty, the default value is **1**.|
+| frequency | number | No  | Change relative to the vibration frequency. This parameter is optional. The value range is [-100, 100]. If this parameter is left empty, the default value is 0.|
+
+## VibratorEvent<sup>16+</sup>
+
+Vibration event.
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+| Name     | Type                           | Mandatory| Description                                                        |
+| --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| eventType | VibratorEventType               | Yes  | Vibration event type.                                              |
+| time      | number                          | Yes  | Vibration start time.                                              |
+| duration  | number                          | No  | Vibration duration. This parameter is optional. The value range is [0, 5000]. The default value is 35 for short vibration and 1000 for long vibration.|
+| intensity | number                          | No  | Vibration intensity. This parameter is optional. The value range is [0, 100]. If this parameter is left empty, the default value is **100**.|
+| frequency | number                          | No  | Vibration frequency. This parameter is optional.The value range is [0, 100]. If this parameter is left empty, the default value is **50**. |
+| index     | number                          | No  | Channel number. This parameter is optional. If this parameter is left empty, the default value is **0**.                   |
+| points    | Array&lt;VibratorCurvePoint&gt; | No  | Adjustment points of the vibration curve.                            |
+
+## VibratorPattern<sup>16+</sup>
+
+Defines the vibration sequence.
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+| Name  | Type                      | Mandatory| Description                                                |
+| ------ | -------------------------- | ---- | ---------------------------------------------------- |
+| time   | time                       | Yes  | Absolute vibration start time.                                  |
+| events | Array&lt;VibratorEvent&gt; | Yes  | Vibration event array, which is the **VibratorPattern** object returned by **build() **.|
+
+## ContinuousParam<sup>16+</sup>
+
+Defines the parameters for continuous vibration.
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+| Name     | Type                | Mandatory| Description                                                        |
+| --------- | -------------------- | ---- | ------------------------------------------------------------ |
+| intensity | number               | No  | Vibration intensity. This parameter is optional. The value range is [0, 100]. If this parameter is left empty, the default value is **100**.|
+| frequency | number               | No  | Vibration frequency. This parameter is optional.The value range is [0, 100]. If this parameter is left empty, the default value is **50**. |
+| points    | VibratorCurvePoint[] | No  | Adjustment points of the vibration curve.                            |
+| index     | number               | No  | Channel number. This parameter is optional. If this parameter is left empty, the default value is **0**.                   |
+
+## TransientParam<sup>16+</sup>
+
+Defines the parameters for transient vibration.
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+| Name     | Type  | Mandatory| Description                                       |
+| --------- | ------ | ---- | ------------------------------------------- |
+| intensity | number | No  | Vibration intensity. This parameter is optional. If this parameter is left empty, the default value is **100**.|
+| frequency | number | No  | Vibration frequency. This parameter is optional. If this parameter is left empty, the default value is **50**. |
+| index     | number | No  | Channel number. This parameter is optional. If this parameter is left empty, the default value is **0**.  |
+
+## VibrateFromPattern<sup>16+</sup>
+
+Defines the custom vibration effect.
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+| Name   | Type           | Mandatory| Description                                                |
+| ------- | --------------- | ---- | ---------------------------------------------------- |
+| type    | 'pattern'       | Yes  | If the value is **pattern**, the vibrator vibrates based on the specified pattern.           |
+| pattern | VibratorPattern | Yes  | Vibration event array, which is the **VibratorPattern** object returned by **build() **.|
 
 ## VibrateAttribute<sup>9+</sup>
 

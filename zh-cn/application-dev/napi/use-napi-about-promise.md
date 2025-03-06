@@ -41,7 +41,7 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value IsPromise(napi_env env, napi_callback_info info) 
+static napi_value IsPromise(napi_env env, napi_callback_info info)
 {
     napi_value argv[1] = {nullptr};
     size_t argc = 1;
@@ -119,6 +119,8 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
+static constexpr int INT_ARG_2 = 2; // 入参索引
+
 static napi_value CreatePromise(napi_env env, napi_callback_info info)
 {
     // deferred是一个延迟对象，作用是将函数延迟一定时间再执行
@@ -139,7 +141,7 @@ static napi_value CreatePromise(napi_env env, napi_callback_info info)
     return returnIsPromise;
 }
 
-static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info) 
+static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info)
 {
     // 获得并解析参数
     size_t argc = 3;
@@ -147,7 +149,7 @@ static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     // 第一个参数为向resolve传入的信息，第二个参数为向reject传入的信息，第三个参数为Promise的状态
     bool status;
-    napi_get_value_bool(env, args[2], &status);
+    napi_get_value_bool(env, args[INT_ARG_2], &status);
     // 创建Promise对象
     napi_deferred deferred = nullptr;
     napi_value promise = nullptr;

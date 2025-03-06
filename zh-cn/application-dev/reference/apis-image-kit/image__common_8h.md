@@ -39,7 +39,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Image_ErrorCode](_image___native_module.md#image_errorcode) {<br/>IMAGE_SUCCESS = 0,<br/>IMAGE_BAD_PARAMETER = 401,<br/>IMAGE_UNSUPPORTED_MIME_TYPE = 7600101,<br/>IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br/>IMAGE_TOO_LARGE = 7600103,<br/>IMAGE_DMA_NOT_EXIST = 7600173,<br/>IMAGE_DMA_OPERATION_FAILED = 7600174,<br/>IMAGE_UNSUPPORTED_OPERATION = 7600201,<br/>IMAGE_UNSUPPORTED_METADATA = 7600202,<br/>IMAGE_UNSUPPORTED_CONVERSION = 7600203,<br/>IMAGE_INVALID_REGION = 7600204,<br/>IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205,<br/>IMAGE_ALLOC_FAILED = 7600301,<br/>IMAGE_COPY_FAILED = 7600302,<br/>IMAGE_LOCK_UNLOCK_FAILED = 7600303,<br/>IMAGE_UNKNOWN_ERROR = 7600901,<br/>IMAGE_BAD_SOURCE = 7700101,<br/>IMAGE_DECODE_FAILED = 7700301,<br/>IMAGE_ENCODE_FAILED = 7800301<br/>} | 错误码。 | 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) {<br/>IMAGE_SUCCESS = 0,<br/>IMAGE_BAD_PARAMETER = 401,<br/>IMAGE_UNSUPPORTED_MIME_TYPE = 7600101,<br/>IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br/>IMAGE_TOO_LARGE = 7600103,<br/>IMAGE_DMA_NOT_EXIST = 7600173,<br/>IMAGE_DMA_OPERATION_FAILED = 7600174,<br/>IMAGE_UNSUPPORTED_OPERATION = 7600201,<br/>IMAGE_UNSUPPORTED_METADATA = 7600202,<br/>IMAGE_UNSUPPORTED_CONVERSION = 7600203,<br/>IMAGE_INVALID_REGION = 7600204,<br/>IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205,<br/>IMAGE_ALLOC_FAILED = 7600301,<br/>IMAGE_COPY_FAILED = 7600302,<br/>IMAGE_LOCK_UNLOCK_FAILED = 7600303,<br/>IMAGE_UNKNOWN_ERROR = 7600901,<br/>IMAGE_BAD_SOURCE = 7700101,<br/>IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE = 7700102,<br/>IMAGE_SOURCE_TOO_LARGE = 7700103,<br/>IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE = 7700201,<br/>IMAGE_SOURCE_UNSUPPORTED_OPTIONS = 7700203, <br/>IMAGE_DECODE_FAILED = 7700301,<br/>IMAGE_SOURCE_ALLOC_FAILED = 7700302,<br/>IMAGE_ENCODE_FAILED = 7800301<br/>} | 错误码。 | 
 | [Image_MetadataType](_image___native_module.md#image_metadatatype) {<br/>EXIF_METADATA = 1,<br/>FRAGMENT_METADATA = 2<br/>} | 定义元数据类型。 | 
 
 
@@ -49,7 +49,7 @@
 | -------- | -------- |
 | static const char \*[MIME_TYPE_BMP](_image___native_module.md#mime_type_bmp) = "image/bmp" | bmp图片格式。  | 
 | static const char \*[MIME_TYPE_JPEG](_image___native_module.md#mime_type_jpeg) = "image/jpeg" | jpeg图片格式。  | 
-| static const char \*[MIME_TYPE_HEIC](_image___native_module.md#mime_type_heic) = "image/heic" | heif图片格式。  | 
+| static const char \*[MIME_TYPE_HEIC](_image___native_module.md#mime_type_heic) = "image/heic" | heic图片格式。  | 
 | static const char \*[MIME_TYPE_PNG](_image___native_module.md#mime_type_png) = "image/png" | png图片格式。  | 
 | static const char \*[MIME_TYPE_WEBP](_image___native_module.md#mime_type_webp) = "image/webp" | webp图片格式。  | 
 | static const char \*[MIME_TYPE_GIF](_image___native_module.md#mime_type_gif) = "image/gif" | gif图片格式。  | 
@@ -189,7 +189,7 @@
 | static const char \*[OHOS_IMAGE_PROPERTY_SCENE_VERSION](_image___native_module.md#ohos_image_property_scene_version) = "HwMnoteSceneVersion" | 场景算法版本信息。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_GIF_LOOP_COUNT](_image___native_module.md#ohos_image_property_gif_loop_count) = "GIFLoopCount" | GIF图片循环次数。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_X_IN_ORIGINAL](_image___native_module.md#ohos_image_property_x_in_original) = "XInOriginal" | 水印裁剪图左上角在原始图中的X坐标。  | 
-| static const char \*[OHOS_IMAGE_PROPERTY_Y_IN_ORIGINAL](_image___native_module.md#ohos_image_property_y_in_original) = "XInOriginal" | 水印裁剪图左上角在原始图中的Y坐标。  | 
+| static const char \*[OHOS_IMAGE_PROPERTY_Y_IN_ORIGINAL](_image___native_module.md#ohos_image_property_y_in_original) = "YInOriginal" | 水印裁剪图左上角在原始图中的Y坐标。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_FRAGMENT_WIDTH](_image___native_module.md#ohos_image_property_fragment_width) = "FragmentImageWidth"| 水印裁剪图的宽。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_FRAGMENT_HEIGHT](_image___native_module.md#ohos_image_property_fragment_height) = "FragmentImageHeight" | 水印裁剪图的高。  | 
 

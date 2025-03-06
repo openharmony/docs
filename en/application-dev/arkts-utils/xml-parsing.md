@@ -1,20 +1,19 @@
 # XML Parsing
 
 
-Data transferred in XML format must be parsed before being put in use. Generally, three types of elements in XML files need to be parsed: [XML tags and tag values](#parsing-xml-tags-and-tag-values), [XML attributes and attribute values](#parsing-xml-attributes-and-attribute-values), and [XML event types and element depths](#parsing-xml-event-types-and-element-depths).
+When using XML as a data carrier, it is necessary to parse relevant nodes in practice. This typically includes three types of operations: [parsing XML tags and their values](#parsing-xml-tags-and-values), [parsing XML attributes and their values](#parsing-xml-attributes-and-values), and [parsing XML event types and element depths](#parsing-xml-event-types-and-element-depths). For example, in web services, XML is the foundation of the Simple Object Access Protocol (SOAP). SOAP messages, which are usually encapsulated in XML format and contain request and response parameters, are parsed by web services to process client requests and generate corresponding responses.
 
 
-The **xml** module provides the **XmlPullParser** class to parse XML files. The input is an object of the ArrayBuffer or DataView type containing XML text, and the output is the parsed information.
+The XML module provides the **XmlPullParser** class to parse XML documents. The input is an ArrayBuffer or DataView containing XML text, and the output is the parsed information.
 
-
-  **Table 1** XML parsing options
+**Table 1** XML parsing options (see [ParseOptions](../reference/apis-arkts/js-apis-xml.md#parseoptions) for detailed descriptions)
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | supportDoctype | boolean | No| Whether to ignore the document type. The default value is **false**, indicating that the document type is not parsed.|
 | ignoreNameSpace | boolean | No| Whether to ignore the namespace. The default value is **false**, indicating that the namespace is parsed.|
-| tagValueCallbackFunction | (name: string, value: string) =&gt; boolean | No| Callback used to return **tagValue**, which consists of a tag and its value. The default value is **null**, indicating that XML tags and tag values are not parsed.|
-| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No| Callback used to return **attributeValue**, which consists of an attribute and its value. The default value is **null**, indicating that XML attributes and attribute values are not parsed.|
+| tagValueCallbackFunction | (name: string, value: string) =&gt; boolean | No| Callback used to return **tagValue**, which consists of a tag and its value. The default value is **null**, indicating that XML tags and values are not parsed.|
+| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No| Callback used to return **attributeValue**, which consists of an attribute and its value. The default value is **null**, indicating that XML attributes and values are not parsed.|
 | tokenValueCallbackFunction | (eventType: EventType, value: ParseInfo) =&gt; boolean | No| Callback used to return **tokenValue**, which consists of the event type and the attributes of **parseInfo**. The default value is **null**, indicating that the event type and the attributes of **parseInfo** are not parsed.|
 
 
@@ -25,17 +24,17 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
 - Currently, parsing a given node is not supported.
 
 
-## Parsing XML Tags and Tag Values
+## Parsing XML Tags and Values
 
-1. Import the modules.
+1. Import the module.
 
     ```ts
     import { xml, util } from '@kit.ArkTS'; // Use the API provided by the util module to encode the file.
     ```
 
-2. Create an **XmlPullParser** object.
+2. Create an XmlPullParser object.
 
-   The **XmlPullParser** object can be created based on an object of the ArrayBuffer or DataView type.
+   You can construct an XmlPullParser object based on ArrayBuffer or DataView. Both methods yield the same results.
 
     ```ts
     let strXml: string =
@@ -46,21 +45,27 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
       '</note>';
     let textEncoder: util.TextEncoder = new util.TextEncoder();
     let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // Encode the data to prevent garbled characters.
-    // 1. Create an XmlPullParser object based on an object of the ArrayBuffer type.
+    // Method 1: Create an XmlPullParser object based on ArrayBuffer.
     let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
    
-    // 2. Create an XmlPullParser object based on an object of the DataView type.
+    // Method 2: Create an XmlPullParser object based on DataView.
     // let dataView: DataView = new DataView(arrBuffer.buffer as object as ArrayBuffer);
     // let that: xml.XmlPullParser = new xml.XmlPullParser(dataView, 'UTF-8');
     ```
 
-3. Customize a callback function. In this example, the tag and tag value are directly printed.
+3. Customize a callback function. In this example, the callback function directly prints the tags and their values.
 
     ```ts
-    let str: string = '';
     function func(name: string, value: string): boolean {
-      str = name + value;
-      console.info(str);
+      if (name == 'note') {
+        console.info(name);
+      }
+      if (value == 'Play' || value == 'Work') {
+        console.info('    ' + value);
+      }
+      if (name == 'title' || name == 'lens') {
+        console.info('  ' + name);
+      }
       return true; // The value true means to continue parsing, and false means to stop parsing.
     }
     ```
@@ -76,27 +81,27 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
 
 	```
 	note
-	title
-	Play
-	title
-	lens
-	Work
-	lens
+	  title
+	    Play
+	  title
+	  lens
+	    Work
+	  lens
 	note
 	```
 
 
 
 
-## Parsing XML Attributes and Attribute Values
+## Parsing XML Attributes and Values
 
-1. Import the modules.
+1. Import the module.
 
     ```ts
     import { xml, util } from '@kit.ArkTS'; // Use the API provided by the util module to encode the file.
     ```
 
-2. Create an **XmlPullParser** object.
+2. Create an XmlPullParser object.
 
     ```ts
     let strXml: string =
@@ -111,7 +116,7 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
     let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
     ```
 
-3. Customize a callback function. In this example, the attribute and attribute value are directly printed.
+3. Customize a callback function. In this example, the callback function directly prints the attributes and their values.
 
     ```ts
     let str: string = '';
@@ -131,19 +136,19 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
 
    The output is as follows:
    ```
-   importance high logged true // Attributes and attribute values of the note node
+   importance high logged true // Attributes and values of the note node
    ```
 
 
 ## Parsing XML Event Types and Element Depths
 
-1. Import the modules.
+1. Import the module.
 
     ```ts
     import { xml, util } from '@kit.ArkTS'; // Use the API provided by the util module to encode the file.
     ```
 
-2. Create an **XmlPullParser** object.
+2. Create an XmlPullParser object.
 
     ```ts
     let strXml: string =
@@ -156,7 +161,7 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
     let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
     ```
 
-3. Customize a callback function. In this example, the event type and element depth are directly printed.
+3. Customize a callback function. In this example, the callback function directly prints the event types and element depths.
 
     ```ts
     let str: string  = '';
@@ -191,7 +196,7 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
 
 ## Example Scenario
 
-In the following example, all parsing options are invoked to parse XML tags, attributes, and event types.
+This example demonstrates how to use all parsing options to parse XML tags, attributes, and event types.
 
 
 ```ts

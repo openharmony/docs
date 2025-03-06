@@ -1,6 +1,6 @@
 # Keyframe Animation (keyframeAnimateTo)
 
-The [UIContext](../js-apis-arkui-UIContext.md#uicontext) provides the **keyframeAnimateTo** API to specify several keyframes to implement segment-based animation. In an animation that involves width and height changes, as in a property animation, a component's content (such as text, [canvas](ts-components-canvas-canvas.md) content, and [linear gradient](ts-universal-attributes-gradient-color.md)) is changed straight to the final state. To enable the content to change with the width and height during the animation process, you can use the [renderFit](ts-universal-attributes-renderfit.md) attribute.
+The [UIContext](../js-apis-arkui-UIContext.md#uicontext) provides the **keyframeAnimateTo** API that allows you to define several keyframes to implement segment-based animations. In an animation that involves width and height changes, as in a property animation, a component's content (such as text and [canvas](ts-components-canvas-canvas.md) content) is changed straight to the final state. To enable the content to change with the width and height during the animation process, use the [renderFit](ts-universal-attributes-renderfit.md#renderfit) attribute.
 
 >  **NOTE**
 >
@@ -31,7 +31,7 @@ Sets the keyframe animation.
 | ---------- | ---------- | ------- | ------------------------------------- |
 | delay      | number     | No     | Delay of animation playback, in ms.<br>Default value: **0**, indicating that the playback is not delayed.<br>**NOTE**<br>A value greater than 0 means to begin the animation after the specified amount of time has elapsed.<br>A value less than 0 means to begin the animation in advance. If the absolute value of **delay** is less than the actual animation duration, the animation starts its first frame from the state at the absolute value. If the absolute value of **delay** is greater than or equal to the actual animation duration, the animation starts its first frame from the end state. The actual animation duration is equal to the duration of a single animation multiplied by the number of animation playback times.|
 | iterations | number     | No     | Number of times that the animation is played. By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times. The value **0** indicates that there is no animation.<br>Default value: **1**<br>Value range: [-1, +∞)|
-| onFinish   | () => void | No     | Callback invoked when the animation playback is complete. This API is called after the keyframe animation has played for the specified number of times.|
+| onFinish   | () => void | No     | Callback invoked when the animation playback is complete. This API is called after the keyframe animation has played for the specified number of times. If the UIAbility moves from the foreground to the background, any finite loop keyframe animation that is still in progress will be immediately terminated, triggering the completion callback.|
 
 ## KeyframeState
 
@@ -44,6 +44,8 @@ Sets the keyframe animation.
 | event      | () => void                           | Yes     | Closure function of the state at the time of the keyframe, that is, the state to be reached at the time of the keyframe.|
 
 ## Example
+
+This example demonstrates how to set the keyframe animation using **keyframeAnimateTo**.
 
 ```ts
 // xxx.ets

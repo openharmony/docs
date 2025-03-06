@@ -122,7 +122,7 @@ off(type: 'frame', callback\?: Callback\<IntervalInfo\>): void
 | 参数名           | 类型                                       | 必填 | 说明                          |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | type | 'frame'| 是   | 设置注册回调的类型（只能是'frame'类型）。|
-| callback    | Callback<[IntervalInfo](#intervalinfo)>| 否   | 订阅函数, 参数不填时，默认取消全部订阅函数。|
+| callback    | Callback<[IntervalInfo](#intervalinfo)>| 否   | 订阅函数，参数不填时，默认取消全部订阅函数。|
 
 
 **示例：**

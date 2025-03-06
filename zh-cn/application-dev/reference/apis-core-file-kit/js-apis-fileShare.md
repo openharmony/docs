@@ -16,29 +16,29 @@ import fileShare from '@ohos.fileshare';
 
 枚举，授予或使能权限的URI访问模式。
 
-**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 | 名称  | 值   | 说明  |
 | ----- |-----|-----|
-| READ_MODE  | 0b1 | 读权限 |
-| WRITE_MODE  | 0b10 | 写权限 |
+| READ_MODE  | 0b1 | 读权限。 |
+| WRITE_MODE  | 0b10 | 写权限。 |
 
 ## PolicyErrorCode<sup>11+</sup>
 
 枚举，授予或使能权限策略失败的URI对应的错误码。
 
-**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 | 名称  | 值   | 说明        |
 | ----- |-----|-----------|
-| PERSISTENCE_FORBIDDEN  | 1   | URI禁止被持久化 |
-| INVALID_MODE  | 2   | 无效的模式     |
-| INVALID_PATH  | 3   | 无效的路径     |
-| PERMISSION_NOT_PERSISTED<sup>12+</sup>  | 4   | 权限没有被持久化 |
+| PERSISTENCE_FORBIDDEN  | 1   | URI禁止被持久化。 |
+| INVALID_MODE  | 2   | 无效的模式。     |
+| INVALID_PATH  | 3   | 无效的路径。     |
+| PERMISSION_NOT_PERSISTED<sup>12+</sup>  | 4   | 权限没有被持久化。 |
 
 ## PolicyErrorResult<sup>11+</sup>
 
-授予或使能权限失败的URI策略结果，支持persistPermission、revokePermission、activatePermission、deactivatePermission接口抛出错误时使用。
+授予或使能权限失败的URI策略结果。支持persistPermission、revokePermission、activatePermission、deactivatePermission接口抛出错误时使用。
 
 **系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
@@ -61,7 +61,7 @@ import fileShare from '@ohos.fileshare';
 
 ## PathPolicyInfo<sup>15+</sup>
 
-需要查询的文件或目录的信息
+需要查询的文件或目录的信息。
 
 **系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
@@ -72,24 +72,24 @@ import fileShare from '@ohos.fileshare';
 
 ## PolicyType<sup>15+</sup>
 
-枚举，所查询策略信息对应的授权模式
+枚举，所查询策略信息对应的授权模式。
 
-**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 | 名称  | 值   | 说明        |
 | ----- |-----|-----------|
-| TEMPORARY_TYPE  | 0   | 临时授权 |
-| PERSISTENT_TYPE  | 1   | 持久化授权     |
+| TEMPORARY_TYPE  | 0   | 临时授权。 |
+| PERSISTENT_TYPE  | 1   | 持久化授权。     |
 
 ## fileShare.persistPermission<sup>11+</sup>
 
 persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法对所选择的多个文件或目录URI持久化授权，以promise形式返回结果，该接口仅对具有该系统能力的设备开放(此接口不支持媒体类URI及远端URI的持久化)。
+异步方法对所选择的多个文件或目录URI持久化授权，以promise形式返回结果。该接口仅对具有该系统能力的设备开放(此接口不支持媒体类URI及远端URI的持久化)。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
-**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **参数：**
 
@@ -105,7 +105,7 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。\n
 如果存在URI授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult11)>形式提供错误信息。
 
 | 错误码ID    | 错误信息       |
@@ -155,11 +155,11 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
-异步方法对所选择的多个文件或目录uri取消持久化授权，以promise形式返回结果，该接口仅对具有该系统能力的设备开放(此接口不支持媒体类URI及远端URI的持久化)。
+异步方法对所选择的多个文件或目录uri取消持久化授权，以promise形式返回结果。该接口仅对具有该系统能力的设备开放(此接口不支持媒体类URI及远端URI的持久化)。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
-**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **参数：**
 
@@ -175,7 +175,7 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。\n
 如果存在URI取消授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult11)>形式提供错误信息。
 
 | 错误码ID | 错误信息 |
@@ -225,11 +225,11 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
 activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法使能多个已经永久授权过的文件或目录，以promise形式返回结果，该接口仅对具有该系统能力的设备开放(此接口不支持媒体类URI及远端URI的持久化)。
+异步方法使能多个已经永久授权过的文件或目录，以promise形式返回结果。该接口仅对具有该系统能力的设备开放(此接口不支持媒体类URI及远端URI的持久化)。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
-**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **参数：**
 
@@ -245,7 +245,7 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。\n
 如果存在URI使能权限失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult11)>形式提供错误信息。
 
 | 错误码ID    | 错误信息       |
@@ -296,11 +296,11 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法取消使能授权过的多个文件或目录，以promise形式返回结果，该接口仅对具有该系统能力的设备开放(此接口不支持媒体类URI及远端URI的持久化)。
+异步方法取消使能授权过的多个文件或目录，以promise形式返回结果。该接口仅对具有该系统能力的设备开放(此接口不支持媒体类URI及远端URI的持久化)。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
-**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **参数：**
 
@@ -316,7 +316,7 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。\n
 如果存在URI取消使能权限失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult11)>形式提供错误信息。
 
 | 错误码ID    | 错误信息       |
@@ -368,19 +368,19 @@ checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;b
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
-**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
+**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **参数：**
 
 | 参数名 | 类型                                    | 必填 | 说明                      |
 | -------- |---------------------------------------| -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo11)> | 是 | 需要授权URI的策略信息，policies数组大小上限为500。|
+| policies| Array&lt;[PolicyInfo](#policyinfo11)&gt; | 是 | 需要授权URI的策略信息，policies数组大小上限为500。|
 
 **返回值：**
 
 |   类型   |  说明   |
 | ------- | ------- |
-| Promise&lt;Array&lt;boolean&gt;&gt; | Promise对象，返回true表示有持久化授权，false表示不具有持久化授权。 |
+| Promise&lt;Array&lt;boolean&gt;&gt; | Promise对象。返回true表示有持久化授权；false表示不具有持久化授权。 |
 
 **错误码：**
 
@@ -431,3 +431,4 @@ checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;b
     }
   }
   ```
+  

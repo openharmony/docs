@@ -1,12 +1,12 @@
 # Resident Task Development (Worker)
 
-This section describes how to use a worker to execute a resident task. The worker continuously executes the task until the host thread sends a termination instruction.
+This section describes how to use Worker to execute a resident task. Worker continuously executes the task until it receives a termination command from the host thread.
 
-The development process and example are as follows:
+The development process and example are outlined as follows:
 
-1. DevEco Studio supports one-click Worker generation. Right-click any position in the {moduleName} directory and choose > New > Worker from the shortcut menu to automatically generate the Worker template file and configuration information. This section uses Worker as an example.
+1. Create Worker with DevEco Studio. Specifically, in DevEco Studio, right-click anywhere in the {moduleName} directory and choose **New > Worker** to automatically generate the Worker template file and configuration information. In this example, we will create a Worker named "Worker".
 
-   In addition, you can manually create a worker file. For details, see [Precautions for Worker](worker-introduction.md#precautions-for-worker).
+   You can also manually create Worker files. For details, see [Precautions for Worker](worker-introduction.md#precautions-for-worker).
 
 2. Import the Worker module.
 
@@ -15,14 +15,14 @@ The development process and example are as follows:
    import { worker } from '@kit.ArkTS';
    ```
 
-3. In the host thread, call [constructor()](../reference/apis-arkts/js-apis-worker.md#constructor9) of **ThreadWorker** to create a **Worker** object. The calling thread is the host thread.
+3. In the host thread, call [constructor()](../reference/apis-arkts/js-apis-worker.md#constructor9) of ThreadWorker to create a Worker object.
 
    ```ts
    // Index.ets
    const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/Worker.ets');
    ```
 
-4. The host thread is the UI main thread. The host thread sends'start' to execute a long-running task and receive related messages returned by the sub-thread. When the task does not need to be executed, send'stop' to stop the task. In this example, the task is stopped 10 seconds later.
+4. Enable the host thread to send messages. The host thread (UI main thread) sends 'start' to initiate a long-running task and receive messages from the Worker thread. When the task is no longer needed, the host thread sends 'stop' to terminate the task. In this example, the task is terminated after 10 seconds.
 
    ```ts
    // Index.ets
@@ -39,9 +39,9 @@ The development process and example are as follows:
            .onClick(() => {
              workerInstance.postMessage({type: 'start'})
              workerInstance.onmessage = (event) => {
-               console.info ('The UI main thread receives a message:', event.data);
+               console.info('The UI main thread receives a message:', event.data);
              }
-             // Stop the worker after 10 seconds.
+             // Stop the Worker thread after 10 seconds.
              setTimeout(() => {
                workerInstance.postMessage({ type: 'stop' });
              }, 10000);
@@ -53,7 +53,7 @@ The development process and example are as follows:
    }
    ```
 
-5. When the Worker thread receives a start message from the host thread, the Worker thread starts to execute a task that runs irregularly for a long time and returns a message to the host thread in real time. When the received message is "stop," the task execution is ended and a corresponding message is returned to the host thread.
+5. Handle messages in the Worker thread. When receiving 'start' from the host thread, the Worker thread starts executing the long-running, non-periodic task and sends messages back to the host thread in real-time. When receiving 'stop', it terminates the task and sends a corresponding message back to the host thread.
 
    ```ts
    // Worker.ets
@@ -70,15 +70,15 @@ The development process and example are as follows:
        }
      } else if (type === 'stop') {
        isRunning = false;
-       workerPort.close (); // Close the worker.
+       workerPort.close(); // Close the Worker thread.
      }
    }
    // Simulate a resident task.
    function performTask() {
      if (isRunning) {
-       // Simulate a long-term task.
+       // Simulate a long-running task.
        workerPort.postMessage('Worker is performing a task');
-       // Execute the task again 1 second later.
+       // Execute the task again after 1 second.
        setTimeout(performTask, 1000);
      }
      workerPort.postMessage('Worker is stop performing a task');

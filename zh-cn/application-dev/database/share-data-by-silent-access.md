@@ -29,9 +29,9 @@
 
 | 数据类型  | 存储位置      | 数据格式        | 有效期          | 适用场景                              |
 | ----- | --------- | ----------- | ------------ | --------------------------------- |
-| 持久化数据 | 数据提供方的沙箱  | 数据库中的数据表    | 永久存储         | 适用于数据格式类似关系型数据库的相关场景，如日程，会议等      |
-| 过程数据  | 数据管理服务的沙箱 | json或byte数据 | 无人订阅10天后自动删除 | 适用于数据有时效性且数据格式较简单的相关场景，如步数，天气，心率等 |
-| 动态数据  | 数据管理服务的内存 | key-value数据 | 设备重启之后自动删除 | 适用于动态关闭/打开静默访问通道的场景。例如：升级过程中为了保证数据正确性可以动态关闭静默访问，升级结束后再调用相关接口打开静默访问。调用接口生成的开启关闭状态，设备重启之后会清除。只限于调用enableSilentProxy和disableSilentProxy接口设置的数据 |
+| 持久化数据 | 数据提供方的沙箱  | 数据库中的数据表    | 永久存储         | 适用于数据格式类似关系型数据库的相关场景，如日程，会议等。      |
+| 过程数据  | 数据管理服务的沙箱 | json或byte数据 | 无人订阅10天后自动删除 | 适用于数据有时效性且数据格式较简单的相关场景，如步数，天气，心率等。 |
+| 动态数据  | 数据管理服务的内存 | key-value数据 | 设备重启之后自动删除 | 适用于动态关闭/打开静默访问通道的场景。例如：升级过程中为了保证数据正确性可以动态关闭静默访问，升级结束后再调用相关接口打开静默访问。调用接口生成的开启关闭状态，设备重启之后会清除。只限于调用enableSilentProxy和disableSilentProxy接口设置的数据。 |
 
 
 
@@ -49,13 +49,17 @@
 
 - URI还支持添加其他参数来设置具体的访问方式或访问对象，URI添加参数需严格遵循格式：`datashareproxy://{bundleName}/{dataPath}?{arg1}&{arg2}`，不符合规范的URI参数不生效。
 
-  其中以"?"符号开始参数，以"&"符号连接参数，连续的多个符号会被视为一个。当前仅支持“Proxy”以及“appIndex”参数。当使用多个"?"符开始参数时，"?"后的参数需是"Proxy"参数，否则该参数不生效。
+  其中以"?"符号开始参数，以"&"符号连接参数，连续的多个符号会被视为一个。当前仅支持“Proxy”、“appIndex”以及“user”参数。当使用多个"?"符开始参数时，"?"后的参数需是"Proxy"参数，否则该参数不生效。
 
   - "Proxy"仅支持设置为true或false，true表示数据访问方采用静默数据访问方式，false则表示数据访问方采用非静默数据访问方式。
 
   - "appIndex"仅支持设置为整型，表示应用包的分身索引，从1开始支持，仅在分身应用中生效。appIndex的定义及获取参照[BundleInfo](../reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md)。appIndex为0，或不填写时，访问数据提供者的应用本体。
 
     目前访问应用分身仅支持静默访问方式下，不支持非静默访问方式。故需要设置访问应用分身URI和参数时，请注意同步设置"Proxy"参数和"appIndex"参数。例如“datashareproxy://{bundleName}/{dataPath}?Proxy=true&appIndex=1”，表示将在数据访问方会在静默访问方式下访问应用的第一个分身。
+
+  - "user"仅支持设置为整型，表示要访问的数据提供方的用户ID。user的定义及获取参照[user](../reference/apis-basic-services-kit/js-apis-osAccount.md#getactivatedosaccountlocalids9)。user不填写时，默认为数据访问者所在的用户ID。
+
+    目前跨用户访问仅支持主空间和隐私空间之间的访问，且需要数据访问方配有跨用户访问权限ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS才可成功访问。
 
 ## 约束与限制
 
@@ -122,11 +126,13 @@
    **module.json5配置样例：**
 
    ```json
-   "proxyData":[
+   // 以下配置以settingsdata为例，应用需根据实际情况配置各个字段
+   "proxyData": [
      {
-       "uri": "datashareproxy://com.acts.ohos.data.datasharetest/test",
-       "requiredReadPermission": "ohos.permission.GET_BUNDLE_INFO",
-       "requiredWritePermission": "ohos.permission.KEEP_BACKGROUND_RUNNING",
+       "uri": "datashareproxy://com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_SECURE",
+       // 实际请按照应用具体场景需要的安全权限配置，如配置应用自定义权限、系统权限或用户授权权限，当前权限仅为示例
+       "requiredReadPermission": "ohos.permission.MANAGE_SECURE_SETTINGS",
+       "requiredWritePermission": "ohos.permission.MANAGE_SECURE_SETTINGS",
        "metadata": {
          "name": "dataProperties",
          "resource": "$profile:my_config"
@@ -172,7 +178,7 @@
 2. 定义与数据提供方通信的URI字符串。
 
    ```ts
-   let dseUri = ('datashareproxy://com.acts.ohos.data.datasharetest/test');
+   let dseUri = ('datashareproxy://com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_SECURE');
    ```
 
 3. 创建工具接口类对象。
@@ -261,7 +267,7 @@
    }
    let templateId: dataShare.TemplateId = {
      subscriberId: "111",
-     bundleNameOfOwner: "com.acts.ohos.data.datasharetestclient"
+     bundleNameOfOwner: "com.ohos.settingsdata"
    }
    if(dsHelper != undefined) {
      // 使用数据管理服务修改数据时触发onCallback回调，回调内容是template中的规则查到的数据
@@ -294,10 +300,12 @@
 **module.json5配置样例：**
 
 ```json
+// 以下配置仅为示例，应用需根据实际情况配置各个字段
 "proxyData": [
   {
     "uri": "datashareproxy://com.acts.ohos.data.datasharetest/weather",
-    "requiredReadPermission": "ohos.permission.GET_BUNDLE_INFO",
+    // 实际请按照应用具体场景需要的安全权限配置，如配置应用自定义权限、系统权限或用户授权权限，当前权限仅为示例
+    "requiredReadPermission": "ohos.permission.READ_WEATHER_DATA",
     "requiredWritePermission": "ohos.permission.KEEP_BACKGROUND_RUNNING"
   }
 ]
@@ -387,7 +395,7 @@
 2. 定义与数据提供方通信的URI字符串。
 
    ```ts
-   let dseUri = ('datashare:///com.acts.datasharetest/entry/DB00/TBL00');
+   let dseUri = ('datashare:///com.ohos.settingsdata/entry/DB00/TBL00');
    ```
 
 3. 创建工具接口类对象。

@@ -33,7 +33,7 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -84,7 +84,7 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -133,7 +133,7 @@ isIdleStateSync(bundleName: string): boolean
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -170,7 +170,7 @@ queryAppGroup(): Promise&lt;number&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -216,7 +216,7 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -264,7 +264,7 @@ queryAppGroupSync(): number
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -310,7 +310,7 @@ queryAppGroup(bundleName : string): Promise&lt;number&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -359,7 +359,7 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -414,7 +414,7 @@ queryAppGroupSync(bundleName: string): number
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -461,7 +461,7 @@ setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -511,7 +511,7 @@ setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -563,7 +563,7 @@ queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -618,7 +618,7 @@ queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -671,7 +671,7 @@ queryAppStatsInfos(begin: number, end: number): Promise&lt;AppStatsMap&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -713,7 +713,7 @@ queryLastUseTime(appInfo: Record&lt;string, Array&lt;number&gt;&gt;): Promise&lt
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| appInfo | Record&lt;string, Array&lt;number&gt;&gt; | 是    | 参数为map结构，key是bundleName，value是查询应用的index(可以有多个，通过Array传入)。 |
+| appInfo | Record&lt;string, Array&lt;number&gt;&gt; | 是    | 参数为map结构，key是bundleName，value是查询应用的index（可以有多个，通过Array传入）。 |
 
 **返回值**：
 
@@ -723,7 +723,7 @@ queryLastUseTime(appInfo: Record&lt;string, Array&lt;number&gt;&gt;): Promise&lt
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -772,7 +772,7 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -831,7 +831,7 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -882,7 +882,7 @@ queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&l
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -940,7 +940,7 @@ queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -989,7 +989,7 @@ queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1044,7 +1044,7 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1099,7 +1099,7 @@ queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEve
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1147,7 +1147,7 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1202,7 +1202,7 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Dev
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1250,7 +1250,7 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1300,7 +1300,7 @@ queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1403,7 +1403,7 @@ queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&g
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1453,7 +1453,7 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1510,7 +1510,7 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1564,7 +1564,7 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1619,7 +1619,7 @@ unregisterAppGroupCallBack(): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1663,7 +1663,7 @@ unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1794,7 +1794,7 @@ FA卡片的使用信息属性集合。
 
 |名称                           | 描述                                       |
 | ------------------------------ | ---------------------------------------- |
-| Record<string, Array<[BundleStatsInfo](#bundlestatsinfo)>> | 不同应用的使用统计信息(包含分身应用)。 |
+| Record<string, Array<[BundleStatsInfo](#bundlestatsinfo)>> | 不同应用的使用统计信息（包含分身应用）。 |
 
 ## DeviceEventStats
 

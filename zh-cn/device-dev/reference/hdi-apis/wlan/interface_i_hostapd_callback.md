@@ -3,9 +3,9 @@
 
 ## 概述
 
-hostapd回调的接口。
+Hostapd回调的接口。
 
-当hostapd启动、热点扫描结束，收到Netlink消息时，调用该回调，继续后续处理。
+当Hostapd启动、热点扫描结束，收到Netlink消息时，调用该回调，继续后续处理。
 
 **起始版本：** 4.1
 
@@ -44,8 +44,8 @@ Wi-Fi Hal回调AP状态。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| apStateParm | 表示ap状态内容 | 
-| ifName | 表示网卡名称 | 
+| apStateParm | 表示AP状态内容。 | 
+| ifName | 表示网卡名称。 | 
 
 
 ### OnEventHostApdNotify()
@@ -65,8 +65,8 @@ IHostapdCallback::OnEventHostApdNotify ([in] String notifyParam, [in] String ifN
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| notifyParam | 表示Hostapd的参数 | 
-| ifName | 表示网卡名称 | 
+| notifyParam | 表示Hostapd的参数。 | 
+| ifName | 表示网卡名称。 | 
 
 
 ### OnEventStaJoin()
@@ -86,5 +86,5 @@ Wi-Fi Hal回调STA加入AP。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| staJoinParm | 表示sta加入内容 | 
-| ifName | 表示网卡名称 | 
+| staJoinParm | 表示STA加入内容。 | 
+| ifName | 表示网卡名称。 | 

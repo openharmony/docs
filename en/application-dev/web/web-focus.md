@@ -54,7 +54,7 @@ Currently, passive focus traversal occurs in the following scenarios:
 
 - Invisible **Web** components: In scenarios such as application foreground and background switchover, page switchover, and navigation, a focused **Web** component will lose focus and be focused again.
 
-- Web page loading: When ArkWeb loads a web page through **src**, **loadUrl**, and **loadData**, the focus is obtained by default. In this case, the **onFocus** and **w3c focus** events on the application side are reported.
+- Web page loading: When the **Web** component loads a web page through **src**, **loadUrl**, and **loadData**, the focus is obtained by default. However, if the **Web** component is not focusable, the focus fails to be obtained. The common causes are as follows: The parent component cannot be focused during the animation. The **Web** component or its parent component is set to be not focusable on the application side. The application can call [requestFocus](../reference/apis-arkweb/js-apis-webview.md#requestfocus) to obtain the focus again. When the focus is obtained successfully, the **onFocus** and **w3c focus** events on the application side are reported.
 
 - **autofocus**: Elements with the **autofocus** style are focused by default after web pages are loaded. If the element supports text input, the cursor blinks in the text box, but the soft keyboard is not displayed.
 

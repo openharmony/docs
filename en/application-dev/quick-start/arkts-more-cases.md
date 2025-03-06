@@ -1261,11 +1261,11 @@ console.log(t.createController()!.value);
 
 ## arkts-no-globalthis
 
-ArkTS does not support **globalThis** for two reasons:<br>(1) A static type cannot be added for **globalThis**. As a result, the attributes of **globalThis** can be accessed only through search, which causes extra performance overhead.<br>(2) Type annotation is not available for attributes of **globalThis**. As a result, the security and performance of operations on these attributes cannot be ensured. Therefore, ArkTS does not support **globalThis**.
+ArkTS does not support **globalThis** for two reasons:<br>(1) A static type cannot be added for **globalThis**. As a result, the attributes of **globalThis** can be accessed only through search, which causes extra performance overhead.<br> (2) Type annotation is not available for attributes of **globalThis**. As a result, the security and performance of operations on these attributes cannot be ensured.  
 
 1. You are advised to transfer data between modules based on the service logic and import/export syntax.
 
-2. If necessary, you can construct a singleton object to implement the function of a global object. (Note: The singleton object cannot be defined in a HAR file, which packs two copies in different HAP files and therefore cannot implement singleton objects.)
+2. If necessary, you can construct a singleton object to implement the function of a global object. (**NOTE**: The singleton object cannot be defined in a HAR file, which packages two copies in different HAP files and therefore cannot implement singleton objects.)
 
 Construct a singleton object.
 

@@ -901,8 +901,8 @@ Enumerates the types of user authentication supported by an asset.
 
 | Name| Value  | Description                                                        |
 | ---- | ---- | ------------------------------------------------------------ |
-| NONE | 0    | No user authentication is required before the asset is accessed.                                |
-| ANY  | 255  | The asset can be accessed if any user authentication (such as PIN, facial, or fingerprint authentication) is successful.|
+| NONE | 0x00 | No user authentication is required before the asset is accessed.                                |
+| ANY  | 0xFF | The asset can be accessed if any user authentication (such as PIN, facial, or fingerprint authentication) is successful.|
 
 ## SyncType
 

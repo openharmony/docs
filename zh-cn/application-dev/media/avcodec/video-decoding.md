@@ -28,6 +28,7 @@
 8. Buffer模式和Surface模式使用方式一致的接口，所以只提供了Surface模式的示例。
 9. 在Buffer模式下，开发者通过输出回调函数OH_AVCodecOnNewOutputBuffer获取到OH_AVBuffer的指针实例后，必须通过调用OH_VideoDecoder_FreeOutputBuffer接口
    来通知系统该实例已被使用完毕。这样系统才能够将后续解码的数据写入到相应的位置。如果开发者在调用OH_AVBuffer_GetNativeBuffer接口时获取到OH_NativeBuffer指针实例，并且该实例的生命周期超过了当前的OH_AVBuffer指针实例，那么需要进行一次数据的拷贝操作。在这种情况下，开发者需要自行管理新生成的OH_NativeBuffer实例的生命周期，确保其正确使用和释放。
+<!--RP6--><!--RP6End-->
 
 ## surface输出与buffer输出
 
@@ -387,10 +388,12 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     ```c++
     // 配置送显窗口参数。
-    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window);    // 从XComponent获取window。
+    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, nativeWindow);    // 从XComponent获取nativeWindow。
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
+    // 配置视频与显示屏匹配模式（缓冲区按原比例缩放，使得缓冲区的较小边与窗口匹配，较长边超出窗口的部分被视为透明）。
+    OH_NativeWindow_NativeWindowSetScalingModeV2(nativeWindow, OH_SCALING_MODE_SCALE_CROP_V2);
     ```
 
 7. （可选）OH_VideoDecoder_SetParameter()动态配置解码器surface参数。
@@ -400,8 +403,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVFormat *format = OH_AVFormat_Create();
     // 配置显示旋转角度。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_ROTATION, 90);
-    // 配置视频与显示屏匹配模式（缩放与显示窗口适配，裁剪与显示窗口适配）。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_SCALING_MODE, SCALING_MODE_SCALE_CROP);
     int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
     OH_AVFormat_Destroy(format);
     ```
@@ -657,7 +658,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 异常处理。
     }
     // Surface模式重新配置surface，而Buffer模式不需要配置surface。
-    ret = OH_VideoDecoder_SetSurface(videoDec, window);
+    ret = OH_VideoDecoder_SetSurface(videoDec, nativeWindow);
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }

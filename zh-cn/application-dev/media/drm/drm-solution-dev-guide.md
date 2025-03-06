@@ -33,18 +33,18 @@ DRM HDI API 的 IDL 构建完成后，可以在`//ohos/out/产品型号/gen/driv
 ```
 //drivers/peripheral/clearplay
 .
-├── BUILD.gn     # 模块编译BUILD.gn
-├── bundle.json  # 部件配置
-├── hdi_service  # DRM解决方案HDI服务代码
-│   ├── BUILD.gn # DRM解决方案HDI服务代码编译BUILD.gn
-│   ├── common   # DRM解决方案HDI服务依赖的工具类代码，包含json解析、base64编解码
-│   ├── include  # RM解决方案HDI服务实现头文件
-│   └── src      # DRM解决方案HDI服务实现代码
-├── interfaces   # DRM解决方案HDI服务能力接口
-│   ├── BUILD.gn # DRM解决方案HDI服务能力接口编译BUILD.gn
-│   ├── include  # DRM解决方案HDI服务能力接口文件
-│   └── src      # DRM解决方案HDI服务能力接口实现
-└── README_zh.md # DRM解决方案HDI服务组件说明
+├── BUILD.gn     # 模块编译BUILD.gn。
+├── bundle.json  # 部件配置。
+├── hdi_service  # DRM解决方案HDI服务代码。
+│   ├── BUILD.gn # DRM解决方案HDI服务代码编译BUILD.gn。
+│   ├── common   # DRM解决方案HDI服务依赖的工具类代码，包含json解析、base64编解码。
+│   ├── include  # RM解决方案HDI服务实现头文件。
+│   └── src      # DRM解决方案HDI服务实现代码。
+├── interfaces   # DRM解决方案HDI服务能力接口。
+│   ├── BUILD.gn # DRM解决方案HDI服务能力接口编译BUILD.gn。
+│   ├── include  # DRM解决方案HDI服务能力接口文件。
+│   └── src      # DRM解决方案HDI服务能力接口实现。
+└── README_zh.md # DRM解决方案HDI服务组件说明。
 ```
 
 ### 驱动入口实现
@@ -52,7 +52,7 @@ DRM HDI API 的 IDL 构建完成后，可以在`//ohos/out/产品型号/gen/driv
 驱动入口实现可以参考`//ohos/out/产品型号/gen/drivers/interface/drm/v1_0/media_key_system_factory_driver.cpp`，需要驱动入口实现中修改以下几点，并手动配置编译：
 
 ```
-using namespace OHOS::HDI::Drm::V1_0; // 1、本文中 V1_0 为 HDI API 版本号，需根据不同版本进行变更
+using namespace OHOS::HDI::Drm::V1_0; // 1. 本文中 V1_0 为 HDI API 版本号，需根据不同版本进行变更。
 
 struct HdfMediaKeySystemFactoryHost {
     struct IDeviceIoService ioService;
@@ -65,7 +65,7 @@ static int HdfMediaKeySystemFactoryDriverBind(struct HdfDeviceObject *deviceObje
         HDF_LOGE("%{public}s: failed to create create HdfMediaKeySystemFactoryHost object", __func__);
         return HDF_FAILURE;
     }
-    int ret = HdfDeviceObjectSetInterfaceDesc(deviceObject, "ohos.hdi.drm.v1_0.IMediaKeySystemFactory"); // 2. 服务绑定接口描述符，便于DRM框架服务通过接口描述符获取到DRM解决方案HDI服务，根据不同的HDI API版本号调整
+    int ret = HdfDeviceObjectSetInterfaceDesc(deviceObject, "ohos.hdi.drm.v1_0.IMediaKeySystemFactory"); // 2. 服务绑定接口描述符，便于DRM框架服务通过接口描述符获取到DRM解决方案HDI服务，根据不同的HDI API版本号调整。
     if (ret != HDF_SUCCESS) {
         HDF_LOGE("%{public}s: failed to HdfDeviceObjectSetInterfaceDesc", __func__);
     }
@@ -74,7 +74,7 @@ static int HdfMediaKeySystemFactoryDriverBind(struct HdfDeviceObject *deviceObje
     hdfMediaKeySystemFactoryHost->ioService.Open = NULL;
     hdfMediaKeySystemFactoryHost->ioService.Release = NULL;
 
-    auto serviceImpl = OHOS::HDI::Drm::V1_0::IMediaKeySystemFactory::Get("clearplay_service", true); // 3. 获取DRM解决方案HDI服务实例
+    auto serviceImpl = OHOS::HDI::Drm::V1_0::IMediaKeySystemFactory::Get("clearplay_service", true); // 3. 获取DRM解决方案HDI服务实例。
     if (serviceImpl == nullptr) {
         HDF_LOGE("%{public}s: failed to get of implement service", __func__);
         delete hdfMediaKeySystemFactoryHost;
@@ -82,7 +82,7 @@ static int HdfMediaKeySystemFactoryDriverBind(struct HdfDeviceObject *deviceObje
     }
 
     hdfMediaKeySystemFactoryHost->stub = OHOS::HDI::ObjectCollector::GetInstance().GetOrNewObject(serviceImpl,
-        OHOS::HDI::Drm::V1_0::IMediaKeySystemFactory::GetDescriptor()); // 4. 获取DRM解决方案HDI服务实现对应的Stub对象
+        OHOS::HDI::Drm::V1_0::IMediaKeySystemFactory::GetDescriptor()); // 4. 获取DRM解决方案HDI服务实现对应的Stub对象。
     if (hdfMediaKeySystemFactoryHost->stub == nullptr) {
         HDF_LOGE("%{public}s: failed to get stub object", __func__);
         delete hdfMediaKeySystemFactoryHost;
@@ -123,26 +123,26 @@ static int32_t MediaKeySystemFactoryDriverDispatch(struct HdfDeviceIoClient *cli
 ```
 extern "C" IMediaKeySystemFactory *MediaKeySystemFactoryImplGetInstance(void)
 {
-    // 请新增实现
+    // 请新增实现。
     return new (std::nothrow) MediaKeySystemFactoryService();
 }
 
 int32_t MediaKeySystemFactoryService::IsMediaKeySystemSupported(const std::string& name, const std::string& mimeType,
      OHOS::HDI::Drm::V1_0::ContentProtectionLevel level, bool& isSupported)
 {
-    // 请新增实现
+    // 请新增实现。
     return HDF_SUCCESS;
 }
 
 int32_t MediaKeySystemFactoryService::CreateMediaKeySystem(sptr<OHOS::HDI::Drm::V1_0::IMediaKeySystem>& mediaKeySystem)
 {
-    // 请新增实现
+    // 请新增实现。
     return HDF_SUCCESS;
 }
 
 int32_t MediaKeySystemFactoryService::GetMediaKeySystemDescription(std::string& name, std::string& uuid)
 {
-    // 请新增实现
+    // 请新增实现。
     return HDF_SUCCESS;
 }
 
@@ -376,17 +376,17 @@ group("hdf_clearplay_interfaces") {
 
 ```
 clearplay :: host {
-    hostName = "clearplay_host";   // 进程名
+    hostName = "clearplay_host";   // 进程名。
     priority = 50;
-    uid = ""; // 用户态进程uid，缺省为空，会被配置为hostName的定义值，即普通用户
-    gid = ""; // 用户态进程gid，缺省为空，会被配置为hostName的定义值，即普通用户组
-    caps = ["DAC_OVERRIDE", "DAC_READ_SEARCH"]; // 用户态进程Linux capabilities配置，缺省为空，需要业务模块按照业务需要进行配置
+    uid = ""; // 用户态进程uid，缺省为空，会被配置为hostName的定义值，即普通用户。
+    gid = ""; // 用户态进程gid，缺省为空，会被配置为hostName的定义值，即普通用户组。
+    caps = ["DAC_OVERRIDE", "DAC_READ_SEARCH"]; // 用户态进程Linux capabilities配置，缺省为空，需要业务模块按照业务需要进行配置。
     clearplay_device :: device {
         device0 :: deviceNode {
             policy = 2;
             priority = 100;
-            moduleName = "libclearplay_driver.z.so";  // 驱动加载入口
-            serviceName = "clearplay_service";        // 服务名称
+            moduleName = "libclearplay_driver.z.so";  // 驱动加载入口。
+            serviceName = "clearplay_service";        // 服务名称。
         }
     }
 }
@@ -430,7 +430,7 @@ clearplay :: host {
         device0 :: deviceNode {
             policy = 2;
             priority = 100;
-            preload = 2; // 设置preload为2，则系统启动过程中默认不加载，后续可手动加载
+            preload = 2; // 设置preload为2，则系统启动过程中默认不加载，后续可手动加载。
             moduleName = "libclearplay_driver.z.so";
             serviceName = "clearplay_service";
         }

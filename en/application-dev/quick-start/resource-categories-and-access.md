@@ -276,13 +276,13 @@ This example sets the **attr** attribute for strings.
 
 ### HAP Resources
 
- - Access resources through **$r()** or **$rawfile()**.<br>Resources of the color, float, string, plural, media, and profile types are accessed through **$r('app.type.name')** where **app** indicates the resource defined in the **resources** directory, **type** indicates the resource type, and **name** indicates the resource name.<br>To access strings with multiple placeholders in the **string.json** file, use the "$r('app.string.label','aaa','bbb',444)" format.<br>To access resources in the **rawfile** subdirectory, use the "$rawfile('filename')" format. Wherein **filename** indicates the relative path of a file in the **rawfile** subdirectory, which must contain the file name extension and cannot start with a slash (/).
+ - Access resources through **$r()** or **$rawfile()**.<br>Resources of the color, float, string, plural, media and profile types are accessed through **$r('app.type.name')**, in which **app** indicates the resource defined in the **resources** directory, **type** indicates the resource type, and **name** indicates the resource name.<br>To access strings with multiple placeholders in the **string.json** file, use the "$r('app.string.label','aaa','bbb',444)" format.<br>To access resources in the **rawfile** subdirectory, use the "$rawfile('filename')" format. Wherein **filename** indicates the relative path of a file in the **rawfile** subdirectory, which must contain the file name extension and cannot start with a slash (/).
 
    > **NOTE**
    >
    > For details about how to use native APIs to access raw files, see [Raw File Development](../napi/rawfile-guidelines.md).
 
-  As described in [Resource Group Directories](#resource-group-directories), you can reference .json resource files, including **color.json**, **string.json**, and** plural.json**.<br>The usage is as follows:
+As described in [Resource Group Directories](#resource-group-directories), you can reference .json resource files, including **color.json**, **string.json**, and **plural.json**.<br>The usage is as follows:
 
   ```ts
     // Access through $r('app.type.name').
@@ -563,6 +563,7 @@ The **module.json5** file in the inter-application overlay resource package supp
   }
 }
 ```
+<!--Del-->
 The **app.json5** file in the cross-application overlay resource package supports the following fields, which are available for system applications only:
 ```{
   "app":{
@@ -573,7 +574,7 @@ The **app.json5** file in the cross-application overlay resource package support
     "icon": "$media:app_icon",
     "label": "$string:app_name",
     "targetBundleName": "com.example.myapplication",
-    "targetPariority": 1,
+    "targetPriority": 1,
   }
 }
 ```
@@ -594,6 +595,7 @@ The **module.json5** file in the cross-application overlay resource package supp
   }
 }
 ```
+<!--DelEnd-->
 > **NOTE**
 > - **targetBundleName**: name of the target application to apply the overlay feature. The value is a string.
 >

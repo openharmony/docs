@@ -345,6 +345,16 @@ on(type: 'hceCmd', callback: AsyncCallback\<number[]>): void
 | type     | string                  | 是   | 要订阅的回调类型，固定填"hceCmd"字符串。                         |
 | callback | AsyncCallback\<number[]> | 是   | 订阅的事件回调，入参是符合APDU协议的数据，每个number十六进制表示，范围是0x00~0xFF。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+|201 | Permission denied.                 |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
+
 **示例：**
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';

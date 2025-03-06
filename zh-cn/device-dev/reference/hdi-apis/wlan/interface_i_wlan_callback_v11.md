@@ -43,9 +43,9 @@ IWlanCallback::ResetDriverResult ([in] unsigned int event, [in] int code, [in] S
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| event | 表示驱动重启事件ID  | 
-| code | 表示重启驱动时的返回结果  | 
-| ifName | 表示网卡(NIC)名称 | 
+| event | 表示驱动重启事件ID。  | 
+| code | 表示重启驱动时的返回结果。  | 
+| ifName | 表示网卡(NIC)名称。 | 
 
 
 ### ScanResult()
@@ -63,9 +63,9 @@ IWlanCallback::ScanResult ([in] unsigned int event, [in] struct HdfWifiScanResul
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| event | 表示扫描结果事件的ID  | 
-| scanResult | 表示扫描结果  | 
-| ifName | 表示网卡(NIC)名称 | 
+| event | 表示扫描结果事件的ID。  | 
+| scanResult | 表示扫描结果。  | 
+| ifName | 表示网卡(NIC)名称。 | 
 
 
 ### ScanResults()
@@ -83,9 +83,9 @@ IWlanCallback::ScanResults ([in] unsigned int event, [in] struct HdfWifiScanResu
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| event | 表示扫描结果事件的ID  | 
-| scanResults | 表示扫描结果(多个)  | 
-| ifName | 表示网卡(NIC)名称 | 
+| event | 表示扫描结果事件的ID。  | 
+| scanResults | 表示扫描结果(多个)。  | 
+| ifName | 表示网卡(NIC)名称。 | 
 
 
 ### WifiNetlinkMessage()
@@ -103,4 +103,4 @@ IWlanCallback::WifiNetlinkMessage ([in] unsigned char[] recvMsg)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| recvMsg | 表示收到的Netlink消息 | 
+| recvMsg | 表示收到的Netlink消息。 | 

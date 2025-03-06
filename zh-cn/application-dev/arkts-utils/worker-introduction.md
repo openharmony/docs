@@ -19,11 +19,11 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 - Worker创建后需要手动管理生命周期，且最多同时运行的Worker子线程数量为64个，并满足与[napi_create_ark_runtime](../reference/native-lib/napi.md#napi_create_ark_runtime)创建的runtime总数不超过80，详情请参见[生命周期注意事项](#生命周期注意事项)。
 - 由于不同线程中上下文对象是不同的，因此Worker线程只能使用线程安全的库，例如UI相关的非线程安全库不能使用。
 - 序列化传输的数据量大小限制为16MB。
-- 使用Worker模块时，API Version 16及之后的版本推荐在宿主线程中注册onAllErrors回调，以捕获Worker线程生命周期内的各种异常，API Version 15及之前的版本需要注册onerror回调。如果未注册onAllErrors或onerror接口，当Worker线程出现异常时会发生jscrash问题。需要注意的是，onerror接口仅能捕获onmessage回调中的同步异常，且捕获异常后Worker线程会进入销毁流程，无法继续使用。详情请参见[onAllErrors接口与onerror接口之间的行为差异](#onallerrors接口与onerror接口之间的行为差异)。
+- 使用Worker模块时，API version 18及之后的版本推荐在宿主线程中注册onAllErrors回调，以捕获Worker线程生命周期内的各种异常，API version 15及之前的版本需要注册onerror回调。如果未注册onAllErrors或onerror接口，当Worker线程出现异常时会发生jscrash问题。需要注意的是，onerror接口仅能捕获onmessage回调中的同步异常，且捕获异常后Worker线程会进入销毁流程，无法继续使用。详情请参见[onAllErrors接口与onerror接口之间的行为差异](#onallerrors接口与onerror接口之间的行为差异)。
 - 不支持跨HAP使用Worker线程文件。
 - 引用HAR/HSP前，需要先配置对HAR/HSP的依赖，详见[引用共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-import-V5)。
 - 不支持在Worker工作线程中使用[AppStorage](../quick-start/arkts-appstorage.md)。
-- 从API version 16开始，Worker线程优先级可以在构造函数的参数[WorkerOptions](../reference/apis-arkts/js-apis-worker.md#workeroptions)中进行指定。
+- 从API version 18开始，Worker线程优先级可以在构造函数的参数[WorkerOptions](../reference/apis-arkts/js-apis-worker.md#workeroptions)中进行指定。
 
 ### 创建Worker的注意事项
 
@@ -77,7 +77,7 @@ const worker2: worker.Worker = new worker.Worker('entry/ets/workers/worker.ets')
 
 构造函数中的scriptURL要求如下：
 
-- scriptURL的组成包含 {moduleName}/ets 和相对路径 relativePath。
+- scriptURL的组成包含{moduleName}/ets和相对路径relativePath。
 - relativePath是Worker线程文件相对于"{moduleName}/src/main/ets/"目录的相对路径。
 
 1） 加载Ability中Worker线程文件场景

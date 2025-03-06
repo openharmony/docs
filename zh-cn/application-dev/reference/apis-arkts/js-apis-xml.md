@@ -36,7 +36,7 @@ XmlSerializer的构造函数。
 | 参数名   | 类型                              | 必填 | 说明                                             |
 | -------- | --------------------------------- | ---- | ------------------------------------------------ |
 | buffer   | ArrayBuffer \| DataView | 是   | 用于接收写入XML信息的ArrayBuffer或DataView内存。 |
-| encoding | string                            | 否   | 编码格式 , 默认'utf-8'(目前仅支持'utf-8')。               |
+| encoding | string                            | 否   | 编码格式，默认'utf-8'（目前仅支持'utf-8'）。               |
 
 **错误码：**
 
@@ -457,7 +457,7 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 | 参数名   | 类型                              | 必填 | 说明                                       |
 | -------- | --------------------------------- | ---- | ------------------------------------------ |
 | buffer   | ArrayBuffer \| DataView | 是   | 需要解析的XML文本信息。 |
-| encoding | string                            | 否   | 编码格式 , 默认'utf-8'(目前仅支持'utf-8')。         |
+| encoding | string                            | 否   | 编码格式，默认'utf-8'（目前仅支持'utf-8'）。         |
 
 **错误码：**
 

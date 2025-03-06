@@ -20,8 +20,8 @@
    以下示例以图片选择为例，媒体文件类型请参见[PhotoViewMIMETypes](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewmimetypes)。
 
    ```ts
-   photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE; // 过滤选择媒体文件类型为IMAGE
-   photoSelectOptions.maxSelectNumber = 5; // 选择媒体文件的最大数目
+   photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE; // 过滤选择媒体文件类型为IMAGE。
+   photoSelectOptions.maxSelectNumber = 5; // 选择媒体文件的最大数目。
    ```
 
 4. 创建图库选择器实例，调用[PhotoViewPicker.select](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#select)接口拉起图库界面进行文件选择。文件选择成功后，返回[PhotoSelectResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoselectresult)结果集。
@@ -80,7 +80,7 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
       return;
     }
     console.info('on image data prepared');
-    // 应用自定义对资源数据的处理逻辑
+    // 应用自定义对资源数据的处理逻辑。
   }
 }
 
@@ -97,9 +97,9 @@ async function example() {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     console.info('getAssets photoAsset.uri : ' + photoAsset.uri);
-    // 获取属性值，以标题为例；对于非默认查询的属性，get前需要在fetchColumns中添加对应列名
+    // 获取属性值，以标题为例；对于非默认查询的属性，get前需要在fetchColumns中添加对应列名。
     console.info('title : ' + photoAsset.get(photoAccessHelper.PhotoKeys.TITLE));
-    // 请求图片资源数据
+    // 请求图片资源数据。
     let requestOptions: photoAccessHelper.RequestOptions = {
       deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
     }

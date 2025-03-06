@@ -53,7 +53,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
         Image_ErrorCode errorCode = IMAGE_SUCCESS;
         Image_AuxiliaryPictureType type = AUXILIARY_PICTURE_TYPE_GAINMAP;
         OH_AuxiliaryPictureNative *auxiliaryPicture = nullptr;
-        size_t BUFF_SIZE = 640 * 480 * 4; 	//辅助图size 长*宽*每像素占用字节数
+        size_t BUFF_SIZE = 640 * 480 * 4; 	//辅助图size 长*宽*每像素占用字节数。
         ImageAuxiliaryPictureNative() {}
         ~ImageAuxiliaryPictureNative() {}
     };
@@ -61,7 +61,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
     static ImagePictureNative *thisPicture = new ImagePictureNative();
 	static ImageAuxiliaryPictureNative *thisAuxiliaryPicture = new ImageAuxiliaryPictureNative();
 
-    // 释放ImageSource
+    // 释放ImageSource。
     Image_ErrorCode ReleaseImageSource(OH_ImageSourceNative *&source) {
         if (source != nullptr) {
             thisPicture->errorCode = OH_ImageSourceNative_Release(source);
@@ -72,14 +72,14 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
         return IMAGE_SUCCESS;
     }
 
-    // 处理napi返回值
+    // 处理napi返回值。
     napi_value getJsResult(napi_env env, int result) {
         napi_value resultNapi = nullptr;
         napi_create_int32(env, result, &resultNapi);
         return resultNapi;
     }
 
-    // 创造解码参数
+    // 创造解码参数。
     static napi_value CreateDecodingOptions(napi_env env, napi_callback_info info) {
         thisPicture->errorCode = OH_DecodingOptionsForPicture_Create(&thisPicture->options);
 
@@ -94,7 +94,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
         return getJsResult(env, thisPicture->errorCode);
     }
 
-    // 配置解码参数 从应用层传入
+    // 配置解码参数 从应用层传入。
     static napi_value SetDesiredAuxiliaryPictures(napi_env env, napi_callback_info info) {
         size_t argc = 1;
         napi_value args[1] = {nullptr};
@@ -133,7 +133,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
     }
 
 
-    // 解码
+    // 解码。
     static napi_value CreatePictureByImageSource(napi_env env, napi_callback_info info) {
         size_t argc = 1;
         napi_value args[1] = {nullptr};
