@@ -315,7 +315,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 
 ### 厂商应用集成OTA能力
 
-1. 轻量与小型系统
+1. 轻量与小型系统：
 
    - 调用OTA模块的动态库libhota.so，对应头文件hota_partition.h和hota_updater.h路径：base\update\sys_installer_lite\interfaces\kits\。
    - libhota.so对应的源码路径为：base\update\sys_installer_lite\frameworks\source。
