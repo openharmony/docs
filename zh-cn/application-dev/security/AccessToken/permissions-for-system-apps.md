@@ -153,7 +153,7 @@
 
 **授权方式**：system_grant
 
-**起始版本**：15
+**起始版本**：18
 
 ### ohos.permission.MANAGE_SETTINGS
 
