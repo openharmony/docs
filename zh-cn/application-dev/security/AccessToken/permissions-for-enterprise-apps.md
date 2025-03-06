@@ -12,7 +12,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -27,7 +27,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -42,7 +42,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -57,7 +57,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -72,7 +72,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -87,7 +87,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -102,7 +102,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -117,7 +117,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -132,7 +132,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -147,7 +147,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -162,7 +162,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -171,28 +171,13 @@
 
 **变更信息**：API 7-13该权限仅向系统应用开放；从API 14开始，开放范围从系统应用变更为企业普通应用。
 
-## ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
-
-允许系统应用和运营商应用设置eSIM昵称和激活eSIM。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-<!--Del-->
-**ACL使能**：true<!--DelEnd-->
-
-**起始版本**：14
-
-**变更信息**：从API 14开始，权限级别变更为system_basic，开发范围从所有应用变更为企业普通应用。
-
 ## ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
 
 允许应用管理Wi-Fi的连接。
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **ACL使能**：true
 
@@ -206,7 +191,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -221,7 +206,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -238,7 +223,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -253,7 +238,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -266,7 +251,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -279,7 +264,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -292,7 +277,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
