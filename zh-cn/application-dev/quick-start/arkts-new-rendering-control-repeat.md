@@ -146,7 +146,7 @@ Repeat通过键值识别数组如何改变：增加了哪些数据、删除了�
 
 在Repeat首次渲染时，根据容器组件的有效加载范围（可视区域+预加载区域）创建当前需要的子组件。
 
-在容器滑动/数组改变时，将失效的子组件节点（离开有效加载范围）加入空闲节点缓存列表中（断开与组件树的关系，但不销毁），在需要生成新的组件时，对缓存里的组件进行复用（更新被复用子组件的变量值，重新上树）。
+在容器滑动/数组改变时，将失效的子组件节点（离开有效加载范围）加入空闲节点缓存列表中（断开与组件树的关系，但不销毁），在需要生成新的组件时，对缓存里的组件进行复用（更新被复用子组件的变量值，重新上树）。从API version 18开始，Repeat支持[VirtualScroll模式缓存池自定义组件冻结](./arkts-custom-components-freezeV2.md#repeat-virtualscroll)。
 
 Repeat组件在virtualScroll模式下默认启用复用功能。从API version 16开始，可以通过配置`reusable`字段选择是否启用复用功能。为提高渲染性能，建议启用复用功能。代码示例见[VirtualScrollOptions对象说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscrolloptions对象说明)。
 
