@@ -14,6 +14,7 @@ HiDebug对外提供系统调试相关功能的接口，包括应用进程的静�
 | hidebug.getSharedDirty             | 获取进程的共享脏内存大小。                                   |
 | hidebug.getPrivateDirty            | 获取进程的私有脏内存大小。                                   |
 | hidebug.getCpuUsage                | 获取进程的CPU使用率。                                        |
+| hidebug.getServiceDump             | 获取系统服务信息。                                           |
 | hidebug.dumpJsHeapData             | 虚拟机堆导出。                                               |
 | hidebug.startJsCpuProfiling        | 启动虚拟机Profiling方法跟踪。                                |
 | hidebug.stopJsCpuProfiling         | 停止虚拟机Profiling方法跟踪。                                |
@@ -28,6 +29,7 @@ HiDebug对外提供系统调试相关功能的接口，包括应用进程的静�
 | hidebug.getSystemMemInfo           | 获取系统内存信息。                                           |
 | hidebug.getVMRuntimeStats          | 获取系统gc全部统计信息。                                     |
 | hidebug.getVMRuntimeStat           | 根据参数获取指定的系统gc统计信息。                           |
+| hidebug.isDebugState               | 获取应用进程被调试状态。                                     |
 
 HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)。
 
