@@ -3614,8 +3614,6 @@ async function loadPixelMap(rawFileDescriptor: number): Promise<PixelMap> {
   return pixelMap;
 }
 
-@Entry
-@Component
 struct Demo {
   @State pixelMap: PixelMap | undefined = undefined;
   // 主线程方法。
@@ -3634,9 +3632,6 @@ struct Demo {
         }
       });
     });
-  }
-  build() {
-    // ...
   }
 }
 ```
