@@ -4503,3 +4503,16 @@
 
 ## system_grant，不允许ACL跨级申请
 
+## ohos.permission.GET_EDM_CONFIG
+
+允许系统应用查看行业定制配置文件。
+
+用于保护行业定制配置文件的可见性，例如开机动画、开机logo、桌面布局、壁纸等。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18

@@ -5312,3 +5312,17 @@ With this permission, the application can perform operations such as taking scre
 **Enable via ACL**: true
 
 **Valid since**: 14
+
+## ohos.permission.GET_EDM_CONFIG
+
+Allows a system application to obtain custom enterprise device management(EDM) configuration files.
+
+This permission prevents authorized access to custom EDM configuration files, such as the startup animation, startup logo, homepage layout, and wallpapers.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：18
