@@ -220,7 +220,16 @@
 
 **注意：** 先配置权限，再自动签名。
 
-应用需要配置签名文件才能在设备上运行，并且扩展外设管理客户端开发，需要配置扩展外设的权限：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER。
+应用需要配置签名文件才能在设备上运行，并且扩展外设管理客户端开发，需要配置扩展外设的权限：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER及ohos.permission.ACCESS_DDK_DRIVERS。
+
+其中ohos.permission.ACCESS_DDK_DRIVERS比较特殊，除了常规在requestPermissions中配置，还额外需要配置当前客户需要连接的驱动服务端的bundleName，如果存在多个服务端，多个服务端的bundleName以逗号分隔，具体配置方法如下：  
+1.找到SDK中生成profile文件的原始的json文件，具体位置：SDK在本地的位置 + /toolchains/lib/UnsgnedXXXProfileTemplate.json  
+2.在文件的根节点加上app-services-capabilities节点，具体值配置如下  
+```
+"app-services-capabilities": {
+  "ohos.permission.ACCESS_DDK_DRIVERS": {"bundleNames": "bundleName0,bundleName1,bundleName2"}
+}
+```
 
 自动签名方法： 请参考[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)。
 
