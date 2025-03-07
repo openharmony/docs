@@ -417,44 +417,6 @@ try {
 ```
 
 
-## socket.off('sppRead')
-
-off(type: 'sppRead', clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt;): void
-
-取消订阅spp读请求事件，入参clientSocket由sppAccept或sppConnect接口获取。
-
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
-
-**参数：**
-
-| 参数名          | 类型                          | 必填   | 说明                                       |
-| ------------ | --------------------------- | ---- | ---------------------------------------- |
-| type         | string                      | 是    | 填写"sppRead"字符串，表示spp读请求事件。               |
-| clientSocket | number                      | 是    | 客户端Socket的id。                            |
-| callback     | Callback&lt;ArrayBuffer&gt; | 否    | 表示取消订阅spp读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------- |
-|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
-|801 | Capability not supported.          |
-
-**示例：**
-
-```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
-try {
-    socket.off('sppRead', clientNumber);
-} catch (err) {
-    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-}
-```
-
-
 ## socket.sppReadAsync
 
 sppReadAsync(clientSocket: number): Promise<void>;
