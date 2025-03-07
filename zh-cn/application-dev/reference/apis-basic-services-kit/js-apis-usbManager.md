@@ -98,7 +98,8 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 根据getDevices()返回的设备信息打开USB设备。如果USB服务异常，可能返回`undefined`，注意需要对接口返回值做判空处理。
 
-需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及device，再调用[usbManager.requestRight](#usbmanagerrequestright)请求使用该设备的权限。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及device;
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)请求使用该设备的权限。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -275,9 +276,9 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 
 注册通信接口。
 
-1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及interfaces；
-2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及interfaces；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -375,9 +376,9 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 
 设置设备配置。
 
-1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及config；
-2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及config；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -425,7 +426,10 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 设置设备接口。
 
-需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表以及interfaces；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数；调用[usbManager.claimInterface](#usbmanagerclaiminterface)注册通信接口。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表以及interfaces；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数；
+4. 调用[usbManager.claimInterface](#usbmanagerclaiminterface)注册通信接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -474,7 +478,9 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 
 获取原始的USB描述符。如果USB服务异常，可能返回`undefined`，注意需要对接口返回值做判空处理。
 
-需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -518,7 +524,9 @@ getFileDescriptor(pipe: USBDevicePipe): number
 
 获取文件描述符。
 
-需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -562,7 +570,9 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 
 控制传输。
 
-需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
 **说明：**
 
@@ -631,7 +641,9 @@ usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, ti
 
 控制传输。
 
-需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -698,11 +710,11 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 批量传输。
 
-1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
-2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
-4.获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
-5.调用usbManager.bulkTransfer接口。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
+4. 获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
+5. 调用usbManager.bulkTransfer接口。
 
 > **说明：** 
 >
@@ -768,17 +780,17 @@ for (let i = 0; i < device.configs[0].interfaces.length; i++) {
 
 ## usbManager.usbSubmitTransfer<sup>18+</sup>
 
-usbSubmitTransfer(transfer: USBDataTransferParams): void
+usbSubmitTransfer(transfer: USBDataTransferParams): void;
 
 提交异步传输请求。
 
 本接口为异步接口，调用后立刻返回，实际读写操作的结果以回调的方式返回。
 
-1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
-2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
-4.获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
-5.调用usbManager.usbSubmitTransfer接口。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
+4. 获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
+5. 调用usbManager.usbSubmitTransfer接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -858,11 +870,11 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;
 
 取消异步传输请求。
 
-1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
-2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
-3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
-4.获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
-5.调用usbManager.usbCancelTransfer接口。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe；
+4. 获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
+5. 调用usbManager.usbCancelTransfer接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -946,7 +958,9 @@ closePipe(pipe: USBDevicePipe): number
 
 关闭设备消息控制通道。
 
-需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数。
+1. 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备列表；
+2. 调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3. 调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
