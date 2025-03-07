@@ -349,7 +349,7 @@ cpp部分代码
 // OH_JSVM_CreateInt64的样例方法
 static JSVM_Value CreateInt64(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // int64是有符号的64位整数类型，可以表示范围从-2^63到2^63 - 1的整数，即 -9223372036854775808到9223372036854775807
+    // 使用给定数值创建一个ArkTS number，仅能准确表示从-2^53 + 1到2^53 - 1（闭区间）的整数
     // 要表示的整数值
     int64_t value = 2147483648;
     // 创建JavaScript中的int64数字
