@@ -2552,7 +2552,7 @@ async function ScaleSync() {
 }
 ```
 
-### createScaledPixelMap<sup>16+</sup>
+### createScaledPixelMap<sup>18+</sup>
 
 createScaledPixelMap(x: number, y: number, level?: AntiAliasingLevel): Promise\<PixelMap>
 
@@ -2594,14 +2594,14 @@ async function CreateScaledPixelMap() {
   if (pixelMap != undefined) {
       pixelMap.createScaledPixelMap(scaleX, scaleY, image.AntiAliasingLevel.LOW).then((scaledPixelMap: image.PixelMap) => {
       console.info('Succeeded in creating scaledPixelMap.');
-    }).catch((err: BusinessError) => {
+    }).catch((error: BusinessError) => {
       console.error(`Failed to create scaledPixelMap. Error code is ${error.code}, error message is ${error.message}`);
     })
   }
 }
 ```
 
-### createScaledPixelMapSync<sup>16+</sup>
+### createScaledPixelMapSync<sup>18+</sup>
 
 createScaledPixelMapSync(x: number, y: number, level?: AntiAliasingLevel): PixelMap
 
@@ -2646,7 +2646,7 @@ async function CreateScaledPixelMapSync() {
 }
 ```
 
-### clone<sup>16+</sup>
+### clone<sup>18+</sup>
 
 clone(): Promise</PixelMap>
 
@@ -2688,7 +2688,7 @@ async function Demo() {
 }
 ```
 
-### cloneSync<sup>16+</sup>
+### cloneSync<sup>18+</sup>
 
 cloneSync(): PixelMap
 
@@ -3614,8 +3614,6 @@ async function loadPixelMap(rawFileDescriptor: number): Promise<PixelMap> {
   return pixelMap;
 }
 
-@Entry
-@Component
 struct Demo {
   @State pixelMap: PixelMap | undefined = undefined;
   // 主线程方法。
@@ -3634,9 +3632,6 @@ struct Demo {
         }
       });
     });
-  }
-  build() {
-    // ...
   }
 }
 ```
@@ -8047,7 +8042,7 @@ img.release().then(() => {
 | 名称                   |   值   | 说明              |
 | ---------------------- | ------ | ----------------- |
 | UNKNOWN                | 0      | 未知格式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。        |
-| ARGB_8888<sup>16+</sup> | 1 | 颜色信息由透明度（Alpha）与R（Red），G（Green），B（Blue）四部分组成，每个部分占8位，总共占32位。 该格式当前仅支持PixelMap的接口。|
+| ARGB_8888<sup>18+</sup> | 1 | 颜色信息由透明度（Alpha）与R（Red），G（Green），B（Blue）四部分组成，每个部分占8位，总共占32位。 该格式当前仅支持PixelMap的接口。|
 | RGB_565                | 2      | 颜色信息由R（Red），G（Green），B（Blue）三部分组成，R占5位，G占6位，B占5位，总共占16位。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。     |
 | RGBA_8888              | 3      | 颜色信息由R（Red），G（Green），B（Blue）与透明度（Alpha）四部分组成，每个部分占8位，总共占32位。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | BGRA_8888<sup>9+</sup> | 4      | 颜色信息由B（Blue），G（Green），R（Red）与透明度（Alpha）四部分组成，每个部分占8位，总共占32位。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
@@ -8059,6 +8054,7 @@ img.release().then(() => {
 | RGBA_1010102<sup>12+</sup> | 10 | 颜色信息由R（Red），G（Green），B（Blue）与透明度（Alpha）四部分组成，其中R、G、B分别占10位，透明度占2位，总共占32位。 |
 | YCBCR_P010<sup>12+</sup> | 11 | 颜色信息由亮度分量Y和色度分量Cb与Cr组成，每个分量有效10位，实际存储时，Y平面每个像素占16位数据（10位有效），UV平面交错排列，每4个像素占32位数据（每色度分量10位有效），平均有效占15位。 
 | YCRCB_P010<sup>12+</sup> | 12 | 颜色信息由亮度分量Y和色度分量Cr与Cb组成，每个分量有效10位，实际存储时，Y平面每个像素占16位数据（10位有效），UV平面交错排列，每4个像素占32位数据（每色度分量10位有效），平均有效占15位。  |
+| ASTC_4x4<sup>18+</sup> | 102 | 存储格式为 ASTC 4x4 格式，内存使用量仅为 RGBA_8888 的 1/4。该格式仅用于直接显示场景，不支持像素访问或后期处理编辑。  |
 
 ## AlphaType<sup>9+</sup>
 

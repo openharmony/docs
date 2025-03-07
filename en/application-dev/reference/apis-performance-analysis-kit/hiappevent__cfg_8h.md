@@ -13,7 +13,11 @@ Example:
 bool res = OH_HiAppEvent_Configure(MAX_STORAGE, "100M");
 ```
 
+**Library**: libhiappevent_ndk.z.so
+
 **File to include**: <hiappevent/hiappevent_cfg.h>
+
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
 **Since**: 8
 

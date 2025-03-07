@@ -119,13 +119,13 @@ struct MyComponent {
 }
 ```
 
-## queryNavDestinationInfo<sup>16+</sup>
+## queryNavDestinationInfo<sup>18+</sup>
 
 queryNavDestinationInfo(isInner: Optional\<boolean>): NavDestinationInfo | undefined
 
 查询当前自定义组件距离最近的NavDestination（NavPathStack栈中）信息，isInner为true表示向内查找，false表示向外查找。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
