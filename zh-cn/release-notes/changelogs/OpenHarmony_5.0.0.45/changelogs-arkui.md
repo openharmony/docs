@@ -12,7 +12,7 @@ Counter组件的focusType类型为NODE，当Counter的子组件获焦、失焦�
 
 **变更影响**
 
-该变更为不兼容变更。
+此变更不涉及应用适配。
 
 变更前：Counter组件的focusType类型为NODE，子组件获焦时，页面上的其他组件没有失焦。Counter组件设置focusable属性为true，即可触发onFocus和onBlur事件。
 

@@ -4,7 +4,7 @@ The **XComponentNode** module provides APIs for the XComponentNode, which repres
 
 > **NOTE**
 >
-> The APIs of this module are deprecated since API version 12. You are advised to use BuilderNode](./js-apis-arkui-builderNode.md#buildernode) with the [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent) component instead.
+> The APIs of this module are deprecated since API version 12. You are advised to use [XComponent type node](./js-apis-arkui-frameNode.md#xcomponent12) for implementation instead.
 >
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
@@ -22,7 +22,7 @@ import { XComponentNode } from "@kit.ArkUI";
 
 constructor(uiContext: UIContext, options: RenderOptions, id: string, type: XComponentType, libraryName?: string)
 
-Constructor used to create an XComponentNode.
+A constructor used to create an XComponentNode.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -30,7 +30,7 @@ Constructor used to create an XComponentNode.
 
 | Name     | Type                                                        | Mandatory| Description                                                        |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| uiContext   | [UIContext](js-apis-arkui-UIContext.md)                      | Yes  | UI context. For details about how to obtain it, see [Obtaining UI Context](./js-apis-arkui-node.md#obtaining-ui-context).|
+| uiContext   | [UIContext](js-apis-arkui-UIContext.md)                      | Yes  | UI context. For details about how to obtain it, see [[Obtaining UI Context](./js-apis-arkui-node.md#obtaining-ui-context).|
 | options     | [RenderOptions](./js-apis-arkui-builderNode.md#renderoptions) | Yes  | Parameters for creating an XComponentNode.                              |
 | id          | string                                                       | Yes  | Unique ID of the **XComponent**. The value can contain a maximum of 128 characters. For details, see [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent).|
 | type        | [XComponentType](arkui-ts/ts-appendix-enums.md#xcomponenttype10) | Yes  | Type of the **XComponent**. For details, see [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent).|

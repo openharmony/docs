@@ -3,7 +3,7 @@
 
 ## Overview
 
-Used to set parameters that support SDK access.
+Defines a struct for the parameters of the **OH_HiCollie_SetTimer** function.
 
 **Valid since**: 16
 
@@ -15,42 +15,16 @@ Used to set parameters that support SDK access.
 
 ### Member Variables
 
-| Name| Description| 
-| -------- | -------- | 
-| const char \* [name](#name) | Pointer to the timer name.| 
-| unsigned int [timeout](#timeout) | Timeout interval of the timer, in seconds. | 
-| OH_HiCollie_Callback [func](#func) | Callback executed when a timeout occurs. | 
-| void \* [arg](#arg) | Pointer to the parameter of the callback executed when a timeout occurs. | 
-| HiCollie_Flag [flag](#flag) | Operation parameter to be executed when a timeout occurs. | 
+| Name| Description|
+| -------- | -------- |
+| const char \* [name](#name) | Timer task name. |
+| unsigned int [timeout](#timeout) | Task timeout threshold, in seconds. |
+| [OH_HiCollie_Callback](_hi_hicollie.md#oh_hicollie_callback)[func](#func) | Callback executed when a timeout occurs. |
+| void \* [arg](#arg) | Parameters of the callback. |
+| [HiCollie_Flag](_hi_hicollie.md#hicollie_flag)[flag](#flag) | Execution to be performed when a timeout occurs. For details, see [HiCollie_Flag](_hi_hicollie.md#hicollie_flag). |
+
 
 ## Member Variable Description
-
-
-### name
-
-```
-const char* HiCollie_SetTimerParam::name
-```
-**Description**
-Pointer to the name of the timer for checking the function execution duration.
-
-
-### timeout
-
-```
-unsigned int HiCollie_SetTimerParam::timeout
-```
-**Description**
-Timeout interval, in seconds. If the execution duration of a code or function exceeds the threshold, the code or function times out.
-
-
-### func
-
-```
-OH_HiCollie_Callback HiCollie_SetTimerParam::func
-```
-**Description**
-Callback executed when a timeout occurs. The value can be **nullptr**.
 
 
 ### arg
@@ -59,7 +33,8 @@ Callback executed when a timeout occurs. The value can be **nullptr**.
 void* HiCollie_SetTimerParam::arg
 ```
 **Description**
-Callback parameter, which is of the **void*** type and is used together with the callback **func**.
+
+Parameters of the callback.
 
 
 ### flag
@@ -68,4 +43,35 @@ Callback parameter, which is of the **void*** type and is used together with the
 HiCollie_Flag HiCollie_SetTimerParam::flag
 ```
 **Description**
-Behavior flag, which is an enum and determines the behavior after a timeout occurs.
+
+Execution to be performed when a timeout occurs. For details, see [HiCollie_Flag](_hi_hicollie.md#hicollie_flag).
+
+
+### func
+
+```
+OH_HiCollie_Callback HiCollie_SetTimerParam::func
+```
+**Description**
+
+Callback executed when a timeout occurs.
+
+
+### name
+
+```
+const char* HiCollie_SetTimerParam::name
+```
+**Description**
+
+Timer task name.
+
+
+### timeout
+
+```
+unsigned int HiCollie_SetTimerParam::timeout
+```
+**Description**
+
+Task timeout threshold, in seconds.

@@ -19,11 +19,11 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int8_t [editable](image.md#editable) | 定义输出的像素位图是否可编辑 | 
-| int32_t [pixelFormat](image.md#pixelformat-23) | 定义输出的像素格式 | 
-| int32_t [fitDensity](image.md#fitdensity) | 定义解码目标的像素密度 | 
-| uint32_t [index](image.md#index) | 定义图像源解码指数 | 
-| uint32_t [sampleSize](image.md#samplesize) | 定义解码样本大小选项 | 
-| uint32_t [rotate](image.md#rotate) | 定义解码旋转选项 | 
-| struct [OhosImageSize](_ohos_image_size.md) [size](image.md#size-27) | 定义解码目标像素宽高的大小 | 
-| struct [OhosImageRegion](_ohos_image_region.md) [region](image.md#region) | 定义图像源解码的像素范围 | 
+| int8_t [editable](image.md#editable) | 定义输出的像素位图是否可编辑。 |
+| int32_t [pixelFormat](image.md#pixelformat-23) | 定义输出的像素格式。 |
+| int32_t [fitDensity](image.md#fitdensity) | 定义解码目标的像素密度。 |
+| uint32_t [index](image.md#index) | 定义图像源解码指数。 |
+| uint32_t [sampleSize](image.md#samplesize) | 定义解码样本大小选项。 |
+| uint32_t [rotate](image.md#rotate) | 定义解码旋转选项。 |
+| struct [OhosImageSize](_ohos_image_size.md) [size](image.md#size-27) | 定义解码目标像素宽高的大小。 |
+| struct [OhosImageRegion](_ohos_image_region.md) [region](image.md#region) | 定义图像源解码的像素范围。 |

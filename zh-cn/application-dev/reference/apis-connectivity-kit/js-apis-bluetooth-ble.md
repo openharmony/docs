@@ -352,7 +352,7 @@ try {
 
 startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&lt;number&gt;): void
 
-开始发送BLE广播。使用Callback异步回调。
+开始发送BLE广播。使用Callback异步回调。从API15开始，多次调用，可发起多路广播，每一路广播通过不同的ID管理。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -444,7 +444,7 @@ try {
 
 startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 
-开始发送BLE广播。使用Promise异步回调。
+开始发送BLE广播。使用Promise异步回调。从API15开始，多次调用，可发起多路广播，每一路广播通过不同的ID管理。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -3700,6 +3700,225 @@ try {
 }
 ```
 
+## ble.createBleScanner<sup>15+</sup>
+
+createBleScanner(): BleScanner
+
+**原子化服务API**: 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------ | ------------- |
+| [BleScanner](#blescanner15) | 返回一个BleScanner的实例。 |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { ble } from '@kit.ConnectivityKit';
+let bleScanner: ble.BleScanner = ble.createBleScanner();
+console.info('create bleScanner success');
+```
+
+## BleScanner<sup>15+</sup>
+
+BLE多路扫描类，使用BleScanner类中的方法之前需要创建该类的实例进行操作，通过createBleScanner()方法构造此实例。
+
+### startScan<sup>15+</sup>
+
+startScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): Promise&lt;void&gt;
+
+发起BLE扫描流程，使用Promise异步回调。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**参数：**
+
+| 参数名     | 类型                                     | 必填   | 说明                                  |
+| ------- | -------------------------------------- | ---- | ----------------------------------- |
+| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | 是    | 表示扫描结果过滤策略集合，符合过滤条件的设备会被保留。如果不使用过滤的方式，该参数设置为null。 |
+| options | [ScanOptions](#scanoptions)            | 否    | 表示扫描的可选参数配置。                     |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+|2902050 | Failed to start scan as Ble scan is already started by the app.|
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { ble } from '@kit.ConnectivityKit';
+let bleScanner: ble.BleScanner = ble.createBleScanner();
+function onReceiveEvent(scanReport: ble.ScanReport) {
+    console.info('BLE scan device find result = '+ JSON.stringify(scanReport));
+}
+try {
+    bleScanner.on("BLEDeviceFind", onReceiveEvent);
+    let scanFilter: ble.ScanFilter = {
+            deviceId:"XX:XX:XX:XX:XX:XX",
+            name:"test",
+            serviceUuid:"00001888-0000-1000-8000-00805f9b34fb"
+        };
+    let scanOptions: ble.ScanOptions = {
+        interval: 500,
+        dutyMode: ble.ScanDuty.SCAN_MODE_LOW_POWER,
+        matchMode: ble.MatchMode.MATCH_MODE_AGGRESSIVE,
+        reportMode: ble.ScanReportMode.FENCE_SENSITIVITY_LOW
+    }
+    bleScanner.startScan([scanFilter],scanOptions);
+    console.info('startScan success');
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### stopScan<sup>15+</sup>
+
+stopScan(): Promise&lt;void&gt;
+
+停止BLE扫描流程。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { ble } from '@kit.ConnectivityKit';
+let bleScanner: ble.BleScanner = ble.createBleScanner();
+try {
+    bleScanner.stopScan();
+    console.info('startScan success');
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### on('BLEDeviceFind')<sup>15+</sup>
+
+on(type: 'BLEDeviceFind', callback: Callback&lt;ScanReport&gt;): void
+
+订阅BLE设备发现上报事件。使用Callback异步回调。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                                  |
+| -------- | ---------------------------------------- | ---- | ----------------------------------- |
+| type     | string                                   | 是    | 填写"BLEDeviceFind"字符串，表示BLE设备发现事件。   |
+| callback | Callback&lt;[ScanReport](#scanreport15)&gt; | 是    | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { ble } from '@kit.ConnectivityKit';
+function onReceiveEvent(scanReport: ble.ScanReport) {
+    console.info('bluetooth device find = '+ JSON.stringify(scanReport));
+}
+let bleScanner: ble.BleScanner = ble.createBleScanner();
+try {
+    bleScanner.on('BLEDeviceFind', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### off('BLEDeviceFind')<sup>15+</sup>
+
+off(type: 'BLEDeviceFind', callback?: Callback&lt;ScanReport&gt;): void
+
+取消订阅BLE设备发现上报事件。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | string                                   | 是    | 填写"BLEDeviceFind"字符串，表示BLE设备发现事件。        |
+| callback | Callback&lt;[ScanReport](#scanreport15)&gt; | 否    | 表示取消订阅BLE设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { ble } from '@kit.ConnectivityKit';
+function onReceiveEvent(scanReport: ble.ScanReport) {
+    console.info('bluetooth device find = '+ JSON.stringify(scanReport));
+}
+let bleScanner: ble.BleScanner = ble.createBleScanner();
+try {
+    bleScanner.on('BLEDeviceFind', onReceiveEvent);
+    bleScanner.off('BLEDeviceFind', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
 
 ## GattService
 
@@ -3900,7 +4119,7 @@ try {
 
 | 名称          | 类型    | 可读   | 可写   | 说明                                       |
 | ----------- | ------- | ---- | ---- | ---------------------------------------- |
-| interval    | number  | 是    | 是    | 表示广播间隔，最小值设置160个slot表示100ms，最大值设置16384个slot，默认值设置为1600个slot表示1s。 |
+| interval    | number  | 是    | 是    | 表示广播间隔，最小值设置32个slot表示20ms，最大值设置16777215个slot，默认值设置为1600个slot表示1s。(传统广播模式下最大值为16384个slot表示10.24s) |
 | txPower     | number  | 是    | 是    | 表示发送功率，最小值设置-127，最大值设置1，默认值设置-7，单位dbm。推荐值：高档（1），中档（-7），低档（-15）。   |
 | connectable | boolean | 是    | 是    | 表示是否是可连接广播，默认值设置为true，表示可连接，false表示不可连接。                   |
 
@@ -4116,3 +4335,43 @@ try {
 | --------  | ---- | ------------------------------ |
 | PHY_LE_1M<sup>12+</sup>   | 1    | 表示扫描中使用1M PHY。       |
 | PHY_LE_ALL_SUPPORTED<sup>12+</sup>   | 255    | 表示扫描中使用蓝牙协议支持的PHY模式。    |
+
+## ScanReport<sup>15+</sup>
+
+扫描结果数据上报。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 名称        | 类型                  | 说明                                     |
+| --------- | ----------------------- | -------------------------------------- |
+| reportType  | [ScanReportType](#scanreporttype15)        | 表示扫描报告类型。    |
+| scanResult  | Array&lt;[ScanResult](#scanresult)&gt;    | 扫描结果数据。        |
+
+## ScanReportType<sup>15+</sup>
+
+枚举，扫描结果数据上报类型。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 名称      | 值    | 说明                           |
+| --------  | ---- | ------------------------------ |
+| ON_FOUND  | 1    | 表示发现广播包。       |
+| ON_LOST | 2    | 表示丢失广播包。    |
+
+## ScanReportMode<sup>15+</sup>
+
+枚举，扫描结果数据上报模式。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 名称      | 值    | 说明                           |
+| --------  | ---- | ------------------------------ |
+| NORMAL  | 1    | 表示常规扫描上报模式。       |
+| FENCE_SENSITIVITY_LOW<sup>16+</sup>  | 10    | 表示低灵敏度围栏上报模式，只在首次收到广播包和丢失广播包时上报，灵敏度低。    |
+| FENCE_SENSITIVITY_HIGH<sup>16+</sup>  | 11    | 表示高灵敏度围栏上报模式，只在首次收到广播包和丢失广播包时上报，灵敏度高。    |

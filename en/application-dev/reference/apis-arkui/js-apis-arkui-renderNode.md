@@ -22,7 +22,7 @@ import { RenderNode } from '@kit.ArkUI';
 
 constructor()
 
-Constructor used to create a RenderNode.
+A constructor used to create a RenderNode.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

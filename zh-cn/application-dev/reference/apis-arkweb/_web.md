@@ -90,7 +90,7 @@
 | typedef char \*(\* [NativeArkWeb_OnJavaScriptProxyCallback](#nativearkweb_onjavascriptproxycallback)) (const char \*\*argv, int32_t argc) | 定义注入对象的回调函数的类型。  | 
 | typedef void(\* [NativeArkWeb_OnValidCallback](#nativearkweb_onvalidcallback)) (const char \*) | 定义Web组件可用时的回调函数的类型。  | 
 | typedef void(\* [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback)) (const char \*) | 定义Web组件销毁时的回调函数的类型。  | 
-
+| typedef void(\* [ArkWeb_OnScrollCallback](#arkweb_onscrollcallback)) (const char \*webTag, void \*userData, double x, double y) | 定义Web组件滚动时的回调函数的类型。  | 
 
 ### 枚举
 
@@ -179,6 +179,7 @@
 | void [OH_NativeArkWeb_SetDestroyCallback](#oh_nativearkweb_setdestroycallback) (const char \*webTag, [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) callback) | 设置组件销毁时的回调函数。  | 
 | [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) [OH_NativeArkWeb_GetDestroyCallback](#oh_nativearkweb_getdestroycallback) (const char \*webTag) | 获取已注册的组件销毁时的回调函数。  | 
 | [ArkWeb_ErrorCode](#arkweb_errorcode) [OH_NativeArkWeb_LoadData](#oh_nativearkweb_loaddata) (const char* webTag,const char* data,const char* mimeType,const char* encoding,const char* baseUrl,const char* historyUrl) | 加载数据或URL，此函数应在主线程中调用。  |
+| bool [OH_ArkWeb_RegisterScrollCallback](#oh_arkweb_registerscrollcallback) (const char\* webTag, [ArkWeb_OnScrollCallback](#arkweb_onscrollcallback) callback, void\* userData) | 设置组件滚动时的回调函数。 |
 
 
 ## 宏定义说明
@@ -634,6 +635,25 @@ typedef void(* NativeArkWeb_OnValidCallback) (const char *)
 
 **起始版本：** 11
 
+### ArkWeb_OnScrollCallback
+
+```
+typedef void(*ArkWeb_OnScrollCallback) (const char* webTag, void* userData, double x, double y)
+```
+**描述：**
+
+定义Web组件滚动时的回调函数的类型。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| webTag | Web组件名称。  | 
+| userData | 用户自定义数据。 | 
+| x | x轴滚动偏移。 | 
+| y | y轴滚动偏移。 | 
 
 ## 枚举类型说明
 
@@ -2692,3 +2712,28 @@ void OH_NativeArkWeb_UnregisterJavaScriptProxy (const char * webTag, const char 
 | -------- | -------- |
 | webTag | Web组件的名称。  | 
 | objName | 注入对象的名称。 | 
+
+### OH_ArkWeb_RegisterScrollCallback()
+
+```
+bool OH_ArkWeb_RegisterScrollCallback(const char* webTag, ArkWeb_OnScrollCallback callback, void* userData)
+```
+**描述：**
+
+设置组件滚动时的回调函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| webTag | Web组件的名称。  | 
+| callback | 页面滚动时的回调函数。  | 
+| userData | 要设置的用户数据。 | 
+
+**返回：**
+
+如果回调设置成功，则返回true，否则返回false。

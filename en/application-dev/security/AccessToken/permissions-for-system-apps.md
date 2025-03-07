@@ -153,7 +153,7 @@ Allows a system application to call the Message application authorization interf
 
 **Authorization mode**: system_grant
 
-**Valid since**: 15
+**Valid since**: 18
 
 ### ohos.permission.MANAGE_SETTINGS
 
@@ -754,6 +754,18 @@ Allows a system application to access the permission usage records.
 **Enable via ACL**: true
 
 **Valid since**: 9
+
+### ohos.permission.PERMISSION_RECORD_TOGGLE
+
+Allows an application to set the permission usage record switch.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
 
 ### ohos.permission.CAPTURE_SCREEN
 
@@ -4402,25 +4414,25 @@ Allows an application to enable or access the SOS service.
 
 Allows a system application to start the page for setting privacy protection.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：16
+**Valid since**: 16
 
 ### ohos.permission.DLP_GET_HIDE_STATUS
 
 Allows a system application to use the information hiding APIs to obtain the information hiding status.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：16
+**Valid since**: 16
 
 ### ohos.permission.GET_ANIM_POLICY
 
@@ -4498,6 +4510,18 @@ After the script address is configured, other applications can read and parse th
 
 **Valid since**: 15
 
+### ohos.permission.ACCESS_VIRTUAL_SCREEN
+
+Allows an application to manage virtual screens.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.GET_PAGE_INFO
 
 Allows a system application to obtain the page information of a specified application.
@@ -4562,6 +4586,92 @@ peripherals connected to the host via a USB bus and:
 **Enable via ACL**: true
 
 **Valid since**: 16
+
+### ohos.permission.ACCESS_CUSTOM_RINGTONE
+
+Allows an application to access the RBT library.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_STARTUPGUIDE
+
+Allows a system application to access common data and common events of the startup wizard.
+
+This permission is available only to the applications on smartphones, tablets, and 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ANTIFRAUD_DETECT
+
+Allows a system application to perform anti-fraud detection.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+### ohos.permission.ANTIFRAUD_PICTURE_DETECT
+
+Allows a system application to perform face swapping detection for images.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+### ohos.permission.ANTIFRAUD_MODEL_DOWNLOAD
+
+Allows a system application to use model download APIs.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+### ohos.permission.ACCESS_APP_CLONE_DIR
+
+Allows a system application to access the installation file path copied from another device.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+### ohos.permission.ACCESS_TRUST_LIST_OOBE_MANAGER
+
+Allows an application to access the list of applications that can be started in the out-of-box experience.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
 
 ## system_grant Permissions (Unavailable via ACL)
 
@@ -4830,6 +4940,54 @@ Allows a system application to set the launch reason when starting another appli
 **Authorization mode**: system_grant
 
 **Enable via ACL**: false
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_USER_ACCOUNT_INFO
+
+Allows a system application to access user account information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: false
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_DEVAUTH_CRED_MGR
+
+Allows a system application or system service to access the credential management module for the device authentication (device_auth) SA.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_DEVAUTH_CRED_PRIVILEGE
+
+Allows a system application or system service to access the credential management module and credential authentication module for the device authentication (device_auth) SA and to query and authenticate other service credentials.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_DEVAUTH_CRED_AUTH
+
+Allows a system application or system service to access the credential authentication module for the device authentication (device_auth) SA.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
 
 **Valid since**: 16
 

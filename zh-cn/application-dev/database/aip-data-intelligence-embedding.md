@@ -24,7 +24,7 @@
 
 ## 接口说明
 
-以下是智慧数据向量化功能的相关接口，接口为异步接口。异步接口通过Promise方式返回。
+以下是智慧数据向量化功能的相关接口，更多接口及使用方式请见[智慧数据平台](../reference/apis-arkdata/js-apis-data-intelligence.md)。
 
 | 接口名称 | 描述 | 
 | -------- | -------- |
@@ -54,7 +54,7 @@
    import { BusinessError } from '@kit.BasicServicesKit';
 
    let textConfig:intelligence.ModelConfig = {
-     version:1,
+     version:intelligence.ModelVersion.BASIC_MODEL,
      isNpuAvailable:false,
      cachePath:"/data"
    }
@@ -89,9 +89,9 @@
      size:10,
      overlapRatio:0.1
    }
-   let text = 'text';
+   let splitText = 'text';
 
-   intelligence.splitText(text, splitConfig)
+   intelligence.splitText(splitText, splitConfig)
      .then((data:Array<string>) => {
        console.info("Succeeded in splitting Text");
      })
@@ -140,7 +140,7 @@
 
    ```ts
    let imageConfig:intelligence.ModelConfig = {
-     version:1,
+     version:intelligence.ModelVersion.BASIC_MODEL,
      isNpuAvailable:false,
      cachePath:"/data"
    }

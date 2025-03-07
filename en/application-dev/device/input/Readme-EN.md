@@ -1,4 +1,4 @@
-# Input Kit (Multimodal Input)
+# Input Kit (Multimodal Input)<!--input-kit-->
 
 - [Introduction to Input Kit](input-overview.md)
 - [Input Device Development](inputdevice-guidelines.md)

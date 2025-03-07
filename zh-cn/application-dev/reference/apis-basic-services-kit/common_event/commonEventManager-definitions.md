@@ -393,8 +393,6 @@
 
 切换到带有锁屏密码的用户，并且首次解锁会发出触发事件通知服务发布该系统公共事件，事件携带标识该用户的系统账号ID。
 
-与这个公共事件相关的接口：auth, 为系统API, 具体参看[系统账号接口文档](../js-apis-osAccount.md)
-
 **系统能力：** SystemCapability.Notification.CommonEvent
 
 **订阅者所需权限：** 无

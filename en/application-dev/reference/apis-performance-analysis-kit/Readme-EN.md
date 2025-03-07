@@ -1,7 +1,6 @@
-# Performance Analysis Kit
+# Performance Analysis Kit<!--performance-analysis-api-->
 
-- ArkTS API
-  - [@ohos.faultLogger (FaultLogger)](js-apis-faultLogger.md)
+- ArkTS API<!--performance-analysis-arkts-->
   - [@ohos.hichecker (HiChecker)](js-apis-hichecker.md)
   - [@ohos.hidebug (HiDebug)](js-apis-hidebug.md)
   - [@ohos.hilog (HiLog)](js-apis-hilog.md)
@@ -13,36 +12,38 @@
   - [@ohos.hiSysEvent (HiSysEvent)(System API)](js-apis-hisysevent-sys.md)
   - [@ohos.logLibrary (Log Library)(System API)](js-apis-loglibrary-sys.md)
   <!--DelEnd-->
-  - APIs No Longer Maintained
+  - APIs No Longer Maintained<!--performance-analysis-arkts-dep-->
     - [@ohos.bytrace (ByTrace)](js-apis-bytrace.md)
     - [@ohos.hiAppEvent (HiAppEvent)](js-apis-hiappevent.md)
-- C API
-  - Modules
+    - [@ohos.faultLogger (FaultLogger)](js-apis-faultLogger.md)
+- C API<!--performance-analysis-c-->
+  - Modules<!--performance-analysis-module-->
     - [HiAppEvent](_hi_app_event.md)
+    - [HiCollie](_hi_collie.md)
     - [HiDebug](_hi_debug.md)
     - [HiLog](_hi_log.md)
     - [Hitrace](_hitrace.md)
-    - [HiCollie](_hi_hicollie.md)
-  - Header Files
+  - Header Files<!--performance-analysis-headerfile-->
     - [hiappevent.h](hiappevent_8h.md)
     - [hiappevent_cfg.h](hiappevent__cfg_8h.md)
     - [hiappevent_event.h](hiappevent__event_8h.md)
     - [hiappevent_param.h](hiappevent__param_8h.md)
+    - [hicollie.h](hicollie_8h.md)
     - [hidebug.h](hidebug_8h.md)
     - [hidebug_type.h](hidebug__type_8h.md)
     - [log.h](log_8h.md)
     - [trace.h](trace_8h.md)
-    - [hicollie.h](hicollie_8h.md)
-  - Structs
+  - Structs<!--performance-analysis-struct-->
     - [HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md)
     - [HiAppEvent_AppEventInfo](_hi_app_event___app_event_info.md)
+    - [HiCollie_DetectionParam](_hi_collie___detection_param.md)
+    - [HiCollie_SetTimerParam](_hi_collie___set_timer_param.md)
     - [HiDebug_MemoryLimit](_hi_debug___memory_limit.md)
     - [HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md)
     - [HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)
     - [HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md)
     - [HiTraceId](_hi_trace_id.md)
-    - [HiCollie_DetectionParam](_hi_hicollie___detection_param.md)
-- Error Codes
+- Error Codes<!--performance-analysis-errcode-->
   - [FaultLogger Error Codes](errorcode-faultlogger.md)
   - [HiAppEvent Error Codes](errorcode-hiappevent.md)
   - [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md)

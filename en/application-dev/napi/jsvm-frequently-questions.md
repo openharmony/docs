@@ -46,7 +46,7 @@ If an unexpected behavior occurs during the running of the application, locate t
 
    ```
    func {
-   	...
+   	// ...
        JSVM_CallbackStruct param[] = {
            {.data = nullptr, .callback = ConsoleInfo},
            {.data = nullptr, .callback = Add},
@@ -58,9 +58,9 @@ If an unexpected behavior occurs during the running of the application, locate t
        // Create env, register native method, and open env scope.
        JSVM_Env env;
        OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env);
-       ...
+      // ...
        OH_JSVM_DestroyEnv(env);
-       ...
+      // ...
    }
    ```
 

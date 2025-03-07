@@ -1,10 +1,11 @@
 # DataAbilityResult
 
-The **DataAbilityResult** module defines the operation result on DataAbilities. When you call [executeBatch](js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperexecutebatch) to operate the database, the operation result is returned through the **DataAbilityResult** object.
+The DataAbilityResult module defines the operation result on DataAbilities. When you call [executeBatch](js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperexecutebatch) to operate the database, the operation result is returned through the **DataAbilityResult** object.
 
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> 
 > The APIs of this module can be used only in the FA model.
 
 ## Modules to Import

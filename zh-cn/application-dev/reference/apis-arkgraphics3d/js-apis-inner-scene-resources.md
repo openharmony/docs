@@ -131,6 +131,11 @@ function destroy() : void {
 | aabb | [Aabb](js-apis-inner-scene-types.md#aabb) | 是 | 否 | 轴对齐包围盒。|
 | materialOverride | [Material](#material) | 否 | 是 | 材质，默认为空。 |
 
+## MeshResource<sup>16+</sup>
+网格资源，继承自[SceneResource](#sceneresource)。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
 ## Animation
 动画类型，继承自[SceneResource](#sceneresource)。
 ### 属性

@@ -33,7 +33,7 @@ setScreenOffTime(admin: Want, time: number): void
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
-| time | number            | 是    | 设备息屏时间(单位：毫秒，建议参数与设备可选息屏时间保持一致)       |
+| time | number            | 是    | 设备息屏时间（单位：毫秒，建议参数与设备可选息屏时间保持一致）。       |
 
 **错误码**：
 

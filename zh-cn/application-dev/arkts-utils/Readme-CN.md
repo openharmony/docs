@@ -32,6 +32,7 @@
                 - [Sendable对象简介](arkts-sendable.md)
                 - [Sendable使用规则与约束](sendable-constraints.md)
                 - [异步锁](arkts-async-lock-introduction.md)
+                - [异步等待](arkts-condition-variable-introduction.md)
                 - [ASON解析与生成](ason-parsing-generation.md)
                 - [共享容器](arkts-collections-introduction.md)
                 - [共享模块](arkts-sendable-module.md)
@@ -64,6 +65,8 @@
             - [C++线程间数据共享场景](native-interthread-shared.md)
             - [TaskPool指定任务并发度场景](taskpool-async-task-guide.md)
             - [ArkUI瀑布流渲染场景](taskpool-waterflow.md)
+            - [获取最近访问列表场景](sendablelrucache-recent-list.md)
+            - [多线程取消TaskPool任务场景](multi-thread-cancel-task.md)
 - [ArkTS跨语言交互](arkts-cross-language-interaction.md)
 - ArkTS运行时<!--arkts-runtime-->
     - [ArkTS运行时概述](arkts-runtime-overview.md)

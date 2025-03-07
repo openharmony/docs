@@ -4,7 +4,7 @@
 You can use \@Param, a variable decorator in state management V2, to enhance the capability of child components to receive external parameter input.
 
 
-\@Param can receive not only the external output of the component, but also the synchronous change of \@Local. Before reading this topic, you are advised to read [\@Local](./arkts-new-local.md).
+\@Param can receive not only the external input of the component, but also the synchronous change of \@Local. Before reading this topic, you are advised to read [\@Local](./arkts-new-local.md).
 
 > **NOTE**
 >
@@ -90,16 +90,16 @@ In the preceding example, \@State can obtain the reference of **info** only duri
 | \@Param Variable Decorator | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
 | Parameter        | None.                                                        |
-| Allowed local modification      | None. The capability of the \@Event decorator is required to change the value.                       |
+| Allowed local modification      | No. To change the value, use the [\@Event](./arkts-new-event.md) decorator.                       |
 | Synchronization type          | One-way synchronization from the parent to the child component.                                          |
 | Allowed variable types| Basic types such as object, class, string, number, boolean, and enum and embedded types such as Array, Date, Map, and Set. Null, undefined, and union types are supported.|
-| Initial value for the decorated variable| Local initialization is allowed. If local initialization is not performed, this parameter must be used together with the \@Require decorator and initialization must be passed in from the external.|
+| Initial value for the decorated variable| Local initialization is allowed. If local initialization is not performed, this parameter must be used together with the [\@Require](./arkts-require.md) decorator and initialization must be passed from the external.|
 
 ## Variable Passing
 
 | Passing Rules      | Description                                                        |
 | -------------- | ------------------------------------------------------------ |
-| Initialization from the parent component| \@Param decorated variables can be initialized locally. If local initialization does not performed, the variables must be initialized from the external. When both the local initial value and externally input value exist, the latter is preferentially used for initialization.|
+| Initialization from the parent component| \@Param decorated variables can be initialized locally. If local initialization does not performed, the variables must be initialized from the external. When both the local initial value and external input value exist, the latter is preferentially used for initialization.|
 | Child component initialization  | \@Param decorated variables can initialize themselves in the child components.      |
 | Synchronization          | \@Param can be synchronized with the state variable data source passed in by the parent component (that is, the variable decorated by \@Local or \@Param). When the data source changes, the changes will be synchronized to \@Param of the child component.|
 
@@ -151,7 +151,7 @@ In the preceding example, \@State can obtain the reference of **info** only duri
   }
   ```
 
-- When the decorated variable is of a class object type, only the overall value changes to the class object can be observed. To observe value changes to the member properties in the class object, you'll need the \@ObservedV2 and \@Trace decorators.
+- When the decorated variable is of a class object type, only the overall value changes to the class object can be observed. To observe value changes to the member properties in the class object, use the \@ObservedV2 and \@Trace decorators.
 
   ```ts
   class RawObject {
@@ -422,7 +422,8 @@ The \@Param decorator has the following constraints:
         Text(`Parent info.name ${this.info.name}`)
         Button("Parent change info")
           .onClick(() => {
-            this.info = new Info("Lucy"); // When the @Local variable is changed in the parent component, the @Param variable corresponding to the child component is synchronized.
+            // If the @Local decorated variable of the parent component is changed, the @Param decorated variable is synchronized to the child component.
+            this.info = new Info("Lucy");
         })
         Child({ info: this.info })
       }
@@ -436,11 +437,13 @@ The \@Param decorator has the following constraints:
         Text(`info.name: ${this.info.name}`)
         Button("change info")
           .onClick(() => {
-            this.info = new Info("Jack"); // Incorrect usage. The @Param decorated variable cannot be changed in the child component. An error is reported during compilation.
+            // Incorrect usage. The @Param decorated variable cannot be changed in the child component. An error is reported during compilation.
+            this.info = new Info("Jack");
           })
         Button("Child change info.name")
           .onClick(() => {
-            this.info.name = "Jack"; // Changing the object properties in the child component is allowed.
+            // The properties of an object can be changed in the child component and this change is synchronized to the data source of the parent component. When the properties are decorated by @Trace, the corresponding UI re-rendering is observable.
+            this.info.name = "Jack";
           })
       }
     }

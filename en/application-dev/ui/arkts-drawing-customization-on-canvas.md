@@ -36,7 +36,6 @@ You can draw custom graphics on the canvas in any of the following ways:
       .height('100%')
     }
   }
-  
   ```
 
   ![2023022793003(1)](figures/2023022793003(1).jpg)
@@ -51,10 +50,10 @@ You can draw custom graphics on the canvas in any of the following ways:
   @Entry
   @Component
   struct CanvasExample2 {
-  // Configure the parameters of the CanvasRenderingContext2D and OffscreenCanvasRenderingContext2D objects, including whether to enable anti-aliasing. The value true indicates that anti-aliasing is enabled.
+    // Configure the parameters of the CanvasRenderingContext2D and OffscreenCanvasRenderingContext2D objects, including whether to enable anti-aliasing. The value true indicates that anti-aliasing is enabled.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  // Create an OffscreenCanvas object. width indicates the width of the offscreen canvas, and height indicates the height of the offscreen canvas.
+    // Create an OffscreenCanvas object. width indicates the width of the offscreen canvas, and height indicates the height of the offscreen canvas.
     private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
    
     build() {
@@ -63,7 +62,7 @@ You can draw custom graphics on the canvas in any of the following ways:
           .width('100%')
           .height('100%')
           .backgroundColor('#F5DC62')
-          .onReady(() =>{
+          .onReady(() => {
             let offContext = this.offCanvas.getContext("2d", this.settings)
             // You can draw content here.
             offContext.strokeRect(50, 50, 200, 150);
@@ -76,7 +75,6 @@ You can draw custom graphics on the canvas in any of the following ways:
       .height('100%')
     }
   }
-
   ```
 
   ![2023022793003(1)](figures/2023022793003(1).jpg)
@@ -123,7 +121,7 @@ After **onReady()** is invoked, you can use the **Canvas** component for drawing
     .width('100%')
     .height('100%')
     .backgroundColor('#F5DC62')
-    .onReady(() =>{
+    .onReady(() => {
       this.context.beginPath();
       this.context.moveTo(50, 50);
       this.context.lineTo(280, 160);
@@ -140,7 +138,7 @@ After **onReady()** is invoked, you can use the **Canvas** component for drawing
     .width('100%')
     .height('100%')
     .backgroundColor('#F5DC62')
-    .onReady(() =>{
+    .onReady(() => {
        let region = new Path2D();
        region.arc(100, 75, 50, 0, 6.28);
        this.context.stroke(region);
@@ -162,7 +160,7 @@ After **onReady()** is invoked, you can use the **Canvas** component for drawing
     .width('100%')
     .height('100%')
     .backgroundColor('#F5DC62')
-    .onReady(() =>{
+    .onReady(() => {
        // Draw a rectangle.
        this.context.beginPath();
        this.context.rect(100, 50, 100, 100);
@@ -182,7 +180,7 @@ After **onReady()** is invoked, you can use the **Canvas** component for drawing
 
 - Draw text.
 
-  You can use APIs such as [fillText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#filltext) and [strokeText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext) to draw text.
+  You can use APIs such as [fillText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#filltext) and [strokeText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext) to draw text. In the example, the **font** attribute is set to a bold, 50 px high "sans-serif" font. The **fillText** API is used to draw the text "Hello World!" at the position (50, 100). In addition, the **strokeText** API is used to draw the outline of the text "Hello World!" at the position (50, 150) with a red stroke style and a line width of 2.
 
   ```ts
   Canvas(this.context)
@@ -212,7 +210,7 @@ After **onReady()** is invoked, you can use the **Canvas** component for drawing
     .width('100%')
     .height('100%')
     .backgroundColor('#F5DC62')
-    .onReady(() =>{
+    .onReady(() => {
       // Load a custom font.
       this.context.font = '30vp customFont'
       this.context.fillText("Hello World!", 20, 50)
@@ -230,10 +228,10 @@ After **onReady()** is invoked, you can use the **Canvas** component for drawing
   @Entry
   @Component
   struct GetImageData {
-   private settings: RenderingContextSettings = new RenderingContextSettings(true)
-   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-   private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
-   private img:ImageBitmap = new ImageBitmap("/common/images/1234.png")
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private img: ImageBitmap = new ImageBitmap("/common/images/1234.png")
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -241,14 +239,14 @@ After **onReady()** is invoked, you can use the **Canvas** component for drawing
           .width('100%')
           .height('100%')
           .backgroundColor('#F5DC62')
-          .onReady(() =>{
+          .onReady(() => {
             let offContext = this.offCanvas.getContext("2d", this.settings)
             // Use the drawImage API to draw an image in the area with the width and height of 130 starting from (0, 0).
-            offContext.drawImage(this.img,0,0,130,130);
+            offContext.drawImage(this.img, 0, 0, 130, 130);
             // Use the getImageData API to obtain the image data with the width and height of 130 starting from (50, 50).
-            let imagedata = offContext.getImageData(50,50,130,130);
+            let imagedata = offContext.getImageData(50, 50, 130, 130);
             // Use the putImageData API to draw the obtained image data in the area starting from (150, 150).
-            offContext.putImageData(imagedata,150,150);
+            offContext.putImageData(imagedata, 150, 150);
             // Draw the offscreen drawing content to the canvas.
             let image = this.offCanvas.transferToImageBitmap();
             this.context.transferFromImageBitmap(image);
@@ -267,20 +265,20 @@ After **onReady()** is invoked, you can use the **Canvas** component for drawing
   **Canvas** also provides other usage. For example, regarding [CanvasGradient](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvasgradient.md), you can create a linear gradient with [createLinearGradient](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#createlineargradient) or create a radial gradient with [createRadialGradient](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#createradialgradient), among others.
 
   ```ts
-    Canvas(this.context)
+  Canvas(this.context)
     .width('100%')
     .height('100%')
     .backgroundColor('#F5DC62')
-    .onReady(() =>{
-       // Create a CanvasGradient object with radial gradient colors.
-       let grad = this.context.createRadialGradient(200,200,50, 200,200,200)
-       // Set the gradient color stop for the CanvasGradient object, including the offset and colors.
-       grad.addColorStop(0.0, '#E87361');
-       grad.addColorStop(0.5, '#FFFFF0');
-       grad.addColorStop(1.0, '#BDDB69');
-       // Fill the rectangle with the CanvasGradient object.
-       this.context.fillStyle = grad;
-       this.context.fillRect(0, 0, 400, 400);
+    .onReady(() => {
+      // Create a CanvasGradient object with radial gradient colors.
+      let grad = this.context.createRadialGradient(200, 200, 50, 200, 200, 200)
+      // Set the gradient color stop for the CanvasGradient object, including the offset and colors.
+      grad.addColorStop(0.0, '#E87361');
+      grad.addColorStop(0.5, '#FFFFF0');
+      grad.addColorStop(1.0, '#BDDB69');
+      // Fill the rectangle with the CanvasGradient object.
+      this.context.fillStyle = grad;
+      this.context.fillRect(0, 0, 400, 400);
     })
   ```
 
@@ -295,8 +293,8 @@ After **onReady()** is invoked, you can use the **Canvas** component for drawing
   @Entry
   @Component
   struct ClearRect {
-   private settings: RenderingContextSettings = new RenderingContextSettings(true);
-   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -304,20 +302,19 @@ After **onReady()** is invoked, you can use the **Canvas** component for drawing
           .width('100%')
           .height('100%')
           .backgroundColor('#F5DC62')
-          .onReady(() =>{
+          .onReady(() => {
             // Set the fill color to blue.
             this.context.fillStyle = '#0097D4';
             // Take (50, 50) as the upper left corner and draw a rectangle with the width and height of 200.
-            this.context.fillRect(50,50,200,200);
+            this.context.fillRect(50, 50, 200, 200);
             // Use (70, 70) as the upper left corner and clear the area with the width of 150 and height of 100.
-            this.context.clearRect(70,70,150,100);
-        })
+            this.context.clearRect(70, 70, 150, 100);
+          })
       }
       .width('100%')
       .height('100%')
     }
   }
-
   ```
 
   ![2023022701120(1)](figures/2023022701120(1).jpg)
@@ -338,7 +335,7 @@ After **onReady()** is invoked, you can use the **Canvas** component for drawing
             .width('100%')
             .height('100%')
             .backgroundColor('#F5DC62')
-            .onReady(() =>{
+            .onReady(() => {
               // Use the Path2D API to create a pentagon.
               let path = new Path2D();
               path.moveTo(150, 50);

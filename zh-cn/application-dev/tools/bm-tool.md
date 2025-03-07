@@ -666,10 +666,25 @@ Error: signature verification failed due to not trusted app source.
 * 场景一：
 	1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)。在连接设备后，重新为应用进行签名。
 	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
-		```
-		//UDID获取命令
-		hdc shell bm get -u
-		```
+
+        1. 获取当前设备的UDID。
+
+        ```
+          //UDID获取命令
+          hdc shell bm get -u
+        ```
+
+        2. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
+
+        ```
+          IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
+
+          例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
+          例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
+        ```
+
+        3. 在UnsgnedDebugProfileTemplate.json文件的device-ids字段中，添加当前设备的UDID。
+
   3. 查看签名中是否包含调试设备的UDID，可以使用文本编辑器打开已签名的HAP搜索device-ids。
 * 场景二：使用[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)重新签名应用。
 
@@ -691,7 +706,14 @@ Error: install failed due to grant request permissions failed.
 
 **处理步骤**
 
-1. 在UnsgnedDebugProfileTemplate.json文件中修改APL等级，调整成system_basic或system_core等级，重新签名打包即可。
+1. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
+```
+IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
+
+例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
+例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
+```
+2. 在UnsgnedDebugProfileTemplate.json文件中修改APL等级，修改APL等级为system_core等级，重新签名打包即可。
 
 
 ### 9568297 由于设备sdk版本较低导致安装失败
@@ -1452,3 +1474,14 @@ error: install version code not same.
 **处理步骤**
 1. 调整安装包的版本和设备中已存在的应用包的版本号（versionCode）一致，或者卸载设备中的应用，再去安装新的应用包。
 2. 调整安装的多个包的版本号（versionCode），所有的包都需要保持版本号（versionCode）一致。
+
+### 9568421 签名文件中的分发类型被限制，不允许安装到当前设备中，导致安装失败
+**错误信息**
+
+error: the app distribution type is not allowed install.
+
+**可能原因**
+该签名的分发类型被限制，禁止安装到当前设备中。
+
+**处理步骤**
+更换签名文件的分发类型。

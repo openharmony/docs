@@ -1,4 +1,4 @@
-# IDE
+# 获取工具
 
 ## 获取设备开发工具（HUAWEI DevEco Device Tool）
 

@@ -64,18 +64,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -84,7 +84,7 @@ class routerParams {
 try {
   router.pushUrl({
     url: 'pages/routerpage2',
-    params: new routerParams('message' ,[123,456,789])
+    params: new routerParams('message', [123, 456, 789])
   })
 } catch (err) {
   console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
@@ -126,18 +126,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -145,7 +145,7 @@ class routerParams {
 
 router.pushUrl({
   url: 'pages/routerpage2',
-  params: new routerParams('message' ,[123,456,789])
+  params: new routerParams('message', [123, 456, 789])
 }, (err) => {
   if (err) {
     console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -197,18 +197,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -217,7 +217,7 @@ class routerParams {
 try {
   router.pushUrl({
     url: 'pages/routerpage2',
-    params: new routerParams('message' ,[123,456,789])
+    params: new routerParams('message', [123, 456, 789])
   }, router.RouterMode.Standard)
 } catch (err) {
   console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
@@ -260,18 +260,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -279,7 +279,7 @@ class routerParams {
 
 router.pushUrl({
   url: 'pages/routerpage2',
-  params: new routerParams('message' ,[123,456,789])
+  params: new routerParams('message', [123, 456, 789])
 }, router.RouterMode.Standard, (err) => {
   if (err) {
     console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -330,9 +330,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -381,9 +381,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -495,9 +495,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -512,7 +512,6 @@ router.replaceUrl({
   }
   console.info('replaceUrl success');
 });
-
 ```
 
 ## router.pushNamedRoute<sup>10+</sup>
@@ -557,18 +556,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -577,7 +576,7 @@ class routerParams {
 try {
   router.pushNamedRoute({
     name: 'myPage',
-    params: new routerParams('message' ,[123,456,789])
+    params: new routerParams('message', [123, 456, 789])
   })
 } catch (err) {
   console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
@@ -621,18 +620,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -640,7 +639,7 @@ class routerParams {
 
 router.pushNamedRoute({
   name: 'myPage',
-  params: new routerParams('message' ,[123,456,789])
+  params: new routerParams('message', [123, 456, 789])
 }, (err) => {
   if (err) {
     console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
@@ -692,18 +691,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -712,7 +711,7 @@ class routerParams {
 try {
   router.pushNamedRoute({
     name: 'myPage',
-    params: new routerParams('message' ,[123,456,789])
+    params: new routerParams('message', [123, 456, 789])
   }, router.RouterMode.Standard)
 } catch (err) {
   console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
@@ -755,18 +754,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -774,7 +773,7 @@ class routerParams {
 
 router.pushNamedRoute({
   name: 'myPage',
-  params: new routerParams('message' ,[123,456,789])
+  params: new routerParams('message', [123, 456, 789])
 }, router.RouterMode.Standard, (err) => {
   if (err) {
     console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
@@ -825,9 +824,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -876,9 +875,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -938,9 +937,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -990,9 +989,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -1007,7 +1006,6 @@ router.replaceNamedRoute({
   }
   console.info('replaceNamedRoute success');
 });
-
 ```
 
 ## router.back
@@ -1024,12 +1022,12 @@ Returns to the previous page or a specified page, which deletes all pages betwee
 
 | Name | Type                           | Mandatory| Description                                                        |
 | ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [RouterOptions](#routeroptions) | No  | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the application returns to the previous page, and the page is not rebuilt. The page in the page stack is not reclaimed. It will be reclaimed after being popped up. The **back** API does not work if **url** is set to a slash (/).|
+| options | [RouterOptions](#routeroptions) | No  | Description of the target page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the navigation stack, no action is taken. If no URL is set, the application returns to the previous page, and the page is not rebuilt. Pages are only reclaimed after being popped from the navigation stack. Setting **url** to the special value **"/"** has no effect. If the named route is used, the provided URL must be the name of the named route.|
 
 **Example**
 
 ```ts
-router.back({url:'pages/detail'});    
+router.back({ url: 'pages/detail' });
 ```
 
 ## router.back<sup>12+</sup>
@@ -1046,16 +1044,16 @@ Returns to the specified page, which deletes all pages between the current page 
 
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
-| index | number | Yes   | Index of the target page to navigate to. |
+| index | number | Yes   | Index of the target page to navigate to. The index starts from 1 from the bottom to the top of the stack.|
 | params    | Object      | No   | Parameters carried when returning to the page.|
 
 **Example**
 
 ```ts
-router.back(1);    
+router.back(1);
 ```
 ```ts
-router.back(1, {info: 'From Home'}); // Returning with parameters.
+router.back(1, { info: 'From Home' }); // Returning with parameters.
 ```
 
 ## router.clear
@@ -1071,7 +1069,7 @@ Clears all historical pages in the stack and retains only the current page at th
 **Example**
 
 ```ts
-router.clear();    
+router.clear();
 ```
 
 ## router.getLength
@@ -1093,8 +1091,8 @@ Obtains the number of pages in the current stack.
 **Example**
 
 ```ts
-let size = router.getLength();        
-console.log('pages stack size = ' + size);    
+let size = router.getLength();
+console.log('pages stack size = ' + size);
 ```
 
 ## router.getState
@@ -1136,7 +1134,7 @@ Obtains the status information about a page by its index.
 
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
-| index    | number | Yes  | Index of the target page. |
+| index    | number | Yes  | Index of the target page. The index starts from 1 from the bottom to the top of the stack.|
 
 **Return value**
 
@@ -1147,7 +1145,7 @@ Obtains the status information about a page by its index.
 **Example**
 
 ```ts
-let options:router.RouterState | undefined = router.getStateByIndex(1);
+let options: router.RouterState | undefined = router.getStateByIndex(1);
 if (options != undefined) {
   console.log('index = ' + options.index);
   console.log('name = ' + options.name);
@@ -1180,7 +1178,7 @@ Obtains the status information about a page by its URL.
 **Example**
 
 ```ts
-let options:Array<router.RouterState> = router.getStateByUrl('pages/index');
+let options: Array<router.RouterState> = router.getStateByUrl('pages/index');
 for (let i: number = 0; i < options.length; i++) {
   console.log('index = ' + options[i].index);
   console.log('name = ' + options[i].name);
@@ -1236,7 +1234,7 @@ try {
   router.showAlertBeforeBackPage({
     message: 'Message Info'
   });
-} catch(err) {
+} catch (err) {
   console.error(`showAlertBeforeBackPage failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
@@ -1265,7 +1263,7 @@ Disables the display of a confirm dialog box before returning to the previous pa
 **Example**
 
 ```ts
-router.hideAlertBeforeBackPage();    
+router.hideAlertBeforeBackPage();
 ```
 
 ##  router.getParams
@@ -1294,18 +1292,15 @@ router.getParams();
 
 Describes the page routing options.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| url    | string | Yes  | URL of the target page, in either of the following formats:<br>- Absolute path of the page. The value is available in the pages list in the **config.json** file, for example:<br>- pages/index/index<br>- pages/detail/detail<br>- special value. If the value of url is **"/"**, the application navigates to the home page. By default, the home page is set to the first item in the **src** value array.|
-| params | Object | No  | Data that needs to be passed to the target page during redirection. The received data becomes invalid when the page is switched to another page. The target page can use **router.getParams()** to obtain the passed parameters, for example, **this.keyValue** (**keyValue** is the value of a key in **params**). In the web-like paradigm, these parameters can be directly used on the target page. If the field specified by **key** already exists on the target page, the passed value of the key will be displayed.<br>**NOTE**<br>The **params** parameter cannot pass objects returned by methods and system APIs, for example, **PixelMap** objects defined and returned by media APIs. To pass such objects, extract from them the basic type attributes to be passed, and then construct objects of the object type.|
-| recoverable<sup>14+</sup> | boolean | No  | Whether the corresponding page is recoverable.<br>Default value: **true**, indicating that the page is recoverable<br>**NOTE**<br> If an application is switched to the background and is later closed by the system due to resource constraints or other reasons, a page marked as recoverable can be restored by the system when the application is brought back to the foreground. |
+| url    | string | Yes  | URL of the target page, in either of the following formats:<br>- Absolute path of the page. The value is available in the pages list in the **config.json** file, for example:<br>- pages/index/index<br>- pages/detail/detail<br>- special value. If the value of url is **"/"**, the application navigates to the home page. By default, the home page is set to the first item in the **src** value array.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| params | Object | No  | Data that needs to be passed to the target page during redirection. The received data becomes invalid when the page is switched to another page. The target page can use **router.getParams()** to obtain the passed parameters, for example, **this.keyValue** (**keyValue** is the value of a key in **params**). In the web-like paradigm, these parameters can be directly used on the target page. If the field specified by **key** already exists on the target page, the passed value of the key will be displayed.<br>**NOTE**<br>The **params** parameter cannot pass objects returned by methods and system APIs, for example, **PixelMap** objects defined and returned by media APIs. To pass such objects, extract from them the basic type attributes to be passed, and then construct objects of the object type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| recoverable<sup>14+</sup> | boolean | No  | Whether the corresponding page is recoverable.<br>Default value: **true**, indicating that the page is recoverable<br><br>**NOTE**<br> If an application is switched to the background and is later closed by the system due to resource constraints or other reasons, a page marked as recoverable can be restored by the system when the application is brought back to the foreground. For more details, see [UIAbility Backup and Restore](../../application-models/ability-recover-guideline.md).|
 
   > **NOTE**
-  >
   > The page routing stack supports a maximum of 32 pages.
 
 ## RouterMode<sup>9+</sup>
@@ -1325,15 +1320,11 @@ Enumerates the routing modes.
 
 Describes the named route options.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| name   | string | Yes  | Name of the target named route.                                |
-| params | Object | No  | Data that needs to be passed to the target page during redirection. The target page can use **router.getParams()** to obtain the passed parameters, for example, **this.keyValue** (**keyValue** is the value of a key in **params**). In the web-like paradigm, these parameters can be directly used on the target page. If the field specified by **key** already exists on the target page, the passed value of the key will be displayed.<br>**NOTE**<br>The **params** parameter cannot pass objects returned by methods and system APIs, for example, **PixelMap** objects defined and returned by media APIs. To pass such objects, extract from them the basic type attributes to be passed, and then construct objects of the object type.|
-| recoverable<sup>14+</sup> | boolean | No  | Whether the corresponding page is recoverable.<br>Default value: **true**, indicating that the page is recoverable<br>**NOTE**<br> If an application is switched to the background and is later closed by the system due to resource constraints or other reasons, a page marked as recoverable can be restored by the system when the application is brought back to the foreground. |
+| name   | string | Yes  | Name of the target named route.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**System capability**: SystemCapability.ArkUI.ArkUI.Full|
+| params | Object | No  | Data that needs to be passed to the target page during redirection. The target page can use **router.getParams()** to obtain the passed parameters, for example, **this.keyValue** (**keyValue** is the value of a key in **params**). In the web-like paradigm, these parameters can be directly used on the target page. If the field specified by **key** already exists on the target page, the passed value of the key will be displayed.<br>**NOTE**<br>The **params** parameter cannot pass objects returned by methods and system APIs, for example, **PixelMap** objects defined and returned by media APIs. To pass such objects, extract from them the basic type attributes to be passed, and then construct objects of the object type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**System capability**: SystemCapability.ArkUI.ArkUI.Full |
+| recoverable<sup>14+</sup> | boolean | No  | Whether the corresponding page is recoverable.<br>Default value: **true**, indicating that the page is recoverable<br><br>**NOTE**<br> If an application is switched to the background and is later closed by the system due to resource constraints or other reasons, a page marked as recoverable can be restored by the system when the application is brought back to the foreground. For more details, see [UIAbility Backup and Restore](../../application-models/ability-recover-guideline.md).<br>**System capability**: SystemCapability.ArkUI.ArkUI.Lite|
 
 ## Examples
 
@@ -1371,7 +1362,7 @@ export default {
 
 > **NOTE**
 > 
-> To avoid confusion with **router** instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](js-apis-arkui-UIContext.md#uicontext) API, and then obtain the **router** instance bound to the context through the [getRouter](js-apis-arkui-UIContext.md#getrouter) API.
+> Directly using **router** can lead to ambiguous instance issues. To avoid this, it is recommended that you obtain a **UIContext** instance using the [getUIContext](js-apis-arkui-UIContext.md#uicontext) API, and then obtain the **router** instance bound to the context through the [getRouter](js-apis-arkui-UIContext.md#getrouter) API.
 
 ```ts
 // Navigate to the target page through router.pushUrl with the params parameter carried.
@@ -1380,18 +1371,18 @@ import { BusinessError } from '@kit.BasicServicesKit'
 
 // Define the class for passing parameters.
 class innerParams {
-  array:number[]
+  array: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.array = tuple
   }
 }
 
 class routerParams {
-  text:string
-  data:innerParams
+  text: string
+  data: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.text = str
     this.data = new innerParams(tuple)
   }
@@ -1401,7 +1392,7 @@ class routerParams {
 @Component
 struct Index {
   async routePage() {
-    let options:router.RouterOptions = {
+    let options: router.RouterOptions = {
       url: 'pages/second',
       params: new routerParams('This is the value on the first page', [12, 45, 78])
     }
@@ -1440,18 +1431,18 @@ struct Index {
 import { router } from '@kit.ArkUI';
 
 class innerParams {
-  array:number[]
+  array: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.array = tuple
   }
 }
 
 class routerParams {
-  text:string
-  data:innerParams
+  text: string
+  data: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.text = str
     this.data = new innerParams(tuple)
   }
@@ -1509,18 +1500,18 @@ This API is deprecated since API version 9. You are advised to use [pushUrl<sup>
 
 ```ts
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -1528,7 +1519,7 @@ class routerParams {
 
 router.push({
   url: 'pages/routerpage2',
-  params: new routerParams('message' ,[123,456,789])
+  params: new routerParams('message', [123, 456, 789])
 });
 ```
 
@@ -1552,9 +1543,9 @@ This API is deprecated since API version 9. You are advised to use [replaceUrl<s
 
 ```ts
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }

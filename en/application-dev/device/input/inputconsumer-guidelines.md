@@ -26,7 +26,9 @@ The following table lists the common APIs provided by the inputConsumer module. 
 
 ## How to Develop
 
-When an application that uses specific combination keys is started, call [on](../../reference/apis-input-kit/js-apis-inputconsumer-sys.md#inputconsumeron) to subscribe to combination key events. When the application is stopped, call [off](../../reference/apis-input-kit/js-apis-inputconsumer-sys.md#inputconsumeroff) to unsubscribe from combination key events.
+When an application that uses specific combination keys is started, [on](../../reference/apis-input-kit/js-apis-inputconsumer-sys.md#inputconsumeron) is called to subscribe to combination key events.
+
+When the application is stopped, [off](../../reference/apis-input-kit/js-apis-inputconsumer-sys.md#inputconsumeroff) is called to unsubscribe from combination key events.
 
 ```js
 let leftAltKey = 2045;

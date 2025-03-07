@@ -24,7 +24,7 @@
 | [SetDisplayModeAsync](#setdisplaymodeasync) ([in] unsigned int devId, [in] unsigned int modeId, [in] [IModeCallback](interface_i_mode_callback_v11.md) cb) | 设置显示设备的显示模式。 | 
 | [GetDisplayVBlankPeriod](#getdisplayvblankperiod) ([in] unsigned int devId, [out] unsigned long period) | 获取当前 vblank 周期。 | 
 | [SetLayerPerFrameParameter](#setlayerperframeparameter) ([in] unsigned int devId, [in] unsigned int layerId, [in] String key, [out] byte[] value) | 设置给定图层的参数，参数更改必须在此调用后完全生效。 | 
-| [GetSupportedLayerPerFrameParameterKey](#getsupportedlayerperframeparameterkey) ([out] String[] keys) | 返回支持的参数键的列表 | 
+| [GetSupportedLayerPerFrameParameterKey](#getsupportedlayerperframeparameterkey) ([out] String[] keys) | 返回支持的参数键的列表。 | 
 | [SetDisplayOverlayResolution](#setdisplayoverlayresolution) ([in] unsigned int devId, [in] unsigned int width, [in] unsigned int height) | 设置给定图层的参数，参数更改必须在此调用后完全生效。 | 
 | [RegRefreshCallback](#regrefreshcallback) ([in] IRefreshCallback cb) | 注册要在发生刷新事件时调用的回调。 | 
 | [GetDisplaySupportedColorGamuts](#getdisplaysupportedcolorgamuts) ([in] unsigned int devId, [out] struct ColorGamut[] gamuts) | 获取显示设备的色域。 | 
@@ -151,7 +151,7 @@ IDisplayComposer::GetSupportedLayerPerFrameParameterKey ([out] String[] keys)
 **描述**
 
 
-返回支持的参数键的列表
+返回支持的参数键的列表。
 
 **起始版本：** 4.1
 
@@ -266,8 +266,8 @@ IDisplayComposer::SetDisplayOverlayResolution ([in] unsigned int devId, [in] uns
 | 名称 | 描述 | 
 | -------- | -------- |
 | devId | 指示显示设备的 ID。 | 
-| width | 指示显示设备的像素宽度 | 
-| height | 指示显示设备的像素高度 | 
+| width | 指示显示设备的像素宽度。 | 
+| height | 指示显示设备的像素高度。 | 
 
 **返回：**
 

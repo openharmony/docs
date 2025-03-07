@@ -97,7 +97,7 @@
 | localY | number | 相对于当前组件元素原始区域左上角的y轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | displayX<sup>12+</sup> | number | 相对于屏幕左上角的x轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | displayY<sup>12+</sup> | number | 相对于屏幕左上角的y轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| hand<sup>16+</sup> | [InteractionHand](#interactionhand枚举说明16) | 表示事件是由左手点击还是右手点击触发。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| hand<sup>15+</sup> | [InteractionHand](#interactionhand枚举说明15) | 表示事件是由左手点击还是右手点击触发。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## SourceTool枚举说明<sup>9+</sup>
 
@@ -110,7 +110,7 @@
 | Touchpad<sup>12+</sup> | 触控板输入。触控板单指输入被视为鼠标输入操作。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | Joystick<sup>12+</sup> | 手柄输入。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
-## InteractionHand枚举说明<sup>16+</sup>
+## InteractionHand枚举说明<sup>15+</sup>
 
 定义事件是由左手点击还是右手点击触发。
 

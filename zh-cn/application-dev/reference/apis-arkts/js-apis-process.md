@@ -130,7 +130,7 @@ getPastCpuTime(): number
 **示例：**
 
 ```js
-let result = process.getPastCpuTime() ;
+let result = process.getPastCpuTime();
 ```
 
 
@@ -202,8 +202,8 @@ kill(signal: number, pid: number): boolean
 **示例：**
 
 ```js
-let pres = process.pid
-let result = process.kill(28, pres)
+let pres = process.pid;
+let result = process.kill(28, pres);
 ```
 
 
@@ -261,7 +261,7 @@ getUidForName(v: string): number
 **示例：**
 
 ```js
-let pres = process.getUidForName("tool")
+let pres = process.getUidForName("tool");
 ```
 
 
@@ -355,8 +355,8 @@ getSystemConfig(name: number): number
 **示例：**
 
 ```js
-let _SC_ARG_MAX = 0
-let pres = process.getSystemConfig(_SC_ARG_MAX)
+let _SC_ARG_MAX = 0;
+let pres = process.getSystemConfig(_SC_ARG_MAX);
 ```
 
 
@@ -387,7 +387,7 @@ getEnvironmentVar(name: string): string
 **示例：**
 
 ```js
-let pres = process.getEnvironmentVar("PATH")
+let pres = process.getEnvironmentVar("PATH");
 ```
 
 

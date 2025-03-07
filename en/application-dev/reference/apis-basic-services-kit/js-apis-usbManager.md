@@ -113,7 +113,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 14400001 | Permission denied. Call requestRight to get the permission first. |
+| 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first.|
 
 **Example**
 
@@ -263,7 +263,9 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 
 Claims a USB interface.
 
-Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and USB interfaces, call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission, and call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
+1. Call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and USB interfaces.
+2. Call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission.
+3. Call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -273,7 +275,7 @@ Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtai
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
 | iface | [USBInterface](#usbinterface) | Yes| USB interface. You can use **getDevices** to obtain device information and identify the USB interface based on its ID.|
-| force | boolean | No| Whether to forcibly claim the USB interface. Whether to forcibly claim a USB interface. The default value is **false**, which means not to forcibly claim a USB interface. You can set the value as required.|
+| force | boolean | No| Whether to forcibly claim a USB interface. The default value is **false**, which means not to forcibly claim a USB interface. You can set the value as required.|
 
 **Error codes**
 
@@ -359,7 +361,9 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 
 Sets the device configuration.
 
-Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and device configuration, call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission, and call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
+1. Call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and device configuration.
+2. Call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission.
+3. Call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -554,7 +558,7 @@ Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtai
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe. You need to call **connectDevice** to obtain its value.|
 | controlparam | [USBControlParams](#usbcontrolparamsdeprecated) | Yes| Control transfer parameters. Set the parameters as required. For details, see the USB protocol.|
-| timeout | number | No| Timeout period, in ms. This parameter is optional. The default value is **0**. You can set this parameter as required.|
+| timeout | number | No| (Optional) Timeout duration, in ms. The default value is **0**. You can set this parameter as required.|
 
 **Error codes**
 
@@ -619,7 +623,7 @@ Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtai
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device.|
 | requestparam | [USBDeviceRequestParams](#usbdevicerequestparams12) | Yes| Control transfer parameters. Set the parameters as required. For details, see the USB protocol.|
-| timeout | number | No| Timeout duration in ms. This parameter is optional. The default value is **0**, indicating no timeout.|
+| timeout | number | No| (Optional) Timeout duration, in ms. The default value is **0**, indicating no timeout.|
 
 **Error codes**
 
@@ -627,7 +631,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types. |
 
 **Return value**
 
@@ -675,7 +679,15 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 Performs bulk transfer.
 
-Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and endpoints, call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission, call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter, and call **usb.bulkTransfer** to claim a USB interface.
+1. Call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and endpoints.
+2. Call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission.
+3. Call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
+4. Obtain [usbManager.claimInterface](#usbmanagerclaiminterface).
+5. Call **usbManager.bulkTransfer** to claim a USB interface.
+
+> **NOTE**
+>
+> The total amount of data (including **pipe**, **endpoint**, **buffer**, and **timeout**) transferred in bulk must be less than 200 KB.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -686,7 +698,7 @@ Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtai
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe. You need to call **connectDevice** to obtain its value.|
 | endpoint | [USBEndpoint](#usbendpoint) | Yes| USB endpoint, which is used to determine the USB interface for data transfer. You need to call **getDevices** to obtain the device information list and endpoint. Wherein, **address** is used to determine the endpoint address, **direction** is used to determine the endpoint direction, and **interfaceId** is used to determine the USB interface to which the endpoint belongs. Other parameters are passed transparently.|
 | buffer | Uint8Array | Yes| Buffer used to write or read data.|
-| timeout | number | No| Timeout period, in ms. This parameter is optional. The default value is **0**. You can set this parameter as required.|
+| timeout | number | No| (Optional) Timeout duration, in ms. The default value is **0**. You can set this parameter as required.|
 
 **Error codes**
 
@@ -706,7 +718,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 > **NOTE**
 >
-> The following sample code is only a basic process for calling the **bulkTransfer** API. In actual calling, you must comply with the device-related protocols to ensure correct data transmission and device compatibility.
+> The following sample code is only a basic process for calling the **bulkTransfer** API. In actual calling, you must comply with the device-related protocols to ensure correct data transfer and device compatibility.
 
 ```ts
 // Call usbManager.getDevices to obtain a data set. Then, obtain a USB device and its access permission.
@@ -731,6 +743,178 @@ for (let i = 0; i < device.configs[0].interfaces.length; i++) {
       console.log(`bulkTransfer = ${ret}`);
     });
   }
+}
+```
+
+## usbManager.usbSubmitTransfer<sup>16+</sup>
+
+usbSubmitTransfer(transfer: USBDataTransferParams): void
+
+Requests a USB data transfer.
+
+This API uses an asynchronous callback to return the result.
+
+1. Call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and endpoints.
+2. Call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission.
+3. Call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
+4. Obtain [usbManager.claimInterface](#usbmanagerclaiminterface).
+5. Call usbManager.usbSubmitTransfer to request a data transfer.
+
+**System capability**: SystemCapability.USB.USBManager
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| transfer | [UsbDataTransferParams](#usbdatatransferparams16) | Yes| As a USB data transfer interface, it is required for a client to initiate a transfer request.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes:Mandatory parameters are left unspecified; Incorrect parameter types. |
+| 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
+| 14400007 | Resource busy. |
+| 14400008 | No such device (it may have been disconnected). |
+| 14400009 | Insufficient memory. |
+| 14400012 | Transmission I/O error. |
+
+**Example**
+
+> **NOTE**
+>
+> The following sample code is only a basic process for calling the **usbSubmitTransfer** API. In actual calling, you must comply with the device-related protocols to ensure correct data transfer and device compatibility.
+
+```ts
+// Call usbManager.getDevices to obtain a data set. Then, obtain a USB device and its access permission.
+// Pass the obtained USB device as a parameter to usbManager.connectDevice. Then, call usbManager.connectDevice to connect the USB device.
+// Call usbManager.claimInterface to claim a USB interface. After that, call usbManager.bulkTransfer to start bulk transfer.
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+  return;
+}
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
+// Obtain the endpoint address.
+let endpoint = device.configs[0].interfaces[0]?.endpoints.find((value) => {
+  return value.direction === 0 && value.type === 2
+})
+// Obtain the first ID of the device.
+let ret: number = usbManager.claimInterface(devicepipe, device.configs[0].interfaces[0], true);
+
+const transferParams = {
+  devPipe: devicepipe,
+  flags: 0,
+  endpoint: 1,
+  type: 2,
+  timeout: 2000,
+  length: 10, 
+  callback: () => {},
+  userData: new Uint8Array(10),
+  buffer: new Uint8Array(10),
+  isoPacketCount: 0,
+};
+try {
+  transferParams.endpoint=endpoint?.address as number;
+  transferParams.callback=(err, callBackData: usbManager.SubmitTransferCallback)=>{
+    console.info('callBackData =' +JSON.stringify(callBackData));
+  }
+  usbManager.usbSubmitTransfer(transferParams); 
+  console.info('USB transfer request submitted.');
+} catch (error) {
+  console.error('USB transfer failed:', error);
+}
+```
+
+
+## usbManager.usbCancelTransfer<sup>16+</sup>
+
+usbCancelTransfer(transfer: USBDataTransferParams): void;
+
+Cancels an asynchronous USB data transfer request.
+
+1. Call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and endpoints.
+2. Call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission.
+3. Call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter.
+4. Obtain [usbManager.claimInterface](#usbmanagerclaiminterface).
+5. Call **usbManager.usbCancelTransfer** to cancel the request.
+
+**System capability**: SystemCapability.USB.USBManager
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| transfer | [UsbDataTransferParams](#usbdatatransferparams16) | Yes| Only **USBDevicePipe** and **endpoint** are required for canceling the transfer.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes:Mandatory parameters are left unspecified; Incorrect parameter types. |
+| 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
+| 14400008 | No such device (it may have been disconnected). |
+| 14400010 | Other USB error. Possible causes:<br>1.Unrecognized discard error code. |
+| 14400011 | The transfer is not in progress, or is already complete or cancelled.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| &lt;void&gt; | None.|
+
+**Example**
+
+> **NOTE**
+>
+> The following sample code is only a basic process for calling the **usbCancelTransfer** API. In actual calling, you must comply with the device-related protocols to ensure correct data transfer and device compatibility.
+
+```ts
+// Call usbManager.getDevices to obtain a data set. Then, obtain a USB device and its access permission.
+// Pass the obtained USB device as a parameter to usbManager.connectDevice. Then, call usbManager.connectDevice to connect the USB device.
+// Call usbManager.claimInterface to claim a USB interface. After that, call usbManager.bulkTransfer to start bulk transfer.
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+  return;
+}
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
+// Obtain the endpoint address.
+let endpoint = device.configs[0].interfaces[0]?.endpoints.find((value) => {
+  return value.direction === 0 && value.type === 2
+})
+// Obtain the first ID of the device.
+let ret: number = usbManager.claimInterface(devicepipe, device.configs[0].interfaces[0], true);
+const transferParams = {
+  devPipe: devicepipe,
+  flags: 0,
+  endpoint: 1,
+  type: 2,
+  timeout: 2000,
+  length: 10, 
+  callback: () => {},
+  userData: new Uint8Array(10),
+  buffer: new Uint8Array(10),
+  isoPacketCount: 0,
+};
+try {
+  transferParams.endpoint=endpoint?.address as number;
+  transferParams.callback=(err, callBackData: usbManager.SubmitTransferCallback)=>{
+    console.info('callBackData =' +JSON.stringify(callBackData));
+  }
+  usbManager.usbSubmitTransfer(transferParams);
+  usbManager.UsbCancelTransfer(transferParams);
+  console.info('USB transfer request submitted.');
+} catch (error) {
+  console.error('USB transfer failed:', error);
 }
 ```
 
@@ -863,7 +1047,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flag = await usbManager.requestAccessoryRight(accList[0])
+  let flag = usbManager.requestAccessoryRight(accList[0])
   hilog.info(0, 'testTag ui', `requestAccessoryRight success, ret:${flag}`)
 } catch (error) {
   hilog.info(0, 'testTag ui', `requestAccessoryRight error ${error.code}, message is ${error.message}`)
@@ -903,7 +1087,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flag = await usbManager.requestAccessoryRight(accList[0])
+  let flag = usbManager.requestAccessoryRight(accList[0])
   usbManager.cancelAccessoryRight(accList[0])
   hilog.info(0, 'testTag ui', `cancelAccessoryRight success`)
 } catch (error) {
@@ -986,7 +1170,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flag = await usbManager.requestAccessoryRight(accList[0])
+  let flag = usbManager.requestAccessoryRight(accList[0])
   let handle = usbManager.openAccessory(accList[0])
   hilog.info(0, 'testTag ui', `openAccessory success`)
 } catch (error) {
@@ -1008,7 +1192,7 @@ You need to call [usbManager.openAccessory](#usbmanageropenaccessory14) to obtai
 
 | Name         | Type              | Mandatory| Description                                  |
 | --------------- | ------------------ | ---- | -------------------------------------- |
-| accessoryHandle | [USBAccessoryHandle](#usbaccessoryhandle14) | Yes  | USB accessory handle.|
+| accessoryHandle | [USBAccessoryHandle](#usbaccessoryhandle14) | Yes  | USB accessory handle, obtained through [openAccessory](#usbmanageropenaccessory14).|
 
 **Error codes**
 
@@ -1025,7 +1209,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flag = await usbManager.requestAccessoryRight(accList[0])
+  let flag = usbManager.requestAccessoryRight(accList[0])
   let handle = usbManager.openAccessory(accList[0])
   usbManager.closeAccessory(handle)
   hilog.info(0, 'testTag ui', `closeAccessory success`)
@@ -1209,3 +1393,88 @@ USB accessory handle.
 | Name       | Type  | Mandatory| Description                                     |
 | ----------- | ------ | ---- | ----------------------------------------- |
 | accessoryFd | number | Yes  | Accessory file descriptor. A valid **accessoryFd** is a positive integer.|
+
+## UsbDataTransferParams<sup>16+</sup>
+
+As a USB data transfer interface, it is required for a client to initiate a transfer request.
+
+**System capability**: SystemCapability.USB.USBManager
+
+| Name        | Type  | Mandatory   |Description   |
+| ---------- | ------ | ----- |----- |
+| pipe | [UsbDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device.|
+| flags | [UsbTransferFlags](#usbtransferflags16) |Yes| USB transfer flag.|
+| endpoint | number | Yes| Endpoint address, which is a positive integer.|
+| type | [UsbEndpointTransferType](#usbendpointtransfertype16) |Yes| Transfer type.|
+| timeout | number | Yes| Timeout duration, in ms.|
+| length | number |Yes| Length of the data buffer, in bytes. The value must be a non-negative number (expected length).|
+| callback | AsyncCallback<[SubmitTransferCallback](#submittransfercallback16)> |Yes| Information returned by the callback.|
+| userData | Uint8Array | No| User data.|
+| buffer | Uint8Array | Yes| Buffer, which is used to store data for read or write requests.|
+| isoPacketCount | number | Yes| Number of data packets during real-time transfer, used only for I/Os with real-time transfer endpoints. The value must be a non-negative number.|
+
+## UsbTransferFlags<sup>16+</sup>
+
+Enumerates USB transfer flags.
+
+**System capability**: SystemCapability.USB.USBManager
+
+| Name                        | Value  | Description  |
+| ---------------------------- | ---- | ------ |
+| USB_TRANSFER_SHORT_NOT_OK    | 0    | Reports short frames as errors.|
+| USB_TRANSFER_FREE_BUFFER | 1    | Automatically releases the transfer buffer.|
+| USB_TRANSFER_FREE_TRANSFER  | 2    | Automatically transfers after the callback is complete.|
+| USB_TRANSFER_ADD_ZERO_PACKET     | 3    | Adds an additional data packet to the transfer.|
+
+## UsbEndpointTransferType<sup>16+</sup>
+
+Enumerates USB transfer types.
+
+**System capability**: SystemCapability.USB.USBManager
+
+| Name                        | Value  | Description  |
+| ---------------------------- | ---- | ------ |
+| TRANSFER_TYPE_ISOCHRONOUS | 1    | Real-time transfer.|
+| TRANSFER_TYPE_BULK  | 2    | Bulk transfer.|
+| TRANSFER_TYPE_INTERRUPT     | 3    | Interrupt transfer.|
+
+## SubmitTransferCallback<sup>16+</sup>
+
+Transfers USB data packets in an asynchronous manner.
+
+**System capability**: SystemCapability.USB.USBManager
+
+| Name        | Type| Description   |
+| ---------- | ------ | ----- |
+| actualLength | number | Actual length of the read or written data, in bytes.|
+| status | [UsbTransferStatus](#usbtransferstatus16) | Status after reading or writing is complete.|
+| isoPacketDescs | Array<Readonly<[UsbIsoPacketDescriptor](#usbisopacketdescriptor16)>> | Packet information transferred in real time.|
+
+## UsbTransferStatus<sup>16+</sup>
+
+Enumerates the statuses returned by **libusb** through callback after the actual processing is complete.
+
+**System capability**: SystemCapability.USB.USBManager
+
+| Name                        | Value  | Description  |
+| ---------------------------- | ---- | ------ |
+| TRANSFER_COMPLETED    | 0    | Transfer completed.|
+| TRANSFER_ERROR | 1    | Transfer failed.|
+| TRANSFER_TIMED_OUT  | 2    | Transfer timed out.|
+| TRANSFER_CANCELLED     | 3    |Transfer canceled.|
+| TRANSFER_STALL  | 4    | Transfer stalled (at bulk/interrupt endpoint).|
+| TRANSFER_NO_DEVICE     | 5    | Device disconnected.|
+| TRANSFER_OVERFLOW     | 6    | Data overflow.|
+
+
+## UsbIsoPacketDescriptor<sup>16+</sup>
+
+Describes packet information returned in real time by the transfer callback.
+
+**System capability**: SystemCapability.USB.USBManager
+
+| Name        | Type| Description   |
+| ---------- | ------ | ----- |
+| length | number | Expected length of the read or written data, in bytes.|
+| actualLength | number| Actual length of the read or written data, in bytes.|
+| status | [UsbTransferStatus](#usbtransferstatus16) | Status returned by callback.|

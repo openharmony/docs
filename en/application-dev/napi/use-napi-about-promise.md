@@ -30,7 +30,7 @@ The following table lists the APIs for implementing asynchronous operations usin
 
 ## Example
 
-If you are just starting out with Node-API, see [Node-API Development Process](use-napi-process.md). The following demonstrates only the C++ and ArkTS code related to promises.
+If you are just starting out with Node-API, see [Node-API Development Process](use-napi-process.md). The following demonstrates only the C++ and ArkTS code related to promise development.
 
 ### napi_is_promise
 
@@ -110,7 +110,7 @@ napi_value NapiPromiseDemo(napi_env env, napi_callback_info)
 
 ### napi_resolve_deferred & napi_reject_deferred
 
-Call **napi_resolve_deferred** to change the promise state from **pending** to **fulfilled**, and use **napi_reject_deferred** to change the promise state from **pending** to **rejected**.
+Call **napi_resolve_deferred** to change the promise state from **pending** to **fulfilled**, and call **napi_reject_deferred** to change the promise state from **pending** to **rejected**.
 
 To ensure execution of microtasks, the ArkTS runtime will trigger a microtask execution when fulfilling a promise using Node-API.
 

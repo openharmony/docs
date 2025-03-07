@@ -521,7 +521,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 ## SubscribeCallbackData
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
 
@@ -536,7 +536,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## EnabledNotificationCallbackData<sup>8+</sup>
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
 
@@ -549,7 +549,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## BadgeNumberCallbackData<sup>10+</sup>
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
 
@@ -564,7 +564,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## BadgeEnabledChangedCallback<sup>12+</sup>
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
 

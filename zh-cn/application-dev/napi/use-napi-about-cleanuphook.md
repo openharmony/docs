@@ -50,7 +50,7 @@ typedef struct {
     size_t size;
 } Memory;
 // 外部缓冲区清理回调函数，用于释放分配的内存
-void ExternalFinalize(napi_env env, void *finalize_data, void *finalize_hint) 
+void ExternalFinalize(napi_env env, void *finalize_data, void *finalize_hint)
 {
     Memory *wrapper = (Memory *)finalize_hint;
     free(wrapper->data);
@@ -64,12 +64,12 @@ static void Cleanup(void *arg)
     OH_LOG_INFO(LOG_APP, "Node-API napi_add_env_cleanup_hook cleanuped: %{public}d", *(int *)(arg));
 }
 // 创建外部缓冲区并注册环境清理钩子函数
-static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info info) 
+static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info info)
 {
     // 分配内存并复制字符串数据到内存中
     std::string str("Hello from Node-API!");
     Memory *wrapper = (Memory *)malloc(sizeof(Memory));
-    wrapper->data = (char *)malloc(str.size());
+    wrapper->data = static_cast<char *>(malloc(str.size()));
     strcpy(wrapper->data, str.c_str());
     wrapper->size = str.size();
     // 创建外部缓冲区对象，并指定清理回调函数

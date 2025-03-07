@@ -18,13 +18,13 @@ UISwipeView继承UIViewGroup，除提供容器类组件Add、Remove、Insert等�
 
 | 方法 | 功能 | 
 | -------- | -------- |
-| void&nbsp;SetCurrentPage(uint16_t&nbsp;index); | 设置当前页 | 
+| void&nbsp;SetCurrentPage(uint16_t&nbsp;index) | 设置当前页 | 
 | uint16_t&nbsp;GetCurrentPage() | 获取当前页 | 
 | UIView\*&nbsp;GetCurrentView()&nbsp;const | 获取当前页组件 | 
 | void&nbsp;SetOnSwipeListener(OnSwipeListener&amp;&nbsp;onSwipeListener) | 设置滑动回调类 | 
-| void&nbsp;SetAnimatorTime(uint16_t&nbsp;time); | 设置动画事件 | 
+| void&nbsp;SetAnimatorTime(uint16_t&nbsp;time) | 设置动画事件 | 
 | void&nbsp;SetLoopState(bool&nbsp;loop) | 设置是否循环 | 
-| UIView\*&nbsp;GetViewByIndex(uint16_t&nbsp;index); | 通过index获取view | 
+| UIView\*&nbsp;GetViewByIndex(uint16_t&nbsp;index)| 通过index获取view | 
 
 
 ### 开发步骤（水平滑动，不可循环）

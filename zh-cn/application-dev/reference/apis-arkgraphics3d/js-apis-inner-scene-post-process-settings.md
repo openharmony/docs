@@ -21,7 +21,7 @@ import { ToneMappingType, ToneMappingSettings, PostProcessSettings } from '@kit.
 | FILMIC | 2 | FILMIC类型。 |
 
 ## ToneMappingSettings
-色调映射设置实例。
+色调映射设置接口。
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
@@ -31,6 +31,19 @@ import { ToneMappingType, ToneMappingSettings, PostProcessSettings } from '@kit.
 | type | [ToneMappingType](#tonemappingtype) | 否 | 是 | 色调映射类型，默认值为undefined。 |
 | exposure | number | 否 | 是 | 曝光度，取值大于0，默认值为undefined。 |
 
+## BloomSettings<sup>16+</sup>
+泛光设置接口。
+### 属性
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| thresholdHard | number | 否 | 是 | 硬阈值，取值范围是非负数，默认值为1.0。 |
+| thresholdSoft | number | 否 | 是 | 软阈值，取值范围是非负数，默认值为2.0。 |
+| scaleFactor | number | 否 | 是 | 缩放因子，取值范围大于0，默认值为1.0。 |
+| scatter | number | 否 | 是 | 扩散量，取值范围大于0，默认值为1.0。 |
+
 ## PostProcessSettings
 后处理设置。
 
@@ -38,4 +51,5 @@ import { ToneMappingType, ToneMappingSettings, PostProcessSettings } from '@kit.
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| toneMapping | [ToneMappingSettings](#tonemappingsettings) | 否 | 是 | 色调映射设置，默认值为undefined。 |
+| toneMapping | [ToneMappingSettings](#tonemappingsettings) | 否 | 是 | 色调映射，默认值为undefined。 |
+| bloom<sup>16+</sup> | [BloomSettings](#bloomsettings16) | 否 | 是 | 泛光，默认值为undefined。 |
