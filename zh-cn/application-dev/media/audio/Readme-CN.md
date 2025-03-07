@@ -18,6 +18,7 @@
   - [播放音量管理](volume-management.md)
   - [音效管理](audio-effect-management.md)
   <!--Del-->
+  - [空间音频管理](audio-spatialization-management2.md)
   - [空间音频管理(仅对系统应用开放)](audio-spatialization-management.md)
   <!--DelEnd-->
   - [音频播放流管理](audio-playback-stream-management.md)
