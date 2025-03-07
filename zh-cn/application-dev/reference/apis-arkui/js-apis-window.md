@@ -2555,7 +2555,7 @@ try {
 
 setWindowDelayRaiseOnDrag(isEnabled: boolean): void;
 
-设置窗口是否使能延迟抬升，仅2in1设备的主窗和子窗可用。
+设置窗口是否使能延迟抬升。使能延迟抬升后，在跨窗拖拽场景，可拖拽组件所在窗口在鼠标左键按下时不会立即抬升，直到鼠标左键抬起，仅2in1设备的主窗和子窗可用。从API version 18开始。
 
 **系统能力**：SystemCapability.Window.SessionManager
 
