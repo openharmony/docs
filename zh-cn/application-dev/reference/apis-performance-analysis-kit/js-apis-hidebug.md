@@ -211,7 +211,7 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | the parameter check failed,Possible causes:1.the parameter type error 2.the args parameter is not string array. |
+| 401 | the parameter check failed,Possible causes:1.the parameter type error 2.the args parameter is not string array  |
 | 11400101 | ServiceId invalid. The system ability does not exist.                                           |
 
 **示例：**
@@ -265,7 +265,7 @@ startJsCpuProfiling(filename : string) : void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | the parameter check failed, Parameter type error. |
+| 401 | the parameter check failed,Parameter type error                        |
 
 **示例：**
 
@@ -325,7 +325,7 @@ dumpJsHeapData(filename : string) : void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | the parameter check failed, Parameter type error. |
+| 401 | the parameter check failed, Parameter type error                      |
 
 **示例：**
 
@@ -509,10 +509,10 @@ trace单位流量实测方法：limitSize设置为最大值500M，调用startApp
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | Invalid argument, Possible causes:1.The limit parameter is too small 2.The parameter is not within the enumeration type 3.The parameter type error or parameter order error. |
-| 11400102 | Capture trace already enabled. |
-| 11400103 | No write permission on the file. |
-| 11400104 | Abnormal trace status. |
+| 401 | Invalid argument, Possible causes:1.The limit parameter is too small 2.The parameter is not within the enumeration type 3.The parameter type error or parameter order error|
+| 11400102 | Capture trace already enabled.                                         |
+| 11400103 | No write permission on the file.                                |
+| 11400104 | Abnormal trace status.                                 |
 
 **示例：**
 
@@ -549,10 +549,10 @@ stopAppTraceCapture() : void
 
 以下错误码的详细介绍请参见[Hidebug错误码](errorcode-hiviewdfx-hidebug.md)。
 
-| 错误码ID | 错误信息                                 |
-| ------- |--------------------------------------|
-| 11400104 | The status of the trace is abnormal. |
-| 11400105 | No capture trace running.            |
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------------------------- |
+| 11400104 | The status of the trace is abnormal                                |
+| 11400105 |   No capture trace running                                       |
 
 **示例：**
 
@@ -657,8 +657,8 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | Invalid argument, Possible causes:1.The limit parameter is too small 2.The parameter is not in the specified type 3.The parameter type error or parameter order error. |
-| 11400104 | Set limit failed due to remote exception. |
+| 401 | Invalid argument, Possible causes:1.The limit parameter is too small 2.The parameter is not in the specified type 3.The parameter type error or parameter order error  |
+| 11400104 | Set limit failed due to remote exception |
 
 **示例：**
 
