@@ -223,7 +223,7 @@
 应用需要配置签名文件才能在设备上运行，并且扩展外设管理客户端开发，需要配置扩展外设的权限：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER及ohos.permission.ACCESS_DDK_DRIVERS。
 - ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
-在module.json5配置文件的requestPermissions标签中[声明权限](../../security/AccessToken/declare-permissions.md)后，即可获得授权。
+  在module.json5配置文件的requestPermissions标签中[声明权限](../../security/AccessToken/declare-permissions.md)后，即可获得授权。
 
 - ohos.permission.ACCESS_DDK_DRIVERS
 
