@@ -2835,7 +2835,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.setColorMode<sup>16+</sup>
+## UIAbilityContext.setColorMode<sup>18+</sup>
 
 setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
@@ -2845,7 +2845,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 > - 调用该接口后会创建新的资源管理器对象，如果此前有缓存资源管理器，需要进行更新。
 > - 颜色模式生效的优先级：UIAbility的颜色模式 > 应用的颜色模式（[ApplicationContext.setColorMode](js-apis-inner-application-applicationContext.md)）> 系统的颜色模式。
 
-**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
