@@ -25,7 +25,7 @@ Camera模块HDI接口使用的数据类型。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[CameraDeviceResourceCost](_camera_device_resource_cost_v13.md) | 相机设备资源开销，用于**ICameraDevice::[GetResourceCost()](interface_i_camera_host.md#getresourcecost)**。 | 
+| struct&nbsp;&nbsp;[CameraDeviceResourceCost](_camera_device_resource_cost_v13.md) | 相机设备资源开销，用于**ICameraDevice::[GetResourceCost()](interface_i_camera_host_v13.md#getresourcecost)**。 | 
 | struct&nbsp;&nbsp;[StreamDescription](_stream_description_v13.md) | 流描述信息，使用于[IVideoProcessSession::Prepare](interface_i_video_process_session_v13.md#prepare)。 | 
 | struct&nbsp;&nbsp;[CaptureEndedInfoExt](_capture_ended_info_ext_v13.md) | 拍照结束信息，使用于[IStreamOperatorCallback::OnCaptureEndedExt](interface_i_stream_operator_callback_v13.md#oncaptureendedext)。 | 
 | struct&nbsp;&nbsp;[ImageBufferInfoExt](_image_buffer_info_ext_v13.md) | 图片流信息，使用于[IImageProcessCallback::OnProcessDoneExt](interface_i_image_process_callback_v13.md#onprocessdoneext)。 | 

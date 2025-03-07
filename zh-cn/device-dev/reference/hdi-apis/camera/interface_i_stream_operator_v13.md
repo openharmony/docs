@@ -38,7 +38,7 @@ IStreamOperator::DisableResult ([in] int streamId, [in] unsigned char[] results)
 
 关闭metadata和其他信息在流上上报开关。
 
-关闭之后，相应的**[OnResult()](interface_i_stream_operator_callback.md#onresult)**不再上报，需[EnableResult](#enableresult)使能之后才上报。
+关闭之后，相应的**[OnResult()](interface_i_stream_operator_callback_v13.md#onresult)**不再上报，需[EnableResult](#enableresult)使能之后才上报。
 
 **起始版本：** 5.0
 
