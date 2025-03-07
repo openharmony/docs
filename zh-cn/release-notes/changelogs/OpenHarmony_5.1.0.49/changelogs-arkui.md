@@ -84,11 +84,11 @@ DatePicker、TextPicker和TimePicker的enabled参数由"false"变为"true"或者
 
 **起始API Level**
 
-接口起始版本为API version 12。此变更从API version 16开始，做版本隔离。
+接口起始版本为API version 12。
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.1.0.49开始。
+从OpenHarmony SDK 5.1.0.49开始，API version 18及以上生效。
 
 **变更的接口/组件**
 

@@ -258,11 +258,11 @@ promptAction.showToast, promptAction.openToast
 
 **起始API Level**
 
-12，变更从API16开始，做版本隔离。
+12
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.1.0.52开始。
+从OpenHarmony SDK 5.1.0.52开始，API version 18及以上生效。
 
 **变更的接口/组件**
 
