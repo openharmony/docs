@@ -42,15 +42,16 @@ boolean, colorOptions?: ProgressButtonColorOptions, progressButtonRadius?: Lengt
 
 下载按钮颜色选项
 
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 属性              | 类型                                     | 必填 | 描述                                                          |
-|-----------------|----------------------------------------|----|-------------------------------------------------------------|
-| progressColor   | [ResourceStr](ts-types.md#resourcestr) | 否  | 进度条颜色。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。  |
-| borderColor     | [ResourceStr](ts-types.md#resourcestr) | 否  | 按钮描边颜色。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| textColor       | [ResourceStr](ts-types.md#resourcestr) | 否  | 按钮文本颜色。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| backgroundColor | [ResourceStr](ts-types.md#resourcestr) | 否  | 按钮背景色。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。  |
+| 属性              | 类型                                     | 必填 | 描述      |
+|-----------------|----------------------------------------|----|---------|
+| progressColor   | [ResourceStr](ts-types.md#resourcestr) | 否  | 进度条颜色。  |
+| borderColor     | [ResourceStr](ts-types.md#resourcestr) | 否  | 按钮描边颜色。 |
+| textColor       | [ResourceStr](ts-types.md#resourcestr) | 否  | 按钮文本颜色。 |
+| backgroundColor | [ResourceStr](ts-types.md#resourcestr) | 否  | 按钮背景色。  |
 
 ## 事件
 不支持[通用事件](ts-component-general-events.md)。
