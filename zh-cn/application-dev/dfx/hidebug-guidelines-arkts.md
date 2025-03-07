@@ -41,7 +41,7 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
 
 2. 工程配置界面中，**Model**选择“Stage”。
 
-3. 在**Project**窗口单击entry &gt; src &gt; main &gt; ets &gt; pages，打开工程中的Index.ets文件，
+3. 在**Project**窗口单击entry &gt; src &gt; main &gt; ets &gt; pages，打开工程中的Index.ets文件。
 
    新增一个方法调用hidebug接口，本文以hidebug.getSystemCpuUsage()为例，其他接口可参考[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)。
 
@@ -83,6 +83,7 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
 4. 在真机上运行该工程，单击应用/服务界面上的“Hello World”文本。
 
 5. 在DevEco Studio的底部，切换到“Log”窗口，设置日志的过滤条件为“testTag”。
+
    此时窗口将显示通过hidebug.getSystemCpuUsage()接口获取的CPU使用率的相关日志。
    ```Text
 	08-20 11:06:01.891   1948-1948     A03d00/JSAPP                    com.examp...lication  I     getSystemCpuUsage: 0.4722222222222222

@@ -10,8 +10,7 @@ HiChecker可以作为应用开发阶段使用的检测工具，用于检测代�
 
 ## 实现原理
 
-1. 应用程序通过HiChecker函数接口控制规则的增删查改。
-
+1. 应用程序通过HiChecker函数接口控制规则的增删查改。\n
 2. 子系统有耗时调用或者Ability资源泄露时通过HiChecker通知有对应规则的事件发生，HiChecker检测条件满足时做对应的操作。
 
 ## 约束与限制
@@ -25,9 +24,9 @@ HiChecker可以作为应用开发阶段使用的检测工具，用于检测代�
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| hichecker.addCheckRule(rule: bigint) | 需要添加的规则 |
-| hichecker.removeCheckRule(rule: bigint) | 需要删除的规则 |
-| hichecker.containsCheckRule(rule: bigint) | 需要查询的规则 |
+| hichecker.addCheckRule(rule: bigint) | 需要添加的规则。 |
+| hichecker.removeCheckRule(rule: bigint) | 需要删除的规则。 |
+| hichecker.containsCheckRule(rule: bigint) | 需要查询的规则。 |
 
 ## 开发步骤
 
@@ -95,7 +94,7 @@ HiChecker可以作为应用开发阶段使用的检测工具，用于检测代�
    hilog|grep -i hichecker
    ```
 
-   安装hap后运行，shell窗口有如下调用栈信息说明检测成功（调用栈为触发检测规则时的调用栈）
+   安装hap后运行，shell窗口有如下调用栈信息说明检测成功（调用栈为触发检测规则时的调用栈）。
 
    ```shell
    08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: StackTrace:
