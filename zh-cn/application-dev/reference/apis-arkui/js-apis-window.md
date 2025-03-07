@@ -2553,9 +2553,11 @@ try {
 
 ### setWindowDelayRaiseOnDrag<sup>18+</sup>
 
-setWindowDelayRaiseOnDrag(isEnabled: boolean): void;
+setWindowDelayRaiseOnDrag(isEnabled: boolean): void
 
-设置窗口是否使能延迟抬升。使能延迟抬升后，在跨窗拖拽场景，可拖拽组件所在窗口在鼠标左键按下时不会立即抬升，直到鼠标左键抬起，仅2in1设备的主窗和子窗可用。从API version 18开始。
+设置窗口是否使能延迟抬升，仅主窗和子窗可设置。
+使能延迟抬升后，在跨窗拖拽场景，可拖拽组件所在窗口在鼠标左键按下时不会立即抬升，直到鼠标左键抬起。
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **系统能力**：SystemCapability.Window.SessionManager
 
@@ -2580,25 +2582,10 @@ setWindowDelayRaiseOnDrag(isEnabled: boolean): void;
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { window } from '@kit.ArkUI';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
-    if (!windowClass) {
-      console.info('Failed to load the content. Cause: windowClass is null');
-    }
-    try {
-      windowClass.setWindowDelayRaiseOnDrag(true);
-    } catch (exception) {
-      console.error(`Failed to set window delay raise. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
-  }
+try {
+  windowClass.setWindowDelayRaiseOnDrag(true);
+} catch (exception) {
+  console.error(Failed to set window delay raise. Cause code: ${exception.code}, message: ${exception.message});
 }
 ```
 
