@@ -623,4 +623,4 @@ int32_t OH_Usb_GetDevices(struct Usb_DeviceArray *devices)
 - [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
 - [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
 - [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
-- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示入参devices的地址为空指针。
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示参数devices的地址为空指针。
