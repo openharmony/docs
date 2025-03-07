@@ -863,7 +863,6 @@ try {
 }
 ```
 
-
 ## usbManager.usbCancelTransfer<sup>18+</sup>
 
 usbCancelTransfer(transfer: USBDataTransferParams): void;
@@ -1508,7 +1507,6 @@ libusb实际处理完成后通过回调返回的状态码。
 | TRANSFER_STALL  | 4    | 检测到暂停（批量/中断端点）。|
 | TRANSFER_NO_DEVICE     | 5    | 设备已断开。|
 | TRANSFER_OVERFLOW     | 6    | 设备发送的数据比请求的多。|
-
 
 ## UsbIsoPacketDescriptor<sup>18+</sup>
 
