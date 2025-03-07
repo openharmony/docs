@@ -40,7 +40,7 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | [Pasteboard_NotifyType](_pasteboard.md#pasteboard_notifytype) { [NOTIFY_LOCAL_DATA_CHANGE] = 1, [NOTIFY_REMOTE_DATA_CHANGE] = 2 } | 剪贴板的数据变更类型。  |
-| [Pasteboard_FileConflictOptions](_pasteboard.md#pasteboard_fileconflictoptions) { [PASTEBOARD_OVERWRITE] = 0, [PASTEBOARD_SKIP] } | 拷贝文件文件冲突时的选项。 |
+| [Pasteboard_FileConflictOptions](_pasteboard.md#pasteboard_fileconflictoptions) { [PASTEBOARD_OVERWRITE] = 0, [PASTEBOARD_SKIP] = 1 } | 拷贝文件文件冲突时的选项。 |
 | [Pasteboard_ProgressIndicator](_pasteboard.md#pasteboard_progressindicator) { [PASTEBOARD_NONE] = 0, [PASTEBOARD_DEFAULT] = 1 } | 从剪贴板获取数据时的进度条类型。 |
 
 
