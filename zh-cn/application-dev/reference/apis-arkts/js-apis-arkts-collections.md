@@ -11,6 +11,8 @@ ArkTS容器并不是线程安全的，内部使用了fail-fast（快速失败）
 > **说明：**
 >
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 此模块仅支持在ArkTS文件（文件后缀为.ets）中导入使用。
 
 ## 导入模块
 
@@ -157,14 +159,14 @@ let concatArray : collections.ConcatArray<number> = new collections.Array<number
 let slicedArray = concatArray.slice(1, 3); // 返回[2, 3]，原Array保持不变
 ```
 
-## ArrayFromMapFn<sup>16+</sup>
+## ArrayFromMapFn<sup>18+</sup>
 type ArrayFromMapFn<FromElementType, ToElementType> = (value: FromElementType, index: number) => ToElementType
 
 ArkTS Array归约函数类型，被Array类的'from' 接口使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -179,14 +181,14 @@ ArkTS Array归约函数类型，被Array类的'from' 接口使用。
 | ------ | --------------------------- |
 | ToElementType | 归约函数的结果，该结果会作为数组的新元素。 |
 
-## ArrayPredicateFn</a><sup>16+</sup>
+## ArrayPredicateFn</a><sup>18+</sup>
 type ArrayPredicateFn<ElementType, ArrayType> = (value: ElementType, index: number, array: ArrayType) => boolean
 
 ArkTS Array归约函数类型，被Array类的'some'和'every'接口使用，用来判断数组元素是否满足测试条件。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -202,7 +204,7 @@ ArkTS Array归约函数类型，被Array类的'some'和'every'接口使用，用
 | ------ | --------------------------- |
 | boolean | 归约函数的结果，该结果作为判断当前元素是否通过测试条件。 |
 
-## ArrayReduceCallback</a><sup>16+</sup>
+## ArrayReduceCallback</a><sup>18+</sup>
 type ArrayReduceCallback<AccType, ElementType, ArrayType> =
     (previousValue: AccType, currentValue: ElementType, currentIndex: number, array: ArrayType) => AccType
 
@@ -210,7 +212,7 @@ ArkTS Array归约函数类型，被Array类的'reduceRight'接口使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -462,13 +464,13 @@ console.info(newArray.toString());
 // 预期输出： a,b
 ```
 
-### from<sup>16+</sup>
+### from<sup>18+</sup>
 
 static from\<T>(arrayLike: ArrayLike\<T> | Iterable\<T>, mapFn: ArrayFromMapFn\<T, T>): Array\<T>
 
 从一个实现了ArrayLike接口的对象创建一个新的ArkTS Array，并且使用自定义函数处理每个数组元素。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -503,13 +505,13 @@ console.info(newarray.toString());
 // 预期输出： 1, 3, 5
 ```
 
-### from<sup>16+</sup>
+### from<sup>18+</sup>
 
 static from\<U, T>(arrayLike: ArrayLike\<U> | Iterable\<U>, mapFn: ArrayFromMapFn\<U, T>): Array\<T>
 
 从一个实现了ArrayLike接口的对象创建一个新的ArkTS Array，并且使用自定义函数处理每个数组元素，ArrayLike接口对象的元素类型可以数组元素的类型不一样。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -544,13 +546,13 @@ console.info(newarray.toString());
 // 预期输出： 1.0, 2.1, 3.2
 ```
 
-### isArray<sup>16+</sup>
+### isArray<sup>18+</sup>
 
 static isArray\<T>(value: Object | undefined | null): boolean
 
 检查传入的参数是否是一个ArkTS Array。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -583,13 +585,13 @@ console.info(result + '');
 // 预期输出： true
 ```
 
-### of<sup>16+</sup>
+### of<sup>18+</sup>
 
 static of\<T>(...items: T\[]): Array\<T>
 
 通过可变数量的参数创建一个新的ArkTS Array。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -621,12 +623,12 @@ console.info(arr.toString());
 // 预期输出： a, b, c, d
 ```
 
-### copyWithin<sup>16+</sup>
+### copyWithin<sup>18+</sup>
 copyWithin(target: number, start: number, end?: number): Array\<T>
 
 从ArkTS Array指定范围内的元素依次拷贝到目标位置。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -663,13 +665,13 @@ console.info(copied.toString());
 // 预期输出： 1, 2, 3, 2, 3, 6, 7, 8
 ```
 
-### lastIndexOf<sup>16+</sup>
+### lastIndexOf<sup>18+</sup>
 
 lastIndexOf(searchElement: T, fromIndex?: number): number
 
 返回ArkTS Array实例中最后一次出现searchElement的索引，如果对象不包含，则为-1。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -711,12 +713,12 @@ console.info(array.lastIndexOf(9, -2) + '');
 // 预期输出： -1
 ```
 
-### some<sup>16+</sup>
+### some<sup>18+</sup>
 some(predicate: ArrayPredicateFn\<T, Array\<T>>): boolean
 
 测试ArkTS Array是否存在满足指定条件的元素。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -750,13 +752,13 @@ console.info(newArray.some((element: number) => element < 0) + '');
 // 预期输出： true
 ```
 
-### reduceRight<sup>16+</sup>
+### reduceRight<sup>18+</sup>
 
 reduceRight(callbackFn: ArrayReduceCallback\<T, T, Array\<T>>): T
 
 对Array中的每个元素按照从右到左顺序执行回调函数，将其结果作为累加值，并返回最终的结果。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -791,13 +793,13 @@ console.info(reducedValue + '');
 // 预期输出： 15
 ```
 
-### reduceRight<sup>16+</sup>
+### reduceRight<sup>18+</sup>
 
 reduceRight\<U = T>(callbackFn: ArrayReduceCallback\<U, T, Array\<T>>, initialValue: U): U
 
 与 reduceRight方法类似，但它接受一个初始值作为第二个参数，用于在Array从右到左顺序遍历开始前初始化累加器。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -974,13 +976,13 @@ let array = new collections.Array<number>(1, 2, 3);
 let firstElement = array.shift(); // 返回1，Array变为[2, 3]
 ```
 
-### reverse<sup>16+</sup>
+### reverse<sup>18+</sup>
 
 reverse(): Array\<T>
 
 反转ArkTS Array数组中的元素，并返回同一数组的引用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1046,13 +1048,13 @@ let array = new collections.Array<number>(1, 2, 3);
 let newLength = array.unshift(0); // 返回4，Array变为[0, 1, 2, 3]
 ```
 
-### toString<sup>16+</sup>
+### toString<sup>18+</sup>
 
 toString(): string
 
 ArkTS数组转换为字符串。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1837,13 +1839,13 @@ let array = new collections.Array<number>(1, 2, 3, 4, 5);
 let removeArray = array.splice(2); // array内容变为[1, 2]，返回[3, 4, 5]
 ```
 
-### every<sup>16+</sup>
+### every<sup>18+</sup>
 
 every(predicate: ArrayPredicateFn\<T, Array\<T>>): boolean
 
 测试ArkTS Array中的所有元素是否满足指定条件。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1876,13 +1878,13 @@ console.info(newArray.every((element: number) => element > 0) + '');
 // 预期输出：false
 ```
 
-### toLocaleString<sup>16+</sup>
+### toLocaleString<sup>18+</sup>
 
 toLocaleString(): string
 
 根据当前应用的系统地区获取符合当前文化习惯的字符串表示形式，让每个元素调用自己的toLocaleString方法转换为字符串，然后使用逗号将每个元素的结果字符串按照顺序拼接成字符串。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3458,13 +3460,13 @@ let array: collections.Uint32Array = collections.Uint32Array.from(
 // Uint32Array [1, 3, 5]
 ```
 
-### of<sup>16+</sup>
+### of<sup>18+</sup>
 
 static of(...items: number[]): TypedArray
 
 通过可变数量的参数创建一个新的ArkTS TypedArray对象，参数个数可以是0个、1个或者多个。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3496,13 +3498,13 @@ console.info(arr.toString());
 // 预期输出：1,2,3,4
 ```
 
-### toString<sup>16+</sup>
+### toString<sup>18+</sup>
 
 toString(): string
 
 ArkTS TypedArray转换为字符串。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3530,13 +3532,13 @@ console.info(stringArray);
 // 预期输出：1,2,3,4,5
 ```
 
-### toLocaleString<sup>16+</sup>
+### toLocaleString<sup>18+</sup>
 
 toLocaleString(): string
 
 根据当前应用的系统地区获取符合当前文化习惯的数字表示形式，让每个元素调用自己的toLocaleString方法把数字转换为字符串，然后使用逗号将每个元素的结果字符串按照顺序拼接成字符串。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3916,13 +3918,13 @@ array.indexOf(9, 2); // 2
 array.indexOf(9, -2); // 2
 ```
 
-### lastIndexOf<sup>16+</sup>
+### lastIndexOf<sup>18+</sup>
 
 lastIndexOf(searchElement: number, fromIndex?: number): number
 
 返回ArkTS TypedArray实例中最后一次出现searchElement的索引，如果对象不包含，则为-1。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4074,13 +4076,13 @@ let reducedValue: number = array.reduce((accumulator: number, value: number) => 
 // reducedValue == 15
 ```
 
-### reduceRight<sup>16+</sup>
+### reduceRight<sup>18+</sup>
 
 reduceRight(callbackFn: TypedArrayReduceCallback\<number, number, TypedArray>): number
 
 反向遍历ArkTS TypedArray，对ArkTS TypedArray中的每个元素执行归约函数，并返回最终的归约结果。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4153,13 +4155,13 @@ let reducedValue: number = array.reduce((accumulator: number, value: number) => 
 // reducedValue == 16
 ```
 
-### reduceRight<sup>16+</sup>
+### reduceRight<sup>18+</sup>
 
 reduceRight\<U = number>(callbackFn: TypedArrayReduceCallback\<U, number, TypedArray>, initialValue: U): U
 
 反向遍历ArkTS TypedArray，对ArkTS TypedArray中的每个元素执行归约函数，且接收一个初始值作为归约函数首次调用的参数，并返回最终的归约结果。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4789,7 +4791,7 @@ bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 let res = bitVector.pop(); // bitVector: [0, 1, 0, 1]
-console.info("bitVector pop:", res) // 0
+console.info("bitVector pop:", res); // 0
 ```
 
 ### has
@@ -4808,7 +4810,7 @@ has(element: number, fromIndex: number, toIndex: number): boolean
 | --------- | ------ | ---- | ------------------------------------ |
 | element   | number | 是   | 待判断的bit值，0表示0，其余值表示1。 |
 | fromIndex | number | 是   | 范围起始索引，包含本索引值。         |
-| toIndex   | number | 是   | 范围终止索引，包含本索引值。       |
+| toIndex   | number | 是   | 范围终止索引，包含本索引值。当toIndex等于容器的长度时，在API version 18前后接口会有不同的表现，具体可见示例2。       |
 
 **返回值：**
 
@@ -4827,7 +4829,7 @@ has(element: number, fromIndex: number, toIndex: number): boolean
 | 10200011 | The has method cannot be bound.                              |
 | 10200201 | Concurrent modification error.                               |
 
-**示例：**
+**示例1：**
 
 ```ts
 let bitVector: collections.BitVector = new collections.BitVector(0);
@@ -4837,7 +4839,31 @@ bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 let res0: boolean = bitVector.has(0, 1, 4);
-console.info("bitVector has 0:", res0) // true
+console.info("bitVector has 0:", res0); // true
+```
+
+**示例2：**
+
+API version 18之前，针对开发者调用push接口初始化BitVector容器值皆为1的情况，再调用has接口查询容器是否含有0时，若传入的toIndex等于容器的长度时会返回错误的结果。
+
+从API version 18开始，调用collections模块has接口时，当传入的toIndex等于容器的长度时，会触发jscrash从而报错返回异常信息。
+```ts
+let bitVector: collections.BitVector = new collections.BitVector(0);
+
+bitVector.push(1);
+bitVector.push(1);
+bitVector.push(1);
+bitVector.push(1);
+bitVector.push(1); // bitVector: [1, 1, 1, 1, 1]
+
+try {
+  let res: boolean = bitVector.has(0, 0, 5);
+  console.info("res: " + res);
+  // API version 18之前，输出结果为res: true
+} catch (err) {
+  console.error("error message: " + err.message);
+  // API version 18，因为越界发生jscrash，输出结果为error message: The value of "toIndex" is out of range. It must be >= 0 && < 5. Received value is: 5
+}
 ```
 
 ### setBitsByRange
@@ -4963,7 +4989,7 @@ bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 let bitVector2 = bitVector.getBitsByRange(1, 3); // bitVector2: [1, 0]
-console.info("bitVector2 length:", bitVector2.length) // 2
+console.info("bitVector2 length:", bitVector2.length); // 2
 ```
 
 ### resize
@@ -5006,9 +5032,9 @@ bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 bitVector.resize(10); // bitVector: [0, 1, 0, 1, 0, 0, 0, 0, 0, 0]
-console.info("bitVector get bit vector's length:", bitVector.length) // 10
+console.info("bitVector get bit vector's length:", bitVector.length); // 10
 bitVector.resize(3); // bitVector: [0, 1, 0]
-console.info("bitVector get bit vector's length:", bitVector.length) // 3
+console.info("bitVector get bit vector's length:", bitVector.length); // 3
 ```
 
 ### getBitCountByRange
@@ -5056,7 +5082,7 @@ bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 let res: number = bitVector.getBitCountByRange(1, 1, 4);
-console.info("bitVector getBitCountByRange:", res) // 2
+console.info("bitVector getBitCountByRange:", res); // 2
 ```
 
 ### getIndexOf
@@ -5104,7 +5130,7 @@ bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 let res: number = bitVector.getIndexOf(0, 1, 4);
-console.info("bitVector getIndexOf:", res) // 2
+console.info("bitVector getIndexOf:", res); // 2
 ```
 
 ### getLastIndexOf
@@ -5152,7 +5178,7 @@ bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 let res: number = bitVector.getLastIndexOf(0, 1, 4);
-console.info("bitVector getLastIndexOf:", res) // 2
+console.info("bitVector getLastIndexOf:", res); // 2
 ```
 
 ### flipBitByIndex

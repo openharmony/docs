@@ -27,7 +27,7 @@ Pass a task to the ArkTS main thread from an asynchronous thread in a thread-saf
 - Register the module.
 
    ```c++
-    // hello.cpp
+    // napi_init.cpp
     #include "napi/native_api.h"
     #include <string.h>
     #include <stdlib.h>

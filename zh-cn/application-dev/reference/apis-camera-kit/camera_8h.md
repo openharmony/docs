@@ -111,7 +111,7 @@
 | [Camera_SmoothZoomMode](_o_h___camera.md#camera_smoothzoommode-1) { NORMAL = 0 } | 平滑变焦模式的枚举。 | 
 | [Camera_PreconfigType](_o_h___camera.md#camera_preconfigtype-1) {<br/>PRECONFIG_720P = 0,<br/>PRECONFIG_1080P = 1,<br/>PRECONFIG_4K = 2,<br/>PRECONFIG_HIGH_QUALITY = 3 } | 预配置照片分辨率的枚举。 | 
 | [Camera_PreconfigRatio](_o_h___camera.md#camera_preconfigratio-1) {<br/>PRECONFIG_RATIO_1_1 = 0,<br/>PRECONFIG_RATIO_4_3 = 1,<br/>PRECONFIG_RATIO_16_9 = 2 } | 预配置照片比例的枚举。 | 
-<br/>HOST_DEVICE_TYPE_PHONE = 0x0E,<br/>HOST_DEVICE_TYPE_TABLET = 0x11 } | 远程设备类型枚举。 | 
+| [Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype) {<br/>HOST_DEVICE_TYPE_UNKNOWN_TYPE = 0,<br/>HOST_DEVICE_TYPE_PHONE = 0x0E,<br/>HOST_DEVICE_TYPE_TABLET = 0x11 } | 远程设备类型枚举。 | 
 | [Camera_QualityPrioritization](_o_h___camera.md#camera_qualityprioritization) { [HIGH_QUALITY](_o_h___camera.md) = 0, [POWER_BALANCE](_o_h___camera.md) = 1 } | 录像质量优先级的枚举。 | 
 
 

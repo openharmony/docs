@@ -173,7 +173,7 @@ cancel?(index: number): Promise\<void\> | void;
 
 ## 示例
 
-下面示例展示了Prefetcher配合LazyForEach实现的懒加载效果。示例中，采用分页的方式加载数据，并通过添加延时模拟加载过程。
+下面示例展示了Prefetcher的预加载能力。该示例采用分页的方式，配合LazyForEach实现懒加载效果，并通过添加延时来模拟加载过程。
 
 ```typescript
 import { BasicPrefetcher, IDataSourcePrefetching } from '@kit.ArkUI';
@@ -288,22 +288,28 @@ class MyDataSource implements IDataSourcePrefetching {
 
   // 模拟分页方式加载数据
   getHttpData(pageNum: number, pageSize:number): void {
+    const newItems: PictureItem[] = [];
     for (let i = (pageNum - 1) * pageSize; i < pageNum * pageSize; i++) {
       const item = new PictureItem(getRandomColor(), `Item ${i}`);
-      this.pushData(item);
+      newItems.push(item);
     }
+    const startIndex = this.items.length;
+    this.items.splice(startIndex, 0, ...newItems);
+    this.notifyBatchUpdate([
+      {
+        type: DataOperationType.ADD,
+        index: startIndex,
+        count: newItems.length,
+        key: newItems.map((item) => item.title)
+      }
+    ]);
   }
 
-  pushData(data: PictureItem): void {
-    this.items.push(data);
-    this.notifyDataAdd(this.items.length - 1);
+  private notifyBatchUpdate(operations: DataOperation[]) {
+    this.listeners.forEach((listener: DataChangeListener) => {
+      listener.onDatasetChange(operations);
+    });
   }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    })
-  }  
 
   totalCount(): number {
     return this.items.length;
@@ -382,6 +388,10 @@ function create10x10Bitmap(color: number): ArrayBuffer {
   return buffer;
 }
 ```
+
+演示效果如下：
+
+![Prefetcher-Demo](./figures/prefetcher-demo.gif)
 
 ## 补充说明
 

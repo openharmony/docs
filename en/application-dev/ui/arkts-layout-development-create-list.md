@@ -236,8 +236,8 @@ class Contact {
 @Component
 struct SimpleContacts {
   private contacts: Array<object> = [
-    new Contact('Tom', $r ("app.media.iconA")),
-    new Contact('Tracy', $r ("app.media.iconB")),
+    new Contact('Tom', $r("app.media.iconA")),
+    new Contact('Tracy', $r("app.media.iconB")),
   ]
 
   build() {

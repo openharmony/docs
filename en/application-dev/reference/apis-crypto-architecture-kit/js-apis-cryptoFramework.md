@@ -56,7 +56,7 @@ The supported system capability is SystemCapability.Security.CryptoFramework in 
 
 | Name   | Type  | Readable| Writable| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Yes  | Algorithm for symmetric encryption or decryption.<br/>Options:<br>- **IvParamsSpec**: applicable to the CBC, CTR, OFB, and CFB modes.<br>- **GcmParamsSpec**: applicable to the GCM mode.<br>- **CcmParamsSpec**: applicable to the CCM mode. |
+| algName | string | Yes  | Yes  | Algorithm for symmetric encryption or decryption. <br/>Options:<br>- **IvParamsSpec**: applicable to the CBC, CTR, OFB, and CFB modes.<br>- **GcmParamsSpec**: applicable to the GCM mode.<br>- **CcmParamsSpec**: applicable to the CCM mode.|
 
 > **NOTE**
 >
@@ -76,7 +76,7 @@ The supported system capability is SystemCapability.Security.CryptoFramework in 
 
 | Name| Type                 | Readable| Writable| Description                                                        |
 | ---- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| iv   | [DataBlob](#datablob) | Yes  | Yes  | IV for encryption or decryption.<br/>Options:<br>- AES CBC, CTR, OFB, or CFB mode: 16-byte IV<br>- 3DES CBC, OFB, or CFB mode: 8-byte IV<br>- SM4<sup>10+</sup> CBC, CTR, OFB, or CFB mode: 16-byte IV |
+| iv   | [DataBlob](#datablob) | Yes  | Yes  | IV for encryption or decryption.<br/>Options:<br>- AES CBC, CTR, OFB, or CFB mode: 16-byte IV<br>- 3DES CBC, OFB, or CFB mode: 8-byte IV<br>- SM4<sup>10+</sup> CBC, CTR, OFB, or CFB mode: 16-byte IV|
 
 > **NOTE**
 >
@@ -705,6 +705,28 @@ Defines the child class of [KdfSpec](#kdfspec11). It is a parameter for HKDF key
 >
 > The default mode is **EXTRACT_AND_EXPAND**. The value **HKDF|SHA256|EXTRACT_AND_EXPAND** is equivalent to **HKDF|SHA256**.
 
+## ScryptSpec<sup>16+</sup>
+
+Defines the child class of [KdfSpec](#kdfspec11). It is a parameter for scrypt key derivation function (KDF).
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Security.CryptoFramework.Kdf
+
+| Name   | Type  | Read-Only| Optional| Description                                                        |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| passphrase | string \| Uint8Array | Yes  | No  | Original password entered by the user.|
+| salt | Uint8Array | Yes  | No  | Salt value.|
+| n | number | Yes  | No  | Number of iterations. The value must be a positive integer.|
+| p | number | Yes  | No  | Parallelization parameter. The value must be a positive integer.|
+| r | number | Yes  | No  | Block size. The value must be a positive integer.|
+| maxMemory | number | Yes  | No  | Maximum memory size. The value must be a positive integer.|
+| keySize | number | Yes  | No  | Length of the derived key, in bytes. The value must be a positive integer.|
+
+> **NOTE**
+>
+> **passphrase** specifies the original password. If **password** is of the string type, pass in the data used for key derivation rather than a string of the HexString or Base64 type. In addition, the string must be in utf-8 format. Otherwise, the key derived may be different from the one expected.
+
 ## SM2CipherTextSpec<sup>12+</sup>
 
 Represents the SM2 ciphertext parameters. You can use this object to generate SM2 ciphertext in ASN.1 format or obtain SM2 parameters from the SM2 ciphertext in ASN.1 format.
@@ -727,6 +749,69 @@ Represents the SM2 ciphertext parameters. You can use this object to generate SM
 > - **cipherTextData** is the ciphertext with the same length as the plaintext.
 > 
 > - During the generation of ciphertext in C1C3C2 format, if the length of x (**C1_X**) or y (**C1_Y**) is less than 32 bytes, zeros must be added to the high-order bits to extend them to 32 bytes.
+
+## KeyEncodingConfig<sup>16+</sup>
+Represents the RSA private key encoding parameters. You can use it to generate an encoded private key string with the specified algorithm and password.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+| Name   | Type  | Read-Only| Optional| Description                                                        |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| password | string | Yes  | No  | Password used for encoding the private key.|
+| cipherName | string | Yes  | No  | Algorithm to use.|
+
+> **NOTE**
+>
+> - **password** specifies the password used for encoding the private key. It is mandatory.
+>
+> - **cipherName** specifies the algorithm used for encoding. It is mandatory. Currently, only **AES-128-CBC**, **AES-192-CBC**, **AES-256-CBC**, and **DES-EDE3-CBC** are supported.
+
+## MacSpec<sup>16+</sup>
+Represents the message authentication code (MAC) parameters. You need to construct a child class object and use it as a parameter when generating a Hash-based Message Authentication Code (HMAC) or Cipher-based Message Authentication Code (‌CMAC).
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Security.CryptoFramework.mac
+
+| Name   | Type  | Read-Only| Optional| Description                                                        |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| algName | string | Yes  | No  | Algorithm to use.|
+
+> **NOTE**
+>
+> **algName** specifies the algorithm used for generating a MAC. It is mandatory.
+
+## HmacSpec<sup>16+</sup>
+Represents the child class of [MacSpec](#macspec16). It is used as an input parameter for HMAC generation.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Security.CryptoFramework.mac
+
+| Name   | Type  | Read-Only| Optional| Description                                                        |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| mdName | string | Yes  | No  | MD algorithm to use.|
+
+> **NOTE**
+>
+> **mdName** specifies the MD algorithm used by the HMAC. It is mandatory.
+
+## CmacSpec<sup>16+</sup>
+Represents the child class of [MacSpec](#macspec16). It is used as an input parameter for CMAC generation.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Security.CryptoFramework.mac
+
+| Name   | Type  | Read-Only| Optional| Description                                                        |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| cipherName | string | Yes  | No  | Symmetric encryption algorithm to use.|
+
+> **NOTE**
+>
+> **cipherName** specifies the symmetric encryption algorithm used by the CMAC. It is mandatory.
 
 ## Key
 
@@ -878,10 +963,8 @@ Obtains the public key data that complies with the ASN.1 syntax and DER encoding
 > **NOTE**
 >
 > The difference between [Key.getEncoded()](#getencoded) and this API is as follows:<br>
->
-> You can specify the format of the data to obtain in this API.
->
-> The format of the key to obtain cannot be specified in [Key.getEncoded()](#getencoded). That is, the format of the data obtained must be the same as that of the original data. The original data format is the format of the key object generated by [convertKey](#convertkey-3).
+> - You can specify the format of the data to obtain in this API.
+> - The format of the key to obtain cannot be specified in [Key.getEncoded()](#getencoded). That is, the format of the data obtained must be the same as that of the original data. The original data format is the format of the key object generated by [convertKey](#convertkey-3).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1045,8 +1128,8 @@ Obtains the private key data that complies with the ASN.1 syntax and DER encodin
 > **NOTE**
 >
 > The difference between [Key.getEncoded()](#getencoded) and this API is as follows:<br>
-> You can specify the format of the key data to be obtained in this API. Currently, the ECC private key data in PKCS #8 format is supported.
-> The format of the key data to be obtained cannot be specified in [Key.getEncoded()](#getencoded).
+> 1. You can specify the format of the key data to be obtained in this API. Currently, the ECC private key data in PKCS #8 format is supported.
+> 2. The format of the key data to be obtained cannot be specified in [Key.getEncoded()](#getencoded).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1141,6 +1224,73 @@ function TestPriKeyPkcs1ToPkcs8BySync1024() {
   let priPemKey = keyPair.priKey;
   let priString = priPemKey.getEncodedPem('PKCS8');
   console.info("[sync]TestPriKeyPkcs1ToPkcs8BySync1024 priString output is " + priString);
+}
+```
+
+### getEncodedPem<sup>16+</sup>
+
+getEncodedPem(format: string, options: KeyEncodingConfig): string
+
+Obtains the key data. This API returns the result synchronously. The key can be an RSA public or private key. The private key must comply with PKCS #8 or PKCS #1 specifications and PEM encoding format.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+**Parameters**
+
+| Name| Type                 | Mandatory| Description                |
+| ---- | --------------------- | ---- | -------------------- |
+| format  | string | Yes  | Encoding format of the key data to obtain. The format of a private key can be **PKCS1** or **'PKCS8'**.|
+| options | [KeyEncodingConfig](#keyencodingconfig16) | Yes| Options (including the password and algorithm) for encoding the private key.|
+
+**Return value**
+
+| Type                       | Description                             |
+| --------------------------- | --------------------------------- |
+| string | Key data obtained. If **options** is specified, the key obtained is encoded.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 17620001 | memory error. |
+| 17630001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+
+let priKeyPkcs1Str1024: string  =
+  "-----BEGIN RSA PRIVATE KEY-----\n"
+    + "MIICXQIBAAKBgQCwIN3mr21+N96ToxnVnaS+xyK9cNRAHiHGgrbjHw6RAj3V+l+W\n"
+    + "Y68IhIe3DudVlzE9oMjeOQwkMkq//HCxNlIlFR6O6pa0mrXSwPRE7YKG97CeKk2g\n"
+    + "YOS8YEh8toAvm7xKbiLkXuuMlxrjP2j/mb5iI/UASFSPZiQ/IyxDr0AQaQIDAQAB\n"
+    + "AoGAEvBFzBNa+7J4PXnRQlYEK/tvsd0bBZX33ceacMubHl6WVZbphltLq+fMTBPP\n"
+    + "LjXmtpC+aJ7Lvmyl+wTi/TsxE9vxW5JnbuRT48rnZ/Xwq0eozDeEeIBRrpsr7Rvr\n"
+    + "7ctrgzr4m4yMHq9aDgpxj8IR7oHkfwnmWr0wM3FuiVlj650CQQDineeNZ1hUTkj4\n"
+    + "D3O+iCi3mxEVEeJrpqrmSFolRMb+iozrIRKuJlgcOs+Gqi2fHfOTTL7LkpYe8SVg\n"
+    + "e3JxUdVLAkEAxvcZXk+byMFoetrnlcMR13VHUpoVeoV9qkv6CAWLlbMdgf7uKmgp\n"
+    + "a1Yp3QPDNQQqkPvrqtfR19JWZ4uy1qREmwJALTU3BjyBoH/liqb6fh4HkWk75Som\n"
+    + "MzeSjFIOubSYxhq5tgZpBZjcpvUMhV7Zrw54kwASZ+YcUJvmyvKViAm9NQJBAKF7\n"
+    + "DyXSKrem8Ws0m1ybM7HQx5As6l3EVhePDmDQT1eyRbKp+xaD74nkJpnwYdB3jyyY\n"
+    + "qc7A1tj5J5NmeEFolR0CQQCn76Xp8HCjGgLHw9vg7YyIL28y/XyfFyaZAzzK+Yia\n"
+    + "akNwQ6NeGtXSsuGCcyyfpacHp9xy8qXQNKSkw03/5vDO\n"
+    + "-----END RSA PRIVATE KEY-----\n";
+
+function TestPriKeyPkcs1Encoded() {
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let keyPair = rsaGenerator.convertPemKeySync(null, priKeyPkcs1Str1024);
+  let options : cryptoFramework.KeyEncodingConfig = {
+    password: "123456",
+    cipherName: "AES-128-CBC"
+  }
+  let priPemKey = keyPair.priKey;
+  let priString = priPemKey.getEncodedPem('PKCS1', options);
+  console.info("[sync]TestPriKeyPkcs1Encoded priString output is " + priString);
 }
 ```
 
@@ -1511,7 +1661,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
 function testConvertKeySync() {
-  // The symmetric key length is 64 bytes, that is, 512 bits.
+  // The symmetric key length is 64 bytes (512 bits).
   let keyMessage = '87654321abcdefgh87654321abcdefgh87654321abcdefgh87654321abcdefgh';
   let keyBlob: cryptoFramework.DataBlob = {
     data : new Uint8Array(buffer.from(keyMessage, 'utf-8').buffer)
@@ -1541,7 +1691,7 @@ The supported system capability is SystemCapability.Security.CryptoFramework in 
 
 | Name | Type  | Mandatory| Description                            |
 | ------- | ------ | ---- | -------------------------------- |
-| algName | string | Yes  | Algorithm used to create the **symkeyGenerator**.|
+| algName | string | Yes  | [Algorithm used to create the **symkeyGenerator**](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md)|
 
 **Return value**
 
@@ -1916,29 +2066,179 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let priKeyPkcs1Str1024: string  =
   "-----BEGIN RSA PRIVATE KEY-----\n"
-  + "MIICXQIBAAKBgQCwIN3mr21+N96ToxnVnaS+xyK9cNRAHiHGgrbjHw6RAj3V+l+W\n"
-  + "Y68IhIe3DudVlzE9oMjeOQwkMkq//HCxNlIlFR6O6pa0mrXSwPRE7YKG97CeKk2g\n"
-  + "YOS8YEh8toAvm7xKbiLkXuuMlxrjP2j/mb5iI/UASFSPZiQ/IyxDr0AQaQIDAQAB\n"
-  + "AoGAEvBFzBNa+7J4PXnRQlYEK/tvsd0bBZX33ceacMubHl6WVZbphltLq+fMTBPP\n"
-  + "LjXmtpC+aJ7Lvmyl+wTi/TsxE9vxW5JnbuRT48rnZ/Xwq0eozDeEeIBRrpsr7Rvr\n"
-  + "7ctrgzr4m4yMHq9aDgpxj8IR7oHkfwnmWr0wM3FuiVlj650CQQDineeNZ1hUTkj4\n"
-  + "D3O+iCi3mxEVEeJrpqrmSFolRMb+iozrIRKuJlgcOs+Gqi2fHfOTTL7LkpYe8SVg\n"
-  + "e3JxUdVLAkEAxvcZXk+byMFoetrnlcMR13VHUpoVeoV9qkv6CAWLlbMdgf7uKmgp\n"
-  + "a1Yp3QPDNQQqkPvrqtfR19JWZ4uy1qREmwJALTU3BjyBoH/liqb6fh4HkWk75Som\n"
-  + "MzeSjFIOubSYxhq5tgZpBZjcpvUMhV7Zrw54kwASZ+YcUJvmyvKViAm9NQJBAKF7\n"
-  + "DyXSKrem8Ws0m1ybM7HQx5As6l3EVhePDmDQT1eyRbKp+xaD74nkJpnwYdB3jyyY\n"
-  + "qc7A1tj5J5NmeEFolR0CQQCn76Xp8HCjGgLHw9vg7YyIL28y/XyfFyaZAzzK+Yia\n"
-  + "akNwQ6NeGtXSsuGCcyyfpacHp9xy8qXQNKSkw03/5vDO\n"
-  + "-----END RSA PRIVATE KEY-----\n";
-  let publicPkcs1Str1024: string  =
+    + "MIICXQIBAAKBgQCwIN3mr21+N96ToxnVnaS+xyK9cNRAHiHGgrbjHw6RAj3V+l+W\n"
+    + "Y68IhIe3DudVlzE9oMjeOQwkMkq//HCxNlIlFR6O6pa0mrXSwPRE7YKG97CeKk2g\n"
+    + "YOS8YEh8toAvm7xKbiLkXuuMlxrjP2j/mb5iI/UASFSPZiQ/IyxDr0AQaQIDAQAB\n"
+    + "AoGAEvBFzBNa+7J4PXnRQlYEK/tvsd0bBZX33ceacMubHl6WVZbphltLq+fMTBPP\n"
+    + "LjXmtpC+aJ7Lvmyl+wTi/TsxE9vxW5JnbuRT48rnZ/Xwq0eozDeEeIBRrpsr7Rvr\n"
+    + "7ctrgzr4m4yMHq9aDgpxj8IR7oHkfwnmWr0wM3FuiVlj650CQQDineeNZ1hUTkj4\n"
+    + "D3O+iCi3mxEVEeJrpqrmSFolRMb+iozrIRKuJlgcOs+Gqi2fHfOTTL7LkpYe8SVg\n"
+    + "e3JxUdVLAkEAxvcZXk+byMFoetrnlcMR13VHUpoVeoV9qkv6CAWLlbMdgf7uKmgp\n"
+    + "a1Yp3QPDNQQqkPvrqtfR19JWZ4uy1qREmwJALTU3BjyBoH/liqb6fh4HkWk75Som\n"
+    + "MzeSjFIOubSYxhq5tgZpBZjcpvUMhV7Zrw54kwASZ+YcUJvmyvKViAm9NQJBAKF7\n"
+    + "DyXSKrem8Ws0m1ybM7HQx5As6l3EVhePDmDQT1eyRbKp+xaD74nkJpnwYdB3jyyY\n"
+    + "qc7A1tj5J5NmeEFolR0CQQCn76Xp8HCjGgLHw9vg7YyIL28y/XyfFyaZAzzK+Yia\n"
+    + "akNwQ6NeGtXSsuGCcyyfpacHp9xy8qXQNKSkw03/5vDO\n"
+    + "-----END RSA PRIVATE KEY-----\n";
+let publicPkcs1Str1024: string  =
   "-----BEGIN RSA PUBLIC KEY-----\n"
-  + "MIGJAoGBALAg3eavbX433pOjGdWdpL7HIr1w1EAeIcaCtuMfDpECPdX6X5ZjrwiE\n"
-  + "h7cO51WXMT2gyN45DCQySr/8cLE2UiUVHo7qlrSatdLA9ETtgob3sJ4qTaBg5Lxg\n"
-  + "SHy2gC+bvEpuIuRe64yXGuM/aP+ZvmIj9QBIVI9mJD8jLEOvQBBpAgMBAAE=\n"
-  + "-----END RSA PUBLIC KEY-----\n";
+    + "MIGJAoGBALAg3eavbX433pOjGdWdpL7HIr1w1EAeIcaCtuMfDpECPdX6X5ZjrwiE\n"
+    + "h7cO51WXMT2gyN45DCQySr/8cLE2UiUVHo7qlrSatdLA9ETtgob3sJ4qTaBg5Lxg\n"
+    + "SHy2gC+bvEpuIuRe64yXGuM/aP+ZvmIj9QBIVI9mJD8jLEOvQBBpAgMBAAE=\n"
+    + "-----END RSA PUBLIC KEY-----\n";
 async function TestConvertPemKeyByPromise() {
   let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
-  let keyGenPromise = asyKeyGenerator.convertPemKey(publicPkcs1Str1024, priKeyPkcs1Str1024);
+  asyKeyGenerator.convertPemKey(publicPkcs1Str1024, priKeyPkcs1Str1024)
+    .then(keyPair => {
+    console.info('convertPemKey success.');
+  }).catch((error: BusinessError) => {
+    console.error("convertPemKey error.");
+  });
+}
+```
+
+### convertPemKey<sup>16+</sup>
+
+convertPemKey(pubKey: string | null, priKey: string | null, password: string): Promise\<KeyPair>
+
+Converts data into an asymmetric key. This API uses a promise to return the result.
+
+> **NOTE**
+> 1. When **convertPemKey()** is used to convert an external string into an asymmetric key object defined by the Crypto framework, the public key must comply with the ASN.1 syntax, X.509 specifications, and PEM encoding format, and the private key must comply with the ASN.1 syntax, PKCS #8 specifications, and PEM encoding format.
+> 2. In **convertPemKey()**, you can pass in either **pubKey** or **priKey**, or both of them. If one of them is passed in, the returned **KeyPair** instance contains only the key converted from the data you passed in.
+> 3. When **convertPemKey** is used to convert an external string into an asymmetric key object defined by the Crypto framework, the system does not verify whether the specifications of the generated key object are the same as the key specifications specified for the asymmetric key generator.
+> 4. If **password** is passed in, it can be used to decrypt the encrypted private key.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+**Parameters**
+
+| Name  | Type   | Mandatory| Description            |
+| ------ | -------- | ---- | ---------------- |
+| pubKey | string \| null | Yes | Public key material to convert. If no public key is required, set this parameter to **null**.|
+| priKey | string \| null | Yes | Private key material to convert. If no private key is required, set this parameter to **null**. <br>**NOTE**: **pubKey** and **priKey** cannot be **null** at the same time.|
+| password | string | Yes| Password used to decrypt the private key.|
+
+**Return value**
+
+| Type             | Description                             |
+| ----------------- | --------------------------------- |
+| Promise\<[KeyPair](#keypair)> | Promise used to return the key pair generated.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.         |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error.          |
+
+**Example**
+
+```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let priKeyPkcs1EncodingStr : string =
+  "-----BEGIN RSA PRIVATE KEY-----\n"
+    +"Proc-Type: 4,ENCRYPTED\n"
+    +"DEK-Info: AES-128-CBC,815A066131BF05CF87CE610A59CC69AE\n\n"
+    +"7Jd0vmOmYGFZ2yRY8fqRl3+6rQlFtNcMILvcb5KWHDSrxA0ULmJE7CW0DSRikHoA\n"
+    +"t0KgafhYXeQXh0dRy9lvVRAFSLHCLJVjchx90V7ZSivBFEq7+iTozVp4AlbgYsJP\n"
+    +"vx/1sfZD2WAcyMJ7IDmJyft7xnpVSXsyWGTT4f3eaHJIh1dqjwrso7ucAW0FK6rp\n"
+    +"/TONyOoXNfXtRbVtxNyCWBxt4HCSclDZFvS9y8fz9ZwmCUV7jei/YdzyQI2wnE13\n"
+    +"W8cKlpzRFL6BWi8XPrUtAw5MWeHBAPUgPWMfcmiaeyi5BJFhQCrHLi+Gj4EEJvp7\n"
+    +"mP5cbnQAx6+paV5z9m71SKrI/WSc4ixsYYdVmlL/qwAK9YliFfoPl030YJWW6rFf\n"
+    +"T7J9BUlHGUJ0RB2lURNNLakM+UZRkeE9TByzCzgTxuQtyv5Lwsh2mAk3ia5x0kUO\n"
+    +"LHg3Eoabhdh+YZA5hHaxnpF7VjspB78E0F9Btq+A41rSJ6zDOdToHey4MJ2nxdey\n"
+    +"Z3bi81TZ6Fp4IuROrvZ2B/Xl3uNKR7n+AHRKnaAO87ywzyltvjwSh2y3xhJueiRs\n"
+    +"BiYkyL3/fnocD3pexTdN6h3JgQGgO5GV8zw/NrxA85mw8o9im0HreuFObmNj36T9\n"
+    +"k5N+R/QIXW83cIQOLaWK1ThYcluytf0tDRiMoKqULiaA6HvDMigExLxuhCtnoF8I\n"
+    +"iOLN1cPdEVQjzwDHLqXP2DbWW1z9iRepLZlEm1hLRLEmOrTGKezYupVv306SSa6J\n"
+    +"OA55lAeXMbyjFaYCr54HWrpt4NwNBX1efMUURc+1LcHpzFrBTTLbfjIyq6as49pH\n"
+    +"-----END RSA PRIVATE KEY-----\n"
+
+async function TestConvertPemKeyByPromise() {
+  let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  asyKeyGenerator.convertPemKey(null, priKeyPkcs1EncodingStr, "123456")
+    .then(keyPair => {
+    console.info('convertPemKey success.');
+  }).catch((error: BusinessError) => {
+    console.error("convertPemKey error.");
+  });
+}
+```
+
+### convertPemKey<sup>16+</sup>
+
+convertPemKey(pubKey: string | null, priKey: string | null, password: string): Promise\<KeyPair>
+
+Converts data into an asymmetric key. This API uses a promise to return the result.
+
+> **NOTE**
+> 1. When **convertPemKey()** is used to convert an external string into an asymmetric key object defined by the Crypto framework, the public key must comply with the ASN.1 syntax, X.509 specifications, and PEM encoding format, and the private key must comply with the ASN.1 syntax, PKCS #8 specifications, and PEM encoding format.
+> 2. In **convertPemKey()**, you can pass in either **pubKey** or **priKey**, or both of them. If one of them is passed in, the returned **KeyPair** instance contains only the key converted from the data you passed in.
+> 3. When **convertPemKey** is used to convert an external string into an asymmetric key object defined by the Crypto framework, the system does not verify whether the specifications of the generated key object are the same as the key specifications specified for the asymmetric key generator.
+> 4. If **password** is passed in, it can be used to decrypt the encrypted private key.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+**Parameters**
+
+| Name  | Type   | Mandatory| Description            |
+| ------ | -------- | ---- | ---------------- |
+| pubKey | string \| null | Yes | Public key material to convert. If no public key is required, set this parameter to **null**.|
+| priKey | string \| null | Yes | Private key material to convert. If no private key is required, set this parameter to **null**. <br>**NOTE**: **pubKey** and **priKey** cannot be **null** at the same time.|
+| password | string | Yes| Password used to decrypt the private key.|
+
+**Return value**
+
+| Type             | Description                             |
+| ----------------- | --------------------------------- |
+| Promise\<[KeyPair](#keypair)> | Promise used to return the key pair generated.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.         |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error.          |
+
+**Example**
+
+```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let priKeyPkcs1EncodingStr : string =
+  "-----BEGIN RSA PRIVATE KEY-----\n"
+    +"Proc-Type: 4,ENCRYPTED\n"
+    +"DEK-Info: AES-128-CBC,815A066131BF05CF87CE610A59CC69AE\n\n"
+    +"7Jd0vmOmYGFZ2yRY8fqRl3+6rQlFtNcMILvcb5KWHDSrxA0ULmJE7CW0DSRikHoA\n"
+    +"t0KgafhYXeQXh0dRy9lvVRAFSLHCLJVjchx90V7ZSivBFEq7+iTozVp4AlbgYsJP\n"
+    +"vx/1sfZD2WAcyMJ7IDmJyft7xnpVSXsyWGTT4f3eaHJIh1dqjwrso7ucAW0FK6rp\n"
+    +"/TONyOoXNfXtRbVtxNyCWBxt4HCSclDZFvS9y8fz9ZwmCUV7jei/YdzyQI2wnE13\n"
+    +"W8cKlpzRFL6BWi8XPrUtAw5MWeHBAPUgPWMfcmiaeyi5BJFhQCrHLi+Gj4EEJvp7\n"
+    +"mP5cbnQAx6+paV5z9m71SKrI/WSc4ixsYYdVmlL/qwAK9YliFfoPl030YJWW6rFf\n"
+    +"T7J9BUlHGUJ0RB2lURNNLakM+UZRkeE9TByzCzgTxuQtyv5Lwsh2mAk3ia5x0kUO\n"
+    +"LHg3Eoabhdh+YZA5hHaxnpF7VjspB78E0F9Btq+A41rSJ6zDOdToHey4MJ2nxdey\n"
+    +"Z3bi81TZ6Fp4IuROrvZ2B/Xl3uNKR7n+AHRKnaAO87ywzyltvjwSh2y3xhJueiRs\n"
+    +"BiYkyL3/fnocD3pexTdN6h3JgQGgO5GV8zw/NrxA85mw8o9im0HreuFObmNj36T9\n"
+    +"k5N+R/QIXW83cIQOLaWK1ThYcluytf0tDRiMoKqULiaA6HvDMigExLxuhCtnoF8I\n"
+    +"iOLN1cPdEVQjzwDHLqXP2DbWW1z9iRepLZlEm1hLRLEmOrTGKezYupVv306SSa6J\n"
+    +"OA55lAeXMbyjFaYCr54HWrpt4NwNBX1efMUURc+1LcHpzFrBTTLbfjIyq6as49pH\n"
+    +"-----END RSA PRIVATE KEY-----\n"
+
+async function TestConvertPemKeyByPromise() {
+  let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let keyGenPromise = asyKeyGenerator.convertPemKey(null, priKeyPkcs1Str1024, "123456");
   keyGenPromise.then(keyPair => {
     console.info('convertPemKey success.');
   }).catch((error: BusinessError) => {
@@ -2014,6 +2314,81 @@ function TestConvertPemKeyBySync() {
   let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
   try {
     let keyPairData = asyKeyGenerator.convertPemKeySync(publicPkcs1Str1024, priKeyPkcs1Str1024);
+    if (keyPairData != null) {
+      console.info('[Sync]: convert pem key pair success');
+    } else {
+      console.error("[Sync]: convert pem key pair result fail!");
+    }
+  } catch (e) {
+    console.error(`Sync error, ${e.code}, ${e.message}`);
+  }
+}
+```
+
+### convertPemKeySync<sup>16+</sup>
+
+convertPemKeySync(pubKey: string | null, priKey: string | null, password: string): KeyPair
+
+Converts data into an asymmetric key pair. This API returns the result synchronously.
+
+> **NOTE**
+> The precautions for using **convertPemKeySync** are the same as those for **convertPemKey**. For details, see the description of [convertPemKey](#convertpemkey16).
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+**Parameters**
+
+| Name  | Type   | Mandatory| Description            |
+| ------ | -------- | ---- | ---------------- |
+| pubKey | string \| null| Yes  | Public key material to convert. If no public key is required, set this parameter to **null**.|
+| priKey | string \| null| Yes  | Private key material to convert. If no private key is required, set this parameter to **null**. <br>**NOTE**: **pubKey** and **priKey** cannot be **null** at the same time.|
+| password | string | Yes| Password used to decrypt the private key.|
+
+**Return value**
+
+| Type             | Description                             |
+| ----------------- | --------------------------------- |
+| [KeyPair](#keypair) | Asymmetric key pair generated.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.         |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error.          |
+
+**Example**
+
+```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let priKeyPkcs1EncodingStr : string =
+  "-----BEGIN RSA PRIVATE KEY-----\n"
+    +"Proc-Type: 4,ENCRYPTED\n"
+    +"DEK-Info: AES-128-CBC,815A066131BF05CF87CE610A59CC69AE\n\n"
+    +"7Jd0vmOmYGFZ2yRY8fqRl3+6rQlFtNcMILvcb5KWHDSrxA0ULmJE7CW0DSRikHoA\n"
+    +"t0KgafhYXeQXh0dRy9lvVRAFSLHCLJVjchx90V7ZSivBFEq7+iTozVp4AlbgYsJP\n"
+    +"vx/1sfZD2WAcyMJ7IDmJyft7xnpVSXsyWGTT4f3eaHJIh1dqjwrso7ucAW0FK6rp\n"
+    +"/TONyOoXNfXtRbVtxNyCWBxt4HCSclDZFvS9y8fz9ZwmCUV7jei/YdzyQI2wnE13\n"
+    +"W8cKlpzRFL6BWi8XPrUtAw5MWeHBAPUgPWMfcmiaeyi5BJFhQCrHLi+Gj4EEJvp7\n"
+    +"mP5cbnQAx6+paV5z9m71SKrI/WSc4ixsYYdVmlL/qwAK9YliFfoPl030YJWW6rFf\n"
+    +"T7J9BUlHGUJ0RB2lURNNLakM+UZRkeE9TByzCzgTxuQtyv5Lwsh2mAk3ia5x0kUO\n"
+    +"LHg3Eoabhdh+YZA5hHaxnpF7VjspB78E0F9Btq+A41rSJ6zDOdToHey4MJ2nxdey\n"
+    +"Z3bi81TZ6Fp4IuROrvZ2B/Xl3uNKR7n+AHRKnaAO87ywzyltvjwSh2y3xhJueiRs\n"
+    +"BiYkyL3/fnocD3pexTdN6h3JgQGgO5GV8zw/NrxA85mw8o9im0HreuFObmNj36T9\n"
+    +"k5N+R/QIXW83cIQOLaWK1ThYcluytf0tDRiMoKqULiaA6HvDMigExLxuhCtnoF8I\n"
+    +"iOLN1cPdEVQjzwDHLqXP2DbWW1z9iRepLZlEm1hLRLEmOrTGKezYupVv306SSa6J\n"
+    +"OA55lAeXMbyjFaYCr54HWrpt4NwNBX1efMUURc+1LcHpzFrBTTLbfjIyq6as49pH\n"
+    +"-----END RSA PRIVATE KEY-----\n"
+function TestConvertPemKeyBySync() {
+  let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  try {
+    let keyPairData = asyKeyGenerator.convertPemKeySync(null, priKeyPkcs1EncodingStr, "123456");
     if (keyPairData != null) {
       console.info('[Sync]: convert pem key pair success');
     } else {
@@ -2406,7 +2781,7 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 401 | invalid parameters. Possible causes:<br> Incorrect parameter types;        |
+| 401 | invalid parameters. Possible causes:<br>Incorrect parameter types;        |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error. |
 
@@ -4931,7 +5306,7 @@ createMd(algName: string): Md
 
 Creates an **Md** instance for MD operations.
 
-For details about the supported specifications, see [Supported Algorithms and Specifications](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#supported-algorithms-and-specifications).
+For details about the supported specifications, see [Supported Algorithms and Specifications](../../security/CryptoArchitectureKit/crypto-generate-message-digest-overview.md#supported-algorithms-and-specifications).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4943,7 +5318,7 @@ The supported system capability is SystemCapability.Security.CryptoFramework in 
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | MD algorithm to use. For details about the supported algorithms, see [Supported Algorithms and Specifications](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#supported-algorithms-and-specifications).|
+| algName | string | Yes  | MD algorithm to use. For details about the supported algorithms, see [Supported Algorithms and Specifications](../../security/CryptoArchitectureKit/crypto-generate-message-digest-overview.md#supported-algorithms-and-specifications).|
 
 **Return value**
 
@@ -4998,7 +5373,7 @@ Updates the message for MD operations. This API uses an asynchronous callback to
 
 > **NOTE**
 >
-> - For details about the code for calling **update** multiple times in an MD operation, see [MD (Passing In Data by Segment)](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#md-passing-in-data-by-segment).
+> - For details about the code for calling **update** multiple times in an MD operation, see [Generating an MD by Passing In Data by Segment](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#generating-an-md-by-passing-in-data-by-segment).
 > 
 > - This API does not support wearables.
 
@@ -5031,7 +5406,7 @@ Updates the message for MD operations. This API uses a promise to return the res
 
 > **NOTE**
 >
-> - For details about the code for calling **update** multiple times in an MD operation, see [MD (Passing In Data by Segment)](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#md-passing-in-data-by-segment).
+> - For details about the code for calling **update** multiple times in an MD operation, see [Generating an MD by Passing In Data by Segment](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#generating-an-md-by-passing-in-data-by-segment).
 > 
 > - This API does not support wearables.
 
@@ -5067,7 +5442,7 @@ Updates the message for MD operations. This API returns the result synchronously
 
 > **NOTE**
 >
-> For details about the code for calling **updateSync** multiple times in an MD operation, see [MD (Passing In Data by Segment)](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#md-passing-in-data-by-segment).
+> For details about the code for calling **updateSync** multiple times in an MD operation, see [Generating an MD by Passing In Data by Segment](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#generating-an-md-by-passing-in-data-by-segment).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5262,9 +5637,9 @@ function getLength() {
 
 createMac(algName: string): Mac
 
-Creates a **Mac** instance for message authentication code (MAC) operations.
+Creates a **Mac** instance for MAC operations.
 
-For details about the supported specifications, see [Supported Algorithms and Specifications](../../security/CryptoArchitectureKit/crypto-compute-mac.md#supported-algorithms-and-specifications).
+For details about the supported specifications, see [HMAC](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md#hmac).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5276,7 +5651,7 @@ The supported system capability is SystemCapability.Security.CryptoFramework in 
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | MD algorithm to use. For details about the supported algorithms, see [Supported Algorithms and Specifications](../../security/CryptoArchitectureKit/crypto-compute-mac.md#supported-algorithms-and-specifications).|
+| algName | string | Yes  | MD algorithm to use. For details about the supported algorithms, see [HMAC](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md#hmac).|
 
 **Return value**
 
@@ -5301,6 +5676,57 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   // Set algName based on the algorithm supported.
   let mac = cryptoFramework.createMac('SHA256');
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`sync error, ${e.code}, ${e.message}`);
+}
+```
+
+## cryptoFramework.createMac<sup>16+</sup>
+
+createMac(macSpec: MacSpec): Mac
+
+Creates a **Mac** instance for MAC operations.
+
+For details about the supported specifications, see [MAC Overview and Algorithm Specifications](./../security/CryptoArchitectureKit/crypto-compute-mac-overview.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Security.CryptoFramework.Mac
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description                                                        |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| macSpec | [MacSpec](#macspec16) | Yes  | MAC specifications, which vary depending on the MAC to generate. For details about the supported algorithms, see [MAC Overview and Algorithm Specifications](./../security/CryptoArchitectureKit/crypto-compute-mac-overview.md).|
+
+**Return value**
+
+| Type| Description                                     |
+| ---- | ----------------------------------------- |
+| Mac  | [Mac](#mac) instance created.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 17620001 | memory error.       |
+
+**Example**
+
+```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  // Set algName based on the algorithm supported.
+  let spec: cryptoFramework.HmacSpec = {
+    algName: "HMAC",
+    mdName: "SHA256",
+  };
+  let mac = cryptoFramework.createMac(spec);
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`sync error, ${e.code}, ${e.message}`);
@@ -5424,7 +5850,7 @@ Updates the message for MAC computation. This API uses an asynchronous callback 
 
 > **NOTE**
 >
-> For details about the sample code for calling **update** multiple times in an HMAC operation, see [HMAC (Passing In Data by Segment)](../../security/CryptoArchitectureKit/crypto-compute-mac.md#hmac-passing-in-data-by-segment).
+> For details about the sample code for calling **update** multiple times in an HMAC operation, see [Generating an HMAC by Passing In Data by Segment](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#generating-an-hmac-by-passing-in-data-by-segment).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5455,7 +5881,7 @@ Updates the message for MAC computation. This API uses a promise to return the r
 
 > **NOTE**
 >
-> For details about the sample code for calling **update** multiple times in an HMAC operation, see [HMAC (Passing In Data by Segment)](../../security/CryptoArchitectureKit/crypto-compute-mac.md#hmac-passing-in-data-by-segment).
+> For details about the sample code for calling **update** multiple times in an HMAC operation, see [Generating an HMAC by Passing In Data by Segment](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#generating-an-hmac-by-passing-in-data-by-segment).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5491,7 +5917,7 @@ Updates the message for MAC computation. This API returns the result synchronous
 
 > **NOTE**
 >
-> For details about the sample code for calling **updateSync** multiple times in an HMAC operation, see [HMAC (Passing In Data by Segment)](../../security/CryptoArchitectureKit/crypto-compute-mac.md#hmac-passing-in-data-by-segment).
+> For details about the sample code for calling **updateSync** multiple times in an HMAC operation, see [Generating an HMAC by Passing In Data by Segment](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#generating-an-hmac-by-passing-in-data-by-segment).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5545,7 +5971,7 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 
 **Example**
 
-For more HMAC operation examples, see [MAC Operation](../../security/CryptoArchitectureKit/crypto-compute-mac.md).
+For more HMAC operation examples, see [Generating an HMAC by Passing In Data by Segment](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#generating-an-hmac-by-passing-in-data-by-segment).
 
 ```ts
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -5596,7 +6022,7 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 
 **Example**
 
-For more HMAC operation examples, see [MAC Operation](../../security/CryptoArchitectureKit/crypto-compute-mac.md).
+For more HMAC operation examples, see [Generating an HMAC by Passing In Data by Segment](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#generating-an-hmac-by-passing-in-data-by-segment).
 
 ```ts
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -5643,7 +6069,7 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 
 **Example**
 
-For more HMAC operation examples, see [MAC Operation](../../security/CryptoArchitectureKit/crypto-compute-mac.md).
+For more HMAC operation examples, see [Generating an HMAC by Passing In Data by Segment](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#generating-an-hmac-by-passing-in-data-by-segment).
 
 ```ts
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -5989,7 +6415,7 @@ The supported system capability is SystemCapability.Security.CryptoFramework in 
 
 | Name | Type  | Mandatory| Description                             |
 | ------- | ------ | ---- | --------------------------------- |
-| algName | string | Yes  | Key derivation algorithm (including the hash function for the HMAC). Currently, only PBKDF2 and HKDF are supported. For example, **PBKDF2\|SHA256** and **HKDF\|SHA256**.  |
+| algName | string | Yes  | Key derivation algorithm (including the hash function for the HMAC). Currently, only PBKDF2, HKDF, and scrypt are supported. For example, **PBKDF2\|SHA256**, **HKDF\|SHA256**, and **SCRYPT**. |
 
 **Return value**
 

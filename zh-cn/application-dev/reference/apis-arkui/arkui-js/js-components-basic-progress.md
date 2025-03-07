@@ -21,7 +21,7 @@
 
 | 名称   | 类型     | 默认值        | 必填   | 描述                                       |
 | ---- | ------ | ---------- | ---- | ---------------------------------------- |
-| type | string | horizontal | 否    | 设置进度条的类型，该属性不支持动态修改，可选值为：<br/>-&nbsp;horizontal：线性进度条；<br/>-&nbsp;circular：loading样式进度条；<br/>-&nbsp;ring：圆环形进度条；<br/>-&nbsp;scale-ring：带刻度圆环形进度条<br/>-&nbsp;arc：弧形进度条。<br/>-&nbsp;eclipse5+：圆形进度条，展现类似月圆月缺的进度展示效果。 |
+| type | string | horizontal | 否    | 设置进度条的类型，该属性不支持动态修改，可选值为：<br/>-&nbsp;horizontal：线性进度条。<br/>-&nbsp;circular：loading样式进度条。<br/>-&nbsp;ring：圆环形进度条。<br/>-&nbsp;scale-ring：带刻度圆环形进度条。<br/>-&nbsp;arc：弧形进度条。<br/>-&nbsp;eclipse5+：圆形进度条，展现类似月圆月缺的进度展示效果。 |
 
 不同类型的进度条还支持不同的属性：
 

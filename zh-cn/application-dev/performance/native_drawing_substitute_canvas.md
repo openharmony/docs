@@ -143,10 +143,11 @@ export default struct GlassCoverView {
 }
 ```
 
-使用Canvas 的 CanvasRenderingContext2D 绘制trace图  
-![](./figures/drawing_with_canvas.png)
-从图可以看到绘制1000个圆圈耗时34.1毫秒。
+使用Canvas 的 CanvasRenderingContext2D 绘制trace图
 
+![](./figures/drawing_with_canvas.png)
+
+从图可以看到绘制1000个圆圈耗时34.1毫秒。
 
 - **正例(使用Native侧Drawing绘制)**  
 
@@ -386,8 +387,10 @@ static void NativeOnDrawPixelMap(OH_Drawing_Canvas *canvas, NativePixelMap *nati
 
 ```
 
-使用Native侧Drawing绘制trace图  
+使用Native侧Drawing绘制trace图
+
 ![](./figures/drawing_with_ndk.png)
+
 从图可以看到绘制1000个圆圈耗时1.2毫秒，相较于 Canvas 的 CanvasRenderingContext2D 绘制有较大的性能提升。
 
 ## 效果对比
@@ -396,6 +399,5 @@ static void NativeOnDrawPixelMap(OH_Drawing_Canvas *canvas, NativePixelMap *nati
 | ------------------------- | -------- | ------------------------------------------------------------ |
 | Canvas 的 CanvasRenderingContext2D画透明圈（反例） | 1000  | 34.1毫秒 |
 | Native Drawing画透明圈（正例）   | 1000   | 1.2毫秒                                   |
-
 
 通过上述对比可以发现，在实现较大数量透明空心圆绘制时，相比于Canvas 的 [CanvasRenderingContext2D](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md)，使用 [Native Drawing](../reference/apis-arkgraphics2d/drawing__canvas_8h.md) 绘制可以得到明显的性能提升。以上只是实现透明空心圆，针对实心圆及其他场景（如 [globalCompositeOperation](../reference/apis-arkui/arkui-js/js-components-canvas-canvasrenderingcontext2d.md#globalcompositeoperation) 属性的其他值），由于实现机制的不同，绘制的指令数量也存在差异，从而性能数据会存在一些差异。实际应用中，我们可以根据自己的需要等实际情况，在对性能要求不高的情况下采用 Canvas 的 CanvasRenderingContext2D 绘制，如果对性能要求比较高或者比较依赖于硬件，建议使用 [Native Drawing](../reference/apis-arkgraphics2d/drawing__canvas_8h.md)  进行绘制。

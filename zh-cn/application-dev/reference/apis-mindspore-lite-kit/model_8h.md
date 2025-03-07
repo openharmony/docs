@@ -19,7 +19,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) | 张量数组结构体，用于存储张量数组指针和张量数组长度 |
+| [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) | 张量数组结构体，用于存储张量数组指针和张量数组长度。 |
 | [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | 维度信息，最大的维度为**OH_AI_MAX_SHAPE_NUM**。 |
 | [OH_AI_CallBackParam](_o_h___a_i___call_back_param.md) | 回调函数中传入的算子信息。 |
 
@@ -37,7 +37,7 @@
 | -------- | -------- |
 | [OH_AI_ModelHandle](_mind_spore.md#oh_ai_modelhandle) | 指向模型对象的指针。 |
 | [OH_AI_TrainCfgHandle](_mind_spore.md#oh_ai_traincfghandle) | 指向训练配置对象的指针。 |
-| [OH_AI_TensorHandleArray](_mind_spore.md#oh_ai_tensorhandlearray) | 张量数组结构体，用于存储张量数组指针和张量数组长度 |
+| [OH_AI_TensorHandleArray](_mind_spore.md#oh_ai_tensorhandlearray) | 张量数组结构体，用于存储张量数组指针和张量数组长度。 |
 | [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | 维度信息，最大的维度为**OH_AI_MAX_SHAPE_NUM**。 |
 | [OH_AI_CallBackParam](_mind_spore.md#oh_ai_callbackparam) | 回调函数中传入的算子信息。 |
 | [OH_AI_KernelCallBack](_mind_spore.md#oh_ai_kernelcallback)) (const [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) inputs, const [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) outputs, const [OH_AI_CallBackParam](_o_h___a_i___call_back_param.md) kernel_Info) | 回调函数指针。 |

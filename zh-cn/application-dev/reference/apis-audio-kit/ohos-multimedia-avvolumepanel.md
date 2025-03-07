@@ -9,7 +9,7 @@
 >
 > - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 示例效果请以真机为准，当前DevEco Studio预览器无真实音量展示和调节功能。
-> <!--RP1--><!--RP1End-->
+> - **设备限制：** 当前功能暂不支持在2in1或智能穿戴设备上使用。 
 
 ## 导入模块
 
@@ -18,7 +18,7 @@ import { AVVolumePanel } from '@kit.AudioKit';
 ```
 ## 属性
 
-支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)。
+支持[通用属性](../apis-arkui/arkui-ts/ts-component-general-attributes.md)。
 
 ## AVVolumePanel
 
@@ -32,7 +32,7 @@ AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 
 ## 属性
 
-除支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](../apis-arkui/arkui-ts/ts-component-general-attributes.md)外，还支持以下属性：
 
 **参数：**
 
@@ -49,7 +49,7 @@ AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 
 ## 事件
 
-支持[通用事件](../apis-arkui/arkui-ts/ts-universal-events-click.md)。
+支持[通用事件](../apis-arkui/arkui-ts/ts-component-general-events.md)。
 
 ## 使用建议
 

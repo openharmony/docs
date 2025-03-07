@@ -10,7 +10,7 @@ Sendable对象为可共享的，其跨线程前后指向同一个JS对象，如�
 
 与其它ArkTS对象不一样的是，符合Sendable协议的数据对象在运行时必须是类型固定的对象。
 
-当多个并发实例尝试同时更新Sendable数据时，会发生数据竞争，例如[ArkTS共享容器](arkts-collections-introduction.md)的多线程操作。因此，ArkTS提供了[异步锁](arkts-async-lock-introduction.md)的机制来避免不同并发实例间的数据竞争。同时，还可以通过[对象冻结接口](sendable-freeze.md)冻结对象，将其变为只读对象，就可以不用考虑数据的竞争问题。
+当多个并发实例尝试同时更新Sendable数据时，会发生数据竞争，例如[ArkTS共享容器](arkts-collections-introduction.md)的多线程操作。因此，ArkTS提供了[异步锁](arkts-async-lock-introduction.md)的机制来避免不同并发实例间的数据竞争，还提供了[异步等待](arkts-condition-variable-introduction.md)的机制来控制多线程处理数据的时序问题。同时，还可以通过[对象冻结接口](sendable-freeze.md)冻结对象，将其变为只读对象，就可以不用考虑数据的竞争问题。
 
 Sendable对象提供了并发实例间高效的通信效率，即引用传递的能力，一般适用于开发者自定义大对象需要线程间通信的场景，例如子线程读取数据库的数据返回宿主线程。
 
@@ -62,11 +62,13 @@ Sendable interface需同时满足以下两个规则：
 
 ### Sendable支持的数据类型
 
-- 所有的ArkTS基本数据类型：boolean, number, string, bigint, null, undefined。
+- 所有的ArkTS基本数据类型：boolean、number、string、bigint、null、undefined。
 
 - ArkTS语言标准库中定义的[容器类型数据](arkts-collections-introduction.md)（须显式引入[@arkts.collections](../reference/apis-arkts/js-apis-arkts-collections.md)）。
 
 - ArkTS语言标准库中定义的[异步锁对象](arkts-async-lock-introduction.md)（须显式引入[@arkts.utils](../reference/apis-arkts/js-apis-arkts-utils.md)）。
+
+- ArkTS语言标准库中定义的[异步等待对象](arkts-condition-variable-introduction.md)（须显式引入[@arkts.utils](../reference/apis-arkts/js-apis-arkts-utils.md)）。
 
 - 继承了[ISendable](#isendable)的interface。
 
@@ -116,7 +118,7 @@ Sendable interface需同时满足以下两个规则：
 | 装饰的类继承关系限制 | Sendable class只能继承Sendable class，普通Class不可以继承Sendable class。 |
 | 装饰的对象内的属性类型限制 | 1. 支持string、number、boolean、bigint、null、undefined、Sendable class、collections.Array、collections.Map、collections.Set、ArkTSUtils.locks.AsyncLock。<br/>2. 禁止使用闭包变量。<br/>3. 不支持通过\#定义私有属性，需用private。<br/>4. 不支持计算属性。 |
 | 装饰的对象内的属性的其他限制 | 成员属性必须显式初始化。成员属性不能跟感叹号。 |
-| 装饰的函数或类对象内的方法参数限制 | 允许使用local变量、入参和通过import引入的变量。禁止使用闭包变量，定义在顶层的Sendable class和Sendable function除外。从API version 16开始，@Sendable装饰的函数或类对象内还支持访问本文件导出的变量。 |
+| 装饰的函数或类对象内的方法参数限制 | 允许使用local变量、入参和通过import引入的变量。禁止使用闭包变量，定义在顶层的Sendable class和Sendable function除外。从API version 18开始，@Sendable装饰的函数或类对象内还支持访问本文件导出的变量。 |
 | Sendable Class及Sendable Function的限制 | 不支持增加属性、不支持删除属性、允许修改属性，修改前后属性的类型必须一致、不支持修改方法。 |
 | 适用场景 | 1. 在TaskPool或Worker中使用类方法/Sendable函数。<br/>2. 传输对象数据量较大的使用场景。序列化耗时会随着数据量增大而增大，使用Sendable对数据改造后传输100KB数据时效率提升约20倍，传输1M数据时效率提升约100倍。 |
 

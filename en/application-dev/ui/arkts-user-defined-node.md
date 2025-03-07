@@ -8,7 +8,9 @@ Custom nodes in the ArkUI framework are node objects that provide basic capabili
 
 - [Built-in component](arkts-ui-development-overview.md): component provided directly by ArkUI. Components are essential elements of the UI, working together to shape the UI.
 
-- Entity node: native node created by the backend.
+- Entity node: underlying node in the component tree managed by the system. They handle attribute settings, lifecycle management, and other component logic. Custom nodes you obtain or create in TypeScript are essentially front-end objects that hold references to the corresponding entity nodes.
+
+- Custom node: node created using the APIs provided by ArkUI. Custom nodes include custom component nodes (FrameNode), custom render nodes (RenderNode), custom declarative nodes (BuilderNode), and [ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md).
 
 ## Custom Placeholder Nodes
 Custom placeholder nodes, acting as built-in components, provide anchor points for custom nodes in the built-in component tree, thereby allowing for a mixed display of custom nodes and built-in components.

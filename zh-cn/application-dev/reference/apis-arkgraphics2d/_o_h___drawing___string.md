@@ -31,7 +31,7 @@ uint8_t* OH_Drawing_String::strData
 ```
 **描述**
 
-指向包含UTF-16编码的字节数组的指针
+指向包含UTF-16编码的字节数组的指针。
 
 
 ### strLen
@@ -41,4 +41,4 @@ uint32_t OH_Drawing_String::strLen
 ```
 **描述**
 
-strData指向的字符串的实际长度，单位为字节
+strData指向的字符串的实际长度，单位为字节。

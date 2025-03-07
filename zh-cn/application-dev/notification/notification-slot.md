@@ -46,7 +46,7 @@
     // addslot回调
     let addSlotCallBack = (err: BusinessError): void => {
       if (err) {
-        hilog.info(DOMAIN_NUMBER, TAG, `addSlot failed, code is ${err.code}, message is ${err.message}`);
+        hilog.error(DOMAIN_NUMBER, TAG, `addSlot failed, code is ${err.code}, message is ${err.message}`);
       } else {
         hilog.info(DOMAIN_NUMBER, TAG, `addSlot success`);
       }
@@ -61,9 +61,9 @@
     // getSlot回调
     let getSlotCallback = (err: BusinessError, data: notificationManager.NotificationSlot): void => {
       if (err) {
-        hilog.error(DOMAIN_NUMBER, TAG, `getSlot failed, code is ${JSON.stringify(err.code)}, message is ${JSON.stringify(err.message)}`);
+        hilog.error(DOMAIN_NUMBER, TAG, `Failed to get slot. Code is ${err.code}, message is ${err.message}`);
       } else {
-        hilog.info(DOMAIN_NUMBER, TAG, `getSlot success. `);
+        hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in getting slot.`);
         if (data != null) {
           hilog.info(DOMAIN_NUMBER, TAG, `slot enable status is ${JSON.stringify(data.enabled)}`);
           hilog.info(DOMAIN_NUMBER, TAG, `slot level is ${JSON.stringify(data.level)}`);

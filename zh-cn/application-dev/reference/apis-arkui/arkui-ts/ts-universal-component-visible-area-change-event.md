@@ -38,8 +38,34 @@ onVisibleAreaChange(ratios: Array&lt;number&gt;, event: VisibleAreaChangeCallbac
 >
 >- 不支持非挂树节点的可见面积变化计算。例如，预加载的节点、通过[overlay](ts-universal-attributes-overlay.md#overlay)能力挂载的自定义节点。
 
+## onVisibleAreaApproximateChange<sup>16+</sup>
+
+onVisibleAreaApproximateChange(options: VisibleAreaEventOptions, event: VisibleAreaChangeCallback | undefined): void
+
+设置[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)事件的回调参数，限制它的执行间隔。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| options  | [VisibleAreaEventOptions](./ts-types.md#visibleareaeventoptions12) | 是   | 可见区域变化相关的参数。 |
+| event  | [VisibleAreaChangeCallback](./ts-types.md#visibleareachangecallback12)   \| undefined | 是   | onVisibleAreaChange事件的回调函数。当组件可见面积与自身面积的比值接近options中设置的阈值时触发该回调。 |
+
+>**说明：**
+>
+> 非实时回调，实际回调与预期间隔可能存在差别。
+>
+> 两次可见区域回调的时间间隔不小于预期更新间隔。当开发者设置的预期间隔过小时，由系统负载决定实际回调间隔时间。
+>
+> 当前接口的可见区域回调阈值默认包含0。例如，开发者设置回调阈值为[0.5]，实际生效的阈值为[0.0, 0.5]。
 
 ## 示例
+
+### 示例1 (使用onVisibleAreaChange来监听区域变化)
 
 该示例对组件设置onVisibleAreaChange事件，当组件完全显示或者完全消失时触发回调。
 
@@ -73,7 +99,7 @@ struct ScrollExample {
             .height(200)
             .margin({ top: 50, bottom: 20 })
             .backgroundColor(Color.Green)
-              // 通过设置ratios为[0.0, 1.0]，实现当组件完全显示或完全消失在屏幕中时触发回调
+              // 通过设置ratios为[0.0, 1.0]，实现当组件完全显示或完全消失在屏幕中时触发回调。
             .onVisibleAreaChange([0.0, 1.0], (isExpanding: boolean, currentRatio: number) => {
               console.info('Test Text isExpanding: ' + isExpanding + ', currentRatio:' + currentRatio)
               if (isExpanding && currentRatio >= 1.0) {
@@ -141,4 +167,105 @@ struct ScrollExample {
 }
 ```
 
+### 示例2 (使用onVisibleAreaApproximateChange来监听区域变化)
+
+该示例对组件设置onVisibleAreaApproximateChange事件，当组件完全显示或者完全消失时触发回调。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ScrollExample {
+  scroller: Scroller = new Scroller()
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  @State testTextStr: string = 'test'
+  @State testRowStr: string = 'test'
+
+  build() {
+    Column() {
+      Column() {
+        Text(this.testTextStr)
+          .fontSize(20)
+
+        Text(this.testRowStr)
+          .fontSize(20)
+      }
+      .height(100)
+      .backgroundColor(Color.Gray)
+      .opacity(0.3)
+
+      Scroll(this.scroller) {
+        Column() {
+          Text("Test Text Visible Change")
+            .fontSize(20)
+            .height(200)
+            .margin({ top: 50, bottom: 20 })
+            .backgroundColor(Color.Green)
+              // 通过设置ratios为[0.0, 1.0]，实现当组件完全显示或完全消失在屏幕中时触发回调。
+            .onVisibleAreaApproximateChange({ratios: [0.0, 1.0], expectedUpdateInterval: 1000}, (isExpanding: boolean, currentRatio: number) => {
+              console.info('Test Text isExpanding: ' + isExpanding + ', currentRatio:' + currentRatio)
+              if (isExpanding && currentRatio >= 1.0) {
+                console.info('Test Text is fully visible. currentRatio:' + currentRatio)
+                this.testTextStr = 'Test Text is fully visible'
+              }
+
+              if (!isExpanding && currentRatio <= 0.0) {
+                console.info('Test Text is completely invisible.')
+                this.testTextStr = 'Test Text is completely invisible'
+              }
+            })
+
+          Row() {
+            Text('Test Row Visible  Change')
+              .fontSize(20)
+              .margin({ bottom: 20 })
+
+          }
+          .height(200)
+          .backgroundColor(Color.Yellow)
+          .onVisibleAreaChange([0.0, 1.0], (isExpanding: boolean, currentRatio: number) => {
+            console.info('Test Row isExpanding:' + isExpanding + ', currentRatio:' + currentRatio)
+            if (isExpanding && currentRatio >= 1.0) {
+              console.info('Test Row is fully visible.')
+              this.testRowStr = 'Test Row is fully visible'
+            }
+
+            if (!isExpanding && currentRatio <= 0.0) {
+              console.info('Test Row is completely invisible.')
+              this.testRowStr = 'Test Row is completely invisible'
+            }
+          })
+
+          ForEach(this.arr, (item:number) => {
+            Text(item.toString())
+              .width('90%')
+              .height(150)
+              .backgroundColor(0xFFFFFF)
+              .borderRadius(15)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .margin({ top: 10 })
+          }, (item:number) => (item.toString()))
+
+        }.width('100%')
+      }
+      .backgroundColor(0x317aff)
+      .scrollable(ScrollDirection.Vertical)
+      .scrollBar(BarState.On)
+      .scrollBarColor(Color.Gray)
+      .scrollBarWidth(10)
+      .onWillScroll((xOffset: number, yOffset: number, scrollState: ScrollState) => {
+        console.info(xOffset + ' ' + yOffset)
+      })
+      .onScrollEdge((side: Edge) => {
+        console.info('To the edge')
+      })
+      .onScrollStop(() => {
+        console.info('Scroll Stop')
+      })
+
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC)
+  }
+}
+```
 ![zh-cn_visible_area_change.gif](figures/zh-cn_visible_area_change.gif)

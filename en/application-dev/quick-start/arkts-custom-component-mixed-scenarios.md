@@ -513,7 +513,7 @@ struct Child {
         })
       Divider()
         .color(Color.Blue)
-      ForEach(Array.from(this.set.values()), (item: number) => { // Display set.
+      ForEach(Array.from(this.set.values()), (item: number) => {  // Display set.
         Text(`${item}`)
           .fontSize(30)
       })
@@ -1015,7 +1015,7 @@ struct Index {
         })
       Divider()
         .color(Color.Blue)
-      Text(`messageInfoNested name:${this.messageInfoNested.messageInfo.info.name}`)   //  Being not decorated by @Trace, it is not observable.
+      Text(`messageInfoNested name:${this.messageInfoNested.messageInfo.info.name}`)   // Being not decorated by @Trace, it is not observable.
         .fontSize(30)
         .onClick(() => {
           this.messageInfoNested.messageInfo.info.name += 'a';
@@ -1041,5 +1041,5 @@ struct Index {
 
 The sample code shows:
 
-* \@observedV2 and \@Trace nest the observation capability to the class properties. Therefore, when a class property is marked by @Trace, the change can be observed regardless of the number of nested levels.
+* \@ObservedV2 and \@Trace nest the observation capability to the class properties. Therefore, when a class property is marked by @Trace, the change can be observed regardless of the number of nested levels.
 * When \@ObservdV2 and \@Observed are used together, the decorator used by the outermost class determines whether the class object can be decorated by the decorator of V1. For example, the class decorated by \@ObservedV2 in the lower level does not affect the outermost class decorated by the decorator of V1.

@@ -35,7 +35,7 @@ void AddAsset() {
     static const char *SECRET = "demo_pwd";
     static const char *ALIAS = "demo_alias";
     static const char *LABEL = "demo_label";
-    static const char *GROUP_ID = "demo_group_id;
+    static const char *GROUP_ID = "demo_group_id";
 
     Asset_Blob secret = { (uint32_t)(strlen(SECRET)), (uint8_t *)SECRET };
     Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
@@ -136,6 +136,7 @@ void UpdateAsset() {
 
 void QueryAsset() {
     static const char *ALIAS = "demo_alias";
+    static const char *GROUP_ID = "demo_group_id";
     Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
     Asset_Blob group_id = { (uint32_t)(strlen(GROUP_ID)), (uint8_t *)GROUP_ID };
     Asset_Attr attr[] = {

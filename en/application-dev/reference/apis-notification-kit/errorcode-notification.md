@@ -14,7 +14,7 @@ Internal error.
 
 This error code is reported when an error occurs during internal processing, such as multi-thread processing or internal pointer checks.
 
-**Cause**
+**Possible Causes**
 
 Common kernel errors such as multi-thread processing and internal processing errors occur.
 
@@ -32,7 +32,7 @@ Marshalling or unmarshalling error.
 
 This error code is reported when a marshalling or unmarshalling error occurs before data transmission.
 
-**Cause**
+**Possible Causes**
 
 A parameter mismatch is detected between the application and the notification service.
 
@@ -50,7 +50,7 @@ Failed to connect to the service.
 
 This error code is reported when the application fails to connect to the notification service.
 
-**Cause**
+**Possible Causes**
 
 The notification service is busy or abnormal.
 
@@ -68,7 +68,7 @@ Notification disabled.
 
 This error code is reported when notification is disabled.
 
-**Cause**
+**Possible Causes**
 
 The notification feature is not enabled for the application.
 
@@ -86,7 +86,7 @@ Notification slot disabled.
 
 This error code is reported when the notification slot is not available.
 
-**Cause**
+**Possible Causes**
 
 The notification slot is disabled or has not been added.
 
@@ -106,7 +106,7 @@ Notification deletion disabled.
 
 This error code is reported when notification deletion is disabled.
 
-**Cause**
+**Possible Causes**
 
 The notification attribute **isUnremovable** is set to true.
 
@@ -124,7 +124,7 @@ The notification does not exist.
 
 This error code is reported when the notification service could not find the notification.
 
-**Cause**
+**Possible Causes**
 
 The notification has been canceled or deleted.
 
@@ -142,7 +142,7 @@ The user does not exist.
 
 This error code is reported when the specified user is not found in the information system.
 
-**Cause**
+**Possible Causes**
 
 The user information passed is incorrect.
 
@@ -160,7 +160,7 @@ The notification sending frequency reaches the upper limit.
 
 This error code is reported when the notification sending frequency reaches the upper limit.
 
-**Cause**
+**Possible Causes**
 
 More than 10 notifications are sent per second, or more than 20 notifications are updated per second.
 
@@ -178,7 +178,7 @@ Distributed operation failed.
 
 This error code is reported when an error occurs with the distributed database operation or distributed API invoking.
 
-**Cause**
+**Possible Causes**
 
 The distributed database could not be operated or the distributed API could not be invoked.
 
@@ -196,7 +196,7 @@ Failed to read the template configuration.
 
 This error code is reported when the attempt to read the template configuration file fails.
 
-**Cause**
+**Possible Causes**
 
 The template configuration file is lost in the system.
 
@@ -214,7 +214,7 @@ No memory space.
 
 This error code is reported when a memory allocation error occurs.
 
-**Cause**
+**Possible Causes**
 
 A memory allocation error occurs.
 
@@ -232,7 +232,7 @@ A notification dialog box is already displayed.
 
 This error code is reported when the notification pop-up window is displayed.
 
-**Cause**
+**Possible Causes**
 
 The notification pop-up window is displayed.
 
@@ -251,7 +251,7 @@ No permission.
 
 This error code is reported when you do not have the related permission.
 
-**Cause**
+**Possible Causes**
 
 You do not have the related permission.
 
@@ -269,7 +269,7 @@ The current notification status does not support duplicate configurations.
 
 This error code is reported when the current notification status does not support duplicate configurations.
 
-**Cause**
+**Possible Causes**
 
 The current notification status does not support duplicate configurations.
 
@@ -287,7 +287,7 @@ The notification version for this update is too low.
 
 This error code is reported when the notification version for this update is outdated.
 
-**Cause**
+**Possible Causes**
 
 The notification version for this update is outdated.
 
@@ -305,7 +305,7 @@ There is no corresponding agent relationship configuration.
 
 This error code is reported when no proxy relationship is configured.
 
-**Cause**
+**Possible Causes**
 
 No corresponding proxy relationship is configured.
 
@@ -323,7 +323,7 @@ The notification settings window is already displayed.
 
 This error code is reported when the notification settings page has been displayed.
 
-**Cause**
+**Possible Causes**
 
 The notification settings page has been displayed.
 
@@ -341,13 +341,31 @@ The do-not-disturb profile does not exist.
 
 This error code is reported when the configuration information corresponding to the Do Not Disturb profile ID does not exist.
 
-**Cause**
+**Possible Causes**
 
 No configuration information corresponding to the Do Not Disturb profile ID exists.
 
 **Solution**
 
 Check whether the queried Do Not Disturb profile ID is correct.
+
+## 1600020 Applications in the Permission Control List Is Not Allowed to Publish Notifications
+
+**Error Message**
+
+The application is not allowed to publish notifications due to permission control settings.
+
+**Description**
+
+This error code is reported when an application under the permission control list publishes a notification.
+
+**Possible Causes**
+
+The application is restricted by the enterprise-customized devices.
+
+**Solution**
+
+The application is under permission control of [Enterprise Device Manager](../../mdm/mdm-kit-admin.md) and it cannot exit the permission control list automatically.
 
 ## 2300007 Network Access Failure
 
@@ -359,7 +377,7 @@ Network unreachable.
 
 This error code is reported when the network cannot be accessed.
 
-**Cause**
+**Possible Causes**
 
 The network cannot be accessed.
 
@@ -377,7 +395,7 @@ The specified bundle name was not found.
 
 This error code is reported when the bundle name is incorrect or the application is not installed.
 
-**Cause**
+**Possible Causes**
 
 1. The bundle name is incorrect.
 2. The application is not installed.

@@ -261,7 +261,7 @@ struct Index {
     Row() {
       Stack() {
         Column(){
-          Button ("Text Below Image")
+          Button("Text Below Image")
             .width(96)
             .height(40)
             .onClick(() => {

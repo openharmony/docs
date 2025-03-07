@@ -6,40 +6,16 @@
 
 ## 接口
 
-### ContentSlot组件接口
+### ArkTS侧接口
 
-```ts
-ContentSlot(content: Content); // 当前开发者需要使用ArkUI提供的NodeContent作为管理器
-```
-
-| 参数名  | 类型 | 必填 | 参数描述                                                     |
-| ------- | -------- | ---- | ------------------------------------------------------------ |
-| content | Content  | 是   | Content作为ContentSlot的管理器，通过Native侧提供的接口，可以注册并触发ContentSlot的上下树事件回调以及管理ContentSlot的子组件。 |
+| 接口名  | 描述 |
+| ------- | -------- |
+| ContentSlot(content: Content) | Content作为ContentSlot的管理器，通过Native侧提供的接口，可以注册并触发ContentSlot的上下树事件回调以及管理ContentSlot的子组件。 |
 
 ```ts
 abstract class Content {
 }
 ```
-
-### ContentSlotInterface
-
-(content: Content): ContentSlotAttribute;
-
-当内容添加到占位符组件时调用
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名  | 类型 | 必填 | 参数描述                                                     |
-| ------- | -------- | ---- | ------------------------------------------------------------ |
-| content | Content  | 是   | Content作为ContentSlot的管理器，通过Native侧提供的接口，可以注册并触发ContentSlot的上下树事件回调以及管理ContentSlot的子组件。 |
-
-### ContentSlotAttribute
-
-定义ContentSlot属性，以防止不正确的递归使用ContentSlot
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### Native侧接口
 

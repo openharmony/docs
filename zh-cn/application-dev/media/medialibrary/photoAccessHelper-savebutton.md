@@ -2,6 +2,45 @@
 
 当用户需要保存图片、视频等用户文件到图库时，无需在应用中申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'，应用可以通过[安全控件](#使用安全控件保存媒体库资源)或[授权弹窗](#使用弹窗授权保存媒体库资源)的方式，将用户指定的媒体资源保存到图库中。
 
+## 获取支持保存的资源格式
+
+下面以获取支持保存的图片类型资源格式为例。
+
+**开发步骤**
+
+调用[phAccessHelper.getSupportedPhotoFormats](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getsupportedphotoformats16)接口获取支持保存的图片类型资源格式。
+
+```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
+let context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+@Entry
+@Component
+
+struct Index {
+  @State outputText: string = '支持的类型为：\n';
+
+  async function example(){
+    try {
+      this.outputText = '支持的类型为：\n';
+      //参数为1表示获取支持的图片类型格式，参数为2表示获取支持的视频类型格式。
+      let imageFormat  = await phAccessHelper.getSupportedPhotoFormats(1);
+      let result = "";
+      for (let i = 0; i < imageFormat.length; i++) {
+        result += imageFormat[i];
+        if (i !== imageFormat.length - 1) {
+          result += ', ';
+        }
+      }
+      this.outputText += result;
+      console.info('getSupportedPhotoFormats success, data is ' + outputText);
+    } catch (error) {
+      console.error('getSupportedPhotoFormats failed, errCode is', error);
+    }
+  }
+```
+
 ## 使用安全控件保存媒体库资源
 
 安全控件的介绍可参考[安全控件的保存控件](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)。
@@ -24,18 +63,18 @@ struct Index {
     icon: SaveIconStyle.FULL_FILLED,
     text: SaveDescription.SAVE_IMAGE,
     buttonType: ButtonType.Capsule
-  } // 设置安全控件按钮属性
+  } // 设置安全控件按钮属性。
 
   build() {
     Row() {
       Column() {
-        SaveButton(this.saveButtonOptions) // 创建安全控件按钮
+        SaveButton(this.saveButtonOptions) // 创建安全控件按钮。
           .onClick(async (event, result: SaveButtonOnClickResult) => {
              if (result == SaveButtonOnClickResult.SUCCESS) {
                try {
                  let context = getContext();
                  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-                 // 需要确保fileUri对应的资源存在
+                 // 需要确保fileUri对应的资源存在。
                  let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
                  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createImageAssetRequest(context, fileUri);
                  await phAccessHelper.applyChanges(assetChangeRequest);
@@ -77,23 +116,23 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
   try {
-    // 指定待保存到媒体库的位于应用沙箱的图片uri
+    // 指定待保存到媒体库的位于应用沙箱的图片uri。
     let srcFileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
     let srcFileUris: Array<string> = [
       srcFileUri
     ];
-    // 指定待保存照片的创建选项，包括文件后缀和照片类型，标题和照片子类型可选
+    // 指定待保存照片的创建选项，包括文件后缀和照片类型，标题和照片子类型可选。
     let photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig> = [
       {
-        title: 'test', // 可选
+        title: 'test', // 可选。
         fileNameExtension: 'jpg',
         photoType: photoAccessHelper.PhotoType.IMAGE,
-        subtype: photoAccessHelper.PhotoSubtype.DEFAULT, // 可选
+        subtype: photoAccessHelper.PhotoSubtype.DEFAULT, // 可选。
       }
     ];
-    // 基于弹窗授权的方式获取媒体库的目标uri
+    // 基于弹窗授权的方式获取媒体库的目标uri。
     let desFileUris: Array<string> = await phAccessHelper.showAssetsCreationDialog(srcFileUris, photoCreationConfigs);
-    // 将来源于应用沙箱的照片内容写入媒体库的目标uri
+    // 将来源于应用沙箱的照片内容写入媒体库的目标uri。
     let desFile: fileIo.File = await fileIo.open(desFileUris[0], fileIo.OpenMode.WRITE_ONLY);
     let srcFile: fileIo.File = await fileIo.open(srcFileUri, fileIo.OpenMode.READ_ONLY);
     await fileIo.copyFile(srcFile.fd, desFile.fd);

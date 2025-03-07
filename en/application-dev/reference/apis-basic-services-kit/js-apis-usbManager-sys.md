@@ -383,6 +383,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -394,7 +395,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 **Example**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager';
+import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let devicesName: string = "1-1";
 let tokenId: string = "";
@@ -445,6 +446,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | ID| Error Message                                                                       |
 | -------- | ------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **Return value**
@@ -489,6 +491,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -533,7 +536,10 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
+| 14400002 | Permission denied. The HDC is disabled by the system.                                                   |
+| 14400006 | Unsupported operation. The function is not supported.                                                   |
 
 **Return value**
 
@@ -576,6 +582,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | ID| Error Message                                                                       |
 | -------- | ------------------------------------------------------------------------------- |
 | 401      | Parameter error. No parameters are required.                                    |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **Return value**
@@ -612,6 +619,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -651,6 +659,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -696,6 +705,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 | 14400003 | Unsupported operation. The current device does not support port role switching.                         |
 
@@ -715,6 +725,56 @@ usbManager.setPortRoleTypes(portId, usbManager.PowerRoleType.SOURCE, usbManager.
 }).catch((err : BusinessError) => {
   console.error('usb setPortRoleTypes failed: ' + err.code + ' message: ' + err.message);
 });
+```
+
+## addAccessoryRight<sup>14+<sup>
+
+addAccessoryRight(tokenId: number, accessory: USBAccessory): void;
+
+Adds the permission to applications for accessing USB accessories.
+
+**usbManager.requestAccessoryRight** triggers a dialog box to request user authorization. **addAccessoryRight** does not trigger a dialog box but directly adds the device access permission for the application.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_USB_CONFIG
+
+**System capability**: SystemCapability.USB.USBManager
+
+**Parameters**
+
+| Name   | Type        | Mandatory| Description                    |
+| --------- | ------------ | ---- | ------------------------ |
+| tokenId   | number       | Yes  | Token ID of the application.|
+| accessory | USBAccessory | Yes  | USB accessory.               |
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | The permission check failed.                                 |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
+| 14400005 | Database operation exception.                                |
+
+**Example**
+
+```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { bundleManager } from '@kit.AbilityKit';
+try {
+  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
+  let flags = bundleManager.BundleFlah.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY
+  let bundleInfo = await bundleManager.getBundleInfoForSelf(flags)
+  let tokenId: number = bundleInfo.appInfo.accessTokenId
+  usbManager.addAccessoryRight(tokenId, accList[0])
+  hilog.info(0, 'testTag ui', `addAccessoryRight success`)
+} catch (error) {
+  hilog.info(0, 'testTag ui', `addAccessoryRight error ${error.code}, message is ${error.message}`)
+}
 ```
 
 ## USBPort
@@ -759,8 +819,8 @@ Enumerates USB device function types.
 | ACM          | 1   | ACM function. |
 | ECM          | 2   | ECM function. |
 | HDC          | 4   | HDC function. |
-| MTP          | 8   | Media transmission (not supported).|
-| PTP          | 16  | Image transmission (not supported).|
+| MTP          | 8   | Media transmission.|
+| PTP          | 16  | Image transmission.|
 | RNDIS        | 32  | Network sharing (not supported).|
 | MIDI         | 64  | MIDI function (not supported).|
 | AUDIO_SOURCE | 128 | Audio function (not supported).|

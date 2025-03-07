@@ -63,6 +63,7 @@
 | (\*[OH_NetConn_CustomDnsResolver](#oh_netconn_customdnsresolver)) (const char \*host, const char \*serv, const struct addrinfo \*hint, struct addrinfo \*\*res) | 指向自定义 DNS 解析器的指针。 | 
 | [NetConn_NetConnCallback](#netconn_netconncallback) | 网络状态监听回调集合。 |
 | [NetConn_NetSpecifier](#netconn_netspecifier) | 网络的特征集，包含网络的能力集与网络的标识符。 |
+| [NetConn_ErrorCode](#netconn_errorcode) | 网络连接返回值错误码。 |
 
 ### 枚举
 
@@ -70,6 +71,7 @@
 | -------- | -------- |
 | [NetConn_NetCap](#netconn_netcap) {<br/>NETCONN_NET_CAPABILITY_MMS = 0,<br/>NETCONN_NET_CAPABILITY_NOT_METERED = 11,<br/>NETCONN_NET_CAPABILITY_INTERNET = 12,<br/>NETCONN_NET_CAPABILITY_NOT_VPN = 15,<br/>NETCONN_NET_CAPABILITY_VALIDATED = 16<br/>} | 网络能力集。 | 
 | [NetConn_NetBearerType](#netconn_netbearertype) {<br/>NETCONN_BEARER_CELLULAR = 0,<br/>NETCONN_BEARER_WIFI = 1,<br/>NETCONN_BEARER_ETHERNET = 3<br/>NETCONN_BEARER_VPN = 4<br/>} | 网络载体类型。 |
+| [NetConn_ErrorCode](#netconn_errorcode) {<br/>NETCONN_SUCCESS = 0,<br/>NETCONN_PERMISSION_DENIED = 201,<br/>NETCONN_PARAMETER_ERROR = 401,<br/>NETCONN_OPERATION_FAILED = 2100002,<br/>NETCONN_INTERNAL_ERROR= 2100003<br/>} | 网络连接返回值错误码。 |
 
 
 ### 函数
@@ -96,6 +98,8 @@
 | [OH_NetConn_RegisterNetConnCallback](#oh_netconn_registernetconncallback) ([NetConn_NetSpecifier](_net_conn___net_specifier.md) \*specifier, [NetConn_NetConnCallback](_net_conn___net_conn_callback.md) \*netConnCallback, uint32_t timeoutMS, uint32_t \*callbackId) | 注册监听网络状态的回调。 |
 | [OH_NetConn_RegisterDefaultNetConnCallback](#oh_netconn_registerdefaultnetconncallback) ([NetConn_NetConnCallback](_net_conn___net_conn_callback.md) \*netConnCallback, uint32_t \*callbackId) | 注册监听默认网络状态的回调。 |
 | [OH_NetConn_UnregisterNetConnCallback](#oh_netconn_unregisternetconncallback) (uint32_t callbackId) | 注销监听网络状态的回调。 |
+| [OH_NetConn_SetPacUrl](#oh_netconn_setpacurl) (const char \*pacUrl) | 设置系统级代理自动配置(PAC)脚本地址。 |
+| [OH_NetConn_GetPacUrl](#oh_netconn_getpacurl) (char \*pacUrl) | 获取系统级代理自动配置(PAC)脚本地址。 |
 
 
 ## 类型定义说明
@@ -285,6 +289,19 @@ typedef struct NetConn_NetSpecifier NetConn_NetSpecifier
 **起始版本：** 12
 
 
+### NetConn_ErrorCode
+
+```
+typedef enum NetConn_ErrorCode NetConn_ErrorCode
+```
+
+**描述**
+
+网络连接返回值错误码。
+
+**起始版本：** 15
+
+
 ## 枚举类型说明
 
 
@@ -329,6 +346,27 @@ enum NetConn_NetCap
 | NETCONN_NET_CAPABILITY_NOT_VPN | 非VPN。 | 
 | NETCONN_NET_CAPABILITY_VALIDATED | 已验证。 | 
 | NETCONN_NET_CAPABILITY_CHECKING_CONNECTIVITY  | 检测连通性中。<br/>起始版本：12。 | 
+
+
+### NetConn_ErrorCode
+
+```
+enum NetConn_ErrorCode
+```
+
+**描述**
+
+网络连接返回值错误码。
+
+**起始版本：** 15
+
+|         枚举值           |         描述            |
+| ------------------------ | ----------------------- |
+| NETCONN_SUCCESS          | 成功。              |
+| NETCONN_PERMISSION_DENIED| 权限校验失败。           |
+| NETCONN_PARAMETER_ERROR  | 参数检查失败。           |
+| NETCONN_OPERATION_FAILED | 连接服务失败。           |
+| NETCONN_INTERNAL_ERROR   | 系统内部错误。           |
 
 
 ## 函数说明
@@ -1044,3 +1082,71 @@ int32_t OH_NetConn_UnregisterNetConnCallback(uint32_t callBackId)
 **Permission：**
 
 ohos.permission.GET_NETWORK_INFO
+
+
+### OH_NetConn_SetPacUrl()
+
+```
+NetConn_ErrorCode OH_NetConn_SetPacUrl(const char *pacUrl)
+```
+
+**描述**
+
+设置系统级代理自动配置(PAC)脚本地址。
+
+**系统能力：** SystemCapability.Communication.NetManager.Core
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pacUrl   |  需要设置的PAC脚本地址，该接口不会对脚本地址进行校验。 |
+
+**返回：**
+
+NETCONN_SUCCESS - 成功。
+
+NETCONN_PERMISSION_DENIED - 缺少权限。
+
+NETCONN_PARAMETER_ERROR - 参数错误。
+
+NETCONN_OPERATION_FAILED - 无法连接到服务。
+
+NETCONN_INTERNAL_ERROR - 内部错误，表示设置脚本地址失败。
+
+**Permission：**
+
+ohos.permission.SET_PAC_URL
+
+
+### OH_NetConn_GetPacUrl()
+
+```
+NetConn_ErrorCode OH_NetConn_GetPacUrl(char *pacUrl)
+```
+
+**描述**
+
+获取系统级代理自动配置(PAC)脚本地址。
+
+**系统能力：** SystemCapability.Communication.NetManager.Core
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pacUrl   |  获取的PAC脚本地址。 |
+
+**返回：**
+
+NETCONN_SUCCESS - 成功。
+
+NETCONN_PERMISSION_DENIED - 参数错误。
+
+NETCONN_OPERATION_FAILED - 无法连接到服务。
+
+NETCONN_INTERNAL_ERROR - 内部错误，表示未设置脚本地址或查询失败。

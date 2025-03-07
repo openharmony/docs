@@ -53,7 +53,7 @@ import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
 
 queryBusinessAbilityInfo(filter: BusinessAbilityFilter, callback: AsyncCallback\<Array\<BusinessAbilityInfo\>\>): void;
 
-以异步方法通过给定的过滤条件查询ability信息。使用callback异步回调。成功返回查询到的路由ability信息，失败返回对应错误信息。
+通过给定的过滤条件查询ability信息。使用callback异步回调。成功返回查询到的路由ability信息，失败返回对应错误信息。
 
 **需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -104,7 +104,7 @@ try {
 
 queryBusinessAbilityInfo(filter: BusinessAbilityFilter): Promise\<Array\<BusinessAbilityInfo\>\>;
 
-以异步方法通过给定的过滤条件查询ability信息。使用Promise异步回调，成功返回查询到的路由ability信息，失败返回对应错误信息。
+通过给定的过滤条件查询ability信息。使用Promise异步回调，成功返回查询到的路由ability信息，失败返回对应错误信息。
 
 **需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 

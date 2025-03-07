@@ -8,7 +8,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -21,7 +21,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -34,7 +34,7 @@
 
 **权限级别**：system_core
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -47,7 +47,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -60,7 +60,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -73,7 +73,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -86,7 +86,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -99,7 +99,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -112,7 +112,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -125,7 +125,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -138,7 +138,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -151,7 +151,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -164,7 +164,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -177,7 +177,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -190,7 +190,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -203,7 +203,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -216,7 +216,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -229,7 +229,7 @@
 
 **权限级别**：system_core
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -242,7 +242,7 @@
 
 **权限级别**：system_core
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -255,7 +255,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -268,7 +268,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -281,7 +281,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -294,7 +294,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -307,7 +307,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -320,7 +320,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -333,7 +333,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -346,7 +346,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -359,7 +359,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -372,7 +372,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -385,7 +385,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -398,7 +398,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -411,7 +411,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -424,7 +424,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -437,7 +437,7 @@
 
 **权限级别**：system_core
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
@@ -450,7 +450,7 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->

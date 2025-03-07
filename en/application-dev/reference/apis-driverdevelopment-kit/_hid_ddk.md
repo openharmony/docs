@@ -93,8 +93,8 @@ Provides HID driver development kit (DDK) functions, including those for creatin
 | int32_t [OH_Hid_GetRawName](#oh_hid_getrawname) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, char \*data, uint32_t bufSize) | Obtains the original device name.| 
 | int32_t [OH_Hid_GetPhysicalAddress](#oh_hid_getphysicaladdress) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, char \*data, uint32_t bufSize) | Obtains the physical address of the HID device.| 
 | int32_t [OH_Hid_GetRawUniqueId](#oh_hid_getrawuniqueid) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, uint8_t \*data, uint32_t bufSize) | Obtains the original unique identifier of a device.| 
-| int32_t [OH_Hid_SendReport](#oh_hid_sendreport) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, [Hid_ReportType](#hid_reporttype) reportType, const uint8_t \*data, uint32_t length) | Sends reports to the HID device.| 
-| int32_t [OH_Hid_GetReport](#oh_hid_getreport) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, [Hid_ReportType](#hid_reporttype) reportType, uint8_t \*data, uint32_t bufSize) | Obtains reports from the HID device.| 
+| <!--DelRow-->int32_t [OH_Hid_SendReport](#oh_hid_sendreport) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, [Hid_ReportType](#hid_reporttype) reportType, const uint8_t \*data, uint32_t length) | Sends reports to the HID device.| 
+| <!--DelRow-->int32_t [OH_Hid_GetReport](#oh_hid_getreport) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, [Hid_ReportType](#hid_reporttype) reportType, uint8_t \*data, uint32_t bufSize) | Obtains reports from the HID device.| 
 | int32_t [OH_Hid_GetReportDescriptor](#oh_hid_getreportdescriptor) ([Hid_DeviceHandle](#hid_devicehandle) \*dev, uint8_t \*buf, uint32_t bufSize, uint32_t \*bytesRead) | Obtains the report descriptor of the HID device.| 
 
 
@@ -484,7 +484,7 @@ Enumerates the key codes.
 | HID_KEY_NUMPAD_SUBTRACT | Arithmetic operator - (subtraction) on the numeric keypad.| 
 | HID_KEY_NUMPAD_ADD | Arithmetic operator + (addition) on the numeric keypad.| 
 | HID_KEY_NUMPAD_DOT | Decimal point (.) on the numeric keypad. | 
-| HID_KEY_SYSRQ | SYSRQ key.| 
+| HID_KEY_SYSRQ | Key Esc.| 
 | HID_KEY_MUTE | Mute key.| 
 | HID_KEY_VOLUME_DOWN | Volume Down key.| 
 | HID_KEY_VOLUME_UP | Volume Up key.| 
@@ -880,7 +880,7 @@ ohos.permission.ACCESS_DDK_HID
 
 - HID_DDK_SERVICE_ERROR: DDK service communication error.
 
-- HID_DDK_MEMORY_ERROR: Memory data copy failed.
+- HID_DDK_MEMORY_ERROR: Memory data copy error.
 
 - HID_DDK_IO_ERROR: I/O operation error.
 
@@ -921,13 +921,13 @@ ohos.permission.ACCESS_DDK_HID
 
 - HID_DDK_SERVICE_ERROR: DDK service communication error.
 
-- HID_DDK_MEMORY_ERROR: Memory data copy failed.
+- HID_DDK_MEMORY_ERROR: Memory data copy error.
 
 - HID_DDK_IO_ERROR: I/O operation error.
 
 - HID_DDK_INVALID_OPERATION: Invalid operation.
 
-
+<!--Del-->
 ### OH_Hid_GetReport()
 
 ```
@@ -959,16 +959,18 @@ ohos.permission.ACCESS_DDK_HID
 
 - HID_DDK_NO_PERM: Permission verification failed.
 
-- HID_DDK_INVALID_PARAMETER: Parameter verification failed. Possible causes: 1. **dev** is empty. 2. **data** is empty. 3. The value of **bufSize** is **0**. 4. The value of **bufSize** exceeds [HID_MAX_REPORT_BUFFER_SIZE](#hid_max_report_buffer_size). HID_DDK_INIT_ERROR DDK: DDK initialization error.
+- HID_DDK_INVALID_PARAMETER: Parameter verification failed. Possible causes: 1. **dev** is empty. 2. **data** is empty. 3. The value of **bufSize** is **0**. 4. The value of **bufSize** exceeds [HID_MAX_REPORT_BUFFER_SIZE](#hid_max_report_buffer_size).
+
+- HID_DDK_INIT_ERROR DDK: DDK initialization error.
 
 - HID_DDK_SERVICE_ERROR: DDK service communication error.
 
-- HID_DDK_MEMORY_ERROR: Memory data copy failed.
+- HID_DDK_MEMORY_ERROR: Memory data copy error.
 
 - HID_DDK_IO_ERROR: I/O operation error.
 
 - HID_DDK_INVALID_OPERATION: Invalid operation.
-
+<!--DelEnd-->
 
 ### OH_Hid_GetReportDescriptor()
 
@@ -1007,7 +1009,7 @@ ohos.permission.ACCESS_DDK_HID
 
 - HID_DDK_SERVICE_ERROR: DDK service communication error.
 
-- HID_DDK_MEMORY_ERROR: Memory data copy failed.
+- HID_DDK_MEMORY_ERROR: Memory data copy error.
 
 - HID_DDK_IO_ERROR: I/O operation error.
 
@@ -1121,7 +1123,7 @@ ohos.permission.ACCESS_DDK_HID
 
 - HID_DDK_SERVICE_ERROR: DDK service communication error.
 
-- HID_DDK_MEMORY_ERROR: Memory data copy failed.
+- HID_DDK_MEMORY_ERROR: Memory data copy error.
 
 - HID_DDK_IO_ERROR: I/O operation error.
 
@@ -1166,7 +1168,7 @@ ohos.permission.ACCESS_DDK_HID
 
 - HID_DDK_SERVICE_ERROR: DDK service communication error.
 
-- HID_DDK_MEMORY_ERROR: Memory data copy failed.
+- HID_DDK_MEMORY_ERROR: Memory data copy error.
 
 - HID_DDK_IO_ERROR: I/O operation error.
 
@@ -1199,7 +1201,7 @@ ohos.permission.ACCESS_DDK_HID
 
 - HID_DDK_SERVICE_ERROR: DDK service communication error.
 
-
+<!--Del-->
 ### OH_Hid_SendReport()
 
 ```
@@ -1241,7 +1243,7 @@ ohos.permission.ACCESS_DDK_HID
 
 - HID_DDK_INVALID_OPERATION: Invalid operation.
 
-
+<!--DelEnd-->
 ### OH_Hid_SetNonBlocking()
 
 ```

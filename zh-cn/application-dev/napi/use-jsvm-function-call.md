@@ -14,7 +14,7 @@
 |----------------------------|--------------------------------|
 | OH_JSVM_GetCbInfo          | 从给定的callback info中获取有关调用的详细信息，如参数和this指针。|
 | OH_JSVM_CallFunction       | 在C/C++侧调用JavaScript方法。|
-| OH_JSVM_IsFunction         | 判断对象是否为函数对象 |
+| OH_JSVM_IsFunction         | 判断对象是否为函数对象。 |
 | OH_JSVM_CreateFunction     | 用于创建JavaScript函数,用于从JavaScript环境中调用C/C++代码中的函数, 需要设置到一个js对象中才可以进行调用。 |
 
 ## 使用示例

@@ -35,7 +35,7 @@ If you are just starting out with Node-API, see [Node-API Development Process](u
 
 ### napi_get_last_error_info
 
-Use **napi_get_last_error_info** to obtain the last error information, including the error code, error message, and stack information. This API can also be used to handle pending ArkTS exceptions.
+Call **napi_get_last_error_info** to obtain the last error information, including the error code, error message, and stack information. This API can also be used to handle pending ArkTS exceptions.
 
 CPP code:
 
@@ -86,14 +86,14 @@ try {
 
 ### napi_create_type_error
 
-Use **napi_create_type_error** to create an ArkTS **TypeError** object with text information.
+Call **napi_create_type_error** to create an ArkTS **TypeError** object with text information.
 
 CPP code:
 
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value CreatTypeError(napi_env env, napi_callback_info info)
+static napi_value CreateTypeError(napi_env env, napi_callback_info info)
 {
     // Construct errorCode and errorMessage.
     napi_value errorCode = nullptr;
@@ -111,7 +111,7 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const creatTypeError: () => Error;
+export const createTypeError: () => Error;
 ```
 
 ArkTS code:
@@ -120,7 +120,7 @@ ArkTS code:
 import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
 try {
-  throw testNapi.creatTypeError();
+  throw testNapi.createTypeError();
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_create_type_error errorCode: %{public}s, errorMessage %{public}s', error.code, error.message);
 }
@@ -128,14 +128,14 @@ try {
 
 ### napi_create_range_error
 
-Use **napi_create_range_error** to create an ArkTS **RangeError** with text information.
+Call **napi_create_range_error** to create an ArkTS **RangeError** with text information.
 
 CPP code:
 
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value CreatRangeError(napi_env env, napi_callback_info info)
+static napi_value CreateRangeError(napi_env env, napi_callback_info info)
 {
     // Construct errorCode and errorMessage.
     napi_value errorCode = nullptr;
@@ -153,7 +153,7 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const creatRangeError: () => Error;
+export const createRangeError: () => Error;
 ```
 
 ArkTS code:
@@ -162,7 +162,7 @@ ArkTS code:
 import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
 try {
-  throw testNapi.creatRangeError();
+  throw testNapi.createRangeError();
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_create_range_error errorCode: %{public}s, errorMessage: %{public}s', error.code, error.message);
 }
@@ -170,11 +170,11 @@ try {
 
 ### napi_create_error
 
-Use **napi_create_error** to create an ArkTS error object with text information.
+Call **napi_create_error** to create an ArkTS error object with text information.
 
 ### napi_throw
 
-Use **napi_throw** to throw an ArkTS exception. You need to create an error object first and pass it to **napi_throw**. You can use this API to throw an ArkTS exception that indicates an error or unexpected behavior occurred in the native code so that exception can be captured and handled.
+Call **napi_throw** to throw an ArkTS exception. You need to create an error object first and pass it to **napi_throw**. You can use this API to throw an ArkTS exception that indicates an error or unexpected behavior occurred in the native code so that exception can be captured and handled.
 
 CPP code:
 
@@ -220,7 +220,7 @@ try {
 
 ### napi_throw_error
 
-Use **napi_throw_error** to throw an ArkTS **Error** object with text information.
+Call **napi_throw_error** to throw an ArkTS **Error** object with text information.
 
 CPP code:
 
@@ -279,7 +279,7 @@ try {
 
 ### napi_throw_type_error
 
-Use **napi_throw_type_error** to throw an ArkTS **TypeError** object with text information.
+Call **napi_throw_type_error** to throw an ArkTS **TypeError** object with text information.
 
 CPP code:
 
@@ -338,7 +338,7 @@ try {
 
 ### napi_throw_range_error
 
-Use **napi_create_range_error** to create an ArkTS **RangeError** with text information.
+Call **napi_create_range_error** to create an ArkTS **RangeError** with text information.
 
 CPP code:
 
@@ -404,7 +404,7 @@ try {
 
 ### napi_is_error
 
-Use **napi_is_error** to check whether the given **napi_value** represents an error object.
+Call **napi_is_error** to check whether the given **napi_value** represents an error object.
 
 CPP code:
 
@@ -452,7 +452,7 @@ try {
 
 ### napi_get_and_clear_last_exception
 
-Use **napi_get_and_clear_last_exception** to obtain and clear the last exception.
+Call **napi_get_and_clear_last_exception** to obtain and clear the last exception.
 
 CPP code:
 
@@ -492,7 +492,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_and_clear_last_exception, 
 
 ### napi_is_exception_pending
 
-Use **napi_is_exception_pending** to check whether there is any pending exception.
+Call **napi_is_exception_pending** to check whether there is any pending exception.
 
 CPP code:
 
@@ -528,10 +528,6 @@ API declaration:
 
 ```ts
 // index.d.ts
-export interface MyObject {
-  code: string;
-  message: string;
-}
 export const isExceptionPending: () => Object | void;
 ```
 
@@ -540,6 +536,10 @@ ArkTS code:
 ```ts
 import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
+interface MyObject {
+  code: string;
+  message: string;
+}
 try {
   let result = testNapi.isExceptionPending() as MyObject;
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_exception_pending, error.Code: %{public}s, error.message: %{public}s',
@@ -551,7 +551,7 @@ try {
 
 ### napi_fatal_error
 
-Use **napi_fatal_error** to raise a fatal error to terminate the process immediately. Calling **napi_fatal_error** will terminate the application immediately. Avoid frequently calling this API in during normal operations.
+Call **napi_fatal_error** to raise a fatal error to terminate the process immediately. Calling **napi_fatal_error** will terminate the application immediately. Avoid frequently calling this API in during normal operations.
 
 CPP code:
 
@@ -591,7 +591,7 @@ try {
 ```
 
 ### napi_fatal_exception
-Use **napi_fatal_exception** in the context of the main thread to throw a fatal exception. As a result, the application is terminated and a crash log is generated. Exercise caution when using this API. Avoid frequently calling this API during normal operations.
+Call **napi_fatal_exception** in the context of the main thread to throw a fatal exception. As a result, the application is terminated and a crash log is generated. Exercise caution when using this API. Avoid frequently calling this API during normal operations.
 
 CPP code:
 

@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines the extended parameters of the jank event detection, which are provided for subsequent development.
+Defines the parameters of the service thread jank event detection. Note that these parameters are deprecated in API version 12 and reserved for extension only.
 
 **Since**: 12
 
@@ -15,7 +15,7 @@ Defines the extended parameters of the jank event detection, which are provided 
 
 ### Member Variables
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
 | int [sampleStackTriggerTime](#samplestacktriggertime) | Extended parameter provided for subsequent development. |
 | int [reserved](#reserved) | Extended parameter provided for subsequent development. |
@@ -24,19 +24,21 @@ Defines the extended parameters of the jank event detection, which are provided 
 ## Member Variable Description
 
 
-### sampleStackTriggerTime
-
-```
-int HiCollie_DetectionParam::sampleStackTriggerTime
-```
-**Description**
-Extended parameter provided for subsequent development.
-
-
 ### reserved
 
 ```
 int HiCollie_DetectionParam::reserved
 ```
 **Description**
+
+Extended parameter provided for subsequent development.
+
+
+### sampleStackTriggerTime
+
+```
+int HiCollie_DetectionParam::sampleStackTriggerTime
+```
+**Description**
+
 Extended parameter provided for subsequent development.

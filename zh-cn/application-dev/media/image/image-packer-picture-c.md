@@ -53,14 +53,14 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
 
     static ImagePictureNative *thisPicture = new ImagePictureNative();
 
-    // 处理napi返回值
+    // 处理napi返回值。
     napi_value getJsResult(napi_env env, int result) {
         napi_value resultNapi = nullptr;
         napi_create_int32(env, result, &resultNapi);
         return resultNapi;
     }
 
-    // 释放ImageSource
+    // 释放ImageSource。
     Image_ErrorCode ReleaseImageSource(OH_ImageSourceNative *&source) {
         if (source != nullptr) {
             thisPicture->errorCode = OH_ImageSourceNative_Release(source);
@@ -71,7 +71,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
         return IMAGE_SUCCESS;
     }
 
-    // 设置编码参数
+    // 设置编码参数。
     void SetPackOptions(OH_PackingOptions *packerOptions, Image_MimeType format, uint32_t quality, bool needsPackProperties,
                         int32_t desiredDynamicRange) {
         OH_PackingOptions_SetMimeType(packerOptions, &format);
@@ -80,7 +80,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
         OH_PackingOptions_SetDesiredDynamicRange(packerOptions, desiredDynamicRange);
     }
 
-    // 编码PackToData
+    // 编码PackToData。
     static napi_value PackToDataFromPicture(napi_env env, napi_callback_info info) {
         size_t argc = 2;
         napi_value args[2] = {nullptr};
@@ -132,7 +132,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
         return getJsResult(env, thisPicture->errorCode);
     }
 
-    // 编码PackToFile
+    // 编码PackToFile。
     static napi_value PackToFileFromPicture(napi_env env, napi_callback_info info) {
         size_t argc = 2;
         napi_value args[2] = {nullptr};

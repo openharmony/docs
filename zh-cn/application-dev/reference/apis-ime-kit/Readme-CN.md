@@ -1,6 +1,6 @@
-# IME Kit（输入法开发服务）
+# IME Kit（输入法开发服务）<!--ime-api-->
 
-- ArkTS API
+- ArkTS API<!--ime-arkts-->
   - [@ohos.InputMethodExtensionAbility (InputMethodExtensionAbility)](js-apis-inputmethod-extension-ability.md)
   - [@ohos.InputMethodExtensionContext (InputMethodExtensionContext)](js-apis-inputmethod-extension-context.md)
   - [@ohos.inputMethod.Panel (输入法面板)](js-apis-inputmethod-panel.md)
@@ -9,10 +9,10 @@
   - [@ohos.inputMethod (输入法框架)](js-apis-inputmethod.md)
   - [@ohos.inputMethodEngine (输入法服务)](js-apis-inputmethodengine.md)
   - [@ohos.inputMethodList (输入法切换列表控件)](js-apis-inputmethodlist.md)
-- C API
-  - 模块
+- C API<!--ime-c-->
+  - 模块<!--ime-module-->
     - [InputMethod](_input_method.md)
-  - 头文件
+  - 头文件<!--ime-headerfile-->
     - [inputmethod_attach_options_capi.h](inputmethod__attach__options__capi_8h.md)
     - [inputmethod_controller_capi.h](inputmethod__controller__capi_8h.md)
     - [inputmethod_cursor_info_capi.h](inputmethod__cursor__info__capi_8h.md)
@@ -22,6 +22,6 @@
     - [inputmethod_text_config_capi.h](inputmethod__text__config__capi_8h.md)
     - [inputmethod_text_editor_proxy_capi.h](inputmethod__text__editor__proxy__capi_8h.md)
     - [inputmethod_types_capi.h](inputmethod__types__capi_8h.md)
-- 错误码
+- 错误码<!--ime-arkts-errcode-->
   - [输入法框架错误码](errorcode-inputmethod-framework.md)
   

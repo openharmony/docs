@@ -18,7 +18,7 @@
    
    const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
    
-   // 自定义消息格式
+   // 自定义消息格式。
    interface MessageInfo {
      hasResolve: boolean;
      type: string;
@@ -30,14 +30,14 @@
      const messageInfo: MessageInfo = e.data;
      console.info(`worker onmessage type:${messageInfo.type}`)
      if ('initCamera' === messageInfo.type) {
-       // 在worker线程中收到宿主线程初始化相机的消息
+       // 在worker线程中收到宿主线程初始化相机的消息。
        console.info(`worker initCamera surfaceId:${messageInfo.surfaceId}`)
-       // 在worker线程中初始化相机
+       // 在worker线程中初始化相机。
        await CameraService.initCamera(messageInfo.context, messageInfo.surfaceId);
      } else if ('releaseCamera' === messageInfo.type) {
-       // 在worker线程中收到宿主线程释放相机的消息
+       // 在worker线程中收到宿主线程释放相机的消息。
        console.info('worker releaseCamera.');
-       // 在worker线程中释放相机
+       // 在worker线程中释放相机。
        await CameraService.releaseCamera();
      }
    }
@@ -65,12 +65,12 @@
      private photoOutput: camera.PhotoOutput | undefined = undefined;
      private session: camera.PhotoSession | camera.VideoSession | undefined = undefined;
    
-     // 初始化相机
+     // 初始化相机。
      async initCamera(context: Context, surfaceId: string): Promise<void> {
        console.info(`initCamera surfaceId: ${surfaceId}`);
        try {
          await this.releaseCamera();
-         // 获取相机管理器实例
+         // 获取相机管理器实例。
          this.cameraManager = camera.getCameraManager(context);
          if (this.cameraManager === undefined) {
            console.error('cameraManager is undefined');
@@ -78,13 +78,13 @@
          }
          this.cameras = this.cameraManager.getSupportedCameras();
    
-         // 创建cameraInput输出对象
+         // 创建cameraInput输出对象。
          this.cameraInput = this.cameraManager.createCameraInput(this.cameras[0]);
          if (this.cameraInput === undefined) {
            console.error('Failed to create the camera input.');
            return;
          }
-         // 打开相机
+         // 打开相机。
          await this.cameraInput.open();
    
          let previewProfile: camera.Profile = {
@@ -94,7 +94,7 @@
              height: this.imageHeight
            }
          };
-         // 创建预览流输出
+         // 创建预览流输出。
          this.previewOutput = this.cameraManager.createPreviewOutput(previewProfile, surfaceId);
          if (this.previewOutput === undefined) {
            console.error('Failed to create the preview stream.');
@@ -108,14 +108,14 @@
              height: this.imageHeight
            }
          };
-         // 创建拍照流输出
+         // 创建拍照流输出。
          this.photoOutput = this.cameraManager.createPhotoOutput(photoProfile);
          if (this.photoOutput === undefined) {
            console.error('Failed to create the photoOutput.');
            return;
          }
    
-         // 创建相机会话，启动会话
+         // 创建相机会话，启动会话。
          this.session = this.cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
          this.session.beginConfig();
          this.session.addInput(this.cameraInput);
@@ -129,7 +129,7 @@
        }
      }
    
-     // 释放相机资源
+     // 释放相机资源。
      async releaseCamera(): Promise<void> {
        console.info('releaseCamera is called');
        try {
@@ -166,12 +166,12 @@
      private surfaceId: string = '';
      @State imageWidth: number = 1920;
      @State imageHeight: number = 1080;
-     // 创建ThreadWorker对象获取worker实例
+     // 创建ThreadWorker对象获取worker实例。
      private workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/CameraWorker.ets');
    
      onPageShow(): void {
        if ('' !== this.surfaceId) {
-         // 通过worker实例向worker线程发送消息初始化相机
+         // 通过worker实例向worker线程发送消息初始化相机。
          this.workerInstance.postMessage({
            type: 'initCamera',
            context: getContext(this),
@@ -181,7 +181,7 @@
      }
    
      onPageHide(): void {
-       // 通过worker实例向worker线程发送消息销毁相机
+       // 通过worker实例向worker线程发送消息销毁相机。
        this.workerInstance.postMessage({
          type: 'releaseCamera',
        })
@@ -197,7 +197,7 @@
            })
              .onLoad(async () => {
                console.info('onLoad is called');
-               // 初始化XComponent获取预览流surfaceId
+               // 初始化XComponent获取预览流surfaceId。
                this.surfaceId = this.mXComponentController.getXComponentSurfaceId();
                let surfaceRect: SurfaceRect = {
                  surfaceWidth: this.imageHeight,
@@ -209,11 +209,11 @@
                  console.error('create stage worker failed');
                  return;
                }
-               // 宿主线程向worker线程发送初始化相机消息
+               // 宿主线程向worker线程发送初始化相机消息。
                this.workerInstance.postMessage({
                  type: 'initCamera',
-                 context: getContext(this), // 将宿主线程的context传给worker线程使用
-                 surfaceId: this.surfaceId, // 将surfaceId传给worker线程使用
+                 context: getContext(this), // 将宿主线程的context传给worker线程使用。
+                 surfaceId: this.surfaceId, // 将surfaceId传给worker线程使用。
                })
              })// The width and height of the surface are opposite to those of the XComponent.
              .width(px2vp(this.imageHeight))

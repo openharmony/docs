@@ -46,6 +46,19 @@
 **取值：** "usual.event.PACKAGE_INSTALLATION_STARTED"
 
 
+### COMMON_EVENT_BUNDLE_RESOURCES_CHANGED<sup>15+</sup>
+
+表示包管理资源数据刷新的公共事件。
+
+在切换语言、切换主题等场景，包管理资源数据刷新完成时，会发送此公共事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.GET_BUNDLE_RESOURCES
+
+**取值：** "usual.event.BUNDLE_RESOURCES_CHANGED"
 
 ## Background Tasks Kit 
 

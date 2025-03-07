@@ -47,14 +47,14 @@
 
 
     ```ts
-  breakpoints: {value: ['100vp', '200vp']}
+    breakpoints: {value: ['100vp', '200vp']}
     ```
 
    表示启用xs、sm、md共3个断点，小于100vp为xs，100vp-200vp为sm，大于200vp为md。
 
 
     ```ts
-  breakpoints: {value: ['320vp', '520vp', '840vp', '1080vp']}
+    breakpoints: {value: ['320vp', '520vp', '840vp', '1080vp']}
     ```
 
   表示启用xs、sm、md、lg、xl共5个断点，小于320vp为xs，320vp-520vp为sm，520vp-840vp为md，840vp-1080vp为lg，大于1080vp为xl。
@@ -68,7 +68,7 @@
 @State bgColors: ResourceColor[] =
     ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
       'rgb(255,192,0)', 'rgb(170,10,33)'];
-...
+// ...
 GridRow({
   breakpoints: {
     value: ['200vp', '300vp', '400vp', '500vp', '600vp'],
@@ -108,7 +108,7 @@ GridRow中通过columns设置栅格布局的总列数。
   @State bgColors: ResourceColor[] =
       ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
         'rgb(255,192,0)', 'rgb(170,10,33)', 'rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)'];
-    ...
+     // ...
     GridRow() {
       ForEach(this.bgColors, (item:ResourceColor, index?:number|undefined) => {
         GridCol() {
@@ -136,7 +136,7 @@ GridRow中通过columns设置栅格布局的总列数。
       ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
         'rgb(255,192,0)', 'rgb(170,10,33)'];
   @State currentBp: string = 'unknown';
-  ...
+  // ...
   Row() {
     GridRow({ columns: 4 }) {
       ForEach(this.bgColors, (item: ResourceColor, index?:number|undefined) => {
@@ -210,7 +210,7 @@ GridRow中通过columns设置栅格布局的总列数。
 
 
     ```ts
-  GridRow({ direction: GridRowDirection.Row }){}
+    GridRow({ direction: GridRowDirection.Row }){}
     ```
 
     ![zh-cn_image_0000001511740488](figures/zh-cn_image_0000001511740488.png)
@@ -219,7 +219,7 @@ GridRow中通过columns设置栅格布局的总列数。
 
 
     ```ts
-  GridRow({ direction: GridRowDirection.RowReverse }){}
+    GridRow({ direction: GridRowDirection.RowReverse }){}
     ```
 
     ![zh-cn_image_0000001562940517](figures/zh-cn_image_0000001562940517.png)
@@ -233,7 +233,7 @@ GridRow中通过gutter属性设置子元素在水平和垂直方向的间距。
 
 
     ```ts
-  GridRow({ gutter: 10 }){}
+    GridRow({ gutter: 10 }){}
     ```
 
     ![zh-cn_image_0000001511740476](figures/zh-cn_image_0000001511740476.png)
@@ -242,7 +242,7 @@ GridRow中通过gutter属性设置子元素在水平和垂直方向的间距。
 
 
     ```ts
-  GridRow({ gutter: { x: 20, y: 50 } }){}
+    GridRow({ gutter: { x: 20, y: 50 } }){}
     ```
 
     ![zh-cn_image_0000001511900456](figures/zh-cn_image_0000001511900456.png)
@@ -296,7 +296,7 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
   @State bgColors: ResourceColor[] =
       ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
         'rgb(255,192,0)', 'rgb(170,10,33)'];
-    ...
+    // ...
     GridRow({ columns: 8 }) {
       ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
         GridCol({ span: 2 }) {      
@@ -318,7 +318,7 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
   @State bgColors: ResourceColor[] =
       ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
         'rgb(255,192,0)', 'rgb(170,10,33)'];
-    ...
+    // ...
     GridRow({ columns: 8 }) {
       ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
         GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {      
@@ -345,7 +345,7 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
   @State bgColors: ResourceColor[] =
       ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
         'rgb(255,192,0)', 'rgb(170,10,33)'];
-    ...
+    // ...
     GridRow() {
       ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
         GridCol({ offset: 2 }) {      
@@ -369,7 +369,7 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
   @State bgColors: ResourceColor[] =
       ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
         'rgb(255,192,0)', 'rgb(170,10,33)'];
-    ...
+    // ...
   
     GridRow() {
       ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {

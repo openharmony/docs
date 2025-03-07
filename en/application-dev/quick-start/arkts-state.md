@@ -269,8 +269,6 @@ struct MyComponent {
 
 - The **EntryComponent** has multiple **MyComponent** instances. The internal state change of the first **MyComponent** instance does not affect the second **MyComponent** instance.
 
-
-
 ```ts
 class Model {
   public value: string;
@@ -920,7 +918,7 @@ struct ConsumerChild {
 
 In the preceding example, **getTarget** is used to obtain the original value of the corresponding state variable before value change. After comparison, if the original value is the same as the new value, re-rendering will not be triggered.
 
-### State Variables Modification in build() Is Forbidden
+### Changing State Variables in build() Is Forbidden
 
 State variables cannot be changed in **build()**. Otherwise, the state management framework reports error logs during runtime.
 

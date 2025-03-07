@@ -98,7 +98,7 @@ struct Index {
                 w.onmessage = (): void => {
                   // 接收Worker子线程的结果
                 }
-                w.onerror = (): void => {
+                w.onAllErrors = (): void => {
                   // 接收Worker子线程的错误信息
                 }
                 // 向Worker子线程发送Set消息

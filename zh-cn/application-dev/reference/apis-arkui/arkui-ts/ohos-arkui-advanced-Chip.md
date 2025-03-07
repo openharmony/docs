@@ -18,7 +18,7 @@ import { Chip, ChipOptions, ChipSize } from '@kit.ArkUI';
 
 ## Chip
 
-Chip({options:ChipOptions}): void
+Chip(options:ChipOptions): void
 
 **装饰器类型：**@Builder
 
@@ -540,7 +540,7 @@ struct ChipPage {
 
 ```ts
 // xxx.ets
-import { Chip, SymbolGlyphModifier } from '@kit.ArkUI';
+import { Chip } from '@kit.ArkUI';
 
 @Builder
 function DefaultFunction(): void {

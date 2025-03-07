@@ -98,8 +98,7 @@ The following uses the time **2021-09-17 13:04:00** and locale **zh-CN** as an e
 // Import the intl module.
 import { intl } from '@kit.LocalizationKit';
 
-// Set the date to be formatted.
-let date = new Date(2021, 8, 17, 13, 4, 0);
+let date = new Date(2021, 8, 17, 13, 4, 0); // The date and time is 2021.09.17 13:04:00.
 let startDate = new Date(2021, 8, 17, 13, 4, 0);
 let endDate = new Date(2021, 8, 18, 13, 4, 0);
 

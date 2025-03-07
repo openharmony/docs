@@ -31,10 +31,10 @@ HiDumper是OpenHarmony为开发、测试人员、IDE工具提供的系统信息�
 ```
 
 
-# HiDumper使用指导
+## HiDumper使用指导
 
 
-## 命令参数说明
+### 命令参数说明
 
   **表1** HiDumper命令参数说明
 
@@ -46,7 +46,7 @@ HiDumper是OpenHarmony为开发、测试人员、IDE工具提供的系统信息�
 | -ls | 查看系统元能力列表。 | 
 | -c | 导出系统簇信息。 | 
 | -c&nbsp;[base&nbsp;system] | 以base或system标签区分的系统簇信息导出。 | 
-| -s | 导出全部系统元能力信息 | 
+| -s | 导出全部系统元能力信息。 | 
 | -s&nbsp;[SA0&nbsp;SA1] | 导出SA0、SA1等元能力id对应的元能力信息。 | 
 | -s&nbsp;[SA]&nbsp;-a&nbsp;['-h'] | 以-h为参数导出SA指定的系统元能力信息。 | 
 | -e | 导出Faultlog模块生成的崩溃日志。 | 
@@ -55,12 +55,12 @@ HiDumper是OpenHarmony为开发、测试人员、IDE工具提供的系统信息�
 | -p | 导出进程列表及全部进程信息。 | 
 | -p&nbsp;[pid] | 导出指定进程号的进程全部信息。 | 
 | --cpuusage&nbsp;[pid] | 导出CPU使用信息。如果指定pid则导出该进程的CPU使用信息。 | 
-| --cpufreq | 导出实际的CPU频率 | 
+| --cpufreq | 导出实际的CPU频率。 | 
 | --mem&nbsp;[pid] | 导出内存使用信息。如果指定pid则导出该进程的内存使用信息。 | 
 | --zip | 将导出信息压缩到固定文件夹下。 | 
 
 
-## 使用实例
+### 使用实例
 
 HiDumper可以为开发者导出系统当前基本信息，通过这些基本信息可以定位分析问题。给子服务和元能力传递复杂参数时，参数需要加双引号。
 

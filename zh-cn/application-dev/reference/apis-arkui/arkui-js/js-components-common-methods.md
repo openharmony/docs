@@ -14,7 +14,7 @@ animate( keyframes: Keyframes, options: Options)：void
 
 | 参数名       | 参数类型      | 必填   | 描述                                   |
 | --------- | --------- | ---- | ------------------------------------ |
-| keyframes | keyframes | 是    | 设置动画样式                               |
+| keyframes | keyframes | 是    | 设置动画样式。                               |
 | options   | Options   | 是    | 用于设置动画属性的对象列表。options请见表3 Options说明。 |
 
   **表1** keyframes
@@ -68,8 +68,8 @@ animate( keyframes: Keyframes, options: Options)：void
 
 | 属性        | 类型      | 说明                                       |
 | --------- | ------- | ---------------------------------------- |
-| finished  | boolean | 只读，用于表示当前动画是否已播放完成。                      |
-| pending   | boolean | 只读，用于表示当前动画是否处于等待其他异步操作完成的等待状态（例如启动一个延时播放的动画）。 |
+| finished  | boolean | 只读，用于表示当前动画是否已播放完成。返回true时，动画播放完成。返回false时，动画没播放完成。                      |
+| pending   | boolean | 只读，用于表示当前动画是否处于等待其他异步操作完成的等待状态（例如启动一个延时播放的动画）。返回true时，动画处于等待状态。返回false时，动画不处于等待状态。 |
 | playState | string  | 可读可写，动画的执行状态：<br/>-&nbsp;idle：未执行状态，包括已结束或未开始。<br/>-&nbsp;running：动画正在运行。<br/>-&nbsp;paused：动画暂停。<br/>-&nbsp;finished：动画播放完成。 |
 | startTime | number  | 可读可写，动画播放开始的预定时间，用途类似于options参数中的delay。  |
 

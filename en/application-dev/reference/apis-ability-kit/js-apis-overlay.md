@@ -1,6 +1,6 @@
 # @ohos.bundle.overlay (overlay)
 
-The **overlay** module provides APIs for installing a [module with the overlay feature](#module-with-the-overlay-feature), querying the [module information](js-apis-bundleManager-overlayModuleInfo.md), and disabling and enabling the module.
+The overlay module provides APIs for installing a [module with the overlay feature](#module-with-the-overlay-feature), querying the [module information](js-apis-bundleManager-overlayModuleInfo.md), and disabling and enabling the module.
 
 > **NOTE**
 >
@@ -68,7 +68,7 @@ try {
 
 ## overlay.setOverlayEnabled
 
-setOverlayEnabled(moduleName:string, isEnabled: boolean, callback: AsyncCallback\<void>): void
+setOverlayEnabled(moduleName: string, isEnabled: boolean, callback: AsyncCallback\<void>): void
 
 Enables or disables a module with the overlay feature in the current application. This API uses an asynchronous callback to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
 
@@ -313,6 +313,18 @@ try {
   console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
+
+## OverlayModuleInfo
+
+type OverlayModuleInfo = _OverlayModuleInfo.OverlayModuleInfo
+
+Defines the information about a module with the overlay feature.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Overlay
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_OverlayModuleInfo.OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md#overlaymoduleinfo-1) |Information about a module with the overlay feature.|
 
 ## Module with the Overlay Feature
 

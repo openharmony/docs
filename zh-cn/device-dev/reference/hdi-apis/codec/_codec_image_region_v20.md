@@ -21,8 +21,8 @@
 | unsigned int [right](#right) | 到图像右侧的距离。  | 
 | unsigned int [top](#top) | 到图像顶部的距离。  | 
 | unsigned int [bottom](#bottom) | 到图像底部的距离。  | 
-| unsigned int [flag](#flag) | 区域解码开关  | 
-| unsigned int [rsv](#rsv) | 扩展预留  | 
+| unsigned int [flag](#flag) | 区域解码开关。  | 
+| unsigned int [rsv](#rsv) | 扩展预留。  | 
 
 
 ## 类成员变量说明
@@ -45,7 +45,7 @@ unsigned int CodecImageRegion::flag
 ```
 **描述**
 
-区域解码开关
+区域解码开关。
 
 
 ### left
@@ -75,7 +75,7 @@ unsigned int CodecImageRegion::rsv
 ```
 **描述**
 
-扩展预留
+扩展预留。
 
 
 ### top

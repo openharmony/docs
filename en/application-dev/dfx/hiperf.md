@@ -4,7 +4,7 @@ hiperf is a command-line tool provided to capture performance data of a specific
 
 ## Environment Setup
 
-- The [environment setup](hdc.md#environment-setup) is complete.
+- The environment for OpenHarmony Device Connector (hdc) has been set up. For details, see [Environment Setup](hdc.md#environment-setup).
 
 - The devices are properly connected.
 
@@ -20,7 +20,7 @@ hiperf is a command-line tool provided to capture performance data of a specific
 | --mixlog | Outputs mixed logs.|
 | --much | Output as many logs as possible.|
 | --nodebug | Outputs no log.|
-| --verbose | Outputs debug logs.|
+| --verbose | Outputs verbose logs.|
 
 ## help
 
@@ -49,7 +49,7 @@ Lists all the supported events on the device. The event names are used for the *
 | -h/--help  | Displays the help information.|
 | hw | Lists the hardware events.|
 | sw | Lists the software events.|
-| tp | Lists the tracepoint events.|
+| tp | Tracepoint event.|
 | cache | Lists the hardware cache events.|
 | raw | Lists the original PMU events.|
 
@@ -96,6 +96,7 @@ Specifies the target program for sampling and saves the sampled data to a file (
 | -t | Specifies the IDs of the threads to collect, which are separated by commas (,). This parameter cannot be used together with **-a**.|
 | --exclude-tid | Specifies the IDs of the threads not to collect, which are separated by commas (,). This parameter cannot be used together with **-a**.|
 | --exclude-thread | Specifies the names of the threads not to collect, which are separated by commas (,). This parameter cannot be used together with **-a**.|
+| --exclude-process | Specifies the names of the processes not to collect, which are separated by commas (,). This parameter must be used together with **-a**.|
 | --offcpu | Traces the time when a thread is out of CPU scheduling.|
 | -j | Samples branch stacks. The following filters are supported: **any**, **any_call**, **any_ret**, **ind_call**, **ind_jmp**, **cond** and **call**.|
 | -s/--callstack | Sets the stack mode.|
@@ -115,10 +116,12 @@ Specifies the target program for sampling and saves the sampled data to a file (
 | -z | Outputs the data in a compressed file.|
 | --restart | Collects performance indicator information about application startup. If a process is not started within 30 seconds, the record exits.|
 | --verbose | Outputs a more detailed report.|
-| --control [command]| Collects the **control** parameter of a command. The following commands are supported: **prepare**/**start**/**pause**/**resume**/**stop**.|
+| --control [command]| Controls the collection command. The following commands are supported: **prepare**/**start**/**pause**/**resume**/**output**/**stop**.|
 | --dedup_stack | Deletes duplicate stacks from a record. This parameter cannot be used together with **-a**.|
 | --cmdline-size | Sets the value of the **/sys/kernel/tracing/saved_cmdlines_size** node. Value range: 512 to 4096.|
 | --report | Obtains the stack report after collection. This parameter cannot be used together with **-a**.|
+| --backtrack | Collects data in a previous period. This parameter must be used together with **--control prepare**.|
+| --backtrack-sec | Collects the duration of previous data. The value ranges from 5 to 30. The default value is 10s. This parameter must be used together with **--backtrack**.|
 | --dumpoptions | Dumps the command options.|
 
 ```

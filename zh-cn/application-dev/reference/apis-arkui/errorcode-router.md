@@ -26,7 +26,7 @@ NA
 
 **错误信息**
 
-Uri error. The URI of the page to redirect is incorrect or does not exist
+Uri error. The URI of the page to redirect is incorrect or does not exist.
 
 **错误描述**
 

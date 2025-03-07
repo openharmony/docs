@@ -34,7 +34,7 @@ Service management is implemented by using the init process to parse the service
    | apl          | Optional| Standard system| Ability privilege level.| Type: string, for example, **"apl": "system_core"**.<br> The value can be **system_core** (default), **normal**, or **system_basic**.|
    | start-mode   | Optional| Standard system| Service startup mode.| Type: string, for example, **start-mode: condition**.<br>The value can be **boot**, **normal**, or **condition**. For details, see init Service Startup Control.|
    | ondemand     | Optional| Small and standard systems| Whether on-demand startup is enabled.| Type: bool, for example, **ondemand: true**. For small systems, this feature is available only on the Linux kernel.<br>For details, see [init Service On-Demand Startup](#section56901555920).|
-   | disable | Optional| Small and standard systems| Reserved.| None.|
+   | disabled | Optional| Small and standard systems| Reserved.| None.|
    | sandbox | Optional| Standard system| Whether the sandbox function is enabled.| **1** (default): Enable the sandbox function.<br>**0**: Disable the sandbox function.|
    | socket | Optional| Standard system| Socket attribute configuration.| This field is required for services that uses a socket connection.|
    | env | Optional| Standard system| Environment variable configuration.| Type: key-value pair array.<br>Multiple environment variables can be configured. For example:<br>"env" : [{<br> "name" : "SERVICE_NALE", <br>"value" : "ueventd"},{<br> "name" : "TEST",<br> "value" : "test_value" <br>}]|

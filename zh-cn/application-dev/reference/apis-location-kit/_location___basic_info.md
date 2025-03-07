@@ -29,7 +29,7 @@
 | double [speedAccuracy](#speedaccuracy) | 表示速度信息的精度，单位米每秒。  | 
 | double [directionAccuracy](#directionaccuracy) | 表示航向信息的精度。单位是“度”，取值范围为0到360。  | 
 | int64_t [uncertaintyOfTimeSinceBoot](#uncertaintyoftimesinceboot) | 表示位置时间戳（timeSinceBoot）的不确定度。单位为纳秒。  | 
-| [Location_SourceType](_location.md#location_sourcetype) [locationSourceType](#locationsourcetype) | 表示定位结果的来源。<br/>详细定义请参考[Location_SourceType](_location.md#location_sourcetype). | 
+| [Location_SourceType](_location.md#location_sourcetype) [locationSourceType](#locationsourcetype) | 表示定位结果的来源。<br/>详细定义请参考[Location_SourceType](_location.md#location_sourcetype)。 | 
 
 
 ## 结构体成员变量说明

@@ -16,15 +16,19 @@ OpenHarmony支持可变帧率能力，开发者通过使用可变帧率接口，
 - 通过配置属性动画/显示动画的帧率属性参数，用于动画的绘制，具体可见[请求动画绘制帧率](displaysync-animation.md)。
 - 通过申请一个独立的绘制帧率，用于UI的绘制，具体可见[请求UI绘制帧率](displaysync-ui.md)。
 - 通过XComponent在Native侧申请独立的绘制帧率，用于游戏等自绘制内容的绘制，具体可见[请求自绘制内容绘制帧率](displaysync-xcomponent.md)。
-- 通过NativeVsync在Native侧申请独立的绘制帧率，用于非UI线程的绘制,具体可见[NativeDisplaySoloist开发指导 (C/C++)](displaysoloist-native-guidelines.md)。
+- 通过NativeVsync在Native侧申请独立的绘制帧率，用于非UI线程的绘制，具体可见[NativeDisplaySoloist开发指导 (C/C++)](displaysoloist-native-guidelines.md)。
 
 ## 运作机制
 可变帧率为应用开发中的动画组件、XComponent组件、UI绘制等提供一种基础帧率配置和能力。
 开发者通过设置有效的期望绘制帧率后，系统会收集设置的请求帧率，进行决策和分发，在渲染管线上进行分频，尽量能够满足开发者的期望帧率。
 
+![可变帧率原理图](./figures/displaysync-architecture.jpg)
+
+如上图所示，应用层的多种UI（Arkui、Animator、XComponent自绘制及非UI线程）可以通过相对应的可变帧率接口（addFRCSceneInfo、displaySync、OH_NativeXComponent_SetExpectedFrameRateRange及DisplaySoloist）接入到控帧系统。控帧系统采用C/S(Client/Server)即客户端/服务端架构，客户端收集UI设置的期望绘制帧率，参与到框架层的整机刷新率决策；服务端根据决策出的刷新率结果进行绘制帧率分发，逐级传递到应用层的各类UI。同时，硬件层也会根据整机刷新率的决策结果，完成硬件器件的刷新率切换。
+
 ## 约束与限制
 
-开发者设置的期望帧率值不能代表最终实际效果，会受限于系统能力和屏幕刷新率。
+开发者设置的期望帧率值不能代表最终实际效果，会受限于系统功耗性能约束和屏幕刷新率硬件能力限制。
 
 ## 相关实例
 

@@ -1,6 +1,6 @@
-# Core File Kit（文件基础服务）
+# Core File Kit（文件基础服务）<!--core-file-api-->
 
-- ArkTS API
+- ArkTS API<!--core-file-arkts-->
   - [@ohos.application.BackupExtensionAbility (备份恢复扩展能力)](js-apis-application-backupExtensionAbility.md)
   - [@ohos.file.cloudSync (端云同步能力)](js-apis-file-cloudsync.md)
   - [@ohos.file.environment (目录环境能力)](js-apis-file-environment.md)
@@ -29,25 +29,26 @@
   - [@ohos.filemanagement.userFileManager (用户数据管理)(系统接口)](js-apis-userFileManager-sys.md)
   - [@ohos.fileshare (文件分享)(系统接口)](js-apis-fileShare-sys.md)
   <!--DelEnd-->
-  - 已停止维护的接口
+  - 已停止维护的接口<!--core-file-arkts-dep-->
     - [@ohos.document (文件交互)](js-apis-document.md)
     - [@ohos.fileio (文件管理)](js-apis-fileio.md)
     - [@ohos.statfs (statfs)](js-apis-statfs.md)
     - [@system.file (文件存储)](js-apis-system-file.md)
-- C API
-  - 模块
+- C API<!--core-file-c-->
+  - 模块<!--core-file-module-->
     - [Environment](_environment.md)
     - [FileIO](_file_i_o.md)
     - [FileShare](file_share.md)
     - [Fileuri](fileuri.md)
-  - 头文件
+  - 头文件<!--core-file-headerfile-->
     - [error_code.h](error__code_8h.md)
     - [oh_environment.h](oh__environment_8h.md)
     - [oh_file_share.h](oh__file__share_8h.md)
     - [oh_file_uri.h](oh__file__uri_8h.md)
     - [oh_fileio.h](oh__fileio_8h.md)
-  - 结构体
+  - 结构体<!--core-file-struct-->
     - [FileShare_PolicyErrorResult](_file_share___policy_error_result.md)
     - [FileShare_PolicyInfo](_file_share___policy_info.md)
-- 错误码
+- 错误码<!--core-file-arkts-errcode-->
   - [文件管理错误码](errorcode-filemanagement.md)
+  

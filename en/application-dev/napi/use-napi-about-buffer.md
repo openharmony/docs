@@ -19,7 +19,7 @@ The following table lists the APIs for processing the binary data in the ArkTS l
 | napi_create_buffer | Creates an ArkTS **Buffer** instance of the specified size.|
 | napi_create_buffer_copy | Creates and obtains an ArkTS **Buffer** instance of the specified size and initializes the **Buffer** instance with the given parameters.|
 | napi_create_external_buffer | Creates an ArkTS **Buffer** instance of the specified size, and initializes it with the given data. You can use this API to add extra data to the buffer. |
-| napi_get_buffer_info | Obtains the underlying data of an ArkTS **Buffer** instance and its length.|
+| napi_get_buffer_info | Obtains the underlying data buffer and its length of an ArkTS **Buffer** instance.|
 | napi_is_buffer | Checks whether the given ArkTS value is a **Buffer** object.|
 | napi_create_external_arraybuffer | Creates an ArkTS external **ArrayBuffer**. An external **ArrayBuffer** is a special type of **ArrayBuffer** that holds the reference to external data without actually owning the data.|
 
@@ -29,7 +29,7 @@ If you are just starting out with Node-API, see [Node-API Development Process](u
 
 ### napi_create_buffer
 
-Use **napi_create_buffer** to create a **Buffer** instance. A **Buffer** object is used to manipulate binary data in C/C++.
+Call **napi_create_buffer** to create a **Buffer** instance. A **Buffer** object is used to manipulate binary data in C/C++.
 
 CPP code:
 
@@ -72,7 +72,7 @@ try {
 
 ### napi_create_buffer_copy
 
-Use **napi_create_buffer_copy** to create a **Buffer** instance of the specified size and initialize it with data copied from the passed-in buffer. This API allows the specified data to be copied to a **Buffer** instance created.
+Call **napi_create_buffer_copy** to create a **Buffer** instance of the specified size and initialize it with data copied from the passed-in buffer. This API allows the specified data to be copied to a **Buffer** instance created.
 
 CPP code:
 
@@ -115,7 +115,7 @@ try {
 
 ### napi_create_external_buffer
 
-Use **napi_create_external_buffer** to create an ArkTS **Buffer** instance that holds a pointer to existing data. This allows the data to be directly accessed and manipulated from ArkTS, improving performance while avoiding additional memory allocation and data copy.
+Call **napi_create_external_buffer** to create an ArkTS **Buffer** instance that holds a pointer to existing data. This allows the ArkTS layer to directly access and operate the memory, avoiding additional memory allocation and copy operations.
 
 CPP code:
 
@@ -222,7 +222,7 @@ try {
 
 ### napi_is_buffer
 
-Use **napi_is_buffer** to check whether an ArkTS value is a **Buffer** object.
+Call **napi_is_buffer** to check whether an ArkTS value is a **Buffer** object.
 
 CPP code:
 
@@ -238,11 +238,11 @@ static napi_value IsBuffer(napi_env env, napi_callback_info info)
     napi_create_buffer(env, strlen(str.data()), (void **)(str.data()), &buffer);
 
     //Call napi_is_buffer to check whether the created object is a Buffer.
-    bool reslut = false;
-    napi_is_buffer(env, buffer, &reslut);
+    bool result = false;
+    napi_is_buffer(env, buffer, &result);
     // Return the result.
     napi_value returnValue = nullptr;
-    napi_get_boolean(env, reslut, &returnValue);
+    napi_get_boolean(env, result, &returnValue);
     return returnValue;
 }
 ```
@@ -268,7 +268,7 @@ try {
 
 ### napi_create_external_arraybuffer
 
-Use **napi_create_external_arraybuffer** to create an ArkTS **ArrayBuffer** with external data.
+Call **napi_create_external_arraybuffer** to create an ArkTS **ArrayBuffer** with external data.
 
 CPP code:
 

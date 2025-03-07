@@ -14,8 +14,6 @@ The geocoding information describes a location using several attributes, includi
 
 The following table lists the APIs used for mutual conversion between coordinates and geographic descriptions. For details, see [Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md).
 
-**Table 3** Geocoding and reverse geocoding APIs
-
 | API| Description| 
 | -------- | -------- |
 | [isGeocoderAvailable(): boolean;](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagerisgeocoderavailable) | Checks whether the geocoding and reverse geocoding services are available.| 

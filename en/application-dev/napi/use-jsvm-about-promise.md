@@ -25,14 +25,15 @@ JSVM-API provides APIs for implementing asynchronous operations. An asynchronous
 | OH_JSVM_CreatePromise        | Creates a **deferred** object and a JS promise.|
 | OH_JSVM_ResolveDeferred      | Resolves a JS promise by using the **deferred** object associated with it.|
 | OH_JSVM_RejectDeferred       | Rejects a JS promise by using the **deferred** object associated with it.|
+| OH_JSVM_PromiseRegisterHandler | Registers a callback to be invoked after a promise is fulfilled or rejected.|
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following only demonstrates the C++ and ArkTS code related to promises.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in promise development.
 
 ### OH_JSVM_IsPromise
 
-Use **OH_JSVM_IsPromise** to check whether the given **JSVM_Value** is a **Promise** object.
+Call **OH_JSVM_IsPromise** to check whether the given **JSVM_Value** is a **Promise** object.
 
 CPP code:
 
@@ -41,15 +42,6 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the IsPromise callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = IsPromise},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named isPromise and associate it with a callback. This allows the IsPromise callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"isPromise", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_IsPromise.
 static JSVM_Value IsPromise(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -67,33 +59,32 @@ static JSVM_Value IsPromise(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, isPromise, &result);
     return result;
 }
+// Register the IsPromise callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = IsPromise},
+};
+static JSVM_CallbackStruct *method = param;
+// Alias for the IsPromise method to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"isPromise", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(isPromise())JS";
 ```
 
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-          let value = Promise.resolve();
-          isPromise(value);
-        `;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'IsPromise: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'IsPromise: %{public}s', error.message);
-}
+Expected result:
+```
+JSVM OH_JSVM_IsPromise success:0
 ```
 
 ### OH_JSVM_CreatePromise
 
-Use **OH_JSVM_CreatePromise** to create a **Promise** object.
+Call **OH_JSVM_CreatePromise** to create a **Promise** object.
 
-### OH_JSVM_ResolveDeferred & OH_JSVM_RejectDeferred
+### OH_JSVM_ResolveDeferred and OH_JSVM_RejectDeferred
 
-Use **OH_JSVM_ResolveDeferred** to change the promise state from **pending** to **fulfilled**, and use **OH_JSVM_RejectDeferred** to change the promise state from **pending** to **rejected**.
+Call **OH_JSVM_ResolveDeferred** to change the promise state from **pending** to **fulfilled**, and call **OH_JSVM_RejectDeferred** to change the promise state from **pending** to **rejected**.
 
 CPP code:
 
@@ -102,17 +93,6 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the CreatePromise and ResolveRejectDeferred callbacks.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreatePromise},
-    {.data = nullptr, .callback = ResolveRejectDeferred},
-};
-static JSVM_CallbackStruct *method = param;
-// Set property descriptor named createPromise and resolveRejectDeferred and associate them with a callback each. This allows the CreatePromise and ResolveRejectDeferred callbacks to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createPromise", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-    {"resolveRejectDeferred", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_CreatePromise, OH_JSVM_ResolveDeferred, and OH_JSVM_RejectDeferred.
 static JSVM_Value CreatePromise(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -161,23 +141,124 @@ static JSVM_Value ResolveRejectDeferred(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, true, &result);
     return result;
 }
+// Register the CreatePromise and ResolveRejectDeferred callbacks.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreatePromise},
+    {.data = nullptr, .callback = ResolveRejectDeferred},
+};
+static JSVM_CallbackStruct *method = param;
+// Aliases for the CreatePromise and ResolveRejectDeferred methods to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createPromise", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+    {"resolveRejectDeferred", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+}
+
+// Call the C++ code from JS.
+const char *srcCallNativeCreatePromise = R"JS(createPromise())JS";
+const char *srcCallNativeResolveRejectDeferred1 = R"JS(resolveRejectDeferred('success','fail', true))JS";
+const char *srcCallNativeResolveRejectDeferred2 = R"JS(resolveRejectDeferred('success','fail', false))JS";
 ```
 
-ArkTS code:
+Expected result:
+```
+JSVM CreatePromise success:1
+OH_JSVM_ResolveDeferred resolve
+OH_JSVM_RejectDeferred reject
+```
 
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let createPromiseScript: string = `createPromise();`;
-let createPromiseresult = napitest.runJsVm(createPromiseScript);
-hilog.info(0x0000, 'JSVM', 'CreatePromise: %{public}s', createPromiseresult);
-// The third input parameter means to change the Promise state from pending to fulfilled.
-let resolveScript: string = `resolveRejectDeferred('success','fail', true);`;
-let result = napitest.runJsVm(resolveScript);
-hilog.info(0x0000, 'JSVM', 'ResolveRejectDeferred: %{public}s', result);
-// The third input parameter means to change the Promise state from pending to rejected.
-let rejectScript: string = `resolveRejectDeferred('success','fail', false);`;
-let rejectResult = napitest.runJsVm(rejectScript);
-hilog.info(0x0000, 'JSVM', 'ResolveRejectDeferred: %{public}s', rejectResult);
+## OH_JSVM_PromiseRegisterHandler
+
+Call **OH_JSVM_PromiseRegisterHandler** to register a callback that is invoked after a promise is fulfilled rejected. It is equivalent to calling the native **Promise.then()** or **Promise.catch()**.
+
+CPP code:
+```
+static int PromiseRegisterHandler(JSVM_VM vm, JSVM_Env env) {
+    const char *defineFunction = R"JS(
+        var x1 = 0;
+        var x2 = 0;
+        function f1(x) {
+            x1 = x;
+            return x + 1;
+        }
+        function f2(x) {
+            x2 = x;
+            return x + 1;
+        }
+    )JS";
+
+    const char *init = R"JS(
+        x1 = 0;
+        x2 = 0;
+    )JS";
+
+    JSVM_Script script;
+    JSVM_Value jsSrc;
+    JSVM_Value result;
+
+    // Define the JS functions f1 and f2.
+    CHECK_RET(OH_JSVM_CreateStringUtf8(env, defineFunction, JSVM_AUTO_LENGTH, &jsSrc));
+    CHECK_RET(OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script));
+    CHECK_RET(OH_JSVM_RunScript(env, script, &result));
+
+    // Initialize x1 and x2 to 0.
+    CHECK_RET(OH_JSVM_CreateStringUtf8(env, init, JSVM_AUTO_LENGTH, &jsSrc));
+    CHECK_RET(OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script));
+    CHECK_RET(OH_JSVM_RunScript(env, script, &result));
+
+    // Obtain functions f1 and f2.
+    JSVM_Value global;
+    CHECK_RET(OH_JSVM_GetGlobal(env, &global));
+    JSVM_Value f1;
+    CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "f1", &f1));
+    JSVM_Value f2;
+    CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "f2", &f2));
+
+    // Create a promise.
+    JSVM_Value promise;
+    JSVM_Deferred deferred;
+    CHECK_RET(OH_JSVM_CreatePromise(env, &deferred, &promise));
+    // Register a callback for the promise and assign the result (new promise) of then() to promise1.
+    JSVM_Value promise1;
+    CHECK_RET(OH_JSVM_PromiseRegisterHandler(env, promise, f1, nullptr, &promise1));
+    // Register a callback for promise1.
+    CHECK_RET(OH_JSVM_PromiseRegisterHandler(env, promise1, f2, nullptr, nullptr));
+
+    // Obtain the values of x1 and x2 before the promise is parsed.
+    JSVM_Value x1;
+    CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "x1", &x1));
+    int32_t x1Int;
+    CHECK_RET(OH_JSVM_GetValueInt32(env, x1, &x1Int));
+    JSVM_Value x2;
+    CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "x2", &x2));
+    int32_t x2Int;
+    CHECK_RET(OH_JSVM_GetValueInt32(env, x2, &x2Int));
+    OH_LOG_INFO(LOG_APP, "Before promise resolved, x1: %{public}d, x2: %{public}d", x1Int, x2Int);
+
+    // Parse the promise.
+    JSVM_Value resolveValue;
+    CHECK_RET(OH_JSVM_CreateInt32(env, 2, &resolveValue));
+    OH_JSVM_ResolveDeferred(env, deferred, resolveValue);
+    deferred = nullptr;
+
+    // Obtain the values of x1 and x2 after the promise is parsed.
+    CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "x1", &x1));
+    CHECK_RET(OH_JSVM_GetValueInt32(env, x1, &x1Int));
+    CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "x2", &x2));
+    CHECK_RET(OH_JSVM_GetValueInt32(env, x2, &x2Int));
+    OH_LOG_INFO(LOG_APP, "After promise resolved, x1: %{public}d, x2: %{public}d", x1Int, x2Int);
+
+    return 0;
+}
+
+static void RunDemo(JSVM_VM vm, JSVM_Env env) {
+    if (PromiseRegisterHandler(vm, env) != 0) {
+        OH_LOG_INFO(LOG_APP, "Run PromiseRegisterHandler failed");
+    }
+}
+```
+
+Expected result:
+```
+Before promise resolved, x1: 0, x2: 0
+After promise resolved, x1: 2, x2: 3
 ```

@@ -135,7 +135,7 @@
 ## 文件<sup>(deprecated)</sup>
 
 > **说明：**
-> 从API version 12开始，该权限组及其子权限废弃。
+> 从API 12开始，该权限组及其子权限废弃。
 
 <!--Del-->
 - ohos.permission.READ_DOCUMENT

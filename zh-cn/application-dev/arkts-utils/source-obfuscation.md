@@ -646,7 +646,7 @@ const valueBucket: ValuesBucket = {
 class A {
   // 1.成员变量装饰器
   @CustomDecoarter
-  propetyName: string = ""   // propetyName 需要被保留
+  propertyName: string = ""   // propertyName 需要被保留
   // 2.成员方法装饰器
   @MethodDecoarter
   methodName1(){} // methodName1 需要被保留

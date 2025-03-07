@@ -40,6 +40,7 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnError)(OH_AudioC
 ```
 **描述**
 该函数指针将指向用于处理音频录制错误结果的回调函数。
+
 **参数:**
 
 | 名称 | 描述 | 

@@ -8,7 +8,7 @@
 ## ModuleInfo<sup>(deprecated)<sup>
 > 从API version 9开始不再维护，建议使用[bundleManager-HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)替代。
 
-**系统能力**: SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework
 | 名称            | 类型   | 只读 | 可选 | 说明     |
 | --------------- | ------ | ---- | ---- | -------- |
 | moduleName      | string | 是   | 否   | 模块名称。 |

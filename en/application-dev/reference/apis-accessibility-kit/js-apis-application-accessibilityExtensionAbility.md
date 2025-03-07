@@ -30,7 +30,7 @@ Defines an accessibility event.
 
 | Name     | Type                                                            | Readable                                                                          | Writable                                | Description                                                        |
 | --------- |----------------------------------------------------------------|------------------------------------------------------------------------------|------------------------------------| ------------------------------------------------------------ |
-| eventType | [accessibility.EventType](js-apis-accessibility.md#eventtype) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#windowupdatetype) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | Yes  | No  | Event type.<br>**EventType**: accessibility event type.<br>**WindowUpdateType**: Window update type.<br>**TouchGuideType**: touch guide event type.<br>**GestureType**: gesture type.<br>**PageUpdateType**: page update type.|
+| eventType | [accessibility.EventType](js-apis-accessibility.md#eventtype) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#windowupdatetype) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | Yes  | No  | Event type.<br>**EventType**: accessibility event type.<br>**WindowUpdateType**: window update type.<br>**TouchGuideType**: touch guide event type.<br>**GestureType**: gesture type.<br>**PageUpdateType**: page update type.|
 | target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9) | Yes                                                                           | No                                 | Target component where the event occurs.                                        |
 | timeStamp | number                                                         | Yes                                                                           | No                                 | Timestamp of the event, in milliseconds.                                                |
 | elementId<sup>12+</sup> | number                                                         | Yes                                                                           | No                                 | Component ID for auto-focusing.                                                |
@@ -39,7 +39,7 @@ Defines an accessibility event.
 
 ## AccessibilityElement<sup>10+</sup>
 
-Level-2 Module of [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9).
+Defines accessibility elements. For details, see [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9).
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -53,7 +53,7 @@ let accessibilityElement: AccessibilityElement;
 
 ## ElementAttributeValues<sup>10+</sup>
 
-Level-2 Module of [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues).
+Provides attribute names and value types of a node element. For details, see [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues).
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -67,7 +67,7 @@ let elementAttributeValues: ElementAttributeValues;
 
 ## FocusDirection<sup>10+</sup>
 
-Enumerates the focus directions. It is a level-2 module of [FocusDirection](js-apis-inner-application-accessibilityExtensionContext.md#focusdirection).
+Enumerates the focus directions. For details, see [FocusDirection](js-apis-inner-application-accessibilityExtensionContext.md#focusdirection).
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -98,7 +98,7 @@ let elementAttributeKeys: ElementAttributeKeys;
 
 ## FocusType<sup>10+</sup>
 
-Enumerates the focus types. It is a level-2 module of [FocusType](js-apis-inner-application-accessibilityExtensionContext.md#focustype).
+Enumerates the focus types. For details, see [FocusType](js-apis-inner-application-accessibilityExtensionContext.md#focustype).
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -112,7 +112,7 @@ let focusType: FocusType;
 
 ## WindowType <sup>10+</sup>
 
-Enumerates the window types. It is a level-2 module of [WindowType](js-apis-inner-application-accessibilityExtensionContext.md#windowtype).
+Enumerates the window types. For details, see [WindowType](js-apis-inner-application-accessibilityExtensionContext.md#windowtype).
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -126,7 +126,7 @@ let windowType: WindowType;
 
 ## Rect<sup>10+</sup>
 
-Defines a rectangle. It is a level-2 module of [Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect).
+Defines a rectangle. For details, see [Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect).
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -197,7 +197,7 @@ Enumerates the page update types.
 | Type               | Description           |
 | ----------------- | ---------------- |
 | 'pageContentUpdate' | Update of the page content.|
-| 'pageStateUpdate' | Update of the page content.|
+| 'pageStateUpdate' | Update of the page status.|
 
 ## TouchGuideType
 

@@ -319,7 +319,7 @@ backgroundImageResizable(value: ResizableOptions)
 
 ## BackgroundBlurStyleOptions<sup>10+</sup>对象说明
 
-继承自[BlurStyleOptions](ts-universal-attributes-foreground-blur-style.md)
+继承自[BlurStyleOptions](ts-universal-attributes-foreground-blur-style.md)。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 

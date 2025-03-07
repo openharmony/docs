@@ -90,10 +90,10 @@ struct Child {
 | \@Param变量装饰器  | 说明                                                         |
 | ------------------ | ------------------------------------------------------------ |
 | 装饰器参数         | 无。                                                         |
-| 能否本地修改       | 否，修改值需使用\@Event装饰器的能力。                        |
+| 能否本地修改       | 否，修改值需使用[\@Event](./arkts-new-event.md)装饰器的能力。                        |
 | 同步类型           | 由父到子单向同步。                                           |
 | 允许装饰的变量类型 | Object、class、string、number、boolean、enum等基本类型以及Array、Date、Map、Set等内嵌类型。支持null、undefined以及联合类型。 |
-| 被装饰变量的初始值 | 允许本地初始化，若不在本地初始化，则需要和\@Require装饰器一起使用，要求必须从外部传入初始化。 |
+| 被装饰变量的初始值 | 允许本地初始化，若不在本地初始化，则需要和[\@Require](./arkts-require.md)装饰器一起使用，要求必须从外部传入初始化。 |
 
 ## 变量传递
 
@@ -151,7 +151,7 @@ struct Child {
   }
   ```
 
-- 当装饰的变量类型为类对象时，仅可以观察到对类对象整体赋值的变化，无法直接观察到对类成员属性赋值的变化,对类成员属性的观察依赖\@ObservedV2和\@Trace装饰器。
+- 当装饰的变量类型为类对象时，仅可以观察到对类对象整体赋值的变化，无法直接观察到对类成员属性赋值的变化，对类成员属性的观察依赖\@ObservedV2和\@Trace装饰器。
 
   ```ts
   class RawObject {
@@ -422,7 +422,8 @@ struct Child {
         Text(`Parent info.name ${this.info.name}`)
         Button("Parent change info")
           .onClick(() => {
-            this.info = new Info("Lucy"); // 父组件更改@Local变量，会同步子组件对应@Param变量
+            // 父组件更改@Local变量，会同步子组件对应@Param变量
+            this.info = new Info("Lucy");
         })
         Child({ info: this.info })
       }
@@ -436,11 +437,13 @@ struct Child {
         Text(`info.name: ${this.info.name}`)
         Button("change info")
           .onClick(() => {
-            this.info = new Info("Jack"); //错误用法，不允许在子组件更改@Param变量，编译时报错
+            // 错误用法，不允许在子组件更改@Param变量，编译时报错
+            this.info = new Info("Jack");
           })
         Button("Child change info.name")
           .onClick(() => {
-            this.info.name = "Jack"; // 允许在子组件中更改对象中属性
+            // 允许在子组件中更改对象中属性，该修改会同步到父组件数据源上，当属性被@Trace装饰时，可观测到对应UI刷新
+            this.info.name = "Jack";
           })
       }
     }

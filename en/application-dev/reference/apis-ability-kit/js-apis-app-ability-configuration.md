@@ -1,6 +1,6 @@
 # @ohos.app.ability.Configuration (Configuration)
 
-The **Configuration** module defines environment change information. **Configuration** is an interface definition and is used only for field declaration.
+The Configuration module defines environment change information. **Configuration** is an interface definition and is used only for field declaration.
 
 > **NOTE**
 > 
@@ -24,7 +24,7 @@ import { Configuration } from '@kit.AbilityKit';
 | screenDensity  | [ConfigurationConstant.ScreenDensity](js-apis-app-ability-configurationConstant.md#screendensity) | No| Yes| Pixel density of the screen. The options are as follows:<br>- **SCREEN_DENSITY_NOT_SET**: The pixel density is not set.<br>- **SCREEN_DENSITY_SDPI**: 120.<br>- **SCREEN_DENSITY_MDPI**: 160.<br>- **SCREEN_DENSITY_LDPI**: 240.<br>- **SCREEN_DENSITY_XLDPI**: 320.<br>- **SCREEN_DENSITY_XXLDPI**: 480.<br>- **SCREEN_DENSITY_XXXLDPI**: 640.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | displayId  | number | No| Yes| ID of the display where the application is located.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | hasPointerDevice  | boolean | No| Yes| Whether a pointer device, such as a keyboard, mouse, or touchpad, is connected.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| fontId<sup>14+<sup> | number | No| Yes| Unique ID of the current system font.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| fontId<sup>14+<sup> | string | No| Yes| Unique ID of the current system font.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | fontSizeScale<sup>12+<sup> | number | No| Yes| Font size scale ratio. The value is a non-negative number. The default value is **1**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | fontWeightScale<sup>12+<sup> | number | No| Yes| Font weight scale ratio. The value is a non-negative number. The default value is **1**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | mcc<sup>12+<sup> | string | No | Yes| Mobile network code (MNC).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|

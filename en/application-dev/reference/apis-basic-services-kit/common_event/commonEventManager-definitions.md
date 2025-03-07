@@ -1,7 +1,9 @@
 # System Common Events
 
 This document provides a list of common events defined by the system.
-Common event types are defined in [Support enumeration of the ohos.commonEventManager module](../js-apis-commonEventManager.md#support).
+Common event types are defined in [Support](../js-apis-commonEventManager.md#support) of the **ohos.commonEventManager** module.
+
+
 
 ## Ability Kit
 
@@ -138,8 +140,6 @@ Indicates the common event that application packages have been suspended.
 **Required subscriber permissions**: none
 
 **Value**: "usual.event.PACKAGES_SUSPENDED"
-
-
 
 ### COMMON_EVENT_MY_PACKAGE_SUSPENDED
 
@@ -374,8 +374,6 @@ APIs related to this event: **setOsAccountName**, **setOsAccountProfilePhoto**, 
 Indicates that the credential-encrypted storage has been unlocked for the current user after the device is restarted.
 
 When the device is unlocked with the lock screen password the first time after user switching, the event notification service is triggered to publish this event carrying the system account ID that identifies the user.
-
-APIs related to this event: **auth**. This API is a system API. For details, see [@ohos.account.osAccount (OS Account Management)](../js-apis-osAccount.md).
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -688,6 +686,30 @@ When the device exits the forced sleep mode, the event notification service is t
 
 **Value**: "usual.event.EXIT_FORCE_SLEEP"
 
+### COMMON_EVENT_ENTER_HIBERNATE<sup>15+</sup>
+
+Indicates that the device is about to enter the hibernation mode.
+
+When the device is about to enter the hibernation mode, the event notification service is triggered to publish this event. This event should be processed within one second.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Required subscriber permissions**: none
+
+**Value**: "usual.event.ENTER_HIBERNATE"
+
+### COMMON_EVENT_EXIT_HIBERNATE<sup>15+</sup>
+
+Indicates that the device exits the hibernation mode.
+
+When the device exits the hibernation mode, the event notification service is triggered to publish this event.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Required subscriber permissions**: none
+
+**Value**: "usual.event.EXIT_HIBERNATE"
+
 
 
 
@@ -934,6 +956,24 @@ When the Wi-Fi P2P group information changes, the event notification service is 
 **Required subscriber permissions**: ohos.permission.GET_WIFI_INFO
 
 **Value**: "usual.event.wifi.p2p.GROUP_STATE_CHANGED"
+
+
+
+
+## MDM Kit
+
+### COMMON_EVENT_MANAGED_BROWSER_POLICY_CHANGED
+
+Indicates that the browser hosting policy has been changed.
+
+When the browser hosting policy changes, the event notification service is triggered to publish this system common event.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Required subscriber permissions**: none
+
+**Value**: "usual.event.MANAGED_BROWSER_POLICY_CHANGED"
+
 
 
 
@@ -1762,6 +1802,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 ### COMMON_EVENT_ABILITY_REMOVED
 (Reserved, not supported yet) Indicates the common event that an ability has been removed.
+
 **System capability**: SystemCapability.Notification.CommonEvent
 
 **Required subscriber permissions**: ohos.permission.LISTEN_BUNDLE_CHANGE

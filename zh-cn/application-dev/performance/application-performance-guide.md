@@ -14,6 +14,7 @@
 **图1 应用丢帧处的Trace数据**
 
  ![alt text](figures/application-performance-guide-1.png)
+
 其中，帧率 = Occurrences / Selected range。
 
 | 计算帧率时，可参考的Trace标签	| 含义| 	帧数| 	平均帧率 |
@@ -75,6 +76,7 @@
 **图6 RS侧Trace**
 
  ![alt text](figures/application-performance-guide-6.png)
+
 RS侧trace标签示例	含义
 RSMainThread::ProcessCommandUni [7291，51]	反序列化组件树信息
 RenderFrame	将渲染树翻译为GPU绘制指令
@@ -87,6 +89,7 @@ App侧序列化与RS侧反序列化的Trace示例标签中都有 [7291，51]，�
 **图7 测量完成时延**
 
  ![alt text](figures/application-performance-guide-7.png)
+
 如图7所示，该点击事件完成时延约为138.4ms。
 
 ## 应用性能分析
@@ -127,9 +130,11 @@ HiTrace、HiPerf、cpuProfiler、常规log等各类可观测性数据。
     **图9 丢帧处应用主线程运行核**
 
     ![alt text](figures/application-performance-guide-9.png)
+
     **图10 Freq Usage频点信息**
 
     ![alt text](figures/application-performance-guide-10.png)
+
     出于兼顾高性能、低功耗的需求，多核工程机常采用异构架构设计，根据CPU频率，区分大中小核等。
     
 2.	找到 Trace中每一帧耗时的部分，大致定位是App侧问题还是RS侧问题，并结合Trace标签，初步定位原因。  
@@ -178,6 +183,7 @@ HiTrace、HiPerf、cpuProfiler、常规log等各类可观测性数据。
 **图13 OpenHarmony应用启动流程**
 
  ![alt text](figures/application-performance-guide-13.png)
+
 1.	AbilityManageService请求AppSpawn创建应用进程。
 2.	AppManageService触发应用启动流程、应用进程加载应用包。
 3.	AppManageService触发Ability启动流程、应用进程加载Ability资源、根据应用生命周期定义，触发生命周期回调。
@@ -199,6 +205,7 @@ HiTrace、HiPerf、cpuProfiler、常规log等各类可观测性数据。
 **图14 AppStartup泳道图展示**
 
  ![alt text](figures/application-performance-guide-14.png)
+
 之后，开发者可以结合应用启动各阶段Trace信息，对比应用前一个版本或竞品表现，找出差异点，大致分析是哪阶段时间增加了。
 
 **分析系统耗时点**

@@ -95,7 +95,7 @@ ISensorInterface::GetAllSensorInfo ([out] struct HdfSensorInformation[] info)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| 输出系统中注册的所有传感器信息，一种类型传感器信息包括传感器名字、设备厂商、 | 固件版本号、硬件版本号、传感器类型编号、传感器标识、最大量程、精度、功耗，详见[HdfSensorInformation](_hdf_sensor_information_v10.md)。 | 
+| info | 固件版本号、硬件版本号、传感器类型编号、传感器标识、最大量程、精度、功耗，详见[HdfSensorInformation](_hdf_sensor_information_v10.md)。 | 
 
 **返回：**
 

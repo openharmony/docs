@@ -24,7 +24,7 @@
 | int32_t [height](#height) | 显示设备的屏幕高度，单位为px，该参数应为非负整数。 | 
 | int32_t [physicalWidth](#physicalwidth) | 显示设备的物理宽度，单位为px，该参数应为非负整数。 | 
 | int32_t [physicalHeight](#physicalheight) | 显示设备的物理高度，单位为px，该参数应为非负整数。 | 
-| uint32_t [refreshRate](#refreshrate) | 显示设备的刷新率，单位为Hz，该参数应为非负整数，。 | 
+| uint32_t [refreshRate](#refreshrate) | 显示设备的刷新率，单位为Hz，该参数应为非负整数。 | 
 | uint32_t [availableWidth](#availablewidth) | 2in1设备上屏幕的可用区域宽度，单位为px，该参数为非负整数。 | 
 | uint32_t [availableHeight](#availableheight) | 2in1设备上屏幕的可用区域高度，单位为px，该参数为非负整数。 | 
 | float [densityDPI](#densitydpi) | 显示设备屏幕的物理像素密度，表示每英寸上的像素点数。该参数为大于0的浮点数，单位为px。一般取值160.0、480.0等，实际能取到的值取决于不同设备设置里提供的可选值。 | 
@@ -193,7 +193,7 @@ uint32_t NativeDisplayManager_DisplayInfo::refreshRate
 
 **描述**
 
-显示设备的刷新率，单位为Hz，该参数应为非负整数，。
+显示设备的刷新率，单位为Hz，该参数应为非负整数。
 
 
 ### rotation

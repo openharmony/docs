@@ -1,4 +1,4 @@
-# 获取设备的位置信息开发指导
+# 获取设备的位置信息开发指导(ArkTS)
 
 ## 场景概述
 
@@ -11,8 +11,6 @@
 获取设备的位置信息所使用的接口如下，详细说明参见：[Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md)。
 
 本模块能力仅支持WGS-84坐标系。
-
-**表2** 获取设备的位置信息接口介绍
 
 | 接口名 | 功能描述 | 
 | -------- | -------- |
@@ -43,7 +41,7 @@
        console.error("errCode:" + err.code + ", message:"  + err.message);
    }
    ```
-   如果位置开关未开启，可以拉起全局开关设置弹框，引导用户打开位置开关，具体可参考[拉起全局开关设置弹框](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestglobalswitch12)
+   如果位置开关未开启，可以拉起全局开关设置弹框，引导用户打开位置开关，具体可参考[拉起全局开关设置弹框](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestglobalswitch12)。
 
 4. 单次获取当前设备位置。多用于查看当前位置、签到打卡、服务推荐等场景。
    - 方式一：获取系统缓存的最新位置。<br/>
@@ -81,7 +79,7 @@
       }
       try {
          geoLocationManager.getCurrentLocation(request).then((result) => { // 调用getCurrentLocation获取当前设备位置，通过promise接收上报的位置
-            console.log('current location: ' + JSON.stringify(result));
+            console.info('current location: ' + JSON.stringify(result));
          })
          .catch((error:BusinessError) => { // 接收上报的错误码
             console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
@@ -110,7 +108,7 @@
       'locationScenario': geoLocationManager.UserActivityScenario.NAVIGATION
    }
    let locationCallback = (location:geoLocationManager.Location):void => {
-      console.log('locationCallback: data: ' + JSON.stringify(location));
+      console.info('locationCallback: data: ' + JSON.stringify(location));
    };
    try {
       geoLocationManager.on('locationChange', request, locationCallback);
@@ -120,5 +118,6 @@
    ```
    如果不主动结束定位可能导致设备功耗高，耗电快；建议在不需要获取定位信息时及时结束定位。
    ```ts
+   // 该回调函数需要与on接口传入的回调函数保持一致。
    geoLocationManager.off('locationChange', locationCallback);
    ```

@@ -82,7 +82,7 @@ enableNfc(): void
 | ------- | -------|
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
-| 3100101 | NFC state is abnormal in service. |
+| 3100101 | The NFC state is abnormal in the service. |
 
 ## nfcController.closeNfc<sup>(deprecated)</sup>
 
@@ -121,7 +121,7 @@ disableNfc(): void
 | ------- | -------|
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
-| 3100101 | NFC state is abnormal in service. |
+| 3100101 | The NFC state is abnormal in the service. |
 
 ## nfcController.isNfcOpen
 
@@ -187,7 +187,7 @@ off(type: 'nfcStateChange', callback?: Callback&lt;[NfcState](#nfcstate)&gt;): v
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 固定填"nfcStateChange"字符串。 |
-| callback | Callback&lt;[NfcState](#nfcstate)&gt; | 否 | NFC状态改变回调函数，可以空缺不填。如果callback不填，将取消注册该事件关联的所有回调函数 |
+| callback | Callback&lt;[NfcState](#nfcstate)&gt; | 否 | NFC状态改变回调函数，可以空缺不填。如果callback不填，将取消注册该事件关联的所有回调函数。 |
   
 **示例**
 
