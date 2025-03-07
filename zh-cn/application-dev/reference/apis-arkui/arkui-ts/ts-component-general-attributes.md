@@ -1,5 +1,5 @@
 # 通用属性
-
+<!--Del-->
 - [尺寸设置](ts-universal-attributes-size.md)
 - [位置设置](ts-universal-attributes-location.md)
 - [布局约束](ts-universal-attributes-layout-constraints.md)
@@ -44,6 +44,7 @@
 - 模态转场设置<!--transition-->
   - [全屏模态转场](ts-universal-attributes-modal-transition.md)
   - [半模态转场](ts-universal-attributes-sheet-transition.md)
+<!--DelEnd-->
   <!--Del-->
   - [半模态转场 (系统接口)](ts-universal-attributes-sheet-transition-sys.md)
   <!--DelEnd-->
