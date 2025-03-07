@@ -20,7 +20,7 @@
 | [StartAp](#startap) () | 打开AP | 
 | [StopAp](#stopap) () | 关闭AP | 
 | [EnableAp](#enableap) ([in] String ifName, [in] int id) | 启用AP | 
-| [DisableAp](#disableap) ([in] String ifName, [in] int id) | 禁用AP. | 
+| [DisableAp](#disableap) ([in] String ifName, [in] int id) | 禁用AP。 | 
 | [SetApPasswd](#setappasswd) ([in] String ifName, [in] String pass, [in]int id) | 设置个人热点密码 | 
 | [SetApName](#setapname) ([in] String ifName, [in] String name, [in] int id) | 设置个人热点名称 | 
 | [SetApWpaValue](#setapwpavalue) ([in] String ifName, [in] int securityType, [in] int id) | 设置AP安全类型 | 
@@ -78,7 +78,7 @@ IHostapdInterface::DisableAp ([in] String ifName, [in] int id )
 **描述**
 
 
-禁用AP.
+禁用AP。
 
 **起始版本：** 4.1
 
@@ -105,7 +105,7 @@ IHostapdInterface::DisassociateSta ([in] String ifName, [in] String mac, [in] in
 **描述**
 
 
-断开指定的STA连接
+断开指定的STA连接。
 
 **起始版本：** 4.1
 
@@ -113,9 +113,9 @@ IHostapdInterface::DisassociateSta ([in] String ifName, [in] String mac, [in] in
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| ifName | 表示网卡名称 | 
-| id | 表示热点id | 
-| mac | 表示要断开的指定mac | 
+| ifName | 表示网卡名称。| 
+| id | 表示热点id。| 
+| mac | 表示要断开的指定mac。| 
 
 **返回：**
 
@@ -168,10 +168,10 @@ IHostapdInterface::GetStaInfos ([in] String ifName, [out] String buf, [in] int s
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| ifName | 表示网卡名称 | 
-| id | 表示热点id | 
-| buf | 表示已连接STA数组信息 | 
-| size | 表示获取已连接STA数组中，数组信息的大小。 | 
+| ifName | 表示网卡名称。| 
+| id | 表示热点id。| 
+| buf | 表示已连接STA数组信息。| 
+| size | 表示获取已连接STA数组中，数组信息的大小。| 
 
 **返回：**
 
@@ -411,7 +411,7 @@ IHostapdInterface::SetApWmm ([in] String ifName, [in] int value, [in] int id )
 **描述**
 
 
-设置AP WMM模式
+设置AP Wmm模式
 
 **起始版本：** 4.1
 
@@ -447,9 +447,9 @@ IHostapdInterface::SetApWpaValue ([in] String ifName, [in] int securityType, [in
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| ifName | 表示网卡名称 | 
-| id | 表示热点id | 
-| securityType | 表示SAP安全类型，例如：wpa/wpa_psk等。 | 
+| ifName | 表示网卡名称。| 
+| id | 表示热点id。| 
+| securityType | 表示SAP安全类型，例如：wpa/wpa_psk等。| 
 
 **返回：**
 

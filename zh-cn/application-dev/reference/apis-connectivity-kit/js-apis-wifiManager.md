@@ -1235,7 +1235,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
   });
 ```
 
-## wifiManager.getLinkedInfoSync<sup>16+</sup>
+## wifiManager.getLinkedInfoSync<sup>18+</sup>
 
 getLinkedInfoSync(): WifiLinkedInfo;
 
@@ -1704,7 +1704,7 @@ isMeteredHotspot(): boolean
 ```
 
 
-## wifiManager.isHotspotActive<sup>15+</sup>
+## wifiManager.isHotspotActive<sup>18+</sup>
 
 isHotspotActive(): boolean
 

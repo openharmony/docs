@@ -73,7 +73,7 @@ IWlanInterface::RegisterActionFrameReceiver ([in] String ifName, [in] unsigned c
 | 名称 | 描述 | 
 | -------- | -------- |
 | ifName | 表示网卡(NIC)名称 | 
-| txChannel | 表示数据匹配操作框架 | 
+| match | 表示数据匹配操作框架 | 
 
 **返回：**
 
@@ -127,7 +127,7 @@ IWlanInterface::SendActionFrame ([in] String ifName, [in] unsigned int freq, [in
 | -------- | -------- |
 | ifName | 表示网卡(NIC)名称 | 
 | freq | 表示发送通道频率 | 
-| ifName | 表示动作帧数据 | 
+| frameData | 表示动作帧数据 | 
 
 **返回：**
 
@@ -153,9 +153,9 @@ IWlanInterface::SetDpiMarkRule ([in] int uid, [in] int protocol, [in] int enable
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| uid | 表示目标应用程序UID | 
+| uid | 表示目标应用程序uid | 
 | protocol | 表示目标协议类型，tcp/udp | 
-| enable | 指示启用/禁用dpi标记规则 | 
+| enable | 指示启用/禁用dpi标记规则 |
 
 **返回：**
 
@@ -181,7 +181,7 @@ IWlanInterface::SetPowerSaveMode ([in] String ifName, [in] int frequency, [in] i
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| ifName | 表示网卡(NIC)名称 | 
+| ifName | 表示网卡(nic)名称 | 
 | frequency | 表示连接的ap频率 | 
 | mode | 表示省电模式：3（启用省电），4（禁用省电） | 
 

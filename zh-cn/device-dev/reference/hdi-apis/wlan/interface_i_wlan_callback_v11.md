@@ -43,9 +43,9 @@ IWlanCallback::ResetDriverResult ([in] unsigned int event, [in] int code, [in] S
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| event | 表示驱动重启事件ID  | 
-| code | 表示重启驱动时的返回结果  | 
-| ifName | 表示网卡(NIC)名称 | 
+| event | 表示驱动重启事件ID。 | 
+| code | 表示重启驱动时的返回结果。 | 
+| ifName | 表示网卡(NIC)名称。| 
 
 
 ### ScanResult()

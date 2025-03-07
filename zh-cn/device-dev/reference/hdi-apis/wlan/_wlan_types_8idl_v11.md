@@ -3,11 +3,11 @@
 
 ## 概述
 
-定义与WLAN模块相关的数据类型.
+定义与WLAN模块相关的数据类型。
 
-WLAN模块数据包括{
+WLAN模块数据包括{-Feature}对象信息、站（STA）信息等,扫描信息和网络设备信息。
 
--Feature}对象信息、站（STA）信息等,扫描信息和网络设备信息 模块包路径：ohos.hdi.wlan.v1_1; \@since 3.2 \@version 1.1
+模块包路径：ohos.hdi.wlan.v1_1; \@since 3.2 \@version 1.1
 
 **相关模块：**[WLAN](_w_l_a_n_v11.md)
 

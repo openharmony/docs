@@ -3,7 +3,7 @@
 
 ## 概述
 
-定义Wi-Fi扫描参数.
+定义Wi-Fi扫描参数。
 
 **起始版本：** 3.2
 
@@ -17,12 +17,12 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct [HdfWifiDriverScanSsid](_hdf_wifi_driver_scan_ssid_v11.md)[] [ssids](#ssids) | WiFi扫描的SSID集合  | 
-| int[] [freqs](#freqs) | WiFi扫描的频率集合  | 
-| unsigned char[] [extraIes](#extraies) | WiFi扫描请求中携带的扩展IE  | 
-| unsigned char[] [bssid](#bssid) | WiFi扫描的BSSID  | 
-| unsigned char [prefixSsidScanFlag](#prefixssidscanflag) | SSID扫描的前缀标志  | 
-| unsigned char [fastConnectFlag](#fastconnectflag) | 快速连接标志  | 
+| struct [HdfWifiDriverScanSsid](_hdf_wifi_driver_scan_ssid_v11.md)[] [ssids](#ssids) | WiFi扫描的SSID集合。| 
+| int[] [freqs](#freqs) | WiFi扫描的频率集合。| 
+| unsigned char[] [extraIes](#extraies) | WiFi扫描请求中携带的扩展IE。| 
+| unsigned char[] [bssid](#bssid) | WiFi扫描的BSSID。| 
+| unsigned char [prefixSsidScanFlag](#prefixssidscanflag) | SSID扫描的前缀标志。| 
+| unsigned char [fastConnectFlag](#fastconnectflag) | 快速连接标志。| 
 
 
 ## 类成员变量说明
@@ -35,7 +35,7 @@ unsigned char [] HdfWifiScan::bssid
 ```
 **描述**
 
-WiFi扫描的BSSID
+WiFi扫描的BSSID。
 
 
 ### extraIes

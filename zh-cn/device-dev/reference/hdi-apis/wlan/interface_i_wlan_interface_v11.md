@@ -18,7 +18,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [Start](#start) () | 在HAL和WLAN驱动程序之间创建一个通道，并获取驱动程序网络接口卡（NIC）信息，此函数必须在创建IWiFi实例后调用。 | 
-| [Stop](#stop) () | 销毁HAL和WLAN驱动程序之间的通道。此函数必须在IWiFi实例被销毁之前调用。 | 
+| [Stop](#stop) () | 销毁HAL和WLAN驱动程序之间的通道，此函数必须在IWiFi实例被销毁之前调用。 | 
 | [CreateFeature](#createfeature) ([in] int type, [out] struct [HdfFeatureInfo](_hdf_feature_info_v11.md) ifeature) | 基于指定的类型创建Feature对象 | 
 | [DestroyFeature](#destroyfeature) ([in] struct [HdfFeatureInfo](_hdf_feature_info_v11.md) ifeature) | 销毁Feature对象 | 
 | [GetAssociatedStas](#getassociatedstas) ([in] struct [HdfFeatureInfo](_hdf_feature_info_v11.md) ifeature, [out] struct [HdfStaInfo](_hdf_sta_info_v11.md)[] staInfo, [out] unsigned int num) | 获取连接到此AP的所有STA的信息。目前，STA信息仅包含MAC地址。 | 
@@ -49,7 +49,7 @@
 | [GetStaInfo](#getstainfo) ([in] String ifName, [out] struct [WifiStationInfo](_wifi_station_info_v11.md) info, [in] unsigned char[] mac) | 获取指定NIC的STA信息 | 
 | [StartPnoScan](#startpnoscan) ([in] String interfaceName, [in] struct [PnoSettings](_pno_settings_v11.md) pnoSettings) | 启动Pno扫描 | 
 | [StopPnoScan](#stoppnoscan) ([in] String interfaceName) | 关闭Pno扫描 | 
-| [GetSignalPollInfo](#getsignalpollinfo) ([in] String ifName, [out] struct [SignalPollResult](_signal_poll_result_v11.md) signalResult) | 获取相关链路的信号信息。此函数必须在STA模式下调用。 | 
+| [GetSignalPollInfo](#getsignalpollinfo) ([in] String ifName, [out] struct [SignalPollResult](_signal_poll_result_v11.md) signalResult) | 获取相关链路的信号信息，此函数必须在STA模式下调用。 | 
 
 
 ## 成员函数说明
@@ -73,7 +73,7 @@ IWlanInterface::CreateFeature ([in] int type, [out] struct HdfFeatureInfo ifeatu
 | 名称 | 描述 | 
 | -------- | -------- |
 | type | 表示要创建的Feature对象的类型。<br/>- 2：Station<br/>- 3：AP | 
-| ifeature | 表示创建feature对象 | 
+| ifeature | 表示创建feature对象。| 
 
 **返回：**
 
@@ -91,7 +91,7 @@ IWlanInterface::DestroyFeature ([in] struct HdfFeatureInfo ifeature)
 **描述**
 
 
-销毁Feature对象
+销毁Feature对象。
 
 **起始版本：** 3.2
 
@@ -99,7 +99,7 @@ IWlanInterface::DestroyFeature ([in] struct HdfFeatureInfo ifeature)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| ifeature | 表示要销毁的Feature对象 | 
+| ifeature | 表示要销毁的Feature对象。| 
 
 **返回：**
 
@@ -145,7 +145,7 @@ IWlanInterface::GetChannelMeasResult ([in] String ifName, [out] struct MeasChann
 **描述**
 
 
-获得通道测量结果
+获得通道测量结果。
 
 **起始版本：** 3.2
 
@@ -207,9 +207,9 @@ IWlanInterface::GetDeviceMacAddress ([in] struct HdfFeatureInfo ifeature, [out] 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| ifeature | 表示Feature对象 | 
-| mac | 表示获得的MAC地址 | 
-| len | 表示MAC地址的长度，该值固定为6。 | 
+| ifeature | 表示Feature对象。| 
+| mac | 表示获得的MAC地址。| 
+| len | 表示MAC地址的长度，该值固定为6。| 
 
 **返回：**
 
@@ -289,7 +289,7 @@ IWlanInterface::GetFreqsWithBand ([in] struct HdfFeatureInfo ifeature, [in] stru
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| ifeature | 表示Feature对象 | 
+| ifeature | 表示Feature对象。 | 
 | wifiInfo | 表示频率信息<br/>- wifiInfo.band：<br/>&nbsp;&nbsp;- 0：2.4 GHz<br/>&nbsp;&nbsp;- 1：5 GHz<br/>- wifiInfo.size，最小为14 | 
 | freq | 保存支持的频率。 | 
 
@@ -398,7 +398,7 @@ IWlanInterface::GetPowerMode ([in] struct HdfFeatureInfo ifeature, [out] unsigne
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| ifeature | 表示Feature对象 | 
+| ifeature | 表示Feature对象。| 
 | mode | 表示电源模式，包括睡眠模式（待机状态运行）、一般模式（正常额定功率运行）、穿墙模式（最大功率运行，提高信号强度和覆盖面积）。 | 
 
 **返回：**
