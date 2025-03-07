@@ -19,7 +19,7 @@ import { calendarManager } from '@kit.CalendarKit'
 
 ## calendarManager.getCalendarManager
 
-getCalendarManager(context : Context): CalendarManager
+getCalendarManager(context: Context): CalendarManager
 
 根据上下文获取CalendarManager对象，用于管理日历。
 
@@ -80,7 +80,7 @@ export default class EntryAbility extends UIAbility {
     const permissions: Permissions[] = ['ohos.permission.READ_CALENDAR', 'ohos.permission.WRITE_CALENDAR'];
     let atManager = abilityAccessCtrl.createAtManager();
     atManager.requestPermissionsFromUser(mContext, permissions).then((result: PermissionRequestResult) => {
-      console.log(`get Permission success, result: ${JSON.stringify(result)}`);
+      console.info(`get Permission success, result: ${JSON.stringify(result)}`);
       calendarMgr = calendarManager.getCalendarManager(mContext);
     }).catch((error: BusinessError) => {
       console.error(`get Permission error, error. Code: ${error.code}, message: ${error.message}`);
@@ -1281,6 +1281,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event[]>
 
 获取Calendar下符合查询条件的Event，使用Promise异步回调。
+只有一个入参时，参数必须为查询条件，对应参数类型为EventFilter。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -1924,8 +1925,8 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 | 名称           | 值             | 说明     |
 |--------------|---------------|--------|
-| ORGANIZER<sup>12+</sup>    | 'organizer'   | 会议组织者。 |
-| PARTICIPANT<sup>12+</sup>  | 'participant' | 会议参与者。 |
+| ORGANIZER   | 'organizer'   | 会议组织者。 |
+| PARTICIPANT | 'participant' | 会议参与者。 |
 
 ## AttendeeStatus<sup>18+</sup>
 
