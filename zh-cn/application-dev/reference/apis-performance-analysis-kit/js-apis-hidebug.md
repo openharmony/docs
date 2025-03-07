@@ -265,7 +265,7 @@ startJsCpuProfiling(filename : string) : void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | the parameter check failed,Parameter type error. |
+| 401 | the parameter check failed, Parameter type error. |
 
 **示例：**
 
@@ -510,9 +510,9 @@ trace单位流量实测方法：limitSize设置为最大值500M，调用startApp
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
 | 401 | Invalid argument, Possible causes:1.The limit parameter is too small 2.The parameter is not within the enumeration type 3.The parameter type error or parameter order error. |
-| 11400102 | Capture trace already enabled.                                                                                                                                               |
-| 11400103 | No write permission on the file.                                                                                                                                             |
-| 11400104 | Abnormal trace status.                                                                                                                                                       |
+| 11400102 | Capture trace already enabled. |
+| 11400103 | No write permission on the file. |
+| 11400104 | Abnormal trace status. |
 
 **示例：**
 
@@ -845,37 +845,37 @@ try {
 | 名称                     | 类型    | 只读  | 说明                                         |
 | -------------------------| ------- |-----|--------------------------------------------|
 | ABILITY_MANAGER          | number  | 是 | 能力管理标签，hitrace命令行工具对应tagName:ability。                  |
-| ARKUI                    | number  | 是 | ArkUI开发框架标签， hitrace命令行工具对应tagName:ace。                |
-| ARK                      | number  | 是 | JSVM虚拟机标签， hitrace命令行工具对应tagName:ark。                  |
-| BLUETOOTH                | number  | 是 | 蓝牙标签， hitrace命令行工具对应tagName:bluetooth。                 |
-| COMMON_LIBRARY           | number  | 是 | 公共库子系统标签， hitrace命令行工具对应tagName:commonlibrary。         |
-| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  | 是 | 分布式硬件设备管理标签， hitrace命令行工具对应tagName:devicemanager。      |
-| DISTRIBUTED_AUDIO        | number  | 是 | 分布式音频标签， hitrace命令行工具对应tagName:daudio。                 |
-| DISTRIBUTED_CAMERA       | number  | 是 | 分布式相机标签， hitrace命令行工具对应tagName:dcamera。                |
-| DISTRIBUTED_DATA         | number  | 是 | 分布式数据管理模块标签， hitrace命令行工具对应tagName:distributeddatamgr。 |
-| DISTRIBUTED_HARDWARE_FRAMEWORK | number  | 是 | 分布式硬件框架标， hitrace命令行工具对应tagName:dhfwk。                 |
-| DISTRIBUTED_INPUT        | number  | 是 | 分布式输入标签， hitrace命令行工具对应tagName:dinput。                 |
-| DISTRIBUTED_SCREEN       | number  | 是 | 分布式屏幕标签， hitrace命令行工具对应tagName:dscreen。                |
-| DISTRIBUTED_SCHEDULER    | number  | 是 | 分布式调度器标签， hitrace命令行工具对应tagName:dsched。                |
-| FFRT                     | number  | 是 | FFRT任务标签， hitrace命令行工具对应tagName:ffrt。                  |
-| FILE_MANAGEMENT          | number  | 是 | 文件管理系统标签， hitrace命令行工具对应tagName:filemanagement。        |
-| GLOBAL_RESOURCE_MANAGER  | number  | 是 | 全局资源管理标签， hitrace命令行工具对应tagName:gresource。             |
-| GRAPHICS                 | number  | 是 | 图形模块标签， hitrace命令行工具对应tagName:graphic。                 |
-| HDF                      | number  | 是 | HDF子系统标签， hitrace命令行工具对应tagName:hdf。                   |
-| MISC                     | number  | 是 | MISC模块标签， hitrace命令行工具对应tagName:misc。                  |
-| MULTIMODAL_INPUT         | number  | 是 | 多模态输入模块标签， hitrace命令行工具对应tagName:multimodalinput。      |
-| NET                      | number  | 是 | 网络标签， hitrace命令行工具对应tagName:net。                       |
-| NOTIFICATION             | number  | 是 | 通知模块标签， hitrace命令行工具对应tagName:notification。            |
-| NWEB                     | number  | 是 | Nweb标签， hitrace命令行工具对应tagName:nweb。                    |
-| OHOS                     | number  | 是 | OHOS通用标签， hitrace命令行工具对应tagName:ohos。                  |
-| POWER_MANAGER            | number  | 是 | 电源管理标签， hitrace命令行工具对应tagName:power。                   |
-| RPC                      | number  | 是 | RPC标签， hitrace命令行工具对应tagName:rpc。                      |
-| SAMGR                    | number  | 是 | 系统能力管理标签， hitrace命令行工具对应tagName:samgr。                 |
-| WINDOW_MANAGER           | number  | 是 | 窗口管理标签， hitrace命令行工具对应tagName:window。                  |
-| AUDIO                    | number  | 是 | 音频模块标签， hitrace命令行工具对应tagName:zaudio。                  |
-| CAMERA                   | number  | 是 | 相机模块标签， hitrace命令行工具对应tagName:zcamera。                 |
-| IMAGE                    | number  | 是 | 图片模块标签， hitrace命令行工具对应tagName:zimage。                  |
-| MEDIA                    | number  | 是 | 媒体模块标签， hitrace命令行工具对应tagName:zmedia。                  |
+| ARKUI                    | number  | 是 | ArkUI开发框架标签，hitrace命令行工具对应tagName:ace。                |
+| ARK                      | number  | 是 | JSVM虚拟机标签，hitrace命令行工具对应tagName:ark。                  |
+| BLUETOOTH                | number  | 是 | 蓝牙标签，hitrace命令行工具对应tagName:bluetooth。                 |
+| COMMON_LIBRARY           | number  | 是 | 公共库子系统标签，hitrace命令行工具对应tagName:commonlibrary。         |
+| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  | 是 | 分布式硬件设备管理标签，hitrace命令行工具对应tagName:devicemanager。      |
+| DISTRIBUTED_AUDIO        | number  | 是 | 分布式音频标签，hitrace命令行工具对应tagName:daudio。                 |
+| DISTRIBUTED_CAMERA       | number  | 是 | 分布式相机标签，hitrace命令行工具对应tagName:dcamera。                |
+| DISTRIBUTED_DATA         | number  | 是 | 分布式数据管理模块标签，hitrace命令行工具对应tagName:distributeddatamgr。 |
+| DISTRIBUTED_HARDWARE_FRAMEWORK | number  | 是 | 分布式硬件框架标，hitrace命令行工具对应tagName:dhfwk。                 |
+| DISTRIBUTED_INPUT        | number  | 是 | 分布式输入标签，hitrace命令行工具对应tagName:dinput。                 |
+| DISTRIBUTED_SCREEN       | number  | 是 | 分布式屏幕标签，hitrace命令行工具对应tagName:dscreen。                |
+| DISTRIBUTED_SCHEDULER    | number  | 是 | 分布式调度器标签，hitrace命令行工具对应tagName:dsched。                |
+| FFRT                     | number  | 是 | FFRT任务标签，hitrace命令行工具对应tagName:ffrt。                  |
+| FILE_MANAGEMENT          | number  | 是 | 文件管理系统标签，hitrace命令行工具对应tagName:filemanagement。        |
+| GLOBAL_RESOURCE_MANAGER  | number  | 是 | 全局资源管理标签，hitrace命令行工具对应tagName:gresource。             |
+| GRAPHICS                 | number  | 是 | 图形模块标签，hitrace命令行工具对应tagName:graphic。                 |
+| HDF                      | number  | 是 | HDF子系统标签，hitrace命令行工具对应tagName:hdf。                   |
+| MISC                     | number  | 是 | MISC模块标签，hitrace命令行工具对应tagName:misc。                  |
+| MULTIMODAL_INPUT         | number  | 是 | 多模态输入模块标签，hitrace命令行工具对应tagName:multimodalinput。      |
+| NET                      | number  | 是 | 网络标签，hitrace命令行工具对应tagName:net。                       |
+| NOTIFICATION             | number  | 是 | 通知模块标签，hitrace命令行工具对应tagName:notification。            |
+| NWEB                     | number  | 是 | Nweb标签，hitrace命令行工具对应tagName:nweb。                    |
+| OHOS                     | number  | 是 | OHOS通用标签，hitrace命令行工具对应tagName:ohos。                  |
+| POWER_MANAGER            | number  | 是 | 电源管理标签，hitrace命令行工具对应tagName:power。                   |
+| RPC                      | number  | 是 | RPC标签，hitrace命令行工具对应tagName:rpc。                      |
+| SAMGR                    | number  | 是 | 系统能力管理标签，hitrace命令行工具对应tagName:samgr。                 |
+| WINDOW_MANAGER           | number  | 是 | 窗口管理标签，hitrace命令行工具对应tagName:window。                  |
+| AUDIO                    | number  | 是 | 音频模块标签，hitrace命令行工具对应tagName:zaudio。                  |
+| CAMERA                   | number  | 是 | 相机模块标签，hitrace命令行工具对应tagName:zcamera。                 |
+| IMAGE                    | number  | 是 | 图片模块标签，hitrace命令行工具对应tagName:zimage。                  |
+| MEDIA                    | number  | 是 | 媒体模块标签，hitrace命令行工具对应tagName:zmedia。                  |
 
 ## NativeMemInfo<sup>12+</sup>
 
