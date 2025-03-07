@@ -137,7 +137,7 @@ let pasteData: pasteboard.PasteData = pasteboard.createData(record);
 
 ## pasteboard.createRecord<sup>9+</sup>
 
-createRecord(mimeType: string, value: ValueType):PasteDataRecord;
+createRecord(mimeType: string, value: ValueType):PasteDataRecord
 
 创建一条自定义数据内容条目。
 
