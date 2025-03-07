@@ -570,7 +570,7 @@ struct Index {
 }
 ```
 
-![LoadingDialog](figures/LoadingDialog.png)
+![LoadingDialog](figures/LoadingDialog.gif)
 
 ### 示例6（自定义主题风格弹出框）
 
