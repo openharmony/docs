@@ -2296,6 +2296,12 @@ getItem(itemType: CertItemType) : DataBlob
 
 **系统能力：** SystemCapability.Security.Cert
 
+**参数**：
+
+| 参数名    | 类型   | 必填 | 说明                                       |
+| --------- | ------ | ---- | ------------------------------------------ |
+| itemType | [CertItemType](#certitemtype10) | 是   | 表示需要获取的证书字段。 |
+
 **返回值**：
 
 | 类型                  | 说明                                      |
