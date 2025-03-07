@@ -829,7 +829,7 @@ addContinuousEvent(time: number, duration: number, options?: ContinuousParam): V
 | -------- | ------------------------------------- | ---- | ------------------------ |
 | time     | number                                | 是   | 长期振动的起始时间。     |
 | duration | number                                | 是   | 长期振动的持续时间。     |
-| options  | [ContinuousParam](#continuousparam16) | 否   | 可选参数，可选参数对象。 |
+| options  | [ContinuousParam](#continuousparam18) | 否   | 可选参数，可选参数对象。 |
 
 **错误码**：
 
@@ -889,7 +889,7 @@ addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilde
 | 参数名  | 类型                                | 必填 | 说明                     |
 | ------- | ----------------------------------- | ---- | ------------------------ |
 | time    | number                              | 是   | 长期振动的起始时间。     |
-| options | [TransientParam](#transientparam16) | 否   | 可选参数，可选参数对象。 |
+| options | [TransientParam](#transientparam18) | 否   | 可选参数，可选参数对象。 |
 
 **错误码**：
 
@@ -934,7 +934,7 @@ build(): VibratorPattern;
 
 | 类型                                  | 说明                               |
 | ------------------------------------- | ---------------------------------- |
-| [VibratorPattern](#vibratorpattern16) | 构造组合短振或长振的振动序列方法。 |
+| [VibratorPattern](#vibratorpattern18) | 构造组合短振或长振的振动序列方法。 |
 
 **示例**：
 
