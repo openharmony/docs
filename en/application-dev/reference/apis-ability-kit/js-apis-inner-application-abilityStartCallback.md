@@ -30,9 +30,9 @@ Called when the UIExtensionAbility fails to start.
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| code | number | Yes   | Result code returned when the UIExtensionAbility fails to start. |
-| name | string | Yes   | Name returned when the UIExtensionAbility fails to start. |
-| message | string | Yes   | Error information returned when the UIExtensionAbility fails to start. |
+| code | number | Yes   | Result code returned when the UIExtensionAbility fails to start.|
+| name | string | Yes   | Name returned when the UIExtensionAbility fails to start.|
+| message | string | Yes   | Error information returned when the UIExtensionAbility fails to start.|
 
 **Example**
 
@@ -79,7 +79,7 @@ Called when the UIExtensionAbility is terminated.
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes   | Result returned when [terminateSelfWithResult](js-apis-inner-application-uiExtensionContext.md#uiextensioncontextterminateselfwithresult12) is called to terminate the UIExtensionAbility. |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes   | Result returned when [terminateSelfWithResult](js-apis-inner-application-uiExtensionContext.md#uiextensioncontextterminateselfwithresult12) is called to terminate the UIExtensionAbility.|
 
 **Example**
 

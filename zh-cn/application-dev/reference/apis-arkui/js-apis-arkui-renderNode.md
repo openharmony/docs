@@ -1751,15 +1751,21 @@ get shadowRadius(): number
 **示例：**
 
 ```ts
-import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
-renderNode.backgroundColor = 0xff00ff00;
-renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
+renderNode.backgroundColor = 0xff0000ff;
+renderNode.frame = {
+  x: 100,
+  y: 100,
+  width: 100,
+  height: 100
+};
 renderNode.shadowOffset = { x: 10, y: 10 };
 renderNode.shadowAlpha = 0.7
 renderNode.shadowRadius = 30;
 const shadowRadius = renderNode.shadowRadius;
+console.log(`FrameNode ${shadowRadius}`);
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;

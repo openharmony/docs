@@ -25,7 +25,7 @@ addColorStop(offset: number, color: string): void
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ---- | ---------------------------------------- |
 | offset | number | 是  | 设置渐变点距离起点的位置占总体长度的比例，范围为0到1。             |
-| color  | string | 是  | 设置渐变的颜色。颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中string类型说明 |
+| color  | string | 是  | 设置渐变的颜色。颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中string类型说明。 |
 
 
 ## 示例

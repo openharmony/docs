@@ -4,6 +4,9 @@
 
 ![deep_copy](figures/deep_copy.png)
 
+> **说明：**
+>
+> 普通类实例对象跨线程通过拷贝形式传递，只能传递数据，类实例上的方法会丢失。可以使用[@Sendable装饰器](./arkts-sendable.md#sendable装饰器)标识为Sendable类，类实例对象跨线程传递后，可携带类方法。
 
 ## 使用示例
 

@@ -65,7 +65,7 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 | ----------- | --------------------------- | ---- | ---------------------------- |
 | bundleName  | string                      | 是   | 应用Bundle名称。     |
 | moduleName  | string                      | 是   | 应用程序模块名称。           |
-| upgradeFlag | [UpgradeFlag](#upgradeflag) | 是   | 仅供内部系统使用标志位       |
+| upgradeFlag | [UpgradeFlag](#upgradeflag) | 是   | 仅供内部系统使用标志位。       |
 | callback    | AsyncCallback\<void>        | 是   | 回调函数。当函数调用成功，err为null，否则为错误对象。 |
 
 **错误码：**

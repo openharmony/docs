@@ -15,12 +15,12 @@
 
 | 接口                | 功能说明                           |
 | ------------------- | ---------------------------------- |
-| OH_JSVM_NewInstance   | 通过给定的构造函数，构建一个实例|
-| OH_JSVM_GetNewTarget  | 获取函数的元属性new.target|
-| OH_JSVM_DefineClass   | 用于在JavaScript中定义一个类，并与对应的C类进行封装和交互。它提供了创建类的构造函数、定义属性和方法的能力，以及在C和JavaScript之间进行数据交互的支持|
-| OH_JSVM_Wrap           | 在JavaScript对象中封装原生实例。稍后可以使用OH_JSVM_Unwrap()解包原生实例|
-| OH_JSVM_Unwrap         | 解包先前封装在JavaScript对象中的原生实例|
-| OH_JSVM_RemoveWrap     | 解包先前封装在JavaScript对象中的原生实例并释放封装|
+| OH_JSVM_NewInstance   | 通过给定的构造函数，构建一个实例。|
+| OH_JSVM_GetNewTarget  | 获取函数的元属性new.target。|
+| OH_JSVM_DefineClass   | 用于在JavaScript中定义一个类，并与对应的C类进行封装和交互。它提供了创建类的构造函数、定义属性和方法的能力，以及在C和JavaScript之间进行数据交互的支持。|
+| OH_JSVM_Wrap           | 在JavaScript对象中封装原生实例。稍后可以使用OH_JSVM_Unwrap()解包原生实例。|
+| OH_JSVM_Unwrap         | 解包先前封装在JavaScript对象中的原生实例。|
+| OH_JSVM_RemoveWrap     | 解包先前封装在JavaScript对象中的原生实例并释放封装。|
 |OH_JSVM_DefineClassWithOptions | 定义一个具有给定类名、构造函数、属性和回调处理程序、父类的JavaScript类，并根据传入了DefineClassOptions来决定是否需要为所定义的Class设置属性代理、预留internal-field槽位、为class作为函数进行调用时设置函数回调。|
 
 ## 使用示例

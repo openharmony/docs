@@ -139,6 +139,17 @@ UIExtensionComponent组件（使用方）可以访问调用集成了UIExtensionA
 
 - 缺点：设置后使用方的交互行为将受限，使用方无法再创建任何子窗覆盖到提供方的窗口上。
 
+锁屏之上显示管控：
+
+和`UIAbility`规格对齐，`UIExtension`被拉起方应用需要具备锁屏显示的权限才能够成功显示在锁屏之上(该管控仅针对设备处于未解锁状态有效，比如机主设置了锁屏密码，指纹，人脸识别等安全认证，用户主动锁屏后亮屏的场景)。
+由于锁屏上只能拉起系统应用的`UIAbility`，`UIExtension`的锁屏管控权限定义如下：
+
+| 属性     | 值                                                  |
+| -------- | --------------------------------------------------- |
+| 权限名   | `ohos.permission.CALLED_UIEXTENSION_ON_LOCK_SCREEN` |
+| APL等级  | `SYSTEM_CORE`                                       |
+| 授权方式 | `SYSTEM_GRANT`                                      |
+| 开放范围 | `SYSTEM_APPLICATION`                                |
 
 **嵌套约束**
 

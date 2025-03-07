@@ -26,13 +26,11 @@
 
 认证控件的样式如图所示，通过[WidgetParam](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#widgetparam10)配置对应参数。
 
-<!--RP1-->
 ![zh-cn_image_0000001789150921](figures/zh-cn_image_0000001789150921.png)
-<!--RP1End-->
 
 - 标注1：用户认证界面的标题（WidgetParam.title），最大长度为500字符。应用可在此配置符合场景的字符串。
 
-- 标注2：导航按键上显示的文本（WidgetParam.navigationButtonText），最大长度为60字符。仅在单指纹、单人脸场景下支持配置。
+- 标注2：导航按键上显示的文本（WidgetParam.navigationButtonText），最大长度为60字符。API 10-17仅在单指纹、单人脸场景下支持配置。从API 18开始，增加支持人脸+指纹场景。
    
   当生物认证失败后，将出现该按钮，点击后从生物认证切换到应用自定义认证。
 
@@ -60,8 +58,11 @@
 
 - 人脸+指纹+锁屏密码认证
 
-> **说明：**
-> 当前仅在单指纹、单人脸场景下支持配置导航按键上显示的文本（WidgetParam.navigationButtonText）。
+- 人脸+自定义导航按键
+
+- 指纹+自定义导航按键
+
+- 人脸+指纹+自定义导航按键<sup>18+</sup>
 
 
 ## 开发步骤

@@ -1,14 +1,14 @@
 # JS服务卡片UI组件
 
-- 框架说明
+- 框架说明<!--card-comp-framework-overview-->
   - [文件组织](js-service-widget-file.md)
-  - 语法
+  - 语法<!--card-comp-syntax-->
     - [HML语法参考](js-service-widget-syntax-hml.md)
     - [CSS语法参考](js-service-widget-syntax-css.md)
   - [多语言支持](js-service-widget-multiple-languages.md)
   - [版本兼容适配](js-service-widget-version-compatibility.md)
   - [设置主题样式](js-service-widget-theme.md)
-- 组件通用信息
+- 组件通用信息<!--card-comp-universal-comp-infor-->
   - [通用属性](js-service-widget-common-attributes.md)
   - [通用样式](js-service-widget-common-styles.md)
   - [通用事件](js-service-widget-common-events.md)
@@ -17,14 +17,14 @@
   - [自定义字体样式](js-service-widget-common-customizing-font.md)
   - [无障碍](js-service-widget-common-accessibility.md)
   - [原子布局](js-service-widget-common-atomic-layout.md)
-- 容器组件
+- 容器组件<!--card-comp-container-comp-->
   - [badge](js-service-widget-container-badge.md)
   - [div](js-service-widget-container-div.md)
   - [list](js-service-widget-container-list.md)
   - [list-item](js-service-widget-container-list-item.md)
   - [stack](js-service-widget-container-stack.md)
   - [swiper](js-service-widget-container-swiper.md)
-- 基础组件
+- 基础组件<!--card-comp-basic-comp-->
   - [button](js-service-widget-basic-button.md)
   - [calendar](js-service-widget-basic-calendar.md)
   - [chart](js-service-widget-basic-chart.md)

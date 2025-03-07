@@ -160,7 +160,7 @@ try {
 | authResult            | number               | 是   | 否   | 设备硬件信息校验结果。    |
 | softwareResult        | number               | 是   | 否   | 设备软件信息校验结果。    |
 | softwareResultDetail  | Array&lt;number&gt;  | 是   | 否   | 设备软件信息校验结果详细说明<br/> - softwareResultDetail[0]:版本Id的校验结果；<br/>- softwareResultDetail[1]:安全补丁标签的校验结果；<br/>- softwareResultDetail[2]:版本Hash的校验结果；<br/>- softwareResultDetail[3]:系统能力集合的校验结果；<br/>- softwareResultDetail[4]:保留位。  |
-| ticket                | string               | 是   | 否   | 云侧下发的软证书。<br/>设备硬件信息校验结果通过后有值；校验结果失败，该值为空        |
+| ticket                | string               | 是   | 否   | 云侧下发的软证书。<br/>设备硬件信息校验结果通过后有值；校验结果失败，该值为空。        |
 
 > **说明：**
 >

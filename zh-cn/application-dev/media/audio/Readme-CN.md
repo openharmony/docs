@@ -3,10 +3,10 @@
 - [Audio Kit简介](audio-kit-intro.md)
 - [使用合适的音频类型](using-right-streamusage-and-sourcetype.md)
 - [音频焦点和音频会话介绍](audio-playback-concurrency.md)
-- 音频焦点管理
+- 音频焦点管理<!--audio-session-->
   - [使用AudioSession管理应用音频焦点(ArkTS)](audio-session-management.md)
   - [使用AudioSession管理应用音频焦点(C/C++)](using-ohaudio-for-session.md)
-- 音频播放
+- 音频播放<!--audio-playback-->
   - [音频播放开发概述](audio-playback-overview.md)
   - [使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)
   - [响应音频流输出设备变更](audio-output-device-change.md)
@@ -25,17 +25,17 @@
   <!--Del-->
   - [分布式音频播放(仅对系统应用开放)](distributed-audio-playback.md)
   <!--DelEnd-->
-- 音频录制
+- 音频录制<!--audio-recording-->
   - [音频录制开发概述](audio-recording-overview.md)
   - [使用AudioCapturer开发音频录制功能](using-audiocapturer-for-recording.md)
   - [使用OHAudio开发音频录制功能(C/C++)](using-ohaudio-for-recording.md)
   - [管理麦克风](mic-management.md)
   - [音频录制流管理](audio-recording-stream-management.md)
   - [管理全局音频输入设备](audio-input-device-management.md)
-- 音频通话
+- 音频通话<!--audio-call-->
   - [音频通话开发概述](audio-call-overview.md)
   - [开发音频通话功能](audio-call-development.md)
-- 不再推荐使用
+- 不再推荐使用<!--not-recommended-->
   - [从OpenSL ES切换OHAudio(C/C++)](replace-opensles-by-ohaudio.md)
   - [使用OpenSL ES开发音频播放功能(C/C++)](using-opensl-es-for-playback.md)
   - [使用OpenSL ES开发音频录制功能(C/C++)](using-opensl-es-for-recording.md)

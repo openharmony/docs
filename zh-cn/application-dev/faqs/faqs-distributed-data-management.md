@@ -153,7 +153,7 @@ RDB数据库底层使用的是SQLite，默认的内存数据库模式是文件�
 **解决措施**
 
 可以使用[execute](../reference/apis-arkdata/js-apis-data-relationalStore.md#execute12)接口执行sql语句获取数据库大小，如：SELECT page_count * page_size AS size FROM pragma_page_count(), pragma_page_size()。
-关系型数据库使用的是WAL模式，在查询前可以执行sql语句触发一次checkpoint刷新数据库文件大小，如：PRAGMA wal_checkpoint()。
+关系型数据库使用的是WAL模式，在查询前可以执行sql语句触发一次checkpoint刷新数据库文件大小，如：PRAGMA wal_checkpoint。
 
 
 ## 如何获取rdb关系型数据库路径

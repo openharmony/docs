@@ -1,12 +1,12 @@
 # Using TaskPool for Multiple Time-Consuming Tasks
 
-If multiple tasks are executed simultaneously, their execution time and result return time vary according to the task complexity. If the main thread requires the execution results of all tasks, you can use the following code snippet:
+When multiple tasks are executed concurrently, their execution times can vary due to differences in complexity, and the timing of their completion is unpredictable. If the host thread requires the results of all tasks after they are completed, you can use the approach described in this topic.
 
-In addition, if a task needs to process a large amount of data (for example, a list contains 10,000 data records), it is time-consuming to process all the data in one task. In this case, you can split the data into multiple sublists, allocate one task for each sublist, and combine the results of all the tasks. This pattern reduces the processing time and improves user experience.
+Additionally, if the volume of data to be processed is large (for example, a list with 10,000 items), processing all the data in a single task can be time-consuming. Instead, you can split the original data into multiple sublists and assign each sublist to an independent task. After all tasks are completed, you can combine the results into a complete dataset. This approach can reduce processing time and enhance user experience.
 
-The following uses image loading of a plurality of tasks as an example for description.
+This example uses image loading of multiple tasks to illustrate the process.
 
-1. Implement the task to be executed by the sub-thread.
+1. Implement the task to be executed in a child thread.
 
    ```ts
    // IconItemSource.ets
@@ -25,14 +25,14 @@ The following uses image loading of a plurality of tasks as an example for descr
    // IndependentTask.ets
    import { IconItemSource } from './IconItemSource';
     
-   @Concurrent // Methods executed in the task must be decorated by @Concurrent. Otherwise, they cannot be called.
+   // Methods executed in the task must be decorated by @Concurrent. Otherwise, they cannot be called.
    @Concurrent
    export function loadPicture(count: number): IconItemSource[] {
      let iconItemSourceList: IconItemSource[] = [];
-     // Traverse and add six IconItem data records.
+     // Add six IconItem data records.
      for (let index = 0; index < count; index++) {
        const numStart: number = index * 6;
-       // Six images are used cyclically.
+       // Use six images in the loop.
        iconItemSourceList.push(new IconItemSource('$media:startIcon', `item${numStart + 1}`));
        iconItemSourceList.push(new IconItemSource('$media:background', `item${numStart + 2}`));
        iconItemSourceList.push(new IconItemSource('$media:foreground', `item${numStart + 3}`));
@@ -45,7 +45,7 @@ The following uses image loading of a plurality of tasks as an example for descr
    }
    ```
 
-2. In this scenario, all the tasks to be executed are placed in a task group. After all the tasks in the task group are executed, the execution result of each task is placed in an array and returned to the main thread. The main thread can obtain all task execution results at a time.
+2. Add the tasks to a task group and execute them collectively. When all the tasks in the task group finish executing, their results are placed in an array and sent back to the host thread. In this way, the host thread can access the combined results of all tasks at once, rather than receiving results individually as each task completes.
 
    ```ts
    // MultiTask.ets

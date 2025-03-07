@@ -1,6 +1,6 @@
 # PermissionDef (System API)
 
-The **PermissionDef** module provides permission details defined in the configuration file. The information can be obtained using [bundleManager.getPermissionDef](js-apis-bundleManager-sys.md#bundlemanagergetpermissiondef).
+The PermissionDef module provides permission details defined in the configuration file. The information can be obtained using [bundleManager.getPermissionDef](js-apis-bundleManager-sys.md#bundlemanagergetpermissiondef).
 
 > **NOTE**
 >
@@ -11,8 +11,8 @@ The **PermissionDef** module provides permission details defined in the configur
 ## **PermissionDef**
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
+ 
+**System API**: This is a system API.
 
 | Name          | Type  | Read-Only| Optional| Description          |
 | -------------- | ------ | ---- | ---- | -------------- |

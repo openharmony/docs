@@ -4,7 +4,7 @@
 
 模块化是指将 ArkTS/TS/JS拆分为多个模块（文件或片段），并通过编译工具或运行时机制将这些[模块加载](#模块化运行加载流程)、解析、组合并执行的过程。
 
-其中ArtTS支持的模块类型有ets/ts/js文件、 json文件、Native模块，ArkTS中支持[ECMAScript模块规范](#ecmascript模块)及[CommonJS模块规范](#commonjs模块)，此外ArkTS也对加载方式进行了拓展，包含[动态加载](arkts-dynamic-import.md)、[延时加载](arkts-lazy-import.md)、[同步动态加载Native模块](js-apis-load-native-module.md)、[Node-API接口加载文件](load-module-base-nodeapi.md)。
+其中ArkTS支持的模块类型有ets/ts/js文件、 json文件、Native模块，ArkTS中支持[ECMAScript模块规范](#ecmascript模块)及[CommonJS模块规范](#commonjs模块)，此外ArkTS也对加载方式进行了拓展，包含[动态加载](arkts-dynamic-import.md)、[延时加载](arkts-lazy-import.md)、[同步动态加载Native模块](js-apis-load-native-module.md)、[Node-API接口加载文件](load-module-base-nodeapi.md)。
 
 ## 模块化运行加载流程
 
@@ -69,7 +69,7 @@ import data from './example.json'
 
 ### Native模块
 
-Native模块（so）的导入导出与加载ets/ts/js语法规格一致。
+Native模块（so）的导入导出与加载ets/ts/js语法规格一致。可参考：[静态方式加载native模块](./arkts-import-native-module.md)。
 
 > **说明：**
 >

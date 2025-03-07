@@ -211,7 +211,7 @@ For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx
 
 | ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
-| 401 | The parameter check failed. Possible causes:1.The parameter type error 2.The args parameter is not string array  |
+| 401 | the parameter check failed,Possible causes:1.the parameter type error 2.the args parameter is not string array  |
 | 11400101 | ServiceId invalid. The system ability does not exist.                                           |
 
 **Example**
@@ -224,10 +224,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let applicationContext: common.Context | null = null;
 try {
-    let context = getContext() as common.UIAbilityContext;
-    applicationContext = context.getApplicationContext();
+  let context = getContext() as common.UIAbilityContext;
+  applicationContext = context.getApplicationContext();
 } catch (error) {
-    console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 
 let filesDir: string = applicationContext!.filesDir;
@@ -238,9 +238,9 @@ let serviceId: number = 10;
 let args: Array<string> = new Array("allInfo");
 
 try {
-    hidebug.getServiceDump(serviceId, file.fd, args);
+  hidebug.getServiceDump(serviceId, file.fd, args);
 } catch (error) {
-    console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 fileIo.closeSync(file);
 ```
@@ -278,7 +278,7 @@ try {
   // ...
   hidebug.stopJsCpuProfiling();
 } catch (error) {
-  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -301,7 +301,7 @@ try {
   // ...
   hidebug.stopJsCpuProfiling();
 } catch (error) {
-  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -336,7 +336,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   hidebug.dumpJsHeapData("heapData");
 } catch (error) {
-  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -434,12 +434,11 @@ Obtains VM memory information.
 **Example**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let vmMemory: hidebug.VMMemoryInfo = hidebug.getAppVMMemoryInfo();
-hilog.info(0x0000, "example", "totalHeap = %{public}d", vmMemory.totalHeap);
-hilog.info(0x0000, "example", "heapUsed = %{public}d", vmMemory.heapUsed);
-hilog.info(0x0000, "example", "allArraySize = %{public}d", vmMemory.allArraySize);
+console.info(`totalHeap = ${vmMemory.totalHeap}, heapUsed = ${vmMemory.heapUsed},` +
+  `allArraySize = ${vmMemory.allArraySize}` );
 ```
 
 ## hidebug.getAppThreadCpuUsage<sup>12+</sup>
@@ -461,12 +460,11 @@ Obtains the CPU usage of application threads.
 **Example**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let appThreadCpuUsage: hidebug.ThreadCpuUsage[] = hidebug.getAppThreadCpuUsage();
 for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
-    hilog.info(0x0000, "example", "threadId=%{public}d, cpuUsage=%{public}f", appThreadCpuUsage[ii].threadId,
-    appThreadCpuUsage[ii].cpuUsage);
+  console.info(`threadId=${appThreadCpuUsage[ii].threadId}, cpuUsage=${appThreadCpuUsage[ii].cpuUsage}`);
 }
 ```
 
@@ -474,11 +472,12 @@ for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
 
 startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : string
 
-Starts application trace collection. **startAppTraceCapture()** and **[stopAppTraceCapture()](#hidebugstopapptracecapture12)** must be called in pairs.
+Starts automatic trace collection for a specified scope. This API is a supplement to the [hitrace](../../dfx/hitrace.md) module.
+The performance consumption during trace collection increases with the collection scope. Therefore, before using this API, you are advised to run the **hitrace** command to capture trace logs and select the key scope of trace collection to improve the API performance.
 
-**startAppTraceCapture()** always occurs before **stopAppTraceCapture()**; that is, calling the APIs in the sequence similar to the following is prohibited: start -> start -> stop, start -> stop -> stop, and start -> start -> stop -> stop.
+**startAppTraceCapture()** and [stopAppTraceCapture ()](#hidebugstopapptracecapture12) must be called in pairs. Repeat calling of **startAppTraceCapture()** will cause exceptions. Trace collection consumes a lot of performance resources. Therefore, call **stopAppTraceCapture()** immediately after trace collection is complete.
 
-When an application calls **startAppTraceCapture()** to collect trace data and the size of the data exceeds the value of **limitSize**, the system automatically calls **stopAppTraceCapture()** to stop collecting trace data. If **limitSize** is set improperly, the collected trace data is insufficient for fault analysis. Therefore, you need to evaluate the value of **limitSize** as required.
+When an application calls **startAppTraceCapture()** to collect trace data and the size of the data exceeds the value of **limitSize**, the system automatically calls **stopAppTraceCapture()** to stop trace collection. Therefore, if **limitSize** is set improperly, the collected trace data is insufficient for fault analysis. Therefore, you need to evaluate the value of **limitSize** as required.
 
 Evaluation method: limitSize = Expected trace collection duration x Unit trace traffic.
 
@@ -492,10 +491,10 @@ To obtain the unit trace traffic, you can call **startAppTraceCapture()** with *
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                                  |
-| -------- | ------   | ---- |--------------------------------------|
-| tags     | number[] | Yes  | For details, see [tags](#hidebugtags12).          |
-| flag     | TraceFlag| Yes  | For details, see [TraceFlag](#traceflag12).       |
+| Name  | Type    | Mandatory| Description                                |
+| -------- | ------   | ---- |------------------------------------|
+| tags     | number[] | Yes  | Scope for trace collection. For details, see [tags](#hidebugtags12).|
+| flag     | TraceFlag| Yes  | For details, see [TraceFlag](#traceflag12).     |
 | limitSize| number   | Yes  | Limit on the trace file size, in bytes. The maximum size of a single file is 500 MB.|
 
 **Return value**
@@ -523,20 +522,23 @@ import { hidebug } from '@kit.PerformanceAnalysisKit';
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
 let limitSize: number = 1024 * 1024;
-let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
-// code block
-// ...
-// code block
-hidebug.stopAppTraceCapture();
+
+try {
+  let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
+  // code block
+  // ...
+  // code block
+  hidebug.stopAppTraceCapture();
+} catch (error) {
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+}
 ```
 
 ## hidebug.stopAppTraceCapture<sup>12+</sup>
 
 stopAppTraceCapture() : void
 
-Stops application trace collection. [startAppTraceCapture()](#hidebugstartapptracecapture12) and **stopAppTraceCapture()** must be called in pairs.
-
-**startAppTraceCapture()** always occurs before **stopAppTraceCapture()**; that is, calling the APIs in the sequence similar to the following is prohibited: start -> start -> stop, start -> stop -> stop, and start -> start -> stop -> stop.
+Stops application trace collection. Use [startAppTraceCapture()](#hidebugstartapptracecapture12) to start collection before calling this API. If this API is called before trace collection or it is repeatedly called, an exception will occur.
 
 If **startAppTraceCapture ()** is called without a properly specified **limitSize**, the size of the generated trace may exceed the **limitSize** value, causing the system to automatically call **stopAppTraceCapture()**. In this case, if **stopAppTraceCapture()** is called again, an error code 11400105 will be displayed.
 
@@ -559,11 +561,15 @@ import { hidebug } from '@kit.PerformanceAnalysisKit';
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
 let limitSize: number = 1024 * 1024;
-let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
-// code block
-// ...
-// code block
-hidebug.stopAppTraceCapture();
+try {
+  let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
+  // code block
+  // ...
+  // code block
+  hidebug.stopAppTraceCapture();
+} catch (error) {
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+}
 ```
 
 ## hidebug.getAppMemoryLimit<sup>12+</sup>
@@ -616,7 +622,11 @@ For details about the error codes, see [HiDebug CPU Usage Error Codes](errorcode
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 
-let cpuUsage: number = hidebug.getSystemCpuUsage();
+try {
+  console.info(`getSystemCpuUsage: ${hidebug.getSystemCpuUsage()}`)
+} catch (error) {
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+}
 ```
 
 ## hidebug.setAppResourceLimit<sup>12+</sup>
@@ -624,7 +634,7 @@ let cpuUsage: number = hidebug.getSystemCpuUsage();
 setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 Sets the number of FDs, number of threads, JS memory, or native memory limit of the application.
-**NOTE**: This function is valid only when  **Developer options** is enabled and the device is restarted.
+**NOTE**: This feature is available only after **Developer options** is enabled and the device is restarted.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -655,7 +665,11 @@ import { hidebug } from '@kit.PerformanceAnalysisKit';
 let type: string = 'js_heap';
 let value: number = 85;
 let enableDebugLog: boolean = false;
-hidebug.setAppResourceLimit(type, value, enableDebugLog);
+try {
+  hidebug.setAppResourceLimit(type, value, enableDebugLog);
+} catch (error) {
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+}
 ```
 
 ## hidebug.getAppNativeMemInfo<sup>12+</sup>
@@ -675,23 +689,12 @@ Obtains the memory information of the application process.
 **Example**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfo();
-
-hilog.info(0x0000, 'testTag', "pss = %{public}d", nativeMemInfo.pss);
-
-hilog.info(0x0000, 'testTag', "vss = %{public}d", nativeMemInfo.vss);
-
-hilog.info(0x0000, 'testTag', "rss = %{public}d", nativeMemInfo.rss);
-
-hilog.info(0x0000, 'testTag', "sharedDirty = %{public}d", nativeMemInfo.sharedDirty);
-
-hilog.info(0x0000, 'testTag', "privateDirty = %{public}d", nativeMemInfo.privateDirty);
-
-hilog.info(0x0000, 'testTag', "sharedClean = %{public}d", nativeMemInfo.sharedClean);
-
-hilog.info(0x0000, 'testTag', "privateClean = %{public}d", nativeMemInfo.privateClean);
+console.info(`pss: ${nativeMemInfo.pss}, vss: ${nativeMemInfo.vss}, rss: ${nativeMemInfo.rss}, ` +
+  `sharedDirty: ${nativeMemInfo.sharedDirty}, privateDirty: ${nativeMemInfo.privateDirty}, ` +
+  `sharedClean: ${nativeMemInfo.sharedClean}, privateClean: ${nativeMemInfo.privateClean}`);
 ```
 
 ## hidebug.getSystemMemInfo<sup>12+</sup>
@@ -711,15 +714,12 @@ Obtains system memory information.
 **Example**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let systemMemInfo: hidebug.SystemMemInfo = hidebug.getSystemMemInfo();
 
-hilog.info(0x0000, 'testTag', "totalMem = %{public}d", systemMemInfo.totalMem);
-
-hilog.info(0x0000, 'testTag', "freeMem = %{public}d", systemMemInfo.freeMem);
-
-hilog.info(0x0000, 'testTag', "availableMem = %{public}d", systemMemInfo.availableMem);
+console.info(`totalMem: ${systemMemInfo.totalMem}, freeMem: ${systemMemInfo.freeMem}, ` +
+  `availableMem: ${systemMemInfo.availableMem}`);
 ```
 
 ## hidebug.getVMRuntimeStats<sup>12+</sup>
@@ -739,14 +739,14 @@ Obtains all system GC statistics.
 **Example**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let vMRuntimeStats: hidebug.GcStats = hidebug.getVMRuntimeStats();
-hilog.info(0x0000, "testTag", `gc-count: ${vMRuntimeStats['ark.gc.gc-count']}`);
-hilog.info(0x0000, "testTag", `gc-time: ${vMRuntimeStats['ark.gc.gc-time']}`);
-hilog.info(0x0000, "testTag", `gc-bytes-allocated: ${vMRuntimeStats['ark.gc.gc-bytes-allocated']}`);
-hilog.info(0x0000, "testTag", `gc-bytes-freed: ${vMRuntimeStats['ark.gc.gc-bytes-freed']}`);
-hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${vMRuntimeStats['ark.gc.fullgc-longtime-count']}`);
+console.info(`gc-count: ${vMRuntimeStats['ark.gc.gc-count']}`);
+console.info(`gc-time: ${vMRuntimeStats['ark.gc.gc-time']}`);
+console.info(`gc-bytes-allocated: ${vMRuntimeStats['ark.gc.gc-bytes-allocated']}`);
+console.info(`gc-bytes-freed: ${vMRuntimeStats['ark.gc.gc-bytes-freed']}`);
+console.info(`fullgc-longtime-count: ${vMRuntimeStats['ark.gc.fullgc-longtime-count']}`);
 ```
 
 ## hidebug.getVMRuntimeStat<sup>12+</sup>
@@ -780,13 +780,16 @@ Obtains the specified system GC statistics based on parameters.
 **Example**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
-
-hilog.info(0x0000, "testTag", `gc-count: ${hidebug.getVMRuntimeStat('ark.gc.gc-count')}`);
-hilog.info(0x0000, "testTag", `gc-time: ${hidebug.getVMRuntimeStat('ark.gc.gc-time')}`);
-hilog.info(0x0000, "testTag", `gc-bytes-allocated: ${hidebug.getVMRuntimeStat('ark.gc.gc-bytes-allocated')}`);
-hilog.info(0x0000, "testTag", `gc-bytes-freed: ${hidebug.getVMRuntimeStat('ark.gc.gc-bytes-freed')}`);
-hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${hidebug.getVMRuntimeStat('ark.gc.fullgc-longtime-count')}`);
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+try {
+  console.info(`gc-count: ${hidebug.getVMRuntimeStat('ark.gc.gc-count')}`);
+  console.info(`gc-time: ${hidebug.getVMRuntimeStat('ark.gc.gc-time')}`);
+  console.info(`gc-bytes-allocated: ${hidebug.getVMRuntimeStat('ark.gc.gc-bytes-allocated')}`);
+  console.info(`gc-bytes-freed: ${hidebug.getVMRuntimeStat('ark.gc.gc-bytes-freed')}`);
+  console.info(`fullgc-longtime-count: ${hidebug.getVMRuntimeStat('ark.gc.fullgc-longtime-count')}`);
+} catch (error) {
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+}
 ```
 
 ## MemoryLimit<sup>12+</sup>
@@ -827,44 +830,46 @@ Describes the CPU usage of a thread.
 
 ## hidebug.tags<sup>12+</sup>
 
-Enumerates scenario tags.
+Enumerates the tags used in trace collection. You can use the [hitrace](../../dfx/hitrace.md) commands to capture the trace data of a specified tag for preview.
+
+Note that the tag values are defined by the system and may change with the version upgrade. To avoid compatibility issues after the upgrade, use the tag names instead of the tag values in application development.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| Name                    | Type   | Read Only |Description                               |
-| -------------------------| ------- |-----|----------------------------------- |
-| ABILITY_MANAGER          | number  | Yes|  Capability management.                        |
-| ARKUI                    | number  | Yes|  ArkUI development framework.                   |
-| ARK                      | number  | Yes|  JSVM VM.                      |
-| BLUETOOTH                | number  | Yes|  Bluetooth.                           |
-| COMMON_LIBRARY           | number  | Yes|  Common library subsystem.                    |
-| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  | Yes|  Distributed hardware device management.    |
-| DISTRIBUTED_AUDIO        | number  | Yes|        Distributed audio.                |
-| DISTRIBUTED_CAMERA       | number  | Yes|  Distributed camera.                      |
-| DISTRIBUTED_DATA         | number  | Yes|  Distributed data management.               |
-| DISTRIBUTED_HARDWARE_FRAMEWORK | number  | Yes|  Distributed hardware framework.             |
-| DISTRIBUTED_INPUT        | number  | Yes|  Distributed input.                      |
-| DISTRIBUTED_SCREEN       | number  | Yes|  Distributed screen.                      |
-| DISTRIBUTED_SCHEDULER    | number  | Yes|  Distributed scheduler.                    |
-| FFRT                     | number  | Yes|  FFRT task.                       |
-| FILE_MANAGEMENT          | number  | Yes|  File management system.                    |
-| GLOBAL_RESOURCE_MANAGER  | number  | Yes|  Global resource management.                    |
-| GRAPHICS                 | number  | Yes|  Graphics module.                       |
-| HDF                      | number  | Yes|  HDF subsystem.                      |
-| MISC                     | number  | Yes|  MISC module.                       |
-| MULTIMODAL_INPUT         | number  | Yes|  Multimodal input module.                  |
-| NET                      | number  | Yes|  Network.                            |
-| NOTIFICATION             | number  | Yes|  Notification module.                        |
-| NWEB                     | number  | Yes|  Nweb.                           |
-| OHOS                     | number  | Yes|  OHOS.                        |
-| POWER_MANAGER            | number  | Yes|  Power management.                        |
-| RPC                      | number  | Yes|  RPC.                            |
-| SAMGR                    | number  | Yes|  System capability management.                    |
-| WINDOW_MANAGER           | number  | Yes|  Window management.                        |
-| AUDIO                    | number  | Yes|  Audio module.                       |
-| CAMERA                   | number  | Yes|  Camera module.                       |
-| IMAGE                    | number  | Yes|  Image module.                       |
-| MEDIA                    | number  | Yes|  Media module.                       |
+| Name                    | Type   | Read Only | Description                                        |
+| -------------------------| ------- |-----|--------------------------------------------|
+| ABILITY_MANAGER          | number  | Yes| Capability management. The corresponding command is **tagName:ability**.                 |
+| ARKUI                    | number  | Yes| ArkUI development framework. The corresponding command is **tagName:ace**.               |
+| ARK                      | number  | Yes| JSVM VM. The corresponding command is **tagName:ark**.                 |
+| BLUETOOTH                | number  | Yes| Bluetooth. The corresponding command is **tagName:bluetooth**.                |
+| COMMON_LIBRARY           | number  | Yes| Common library subsystem. The corresponding command is **tagName:commonlibrary**.        |
+| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  | Yes| Distributed hardware device management. The corresponding command is **tagName:devicemanager**.     |
+| DISTRIBUTED_AUDIO        | number  | Yes| Distributed audio. The corresponding command is **tagName:daudio**.                |
+| DISTRIBUTED_CAMERA       | number  | Yes| Distributed camera. The corresponding command is **tagName:dcamera**.               |
+| DISTRIBUTED_DATA         | number  | Yes| Distributed data management. The corresponding command is **tagName:distributeddatamgr**.|
+| DISTRIBUTED_HARDWARE_FRAMEWORK | number  | Yes| Distributed hardware framework. The corresponding command is **tagName:dhfwk**.                |
+| DISTRIBUTED_INPUT        | number  | Yes| Distributed input. The corresponding command is **tagName:dinput**.                |
+| DISTRIBUTED_SCREEN       | number  | Yes| Distributed screen. The corresponding command is **tagName:dscreen**.               |
+| DISTRIBUTED_SCHEDULER    | number  | Yes| Distributed scheduler. The corresponding command is **tagName:dsched**.               |
+| FFRT                     | number  | Yes| FFRT task. The corresponding command is **tagName:ffrt**.                 |
+| FILE_MANAGEMENT          | number  | Yes| File management system. The corresponding command is **tagName:filemanagement**.       |
+| GLOBAL_RESOURCE_MANAGER  | number  | Yes| Global resource management. The corresponding command is **tagName:gresource**.            |
+| GRAPHICS                 | number  | Yes| Graphics module. The corresponding command is **tagName:graphic**.                |
+| HDF                      | number  | Yes| HDF subsystem. The corresponding command is **tagName:hdf**.                  |
+| MISC                     | number  | Yes| MISC module. The corresponding command is **tagName:misc**.                 |
+| MULTIMODAL_INPUT         | number  | Yes| Multi-modal input module. The corresponding command is **tagName:multimodalinput**.     |
+| NET                      | number  | Yes| Network. The corresponding command is **tagName:net**.                      |
+| NOTIFICATION             | number  | Yes| Notification module. The corresponding command is **tagName:notification**.           |
+| NWEB                     | number  | Yes| Nweb. The corresponding command is **tagName:nweb**.                   |
+| OHOS                     | number  | Yes| OHOS. The corresponding command is **tagName:ohos**.                 |
+| POWER_MANAGER            | number  | Yes| Power management. The corresponding command is **tagName:power**.                  |
+| RPC                      | number  | Yes| RPC. The corresponding command is **tagName:rpc**.                     |
+| SAMGR                    | number  | Yes| System capability management. The corresponding command is **tagName:samgr**.                |
+| WINDOW_MANAGER           | number  | Yes| Window management. The corresponding command is **tagName:window**.                 |
+| AUDIO                    | number  | Yes| Audio module. The corresponding command is **tagName:zaudio**.                 |
+| CAMERA                   | number  | Yes| Camera module. The corresponding command is **tagName:zcamera**.                |
+| IMAGE                    | number  | Yes| Image module. The corresponding command is **tagName:zimage**.                 |
+| MEDIA                    | number  | Yes| Media module. The corresponding command is **tagName:zmedia**.                 |
 
 ## NativeMemInfo<sup>12+</sup>
 
@@ -944,9 +949,9 @@ Obtains whether an application process is being debugged. If the ark or native l
 **Example**
 
 ```ts
-import { hidebug,hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
-hilog.info(0x000, "testTag", "isDebugState = %{public}s", hidebug.isDebugState())
+console.info(`isDebugState = ${hidebug.isDebugState()}`)
 ```
 
 ## hidebug.getGraphicsMemory<sup>14+</sup>
@@ -978,9 +983,9 @@ import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 hidebug.getGraphicsMemory().then((ret: number) => {
-    hilog.info(0x000, "testTag", `graphicsMemory: ${ret}`)
+  console.info(`graphicsMemory: ${ret}`)
 }).catch((error: BusinessError) => {
-    hilog.info(0x000, "testTag", `error code: ${error.code}, error msg: ${error.message}`);
+  console.error(`error code: ${error.code}, error msg: ${error.message}`);
 })
 ```
 
@@ -1011,12 +1016,12 @@ Obtains the size of the GPU memory. This API uses a synchronous callback to retu
 **Example**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    hilog.info(0x000, "testTag", `graphicsMemory: ${hidebug.getGraphicsMemorySync()}`)
+  console.info(`graphicsMemory: ${hidebug.getGraphicsMemorySync()}`)
 } catch (error) {
-    hilog.info(0x000, "testTag", `error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```

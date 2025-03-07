@@ -13,9 +13,9 @@ You can create a radio button by calling the following API:
 Radio(options: {value: string, group: string})
 ```
 
-In this API, **value** indicates the name of the radio button, and **group** indicates the name of the group to which the radio button belongs. You can use the **checked** attribute of the radio button to specify whether it is selected. The value **true** means that the radio button is selected.
+In this API, **value** indicates the name of the radio button, and **group** indicates the name of the group to which the radio button belongs. You can use the **checked** attribute to specify whether the radio button is selected. Setting it to **true** means that the radio button is selected.
 
-The style of the radio button can be customized for the selected and unselected states, but the shape cannot be customized.
+In addition, you can customize the style of the radio button for both the selected and unselected states.
 
 ```ts
 Radio({ value: 'Radio1', group: 'radioGroup' })
@@ -48,7 +48,7 @@ The **Radio** component supports the [universal events](../reference/apis-arkui/
 ```
 
 
-## Example Scenario
+## Example
 
 In this example, the **Radio** components are used to switch between sound modes.
 
@@ -107,4 +107,4 @@ struct RadioExample {
 ```
 
 
-![en-us_image_0000001562700457](figures/en-us_image_0000001562700457.png)
+![en-us_image_0000001562700457](figures/en-us_image_0000001562700457.gif)

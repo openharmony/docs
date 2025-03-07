@@ -1,6 +1,6 @@
 # @ohos.file.storageStatistics (应用空间统计)
 
-该模块提供空间查询相关的常用功能：包括对内外卡的空间查询，对应用分类数据统计的查询，对应用数据的查询等。
+该模块提供空间查询相关的常用功能：包括对内外卡的空间查询、对应用分类数据统计的查询、对应用数据的查询等。
 
 > **说明：**
 >
@@ -24,7 +24,7 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
   | 类型                                        | 说明                       |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise对象，返回指定卷上的应用存储空间大小（单位为Byte）      |
+  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise对象，返回指定卷上的应用存储空间大小（单位为Byte）。      |
 
 **错误码：**
 
@@ -59,7 +59,7 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
   | 参数名    | 类型                                                       | 必填  | 说明                                 |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
-  | callback | AsyncCallback&lt;[BundleStats](#bundlestats9)&gt;          | 是   | 获取指定卷上的应用存储空间大小之后的回调        |
+  | callback | AsyncCallback&lt;[BundleStats](#bundlestats9)&gt;          | 是   | 获取指定卷上的应用存储空间大小之后的回调。        |
 
 **错误码：**
 
@@ -85,7 +85,7 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
   });
   ```
 
-## storageStatistics.getTotalSize<sup>16+</sup>
+## storageStatistics.getTotalSize<sup>15+</sup>
 
 getTotalSize(): Promise&lt;number&gt;
 
@@ -97,17 +97,16 @@ getTotalSize(): Promise&lt;number&gt;
 
 | 类型                  | 说明                                                |
 | --------------------- | --------------------------------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回内置存储的总空间大小（单位为Byte） |
+| Promise&lt;number&gt; | Promise对象，返回内置存储的总空间大小（单位为Byte）。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
-| 13600001 | IPC error.                                                   |
-| 13900042 | Unknown error.                                               |
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 13600001 | IPC error.     |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -120,7 +119,7 @@ storageStatistics.getTotalSize().then((number: number) => {
 });
   ```
 
-## storageStatistics.getTotalSize<sup>16+</sup>
+## storageStatistics.getTotalSize<sup>15+</sup>
 
 getTotalSize(callback: AsyncCallback&lt;number&gt;): void
 
@@ -132,7 +131,7 @@ getTotalSize(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名   | 类型                        | 必填 | 说明                               |
 | -------- | --------------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | 是   | 获取内置存储的总空间大小之后的回调 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 获取内置存储的总空间大小之后的回调。 |
 
 **错误码：**
 
@@ -158,7 +157,7 @@ storageStatistics.getTotalSize((error: BusinessError, number: number) => {
 });
   ```
 
-## storageStatistics.getTotalSizeSync<sup>16+</sup>
+## storageStatistics.getTotalSizeSync<sup>15+</sup>
 
 getTotalSizeSync(): number
 
@@ -170,17 +169,16 @@ getTotalSizeSync(): number
 
 | 类型   | 说明                                   |
 | ------ | -------------------------------------- |
-| number | 返回内置存储的总空间大小（单位为Byte） |
+| number | 返回内置存储的总空间大小（单位为Byte）。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
-| 13600001 | IPC error.                                                   |
-| 13900042 | Unknown error.                                               |
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 13600001 | IPC error.     |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -195,7 +193,7 @@ try {
 }
   ```
 
-## storageStatistics.getFreeSize<sup>16+</sup>
+## storageStatistics.getFreeSize<sup>15+</sup>
 
 getFreeSize(): Promise&lt;number&gt;
 
@@ -207,17 +205,16 @@ getFreeSize(): Promise&lt;number&gt;
 
 | 类型                  | 说明                                                  |
 | --------------------- | ----------------------------------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回内置存储的可用空间大小（单位为Byte） |
+| Promise&lt;number&gt; | Promise对象，返回内置存储的可用空间大小（单位为Byte）。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
-| 13600001 | IPC error.                                                   |
-| 13900042 | Unknown error.                                               |
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 13600001 | IPC error.     |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -230,7 +227,7 @@ storageStatistics.getFreeSize().then((number: number) => {
 });
   ```
 
-## storageStatistics.getFreeSize<sup>16+</sup>
+## storageStatistics.getFreeSize<sup>15+</sup>
 
 getFreeSize(callback: AsyncCallback&lt;number&gt;): void
 
@@ -242,7 +239,7 @@ getFreeSize(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名   | 类型                        | 必填 | 说明                                 |
 | -------- | --------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback&lt;number&gt; | 是   | 获取内置存储的可用空间大小之后的回调 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 获取内置存储的可用空间大小之后的回调。 |
 
 **错误码：**
 
@@ -268,7 +265,7 @@ storageStatistics.getFreeSize((error: BusinessError, number: number) => {
 });
   ```
 
-## storageStatistics.getFreeSizeSync<sup>16+</sup>
+## storageStatistics.getFreeSizeSync<sup>15+</sup>
 
 getFreeSizeSync(): number
 
@@ -280,17 +277,16 @@ getFreeSizeSync(): number
 
 | 类型   | 说明                                     |
 | ------ | ---------------------------------------- |
-| number | 返回内置存储的可用空间大小（单位为Byte） |
+| number | 返回内置存储的可用空间大小（单位为Byte）。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
-| 13600001 | IPC error.                                                   |
-| 13900042 | Unknown error.                                               |
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 13600001 | IPC error.     |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -311,6 +307,6 @@ try {
 
 | 名称      | 类型   | 必填 | 说明           |
 | --------- | ------ | --- | -------------- |
-| appSize   | number | 是 | 应用安装文件大小（单位为Byte）    |
-| cacheSize | number | 是 | 应用缓存文件大小（单位为Byte）   |
-| dataSize  | number | 是 | 应用文件存储大小（除应用安装文件和缓存文件）（单位为Byte） |
+| appSize   | number | 是 | 应用安装文件大小（单位为Byte）。    |
+| cacheSize | number | 是 | 应用缓存文件大小（单位为Byte）。   |
+| dataSize  | number | 是 | 应用文件存储大小（除应用安装文件和缓存文件）（单位为Byte）。 |

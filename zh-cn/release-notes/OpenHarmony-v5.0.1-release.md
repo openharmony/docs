@@ -32,7 +32,7 @@ OpenHarmony 5.0.1 Release版本对标准系统的能力进行持续完善，以�
 
 ### 应用包管理
 
-- 新增C API，用于查询应用入口呃MainElement信息。
+- 新增C API，用于查询应用入口的MainElement信息。
 
 - 支持三方HAR获取应用启动的want参数，用于启动宿主应用。
 

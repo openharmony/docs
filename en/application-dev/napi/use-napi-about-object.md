@@ -36,7 +36,7 @@ If you are just starting out with Node-API, see [Node-API Development Process](u
 
 ### napi_get_prototype
 
-Use **napi_get_prototype** to obtain the prototype of an ArkTS object.
+Call **napi_get_prototype** to obtain the prototype of an ArkTS object.
 
 CPP code:
 
@@ -94,7 +94,7 @@ if (applePrototype === Person.prototype) {
 
 ### napi_create_object
 
-Use **napi_create_object** to create an empty ArkTS object.
+Call **napi_create_object** to create an empty ArkTS object.
 
 CPP code:
 
@@ -141,7 +141,7 @@ try {
 
 ### napi_object_freeze
 
-Use **napi_object_freeze** to freeze an ArkTS object. After an object is frozen, new properties or methods cannot be added to the object, and the values of existing properties or methods cannot be modified.
+Call **napi_object_freeze** to freeze an ArkTS object. After an object is frozen, new properties or methods cannot be added to the object, and the values of existing properties or methods cannot be modified.
 
 CPP code:
 
@@ -198,7 +198,7 @@ try {
 
 ### napi_object_seal
 
-Use **napi_object_seal** to seal an ArkTS object. After an object is sealed, new properties cannot be added to the object, existing properties cannot be deleted, but the values of existing properties can be modified.
+Call **napi_object_seal** to seal an ArkTS object. After an object is sealed, new properties cannot be added to the object, existing properties cannot be deleted, but the values of existing properties can be modified.
 
 CPP code:
 
@@ -260,14 +260,14 @@ try {
 
 ### napi_typeof
 
-Use **napi_typeof** to obtain the type of an ArkTS value.
+Call **napi_typeof** to obtain the type of an ArkTS value.
 
 CPP code:
 
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value NapiTypeof(napi_env env, napi_callback_info info)
+static napi_value NapiTypeOf(napi_env env, napi_callback_info info)
 {
     // Obtain the parameter.
     size_t argc = 1;
@@ -320,7 +320,7 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const napiTypeof : <T>(value: T) => string | void;
+export const napiTypeOf : <T>(value: T) => string | void;
 ```
 
 ArkTS code:
@@ -330,25 +330,25 @@ import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
 try {
   let varUndefined: undefined;
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeof(varUndefined));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varUndefined));
   let varNull: null = null;
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeof(varNull));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varNull));
   let varTrue= true;
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeof(varTrue));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varTrue));
   let varNum = 1;
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeof(varNum));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varNum));
   let varString = "str";
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeof(varString));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varString));
   class Obj {
     id: number = 0
     name: string = ""
   }
   let varObject: Obj = {id: 1, name: "LiLei"};
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeof(varObject));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varObject));
   const addNum = (a: number, b: number): number => a * b;
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeof(addNum));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(addNum));
   let varBigint = BigInt("1234567890123456789012345678901234567890");
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeof(varBigint));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varBigint));
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_typeof error: %{public}s', error.message);
 }
@@ -356,14 +356,14 @@ try {
 
 ### napi_instanceof
 
-Use **napi_instanceof** to check whether an ArkTS object is an instance of the specified constructor.
+Call **napi_instanceof** to check whether an ArkTS object is an instance of the specified constructor.
 
 CPP code:
 
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value NapiInstanceof(napi_env env, napi_callback_info info)
+static napi_value NapiInstanceOf(napi_env env, napi_callback_info info)
 {
     // Obtain the two parameters passed from ArkTS.
     size_t argc = 2;
@@ -388,7 +388,7 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const napiInstanceof: (date: Object, construct: Object) => boolean | void;
+export const napiInstanceOf: (date: Object, construct: Object) => boolean | void;
 ```
 
 ArkTS code:
@@ -412,8 +412,8 @@ try {
     message: string = ""
   }
   let obj: Obj = { data: 0, message: "hello world"};
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_instanceof: %{public}s', testNapi.napiInstanceof(person, Person));
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_instanceof: %{public}s', testNapi.napiInstanceof(obj, Person));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_instanceof: %{public}s', testNapi.napiInstanceOf(person, Person));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_instanceof: %{public}s', testNapi.napiInstanceOf(obj, Person));
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_instanceof error: %{public}s', error.message);
 }
@@ -421,11 +421,11 @@ try {
 
 ### napi_type_tag_object
 
-Use **napi_type_tag_object** to associate the value of a **type_tag** pointer with an ArkTS object so that the object can be identified more accurately.
+Call **napi_type_tag_object** to associate the value of a **type_tag** pointer with an ArkTS object so that the object can be identified more accurately.
 
 ### napi_check_object_type_tag
 
-Use **napi_check_object_type_tag** to check whether an ArkTS object is associated with a tag pointer.
+Call **napi_check_object_type_tag** to check whether an ArkTS object is associated with a tag pointer.
 
 The type tags associate native types with ArkTS types, allowing ArkTS objects to be accurately identified and processed in C/C++.
 
@@ -503,7 +503,7 @@ class Obj {
   message: string = ""
 }
 let objA: Obj = { data: 0, message: "hello world"};
-let objB: Obj = { data: 10, message: "typetag"};
+let objB: Obj = { data: 10, message: "typeTag"};
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_type_tag_object objA -> 0: %{public}s', testNapi.setTypeTagToObject(objA, 0));
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_type_tag_object objB -> 0: %{public}s', testNapi.setTypeTagToObject(objB, 0));
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_check_object_type_tag objA -> 0: %{public}s', testNapi.checkObjectTypeTag(objA, 0));
@@ -512,7 +512,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_check_object_type_tag objB -> 
 
 ### napi_create_external
 
-Use **napi_create_external** to create an ArkTS external object wrapping a custom C/C++ object and expose it to ArkTS. With this API, you can create a Node-API value that contains a pointer to a custom C/C++ object so that the object can be accessed and managed by ArkTS.
+Call **napi_create_external** to create an ArkTS external object wrapping a custom C/C++ object and expose it to ArkTS. With this API, you can create a Node-API value that contains a pointer to a custom C/C++ object so that the object can be accessed and managed by ArkTS.
 
 CPP code:
 
@@ -583,7 +583,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_external:%{public}s', t
 
 ### napi_get_value_external
 
-Use **napi_get_value_external** to obtain the ArkTS data from the external object created by **napi_create_external**.
+Call **napi_get_value_external** to obtain the ArkTS data from the external object created by **napi_create_external**.
 
 CPP code:
 
@@ -624,7 +624,7 @@ hilog.info(0x0000, 'Node-API', 'get_value_external:%{public}d', testNapi.getValu
 
 ### napi_create_symbol
 
-Use **napi_create_symbol** to create a symbol. Symbol is a special data type used to indicate a unique identifier. Unlike strings or numbers, the value of a symbol is unique. Even if two symbols have the same description, they are not equal. Symbols are often used as keys for object properties to ensure property uniqueness.
+Call **napi_create_symbol** to create a symbol. Symbol is a special data type used to indicate a unique identifier. Unlike strings or numbers, the value of a symbol is unique. Even if two symbols have the same description, they are not equal. Symbols are often used as keys for object properties to ensure property uniqueness.
 
 CPP code:
 

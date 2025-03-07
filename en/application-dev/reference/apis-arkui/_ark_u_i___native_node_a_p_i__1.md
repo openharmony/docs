@@ -560,7 +560,7 @@ void(* ArkUI_NativeNodeAPI_1::registerNodeCustomEventReceiver) (void(*eventRecei
 
 Registers a unified entry point function for custom node event callbacks.
 
-The ArkUI framework collects custom component events generated during the process and calls back the events through the registered <b>registerNodeCustomEventReceiver</b>.
+The ArkUI framework collects custom component events generated during the process and calls back the events through the registered **registerNodeCustomEventReceiver**.
 
 A new call to this API will overwrite the previously registered event receiver.
 

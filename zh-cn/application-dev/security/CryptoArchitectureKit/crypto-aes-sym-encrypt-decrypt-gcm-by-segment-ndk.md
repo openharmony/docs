@@ -6,7 +6,7 @@
 
 ## 在CMake脚本中链接相关动态库
 ```txt
-   target_link_libraries(entry PUBLIC libohcrypto.so)
+target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 ## 开发步骤
@@ -94,10 +94,17 @@ static OH_Crypto_ErrCode doTestAesGcmSeg()
     int32_t cipherLen = 0;
     int blockSize = 20;
     int32_t randomLen = strlen(plainText);
+    Crypto_DataBlob cipherBlob;
+    // 加密变量定义
     int cnt = randomLen / blockSize;
     int rem = randomLen % blockSize;
     uint8_t cipherText[OH_CRYPTO_MAX_TEST_DATA_LEN] = {0};
-    Crypto_DataBlob cipherBlob;
+
+    // 解密变量定义
+    int decCnt = cipherLen / blockSize;
+    int decRem = cipherLen % blockSize;
+    int32_t plantLen = 0;
+    uint8_t plantText[OH_CRYPTO_MAX_TEST_DATA_LEN] = {0};
     
     // 生成密钥
     OH_Crypto_ErrCode ret;
@@ -163,10 +170,6 @@ static OH_Crypto_ErrCode doTestAesGcmSeg()
     }
 
     // 解密
-    int decCnt = cipherLen / blockSize;
-    int decRem = cipherLen % blockSize;
-    int32_t plantLen = 0;
-    uint8_t plantText[OH_CRYPTO_MAX_TEST_DATA_LEN] = {0};
     cipherBlob = {.data = reinterpret_cast<uint8_t *>(cipherText), .len = (size_t)cipherLen};
     ret = OH_CryptoSymCipher_Create("AES128|GCM|PKCS7", &decCtx);
     if (ret != CRYPTO_SUCCESS) {

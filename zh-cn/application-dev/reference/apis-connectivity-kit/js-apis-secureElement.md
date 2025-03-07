@@ -810,7 +810,7 @@ try {
 
 openBasicChannel(aid: number[]): Promise\<Channel>
 
-打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调
+打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -933,7 +933,7 @@ function secureElementDemo() {
 
 openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
-打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调
+打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -1060,7 +1060,7 @@ function secureElementDemo() {
 
 openLogicalChannel(aid: number[]): Promise\<Channel>
 
-打开逻辑通道，参考[ISO 7816-4]协议，返回逻辑Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调
+打开逻辑通道，参考[ISO 7816-4]协议，返回逻辑Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -1183,7 +1183,7 @@ function secureElementDemo() {
 
 openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
 
-打开逻辑通道，参考[ISO 7816-4]协议，返回逻辑Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调
+打开逻辑通道，参考[ISO 7816-4]协议，返回逻辑Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -1511,7 +1511,7 @@ try {
 
 transmit(command: number[]): Promise\<number[]>
 
-向SE发送APDU数据，数据符合ISO/IEC 7816规范。使用Promise异步回调
+向SE发送APDU数据，数据符合ISO/IEC 7816规范。使用Promise异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 

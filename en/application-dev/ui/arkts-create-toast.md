@@ -9,7 +9,7 @@ You can use the [getPromptAction](../reference/apis-arkui/js-apis-arkui-UIContex
 
  - Use toasts appropriately. Instead of constantly reminding users, use toasts for specific scenarios.
 
-    ​For example, use toasts to indicate whether an action performed by the user is successful or fails, or to update users when the application's status changes.
+    For example, use toasts to indicate whether an action performed by the user is successful or fails, or to update users when the application's status changes.
 
  - Manage text density. Because toasts are displayed for a limited time, avoid using long text.
 
@@ -133,6 +133,7 @@ struct toastExample {
   build() {
     Column() {
       Button('Open Toast')
+        .type(ButtonType.Capsule)
         .height(100)
         .onClick(() => {
           try {
@@ -151,6 +152,7 @@ struct toastExample {
       Blank().height(50);
       Button('Close Toast')
         .height(100)
+        .type(ButtonType.Capsule)
         .onClick(() => {
           try {
             this.promptAction.closeToast(this.toastId);

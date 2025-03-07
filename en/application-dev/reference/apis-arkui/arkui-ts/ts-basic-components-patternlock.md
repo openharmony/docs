@@ -26,7 +26,7 @@ PatternLock(controller?: PatternLockController)
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### sideLength
 
@@ -151,7 +151,7 @@ Sets the width of the path stroke. If this attribute is set to **0** or a negati
 
 | Name| Type                      | Mandatory| Description                         |
 | ------ | -------------------------- | ---- | ----------------------------- |
-| value  | number \| string | Yes  | Wdth of the path stroke.<br>Default value: **12vp**|
+| value  | number \| string | Yes  | Width of the path stroke.<br>Default value: **12vp**<br>Value range: [0, sideLength/3]. If the value exceeds the maximum value, the maximum value is used.|
 
 ### autoReset
 
@@ -187,25 +187,23 @@ Sets the background circle style for the dots in a grid when they are in the act
 
 ### CircleStyleOptions<sup>12+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
 | Name         | Type| Mandatory| Description|
 | ------------- | ------- | ---- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | No| Color of the background circle.<br>Default value: same as the value of **pathColor**|
-| radius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No| Radius of the background circle.<br>Default value: 11/6 of **circleRadius**|
-| enableWaveEffect | boolean | No| Whether to enable the wave effect.<br>Default value: **true**|
-| enableForeground<sup>14+</sup> | boolean | No| Whether the background circle is displayed in the foreground.<br>Default value: **true**|
+| color | [ResourceColor](ts-types.md#resourcecolor) | No| Color of the background circle.<br>Default value: same as the value of **pathColor**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| radius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No| Radius of the background circle.<br>Default value: 11/6 of **circleRadius**<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| enableWaveEffect | boolean | No| Whether to enable the wave effect.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| enableForeground<sup>15+</sup> | boolean | No| Whether the background circle is displayed in the foreground.<br>Default value: **false**, meaning the background circle is not displayed in the foreground<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
-### skipUnselectedPoint<sup>14+</sup>
+### skipUnselectedPoint<sup>15+</sup>
 
 skipUnselectedPoint(skipped: boolean)
 
 Sets whether unselected dots in the grid are automatically selected when the password path passes over them.
 
-**Atomic service API**: This API can be used in atomic services since API version 14.
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -213,11 +211,11 @@ Sets whether unselected dots in the grid are automatically selected when the pas
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| skipped  | boolean | Yes  | Whether unselected dots in the grid are automatically selected when the password path passes over them. Default value: **false**|
+| skipped  | boolean | Yes  | Whether unselected dots in the grid are automatically selected when the password path passes over them.<br>Default value: **false**, meaning unselected dots are automatically selected|
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onPatternComplete
 
@@ -237,7 +235,7 @@ Invoked when the pattern password input is complete.
 
 ### onDotConnect<sup>11+</sup>
 
-onDotConnect(callback: [CallBack](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\>)
+onDotConnect(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\>)
 
 Invoked when a grid dot is connected during pattern password input.
 
@@ -304,9 +302,50 @@ Sets the authentication challenge result for the pattern password.
 
 ##  Example
 
-This example shows the basic usage of the **PatternLock** component. It sets the size of the grid using **sideLength**, customizes the dot styles using **circleRadius** and other attributes, and sets a callback for password input using **onPatternComplete**.
+### Example 1: Creating a Pattern Lock
 
-When the user completes the password input, different responses are given based on the input:<br>- If the password length is less than 5, a message is displayed to prompt the user to re-enter the password.<br>- After the first input, a message is displayed to prompt the user to enter the password again.<br>- After the second input, the system checks whether the two inputs match. If they match, a message is displayed to indicate that the password setup is successful; otherwise, the user is prompted to re-enter the password.
+This example shows the basic usage of the **PatternLock** component.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct PatternLockExample {
+  @State passwords: Number[] = []
+  @State message: string = 'Enter password'
+  private patternLockController: PatternLockController = new PatternLockController()
+
+  build() {
+    Column() {
+      Text(this.message).textAlign(TextAlign.Center).margin(20).fontSize(20)
+      PatternLock(this.patternLockController)
+        .sideLength(200)
+        .circleRadius(9)
+        .pathStrokeWidth(5)
+        .activeColor('#707070')
+        .selectedColor('#707070')
+        .pathColor('#707070')
+        .backgroundColor('#F5F5F5')
+        .autoReset(true)
+        .onDotConnect((index: number) => {
+          console.log("onDotConnect index: " + index)
+        })
+    }.width('100%').height('100%')
+  }
+}
+```
+
+![patternlock](figures/patternlock1.gif)
+
+### Example 2: Verifying the Password
+
+This example demonstrates how to set the size of the grid using **sideLength**, customize the dot styles using **circleRadius** and other attributes, and set a callback for password input using **onPatternComplete**.
+
+When the user completes the password input, different responses are given based on the input:
+
+- If the password length is less than 5, a message is displayed to prompt the user to re-enter the password.
+- After the first input, a message is displayed to prompt the user to enter the password again.
+- After the second input, the system checks whether the two inputs match. If they match, a message is displayed to indicate that the password setup is successful; otherwise, the user is prompted to re-enter the password.
 
 The user can click **Reset PatternLock** to reset the password lock.
 
@@ -327,14 +366,14 @@ struct PatternLockExample {
       PatternLock(this.patternLockController)
         .sideLength(200)
         .circleRadius(9)
-        .pathStrokeWidth(18)
-        .activeColor('#B0C4DE')
-        .selectedColor('#228B22')
-        .pathColor('#90EE90')
+        .pathStrokeWidth(5)
+        .activeColor('#707070')
+        .selectedColor('#707070')
+        .pathColor('#707070')
         .backgroundColor('#F5F5F5')
         .autoReset(true)
         .activateCircleStyle({
-          color: '#90EE90',
+          color: '#707070',
           radius: { value: 16, unit: LengthUnit.VP },
           enableWaveEffect: true
         })
@@ -376,3 +415,4 @@ struct PatternLockExample {
 ```
 
 ![patternlock](figures/patternlock.gif)
+<!--no_check-->

@@ -1,6 +1,6 @@
 # 兼容JS的类Web开发范式（ArkUI.Full）
 
-- 组件通用信息
+- 组件通用信息<!--js-full-universal-comp-infor-->
   - [通用属性](js-components-common-attributes.md)
   - [通用样式](js-components-common-styles.md)
   - [通用事件](js-components-common-events.md)
@@ -11,7 +11,7 @@
   - [媒体查询](js-components-common-mediaquery.md)
   - [自定义字体样式](js-components-common-customizing-font.md)
   - [原子布局](js-components-common-atomic-layout.md)
-- 容器组件
+- 容器组件<!--js-full-container-comp-->
   - [badge](js-components-container-badge.md)
   - [dialog](js-components-container-dialog.md)
   - [div](js-components-container-div.md)
@@ -29,7 +29,7 @@
   - [tabs](js-components-container-tabs.md)
   - [tab-bar](js-components-container-tab-bar.md)
   - [tab-content](js-components-container-tab-content.md)
-- 基础组件
+- 基础组件<!--js-full-basic-comp-->
   - [button](js-components-basic-button.md)
   - [chart](js-components-basic-chart.md)
   - [divider](js-components-basic-divider.md)
@@ -59,9 +59,9 @@
   - [toggle](js-components-basic-toggle.md)
   - [web](js-components-basic-web.md)
   - [xcomponent](js-components-basic-xcomponent.md)
-- 媒体组件
+- 媒体组件<!--js-full-media-comp-->
   - [video](js-components-media-video.md)
-- 画布组件
+- 画布组件<!--js-full-canvas-comp-->
   - [canvas组件](js-components-canvas-canvas.md)
   - [CanvasRenderingContext2D对象](js-components-canvas-canvasrenderingcontext2d.md)
   - [Image对象](js-components-canvas-image.md)
@@ -71,12 +71,12 @@
   - [ImageBitmap对象](js-components-canvas-imagebitmap.md)
   - [OffscreenCanvas对象](js-components-canvas-offscreencanvas.md)
   - [OffscreenCanvasRenderingContext2D对象](js-offscreencanvasrenderingcontext2d.md)
-- 栅格组件
+- 栅格组件<!--js-full-grid-comp-->
   - [基本概念](js-components-grid-basic-concepts.md)
   - [grid-container](js-components-grid-container.md)
   - [grid-row](js-components-grid-row.md)
   - [grid-col](js-components-grid-col.md)
-- svg组件
+- svg组件<!--js-full-svg-comp-->
   - [通用属性](js-components-svg-common-attributes.md)
   - [svg](js-components-svg.md)
   - [rect](js-components-svg-rect.md)
@@ -92,7 +92,7 @@
   - [animate](js-components-svg-animate.md)
   - [animateMotion](js-components-svg-animatemotion.md)
   - [animateTransform](js-components-svg-animatetransform.md)
-- 自定义组件
+- 自定义组件!<!--js-full-custom-comp-->
   - [自定义组件的基本用法](js-components-custom-basic-usage.md)
   - [数据传递与处理](js-components-custom-props.md)
   - [继承样式](js-components-custom-style.md)

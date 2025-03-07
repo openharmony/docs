@@ -22,8 +22,8 @@ attributeModifier(modifier:&nbsp;AttributeModifier\<T>)
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明                                                         |
-| -------- | --------------------- | ---- | ------------------------------------------------------------ |
+| 参数名   | 类型                                         | 必填 | 说明                                                                                                                             |
+| -------- | -------------------------------------------- | ---- | -------------------------------------------------------------------------------------------------------------------------------- |
 | modifier | [AttributeModifier\<T>](#attributemodifiert) | 是   | 在当前组件上，动态设置属性方法，支持使用if/else语法。<br/>modifier: 属性修改器，开发者需要自定义class实现AttributeModifier接口。 |
 
 ## AttributeModifier\<T>
@@ -32,12 +32,20 @@ attributeModifier(modifier:&nbsp;AttributeModifier\<T>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+>  **说明：**
+>
+>  在以下回调函数中，当对instance对象的同一个属性重复设置相同的值或对象时，不会触发该属性的更新。从API version 16开始，如果对instance对象的同一属性重复设置相同的资源类型对象，将会生效并触发更新。
+
 ### applyNormalAttribute
 applyNormalAttribute(instance: T) : void
 
 组件普通状态时的样式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### applyPressedAttribute
 applyPressedAttribute(instance: T) : void
@@ -46,6 +54,8 @@ applyPressedAttribute(instance: T) : void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### applyFocusedAttribute
 applyFocusedAttribute(instance: T) : void
 
@@ -53,12 +63,16 @@ applyFocusedAttribute(instance: T) : void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### applyDisabledAttribute
 applyDisabledAttribute(instance: T) : void
 
 组件禁用状态的样式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### applySelectedAttribute
 applySelectedAttribute(instance: T) : void
@@ -69,11 +83,13 @@ applySelectedAttribute(instance: T) : void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数**：
 
-| 参数             | 描述                                                         |
-| -------------------- | ------------------------------------------------------------ |
-| instance |组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。|
+| 参数     | 描述                                                                                                         |
+| -------- | ------------------------------------------------------------------------------------------------------------ |
+| instance | 组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。 |
 
 **instance参数支持范围:**
 
@@ -81,7 +97,17 @@ AlphabetIndexerAttribute、BadgeAttribute、BlankAttribute、ButtonAttribute、C
 
 **属性支持范围:**
 
-不支持入参为[CustomBuilder](ts-types.md#custombuilder8)或Lamda表达式的属性，且不支持手势，事件仅支持onClick、onTouch、onAppear、onDisAppear、onMouse、onHover、onKeyEvent、onBlur、onFocus、onAreaChange、onSizeChange、onGestureJudgeBegin、onGestureRecognizerJudgeBegin、shouldBuiltInRecognizerParallelWith。不支持已废弃属性，未支持的属性在使用时会抛异常"Method not implemented"。
+1. 不支持入参或者返回值为[CustomBuilder](ts-types.md#custombuilder8)的属性。
+2. 不支持入参为[modifier](../../../ui/arkts-user-defined-modifier.md)类型的属性，具体为以下属性方法：[attributeModifier](#attributemodifier)，[drawModifier](./ts-universal-attributes-draw-modifier.md)和[gestureModifier](./ts-universal-attributes-gesture-modifier.md)。
+3. 不支持[animation](./ts-animatorproperty.md)属性。
+4. 不支持[gesture](../../../ui/arkts-gesture-events-binding.md)类型的属性。
+5. 不支持[stateStyles](./ts-universal-attributes-polymorphic-style.md)属性。
+6. 不支持已废弃属性。
+<!--Del-->
+7. 不支持系统组件属性。<!--DelEnd-->
+
+不支持或者未实现的属性在使用时会抛出"Method not implemented."、"is not callable"、"Builder is not supported."等异常信息。具体Modifier支持范围同基类属性接口的支持范围，详见表格[Attribute支持范围](#attribute支持范围)。
+
 ## 自定义Modifier
 从API version 12开始，开发者可使用自定义Modifier构建组件并配置属性，通过此自定义的Modifier可调用所封装组件的属性和样式接口。 
 
@@ -99,14 +125,15 @@ CommonModifier、ColumnModifier、ColumnSplitModifier、RowModifier、RowSplitMo
 6. 多次通过attributeModifier设置属性时，生效的属性为所有属性的并集，相同属性按照设置顺序生效。   
 
 ## 示例
-### 示例1（组件绑定Modifier）
+### 示例1（组件绑定Modifier切换背景颜色）
 
-该示例通过Button绑定Modifier实现了按压态的效果。如果配合状态管理V2使用，详情见：[Modifier与makeObserved](../../../quick-start/arkts-v1-v2-migration.md#modifier)。
+该示例通过Button绑定Modifier实现了点击切换背景颜色的效果。
 
 ```ts
 // xxx.ets
 class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
   isDark: boolean = false
+
   applyNormalAttribute(instance: ButtonAttribute): void {
     if (this.isDark) {
       instance.backgroundColor(Color.Black)
@@ -138,7 +165,9 @@ struct attributeDemo {
 ```
 ![attributeModifier_ifelse](figures/attributeModifier_ifelse.gif)
 
+### 示例2（组件绑定Modifier实现按压态效果）
 
+该示例通过Button绑定Modifier实现了按压态的效果。如果配合状态管理V2使用，详情见：[Modifier与makeObserved](../../../quick-start/arkts-v1-v2-migration.md#modifier)。
 
 ```ts
 // xxx.ets
@@ -171,33 +200,35 @@ struct attributePressedDemo {
 ```
 ![attributeModifier_ifelse](figures/attributeModifier_ifelse.gif)
 
-### 示例2（自定义Modifier不支持感知@State装饰的状态数据变化）
+### 示例3（自定义Modifier不支持感知@State装饰的状态数据变化）
 
 该示例通过状态数据设置自定义Modifier的宽度，自定义Modifier不支持感知@State装饰的状态数据变化，点击按钮后宽度不发生改变。
 
 ```ts
 import { CommonModifier } from "@kit.ArkUI"
 
+const TEST_TAG : string = "AttributeModifier";
 class MyModifier extends CommonModifier {
-  applyNormalAttribute(instance: CommonAttribute) : void{
+  applyNormalAttribute(instance: CommonAttribute): void {
     super.applyNormalAttribute?.(instance);
   }
 }
 
 @Component
 struct MyImage1 {
-  @Link modifier : CommonModifier
+  @Link modifier: CommonModifier
 
-  build(){
-    Image($r("app.media.testImage")).attributeModifier(this.modifier as MyModifier)
+  build() {
+    Image($r("app.media.startIcon")).attributeModifier(this.modifier as MyModifier)
   }
 }
+
 @Entry
 @Component
 struct Index {
-  index : number = 0;
-  @State width1 : number = 100;
-  @State height1 : number = 100;
+  index: number = 0;
+  @State width1: number = 100;
+  @State height1: number = 100;
   @State myModifier: CommonModifier = new MyModifier().width(this.width1).height(this.height1).margin(10)
 
   build() {
@@ -205,17 +236,17 @@ struct Index {
       Button($r("app.string.EntryAbility_label"))
         .margin(10)
         .onClick(() => {
-          console.log("Modifier","onClick")
-          this.index ++;
-          if(this.index %2 === 1){
+          console.log(TEST_TAG, "onClick")
+          this.index++;
+          if (this.index % 2 === 1) {
             this.width1 = 10;
-            console.log("Modifier","setGroup1")
-          }else{
+            console.log(TEST_TAG, "setGroup1")
+          } else {
             this.width1 = 10;
-            console.log("Modifier","setGroup2")
+            console.log(TEST_TAG, "setGroup2")
           }
         })
-      MyImage1({modifier:this.myModifier})
+      MyImage1({ modifier: this.myModifier })
     }
     .width('100%')
   }
@@ -223,24 +254,26 @@ struct Index {
 ```
 ![attributeModifier2](figures/attributeModifier2.gif)
 
-### 示例3（Modifier和自定义Modifier的属性同时生效）
+### 示例4（Modifier和自定义Modifier的属性同时生效）
 
 该示例通过自定义Modifier设置了width和height，点击按钮时设置borderStyle和borderWidth，点击后4个属性同时生效。 
 
 ```ts
 import { CommonModifier } from "@kit.ArkUI"
 
+const TEST_TAG: string = "AttributeModifier";
+
 class MyModifier extends CommonModifier {
-  applyNormalAttribute(instance: CommonAttribute) : void{
+  applyNormalAttribute(instance: CommonAttribute): void {
     super.applyNormalAttribute?.(instance);
   }
 
-  public setGroup1() : void {
+  public setGroup1(): void {
     this.borderStyle(BorderStyle.Dotted)
     this.borderWidth(8)
   }
 
-  public setGroup2() : void {
+  public setGroup2(): void {
     this.borderStyle(BorderStyle.Dashed)
     this.borderWidth(8)
   }
@@ -248,10 +281,10 @@ class MyModifier extends CommonModifier {
 
 @Component
 struct MyImage1 {
-  @Link modifier : CommonModifier
+  @Link modifier: CommonModifier
 
-  build(){
-    Image($r("app.media.testImage")).attributeModifier(this.modifier as MyModifier)
+  build() {
+    Image($r("app.media.startIcon")).attributeModifier(this.modifier as MyModifier)
   }
 }
 
@@ -259,27 +292,69 @@ struct MyImage1 {
 @Component
 struct Index {
   @State myModifier: CommonModifier = new MyModifier().width(100).height(100).margin(10)
-  index : number = 0;
+  index: number = 0;
 
   build() {
     Column() {
       Button($r("app.string.EntryAbility_label"))
         .margin(10)
         .onClick(() => {
-          console.log("Modifier","onClick")
-          this.index ++;
-          if(this.index %2 === 1){
+          console.log(TEST_TAG, "onClick")
+          this.index++;
+          if (this.index % 2 === 1) {
             (this.myModifier as MyModifier).setGroup1()
-            console.log("Modifier","setGroup1")
-          }else{
+            console.log(TEST_TAG, "setGroup1")
+          } else {
             (this.myModifier as MyModifier).setGroup2()
-            console.log("Modifier","setGroup2")
+            console.log(TEST_TAG, "setGroup2")
           }
         })
-      MyImage1({modifier:this.myModifier})
+      MyImage1({ modifier: this.myModifier })
     }
     .width('100%')
   }
 }
 ```
 ![attributeModifier](figures/attributeModifier.gif)
+
+## Attribute支持范围
+
+未在表格中列举的属性默认为支持。
+
+**表1** CommonAttribute属性接口支持例外范围
+
+| 属性                     | 支持情况 | 告警信息                  | 备注                                      |
+| ------------------------ | -------- | ------------------------- | ----------------------------------------- |
+| accessibilityChecked     | 不支持   | is not callable           | -                                         |
+| accessibilitySelected    | 不支持   | is not callable           | -                                         |
+| accessibilityTextHint    | 不支持   | is not callable           | -                                         |
+| accessibilityVirtualNode | 不支持   | is not callable           | 不支持入参为CustomBuilder。               |
+| animation                | 不支持   | Method not implemented.   | 不支持animation相关属性。                 |
+| attributeModifier        | 不支持   | -                         | attributeModifier不支持嵌套使用，不生效。 |
+| background               | 不支持   | Method not implemented.   | 不支持入参为CustomBuilder。               |
+| backgroundFilter         | 不支持   | is not callable           | -                                         |
+| bindContentCover         | 不支持   | Method not implemented.   | 不支持入参为CustomBuilder。               |
+| bindContextMenu          | 不支持   | Method not implemented.   | 不支持入参为CustomBuilder。               |
+| bindPopup                | 不支持   | Method not implemented.   | 不支持入参为CustomBuilder。               |
+| bindSheet                | 不支持   | Method not implemented.   | 不支持入参为CustomBuilder。               |
+| chainWeight              | 不支持   | is not callable           | -                                         |
+| compositingFilter        | 不支持   | is not callable           | -                                         |
+| drawModifier             | 不支持   | is not callable           | 不支持modifier相关的属性。                |
+| foregroundFilter         | 不支持   | is not callable           | -                                         |
+| freeze                   | 不支持   | is not callable           | -                                         |
+| gesture                  | 不支持   | Method not implemented.   | 不支持gesture相关的属性。                 |
+| gestureModifier          | 不支持   | is not callable           | 不支持modifier相关的属性。                |
+| onAccessibilityHover     | 不支持   | is not callable           | -                                         |
+| onChildTouchTest         | 不支持   | is not callable           | -                                         |
+| onDragStart              | 不支持   | Method not implemented.   | 不支持返回值为CustomBuilder。             |
+| onPreDrag                | 不支持   | Method not implemented.   | -                                         |
+| onTouchIntercept         | 不支持   | is not callable           | -                                         |
+| onVisibleAreaChange      | 不支持   | Method not implemented.   | -                                         |
+| parallelGesture          | 不支持   | Method not implemented.   | 不支持gesture相关的属性。                 |
+| priorityGesture          | 不支持   | Method not implemented.   | 不支持gesture相关的属性。                 |
+| reuseId                  | 不支持   | Method not implemented.   | -                                         |
+| stateStyles              | 不支持   | Method not implemented.   | 不支持stateStyles相关的属性。             |
+| useSizeType              | 不支持   | Method not implemented.   | 不支持已废弃属性。                        |
+| visualEffect             | 不支持   | is not callable           | -                                         |
+| bindMenu                 | 部分支持 | -                         | 不支持入参为CustomBuilder。               |
+| dragPreview              | 部分支持 | Builder is not supported. | 不支持入参为CustomBuilder。               |

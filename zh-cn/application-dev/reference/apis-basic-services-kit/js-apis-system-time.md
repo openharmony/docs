@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 从API Version 9 开始，该模块接口不再维护，推荐使用新模块接口[@ohos.systemDateTime (系统时间、时区)](js-apis-date-time.md)
+> - 从API Version 9 开始，该模块接口不再维护，推荐使用新模块接口[@ohos.systemDateTime (系统时间、时区)](js-apis-date-time.md)。
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -759,7 +759,7 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型              | 必填 | 说明                  |
 | -------- | ------------- | ---- | -------------------------- |
-| timezone | string                    | 是   | 系统时区。 具体可见[支持的系统时区](#支持的系统时区) 。        |
+| timezone | string                    | 是   | 系统时区。具体可见[支持的系统时区](#支持的系统时区) 。        |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
 **错误码：**

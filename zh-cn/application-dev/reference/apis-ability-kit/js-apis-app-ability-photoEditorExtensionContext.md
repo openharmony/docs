@@ -50,6 +50,7 @@ import { common, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG = '[ExamplePhotoEditorAbility]';
 
@@ -68,7 +69,7 @@ struct Index {
           this.originalImage?.rotate(90).then(() => {
             const imagePackerApi: image.ImagePacker = image.createImagePacker();
             let packOpts: image.PackingOption = { format: 'image/jpeg', quality: 98 };
-            imagePackerApi.packing(this.originalImage, packOpts).then((data: ArrayBuffer) => {
+            imagePackerApi.packToData(this.originalImage, packOpts).then((data: ArrayBuffer) => {
               let context = getContext(this) as common.PhotoEditorExtensionContext;
               let filePath = context.filesDir + '/edited.jpg';
               let file: fileIo.File | undefined;

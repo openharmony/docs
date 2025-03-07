@@ -1,20 +1,20 @@
-# Instant Communication Between the Worker Thread and Host Thread
+# Real-Time Communication Between the Worker Thread and Host Thread
 
 
-In ArkTS, Worker provides a limited number of threads that exist for a longer time than TaskPool threads. A [Worker](worker-introduction.md) may execute multiple tasks. The execution duration or returned result of each task may be different. The host thread needs to call different methods in the Worker based on the site requirements, the worker needs to return the result to the host thread in a timely manner.
+In ArkTS, Worker differ from TaskPool in that it has a limited number of threads but can run for extended periods. A [Worker](worker-introduction.md) can execute multiple tasks, each with varying execution times and results. The host thread needs to call different methods in the Worker based on the situation, and the Worker must promptly return the results to the host thread.
 
 
-The following uses an example in which the worker responds to the "hello world" request for description.
+The following example demonstrates how a Worker can respond to a "hello world" request.
 
 
-1. First, create a Worker for executing multiple tasks.
+1. Create a Worker that executes multiple tasks.
 
    ```ts
    // Worker.ets
    import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
    
    const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
-   // The worker receives the message from the host thread and performs corresponding processing.
+   // The Worker receives messages from the host thread and processes them accordingly.
    workerPort.onmessage = (e: MessageEvents): void => {
      if (e.data === 'hello world') {
        workerPort.postMessage('success');
@@ -22,7 +22,7 @@ The following uses an example in which the worker responds to the "hello world" 
    }
    ```
 
-2. The host thread is the UI main thread. The worker object is created in the host thread. When the button is clicked, the postmessage function is called to send a message to the worker. The onmessage method of the worker is used to receive the data returned by the worker.
+2. In the host thread (UI main thread), create a Worker object. Use the **postmessage** method to send a message to the Worker when a button is clicked, and use the **onmessage** method of Worker to receive the response.
 
    ```ts
    // Index.ets
@@ -47,13 +47,13 @@ The following uses an example in which the worker responds to the "hello world" 
      ss.onexit = () => {
        isTerminate = true;
      }
-     Receive messages sent by the worker thread.
+     // Receive messages sent by the Worker thread.
      ss.onmessage = (e) => {
        res = e.data;
        flag = true;
        console.info("worker:: res is  " + res);
      }
-     // Send a message to the worker thread.
+     // Send a message to the Worker thread.
      ss.postMessage("hello world");
      while (!flag) {
        await promiseCase();
@@ -87,4 +87,4 @@ The following uses an example in which the worker responds to the "hello world" 
    ```
 
 
-In the preceding sample code, the worker receives a message from the host thread, processes the message, and sends the result back to the host thread. In this way, instant communication between the main thread and Worker thread can be implemented.
+In this example, the Worker thread receives a message from the host thread, processes it, and sends a response back. This enables real-time communication between the host thread and the Worker thread, allowing the host thread to conveniently use the execution results of the Worker.

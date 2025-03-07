@@ -17,7 +17,7 @@ WorkSchedulerExtensionContext可直接作为WorkSchedulerExtension的上下文�
 通过WorkSchedulerExtensionAbility子类实例来获取。
 
 ```ts
-import { WorkSchedulerExtensionAbility, workScheduler } from from '@kit.BackgroundTasksKit';
+import { WorkSchedulerExtensionAbility, workScheduler } from '@kit.BackgroundTasksKit';
 
 class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
     onWorkStart(workInfo: workScheduler.WorkInfo) {

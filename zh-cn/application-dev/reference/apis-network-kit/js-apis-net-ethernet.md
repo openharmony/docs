@@ -45,7 +45,7 @@ getMacAddress(): Promise\<Array\<MacAddressInfo>>
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
-| 2200002 | Failed to connect to the service.       |
+| 2200002 | Operation failed. Cannot connect to service.       |
 | 2201005 | Device information does not exist.  |
 
 **示例：**

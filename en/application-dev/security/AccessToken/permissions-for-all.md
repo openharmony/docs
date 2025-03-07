@@ -389,11 +389,21 @@ Allows an application to use the scam message Picker to obtain SMS messages.
 
 **Authorization mode**: system_grant
 
-**Valid since**: 16
+**Valid since**: 15
 
 ## ohos.permission.USE_FRAUD_CALL_LOG_PICKER
 
 Allows an application to use the scam call log Picker to obtain call logs.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
+## ohos.permission.USE_FRAUD_APP_PICKER
+
+Allows an application to use the fraud app Picker to obtain application information.
 
 **Permission level**: system_basic
 
@@ -493,6 +503,21 @@ Allows a device administrator application to manage personal device restrictions
 ## ohos.permission.START_PROVISIONING_MESSAGE
 
 Allows an application to start the device management service deployment process, which activates the application as a personal device administrator application.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 15
+
+## ohos.permission.ACCESS_DISK_PHY_INFO
+
+Allows an application to obtain the disk hardware information.
+
+This permission is available only to securities applications for securities and stock trading.
 
 **Permission level**: system_basic
 

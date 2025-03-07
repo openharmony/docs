@@ -1,4 +1,4 @@
-# import native模块
+# 静态方式加载native模块
 
 在ES6(ECMAScript6.0)模块设计中，社区使用import语法加载其他文件导出的内容（ECMA规范定义语法规格）。
 为支持开发者便捷使用该功能导入native模块(so)导出的内容，ArkTS进行相关适配，并给出以下几种支持写法。

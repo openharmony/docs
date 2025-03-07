@@ -29,7 +29,7 @@ CalendarPicker(options?: CalendarOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### edgeAlign
 
@@ -115,11 +115,11 @@ markToday(enabled: boolean)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)，还支持以下事件：
 
 ### onChange
 
-onChange(callback: (value: Date) => void)
+onChange(callback: Callback\<Date>)
 
 选择日期时触发该事件。
 
@@ -131,7 +131,7 @@ onChange(callback: (value: Date) => void)
 
 | 参数名 | 类型 | 必填 | 说明           |
 | ------ | ---- | ---- | -------------- |
-| value  | Date | 是   | 选中的日期值。 |
+| callback | [Callback](ts-types.md#callback12)\<Date> | 是   | 选中的日期值。 |
 
 ### onChange<sup>16+</sup>
 
@@ -147,7 +147,7 @@ onChange(callback: Optional\<Callback\<Date>>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Callback](ts-types.md#callback12)\<Date>> | 是   | 选中的日期值。<br>当callback的值为undefined时，不使用回掉函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Callback](ts-types.md#callback12)\<Date>> | 是   | 选中的日期值。<br>当callback的值为undefined时，不使用回调函数。 |
 
 ##  CalendarOptions对象说明
 
@@ -157,7 +157,7 @@ onChange(callback: Optional\<Callback\<Date>>)
 
 | 名称      | 类型       | 必填        | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- |
-| hintRadius | number \| [Resource](ts-types.md#resource) | 否    | 描述日期选中态底板样式。<br/>默认值：底板样式为圆形。<br />**说明：**<br />hintRadius为0，底板样式为直角矩形。hintRadius为0 ~ 16，底板样式为圆角矩形。hintRadius>=16，底板样式为圆形 |
+| hintRadius | number \| [Resource](ts-types.md#resource) | 否    | 描述日期选中态底板样式。<br/>默认值：底板样式为圆形。<br />**说明：**<br />hintRadius为0，底板样式为直角矩形。hintRadius为0 ~ 16，底板样式为圆角矩形。hintRadius>=16，底板样式为圆形。 |
 | selected | Date | 否    | 设置选中项的日期。选中的日期未设置或日期格式不符合规范则为默认值。<br/>默认值：当前系统日期。 |
 | start<sup>16+</sup> | Date | 否    | 设置开始日期。 |
 | end<sup>16+</sup> | Date | 否    | 设置结束日期。 |
@@ -200,7 +200,6 @@ struct CalendarPickerExample {
 
   build() {
     Column() {
-      Text('月历日期选择器').fontSize(30)
       Column() {
         CalendarPicker({ hintRadius: 10, selected: this.selectedDate })
           .edgeAlign(CalendarAlign.END)
@@ -210,6 +209,8 @@ struct CalendarPickerExample {
             console.info("CalendarPicker onChange:" + JSON.stringify(value))
           })
       }.alignItems(HorizontalAlign.End).width("100%")
+
+      Text('日历日期选择器').fontSize(30)
     }.width('100%').margin({ top: 350 })
   }
 }
@@ -273,7 +274,7 @@ struct CalendarPickerExample {
         .onChange((value) => {
           console.info("CalendarPicker onChange:" + JSON.stringify(value))
         })
-    }.width('100%')
+    }.alignItems(HorizontalAlign.End).width('100%')
   }
 }
 ```

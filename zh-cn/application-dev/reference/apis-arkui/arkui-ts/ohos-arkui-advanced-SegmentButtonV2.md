@@ -4,7 +4,7 @@
 
 > **说明：** 
 >
-> 该组件及其子组件从 API Version 16 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件及其子组件从 API version 18 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
 
@@ -57,7 +57,7 @@ TabSegmentButtonV2({
 
 **装饰器类型：** @ComponentV2
 
-**原子化服务 API：** 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API：** 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -81,11 +81,11 @@ TabSegmentButtonV2({
 | itemMinHeight                    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选项的最小高度。<br>取值范围:[0, +∞)<br>默认值：<br>只有纯文本或者纯图标选项时：`$r('sys.float.segment_button_v2_singleline_selected_height')`；有图文混合的选项时：`$r('sys.float.segment_button_v2_doubleline_selected_height')`                                                       |
 | itemPadding                      | [LocalizedPadding](ts-types.md#localizedpadding12)                                                                                             | 是   | 是   | @Param             | 用于配置分段按钮选项的内边距。<br> 默认值：`{ top: LengthMetrics.resource($r('sys.float.padding_level2')), bottom: LengthMetrics.resource($r('sys.float.padding_level2')), start: LengthMetrics.resource($r('sys.float.padding_level4')), end: LengthMetrics.resource($r('sys.float.padding_level4')) }` |
 | itemShadow                       | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10) | 是   | 是   | @Param             | 用于配置分段按钮选项的阴影。<br>默认值：ShadowStyle.OUTER_DEFAULT_XS                                                                                                                                                                                                                                     |
-| itemSpace                        | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选项之间的间隔。<br>取值范围:[0, +∞)<br>默认值：`LengthMetrics.vp(0)`<br>**说明：** 不支持设置百分比类型，异常值按默认值处理。                                                                                                                                                           |
+| itemSpace                        | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选项之间的间隔。<br>取值范围:[0, +∞)<br>默认值：`LengthMetrics.vp(0)`<br>**说明：** <br>不支持设置百分比类型，异常值按默认值处理。                                                                                                                                                           |
 | itemMinFontScale                 | number \| [Resource](ts-types.md#resource)                                                                                                     | 是   | 是   | @Param             | 用于配置分段按钮选项文字大小可以缩小到的最小字体大小缩放倍数。<br>取值范围：[0, 1]<br>**说明：** <br>设置的值小于 0 时，按值为 0 处理，设置的值大于 1，按值为 1 处理，异常值默认不生效。                                                                                                                 |
 | itemMaxFontScale                 | number \| [Resource](ts-types.md#resource)                                                                                                     | 是   | 是   | @Param             | 用于配置分段按钮选项文字大小可以放大到的最大字体大小放大倍数。<br>取值范围：[1, 2]<br>默认值：1<br>**说明：** <br>设置的值小于 1 时，按值为 1 处理，设置的值大于 2，按值为 2 处理，异常值默认不生效。                                                                                                    |
-| itemFontSize                     | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮非选中的选项字体大小。<br>取值范围:[0, +∞)<br>默认值：`14fp`                                                                                                                                                                                                                             |
-| itemSelectedFontSize             | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选中的选项字体大小。<br>取值范围:[0, +∞)<br>默认值：`14fp`                                                                                                                                                                                                                               |
+| itemFontSize                     | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮非选中的选项字体大小。<br>取值范围:[0, +∞)<br>默认值：`14fp`<br>**说明：** <br>不支持设置百分比类型，异常值按默认值处理。                                                                                                                                                                                                                             |
+| itemSelectedFontSize             | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选中的选项字体大小。<br>取值范围:[0, +∞)<br>默认值：`14fp`<br>**说明：** <br>不支持设置百分比类型，异常值按默认值处理。                                                                                                                                                                                                                               |
 | itemFontColor                    | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮非选中的选项字体颜色。<br>默认值：`$r('sys.color.font_secondary')`                                                                                                                                                                                                                       |
 | itemSelectedFontColor            | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮选中的选项字体颜色。<br> 默认值：`$r('sys.color.font_primary')`                                                                                                                                                                                                                          |
 | itemFontWeight                   | [FontWeight](ts-appendix-enums.md#fontweight)                                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮非选中的选项字体字重。<br>默认值：FontWeight.Medium                                                                                                                                                                                                                                      |
@@ -94,7 +94,7 @@ TabSegmentButtonV2({
 | itemIconSize                     | [SizeT](../js-apis-arkui-graphics.md#sizett12)\<[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)>                                 | 是   | 是   | @Param             | 用于配置分段按钮选项中 Image 类型图标大小。<br>取值范围:[0, +∞)<br> 默认值：`{ width: LengthMetrics.vp(24), height: LengthMetrics.vp(24) }`                                                                                                                                                              |
 | itemIconFillColor                | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮非选中的选项图标颜色。<br> 默认值：`$r('sys.color.font_secondary')`                                                                                                                                                                                                                      |
 | itemSelectedIconFillColor        | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮选中的选项图标颜色。<br>默认值：`$r('sys.color.font_primary')`                                                                                                                                                                                                                           |
-| itemSymbolFontSize               | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选项中 HM Symbol 类型图标大小。<br>取值范围:[0, +∞)<br>默认值：`20fp`                                                                                                                                                                                                                    |
+| itemSymbolFontSize               | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选项中 HM Symbol 类型图标大小。<br>取值范围:[0, +∞)<br>默认值：`20fp`<br>**说明：** <br>不支持设置百分比类型，异常值按默认值处理。                                                                                                                                                                                                                    |
 | itemSymbolFontColor              | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮非选中的选项中 HM Symbol 类型图标颜色。<br>默认值：`$r('sys.color.font_secondary')`                                                                                                                                                                                                      |
 | itemSelectedSymbolFontColor      | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮选中的选项中 HM Symbol 类型图标颜色。<br>默认值：`$r('sys.color.font_primary')`                                                                                                                                                                                                          |
 | languageDirection                | [Direction](ts-appendix-enums.md#direction)                                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮的布局方向。<br>默认值：Direction.Auto                                                                                                                                                                                                                                                   |
@@ -140,7 +140,7 @@ CapsuleSegmentButtonV2({
 
 **装饰器类型：** @ComponentV2
 
-**原子化服务 API：** 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API：** 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -164,11 +164,11 @@ CapsuleSegmentButtonV2({
 | itemMinHeight                    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选项的最小高度。<br>取值范围:[0, +∞)<br>默认值：<br>只有纯文本或者纯图标选项时：`$r('sys.float.segment_button_v2_singleline_selected_height')`；有图文混合的选项时：`$r('sys.float.segment_button_v2_doubleline_selected_height')`                                                       |
 | itemPadding                      | [LocalizedPadding](ts-types.md#localizedpadding12)                                                                                             | 是   | 是   | @Param             | 用于配置分段按钮选项的内边距。<br> 默认值：`{ top: LengthMetrics.resource($r('sys.float.padding_level2')), bottom: LengthMetrics.resource($r('sys.float.padding_level2')), start: LengthMetrics.resource($r('sys.float.padding_level4')), end: LengthMetrics.resource($r('sys.float.padding_level4')) }` |
 | itemShadow                       | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10) | 是   | 是   | @Param             | 用于配置分段按钮选项的阴影。<br>默认值：ShadowStyle.OUTER_DEFAULT_XS                                                                                                                                                                                                                                     |
-| itemSpace                        | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选项之间的间隔。<br>取值范围:[0, +∞)<br>默认值：`LengthMetrics.vp(0)`<br>**说明：** 不支持设置百分比类型，异常值按默认值处理。                                                                                                                                                           |
+| itemSpace                        | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选项之间的间隔。<br>取值范围:[0, +∞)<br>默认值：`LengthMetrics.vp(0)`<br>**说明：** <br>不支持设置百分比类型，异常值按默认值处理。                                                                                                                                                           |
 | itemMinFontScale                 | number \| [Resource](ts-types.md#resource)                                                                                                     | 是   | 是   | @Param             | 用于配置分段按钮选项文字大小可以缩小到的最小字体大小缩放倍数。<br>取值范围：[0, 1]<br>**说明：** <br>设置的值小于 0 时，按值为 0 处理，设置的值大于 1，按值为 1 处理，异常值默认不生效。                                                                                                                 |
 | itemMaxFontScale                 | number \| [Resource](ts-types.md#resource)                                                                                                     | 是   | 是   | @Param             | 用于配置分段按钮选项文字大小可以放大到的最大字体大小放大倍数。<br>取值范围：[1, 2]<br>默认值：1<br>**说明：** <br>设置的值小于 1 时，按值为 1 处理，设置的值大于 2，按值为 2 处理，异常值默认不生效。                                                                                                    |
-| itemFontSize                     | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮非选中的选项字体大小。<br>取值范围:[0, +∞)<br>默认值：`14fp`                                                                                                                                                                                                                             |
-| itemSelectedFontSize             | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选中的选项字体大小。<br>取值范围:[0, +∞)<br>默认值：`14fp`                                                                                                                                                                                                                               |
+| itemFontSize                     | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮非选中的选项字体大小。<br>取值范围:[0, +∞)<br>默认值：`14fp`<br>**说明：** <br>不支持设置百分比类型，异常值按默认值处理。                                                                                                                                                                                                                             |
+| itemSelectedFontSize             | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选中的选项字体大小。<br>取值范围:[0, +∞)<br>默认值：`14fp`<br>**说明：** <br>不支持设置百分比类型，异常值按默认值处理。                                                                                                                                                                                                                               |
 | itemFontColor                    | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮非选中的选项字体颜色。<br>默认值：`$r('sys.color.font_secondary')`                                                                                                                                                                                                                       |
 | itemSelectedFontColor            | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮选中的选项字体颜色。<br> 默认值：`$r('sys.color.font_on_primary')`                                                                                                                                                                                                                       |
 | itemFontWeight                   | [FontWeight](ts-appendix-enums.md#fontweight)                                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮非选中的选项字体字重。<br>默认值：FontWeight.Medium                                                                                                                                                                                                                                      |
@@ -177,7 +177,7 @@ CapsuleSegmentButtonV2({
 | itemIconSize                     | [SizeT](../js-apis-arkui-graphics.md#sizett12)\<[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)>                                 | 是   | 是   | @Param             | 用于配置分段按钮选项中 Image 类型图标大小。<br>取值范围:[0, +∞)<br> 默认值：`{ width: LengthMetrics.vp(24), height: LengthMetrics.vp(24) }`                                                                                                                                                              |
 | itemIconFillColor                | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮非选中的选项图标颜色。<br> 默认值：`$r('sys.color.font_secondary')`                                                                                                                                                                                                                      |
 | itemSelectedIconFillColor        | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮选中的选项图标颜色。<br>默认值：`$r('sys.color.font_on_primary')`                                                                                                                                                                                                                        |
-| itemSymbolFontSize               | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选项中 HM Symbol 类型图标大小。<br>取值范围:[0, +∞)<br>默认值：`20fp`                                                                                                                                                                                                                    |
+| itemSymbolFontSize               | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选项中 HM Symbol 类型图标大小。<br>取值范围:[0, +∞)<br>默认值：`20fp`<br>**说明：** <br>不支持设置百分比类型，异常值按默认值处理。                                                                                                                                                                                                                    |
 | itemSymbolFontColor              | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮非选中的选项中 HM Symbol 类型图标颜色。<br>默认值：`$r('sys.color.font_secondary')`                                                                                                                                                                                                      |
 | itemSelectedSymbolFontColor      | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮选中的选项中 HM Symbol 类型图标颜色。<br>默认值：`$r('sys.color.font_on_primary')`                                                                                                                                                                                                       |
 | languageDirection                | [Direction](ts-appendix-enums.md#direction)                                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮的布局方向。<br>默认值：Direction.Auto                                                                                                                                                                                                                                                   |
@@ -219,7 +219,7 @@ MultiCapsuleSegmentButtonV2({
 
 **装饰器类型：** @ComponentV2
 
-**原子化服务 API：** 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API：** 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -239,10 +239,10 @@ MultiCapsuleSegmentButtonV2({
 | itemMinHeight                  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选项的最小高度。<br>取值范围:[0, +∞)<br>默认值：<br>只有纯文本或者纯图标选项时：`$r('sys.float.segment_button_v2_singleline_selected_height')`；有图文混合的选项时：`$r('sys.float.segment_button_v2_doubleline_selected_height')`                                                       |
 | itemPadding                    | [LocalizedPadding](ts-types.md#localizedpadding12)                                                                                             | 是   | 是   | @Param             | 用于配置分段按钮选项的内边距。<br> 默认值：`{ top: LengthMetrics.resource($r('sys.float.padding_level2')), bottom: LengthMetrics.resource($r('sys.float.padding_level2')), start: LengthMetrics.resource($r('sys.float.padding_level4')), end: LengthMetrics.resource($r('sys.float.padding_level4')) }` |
 | itemShadow                     | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10) | 是   | 是   | @Param             | 用于配置分段按钮选项的阴影。<br>默认值：ShadowStyle.OUTER_DEFAULT_XS                                                                                                                                                                                                                                     |
-| itemSpace                      | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选项之间的间隔。<br>取值范围:[0, +∞)<br>默认值：`LengthMetrics.vp(1)`<br>**说明：** 不支持设置百分比类型，异常值按默认值处理。                                                                                                                                                           |
+| itemSpace                      | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选项之间的间隔。<br>取值范围:[0, +∞)<br>默认值：`LengthMetrics.vp(1)`<br>**说明：** <br>不支持设置百分比类型，异常值按默认值处理。                                                                                                                                                           |
 | itemMinFontScale               | number \| [Resource](ts-types.md#resource)                                                                                                     | 是   | 是   | @Param             | 用于配置分段按钮选项文字大小可以缩小到的最小字体大小缩放倍数。<br>取值范围：[0, 1]<br>**说明：** <br>设置的值小于 0 时，按值为 0 处理，设置的值大于 1，按值为 1 处理，异常值默认不生效。                                                                                                                 |
 | itemMaxFontScale               | number \| [Resource](ts-types.md#resource)                                                                                                     | 是   | 是   | @Param             | 用于配置分段按钮选项文字大小可以放大到的最大字体大小放大倍数。<br>取值范围：[1, 2]<br>默认值：1<br>**说明：** <br>设置的值小于 1 时，按值为 1 处理，设置的值大于 2，按值为 2 处理，异常值默认不生效。                                                                                                    |
-| itemSelectedFontSize           | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选中的选项字体大小。<br>取值范围:[0, +∞)<br>默认值：`14fp`                                                                                                                                                                                                                               |
+| itemSelectedFontSize           | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选中的选项字体大小。<br>取值范围:[0, +∞)<br>默认值：`14fp`<br>**说明：** <br>不支持设置百分比类型，异常值按默认值处理。                                                                                                                                                                                                                               |
 | itemFontColor                  | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮非选中的选项字体颜色。<br>默认值：`$r('sys.color.font_secondary')`                                                                                                                                                                                                                       |
 | itemSelectedFontColor          | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮选中的选项字体颜色。<br> 默认值：`$r('sys.color.font_on_primary')`                                                                                                                                                                                                                       |
 | itemFontWeight                 | [FontWeight](ts-appendix-enums.md#fontweight)                                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮非选中的选项字体字重。<br>默认值：FontWeight.Medium                                                                                                                                                                                                                                      |
@@ -251,7 +251,7 @@ MultiCapsuleSegmentButtonV2({
 | itemIconSize                   | [SizeT](../js-apis-arkui-graphics.md#sizett12)\<[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)>                                 | 是   | 是   | @Param             | 用于配置分段按钮选项中 Image 类型图标大小。<br>取值范围:[0, +∞)<br> 默认值：`{ width: LengthMetrics.vp(24), height: LengthMetrics.vp(24) }`                                                                                                                                                              |
 | itemIconFillColor              | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮非选中的选项图标颜色。<br> 默认值：`$r('sys.color.font_secondary')`                                                                                                                                                                                                                      |
 | itemSelectedIconFillColor      | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮选中的选项图标颜色。<br>默认值：`$r('sys.color.font_on_primary')`                                                                                                                                                                                                                        |
-| itemSymbolFontSize             | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选项中 HM Symbol 类型图标大小。<br>取值范围:[0, +∞)<br>默认值：`20fp`                                                                                                                                                                                                                    |
+| itemSymbolFontSize             | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                                                  | 是   | 是   | @Param             | 用于配置分段按钮选项中 HM Symbol 类型图标大小。<br>取值范围:[0, +∞)<br>默认值：`20fp`<br>**说明：** <br>不支持设置百分比类型，异常值按默认值处理。                                                                                                                                                                                                                    |
 | itemSymbolFontColor            | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮非选中的选项中 HM Symbol 类型图标颜色。<br>默认值：`$r('sys.color.font_secondary')`                                                                                                                                                                                                      |
 | itemSelectedSymbolFontColor    | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮选中的选项中 HM Symbol 类型图标颜色。<br>默认值：`$r('sys.color.font_on_primary')`                                                                                                                                                                                                       |
 | languageDirection              | [Direction](ts-appendix-enums.md#direction)                                                                                                    | 是   | 是   | @Param             | 用于配置分段按钮的布局方向。<br>默认值：Direction.Auto                                                                                                                                                                                                                                                   |
@@ -264,7 +264,7 @@ MultiCapsuleSegmentButtonV2({
 
 **装饰器类型：** @ObservedV2
 
-**原子化服务 API：** 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API：** 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -272,7 +272,7 @@ MultiCapsuleSegmentButtonV2({
 
 **装饰器类型**： @ObservedV2
 
-**原子化服务 API：** 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API：** 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
@@ -282,7 +282,7 @@ constructor(items: SegmentButtonV2ItemOptions[])
 
 构造函数。
 
-**原子化服务 API**： 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API**： 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
@@ -298,7 +298,7 @@ get hasHybrid()
 
 是否有图文混合选项。
 
-**原子化服务 API**： 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API**： 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
@@ -314,7 +314,7 @@ get hasHybrid()
 
 **装饰器类型**： @ObservedV2
 
-**原子化服务 API**： 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API**： 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
@@ -344,7 +344,7 @@ constructor(options: SegmentButtonV2ItemOptions)
 
 构造函数。
 
-**原子化服务 API**： 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API**： 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
@@ -360,7 +360,7 @@ get isHybrid()
 
 分段按钮选项是否同时配置了文本和图标。
 
-**原子化服务 API**： 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API**： 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
@@ -374,7 +374,7 @@ get isHybrid()
 
 分段按钮选项配置参数。
 
-**原子化服务 API：** 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API：** 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -406,7 +406,7 @@ type OnSelectedIndexChange = (selectedIndex: number) => void
 
 单选的分段按钮选中项变更时调用的回调函数的类型。
 
-**原子化服务 API：** 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API：** 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -422,7 +422,7 @@ type OnSelectedIndexesChange = (selectedIndexes: number[]) => void
 
 多选的分段按钮选中项变更时调用的回调函数的类型。
 
-**原子化服务 API：** 从 API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务 API：** 从 API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

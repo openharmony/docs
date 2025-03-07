@@ -46,7 +46,7 @@ Queries the list of domain names associated with an application based on its bun
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Application Domain Name Verification Error Codes](errorcode-appDomainVerify.md.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Application Domain Name Verification Error Codes](errorcode-appDomainVerify.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
@@ -94,7 +94,7 @@ Obtains the list of bundle names associated with a domain name.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Application Domain Name Verification Error Codes](errorcode-appDomainVerify.md.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Application Domain Name Verification Error Codes](errorcode-appDomainVerify.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |

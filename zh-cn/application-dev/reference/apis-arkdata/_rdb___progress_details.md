@@ -20,4 +20,4 @@
 | [version](_r_d_b.md#version-33) | 用于唯一标识OH_TableDetails结构的版本。 |
 | [schedule](_r_d_b.md#schedule) | 表示端云同步过程。 |
 | [code](_r_d_b.md#code) | 表示端云同步过程的状态。 |
-| [tableLength](_r_d_b.md#tablelength) | 表示端云同步的表的数量 |
+| [tableLength](_r_d_b.md#tablelength) | 表示端云同步的表的数量。 |

@@ -43,7 +43,7 @@
        return;
      }
      //...
-     hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in removeing sticky event.`);
+     hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in removing sticky event.`);
    });
    ```
 

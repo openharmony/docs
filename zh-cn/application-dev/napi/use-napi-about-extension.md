@@ -45,14 +45,14 @@ static napi_value Add(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
 
     // 将传入的napi_value类型的参数转化为double类型
-    double valueLift;
+    double valueLeft;
     double valueRight;
-    napi_get_value_double(env, args[0], &valueLift);
+    napi_get_value_double(env, args[0], &valueLeft);
     napi_get_value_double(env, args[1], &valueRight);
 
     // 将转化后的double值相加并转成napi_value返回给ArkTS代码使用
     napi_value sum;
-    napi_create_double(env, valueLift + valueRight, &sum);
+    napi_create_double(env, valueLeft + valueRight, &sum);
 
     return sum;
 }

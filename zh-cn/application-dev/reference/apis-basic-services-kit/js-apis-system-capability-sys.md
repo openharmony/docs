@@ -26,7 +26,7 @@ querySystemCapabilities(callback: AsyncCallback&lt;string&gt;): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback<string> | 是 | 回调函数 |
+| callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。 |
 
 
 **示例：**

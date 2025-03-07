@@ -21,7 +21,7 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 
 | 名称           | 类型                               | 必填 | 说明                                                         |
 | -------------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| userId<sup>16+</sup> | number | 否   |要认证的目标用户ID，值为大于等于0的正整数。|
+| userId<sup>18+</sup> | number | 否   |要认证的目标用户ID，值为大于等于0的正整数。|
 
 ## WindowModeType<sup>10+</sup>
 
@@ -355,7 +355,7 @@ try {
 }
 ```
 
-## UserAuthResultCode<sup>16+</sup>
+## UserAuthResultCode<sup>18+</sup>
 
 表示返回码的枚举。
 

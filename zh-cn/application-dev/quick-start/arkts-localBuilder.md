@@ -61,7 +61,8 @@ this.MyBuilderFunction()
 ### 按引用传递参数
 
 按引用传递参数时，传递的参数可为状态变量，且状态变量的改变会引起\@LocalBuilder方法内的UI刷新。
-若子组件调用父组件的@LocalBuilder函数，传入的参数发生变化，不会引起\@LocalBuilder方法内的UI刷新。
+
+特别说明，若\@LocalBuilder函数和$$参数一起使用，子组件调用父组件的@LocalBuilder函数，传入的参数发生变化，不会引起\@LocalBuilder方法内的UI刷新。
 
 使用场景：
 
@@ -80,13 +81,13 @@ struct Parent {
   @LocalBuilder
   citeLocalBuilder(params: ReferenceType) {
     Row() {
-      Text(`UseStateVarByReference: ${params.paramString} `)
+      Text(`UseStateVarByReference: ${params.paramString}`)
     }
   };
 
   build() {
     Column() {
-      this.citeLocalBuilder({ paramString: this.variableValue });
+      this.citeLocalBuilder({ paramString: this.variableValue })
       Button('Click me').onClick(() => {
         this.variableValue = 'Hi World';
       })
@@ -112,7 +113,7 @@ struct HelloComponent {
 
   build() {
     Row() {
-      Text(`HelloComponent===${this.message}`);
+      Text(`HelloComponent===${this.message}`)
     }
   }
 }
@@ -126,15 +127,15 @@ struct Parent {
   citeLocalBuilder($$: ReferenceType) {
     Row() {
       Column() {
-        Text(`citeLocalBuilder===${$$.paramString}`);
-        HelloComponent({ message: $$.paramString });
+        Text(`citeLocalBuilder===${$$.paramString}`)
+        HelloComponent({ message: $$.paramString })
       }
     }
   }
 
   build() {
     Column() {
-      this.citeLocalBuilder({ paramString: this.variableValue });
+      this.citeLocalBuilder({ paramString: this.variableValue })
       Button('Click me').onClick(() => {
         this.variableValue = 'Hi World';
       })
@@ -145,93 +146,74 @@ struct Parent {
 
 子组件引用父组件的@LocalBuilder函数，传入的参数为状态变量，状态变量的改变不会引发@LocalBuilder方法内的UI刷新，原因是@Localbuilder装饰的函数绑定在父组件上，状态变量刷新机制是刷新本组件以及其子组件，对父组件无影响，故无法引发刷新。若使用@Builder修饰则可引发刷新，原因是@Builder改变了函数的this指向，此时函数被绑定到子组件上，故能引发UI刷新。
 
+
 使用场景：
 
-组件Child将@State修饰的label值按照函数传参方式传递到Parent的@Builder和@LocalBuilder函数内，在被@Builder修饰的函数内，this指向Child，参数变化能引发UI刷新，在被@LocalBuilder修饰的函数内，this指向Parent，参数变化不能引发UI刷新。
-
+组件Child将状态变量传递到Parent的@Builder和@LocalBuilder函数内，在@Builder的函数内，this指向Child，参数变化能引发UI刷新，在@LocalBuilder函数内，this指向Parent，参数变化不能引发UI刷新。若@LocalBuilder函数内引用Parent的状态变量发生变化，UI能正常刷新。
 
 ```ts
-class LayoutSize {
-  size:number = 0;
+class Data {
+  size: number = 0;
 }
 
 @Entry
 @Component
 struct Parent {
-  label:string = 'parent';
-  @State layoutSize:LayoutSize = {size:0};
+  label: string = 'parent';
+  @State data: Data = new Data();
+
+  @Builder
+  componentBuilder($$: Data) {
+    Text(`builder + $$`)
+    Text(`${'this -> ' + this.label}`)
+    Text(`${'size : ' + $$.size}`)
+    Text(`------------------------`)
+  }
 
   @LocalBuilder
-  // @Builder
-  componentBuilder($$:LayoutSize) {
-    Text(`${'this :'+this.label}`);
-    Text(`${'size :'+$$.size}`);
+  componentLocalBuilder($$: Data) {
+    Text(`LocalBuilder + $$ data`)
+    Text(`${'this -> ' + this.label}`)
+    Text(`${'size : ' + $$.size}`)
+    Text(`------------------------`)
+  }
+
+  @LocalBuilder
+  contentLocalBuilderNoArgument() {
+    Text(`LocalBuilder + local data`)
+    Text(`${'this -> ' + this.label}`)
+    Text(`${'size : ' + this.data.size}`)
+    Text(`------------------------`)
   }
 
   build() {
     Column() {
-      Child({contentBuilder: this.componentBuilder });
-    }
-  }
-}
-
-@Component
-struct Child {
-  label:string = 'child';
-  @BuilderParam contentBuilder:((layoutSize: LayoutSize) => void);
-  @State layoutSize:LayoutSize = {size:0};
-
-  build() {
-    Column() {
-      this.contentBuilder({size: this.layoutSize.size});
-      Button("add child size").onClick(()=>{
-        this.layoutSize.size += 1;
+      Child({
+        contentBuilder: this.componentBuilder,
+        contentLocalBuilder: this.componentLocalBuilder,
+        contentLocalBuilderNoArgument: this.contentLocalBuilderNoArgument,
+        data: this.data
       })
     }
   }
 }
-```
-
-使用场景：
-
-组件Child将@Link引用Parent的@State修饰的label值按照函数传参方式传递到Parent的@Builder和@LocalBuilder函数内，在被@Builder修饰的函数内，this指向Child，参数变化能引发UI刷新，在被@LocalBuilder修饰的函数内，this指向Parent，参数变化不能引发UI刷新。
-
-```ts
-class LayoutSize {
-  size:number = 0;
-}
-
-@Entry
-@Component
-struct Parent {
-  label:string = 'parent';
-  @State layoutSize:LayoutSize = {size:0};
-
-  @LocalBuilder
-  // @Builder
-  componentBuilder($$:LayoutSize) {
-    Text(`${'this :'+this.label}`);
-    Text(`${'size :'+$$.size}`);
-  }
-
-  build() {
-    Column() {
-      Child({contentBuilder: this.componentBuilder,layoutSize:this.layoutSize});
-    }
-  }
-}
 
 @Component
 struct Child {
-  label:string = 'child';
-  @BuilderParam contentBuilder:((layoutSize: LayoutSize) => void);
-  @Link layoutSize:LayoutSize;
+  label: string = 'child';
+  @Builder customBuilder() {};
+  @BuilderParam contentBuilder: ((data: Data) => void) = this.customBuilder;
+  @BuilderParam contentLocalBuilder: ((data: Data) => void) = this.customBuilder;
+  @BuilderParam contentLocalBuilderNoArgument: (() => void) = this.customBuilder;
+  @Link data: Data;
 
   build() {
     Column() {
-      this.contentBuilder({size: this.layoutSize.size});
-      Button("add child size").onClick(()=>{
-        this.layoutSize.size += 1;
+      this.contentBuilder({ size: this.data.size })
+      this.contentLocalBuilder({ size: this.data.size })
+      this.contentLocalBuilderNoArgument()
+      Button("add child size").onClick(() => {
+        this.data.size += 1;
       })
     }
   }
@@ -256,13 +238,13 @@ struct Parent {
   @LocalBuilder
   citeLocalBuilder(paramA1: string) {
     Row() {
-      Text(`UseStateVarByValue: ${paramA1} `)
+      Text(`UseStateVarByValue: ${paramA1}`)
     }
   }
 
   build() {
     Column() {
-      this.citeLocalBuilder(this.label);
+      this.citeLocalBuilder(this.label)
     }
   }
 }

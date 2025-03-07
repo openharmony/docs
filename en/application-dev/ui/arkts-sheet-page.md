@@ -4,7 +4,7 @@ A semi-modal page, implemented using [bindSheet](../reference/apis-arkui/arkui-t
 
 Semi-modal pages are suitable for displaying simple tasks or information panels, such as personal information, text introductions, sharing panels, creating schedules, and adding content. If a semi-modal page needs to be displayed in a way that could potentially affect the parent view, it can be configured to use a non-modal interaction form.
 
-Semi-modal pages have different form capabilities on devices of different widths. For details about the form requirements on devices with different widths, see the [preferType](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindoptions) property. You can use **bindSheet** to build semi-modal transition effects. For details, see [Modal Transition](arkts-modal-transition.md#creating-sheet-transition-with-bindsheet). For complex or lengthy user processes, consider other transition methods instead of semi-modals, such as [full-modal transition](arkts-contentcover-page.md) and [navigation transition](arkts-navigation-transition.md).
+Semi-modal pages have different form capabilities on devices of different widths. For details about the form requirements on devices with different widths, see the [preferType](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions) property. You can use **bindSheet** to build semi-modal transition effects. For details, see [Modal Transition](arkts-modal-transition.md#creating-sheet-transition-with-bindsheet). For complex or lengthy user processes, consider other transition methods instead of semi-modals, such as [full-modal transition](arkts-contentcover-page.md) and [navigation transition](arkts-navigation-transition.md).
 
 ## Constraints
 
@@ -18,8 +18,8 @@ The semi-modal page provides lifecycle callbacks to notify the application of th
 
 | Name           |Type| Description                      |
 | ----------------- | ------ | ---------------------------- |
-| onWillAppear    | () => void | Callback for when the semi-modal page is about to be displayed (before the animation starts).|
-| onAppear    | () => void  | Callback for when the semi-modal page is displayed (after the animation ends). |
+| onWillAppear    | () => void | Callback for when the semi-modal page is about to appear (before the animation starts).|
+| onAppear    | () => void  | Callback for when the semi-modal page appears (after the animation ends). |
 | onWillDisappear | () => void | Callback for when the semi-modal page is about to disappear (before the animation starts).|
 | onDisappear |() => void  | Callback for when the semi-modal page disappears (after the animation ends).    |
 
@@ -62,41 +62,48 @@ The sample code is as follows:
 @Component
 struct SheetDemo {
   @State isShowSheet: boolean = false
-  private items : number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  private items: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
   @Builder
   SheetBuilder() {
     Column() {
       // Step 1: Customize a scrollable container.
-      List({space:'10vp'}) {
-        ForEach(this.items,(item : number) => {
+      List({ space: '10vp' }) {
+        ForEach(this.items, (item: number) => {
           ListItem() {
             Text(String(item)).fontSize(16).fontWeight(FontWeight.Bold)
           }.width('90%').height('80vp').backgroundColor('#ff53ecd9').borderRadius(10)
         })
-      }.alignListItem(ListItemAlign.Center).margin({top:'10vp'}).width('100%').height('900px')
+      }
+      .alignListItem(ListItemAlign.Center)
+      .margin({ top: '10vp' })
+      .width('100%')
+      .height('900px')
       // Step 2: Set the nested scrolling attributes of the scrollable component.
       .nestedScroll({
         scrollForward: NestedScrollMode.PARENT_FIRST,
         scrollBackward: NestedScrollMode.SELF_FIRST,
       })
 
-      Text("Non-scrollable area").width('100%').backgroundColor(Color.Gray)
+      Text("Non-scrollable area")
+        .width('100%')
+        .backgroundColor(Color.Gray)
         .layoutWeight(1)
         .textAlign(TextAlign.Center)
         .align(Alignment.Top)
     }.width('100%').height('100%')
   }
+
   build() {
     Column() {
       Button('Open Sheet').width('90%').height('80vp')
-        .onClick(()=>{
+        .onClick(() => {
           this.isShowSheet = !this.isShowSheet
         })
         .bindSheet($$this.isShowSheet, this.SheetBuilder(), {
-          detents:[SheetSize.MEDIUM, SheetSize.LARGE, 600],
+          detents: [SheetSize.MEDIUM, SheetSize.LARGE, 600],
           preferType: SheetType.BOTTOM,
-          title: {title: 'Nested Scrolling Scenario'},
+          title: { title: 'Nested Scrolling Scenario' },
         })
     }.width('100%').height('100%')
     .justifyContent(FlexAlign.Center)

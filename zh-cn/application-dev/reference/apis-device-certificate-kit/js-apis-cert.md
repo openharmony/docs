@@ -55,7 +55,7 @@ buffer数组的列表。
  **系统能力：** SystemCapability.Security.Cert
 | 名称           | 类型           | 可读 | 可写 | 说明               |
 | -------------- | -------------- | ---- | ---- | ----------------|
-| data           | Uint8Array     | 是   | 是   | 数据列表。    |
+| data           | Array\<Uint8Array>     | 是   | 是   | 数据列表。    |
 
 ## EncodingFormat
 
@@ -2295,6 +2295,12 @@ getItem(itemType: CertItemType) : DataBlob
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名    | 类型   | 必填 | 说明                                       |
+| --------- | ------ | ---- | ------------------------------------------ |
+| itemType | [CertItemType](#certitemtype10) | 是   | 表示需要获取的证书字段。 |
 
 **返回值**：
 

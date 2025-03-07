@@ -49,7 +49,7 @@ class MyPrefetcher implements IPrefetcher {
 ```
 
 ### visibleAreaChanged
-visibleAreaChanged(minVisible: number, maxVisible: number): void
+visibleAreaChanged(minVisible: number, maxVisible: number): void;
 
 Called when the boundaries of the visible area change. It works with the **List**, **Grid**, **Waterfall**, and **Swiper** components.
 
@@ -86,7 +86,7 @@ As a fundamental implementation of **IPrefetcher**, offers an intelligent data p
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ### constructor
-constructor(dataSource?: IDataSourcePrefetching)
+constructor(dataSource?: IDataSourcePrefetching);
 
 A constructor used to create a **DataSource** instance.
 
@@ -116,7 +116,7 @@ Sets the prefetching-capable data source to bind to the **Prefetcher** object.
 | dataSource | [IDataSourcePrefetching](#idatasourceprefetching) | Yes | Prefetching-capable data source.|
 
 ### visibleAreaChanged
-visibleAreaChanged(minVisible: number, maxVisible: number): void
+visibleAreaChanged(minVisible: number, maxVisible: number): void;
 
 Called when the boundaries of the visible area change. It works with the **List**, **Grid**, **Waterfall**, and **Swiper** components.
 
@@ -133,13 +133,17 @@ Called when the boundaries of the visible area change. It works with the **List*
 
 ## IDataSourcePrefetching
 
-Implements a prefetching-capable data source.
+Extends the [IDataSource](./arkui-ts/ts-rendering-control-lazyforeach.md#idatasource10) API to provide a data source with prefetching capabilities.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ### prefetch
+prefetch(index: number): Promise\<void\> | void;
+
+Prefetches a specified data item from the dataset. This API can be either synchronous or asynchronous.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -148,9 +152,13 @@ Implements a prefetching-capable data source.
 
 | Name  | Type    | Mandatory| Description      |
 |-------|--------|----|----------|
-| index | number | Yes | Index of the data item to be prefetched.|
+| index | number | Yes | Index of the data item to prefetch.|
 
 ### cancel
+cancel?(index: number): Promise\<void\> | void;
+
+Cancels the prefetching of a specified data item from the dataset. This API can be either synchronous or asynchronous.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -159,11 +167,13 @@ Implements a prefetching-capable data source.
 
 | Name  | Type    | Mandatory| Description        |
 |-------|--------|----|------------|
-| index | number | Yes | Index of the data item whose prefetching should be canceled.|
+| index | number | Yes | Index of the data item to cancel prefetching for.|
 
 When list content moves off the screen (for example, during fast scrolling scenarios), once the prefetching algorithm determines which items outside the screen can have their prefetching canceled, this API is called. For instance, if the HTTP framework supports request cancellation, network requests initiated in the **prefetch** API can be canceled here.
 
 ## Example
+
+This example demonstrates the prefetching capabilities of **Prefetcher**. It uses pagination with **LazyForEach** to achieve lazy loading effects and simulates the loading process with delays.
 
 ```typescript
 import { BasicPrefetcher, IDataSourcePrefetching } from '@kit.ArkUI';
@@ -174,17 +184,27 @@ const ITEMS_ON_SCREEN = 8;
 @Entry
 @Component
 struct PrefetcherDemoComponent {
-  private readonly dataSource = new MyDataSource(2000, 500);
+  private page: number = 1;
+  private pageSize: number = 50;
+  private breakPoint: number = 25;
+  private readonly fetchDelayMs: number = 500;
+  private readonly dataSource = new MyDataSource(this.page, this.pageSize, this.fetchDelayMs);
   private readonly prefetcher = new BasicPrefetcher(this.dataSource);
 
   build() {
     Column() {
       List() {
-        LazyForEach(this.dataSource, (item: PictureItem) => {
+        LazyForEach(this.dataSource, (item: PictureItem, index: number) => {
           ListItem() {
             PictureItemComponent({ info: item })
               .height(`${100 / ITEMS_ON_SCREEN}%`)
           }
+          .onAppear(() => {
+            if (index >= this.breakPoint) {
+              this.dataSource.getHttpData(++this.page, this.pageSize);
+              this.breakPoint = this.dataSource.totalCount() - this.pageSize / 2;
+            }
+          })
         }, (item: PictureItem) => item.title)
       }
       .onScrollIndex((start: number, end: number) => {
@@ -230,14 +250,12 @@ class MyDataSource implements IDataSourcePrefetching {
   private readonly items: PictureItem[];
   private readonly fetchDelayMs: number;
   private readonly fetches: Map<ItemIndex, TimerId> = new Map();
+  private readonly listeners: DataChangeListener[] = [];
 
-  constructor(numItems: number, fetchDelayMs: number) {
+  constructor(pageNum: number, pageSize: number, fetchDelayMs: number) {
     this.items = [];
     this.fetchDelayMs = fetchDelayMs;
-    for (let i = 0; i < numItems; i++) {
-      const item = new PictureItem(getRandomColor(), `Item ${i}`)
-      this.items.push(item);
-    }
+    this.getHttpData(pageNum, pageSize);
   }
 
   async prefetch(index: number): Promise<void> {
@@ -268,6 +286,31 @@ class MyDataSource implements IDataSourcePrefetching {
     }
   }
 
+  // Simulate paginated data loading.
+  getHttpData(pageNum: number, pageSize:number): void {
+    const newItems: PictureItem[] = [];
+    for (let i = (pageNum - 1) * pageSize; i < pageNum * pageSize; i++) {
+      const item = new PictureItem(getRandomColor(), `Item ${i}`);
+      newItems.push(item);
+    }
+    const startIndex = this.items.length;
+    this.items.splice(startIndex, 0, ...newItems);
+    this.notifyBatchUpdate([
+      {
+        type: DataOperationType.ADD,
+        index: startIndex,
+        count: newItems.length,
+        key: newItems.map((item) => item.title)
+      }
+    ]);
+  }
+
+  private notifyBatchUpdate(operations: DataOperation[]) {
+    this.listeners.forEach((listener: DataChangeListener) => {
+      listener.onDatasetChange(operations);
+    });
+  }
+
   totalCount(): number {
     return this.items.length;
   }
@@ -276,10 +319,17 @@ class MyDataSource implements IDataSourcePrefetching {
     return this.items[index];
   }
 
-  registerDataChangeListener(_: DataChangeListener): void {
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener);
+    }
   }
 
-  unregisterDataChangeListener(_: DataChangeListener): void {
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1);
+    }
   }
 }
 
@@ -338,3 +388,11 @@ function create10x10Bitmap(color: number): ArrayBuffer {
   return buffer;
 }
 ```
+
+The following figure illustrates the effects.
+
+![Prefetcher-Demo](./figures/prefetcher-demo.gif)
+
+## Supplementary Notes
+
+You can also use the OpenHarmony third-party library [@netteam/prefetcher](https://ohpm.openharmony.cn/#/en/detail/@netteam%2Fprefetcher) to implement the prefetching functionality. This library provides additional APIs for more convenient and efficient data prefetching.

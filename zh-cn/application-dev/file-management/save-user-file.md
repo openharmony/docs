@@ -1,12 +1,17 @@
 # 保存用户文件
 
-在从网络下载文件到本地、或将已有用户文件另存为新的文件路径等场景下，需要使用FilePicker提供的保存用户文件的能力。Picker获取的URI只具有临时权限，获取持久化权限需要通过[FilePicker设置永久授权](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)方式获取。
+在从网络下载文件到本地或将已有用户文件另存为新的文件路径等场景下，需要使用FilePicker提供的保存用户文件的能力。需关注以下关键点：
 
-对音频、图片、视频、文档类文件的保存操作类似，均通过调用对应Picker的save()接口并传入对应的saveOptions来实现。通过Picker访问相关文件，无需申请权限。
+**权限说明**
 
-当前所有Picker的save接口都是用户可感知的，具体行为是拉起FilePicker, 将文件保存在系统文件管理器管理的特定目录，与图库管理的资源隔离，无法在图库中看到。
+- 通过Picker获取的URI默认只具备**临时读写权限**，临时授权在应用退出后台自动失效。
+- 获取持久化权限需要通过[FilePicker设置永久授权](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)方式获取。（仅限2in1设备）。
+- 使用picker对音频、图片、视频、文档类文件的保存操作**无需申请权限**。
 
-如果开发者需要保存图片、视频资源到图库，可使用用户无感的[安全控件进行保存](../media/medialibrary/photoAccessHelper-savebutton.md)。
+**系统隔离说明**
+
+- 通过Picker保存的文件存储在用户指定的目录。此类文件与图库管理的资源隔离，无法在图库中看到。
+- 若开发者需要保存图片、视频资源到图库，可使用用户无感的[安全控件进行保存](../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 ## 保存图片或视频类文件
 
@@ -16,7 +21,7 @@
 
 ## 保存文档类文件
 
-1. 导入选择器模块和基础文件API模块。
+1. 模块导入。
 
    ```ts
    import { picker } from '@kit.CoreFileKit';
@@ -25,14 +30,14 @@
    import { common } from '@kit.AbilityKit';
    ```
 
-2. 创建文档保存选项实例。
+2. 配置保存选项。
 
    ```ts
-   // 创建文件管理器选项实例
+   // 创建文件管理器选项实例。
    const documentSaveOptions = new picker.DocumentSaveOptions();
-   // 保存文件名（可选） 
+   // 保存文件名（可选）。 默认为空。
    documentSaveOptions.newFileNames = ["DocumentViewPicker01.txt"];
-   // 保存文件类型['后缀类型描述|后缀类型'],选择所有文件：'所有文件(*.*)|.*'（可选） ，如果选择项存在多个后缀，默认选择第一个。
+   // 保存文件类型['后缀类型描述|后缀类型'],选择所有文件：'所有文件(*.*)|.*'（可选） ，如果选择项存在多个后缀（做大限制100个过滤后缀），默认选择第一个。如果不传该参数，默认无过滤后缀。
    documentSaveOptions.fileSuffixChoices = ['文档|.txt', '.pdf']; 
    ```
 
@@ -42,9 +47,7 @@
    let uris: Array<string> = [];
    // 请确保 getContext(this) 返回结果为 UIAbilityContext
    let context = getContext(this) as common.Context;
-   // 创建文件选择器实例。
    const documentViewPicker = new picker.DocumentViewPicker(context);
-   //用户选择目标文件夹，用户选择与文件类型相对应的文件夹，即可完成文件保存操作。保存成功后，返回保存文档的URI。
    documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
      uris = documentSaveResult;
      console.info('documentViewPicker.save to file succeed and uris are:' + uris);
@@ -55,10 +58,12 @@
 
    > **注意**：
    >
-   > 1、建议不在Picker的回调里直接使用此URI进行打开文件操作，需要定义一个全局变量保存URI。
-   > 2、使用Picker的[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save)接口获取到URI的权限是临时读写权限,待退出应用后台后，获取的临时权限就会失效。
-   > 3、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。
-   > 4、可以通过便捷方式，直接将文件保存到[Download](#download模式保存文件)目录下。
+   > 1、URI存储建议：<br>
+   > - 避免在Picker回调中直接操作URI。<br>
+   > - 建议使用全局变量保存URI以供后续使用。<br>
+   >
+   > 2、快捷保存:<br>
+   > - 可以通过[DOWNLOAD模式](#download模式保存文件)直达下载目录。<br>
 
 4. 待界面从FilePicker返回后，使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过URI打开这个文件得到文件描述符(fd)。
 
@@ -79,7 +84,7 @@
 
 ## 保存音频类文件
 
-1. 导入选择器模块和基础文件API模块。
+1. 模块导入。
 
    ```ts
    import { picker } from '@kit.CoreFileKit';
@@ -88,10 +93,9 @@
    import { common } from '@kit.AbilityKit';
    ```
 
-2. 创建音频保存选项实例。
+2. 配置保存选项。
 
    ```ts
-   // 创建文件管理器选项实例
    const audioSaveOptions = new picker.AudioSaveOptions();
    // 保存文件名（可选） 
    audioSaveOptions.newFileNames = ['AudioViewPicker01.mp3']; 
@@ -104,7 +108,6 @@
    // 请确保 getContext(this) 返回结果为 UIAbilityContext
    let context = getContext(this) as common.Context; 
    const audioViewPicker = new picker.AudioViewPicker(context);
-   //用户选择目标文件夹，用户选择与文件类型相对应的文件夹，即可完成文件保存操作。保存成功后，返回保存文档的uri。
    audioViewPicker.save(audioSaveOptions).then((audioSelectResult: Array<string>) => {
      uri = audioSelectResult[0];
      console.info('audioViewPicker.save to file succeed and uri is:' + uri);
@@ -114,10 +117,13 @@
    ```
 
    > **注意**：
-   > 1、建议不在Picker的回调里直接使用此URI进行打开文件操作，需要定义一个全局变量保存URI。
-   > 2、使用Picker获取的[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3)URI权限是临时读写权限,待退出应用后台后，获取的临时权限就会失效。
-   > 3、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。
-   > 4、可以通过便捷方式，直接将文件保存到[Download](#download模式保存文件)目录下。
+   >
+   > 1、URI存储建议：<br>
+   > - 避免在Picker回调中直接操作URI。<br>
+   > - 建议使用全局变量保存URI以供后续使用。<br>
+   >
+   > 2、快捷保存：<br>
+   > - 可以通过[DOWNLOAD模式](#download模式保存文件)直达下载目录。<br>
 
 4. 待界面从FilePicker返回后，可以使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过URI打开这个文件得到文件描述符(fd)。
 
@@ -138,27 +144,30 @@
 
 ## DOWNLOAD模式保存文件
 
-用户在使用save接口时，可以将pickerMode配置为DOWNLOAD模式，该模式下会在公共路径download目录下创建用户当前hap包名的文件夹，并通过save接口返回值回传相应的URI，后续用户可以直接将文件保存在该URI下。
+**模式特点**
 
-1. 导入选择器模块和文件管理模块。
+- 自动创建在`Download/包名/`目录。
+- 跳过文件选择界面直接保存。
+- 返回的URI已具备持久化权限， 用户可在该URI下创建文件。
+
+1. 模块导入。
 
    ```ts
-   import { picker } from '@kit.CoreFileKit';
+   import { fileUri, picker } from '@kit.CoreFileKit';
    import { fileIo as fs } from '@kit.CoreFileKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { common } from '@kit.AbilityKit';
    ```
 
-2. 创建文件保存选项实例。
+2. 配置下载模式。
 
    ```ts
-   // 创建文件管理器选项实例
    const documentSaveOptions = new picker.DocumentSaveOptions();
    // 配置保存的模式为DOWNLOAD，若配置了DOWNLOAD模式，此时配置的其他documentSaveOptions参数将不会生效。
    documentSaveOptions.pickerMode = picker.DocumentPickerMode.DOWNLOAD; 
    ```
 
-3. 创建文件选择器实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-1)接口拉起FilePicker模态窗界面进行文件保存。用户点击同意，即可在download目录下创建对应应用的专属目录，返回该目录的URI。
+3. 保存到下载目录。
 
    ```ts
    let uri: string = '';
@@ -170,6 +179,10 @@
    documentViewPicker.save(documentSaveOptions ).then((documentSaveResult: Array<string>) => {
      uri = documentSaveResult[0];
      console.info('documentViewPicker.save succeed and uri is:' + uri);
+     const testFilePath = new fileUri.FileUri(uri + '/test.txt').path;
+     const file = fs.openSync(testFilePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+     fs.writeSync(file.fd, 'Hello HarmonyOS');
+     fs.closeSync(file.fd);
    }).catch((err: BusinessError) => {
      console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
    })

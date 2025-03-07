@@ -123,6 +123,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
       编辑"napi_init.cpp"文件，定义OnTrigger类型观察者相关方法：
     
       ```c++
+      //定义一变量，用来缓存创建的观察者的指针。
+      static HiAppEvent_Watcher *systemEventWatcher; 
+      
       // 开发者可以自行实现获取已监听到事件的回调函数，其中events指针指向内容仅在该函数内有效。
       static void OnTake(const char *const *events, uint32_t eventLen) {
           Json::Reader reader(Json::Features::strictMode());
@@ -218,7 +221,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    ```
 
 7. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，添加按钮并在其onClick函数构造资源泄漏场景，以触发资源泄漏事件。
-   此处需要使用[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)设置内存限制，造成内存内存泄漏，需要同步在“开发者选项”中打开“系统资源泄漏日志”(打开或关闭开关均需重启设备)。接口示例代码如下：
+   此处需要使用[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)设置内存限制，造成内存泄漏，同步在“开发者选项”中打开“系统资源泄漏日志”(打开或关闭开关均需重启设备)。接口示例代码如下：
 
    ```ts
     import hidebug from "@ohos.hidebug";

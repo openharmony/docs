@@ -3,7 +3,7 @@
 
 ## 概述
 
-定义图像源解码的范围选项。 [OhosImageDecodingOps](_ohos_image_decoding_ops.md), [OH_ImageSource_CreatePixelMap](image.md#oh_imagesource_createpixelmap) and [OH_ImageSource_CreatePixelMapList](image.md#oh_imagesource_createpixelmaplist).
+定义图像源解码的范围。 是[OhosImageDecodingOps](_ohos_image_decoding_ops.md)的成员变量。
 
 **系统能力：** SystemCapability.Multimedia.Image
 
@@ -19,7 +19,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int32_t [x](image.md#x) | 起始x坐标，用pixels表示 | 
-| int32_t [y](image.md#y) | 起始y坐标，用pixels表示 | 
-| int32_t [width](image.md#width) | 宽度范围，用pixels表示 | 
-| int32_t [height](image.md#height) | 高度范围，用pixels表示 | 
+| int32_t [x](image.md#x) | 起始x坐标，用pixels表示。 |
+| int32_t [y](image.md#y) | 起始y坐标，用pixels表示。 |
+| int32_t [width](image.md#width) | 宽度范围，用pixels表示。 |
+| int32_t [height](image.md#height) | 高度范围，用pixels表示。 |

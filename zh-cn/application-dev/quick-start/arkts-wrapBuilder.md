@@ -170,11 +170,11 @@ struct Parent{
 }
 ```
 
-## 错误场景
+## 常见问题
 
 ### 重复定义wrapBuilder失效
 
-通过wrapBuilder(MyBuilderFirst)初始化定义builderObj之后，再次对builderObj进行赋值wrapBuilder(MyBuilderSecond)会不起作用，只生效第一次定义的wrapBuilder(MyBuilderFirst)。
+在同一个自定义组件内，同一个wrapBuilder只能初始化一次。示例中builderObj通过wrapBuilder(MyBuilderFirst)初始化定义之后，再次对builderObj进行赋值wrapBuilder(MyBuilderSecond)不会生效。
 
 ```ts
 @Builder
@@ -201,6 +201,7 @@ struct Index {
 
   aboutToAppear(): void {
     setTimeout(() => {
+      // wrapBuilder(MyBuilderSecond) 不会生效
       this.builderObj.globalBuilder = wrapBuilder(MyBuilderSecond);
     },1000)
   }

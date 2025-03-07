@@ -466,10 +466,16 @@ Error: install parse native so failed.
 
 设备支持的Abi类型与C++工程中配置的Abi类型不匹配。
 
+> **说明：**
+>
+> - 如果工程有依赖HSP或者HAR模块，请确保所有包含C++代码的模块配置的Abi类型包含设备支持的Abi类型。
+> - 如果工程依赖的三方库包含so文件，请确保oh_modules/三方库/libs目录包含有设备支持的Abi目录，如libs/arm64-v8a、/libs/x86_64。
+<!--RP1--><!--RP1End-->
+
 **处理步骤**
 
 1. 将设备与DevEco Studio进行连接。
-2. 打开命令行工具，并进入SDK安装目录下的toolchains\{版本号}目录下。
+2. 打开命令行工具，并进入SDK安装目录下的toolchains目录下。
     ```
     若不清楚OpenHarmony SDK安装目录，可单击File > Settings > SDK界面查看安装路径。
     ```
@@ -660,10 +666,25 @@ Error: signature verification failed due to not trusted app source.
 * 场景一：
 	1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)。在连接设备后，重新为应用进行签名。
 	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
-		```
-		//UDID获取命令
-		hdc shell bm get -u
-		```
+
+        1. 获取当前设备的UDID。
+
+        ```
+          //UDID获取命令
+          hdc shell bm get -u
+        ```
+
+        2. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
+
+        ```
+          IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
+
+          例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
+          例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
+        ```
+
+        3. 在UnsgnedDebugProfileTemplate.json文件的device-ids字段中，添加当前设备的UDID。
+
   3. 查看签名中是否包含调试设备的UDID，可以使用文本编辑器打开已签名的HAP搜索device-ids。
 * 场景二：使用[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)重新签名应用。
 
@@ -685,7 +706,14 @@ Error: install failed due to grant request permissions failed.
 
 **处理步骤**
 
-1. 在UnsgnedDebugProfileTemplate.json文件中修改APL等级，调整成system_basic或system_core等级，重新签名打包即可。
+1. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
+```
+IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
+
+例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
+例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
+```
+2. 在UnsgnedDebugProfileTemplate.json文件中修改APL等级，修改APL等级为system_core等级，重新签名打包即可。
 
 
 ### 9568297 由于设备sdk版本较低导致安装失败
@@ -1018,18 +1046,23 @@ Error: bundle manager service is died.
 
 **可能原因**
 
-系统出现未知的异常，导致系统服务重启。
+系统出现未知的异常，导致包管理服务已停止或者异常退出。
 
 **处理步骤**
 
-1.查询设备/data/log/faultlog/faultlogger/目录下是否存在crash文件。
+1. 重启手机后再次尝试安装应用。
 
-2.crash文件中是否包含foundation字样的文件。
-
-3.请多次重试安装，如果还是报同样的错误，观察是否会多出包含foundation字样的crash文件生成。
-
-4.若多次重试都无法解决，请导出crash文件和日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
-
+2. 重复上述步骤3到5次后依旧安装失败，请查询设备的/data/log/faultlog/faultlogger/目录下是否存在包含foundation字样的crash文件。
+```
+hdc shell
+cd /data/log/faultlog/faultlogger/
+ls -ls
+```
+3. 导出crash文件和日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+```
+hdc file recv /data/log/faultlog/faultlogger/
+hdc file recv /data/log/hilog/
+```
 
 ### 9568393 验证代码签名失败
 **错误信息**
@@ -1048,24 +1081,7 @@ Error: verify code signature failed.
 
 1. 安装最新版本DevEco Studio，重新签名。
 
-
-### 9568257 验证pkcs7文件失败
-**错误信息**
-
-Error: fail to verify pkcs7 file.
-
-**错误描述**
-
-验证pkcs7文件失败。
-
-**可能原因**
-<!--RP3-->
-应用当前使用的签名不符合HarmonyOS应用签名要求，通常是由于当前使用的是OpenHarmony应用的签名，应该替换为HarmonyOS应用的签名。<!--RP3End-->
-
-**处理步骤**
-
-1. 在为应用/服务签名时勾选“Support HarmonyOS”,完成HarmonyOS应用签名后再次启动调试或运行应用。
-![示例图](figures/zh-cn_image_9868257_1.png)
+<!--RP3--><!--RP3End-->
 
 ### 9568401 调试包仅支持运行在开发者模式设备
 **错误信息**
@@ -1445,3 +1461,27 @@ os_integration bundle is not allowed to install for shell.
 **处理步骤**
 
 1. 检查应用是否是release的预装应用。
+
+### 9568278 安装包的版本号不一致
+**错误信息**
+
+error: install version code not same.
+
+**可能原因**
+1. 设备上安装的应用和安装报错的应用包版本号（versionCode）不一致。
+2. 安装多个包中存在版本号（versionCode）不一致。
+
+**处理步骤**
+1. 调整安装包的版本和设备中已存在的应用包的版本号（versionCode）一致，或者卸载设备中的应用，再去安装新的应用包。
+2. 调整安装的多个包的版本号（versionCode），所有的包都需要保持版本号（versionCode）一致。
+
+### 9568421 签名文件中的分发类型被限制，不允许安装到当前设备中，导致安装失败
+**错误信息**
+
+error: the app distribution type is not allowed install.
+
+**可能原因**
+该签名的分发类型被限制，禁止安装到当前设备中。
+
+**处理步骤**
+更换签名文件的分发类型。

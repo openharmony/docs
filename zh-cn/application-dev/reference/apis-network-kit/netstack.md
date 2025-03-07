@@ -42,7 +42,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | (\* [WebSocket_OnOpenCallback](#websocket_onopencallback)) (struct [WebSocket](_web_socket.md) \*client, [WebSocket_OpenResult](_web_socket___open_result.md) openResult) | websocket客户端接收open消息的回调函数定义。  | 
-| (\* [WebSocket_OnMessageCallback](#websocket_onmessagecallback)) (struct [WebSocket](_web_socket.md) \*client, char \*data, uint32_t length) | websocket客户端接收数据的回调函数定义。  | 
+| (\* [WebSocket_OnMessageCallback](#websocket_onmessagecallback)) (struct [WebSocket](_web_socket.md) \*client, char \*data, uint32_t length) | websocket客户端接收数据的回调函数定义。每个消息最大长度为4K，超过4K自动分片。  | 
 | (\* [WebSocket_OnErrorCallback](#websocket_onerrorcallback)) (struct [WebSocket](_web_socket.md) \*client, [WebSocket_ErrorResult](_web_socket___error_result.md) errorResult) | websocket客户端接收error错误消息的回调函数定义。  | 
 | (\* [WebSocket_OnCloseCallback](#websocket_onclosecallback)) (struct [WebSocket](_web_socket.md) \*client, [WebSocket_CloseResult](_web_socket___close_result.md) closeResult) | websocket客户端接收close消息的回调函数定义。  | 
 

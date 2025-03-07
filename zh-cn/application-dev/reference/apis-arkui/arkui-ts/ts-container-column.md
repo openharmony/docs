@@ -92,7 +92,7 @@ type SpaceType = number | string | Resource
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### alignItems
 
@@ -158,11 +158,23 @@ reverse(isReversed: Optional\<boolean\>)
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 
 设置垂直方向的布局属性，如间距、对齐方式等。
+
+```json
+// resources/base/element/string.json
+{
+  "string": [
+    {
+      "name": "stringSpace",
+      "value": "5"
+    }
+  ]
+}
+```
 
 ```ts
 // xxx.ets

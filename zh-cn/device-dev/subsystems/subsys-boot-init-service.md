@@ -39,6 +39,7 @@
    | socket | 可选 | 标准系统 | 配置socket属性相关设置 | 由socket创建流程的服务需配置此项 |
    | env | 可选 | 标准系统 | 配置服务的环境变量 | 类型：键值对型数组 <br>支持同时配置多个环境变量，如：<br>"env" : [{<br> "name" : "SERVICE_NALE", <br>"value" : "ueventd"},{<br> "name" : "TEST",<br> "value" : "test_value" <br>}]|
    | period | 可选 | 标准系统 | 配置服务退出后的定时启动 | 类型：int型，表示定时启动周期, 单位：秒<br>使能后，服务退出后，会启动定时器，定时拉起服务,如："period" : 60，表示服务退出后，60s后定时拉起|
+   | cgroup | 可选 | 标准系统 | 按需配置cgroup的标志    | 类型：bool，如"cgroup" : true<br>使能后，服务退出后，会管控服务进程的子进程，同步销毁|
 
    **表2**  socket字段说明
    | 字段名 | 说明 |

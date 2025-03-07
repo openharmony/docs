@@ -47,14 +47,14 @@ In the **GridRow** component, you can use **breakpoints** to customize the value
 
 
     ```ts
-  breakpoints: {value: ['100vp', '200vp']}
+    breakpoints: {value: ['100vp', '200vp']}
     ```
 
    Enables three breakpoints: xs, sm, and md. If the value is less than 100 vp, the breakpoint is xs. If the value is 100–200 vp, the breakpoint is sm. If the value is greater than 200 vp, the breakpoint is md.
 
 
     ```ts
-  breakpoints: {value: ['320vp', '520vp', '840vp', '1080vp']}
+    breakpoints: {value: ['320vp', '520vp', '840vp', '1080vp']}
     ```
 
   Enables five breakpoints: xs, sm, md, lg, and xl. If the value is less than 320 vp, the breakpoint is xs. If the value is 320–520 vp, the breakpoint is sm. If the value is 520–840 vp, the breakpoint is md. If the value is 840–1080 vp, the breakpoint is lg. If the value is greater than 1080 vp, the breakpoint is xl.
@@ -68,7 +68,7 @@ In the following example, the default number of grid columns is 12. Breakpoints 
 @State bgColors: ResourceColor[] =
     ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
       'rgb(255,192,0)', 'rgb(170,10,33)'];
-...
+// ...
 GridRow({
   breakpoints: {
     value: ['200vp', '300vp', '400vp', '500vp', '600vp'],
@@ -108,7 +108,7 @@ In the **GridRow**, **columns** is used to set the total number of columns in th
   @State bgColors: ResourceColor[] =
       ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
         'rgb(255,192,0)', 'rgb(170,10,33)', 'rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)'];
-    ...
+     // ...
     GridRow() {
       ForEach(this.bgColors, (item:ResourceColor, index?:number|undefined) => {
         GridCol() {
@@ -136,7 +136,7 @@ In the **GridRow**, **columns** is used to set the total number of columns in th
       ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
         'rgb(255,192,0)', 'rgb(170,10,33)'];
   @State currentBp: string = 'unknown';
-  ...
+  // ...
   Row() {
     GridRow({ columns: 4 }) {
       ForEach(this.bgColors, (item: ResourceColor, index?:number|undefined) => {
@@ -210,7 +210,7 @@ In the responsive grid layout, you can set the **direction** attribute of **Grid
 
 
     ```ts
-  GridRow({ direction: GridRowDirection.Row }){}
+    GridRow({ direction: GridRowDirection.Row }){}
     ```
 
     ![en-us_image_0000001511740488](figures/en-us_image_0000001511740488.png)
@@ -219,7 +219,7 @@ In the responsive grid layout, you can set the **direction** attribute of **Grid
 
 
     ```ts
-  GridRow({ direction: GridRowDirection.RowReverse }){}
+    GridRow({ direction: GridRowDirection.RowReverse }){}
     ```
 
     ![en-us_image_0000001562940517](figures/en-us_image_0000001562940517.png)
@@ -233,7 +233,7 @@ In the **GridRow** component, **gutter** is used to set the spacing between adja
 
 
     ```ts
-  GridRow({ gutter: 10 }){}
+    GridRow({ gutter: 10 }){}
     ```
 
     ![en-us_image_0000001511740476](figures/en-us_image_0000001511740476.png)
@@ -242,7 +242,7 @@ In the **GridRow** component, **gutter** is used to set the spacing between adja
 
 
     ```ts
-  GridRow({ gutter: { x: 20, y: 50 } }){}
+    GridRow({ gutter: { x: 20, y: 50 } }){}
     ```
 
     ![en-us_image_0000001511900456](figures/en-us_image_0000001511900456.png)
@@ -296,7 +296,7 @@ Sets the number of columns occupied by a child component in the grid layout, whi
   @State bgColors: ResourceColor[] =
       ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
         'rgb(255,192,0)', 'rgb(170,10,33)'];
-    ...
+    // ...
     GridRow({ columns: 8 }) {
       ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
         GridCol({ span: 2 }) {      
@@ -318,7 +318,7 @@ Sets the number of columns occupied by a child component in the grid layout, whi
   @State bgColors: ResourceColor[] =
       ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
         'rgb(255,192,0)', 'rgb(170,10,33)'];
-    ...
+    // ...
     GridRow({ columns: 8 }) {
       ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
         GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {      
@@ -345,7 +345,7 @@ Sets the column offset of a child component relative to the previous child compo
   @State bgColors: ResourceColor[] =
       ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
         'rgb(255,192,0)', 'rgb(170,10,33)'];
-    ...
+    // ...
     GridRow() {
       ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
         GridCol({ offset: 2 }) {      
@@ -369,7 +369,7 @@ Sets the column offset of a child component relative to the previous child compo
   @State bgColors: ResourceColor[] =
       ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
         'rgb(255,192,0)', 'rgb(170,10,33)'];
-    ...
+    // ...
   
     GridRow() {
       ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
