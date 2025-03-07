@@ -17,8 +17,8 @@
 1. 导入相关接口，导入方法如下。
      
    ```ts
-   import camera from '@ohos.multimedia.camera';
-   import { BusinessError } from '@ohos.base';
+   import { camera } from '@kit.CameraKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 调用cameraManager类中的[createSession](../../reference/apis-camera-kit/js-apis-camera.md#createsession11)方法创建一个会话。
@@ -104,14 +104,14 @@
        let err = error as BusinessError;
        console.error(`Failed to beginConfig. error: ${JSON.stringify(err)}`);
      }
-     // 从会话中移除拍照输出流
+     // 从会话中移除拍照输出流。
      try {
        photoSession.removeOutput(photoOutput);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to remove photoOutput. error: ${JSON.stringify(err)}`);
      }
-     // 向会话中添加视频输出流
+     // 向会话中添加视频输出流。
      try {
        photoSession.addOutput(videoOutput);
      } catch (error) {

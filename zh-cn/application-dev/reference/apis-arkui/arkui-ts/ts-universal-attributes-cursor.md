@@ -13,6 +13,8 @@
 
 setCursor(value: PointerStyle): void
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 方法语句中可使用的全局接口，调用此接口可以更改当前的鼠标光标样式。
 
 **参数：**
@@ -26,15 +28,22 @@ setCursor(value: PointerStyle): void
 
 restoreDefault(): void
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 方法语句中可使用的全局接口，调用此接口可以将鼠标光标恢复成默认的箭头光标样式。
 
 
 ## 示例
 
+该示例通过setCursor实现了鼠标更改当前光标样式。
+
+> **说明：**
+> 
+> 直接使用cursorControl可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getCursorController](../js-apis-arkui-UIContext.md#getcursorcontroller12)获取绑定实例的cursorControl。
 
 ```ts
 // xxx.ets
-import pointer from '@ohos.multimodalInput.pointer';
+import { pointer } from '@kit.InputKit';
 
 @Entry
 @Component
@@ -47,16 +56,20 @@ struct CursorControlExample {
       Row().height(200).width(200).backgroundColor(Color.Green).position({x: 150 ,y:70})
         .onHover((flag) => {
           if (flag) {
+            // 建议使用this.getUIContext().getCursorController().setCursor()
             cursorControl.setCursor(pointer.PointerStyle.EAST)
           } else {
+            // 建议使用this.getUIContext().getCursorController().restoreDefault()
             cursorControl.restoreDefault()
           }
         })
       Row().height(200).width(200).backgroundColor(Color.Blue).position({x: 220 ,y:120})
         .onHover((flag) => {
           if (flag) {
+            // 建议使用this.getUIContext().getCursorController().setCursor()
             cursorControl.setCursor(pointer.PointerStyle.WEST)
           } else {
+            // 建议使用this.getUIContext().getCursorController().restoreDefault()
             cursorControl.restoreDefault()
           }
         })

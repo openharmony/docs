@@ -12,7 +12,7 @@ AbilityStageContext提供允许访问特定于abilityStage的资源的能力，�
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## 使用说明
@@ -20,18 +20,20 @@ import common from '@ohos.app.ability.common';
 通过AbilityStage实例来获取。
 
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { AbilityStage } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        let abilityStageContext = this.context;
-    }
+  onCreate() {
+    let abilityStageContext = this.context;
+  }
 }
 ```
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |

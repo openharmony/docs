@@ -1,6 +1,6 @@
 # ArkUI Subsystem Changelog
 
-## cl.arkui.1 Visual Effect Changes of the \<Menu> Component
+## cl.arkui.1 Visual Effect Changes of the Menu Component
 
 **Access Level**
 
@@ -50,7 +50,7 @@ Menu
 
   - If there is no enough room for the context menu below the selected element, the context menu is moved upward vertically until it is completely displayed, while respecting the minimum bottom margin requirement for the menu.
 
-  - The submenu, if any, of a context menu, is displayed with 12 vp left and right margins and 24 vp top and bottom margin, just like the context menu itself.
+  - When the menu pops up within the application, it has a left and right margin of 16 vp, and it defaults to avoiding the status bar and navigation bar without additional clearance distance. When the menu pops up outside the application window, it has a left and right margin of 8 vp, and it defaults to avoiding the status bar and dock area without additional clearance distance. If there is a submenu, its margin is consistent with that of the level-1 menu.
 
   <img src="figures/SubMenu.jpg" alt="isSubWindow" style="zoom:50%;" />
   

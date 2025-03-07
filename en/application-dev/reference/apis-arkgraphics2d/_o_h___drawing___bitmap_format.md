@@ -15,10 +15,10 @@ The **OH_Drawing_BitmapFormat** struct describes the pixel format of a bitmap, i
 
 ### Member Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [OH_Drawing_ColorFormat](_drawing.md#oh_drawing_colorformat)[colorFormat](#colorformat) | Storage format of bitmap pixels.|
-| [OH_Drawing_AlphaFormat](_drawing.md#oh_drawing_alphaformat)[alphaFormat](#alphaformat) | Alpha format of bitmap pixels.|
+| [OH_Drawing_ColorFormat](_drawing.md#oh_drawing_colorformat) [colorFormat](#colorformat) | Storage format of bitmap pixels.| 
+| [OH_Drawing_AlphaFormat](_drawing.md#oh_drawing_alphaformat) [alphaFormat](#alphaformat) | Alpha format of bitmap pixels.| 
 
 
 ## Member Variable Description

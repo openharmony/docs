@@ -8,15 +8,23 @@
 
 
 ## onTouchIntercept
+
 onTouchIntercept(callback: Callback<TouchEvent, HitTestMode>)
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
+
 | 参数名        | 参数类型                    | 必填  | 参数描述                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
 | callback      | Callback<[TouchEvent](ts-universal-events-touch.md#touchevent对象说明), [HitTestMode](ts-universal-attributes-hit-test-behavior.md#HitTestMode枚举说明)> | 是     |  给组件绑定自定义事件拦截回调，并使能在做触摸测试时回调此函数。 |
 
 
 ## 示例
+
+该示例通过onTouchIntercept修改组件的HitTestMode属性。
 
 ```ts
 // xxx.ets

@@ -3,7 +3,7 @@
 
 ## 概述
 
-维度信息，最大的维度为MS_MAX_SHAPE_NUM。
+维度信息，最大的维度为OH_AI_MAX_SHAPE_NUM。
 
 **起始版本：**
 

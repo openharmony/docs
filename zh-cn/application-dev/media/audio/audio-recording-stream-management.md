@@ -27,9 +27,11 @@
 
 如果部分应用需要查询获取所有音频流的变化信息，可以通过AudioStreamManager读取或监听所有音频流的变化。
 
+<!--Del-->
 > **说明：**
 > 
 > 对于标记为系统接口（system api）的音频流变化信息需要系统级别应用才可查看，若应用不是系统应用，将无法获取准确信息。
+<!--DelEnd-->
 
 如下为音频流管理调用关系图：
 
@@ -37,7 +39,7 @@
 
 在进行应用开发的过程中，开发者需要使用getStreamManager()创建一个AudioStreamManager实例，进而通过该实例管理音频流。开发者可通过调用on('audioCapturerChange')监听音频流的变化，在音频流状态变化、设备变化时获得通知，同时可通过off('audioCapturerChange')取消相关事件的监听。另外，开发者可以通过主动调用getCurrentAudioCapturerInfoArray()查询录制流的唯一ID、录制流客户端的UID、以及流状态等信息。
 
-详细API含义可参考[音频管理API文档AudioStreamManager](../../reference/apis-audio-kit/js-apis-audio.md#audiostreammanager9)。
+详细API含义可参考[AudioStreamManager](../../reference/apis-audio-kit/js-apis-audio.md#audiostreammanager9)。
 
 
 ## 开发步骤及注意事项
@@ -46,8 +48,8 @@
      在使用AudioStreamManager的API前，需要使用getStreamManager()创建一个AudioStreamManager实例。
      
    ```ts
-   import audio from '@ohos.multimedia.audio';
-   import { BusinessError } from '@ohos.base';
+   import { audio } from '@kit.AudioKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
@@ -85,7 +87,7 @@
    ```
 
 4. （可选）使用getCurrentAudioCapturerInfoArray()获取当前音频录制流的信息。
-     该接口可获取音频录制流唯一ID，音频录制客户端的UID，音频状态以及音频捕获器的其他信息。
+     该接口可获取音频录制流唯一ID、音频录制客户端的UID、音频状态以及音频捕获器的其他信息。
    > **说明：**
    > 对所有音频流状态进行监听的应用需要[声明权限](../../security/AccessToken/declare-permissions.md)ohos.permission.USE_BLUETOOTH，否则无法获得实际的设备名称和设备地址信息，查询到的设备名称和设备地址（蓝牙设备的相关属性）将为空字符串。
 

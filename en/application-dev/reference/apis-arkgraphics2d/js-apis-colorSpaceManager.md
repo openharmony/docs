@@ -9,48 +9,50 @@ The **colorSpaceManager** module provides APIs for creating and managing color s
 ## Modules to Import
 
 ```ts
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+import { colorSpaceManager } from '@kit.ArkGraphics2D';
 ```
 
 ## ColorSpace
 
 Enumerates the color space types.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.ColorManager.Core
 
 | Name                        | Value    | Description                   |
 | --------------------------- | ------ | ----------------------- |
 | UNKNOWN                           | 0      | Unknown type.|
-| ADOBE_RGB_1998                    | 1      | Adobe RGB (1998).<br>The conversion function is of the Adobe RGB (1998) type.<br>The encoding range is of the Full type.|
+| ADOBE_RGB_1998                    | 1      | Adobe RGB (1998).<br>The conversion function is of the Adobe RGB (1998) type.<br>The encoding range is of the Full type. |
 | DCI_P3                            | 2      | DCI-P3.<br>The conversion function is of the Gamma 2.6 type.<br>The encoding range is of the Full type.|
-| DISPLAY_P3                        | 3      | Display P3.<br>The conversion function is of the SRGB type.<br>The encoding range is of the Full type.|
-| SRGB                              | 4      | SRGB.<br>The conversion function is of the SRGB type.<br>The encoding range is of the Full type.<br>This is the default color space type.|
+| DISPLAY_P3                        | 3      | Display P3.<br>The conversion function is of the SRGB type.<br>The encoding range is of the Full type. |
+| SRGB                              | 4      | SRGB.<br>The conversion function is of the SRGB type.<br>The encoding range is of the Full type.<br>This is the default color space type. |
 | CUSTOM                            | 5      | Custom type.|
-| BT709<sup>11+</sup>                | 6      | BT709.<br>The conversion function is of the BT709 type.<br>The encoding range is of the Full type.|
-| BT601_EBU<sup>11+</sup>            | 7      | BT601_P.<br>The conversion function is of the BT709 type.<br>The encoding range is of the Full type.|
-| BT601_SMPTE_C<sup>11+</sup>        | 8      | BT601_N.<br>The conversion function is of the BT709 type.<br>The encoding range is of the Full type.|
-| BT2020_HLG<sup>11+</sup>           | 9      | BT2020.<br>The conversion function is of the HLG type.<br>The encoding range is of the Full type.|
-| BT2020_PQ<sup>11+</sup>            | 10     | BT2020.<br>The conversion function is of the PQ type.<br>The encoding range is of the Full type.|
-| P3_HLG<sup>11+</sup>               | 11     | Display P3.<br>The conversion function is of the HLG type.<br>The encoding range is of the Full type.|
-| P3_PQ<sup>11+</sup>                | 12     | Display P3.<br>The conversion function is of the PQ type.<br>The encoding range is of the Full type.|
-| ADOBE_RGB_1998_LIMIT<sup>11+</sup> | 13     | Adobe RGB (1998).<br>The conversion function is of the Adobe RGB (1998) type.<br>The encoding range is of the Limit type.|
-| DISPLAY_P3_LIMIT<sup>11+</sup>     | 14     | Display P3.<br>The conversion function is of the SRGB type.<br>The encoding range is of the Limit type.|
-| SRGB_LIMIT<sup>11+</sup>           | 15     | SRGB.<br>The conversion function is of the SRGB type.<br>The encoding range is of the Limit type.|
-| BT709_LIMIT<sup>11+</sup>          | 16     | BT709.<br>The conversion function is of the BT709 type.<br>The encoding range is of the Limit type.|
-| BT601_EBU_LIMIT<sup>11+</sup>      | 17     | BT601_P.<br>The conversion function is of the BT709 type.<br>The encoding range is of the Limit type.|
-| BT601_SMPTE_C_LIMIT<sup>11+</sup>  | 18     | BT601_N.<br>The conversion function is of the BT709 type.<br>The encoding range is of the Limit type.|
-| BT2020_HLG_LIMIT<sup>11+</sup>     | 19     | BT2020.<br>The conversion function is of the HLG type.<br>The encoding range is of the Limit type.|
-| BT2020_PQ_LIMIT<sup>11+</sup>      | 20     | BT2020.<br>The conversion function is of the PQ type.<br>The encoding range is of the Limit type.|
-| P3_HLG_LIMIT<sup>11+</sup>         | 21     | Display P3.<br>The conversion function is of the HLG type.<br>The encoding range is of the Limit type.|
-| P3_PQ_LIMIT<sup>11+</sup>          | 22     | Display P3.<br>The conversion function is of the PQ type.<br>The encoding range is of the Limit type.|
-| LINEAR_P3<sup>11+</sup>            | 23     | Display P3.<br>The conversion function is of the Linear type.|
-| LINEAR_SRGB<sup>11+</sup>          | 24     | SRGB.<br>The conversion function is of the Linear type.|
-| LINEAR_BT709<sup>11+</sup>         | 24     | Same as that of LINEAR_SRGB.<br>BT709.<br>The conversion function is of the Linear type.|
-| LINEAR_BT2020<sup>11+</sup>        | 25     | BT2020.<br>The conversion function is of the Linear type.|
-| DISPLAY_SRGB<sup>11+</sup>         | 4      | Same as that of SRGB.<br>SRGB.<br>The conversion function is of the SRGB type.<br>The encoding range is of the Full type.|
-| DISPLAY_P3_SRGB<sup>11+</sup>      | 3      | Same as that of DISPLAY_P3.<br>Display P3.<br>The conversion function is of the SRGB type.<br>The encoding range is of the Full type.|
-| DISPLAY_P3_HLG<sup>11+</sup>       | 11     | Same as that of P3_HLG.<br>Display P3.<br>The conversion function is of the HLG type.<br>The encoding range is of the Full type.|
-| DISPLAY_P3_PQ<sup>11+</sup>        | 12     | Same as that of P3_PQ.<br>Display P3.<br>The conversion function is of the PQ type.<br>The encoding range is of the Full type.|
+| BT709<sup>11+</sup>                | 6      | BT709.<br>The conversion function is of the BT709 type.<br>The encoding range is of the Full type. |
+| BT601_EBU<sup>11+</sup>            | 7      | BT601_P.<br>The conversion function is of the BT709 type.<br>The encoding range is of the Full type. |
+| BT601_SMPTE_C<sup>11+</sup>        | 8      | BT601_N.<br>The conversion function is of the BT709 type.<br>The encoding range is of the Full type. |
+| BT2020_HLG<sup>11+</sup>           | 9      | BT2020.<br>The conversion function is of the HLG type.<br>The encoding range is of the Full type. |
+| BT2020_PQ<sup>11+</sup>            | 10     | BT2020.<br>The conversion function is of the PQ type.<br>The encoding range is of the Full type. |
+| P3_HLG<sup>11+</sup>               | 11     | Display P3.<br>The conversion function is of the HLG type.<br>The encoding range is of the Full type. |
+| P3_PQ<sup>11+</sup>                | 12     | Display P3.<br>The conversion function is of the PQ type.<br>The encoding range is of the Full type. |
+| ADOBE_RGB_1998_LIMIT<sup>11+</sup> | 13     | Adobe RGB (1998).<br>The conversion function is of the Adobe RGB (1998) type.<br>The encoding range is of the Limit type. |
+| DISPLAY_P3_LIMIT<sup>11+</sup>     | 14     | Display P3.<br>The conversion function is of the SRGB type.<br>The encoding range is of the Limit type. |
+| SRGB_LIMIT<sup>11+</sup>           | 15     | SRGB.<br>The conversion function is of the SRGB type.<br>The encoding range is of the Limit type. |
+| BT709_LIMIT<sup>11+</sup>          | 16     | BT709.<br>The conversion function is of the BT709 type.<br>The encoding range is of the Limit type. |
+| BT601_EBU_LIMIT<sup>11+</sup>      | 17     | BT601_P.<br>The conversion function is of the BT709 type.<br>The encoding range is of the Limit type. |
+| BT601_SMPTE_C_LIMIT<sup>11+</sup>  | 18     | BT601_N.<br>The conversion function is of the BT709 type.<br>The encoding range is of the Limit type. |
+| BT2020_HLG_LIMIT<sup>11+</sup>     | 19     | BT2020.<br>The conversion function is of the HLG type.<br>The encoding range is of the Limit type. |
+| BT2020_PQ_LIMIT<sup>11+</sup>      | 20     | BT2020.<br>The conversion function is of the PQ type.<br>The encoding range is of the Limit type. |
+| P3_HLG_LIMIT<sup>11+</sup>         | 21     | Display P3.<br>The conversion function is of the HLG type.<br>The encoding range is of the Limit type. |
+| P3_PQ_LIMIT<sup>11+</sup>          | 22     | Display P3.<br>The conversion function is of the PQ type.<br>The encoding range is of the Limit type. |
+| LINEAR_P3<sup>11+</sup>            | 23     | Display P3.<br>The conversion function is of the Linear type. |
+| LINEAR_SRGB<sup>11+</sup>          | 24     | SRGB.<br>The conversion function is of the Linear type. |
+| LINEAR_BT709<sup>11+</sup>         | 24     | Same as that of LINEAR_SRGB.<br>BT709.<br>The conversion function is of the Linear type. |
+| LINEAR_BT2020<sup>11+</sup>        | 25     | BT2020.<br>The conversion function is of the Linear type. |
+| DISPLAY_SRGB<sup>11+</sup>         | 4      | Same as that of SRGB.<br>SRGB.<br>The conversion function is of the SRGB type.<br>The encoding range is of the Full type. |
+| DISPLAY_P3_SRGB<sup>11+</sup>      | 3      | Same as that of DISPLAY_P3.<br>Display P3.<br>The conversion function is of the SRGB type.<br>The encoding range is of the Full type. |
+| DISPLAY_P3_HLG<sup>11+</sup>       | 11     | Same as that of P3_HLG.<br>Display P3.<br>The conversion function is of the HLG type.<br>The encoding range is of the Full type. |
+| DISPLAY_P3_PQ<sup>11+</sup>        | 12     | Same as that of P3_PQ.<br>Display P3.<br>The conversion function is of the PQ type.<br>The encoding range is of the Full type. |
 
 ## ColorSpacePrimaries
 
@@ -58,16 +60,16 @@ Defines the color space primaries. A color space is defined by chromaticity coor
 
 **System capability**: SystemCapability.Graphic.Graphic2D.ColorManager.Core
 
-| Name                         | Type| Readable| Writable| Description                                                        |
+| Name                         | Type | Readable | Writable | Description                                                        |
 | ---------------------------- | -------- | ---- | ---- | ----------------------------------------------------- |
-| redX                         | number   | Yes  | Yes  | X coordinate of the red color in the color space.|
-| redY                         | number   | Yes  | Yes  | Y coordinate of the red color in the color space.|
-| greenX                       | number   | Yes  | Yes  | X coordinate of the green color in the color space.|
-| greenY                       | number   | Yes  | Yes  | Y coordinate of the green color in the color space.|
-| blueX                        | number   | Yes  | Yes  | X coordinate of the blue color in the color space.|
-| blueY                        | number   | Yes  | Yes  | Y coordinate of the blue color in the color space.|
-| whitePointX                  | number   | Yes  | Yes  | X coordinate of the white point in the color space.|
-| whitePointY                  | number   | Yes  | Yes  | Y coordinate of the white point in the color space.|
+| redX                         | number   | Yes  | Yes  | X coordinate of the red color in the color space. |
+| redY                         | number   | Yes  | Yes  | Y coordinate of the red color in the color space. |
+| greenX                       | number   | Yes  | Yes  | X coordinate of the green color in the color space. |
+| greenY                       | number   | Yes  | Yes  | Y coordinate of the green color in the color space. |
+| blueX                        | number   | Yes  | Yes  | X coordinate of the blue color in the color space. |
+| blueY                        | number   | Yes  | Yes  | Y coordinate of the blue color in the color space. |
+| whitePointX                  | number   | Yes  | Yes  | X coordinate of the white point in the color space. |
+| whitePointY                  | number   | Yes  | Yes  | Y coordinate of the white point in the color space. |
 
 ## colorSpaceManager.create
 
@@ -79,7 +81,7 @@ Creates a standard color space object.
 
 **Parameters**
 
-| Parameter          | Type                    | Mandatory| Description                         |
+| Parameter          | Type                    | Mandatory | Description                         |
 | --------------- | ------------------------ | ---- | -----------------------------|
 | colorSpaceName  | [ColorSpace](#colorspace)| Yes  | Type of the color space.<br>**UNKNOWN** and **CUSTOM** cannot be used when creating standard color space objects.         |
 
@@ -91,11 +93,12 @@ Creates a standard color space object.
 
 **Error codes**
 
-For details about the error codes, see [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 401 | Parameter error. Possible cause: 1.Incorrect parameter type. 2.Parameter verification failed.|
+| 18600001 | The parameter value is abnormal. |
 
 **Example**
 
@@ -118,7 +121,7 @@ Creates a custom color space object.
 
 **Parameters**
 
-| Parameter          | Type                                      | Mandatory| Description                         |
+| Parameter          | Type                                      | Mandatory | Description                         |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | primaries       | [ColorSpacePrimaries](#colorspaceprimaries)| Yes  | Primaries of the color space.              |
 | gamma           | number                                     | Yes  | Gamma of the color space.                |
@@ -127,15 +130,16 @@ Creates a custom color space object.
 
 | Type               | Description                    |
 | ------------------ | ------------------------ |
-| [ColorSpaceManager](#colorspacemanager)  | Color space object created.<br>The color space type is **CUSTOM** of [ColorSpace](#colorspace).|
+| [ColorSpaceManager](#colorspacemanager)  | Color space object created.<br>The color space type is **CUSTOM** of [ColorSpace](#colorspace). |
 
 **Error codes**
 
-For details about the error codes, see [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 401 | Parameter error. Possible cause: 1.Incorrect parameter type. 2.Parameter verification failed.|
+| 18600001 | The parameter value is abnormal. |
 
 **Example**
 
@@ -177,21 +181,21 @@ Obtains the color space type.
 
 | Type               | Description                    |
 | ------------------ | ------------------------ |
-| [ColorSpace](#colorspace)  | Color space type.|
+| [ColorSpace](#colorspace)  | Color space type. |
 
 **Error codes**
 
 For details about the error codes, see [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **Example**
 
 ```ts
 try {
-    colorSpace.getColorSpaceName();
+    let spaceName = colorSpace.getColorSpaceName();
 } catch (err) {
     console.log(`Fail to get colorSpace's name. Cause: ` + JSON.stringify(err));
 }
@@ -209,21 +213,21 @@ Obtains the coordinates of the white point in the color space.
 
 | Type               | Description                    |
 | ------------------ | ------------------------ |
-| Array\<number\>  | Coordinates [x, y] of the white point.|
+| Array\<number\>  | Coordinates [x, y] of the white point. |
 
 **Error codes**
 
 For details about the error codes, see [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **Example**
 
 ```ts
 try {
-    colorSpace.getWhitePoint();
+    let point = colorSpace.getWhitePoint();
 } catch (err) {
     console.log(`Failed to get white point. Cause: ` + JSON.stringify(err));
 }
@@ -241,21 +245,21 @@ Obtains the gamma of the color space.
 
 | Type               | Description                    |
 | ------------------ | ------------------------ |
-| number  | Gamma of the color space.|
+| number  | Gamma of the color space. |
 
 **Error codes**
 
 For details about the error codes, see [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
 
-| ID| Error Message|
+| ID | Error Message |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **Example**
 
 ```ts
 try {
-    colorSpace.getGamma();
+    let gamma = colorSpace.getGamma();
 } catch (err) {
     console.log(`Failed to get gamma. Cause: ` + JSON.stringify(err));
 }

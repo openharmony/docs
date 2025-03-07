@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Operation failed. Cannot connect to service.
+Failed to connect to the service.
 
 **Description**
 
@@ -84,7 +84,7 @@ Check whether the mDNS service already exists.
 
 **Error Message**
 
-Service instance duplicated.
+Failed to delete the service instance.
 
 **Description**
 
@@ -102,7 +102,7 @@ Check whether the mDNS service to be deleted exists.
 
 **Error Message**
 
-Send packet failed.
+Failed to send the message.
 
 **Description**
 

@@ -321,15 +321,6 @@ let obj: Record<string, number> = {
 }
 ```
 
-**See also**
-
-* Recipe: `Symbol()` Is Not Supported
-* Recipe: Indexed Access Is Not Supported for Fields
-* Recipe: `delete` Operator Is Not Supported
-* Recipe: `typeof` Operator Is Allowed Only in Expression Contexts
-* Recipe: `in` Operator Is Not Supported
-* Recipe: Usage of Standard Libraries Is Restricted
-
 ### Recipe: `Symbol()` Is Not Supported
 
 **Rule:** `arkts-no-symbol`
@@ -343,15 +334,6 @@ environment. In particular, the object layout is defined at compile time
 and cannot be changed at runtime.
 
 Only `Symbol.iterator` is supported.
-
-**See also**
-
-* Recipe: Objects with Property Names That Are Not Identifiers Are Not Supported
-* Recipe: Indexed Access Is Not Supported for Fields
-* Recipe: `delete` Operator Is Not Supported
-* Recipe: `typeof` Operator Is Allowed Only in Expression Contexts
-* Recipe: `in` Operator Is Not Supported
-* Recipe: Usage of Standard Libraries Is Restricted
 
 ### Recipe: Private `#` Identifiers Are Not Supported
 
@@ -420,14 +402,14 @@ function f(shouldInitialize: boolean) {
 console.log(f(true))  // b
 console.log(f(false)) // undefined
 
-let upper_let = 0
+let upperLet = 0
 {
-  var scoped_var = 0
-  let scoped_let = 0
-  upper_let = 5
+  var scopedVar = 0
+  let scopedLet = 0
+  upperLet = 5
 }
-scoped_var = 5 // Visible
-scoped_let = 5 // Compile-time error
+scopedVar = 5 // Visible
+scopedLet = 5 // Compile-time error
 ```
 
 **ArkTS**
@@ -444,14 +426,14 @@ function f(shouldInitialize: boolean): string {
 console.log(f(true));  // b
 console.log(f(false)); // a
 
-let upper_let = 0
-let scoped_var = 0
+let upperLet = 0
+let scopedVar = 0
 {
-  let scoped_let = 0
-  upper_let = 5
+  let scopedLet = 0
+  upperLet = 5
 }
-scoped_var = 5
-scoped_let = 5 // Compile-time error
+scopedVar = 5
+scopedLet = 5 // Compile-time error
 ```
 
 ### Recipe: Use Explicit Types Instead of `any` or `unknown`
@@ -483,10 +465,6 @@ let value_o1: Object = true
 let value_o2: Object = 42
 ```
 
-**See also**
-
-Recipe: Strict Type Checking Is Enforced
-
 ### Recipe: Use `class` Instead of a Type with a Call Signature
 
 **Rule:** `arkts-no-call-signatures`
@@ -504,7 +482,7 @@ type DescribableFunction = {
 }
 
 function doSomething(fn: DescribableFunction): void {
-  console.log(fn.description + ' returned ' + fn(6))
+  console.log(fn.description + ' returned ' + fn(''))
 }
 ```
 
@@ -522,15 +500,11 @@ class DescribableFunction {
 }
 
 function doSomething(fn: DescribableFunction): void {
-  console.log(fn.description + ' returned ' + fn.invoke(6))
+  console.log(fn.description + ' returned ' + fn.invoke(''))
 }
 
 doSomething(new DescribableFunction())
 ```
-
-**See also**
-
-Recipe: Use class Instead of a Type with a Constructor Signature
 
 ### Recipe: Use `class` Instead of a Type with a Constructor Signature
 
@@ -568,10 +542,6 @@ function fn(s: string): SomeObject {
   return new SomeObject(s)
 }
 ```
-
-**See also**
-
-Recipe: Use `class` Instead of a Type with a Call Signature
 
 ### Recipe: Only One Static Block Is Supported
 
@@ -836,10 +806,6 @@ function fn(i: I) {
   return i.create('hello')
 }
 ```
-
-**See also**
-
-Recipe: Use `class` Instead of a Type with a Constructor Signature
 
 ### Recipe: Indexed Access Types Are Not Supported
 
@@ -1226,16 +1192,16 @@ class Point {
   y: number = 0
 }
 
-function id_x_y(o: Point): Point {
+function getPoint(o: Point): Point {
   return o
 }
 
 // Structural typing is used to deduce that p is Point.
 let p = {x: 5, y: 10}
-id_x_y(p)
+getPoint(p)
 
 // A literal can be contextually (i.e., implicitly) typed as Point.
-id_x_y({x: 5, y: 10})
+getPoint({x: 5, y: 10})
 ```
 
 **ArkTS**
@@ -1249,22 +1215,17 @@ class Point {
     // Since there is no other Point constructors, constructor() is automatically added by compiler.
 }
 
-function id_x_y(o: Point): Point {
+function getPoint(o: Point): Point {
   return o
 }
 
 // Explicit type is required for literal initialization.
 let p: Point = {x: 5, y: 10}
-id_x_y(p)
+getPoint(p)
 
-// id_x_y expects Point explicitly. A new instance of Point is initialized with the literal.
-id_x_y({x: 5, y: 10})
+// getPoint expects Point explicitly. A new instance of Point is initialized with the literal.
+getPoint({x: 5, y: 10})
 ```
-
-**See also**
-
-* Recipe: Object Literals Cannot Be Used as Type Declarations
-* Recipe: Array Literals Must Contain Elements of Only Inferrable Types
 
 ### Recipe: Object Literals Cannot Be Used as Type Declarations
 
@@ -1298,11 +1259,6 @@ let o: O = {x: 2, y: 3}
 type S = Set<O>
 ```
 
-**See also**
-
-* Recipe: Object Literal Must Correspond to Some Explicitly Declared Class or Interface
-* Recipe: Array Literals Must Contain Elements of Only Inferrable Types
-
 ### Recipe: Array Literals Must Contain Elements of Only Inferrable Types
 
 **Rule:** `arkts-no-noninferrable-arr-literals`
@@ -1331,10 +1287,6 @@ let a1 = [{n: 1, s: '1'} as C, {n: 2, s: '2'} as C] // a1 is of type "C[]"
 let a2: C[] = [{n: 1, s: '1'}, {n: 2, s: '2'}]    // a2 is of type "C[]"
 ```
 
-**See also**
-* Recipe: Object Literal Must Correspond to Some Explicitly Declared Class or Interface
-* Recipe: Object Literals Cannot Be Used as Type Declarations
-
 ### Recipe: Use Arrow Functions Instead of Function Expressions
 
 **Rule:** `arkts-no-func-expressions`
@@ -1357,32 +1309,6 @@ let f = function (s: string) {
 let f = (s: string) => {
   console.log(s)
 }
-```
-
-### Recipe: Use Generic Functions Instead of Generic Arrow Functions
-
-**Rule:** `arkts-no-generic-lambdas`
-
-**Severity: error**
-
-ArkTS does not support generic arrow functions. Use normal generic functions instead.
-
-**TypeScript**
-
-```typescript
-let generic_arrow_func = <T extends String> (x: T) => { return x }
-
-generic_arrow_func('string')
-```
-
-**ArkTS**
-
-```typescript
-function generic_func<T extends String>(x: T): T {
-  return x
-}
-
-generic_func<String>('string')
 ```
 
 ### Recipe: Class Literals Are Not Supported
@@ -1680,14 +1606,6 @@ let p = new Point()
 p.y = null
 ```
 
-**See also**
-
-* Recipe: Objects with Property Names That Are Not Identifiers Are Not Supported
-* Recipe: `Symbol()` Is Not Supported
-* Recipe: Indexed Access Is Not Supported for Fields
-* Recipe: `typeof` Operator Is Allowed Only in Expression Contexts
-* Recipe: `in` Operator Is Not Supported
-
 ### Recipe: `typeof` Operator Is Allowed Only in Expression Contexts
 
 **Rule:** `arkts-no-type-query`
@@ -1717,15 +1635,6 @@ console.log(typeof s1) // 'string'
 let n2: number
 let s2: string
 ```
-
-**See also**
-
-* Recipe: Objects with Property Names That Are Not Identifiers Are Not Supported
-* Recipe: `Symbol()` Is Not Supported
-* Recipe: Indexed Access Is Not Supported for Fields
-* Recipe: `delete` Operator Is Not Supported
-* Recipe: `in` Operator Is Not Supported
-* Recipe: Usage of Standard Libraries Is Restricted
 
 ### Recipe: `instanceof` Operator Is Partially Supported
 
@@ -1770,15 +1679,6 @@ let p = new Person()
 
 let b = p instanceof Person // True. "name" is guaranteed to be present.
 ```
-
-**See also**
-
-* Recipe: Objects with Property Names That Are Not Identifiers Are Not Supported
-* Recipe: `Symbol()` Is Not Supported
-* Recipe: Indexed Access Is Not Supported for Fields
-* Recipe: `delete` Operator Is Not Supported
-* Recipe: `typeof` Operator Is Allowed Only in Expression Contexts
-* Recipe: Usage of Standard Libraries Is Restricted
 
 ### Recipe: Destructuring Assignment Is Not Supported
 
@@ -1925,10 +1825,6 @@ try {
   // Handle errors.
 }
 ```
-
-**See also**
-
-Recipe: `throw` Statements Do Not Accept Values of Arbitrary Types
 
 ### Recipe: `for .. in` Is Not Supported
 
@@ -2219,10 +2115,6 @@ function main(): void {
 }
 ```
 
-**See also**
-
-Recipe: `Function.apply`, `Function.bind`, and `Function.call` Are Not Supported
-
 ### Recipe: Generator Functions Are Not Supported
 
 **Rule:** `arkts-no-generators`
@@ -2248,14 +2140,14 @@ for (let num of counter(1, 5)) {
 **ArkTS**
 
 ```typescript
-async function complexNumberProcessing(str: string): Promise<string> {
+async function complexNumberProcessing(num: number): Promise<number> {
   // ...
-  return str
+  return num;
 }
 
 async function foo() {
   for (let i = 1; i <= 5; i++) {
-    console.log(await complexNumberProcessing(i))
+    await complexNumberProcessing(i);
   }
 }
 
@@ -2766,26 +2658,6 @@ namespace A {
 A.init()
 ```
 
-### Recipe: `import default as ...` Is Not Supported
-
-**Rule:** `arkts-no-import-default-as`
-
-**Severity: error**
-
-ArkTS does not support the `import default as ...` syntax. Use explicit `import ... from ...` instead.
-
-**TypeScript**
-
-```typescript
-import { default as d } from 'mod'
-```
-
-**ArkTS**
-
-```typescript
-import d from 'mod'
-```
-
 ### Recipe: `require` and `import` Assignment Are Not Supported
 
 **Rule:** `arkts-no-require`
@@ -2807,10 +2679,6 @@ import m = require('mod')
 ```typescript
 import * as m from 'mod'
 ```
-
-**See also**
-
-Recipe: `export = ...` Is Not Supported
 
 ### Recipe: `export = ...` Is Not Supported
 
@@ -2853,10 +2721,6 @@ import * as Pt from 'module1'
 let p = Pt.Point.origin
 ```
 
-**See also**
-
-Recipe: `require` and `import` Assignment Are Not Supported
-
 ### Recipe: Ambient Module Declaration Is Not Supported
 
 **Rule:** `arkts-no-ambient-decls`
@@ -2879,10 +2743,6 @@ declare module 'someModule' {
 // Import what you need from the original module.
 import { normalize } from "someModule"
 ```
-
-**See also**
-
-Recipe: Wildcards in Module Names Are Not Supported
 
 ### Recipe: Wildcards in Module Names Are Not Supported
 
@@ -2919,11 +2779,6 @@ import * as m from 'module'
 console.log('N.foo called: ' + N.foo(42))
 ```
 
-**See also**
-
-* Recipe: Ambient Module Declaration Is Not Supported
-* Recipe: UMD Is Not Supported
-
 ### Recipe: UMD Is Not Supported
 
 **Rule:** `arkts-no-umd`
@@ -2958,10 +2813,6 @@ import { mathLib } from "math-lib"
 mathLib.isPrime(2)
 ```
 
-**See also**
-
-Recipe: Wildcards in Module Names Are Not Supported
-
 ### Recipe: `new.target` Is Not Supported
 
 **Rule:** `arkts-no-new-target`
@@ -2971,10 +2822,6 @@ Recipe: Wildcards in Module Names Are Not Supported
 ArkTS does not support `new.target`, because there is no concept of runtime
 prototype inheritance in the language. This feature is considered not applicable
 to static typing.
-
-**See also**
-
-* Recipe: Prototype Assignment Is Not Allowed
 
 ### Recipe: Definite Assignment Assertions Are Not Supported
 
@@ -3055,10 +2902,6 @@ class C {
 }
 ```
 
-**See also**
-
-Recipe: new.target Is Not Supported
-
 ### Recipe: `globalThis` Is Not Supported
 
 **Rule:** `arkts-no-globalthis`
@@ -3090,11 +2933,6 @@ import * as M from 'file1'
 let x = M.abc
 ```
 
-**See also**
-
-* Recipe: Declaring Properties on Functions Is Not Supported
-* Recipe: Usage of Standard Libraries Is Restricted
-
 ### Recipe: Some Utility Types Are Not Supported
 
 **Rule:** `arkts-no-utility-types`
@@ -3116,10 +2954,6 @@ ArkTS does not support declaring properties on functions because there is no
 support for objects with dynamically changing layout. Function objects follow
 this rule and their layout cannot be changed at runtime.
 
-**See also**
-
-Recipe: `globalThis` Is Not Supported
-
 ### Recipe: `Function.apply` and `Function.call` Are Not Supported
 
 **Rule:** `arkts-no-func-apply-call`
@@ -3131,10 +2965,6 @@ library to explicitly set the parameter `this` for the called function.
 In ArkTS, the semantics of `this` is restricted to the conventional OOP
 style, and the usage of `this` in stand-alone functions is prohibited.
 
-**See also**
-
-* Recipe: Using `this` Inside Stand-Alone Functions Is Not Supported
-
 ### Recipe:`Function.bind` Is Not Supported
 
 **Rule:** `arkts-no-func-bind`
@@ -3145,10 +2975,6 @@ ArkTS does not support `Function.bind`. These APIs are needed in the standard
 library to explicitly set the parameter `this` for the called function.
 In ArkTS, the semantics of `this` is restricted to the conventional OOP
 style, and the usage of `this` in stand-alone functions is prohibited.
-
-**See also**
-
-* Recipe: Using `this` Inside Stand-Alone Functions Is Not Supported
 
 ### Recipe: `as const` Assertions Are Not Supported
 
@@ -3216,11 +3042,6 @@ import { obj } from 'something.json' assert { type: 'json' }
 import { something } from 'module'
 ```
 
-**See also**
-
-* Recipe: Ambient Module Declaration Is Not Supported
-* Recipe: UMD Is Not Supported
-
 ### Recipe: Usage of Standard Libraries Is Restricted
 
 **Rule:** `arkts-limited-stdlib`
@@ -3253,15 +3074,6 @@ Properties and functions of the global object: `eval`
 `handler.getOwnPropertyDescriptor()`, `handler.getPrototypeOf()`,
 `handler.has()`, `handler.isExtensible()`, `handler.ownKeys()`,
 `handler.preventExtensions()`, `handler.set()`, `handler.setPrototypeOf()`
-
-**See also**
-
-* Recipe: Objects with Property Names That Are Not Identifiers Are Not Supported
-* Recipe: `Symbol()` Is Not Supported
-* Recipe: Indexed Access Is Not Supported for Fields
-* Recipe: `typeof` Operator Is Allowed Only in Expression Contexts
-* Recipe: `in` Operator Is Not Supported
-* Recipe: `globalThis` Is Not Supported
 
 ### Recipe: Strict Type Checking Is Enforced
 
@@ -3335,11 +3147,6 @@ let c = new C()
 c.initAge(10)
 ```
 
-**See also**
-
-* Recipe: Use Explicit Types Instead of `any` or `unknown`
-* Recipe: Disabling Type Checking with In-Place Comments Is Not Allowed
-
 ### Recipe: Disabling Type Checking with In-Place Comments Is Not Allowed
 
 **Rule:** `arkts-strict-typing-required`
@@ -3371,11 +3178,6 @@ let s2: string = null // No error, since type checking is disabled.
 let s1: string | null = null // No error. The types are proper.
 let s2: string = null // Compile-time error.
 ```
-
-**See also**
-
-* Recipe: Use Explicit Types Instead of any or unknown
-* Recipe: Strict Type Checking Is Enforced
 
 ### Recipe: No Dependencies on TypeScript Code Are Allowed
 
@@ -3493,12 +3295,3 @@ function f() {
   bar(e7)                   // OK - 'ESObject' is passed to interop call
 }
 ```
-
-**See also**
-
-* Recipe: Objects with Property Names That Are Not Identifiers Are Not Supported
-* Recipe: `Symbol()` Is Not Supported
-* Recipe: Indexed Access Is Not Supported for Fields
-* Recipe: `typeof` Operator Is Allowed Only in Expression Contexts
-* Recipe: `in` Operator Is Not Supported
-* Recipe: `globalThis` Is Not Supported

@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import inspector from '@ohos.arkui.inspector'
+import { inspector } from '@kit.ArkUI'
 ```
 
 ## inspector.createComponentObserver
@@ -19,6 +19,8 @@ import inspector from '@ohos.arkui.inspector'
 createComponentObserver(id: string): ComponentObserver
 
 绑定指定组件，返回对应的监听句柄。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -50,6 +52,8 @@ on(type: 'layout', callback: () => void): void
 
 通过句柄向对应的查询条件注册回调，当组件布局完成时会触发该回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -57,13 +61,15 @@ on(type: 'layout', callback: () => void): void
 | 参数名   | 类型   | 必填 | 说明|
 | -------- | ------ | ---- | -------------------------------------|
 | type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制完成。 |
-| callback | void   | 是   | 监听layout或draw的回调。|
+| callback | () => void   | 是   | 监听layout或draw的回调。|
 
 ### off
 
 off(type: 'layout', callback?: () => void): void
 
 通过句柄向对应的查询条件取消注册回调，当组件布局完成时不再触发指定的回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -72,7 +78,7 @@ off(type: 'layout', callback?: () => void): void
 | 参数名   | 类型   | 必填 | 说明 |
 | -------- | ------ | ---- | -------------------------------------------- |
 | type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制完成。 |
-| callback | void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。|
+| callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。|
 
 ### on
 
@@ -80,6 +86,8 @@ on(type: 'draw', callback: () => void): void
 
 通过句柄向对应的查询条件注册回调，当组件绘制完成时会触发该回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -87,7 +95,7 @@ on(type: 'draw', callback: () => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制完成。 |
-| callback | void   | 是   | 监听layout或draw的回调。                                     |
+| callback | () => void   | 是   | 监听layout或draw的回调。                                     |
 
 ### off
 
@@ -95,6 +103,8 @@ off(type: 'draw', callback?: () => void): void
 
 通过句柄向对应的查询条件取消注册回调，当组件绘制完成时不再触发指定的回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -102,12 +112,16 @@ off(type: 'draw', callback?: () => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制完成。 |
-| callback | void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。 |
+| callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和on方法中的callback为相同对象时才能取消回调成功。 |
 
 **示例：**
 
+> **说明：**
+>
+> 推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getUIInspector](./js-apis-arkui-UIContext.md#getuiinspector)方法获取当前UI上下文关联的[UIInspector](./js-apis-arkui-UIContext.md#uiinspector)对象。
+
   ```ts
-  import inspector from '@ohos.arkui.inspector'
+  import { inspector } from '@kit.ArkUI'
 
   @Entry
   @Component
@@ -126,7 +140,7 @@ off(type: 'draw', callback?: () => void): void
       }.height(320).width(360).padding({ right: 10, top: 10 })
     }
 
-    listener:inspector.ComponentObserver = inspector.createComponentObserver('IMAGE_ID')
+    listener:inspector.ComponentObserver = inspector.createComponentObserver('IMAGE_ID') // 建议使用 this.getUIContext().getUIInspector().createComponentObserver()接口
 
     aboutToAppear() {
       let onLayoutComplete:()=>void=():void=>{
@@ -135,16 +149,10 @@ off(type: 'draw', callback?: () => void): void
       let onDrawComplete:()=>void=():void=>{
           // do something here
       }
-      let offLayoutComplete:()=>void=():void=>{
-          // do something here
-      }
-      let offDrawComplete:()=>void=():void=>{
-          // do something here
-      }
       let FuncLayout = onLayoutComplete // bind current js instance
       let FuncDraw = onDrawComplete // bind current js instance
-      let OffFuncLayout = offLayoutComplete // bind current js instance
-      let OffFuncDraw = offDrawComplete // bind current js instance
+      let OffFuncLayout = onLayoutComplete // bind current js instance
+      let OffFuncDraw = onDrawComplete // bind current js instance
 
       this.listener.on('layout', FuncLayout)
       this.listener.on('draw', FuncDraw)

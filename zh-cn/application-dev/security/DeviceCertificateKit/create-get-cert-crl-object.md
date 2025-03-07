@@ -7,25 +7,25 @@
 1. 导入[证书算法库框架模块](../../reference/apis-device-certificate-kit/js-apis-cert.md)。
 
    ```ts
-   import certFramework from '@ohos.security.cert';
+   import { cert } from '@kit.DeviceCertificateKit';
    ```
 
-2. 基于已有的证书数据，调用[cryptoCert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatex509cert)创建X509证书的对象。
+2. 基于已有的证书数据，调用[cert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509cert-1)创建X509证书的对象。
 
-3. 基于已有的CRL数据，调用[cryptoCert.createX509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatex509crl11)创建X509证书吊销列表的对象。
+3. 基于已有的CRL数据，调用[cert.createX509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509crl11-1)创建X509证书吊销列表的对象。
 
-4. 调用[cryptoCert.createCertCRLCollection](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatecertcrlcollection11)创建[CertCRLCollection](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcrlcollection11)的对象，并返回相应的结果。
+4. 调用[cert.createCertCRLCollection](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatecertcrlcollection11)创建[CertCRLCollection](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcrlcollection11)的对象，并返回相应的结果。
 
 5. 调用[CertCRLCollection.selectCerts](../../reference/apis-device-certificate-kit/js-apis-cert.md#selectcerts11)查找所有与[X509CertMatchParameters](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509certmatchparameters11)匹配的证书对象数组，并返回结果。
 
 6. 调用[CertCRLCollection.selectCRLs](../../reference/apis-device-certificate-kit/js-apis-cert.md#selectcrls11)查找所有与[X509CRLMatchParameters](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crlmatchparameters11)匹配的证书吊销列表数组，并返回结果。
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
-import util from '@ohos.util';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { util } from '@kit.ArkTS';
 
-async function createX509CRL(): Promise<certFramework.X509CRL> {
+async function createX509CRL(): Promise<cert.X509CRL> {
   let crlData = '-----BEGIN X509 CRL-----\n' +
     'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
     'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
@@ -37,14 +37,14 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
 
   // 证书吊销列表二进制数据，需业务自行赋值
   let textEncoder = new util.TextEncoder();
-  let encodingBlob: certFramework.EncodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: textEncoder.encodeInto(crlData),
     // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
-  let x509CRL: certFramework.X509CRL = {} as certFramework.X509CRL;
+  let x509CRL: cert.X509CRL = {} as cert.X509CRL;
   try {
-    x509CRL = await certFramework.createX509CRL(encodingBlob);
+    x509CRL = await cert.createX509CRL(encodingBlob);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error(`createX509CRL failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -52,7 +52,7 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
   return x509CRL;
 }
 
-async function createX509Cert(): Promise<certFramework.X509Cert> {
+async function createX509Cert(): Promise<cert.X509Cert> {
   let certData = '-----BEGIN CERTIFICATE-----\n' +
     'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
     'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -64,15 +64,15 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     '-----END CERTIFICATE-----\n';
 
   let textEncoder = new util.TextEncoder();
-  let encodingBlob: certFramework.EncodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: textEncoder.encodeInto(certData),
     // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
-  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
-    x509Cert = await certFramework.createX509Cert(encodingBlob);
+    x509Cert = await cert.createX509Cert(encodingBlob);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error(`createX509Cert failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -83,28 +83,28 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
 async function sample() {
   const x509Cert = await createX509Cert();
   const x509CRL = await createX509CRL();
-  let collection: certFramework.CertCRLCollection = {} as certFramework.CertCRLCollection;
+  let collection: cert.CertCRLCollection = {} as cert.CertCRLCollection;
   try {
-    collection = certFramework.createCertCRLCollection([x509Cert], [x509CRL]);
+    collection = cert.createCertCRLCollection([x509Cert], [x509CRL]);
     console.log('createCertCRLCollection success');
   } catch (err) {
     console.error('createCertCRLCollection failed');
   }
 
-  const certParam: certFramework.X509CertMatchParameters = {
+  const certParam: cert.X509CertMatchParameters = {
     validDate: '231128000000Z'
   }
   try {
-    let certs: certFramework.X509Cert[] = await collection.selectCerts(certParam);
+    let certs: cert.X509Cert[] = await collection.selectCerts(certParam);
   } catch (err) {
     console.error('selectCerts failed');
   }
 
-  const crlParam: certFramework.X509CRLMatchParameters = {
+  const crlParam: cert.X509CRLMatchParameters = {
     x509Cert: x509Cert
   }
   try {
-    let crls: certFramework.X509CRL[] = await collection.selectCRLs(crlParam);
+    let crls: cert.X509CRL[] = await collection.selectCRLs(crlParam);
     console.error('selectCRLs success');
   } catch (err) {
     console.error('selectCRLs failed');

@@ -9,15 +9,19 @@
 
 ## 导入模块
 
-```
-import JSON from '@ohos.util.json';
+```ts
+import { JSON } from '@kit.ArkTS';
 ```
 
 ## Transformer
 
 type Transformer = (this: Object, key: string, value: Object) => Object | undefined | null
 
-用于转换结果函数的类型。
+用于转换结果函数的类型。<br>
+作为[JSON.parse](#jsonparse)函数的参数时，对象的每个成员将会调用此函数，解析过程中允许对数据进行自定义处理或转换。<br>
+作为[JSON.stringify](#jsonstringify-1)函数的参数时，在序列化过程中，被序列化的值的每个属性都会经过该函数的转换和处理。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -35,11 +39,39 @@ type Transformer = (this: Object, key: string, value: Object) => Object | undefi
 | -------- | -------- |
 | Object \| undefined \| null | 返回修改后的对象或undefined或null。|
 
+## BigIntMode
+
+定义处理BigInt的模式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 值| 说明            |
+| ------ | ------ | --------------- |
+| DEFAULT   | 0 |不支持BigInt。|
+| PARSE_AS_BIGINT   | 1 |当整数小于-(2^53-1)或大于(2^53-1)时，解析为BigInt。|
+| ALWAYS_PARSE_AS_BIGINT   | 2 |所有整数都解析为BigInt。|
+
+## ParseOptions
+
+解析的选项，可定义处理BigInt的模式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 类型| 必填 |说明            |
+| ------ | ------ | ---- | --------------- |
+| bigIntMode   | [BigIntMode](#bigintmode) | 是 |定义处理BigInt的模式。|
+
 ## JSON.parse
 
-parse(text: string, reviver?: Transformer): Object | null
+parse(text: string, reviver?: Transformer, options?: ParseOptions): Object | null
 
 用于解析JSON字符串生成对应ArkTS对象或null。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -49,6 +81,7 @@ parse(text: string, reviver?: Transformer): Object | null
 | ------ | ------ | ---- | --------------- |
 | text   | string | 是 | 有效的JSON字符串。|
 | reviver  | [Transformer](#transformer) | 否 | 转换函数，传入该参数，可以用来修改解析生成的原始值。默认值是undefined。|
+| options   | [ParseOptions](#parseoptions) | 否 | 解析的配置，传入该参数，可以用来控制解析生成的类型。默认值是undefined。|
 
 **返回值：**
 
@@ -56,13 +89,50 @@ parse(text: string, reviver?: Transformer): Object | null
 | -------- | -------- |
 | Object \| null | 返回ArkTS对象或null。当入参是null时，返回null。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import JSON from '@ohos.util.json';
+// /entry/src/main/ets/pages/test.ts
+export function reviverFunc(key, value) {
+  if (key === "age") {
+    return value + 1;
+  }
+  return value;
+}
+```
+
+<!--code_no_check-->
+```ts
+import { JSON } from '@kit.ArkTS';
+import { reviverFunc } from './test';
 
 let jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
 let obj = JSON.parse(jsonText);
+console.info((obj as object)?.["name"]);
+// 打印结果：John
+const jsonTextStr = '{"name": "John", "age": 30}';
+let objRst = JSON.parse(jsonTextStr, reviverFunc);
+console.info((objRst as object)?.["age"]);
+// 打印结果：31
+let options: JSON.ParseOptions = {
+  bigIntMode: JSON.BigIntMode.PARSE_AS_BIGINT,
+}
+let numberText = '{"largeNumber":112233445566778899}';
+let numberObj = JSON.parse(numberText,(key: string, value: Object | undefined | null): Object | undefined | null => {
+  if(key === "largeNumber") return value;
+  return value;
+},options) as Object;
+
+console.info((numberObj as object)?.["largeNumber"]);
+// 打印结果: 112233445566778899
 ```
 
 
@@ -70,7 +140,9 @@ let obj = JSON.parse(jsonText);
 
 stringify(value: Object, replacer?: (number | string)[] | null, space?: string | number): string
 
-该方法将一个ArkTS对象或数组转换为JSON字符串。
+该方法将一个ArkTS对象或数组转换为JSON字符串，对于容器支持线性容器转换，非线性的容器不支持。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -78,7 +150,7 @@ stringify(value: Object, replacer?: (number | string)[] | null, space?: string |
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | Object | 是 | ArkTS对象或数组。|
+| value | Object | 是 | ArkTS对象或数组，对于容器支持线性容器转换，非线性的容器不支持。|
 | replacer | number[] \| string[] \| null | 否 | 当参数是数组时，只有包含在这个数组中的属性名才会被序列化到最终的JSON字符串中；当参数为null或者未提供时，则对象所有的属性都会被序列化。默认值是undefined。|
 | space | string \| number | 否 | 指定缩进用的空格或字符串或空字符串，用于美化输出。当参数是数字时表示有多少个空格；当参数是字符串时，该字符串被当作空格；当参数没有提供时，将没有空格。默认值是空字符串。|
 
@@ -88,16 +160,54 @@ stringify(value: Object, replacer?: (number | string)[] | null, space?: string |
 | -------- | -------- |
 | string | 转换后的JSON字符串。|
 
-**示例：**
+**错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
 ```ts
+// /entry/src/main/ets/pages/test.ts
+export let exportObj = {1: "John", 2: 30, 3: "New York"};
+```
+
+<!--code_no_check-->
+```ts
+import { JSON } from '@kit.ArkTS';
+import { exportObj } from './test';
+
+let arr = [1, 2];
+let rstArrStr = JSON.stringify(exportObj, arr);
+console.info(rstArrStr);
+// 打印结果："{"1":"John","2":30}"
 interface Person {
   name: string;
   age: number;
   city: string;
 }
-let obj = {"name": "John", "age": 30, "city": "ChongQing"} as Person;
-let str1 = JSON.stringify(obj, ["name"]);
+let inputObj = {"name": "John", "age": 30, "city": "ChongQing"} as Person;
+let rstStr = JSON.stringify(inputObj, ["name"]);
+console.info(rstStr);
+// 打印结果："{"name":"John"}"
+let rstStrSpace = JSON.stringify(inputObj, ["name"], '  ');
+console.info(rstStrSpace);
+// 打印结果：
+/*
+"{
+  "name": "John"
+}"
+*/
+let rstStrStar = JSON.stringify(inputObj, ["name"], '&&');
+console.info(rstStrStar);
+// 打印结果：
+/*
+"{
+&&"name": "John"
+}"
+*/
 ```
 
 
@@ -105,7 +215,9 @@ let str1 = JSON.stringify(obj, ["name"]);
 
 stringify(value: Object, replacer?: Transformer, space?: string | number): string
 
-该方法将一个ArkTS对象或数组转换为JSON字符串。
+该方法将一个ArkTS对象或数组转换为JSON字符串，对于容器支持线性容器转换，非线性的容器不支持。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -113,7 +225,7 @@ stringify(value: Object, replacer?: Transformer, space?: string | number): strin
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | Object | 是 | ArkTS对象或数组。|
+| value | Object | 是 | ArkTS对象或数组，对于容器支持线性容器转换，非线性的容器不支持。|
 | replacer | [Transformer](#transformer) | 否 | 在序列化过程中，被序列化的值的每个属性都会经过该函数的转换和处理。默认值是undefined。|
 | space | string \| number | 否 | 指定缩进用的空格或字符串或空字符串，用于美化输出。当参数是数字时表示有多少个空格；当参数是字符串时，该字符串被当作空格；当参数没有提供时，将没有空格。默认值是空字符串。|
 
@@ -123,23 +235,59 @@ stringify(value: Object, replacer?: Transformer, space?: string | number): strin
 | -------- | -------- |
 | string | 转换后的JSON字符串。|
 
-**示例：**
+**错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
 ```ts
-function replacer(key: string, value: Object): Object {
+// /entry/src/main/ets/pages/test.ts
+export function replacer(key: string, value: Object): Object {
   if (typeof value === "string") {
     return value.toUpperCase();
   }
   return value;
 }
+```
+
+<!--code_no_check-->
+```ts
+import { JSON } from '@kit.ArkTS';
+import { replacer } from './test';
+
 interface Person {
   name: string;
   age: number;
   city: string;
 }
-
-let obj = {"name": "John", "age": 30, "city": "ChongQing"} as Person;
-let str2 = JSON.stringify(obj, replacer);
+let inputObj = {"name": "John", "age": 30, "city": "ChongQing"} as Person;
+let rstStr= JSON.stringify(inputObj, replacer);
+console.info(rstStr);
+// 打印结果："{"name":"JOHN","age":30,"city":"CHONGQING"}"
+let rstStrSpace= JSON.stringify(inputObj, replacer, '  ');
+console.info(rstStrSpace);
+// 打印结果：
+/*
+"{
+  "name": "JOHN",
+  "age": 30,
+  "city": "CHONGQING"
+}"
+*/
+let rstStrSymbol= JSON.stringify(inputObj, replacer, '@@@');
+console.info(rstStrSymbol);
+// 打印结果：
+/*
+"{
+@@@"name": "JOHN",
+@@@"age": 30,
+@@@"city": "CHONGQING"
+}"
+*/
 ```
 
 
@@ -147,7 +295,9 @@ let str2 = JSON.stringify(obj, replacer);
 
 has(obj: object, property: string): boolean
 
-检查ArkTS对象是否包含某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后的相关操作。
+检查ArkTS对象是否包含某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后的相关操作。has接口仅支持最外层为字典形式（即大括号而非中括号包围）的合法json串。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -164,13 +314,24 @@ has(obj: object, property: string): boolean
 | -------- | -------- |
 | boolean | 返回ArkTS对象是否包含某种属性结果，true表示包含，false表示不包含。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
+import { JSON } from '@kit.ArkTS';
 
 const jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
-let obj = JSON.parse(jsonText);
-let rst = JSON.has(obj, "name");
+let inputObj = JSON.parse(jsonText);
+let result = JSON.has(inputObj, "name");
+console.info("result = " + result);
+// 打印结果：result = true
 ```
 
 
@@ -178,7 +339,9 @@ let rst = JSON.has(obj, "name");
 
 remove(obj: object, property: string): void
 
-从ArkTS对象中删除某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后的相关操作。
+从ArkTS对象中删除某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后的相关操作。remove接口仅支持最外层为字典形式（即大括号而非中括号包围）的合法json串。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -189,11 +352,23 @@ remove(obj: object, property: string): void
 | obj | object | 是 | ArkTS对象。|
 | property | string | 是 | 属性名。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
+import { JSON } from '@kit.ArkTS';
 
 const jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
-let obj = JSON.parse(jsonText);
-let rst = JSON.remove(obj, "name");
+let inputObj = JSON.parse(jsonText);
+JSON.remove(inputObj, "name");
+let result = JSON.has(inputObj, "name");
+console.info("result = " + result);
+// 打印结果：result = false
 ```

@@ -11,69 +11,62 @@ The **request** module provides applications with basic upload, download, and ba
 
 
 ```js
-import request from '@ohos.request';
+import { request } from '@kit.BasicServicesKit';
 ```
 
 ## Constants
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
-### Network Types
-You can set **networkType** in [DownloadConfig](#downloadconfig) to specify the network type for the download service.
+> **NOTE**
+>
+> **Network type**: set **networkType** in [DownloadConfig](#downloadconfig) to specify the network type for the download service.<br>
+>
+> **Download error codes**: values of **err** in the callback of [on('fail')<sup>7+</sup>](#onfail7) and the values of the **failedReason** field returned by [getTaskInfo<sup>9+</sup>](#gettaskinfo9).<br>
+>
+> **Causes of download pause**: values of **pausedReason** returned by [getTaskInfo<sup>9+</sup>](#gettaskinfo9).<br>
+>
+> **Download task status code**: values of **status** returned by [getTaskInfo<sup>9+</sup>](#gettaskinfo9).
 
 | Name| Type| Value| Description|
 | -------- | -------- | -------- | -------- |
-| NETWORK_MOBILE | number | 0x00000001 | Whether download is allowed on a mobile network.|
-| NETWORK_WIFI | number | 0x00010000 | Whether download is allowed on a WLAN.|
-
-### Download Error Codes
-The table below lists the values of **err** in the callback of [on('fail')<sup>7+</sup>](#onfail7) and the values of **failedReason** returned by [getTaskInfo<sup>9+</sup>](#gettaskinfo9).
-
-| Name| Type| Value| Description|
-| -------- | -------- | -------- | -------- |
-| ERROR_CANNOT_RESUME<sup>7+</sup> | number |   0   | Failure to resume the download due to network errors.|
-| ERROR_DEVICE_NOT_FOUND<sup>7+</sup> | number |   1   | Failure to find a storage device such as a memory card.|
-| ERROR_FILE_ALREADY_EXISTS<sup>7+</sup> | number |   2   | Failure to download the file because it already exists.|
-| ERROR_FILE_ERROR<sup>7+</sup> | number |   3   | File operation failure.|
-| ERROR_HTTP_DATA_ERROR<sup>7+</sup> | number |   4   | HTTP transmission failure.|
-| ERROR_INSUFFICIENT_SPACE<sup>7+</sup> | number |   5   | Insufficient storage space.|
-| ERROR_TOO_MANY_REDIRECTS<sup>7+</sup> | number |   6   | Error caused by too many network redirections.|
-| ERROR_UNHANDLED_HTTP_CODE<sup>7+</sup> | number |   7   | Unidentified HTTP code.|
-| ERROR_UNKNOWN<sup>7+</sup> | number |   8   | Unknown error.|
-| ERROR_OFFLINE<sup>9+</sup> | number |   9   | No network connection.|
-| ERROR_UNSUPPORTED_NETWORK_TYPE<sup>9+</sup> | number |   10   | Network type mismatch.|
-
-
-### Causes of Download Pause
-The table below lists the values of **pausedReason** returned by [getTaskInfo<sup>9+</sup>](#gettaskinfo9).
-
-| Name| Type| Value| Description|
-| -------- | -------- | -------- | -------- |
-| PAUSED_QUEUED_FOR_WIFI<sup>7+</sup> | number |   0   | Download paused and queuing for a WLAN connection, because the file size exceeds the maximum value allowed by a mobile network session.|
-| PAUSED_WAITING_FOR_NETWORK<sup>7+</sup> | number |   1   | Download paused due to a network connection problem, for example, network disconnection.|
-| PAUSED_WAITING_TO_RETRY<sup>7+</sup> | number |   2   | Download paused and then retried.|
-| PAUSED_BY_USER<sup>9+</sup> | number |   3   | The user paused the session.|
-| PAUSED_UNKNOWN<sup>7+</sup> | number |   4   | Download paused due to unknown reasons.|
-
-### Download Task Status Codes
-The table below lists the values of **status** returned by [getTaskInfo<sup>9+</sup>](#gettaskinfo9).
-
-| Name| Type| Value| Description|
-| -------- | -------- | -------- | -------- |
-| SESSION_SUCCESSFUL<sup>7+</sup> | number |   0   | Successful download.|
-| SESSION_RUNNING<sup>7+</sup> | number |   1   | Download in progress.|
-| SESSION_PENDING<sup>7+</sup> | number |   2   | Download pending.|
-| SESSION_PAUSED<sup>7+</sup> | number |   3   | Download paused.|
-| SESSION_FAILED<sup>7+</sup> | number |   4   | Download failure without retry.|
+| EXCEPTION_PERMISSION<sup>9+</sup> | number |   201   | (Universal error codes) Permission verification failed.|
+| EXCEPTION_PARAMCHECK<sup>9+</sup> | number |   401   | (Universal error codes) Parameter check failed.|
+| EXCEPTION_UNSUPPORTED<sup>9+</sup> | number |   801   | (Universal error codes) The device does not support this API.|
+| EXCEPTION_FILEIO<sup>9+</sup> | number |   13400001   | (Specific error codes) Abnormal file operation.|
+| EXCEPTION_FILEPATH<sup>9+</sup> | number |   13400002   | (Specific error codes) Abnormal file path.|
+| EXCEPTION_SERVICE<sup>9+</sup> | number |   13400003   | (Specific error codes) Abnormal service.|
+| EXCEPTION_OTHERS<sup>9+</sup> | number |   13499999   | (Specific error codes) Other errors.|
+| NETWORK_MOBILE<sup>6+</sup> | number | 0x00000001 | (Network type) Bit flag download allowed on a mobile network.|
+| NETWORK_WIFI<sup>6+</sup> | number | 0x00010000 | (Network type) Bit flag download allowed on a WLAN.|
+| ERROR_CANNOT_RESUME<sup>7+</sup> | number |   0   | (Download error codes) Failure to resume the download due to network errors.|
+| ERROR_DEVICE_NOT_FOUND<sup>7+</sup> | number |   1   | (Download error codes) Failure to find a storage device such as a memory card.|
+| ERROR_FILE_ALREADY_EXISTS<sup>7+</sup> | number |   2   | (Download error codes) Failure to download the file because it already exists.|
+| ERROR_FILE_ERROR<sup>7+</sup> | number |   3   | (Download error codes) File operation failed.|
+| ERROR_HTTP_DATA_ERROR<sup>7+</sup> | number |   4   | (Download error codes) HTTP transmission failed.|
+| ERROR_INSUFFICIENT_SPACE<sup>7+</sup> | number |   5   | (Download error codes) Insufficient storage space.|
+| ERROR_TOO_MANY_REDIRECTS<sup>7+</sup> | number |   6   | (Download error codes) Error caused by too many network redirections.|
+| ERROR_UNHANDLED_HTTP_CODE<sup>7+</sup> | number |   7   | (Download error codes) Unidentified HTTP code.|
+| ERROR_UNKNOWN<sup>7+</sup> | number |   8   | (Download error codes) Unknown error. (In API version 12 or earlier, only serial connection to the IP addresses associated with the specified domain name is supported, and the connection time for a single IP address is not controllable. If the first IP address returned by the DNS is blocked, a handshake timeout may occur, leading to an **ERROR_UNKNOWN** error.)|
+| ERROR_OFFLINE<sup>9+</sup> | number |   9   | (Download error codes) No network connection.|
+| ERROR_UNSUPPORTED_NETWORK_TYPE<sup>9+</sup> | number |   10   | (Download error codes) Network type mismatch.|
+| PAUSED_QUEUED_FOR_WIFI<sup>7+</sup> | number |   0   | (Causes of download pause) Download paused and queuing for a WLAN connection, because the file size exceeds the maximum value allowed for a mobile network session.|
+| PAUSED_WAITING_FOR_NETWORK<sup>7+</sup> | number |   1   | (Causes of download pause) Download paused due to a network connection problem, for example, network disconnection.|
+| PAUSED_WAITING_TO_RETRY<sup>7+</sup> | number |   2   | (Causes of download pause) Download paused and then retried.|
+| PAUSED_BY_USER<sup>9+</sup> | number |   3   | (Causes of download pause) The user paused the session.|
+| PAUSED_UNKNOWN<sup>7+</sup> | number |   4   | (Causes of download pause) Download paused due to unknown reasons.|
+| SESSION_SUCCESSFUL<sup>7+</sup> | number |   0   | (Download task status codes) Successful download.|
+| SESSION_RUNNING<sup>7+</sup> | number |   1   | (Download task status codes) Download in progress.|
+| SESSION_PENDING<sup>7+</sup> | number |   2   | (Download task status codes) Download pending.|
+| SESSION_PAUSED<sup>7+</sup> | number |   3   | (Download task status codes) Download paused.|
+| SESSION_FAILED<sup>7+</sup> | number |   4   | (Download task status codes) Download failure without retry.|
 
 
 ## request.uploadFile<sup>9+</sup>
 
 uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
 
-Uploads files. This API uses a promise to return the result. You can use [on('complete'|'fail')<sup>9+</sup>](#oncomplete--fail9) to obtain the upload error information.
+Uploads a file. This API uses a promise to return the result. HTTP is supported. You can use [on('complete'|'fail')<sup>9+</sup>](#oncomplete--fail9) to obtain the upload error information.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -81,35 +74,39 @@ Uploads files. This API uses a promise to return the result. You can use [on('co
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-  | config | [UploadConfig](#uploadconfig6) | Yes| Upload configurations.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+| config | [UploadConfig](#uploadconfig6) | Yes| Upload configurations.|
 
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the upload task.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the **UploadTask** object.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400002 | bad file path. |
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 13400002 | bad file path. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
-    url: 'http://www.example.com', // Replace the example with the actual server address.
+    url: 'http://www.example.com', // Replace the URL with the HTTP address of the real server.
     header: { 'Accept': '*/*' },
     method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "image/jpeg" }], // Set type to the MIME type of the HTTP protocol.
     data: [{ name: "name123", value: "123" }],
   };
   try {
@@ -132,7 +129,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
 uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
-Uploads files. This API uses an asynchronous callback to return the result. You can use [on('complete'|'fail')<sup>9+</sup>](#oncomplete--fail9) to obtain the upload error information.
+Uploads a file. This API uses an asynchronous callback to return the result. HTTP is supported. You can use [on('complete'|'fail')<sup>9+</sup>](#oncomplete--fail9) to obtain the upload error information.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -140,29 +137,33 @@ Uploads files. This API uses an asynchronous callback to return the result. You 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-  | config | [UploadConfig](#uploadconfig6) | Yes| Upload configurations.|
-  | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+| config | [UploadConfig](#uploadconfig6) | Yes| Upload configurations.|
+| callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object. If the operation is successful, **err** is **undefined**, and **data** is the **UploadTask** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400002 | bad file path. |
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 13400002 | bad file path. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
-    url: 'http://www.example.com', // Replace the example with the actual server address.
+    url: 'http://www.example.com', // Replace the URL with the HTTP address of the real server.
     header: { 'Accept': '*/*' },
     method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "image/jpeg" }], // Set type to the MIME type of the HTTP protocol.
     data: [{ name: "name123", value: "123" }],
   };
   try {
@@ -200,25 +201,33 @@ Uploads files. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | config | [UploadConfig](#uploadconfig6) | Yes| Upload configurations.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| config | [UploadConfig](#uploadconfig6) | Yes| Upload configurations.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the upload task.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the **UploadTask** object.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://www.example.com', // Replace the example with the actual server address.
+    url: 'http://www.example.com', // Replace the URL with the HTTP address of the real server.
     header: { 'Accept': '*/*' },
     method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "image/jpeg" }], // Set type to the MIME type of the HTTP protocol.
     data: [{ name: "name123", value: "123" }],
   };
   request.upload(uploadConfig).then((data) => {
@@ -247,20 +256,28 @@ Uploads files. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | config | [UploadConfig](#uploadconfig6) | Yes| Upload configurations.|
-  | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| config | [UploadConfig](#uploadconfig6) | Yes| Upload configurations.|
+| callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object. If the operation is successful, **err** is **undefined**, and **data** is the **UploadTask** object obtained. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://www.example.com', // Replace the example with the actual server address.
+    url: 'http://www.example.com', // Replace the URL with the HTTP address of the real server.
     header: { 'Accept': '*/*' },
     method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "image/jpeg" }], // Set type to the MIME type of the HTTP protocol.
     data: [{ name: "name123", value: "123" }],
   };
   request.upload(uploadConfig, (err, data) => {
@@ -276,28 +293,24 @@ Uploads files. This API uses an asynchronous callback to return the result.
 
 Implements file uploads. Before using any APIs of this class, you must obtain an **UploadTask** object through [request.uploadFile<sup>9+</sup>](#requestuploadfile9) in promise mode or [request.uploadFile<sup>9+</sup>](#requestuploadfile9-1) in callback mode.
 
-
-
 ### on('progress')
 
 on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; void): void
 
-Subscribes to upload progress events. This API uses a callback to return the result asynchronously.
+Subscribes to upload progress events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
 > To maintain a balance between power consumption and performance, this API cannot be called when the application is running in the background.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Upload
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (upload progress).|
-  | callback | function | Yes| Callback for the upload progress event.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (upload progress).|
+| callback | function | Yes| Callback used to return the size of the uploaded file and the total size of the file to upload.|
 
   Parameters of the callback function
 
@@ -306,8 +319,17 @@ Subscribes to upload progress events. This API uses a callback to return the res
 | uploadedSize | number | Yes| Size of the uploaded files, in bytes.|
 | totalSize | number | Yes| Total size of the files to upload, in bytes.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **Example**
 
+<!--code_no_check-->
   ```ts
   let upProgressCallback = (uploadedSize: number, totalSize: number) => {
     console.info("upload totalSize:" + totalSize + "  uploadedSize:" + uploadedSize);
@@ -320,27 +342,34 @@ Subscribes to upload progress events. This API uses a callback to return the res
 
 on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
-Subscribes to HTTP header events for the upload task. This API uses a callback to return the result asynchronously.
-
-**Required permissions**: ohos.permission.INTERNET
+Subscribes to HTTP response events for the upload task. This API uses a callback to return the result asynchronously.
 
 **System capability**: SystemCapability.MiscServices.Upload
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to subscribe to. The value is **'headerReceive'** (response header).|
-  | callback | function | Yes| Callback for the HTTP Response Header event.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to subscribe to. The value is **'headerReceive'** (response received).|
+| callback | function | Yes| Callback used to return the response content.|
 
   Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| header | object | Yes| HTTP Response Header.|
+| header | object | Yes| HTTP response.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   let headerCallback = (headers: object) => {
     console.info("upOnHeader headers:" + JSON.stringify(headers));
@@ -353,27 +382,29 @@ Subscribes to HTTP header events for the upload task. This API uses a callback t
 
  on(type:'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
 
-Subscribes to upload completion or failure events. This API uses a callback to return the result asynchronously.
-
-**Required permissions**: ohos.permission.INTERNET
+Subscribes to upload completion or failure events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.Upload
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
-  | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | Yes| Callback used to return the result.|
-
-  Parameters of the callback function
-
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| taskstates | Array&lt;[TaskState](#taskstate9)&gt; | Yes| Upload result.|
+| type | string | Yes| Callback types for subscribing to the upload events, including **'complete'\|'fail'**.<br>\- **'complete'**: the upload is complete.<br>\- **'fail'**: the upload fails.|
+| callback | Callback&lt;Array&lt;[TaskState](#taskstate9)&gt;&gt; | Yes| Callback used to return the result.  |
+
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   let upCompleteCallback = (taskStates: Array<request.TaskState>) => {
     for (let i = 0; i < taskStates.length; i++) {
@@ -397,19 +428,33 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
 Unsubscribes from upload progress events.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Upload
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (upload progress).|
-  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.<br>**uploadedSize**: size of the uploaded files, in B.<br>**totalSize**: Total size of the files to upload, in B.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (upload progress).|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+
+Parameters of the callback function
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uploadedSize | number | Yes| Size of the uploaded files, in bytes.|
+| totalSize | number | Yes| Total size of the files to upload, in bytes.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   let upProgressCallback1 = (uploadedSize: number, totalSize: number) => {
     console.info('Upload delete progress notification.' + 'totalSize:' + totalSize + 'uploadedSize:' + uploadedSize);
@@ -430,21 +475,28 @@ Unsubscribes from upload progress events.
 
 off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
-This interface is used to unsubscribe from the HTTP header event of an upload task.
-
-**Required permissions**: ohos.permission.INTERNET
+Unsubscribes from HTTP response events for the upload task.
 
 **System capability**: SystemCapability.MiscServices.Upload
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to unsubscribe from. The value is **'headerReceive'** (response header).|
-  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to unsubscribe from. The value is **'headerReceive'** (response received).|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   let headerCallback1 = (header: object) => {
     console.info(`Upload delete headerReceive notification. header: ${JSON.stringify(header)}`);
@@ -466,19 +518,26 @@ This interface is used to unsubscribe from the HTTP header event of an upload ta
 
 Unsubscribes from upload completion or failure events.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Upload
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
-  | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
+| callback | Callback&lt;Array&lt;[TaskState](#taskstate9)&gt;&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   let upCompleteCallback1 = (taskStates: Array<request.TaskState>) => {
     console.info('Upload delete complete notification.');
@@ -522,7 +581,7 @@ Unsubscribes from upload completion or failure events.
 ### delete<sup>9+</sup>
 delete(): Promise&lt;boolean&gt;
 
-Deletes this upload task. This API uses a promise to return the result.
+Deletes this upload task. This API uses a promise to return the result. 
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -530,12 +589,21 @@ Deletes this upload task. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   uploadTask.delete().then((result: boolean) => {
     console.info('Succeeded in deleting the upload task.');
@@ -544,12 +612,16 @@ Deletes this upload task. This API uses a promise to return the result.
   });
   ```
 
+> **NOTE**
+>
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
+
 
 ### delete<sup>9+</sup>
 
 delete(callback: AsyncCallback&lt;boolean&gt;): void
 
-Deletes this upload task. This API uses an asynchronous callback to return the result. 
+Deletes this upload task. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -557,12 +629,21 @@ Deletes this upload task. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   uploadTask.delete((err: BusinessError, result: boolean) => {
     if (err) {
@@ -573,12 +654,16 @@ Deletes this upload task. This API uses an asynchronous callback to return the r
   });
   ```
 
+> **NOTE**
+>
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
+
 
 ### remove<sup>(deprecated)</sup>
 
 remove(): Promise&lt;boolean&gt;
 
-Removes this upload task. This API uses a promise to return the result. 
+Removes this upload task. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -590,9 +675,17 @@ Removes this upload task. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
@@ -609,7 +702,7 @@ Removes this upload task. This API uses a promise to return the result.
 
 remove(callback: AsyncCallback&lt;boolean&gt;): void
 
-Removes this upload task. This API uses an asynchronous callback to return the result. 
+Removes this upload task. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -621,9 +714,17 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
@@ -644,38 +745,50 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 ## UploadConfig<sup>6+</sup>
 Describes the configuration of an upload task.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Upload
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| url | string | Yes| Resource URL.|
+| url | string | Yes| Resource URL. From API version 6 to 14, the value contains a maximum of 2048 characters; from API version 15, the value contains a maximum of 8192 characters.|
 | header | Object | Yes| HTTP or HTTPS header added to an upload request.|
-| method | string | Yes| Request method, which can be **'POST'** or **'PUT'**. The default value is **'POST'**.|
+| method | string | Yes|  HTTP request method. The value can be **POST** or **PUT**. The default value is **POST**. Use the **PUT** method to modify resources and the **POST** method to add resources.|
 | index<sup>11+</sup> | number | No| Path index of the task. The default value is **0**.|
 | begins<sup>11+</sup> | number | No| File start point to read when the task begins. The default value is **0**. The value is a closed interval.|
 | ends<sup>11+</sup> | number | No| File start point to read when the task ends. The default value is **-1**. The value is a closed interval.|
-| files | Array&lt;[File](#file)&gt; | Yes| List of files to upload, which is submitted through **multipart/form-data**.|
+| files | Array&lt;[File](#file)&gt; | Yes| List of files to upload. The files are submitted in multipart/form-data format.|
 | data | Array&lt;[RequestData](#requestdata)&gt; | Yes| Form data in the request body.|
 
 ## TaskState<sup>9+</sup>
 Implements a **TaskState** object, which is the callback parameter of the [on('complete' | 'fail')<sup>9+</sup>](#oncomplete--fail9) and [off('complete' | 'fail')<sup>9+</sup>](#offcomplete--fail9) APIs.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Upload
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| path | string | Yes| File path.|
-| responseCode | number | Yes| Return value of an upload task. The value **0** means that the task is successful, and other values means that the task fails. For details about the task result, see **message**.|
-| message | string | Yes| Description of the upload task result.|
+| Name| Type| Mandatory| Description                                                                                                                                       |
+| -------- | -------- | -------- |-------------------------------------------------------------------------------------------------------------------------------------------|
+| path | string | Yes| File path.                                        |
+| responseCode | number | Yes| Return value of an upload task. The value **0** means that the task is successful, and other values means that the task fails. For details about the task result, see **message**. You are advised to create an upload task by using [request.agent.create<sup>10+</sup>](#requestagentcreate10-1) and handle exceptions based on standard error codes.|
+| message | string | Yes| Description of the upload task result.                          |
+
+The following table describes the enum values of **responseCode**.
+
+| Result Code| Description                              |
+|-----|------------------------------------|
+| 0   | Upload success.                              |
+| 5   | Task suspended or stopped proactively.                        |
+| 6   | Foreground task stopped. The reason is that the application, to which the task belongs, is switched to the background or terminated. Check the application status. |
+| 7   | No network connection. Check whether the device is connected to the network.                 |
+| 8   | Network mismatch. Check whether the current network type matches the network type required by the task.    |
+| 10  | Failed to create the HTTP request. Verify the parameters or try again.         |
+| 12  | Request timeout. Verify the parameter configuration or the network connection, or try again.         |
+| 13  | Connection failed. Verify the parameter configuration or the network connection, or try again.       |
+| 14  | Request failed. Verify the parameter configuration or the network connection, or try again.       |
+| 15  | Upload failed. Verify the parameter configuration or the network connection, or try again.       |
+| 16  | Redirection failed. Verify the parameter configuration or the network connection, or try again.      |
+| 17  | Protocol error. The server returns a 4XX or 5XX status code. Verify the parameter configuration and try again.|
+| 20  | Other errors. Verify the parameter configuration or the network connection, or try again.       |
 
 ## File
-Defines the file list in [UploadConfig<sup>6+<sup>](#uploadconfig6).
-
-**Required permissions**: ohos.permission.INTERNET
+Defines the file list in [UploadConfig<sup>6+</sup>](#uploadconfig6).
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -683,14 +796,12 @@ Defines the file list in [UploadConfig<sup>6+<sup>](#uploadconfig6).
 | -------- | -------- | -------- | -------- |
 | filename | string | Yes| File name in the header when **multipart** is used.|
 | name | string | Yes| Name of a form item when **multipart** is used. The default value is **file**.|
-| uri | string | Yes| Local path for storing files.<br>Only the **internal** protocol is currently supported. **internal://cache/** is the private directory of the application and is mandatory. Example:<br>internal://cache/path/to/file.txt |
+| uri | string | Yes| Local path for storing files.<br>Only internal protocols are supported in the path. Therefore, **internal://cache/**, that is, **context.cacheDir** of the caller (namely, cache directory of the input **context**), must be included in the path,<br>for example, **internal://cache/path/to/file.txt**.|
 | type | string | Yes| Type of the file content. By default, the type is obtained based on the extension of the file name or URI.|
 
 
 ## RequestData
-Defines the form data in [UploadConfig<sup>6+<sup>](#uploadconfig6).
-
-**Required permissions**: ohos.permission.INTERNET
+Defines the form data in [UploadConfig<sup>6+</sup>](#uploadconfig6).
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -703,8 +814,7 @@ Defines the form data in [UploadConfig<sup>6+<sup>](#uploadconfig6).
 
 downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
-Downloads files. This API uses a promise to return the result. You can use [on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7) to obtain the download task state, which can be completed, paused, or removed. You can also use [on('fail')<sup>7+</sup>](#onfail7) to obtain the task download error information.
-
+Downloads a file. This API uses a promise to return the result. HTTP is supported. You can use [on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7) to obtain the download task state, which can be completed, paused, or removed. You can also use [on('fail')<sup>7+</sup>](#onfail7) to obtain the task download error information.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -712,33 +822,36 @@ Downloads files. This API uses a promise to return the result. You can use [on('
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-  | config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+| config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the download task.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the **DownloadTask** object.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400001 | file operation error. |
-  | 13400002 | bad file path. |
-  | 13400003 | task service ability error. |
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 13400001 | file operation error. |
+| 13400002 | bad file path. |
+| 13400003 | task service ability error. |
 
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace the URL with the HTTP address of the real server.
     request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
        let downloadTask: request.DownloadTask = data;
     }).catch((err: BusinessError) => {
@@ -758,8 +871,7 @@ import { BusinessError } from '@ohos.base';
 
 downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void;
 
-Downloads files. This API uses an asynchronous callback to return the result. You can use [on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7) to obtain the download task state, which can be completed, paused, or removed. You can also use [on('fail')<sup>7+</sup>](#onfail7) to obtain the task download error information.
-
+Downloads a file. This API uses an asynchronous callback to return the result. HTTP is supported. You can use [on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7) to obtain the download task state, which can be completed, paused, or removed. You can also use [on('fail')<sup>7+</sup>](#onfail7) to obtain the task download error information.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -767,28 +879,31 @@ Downloads files. This API uses an asynchronous callback to return the result. Yo
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-  | config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
-  | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the download task.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+| config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
+| callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DownloadTask** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400001 | file operation error. |
-  | 13400002 | bad file path. |
-  | 13400003 | task service ability error. |
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 13400001 | file operation error. |
+| 13400002 | bad file path. |
+| 13400003 | task service ability error. |
 
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace the URL with the HTTP address of the real server.
     request.downloadFile(getContext(), {
       url: 'https://xxxx/xxxxx.hap',
       filePath: 'xxx/xxxxx.hap'
@@ -826,20 +941,29 @@ Downloads files. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the download task.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the **DownloadTask** object.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
   ```js
   let downloadTask;
+  // Replace the URL with the HTTP address of the real server.
   request.download({ url: 'https://xxxx/xxxx.hap' }).then((data) => {
     downloadTask = data;
   }).catch((err) => {
@@ -866,15 +990,24 @@ Downloads files. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
-  | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the download task.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
+| callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DownloadTask** object obtained. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
   ```js
   let downloadTask;
+  // Replace the URL with the HTTP address of the real server.
   request.download({ url: 'https://xxxx/xxxxx.hap', 
   filePath: 'xxx/xxxxx.hap'}, (err, data) => {
     if (err) {
@@ -894,36 +1027,43 @@ Implements file downloads. Before using any APIs of this class, you must obtain 
 
 on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; void): void
 
-Subscribes to download progress events. This API uses a callback to return the result asynchronously.
+Subscribes to download progress events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
 > To maintain a balance between power consumption and performance, this API cannot be called when the application is running in the background.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (download progress).|
-  | callback | function | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (download progress).|
+| callback | function | Yes| Callback used to return the size of the uploaded file and the total size of the file to download.|
 
   Parameters of the callback function
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| receivedSize | number | Yes| Size of the downloaded files, in bytes.|
-| totalSize | number | Yes| Total size of the files to download, in bytes.|
+| Name| Type| Mandatory| Description                                                                     |
+| -------- | -------- | -------- |-------------------------------------------------------------------------|
+| receivedSize | number | Yes| Current download progress, in bytes.                                                          |
+| totalSize | number | Yes| Total size of the files to download, in bytes. If the server uses the chunk mode for data transmission and the total file size cannot be obtained from the request header, the value of **totalSize** is treated as **-1**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace the URL with the HTTP address of the real server.
     request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
       let downloadTask: request.DownloadTask = data;
       let progressCallback = (receivedSize: number, totalSize: number) => {
@@ -945,23 +1085,38 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 
 Unsubscribes from download progress events.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (download progress).|
-  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.<br>**receivedSize**: size of the downloaded files.<br>**totalSize**: total size of the files to download.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (download progress).|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+
+  Parameters of the callback function
+
+| Name| Type| Mandatory| Description                                                                     |
+| -------- | -------- | -------- |-------------------------------------------------------------------------|
+| receivedSize | number | Yes| Current download progress, in bytes.                                                          |
+| totalSize | number | Yes| Total size of the files to download, in bytes. If the server uses the chunk mode for data transmission and the total file size cannot be obtained from the request header, the value of **totalSize** is treated as **-1**.|
+
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let progressCallback1 = (receivedSize: number, totalSize: number) => {
@@ -991,23 +1146,30 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 
 Subscribes to download events. This API uses a callback to return the result asynchronously.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to subscribe to.<br>- **'complete'**: download task completion event.<br>- **'pause'**: download task pause event.<br>- **'remove'**: download task removal event.|
-  | callback | function | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to subscribe to.<br>- **'complete'**: download task completion event.<br>- **'pause'**: download task pause event.<br>- **'remove'**: download task removal event.|
+| callback | function | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let completeCallback = () => {
@@ -1035,27 +1197,34 @@ try {
 
 ### off('complete'|'pause'|'remove')<sup>7+</sup>
 
-off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
+off(type: 'complete'|'pause'|'remove', callback?: () =&gt; void): void
 
 Unsubscribes from download events.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to unsubscribe from.<br>- **'complete'**: download task completion event.<br>- **'pause'**: download task pause event.<br>- **'remove'**: download task removal event.|
-  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to unsubscribe from.<br>- **'complete'**: download task completion event.<br>- **'pause'**: download task pause event.<br>- **'remove'**: download task removal event.|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let completeCallback1 = () => {
@@ -1110,31 +1279,38 @@ try {
 
 on(type: 'fail', callback: (err: number) =&gt; void): void
 
-Subscribes to download failure events. This API uses a callback to return the result asynchronously.
-
-**Required permissions**: ohos.permission.INTERNET
+Subscribes to download failure events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.Download
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to subscribe to. The value is **'fail'** (download failure).|
-  | callback | function | Yes| Callback for the download task failure event.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to subscribe to. The value is **'fail'** (download failure).|
+| callback | function | Yes| Callback for the download task failure event.|
 
   Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| err | number | Yes| Error code of the download failure. For details about the error codes, see [Download Error Codes](#download-error-codes).|
+| err | number | Yes| Error code of the download failure. For details about the error codes, see [Download Error Codes](#constants).|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let failCallback = (err: number) => {
@@ -1156,23 +1332,30 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 
 Unsubscribes from download failure events.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to unsubscribe from. The value is **'fail'** (download failure).|
-  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to unsubscribe from. The value is **'fail'** (download failure).|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let failCallback1 = (err: number) => {
@@ -1207,16 +1390,25 @@ Deletes this download task. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.delete().then((result: boolean) => {
@@ -1232,6 +1424,10 @@ try {
 }
   ```
 
+> **NOTE**
+>
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
+
 
 ### delete<sup>9+</sup>
 
@@ -1245,16 +1441,25 @@ Deletes this download task. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.delete((err: BusinessError, result: boolean) => {
@@ -1272,6 +1477,10 @@ try {
 }
   ```
 
+> **NOTE**
+>
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
+
 
 ### getTaskInfo<sup>9+</sup>
 
@@ -1285,16 +1494,25 @@ Obtains the information about this download task. This API uses a promise to ret
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; |  Promise used to return the download task information.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[DownloadInfo](#downloadinfo7)&gt; |  Promise used to return the **DownloadInfo** object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
@@ -1310,12 +1528,16 @@ try {
 } 
   ```
 
+> **NOTE**
+>
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
+
 
 ### getTaskInfo<sup>9+</sup>
 
 getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
-Obtains the information about this download task. This API uses an asynchronous callback to return the result.
+Obtains this download task. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1323,16 +1545,25 @@ Obtains the information about this download task. This API uses an asynchronous 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the download task information.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DownloadInfo** object obtained. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
@@ -1350,12 +1581,16 @@ try {
 }
   ```
 
+> **NOTE**
+>
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
+
 
 ### getTaskMimeType<sup>9+</sup>
 
 getTaskMimeType(): Promise&lt;string&gt;
 
-Obtains the **MimeType** of this download task. This API uses a promise to return the result.
+Obtains **MimeType** (that is, media type of resources) of a download task. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1363,16 +1598,25 @@ Obtains the **MimeType** of this download task. This API uses a promise to retur
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;string&gt; | Promise used to return the **MimeType** of the download task.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;string&gt; | Promise used to return the **MimeType** object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskMimeType().then((data: string) => {
@@ -1388,6 +1632,10 @@ try {
 }
   ```
 
+> **NOTE**
+>
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
+
 
 ### getTaskMimeType<sup>9+</sup>
 
@@ -1401,16 +1649,25 @@ Obtains the **MimeType** of this download task. This API uses an asynchronous ca
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the **MimeType** of the download task.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and data is the **MimeType** object obtained. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
@@ -1428,12 +1685,16 @@ try {
 }
   ```
 
+> **NOTE**
+>
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
+
 
 ### suspend<sup>9+</sup>
 
 suspend(): Promise&lt;boolean&gt;
 
-Pauses this download task. This API uses a promise to return the result.
+Suspends this download task. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1441,16 +1702,25 @@ Pauses this download task. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.suspend().then((result: boolean) => {
@@ -1466,12 +1736,16 @@ try {
 }
   ```
 
+> **NOTE**
+>
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
+
 
 ### suspend<sup>9+</sup>
 
 suspend(callback: AsyncCallback&lt;boolean&gt;): void
 
-Pauses this download task. This API uses an asynchronous callback to return the result.
+Suspends this download task. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1479,16 +1753,25 @@ Pauses this download task. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.suspend((err: BusinessError, result: boolean) => {
@@ -1506,12 +1789,16 @@ try {
 }
   ```
 
+> **NOTE**
+>
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
+
 
 ### restore<sup>9+</sup>
 
 restore(): Promise&lt;boolean&gt;
 
-Resumes this download task. This API uses a promise to return the result.
+Restores this download task. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1519,16 +1806,25 @@ Resumes this download task. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.restore().then((result: boolean) => {
@@ -1544,12 +1840,16 @@ try {
 }
   ```
 
+> **NOTE**
+>
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
+
 
 ### restore<sup>9+</sup>
 
 restore(callback: AsyncCallback&lt;boolean&gt;): void
 
-Resumes this download task. This API uses an asynchronous callback to return the result.
+Restores this download task. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1557,16 +1857,25 @@ Resumes this download task. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.restore((err: BusinessError, result: boolean) => {
@@ -1583,6 +1892,10 @@ try {
   console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
 }
   ```
+
+> **NOTE**
+>
+> The scenarios for triggering error code **401 the parameters check fails** do not exist. Therefore, this error code is removed from API version 12.
 
 
 ### remove<sup>(deprecated)</sup>
@@ -1601,9 +1914,17 @@ Removes this download task. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
@@ -1632,9 +1953,17 @@ Removes this download task. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
@@ -1665,9 +1994,17 @@ Queries this download task. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | Promise used to return the download task information.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | Promise used to return the **DownloadInfo** object.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
@@ -1696,9 +2033,17 @@ Queries this download task. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the download task information.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DownloadInfo** object obtained. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
@@ -1729,9 +2074,17 @@ Queries the **MimeType** of this download task. This API uses a promise to retur
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;string&gt; | Promise used to return the **MimeType** of the download task.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;string&gt; | Promise used to return the **MimeType** object.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
@@ -1760,9 +2113,17 @@ Queries the **MimeType** of this download task. This API uses an asynchronous ca
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the **MimeType** of the download task.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and data is the **MimeType** object obtained. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
@@ -1793,9 +2154,17 @@ Pauses this download task. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
@@ -1824,9 +2193,17 @@ Pauses this download task. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
@@ -1857,9 +2234,17 @@ Resumes this download task. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
@@ -1888,9 +2273,17 @@ Resumes this download task. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | the permissions check fails |
 
 **Example**
 
@@ -1908,18 +2301,16 @@ Resumes this download task. This API uses an asynchronous callback to return the
 ## DownloadConfig
 Defines the download task configuration.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| url | string | Yes| Resource URL.|
-| header | Object | No| HTTPS flag header to be included in the download request.<br>The **X-TLS-Version** parameter in **header** specifies the TLS version to be used. If this parameter is not set, the CURL_SSLVERSION_TLSv1_2 version is used. Available options are as follows:<br>CURL_SSLVERSION_TLSv1_0<br>CURL_SSLVERSION_TLSv1_1<br>CURL_SSLVERSION_TLSv1_2<br>CURL_SSLVERSION_TLSv1_3<br>The **X-Cipher-List** parameter in **header** specifies the cipher suite list to be used. If this parameter is not specified, the secure cipher suite list is used. Available options are as follows:<br>- The TLS 1.2 cipher suite list includes the following ciphers:<br>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,<br>TLS_DHE_DSS_WITH_AES_128_GCM_SHA256,TLS_DSS_RSA_WITH_AES_256_GCM_SHA384,<br>TLS_PSK_WITH_AES_256_GCM_SHA384,TLS_DHE_PSK_WITH_AES_128_GCM_SHA256,<br>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384,TLS_DHE_PSK_WITH_CHACHA20_POLY1305_SHA256,<br>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,<br>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,<br>TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256,<br>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256,TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384,<br>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_CCM,<br>TLS_DHE_RSA_WITH_AES_256_CCM,TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256,<br>TLS_PSK_WITH_AES_256_CCM,TLS_DHE_PSK_WITH_AES_128_CCM,<br>TLS_DHE_PSK_WITH_AES_256_CCM,TLS_ECDHE_ECDSA_WITH_AES_128_CCM,<br>TLS_ECDHE_ECDSA_WITH_AES_256_CCM,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256<br>- The TLS 1.3 cipher suite list includes the following ciphers:<br>TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384,TLS_CHACHA20_POLY1305_SHA256,TLS_AES_128_CCM_SHA256<br>- The TLS 1.3 cipher suite list adds the Chinese national cryptographic algorithm:<br>TLS_SM4_GCM_SM3,TLS_SM4_CCM_SM3 |
+| url | string | Yes| Resource URL. From API version 6 to 14, the value contains a maximum of 2048 characters; from API version 15, the value contains a maximum of 8192 characters.|
+| header | Object | No| HTTPS flag header to be included in the download request.|
 | enableMetered | boolean | No| Whether download is allowed on a metered connection. The default value is **false**. In general cases, a mobile data connection is metered, while a Wi-Fi connection is not.<br>- **true**: allowed<br>- **false**: not allowed|
 | enableRoaming | boolean | No| Whether download is allowed on a roaming network. The default value is **false**.<br>- **true**: allowed<br>- **false**: not allowed|
 | description | string | No| Description of the download session.|
-| filePath<sup>7+</sup> | string | No| Path where the downloaded file is stored.<br>- In the FA model, use [context](../apis-ability-kit/js-apis-inner-app-context.md#contextgetcachedir) to obtain the application storage path.<br>- In the stage model, use [AbilityContext](../apis-ability-kit/js-apis-inner-application-context.md) to obtain the application storage path.|
+| filePath<sup>7+</sup> | string | No| Path where the downloaded file is stored. The default value is the cache directory of the caller (that is, the input **context**). The default file name is the part truncated from the last slash (/) in the URL.<br>- In the FA model, use [context](../apis-ability-kit/js-apis-inner-app-context.md#contextgetcachedir) to obtain the application storage path.<br>- In the stage model, use [AbilityContext](../apis-ability-kit/js-apis-inner-application-context.md) to obtain the application storage path.|
 | networkType | number | No| Network type allowed for the download. The default value is **NETWORK_MOBILE and NETWORK_WIFI**.<br>- NETWORK_MOBILE: 0x00000001<br>- NETWORK_WIFI: 0x00010000|
 | title | string | No| Download task name.|
 | background<sup>9+</sup> | boolean | No| Whether to enable background task notification so that the download status is displayed in the notification panel. The default value is false.|
@@ -1928,27 +2319,27 @@ Defines the download task configuration.
 ## DownloadInfo<sup>7+</sup>
 Defines the download task information, which is the callback parameter of the [getTaskInfo<sup>9+</sup>](#gettaskinfo9) API.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.MiscServices.Download
 
 | Name| Type|Mandatory|  Description|
 | -------- | -------- | -------- | -------- |
 | downloadId | number |Yes| ID of the download task.|
-| failedReason | number|Yes| Cause of the download failure. The value can be any constant in [Download Error Codes](#download-error-codes).|
+| failedReason | number|Yes| Cause of the download failure. The value can be any constant in [Download Error Codes](#constants).|
 | fileName | string |Yes| Name of the downloaded file.|
 | filePath | string |Yes| URI of the saved file.|
-| pausedReason | number |Yes| Cause of download pause. The value can be any constant in [Causes of Download Pause](#causes-of-download-pause).|
-| status | number |Yes| Download task status code. The value can be any constant in [Download Task Status Codes](#download-task-status-codes).|
+| pausedReason | number |Yes| Cause of download pause. The value can be any constant in [Causes of Download Pause](#constants).|
+| status | number |Yes| Download task status code. The value can be any constant in [Download Task Status Codes](#constants).|
 | targetURI | string |Yes| URI of the downloaded file.|
 | downloadTitle | string |Yes| Name of the download task.|
 | downloadTotalBytes | number |Yes| Total size of the files to download, in bytes.|
 | description | string |Yes| Description of the download task.|
-| downloadedBytes | number |Yes| Size of the files downloaded, in bytes.|
+| downloadedBytes | number |Yes| Real-time download size, in bytes.|
 
 ## Action<sup>10+</sup>  
 
 Defines action options.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -1962,6 +2353,8 @@ Defines action options.
 Defines mode options.<br>
 After an application is switched to the background for a period of time, background tasks are not affected but foreground tasks will fail or pause.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 | Name| Value|Description|
@@ -1974,6 +2367,8 @@ After an application is switched to the background for a period of time, backgro
 Defines network options.<br>
 If the network does not meet the preset conditions, the tasks that have not been executed will await for execution, and the tasks that are being executed will fail or pause.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 | Name| Value|Description|
@@ -1985,11 +2380,12 @@ If the network does not meet the preset conditions, the tasks that have not been
 ## BroadcastEvent<sup>11+</sup>
 
 Defines a custom system event. You can use a common event API to obtain the event.
-The upload and download SA has the **ohos.permission.SEND_TASK_COMPLETE_EVENT** permission. You can configure the level-2 configuration file to which the metadata of an event points to intercept other event senders.
+The upload and download SA has the ohos.permission.SEND_TASK_COMPLETE_EVENT permission. You can configure the level-2 configuration file to which the metadata of an event points to intercept other event senders.
 
-You can use the **CommonEventData** type to transmit data related to common events. The members in **CommonEventData** are different from those described in [CommonEventData](js-apis-inner-commonEvent-commonEventData.md). Specifically, **CommonEventData.code** indicates the task status, which is **0x40 COMPLETE** or **0x41 FAILED**, and **CommonEventData.data** indicates the task ID.
+Use the **CommonEventData** type to transmit data related to common events. The members in **CommonEventData** are different from those described in [CommonEventData](js-apis-inner-commonEvent-commonEventData.md). Specifically, **CommonEventData.code** indicates the task status, which is **0x40 COMPLETE** or **0x41 FAILED**, and **CommonEventData.data** indicates the task ID.
 
-For details about event configuration information, see [Subscribing to Common Events in Static Mode (for System Applications Only)](../../basic-services/common-event/common-event-static-subscription.md).
+<!--Del-->
+For details about event configuration information, see [Subscribing to Common Events in Static Mode (for System Applications Only)](../../basic-services/common-event/common-event-static-subscription.md).<!--DelEnd-->
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2000,18 +2396,22 @@ For details about event configuration information, see [Subscribing to Common Ev
 ## FileSpec<sup>10+</sup> 
 Provides the file information of a table item.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| path | string | Yes| File path:<br>- Relative path in the cache folder of the caller.<br>- User public file, for example, **file://media/Photo/path/to/file.img**. Only frontend tasks are supported.|
+| path | string | Yes| File path:<br>- Relative path, which is in the cache directory of the caller, for example, **./xxx/yyy/zzz.html** or **xxx/yyy/zzz.html**.<br>- Internal protocol path, which can be **internal://** or its subdirectory. **internal** indicates the cache directory of the caller (that is, the input **context**), and **internal://cache** corresponds to **context.cacheDir**, for example, **internal://cache/path/to/file.txt**.<br>- Application sandbox directory. Only the **base** directory and its subdirectories are supported, for example, **/data/storage/el1/base/path/to/file.txt**.<br>- File protocol path, which must match the application bundle name. Only the **base** directory and its subdirectories are supported, for example, **file://com.example.test/data/storage/el2/base/file.txt**.<br>- User public file, for example, **file://media/Photo/path/to/file.img**. Only frontend tasks are supported.|
 | mimeType | string | No| MIME type of the file, which is obtained from the file name.|
 | filename | string | No| File name. The default value is obtained from the file path.|
-| extras | Object | No| Additional information of the file.|
+| extras | object | No| Additional information. This parameter is not included in HTTP requests.|
 
 
 ## FormItem<sup>10+</sup> 
 Describes the form item of a task.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2028,33 +2428,37 @@ Provides the configuration information of an upload or download task.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | [Action](#action10) | Yes| Task action.<br>- **UPLOAD**<br>- **DOWNLOAD**|
-| url | string | Yes| Resource URL. The value contains a maximum of 2048 characters.|
-| title | string | No| Task title. The value contains a maximum of 256 characters. The default value is **upload** or **download** in lowercase. Set the value to that of **action**.|
-| description | string | No| Task description. The value contains a maximum of 1024 characters. The default value is a null string.|
-| mode | [Mode](#mode10) | No| Task mode. The default mode is background.|
-| overwrite | boolean | No| Whether to overwrite an existing file during the download. The default value is **false**.<br>- **true**: Overwrite the existing file.<br>- **false**: Do not overwrite the existing file. In this case, the download fails.|
-| method | string | No| Standard HTTP method for the task. The value can be **GET**, **POST**, or **PUT**, which is case-insensitive.<br>- If the task is an upload, use **PUT** or **POST**. The default value is **PUT**.<br>- If the task is a download, use **GET** or **POST**. The default value is **GET**.|
-| headers | object | No| HTTP headers to be included in the task.<br>- If the task is an upload, the default **Content-Type** is **multipart/form-data**.<br>- If the task is a download, the default **Content-Type** is **application/json**.|
-| data | string \| Array&lt;[FormItem](#formitem10)&gt; | No| Task data.<br>- If the task is a download, the value is a string, typically in JSON format (an object will be converted to a JSON string); the default value is null.<br>- If the task is an upload, the value is Array<[FormItem](#formitem10)>; the default value is null.|
-| saveas | string | No| Path for storing downloaded files. The options are as follows:<br>- Relative path, which is in the cache path of the caller, for example, **./xxx/yyy/zzz.html** or **xxx/yyy/zzz.html**.<br>- Internal protocol path. Only **internal://cache/** and its subpaths are supported, for example, **internal://cache/path/to/file.txt**.<br>- Application sandbox directory. Only the **base** directory and its subdirectories are supported, for example, **/data/storage/el1/base/path/to/file.txt**.<br>- File protocol path, which must match the application bundle name. Only the **base** directory and its subdirectories are supported, for example, **file://com.example.test/data/storage/el2/base/file.txt**.<br>The default value is a relative path, that is, the cache folder of the caller.|
-| network | [Network](#network10) | No| Network used for the task. The default value is **ANY** (Wi-Fi or cellular).|
-| metered | boolean | No| Whether the task is allowed on a metered connection. The default value is **false**.<br>- **true**: task allowed on a metered connection.<br>- **false**: task not allowed on a metered connection.|
-| roaming | boolean | No| Whether the task is allowed on a roaming network. The default value is **true**.<br>- **true**: task allowed on a roaming network.<br>- **false**: task not allowed on a roaming network.|
-| retry | boolean | No| Whether automatic retry is enabled for the task. This parameter is only applicable to background tasks. The default value is **true**.<br>- **true**: automatic retry enabled for the task.<br>- **-false**: automatic retry not enabled for the task.|
-| redirect | boolean | No| Whether redirection is allowed. The default value is **true**.<br>- **true**: redirection allowed.<br>- **false**: redirection not allowed.|
-| index | number | No| Path index of the task. It is usually used for resumable downloads. The default value is **0**.|
-| begins | number | No| File start point of the task. It is usually used for resumable downloads. The default value is **0**. The value is a closed interval.<br>- If the task is a download, the value is obtained by sending an HTTP range request to read the start position when the server starts to download files.<br>- If the task is an upload, the value is obtained at the beginning of the upload.|
-| ends | number | No| File end point of the task. It is usually used for resumable downloads. The default value is **-1**. The value is a closed interval.<br>- If the task is a download, the value is obtained by sending an HTTP range request to read the end position when the server starts to download files.<br>- If the task is an upload, the value is obtained at the end of the upload.|
-| gauge | boolean | No| Whether to send progress notifications. This parameter applies only to background tasks. The default value is **false**.<br>- **false**: Progress notifications are not sent. This means that a notification is sent only to indicate the result of the total task.<br>- **true**: Progress notifications are sent to indicate the result of each file.|
-| precise | boolean | No| - If this parameter is set to **true**, the task fails when the file size cannot be obtained.<br>- If this parameter is set to **false**, the task continues when the file size is set to **-1**.<br>The default value is **false**.|
-| token | string | No| Token of the task. If the task has a token configured, this token is required for query of the task. The value contains 8 to 2048 bytes. This parameter is left empty by default.|
+| action | [Action](#action10) | Yes| Task action.<br>- **UPLOAD**<br>- **DOWNLOAD**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| url | string | Yes| Resource URL. From API version 6 to 14, the value contains a maximum of 2048 characters; from API version 15, the value contains a maximum of 8192 characters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| title | string | No| Task title. The value contains a maximum of 256 characters. The default value is **upload** or **download** in lowercase. Set the value to that of **action**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| description | string | No| Task description. The value contains a maximum of 1024 characters. The default value is a null string.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| mode | [Mode](#mode10) | No| Task mode. The default mode is background.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| overwrite | boolean | No| Whether to overwrite an existing file during the download. The default value is **false**.<br>- **true**: Overwrite the existing file.<br>- **false**: Do not overwrite the existing file. In this case, the download fails.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| method | string | No| Standard HTTP method for the task. The value can be **GET**, **POST**, or **PUT**, which is case-insensitive.<br>- If the task is an upload, use **PUT** or **POST**. The default value is **PUT**.<br>- If the task is a download, use **GET** or **POST**. The default value is **GET**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| headers | object | No| HTTP headers to be included in the task.<br>- If the task is an upload, the default **Content-Type** is **multipart/form-data**.<br>- If the task is a download, the default **Content-Type** is **application/json**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| data | string \| Array&lt;[FormItem](#formitem10)&gt; | No| Task data.<br>- If the task is a download, the value is a string, typically in JSON format (an object will be converted to a JSON string); the default value is null.<br>- If the task is an upload, the value is Array&lt;[FormItem](#formitem10)&gt;. Since API version 15, a maximum of 100 files can be uploaded in a single task. This parameter is left empty by default.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| saveas | string | No| Path for storing downloaded files. The options are as follows:<br>- Relative path, which is in the cache directory of the caller, for example, **./xxx/yyy/zzz.html** or **xxx/yyy/zzz.html**.<br>- Internal protocol path, which can be **internal://** or its subdirectory. **internal** indicates the cache directory of the caller (that is, the input **context**), and **internal://cache** corresponds to **context.cacheDir**, for example, **internal://cache/path/to/file.txt**.<br>- Application sandbox directory. Only the **base** directory and its subdirectories are supported, for example, **/data/storage/el1/base/path/to/file.txt**.<br>- File protocol path, which must match the application bundle name. Only the **base** directory and its subdirectories are supported, for example, **file://com.example.test/data/storage/el2/base/file.txt**.<br>The default value is the cache directory of the caller (that is, the input **context**). The default file name is the part truncated from the last slash (/) in the URL.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| network | [Network](#network10) | No| Network used for the task. The default value is **ANY** (Wi-Fi or cellular).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| metered | boolean | No| Whether the task is allowed on a metered connection. The default value is **false**.<br>- **true**: task allowed on a metered connection.<br>- **false**: task not allowed on a metered connection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| roaming | boolean | No| Whether the task is allowed on a roaming network. The default value is **true**.<br>- **true**: task allowed on a roaming network.<br>- **false**: task not allowed on a metered connection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| retry | boolean | No| Whether automatic retry is enabled for the task. This parameter is only applicable to background tasks. The default value is **true**.<br>- **true**: automatic retry is enabled.<br>- **false**: automatic retry is disabled.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| redirect | boolean | No| Whether redirection is allowed. The default value is **true**.<br>- **true**: redirection allowed.<br>- **false**: redirection not allowed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| proxy<sup>12+</sup> | string | No| Proxy address. The value contains a maximum of 512 characters.<br>It is in the format of http://\<domain or address\>:\<port\>. By default, this parameter is left blank.|
+| index | number | No| Path index of the task. It is usually used for resumable downloads. The default value is **0**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| begins | number | No| File start point of the task. It is usually used for resumable downloads. The default value is **0**. The value is a closed interval.<br>- If the task is a download, the value is obtained by sending an HTTP range request to read the start position when the server starts to download files.<br>- If the task is an upload, the value is obtained at the beginning of the upload.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| ends | number | No| File end point of the task. It is usually used for resumable downloads. The default value is **-1**. The value is a closed interval.<br>- If the task is a download, the value is obtained by sending an HTTP range request to read the end position when the server starts to download files.<br>- If the task is an upload, the value is obtained at the end of the upload.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| gauge | boolean | No| Whether to send progress notifications. This parameter applies only to background tasks. The default value is **false**.<br>- **false**: Progress notifications are not sent. This means that a notification is sent only to indicate the result of the total task.<br>- **true**: Progress notifications are sent to indicate the result of each file.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| precise | boolean | No| - If this parameter is set to **true**, the task fails when the file size cannot be obtained.<br>- If this parameter is set to **false**, the task continues when the file size is set to **-1**.<br>The default value is **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| token | string | No| Token of the task. If the task has a token configured, this token is required for query of the task. The value contains 8 to 2048 bytes. This parameter is left empty by default.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | priority<sup>11+</sup> | number | No| Priority of the task. For tasks in the same mode, a smaller value indicates a higher priority.<br>Default value: **0**|
-| extras | object | No| Additional information of the task. This parameter is left empty by default.|
+| extras | object | No| Additional information of the task. This parameter is left empty by default.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| multipart<sup>15+</sup> | boolean | No| Whether to upload files in multipart/form-data format using a single request. A single request is used for each file if the value is **false** and for multiple files if the value is **true**. The default value is **false**.|
 
 ## State<sup>10+</sup>  
 
 Defines the current task status.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2074,31 +2478,43 @@ Defines the current task status.
 ## Progress<sup>10+</sup> 
 Describes the data structure of the task progress.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Request.FileTransferAgent
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| state | [State](#state10) | Yes| Current task status.|
-| index | number | Yes| Index of the file that is being processed in the task.|
-| processed | number | Yes| Size of processed data in the current file in the task, in bytes.|
-| sizes | Array&lt;number&gt; | Yes| Size of files in the task, in bytes.|
-| extras | object | No| Extra information of the task, for example, the header and body of the response from the server.|
+| Name| Type| Mandatory| Description                                                                 |
+| -------- | -------- | -------- |---------------------------------------------------------------------|
+| state | [State](#state10) | Yes| Current task status.                                                           |
+| index | number | Yes| Index of the file that is being processed in the task.                                                    |
+| processed | number | Yes| Size of processed data in the current file in the task, in bytes.                                              |
+| sizes | Array&lt;number&gt; | Yes| Size of a file in a task, in bytes. If the server uses the chunk mode for data transmission and the total file size cannot be obtained from the request header, the value of **sizes** is treated as **-1**.|
+| extras | object | No| Extra information of the task, for example, the header and body of the response from the server.                                    |
 
 
 ## Faults<sup>10+</sup>  
 
 Defines the cause of a task failure.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Request.FileTransferAgent
 
-| Name| Value|Description|
-| -------- | -------- |-------- |
-| OTHERS | 0xFF |Other fault.|
-| DISCONNECTED | 0x00 |Network disconnection.|
-| TIMEOUT | 0x10 |Timeout.|
-| PROTOCOL | 0x20 |Protocol error, for example, an internal server error (500) or a data range that cannot be processed (416).|
-| FSIO | 0x40 |File system I/O error, for example, an error that occurs during the open, search, read, write, or close operation.|
+| Name| Value| Description                                                                            |
+| -------- | -------- |--------------------------------------------------------------------------------|
+| OTHERS | 0xFF | Other fault.                                                                       |
+| DISCONNECTED | 0x00 | Network disconnection.                                                                     |
+| TIMEOUT | 0x10 | Timeout.                                                                       |
+| PROTOCOL | 0x20 | Protocol error, for example, an internal server error (500) or a data range that cannot be processed (416).                                       |
+| PARAM<sup>12+</sup> | 0x30 | Parameter error, for example, incorrect URL format.<br>**Atomic service API**: This API can be used in atomic services since API version 12.         |
+| FSIO | 0x40 | File system I/O error, for example, an error that occurs during the open, search, read, write, or close operation.                                                  |
+| DNS<sup>12+</sup> | 0x50 | DNS resolution error.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
+| TCP<sup>12+</sup> | 0x60 | TCP connection error.<br>**Atomic service API**: This API can be used in atomic services since API version 12.             |
+| SSL<sup>12+</sup> | 0x70 | SSL connection error, for example, a certificate error or certificate verification failure.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| REDIRECT<sup>12+</sup> | 0x80 | Redirection error.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                   |
 
+> **NOTE**
+>
+> In API version 12 or earlier, only serial connection to the IP addresses associated with the specified domain name is supported, and the connection time for a single IP address is not controllable. If the first IP address returned by the DNS is blocked, a handshake timeout may occur, leading to a **TIMEOUT** error.
 
 ## Filter<sup>10+</sup>
 Defines the filter criteria.
@@ -2128,21 +2544,23 @@ Defines the data structure of the task information for query. The fields availab
 | description | string | Yes| Task description.|
 | action | [Action](#action10) | Yes| Task action.<br>- **UPLOAD**<br>- **DOWNLOAD**|
 | mode | [Mode](#mode10) | Yes| Task mode.<br>- **FOREGROUND**: foreground task.<br>- **BACKGROUND**: background task.|
-| priority<sup>11+</sup> | number | No| Task priority. The priority of a foreground task is higher than that of a background task. For tasks in the same mode, a smaller value indicates a higher priority.|
+| priority<sup>11+</sup> | number | Yes| Task priority. The priority of a foreground task is higher than that of a background task. For tasks in the same mode, a smaller value indicates a higher priority.|
 | mimeType | string | Yes| MIME type in the task configuration.|
 | progress | [Progress](#progress10) | Yes| Task progress.|
 | gauge | boolean | Yes| Whether to send progress notifications. This parameter applies only to background tasks.|
-| ctime | number | Yes| Unix timestamp when the task is created, in milliseconds. The value is generated by the system of the current device.<br>Note: When [request.agent.search<sup>10+</sup>](#requestagentsearch10-1) is used for query, this value must be within the range of [after,before] for the task ID to be obtained. For details about **before** and **after**, see [Filter](#filter10).
+| ctime | number | Yes| Unix timestamp when the task is created, in milliseconds. The value is generated by the system of the current device.<br>Note: When [request.agent.search<sup>10+</sup>](#requestagentsearch10-1) is used for query, this value must be within the range of [after,before] for the task ID to be obtained. For details about **before** and **after**, see [Filter](#filter10).|
 | mtime | number | Yes| Unix timestamp when the task state changes, in milliseconds. The value is generated by the system of the current device.|
 | retry | boolean | Yes| Whether automatic retry is enabled for the task. This parameter applies only to background tasks.|
 | tries | number | Yes| Number of retries of the task.|
-| faults | [Faults](#faults10) | Yes| Failure cause of the task.<br>- **OTHERS**: other fault.<br>- **DISCONNECT**: network disconnection.<br>- **TIMEOUT**: timeout.<br>- **PROTOCOL**: protocol error.<br>- **FSIO**: file system I/O error.|
+| faults | [Faults](#faults10) | Yes| Failure cause of the task.|
 | reason | string | Yes| Reason why the task is waiting, failed, stopped, or paused.|
-| extras | string | No| Extra information of the task|
-
+| extras | object | No| Extra information of the task.|
+| notification<sup>15+</sup> | [Notification](#notification15) | No| Custom settings for the notification bar.|
 
 ## HttpResponse<sup>12+</sup> 
-Data structure of the task response header.
+Describes the data structure of the task response header.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2153,11 +2571,35 @@ Data structure of the task response header.
 | reason | string | Yes| HTTP response cause.|
 | headers | Map&lt;string, Array&lt;string&gt;&gt; | Yes| HTTP response header.|
 
+## Notification<sup>15+</sup>
+
+Describes the custom information of the notification bar.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+| Name     | Type    | Mandatory| Description                                     |
+|---------|--------|----|-----------------------------------------|
+| title   | string | No | Custom title, with a maximum of 1024 bytes. The default title is used if the value is not set.|
+| text    | string | No | Custom text, with a maximum of 3072 bytes. The default title is used if the value is not set. |
+
+## GroupConfig<sup>15+</sup>
+
+Describes group configuration options for download tasks.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+| Name          | Type                                           | Mandatory| Description                                                          |
+|--------------|-----------------------------------------------|----|--------------------------------------------------------------|
+| gauge        | boolean                                       | No | Progress notification policy of a background task. Set value to **true**, the progress, success, and failure notifications are displayed; set value to **false**, only the success and failure notifications are displayed. The default value is **false**.|
+| notification | [Notification](#notification15) | No | Custom settings for the notification bar.                                                   |
+
 ## Task<sup>10+</sup> 
 Implements an upload or download task. Before using this API, you must obtain a **Task** object, from a promise through [request.agent.create<sup>10+</sup>](#requestagentcreate10-1) or from a callback through [request.agent.create<sup>10+</sup>](#requestagentcreate10).
 
 ### Attributes
 Task attributes include the task ID and task configuration.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2166,33 +2608,40 @@ Task attributes include the task ID and task configuration.
 | tid | string | Yes| Task ID, which is unique in the system and is automatically generated by the system.|
 | config | [Config](#config10) | Yes| Task configuration.|
 
+> **NOTE**
+>
+> The **Task** object and its mounting callback function are released and automatically reclaimed by the system after the **remove** method is called.
 
 ### on('progress')<sup>10+</sup>
 
-on(event: 'progress', callback: (progress: Progress) =&gt; void): void
+on(event: 'progress', callback: (progress: [Progress](#progress10)) =&gt; void): void
 
-Subscribes to task progress changes. This API uses a callback to return the result asynchronously.
+Subscribes to task progress changes. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'progress'**, indicating the task progress.|
-  | callback | function | Yes| Callback used to return the data structure of the task progress.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | string | Yes| Type of the event to subscribe to.<br>The value is **'progress'**, indicating the task progress.|
+| callback | function | Yes| Callback used to return the data structure of the task progress.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 21900005 | task mode error. |
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2203,7 +2652,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2229,6 +2678,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('progress', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2240,30 +2690,34 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
 ### on('completed')<sup>10+</sup>
 
-on(event: 'completed', callback: (progress: Progress) =&gt; void): void
+on(event: 'completed', callback: (progress: [Progress](#progress10)) =&gt; void): void
 
-Subscribes to task completion events. This API uses a callback to return the result asynchronously.
+Subscribes to task completion events. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'completed'**, indicating task completion.|
-  | callback | function | Yes| Callback used to return the data structure of the task progress.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | string | Yes| Type of the event to subscribe to.<br>The value is **'completed'**, indicating task completion.|
+| callback | function | Yes| Callback used to return the data structure of the task progress.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 21900005 | task mode error. |
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2274,7 +2728,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2300,6 +2754,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('completed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2311,30 +2766,34 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
 ### on('failed')<sup>10+</sup>
 
-on(event: 'failed', callback: (progress: Progress) =&gt; void): void
+on(event: 'failed', callback: (progress: [Progress](#progress10)) =&gt; void): void
 
-Subscribes to task failure events. This API uses a callback to return the result asynchronously.
+Subscribes to task failure events. This API uses an asynchronous callback to return the result. You can call [request.agent.show<sup>10+</sup>](#requestagentshow10-1) to check the error.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'failed'**, indicating task failure.|
-  | callback | function | Yes| Callback used to return the data structure of the task progress.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | string | Yes| Type of the event to subscribe to.<br>The value is **'failed'**, indicating task failure.|
+| callback | function | Yes| Callback used to return the data structure of the task progress.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 21900005 | task mode error. |
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2345,7 +2804,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2371,6 +2830,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('failed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2382,26 +2842,32 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
 ### on('pause')<sup>11+</sup>
 
-on(event: 'pause', callback: (progress: Progress) =&gt; void): void
+on(event: 'pause', callback: (progress: [Progress](#progress10)) =&gt; void): void
 
-Subscribes to task pause events. This API uses a callback to return the result asynchronously.
+Subscribes to task pause events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'pause'**, indicating task pause.|
-  | callback | function | Yes| Callback used to return the data structure of the task progress.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | string | Yes| Type of the event to subscribe to.<br>- **'pause'**: task pause event.|
+| callback | function | Yes| Callback used to return the data structure of the task progress.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2412,7 +2878,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2438,6 +2904,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('pause', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2449,26 +2916,32 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
 ### on('resume')<sup>11+</sup>
 
-on(event: 'resume', callback: (progress: Progress) =&gt; void): void
+on(event: 'resume', callback: (progress: [Progress](#progress10)) =&gt; void): void
 
-Subscribes to task resume events. This API uses a callback to return the result asynchronously.
+Subscribes to task resume events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'resume'**, indicating task resume.|
-  | callback | function | Yes| Callback used to return the data structure of the task progress.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | string | Yes| Type of the event to subscribe to.<br>The value is **'resume'**, indicating task resume.|
+| callback | function | Yes| Callback used to return the data structure of the task progress.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2479,7 +2952,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2505,6 +2978,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('resume', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2516,26 +2990,32 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
 ### on('remove')<sup>11+</sup>
 
-on(event: 'remove', callback: (progress: Progress) =&gt; void): void
+on(event: 'remove', callback: (progress: [Progress](#progress10)) =&gt; void): void
 
-Subscribes to task removal events. This API uses a callback to return the result asynchronously.
+Subscribes to task removal events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'remove'**, indicating task removal.|
-  | callback | function | Yes| Callback used to return the data structure of the task progress.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | string | Yes| Type of the event to subscribe to.<br>- **'remove'**: task removal event.|
+| callback | function | Yes| Callback used to return the data structure of the task progress.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2546,7 +3026,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2572,6 +3052,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('remove', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2587,22 +3068,30 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
 
 Subscribes to task response headers. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | event | string | Yes| Type of the event to subscribe to.<br>The value is **response**, which indicates the task response.|
-  | callback | function | Yes| Callback used to return the data structure of the task response header.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | string | Yes| Type of the event to subscribe to.<br>The value is **response**, which indicates the task response.|
+| callback | function | Yes| Callback used to return the data structure of the task response header.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2613,7 +3102,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2639,6 +3128,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('response', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2650,30 +3140,34 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
 ### off('progress')<sup>10+</sup>
 
-off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
+off(event: 'progress', callback?: (progress: [Progress](#progress10)) =&gt; void): void
 
 Unsubscribes from task progress events.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'progress'**, indicating the task progress.|
-  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | string | Yes| Type of the event to subscribe to.<br>The value is **'progress'**, indicating the task progress.|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 21900005 | task mode error. |
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -2684,7 +3178,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2718,6 +3212,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     // Unsubscribe from all callbacks of task progress changes.
     task.off('progress');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2729,30 +3224,34 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
 ### off('completed')<sup>10+</sup>
 
-off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
+off(event: 'completed', callback?: (progress: [Progress](#progress10)) =&gt; void): void
 
 Unsubscribes from task completion events.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'completed'**, indicating task completion.|
-  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | string | Yes| Type of the event to subscribe to.<br>The value is **'completed'**, indicating task completion.|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 21900005 | task mode error. |
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -2763,7 +3262,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2797,6 +3296,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     // Unsubscribe from all callbacks of the task completion events.
     task.off('completed');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2808,30 +3308,34 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
 ### off('failed')<sup>10+</sup>
 
-off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
+off(event: 'failed', callback?: (progress: [Progress](#progress10)) =&gt; void): void
 
 Unsubscribes from task failure events.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'failed'**, indicating task failure.|
-  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | string | Yes| Type of the event to subscribe to.<br>The value is **'failed'**, indicating task failure.|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 21900005 | task mode error. |
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -2842,7 +3346,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2876,6 +3380,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     // Unsubscribe from all callbacks of the task failure events.
     task.off('failed');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2887,7 +3392,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
 ### off('pause')<sup>11+</sup>
 
-off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
+off(event: 'pause', callback?: (progress: [Progress](#progress10)) =&gt; void): void
 
 Unsubscribes from the foreground task pause event.
 
@@ -2895,18 +3400,24 @@ Unsubscribes from the foreground task pause event.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'pause'**, indicating task pause.|
-  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | string | Yes| Type of the event to subscribe to.<br>- **'pause'**: task pause event.|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -2917,7 +3428,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2951,6 +3462,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     // Unsubscribe from all callbacks of the foreground task pause event.
     task.off('pause');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2962,7 +3474,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
 ### off('resume')<sup>11+</sup>
 
-off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
+off(event: 'resume', callback?: (progress: [Progress](#progress10)) =&gt; void): void
 
 Unsubscribes from the foreground task resume event.
 
@@ -2970,18 +3482,24 @@ Unsubscribes from the foreground task resume event.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'resume'**, indicating task resume.|
-  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | string | Yes| Type of the event to subscribe to.<br>The value is **'resume'**, indicating task resume.|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -2992,7 +3510,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3026,6 +3544,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     // Unsubscribe from all callbacks of the foreground task resume event.
     task.off('resume');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -3037,7 +3556,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
 ### off('remove')<sup>11+</sup>
 
-off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
+off(event: 'remove', callback?: (progress: [Progress](#progress10)) =&gt; void): void
 
 Unsubscribes from the task removal event.
 
@@ -3045,18 +3564,24 @@ Unsubscribes from the task removal event.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | event | string | Yes| Type of the event to subscribe to.<br>The value is **'remove'**, indicating task removal.|
-  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | string | Yes| Type of the event to subscribe to.<br>- **'remove'**: task removal event.|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3067,7 +3592,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3101,6 +3626,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     // Unsubscribe from all callbacks of the task removal event.
     task.off('remove');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -3116,22 +3642,30 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 
 Unsubscribes from task response headers.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | event | string | Yes| Type of the event to subscribe to.<br>The value is **response**, which indicates the task response.|
-  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | string | Yes| Type of the event to subscribe to.<br>The value is **response**, which indicates the task response.|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3142,7 +3676,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3176,6 +3710,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     // Unsubscribe from all callbacks of the task removal event.
     task.off('response');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -3189,33 +3724,40 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
 start(callback: AsyncCallback&lt;void&gt;): void
 
-Starts this task. This API cannot be used to start an initialized task. You can use this API to resume a download task from where it was paused. This API uses an asynchronous callback to return the result.
+Tasks in the following states can be started:
+1. Task created by **request.agent.create**.
+2. Download tasks that are created by **request.agent.create** but have failed or paused.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | function | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | function | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900007 | task state error. |
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission denied. |
+| 13400003 | task service ability error. |
+| 21900007 | task state error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskStartTest',
     description: 'Sample code for start the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3257,9 +3799,13 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
 start(): Promise&lt;void&gt;
 
-Starts this task. This API cannot be used to start an initialized task. You can use this API to resume a download task from where it was paused. This API uses a promise to return the result.
+Tasks in the following states can be started:
+1. Task created by **request.agent.create**.
+2. Download tasks that are created by **request.agent.create** but have failed or paused.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -3271,19 +3817,22 @@ Starts this task. This API cannot be used to start an initialized task. You can 
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900007 | task state error. |
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission denied. |
+| 13400003 | task service ability error. |
+| 21900007 | task state error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskStartTest',
     description: 'Sample code for start the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3323,32 +3872,33 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
 pause(callback: AsyncCallback&lt;void&gt;): void
 
-Pauses this task. This API can be used to pause a background task that is waiting, running, or retrying. This API uses an asynchronous callback to return the result.
+Pauses a task that is waiting, running, or retrying. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | function | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | function | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
-  | 21900007 | task state error. |
+| ID| Error Message|
+| -------- | -------- |
+| 13400003 | task service ability error. |
+| 21900007 | task state error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskPauseTest',
     description: 'Sample code for pause the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3369,6 +3919,8 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
     task.pause((err: BusinessError) => {
       if (err) {
         console.error(`Failed to pause the download task, Code: ${err.code}, message: ${err.message}`);
@@ -3382,15 +3934,11 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   });
   ```
 
-> **NOTE**
->
-> The error code **21900005 task mode error** is removed from API version 11.
-
 ### pause<sup>10+</sup>
 
 pause(): Promise&lt;void&gt;
 
-Pauses this task. This API can be used to pause a background task that is waiting, running, or retrying. This API uses a promise to return the result.
+Pauses a task that is waiting, running, or retrying. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -3402,20 +3950,21 @@ Pauses this task. This API can be used to pause a background task that is waitin
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
-  | 21900007 | task state error. |
+| ID| Error Message|
+| -------- | -------- |
+| 13400003 | task service ability error. |
+| 21900007 | task state error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskPauseTest',
     description: 'Sample code for pause the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3436,26 +3985,24 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
     task.pause().then(() => {
       console.info(`Succeeded in pausing a download task. `);
     }).catch((err: BusinessError) => {
-      console.error(`Failed to pause the upload task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to pause the download task, Code: ${err.code}, message: ${err.message}`);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
-
-> **NOTE**
->
-> The error code **21900005 task mode error** is removed from API version 11.
 
 ### resume<sup>10+</sup>
 
 resume(callback: AsyncCallback&lt;void&gt;): void
 
-Resumes this task. This API can be used to resume a paused background task. This API uses an asynchronous callback to return the result.
+Resumes a paused task. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -3463,26 +4010,28 @@ Resumes this task. This API can be used to resume a paused background task. This
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | function | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | function | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
-  | 21900007 | task state error. |
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission denied. |
+| 13400003 | task service ability error. |
+| 21900007 | task state error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskResumeTest',
     description: 'Sample code for resume the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3503,6 +4052,10 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    task.pause();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
     task.resume((err: BusinessError) => {
       if (err) {
         console.error(`Failed to resume the download task, Code: ${err.code}, message: ${err.message}`);
@@ -3516,16 +4069,11 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   });
   ```
 
-> **NOTE**
->
-> The error code **21900005 task mode error** is removed from API version 11.
-
-
 ### resume<sup>10+</sup>
 
 resume(): Promise&lt;void&gt;
 
-Resumes this task. This API can be used to resume a paused background task. This API uses a promise to return the result.
+Resumes a paused task. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -3539,20 +4087,22 @@ Resumes this task. This API can be used to resume a paused background task. This
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
-  | 21900007 | task state error. |
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission denied. |
+| 13400003 | task service ability error. |
+| 21900007 | task state error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskResumeTest',
     description: 'Sample code for resume the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3573,6 +4123,10 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    task.pause();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
     task.resume().then(() => {
       console.info(`Succeeded in resuming a download task. `);
     }).catch((err: BusinessError) => {
@@ -3584,40 +4138,39 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   });
   ```
 
-> **NOTE**
->
-> The error code **21900005 task mode error** is removed from API version 11.
-
-
 ### stop<sup>10+</sup>
 
 stop(callback: AsyncCallback&lt;void&gt;): void
 
 Stops this task. This API can be used to stop a running, waiting, or retrying task. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | function | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | function | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900007 | task state error. |
+| ID| Error Message|
+| -------- | -------- |
+| 13400003 | task service ability error. |
+| 21900007 | task state error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskStopTest',
     description: 'Sample code for stop the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3638,6 +4191,8 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
     task.stop((err: BusinessError) => {
       if (err) {
         console.error(`Failed to stop the download task, Code: ${err.code}, message: ${err.message}`);
@@ -3658,6 +4213,8 @@ stop(): Promise&lt;void&gt;
 
 Stops this task. This API can be used to stop a running, waiting, or retrying task. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Return value**
@@ -3668,19 +4225,21 @@ Stops this task. This API can be used to stop a running, waiting, or retrying ta
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900007 | task state error. |
+| ID| Error Message|
+| -------- | -------- |
+| 13400003 | task service ability error. |
+| 21900007 | task state error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskStopTest',
     description: 'Sample code for stop the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3701,6 +4260,8 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
     task.stop().then(() => {
       console.info(`Succeeded in stopping a download task. `);
     }).catch((err: BusinessError) => {
@@ -3712,39 +4273,96 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   });
   ```
 
-## request.agent.create<sup>10+</sup>
+### setMaxSpeed<sup>16+</sup>
 
-create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;): void
+setMaxSpeed(speed: number): Promise\<void\>
 
-Creates an upload or download task and adds it to the queue. An application can create a maximum of 10 unfinished tasks. This API uses an asynchronous callback to return the result.
-
-
-**Required permissions**: ohos.permission.INTERNET
+Sets the maximum number of bytes that can be transmitted by a task per second. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | config | [Config](#config10) | Yes| Task configuration.|
-  | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-  | callback | AsyncCallback&lt;[Task](#task10)&gt; | Yes| Callback used to return the configuration about the created task.|
+| Name  | Type    | Mandatory| Description                                |
+|-------|--------|----|------------------------------------|
+| speed | number | Yes | Maximum number of bytes that can be transmitted by a task per second, with a minimum of 16384 bytes.|
+
+**Return value**
+
+| Type             | Description                        |
+|-----------------|----------------------------|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400001 | file operation error. |
-  | 13400003 | task service ability error. |
-  | 21900004 | application task queue full error. |
-  | 21900005 | task mode error. |
+| ID   | Error Message                                                                                                                          |
+|----------|--------------------------------------------------------------------------------------------------------------------------------|
+| 401      | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 13400003 | task service ability error.                                                                                                    |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let config: request.agent.Config = {
+    action: request.agent.Action.DOWNLOAD,
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
+    saveas: "./",
+  };
+  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    // Set the maximum transmission speed.
+    task.setMaxSpeed(10 * 1024 * 1024).then(() => {
+      console.info(`Succeeded in setting the max speed of the task. result: ${task.tid}`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to set the max speed of the task. result: ${task.tid}`);
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+## request.agent.create<sup>10+</sup>
+
+create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;): void
+
+Creates an upload or download task and adds it to the queue. This API uses an asynchronous callback to return a result. HTTP is supported.
+
+
+**Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| config | [Config](#config10) | Yes| Task configuration.|
+| context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+| callback | AsyncCallback&lt;[Task](#task10)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **Task** object obtained. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | permission denied. |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 13400001 | file operation error. |
+| 13400003 | task service ability error. |
+| 21900004 | the application task queue is full. |
+| 21900005 | task mode error. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "createTest",
     value: {
@@ -3755,7 +4373,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'createTest',
     description: 'Sample code for create task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3775,12 +4393,15 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config, (err: BusinessError, task: request.agent.Task) => {
+  request.agent.create(getContext(), config, async (err: BusinessError, task: request.agent.Task) => {
     if (err) {
       console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
+    await task.start();
+    // You need to manually call remove() to end the lifecycle of the task object.
+    request.agent.remove(task.tid);
   });
   ```
 
@@ -3792,19 +4413,21 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
 create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
-Creates an upload or download task and adds it to the queue. An application can create a maximum of 10 unfinished tasks. This API uses a promise to return the result.
+Creates an upload or download task and adds it to the queue. This API uses a promise to return the result. HTTP is supported.
 
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-  | config | [Config](#config10) | Yes| Task configuration.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+| config | [Config](#config10) | Yes| Task configuration.|
 
 **Return value**
 
@@ -3814,18 +4437,22 @@ Creates an upload or download task and adds it to the queue. An application can 
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400001 | file operation error. |
-  | 13400003 | task service ability error. |
-  | 21900004 | application task queue full error. |
-  | 21900005 | task mode error. |
+| ID| Error Message|
+| -------- | -------- |
+| 201 | permission denied. |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 13400001 | file operation error. |
+| 13400003 | task service ability error. |
+| 21900004 | the application task queue is full. |
+| 21900005 | task mode error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "createTest",
     value: {
@@ -3836,7 +4463,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'createTest',
     description: 'Sample code for create task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3856,9 +4483,12 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(getContext(), config).then(async (task: request.agent.Task) => {
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
-  }).catch((err) => {
+    await task.start();
+    // You need to manually call remove() to end the lifecycle of the task object.
+    request.agent.remove(task.tid);
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -3877,11 +4507,11 @@ Obtains task information based on the task ID. This API uses a promise to return
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-  | id | string | Yes| Task ID.|
-  | token | string | No| Token for task query.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+| id | string | Yes| Task ID.|
+| token | string | No| Token for task query.|
 
 **Return value**
 
@@ -3891,20 +4521,23 @@ Obtains task information based on the task ID. This API uses a promise to return
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+| ID| Error Message|
+| -------- | -------- |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 13400003 | task service ability error. |
+| 21900006 | task not found. |
 
 **Example**
 
   ```ts
-  request.agent.getTask(context, "123456").then((task: request.agent.Task) => {
-    console.info(`Succeeded in querying a upload task. result: ${task.uid}`);
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  request.agent.getTask(getContext(), "123456").then((task: request.agent.Task) => {
+    console.info(`Succeeded in querying a task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query a task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3912,32 +4545,37 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
 remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
-Removes a specified task of the invoker. If the task is being executed, the task is forced to stop. This API uses an asynchronous callback to return the result.
+Removes a specified task of the invoker. If the task is being executed, the task is forced to stop. This API uses an asynchronous callback to return the result. After this API is called, the **task** object and its callback function are released.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | id | string | Yes| Task ID.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| id | string | Yes| Task ID.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+| ID| Error Message|
+| -------- | -------- |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+| 13400003 | task service ability error. |
+| 21900006 | task not found. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.remove("123456", (err: BusinessError) => {
     if (err) {
-      console.error(`Failed to removing a download task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to remove a download task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info(`Succeeded in creating a download task.`);
@@ -3949,15 +4587,17 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
 remove(id: string): Promise&lt;void&gt;
 
-Removes a specified task of the invoker. If the task is being executed, the task is forced to stop. This API uses a promise to return the result.
+Removes a specified task of the invoker. If the task is being executed, the task is forced to stop. This API uses a promise to return the result. After this API is called, the **task** object and its callback function are released.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | id | string | Yes| Task ID.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| id | string | Yes| Task ID.|
 
 **Return value**
 
@@ -3967,16 +4607,19 @@ Removes a specified task of the invoker. If the task is being executed, the task
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+| ID| Error Message|
+| -------- | -------- |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+| 13400003 | task service ability error. |
+| 21900006 | task not found. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.remove("123456").then(() => {
     console.info(`Succeeded in removing a download task. `);
   }).catch((err: BusinessError) => {
@@ -3995,22 +4638,26 @@ Queries a task details based on the task ID. This API uses an asynchronous callb
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | id | string | Yes| Task ID.|
-  | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return task details.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| id | string | Yes| Task ID.|
+| callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **TaskInfo** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+| 13400003 | task service ability error. |
+| 21900006 | task not found. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.show("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
       console.error(`Failed to show a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -4031,27 +4678,31 @@ Queries a task details based on the task ID. This API uses a promise to return t
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | id | string | Yes| Task ID.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| id | string | Yes| Task ID.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise Promise used to return task details.|
+| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise used to return the **TaskInfo** object.|
 
 **Error codes**
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+| 13400003 | task service ability error. |
+| 21900006 | task not found. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.show("123456").then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in showing a upload task.`);
   }).catch((err: BusinessError) => {
@@ -4070,23 +4721,27 @@ Queries the task details based on the task ID and token. This API uses an asynch
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | id | string | Yes| Task ID.|
-  | token | string | Yes| Token for task query.|
-  | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return task details.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| id | string | Yes| Task ID.|
+| token | string | Yes| Token for task query.|
+| callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **TaskInfo** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 13400003 | task service ability error. |
+| 21900006 | task not found. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.touch("123456", "token", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
       console.error(`Failed to touch a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -4107,28 +4762,32 @@ Queries the task details based on the task ID and token. This API uses a promise
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | id | string | Yes| Task ID.|
-  | token | string | Yes| Token for task query.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| id | string | Yes| Task ID.|
+| token | string | Yes| Token for task query.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise Promise used to return task details.|
+| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise used to return the **TaskInfo** object.|
 
 **Error codes**
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 13400003 | task service ability error. |
+| 21900006 | task not found. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.touch("123456", "token").then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in touching a upload task. `);
   }).catch((err: BusinessError) => {
@@ -4146,26 +4805,30 @@ Searches for task IDs based on [Filter](#filter10). This API uses an asynchronou
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return task ID matches.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the task ID. Otherwise, **err** is an error object.|
 
 **Error codes**
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 13400003 | task service ability error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.search((err: BusinessError, data: Array<string>) => {
     if (err) {
-      console.error(`Upload task search failed. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to search a upload task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Upload task search succeeded. `);
+    console.info(`Succeeded in searching a upload task. `);
   });
   ```
 
@@ -4179,32 +4842,35 @@ Searches for task IDs based on [Filter](#filter10). This API uses an asynchronou
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | filter | [Filter](#filter10) | Yes| Filter criteria.|
-  | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return task ID matches.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| filter | [Filter](#filter10) | Yes| Filter criteria.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the task ID. Otherwise, **err** is an error object.|
 
 **Error codes**
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 13400003 | task service ability error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let filter: request.agent.Filter = {
-    bundle: "com.example.myapplication",
     action: request.agent.Action.UPLOAD,
     mode: request.agent.Mode.BACKGROUND
   }
   request.agent.search(filter, (err: BusinessError, data: Array<string>) => {
     if (err) {
-      console.error(`Upload task search failed. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to search a upload task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Upload task search succeeded. `);
+    console.info(`Succeeded in searching a upload task. `);
   });
   ```
 
@@ -4219,9 +4885,9 @@ Searches for task IDs based on [Filter](#filter10). This API uses a promise to r
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | filter | [Filter](#filter10) | No| Filter criteria.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| filter | [Filter](#filter10) | No| Filter criteria.|
 
 **Return value**
 
@@ -4230,24 +4896,171 @@ Searches for task IDs based on [Filter](#filter10). This API uses a promise to r
 | Promise&lt;Array&lt;string&gt;&gt; | Promise Promise used to return task ID matches.|
 
 **Error codes**
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
 
-  | ID| Error Message|
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 13400003 | task service ability error. |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let filter: request.agent.Filter = {
-    bundle: "com.example.myapplication",
     action: request.agent.Action.UPLOAD,
     mode: request.agent.Mode.BACKGROUND
   }
   request.agent.search(filter).then((data: Array<string>) => {
-    console.info(`Upload task search succeeded. `);
+    console.info(`Succeeded in searching a upload task. `);
   }).catch((err: BusinessError) => {
-    console.error(`Upload task search failed. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to search a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
-<!--no_check-->
+
+## request.agent.createGroup<sup>15+</sup>
+
+createGroup(config: GroupConfig): Promise\<string\>
+
+Creates a group based on [GroupConfig<sup>15+</sup>](#groupconfig15) and returns the group ID. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+| Name   | Type                                         | Mandatory| Description       |
+|--------|---------------------------------------------|----|-----------|
+| config | [GroupConfig<sup>15+</sup>](#groupconfig15) | Yes | Group options for a download task.|
+
+**Return value**
+
+| Type               | Description                              |
+|-------------------|----------------------------------|
+| Promise\<string\> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID   | Error Message                                                                                          |
+|----------|------------------------------------------------------------------------------------------------|
+| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 13400003 | task service ability error.                                                                    |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  // Prepare the GroupConfig object.
+  let config: request.agent.GroupConfig = {
+      notification: {},
+  };
+  // Call the createGroup API to create a group.
+  request.agent.createGroup(config).then((gid: string) => {
+    console.info(`Succeeded in creating a download task group. `);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a download group, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+## request.agent.attachGroup<sup>15+</sup>
+
+attachGroup(gid: string, tids: string[]): Promise\<void\>
+
+Attaches multiple download task IDs to a specified group ID. This API uses a promise to return the result.
+
+If any task ID does not meet the attachment conditions, all tasks in the list will not be added to the group.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+| Name | Type      | Mandatory| Description                 |
+|------|----------|----|---------------------|
+| gid  | string   | Yes | Target group ID.            |
+| tids | string[] | Yes | List of task IDs to attach.|
+
+**Return value**
+
+| Type             | Description        |
+|-----------------|------------|
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID   | Error Message                                                                                          |
+|----------|------------------------------------------------------------------------------------------------|
+| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 13400003 | task service ability error                                                                     |
+| 21900005 | task mode error                                                                                |
+| 21900007 | task state error                                                                               |
+| 21900008 | group deleted or not found                                                                     |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  // Prepare the group ID and task ID list.
+  let groupId: string = "123456789";
+  let taskIds: string[] = ["1111", "2222", "3333", "4444"];
+  // Call the attachGroup API to add a task ID list to the group.
+  request.agent.attachGroup(groupId, taskIds).then(() => {
+    console.info(`Succeeded in attaching tasks to the download task group.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to attach tasks to the download group, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+## request.agent.deleteGroup<sup>15+</sup>
+
+deleteGroup(gid: string): Promise\<void\>
+
+Deletes a specified group. No task can be added to the group. This API uses a promise to return the result.
+
+When all tasks in a group are succeeded, failed, or removed and the group is deleted , the completion and failure notifications of this group are displayed.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+| Name | Type      | Mandatory| Description     |
+|------|----------|----|---------|
+| gid  | string   | Yes | Target group ID.|
+
+**Return value**
+
+| Type             | Description        |
+|-----------------|------------|
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID   | Error Message                                                                                          |
+|----------|------------------------------------------------------------------------------------------------|
+| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 13400003 | task service ability error                                                                     |
+| 21900008 | group deleted or not found                                                                     |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  // Prepare the group ID.
+  let groupId: string = "123456789";
+  
+  // Call the deleteGroup API to delete a group.
+  request.agent.deleteGroup(groupId).then(() => {
+    console.info(`Succeeded in deleting the download task group.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to delete the download group, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```

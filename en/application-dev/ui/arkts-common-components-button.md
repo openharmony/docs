@@ -1,7 +1,7 @@
 # Button
 
 
-The **\<Button>** component is usually activated by user clicks to perform a specific action. Buttons are classified as capsule, circle, or normal buttons. When used as a container, the **\<Button>** component accepts child components such as text and images. For details, see [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md).
+The **Button** component is usually activated by user clicks to perform a specific action. Buttons are classified as capsule, circle, or normal buttons. When used as a container, the **Button** component accepts child components such as text and images. For details, see [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md).
 
 
 ## Creating a Button
@@ -34,7 +34,7 @@ You can create a button that contains or does not contain child components.
   Button(options?: {type?: ButtonType, stateEffect?: boolean})
   ```
 
-  The child component contained can either be a [basic component](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md) or a [container component](../reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md).
+  The child component contained can either be a basic component or a container component.
 
   ```ts
   Button({ type: ButtonType.Normal, stateEffect: true }) {
@@ -94,10 +94,21 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
 
   ![en-us_image_0000001563060641](figures/en-us_image_0000001563060641.png)
 
+- Rounded rectangle button
+  The rounded rectangle button has a default corner radius of 20 vp when [controlSize](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#controlsize11) is **NORMAL**, and 14 vp when [controlSize](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#controlsize11) is **SMALL**. You can define custom corner radius settings through **borderRadius**.
+
+  ```ts
+  Button('Disable', { type: ButtonType.ROUNDED_RECTANGLE, stateEffect: true }) 
+    .backgroundColor(0x317aff) 
+    .width(90)
+    .height(40)
+  ```
+
+  ![en-us_image_0000001563060641](figures/en-us_image_0000001511421208.png)
 
 ## Setting Styles
 
-- Set the border radius.
+- Setting the border radius
 
   You can use universal attributes to define the button styles. For example, you can use the **borderRadius** attribute to set the border radius.
 
@@ -110,7 +121,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
   ![en-us_image_0000001511900392](figures/en-us_image_0000001511900392.png)
 
 
-- Set the text style.
+- Setting the text style
 
   Add text style attributes for the button.
 
@@ -124,7 +135,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
   ![en-us_image_0000001511580828](figures/en-us_image_0000001511580828.png)
 
 
-- Set the background color.
+- Setting the background color
 
   Add the **backgroundColor** attribute for the button.
 
@@ -135,7 +146,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
   ![en-us_image_0000001562940477](figures/en-us_image_0000001562940477.png)
 
 
-- Assign a function to the button.
+- Assigning a function to the button
 
   In this example, the delete function is assigned to the button.
 
@@ -151,7 +162,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
 
 ## Adding Events
 
-The **\<Button>** component is usually used to trigger actions. You can bind the **onClick** event to the button to have it respond with custom behavior after being clicked.
+The **Button** component is usually used to trigger actions. You can bind the **onClick** event to the button to have it respond with custom behavior after being clicked.
 
 ```ts
 Button('Ok', { type: ButtonType.Normal, stateEffect: true }) 
@@ -165,45 +176,126 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
 
 - Using the button for startup
 
-  You can use the button for any UI element that involves the startup operation. The button triggers the predefined event based on the user's operation. For example, you can use a button in the **\<List>** container to redirect the user to another page.
+  You can use the button for any UI element that involves the startup operation. The button triggers the predefined event based on the user's operation. For example, you can use a button in the **List** container to redirect the user to another page.
 
   ```ts
   // xxx.ets
-  import router from '@ohos.router';
   @Entry
   @Component
   struct ButtonCase1 {
-    @State FurL:router.RouterOptions = {'url':'pages/first_page'}
-    @State SurL:router.RouterOptions = {'url':'pages/second_page'}
-    @State TurL:router.RouterOptions = {'url':'pages/third_page'}
-    build() {
-      List({ space: 4 }) {
-        ListItem() {
-          Button("First").onClick(() => {
-            router.pushUrl(this.FurL)
-          })
-            .width('100%')
-        }
-        ListItem() {
-          Button("Second").onClick(() => {
-            router.pushUrl(this.SurL)
-          })
-            .width('100%')
-        }
-        ListItem() {
-          Button("Third").onClick(() => {
-            router.pushUrl(this.TurL)
-          })
-            .width('100%')
-        }
+    pathStack: NavPathStack = new NavPathStack();
+
+    @Builder
+    PageMap(name: string) {
+      if (name === "first_page") {
+        pageOneTmp()
+      } else if (name === "second_page") {
+        pageTwoTmp()
+      } else if (name === "third_page") {
+        pageThreeTmp()
       }
-      .listDirection(Axis.Vertical)
-      .backgroundColor(0xDCDCDC).padding(20)
+    }
+
+    build() {
+      Navigation(this.pathStack) {
+        List({ space: 4 }) {
+          ListItem() {
+            Button("First").onClick(() => {
+              this.pathStack.pushPath({ name: "first_page"})
+            })
+              .width('100%')
+          }
+
+          ListItem() {
+            Button("Second").onClick(() => {
+              this.pathStack.pushPath({ name: "second_page"})
+            })
+              .width('100%')
+          }
+
+          ListItem() {
+            Button("Third").onClick(() => {
+              this.pathStack.pushPath({ name: "third_page"})
+            })
+              .width('100%')
+          }
+        }
+        .listDirection(Axis.Vertical)
+        .backgroundColor(0xDCDCDC).padding(20)
+      }
+      .mode(NavigationMode.Stack)
+      .navDestination(this.PageMap)
+    }
+  }
+
+  // pageOne
+  @Component
+  export struct pageOneTmp {
+    pathStack: NavPathStack = new NavPathStack();
+  
+    build() {
+      NavDestination() {
+        Column() {
+          Text("first_page")
+        }.width('100%').height('100%')
+      }.title("pageOne")
+      .onBackPressed(() => {
+        const popDestinationInfo = this.pathStack.pop() // Pop the top element out of the navigation stack.
+        console.log('pop' + 'Return value' + JSON.stringify(popDestinationInfo))
+        return true
+      })
+      .onReady((context: NavDestinationContext) => {
+        this.pathStack = context.pathStack
+      })
+    }
+  }
+
+  // pageTwo
+  @Component
+  export struct pageTwoTmp {
+    pathStack: NavPathStack = new NavPathStack();
+
+    build() {
+      NavDestination() {
+        Column() {
+          Text("second_page")
+        }.width('100%').height('100%')
+      }.title("pageTwo")
+      .onBackPressed(() => {
+        const popDestinationInfo = this.pathStack.pop() // Pop the top element out of the navigation stack.
+        console.log('pop' + 'Return value' + JSON.stringify(popDestinationInfo))
+        return true
+      })
+      .onReady((context: NavDestinationContext) => {
+        this.pathStack = context.pathStack
+      })
+    }
+  }
+
+  // pageThree
+  @Component
+  export struct pageThreeTmp {
+    pathStack: NavPathStack = new NavPathStack();
+
+    build() {
+      NavDestination() {
+        Column() {
+          Text("third_page")
+        }.width('100%').height('100%')
+      }.title("pageThree")
+      .onBackPressed(() => {
+        const popDestinationInfo = this.pathStack.pop() // Pop the top element out of the navigation stack.
+        console.log('pop' + 'Return value' + JSON.stringify(popDestinationInfo))
+        return true
+      })
+      .onReady((context: NavDestinationContext) => {
+        this.pathStack = context.pathStack
+      })
     }
   }
   ```
 
-  ![en-us_image_0000001562700393](figures/en-us_image_0000001562700393.png)
+  ![en-us_image_0000001562700393](figures/en-us_image_0000001562940814.gif)
 
 
 - Using the button for submitting forms

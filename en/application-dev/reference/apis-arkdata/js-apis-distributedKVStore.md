@@ -1,8 +1,8 @@
- # @ohos.data.distributedKVStore (Distributed KV Store)
+# @ohos.data.distributedKVStore (Distributed KV Store)
 
 The **distributedKVStore** module implements collaboration between databases for different devices that forms a Super Device. You can use the APIs provided by this module to save application data to a distributed key-value (KV) store and perform operations, such as adding, deleting, modifying, querying, and synchronizing data in distributed KV stores.
 
-The **distributedKVStore** module provides the following functions:
+The **distributedKVStore** module provides the following functionalities:
 
 - [KVManager](#kvmanager): provides a **KVManager** instance to obtain KV store information.
 - [KVStoreResultSet](#kvstoreresultset): provides APIs for accessing the results obtained from a KV store.
@@ -17,7 +17,7 @@ The **distributedKVStore** module provides the following functions:
 ## Modules to Import
 
 ```ts
-import distributedKVStore from '@ohos.data.distributedKVStore';
+import { distributedKVStore } from '@kit.ArkData';
 ```
 
 ## KVManagerConfig
@@ -28,7 +28,7 @@ Provides the **KVManager** instance configuration, including the bundle name of 
 
 | Name    | Type             | Mandatory| Description                                                        |
 | ---------- | --------------------- | ---- | ------------------------------------------------------------ |
-| context    | Context               | Yes  |Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).<br>Since API version 10, the parameter type of context is [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md).|
+| context    | BaseContext           | Yes  |Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).<br>Since API version 10, the parameter type of context is [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md).|
 | bundleName | string                | Yes  | Bundle name.                                              |
 
 ## Constants
@@ -37,14 +37,14 @@ Provides constants of the distributed KV store.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name                 | Value     | Description                                   |
-| --------------------- | ------- | --------------------------------------- |
-| MAX_KEY_LENGTH        | 1024    | Maximum length of a key in a distributed KV store, in bytes.  |
-| MAX_VALUE_LENGTH      | 4194303 | Maximum length of a value in a distributed KV store, in bytes.|
-| MAX_KEY_LENGTH_DEVICE | 896     | Maximum length of a key in a device KV store, in bytes.|
-| MAX_STORE_ID_LENGTH   | 128     | Maximum length of a KV store ID, in bytes. |
-| MAX_QUERY_LENGTH      | 512000  | Maximum query length, in bytes.               |
-| MAX_BATCH_SIZE        | 128     | Maximum number of batch operations.                   |
+| Name                 | Type  | Read Only| Optional| Description                                                      |
+| --------------------- | ------ | ---- | ---- | ---------------------------------------------------------- |
+| MAX_KEY_LENGTH        | number | Yes  | No  | Maximum length of a key in the database, which is 1024 bytes.       |
+| MAX_VALUE_LENGTH      | number | Yes  | No  | Maximum length of a value in the database, which is 4194303 bytes.  |
+| MAX_KEY_LENGTH_DEVICE | number | Yes  | No  | Maximum length of a key in a device KV store, which is 896 bytes.|
+| MAX_STORE_ID_LENGTH   | number | Yes  | No  | Maximum length of a KV store ID, which is 128 bytes.       |
+| MAX_QUERY_LENGTH      | number | Yes  | No  | Maximum query length, which is 512000 bytes.                  |
+| MAX_BATCH_SIZE        | number | Yes  | No  | Maximum number of batch operations allowed, which is 128.                         |
 
 ## ValueType
 
@@ -74,7 +74,7 @@ Defines the **value** object in a KV store.
 
 ## Entry
 
-Defines the KV pairs in a KV store.
+Defines the KV pairs stored in a KV store.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -126,12 +126,18 @@ Enumerates the distributed KV store types.
 
 | Name                | Description                                                        |
 | -------------------- | ------------------------------------------------------------ |
-| DEVICE_COLLABORATION | Device KV store.<br>The device KV store manages data by device, which eliminates conflicts. Data can be queried by device.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
-| SINGLE_VERSION       | Single KV store.<br>The single KV store does not differentiate data by device. If entries with the same key are modified on different devices, the value will be overwritten.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
+| DEVICE_COLLABORATION | Device KV store.<br> The device KV store manages data by device, which eliminates conflicts. Data can be queried by device.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
+| SINGLE_VERSION       | Single KV store.<br> The single KV store does not differentiate data by device. If entries with the same key are modified on different devices, the value will be overwritten.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
 
 ## SecurityLevel
 
 Enumerates the KV store security levels.
+> **NOTE**
+>
+> For the scenarios involving a single device, you can upgrade the security level of a KV store by modifying the **securityLevel** parameter. When upgrading the database security level, observe the following:
+> * This operation does not apply to the databases that require cross-device sync. Data cannot be synced between databases of different security levels. If you want to upgrade the security level of a database that requires cross-device sync, you are advised to create a database of a higher security level.
+> * You need to close the database before modifying the **securityLevel** parameter, and open it after the security level is upgraded.
+> * You cannot downgrade the database security level. For example, you can change the database security level from S2 to S3, but cannot change it from S3 to S2.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -151,23 +157,27 @@ Provides KV store configuration.
 | createIfMissing | boolean                         | No | Whether to create a KV store if the database file does not exist. The default value is **true**, which means to create a KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
 | encrypt         | boolean                         | No  | Whether to encrypt the KV store. The default value is **false**, which means the KV store is not encrypted.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
 | backup          | boolean                         | No  | Whether to back up the KV store. The default value is **true**, which means to back up the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
-| autoSync        | boolean                         | No  | Whether to automatically synchronize database files. The default value is **false**, which means the database files are manually synchronized.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC|
+| autoSync        | boolean                         | No  | Whether to enable auto sync across devices. The default value is **false**, indicating that only manual sync is supported. If this parameter is set to **true**, <!--RP1-->it takes effect only in [device collaboration using cross-device calls](../../application-models/hop-multi-device-collaboration.md#using-cross-device-call).<!--RP1End--><br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC|
 | kvStoreType     | [KVStoreType](#kvstoretype)     | No  | Type of the KV store to create. The default value is **DEVICE_COLLABORATION**, which indicates a device KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
 | securityLevel   | [SecurityLevel](#securitylevel) | Yes  | Security level of the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
-| schema          | [Schema](#schema)               | No  | Schema used to define the values stored in the KV store. The default value is **undefined**, which means no schema is used.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
+| schema          | [Schema](#schema)               | No  | Schema that defines the values stored in the KV store. The default value is **undefined**, which means no schema is used.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
 
 ## Schema
 
-Defines the schema of a KV store. You can create a **Schema** object and place it in [Options](#options) when creating or opening a KV store.
+Defines the schema of a KV store. You can create a **Schema** object and pass it in [Options](#options) when creating or opening a KV store.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 | Name   | Type                   | Readable| Writable| Description                      |
 | ------- | ----------------------- | ---- | ---- | -------------------------- |
-| root    | [FieldNode](#fieldnode) | Yes  | Yes  | JSON root object.          |
-| indexes | Array\<string>          | Yes  | Yes  | String array in JSON format.|
-| mode    | number                  | Yes  | Yes  | Schema mode.        |
-| skip    | number                  | Yes  | Yes  | Size of a skip of the schema.        |
+| root    | [FieldNode](#fieldnode) | Yes  | Yes  | Definitions of all the fields in **Value**.|
+| indexes | Array\<string>          | Yes  | Yes  | Indexes of the fields in **Value**. Indexes are created only for **FieldNode** with this parameter specified. If no index needs to be created, this parameter can be left empty. <br>Format: `'$.field1'`, `'$.field2'`|
+| mode    | number                  | Yes  | Yes  | Schema mode, which can be **0** (compatible mode) or **1** (strict mode).|
+| skip    | number                  | Yes  | Yes  | Number of bytes to be skipped during the value check. The value range is [0, 4 x 1024 x 1024 - 2].|
+
+Strict mode: In this mode, the format of the value to be inserted must strictly match the schema defined, and the number of fields cannot be more or less than that defined in the schema. Otherwise, an error will be returned.
+
+Compatible mode: In this mode, the value check is successful as long as the value has the characteristics defined in the schema. Extra fields are allowed. For example, if **id** and **name** are defined, more fields such as **id**, **name**, and **age** can be inserted.
 
 ### constructor
 
@@ -177,6 +187,27 @@ A constructor used to create a **Schema** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
+**Example**
+
+```ts
+
+let child1 = new distributedKVStore.FieldNode('id');
+child1.type = distributedKVStore.ValueType.INTEGER;
+child1.nullable = false;
+child1.default = '1';
+let child2 = new distributedKVStore.FieldNode('name');
+child2.type = distributedKVStore.ValueType.STRING;
+child2.nullable = false;
+child2.default = 'zhangsan';
+
+let schema = new distributedKVStore.Schema();
+schema.root.appendChild(child1);
+schema.root.appendChild(child2);
+schema.indexes = ['$.id', '$.name'];
+schema.mode = 1;
+schema.skip = 0;
+```
+
 ## FieldNode
 
 Represents a **Schema** instance, which provides the methods for defining the values stored in a KV store.
@@ -185,9 +216,9 @@ Represents a **Schema** instance, which provides the methods for defining the va
 
 | Name    | Type   | Readable| Writable| Description                          |
 | -------- | ------- | ---- | ---- | ------------------------------ |
-| nullable | boolean | Yes  | Yes  | Whether the database field can be null.  |
-| default  | string  | Yes  | Yes  | Default value of a **FieldNode**.       |
-| type     | number  | Yes  | Yes  | Value of the data type corresponding to the specified node.|
+| nullable | boolean | Yes  | Yes  | Whether the field can be null. The value **true** means the node field can be null; the value **false** means the opposite.|
+| default  | string  | Yes  | Yes  | Default value of **FieldNode**.       |
+| type     | number  | Yes  | Yes  | **FieldNode** data type, which is a value of [ValueType](#valuetype). Currently, the BYTE_ARRAY type is not supported. Using this type may cause a failure in calling [getKVStore](#getkvstore).|
 
 ### constructor
 
@@ -201,7 +232,15 @@ A constructor used to create a **FieldNode** instance with a string field.
 
 | Name| Type| Mandatory| Description           |
 | ------ | -------- | ---- | --------------- |
-| name   | string   | Yes  | Value of **FieldNode**.|
+| name   | string   | Yes  | Value of **FieldNode**, which cannot be left empty.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
 
 ### appendChild
 
@@ -222,6 +261,14 @@ Appends a child node to this **FieldNode**.
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **Example**
 
@@ -257,7 +304,7 @@ Creates a **KVManager** instance for KV store management.
 
 | Name| Type                     | Mandatory| Description                                                     |
 | ------ | ----------------------------- | ---- | --------------------------------------------------------- |
-| config | [KVManagerConfig](#kvmanagerconfig) | Yes  | **KVManager** instance configuration, including the bundle name and user information of the caller.|
+| config | [KVManagerConfig](#kvmanagerconfig) | Yes  | Configuration of the **KVManager** instance, including the bundle name (cannot be empty) of the caller and user information.|
 
 **Return value**
 
@@ -265,13 +312,21 @@ Creates a **KVManager** instance for KV store management.
 | -------------------------------------- | ------------------------------------------ |
 | [KVManager](#kvmanager) | **KVManager** instance created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
+
 **Example**
 
 Stage model:
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvManager: distributedKVStore.KVManager;
 
@@ -290,15 +345,21 @@ export default class EntryAbility extends UIAbility {
       let error = e as BusinessError;
       console.error(`Failed to create KVManager.code is ${error.code},message is ${error.message}`);
     }
+    if (kvManager !== undefined) {
+      kvManager = kvManager as distributedKVStore.KVManager;
+      // Perform subsequent operations such as creating a KV store.
+      // ...
+    }
   }
 }
 ```
 
 FA model:
 
+<!--code_no_check_fa-->
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base';
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvManager: distributedKVStore.KVManager;
 let context = featureAbility.getContext()
@@ -313,6 +374,11 @@ try {
   let error = e as BusinessError;
   console.error(`Failed to create KVManager.code is ${error.code},message is ${error.message}`);
 }
+if (kvManager !== undefined) {
+  kvManager = kvManager as distributedKVStore.KVManager;
+  // Perform subsequent operations such as creating a KV store.
+  // ...
+}
 ```
 
 ## KVManager
@@ -323,7 +389,11 @@ Provides an instance to obtain information about a distributed KV store. Before 
 
 getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void
 
-Obtains a distributed KV store. This API uses an asynchronous callback to return the result.
+Creates and obtains a distributed KV store based on the specified **options** and **storeId**. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> If the database file cannot be opened (for example, the file header is damaged) when an existing distributed KV store is obtained, the automatic rebuild logic will be triggered to return a newly created distributed KV store instance. For important data that cannot be regenerated, you are advised to use the backup and restore feature to prevent data loss. For details, see [Database Backup and Restoration](../../database/data-backup-and-restore.md).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -331,35 +401,37 @@ Obtains a distributed KV store. This API uses an asynchronous callback to return
 
 | Name  | Type              | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| storeId  | string                 | Yes  | Unique identifier of the KV store. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
+| storeId  | string                 | Yes  | Unique identifier of the KV store. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
 | options  | [Options](#options)    | Yes  | Configuration of the KV store to create.                              |
-| callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the **SingleKVStore** or **DeviceKVStore** instance created.|
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback used to return the **SingleKVStore** or **DeviceKVStore** instance created.|
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                               |
 | ------------ | ------------------------------------------- |
-| 15100002     | Open existed database with changed options. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
+| 15100002     | The options configuration changes when the API is called to obtain a KV store. |
 | 15100003     | Database corrupted.                         |
+| 15100006     | Unable to open the database file.           |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvStore: distributedKVStore.SingleKVStore | null;
+let kvStore: distributedKVStore.SingleKVStore | null = null;
 try {
   const options: distributedKVStore.Options = {
     createIfMissing: true,
     encrypt: false,
     backup: false,
-    autoSync: true,
+    autoSync: false,
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    securityLevel: distributedKVStore.SecurityLevel.S2,
+    securityLevel: distributedKVStore.SecurityLevel.S3,
   };
-  kvManager.getKVStore('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
+  kvManager.getKVStore('storeId', options, (err: BusinessError, store: distributedKVStore.SingleKVStore) => {
     if (err) {
       console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
       return;
@@ -371,13 +443,22 @@ try {
   let error = e as BusinessError;
   console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
+if (kvStore !== null) {
+     kvStore = kvStore as distributedKVStore.SingleKVStore;
+       // Perform subsequent data operations, such as adding, deleting, modifying, and querying data, and subscribing to data changes.
+       // ...
+}
 ```
 
 ### getKVStore
 
 getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 
-Obtains a distributed KV store. This API uses a promise to return the result.
+Creates and obtains a distributed KV store based on the specified **options** and **storeId**. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> If the database file cannot be opened (for example, the file header is damaged) when an existing distributed KV store is obtained, the automatic rebuild logic will be triggered to return a newly created distributed KV store instance. For important data that cannot be regenerated, you are advised to use the backup and restore feature to prevent data loss. For details, see [Database Backup and Restoration](../../database/data-backup-and-restore.md).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -385,7 +466,7 @@ Obtains a distributed KV store. This API uses a promise to return the result.
 
 | Name | Type           | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| storeId | string              | Yes  | Unique identifier of the KV store. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
+| storeId | string              | Yes  | Unique identifier of the KV store. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
 | options | [Options](#options) | Yes  | Configuration of the distributed KV store to create.                              |
 
 **Return value**
@@ -396,27 +477,29 @@ Obtains a distributed KV store. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                               |
 | ------------ | ------------------------------------------- |
-| 15100002     | Open existed database with changed options. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.|
+| 15100002     | The options configuration changes when the API is called to obtain a KV store. |
 | 15100003     | Database corrupted.                         |
+| 15100006     | Unable to open the database file.           |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvStore: distributedKVStore.SingleKVStore | null;
+let kvStore: distributedKVStore.SingleKVStore | null = null;
 try {
   const options: distributedKVStore.Options = {
     createIfMissing: true,
     encrypt: false,
     backup: false,
-    autoSync: true,
+    autoSync: false,
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    securityLevel: distributedKVStore.SecurityLevel.S2,
+    securityLevel: distributedKVStore.SecurityLevel.S3,
   };
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then((store: distributedKVStore.SingleKVStore) => {
     console.info("Succeeded in getting KVStore");
@@ -442,27 +525,35 @@ Closes a distributed KV store. This API uses an asynchronous callback to return 
 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| appId    | string                    | Yes  | Bundle name of the app that invokes the KV store.                                      |
-| storeId  | string                    | Yes  | Unique identifier of the KV store to close. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                                  |
+| appId    | string                    | Yes  | Bundle name of the application. The value cannot be empty or exceed 256 bytes.                                     |
+| storeId  | string                    | Yes  | Unique identifier of the KV store to close. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.    |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvStore: distributedKVStore.SingleKVStore | null;
+let kvStore: distributedKVStore.SingleKVStore | null = null;
 const options: distributedKVStore.Options = {
   createIfMissing: true,
   encrypt: false,
   backup: false,
-  autoSync: true,
+  autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S2,
+  securityLevel: distributedKVStore.SecurityLevel.S3,
 }
 try {
-  kvManager.getKVStore('storeId', options, async (err, store: distributedKVStore.SingleKVStore | null) => {
+  kvManager.getKVStore('storeId', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
     if (err != undefined) {
       console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
       return;
@@ -471,7 +562,7 @@ try {
     kvStore = store;
     kvStore = null;
     store = null;
-    kvManager.closeKVStore('appId', 'storeId', (err)=> {
+    kvManager.closeKVStore('appId', 'storeId', (err: BusinessError)=> {
       if (err != undefined) {
         console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
         return;
@@ -497,8 +588,8 @@ Closes a distributed KV store. This API uses a promise to return the result.
 
 | Name | Type| Mandatory| Description                                                        |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
-| appId   | string   | Yes  | Bundle name of the app that invokes the KV store.                                      |
-| storeId | string   | Yes  | Unique identifier of the KV store to close. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
+| appId   | string   | Yes  | Bundle name of the application. The value cannot be empty or exceed 256 bytes.                          |
+| storeId | string   | Yes  | Unique identifier of the KV store to close. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
 
 **Return value**
 
@@ -506,21 +597,29 @@ Closes a distributed KV store. This API uses a promise to return the result.
 | -------------- | ------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.|
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvStore: distributedKVStore.SingleKVStore | null;
+let kvStore: distributedKVStore.SingleKVStore | null = null;
 
 const options: distributedKVStore.Options = {
   createIfMissing: true,
   encrypt: false,
   backup: false,
-  autoSync: true,
+  autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S2,
+  securityLevel: distributedKVStore.SecurityLevel.S3,
 }
 try {
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then(async (store: distributedKVStore.SingleKVStore | null) => {
@@ -554,36 +653,37 @@ Deletes a distributed KV store. This API uses an asynchronous callback to return
 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| appId    | string                    | Yes  | Bundle name of the app that invokes the KV store.                                      |
-| storeId  | string                    | Yes  | Unique identifier of the KV store to delete. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                                  |
+| appId    | string                    | Yes  | Bundle name of the application. The value cannot be empty or exceed 256 bytes.                                     |
+| storeId  | string                    | Yes  | Unique identifier of the KV store to delete. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.    |
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**|
 | ------------ | ------------ |
-| 15100004     | Not found.   |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.|
+| 15100004     | Data not found.   |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvStore: distributedKVStore.SingleKVStore | null;
+let kvStore: distributedKVStore.SingleKVStore | null = null;
 
 const options: distributedKVStore.Options = {
   createIfMissing: true,
   encrypt: false,
   backup: false,
-  autoSync: true,
+  autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S2,
+  securityLevel: distributedKVStore.SecurityLevel.S3,
 }
 try {
-  kvManager.getKVStore('store', options, async (err, store: distributedKVStore.SingleKVStore | null) => {
+  kvManager.getKVStore('store', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
     if (err != undefined) {
       console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
       return;
@@ -592,7 +692,7 @@ try {
     kvStore = store;
     kvStore = null;
     store = null;
-    kvManager.deleteKVStore('appId', 'storeId', (err) => {
+    kvManager.deleteKVStore('appId', 'storeId', (err: BusinessError) => {
       if (err != undefined) {
         console.error(`Failed to delete KVStore.code is ${err.code},message is ${err.message}`);
         return;
@@ -618,8 +718,8 @@ Deletes a distributed KV store. This API uses a promise to return the result.
 
 | Name | Type| Mandatory| Description                                                        |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
-| appId   | string   | Yes  | Bundle name of the app that invokes the KV store.                                      |
-| storeId | string   | Yes  | Unique identifier of the KV store to delete. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
+| appId   | string   | Yes  | Bundle name of the application. The value cannot be empty or exceed 256 bytes.                          |
+| storeId | string   | Yes  | Unique identifier of the KV store to delete. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
 
 **Return value**
 
@@ -629,27 +729,28 @@ Deletes a distributed KV store. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**|
 | ------------ | ------------ |
-| 15100004     | Not found.   |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.|
+| 15100004     | Data not found.   |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvStore: distributedKVStore.SingleKVStore | null;
+let kvStore: distributedKVStore.SingleKVStore | null = null;
 
 const options: distributedKVStore.Options = {
   createIfMissing: true,
   encrypt: false,
   backup: false,
-  autoSync: true,
+  autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S2,
+  securityLevel: distributedKVStore.SecurityLevel.S3,
 }
 try {
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then(async (store: distributedKVStore.SingleKVStore | null) => {
@@ -683,16 +784,24 @@ Obtains the IDs of all distributed KV stores that are created by [getKVStore](#g
 
 | Name  | Type                     | Mandatory| Description                                               |
 | -------- | ----------------------------- | ---- | --------------------------------------------------- |
-| appId    | string                        | Yes  | Bundle name of the app that invokes the KV store.                             |
-| callback | AsyncCallback&lt;string[]&gt; | Yes  | Callback invoked to return the IDs of all the distributed KV stores created.|
+| appId    | string                        | Yes  | Bundle name of the application. The value cannot be empty or exceed 256 bytes.                             |
+| callback | AsyncCallback&lt;string[]&gt; | Yes  | Callback used to return the IDs of all the distributed KV stores created.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  kvManager.getAllKVStoreId('appId', (err, data) => {
+  kvManager.getAllKVStoreId('appId', (err: BusinessError, data: string[]) => {
     if (err != undefined) {
       console.error(`Failed to get AllKVStoreId.code is ${err.code},message is ${err.message}`);
       return;
@@ -718,7 +827,7 @@ Obtains the IDs of all distributed KV stores that are created by [getKVStore](#g
 
 | Name| Type| Mandatory| Description                  |
 | ------ | -------- | ---- | ---------------------- |
-| appId  | string   | Yes  | Bundle name of the app that invokes the KV store.|
+| appId  | string   | Yes  | Bundle name of the application. The value cannot be empty or exceed 256 bytes.|
 
 **Return value**
 
@@ -726,10 +835,18 @@ Obtains the IDs of all distributed KV stores that are created by [getKVStore](#g
 | ----------------------- | ------------------------------------------------------ |
 | Promise&lt;string[]&gt; | Promise used to return the IDs of all the distributed KV stores created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.|
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   console.info('GetAllKVStoreId');
@@ -757,13 +874,21 @@ Subscribes to the termination (death) of the distributed data service. If the se
 
 | Name       | Type            | Mandatory| Description                                                        |
 | ------------- | -------------------- | ---- | ------------------------------------------------------------ |
-| event         | string               | Yes  | Event type. The value is **distributedDataServiceDie**, which indicates the termination of the distributed data service. |
-| deathCallback | Callback&lt;void&gt; | Yes  | Callback invoked to return service status changes.                                                  |
+| event         | string               | Yes  | Event type. The value is **distributedDataServiceDie**, which indicates the termination of the distributed data service.|
+| deathCallback | Callback&lt;void&gt; | Yes  | Callback used to return the result. If the subscription is successful, **err** is **undefined**. Otherwise, **err** is an error object.    |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   console.info('KVManagerOn');
@@ -789,13 +914,21 @@ Unsubscribes from the termination (death) of the distributed data service. The *
 
 | Name       | Type            | Mandatory| Description                                                        |
 | ------------- | -------------------- | ---- | ------------------------------------------------------------ |
-| event         | string               | Yes  | Event type. The value is **distributedDataServiceDie**, which indicates the termination of the distributed data service. |
-| deathCallback | Callback&lt;void&gt; | No  | Callback for the termination of the distributed data service. If this parameter is not specified, all callbacks for the termination of the distributed data service will be unregistered. |
+| event         | string               | Yes  | Event type. The value is **distributedDataServiceDie**, which indicates the termination of the distributed data service.|
+| deathCallback | Callback&lt;void&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the **distributedDataServiceDie** event.                                         |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   console.info('KVManagerOff');
@@ -832,12 +965,12 @@ Obtains the total number of rows in the result set.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let count: number;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     count = resultSet.getCount();
@@ -867,12 +1000,12 @@ Obtains the current data read position (position from which data is read) in the
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let position: number;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeeded.');
     resultSet = result;
     position = resultSet.getPosition();
@@ -902,12 +1035,12 @@ Moves the data read position to the first row. If the result set is empty, **fal
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     moved = resultSet.moveToFirst();
@@ -937,12 +1070,12 @@ Moves the data read position to the last row. If the result set is empty, **fals
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     moved = resultSet.moveToLast();
@@ -972,12 +1105,12 @@ Moves the data read position to the next row. If the result set is empty, **fals
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     do {
@@ -1009,12 +1142,12 @@ Moves the data read position to the previous row. If the result set is empty, **
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     moved = resultSet.moveToLast();
@@ -1048,15 +1181,23 @@ Moves the data read position with the specified offset from the current position
 | ------- | ----------------------------------------------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting resultSet');
     resultSet = result;
     moved = resultSet.move(2); // If the current position is 0, move the read position forward by two rows, that is, move to row 3.
@@ -1090,15 +1231,23 @@ Moves the data read position from 0 to an absolute position.
 | ------- | ----------------------------------------------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting resultSet');
     resultSet = result;
     moved = resultSet.moveToPosition(1);
@@ -1129,12 +1278,12 @@ Checks whether the data read position is the first row.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let isfirst: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     isfirst = resultSet.isFirst();
@@ -1164,12 +1313,12 @@ Checks whether the data read position is the last row.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let islast: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     islast = resultSet.isLast();
@@ -1199,11 +1348,11 @@ Checks whether the data read position is before the first row.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     let isbeforefirst = resultSet.isBeforeFirst();
@@ -1233,11 +1382,11 @@ Checks whether the data read position is after the last row.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     let isafterlast = resultSet.isAfterLast();
@@ -1267,11 +1416,11 @@ Obtains the KV pair from the current position.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     let entry = resultSet.getEntry();
@@ -1294,7 +1443,7 @@ Provides methods to create a **Query** object, which defines different data quer
 
 constructor()
 
-A constructor used to create a **Schema** instance.
+A constructor used to create a **Query** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1315,7 +1464,7 @@ Resets the **Query** object.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1341,7 +1490,7 @@ Creates a **Query** object to match the specified field whose value is equal to 
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
@@ -1350,10 +1499,18 @@ Creates a **Query** object to match the specified field whose value is equal to 
 | -------------- | --------------- |
 | [Query](#query) | **Query** object created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1378,7 +1535,7 @@ Creates a **Query** object to match the specified field whose value is not equal
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
@@ -1387,10 +1544,18 @@ Creates a **Query** object to match the specified field whose value is not equal
 | -------------- | --------------- |
 | [Query](#query) | **Query** object created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1414,7 +1579,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 **Parameters**
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
@@ -1423,10 +1588,18 @@ Creates a **Query** object to match the specified field whose value is greater t
 | -------------- | --------------- |
 | [Query](#query) | **Query** object created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1452,7 +1625,7 @@ Creates a **Query** object to match the specified field whose value is less than
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
@@ -1461,10 +1634,18 @@ Creates a **Query** object to match the specified field whose value is less than
 | -------------- | --------------- |
 | [Query](#query) | **Query** object created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1490,7 +1671,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
@@ -1499,10 +1680,18 @@ Creates a **Query** object to match the specified field whose value is greater t
 | -------------- | --------------- |
 | [Query](#query) | **Query** object created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1528,7 +1717,7 @@ Creates a **Query** object to match the specified field whose value is less than
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
@@ -1537,10 +1726,18 @@ Creates a **Query** object to match the specified field whose value is less than
 | -------------- | --------------- |
 | [Query](#query) | **Query** object created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1565,7 +1762,7 @@ Creates a **Query** object to match the specified field whose value is **null**.
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'.|
+| field  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -1573,10 +1770,18 @@ Creates a **Query** object to match the specified field whose value is **null**.
 | -------------- | --------------- |
 | [Query](#query) | **Query** object created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1601,7 +1806,7 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Name   | Type| Mandatory| Description                         |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | Yes  | Field to match. It cannot contain '^'.|
+| field     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | valueList | number[] | Yes  | List of numbers.           |
 
 **Return value**
@@ -1610,10 +1815,18 @@ Creates a **Query** object to match the specified field whose value is within th
 | -------------- | --------------- |
 | [Query](#query) | **Query** object created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1638,7 +1851,7 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Name   | Type| Mandatory| Description                         |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | Yes  | Field to match. It cannot contain '^'.|
+| field     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | valueList | string[] | Yes  | List of strings.     |
 
 **Return value**
@@ -1647,10 +1860,18 @@ Creates a **Query** object to match the specified field whose value is within th
 | -------------- | --------------- |
 | [Query](#query) | **Query** object created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1675,7 +1896,7 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Name   | Type| Mandatory| Description                         |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | Yes  | Field to match. It cannot contain '^'.|
+| field     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | valueList | number[] | Yes  | List of numbers.           |
 
 **Return value**
@@ -1684,10 +1905,18 @@ Creates a **Query** object to match the specified field whose value is not withi
 | -------------- | --------------- |
 | [Query](#query) | **Query** object created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1712,7 +1941,7 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Name   | Type| Mandatory| Description                         |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | Yes  | Field to match. It cannot contain '^'.|
+| field     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | valueList | string[] | Yes  | List of strings.     |
 
 **Return value**
@@ -1721,10 +1950,18 @@ Creates a **Query** object to match the specified field whose value is not withi
 | -------------- | --------------- |
 | [Query](#query) | **Query** object created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1749,7 +1986,7 @@ Creates a **Query** object to match the specified field whose value is similar t
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'.|
+| field  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | value  | string   | Yes  | String specified.         |
 
 **Return value**
@@ -1758,10 +1995,18 @@ Creates a **Query** object to match the specified field whose value is similar t
 | -------------- | --------------- |
 | [Query](#query) | **Query** object created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1786,7 +2031,7 @@ Creates a **Query** object to match the specified field whose value is not simil
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'.|
+| field  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | value  | string   | Yes  | String specified.         |
 
 **Return value**
@@ -1795,10 +2040,18 @@ Creates a **Query** object to match the specified field whose value is not simil
 | -------------- | --------------- |
 | [Query](#query) | **Query** object created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1828,7 +2081,7 @@ Creates a **Query** object with the AND condition.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1859,7 +2112,7 @@ Creates a **Query** object with the OR condition.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1885,7 +2138,7 @@ Creates a **Query** object to sort the query results in ascending order.
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'.|
+| field  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -1893,10 +2146,18 @@ Creates a **Query** object to sort the query results in ascending order.
 | -------------- | --------------- |
 | [Query](#query) | **Query** object created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1922,7 +2183,7 @@ Creates a **Query** object to sort the query results in descending order.
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'.|
+| field  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -1930,10 +2191,18 @@ Creates a **Query** object to sort the query results in descending order.
 | -------------- | --------------- |
 | [Query](#query) | **Query** object created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1968,10 +2237,18 @@ Creates a **Query** object to specify the number of records of the query result 
 | -------------- | --------------- |
 | [Query](#query) | **Query** object created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let total = 10;
 let offset = 1;
@@ -1999,7 +2276,7 @@ Creates a **Query** object to match the specified field whose value is not **nul
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'.|
+| field  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -2007,10 +2284,18 @@ Creates a **Query** object to match the specified field whose value is not **nul
 | -------------- | --------------- |
 | [Query](#query) | **Query** object created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2040,7 +2325,7 @@ Creates a **Query** object for a query condition group with a left parenthesis.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2071,7 +2356,7 @@ Creates a **Query** object for a query condition group with a right parenthesis.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2097,7 +2382,7 @@ Creates a **Query** object with a specified key prefix.
 
 | Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ------------------ |
-| prefix | string   | Yes  | Key prefix.|
+| prefix | string   | Yes  | Key prefix, which cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -2105,10 +2390,18 @@ Creates a **Query** object with a specified key prefix.
 | -------------- | --------------- |
 | [Query](#query) | **Query** object created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2134,7 +2427,7 @@ Creates a **Query** object with an index preferentially used for query.
 
 | Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ------------------ |
-| index  | string   | Yes  | Index preferentially used for query.|
+| index  | string   | Yes  | Index preferentially used for query. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -2142,10 +2435,18 @@ Creates a **Query** object with an index preferentially used for query.
 | -------------- | --------------- |
 | [Query](#query) | **Query** object created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2175,7 +2476,7 @@ Creates a **Query** object with the device ID as the key prefix.
 
 | Name  | Type| Mandatory| Description              |
 | -------- | -------- | ---- | ------------------ |
-| deviceId | string   | Yes  | Device ID.|
+| deviceId | string   | Yes  | ID of the device to be queried. This parameter cannot be left empty.|
 
 **Return value**
 
@@ -2183,10 +2484,18 @@ Creates a **Query** object with the device ID as the key prefix.
 | -------------- | --------------- |
 | [Query](#query) | **Query** object created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2215,7 +2524,7 @@ Obtains the query statement of the **Query** object.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2246,14 +2555,15 @@ Adds a KV pair of the specified type to this KV store. This API uses an asynchro
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | Yes   |Key of the KV pair to add. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).  |
 | value  | Uint8Array \| string \| number \| boolean | Yes   |Value of the KV pair to add. The value type can be Uint8Array, number, string, or boolean. A value of the Uint8Array or string type cannot exceed [MAX_VALUE_LENGTH](#constants).  |
-| callback | AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                            |
 | ------------ | ---------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
@@ -2266,12 +2576,12 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
       return;
@@ -2307,10 +2617,11 @@ Adds a KV pair of the specified type to this KV store. This API uses a promise t
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                            |
 | ------------ | ---------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
@@ -2323,7 +2634,7 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -2351,15 +2662,16 @@ Batch inserts KV pairs to this single KV store. This API uses an asynchronous ca
 
 | Name  | Type                | Mandatory| Description                    |
 | -------- | ------------------------ | ---- | ------------------------ |
-| entries  | [Entry](#entry)[]        | Yes  | KV pairs to insert in batches. An **entries** object allows a maximum of 128 entries.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.              |
+| entries  | [Entry](#entry)[]        | Yes  | KV pairs to insert, which cannot exceed 512 MB.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                            |
 | ------------ | ---------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
@@ -2372,7 +2684,7 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -2388,14 +2700,14 @@ try {
     entries.push(entry);
   }
   console.info(`entries: ${entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.getEntries('batch_test_string_key', (err, entries) => {
+      kvStore.getEntries('batch_test_string_key', (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
         }
@@ -2425,7 +2737,7 @@ Batch inserts KV pairs to this single KV store. This API uses a promise to retur
 
 | Name | Type         | Mandatory| Description                    |
 | ------- | ----------------- | ---- | ------------------------ |
-| entries | [Entry](#entry)[] | Yes  | KV pairs to insert in batches. An **entries** object allows a maximum of 128 entries.|
+| entries | [Entry](#entry)[] | Yes  | KV pairs to insert, which cannot exceed 512 MB.|
 
 **Return value**
 
@@ -2435,10 +2747,11 @@ Batch inserts KV pairs to this single KV store. This API uses a promise to retur
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                            |
 | ------------ | ---------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
@@ -2451,7 +2764,7 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -2470,7 +2783,7 @@ try {
   kvStore.putBatch(entries).then(async () => {
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.getEntries('batch_test_string_key').then((entries) => {
+      kvStore.getEntries('batch_test_string_key').then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting Entries');
         console.info(`PutBatch ${entries}`);
       }).catch((err: BusinessError) => {
@@ -2499,14 +2812,15 @@ Deletes a KV pair from this KV store. This API uses an asynchronous callback to 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                    | Yes  | Key of the KV pair to delete. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                                  |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.        |
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100005    | Database or result set already closed. |
 
@@ -2519,19 +2833,19 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting');
     if (kvStore != null) {
-      kvStore.delete(KEY_TEST_STRING_ELEMENT, (err) => {
+      kvStore.delete(KEY_TEST_STRING_ELEMENT, (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
           return;
@@ -2568,10 +2882,11 @@ Deletes a KV pair from this KV store. This API uses a promise to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                            |
 | ------------ | ---------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
@@ -2584,7 +2899,7 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -2619,15 +2934,16 @@ Batch deletes KV pairs from this single KV store. This API uses an asynchronous 
 
 | Name  | Type                 | Mandatory| Description                    |
 | -------- | ------------------------- | ---- | ------------------------ |
-| keys     | string[]                  | Yes  | KV pairs to delete in batches.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.              |
+| keys     | string[]                  | Yes  | KV pairs to delete. This parameter cannot be empty.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                            |
 | ------------ | ---------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
@@ -2640,7 +2956,7 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -2658,14 +2974,14 @@ try {
     keys.push(key + i);
   }
   console.info(`entries: ${entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.deleteBatch(keys, async (err) => {
+      kvStore.deleteBatch(keys, async (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to delete Batch.code is ${err.code},message is ${err.message}`);
           return;
@@ -2692,7 +3008,7 @@ Batch deletes KV pairs from this single KV store. This API uses a promise to ret
 
 | Name| Type| Mandatory| Description                    |
 | ------ | -------- | ---- | ------------------------ |
-| keys   | string[] | Yes  | KV pairs to delete in batches.|
+| keys   | string[] | Yes  | KV pairs to delete. This parameter cannot be empty.|
 
 **Return value**
 
@@ -2702,10 +3018,11 @@ Batch deletes KV pairs from this single KV store. This API uses a promise to ret
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                            |
 | ------------ | ---------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
@@ -2718,7 +3035,7 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -2761,7 +3078,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 Deletes data of a device. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
+> **deviceId** is **networkId** in [DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo), which can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -2770,36 +3087,37 @@ Deletes data of a device. This API uses an asynchronous callback to return the r
 
 | Name  | Type                 | Mandatory| Description                  |
 | -------- | ------------------------- | ---- | ---------------------- |
-| deviceId | string                    | Yes  | ID of the target device.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.            |
+| deviceId | string                    | Yes  | Network ID of the target device.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.   |
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
 try {
-  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async (err) => {
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async (err: BusinessError) => {
     console.info('Succeeded in putting data');
     const deviceid = 'no_exist_device_id';
     if (kvStore != null) {
-      kvStore.removeDeviceData(deviceid, async (err) => {
+      kvStore.removeDeviceData(deviceid, async (err: BusinessError) => {
         if (err == undefined) {
           console.info('succeeded in removing device data');
         } else {
           console.error(`Failed to remove device data.code is ${err.code},message is ${err.message} `);
           if (kvStore != null) {
-            kvStore.get(KEY_TEST_STRING_ELEMENT, async (err, data) => {
+            kvStore.get(KEY_TEST_STRING_ELEMENT, async (err: BusinessError, data: boolean | string | number | Uint8Array) => {
               console.info('Succeeded in getting data');
             });
           }
@@ -2820,7 +3138,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 Deletes data of a device. This API uses a promise to return the result.
 > **NOTE**
 >
-> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
+> **deviceId** is **networkId** in [DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo), which can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 > For details about how to obtain **deviceId**, see [sync()](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -2829,7 +3147,7 @@ Deletes data of a device. This API uses a promise to return the result.
 
 | Name  | Type| Mandatory| Description                  |
 | -------- | -------- | ---- | ---------------------- |
-| deviceId | string   | Yes  | ID of the target device.|
+| deviceId | string   | Yes  | Network ID of the target device.|
 
 **Return value**
 
@@ -2839,16 +3157,17 @@ Deletes data of a device. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
@@ -2864,7 +3183,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to remove device data.code is ${err.code},message is ${err.message} `);
   });
-  kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
+  kvStore.get(KEY_TEST_STRING_ELEMENT).then((data: boolean | string | number | Uint8Array) => {
     console.info('Succeeded in getting data');
   }).catch((err: BusinessError) => {
     console.error(`Failed to get data.code is ${err.code},message is ${err.message} `);
@@ -2888,35 +3207,36 @@ Obtains the value of the specified key. This API uses an asynchronous callback t
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | key    |string   | Yes   |Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants). |
-| callback  |AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt; | Yes   |Callback invoked to return the value obtained. |
+| callback  |AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt; | Yes   |Callback used to return the value obtained. |
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Not found.                             |
+| 15100004     | Data not found.                        |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info("Succeeded in putting");
     if (kvStore != null) {
-      kvStore.get(KEY_TEST_STRING_ELEMENT, (err, data) => {
+      kvStore.get(KEY_TEST_STRING_ELEMENT, (err: BusinessError, data: boolean | string | number | Uint8Array) => {
         if (err != undefined) {
           console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
           return;
@@ -2953,18 +3273,19 @@ Obtains the value of the specified key. This API uses a promise to return the re
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Not found.                             |
+| 15100004     | Data not found.                        |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
@@ -2973,7 +3294,7 @@ try {
   kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
     console.info(`Succeeded in putting data`);
     if (kvStore != null) {
-      kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
+      kvStore.get(KEY_TEST_STRING_ELEMENT).then((data: boolean | string | number | Uint8Array) => {
         console.info(`Succeeded in getting data.data=${data}`);
       }).catch((err: BusinessError) => {
         console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
@@ -3000,22 +3321,23 @@ Obtains all KV pairs that match the specified key prefix. This API uses an async
 
 | Name   | Type                              | Mandatory| Description                                    |
 | --------- | -------------------------------------- | ---- | ---------------------------------------- |
-| keyPrefix | string                                 | Yes  | Key prefix to match.                    |
-| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs that match the specified prefix.|
+| keyPrefix | string                                 | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
+| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified prefix.|
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -3031,14 +3353,14 @@ try {
     entries.push(entry);
   }
   console.info(`entries: ${entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.getEntries('batch_test_string_key', (err, entries) => {
+      kvStore.getEntries('batch_test_string_key', (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
           return;
@@ -3067,7 +3389,7 @@ Obtains all KV pairs that match the specified key prefix. This API uses a promis
 
 | Name   | Type| Mandatory| Description                |
 | --------- | -------- | ---- | -------------------- |
-| keyPrefix | string   | Yes  | Key prefix to match.|
+| keyPrefix | string   | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
 
 **Return value**
 
@@ -3077,17 +3399,18 @@ Obtains all KV pairs that match the specified key prefix. This API uses a promis
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 
 try {
@@ -3107,7 +3430,7 @@ try {
   kvStore.putBatch(entries).then(async () => {
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.getEntries('batch_test_string_key').then((entries) => {
+      kvStore.getEntries('batch_test_string_key').then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting Entries');
         console.info(`PutBatch ${entries}`);
       }).catch((err: BusinessError) => {
@@ -3136,21 +3459,22 @@ Obtains the KV pairs that match the specified **Query** object. This API uses an
 | Name  | Type                              | Mandatory| Description                                           |
 | -------- | -------------------------------------- | ---- | ----------------------------------------------- |
 | query    | [Query](#query)                         | Yes  | Key prefix to match.                           |
-| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs that match the specified **Query** object.|
+| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified **Query** object.|
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let arr = new Uint8Array([21, 31]);
@@ -3167,12 +3491,12 @@ try {
     entries.push(entry);
   }
   console.info(`entries: {entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     console.info('Succeeded in putting Batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getEntries(query, (err, entries) => {
+      kvStore.getEntries(query, (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
           return;
@@ -3211,17 +3535,18 @@ Obtains the KV pairs that match the specified **Query** object. This API uses a 
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let arr = new Uint8Array([21, 31]);
@@ -3243,7 +3568,7 @@ try {
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getEntries(query).then((entries) => {
+      kvStore.getEntries(query).then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting Entries');
       }).catch((err: BusinessError) => {
         console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
@@ -3271,16 +3596,17 @@ Obtains a result set with the specified prefix from this single KV store. This A
 
 | Name   | Type                                                  | Mandatory| Description                                |
 | --------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
-| keyPrefix | string                                                     | Yes  | Key prefix to match.                |
-| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the result set with the specified prefix.|
+| keyPrefix | string                                                     | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.                |
+| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the result set with the specified prefix.|
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3288,7 +3614,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -3304,14 +3630,14 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting batch');
     if (kvStore != null) {
-      kvStore.getResultSet('batch_test_string_key', async (err, result) => {
+      kvStore.getResultSet('batch_test_string_key', async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
         if (err != undefined) {
           console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
           return;
@@ -3319,7 +3645,7 @@ try {
         console.info('Succeeded in getting result set');
         resultSet = result;
         if (kvStore != null) {
-          kvStore.closeResultSet(resultSet, (err) => {
+          kvStore.closeResultSet(resultSet, (err :BusinessError) => {
             if (err != undefined) {
               console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
               return;
@@ -3348,7 +3674,7 @@ Obtains a result set with the specified prefix from this single KV store. This A
 
 | Name   | Type| Mandatory| Description                |
 | --------- | -------- | ---- | -------------------- |
-| keyPrefix | string   | Yes  | Key prefix to match.|
+| keyPrefix | string   | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
 
 **Return value**
 
@@ -3358,18 +3684,19 @@ Obtains a result set with the specified prefix from this single KV store. This A
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -3390,7 +3717,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
   });
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
@@ -3422,22 +3749,23 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 | Name  | Type                                                  | Mandatory| Description                                                     |
 | -------- | ---------------------------------------------------------- | ---- | --------------------------------------------------------- |
 | query    | Query                                                      | Yes  | **Query** object to match.                                           |
-| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KVStoreResultSet** object obtained.|
+| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object obtained.|
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -3453,7 +3781,7 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -3462,7 +3790,7 @@ try {
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSet(query, async (err, result) => {
+      kvStore.getResultSet(query, async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
         if (err != undefined) {
           console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
           return;
@@ -3499,18 +3827,19 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -3533,7 +3862,7 @@ try {
   });
   const query = new distributedKVStore.Query();
   query.prefixKey("batch_test");
-  kvStore.getResultSet(query).then((result) => {
+  kvStore.getResultSet(query).then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
   }).catch((err: BusinessError) => {
@@ -3558,16 +3887,24 @@ Closes the **KVStoreResultSet** object returned by [SingleKvStore.getResultSet](
 | Name   | Type                             | Mandatory| Description                              |
 | --------- | ------------------------------------- | ---- | ---------------------------------- |
 | resultSet | [KVStoreResultSet](#kvstoreresultset) | Yes  | **KVStoreResultSet** object to close.|
-| callback  | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result.                        |
+| callback  | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let resultSet: distributedKVStore.KVStoreResultSet;
 try {
-  kvStore.getResultSet('batch_test_string_key', async (err, result) => {
+  kvStore.getResultSet('batch_test_string_key', async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
     if (err != undefined) {
       console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
       return;
@@ -3575,7 +3912,7 @@ try {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
-      kvStore.closeResultSet(resultSet, (err) => {
+      kvStore.closeResultSet(resultSet, (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
           return;
@@ -3611,14 +3948,22 @@ Closes the **KVStoreResultSet** object returned by [SingleKvStore.getResultSet](
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let resultSet: distributedKVStore.KVStoreResultSet;
 try {
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
@@ -3651,21 +3996,22 @@ Obtains the number of results that matches the specified **Query** object. This 
 | Name  | Type                   | Mandatory| Description                                       |
 | -------- | --------------------------- | ---- | ------------------------------------------- |
 | query    | [Query](#query)              | Yes  | **Query** object to match.                             |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of results obtained.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the number of results obtained.|
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -3680,12 +4026,12 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     console.info('Succeeded in putting batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSize(query, async (err, resultSize) => {
+      kvStore.getResultSize(query, async (err: BusinessError, resultSize: number) => {
         if (err != undefined) {
           console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
           return;
@@ -3722,17 +4068,18 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -3754,7 +4101,7 @@ try {
   });
   const query = new distributedKVStore.Query();
   query.prefixKey("batch_test");
-  kvStore.getResultSize(query).then((resultSize) => {
+  kvStore.getResultSize(query).then((resultSize: number) => {
     console.info('Succeeded in getting result set size');
   }).catch((err: BusinessError) => {
     console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
@@ -3778,24 +4125,26 @@ Backs up a distributed KV store. This API uses an asynchronous callback to retur
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | file     | string                    | Yes  | Name of the KV store. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
+| 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let file = "BK001";
+let backupFile = "BK001";
 try {
-  kvStore.backup(file, (err) => {
+  kvStore.backup(backupFile, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to backup.code is ${err.code},message is ${err.message} `);
     } else {
@@ -3830,20 +4179,22 @@ Backs up an RDB store. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
+| 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let file = "BK001";
+let backupFile = "BK001";
 try {
-  kvStore.backup(file).then(() => {
+  kvStore.backup(backupFile).then(() => {
     console.info(`Succeeded in backupping data`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to backup.code is ${err.code},message is ${err.message}`);
@@ -3867,24 +4218,26 @@ Restores a distributed KV store from a database file. This API uses an asynchron
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | file     | string                    | Yes  | Name of the database file. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
+| 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let file = "BK001";
+let backupFile = "BK001";
 try {
-  kvStore.restore(file, (err) => {
+  kvStore.restore(backupFile, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
     } else {
@@ -3919,20 +4272,22 @@ Restores a distributed KV store from a database file. This API uses a promise to
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
+| 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let file = "BK001";
+let backupFile = "BK001";
 try {
-  kvStore.restore(file).then(() => {
+  kvStore.restore(backupFile).then(() => {
     console.info(`Succeeded in restoring data`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
@@ -3956,16 +4311,24 @@ Deletes a backup file. This API uses an asynchronous callback to return the resu
 | Name  | Type                                          | Mandatory| Description                                                        |
 | -------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | files    | Array&lt;string&gt;                                | Yes  | Name of the backup file to delete. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return the name of the backup file deleted and the operation result.                |
+| callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return the name of the backup file deleted and the operation result.                |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let files = ["BK001", "BK002"];
 try {
-  kvStore.deleteBackup(files, (err, data) => {
+  kvStore.deleteBackup(files, (err: BusinessError, data: [string, number][]) => {
     if (err) {
       console.error(`Failed to delete Backup.code is ${err.code},message is ${err.message}`);
     } else {
@@ -3998,14 +4361,22 @@ Deletes a backup file. This API uses a promise to return the result.
 | -------------------------------------------- | ----------------------------------------------- |
 | Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise used to return the name of the backup file deleted and the operation result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let files = ["BK001", "BK002"];
 try {
-  kvStore.deleteBackup(files).then((data) => {
+  kvStore.deleteBackup(files).then((data: [string, number][]) => {
     console.info(`Succeed in deleting Backup.data=${data}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to delete Backup.code is ${err.code},message is ${err.message}`);
@@ -4028,7 +4399,7 @@ Starts the transaction in this single KV store. This API uses an asynchronous ca
 
 | Name  | Type                 | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -4047,7 +4418,7 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function putBatchString(len: number, prefix: string) {
   let entries: distributedKVStore.Entry[] = [];
@@ -4066,11 +4437,11 @@ function putBatchString(len: number, prefix: string) {
 
 try {
   let count = 0;
-  kvStore.on('dataChange', 0, (data) => {
+  kvStore.on('dataChange', 0, (data: distributedKVStore.ChangeNotification) => {
     console.info(`startTransaction 0 ${data}`);
     count++;
   });
-  kvStore.startTransaction(async (err) => {
+  kvStore.startTransaction(async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to start Transaction.code is ${err.code},message is ${err.message}`);
       return;
@@ -4079,7 +4450,7 @@ try {
     let entries = putBatchString(10, 'batch_test_string_key');
     console.info(`entries: ${entries}`);
     if (kvStore != null) {
-      kvStore.putBatch(entries, async (err) => {
+      kvStore.putBatch(entries, async (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
           return;
@@ -4125,11 +4496,11 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let count = 0;
-  kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_ALL, (data) => {
+  kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_ALL, (data: distributedKVStore.ChangeNotification) => {
     console.info(`startTransaction 0 ${data}`);
     count++;
   });
@@ -4156,7 +4527,7 @@ Commits the transaction in this single KV store. This API uses an asynchronous c
 
 | Name  | Type                 | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -4169,10 +4540,10 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  kvStore.commit((err) => {
+  kvStore.commit((err: BusinessError) => {
     if (err == undefined) {
       console.info('Succeeded in committing');
     } else {
@@ -4210,7 +4581,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.commit().then(async () => {
@@ -4236,7 +4607,7 @@ Rolls back the transaction in this single KV store. This API uses an asynchronou
 
 | Name  | Type                 | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -4249,10 +4620,10 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  kvStore.rollback((err) => {
+  kvStore.rollback((err: BusinessError) => {
     if (err == undefined) {
       console.info('Succeeded in rolling back');
     } else {
@@ -4290,7 +4661,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.rollback().then(async () => {
@@ -4317,15 +4688,23 @@ Sets data sync, which can be enabled or disabled. This API uses an asynchronous 
 | Name  | Type                 | Mandatory| Description                                                     |
 | -------- | ------------------------- | ---- | --------------------------------------------------------- |
 | enabled  | boolean                   | Yes  | Whether to enable data sync. The value **true** means to enable data sync, and **false** means the opposite.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                               |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.     |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.  |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  kvStore.enableSync(true, (err) => {
+  kvStore.enableSync(true, (err: BusinessError) => {
     if (err == undefined) {
       console.info('Succeeded in enabling sync');
     } else {
@@ -4358,10 +4737,18 @@ Sets data sync, which can be enabled or disabled. This API uses a promise to ret
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.enableSync(true).then(() => {
@@ -4387,19 +4774,27 @@ Sets the data sync range. This API uses an asynchronous callback to return the r
 
 | Name             | Type                 | Mandatory| Description                            |
 | ------------------- | ------------------------- | ---- | -------------------------------- |
-| localLabels         | string[]                  | Yes  | sync labels set for the local device.        |
-| remoteSupportLabels | string[]                  | Yes  | sync labels set for remote devices.|
-| callback            | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                      |
+| localLabels         | string[]                  | Yes  | Sync labels set for the local device.        |
+| remoteSupportLabels | string[]                  | Yes  | Sync labels set for remote devices.|
+| callback            | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   const localLabels = ['A', 'B'];
   const remoteSupportLabels = ['C', 'D'];
-  kvStore.setSyncRange(localLabels, remoteSupportLabels, (err) => {
+  kvStore.setSyncRange(localLabels, remoteSupportLabels, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to set syncRange.code is ${err.code},message is ${err.message}`);
       return;
@@ -4424,8 +4819,8 @@ Sets the data sync range. This API uses a promise to return the result.
 
 | Name             | Type| Mandatory| Description                            |
 | ------------------- | -------- | ---- | -------------------------------- |
-| localLabels         | string[] | Yes  | sync labels set for the local device.        |
-| remoteSupportLabels | string[] | Yes  | sync labels set for remote devices.|
+| localLabels         | string[] | Yes  | Sync labels set for the local device.        |
+| remoteSupportLabels | string[] | Yes  | Sync labels set for remote devices.|
 
 **Return value**
 
@@ -4433,10 +4828,18 @@ Sets the data sync range. This API uses a promise to return the result.
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   const localLabels = ['A', 'B'];
@@ -4465,16 +4868,24 @@ Sets the default delay allowed for KV store sync. This API uses an asynchronous 
 | Name               | Type                 | Mandatory| Description                                        |
 | --------------------- | ------------------------- | ---- | -------------------------------------------- |
 | defaultAllowedDelayMs | number                    | Yes  | Default delay allowed for database sync, in ms.|
-| callback              | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                  |
+| callback              | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   const defaultAllowedDelayMs = 500;
-  kvStore.setSyncParam(defaultAllowedDelayMs, (err) => {
+  kvStore.setSyncParam(defaultAllowedDelayMs, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to set syncParam.code is ${err.code},message is ${err.message}`);
       return;
@@ -4507,10 +4918,18 @@ Sets the default delay allowed for KV store sync. This API uses a promise to ret
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**|
+| ------------ | ------------ |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   const defaultAllowedDelayMs = 500;
@@ -4529,7 +4948,7 @@ try {
 
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. For details about the sync modes of KV stores, see [Cross-Device sync of KV Stores](../../database/data-sync-of-kv-store.md).
+Synchronizes the KV store manually. For details about the sync modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
 > **NOTE**
 >
 > **deviceIds** is **networkId** in [DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo), which can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
@@ -4543,26 +4962,27 @@ Synchronizes the KV store manually. For details about the sync modes of KV store
 | Name   | Type             | Mandatory| Description                                          |
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized.|
-| mode      | [SyncMode](#syncmode) | Yes  | sync mode.                                    |
+| mode      | [SyncMode](#syncmode) | Yes  | Sync mode.                                    |
 | delayMs   | number                | No  | Delay time allowed, in ms. The default value is **0**.    |
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**       |
 | ------------ | ------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted. |
-| 15100004     | Not found.          |
+| 15100004     | Data not found.     |
 
 **Example**
 
 ```ts
-import deviceManager from '@ohos.distributedDeviceManager';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let devManager: deviceManager.DeviceManager;
+let devManager: distributedDeviceManager.DeviceManager;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 // create deviceManager
@@ -4570,7 +4990,7 @@ export default class EntryAbility extends UIAbility {
   onCreate() {
     let context = this.context;
     try {
-      devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+      devManager = distributedDeviceManager.createDeviceManager(context.applicationInfo.name);
       let deviceIds: string[] = [];
       if (devManager != null) {
         let devices = devManager.getAvailableDeviceListSync();
@@ -4580,11 +5000,11 @@ export default class EntryAbility extends UIAbility {
       }
       try {
         if (kvStore != null) {
-          kvStore.on('syncComplete', (data) => {
+          kvStore.on('syncComplete', (data: [string, number][]) => {
             console.info('Sync dataChange');
           });
           if (kvStore != null) {
-            kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err) => {
+            kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err: BusinessError) => {
               if (err != undefined) {
                 console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
                 return;
@@ -4614,7 +5034,7 @@ export default class EntryAbility extends UIAbility {
 
 sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. This API returns the result synchronously. For details about the sync modes of KV stores, see [Cross-Device sync of KV Stores](../../database/data-sync-of-kv-store.md).
+Synchronizes the KV store manually. This API returns the result synchronously. For details about the sync modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
 > **NOTE**
 >
 > **deviceIds** is **networkId** in [DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo), which can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
@@ -4628,27 +5048,28 @@ Synchronizes the KV store manually. This API returns the result synchronously. F
 | Name   | Type             | Mandatory| Description                                          |
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized.|
-| mode      | [SyncMode](#syncmode) | Yes  | sync mode.                                    |
+| mode      | [SyncMode](#syncmode) | Yes  | Sync mode.                                    |
 | query     | [Query](#query)        | Yes  | **Query** object to match.                      |
 | delayMs   | number                | No  | Delay time allowed, in ms. The default value is **0**.    |
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**       |
 | ------------ | ------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted. |
-| 15100004     | Not found.          |
+| 15100004     | Data not found.     |
 
 **Example**
 
 ```ts
-import deviceManager from '@ohos.distributedDeviceManager';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let devManager: deviceManager.DeviceManager;
+let devManager: distributedDeviceManager.DeviceManager;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 // create deviceManager
@@ -4656,7 +5077,7 @@ export default class EntryAbility extends UIAbility {
   onCreate() {
     let context = this.context;
     try {
-      let devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+      let devManager = distributedDeviceManager.createDeviceManager(context.applicationInfo.name);
       let deviceIds: string[] = [];
       if (devManager != null) {
         let devices = devManager.getAvailableDeviceListSync();
@@ -4666,11 +5087,11 @@ export default class EntryAbility extends UIAbility {
       }
       try {
         if (kvStore != null) {
-          kvStore.on('syncComplete', (data) => {
+          kvStore.on('syncComplete', (data: [string, number][]) => {
             console.info('Sync dataChange');
           });
           if (kvStore != null) {
-            kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err) => {
+            kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err: BusinessError) => {
               if (err != undefined) {
                 console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
                 return;
@@ -4713,24 +5134,25 @@ Subscribes to data changes of the specified type.
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes.|
 | type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return the data change.                                          |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback used to return the data change.                                          |
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+| 15100001     | Upper limit exceeded.                  |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL, (data) => {
+  kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL, (data: distributedKVStore.ChangeNotification) => {
     console.info(`dataChange callback call data: ${data}`);
   });
 } catch (e) {
@@ -4752,18 +5174,26 @@ Subscribes to sync complete events.
 | Name      | Type                                     | Mandatory| Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
 | event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return the sync complete event.            |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return the sync complete event.            |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 
 const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
 const VALUE_TEST_FLOAT_ELEMENT = 321.12;
 try {
-  kvStore.on('syncComplete', (data) => {
+  kvStore.on('syncComplete', (data: [string, number][]) => {
     console.info(`syncComplete ${data}`);
   });
   kvStore.put(KEY_TEST_FLOAT_ELEMENT, VALUE_TEST_FLOAT_ELEMENT).then(() => {
@@ -4790,20 +5220,21 @@ Unsubscribes from data changes.
 | Name  | Type                                                 | Mandatory| Description                                                    |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes.|
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback for the data change. If the callback is not specified, all callbacks for **dataChange** will be unregistered. |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for data changes.|
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class KvstoreModel {
   call(data: distributedKVStore.ChangeNotification) {
@@ -4847,12 +5278,20 @@ Unsubscribes from sync complete events.
 | Name      | Type                                     | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback for the sync complete event. If the callback is not specified, all callbacks for **syncComplete** will be unregistered. |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all the callbacks for the sync complete event. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class KvstoreModel {
   call(data: [string, number][]) {
@@ -4895,7 +5334,7 @@ Obtains the security level of this KV store. This API uses an asynchronous callb
 
 | Name  | Type                                            | Mandatory| Description                            |
 | -------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback&lt;[SecurityLevel](#securitylevel)&gt; | Yes  | Callback invoked to return the security level obtained.|
+| callback | AsyncCallback&lt;[SecurityLevel](#securitylevel)&gt; | Yes  | Callback used to return the security level of the KV store.|
 
 **Error codes**
 
@@ -4908,10 +5347,10 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  kvStore.getSecurityLevel((err, data) => {
+  kvStore.getSecurityLevel((err: BusinessError, data: distributedKVStore.SecurityLevel) => {
     if (err != undefined) {
       console.error(`Failed to get SecurityLevel.code is ${err.code},message is ${err.message}`);
       return;
@@ -4936,7 +5375,7 @@ Obtains the security level of this KV store. This API uses a promise to return t
 
 | Type                                          | Description                               |
 | ---------------------------------------------- | ----------------------------------- |
-| Promise&lt;[SecurityLevel](#securitylevel)&gt; | Promise used to return the security level obtained.|
+| Promise&lt;[SecurityLevel](#securitylevel)&gt; | Promise used to return the security level of the KV store.|
 
 **Error codes**
 
@@ -4949,10 +5388,10 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  kvStore.getSecurityLevel().then((data) => {
+  kvStore.getSecurityLevel().then((data: distributedKVStore.SecurityLevel) => {
     console.info('Succeeded in getting securityLevel');
   }).catch((err: BusinessError) => {
     console.error(`Failed to get SecurityLevel.code is ${err.code},message is ${err.message}`);
@@ -4965,7 +5404,7 @@ try {
 
 ## DeviceKVStore
 
-Provides APIs for querying and synchronizing data in a device KV store. This class inherits from **SingleKVStore**.
+Provides APIs for querying and synchronizing data in a device KV store. This class inherits from **SingleKVStore**. The **SingleKVStore** APIs such as **put** and **putBatch** can be used.
 
 Data is distinguished by device in a device KV store. Each device can only write and modify its own data. Data of other devices is read-only and cannot be modified.
 
@@ -4986,34 +5425,35 @@ Obtains the value of the specified key for this device. This API uses an asynchr
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | key      | string                                                       | Yes  | Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt; | Yes  | Callback invoked to return the value obtained.                                |
+| callback | AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt; | Yes  | Callback used to return the value obtained.                                |
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Not found.                             |
+| 15100004     | Data not found.                        |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info("Succeeded in putting");
     if (kvStore != null) {
-      kvStore.get(KEY_TEST_STRING_ELEMENT, (err, data) => {
+      kvStore.get(KEY_TEST_STRING_ELEMENT, (err: BusinessError, data: boolean | string | number | Uint8Array) => {
         if (err != undefined) {
           console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
           return;
@@ -5050,18 +5490,19 @@ Obtains the value of the specified key for this device. This API uses a promise 
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Not found.                             |
+| 15100004     | Data not found.                        |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -5069,7 +5510,7 @@ try {
   kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
     console.info(`Succeeded in putting data`);
     if (kvStore != null) {
-      kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
+      kvStore.get(KEY_TEST_STRING_ELEMENT).then((data: boolean | string | number | Uint8Array) => {
         console.info(`Succeeded in getting data.data=${data}`);
       }).catch((err: BusinessError) => {
         console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
@@ -5101,35 +5542,36 @@ Obtains a string value that matches the specified device ID and key. This API us
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
-| key       |string  | Yes   |Key to match.   |
-| callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | Yes   |Callback invoked to return the value obtained.   |
+| key       |string  | Yes   |Key to match. It cannot be empty or exceed [MAX_KEY_LENGTH](#constants).   |
+| callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | Yes   |Callback used to return the value obtained.   |
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Not found.                             |
+| 15100004     | Data not found.                        |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
 try {
-  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async (err) => {
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting');
     if (kvStore != null) {
-      kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, (err, data) => {
+      kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, (err: BusinessError, data: boolean | string | number | Uint8Array) => {
         if (err != undefined) {
           console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
           return;
@@ -5161,7 +5603,7 @@ Obtains a string value that matches the specified device ID and key. This API us
 | Name  | Type| Mandatory| Description                    |
 | -------- | -------- | ---- | ------------------------ |
 | deviceId | string   | Yes  | ID of the target device.|
-| key      | string   | Yes  | Key to match.   |
+| key      | string   | Yes  | Key to match. It cannot be empty or exceed [MAX_KEY_LENGTH](#constants).   |
 
 **Return value**
 
@@ -5171,18 +5613,19 @@ Obtains a string value that matches the specified device ID and key. This API us
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Not found.                             |
+| 15100004     | Data not found.                        |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
@@ -5190,7 +5633,7 @@ try {
   kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(async () => {
     console.info('Succeeded in putting');
     if (kvStore != null) {
-      kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data) => {
+      kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data: boolean | string | number | Uint8Array) => {
         console.info('Succeeded in getting');
       }).catch((err: BusinessError) => {
         console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
@@ -5217,22 +5660,23 @@ Obtains all KV pairs that match the specified key prefix for this device. This A
 
 | Name   | Type                                  | Mandatory| Description                                    |
 | --------- | -------------------------------------- | ---- | ---------------------------------------- |
-| keyPrefix | string                                 | Yes  | Key prefix to match.                    |
-| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs that match the specified prefix.|
+| keyPrefix | string                                 | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
+| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified prefix.|
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -5248,14 +5692,14 @@ try {
     entries.push(entry);
   }
   console.info(`entries: ${entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.getEntries('batch_test_string_key', (err, entries) => {
+      kvStore.getEntries('batch_test_string_key', (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
           return;
@@ -5284,7 +5728,7 @@ Obtains all KV pairs that match the specified key prefix for this device. This A
 
 | Name   | Type  | Mandatory| Description                |
 | --------- | ------ | ---- | -------------------- |
-| keyPrefix | string | Yes  | Key prefix to match.|
+| keyPrefix | string | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
 
 **Return value**
 
@@ -5294,17 +5738,18 @@ Obtains all KV pairs that match the specified key prefix for this device. This A
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -5323,7 +5768,7 @@ try {
   kvStore.putBatch(entries).then(async () => {
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.getEntries('batch_test_string_key').then((entries) => {
+      kvStore.getEntries('batch_test_string_key').then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting Entries');
         console.info(`PutBatch ${entries}`);
       }).catch((err: BusinessError) => {
@@ -5356,22 +5801,23 @@ Obtains all KV pairs that match the specified device ID and key prefix. This API
 | Name   | Type                              | Mandatory| Description                                          |
 | --------- | -------------------------------------- | ---- | ---------------------------------------------- |
 | deviceId  | string                                 | Yes  | ID of the target device.                      |
-| keyPrefix | string                                 | Yes  | Key prefix to match.                          |
-| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs obtained.|
+| keyPrefix | string                                 | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
+| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs obtained.|
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -5387,14 +5833,14 @@ try {
     entries.push(entry);
   }
   console.info(`entries : ${entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting batch');
     if (kvStore != null) {
-      kvStore.getEntries('localDeviceId', 'batch_test_string_key', (err, entries) => {
+      kvStore.getEntries('localDeviceId', 'batch_test_string_key', (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
           return;
@@ -5428,7 +5874,7 @@ Obtains all KV pairs that match the specified device ID and key prefix. This API
 | Name   | Type| Mandatory| Description                    |
 | --------- | -------- | ---- | ------------------------ |
 | deviceId  | string   | Yes  | ID of the target device.|
-| keyPrefix | string   | Yes  | Key prefix to match.    |
+| keyPrefix | string   | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
 
 **Return value**
 
@@ -5438,17 +5884,19 @@ Obtains all KV pairs that match the specified device ID and key prefix. This API
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
+<!--code_no_check-->
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -5467,7 +5915,7 @@ try {
   kvStore.putBatch(entries).then(async () => {
     console.info('Succeeded in putting batch');
     if (kvStore != null) {
-      kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entries) => {
+      kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting entries');
         console.info(`entries.length: ${entries.length}`);
         console.info(`entries[0]: ${entries[0]}`);
@@ -5499,21 +5947,22 @@ Obtains all KV pairs that match the specified **Query** object for this device. 
 | Name  | Type                                  | Mandatory| Description                                                 |
 | -------- | -------------------------------------- | ---- | ----------------------------------------------------- |
 | query    | [Query](#query)                         | Yes  | Key prefix to match.                                 |
-| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs that match the specified **Query** object on the local device.|
+| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified **Query** object on the local device.|
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let arr = new Uint8Array([21, 31]);
@@ -5530,12 +5979,12 @@ try {
     entries.push(entry);
   }
   console.info(`entries: {entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     console.info('Succeeded in putting Batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getEntries(query, (err, entries) => {
+      kvStore.getEntries(query, (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
           return;
@@ -5574,17 +6023,18 @@ Obtains all KV pairs that match the specified **Query** object for this device. 
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let arr = new Uint8Array([21, 31]);
@@ -5606,7 +6056,7 @@ try {
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getEntries(query).then((entries) => {
+      kvStore.getEntries(query).then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting Entries');
       }).catch((err: BusinessError) => {
         console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
@@ -5640,21 +6090,22 @@ Obtains the KV pairs that match the specified device ID and **Query** object. Th
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------- |
 | deviceId | string                                 | Yes  | ID of the target device.                                   |
 | query    | [Query](#query)                         | Yes  | **Query** object to match.                                         |
-| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs that match the specified device ID and **Query** object.|
+| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified device ID and **Query** object.|
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let arr = new Uint8Array([21, 31]);
@@ -5671,7 +6122,7 @@ try {
     entries.push(entry);
   }
   console.info(`entries: ${entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -5681,7 +6132,7 @@ try {
     query.deviceId('localDeviceId');
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getEntries('localDeviceId', query, (err, entries) => {
+      kvStore.getEntries('localDeviceId', query, (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
           return;
@@ -5726,17 +6177,19 @@ Obtains the KV pairs that match the specified device ID and **Query** object. Th
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
+<!--code_no_check-->
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let arr = new Uint8Array([21, 31]);
@@ -5759,7 +6212,7 @@ try {
     query.deviceId('localDeviceId');
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getEntries('localDeviceId', query).then((entries) => {
+      kvStore.getEntries('localDeviceId', query).then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting entries');
       }).catch((err: BusinessError) => {
         console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
@@ -5787,23 +6240,24 @@ Obtains a result set with the specified prefix for this device. This API uses an
 
 | Name   | Type                                                      | Mandatory| Description                                |
 | --------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
-| keyPrefix | string                                                     | Yes  | Key prefix to match.                |
-| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the result set with the specified prefix.|
+| keyPrefix | string                                                     | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
+| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the result set with the specified prefix.|
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -5819,14 +6273,14 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting batch');
     if (kvStore != null) {
-      kvStore.getResultSet('batch_test_string_key', async (err, result) => {
+      kvStore.getResultSet('batch_test_string_key', async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
         if (err != undefined) {
           console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
           return;
@@ -5834,7 +6288,7 @@ try {
         console.info('Succeeded in getting result set');
         resultSet = result;
         if (kvStore != null) {
-          kvStore.closeResultSet(resultSet, (err) => {
+          kvStore.closeResultSet(resultSet, (err: BusinessError) => {
             if (err != undefined) {
               console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
               return;
@@ -5863,7 +6317,7 @@ Obtains a result set with the specified prefix for this device. This API uses a 
 
 | Name   | Type  | Mandatory| Description                |
 | --------- | ------ | ---- | -------------------- |
-| keyPrefix | string | Yes  | Key prefix to match.|
+| keyPrefix | string | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
 
 **Return value**
 
@@ -5873,18 +6327,19 @@ Obtains a result set with the specified prefix for this device. This API uses a 
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -5905,7 +6360,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
   });
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
@@ -5941,27 +6396,28 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and k
 | Name   | Type                                                    | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId  | string                                                       | Yes  | ID of the target device.                                    |
-| keyPrefix | string                                                       | Yes  | Key prefix to match.                                        |
-| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KVStoreResultSet** object that matches the specified device ID and key prefix.|
+| keyPrefix | string                                                       | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
+| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object obtained.|
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
-  kvStore.getResultSet('localDeviceId', 'batch_test_string_key', async (err, result) => {
+  kvStore.getResultSet('localDeviceId', 'batch_test_string_key', async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
     if (err != undefined) {
       console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
       return;
@@ -5969,7 +6425,7 @@ try {
     console.info('Succeeded in getting resultSet');
     resultSet = result;
     if (kvStore != null) {
-      kvStore.closeResultSet(resultSet, (err) => {
+      kvStore.closeResultSet(resultSet, (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
           return;
@@ -6001,32 +6457,34 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and k
 | Name   | Type| Mandatory| Description                    |
 | --------- | -------- | ---- | ------------------------ |
 | deviceId  | string   | Yes  | ID of the target device.|
-| keyPrefix | string   | Yes  | Key prefix to match.    |
+| keyPrefix | string   | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
 
 **Return value**
 
 | Type                                                  | Description                                                        |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the **KVStoreResultSet** object that matches the specified device ID and key prefix.|
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the **KVStoreResultSet** object obtained.|
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
+<!--code_no_check-->
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
-  kvStore.getResultSet('localDeviceId', 'batch_test_string_key').then((result) => {
+  kvStore.getResultSet('localDeviceId', 'batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting resultSet');
     resultSet = result;
     if (kvStore != null) {
@@ -6063,22 +6521,23 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and *
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId | string                                                       | Yes  | ID of the device to which the **KVStoreResultSet** object belongs.                          |
 | query    | [Query](#query)                                               | Yes  | **Query** object to match.                                              |
-| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KVStoreResultSet** object that matches the specified device ID and **Query** object.|
+| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object that matches the specified device ID and **Query** object.|
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -6094,7 +6553,7 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -6103,7 +6562,7 @@ try {
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSet('localDeviceId', query, async (err, result) => {
+      kvStore.getResultSet('localDeviceId', query, async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
         if (err != undefined) {
           console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
           return;
@@ -6111,7 +6570,7 @@ try {
         console.info('Succeeded in getting resultSet');
         resultSet = result;
         if (kvStore != null) {
-          kvStore.closeResultSet(resultSet, (err) => {
+          kvStore.closeResultSet(resultSet, (err: BusinessError) => {
             if (err != undefined) {
               console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
               return;
@@ -6155,18 +6614,20 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and *
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
+<!--code_no_check-->
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -6190,7 +6651,7 @@ try {
   const query = new distributedKVStore.Query();
   query.prefixKey("batch_test");
   if (kvStore != null) {
-    kvStore.getResultSet('localDeviceId', query).then((result) => {
+    kvStore.getResultSet('localDeviceId', query).then((result: distributedKVStore.KVStoreResultSet) => {
       console.info('Succeeded in getting resultSet');
       resultSet = result;
       if (kvStore != null) {
@@ -6235,18 +6696,19 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -6269,7 +6731,7 @@ try {
   });
   const query = new distributedKVStore.Query();
   query.prefixKey("batch_test");
-  kvStore.getResultSet(query).then((result) => {
+  kvStore.getResultSet(query).then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
   }).catch((err: BusinessError) => {
@@ -6298,23 +6760,24 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 | Name  | Type          | Mandatory| Description                              |
 | -------- | -------------- | ---- | ---------------------------------- |
 | query    | [Query](#query) | Yes  | **Query** object to match.                    |
-| callback    | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KVStoreResultSet** object obtained.        |
+| callback    | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object obtained.        |
 
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max limits.                      |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -6330,7 +6793,7 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -6339,7 +6802,7 @@ try {
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSet(query, async (err, result) => {
+      kvStore.getResultSet(query, async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
         if (err != undefined) {
           console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
           return;
@@ -6347,7 +6810,7 @@ try {
         console.info('Succeeded in getting resultSet');
         resultSet = result;
         if (kvStore != null) {
-          kvStore.closeResultSet(resultSet, (err) => {
+          kvStore.closeResultSet(resultSet, (err: BusinessError) => {
             if (err != undefined) {
               console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
               return;
@@ -6360,7 +6823,7 @@ try {
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`Failed to get resultSet.code is ${error.code},message is ${error.message}`);
+  console.error(`Failed to get resultSet`);
 }
 ```
 
@@ -6377,21 +6840,22 @@ Obtains the number of results that match the specified **Query** object for this
 | Name  | Type                       | Mandatory| Description                                             |
 | -------- | --------------------------- | ---- | ------------------------------------------------- |
 | query    | [Query](#query)              | Yes  | **Query** object to match.                                   |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of results obtained.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the number of results obtained.|
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -6406,12 +6870,12 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     console.info('Succeeded in putting batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSize(query, async (err, resultSize) => {
+      kvStore.getResultSize(query, async (err: BusinessError, resultSize: number) => {
         if (err != undefined) {
           console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
           return;
@@ -6448,17 +6912,18 @@ Obtains the number of results that match the specified **Query** object for this
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes:1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -6480,7 +6945,7 @@ try {
   });
   const query = new distributedKVStore.Query();
   query.prefixKey("batch_test");
-  kvStore.getResultSize(query).then((resultSize) => {
+  kvStore.getResultSize(query).then((resultSize: number) => {
     console.info('Succeeded in getting result set size');
   }).catch((err: BusinessError) => {
     console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
@@ -6509,21 +6974,22 @@ Obtains the number of results that matches the specified device ID and **Query**
 | -------- | --------------------------- | ---- | --------------------------------------------------- |
 | deviceId | string                      | Yes  | ID of the device to which the **KVStoreResultSet** object belongs.                 |
 | query    | [Query](#query)              | Yes  | **Query** object to match.                                     |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of results obtained. |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the number of results obtained.|
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -6538,7 +7004,7 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -6547,7 +7013,7 @@ try {
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSize('localDeviceId', query, async (err, resultSize) => {
+      kvStore.getResultSize('localDeviceId', query, async (err: BusinessError, resultSize: number) => {
         if (err != undefined) {
           console.error(`Failed to get resultSize.code is ${err.code},message is ${err.message}`);
           return;
@@ -6589,17 +7055,18 @@ Obtains the number of results that matches the specified device ID and **Query**
 
 **Error codes**
 
-For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -6621,7 +7088,7 @@ try {
   });
   let query = new distributedKVStore.Query();
   query.prefixKey("batch_test");
-  kvStore.getResultSize('localDeviceId', query).then((resultSize) => {
+  kvStore.getResultSize('localDeviceId', query).then((resultSize: number) => {
     console.info('Succeeded in getting resultSize');
   }).catch((err: BusinessError) => {
     console.error(`Failed to get resultSize.code is ${err.code},message is ${err.message}`);
@@ -6631,5 +7098,3 @@ try {
   console.error(`Failed to get resultSize.code is ${error.code},message is ${error.message}`);
 }
 ```
-
-<!--no_check-->

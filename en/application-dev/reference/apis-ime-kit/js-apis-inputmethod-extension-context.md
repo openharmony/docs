@@ -10,7 +10,7 @@ The **InputMethodExtensionContext** module, inherited from **ExtensionContext**,
 ## Modules to Import
 
 ```ts
-import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
+import { InputMethodExtensionContext } from '@kit.IMEKit';
 ```
 
 ## Usage
@@ -18,8 +18,8 @@ import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
 Before using the **InputMethodExtensionContext** module, you must define a child class that inherits from **InputMethodExtensionAbility**.
 
 ```ts
-import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+import { InputMethodExtensionAbility } from '@kit.IMEKit';
+import { Want } from '@kit.AbilityKit';
 class InputMethodExtnAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
     let context = this.context;
@@ -29,7 +29,7 @@ class InputMethodExtnAbility extends InputMethodExtensionAbility {
 
 ## InputMethodExtensionContext.destroy
 
-destroy(callback: AsyncCallback\<void>): void
+destroy(callback: AsyncCallback&lt;void&gt;): void;
 
 Destroys this input method. This API uses an asynchronous callback to return the result.
 
@@ -44,9 +44,9 @@ Destroys this input method. This API uses an asynchronous callback to return the
 **Example**
 
 ```ts
-import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { InputMethodExtensionAbility } from '@kit.IMEKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class InputMethodExtnAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
@@ -66,7 +66,7 @@ class InputMethodExtnAbility extends InputMethodExtensionAbility {
 
 ## InputMethodExtensionContext.destroy
 
-destroy(): Promise\<void>;
+destroy(): Promise&lt;void&gt;;
 
 Destroys this input method. This API uses a promise to return the result.
 
@@ -81,9 +81,9 @@ Destroys this input method. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { InputMethodExtensionAbility } from '@kit.IMEKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class InputMethodExtnAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
@@ -95,6 +95,84 @@ class InputMethodExtnAbility extends InputMethodExtensionAbility {
     }).catch((err: BusinessError)=>{
       console.log(`Failed to destroy context, err code = ${err.code}`);
     });
+  }
+}
+```
+
+## InputMethodExtensionContext.startAbility<sup>12+</sup>
+
+startAbility(want: Want): Promise&lt;void&gt;;
+
+Starts an ability. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type                                                   | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Want information related to the extension ability to start, including the ability name and bundle name.|
+
+**Return value**
+
+| Type          | Description                     |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md), [Ability Error Codes](../apis-ability-kit/errorcode-ability.md), and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 16000001 | The specified ability does not exist.                   |
+| 16000002 | Incorrect ability type.                                 |
+| 16000004 | Can not start invisible component.                      |
+| 16000005 | The specified process does not have the permission.     |
+| 16000006 | Cross-user operations are not allowed.                  |
+| 16000008 | The crowdtesting application expires.                   |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.       |
+| 16000011 | The context does not exist.                             |
+| 16000012 | The application is controlled.                          |
+| 16000013 | The application is controlled by EDM.                   |
+| 16000019 | Can not match any component.                            |
+| 16000050 | Internal error.                                         |
+| 16000053 | The ability is not on the top of the UI.                |
+| 16000055 | Installation-free timed out.                            |
+| 16000061 | Can not start component belongs to other bundle.        |
+| 16200001 | The caller has been released.                           |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service.                 |
+
+**Example**
+
+```ts
+import { InputMethodExtensionAbility } from '@kit.IMEKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class InputMethodExtnAbility extends InputMethodExtensionAbility {
+  onCreate(want: Want): void {
+    let context = this.context;
+  }
+  onDestroy() {
+    let want: Want = {
+      bundleName: "com.example.aafwk.test",
+      abilityName: "com.example.aafwk.test.TwoAbility"
+    };
+    try {
+      this.context.startAbility(want).then(() => {
+        console.log(`startAbility success`);
+      }).catch((err: BusinessError) => {
+        let error = err as BusinessError;
+        console.log(`startAbility error: ${error.code} ${error.message}`);
+      })
+    } catch (err) {
+      let error = err as BusinessError;
+      console.log(`startAbility error: ${error.code} ${error.message}`);
+    }
   }
 }
 ```

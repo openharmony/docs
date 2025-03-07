@@ -1,6 +1,6 @@
 # @ohos.distributedBundle (Distributed Bundle Management) (System API)
 
-The **distributedBundle** module manages distributed bundles.
+The distributedBundle module manages distributed bundles.
 
 > **NOTE**
 >
@@ -24,7 +24,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 | ------------------------------------------ | ------------ | ------------------ |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all applications.|
 
-For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
+For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
 ## distributedBundle.getRemoteAbilityInfo<sup>deprecated<sup>
 
@@ -32,7 +32,7 @@ For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt
 
 getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback&lt;RemoteAbilityInfo&gt;): void
 
-Obtains information about the remote ability that matches the given element name. This API uses an asynchronous callback to return the result.
+Obtains the information about the remote ability that matches the given element name. This API uses an asynchronous callback to return the result.
 
 **Required permissions**
 
@@ -61,7 +61,7 @@ This is a system API.
 
 getRemoteAbilityInfo(elementName: ElementName): Promise&lt;RemoteAbilityInfo&gt;
 
-Obtains information about the remote ability that matches the given element name. This API uses a promise to return the result.
+Obtains the information about the remote ability that matches the given element name. This API uses a promise to return the result.
 
 **Required permissions**
 
@@ -93,7 +93,7 @@ This is a system API.
 
 getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;, callback: AsyncCallback&lt;Array&lt;RemoteAbilityInfo&gt;&gt;): void
 
-Obtains information about remote abilities that match the given element names. This API uses an asynchronous callback to return the result.
+Obtains the information about remote abilities that match the given element names. This API uses an asynchronous callback to return the result.
 
 **Required permissions**
 
@@ -122,7 +122,7 @@ This is a system API.
 
 getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;): Promise&lt;Array&lt;RemoteAbilityInfo&gt;&gt;
 
-Obtains information about remote abilities that match the given element names. This API uses a promise to return the result.
+Obtains the information about remote abilities that match the given element names. This API uses a promise to return the result.
 
 **Required permissions**
 
@@ -146,4 +146,4 @@ This is a system API.
 
 | Type                                                        | Description                             |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<Array<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo-sys.md)>> | Promise used to return the remote ability information.|
+| Promise\<Array<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo-sys.md)>> | Promise used to return an array of the remote ability information.|

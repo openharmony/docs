@@ -1,6 +1,6 @@
 # @ohos.app.ability.ExtensionAbility (ExtensionAbility Base Class)
 
-**ExtensionAbility** is the base class for scenario-specific ExtensionAbilities. It is inherited from [Ability](js-apis-app-ability-ability.md), with no attribute or method added. You cannot inherit from this base class.
+**ExtensionAbility** is the base class for scenario-specific ExtensionAbilities. It is inherited from [Ability](js-apis-app-ability-ability.md), with no property or method added. You cannot inherit from this base class. For details about the inheritance relationship of each ability, see [Inheritance Relationship](./js-apis-app-ability-ability.md#ability-inheritance-relationship).
 
 > **NOTE**
 > 
@@ -11,7 +11,9 @@
 ## Modules to Import
 
 ```ts
-import ExtensionAbility from '@ohos.app.ability.ExtensionAbility';
+import { ExtensionAbility } from '@kit.AbilityKit';
 ```
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore

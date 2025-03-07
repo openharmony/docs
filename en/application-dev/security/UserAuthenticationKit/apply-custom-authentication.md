@@ -40,39 +40,43 @@ To implement the switchover from a system-supported authentication type to a cus
 The following example only covers how to configure the page for switching to the custom authentication page. You need to implement the process of starting the related page based on the comments in the sample code.
 
 ```ts
-import type {BusinessError} from '@ohos.base';
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import { BusinessError } from  '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
-const authParam: userIAM_userAuth.AuthParam = {
-  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userIAM_userAuth.UserAuthType.FACE],
-  authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL3,
-};
-// Set navigationButtonText for the authentication page.
-const widgetParam: userIAM_userAuth.WidgetParam = {
-  title: 'Verify identity',
-  navigationButtonText: 'Use password',
-};
 try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.FACE],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  // Set navigationButtonText for the authentication page.
+  const widgetParam: userAuth.WidgetParam = {
+    title: 'Verify identity',
+    navigationButtonText: 'Use password',
+  };
   // Obtain a UserAuthInstance object.
-  let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
   // Subscribe to the authentication result.
   userAuthInstance.on('result', {
     onResult(result) {
       // If the ResultCode 12500000 is returned, the operation is successful.
-      console.log('userAuthInstance callback result = ' + JSON.stringify(result));
+      console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
       // If the ResultCode 12500011 is returned, the user taps the navigation button to switch to the custom authentication page.
       if (result.result == 12500011) {
         // You need to implement the process of starting the custom authentication page.
       }
     }
   });
-  console.log('auth on success');
+  console.info('auth on success');
   userAuthInstance.start();
-  console.log('auth start success');
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
-  console.log(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```

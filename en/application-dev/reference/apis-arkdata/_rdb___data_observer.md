@@ -18,4 +18,4 @@ Defines the data observer.
 | Name| Description| 
 | -------- | -------- |
 | [context](_r_d_b.md#context-12) | Context of the data observer.| 
-| [callback](_r_d_b.md#callback-12) | Callback invoked to return the data observed.| 
+| [callback](_r_d_b.md#callback-12) | Callback used to return the data observed.| 

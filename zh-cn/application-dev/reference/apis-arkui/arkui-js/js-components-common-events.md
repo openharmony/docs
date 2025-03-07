@@ -5,7 +5,7 @@
 
 ## 事件说明
 
-- 事件绑定在组件上，当组件达到事件触发条件时，会执行JS中对应的事件回调函数，实现页面UI视图和页面JS逻辑层的交互；
+- 事件绑定在组件上，当组件达到事件触发条件时，会执行JS中对应的事件回调函数，实现页面UI视图和页面JS逻辑层的交互。
 
 - 事件回调函数中通过参数可以携带额外的信息，如组件上的数据对象dataset，事件特有的回调参数。
 
@@ -43,12 +43,13 @@
 
 **表1** BaseEvent对象属性列表
 
-| 属性                    | 类型                   | 说明                          |
-| --------------------- | -------------------- | --------------------------- |
-| type                  | string               | 当前事件的类型，比如click、longpress等。 |
-| timestamp             | number               | 该事件触发时的时间戳。                 |
-| deviceId<sup>6+</sup> | number               | 触发该事件的设备ID信息。               |
-| target<sup>6+</sup>   | [Target](#target对象6) | 触发该事件的目标对象。                 |
+| 属性                  | 类型                   | 说明                                     |
+| --------------------- | ---------------------- | ---------------------------------------- |
+| type                  | string                 | 当前事件的类型，比如click、longpress等。 |
+| timestamp             | number                 | 该事件触发时的时间戳。                   |
+| deviceId<sup>8+</sup> | number                 | 触发该事件的设备ID信息。                 |
+| target<sup>12+</sup>   | [Target](#target对象6) | 触发该事件的目标对象。                   |
+| targetDisplayId<sup>15+</sup>  | number                 | 事件发生的屏幕ID。                         |
 
 **表2** TouchEvent对象属性列表(继承BaseEvent)
 
@@ -79,9 +80,9 @@
 
 | 属性           | 类型     | 说明             |
 | ------------ | ------ | -------------- |
-| scale        | number | 缩放比例           |
-| pinchCenterX | number | 捏合中心点X轴坐标，单位px |
-| pinchCenterY | number | 捏合中心点Y轴坐标，单位px |
+| scale        | number | 缩放比例。           |
+| pinchCenterX | number | 捏合中心点X轴坐标，单位px。 |
+| pinchCenterY | number | 捏合中心点Y轴坐标，单位px。 |
 
 **表6** DragEvent对象属性列表(继承BaseEvent)<sup>7+</sup>
 

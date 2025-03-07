@@ -9,3 +9,5 @@
 - [$$运算符](arkts-two-way-sync.md)：给内置组件提供TS变量的引用，使得TS变量和内置组件的内部状态保持同步。
 
 - [\@Track](arkts-track.md)：应用于class对象的属性级更新。\@Track装饰的属性变化时，只会触发该属性关联的UI更新。
+
+- [自定义组件冻结](arkts-custom-components-freeze.md)：当自定义组件处于非激活状态时，状态变量将不响应更新。

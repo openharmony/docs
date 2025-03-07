@@ -1,12 +1,16 @@
-# 使用Node-API接口创建ArkTs运行时环境
+# 使用Node-API接口创建ArkTS运行时环境
 
 ## 场景介绍
 
-开发者通过pthread_create创建新线程后，可以通过`napi_create_ark_runtime`来创建一个新的ArkTs基础运行时环境，并通过该运行时环境加载ArkTs模块，目前仅支持在ArkTs模块中使用`console`接口打印日志，使用`timer`定时器功能。当使用结束后，开发者需要通过`napi_destroy_ark_runtime`来销毁所创建的ArkTs基础运行时环境。
+开发者通过pthread_create创建新线程后，可以通过`napi_create_ark_runtime`来创建一个新的ArkTS基础运行时环境，并通过该运行时环境加载ArkTS模块。当使用结束后，开发者需要通过`napi_destroy_ark_runtime`来销毁所创建的ArkTS基础运行时环境。
+
+## 约束限制
+
+一个进程最多只能创建64个运行时环境。
 
 ## 使用示例
 
-1. 接口声明、编译配置以及模块注册
+1. 接口声明、编译配置以及模块注册。
 
    **接口声明**
 
@@ -22,13 +26,28 @@
    # the minimum version of CMake.
    cmake_minimum_required(VERSION 3.4.1)
    project(MyApplication)
-   
+
    set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
-   
+
    include_directories(${NATIVERENDER_ROOT_PATH}
                        ${NATIVERENDER_ROOT_PATH}/include)
    add_library(entry SHARED create_ark_runtime.cpp)
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
+   ```
+
+   在当前模块的build-profile.json5文件中进行以下配置：
+   ```json
+   {
+       "buildOption" : {
+           "arkOptions" : {
+               "runtimeOnly" : {
+                   "sources": [
+                       "./src/main/ets/pages/ObjectUtils.ets"
+                   ]
+               }
+           }
+       }
+   }
    ```
 
    **模块注册**
@@ -45,7 +64,7 @@
        return exports;
    }
    EXTERN_C_END
-   
+
    static napi_module nativeModule = {
        .nm_version = 1,
        .nm_flags = 0,
@@ -55,21 +74,20 @@
        .nm_priv = nullptr,
        .reserved = { 0 },
    };
-   
+
    extern "C" __attribute__((constructor)) void RegisterQueueWorkModule()
    {
        napi_module_register(&nativeModule);
    }
    ```
 
-2. 新建线程并创建基ArkTs础运行时环境
+2. 新建线程并创建ArkTS基础运行时环境，加载自定义模块请参考[napi_load_module_with_info](./use-napi-load-module-with-info.md)。
 
    ```cpp
    // create_ark_runtime.cpp
    #include <pthread.h>
-   
    #include "napi/native_api.h"
-   
+
    static void *CreateArkRuntimeFunc(void *arg)
    {
        // 1. 创建基础运行环境
@@ -78,29 +96,27 @@
        if (ret != napi_ok) {
            return nullptr;
        }
-   
+
        // 2. 加载自定义模块
        napi_value objUtils;
-       ret = napi_load_module_with_info(env, "ets/pages/ObjectUtils", "com.exmaple.myapplication/entry", &objUtils);
+       ret = napi_load_module_with_info(env, "entry/src/main/ets/pages/ObjectUtils", "com.example.myapplication/entry", &objUtils);
        if (ret != napi_ok) {
            return nullptr;
        }
-   
-       // 3. 使用ArtTs中的logger
+
+       // 3. 使用ArkTS中的logger
        napi_value logger;
        ret = napi_get_named_property(env, objUtils, "Logger", &logger);
        if (ret != napi_ok) {
            return nullptr;
        }
        ret = napi_call_function(env, objUtils, logger, 0, nullptr, nullptr);
-   
-       // 4. 销毁arkts环境
+
+       // 4. 销毁ArkTS环境
        ret = napi_destroy_ark_runtime(&env);
-   
        return nullptr;
    }
-   
-   
+
    static napi_value CreateArkRuntime(napi_env env, napi_callback_info info)
    {
        pthread_t tid;
@@ -110,13 +126,17 @@
    }
    ```
 
-3. ArkTS侧示例代码
+3. 编写ArkTS侧示例代码。
 
    ```ts
    // ObjectUtils.ets
    export function Logger() {
        console.log("print log");
    }
+
+   // ArkTS侧调用接口
+   import testNapi from 'libentry.so';
+
+   testNapi.createArkRuntime();
    ```
 
-   

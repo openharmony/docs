@@ -1,4 +1,4 @@
-# OpenGL ES 3.2 Symbols Exported
+# OpenGL ES 3.2 Symbols Exported from Native APIs
 
 |Type|Symbol|Remarks|
 | --- | --- | --- |

@@ -12,14 +12,13 @@
 
 1. 导入模块。
    ```ts
-   import I18n from '@ohos.i18n';
-   import { BusinessError } from '@ohos.base'
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. 本地化语言名称。
-   在给用户提供语言名称的场景中，例如切换系统语言时，系统展示用户可读的本地化语言名称，以德语为例。
+   在给用户提供语言名称的场景中，例如切换系统语言时，系统展示用户可读的本地化语言名称，以中文形式显示德语为例。
    ```ts
-   let displayLanguage = I18n.System.getDisplayLanguage("de", "zh-Hans-CN"); // 德语
+   let displayLanguage = i18n.System.getDisplayLanguage("de", "zh-Hans-CN"); // 德文
    // language: 语言两字母代码，如"zh"，"de"，"fr"等
    // locale: 本地化标识符，如"en-GB"、"en-US"、"zh-Hans-CN"等
    // sentenceCase: 返回的语言名称是否需要首字母大写，默认值：true
@@ -28,7 +27,7 @@
 3. 本地化国家/地区名称。
    在给用户提供国家/地区名称时，getDisplayCountry()返回本地化的国家/地区名称。
    ```ts
-   let displayCountry = I18n.System.getDisplayCountry("SA", "en-GB"); // Saudi Arabia
+   let displayCountry = i18n.System.getDisplayCountry("SA", "en-GB"); // Saudi Arabia
    // country: 国家/地区两字母代码，如"CN"、"DE"、"SA"等
    // locale: 本地化标识符，如"en-GB"、"en-US"、"zh-Hans-CN"等
    // sentenceCase: 返回的国家/地区名称是否需要首字母大写，默认值：true

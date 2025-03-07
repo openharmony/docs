@@ -23,12 +23,12 @@ Only the **\<toolbar-item>** component is supported.
 
 ## Attributes
 
-The [universal attributes](../arkui-js/js-components-common-attributes.md) are supported.
+The [universal attributes](js-components-common-attributes.md) are supported.
 
 
 ## Styles
 
-The [universal styles](../arkui-js/js-components-common-styles.md) are supported.
+The [universal styles](js-components-common-styles.md) are supported.
 
 >  **NOTE**
 >
@@ -47,4 +47,4 @@ Not supported
 
 ## Example
 
-For details, see [Example in toolbar-item](../arkui-js/js-components-basic-toolbar-item.md).
+For details, see [Example in toolbar-item](js-components-basic-toolbar-item.md).

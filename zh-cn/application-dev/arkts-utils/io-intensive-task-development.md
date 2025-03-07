@@ -9,25 +9,33 @@ I/O密集型任务的性能重点通常不在于CPU的处理能力，而在于I/
 
 1. 定义并发函数，内部密集调用I/O能力。
     ```ts
-    // a.ts
-    import fs from '@ohos.file.fs';
+    // write.ets
+    import { fileIo } from '@kit.CoreFileKit'
 
     // 定义并发函数，内部密集调用I/O能力
     // 写入文件的实现
     export async function write(data: string, filePath: string): Promise<void> {
-      let file: fs.File = await fs.open(filePath, fs.OpenMode.READ_WRITE);
-      await fs.write(file.fd, data);
-      fs.close(file);
+      let file: fileIo.File = await fileIo.open(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+      await fileIo.write(file.fd, data);
+      fileIo.close(file);
     }
     ```
 
 	```ts
-    import { write } from './a'
-    import { BusinessError } from '@ohos.base';
+    // Index.ets
+    import { write } from './write'
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { taskpool } from '@kit.ArkTS';
+    import { common } from '@kit.AbilityKit';
 
     @Concurrent
-    async function concurrentTest(fileList: string[]): Promise<boolean> {
+    async function concurrentTest(context: common.UIAbilityContext): Promise<boolean> {
+      let filePath1: string = context.filesDir + "/path1.txt"; // 应用文件路径
+      let filePath2: string = context.filesDir + "/path2.txt";
       // 循环写文件操作
+      let fileList: Array<string> = [];
+      fileList.push(filePath1);
+      fileList.push(filePath2)
       for (let i: number = 0; i < fileList.length; i++) {
         write('Hello World!', fileList[i]).then(() => {
           console.info(`Succeeded in writing the file. FileList: ${fileList[i]}`);
@@ -40,17 +48,34 @@ I/O密集型任务的性能重点通常不在于CPU的处理能力，而在于I/
     }
 	```
 
-2. 使用TaskPool执行包含密集I/O的并发函数：通过调用[execute()](../reference/apis-arkts/js-apis-taskpool.md#taskpoolexecute)方法执行任务，并在回调中进行调度结果处理。示例中的filePath1和filePath2的获取方式请参见[获取应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)。
+2. 使用TaskPool执行包含密集I/O的并发函数：通过调用[execute()](../reference/apis-arkts/js-apis-taskpool.md#taskpoolexecute)方法执行任务，并在回调中进行调度结果处理。示例中获取filePath1和filePath2的方式请参见[获取应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)，在TaskPool中使用context需先在并发函数外部准备好，通过入参传递给并发函数才可使用。
 
     ```ts
-    import taskpool from '@ohos.taskpool';
-
-    let filePath1: string = "path1"; // 应用文件路径
-    let filePath2: string = "path2";
-
-    // 使用TaskPool执行包含密集I/O的并发函数
-    // 数组较大时，I/O密集型任务任务分发也会抢占主线程，需要使用多线程能力
-    taskpool.execute(concurrentTest, [filePath1, filePath2]).then(() => {
-      // 调度结果处理
-    })
+    // Index.ets
+    @Entry
+    @Component
+    struct Index {
+      @State message: string = 'Hello World';
+      build() {
+        Row() {
+          Column() {
+            Text(this.message)
+              .fontSize(50)
+              .fontWeight(FontWeight.Bold)
+              .onClick(() => {
+                let context = getContext() as common.UIAbilityContext;
+    
+                // 使用TaskPool执行包含密集I/O的并发函数
+                // 数组较大时，I/O密集型任务任务分发也会抢占UI主线程，需要使用多线程能力
+                taskpool.execute(concurrentTest, context).then(() => {
+                  // 调度结果处理
+                  console.info("taskpool: execute success")
+                })
+              })
+          }
+          .width('100%')
+        }
+        .height('100%')
+      }
+    }
     ```

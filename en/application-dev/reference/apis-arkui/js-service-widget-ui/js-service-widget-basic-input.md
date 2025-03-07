@@ -16,7 +16,7 @@ In addition to the [universal attributes](js-service-widget-common-attributes.md
 | type    | string  | radio | Yes   | Type of the **\<input>** component. Currently, only the radio button is supported.<br>- **radio**: a radio button that allows users to select one from multiple others with the same name.|
 | checked | boolean | false | No   | Whether the component is checked or not.                               |
 | name    | string  | -     | No   | Name of the **\<input>** component.                             |
-| value   | string  | -     | No   | Value of the **<input>** component. When **type** is **radio**, this attribute is mandatory and the value must be unique for radio buttons with the same name.|
+| value   | string  | -     | No   | Value of the **\<input>** component. When **type** is **radio**, this attribute is mandatory and the value must be unique for radio buttons with the same name. |
 
 
 ## Styles

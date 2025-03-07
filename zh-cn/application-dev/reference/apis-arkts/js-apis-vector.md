@@ -18,7 +18,7 @@ Vector和[ArrayList](js-apis-arraylist.md)相似，都是基于数组实现，�
 ## 导入模块
 
 ```ts
-import Vector from '@ohos.util.Vector';
+import { Vector } from '@kit.ArkTS';
 ```
 
 
@@ -80,7 +80,7 @@ let result = vector.add("a");
 let result1 = vector.add(1);
 let b = [1, 2, 3];
 let result2 = vector.add(b);
-let c: C1 = {name : "Dylon", age : "13"};
+let c: C1 = {name : "Jack", age : "13"};
 let result3 = vector.add(c);
 ```
 
@@ -839,10 +839,6 @@ set(index: number, element: T): T
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
-
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
 
 **系统能力：** SystemCapability.Utils.Lang
 

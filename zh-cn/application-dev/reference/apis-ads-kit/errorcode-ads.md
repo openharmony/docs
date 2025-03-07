@@ -60,3 +60,43 @@ Failed to display the ad.
 **处理步骤**
 
 请检查网络状态。
+
+
+## 401 请求广告参数错误
+
+**错误信息**
+
+Invalid input parameter. Possible causes:1. Mandatory parameters are left unspecified.
+2.Incorrect parameter types. 3.Parameter verification failed
+
+**错误描述**
+
+请求广告参数错误
+
+**可能原因**
+
+媒体在写入请求广告参数，校验异常等
+
+**处理步骤**
+
+参考开发指导文档检查广告请求参数是否正确。
+
+
+## 801 请求广告返回错误码
+
+**错误信息**
+
+Device not support
+
+**错误描述**
+
+该设备不支持API，通常用于在设备已支持该SysCap时，针对其少量的API的支持处理。
+
+**可能原因**
+
+该设备不支持此API
+
+**处理步骤**
+
+请检查该设备是否支持使用的API
+

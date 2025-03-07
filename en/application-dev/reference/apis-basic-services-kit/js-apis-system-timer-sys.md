@@ -1,4 +1,4 @@
-# @ohos.systemTimer (System Timer)
+# @ohos.systemTimer (System Timer) (System API)
 
 The **systemTimer** module provides system timer features. You can use the APIs of this module to implement the alarm clock and other timer services.
 
@@ -11,7 +11,7 @@ The **systemTimer** module provides system timer features. You can use the APIs 
 
 
 ```ts
-import systemTimer from '@ohos.systemTimer';
+import { systemTimer } from '@kit.BasicServicesKit';
 ```
 
 ## Constants
@@ -20,12 +20,12 @@ Provides the constants that define the supported timer types.
 
 **System capability**: SystemCapability.MiscServices.Time
 
-| Name               | Type  | Value  | Description                        |
-| ------------------- | ------ | ---- | ---------------------------- |
-| TIMER_TYPE_REALTIME | number | 1    | CPU time type. (The start time of the timer cannot be later than the current system time.)        |
-| TIMER_TYPE_WAKEUP   | number | 2    | Wakeup type.                |
-| TIMER_TYPE_EXACT    | number | 4    | Exact type.                |
-| TIMER_TYPE_IDLE     | number | 8    | Idle type (not supported currently).|
+| Name               | Type  | Value  | Description                                         |
+| ------------------- | ------ | ---- |---------------------------------------------|
+| TIMER_TYPE_REALTIME | number | 1    | CPU time type. (The start time of the timer cannot be later than the current system time.)|
+| TIMER_TYPE_WAKEUP   | number | 2    | Wakeup type. (If the wakeup type is not set, the system does not wake up until it exits the sleep state.)|
+| TIMER_TYPE_EXACT    | number | 4    | Exact type. (If the system time is changed, the offset may be 1s at most.)|
+| TIMER_TYPE_IDLE     | number | 8    | Idle timer type (supported only for system services).|
 
  ## TimerOptions
 
@@ -33,13 +33,15 @@ Defines the initialization options for **createTimer**.
 
 **System capability**: SystemCapability.MiscServices.Time
 
-| Name     | Type                                         | Mandatory| Description                                                        |
-| --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type      | number                                        | Yes  | Timer type.<br>**1**: CPU time type. (The start time of the timer cannot be later than the current system time.)<br>**2**: wakeup type.<br>**4**: exact type.<br>**8**: idle type (not supported currently).|
-| repeat    | boolean                                       | Yes  | Whether the timer is a repeating timer.<br>The value **true** means that the timer is a repeating timer, and **false** means that the timer is a one-shot timer.                       |
-| interval  | number                                        | No  | Repeat interval.<br>For a repeating timer, the value must be greater than 5000 ms. For a one-shot timer, the value is **0**.|
-| wantAgent | WantAgent | No  | **WantAgent** object of the notification to be sent when the timer expires. (An application MainAbility can be started, but not a Service ability.)|
-| callback  | number                                        | Yes  | Callback used to return the timer ID.                            |
+| Name       | Type                                         | Mandatory| Description                                                                                                                                                                                                  |
+|-----------| --------------------------------------------- | ---- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| type      | number                                        | Yes  | Timer types. Use pipe (\|) symbol to combine two or more types.<br>**1**: CPU time type. (The start time of the timer cannot be later than the current system time.)<br>**2**: wakeup type.<br>**4**: exact type. (If an application is frozen, the timer is also frozen. In addition, the timer is controlled by a unified heartbeat. Therefore, even a timer of the exact type cannot be triggered at specified time.)<br>**8**: idle timer type (supported only for system services, but not applications).|
+| repeat    | boolean                                       | Yes  | Whether the timer is a repeating timer.<br>The value **true** means that the timer is a repeating timer, and **false** means that the timer is a one-shot timer.                                                                                                                                                                |
+| autoRestore<sup>15+<sup> | boolean                                     | No  | Whether the timer is restored after the device is restarted.<br>The value **true** means that the timer is restored after the restart, and the value **false** means the opposite.<br>This parameter can be set to **true** only for timers that are not of the **TIMER_TYPE_REALTIME** type and have **wantAgent** configured.                                                                                                     |                                               |     |                                                                                                                                                                                                      |
+| name<sup>15+<sup> | string | No| Timer name, with a maximum length of 64 bytes.<br>A UID cannot contain two timers with the same name. If a timer with the same name as an existing timer is created, the existing timer is destroyed.|
+| interval  | number                                        | No  | Repeat interval.<br>For a repeating timer, the minimum value of **interval** is 1s and the maximum value is 365 days. It is recommended that the value be greater than or equal to 5000 ms.<br>For a one-shot timer, the value is **0**.                                                                                                              |
+| wantAgent | WantAgent | No  | **WantAgent** object of the notification to be sent when the timer expires. (An application MainAbility can be started, but not a Service ability.)                                                                                                                                    |
+| callback  | void                                          | No | Callback to be executed by the user.                                                                                                                                                                                         |
 
 
 ## systemTimer.createTimer
@@ -47,6 +49,8 @@ Defines the initialization options for **createTimer**.
 createTimer(options: TimerOptions, callback: AsyncCallback&lt;number&gt;): void
 
 Creates a timer. This API uses an asynchronous callback to return the result.
+
+**NOTE**<br>This function must be used together with [systemTimer.destroyTimer](#systemtimerdestroytimer). Otherwise, memory leakage occurs.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -57,10 +61,19 @@ Creates a timer. This API uses an asynchronous callback to return the result.
 | options  | [TimerOptions](#timeroptions) | Yes  | Timer initialization options, including the timer type, whether the timer is a repeating timer, interval, and **WantAgent** options.|
 | callback | AsyncCallback&lt;number>      | Yes  | Callback used to return the timer ID.                                  |
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                                                        |
+|-------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                                                 |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -86,6 +99,7 @@ createTimer(options: TimerOptions): Promise&lt;number&gt;
 
 Creates a timer. This API uses a promise to return the result.
 
+**NOTE**<br>This function must be used together with [systemTimer.destroyTimer](#systemtimerdestroytimer). Otherwise, memory leakage occurs.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -101,10 +115,19 @@ Creates a timer. This API uses a promise to return the result.
 | --------------------- | ----------------------------- |
 | Promise&lt;number&gt; | Promise used to return the timer ID.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                       |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -132,16 +155,25 @@ Starts a timer. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                  | Mandatory| Description                          |
-| ----------- | ---------------------- | ---- | ------------------------------ |
-| timer       | number                 | Yes  | ID of the timer.                  |
-| triggerTime | number                 | Yes  | Time when the timer is triggered, in milliseconds.|
-| callback    | AsyncCallback&lt;void> | Yes  | Callback used to return the result.                    |
+| Name     | Type                  | Mandatory| Description                                                                                                                                                                                                                                                          |
+| ----------- | ---------------------- | ---- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| timer       | number                 | Yes  | ID of the timer.                                                                                                                                                                                                                                                     |
+| triggerTime | number                 | Yes  | Time when the timer is triggered, in milliseconds.<br>If **TIMER_TYPE_REALTIME** is set as the timer type, the value of **triggerTime** is the system startup time, which can be obtained by calling [systemDateTime.getUptime(STARTUP)](js-apis-date-time.md#systemdatetimegetuptime10).<br>If **TIMER_TYPE_REALTIME** is not set, the value of **triggerTime** is the wall time, which can be obtained by calling [systemDateTime.getTime()](js-apis-date-time.md#systemdatetimegettime10).|
+| callback    | AsyncCallback&lt;void> | Yes  | Callback used to return the result.                                                                                                                                                                                                                                                       |
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                       |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -179,10 +211,10 @@ Starts a timer. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name     | Type  | Mandatory| Description                          |
-| ----------- | ------ | ---- | ------------------------------ |
-| timer       | number | Yes  | ID of the timer.                  |
-| triggerTime | number | Yes  | Time when the timer is triggered, in milliseconds.|
+| Name     | Type  | Mandatory| Description                                                                                                                                                                                                                                                          |
+| ----------- | ------ | ---- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| timer       | number | Yes  | ID of the timer.                                                                                                                                                                                                                                                     |
+| triggerTime | number | Yes  | Time when the timer is triggered, in milliseconds.<br>If **TIMER_TYPE_REALTIME** is set as the timer type, the value of **triggerTime** is the system startup time, which can be obtained by calling [systemDateTime.getUptime(STARTUP)](js-apis-date-time.md#systemdatetimegetuptime10).<br>If **TIMER_TYPE_REALTIME** is not set, the value of **triggerTime** is the wall time, which can be obtained by calling [systemDateTime.getTime()](js-apis-date-time.md#systemdatetimegettime10).|
 
 **Return value**
 
@@ -190,10 +222,19 @@ Starts a timer. This API uses a promise to return the result.
 | -------------- | ------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                       |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -234,10 +275,19 @@ Stops a timer. This API uses an asynchronous callback to return the result.
 | timer    | number                 | Yes  | ID of the timer.|
 | callback | AsyncCallback&lt;void> | Yes  | Callback used to return the result.  |
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                       |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -251,7 +301,7 @@ try {
     systemTimer.startTimer(timerId, triggerTime);
     systemTimer.stopTimer(timerId, (error: BusinessError) => {
       if (error) {
-        console.info(`Failed to stop timer. message: ${error.message}, code: ${error.code}`);
+        console.info(`Failed to stop the timer. Message: ${error.message}, code: ${error.code}`);
         return;
       }
     console.info(`Succeeded in stopping the timer.`);
@@ -286,10 +336,19 @@ Stops a timer. This API uses a promise to return the result.
 | -------------- | ------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                       |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -331,10 +390,19 @@ Destroys a timer. This API uses an asynchronous callback to return the result.
 | timer    | number                 | Yes  | ID of the timer.|
 | callback | AsyncCallback&lt;void> | Yes  | Callback used to return the result.  |
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                       |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -384,10 +452,19 @@ Destroys a timer. This API uses a promise to return the result.
 | -------------- | ------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                       |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,

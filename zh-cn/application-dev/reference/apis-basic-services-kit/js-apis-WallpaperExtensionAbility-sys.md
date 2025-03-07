@@ -13,14 +13,14 @@ WallpaperExtensionAbility为壁纸拓展模块，提供应用生命周期回调�
 ## 导入模块
 
 ```ts
-import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
+import { WallpaperExtensionAbility } from '@kit.BasicServicesKit';
 ```
 
 ## WallpaperExtensionAbility.onCreate
 
 onCreate(want: object): void
 
-初始化壁纸拓展应用。在拉起Extension壁纸拓展应用时触发回调，执行初始化应用操作。
+初始化壁纸拓展应用。在拉起Extension壁纸拓展应用时触发回调，执行初始化应用操作。不支持多线程并发调用。
 
 **系统能力：** SystemCapability.MiscServices.Wallpaper
 
@@ -33,8 +33,8 @@ onCreate(want: object): void
 **示例：**
 
 ```ts
-import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+import { WallpaperExtensionAbility } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
 
 class WallpaperExt extends WallpaperExtensionAbility {
     onCreate(want: Want): void {
@@ -47,7 +47,7 @@ class WallpaperExt extends WallpaperExtensionAbility {
 
 onWallpaperChange(wallpaperType: number): void
 
-监听壁纸变化。在壁纸变化时触发回调。
+监听壁纸变化。在壁纸变化时触发回调。不支持多线程并发调用。
 
 **系统能力：** SystemCapability.MiscServices.Wallpaper
 
@@ -60,8 +60,8 @@ onWallpaperChange(wallpaperType: number): void
 **示例：**
 
 ```ts
-import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
-import wallpaper from '@ohos.wallpaper';
+import { WallpaperExtensionAbility } from '@kit.BasicServicesKit';
+import { wallpaper } from '@kit.BasicServicesKit';
 
 class WallpaperExt extends WallpaperExtensionAbility {
     onWallpaperChange(wallpaperType: wallpaper.WallpaperType): void {
@@ -74,14 +74,14 @@ class WallpaperExt extends WallpaperExtensionAbility {
 
 onDestroy(): void
 
-清理壁纸拓展应用资源。在销毁壁纸拓展应用时触发回调，执行资源清理。
+清理壁纸拓展应用资源。在销毁壁纸拓展应用时触发回调，执行资源清理。不支持多线程并发调用。
 
 **系统能力：** SystemCapability.MiscServices.Wallpaper
 
 **示例：**
 
 ```ts
-import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
+import { WallpaperExtensionAbility } from '@kit.BasicServicesKit';
 
 class WallpaperExt extends WallpaperExtensionAbility {
     onDestroy(): void {

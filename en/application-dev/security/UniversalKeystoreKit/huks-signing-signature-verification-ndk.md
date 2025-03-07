@@ -3,6 +3,10 @@
 
 This topic walks you through on how to implement signing and signature verification using the key algorithm RSA2048, MD algorithm SHA384, and padding mode PSS. For details about the scenarios and supported algorithms, see [Supported Algorithms](huks-signing-signature-verification-overview.md#supported-algorithms).
 
+## Add the dynamic library in the CMake script.
+```txt
+   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+```
 
 ## How to Develop
 

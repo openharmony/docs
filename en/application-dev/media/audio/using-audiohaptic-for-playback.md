@@ -6,14 +6,20 @@ AudioHaptic<sup>11+</sup> provides APIs for audio-haptic playback and management
 
 The entire process of audio-haptic development involves management of audio and haptic sources, configuration of an audio latency mode and audio stream usage, and creation and management of an audio-haptic player. This topic uses the process of one-time audio-haptic playback as an example to describe how to use **AudioHaptic**. Before the development, read [AudioHaptic](../../reference/apis-audio-kit/js-apis-audioHaptic.md#audiohapticmanager) for better understanding.
 
+### Requesting Permissions
+
+If the audio-haptic player needs to trigger vibration, check whether the application has the permission **ohos.permission.VIBRATE**.
+
+1. [Declare the permission](../../security/AccessToken/declare-permissions.md).
+2. [Request user authorization](../../security/AccessToken/request-user-authorization.md).
+
 ### How to Develop
 
 1. Obtain an **AudioHapticManager** instance, and register the audio and haptic sources. For details about the sources supported, see [AudioHapticManager](../../reference/apis-audio-kit/js-apis-audioHaptic.md#audiohapticmanager).
 
    ```ts
-   import audio from '@ohos.multimedia.audio';
-   import audioHaptic from '@ohos.multimedia.audioHaptic';
-   import { BusinessError } from '@ohos.base';
+   import { audio, audioHaptic } from '@kit.AudioKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let audioHapticManagerInstance: audioHaptic.AudioHapticManager = audioHaptic.getAudioHapticManager();
 
@@ -93,9 +99,3 @@ The entire process of audio-haptic development involves management of audio and 
      console.error(`Failed to unregistere source ${err}`);
    });
    ```
-
-## Samples
-
-The following sample is provided to help you better understand how to develop audio-haptic effect:
-
-- [Audio-Haptic (ArkTS, API version 11)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AudioHaptic)

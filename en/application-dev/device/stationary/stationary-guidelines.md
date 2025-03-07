@@ -31,18 +31,16 @@ For details about the APIs, see [Stationary](../../reference/apis-multimodalawar
 
 ## Available APIs
 
-| Module         | Name                                                      | Description                                                        |
-| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ohos.stationary | on(activity: ActivityType, event: ActivityEvent, reportLatencyNs: number, callback: Callback&lt;ActivityResponse&gt;): void | Subscribes to the device status. This API uses an asynchronous callback to return the result.|
-| ohos.stationary | once(activity: ActivityType, callback: Callback&lt;ActivityResponse&gt;): void | Obtains the device status. This API uses an asynchronous callback to return the result.|
-| ohos.stationary | off(activity: ActivityType, event: ActivityEvent, callback?: Callback&lt;ActivityResponse&gt;): void | Unsubscribes from the device status.                                |
+| Name                                                      | Description                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| on(activity: ActivityType, event: ActivityEvent, reportLatencyNs: number, callback: Callback&lt;ActivityResponse&gt;): void | Subscribes to the device status. This API uses an asynchronous callback to return the result.|
+| once(activity: ActivityType, callback: Callback&lt;ActivityResponse&gt;): void | Obtains the device status. This API uses an asynchronous callback to return the result.|
+| off(activity: ActivityType, event: ActivityEvent, callback?: Callback&lt;ActivityResponse&gt;): void | Unsubscribes from the device status.                                |
 
 ## Constraints
 
 The device must support the acceleration sensor.
-
 Currently, only the algorithm framework is provided. The API test framework returns the following result: data={"type":3,"value":-1}.
-
 If the relative stationary and absolute stationary capabilities are required, you must implement them in **device_status/libs/src/algorithm**. The following code snippet is for reference:
 
    ```ts
@@ -71,8 +69,8 @@ If the relative stationary and absolute stationary capabilities are required, yo
 1. Subscribe to the event indicating entering the absolute still state, and the event is reported every 1 second.
 
    ```ts
-   import stationary from '@ohos.stationary';
-   import { BusinessError } from '@ohos.base';
+   import { stationary } from '@kit.MultimodalAwarenessKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    let reportLatencyNs = 1000000000;
    try {
       stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
@@ -87,8 +85,8 @@ If the relative stationary and absolute stationary capabilities are required, yo
 2. Obtain the event indicating entering the absolute still state.
 
    ```ts
-   import stationary from '@ohos.stationary';
-   import { BusinessError } from '@ohos.base';
+   import { stationary } from '@kit.MultimodalAwarenessKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    try {
       stationary.once('still', (data) => {
          console.log('data='+ JSON.stringify(data));
@@ -102,8 +100,8 @@ If the relative stationary and absolute stationary capabilities are required, yo
 3. Unsubscribe from the event indicating entering the absolute still state.
 
    ```ts
-   import stationary from '@ohos.stationary';
-   import { BusinessError } from '@ohos.base';
+   import { stationary } from '@kit.MultimodalAwarenessKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    try {
       stationary.off('still', stationary.ActivityEvent.ENTER, (data) => {
          console.log('data='+ JSON.stringify(data));

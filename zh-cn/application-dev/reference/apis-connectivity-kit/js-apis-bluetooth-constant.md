@@ -11,7 +11,7 @@ constant模块提供了蓝牙中常量的定义。
 ## 导入模块
 
 ```js
-import constant from '@ohos.bluetooth.constant';
+import { constant } from '@kit.ConnectivityKit';
 ```
 
 ## ProfileId
@@ -31,6 +31,8 @@ import constant from '@ohos.bluetooth.constant';
 ## ProfileConnectionState
 
 枚举，蓝牙设备的profile连接状态。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -157,3 +159,23 @@ import constant from '@ohos.bluetooth.constant';
 | HEALTH_ANKLE_PROSTHESIS                  | 0x0934 | 表示脚踝假肢健康设备。     |
 | HEALTH_GENERIC_HEALTH_MANAGER            | 0x0938 | 表示通用健康管理设备。     |
 | HEALTH_PERSONAL_MOBILITY_DEVICE          | 0x093C | 表示个人移动健康设备。     |
+
+
+## ProfileUuids<sup>12+</sup>
+
+枚举，表示Profile的UUID。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                                   | 值    | 说明              |
+| ------------------------------------| ------ | --------------- |
+| PROFILE_UUID_HFP_AG      | '0000111F-0000-1000-8000-00805F9B34FB' | 代表HFPAG Profile的UUID。 |
+| PROFILE_UUID_HFP_HF      | '0000111E-0000-1000-8000-00805F9B34FB' | 代表HFPHF Profile的UUID。  |
+| PROFILE_UUID_HSP_AG      | '00001112-0000-1000-8000-00805F9B34FB' | 代表HSPAG Profile的UUID。  |
+| PROFILE_UUID_HSP_HS      | '00001108-0000-1000-8000-00805F9B34FB' | 代表HSPHS Profile的UUID。  |
+| PROFILE_UUID_A2DP_SRC    | '0000110A-0000-1000-8000-00805F9B34FB' | 代表A2DPSRC Profile的UUID。  |
+| PROFILE_UUID_A2DP_SINK   | '0000110B-0000-1000-8000-00805F9B34FB' | 代表A2DPSINK Profile的UUID。  |
+| PROFILE_UUID_AVRCP_CT    | '0000110E-0000-1000-8000-00805F9B34FB' | 代表AVRCPCT Profile的UUID。  |
+| PROFILE_UUID_AVRCP_TG    | '0000110C-0000-1000-8000-00805F9B34FB' | 代表AVRCPTG Profile的UUID。  |
+| PROFILE_UUID_HID         | '00001124-0000-1000-8000-00805F9B34FB' | 代表HID Profile的UUID。  |
+| PROFILE_UUID_HOGP        | '00001812-0000-1000-8000-00805F9B34FB' | 代表HOGP Profile的UUID。  |

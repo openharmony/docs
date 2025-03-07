@@ -12,7 +12,7 @@ module对象包含HAP的配置信息。
 | name | 标识HAP的类名。采用反向域名方式标识，前缀要与同级的package标签指定的包名一致，也可采用"."开头的命名方式。字符串长度不超过255字节。 | 字符串 | 可缺省，缺省值为空。 |
 | description | 标识HAP的描述信息。字符串长度不超过255字节。如果字符串超出长度或者需要支持多语言，可以采用资源索引的方式添加描述内容。 | 字符串 | 可缺省，缺省值为空。 |
 | supportedModes | 标识应用支持的运行模式，当前只定义了驾驶模式（drive）。该标签只适用于车机。 | 字符串数组 | 可缺省，缺省值为空。 |
-|deviceType | 标识允许Ability运行的设备类型。系统预定义的设备类型包括：tablet(平板)、tv（智慧屏）、car(车机)、wearable(智能穿戴)等。 | 字符串数组 | 不可缺省。 |
+|deviceType | <!--RP1-->标识允许Ability运行的设备类型。系统预定义的设备类型包括：tablet(平板)、tv（智慧屏）、car(车机)、wearable(智能穿戴)等。<!--RP1End--> | 字符串数组 | 不可缺省。 |
 |distro | 标识HAP发布的具体描述。 | 对象 | 不可缺省。 |
 |metaData | 标识HAP的元信息。 | 对象 | 可缺省，缺省值为空。 |
 | abilities | 标识当前模块内的所有Ability。采用对象数据格式。 | 对象数组 | 可缺省，缺省值为空。 |
@@ -120,7 +120,7 @@ distro示例：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| parameters | 标识调用Ability时所有调用参数的元信息。每个调用参数的元信息由以下三个标签组成：description、name、type。 | 对象数组 | 可缺省，缺省值为空 |
+| parameters | 标识调用Ability时所有调用参数的元信息。每个调用参数的元信息由以下三个标签组成：description、name、type。 | 对象数组 | 可缺省，缺省值为空。 |
 | results | 标识Ability返回值的元信息。每个返回值的元信息由以下三个标签组成：description、name、type。 | 对象数组 | 可缺省，缺省值为空。 |
 | customizeData | 该标签标识父级组件的自定义元信息，Parameters和results在application不可配。 | 对象数组 | 可缺省，缺省值为空。 |
 
@@ -142,7 +142,7 @@ distro示例：
 | -------- | -------- | -------- | -------- |
 | description | 标识对返回值的描述，可以是表示描述内容的字符串，也可以是对描述内容的资源索引以支持多语言。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
 | name | 标识返回值的名字。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
-| type | 标识返回值的类型，如Integer。 | 字符串 | 不可缺省 |
+| type | 标识返回值的类型，如Integer。 | 字符串 | 不可缺省。 |
 
 ## customizeData对象的内部结构
 
@@ -182,13 +182,16 @@ metadata对象示例：
 
 **表7** **deviceType标签配置说明**
 
+<!--RP2-->
 | 设备类型 | 枚举值 | 说明 |
 | -------- | -------- | -------- |
 | 平板 | tablet | - |
 | 智慧屏 | tv | - |
 | 智能手表 | wearable | 系统能力较丰富的手表，具备电话功能。 |
+| 运动表 | litewearable | - |
 | 车机 | car | - |
 | 默认设备 | default | 能够使用全部系统能力的设备。 |
+<!--RP2End-->
 
 ## abilities对象的内部结构
 
@@ -197,7 +200,7 @@ metadata对象示例：
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | process | 运行应用程序或Ability的进程名称。如果在deviceConfig标记中配置了进程，则应用程序的所有能力都在此进程中运行。您还可以为特定能力设置流程属性，以便该能力可以在此流程中运行。如果此属性设置为与其他应用程序相同的进程名称，则所有这些应用程序可以在同一进程中运行，前提是他们具有相同的联合用户ID和相同的签名。该标签最大字节数为31个字节。 | 字符串 | 可缺省，缺省值为空。 |
-| name | 标识Ability名称。取值可采用反向域名方式表示，由包名和类名组成，如"com.example.myapplication.EntryAbility"；也可采用"."开头的类名方式表示，如".EntryAbility"。<br/>Ability的名称，需在一个应用的范围内保证唯一。说明：在使用DevEco&nbsp;Studio新建项目时，默认生成首个Ability的配置，即"config.json"中"EntryAbility"的配置。如使用其他IDE工具，可自定义名称。该标签最大长度为127个字节。 | 字符串 | 不可缺省 |
+| name | 标识Ability名称。取值可采用反向域名方式表示，由包名和类名组成，如"com.example.myapplication.EntryAbility"；也可采用"."开头的类名方式表示，如".EntryAbility"。<br/>Ability的名称，需在一个应用的范围内保证唯一。说明：在使用DevEco&nbsp;Studio新建项目时，默认生成首个Ability的配置，即"config.json"中"EntryAbility"的配置。如使用其他IDE工具，可自定义名称。该标签最大长度为127个字节。 | 字符串 | 不可缺省。 |
 | description | 标识对Ability的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
 | icon | 标识Ability图标资源文件的索引。取值示例：$media:ability_icon。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的icon将同时作为应用的icon。如果存在多个符合条件的Ability，则取位置靠前的Ability的icon作为应用的icon。<br/>说明：应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。 | 字符串 | 可缺省，缺省值为空。 |
 | label | 标识Ability对用户显示的名称。取值是对该名称的资源索引，支持多语言，例：$string:ability_label。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的label将同时作为应用的label。如果存在多个符合条件的Ability，则取位置靠前的Ability的label作为应用的label。<br/>说明：&nbsp;应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。该标签为资源文件中定义的字符串的引用，或以"{}"包括的字符串。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
@@ -236,7 +239,7 @@ metadata对象示例：
 {
   "module":{
 
-    ...
+    // ...
 
     "abilities": [{
       "icon": "$media:icon",
@@ -248,13 +251,13 @@ metadata对象示例：
       }]
     }],
 
-    ...
+    // ...
 
   }
 }
 ```
 
-如果应用确需隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。详细的入口图标及入口标签的显示规则如下。
+如果应用确需隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权<!--Del-->，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)<!--DelEnd-->。详细的入口图标及入口标签的显示规则如下。
 * HAP中包含Page类型的PageAbility
   * 配置文件（config.json）中abilities配置中设置了入口图标
     * 该应用没有隐藏图标的特权
@@ -380,7 +383,7 @@ abilities示例：
 | pathStartWith | 标识uri的pathStartWith值。 | 字符串 | 可缺省，缺省值为空。 |
 | path | 标识uri的path值。 | 字符串 | 可缺省，缺省值为空。 |
 | pathRegx | 标识uri的pathRegx值。 | 字符串 | 可缺省，缺省值为空。 |
-| type | 标识uri的type值。type为MIME-TYPE属性，为资源的媒体类型，常见的类型有"audio/aac"，"text/css"等。 | 字符串 | 可缺省，缺省值为空。 |
+| type | 标识uri的type值。type为MIME-TYPE属性，为资源的媒体类型，常见的类型有"audio/aac"，"text/css"等。<br/>注意：只支持*/*、mainType/*的通配符格式，不支持mainType/subType.*的通配符格式，mainType为标准媒体类型。| 字符串 | 可缺省，缺省值为空。 |
 
 
 skills示例：
@@ -414,8 +417,8 @@ skills示例：
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | name | 需要使用的权限名称。 | 字符串 | 否 |
-| reason | 描述申请权限的原因。需要做多语种适配。 | 字符串 | 分情况：当申请的权限为user_grant时，必须填写此字段，否则不允许在应用市场上架；其他权限可缺省，缺省为空 |
-| usedScene | 描述权限使用的场景和时机。场景类型如下两种：<br/>-&nbsp;ability：ability的名称，可配置多个。<br/>-&nbsp;when：调用时机，可填的值有inuse（使用时）、always（始终）。 | 对象 | 可缺省，缺省值为空。<br/>when可缺省，缺省值为"inuse" |
+| reason | 描述申请权限的原因。需要做多语种适配。 | 字符串 | 分情况：当申请的权限为user_grant时，必须填写此字段，否则不允许在应用市场上架；其他权限可缺省，缺省为空。 |
+| usedScene | 描述权限使用的场景和时机。场景类型如下两种：<br/>-&nbsp;ability：ability的名称，可配置多个。<br/>-&nbsp;when：调用时机，可填的值有inuse（使用时）、always（始终）。 | 对象 | 可缺省，缺省值为空。<br/>when可缺省，缺省值为"inuse"。 |
 
 ## usedScene对象内部结构
 

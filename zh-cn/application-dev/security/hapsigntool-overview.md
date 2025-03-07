@@ -38,7 +38,7 @@
 
  - 调试工具
 
-   为开发者提供c++调试功能的工具链。如：[LLDB工具](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/tools/lldb-tool.md)
+   为开发者提供c++调试功能的工具链。如：[LLDB工具](../tools/lldb-tool.md)
 
  - Profile文件：
 
@@ -46,6 +46,6 @@
 
 ## 约束与限制
 
- - 应用包签名工具基于Java语言开发，需要Java8以上Java环境运行。
+ - 应用包签名工具基于Java与C++语言开发，Java需要Java8以上Java环境运行；C++需要openharmony标准系统并使用C++17及以上的编译环境运行。
 
- - 一键签名等脚本文件基于Python语言开发，使用需配置环境python3.5及以上。
+ - 一键签名等脚本文件（仅JAVA版本支持）基于Python语言开发，使用需配置环境python3.5及以上。

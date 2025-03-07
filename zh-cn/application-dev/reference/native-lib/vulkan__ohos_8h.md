@@ -3,7 +3,9 @@
 
 ## 概述
 
-定义了OpenHarmony平台扩展的Vulkan接口。引用文件：&lt;vulkan/vulkan.h&gt;。
+定义了OpenHarmony平台扩展的Vulkan接口。
+
+**引用文件：** &lt;vulkan/vulkan.h&gt;。
 
 **起始版本：**
 
@@ -46,7 +48,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OHNativeWindow](_vulkan.md#ohnativewindow) | OH本地窗口。 |
+| [OHNativeWindow](_vulkan.md#ohnativewindow) | 本地窗口。 |
 | [VkSurfaceCreateFlagsOHOS](_vulkan.md#vksurfacecreateflagsohos) | 用于Vulkan Surface创建时使用到的VkFlags类型位掩码，预留的标志类型。 |
 | [VkSurfaceCreateInfoOHOS](_vulkan.md#vksurfacecreateinfoohos) | 包含创建Vulkan Surface时必要的参数。 |
 | VkResult ([VKAPI_PTR *PFN_vkCreateSurfaceOHOS](_vulkan.md#pfn_vkcreatesurfaceohos)) (VkInstance instance, const [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md) \*pCreateInfo, const VkAllocationCallbacks \*pAllocator, VkSurfaceKHR \*pSurface) | 创建Vulkan Surface的函数指针定义。 |
@@ -64,6 +66,9 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [vkCreateSurfaceOHOS](_vulkan.md#vkcreatesurfaceohos) (VkInstance instance, const [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md) \*pCreateInfo, const VkAllocationCallbacks \*pAllocator, VkSurfaceKHR \*pSurface) | 创建Vulkan Surface。 |
-| [vkGetNativeBufferPropertiesOHOS](_vulkan.md#vkgetnativebufferpropertiesohos) (VkDevice device, const struct OH_NativeBuffer \*buffer, [VkNativeBufferPropertiesOHOS](_vk_native_buffer_properties_o_h_o_s.md) \*pProperties) | 获取OH_NativeBuffer属性。 |
-| [vkGetMemoryNativeBufferOHOS](_vulkan.md#vkgetmemorynativebufferohos) (VkDevice device, const [VkMemoryGetNativeBufferInfoOHOS](_vk_memory_get_native_buffer_info_o_h_o_s.md) \*pInfo, struct OH_NativeBuffer \*\*pBuffer) | 获取OH_NativeBuffer。 |
+| VKAPI_ATTR VkResult VKAPI_CALL [vkCreateSurfaceOHOS](_vulkan.md#vkcreatesurfaceohos) (VkInstance instance, const [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md) \*pCreateInfo, const VkAllocationCallbacks \*pAllocator, VkSurfaceKHR \*pSurface) | 创建Vulkan Surface。  | 
+| VKAPI_ATTR VkResult VKAPI_CALL [vkGetNativeBufferPropertiesOHOS](_vulkan.md#vkgetnativebufferpropertiesohos) (VkDevice device, const struct OH_NativeBuffer \*buffer, [VkNativeBufferPropertiesOHOS](_vk_native_buffer_properties_o_h_o_s.md) \*pProperties) | 获取OH_NativeBuffer属性。  | 
+| VKAPI_ATTR VkResult VKAPI_CALL [vkGetMemoryNativeBufferOHOS](_vulkan.md#vkgetmemorynativebufferohos) (VkDevice device, const [VkMemoryGetNativeBufferInfoOHOS](_vk_memory_get_native_buffer_info_o_h_o_s.md) \*pInfo, struct OH_NativeBuffer \*\*pBuffer) | 获取OH_NativeBuffer。  | 
+| VKAPI_ATTR VkResult VKAPI_CALL [vkGetSwapchainGrallocUsageOHOS](_vulkan.md#vkgetswapchaingrallocusageohos) (VkDevice device, VkFormat format, VkImageUsageFlags imageUsage, uint64_t \*grallocUsage) | 根据给定的Vulkan设备、图像格式和图像使用标志, 返回适当的Gralloc(内存分配器)使用标志。  | 
+| VKAPI_ATTR VkResult VKAPI_CALL [vkAcquireImageOHOS](_vulkan.md#vkacquireimageohos) (VkDevice device, VkImage image, int32_t nativeFenceFd, VkSemaphore semaphore, VkFence fence) | 用于获取交换链图像的所有权, 并将外部信号的Fence导入到VkSemaphore对象和VkFence对象中。  | 
+| VKAPI_ATTR VkResult VKAPI_CALL [vkQueueSignalReleaseImageOHOS](_vulkan.md#vkqueuesignalreleaseimageohos) (VkQueue queue, uint32_t waitSemaphoreCount, const VkSemaphore \*pWaitSemaphores, VkImage image, int32_t \*pNativeFenceFd) | 当前图像使用完毕后，通过该函数向系统硬件缓冲区发出释放信号, 以便其他组件可以访问该图像。  | 

@@ -1,5 +1,3 @@
-
-
 # 小型系统STM32MP1芯片移植案例
 
 本文章基于意法半导体`STM32MP157`芯片的小熊派[BearPi-HM Micro开发板](https://gitee.com/openharmony/device_board_bearpi)，进行小型带屏开发板的移植，实现了`ace_engine_lite`、`arkui_ui_lite`、`aafwk_lite`、`appexecfwk_lite`、`HDF`等部件基于`OpenHarmony LiteOS-A`内核的适配。移植架构上采用`Board`与`SoC`分离的方案。
@@ -428,7 +426,7 @@ vendor
             HDF_LOGE("%s: device or property NULL!", __func__);
             return HDF_ERR_INVALID_OBJECT;
         }
-        //获取属性数据
+        //获取属性数据。
         ret = Mp1xxGpioReadDrs(stm32gpio, device->property);
         if (ret != HDF_SUCCESS) {
             HDF_LOGE("%s: get gpio device resource fail:%d", __func__, ret);
@@ -558,7 +556,7 @@ vendor
         {
             "component": "ace_engine_lite",
             "features": [
-            "enable_ohos_ace_engine_lite_product_config = true"
+            "ace_engine_lite_feature_product_config = true"
             ]
         }
         ]
@@ -577,7 +575,7 @@ vendor
         {
         "component": "aafwk_lite",
         "features": [
-            "enable_ohos_appexecfwk_feature_ability = true"	 --- 支持FA特性，即包含图形能力。
+            "ability_lite_enable_ohos_appexecfwk_feature_ability = true"	 --- 支持FA特性，即包含图形能力。
         ]
         }
     ]

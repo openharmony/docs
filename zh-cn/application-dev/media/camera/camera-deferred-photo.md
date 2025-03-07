@@ -22,12 +22,10 @@
 1. 导入依赖，需要导入相机框架、媒体库、图片相关领域依赖。
 
    ```ts
-   import camera from '@ohos.multimedia.camera';
-   import image from '@ohos.multimedia.image';
-   import mediaLibrary from '@ohos.multimedia.mediaLibrary';
-   import fs from '@ohos.file.fs';
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   import { BusinessError } from '@ohos.base';
+   import { camera } from '@kit.CameraKit';
+   import { image } from '@kit.ImageKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
    ```
 
 2. 确定拍照输出流。
@@ -102,7 +100,7 @@
          return;
        }
        console.info('photoOutPutCallBack deferredPhotoProxyAvailable');
-       // 获取缩略图 pixelMap
+       // 获取缩略图 pixelMap。
        proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
          AppStorage.setOrCreate('proxyThumbnail', thumbnail);
        });
@@ -123,14 +121,14 @@
    
    async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy) {    
      try {
-       // 创建 photoAsset
-       let photoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
+       // 创建 photoAsset。
+       let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);
        let testFileName = 'testFile' + Date.now() + '.jpg';
-       let photoAsset = await photoAccessHelper.createAsset(testFileName);
-       // 将缩略图代理类传递给媒体库
-       let mediaRequest: PhotoAccessHelper.MediaAssetChangeRequest = new PhotoAccessHelper.MediaAssetChangeRequest(photoAsset);
-       mediaRequest.addResource(PhotoAccessHelper.ResourceType.PHOTO_PROXY, proxyObj);
-       let res = await photoAccessHelper.applyChanges(mediaRequest);
+       let photoAsset = await accessHelper.createAsset(testFileName);
+       // 将缩略图代理类传递给媒体库。
+       let mediaRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
+       mediaRequest.addResource(photoAccessHelper.ResourceType.PHOTO_PROXY, proxyObj);
+       let res = await accessHelper.applyChanges(mediaRequest);
        console.info('saveDeferredPhoto success.');
      } catch (err) {
        console.error(`Failed to saveDeferredPhoto. error: ${JSON.stringify(err)}`);

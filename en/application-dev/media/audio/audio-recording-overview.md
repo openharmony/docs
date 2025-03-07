@@ -8,17 +8,17 @@ The system provides a variety of APIs for you to develop audio recording applica
 
 - [OpenSL ES](using-opensl-es-for-recording.md): provides a set of standard, cross-platform native audio APIs. It supports audio input in PCM format and is suitable for recording applications that are ported from other embedded platforms or that implement audio input at the native layer.
 
-- [Using OHAudio for Audio Recording](using-ohaudio-for-recording.md): provides a set of native APIs for audio input. These APIs are normalized in design and support both common and low-latency audio channels. They are suitable for playback applications that implement audio input at the native layer.
+- [Using OHAudio for Audio Recording](using-ohaudio-for-recording.md): provides a set of native APIs for audio input. These APIs are normalized in design and support both common and low-latency audio channels. They support the PCM format only. They are suitable for playback applications that implement audio input at the native layer.
 
-In addition to the preceding classes, you can also use Media Kit to implement audio playback.
+In addition to the preceding classes, you can also use **AVRecorder** in Media Kit to implement audio recording.
 
 - [AVRecorder](../media/using-avrecorder-for-recording.md): provides ArkTS and JS APIs to implement audio recording. It also supports audio input, audio encoding, and media encapsulation. You can directly call device hardware, such as microphone, for recording and generate M4A audio files.
 
 ## Precautions for Developing Audio Recording Applications
 
-The application must request the **ohos.permission.MICROPHONE** permission from the user before invoking the microphone to record audio.
-
-1. [Declare the permission](../../security/AccessToken/declare-permissions.md).
-2. [Request user authorization](../../security/AccessToken/request-user-authorization.md).
-
+The application must request the **ohos.permission.MICROPHONE** permission from the user before invoking the microphone to record audio. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
+  
 For details about how to use and manage microphones, see [Microphone Management](mic-management.md).
+
+- If continuous recording or background recording is required, the application must request a continuous task to prevent it from being suspended. For details, see [Continuous Task](../../task-management/continuous-task.md).
+- The application must start recording when it runs in the foreground. It can switch to the background after the recording is started. Recording cannot be started in the background.

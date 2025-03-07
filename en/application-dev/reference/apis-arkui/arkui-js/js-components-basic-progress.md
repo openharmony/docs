@@ -18,7 +18,7 @@ Not supported
 
 ## Attributes
 
-In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](js-components-common-attributes.md), the following attributes are supported.
 
 | Name  | Type    | Default Value       | Mandatory  | Description                                      |
 | ---- | ------ | ---------- | ---- | ---------------------------------------- |
@@ -45,7 +45,7 @@ Different types of progress bars support different attributes.
 
 ## Styles
 
-In addition to the [universal styles](../arkui-js/js-components-common-styles.md), the following styles are supported.
+In addition to the [universal styles](js-components-common-styles.md), the following styles are supported.
 
 Horizontal progress bar, of which **type** is **horizontal**
 
@@ -96,11 +96,11 @@ Eclipse progress bar, of which **type** is **eclipse**<sup>5+</sup>
 
 ## Events
 
-The [universal events](../arkui-js/js-components-common-events.md) are supported.
+The [universal events](js-components-common-events.md) are supported.
 
 ## Methods
 
-The [universal methods](../arkui-js/js-components-common-methods.md) are supported.
+The [universal methods](js-components-common-methods.md) are supported.
 
 
 ## Example

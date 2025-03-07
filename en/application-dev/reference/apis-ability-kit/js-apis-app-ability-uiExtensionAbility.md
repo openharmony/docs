@@ -1,6 +1,6 @@
 # @ohos.app.ability.UIExtensionAbility (Base Class for ExtensionAbilities with UI)
 
-**UIExtensionAbility**, inherited from [ExtensionAbility](js-apis-app-ability-extensionAbility.md), is a base class for ExtensionAbilities with UI in specific scenarios. It provides attributes and APIs related to ExtensionAbilities with UI. You cannot inherit from this base class.
+**UIExtensionAbility**, inherited from [ExtensionAbility](js-apis-app-ability-extensionAbility.md), is a base class for ExtensionAbilities with UI in specific scenarios. It provides properties and APIs related to ExtensionAbilities with UI. You cannot inherit from this base class. For details about the inheritance relationship of each ability, see [Inheritance Relationship](./js-apis-app-ability-ability.md#ability-inheritance-relationship).
 
 > **NOTE**
 > 
@@ -11,38 +11,43 @@
 ## Modules to Import
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import { UIExtensionAbility } from '@kit.AbilityKit';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Type| Read-only| Mandatory| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | No| Yes| Context of the UIExtensionAbility.|
+| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | No| No| Context of the UIExtensionAbility.|
 
 ## UIExtensionAbility.onCreate
 
-onCreate(): void
+onCreate(launchParam: AbilityConstant.LaunchParam): void
 
 Called to initialize the service logic when a UIExtensionAbility is being created.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| launchParam<sup>12+</sup> | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#launchparam) | Yes| Parameters for starting the UIExtensionAbility, and the reason for the last abnormal exit.|
+
 **Example**
 
-  ```ts
-  import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+```ts
+import { UIExtensionAbility, AbilityConstant } from '@kit.AbilityKit';
 
-  const TAG: string = '[testTag] UIExtAbility';
+const TAG: string = '[testTag] UIExtAbility';
 
-  export default class UIExtAbility extends UIExtensionAbility {
-    onCreate() {
-      console.info(TAG, `onCreate`);
-    }
+export default class UIExtAbility extends UIExtensionAbility {
+  onCreate(launchParam: AbilityConstant.LaunchParam) {
+    console.info(TAG, `onCreate`);
+    console.log(`onCreate, launchParam: ${JSON.stringify(launchParam)}`);
   }
-  ```
+}
+```
 
 ## UIExtensionAbility.onSessionCreate
 
@@ -61,19 +66,17 @@ Called when a **UIExtensionContentSession** instance is created for this UIExten
 
 **Example**
 
-  ```ts
-  import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-  import Want from '@ohos.app.ability.Want';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+```ts
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
-  const TAG: string = '[testTag] UIExtAbility';
+const TAG: string = '[testTag] UIExtAbility';
 
-  export default class UIExtAbility extends UIExtensionAbility {
-    onSessionCreate(want: Want, session: UIExtensionContentSession) {
-      console.info(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
-    }
+export default class UIExtAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    console.info(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
   }
-  ```
+}
+```
 
 ## UIExtensionAbility.onSessionDestroy
 
@@ -91,18 +94,17 @@ Called when a **UIExtensionContentSession** instance is destroyed for this UIExt
 
 **Example**
 
-  ```ts
-  import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+```ts
+import { UIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 
-  const TAG: string = '[testTag] UIExtAbility';
+const TAG: string = '[testTag] UIExtAbility';
 
-  export default class UIExtAbility extends UIExtensionAbility {
-    onSessionDestroy(session: UIExtensionContentSession) {
-      console.info(TAG, `onSessionDestroy`);
-    }
+export default class UIExtAbility extends UIExtensionAbility {
+  onSessionDestroy(session: UIExtensionContentSession) {
+    console.info(TAG, `onSessionDestroy`);
   }
-  ```
+}
+```
 
 ## UIExtensionAbility.onForeground
 
@@ -114,17 +116,17 @@ Called when this UIExtensionAbility is switched from the background to the foreg
 
 **Example**
 
-  ```ts
-  import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+```ts
+import { UIExtensionAbility } from '@kit.AbilityKit';
 
-  const TAG: string = '[testTag] UIExtAbility';
+const TAG: string = '[testTag] UIExtAbility';
 
-  export default class UIExtAbility extends UIExtensionAbility {
-    onForeground() {
-      console.info(TAG, `onForeground`);
-    }
+export default class UIExtAbility extends UIExtensionAbility {
+  onForeground() {
+    console.info(TAG, `onForeground`);
   }
-  ```
+}
+```
 
 ## UIExtensionAbility.onBackground
 
@@ -136,17 +138,17 @@ Called when this UIExtensionAbility is switched from the foreground to the backg
 
 **Example**
 
-  ```ts
-  import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+```ts
+import { UIExtensionAbility } from '@kit.AbilityKit';
 
-  const TAG: string = '[testTag] UIExtAbility';
+const TAG: string = '[testTag] UIExtAbility';
 
-  export default class UIExtAbility extends UIExtensionAbility {
-    onBackground() {
-      console.info(TAG, `onBackground`);
-    }
+export default class UIExtAbility extends UIExtensionAbility {
+  onBackground() {
+    console.info(TAG, `onBackground`);
   }
-  ```
+}
+```
 
 ## UIExtensionAbility.onDestroy
 
@@ -165,14 +167,14 @@ After the **onDestroy()** lifecycle callback is executed, the application may ex
 
 **Example**
 
-  ```ts
-  import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+```ts
+import { UIExtensionAbility } from '@kit.AbilityKit';
 
-  const TAG: string = '[testTag] UIExtAbility';
+const TAG: string = '[testTag] UIExtAbility';
 
-  export default class UIExtAbility extends UIExtensionAbility {
-    onDestroy() {
-      console.info(TAG, `onDestroy`);
-    }
+export default class UIExtAbility extends UIExtensionAbility {
+  onDestroy() {
+    console.info(TAG, `onDestroy`);
   }
-  ```
+}
+```

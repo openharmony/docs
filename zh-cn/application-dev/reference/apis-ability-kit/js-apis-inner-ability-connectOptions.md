@@ -9,50 +9,141 @@
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
-## 属性
+## onConnect
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+onConnect(elementName: ElementName, remote: rpc.IRemoteObject): void
 
-|    名称      | 类型       | 必填   | 说明                        |
-| ------------ | -------- | ---- | ------------------------- |
-| onConnect    | function | 是    | 建立连接时的回调函数。      |
-| onDisconnect | function | 是    | 断开连接时的回调函数。           |
-| onFailed     | function | 是    | 连接失败时的回调函数。 |
+建立连接时的回调函数。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名       | 类型                     | 必填   | 说明            |
+| -------- | ---------------------- | ---- | ------------- |
+| elementName | [ElementName](js-apis-bundleManager-elementName.md) | 是    | Ability的elementName。 |
+| remote | [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject) | 是    | IRemoteObject实例。 |
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import common from '@ohos.app.ability.common';
-  import Want from '@ohos.app.ability.Want';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import bundleManager from '@ohos.bundle.bundleManager';
-  import rpc from '@ohos.rpc';
+```ts
+import { UIAbility, common, Want, AbilityConstant } from '@kit.AbilityKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
 
-  let connectWant: Want = {
-    bundleName: 'com.example.myapp',
-    abilityName: 'MyAbility'
-  };
+let connectWant: Want = {
+  bundleName: 'com.example.myapp',
+  abilityName: 'MyAbility'
+};
 
-  let connectOptions: common.ConnectOptions = {
-    onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
-      console.log(`onConnect elementName: ${elementName}`);
-    },
-    onDisconnect(elementName: bundleManager.ElementName) {
-      console.log(`onDisconnect elementName: ${elementName}`);
-    },
-    onFailed(code: number) {
-      console.error(`onFailed code: ${code}`);
-    }
-  };
-
-
-  class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      let connection: number = this.context.connectServiceExtensionAbility(connectWant, connectOptions);
-    }
+let connectOptions: common.ConnectOptions = {
+  onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
+    console.log(`onConnect elementName: ${elementName}`);
+  },
+  onDisconnect(elementName: bundleManager.ElementName) {
+    console.log(`onDisconnect elementName: ${elementName}`);
+  },
+  onFailed(code: number) {
+    console.error(`onFailed code: ${code}`);
   }
-  ```
+};
+
+class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let connection: number = this.context.connectServiceExtensionAbility(connectWant, connectOptions);
+  }
+}
+```
+
+## onDisconnect
+
+onDisconnect(elementName: ElementName): void
+
+断开连接时的回调函数。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名       | 类型                     | 必填   | 说明            |
+| -------- | ---------------------- | ---- | ------------- |
+| elementName | [ElementName](js-apis-bundleManager-elementName.md) | 是    | Ability的elementName。 |
+
+**示例：**
+
+```ts
+import { UIAbility, common, Want, AbilityConstant } from '@kit.AbilityKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+
+let connectWant: Want = {
+  bundleName: 'com.example.myapp',
+  abilityName: 'MyAbility'
+};
+
+let connectOptions: common.ConnectOptions = {
+  onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
+    console.log(`onConnect elementName: ${elementName}`);
+  },
+  onDisconnect(elementName: bundleManager.ElementName) {
+    console.log(`onDisconnect elementName: ${elementName}`);
+  },
+  onFailed(code: number) {
+    console.error(`onFailed code: ${code}`);
+  }
+};
+
+class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let connection: number = this.context.connectServiceExtensionAbility(connectWant, connectOptions);
+  }
+}
+```
+
+## onFailed
+
+onFailed(code: number): void
+
+连接失败时的回调函数。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名       | 类型                     | 必填   | 说明            |
+| -------- | ---------------------- | ---- | ------------- |
+| code | number | 是    | 连接指定Ability返回的结果code。<br>值为0表示连接成功，值为-1表示参数错误，值为-2表示未找到对应Ability。 |
+
+**示例：**
+
+```ts
+import { UIAbility, common, Want, AbilityConstant } from '@kit.AbilityKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+
+let connectWant: Want = {
+  bundleName: 'com.example.myapp',
+  abilityName: 'MyAbility'
+};
+
+let connectOptions: common.ConnectOptions = {
+  onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
+    console.log(`onConnect elementName: ${elementName}`);
+  },
+  onDisconnect(elementName: bundleManager.ElementName) {
+    console.log(`onDisconnect elementName: ${elementName}`);
+  },
+  onFailed(code: number) {
+    console.error(`onFailed code: ${code}`);
+  }
+};
+
+class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let connection: number = this.context.connectServiceExtensionAbility(connectWant, connectOptions);
+  }
+}
+```

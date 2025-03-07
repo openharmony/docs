@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Over max limits.
+Upper limit exceeded.
 
 **Description**
 
@@ -28,7 +28,7 @@ The number of subscriptions or the number of opened result sets has reached the 
 
 **Error Message**
 
-Open existed database with changed options.
+The options configuration changes when the API is called to obtain a KV store.
 
 **Description**
 
@@ -68,7 +68,7 @@ The target KV store is corrupted.
 
 **Error Message**
 
-Not found.
+Data not found.
 
 **Description**
 
@@ -105,3 +105,23 @@ The KV store or result set is closed manually before the operation.
 
 1. Obtain the KV store and try again.
 2. Obtain the result set and try again.
+
+## 15100006 Unable to Open the Database File
+
+**Error Message**
+
+Unable to open the database file.
+
+**Description**
+
+The database file cannot be accessed when **getKVStore** is called to open a KV store instance.
+
+**Possible Causes**
+
+1. The caller does not have the permission to read or write the file.
+2. The disk space is insufficient for the file read or write operation.
+
+**Solution**
+
+1. Check whether the database file path is correct and whether the caller has the permission to access the file.
+2. Check whether the disk space is sufficient.

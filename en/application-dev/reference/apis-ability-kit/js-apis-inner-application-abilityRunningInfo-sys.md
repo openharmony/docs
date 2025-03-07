@@ -10,12 +10,12 @@ The **AbilityRunningInfo** module defines the running information and state of a
 ## Modules to Import
 
 ```ts
-import abilitymanager from '@ohos.app.ability.abilityManager';
+import { abilityManager } from '@kit.AbilityKit';
 ```
 
 ## Usage
 
-The ability running information is obtained by calling [getAbilityRunningInfos](js-apis-app-ability-abilityManager-sys.md#getabilityrunninginfos) in **abilityManager**.
+The ability running information is obtained by calling [getAbilityRunningInfos](js-apis-app-ability-abilityManager.md#getabilityrunninginfos) in **abilityManager**.
 
 ## Attributes
 
@@ -35,22 +35,22 @@ The ability running information is obtained by calling [getAbilityRunningInfos](
 **Example**
 
 ```ts
-import abilitymanager from '@ohos.app.ability.abilityManager';
+import { abilityManager } from '@kit.AbilityKit';
 
-abilitymanager.getAbilityRunningInfos((error, data) => { 
-    if (error) {
-        console.error(`getAbilityRunningInfos fail, error: ${JSON.stringify(error)}`);
-    } else {
-        console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
-        for (let i = 0; i < data.length; i++) {
-            let abilityinfo = data[i];
-            console.log(`abilityinfo.ability: ${JSON.stringify(abilityinfo.ability)}`);
-            console.log(`abilityinfo.pid: ${JSON.stringify(abilityinfo.pid)}`);
-            console.log(`abilityinfo.uid: ${JSON.stringify(abilityinfo.uid)}`);
-            console.log(`abilityinfo.processName: ${JSON.stringify(abilityinfo.processName)}`);
-            console.log(`abilityinfo.startTime: ${JSON.stringify(abilityinfo.startTime)}`);
-            console.log(`abilityinfo.abilityState: ${JSON.stringify(abilityinfo.abilityState)}`);
-        }
+abilityManager.getAbilityRunningInfos((error, data) => {
+  if (error) {
+    console.error(`getAbilityRunningInfos fail, error: ${JSON.stringify(error)}`);
+  } else {
+    console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
+    for (let i = 0; i < data.length; i++) {
+      let abilityInfo = data[i];
+      console.log(`abilityInfo.ability: ${JSON.stringify(abilityInfo.ability)}`);
+      console.log(`abilityInfo.pid: ${JSON.stringify(abilityInfo.pid)}`);
+      console.log(`abilityInfo.uid: ${JSON.stringify(abilityInfo.uid)}`);
+      console.log(`abilityInfo.processName: ${JSON.stringify(abilityInfo.processName)}`);
+      console.log(`abilityInfo.startTime: ${JSON.stringify(abilityInfo.startTime)}`);
+      console.log(`abilityInfo.abilityState: ${JSON.stringify(abilityInfo.abilityState)}`);
     }
+  }
 });
 ```

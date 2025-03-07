@@ -1,6 +1,6 @@
 # List (System API)
 
-The **\<List>** component provides a list container that presents a series of list items arranged in a column with the same width. It supports presentations of the same type of data in a multiple and coherent row style, for example, images or text.
+The **List** component provides a list container that presents a series of list items arranged in a column with the same width. It supports presentations of the same type of data in a multiple and coherent row style, for example, images or text.
 
 > **NOTE**
 >
@@ -10,15 +10,29 @@ The **\<List>** component provides a list container that presents a series of li
 
 ## Attributes
 
-| Name                                   | Type                                    | Description                                      |
-| ------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| chainAnimationOptions<sup>10+</sup>   | [ChainAnimationOptions](#chainanimationoptions10) | Chained animation settings.<br>**System API**: This is a system API.     |
+### chainAnimationOptions<sup>10+</sup>
+
+chainAnimationOptions(value: ChainAnimationOptions)
+
+Sets chained animation options.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name   | Type                                    | Description                          |
+| ------ | ---------------------------------------- | ---------------------------------- |
+| value  | [ChainAnimationOptions](#chainanimationoptions10) | Chained animation options.|
 
 ## ChainEdgeEffect<sup>10+</sup>
 
 Describes the chained animation edge scrolling effect.
 
 **System API**: This is a system API.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name     |  Value | Description                                      |
 | ------- | ------ | ---------------------------------------- |
@@ -31,6 +45,8 @@ Provides the chained animation settings, which cover the maximum spacing, minimu
 
 **System API**: This is a system API.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name          | Type                                      | Mandatory  | Description                                      |
 | ------------ | ---------------------------------------- | ---- | ---------------------------------------- |
 | minSpace     | [Length](ts-types.md#length)             | Yes   | Minimum spacing between the chained animations.                           |
@@ -38,7 +54,3 @@ Provides the chained animation settings, which cover the maximum spacing, minimu
 | conductivity | number                                   | No   | Conductivity of the chained animations. The value range is [0,1]. A larger value indicates higher conductivity.<br>Default value: **0.7**|
 | intensity    | number                                   | No   | Intensity of the chained animations. The value range is [0,1]. A larger value indicates more obvious animations.<br>Default value: **0.3**|
 | edgeEffect   | [ChainEdgeEffect](#chainedgeeffect10)| No   | Chained animation edge scrolling effect.<br>Default value: **ChainEdgeEffect.DEFAULT**|
-
-> **NOTE**
->
-> The default value of the universal attribute [clip](ts-universal-attributes-sharp-clipping.md) is **true** for the **\<List>** component.

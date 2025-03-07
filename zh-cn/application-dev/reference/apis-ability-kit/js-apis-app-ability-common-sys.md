@@ -13,23 +13,25 @@
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 ## 属性
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称        | 类型                 | 说明                                                         |
-| ----------- | -------------------- | ------------------------------------------------------------ |
-| ServiceExtensionContext | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext-sys.md) | ServiceExtensionContext二级模块。<br>**系统接口**：此接口为系统接口。|
-| AutoFillExtensionContext<sup>11+<sup>   | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext-sys.md)               | AutoFillExtensionContext二级模块。<br>**系统接口**：此接口为系统接口。 |
-| AutoStartupInfo<sup>11+<sup>   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)               | AutoStartupInfo二级模块。<br>**系统接口**：此接口为系统接口。 |
-| AutoStartupCallback<sup>11+<sup>   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md)               | AutoStartupCallback二级模块。<br>**系统接口**：此接口为系统接口。 |
+| 名称  | 类型  | 只读  | 可选  | 说明            |
+| ----- | ---- | ----- | ----- | -------------- |
+| ServiceExtensionContext | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext-sys.md) | 否  | 否  | ServiceExtensionContext二级模块。<br>**系统接口**：此接口为系统接口。|
+| AutoFillExtensionContext<sup>11+<sup>   | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext-sys.md) | 否  | 否  | AutoFillExtensionContext二级模块。<br>**系统接口**：此接口为系统接口。 |
+| AutoStartupInfo<sup>11+<sup>   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md) | 否  | 否  | AutoStartupInfo二级模块。<br>**系统接口**：此接口为系统接口。 |
+| AutoStartupCallback<sup>11+<sup>   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md) | 否  | 否  | AutoStartupCallback二级模块。<br>**系统接口**：此接口为系统接口。 |
+| UIServiceExtensionContext<sup>13+<sup> | [UIServiceExtensionContext ](js-apis-inner-application-uiserviceExtensionContext-sys.md) |  否  | 否  |UIServiceExtensionContext 二级模块。<br/>**系统接口**：此接口为系统接口。 |
+| UIServiceHostProxy<sup>13+<sup> | [UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md) |  否  | 否  | UIServiceHostProxy  二级模块。<br/>**系统接口**：此接口为系统接口。 |
 
 **示例：**
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 
 let uiAbilityContext: common.UIAbilityContext;
 let abilityStageContext: common.AbilityStageContext;
@@ -45,4 +47,6 @@ let abilityResult: common.AbilityResult;
 let abilityStartCallback: common.AbilityStartCallback;
 let connectOptions: common.ConnectOptions;
 let autoFillExtensionContext: common.AutoFillExtensionContext;
+let uiServiceExtensionContext: common.UIServiceExtensionContext;
+let uiServiceHostProxy: common.UIServiceHostProxy;
 ```

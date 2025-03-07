@@ -6,7 +6,11 @@ Unlike **[List](js-apis-list.md)**, which is a singly linked list, **LinkedList*
 
 **LinkedList** is more efficient in data insertion than **[ArrayList](js-apis-arraylist.md)**, but less efficient in data access.
 
-**Recommended use case**: Use **LinkedList** for frequent insertion and removal operations.
+> **NOTE**
+>
+> Although using \[index\] in **LinkedList** can obtain an element with the given index, this operation will result in undefined results. Due to this reason, **get()** method is recommended.
+
+**Recommended use case**: Use **LinkedList** for frequent insertion and removal operations when a doubly linked list is required.
 
 This topic uses the following to identify the use of generics:
 - T: Type
@@ -19,12 +23,14 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import LinkedList from '@ohos.util.LinkedList';
+import { LinkedList } from '@kit.ArkTS';
 ```
 
 ## LinkedList
 
 ### Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -38,6 +44,8 @@ import LinkedList from '@ohos.util.LinkedList';
 constructor()
 
 A constructor used to create a **LinkedList** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -62,6 +70,8 @@ let linkedList: LinkedList<string | number | boolean | object> = new LinkedList(
 add(element: T): boolean
 
 Adds an element at the end of this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -97,7 +107,7 @@ class C {
   name: string = ''
   age: string = ''
 }
-let c: C = {name : "Dylon", age : "13"};
+let c: C = {name : "Dylan", age : "13"};
 let result3 = linkedList.add(c);
 let result4 = linkedList.add(false);
 ```
@@ -107,6 +117,8 @@ let result4 = linkedList.add(false);
 addFirst(element: T): void
 
 Adds an element at the top of this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -136,7 +148,7 @@ class C {
   name: string = ''
   age: string = ''
 }
-let c: C = {name : "Dylon", age : "13"};
+let c: C = {name : "Dylan", age : "13"};
 linkedList.addFirst(c);
 linkedList.addFirst(false);
 ```
@@ -147,23 +159,26 @@ insert(index: number, element: T): void
 
 Inserts an element at the specified position in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Index of the position where the element is to be inserted.|
+| index | number | Yes| Index of the position where the element is to be inserted. The value must be less than or equal to int32_max, that is, 2147483647.|
 | element | T | Yes| Target element.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The insert method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The insert method cannot be bound. |
 
 **Example**
 
@@ -179,6 +194,8 @@ linkedList.insert(2, true);
 has(element: T): boolean
 
 Checks whether this container has the specified element.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -216,13 +233,15 @@ get(index: number): T
 
 Obtains an element at the specified position in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -232,10 +251,11 @@ Obtains an element at the specified position in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The get method cannot be bound. |
 
 **Example**
@@ -257,6 +277,8 @@ let result = linkedList.get(2);
 getLastIndexOf(element: T): number
 
 Obtains the index of the last occurrence of the specified element in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -300,6 +322,8 @@ getIndexOf(element: T): number
 
 Obtains the index of the first occurrence of the specified element in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -342,13 +366,15 @@ removeByIndex(index: number): T
 
 Searches for an element based on its index and then removes it.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -358,12 +384,13 @@ Searches for an element based on its index and then removes it.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The removeByIndex method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The removeByIndex method cannot be bound. |
 
 **Example**
 
@@ -383,6 +410,8 @@ removeFirst(): T
 
 Removes the first element from this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -397,8 +426,8 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The removeFirst method cannot be bound. |
 | 10200010 | Container is empty. |
+| 10200011 | The removeFirst method cannot be bound. |
 
 **Example**
 
@@ -418,6 +447,8 @@ removeLast(): T
 
 Removes the last element from this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -432,8 +463,8 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The removeLast method cannot be bound. |
 | 10200010 | Container is empty. |
+| 10200011 | The removeLast method cannot be bound. |
 
 **Example**
 
@@ -452,6 +483,8 @@ let result = linkedList.removeLast();
 remove(element: T): boolean
 
 Removes the first occurrence of the specified element from this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -492,6 +525,8 @@ removeFirstFound(element: T): boolean
 
 Removes the first occurrence of the specified element from this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -512,8 +547,8 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The removeFirstFound method cannot be bound. |
 | 10200010 | Container is empty. |
+| 10200011 | The removeFirstFound method cannot be bound. |
 | 10200017 | The element does not exist in this container. |
 
 **Example**
@@ -533,6 +568,8 @@ removeLastFound(element: T): boolean
 
 Removes the last occurrence of the specified element from this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -553,8 +590,8 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The removeLastFound method cannot be bound. |
 | 10200010 | Container is empty. |
+| 10200011 | The removeLastFound method cannot be bound. |
 | 10200017 | The element does not exist in this container. |
 
 **Example**
@@ -573,6 +610,8 @@ let result = linkedList.removeLastFound(4);
 clone(): LinkedList&lt;T&gt;
 
 Clones this container and returns a copy. The modification to the copy does not affect the original instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -608,6 +647,8 @@ thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -627,10 +668,11 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **Example**
@@ -651,6 +693,8 @@ linkedList.forEach((value: number, index?: number) => {
 clear(): void
 
 Clears this container and sets its length to **0**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -679,13 +723,15 @@ set(index: number, element: T): T
 
 Replaces an element at the specified position in this container with a given element.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 | element | T | Yes| Element to be used for replacement.|
 
 **Return value**
@@ -696,12 +742,13 @@ Replaces an element at the specified position in this container with a given ele
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The set method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The set method cannot be bound. |
 
 **Example**
 
@@ -719,6 +766,8 @@ let result = linkedList.set(2, "b");
 convertToArray(): Array&lt;T&gt;
 
 Converts this container into an array.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -751,6 +800,8 @@ let result = linkedList.convertToArray();
 getFirst(): T
 
 Obtains the first element in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -785,6 +836,8 @@ getLast(): T
 
 Obtains the last element in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -818,9 +871,7 @@ let result = linkedList.getLast();
 
 Obtains an iterator, each item of which is a JavaScript object.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -849,9 +900,9 @@ linkedList.add(4);
 
 // Method 1:
 let items = Array.from(linkedList)
-for (let item of items) { 
-  console.log("value:" + item); 
-} 
+for (let item of items) {
+  console.log("value:" + item);
+}
 
 // Method 2:
 let iter = linkedList[Symbol.iterator]();

@@ -4,7 +4,7 @@
 
 
 
-图片资源建议放在js\default\common目录下，common目录需自行创建，详细的目录结构见[目录结构](../ui/js-framework-file.md#目录结构)。代码示例如下：
+图片资源建议放在js\default\common目录下，common目录需自行创建，详细的目录结构见[目录结构](js-framework-file.md#目录结构)。代码示例如下：
 
 
 ```html

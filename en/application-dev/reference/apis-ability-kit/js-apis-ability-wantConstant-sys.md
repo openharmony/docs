@@ -1,6 +1,6 @@
 # @ohos.ability.wantConstant (wantConstant) (System API)
 
-The **wantConstant** module provides the actions, entities, and flags used in **Want** objects.
+The wantConstant module provides the actions, entities, and flags used in **Want** objects.
 
 > **NOTE**
 > 
@@ -14,14 +14,16 @@ The **wantConstant** module provides the actions, entities, and flags used in **
 import wantConstant from '@ohos.ability.wantConstant';
 ```
 
-## wantConstant.Flags
+## Flags
 
  Enumerates the flags that specify how the Want will be handled.
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
+**System API**: This is a system API.
+
 | Name                                | Value      | Description                                                        |
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
-| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | Grants the permission to make the URI persistent.<br>**System API**: This is a system API and cannot be called by third-party applications. |
-| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | Grants the permission to verify URIs by prefix matching.<br>**System API**: This is a system API and cannot be called by third-party applications.|
-| FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | Indicates that ability continuation is reversible.<br>**System API**: This is a system API and cannot be called by third-party applications.     |
+| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | Grants the permission to make the URI persistent. |
+| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | Grants the permission to verify URIs by prefix matching.|
+| FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | Indicates that ability continuation is reversible.    |

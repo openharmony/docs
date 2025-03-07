@@ -10,7 +10,7 @@ SIM卡管理模块提供了SIM卡管理的基础能力，包括获取指定卡�
 ## 导入模块
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 ```
 
 ## sim.isOperatorSimCard<sup>11+</sup>
@@ -43,17 +43,17 @@ isOperatorSimCard\(slotId: number, operator: OperatorSimCard\): boolean
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 let slotId : number = 0;
 let operator : sim.OperatorSimCard = sim.OperatorSimCard.CHINA_TELECOM_CARD;
@@ -92,19 +92,19 @@ setDefaultVoiceSlotId\(slotId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 | 8301001  | SIM card is not activated.                   |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.setDefaultVoiceSlotId(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -144,19 +144,19 @@ setDefaultVoiceSlotId\(slotId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 | 8301001  | SIM card is not activated.                   |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.setDefaultVoiceSlotId(0).then(() => {
     console.log(`setDefaultVoiceSlotId success.`);
@@ -193,18 +193,18 @@ setShowName\(slotId: number, name: string, callback: AsyncCallback\<void\>\): vo
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let name: string = "ShowName";
 sim.setShowName(0, name, (err: BusinessError) => {
@@ -245,18 +245,18 @@ setShowName\(slotId: number, name: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let name: string = "ShowName";
 sim.setShowName(0, name).then(() => {
@@ -293,18 +293,18 @@ getShowName\(slotId: number, callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getShowName(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -344,18 +344,18 @@ getShowName\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getShowName(0).then((data: string) => {
     console.log(`getShowName success, promise: data->${JSON.stringify(data)}`);
@@ -392,18 +392,18 @@ setShowNumber\(slotId: number, number: string, callback: AsyncCallback\<void\>\)
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let number: string = '+861xxxxxxxxxx';
 sim.setShowNumber(0, number, (err: BusinessError) => {
@@ -445,18 +445,18 @@ setShowNumber\(slotId: number, number: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let number: string = '+861xxxxxxxxxx';
 sim.setShowNumber(0, number).then(() => {
@@ -493,18 +493,18 @@ getShowNumber\(slotId: number, callback: AsyncCallback\<string\>): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getShowNumber(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -544,18 +544,18 @@ getShowNumber\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getShowNumber(0).then((data: string) => {
     console.log(`getShowNumber success, promise: data->${JSON.stringify(data)}`);
@@ -591,18 +591,18 @@ activateSim\(slotId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.activateSim(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -642,18 +642,18 @@ activateSim\(slotId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.activateSim(0).then(() => {
     console.log(`activateSim success.`);
@@ -689,18 +689,18 @@ deactivateSim\(slotId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.deactivateSim(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -740,18 +740,18 @@ deactivateSim\(slotId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.deactivateSim(0).then(() => {
     console.log(`deactivateSim success.`);
@@ -788,19 +788,19 @@ setLockState\(slotId: number, options: LockInfo, callback: AsyncCallback\<LockSt
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let lockInfo: sim.LockInfo = {
     lockType: sim.LockType.PIN_LOCK,
@@ -846,19 +846,19 @@ setLockState\(slotId: number, options: LockInfo\): Promise\<LockStatusResponse\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let lockInfo: sim.LockInfo = {
     lockType: sim.LockType.PIN_LOCK,
@@ -900,19 +900,19 @@ getLockState\(slotId: number, lockType: LockType, callback: AsyncCallback\<LockS
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getLockState(0, 1, (err: BusinessError, data: sim.LockState) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -953,19 +953,19 @@ getLockState\(slotId: number, lockType: LockType\): Promise\<LockState\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getLockState(0, 1).then((data: sim.LockState) => {
     console.log(`getLockState success, promise: data->${JSON.stringify(data)}`);
@@ -1003,19 +1003,19 @@ alterPin\(slotId: number, newPin: string, oldPin: string, callback: AsyncCallbac
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.alterPin(0, "1234", "0000", (err: BusinessError, data: sim.LockStatusResponse) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1057,19 +1057,19 @@ alterPin\(slotId: number, newPin: string, oldPin: string\): Promise\<LockStatusR
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.alterPin(0, "1234", "0000").then((data: sim.LockStatusResponse) => {
     console.log(`alterPin success, promise: data->${JSON.stringify(data)}`);
@@ -1107,19 +1107,19 @@ alterPin2\(slotId: number, newPin2: string, oldPin2: string, callback: AsyncCall
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.alterPin2(0, "1234", "0000", (err: BusinessError, data: sim.LockStatusResponse) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1161,19 +1161,19 @@ alterPin2\(slotId: number, newPin2: string, oldPin2: string\): Promise\<LockStat
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.alterPin2(0, "1234", "0000").then((data: sim.LockStatusResponse) => {
     console.log(`alterPin2 success, promise: data->${JSON.stringify(data)}`);
@@ -1210,19 +1210,19 @@ unlockPin\(slotId: number, pin: string, callback: AsyncCallback\<LockStatusRespo
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let pin: string = '1234';
 sim.unlockPin(0, pin, (err: BusinessError, data: sim.LockStatusResponse) => {
@@ -1264,19 +1264,19 @@ unlockPin\(slotId: number, pin: string\): Promise\<LockStatusResponse\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let pin: string = '1234';
 sim.unlockPin(0, pin).then((data: sim.LockStatusResponse) => {
@@ -1315,19 +1315,19 @@ unlockPuk\(slotId: number, newPin: string, puk: string, callback: AsyncCallback\
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let puk: string = '1xxxxxxx';
 let newPin: string = '1235';
@@ -1371,19 +1371,19 @@ unlockPuk\(slotId: number, newPin: string, puk: string\): Promise\<LockStatusRes
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let puk: string = '1xxxxxxx';
 let newPin: string = '1235';
@@ -1422,19 +1422,19 @@ unlockPin2\(slotId: number, pin2: string, callback: AsyncCallback\<LockStatusRes
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let pin2: string = '1234';
 sim.unlockPin2(0, pin2, (err: BusinessError, data: sim.LockStatusResponse) => {
@@ -1476,19 +1476,19 @@ unlockPin2\(slotId: number, pin2: string\): Promise\<LockStatusResponse\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let pin2: string = '1234';
 sim.unlockPin2(0, pin2).then((data: sim.LockStatusResponse) => {
@@ -1527,19 +1527,19 @@ unlockPuk2\(slotId: number, newPin2: string, puk2: string, callback: AsyncCallba
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let puk2: string = '1xxxxxxx';
 let newPin2: string = '1235';
@@ -1583,19 +1583,19 @@ unlockPuk2\(slotId: number, newPin2: string, puk2: string\): Promise\<LockStatus
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let puk2: string = '1xxxxxxx';
 let newPin2: string = '1235';
@@ -1633,18 +1633,18 @@ getSimIccId\(slotId: number, callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimIccId(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1684,18 +1684,18 @@ getSimIccId\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimIccId(0).then((data:string) => {
     console.log(`getSimIccId success, promise: data->${JSON.stringify(data)}`);
@@ -1731,18 +1731,18 @@ getVoiceMailIdentifier\(slotId: number, callback: AsyncCallback\<string\>\): voi
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getVoiceMailIdentifier(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1782,18 +1782,18 @@ getVoiceMailIdentifier\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getVoiceMailIdentifier(0).then((data: string) => {
     console.log(`getVoiceMailIdentifier success, promise: data->${JSON.stringify(data)}`);
@@ -1829,18 +1829,18 @@ getVoiceMailNumber\(slotId: number, callback: AsyncCallback\<string\>): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getVoiceMailNumber(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1880,18 +1880,18 @@ getVoiceMailNumber\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getVoiceMailNumber(0).then((data: string) => {
     console.log(`getVoiceMailNumber success, promise: data->${JSON.stringify(data)}`);
@@ -1930,19 +1930,19 @@ setVoiceMailInfo\(slotId: number, mailName: string, mailNumber: string, callback
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com", (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -1984,19 +1984,19 @@ setVoiceMailInfo\(slotId: number, mailName: string, mailNumber: string\): Promis
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com").then(() => {
     console.log(`setVoiceMailInfo success.`);
@@ -2032,18 +2032,18 @@ getSimTelephoneNumber\(slotId: number, callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimTelephoneNumber(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -2083,18 +2083,18 @@ getSimTelephoneNumber\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimTelephoneNumber(0).then((data: string) => {
     console.log(`getSimTelephoneNumber success, promise: data->${JSON.stringify(data)}`);
@@ -2130,18 +2130,18 @@ getSimGid1\(slotId: number, callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimGid1(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -2181,18 +2181,18 @@ getSimGid1\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimGid1(0).then((data: string) => {
     console.log(`getSimGid1 success, promise: data->${JSON.stringify(data)}`);
@@ -2228,18 +2228,18 @@ getIMSI\(slotId: number, callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getIMSI(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -2279,18 +2279,18 @@ getIMSI\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getIMSI(0).then((data: string) => {
     console.log(`getIMSI success, promise: data->${JSON.stringify(data)}`);
@@ -2326,17 +2326,17 @@ getOperatorConfigs\(slotId: number, callback: AsyncCallback\<Array\<OperatorConf
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getOperatorConfigs(0, (err: BusinessError, data: Array<sim.OperatorConfig>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -2376,17 +2376,17 @@ getOperatorConfigs\(slotId: number\): Promise\<Array\<OperatorConfig\>\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getOperatorConfigs(0).then((data: Array<sim.OperatorConfig>) => {
     console.log(`getOperatorConfigs success, promise: data->${JSON.stringify(data)}`);
@@ -2428,19 +2428,19 @@ queryIccDiallingNumbers\(slotId: number, type: ContactType, callback: AsyncCallb
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.queryIccDiallingNumbers(0, 1, (err: BusinessError, data: Array<sim.DiallingNumbersInfo>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -2486,19 +2486,19 @@ queryIccDiallingNumbers\(slotId: number, type: ContactType\): Promise\<Array\<Di
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.queryIccDiallingNumbers(0, 1).then((data:  Array<sim.DiallingNumbersInfo>) => {
     console.log(`queryIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
@@ -2541,19 +2541,19 @@ addIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
@@ -2605,19 +2605,19 @@ addIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
@@ -2664,19 +2664,19 @@ delIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
@@ -2729,19 +2729,19 @@ delIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
@@ -2788,19 +2788,19 @@ updateIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Di
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
@@ -2853,19 +2853,19 @@ updateIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Di
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
@@ -2907,18 +2907,18 @@ sendEnvelopeCmd\(slotId: number, cmd: string, callback: AsyncCallback\<void\>\):
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.sendEnvelopeCmd(0, "ls", (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -2959,18 +2959,18 @@ sendEnvelopeCmd\(slotId: number, cmd: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.sendEnvelopeCmd(0, "ls").then(() => {
     console.log(`sendEnvelopeCmd success.`);
@@ -3007,18 +3007,18 @@ sendTerminalResponseCmd\(slotId: number, cmd: string, callback: AsyncCallback\<v
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.sendTerminalResponseCmd(0, "ls", (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -3059,18 +3059,18 @@ sendTerminalResponseCmd\(slotId: number, cmd: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.sendTerminalResponseCmd(0, "ls").then(() => {
     console.log(`sendTerminalResponseCmd success.`);
@@ -3108,19 +3108,19 @@ unlockSimLock\(slotId: number, lockInfo: PersoLockInfo, callback: AsyncCallback\
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let persoLockInfo: sim.PersoLockInfo = {
     lockType: sim.PersoLockType.PN_PIN_LOCK,
@@ -3165,19 +3165,19 @@ unlockSimLock\(slotId: number, lockInfo: PersoLockInfo\): Promise\<LockStatusRes
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let persoLockInfo: sim.PersoLockInfo = {
     lockType: sim.PersoLockType.PN_PIN_LOCK,
@@ -3216,16 +3216,16 @@ getDsdsMode\(callback: AsyncCallback\<DsdsMode\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getDsdsMode((err: BusinessError, data: sim.DsdsMode) => {
     if (err) {
@@ -3262,22 +3262,77 @@ getDsdsMode\(\): Promise\<DsdsMode\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let promise = sim.getDsdsMode();
 promise.then((data: sim.DsdsMode) => {
     console.log(`getDsdsMode success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getDsdsMode failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getSimAuthentication<sup>14+</sup>
+
+getSimAuthentication\(slotId: number, authType: AuthType, authData: string\): Promise\<SimAuthenticationResponse\>
+
+SIM卡鉴权。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                             | 必填 | 说明                                   |
+| -------- | -------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                           | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| authType | [AuthType](#authtype14)          | 是   | 身份验证类型。                         |
+| authData | string                           | 是   | 密码或其他认证信息。                   |
+
+**返回值：**
+
+| 类型              | 说明                                    |
+| ----------------- | --------------------------------------- |
+| Promise\<[SimAuthenticationResponse](#simauthenticationresponse14)\> | 以Promise形式返回身份验证响应的字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Service connection failed.                   |
+| 8300003  | System internal error.                       |
+| 8300004  | No SIM card.                                 |
+| 8300999  | Unknown error.                               |
+| 8301002  | An error occurred when operating the SIM card.                              |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
+
+sim.getSimAuthentication(0, sim.AuthType.SIM_AUTH_EAP_SIM_TYPE, "test").then(() => {
+    console.log(`getSimAuthentication success.`);
+}).catch((err: BusinessError) => {
+    console.error(`getSimAuthentication failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3468,3 +3523,30 @@ promise.then((data: sim.DsdsMode) => {
 | 名称                | 值                    | 说明      |
 | ------------------ | --------------------- | -------- |
 | CHINA_TELECOM_CARD | "china_telecom_card"  | 中国电信卡。 |
+
+## AuthType<sup>14+</sup>
+
+身份验证类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+| 名称                | 值                    | 说明      |
+| ------------------ | --------------------- | -------- |
+| SIM_AUTH_EAP_SIM_TYPE   | 128  | 鉴权类型为EAP-SIM。 |
+| SIM_AUTH_EAP_AKA_TYPE   | 129  | 鉴权类型为EAP-AKA。 |
+
+## SimAuthenticationResponse<sup>14+</sup>
+
+SIM卡鉴权响应。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+| 名称         | 类型   | 必填 |    说明    |
+| ------------ | ------ | ---- | ---------- |
+| simStatusWord1 | number |  是  | SIM卡状态字1。 |
+| simStatusWord2 | number |  是  | SIM卡状态字2。 |
+| response       | string |  是  | 鉴权响应。     |

@@ -54,7 +54,7 @@ typedef struct Vibrator_Attribute Vibrator_Attribute
 ```
 **Description**
 
-Defines a struct for the vibrator attribute.
+Describes the vibrator attribute.
 
 **Since**: 11
 
@@ -78,7 +78,7 @@ typedef struct Vibrator_FileDescription Vibrator_FileDescription
 ```
 **Description**
 
-Defines a struct for the vibration file description.
+Describes the vibration file description.
 
 **Since**: 11
 
@@ -105,7 +105,7 @@ enum Vibrator_ErrorCode:int32_t
 ```
 **Description**
 
-Enumerates the vibrator error codes.
+Defines an enum for vibrator error codes.
 
 **Since**: 11
 
@@ -124,7 +124,7 @@ enum Vibrator_Usage
 ```
 **Description**
 
-Enumerates the vibration scenarios.
+Defines an enum for vibration scenarios.
 
 **Since**: 11
 

@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import radio from '@ohos.telephony.radio';
+import { radio } from '@kit.TelephonyKit';
 ```
 
 
@@ -41,17 +41,17 @@ setPrimarySlotId\(slotId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.setPrimarySlotId(slotId, (err: BusinessError) => {
@@ -96,17 +96,17 @@ setPrimarySlotId\(slotId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.setPrimarySlotId(slotId).then(() => {
@@ -142,16 +142,16 @@ getIMEI\(callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 radio.getIMEI((err: BusinessError, data: string) => {
     if (err) {
@@ -190,16 +190,16 @@ getIMEI\(slotId: number, callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getIMEI(slotId, (err: BusinessError, data: string) => {
@@ -244,16 +244,16 @@ getIMEI\(slotId?: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getIMEI(slotId).then((data: string) => {
@@ -289,16 +289,16 @@ getMEID\(callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 radio.getMEID((err: BusinessError, data: string) => {
     if (err) {
@@ -337,16 +337,16 @@ getMEID\(slotId: number, callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getMEID(slotId, (err: BusinessError, data: string) => {
@@ -391,16 +391,16 @@ getMEID\(slotId?: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getMEID(slotId).then((data: string) => {
@@ -438,16 +438,16 @@ getUniqueDeviceId\(callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 radio.getUniqueDeviceId((err: BusinessError, data: string) => {
     if (err) {
@@ -488,16 +488,16 @@ getUniqueDeviceId\(slotId: number, callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getUniqueDeviceId(slotId, (err: BusinessError, data: string) => {
@@ -544,16 +544,16 @@ getUniqueDeviceId\(slotId?: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getUniqueDeviceId(slotId).then((data: string) => {
@@ -589,16 +589,16 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 radio.sendUpdateCellLocationRequest((err: BusinessError) => {
     if (err) {
@@ -636,16 +636,16 @@ sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback\<void\>\)
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.sendUpdateCellLocationRequest(slotId, (err: BusinessError) => {
@@ -689,16 +689,16 @@ sendUpdateCellLocationRequest\(slotId?: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.sendUpdateCellLocationRequest(slotId).then(() => {
@@ -734,16 +734,16 @@ getCellInformation\(callback: AsyncCallback\<Array\<CellInformation\>\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 radio.getCellInformation((err: BusinessError, data: Array<radio.CellInformation>) => {
     if (err) {
@@ -782,16 +782,16 @@ getCellInformation\(slotId: number, callback: AsyncCallback\<Array\<CellInformat
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getCellInformation(slotId, (err: BusinessError, data: Array<radio.CellInformation>) => {
@@ -836,16 +836,16 @@ getCellInformation\(slotId?: number\): Promise\<Array\<CellInformation\>\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getCellInformation(slotId).then((data: Array<radio.CellInformation>) => {
@@ -882,16 +882,16 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCa
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let networkInformation: radio.NetworkInformation = {
     operatorName: "中国移动",
@@ -946,16 +946,16 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let networkInformation: radio.NetworkInformation = {
     operatorName: "中国移动",
@@ -1003,16 +1003,16 @@ getNetworkSearchInformation\(slotId: number, callback: AsyncCallback\<NetworkSea
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 radio.getNetworkSearchInformation(0, (err: BusinessError, data: radio.NetworkSearchResult) => {
     if (err) {
@@ -1055,16 +1055,16 @@ getNetworkSearchInformation\(slotId: number\): Promise\<NetworkSearchResult\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 radio.getNetworkSearchInformation(0).then((data: radio.NetworkSearchResult) => {
     console.log(`getNetworkSearchInformation success, promise: data->${JSON.stringify(data)}`);
@@ -1100,16 +1100,16 @@ getNrOptionMode\(callback: AsyncCallback\<NrOptionMode\>\): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 radio.getNrOptionMode((err: BusinessError, data: radio.NrOptionMode) => {
     if (err) {
@@ -1149,16 +1149,16 @@ getNrOptionMode\(slotId: number, callback: AsyncCallback\<NrOptionMode\>\): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getNrOptionMode(slotId, (err: BusinessError, data: radio.NrOptionMode) => {
@@ -1204,16 +1204,16 @@ getNrOptionMode\(slotId?: number\): Promise\<NrOptionMode\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getNrOptionMode(slotId).then((data: radio.NrOptionMode) => {
@@ -1249,16 +1249,16 @@ turnOnRadio\(callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 radio.turnOnRadio((err: BusinessError) => {
     if (err) {
@@ -1297,16 +1297,16 @@ turnOnRadio\(slotId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.turnOnRadio(slotId, (err: BusinessError) => {
@@ -1351,16 +1351,16 @@ turnOnRadio(slotId?: number): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.turnOnRadio(slotId).then(() => {
@@ -1396,16 +1396,16 @@ turnOffRadio\(callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 radio.turnOffRadio((err: BusinessError) => {
     if (err) {
@@ -1444,16 +1444,16 @@ turnOffRadio\(slotId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.turnOffRadio(slotId, (err: BusinessError) => {
@@ -1498,16 +1498,16 @@ turnOffRadio\(slotId?: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.turnOffRadio(slotId).then(() => {
@@ -1545,16 +1545,16 @@ setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let mode: radio.PreferredNetworkMode = radio.PreferredNetworkMode.PREFERRED_NETWORK_MODE_GSM;
@@ -1600,16 +1600,16 @@ setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode\): Promis
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let mode: radio.PreferredNetworkMode = radio.PreferredNetworkMode.PREFERRED_NETWORK_MODE_GSM;
@@ -1647,16 +1647,16 @@ getPreferredNetwork\(slotId: number, callback: AsyncCallback\<PreferredNetworkMo
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getPreferredNetwork(slotId, (err: BusinessError, data: radio.PreferredNetworkMode) => {
@@ -1700,16 +1700,16 @@ getPreferredNetwork\(slotId: number\): Promise\<PreferredNetworkMode\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getPreferredNetwork(slotId).then((data: radio.PreferredNetworkMode) => {
@@ -1747,16 +1747,16 @@ getImsRegInfo\(slotId: number, imsType: ImsServiceType, callback: AsyncCallback\
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
@@ -1802,16 +1802,16 @@ getImsRegInfo\(slotId: number, imsType: ImsServiceType\): Promise\<ImsRegInfo\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
@@ -1851,11 +1851,11 @@ on\(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -1896,11 +1896,11 @@ off\(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callbac
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -1940,16 +1940,16 @@ getBasebandVersion\(slotId: number, callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getBasebandVersion(slotId, (err: BusinessError, data: string) => {
@@ -1994,16 +1994,16 @@ getBasebandVersion\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getBasebandVersion(slotId).then((data: string) => {
@@ -2042,16 +2042,16 @@ setNROptionMode\(slotId: number, mode: NROptionMode, callback: AsyncCallback\<vo
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let mode: radio.NROptionMode = radio.NROptionMode.NR_OPTION_NSA_ONLY;
@@ -2098,16 +2098,16 @@ setNROptionMode\(slotId: number, mode: NROptionMode\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let mode: radio.NROptionMode = radio.NROptionMode.NR_OPTION_NSA_ONLY;
@@ -2143,16 +2143,16 @@ getNROptionMode\(slotId: number, callback: AsyncCallback\<NROptionMode\>\): void
 | 错误码ID |                  错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getNROptionMode(slotId, (err: BusinessError, data: radio.NROptionMode) => {
@@ -2193,16 +2193,16 @@ getNROptionMode\(slotId: number\): Promise\<NROptionMode\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getNROptionMode(slotId).then((data: radio.NROptionMode) => {
@@ -2241,16 +2241,16 @@ getNetworkCapability\(slotId: number, type: NetworkCapabilityType, callback: Asy
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let type: radio.NetworkCapabilityType = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
@@ -2297,16 +2297,16 @@ getNetworkCapability\(slotId: number, type: NetworkCapabilityType\): Promise\<Ne
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let type: radio.NetworkCapabilityType = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
@@ -2348,16 +2348,16 @@ setNetworkCapability\(slotId: number, type: NetworkCapabilityType, state: Networ
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let type: radio.NetworkCapabilityType = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
@@ -2406,16 +2406,16 @@ setNetworkCapability\(slotId: number, type: NetworkCapabilityType, state: Networ
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let type: radio.NetworkCapabilityType = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
@@ -2459,16 +2459,16 @@ factoryReset\(slotId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.factoryReset(slotId).then(() => {
@@ -2478,6 +2478,46 @@ radio.factoryReset(slotId).then(() => {
 });
 ```
 
+## radio.getIMEISV<sup>12+</sup>
+
+getIMEISV\(slotId: number\): string
+
+获取设备指定卡槽的软件版本号。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 否   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Service connection failed.                   |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error.                               |
+
+**示例：**
+
+```ts
+let slotId: number = 0;
+let data: string = radio.getIMEISV(slotId);
+console.log(`IMEISV is:` + data);
+```
 
 ## PreferredNetworkMode<sup>8+</sup>
 

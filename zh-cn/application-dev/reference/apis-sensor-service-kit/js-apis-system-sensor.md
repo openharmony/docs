@@ -16,30 +16,29 @@ sensor模块提供订阅传感器数据基本能力，主要包含查询传感�
 
 
 ```
-import sensor from '@system.sensor';
+import { Sensor } from '@kit.SensorServiceKit';
 ```
 
-## sensor.subscribeAccelerometer
+## Sensor.subscribeAccelerometer
 
  subscribeAccelerometer(options: subscribeAccelerometerOptions): void
 
 观察加速度数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**需要权限：** ohos.permission.ACCELEROMETER，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
 
-**参数：**
+**参数**：
 
 | 参数名  | 类型                                                         | 必填 | 说明                                       |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
 | options | [subscribeAccelerometerOptions](#subscribeaccelerometeroptions) | 是   | 监听加速度传感器数据的回调函数的执行频率。 |
 
-**示例：** 
+**示例**：
 
 ```ts
-import sensor from '@system.sensor';
-import { AccelerometerResponse, subscribeAccelerometerOptions } from '@system.sensor';
+import { Sensor, AccelerometerResponse, subscribeAccelerometerOptions } from '@kit.SensorServiceKit';
 
 let accelerometerOptions: subscribeAccelerometerOptions = {
   interval: 'normal',
@@ -52,29 +51,29 @@ let accelerometerOptions: subscribeAccelerometerOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeAccelerometer(accelerometerOptions);
+Sensor.subscribeAccelerometer(accelerometerOptions);
 ```
 
 > **说明：**
 > 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
-## sensor.unsubscribeAccelerometer
+## Sensor.unsubscribeAccelerometer
 
 unsubscribeAccelerometer(): void
 
 取消订阅加速度数据。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**需要权限：** ohos.permission.ACCELEROMETER，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
 
-**示例：**
+**示例**：
 
 ```ts
-sensor.unsubscribeAccelerometer();
+Sensor.unsubscribeAccelerometer();
 ```
 
-## sensor.subscribeCompass
+## Sensor.subscribeCompass
 
  subscribeCompass(options: SubscribeCompassOptions): void
 
@@ -82,17 +81,16 @@ sensor.unsubscribeAccelerometer();
 
 **系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**参数：**
+**参数**：
 
 | 参数名  | 类型                                                | 必填 | 说明                             |
 | ------- | --------------------------------------------------- | ---- | -------------------------------- |
 | options | [SubscribeCompassOptions](#subscribecompassoptions) | 是   | 当罗盘传感器数据发生变化时调用。 |
 
-**示例：** 
+**示例**：
 
 ```ts
-import sensor from '@system.sensor';
-import { CompassResponse, SubscribeCompassOptions } from '@system.sensor';
+import { Sensor, CompassResponse, SubscribeCompassOptions } from '@kit.SensorServiceKit';
 
 let subscribeCompassOptions: SubscribeCompassOptions = {
   success: (ret: CompassResponse) => {
@@ -102,45 +100,44 @@ let subscribeCompassOptions: SubscribeCompassOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeCompass(subscribeCompassOptions);
+Sensor.subscribeCompass(subscribeCompassOptions);
 ```
 
 > **说明：**
 > 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
-## sensor.unsubscribeCompass
+## Sensor.unsubscribeCompass
 
 unsubscribeCompass(): void
 
 取消订阅罗盘。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**示例：**
+**示例**：
 
 ```ts
-sensor.unsubscribeCompass();
+Sensor.unsubscribeCompass();
 ```
 
-## sensor.subscribeProximity
+## Sensor.subscribeProximity
 
  subscribeProximity(options: SubscribeProximityOptions): void
 
 订阅距离感应数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**参数：**
+**参数**：
 
 | 参数名  | 类型                                                    | 必填 | 说明                             |
 | ------- | ------------------------------------------------------- | ---- | -------------------------------- |
 | options | [SubscribeProximityOptions](#subscribeproximityoptions) | 是   | 当距离传感器数据发生变化时调用。 |
 
-**示例：** 
+**示例**：
 
 ```ts
-import sensor from '@system.sensor';
-import { ProximityResponse, SubscribeProximityOptions } from '@system.sensor';
+import { Sensor, ProximityResponse, SubscribeProximityOptions } from '@kit.SensorServiceKit';
 
 let subscribeProximityOptions: SubscribeProximityOptions = {
   success: (ret: ProximityResponse) => {
@@ -150,45 +147,44 @@ let subscribeProximityOptions: SubscribeProximityOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeProximity(subscribeProximityOptions);
+Sensor.subscribeProximity(subscribeProximityOptions);
 ```
 
 > **说明：**
 > 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
-## sensor.unsubscribeProximity
+## Sensor.unsubscribeProximity
 
 unsubscribeProximity(): void
 
 取消订阅距离感应。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**示例：**
+**示例**：
 
 ```ts
-sensor.unsubscribeProximity();
+Sensor.unsubscribeProximity();
 ```
 
-## sensor.subscribeLight
+## Sensor.subscribeLight
 
  subscribeLight(options: SubscribeLightOptions): void
 
 订阅环境光线感应数据变化。再次调用时，会覆盖前一次调用效果，即仅最后一次调用生效。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**参数：**
+**参数**：
 
 | 参数名  | 类型                                            | 必填 | 说明                               |
 | ------- | ----------------------------------------------- | ---- | ---------------------------------- |
 | options | [SubscribeLightOptions](#subscribelightoptions) | 是   | 当环境光传感器数据发生变化时调用。 |
 
-**示例：** 
+**示例**：
 
 ```ts
-import sensor from '@system.sensor';
-import { LightResponse, SubscribeLightOptions } from '@system.sensor';
+import { Sensor, LightResponse, SubscribeLightOptions } from '@kit.SensorServiceKit';
 
 let subscribeLightOptions: SubscribeLightOptions = {
   success: (ret: LightResponse) => {
@@ -198,27 +194,27 @@ let subscribeLightOptions: SubscribeLightOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeLight(subscribeLightOptions);
+Sensor.subscribeLight(subscribeLightOptions);
 ```
 
 > **说明：**
 > 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
-## sensor.unsubscribeLight
+## Sensor.unsubscribeLight
 
 unsubscribeLight(): void
 
 取消订阅环境光线感应。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**示例：** 
+**示例**：
 
 ```ts
-sensor.unsubscribeLight();
+Sensor.unsubscribeLight();
 ```
 
-## sensor.subscribeStepCounter
+## Sensor.subscribeStepCounter
 
  subscribeStepCounter(options: SubscribeStepCounterOptions): void
 
@@ -228,17 +224,16 @@ sensor.unsubscribeLight();
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
-**参数：**
+**参数**：
 
 | 参数名  | 类型                                                        | 必填 | 说明                                   |
 | ------- | ----------------------------------------------------------- | ---- | -------------------------------------- |
 | options | [SubscribeStepCounterOptions](#subscribestepcounteroptions) | 是   | 当步进计数器传感器数据发生变化时调用。 |
 
-**示例：** 
+**示例**：
 
 ```ts
-import sensor from '@system.sensor';
-import { StepCounterResponse, SubscribeStepCounterOptions } from '@system.sensor';
+import { Sensor, StepCounterResponse, SubscribeStepCounterOptions } from '@kit.SensorServiceKit';
 
 let subscribeStepCounterOptions: SubscribeStepCounterOptions = {
   success: (ret: StepCounterResponse) => {
@@ -248,48 +243,47 @@ let subscribeStepCounterOptions: SubscribeStepCounterOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeStepCounter(subscribeStepCounterOptions);
+Sensor.subscribeStepCounter(subscribeStepCounterOptions);
 ```
 
 > **说明：**
 > 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
-## sensor.unsubscribeStepCounter
+## Sensor.unsubscribeStepCounter
 
 unsubscribeStepCounter(): void
 
 取消订阅计步传感器。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**需要权限：** ohos.permission.ACTIVITY_MOTION
+**需要权限**：ohos.permission.ACTIVITY_MOTION
 
-**示例：** 
+**示例**：
 
 ```ts
-sensor.unsubscribeStepCounter();
+Sensor.unsubscribeStepCounter();
 ```
 
 
-## sensor.subscribeBarometer
+## Sensor.subscribeBarometer
 
 subscribeBarometer(options: SubscribeBarometerOptions): void
 
 订阅气压计传感器数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**参数：**
+**参数**：
 
 | 参数名  | 类型                                                    | 必填 | 说明                               |
 | ------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | options | [SubscribeBarometerOptions](#subscribebarometeroptions) | 是   | 当气压计传感器数据发生变化时调用。 |
 
-**示例：** 
+**示例**：
 
 ```ts
-import sensor from '@system.sensor';
-import { BarometerResponse, SubscribeBarometerOptions } from '@system.sensor';
+import { Sensor, BarometerResponse, SubscribeBarometerOptions } from '@kit.SensorServiceKit';
 
 let subscribeBarometerOptions: SubscribeBarometerOptions = {
   success: (ret: BarometerResponse) => {
@@ -299,49 +293,48 @@ let subscribeBarometerOptions: SubscribeBarometerOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeBarometer(subscribeBarometerOptions);
+Sensor.subscribeBarometer(subscribeBarometerOptions);
 ```
 
 > **说明：**
 > 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 
-## sensor.unsubscribeBarometer
+## Sensor.unsubscribeBarometer
 
 unsubscribeBarometer(): void
 
 取消订阅气压计传感器。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**示例：** 
+**示例**：
 
 ```ts
-sensor.unsubscribeBarometer();
+Sensor.unsubscribeBarometer();
 ```
 
 
-## sensor.subscribeHeartRate
+## Sensor.subscribeHeartRate
 
  subscribeHeartRate(options: SubscribeHeartRateOptions): void
 
 订阅心率传感器数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
-**系统能力:** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**需要权限：** ohos.permission.READ_HEALTH_DATA
+**需要权限**：ohos.permission.READ_HEALTH_DATA
 
-**参数：**
+**参数**：
 
 | 参数名  | 类型                                                    | 必填 | 说明                             |
 | ------- | ------------------------------------------------------- | ---- | -------------------------------- |
 | options | [SubscribeHeartRateOptions](#subscribeheartrateoptions) | 是   | 当心率传感器数据发生变化时调用。 |
 
-**示例：** 
+**示例**：
 
 ```ts
-import sensor from '@system.sensor';
-import { HeartRateResponse, SubscribeHeartRateOptions } from '@system.sensor';
+import { Sensor, HeartRateResponse, SubscribeHeartRateOptions } from '@kit.SensorServiceKit';
 
 let subscribeHeartRateOptions: SubscribeHeartRateOptions = {
   success: (ret: HeartRateResponse) => {
@@ -351,48 +344,47 @@ let subscribeHeartRateOptions: SubscribeHeartRateOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeHeartRate(subscribeHeartRateOptions);
+Sensor.subscribeHeartRate(subscribeHeartRateOptions);
 ```
 
 > **说明：**
 > 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 
-## sensor.unsubscribeHeartRate
+## Sensor.unsubscribeHeartRate
 
 unsubscribeHeartRate(): void
 
 取消订阅心率传感器。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**需要权限：** ohos.permission.READ_HEALTH_DATA
+**需要权限**：ohos.permission.READ_HEALTH_DATA
 
-**示例：** 
+**示例**：
 
 ```ts
-sensor.unsubscribeHeartRate();
+Sensor.unsubscribeHeartRate();
 ```
 
-## sensor.subscribeOnBodyState
+## Sensor.subscribeOnBodyState
 
  subscribeOnBodyState(options: SubscribeOnBodyStateOptions): void
 
 订阅设备佩戴状态。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**参数：**
+**参数**：
 
 | 参数名  | 类型                                                        | 必填 | 说明                   |
 | ------- | ----------------------------------------------------------- | ---- | ---------------------- |
 | options | [SubscribeOnBodyStateOptions](#subscribeonbodystateoptions) | 是   | 当穿着状态改变时调用。 |
 
-**示例：** 
+**示例**：
 
 ```ts
-import sensor from '@system.sensor';
-import { OnBodyStateResponse, SubscribeOnBodyStateOptions } from '@system.sensor';
+import { Sensor, OnBodyStateResponse, SubscribeOnBodyStateOptions } from '@kit.SensorServiceKit';
 
 let subscribeOnBodyStateOptions: SubscribeOnBodyStateOptions = {
   success: (ret: OnBodyStateResponse) => {
@@ -402,45 +394,44 @@ let subscribeOnBodyStateOptions: SubscribeOnBodyStateOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeOnBodyState(subscribeOnBodyStateOptions);
+Sensor.subscribeOnBodyState(subscribeOnBodyStateOptions);
 ```
 
 > **说明：**
 > 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
-## sensor.unsubscribeOnBodyState
+## Sensor.unsubscribeOnBodyState
 
 unsubscribeOnBodyState(): void
 
 取消订阅设备佩戴状态。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**示例：** 
+**示例**：
 
 ```ts
-sensor.unsubscribeOnBodyState();
+Sensor.unsubscribeOnBodyState();
 ```
 
-## sensor.getOnBodyState
+## Sensor.getOnBodyState
 
  getOnBodyState(options: GetOnBodyStateOptions): void
 
 获取设备佩戴状态。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**参数：** 
+**参数**：
 
 | 参数名  | 类型                                            | 必填 | 说明                       |
 | ------- | ----------------------------------------------- | ---- | -------------------------- |
 | options | [GetOnBodyStateOptions](#getonbodystateoptions) | 是   | 获取传感器磨损状态时调用。 |
 
-**示例：** 
+**示例**：
 
 ```ts
-import sensor from '@system.sensor';
-import { OnBodyStateResponse, GetOnBodyStateOptions } from '@system.sensor';
+import { Sensor, OnBodyStateResponse, GetOnBodyStateOptions } from '@kit.SensorServiceKit';
 
 let getOnBodyStateOptions: GetOnBodyStateOptions = {
   success: (ret: OnBodyStateResponse) => {
@@ -450,10 +441,10 @@ let getOnBodyStateOptions: GetOnBodyStateOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.getOnBodyState(getOnBodyStateOptions);
+Sensor.getOnBodyState(getOnBodyStateOptions);
 ```
 
-## sensor.subscribeDeviceOrientation<sup>6+</sup>
+## Sensor.subscribeDeviceOrientation<sup>6+</sup>
 
  subscribeDeviceOrientation(options: SubscribeDeviceOrientationOptions): void
 
@@ -461,19 +452,18 @@ sensor.getOnBodyState(getOnBodyStateOptions);
 
 针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效；针对同一个方法内，不支持多次调用。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**参数：** 
+**参数**：
 
 | 参数名  | 类型                                                         | 必填 | 说明                                             |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
 | options | [SubscribeDeviceOrientationOptions](#subscribedeviceorientationoptions6) | 是   | 用于监听设备方向传感器数据的回调函数的执行频率。 |
 
-**示例：** 
+**示例**：
 
 ```ts
-import sensor from '@system.sensor';
-import { DeviceOrientationResponse, SubscribeDeviceOrientationOptions } from '@system.sensor';
+import { Sensor, DeviceOrientationResponse, SubscribeDeviceOrientationOptions } from '@kit.SensorServiceKit';
 
 let subscribeDeviceOrientationOptions: SubscribeDeviceOrientationOptions = {
   interval: 'normal',
@@ -486,27 +476,27 @@ let subscribeDeviceOrientationOptions: SubscribeDeviceOrientationOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   }
 };
-sensor.subscribeDeviceOrientation(subscribeDeviceOrientationOptions);
+Sensor.subscribeDeviceOrientation(subscribeDeviceOrientationOptions);
 ```
 
 > **说明：**
 > 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
-## sensor.unsubscribeDeviceOrientation<sup>6+</sup>
+## Sensor.unsubscribeDeviceOrientation<sup>6+</sup>
 
 unsubscribeDeviceOrientation(): void
 
 取消订阅设备方向传感器数据。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**示例：**
+**示例**：
 
 ```ts
-sensor.unsubscribeDeviceOrientation();
+Sensor.unsubscribeDeviceOrientation();
 ```
 
-## sensor.subscribeGyroscope<sup>6+</sup>
+## Sensor.subscribeGyroscope<sup>6+</sup>
 
  subscribeGyroscope(options: SubscribeGyroscopeOptions): void
 
@@ -514,21 +504,20 @@ sensor.unsubscribeDeviceOrientation();
 
 针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效；针对同一个方法内，不支持多次调用。
 
-**需要权限：** SystemCapability.Sensors.Sensor.Lite
+**需要权限**：SystemCapability.Sensors.Sensor.Lite
 
-**系统能力：** ohos.permission.GYROSCOPE，该权限为系统权限
+**系统能力**：ohos.permission.GYROSCOPE，该权限为系统权限
 
-**参数：** 
+**参数**：
 
 | 参数名  | 类型                                                     | 必填 | 说明                                           |
 | ------- | -------------------------------------------------------- | ---- | ---------------------------------------------- |
 | options | [SubscribeGyroscopeOptions](#subscribegyroscopeoptions6) | 是   | 用于侦听陀螺仪传感器数据的回调函数的执行频率。 |
 
-**示例：** 
+**示例**：
 
 ```ts
-import sensor from '@system.sensor';
-import { GyroscopeResponse, SubscribeGyroscopeOptions } from '@system.sensor';
+import { Sensor, GyroscopeResponse, SubscribeGyroscopeOptions } from '@kit.SensorServiceKit';
 
 let subscribeGyroscopeOptions: SubscribeGyroscopeOptions = {
   interval: 'normal',
@@ -541,35 +530,35 @@ let subscribeGyroscopeOptions: SubscribeGyroscopeOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   }
 };
-sensor.subscribeGyroscope(subscribeGyroscopeOptions);
+Sensor.subscribeGyroscope(subscribeGyroscopeOptions);
 ```
 
 > **说明：**
 > 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
-## sensor.unsubscribeGyroscope<sup>6+</sup>
+## Sensor.unsubscribeGyroscope<sup>6+</sup>
 
 unsubscribeGyroscope(): void
 
 取消订阅陀螺仪传感器数据。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**需要权限：** ohos.permission.GYROSCOPE，该权限为系统权限
+**需要权限**：ohos.permission.GYROSCOPE，该权限为系统权限
 
-**示例：** 
+**示例**：
 
 ```ts
-sensor.unsubscribeGyroscope();
+Sensor.unsubscribeGyroscope();
 ```
 
 ## subscribeAccelerometerOptions
 
 用于监听加速度传感器数据的回调函数的执行频率。
 
-**需要权限：** ohos.permission.ACCELEROMETER
+**需要权限**：ohos.permission.ACCELEROMETER
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称     | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -581,9 +570,9 @@ sensor.unsubscribeGyroscope();
 
 感应到加速度数据变化后的回调函数。  
 
-**需要权限：** ohos.permission.ACCELEROMETER
+**需要权限**：ohos.permission.ACCELEROMETER
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称 | 类型   | 必填 | 说明          |
 | ---- | ------ | ---- | ------------- |
@@ -595,7 +584,7 @@ sensor.unsubscribeGyroscope();
 
 当罗盘传感器数据发生变化时调用。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称    | 类型                                | 必填 | 说明                           |
 | ------- | ----------------------------------- | ---- | ------------------------------ |
@@ -606,7 +595,7 @@ sensor.unsubscribeGyroscope();
 
 罗盘数据改变后触发的回调函数。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称      | 类型   | 必填 | 说明                 |
 | --------- | ------ | ---- | -------------------- |
@@ -616,7 +605,7 @@ sensor.unsubscribeGyroscope();
 
 当距离传感器数据发生变化时调用。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称    | 类型                                    | 必填 | 说明                               |
 | ------- | --------------------------------------- | ---- | ---------------------------------- |
@@ -627,7 +616,7 @@ sensor.unsubscribeGyroscope();
 
 距离感应数据改变后调用的回调函数。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称     | 类型   | 必填 | 说明                                       |
 | -------- | ------ | ---- | ------------------------------------------ |
@@ -637,7 +626,7 @@ sensor.unsubscribeGyroscope();
 
 当环境光传感器数据发生变化时调用。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称    | 类型                            | 必填 | 说明                           |
 | ------- | ------------------------------- | ---- | ------------------------------ |
@@ -648,7 +637,7 @@ sensor.unsubscribeGyroscope();
 
 光线感应数据改变后的回调函数。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称      | 类型   | 必填 | 说明                  |
 | --------- | ------ | ---- | --------------------- |
@@ -658,9 +647,9 @@ sensor.unsubscribeGyroscope();
 
 当步进计数器传感器数据发生变化时调用。
 
-**需要权限：** ohos.permission.ACTIVITY_MOTION
+**需要权限**：ohos.permission.ACTIVITY_MOTION
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称    | 类型                                        | 必填 | 说明                             |
 | ------- | ------------------------------------------- | ---- | -------------------------------- |
@@ -671,9 +660,9 @@ sensor.unsubscribeGyroscope();
 
 计步传感器数据改变后的回调函数。
 
-**需要权限：** ohos.permission.ACTIVITY_MOTION
+**需要权限**：ohos.permission.ACTIVITY_MOTION
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称  | 类型   | 必填 | 说明                             |
 | ----- | ------ | ---- | -------------------------------- |
@@ -683,7 +672,7 @@ sensor.unsubscribeGyroscope();
 
 当气压计传感器数据发生变化时调用。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称    | 类型                                    | 必填 | 说明                             |
 | ------- | --------------------------------------- | ---- | -------------------------------- |
@@ -704,9 +693,9 @@ sensor.unsubscribeGyroscope();
 
 当心率传感器数据发生变化时调用。
 
-**需要权限：** ohos.permission.READ_HEALTH_DATA 
+**需要权限**：ohos.permission.READ_HEALTH_DATA 
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称    | 类型                                    | 必填 | 说明                                            |
 | ------- | --------------------------------------- | ---- | ----------------------------------------------- |
@@ -717,9 +706,9 @@ sensor.unsubscribeGyroscope();
 
 心率传感器数据改变后的回调函数，默认频率5s/次。
 
-**需要权限：** ohos.permission.READ_HEALTH_DATA 
+**需要权限**：ohos.permission.READ_HEALTH_DATA 
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称      | 类型   | 必填 | 说明     |
 | --------- | ------ | ---- | -------- |
@@ -729,7 +718,7 @@ sensor.unsubscribeGyroscope();
 
 当穿着状态改变时调用。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称    | 类型                                        | 必填 | 说明                       |
 | ------- | ------------------------------------------- | ---- | -------------------------- |
@@ -740,7 +729,7 @@ sensor.unsubscribeGyroscope();
 
 传感器是否磨损。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称  | 类型    | 必填 | 说明         |
 | ----- | ------- | ---- | ------------ |
@@ -750,7 +739,7 @@ sensor.unsubscribeGyroscope();
 
  获取传感器磨损状态时调用。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称     | 类型                                        | 必填 | 说明                     |
 | -------- | ------------------------------------------- | ---- | ------------------------ |
@@ -762,7 +751,7 @@ sensor.unsubscribeGyroscope();
 
 用于监听设备方向传感器数据的回调函数的执行频率。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称     | 类型                                                     | 必填 | 说明                                                         |
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -774,7 +763,7 @@ sensor.unsubscribeGyroscope();
 
 感应到设备方向传感器数据变化后的回调函数。
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称  | 类型   | 必填 | 说明                                                         |
 | ----- | ------ | ---- | ------------------------------------------------------------ |
@@ -786,9 +775,9 @@ sensor.unsubscribeGyroscope();
 
 用于侦听陀螺仪传感器数据的回调函数的执行频率。
 
-**需要权限：** ohos.permission.GYROSCOPE
+**需要权限**：ohos.permission.GYROSCOPE
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称     | 类型                                     | 必填 | 说明                                                         |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -800,9 +789,9 @@ sensor.unsubscribeGyroscope();
 
 感应到陀螺仪传感器数据变化后的回调函数。
 
-**需要权限：** ohos.permission.GYROSCOPE
+**需要权限**：ohos.permission.GYROSCOPE
 
-**系统能力：** SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称 | 类型   | 必填 | 说明              |
 | ---- | ------ | ---- | ----------------- |

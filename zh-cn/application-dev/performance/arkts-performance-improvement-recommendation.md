@@ -2,136 +2,6 @@
 
 开发者若使用低性能的代码实现功能场景可能不会影响应用的正常运行，但却会对应用的性能造成负面影响。本章节列举出了一些可提升性能的场景供开发者参考，以避免应用实现上带来的性能劣化。
 
-## 使用数据懒加载
-
-开发者在使用长列表时，如果直接采用循环渲染方式，如下所示，会一次性加载所有的列表元素，一方面会导致页面启动时间过长，影响用户体验，另一方面也会增加服务器的压力和流量，加重系统负担。
-
-```ts
-@Entry
-@Component
-struct MyComponent {
-  @State arr: number[] = Array.from(Array<number>(100), (v:number,k:number) =>k);  //构造0-99的数组
-  build() {
-    List() {
-      ForEach(this.arr, (item: number) => {
-        ListItem() {
-          Text(`item value: ${item}`)
-        }
-      }, (item: number) => item.toString())
-    }
-  }
-}
-```
-
-上述代码会在页面加载时将100个列表元素全部加载，这并非我们需要的，我们希望从数据源中按需迭代加载数据并创建相应组件，因此需要使用数据懒加载，如下所示：
-
-```ts
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: string[] = [];
-
-  public totalCount(): number {
-    return 0;
-  }
-
-  public getData(index: number): string {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      console.info('remove listener');
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    })
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    })
-  }
-}
-
-class MyDataSource extends BasicDataSource {
-  private dataArray: string[] = ['item value: 0', 'item value: 1', 'item value: 2'];
-
-  public totalCount(): number {
-    return this.dataArray.length;
-  }
-
-  public getData(index: number): string {
-    return this.dataArray[index];
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
-  public pushData(data: string): void {
-    this.dataArray.push(data);
-    this.notifyDataAdd(this.dataArray.length - 1);
-  }
-}
-
-@Entry
-@Component
-struct MyComponent {
-  private data: MyDataSource = new MyDataSource();
-
-  build() {
-    List() {
-      LazyForEach(this.data, (item: string) => {
-        ListItem() {
-          Row() {
-            Text(item).fontSize(20).margin({ left: 10 })
-          }
-        }
-        .onClick(() => {
-          this.data.pushData('item value: ' + this.data.totalCount());
-        })
-      },(item:string):string => item)
-    }
-  }
-}
-```
-
-![LazyForEach1](figures/LazyForEach1.gif)
-
-上述代码在页面加载时仅初始化加载三个列表元素，之后每点击一次列表元素，将增加一个列表元素。
-
 ## 设置List组件的宽高
 
 在使用Scroll容器组件嵌套List组件加载长列表时，若不指定List的宽高尺寸，则默认全部加载。
@@ -354,57 +224,17 @@ struct MyComponent {
 
 ![list1](figures/list1.gif)
 
-## 使用条件渲染替代显隐控制
+使用SmartPerf Host工具分别抓取List不设置宽高时和设置宽高时的trace数据。
 
-如下所示，开发者在使用visibility通用属性控制组件的显隐状态时，仍存在组件的重新创建过程，造成性能上的损耗。
+**List不设置宽高：**
 
-```ts
-@Entry
-@Component
-struct MyComponent {
-  @State isVisible: Visibility = Visibility.Visible;
+![list-trace-01](figures/arkts-performance-improvement-recommendation-list-trace-01.PNG)
 
-  build() {
-    Column() {
-      Button("显隐切换")
-        .onClick(() => {
-          if (this.isVisible == Visibility.Visible) {
-            this.isVisible = Visibility.None
-          } else {
-            this.isVisible = Visibility.Visible
-          }
-        })
-      Row().visibility(this.isVisible)
-        .width(300).height(300).backgroundColor(Color.Pink)
-    }.width('100%')
-  }
-}
-```
+**List设置宽高：**
 
-要避免这一问题，可使用if条件渲染代替visibility属性变换，如下所示：
+![list-trace-02](figures/arkts-performance-improvement-recommendation-list-trace-02.PNG)
 
-```ts
-@Entry
-@Component
-struct MyComponent {
-  @State isVisible: boolean = true;
-
-  build() {
-    Column() {
-      Button("显隐切换")
-        .onClick(() => {
-          this.isVisible = !this.isVisible
-        })
-      if (this.isVisible) {
-        Row()
-          .width(300).height(300).backgroundColor(Color.Pink)
-      }
-    }.width('100%')
-  }
-}
-```
-
-![isVisible](figures/isVisible.gif)
+从trace图可以看出，List不设置宽高时100个子组件全部参与布局，布局时间46.62ms。而给List设置宽高后只有给定高度内的12个子组件参与布局，布局时间减少到8.51ms，大幅提升了首次加载时的性能。
 
 ## 使用Column/Row替代Flex
 
@@ -413,12 +243,23 @@ struct MyComponent {
 ```ts
 @Entry
 @Component
-struct MyComponent {
+struct FlexBuild {
+  private data: string[] = new Array(20).fill('');
   build() {
     Flex({ direction: FlexDirection.Column }) {
-      Flex().width(300).height(200).backgroundColor(Color.Pink)
-      Flex().width(300).height(200).backgroundColor(Color.Yellow)
-      Flex().width(300).height(200).backgroundColor(Color.Grey)
+      Flex({ direction: FlexDirection.Column }) {
+        Flex({ direction: FlexDirection.Column }) {
+          Flex({ direction: FlexDirection.Column }) {
+            Flex({ direction: FlexDirection.Column }) {
+              ForEach(this.data, (item: string, index: number) => {
+                Text(`Item ${index}`)
+                  .width('100%')
+                  .textAlign(TextAlign.Center)
+              })
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -429,18 +270,39 @@ struct MyComponent {
 ```ts
 @Entry
 @Component
-struct MyComponent {
+struct ColumnAndRowBuild {
+  private data: string[] = new Array(20).fill('');
   build() {
-    Column() {
-      Row().width(300).height(200).backgroundColor(Color.Pink)
-      Row().width(300).height(200).backgroundColor(Color.Yellow)
-      Row().width(300).height(200).backgroundColor(Color.Grey)
+    Row() {
+      Row() {
+        Row() {
+          Row() {
+            Column() {
+              ForEach(this.data, (item: string, index: number) => {
+                Text(`Item ${index}`)
+                  .width('100%')
+                  .textAlign(TextAlign.Center)
+              })
+            }
+          }
+        }
+      }
     }
   }
 }
 ```
 
 ![flex1](figures/flex1.PNG)
+
+使用SmartPerf Host抓取上述两种不同布局方式示例程序的trace数据，对比其性能消耗，如下表所示。
+
+|对比指标|Flex布局|Column/Row|
+|--------|--------|--------|
+|Build耗时(ms)|4.27|2.51|
+|Measure耗时(ms)|2.98|1.04|
+|Layout耗时(ms)|0.34|0.24|
+
+可以看出布局深度和节点数相同的情况下，Flex的性能明显低于Column和Row容器，此时使用Column/Row替换Flex可以显著减少应用布局的性能消耗。
 
 ## 减少应用滑动白块
 
@@ -491,3 +353,5 @@ class MyDataSource implements IDataSource {
 
 **使用说明：**
 cachedCount的增加会增大UI的cpu、内存开销。使用时需要根据实际情况，综合性能和用户体验进行调整。
+
+更多关于cachedCount的使用指导，请参考文档[列表场景性能提升实践](list-perf-improvment.md#缓存列表项)。

@@ -1,6 +1,6 @@
 # @ohos.app.ability.common (Context) (System API)
 
-The **Common** module provides all level-2 module APIs for developers to export.
+You can use this module to reference the ability public module class.
 
 > **NOTE**
 > 
@@ -13,23 +13,25 @@ The **Common** module provides all level-2 module APIs for developers to export.
 ## Modules to Import
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name       | Type                | Description                                                        |
-| ----------- | -------------------- | ------------------------------------------------------------ |
-| ServiceExtensionContext | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext-sys.md) | Level-2 module **ServiceExtensionContext**.<br>**System API**: This is a system API.|
-| AutoFillExtensionContext<sup>11+<sup>   | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext-sys.md)               | Level-2 module **AutoFillExtensionContext**.<br>**System API**: This is a system API.|
-| AutoStartupInfo<sup>11+<sup>   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)               | Level-2 module **AutoStartupInfo**.<br>**System API**: This is a system API.|
-| AutoStartupCallback<sup>11+<sup>   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md)               | Level-2 module **AutoStartupCallback**.<br>**System API**: This is a system API.|
+| Name | Type | Read Only | Optional | Description           |
+| ----- | ---- | ----- | ----- | -------------- |
+| ServiceExtensionContext | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext-sys.md) | No | No | Level-2 module **ServiceExtensionContext**.<br>**System API**: This is a system API.|
+| AutoFillExtensionContext<sup>11+<sup>   | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext-sys.md) | No | No | Level-2 module **AutoFillExtensionContext**.<br>**System API**: This is a system API.|
+| AutoStartupInfo<sup>11+<sup>   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md) | No | No | Level-2 module **AutoStartupInfo**.<br>**System API**: This is a system API.|
+| AutoStartupCallback<sup>11+<sup>   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md) | No | No | Level-2 module **AutoStartupCallback**.<br>**System API**: This is a system API.|
+| UIServiceExtensionContext<sup>13+<sup> | [UIServiceExtensionContext ](js-apis-inner-application-uiserviceExtensionContext-sys.md) |  No | No |Level-2 module **UIServiceExtensionContext**.<br>**System API**: This is a system API.|
+| UIServiceHostProxy<sup>13+<sup> | [UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md) |  No | No | Level-2 module **UIServiceHostProxy**.<br>**System API**: This is a system API.|
 
 **Example**
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 
 let uiAbilityContext: common.UIAbilityContext;
 let abilityStageContext: common.AbilityStageContext;
@@ -45,4 +47,6 @@ let abilityResult: common.AbilityResult;
 let abilityStartCallback: common.AbilityStartCallback;
 let connectOptions: common.ConnectOptions;
 let autoFillExtensionContext: common.AutoFillExtensionContext;
+let uiServiceExtensionContext: common.UIServiceExtensionContext;
+let uiServiceHostProxy: common.UIServiceHostProxy;
 ```

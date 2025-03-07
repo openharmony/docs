@@ -86,7 +86,7 @@ export default {
 
 ## Adding Animation Events and Calling Methods
 
-The animator supports events and methods, which you can use to customize the animation effect. Events include frame, cancel, repeat, and finish. Methods include update, play, pause, cancel, reverse, and finish. For details about the supported events and methods, see [animator supported events and animator supported APIs](../reference/apis/js-apis-animator.md).
+The animator supports events and methods, which you can use to customize the animation effect. Events include frame, cancel, repeat, and finish. Methods include update, play, pause, cancel, reverse, and finish. For details about the supported events and methods, see [animator supported events and animator supported APIs](../reference/apis-arkui/js-apis-animator.md).
 
 ```html
 <!-- xxx.hml -->

@@ -17,12 +17,14 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import HashSet from '@ohos.util.HashSet';
+import { HashSet } from '@kit.ArkTS';
 ```
 
 ## HashSet
 
 ### Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -48,6 +50,8 @@ constructor()
 
 A constructor used to create a **HashSet** instance.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Error codes**
@@ -70,6 +74,8 @@ let hashSet: HashSet<number> = new HashSet();
 isEmpty(): boolean
 
 Checks whether this container is empty (contains no element).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -101,6 +107,8 @@ has(value: T): boolean
 
 Checks whether this container contains the specified element.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -117,10 +125,11 @@ Checks whether this container contains the specified element.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200011 | The has method cannot be bound. |
 
 **Example**
@@ -138,6 +147,8 @@ add(value: T): boolean
 
 Adds an element to this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -154,10 +165,11 @@ Adds an element to this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200011 | The add method cannot be bound. |
 
 **Example**
@@ -173,6 +185,8 @@ let result = hashSet.add("squirrel");
 remove(value: T): boolean
 
 Removes an element from this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -190,10 +204,11 @@ Removes an element from this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200011 | The remove method cannot be bound. |
 
 **Example**
@@ -211,6 +226,8 @@ let result = hashSet.remove("sparrow");
 clear(): void
 
 Clears this container and sets its length to **0**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -237,6 +254,8 @@ hashSet.clear();
 values(): IterableIterator&lt;T&gt;
 
 Obtains an iterator that contains all the values in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -275,6 +294,8 @@ forEach(callbackFn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisAr
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -293,10 +314,11 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **Example**
@@ -309,12 +331,23 @@ hashSet.forEach((value?: string, key?: string): void => {
   console.log("value:" + value, "key:" + key);
 });
 ```
-
+```ts
+// You are not advised to use the set or remove APIs in forEach because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let hashSet : HashSet<string> = new HashSet();
+for(let i = 0;i < 10; i++) {
+  hashSet.add("sparrow" + i);
+}
+for(let i = 0;i < 10; i++) {
+  hashSet.remove("sparrow" + i);
+}
+```
 
 ### entries
 entries(): IterableIterator<[T, T]>
 
 Obtains an iterator that contains all the elements in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -346,7 +379,16 @@ while(!temp.done) {
   temp = iter.next();
 }
 ```
-
+```ts
+// You are not advised to use the set or remove APIs in entries because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let hashSet : HashSet<string> = new HashSet();
+for(let i = 0;i < 10; i++) {
+  hashSet.add("sparrow" + i);
+}
+for(let i = 0;i < 10; i++) {
+  hashSet.remove("sparrow" + i);
+}
+```
 
 ### [Symbol.iterator]
 
@@ -354,11 +396,9 @@ while(!temp.done) {
 
 Obtains an iterator, each item of which is a JavaScript object.
 
-**System capability**: SystemCapability.Utils.Lang
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -393,5 +433,15 @@ let temp: IteratorResult<string> = iter.next();
 while(!temp.done) {
   console.log("value: " + temp.value);
   temp = iter.next();
+}
+```
+```ts
+// You are not advised to use the set or remove APIs in Symbol.iterator because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let hashSet : HashSet<string> = new HashSet();
+for(let i = 0;i < 10;i++) {
+  hashSet.add("sparrow" + i);
+}
+for(let i = 0;i < 10;i++) {
+  hashSet.remove("sparrow" + i);
 }
 ```

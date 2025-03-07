@@ -51,7 +51,7 @@ let mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');
 
 | 名称      | 类型    | 必填   | 说明    |
 | ------- | ------- | ---- | ----- |
-| matches | boolean | 是    | 匹配结果。 |
+| matches | boolean | 是    | 匹配结果。true表示满足查询条件，false表示不满足查询条件。 |
 
 ## MediaQueryList
 
@@ -64,7 +64,7 @@ let mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');
 | 名称      | 类型    | 必填   | 说明                |
 | ------- | ------- | ---- | ----------------- |
 | media   | string  | 否    | 序列化媒体查询条件，该参数为只读。 |
-| matches | boolean | 是    | 匹配结果。             |
+| matches | boolean | 是    | 匹配结果。 true表示满足查询条件，false表示不满足查询条件。            |
 
 ### onchange
 
@@ -78,7 +78,7 @@ matches状态变化时的执行函数。
 
 | 参数名     | 类型      | 必填   | 说明             |
 | ------- | ------- | ---- | -------------- |
-| matches | boolean | 是    | matches状态变化时值。 |
+| matches | boolean | 是    | matches状态变化时值。true表示满足查询条件，false表示不满足查询条件。 |
 
 
 ### MediaQueryList.addListener

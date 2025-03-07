@@ -21,7 +21,7 @@ import freeInstall from '@ohos.bundle.freeInstall';
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all applications.|
 | ohos.permission.INSTALL_BUNDLE             | system_core  | Permission to install or uninstall other applications except enterprise applications, including enterprise InHouse, mobile device management (MDM), and Normal applications.  |
 
-For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
+For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 ## UpgradeFlag
 
 **System API**: This is a system API.
@@ -70,10 +70,14 @@ Sets an upgrade flag for a module. This API uses an asynchronous callback to ret
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                           |
 |----------|---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700002 | The specified module name is not found. |
 
@@ -125,10 +129,14 @@ Sets an upgrade flag for a module. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                           |
 |----------|----------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700002 | The specified module name is not found. |
 
@@ -173,10 +181,14 @@ Checks whether a module can be removed. This API uses an asynchronous callback t
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                           |
 |----------|----------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700002 | The specified module name is not found. |
 
@@ -226,10 +238,14 @@ Checks whether a module can be removed. This API uses a promise to return the re
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                           |
 |----------|----------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700002 | The specified module name is not found. |
 
@@ -273,10 +289,14 @@ Obtains **bundlePackInfo** based on **bundleName** and **bundlePackFlag**. This 
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                           |
 |----------|----------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 
 **Example**
@@ -324,10 +344,14 @@ Obtains **bundlePackInfo** based on **bundleName** and **bundlePackFlag**. This 
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                           |
 |----------|----------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 
 **Example**
@@ -366,6 +390,16 @@ Obtains the dispatch information. This API uses an asynchronous callback to retu
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback<[DispatchInfo](js-apis-bundleManager-dispatchInfo-sys.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**, and **data** is the [DispatchInfo](js-apis-bundleManager-dispatchInfo-sys.md) object obtained. otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID|    Error Message                           |
+|----------|----------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 801 | Capability not supported. |
+
 **Example**
 
 ```js
@@ -400,6 +434,16 @@ Obtains the dispatch information. This API uses a promise to return the result.
 | Type                                            | Description                                                        |
 | ------------------------------------------------ | ------------------------------------------------------------ |
 | Promise<[DispatchInfo](js-apis-bundleManager-dispatchInfo-sys.md)> | Promise used to return the [DispatchInfo](js-apis-bundleManager-dispatchInfo-sys.md) object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID|    Error Message                           |
+|----------|----------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 801 | Capability not supported. |
 
 **Example**
 

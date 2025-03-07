@@ -11,6 +11,8 @@
 
 RotationGesture(value?: { fingers?: number, angle?: number })
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -21,19 +23,24 @@ RotationGesture(value?: { fingers?: number, angle?: number })
 
 ## Events
 
-| Parameter| Description|
+| Name | Description|
 | -------- | -------- |
-| onActionStart(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when a rotation gesture is recognized.|
-| onActionUpdate(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the user moves the finger in a rotation gesture on the screen.|
-| onActionEnd(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the finger used for the rotation gesture is lift.|
-| onActionCancel(event: () =&gt; void) | Triggered when a tap cancellation event is received after the rotation gesture is recognized.<br>**NOTE**<br>This event is triggered when the window loses focus.|
+| onActionStart(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when a rotation gesture is recognized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionUpdate(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the user moves the finger in a rotation gesture on the screen.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionEnd(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the finger used for the rotation gesture is lifted.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionCancel(event: () =&gt; void) | Triggered when a tap cancellation event is received after the rotation gesture is recognized. No gesture event information is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionCancel(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void)<sup>16+</sup> | Triggered when a tap cancellation event is received after the rotation gesture is recognized. Gesture event information is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
 
 ## Attributes
 
 | Name| Type   |Description                                       |
 | ----  | ------  | ---------------------------------------- |
-| tag<sup>11+</sup>   | string  | Tag for the rotation gesture. It is used to distinguish the gesture during custom gesture judgment.|
+| tag<sup>11+</sup>   | string  | Tag for the rotation gesture. It is used to distinguish the gesture during custom gesture judgment.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool9)> | Allowed event input types for the rotation gesture.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+
 ## Example
+
+This example demonstrates the recognition of a two-finger rotation gesture using **RotationGesture**.
 
 ```ts
 // xxx.ets
@@ -57,15 +64,15 @@ struct RotationGestureExample {
       // The gesture event is triggered by rotating with two fingers.
       .gesture(
       RotationGesture()
-        .onActionStart((event?: GestureEvent) => {
+        .onActionStart((event: GestureEvent) => {
           console.info('Rotation start')
         })
-        .onActionUpdate((event?: GestureEvent) => {
+        .onActionUpdate((event: GestureEvent) => {
           if (event) {
             this.angle = this.rotateValue + event.angle
           }
         })
-        .onActionEnd(() => {
+        .onActionEnd((event: GestureEvent) => {
           this.rotateValue = this.angle
           console.info('Rotation end')
         })

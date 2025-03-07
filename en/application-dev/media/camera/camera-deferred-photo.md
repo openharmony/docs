@@ -1,17 +1,19 @@
-# High-Performance Camera Photographing (for System Applications Only) (ArkTS)
+# High-Performance Photo Capture (for System Applications Only) (ArkTS)
 
-As an important feature of the camera, high-performance photographing enables deferred delivery for photo capture and further reduces the response delay, delivering a better user experience. High-performance photographing is implemented as follows: After an application delivers a photographing request, the system quickly returns a thumbnail to the application, and the application stores the thumbnail and related information in the mediaLibrary. Then the subservice performs scheduling based on the system pressure and custom scenarios and sends the postprocessed original image to the mediaLibrary.
+As an important feature of the camera, high-performance photo capture enables deferred photo delivery and further reduces the response delay, delivering a better user experience. High-performance photo capture is implemented as follows: After an application delivers a phot capture request, the system quickly returns a thumbnail to the application, and the application stores the thumbnail and related information in the mediaLibrary. Then the subservice performs scheduling based on the system pressure and custom scenarios and sends the postprocessed original image to the mediaLibrary.
 
-To develop high-performance photographing, perform the following steps:
+To develop high-performance photo capture, perform the following steps:
 
-- Check whether the device supports deferred delivery of a certain type.
-- Enable deferred delivery (if supported).
+- Check whether the device supports deferred photo delivery of a certain type.
+- Enable deferred photo delivery (if supported).
 - Listen for thumbnails, obtain a thumbnail proxy class object, and save the thumbnail to the mediaLibrary.
 
 > **NOTE**
 > 
-> - Deferred delivery varies according to the device and type. Therefore, if the device or type is changed, you must enable the corresponding deferred delivery capability.
-> - Deferred delivery must be enabled during the stream configuration. After the stream configuration is complete, enabling deferred delivery does not take effect.
+> - Deferred photo delivery varies according to the device and type. Therefore, if the device or type is changed, you must enable the corresponding deferred photo delivery capability.
+> - Deferred photo delivery must be enabled during the stream configuration. After the stream configuration is complete, enabling deferred photo delivery does not take effect.
+
+
 
 ## How to Develop
 
@@ -20,12 +22,10 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 1. Import dependencies. Specifically, import the camera, image, and mediaLibrary modules.
 
    ```ts
-   import camera from '@ohos.multimedia.camera';
-   import image from '@ohos.multimedia.image';
-   import mediaLibrary from '@ohos.multimedia.mediaLibrary';
-   import fs from '@ohos.file.fs';
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   import { BusinessError } from '@ohos.base';
+   import { camera } from '@kit.CameraKit';
+   import { image } from '@kit.ImageKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
    ```
 
 2. Determine the photo output stream.
@@ -50,7 +50,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    }
    ```
 
-3. Check whether the device supports deferred delivery of a certain type.
+3. Check whether the device supports deferred photo delivery of a certain type.
 
    ```ts
    function isDeferredImageDeliverySupported(photoOutput: camera.PhotoOutput): boolean {
@@ -63,7 +63,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    }
    ```
 
-4. Enable deferred delivery.
+4. Enable deferred photo delivery.
 
    ```ts
    function EnableDeferredPhotoAbility(photoOutput: camera.PhotoOutput): void {
@@ -71,7 +71,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    }
    ```
 
-5. Check whether deferred delivery is enabled.
+5. Check whether deferred photo delivery is enabled.
 
    ```ts
    function isDeferredImageDeliveryEnabled(photoOutput: camera.PhotoOutput): boolean {
@@ -84,7 +84,9 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    }
    ```
 
-6. Trigger photographing. This procedure is the same as that in the common photographing mode. For details, see [Camera Photographing](camera-shooting.md).
+6. Trigger photo capture. This procedure is the same as that in the common photo capture mode. For details, see [Photo Capture](camera-shooting.md).
+
+
 
 ## Status Listening
 
@@ -110,7 +112,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
    
 
-2. Call the mediaLibrary APIs to flush the thumbnail to the disk
+2. Call the mediaLibrary APIs to flush the thumbnail to the disk.
 
    For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -120,13 +122,13 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy) {    
      try {
        // Create a photoAsset.
-       let photoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
+       let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);
        let testFileName = 'testFile' + Date.now() + '.jpg';
-       let photoAsset = await photoAccessHelper.createAsset(testFileName);
+       let photoAsset = await accessHelper.createAsset(testFileName);
        // Pass the thumbnail proxy class object to the mediaLibrary.
-       let mediaRequest: PhotoAccessHelper.MediaAssetChangeRequest = new PhotoAccessHelper.MediaAssetChangeRequest(photoAsset);
-       mediaRequest.addResource(PhotoAccessHelper.ResourceType.PHOTO_PROXY, proxyObj);
-       let res = await photoAccessHelper.applyChanges(mediaRequest);
+       let mediaRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
+       mediaRequest.addResource(photoAccessHelper.ResourceType.PHOTO_PROXY, proxyObj);
+       let res = await accessHelper.applyChanges(mediaRequest);
        console.info('saveDeferredPhoto success.');
      } catch (err) {
        console.error(`Failed to saveDeferredPhoto. error: ${JSON.stringify(err)}`);

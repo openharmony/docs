@@ -4,8 +4,8 @@ The **WLAN** module provides basic wireless local area network (WLAN) functions,
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs of this module are no longer maintained since API version 9. You are advised to use [@ohos.wifiManager (WLAN)](js-apis-wifiManager.md).
+> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs of this module are no longer maintained since API version 9. You are advised to use [@ohos.wifiManager (WLAN)](js-apis-wifiManager.md).
 
 
 ## Modules to Import
@@ -27,9 +27,9 @@ Checks whether WLAN is enabled.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if WLAN is enabled; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if WLAN is enabled; returns **false** otherwise.|
 
 **Example**
 
@@ -56,9 +56,9 @@ Starts a scan for WLAN.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -78,14 +78,15 @@ getScanInfos(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
 
 Obtains the scan result. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_PEERS_MAC (or ohos.permission.LOCATION)
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION or ohos.permission.GET_WIFI_PEERS_MAC (
+available only for system applications)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
+| **Type**| **Description**|
+| -------- | -------- |
 | Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise used to return the detected hotspots.|
 
 
@@ -95,15 +96,16 @@ getScanInfos(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 
 Obtains the scan result. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_PEERS_MAC (or ohos.permission.LOCATION)
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION or ohos.permission.GET_WIFI_PEERS_MAC (
+available only for system applications)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the detected hotspots. Otherwise, **err** is a non-zero value and **data** is empty.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the detected hotspots. Otherwise, **err** is a non-zero value and **data** is empty.|
 
 **Example**
 
@@ -215,15 +217,15 @@ Adds the configuration of an untrusted network. This API uses a promise to retur
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the operation is successful; the value **false** means the opposite.|
 
 **Example**
 ```ts
@@ -269,10 +271,10 @@ Adds the configuration of an untrusted network. This API uses an asynchronous ca
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
 
 **Example**
 ```ts
@@ -318,15 +320,15 @@ Removes the configuration of an untrusted network. This API uses a promise to re
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
 | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the operation is successful; the value **false** means the opposite.|
 
 **Example**
 
@@ -374,10 +376,10 @@ Removes the configuration of an untrusted network. This API uses an asynchronous
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
 | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
 
 **Example**
 ```ts
@@ -424,16 +426,16 @@ Obtains the WLAN signal level.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | rssi | number | Yes| RSSI of the hotspot, in dBm.|
-  | band | number | Yes| Frequency band of the WLAN AP.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| rssi | number | Yes| RSSI of the hotspot, in dBm.|
+| band | number | Yes| Frequency band of the WLAN AP.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | number | Signal level obtained. The value range is [0, 4].|
+| **Type**| **Description**|
+| -------- | -------- |
+| number | Signal level obtained. The value range is [0, 4].|
 
 **Example**
 ```ts
@@ -462,9 +464,9 @@ Obtains WLAN connection information. This API uses a promise to return the resul
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Promise used to return the WLAN connection information.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Promise used to return the WLAN connection information.|
 
 
 ## wifi.getLinkedInfo
@@ -479,15 +481,15 @@ Obtains WLAN connection information. This API uses an asynchronous callback to r
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the WLAN connection information obtained. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the WLAN connection information obtained. If **err** is not **0**, an error has occurred.|
 
 **Example**
 ```ts
 import wifi from '@ohos.wifi';
 
-wifi.getLinkedInfo((err, data) => {
+wifi.getLinkedInfo((err, data:wifi.WifiLinkedInfo) => {
     if (err) {
         console.error("get linked info error");
         return;
@@ -554,9 +556,9 @@ Checks whether the WLAN is connected.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the WLAN is connected; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the WLAN is connected; returns **false** otherwise.|
 
 
 
@@ -573,15 +575,15 @@ Checks whether the device supports the specified WLAN feature.
 **Parameters**
 
 
-  | **Name**| **Type**| Mandatory| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | featureId | number | Yes| Feature ID.|
+| **Name**| **Type**| Mandatory| **Description**|
+| -------- | -------- | -------- | -------- |
+| featureId | number | Yes| Feature ID.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -610,9 +612,9 @@ Obtains IP information.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | [IpInfo](#ipinfo7) | IP information obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| [IpInfo](#ipinfo7) | IP information obtained.|
 
 **Example**
 ```ts
@@ -655,9 +657,9 @@ Obtains the country code.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | string | Country code obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| string | Country code obtained.|
 
 **Example**
 ```ts
@@ -684,8 +686,8 @@ Obtains P2P link information. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
+| Type| Description|
+| -------- | -------- |
 | Promise&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Promise used to return the P2P link information obtained.|
 
 
@@ -727,15 +729,15 @@ Obtains P2P link information. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the P2P link information. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the P2P link information. If **err** is not **0**, an error has occurred.|
 
 **Example**
 ```ts
 import wifi from '@ohos.wifi';
 
-wifi.getP2pLinkedInfo((err, data) => {
+wifi.getP2pLinkedInfo((err, data:wifi.WifiP2pLinkedInfo) => {
    if (err) {
        console.error("get p2p linked info error");
        return;
@@ -760,9 +762,9 @@ Obtains the current P2P group information. This API uses a promise to return the
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | Promise used to return the P2P group information obtained.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | Promise used to return the P2P group information obtained.|
 
 
 ## wifi.getCurrentGroup<sup>8+</sup>
@@ -777,15 +779,15 @@ Obtains the current P2P group information. This API uses an asynchronous callbac
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If **err** is not **0**, an error has occurred.|
 
 **Example**
 ```ts
 import wifi from '@ohos.wifi';
 
-wifi.getCurrentGroup((err, data) => {
+wifi.getCurrentGroup((err, data:wifi.WifiP2pGroupInfo) => {
    if (err) {
        console.error("get current P2P group error");
        return;
@@ -810,9 +812,9 @@ Obtains the peer device list in the P2P connection. This API uses a promise to r
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Promise used to return the peer device list.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Promise used to return the peer device list.|
 
 
 ## wifi.getP2pPeerDevices<sup>8+</sup>
@@ -827,15 +829,15 @@ Obtains the peer device list in the P2P connection. This API uses an asynchronou
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the peer device list obtained. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the peer device list obtained. If **err** is not **0**, an error has occurred.|
 
 **Example**
 ```ts
 import wifi from '@ohos.wifi';
 
-wifi.getP2pPeerDevices((err, data) => {
+wifi.getP2pPeerDevices((err, data:wifi.WifiP2pDevice) => {
    if (err) {
        console.error("get P2P peer devices error");
        return;
@@ -890,15 +892,15 @@ Creates a P2P group.
 
 **Parameters**
 
-  | **Name**| **Type**| Mandatory| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiP2PConfig](#wifip2pconfig8) | Yes| Group configuration.|
+| **Name**| **Type**| Mandatory| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiP2PConfig](#wifip2pconfig8) | Yes| Group configuration.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -959,9 +961,9 @@ Removes this P2P group.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -987,15 +989,15 @@ Sets up a P2P connection.
 **Parameters**
 
 
-  | **Name**| **Type**| Mandatory| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiP2PConfig](#wifip2pconfig8) | Yes| P2P group configuration.|
+| **Name**| **Type**| Mandatory| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiP2PConfig](#wifip2pconfig8) | Yes| P2P group configuration.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 **Example**
@@ -1004,7 +1006,7 @@ import wifi from '@ohos.wifi';
 
 let recvP2pConnectionChangeFunc = (result:wifi.WifiP2pLinkedInfo) => {
     console.info("p2p connection change receive event: " + JSON.stringify(result));
-    wifi.getP2pLinkedInfo((err, data) => {
+    wifi.getP2pLinkedInfo((err, data:wifi.WifiP2pLinkedInfo) => {
         if (err) {
             console.error('failed to get getP2pLinkedInfo: ' + JSON.stringify(err));
             return;
@@ -1021,7 +1023,7 @@ wifi.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
 
 let recvP2pPeerDeviceChangeFunc = (result:wifi.WifiP2pDevice[]) => {
     console.info("p2p peer device change receive event: " + JSON.stringify(result));
-    wifi.getP2pPeerDevices((err, data) => {
+    wifi.getP2pPeerDevices((err, data:wifi.WifiP2pDevice) => {
         if (err) {
             console.error('failed to get peer devices: ' + JSON.stringify(err));
             return;
@@ -1048,7 +1050,7 @@ wifi.on("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
 let recvP2pPersistentGroupChangeFunc = () => {
     console.info("p2p persistent group change receive event");
 
-    wifi.getCurrentGroup((err, data) => {
+    wifi.getCurrentGroup((err, data:wifi.WifiP2pGroupInfo) => {
         if (err) {
             console.error('failed to get current group: ' + JSON.stringify(err));
             return;
@@ -1077,9 +1079,9 @@ Cancels this P2P connection.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -1104,9 +1106,9 @@ Starts to discover devices.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -1131,9 +1133,9 @@ Stops discovering devices.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -1170,7 +1172,7 @@ Represents the P2P group information.
 
 ## wifi.on('wifiStateChange')<sup>7+</sup>
 
-on(type: "wifiStateChange", callback: Callback&lt;number&gt;): void
+on(type: 'wifiStateChange', callback: Callback&lt;number&gt;): void
 
 Subscribes to WLAN state changes.
 
@@ -1180,10 +1182,10 @@ Subscribes to WLAN state changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **wifiStateChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **wifiStateChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback used to return the WLAN state.|
 
 **WLAN states** 
 
@@ -1197,7 +1199,7 @@ Subscribes to WLAN state changes.
 
 ## wifi.off('wifiStateChange')<sup>7+</sup>
 
-off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
+off(type: 'wifiStateChange', callback?: Callback&lt;number&gt;): void
 
 Unsubscribes from WLAN state changes.
 
@@ -1207,10 +1209,10 @@ Unsubscribes from WLAN state changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **wifiStateChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks for the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **wifiStateChange**.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks for the specified event will be unregistered.|
 
 **Example**
 ```ts
@@ -1230,7 +1232,7 @@ wifi.off("wifiStateChange", recvPowerNotifyFunc);
 
 ## wifi.on('wifiConnectionChange')<sup>7+</sup>
 
-on(type: "wifiConnectionChange", callback: Callback&lt;number&gt;): void
+on(type: 'wifiConnectionChange', callback: Callback&lt;number&gt;): void
 
 Subscribes to WLAN connection state changes.
 
@@ -1240,10 +1242,10 @@ Subscribes to WLAN connection state changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **wifiConnectionChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN connection state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **wifiConnectionChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback used to return the WLAN connection state.|
 
 **WLAN connection states**
 
@@ -1255,7 +1257,7 @@ Subscribes to WLAN connection state changes.
 
 ## wifi.off('wifiConnectionChange')<sup>7+</sup>
 
-off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
+off(type: 'wifiConnectionChange', callback?: Callback&lt;number&gt;): void
 
 Unsubscribes from WLAN connection state changes.
 
@@ -1265,10 +1267,10 @@ Unsubscribes from WLAN connection state changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **wifiConnectionChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks for the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **wifiConnectionChange**.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks for the specified event will be unregistered.|
 
 **Example**
 ```ts
@@ -1287,7 +1289,7 @@ wifi.off("wifiConnectionChange", recvWifiConnectionChangeFunc);
 
 ## wifi.on('wifiScanStateChange')<sup>7+</sup>
 
-on(type: "wifiScanStateChange", callback: Callback&lt;number&gt;): void
+on(type: 'wifiScanStateChange', callback: Callback&lt;number&gt;): void
 
 Subscribes to WLAN scan state changes.
 
@@ -1297,10 +1299,10 @@ Subscribes to WLAN scan state changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **wifiScanStateChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN scan state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **wifiScanStateChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback used to return the WLAN scan state.|
 
 **WLAN scan states**
 
@@ -1312,7 +1314,7 @@ Subscribes to WLAN scan state changes.
 
 ## wifi.off('wifiScanStateChange')<sup>7+</sup>
 
-off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
+off(type: 'wifiScanStateChange', callback?: Callback&lt;number&gt;): void
 
 Unsubscribes from WLAN scan state changes.
 
@@ -1344,7 +1346,7 @@ wifi.off("wifiScanStateChange", recvWifiScanStateChangeFunc);
 
 ## wifi.on('wifiRssiChange')<sup>7+</sup>
 
-on(type: "wifiRssiChange", callback: Callback&lt;number&gt;): void
+on(type: 'wifiRssiChange', callback: Callback&lt;number&gt;): void
 
 Subscribes to RSSI changes.
 
@@ -1354,15 +1356,15 @@ Subscribes to RSSI changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **wifiRssiChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the RSSI, in dBm.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **wifiRssiChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback used to return the RSSI, in dBm.|
 
 
 ## wifi.off('wifiRssiChange')<sup>7+</sup>
 
-off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
+off(type: 'wifiRssiChange', callback?: Callback&lt;number&gt;): void
 
 Unsubscribes from RSSI changes.
 
@@ -1372,10 +1374,10 @@ Unsubscribes from RSSI changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **wifiRssiChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks for the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **wifiRssiChange**.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks for the specified event will be unregistered.|
 
 **Example**
 ```ts
@@ -1396,7 +1398,7 @@ wifi.off("wifiRssiChange", recvWifiRssiChangeFunc);
 
 ## wifi.on('hotspotStateChange')<sup>7+</sup>
 
-on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
+on(type: 'hotspotStateChange', callback: Callback&lt;number&gt;): void
 
 Subscribes to hotspot state changes.
 
@@ -1406,10 +1408,10 @@ Subscribes to hotspot state changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **hotspotStateChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the hotspot state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **hotspotStateChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback used to return the hotspot state.|
 
 **Hotspot states**
 
@@ -1437,7 +1439,7 @@ wifi.off("hotspotStateChange", recvHotspotStateChangeFunc);
 
 ## wifi.off('hotspotStateChange')<sup>7+</sup>
 
-off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
+off(type: 'hotspotStateChange', callback?: Callback&lt;number&gt;): void
 
 Unsubscribes from hotspot state changes.
 
@@ -1447,16 +1449,16 @@ Unsubscribes from hotspot state changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **hotspotStateChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks for the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **hotspotStateChange**.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks for the specified event will be unregistered.|
 
 
 
 ## wifi.on('p2pStateChange')<sup>8+</sup>
 
-on(type: "p2pStateChange", callback: Callback&lt;number&gt;): void
+on(type: 'p2pStateChange', callback: Callback&lt;number&gt;): void
 
 Subscribes to P2P state changes.
 
@@ -1466,10 +1468,10 @@ Subscribes to P2P state changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **p2pStateChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the P2P state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pStateChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback used to return the P2P state.|
 
 **P2P states**
 
@@ -1483,7 +1485,7 @@ Subscribes to P2P state changes.
 
 ## wifi.off('p2pStateChange')<sup>8+</sup>
 
-off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
+off(type: 'p2pStateChange', callback?: Callback&lt;number&gt;): void
 
 Unsubscribes from P2P state changes.
 
@@ -1493,10 +1495,10 @@ Unsubscribes from P2P state changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **p2pStateChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks for the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pStateChange**.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks for the specified event will be unregistered.|
 
 **Example**
 ```ts
@@ -1515,7 +1517,7 @@ wifi.off("p2pStateChange", recvP2pStateChangeFunc);
 
 ## wifi.on('p2pConnectionChange')<sup>8+</sup>
 
-on(type: "p2pConnectionChange", callback: Callback&lt;WifiP2pLinkedInfo&gt;): void
+on(type: 'p2pConnectionChange', callback: Callback&lt;WifiP2pLinkedInfo&gt;): void
 
 Subscribes to P2P connection state changes.
 
@@ -1525,15 +1527,15 @@ Subscribes to P2P connection state changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **p2pConnectionChange**.|
-  | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Yes| Callback invoked to return the P2P connection state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pConnectionChange**.|
+| callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Yes| Callback used to return the P2P connection state.|
 
 
 ## wifi.off('p2pConnectionChange')<sup>8+</sup>
 
-off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): void
+off(type: 'p2pConnectionChange', callback?: Callback&lt;WifiP2pLinkedInfo&gt;): void
 
 Unsubscribes from P2P connection state changes.
 
@@ -1543,10 +1545,10 @@ Unsubscribes from P2P connection state changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **p2pConnectionChange**.|
-  | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks for the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pConnectionChange**.|
+| callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks for the specified event will be unregistered.|
 
 **Example**
 ```ts
@@ -1565,7 +1567,7 @@ wifi.off("p2pConnectionChange", recvP2pConnectionChangeFunc);
 
 ## wifi.on('p2pDeviceChange')<sup>8+</sup>
 
-on(type: "p2pDeviceChange", callback: Callback&lt;WifiP2pDevice&gt;): void
+on(type: 'p2pDeviceChange', callback: Callback&lt;WifiP2pDevice&gt;): void
 
 Subscribes to P2P device state changes.
 
@@ -1575,15 +1577,15 @@ Subscribes to P2P device state changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **p2pDeviceChange**.|
-  | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the P2P device state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pDeviceChange**.|
+| callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | Yes| Callback used to return the P2P device state.|
 
 
 ## wifi.off('p2pDeviceChange')<sup>8+</sup>
 
-off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
+off(type: 'p2pDeviceChange', callback?: Callback&lt;WifiP2pDevice&gt;): void
 
 Unsubscribes from P2P device state changes.
 
@@ -1593,10 +1595,10 @@ Unsubscribes from P2P device state changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **p2pDeviceChange**.|
-  | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks for the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pDeviceChange**.|
+| callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks for the specified event will be unregistered.|
 
 **Example**
 ```ts
@@ -1615,7 +1617,7 @@ wifi.off("p2pDeviceChange", recvP2pDeviceChangeFunc);
 
 ## wifi.on('p2pPeerDeviceChange')<sup>8+</sup>
 
-on(type: "p2pPeerDeviceChange", callback: Callback&lt;WifiP2pDevice[]&gt;): void
+on(type: 'p2pPeerDeviceChange', callback: Callback&lt;WifiP2pDevice[]&gt;): void
 
 Subscribes to P2P peer device state changes.
 
@@ -1625,15 +1627,15 @@ Subscribes to P2P peer device state changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **p2pPeerDeviceChange**.|
-  | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the P2P peer device state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pPeerDeviceChange**.|
+  | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Yes| Callback used to return the P2P peer device state.|
 
 
 ## wifi.off('p2pPeerDeviceChange')<sup>8+</sup>
 
-off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): void
+off(type: 'p2pPeerDeviceChange', callback?: Callback&lt;WifiP2pDevice[]&gt;): void
 
 Unsubscribes from P2P peer device state changes.
 
@@ -1643,10 +1645,10 @@ Unsubscribes from P2P peer device state changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **p2pPeerDeviceChange**.|
-  | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks for the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pPeerDeviceChange**.|
+| callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks for the specified event will be unregistered.|
 
 **Example**
 ```ts
@@ -1665,7 +1667,7 @@ wifi.off("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
 
 ## wifi.on('p2pPersistentGroupChange')<sup>8+</sup>
 
-on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
+on(type: 'p2pPersistentGroupChange', callback: Callback&lt;void&gt;): void
 
 Subscribes to P2P persistent group state changes.
 
@@ -1675,15 +1677,15 @@ Subscribes to P2P persistent group state changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **p2pPersistentGroupChange**.|
-  | callback | Callback&lt;void&gt; | Yes| Callback invoked to return the P2P persistent group state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pPersistentGroupChange**.|
+| callback | Callback&lt;void&gt; | Yes| Callback used to return the P2P persistent group state.|
 
 
 ## wifi.off('p2pPersistentGroupChange')<sup>8+</sup>
 
-off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
+off(type: 'p2pPersistentGroupChange', callback?: Callback&lt;void&gt;): void
 
 Unsubscribes from P2P persistent group state changes.
 
@@ -1693,10 +1695,10 @@ Unsubscribes from P2P persistent group state changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **p2pPersistentGroupChange**.|
-  | callback | Callback&lt;void&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks for the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pPersistentGroupChange**.|
+| callback | Callback&lt;void&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks for the specified event will be unregistered.|
 
 **Example**
 ```ts
@@ -1716,7 +1718,7 @@ wifi.off("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);
 
 ## wifi.on('p2pDiscoveryChange')<sup>8+</sup>
 
-on(type: "p2pDiscoveryChange", callback: Callback&lt;number&gt;): void
+on(type: 'p2pDiscoveryChange', callback: Callback&lt;number&gt;): void
 
 Subscribes to P2P device discovery state changes.
 
@@ -1726,10 +1728,10 @@ Subscribes to P2P device discovery state changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **p2pDiscoveryChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the P2P device discovery state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pDiscoveryChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback used to return the P2P device discovery state.|
 
 **P2P discovered device states**
 
@@ -1741,7 +1743,7 @@ Subscribes to P2P device discovery state changes.
 
 ## wifi.off('p2pDiscoveryChange')<sup>8+</sup>
 
-off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
+off(type: 'p2pDiscoveryChange', callback?: Callback&lt;number&gt;): void
 
 Unsubscribes from P2P device discovery state changes.
 
@@ -1751,10 +1753,10 @@ Unsubscribes from P2P device discovery state changes.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type, which has a fixed value of **p2pDiscoveryChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks for the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type, which has a fixed value of **p2pDiscoveryChange**.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks for the specified event will be unregistered.|
 
 **Example**
 ```ts

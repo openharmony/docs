@@ -11,12 +11,12 @@ The **overlay** module provides APIs for installing a [module with the overlay f
 ## Modules to Import
 
 ``` ts
-import overlay from '@ohos.bundle.overlay';
+import { overlay } from '@kit.AbilityKit';
 ```
 
 ## overlay.setOverlayEnabledByBundleName
 
-setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: boolean): Promise\<void>
+setOverlayEnabledByBundleName(bundleName: string, moduleName: string, isEnabled: boolean): Promise\<void>
 
 Enables or disables a module with the overlay feature in another application. This API uses a promise to return the result. If the operation is successful, the processing result is returned; otherwise, an error message is returned.
 
@@ -42,10 +42,13 @@ Enables or disables a module with the overlay feature in another application. Th
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
@@ -54,8 +57,8 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 let isEnabled = false;
@@ -76,7 +79,7 @@ try {
 
 ## overlay.setOverlayEnabledByBundleName
 
-setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: boolean, callback: AsyncCallback\<void>): void
+setOverlayEnabledByBundleName(bundleName: string, moduleName: string, isEnabled: boolean, callback: AsyncCallback\<void>): void
 
 Enables or disables a module with the overlay feature in another application. This API uses an asynchronous callback to return the result. If the operation is successful, the processing result is returned; otherwise, an error message is returned.
 
@@ -97,10 +100,13 @@ Enables or disables a module with the overlay feature in another application. Th
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
@@ -109,8 +115,8 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 let isEnabled = false;
@@ -157,10 +163,13 @@ Obtains the information about a module with the overlay feature in another appli
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
@@ -169,8 +178,8 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 
@@ -208,10 +217,13 @@ Obtains the information about a module with the overlay feature in another appli
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
@@ -220,8 +232,8 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 
@@ -261,18 +273,21 @@ Obtains the information about all modules with the overlay feature in another ap
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
 
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication_xxxxx";
 
 try {
@@ -317,10 +332,13 @@ Obtains the information about modules with the overlay feature in another applic
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700034 | The specified module is an overlay module. |
@@ -329,8 +347,8 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let targetBundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 
@@ -368,10 +386,13 @@ Obtains the information about modules with the overlay feature in another applic
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700034 | The specified module is an overlay module. |
@@ -380,8 +401,8 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let targetBundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 
@@ -421,18 +442,21 @@ Obtains the information about all modules with the overlay feature in another ap
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700035 | The specified bundle is an overlay bundle. |
 
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let targetBundleName = "com.example.myapplication_xxxxx";
 
 try {

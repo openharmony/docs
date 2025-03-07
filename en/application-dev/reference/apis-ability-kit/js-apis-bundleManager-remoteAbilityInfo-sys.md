@@ -10,11 +10,11 @@ The **RemoteAbilityInfo** module provides information about a remote ability, wh
 
 ## RemoteAbilityInfo
 
-**System capability**: SystemCapability.BundleManager.DistributedBundleFramework
+ **System capability**: SystemCapability.BundleManager.DistributedBundleFramework
 
-**System API**: This is a system API.
+ **System API**: This is a system API.
 
-| Name       | Type                                        | Readable| Writable| Description                   |
+| Name       | Type                                        | Read-Only| Optional| Description                   |
 | ----------- | -------------------------------------------- | ---- | ---- | ----------------------- |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes  | No  | Element name information of the remote ability.      |
 | label       | string                                       | Yes  | No  | Label of the remote ability.  |

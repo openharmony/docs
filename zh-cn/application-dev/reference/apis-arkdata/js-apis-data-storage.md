@@ -911,9 +911,11 @@ storage.off('change', observer);
 
 | 名称 | 类型 | 必填 | 说明             |
 | ---- | -------- | ---- | ---------------- |
-| key  | string   | 否   | 变更的数据内容。 |
+| key  | string   | 是   | 变更的数据内容。 |
 
 ## ValueType
+
+type ValueType = number | string | boolean
 
 用于表示允许的数据字段类型。
 

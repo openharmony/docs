@@ -9,6 +9,8 @@
 ## motionPath
 motionPath(value: MotionPathOptions)
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数    | 类型                                | 是否必填 | 描述                                    |
@@ -16,6 +18,9 @@ motionPath(value: MotionPathOptions)
 | value | [MotionPathOptions](#motionpathoptions) | 是    | 设置组件的运动路径。             |
 
 ## MotionPathOptions
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 名称 | 参数类型 | 必填 | 描述 |
 | -------- | -------- | ---- | -------- |
 | path                         | string                     | 是   | 位移动画的运动路径，使用svg路径字符串。path中支持使用start和end进行起点和终点的替代，如：'Mstart.x&nbsp;start.y&nbsp;L50&nbsp;50&nbsp;Lend.x&nbsp;end.y&nbsp;Z'，更多说明请参考[绘制路径](../../../ui/ui-js-components-svg-path.md)。<br/>设置为空字符串时相当于不设置路径动画。       |
@@ -25,6 +30,8 @@ motionPath(value: MotionPathOptions)
 
 
 ## 示例
+
+该示例主要演示如何设置组件进行位移动画时的运动路径。
 
 ```ts
 // xxx.ets
@@ -36,8 +43,12 @@ struct MotionPathExample {
   build() {
     Column() {
       Button('click me').margin(50)
-        // 执行动画：从起点移动到(300,200)，再到(300,500)，再到终点
-        .motionPath({ path: 'Mstart.x start.y L300 200 L300 500 Lend.x end.y', from: 0.0, to: 1.0, rotatable: true })
+        .motionPath({
+          path: 'Mstart.x start.y L300 200 L300 500 Lend.x end.y',
+          from: 0.0,
+          to: 1.0,
+          rotatable: true
+        }) // 执行动画：从起点移动到(300,200)，再到(300,500)，再到终点
         .onClick(() => {
           animateTo({ duration: 4000, curve: Curve.Linear }, () => {
             this.toggle = !this.toggle // 通过this.toggle变化组件的位置

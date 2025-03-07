@@ -24,10 +24,12 @@
 | 接口名称 | 描述 | 
 | -------- | -------- |
 | createKVManager(config: KVManagerConfig): KVManager | 创建一个KVManager对象实例，用于管理数据库对象。 | 
-| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | 指定Options和storeId，创建并得到指定类型的KVStore数据库。 | 
-| put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void | 添加指定类型的键值对到数据库。 | 
-| get(key: string, callback: AsyncCallback&lt;Uint8Array\|string\|boolean\|number&gt;): void | 获取指定键的值。 | 
+| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | 指定options和storeId，创建并得到指定类型的KVStore数据库。 | 
+| put(key: string, value: Uint8Array \| string \| number \| boolean, callback: AsyncCallback&lt;void&gt;): void | 添加指定类型的键值对到数据库。 | 
+| get(key: string, callback: AsyncCallback\<boolean \| string \| number \| Uint8Array>): void | 获取指定键的值。 | 
 | delete(key: string, callback: AsyncCallback&lt;void&gt;): void | 从数据库中删除指定键值的数据。 | 
+| closeKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;): void | 通过storeId的值关闭指定的分布式键值数据库。 | 
+| deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;): void | 通过storeId的值删除指定的分布式键值数据库。 | 
 
 
 ## 开发步骤
@@ -39,12 +41,12 @@
      
    ```js
    // 导入模块
-   import distributedKVStore from '@ohos.data.distributedKVStore';
+   import { distributedKVStore } from '@kit.ArkData';
    
    // Stage模型
-   import window from '@ohos.window';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import { BusinessError } from '@ohos.base';
+   import { window } from '@kit.ArkUI';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
    
@@ -78,10 +80,11 @@
      
    ```js
    // 导入模块
-   import distributedKVStore from '@ohos.data.distributedKVStore';
+   import { distributedKVStore } from '@kit.ArkData';
    
    // FA模型
-   import featureAbility from '@ohos.ability.featureAbility';
+   import { featureAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
    let context = featureAbility.getContext(); // 获取context
@@ -118,7 +121,7 @@
        // kvStoreType不填时，默认创建多设备协同数据库
        kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
        // 多设备协同数据库：kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
-       securityLevel: distributedKVStore.SecurityLevel.S1
+       securityLevel: distributedKVStore.SecurityLevel.S3
      };
      kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
        if (err) {
@@ -166,8 +169,6 @@
 4. 调用get()方法获取指定键的值。示例代码如下所示：
      
    ```js
-   const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-   const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
@@ -193,8 +194,6 @@
 5. 调用delete()方法删除指定键值的数据。示例代码如下所示：
      
    ```js
-   const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-   const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
@@ -216,3 +215,39 @@
      console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
    }
    ```
+
+6. 通过storeId的值关闭指定的分布式键值数据库。示例代码如下所示：
+     
+    ```js
+    try {
+      kvStore = undefined;
+      kvManager.closeKVStore('appId', 'storeId', (err: BusinessError)=> {
+        if (err) {
+          console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in closing KVStore');
+      });
+    } catch (e) {
+      let error = e as BusinessError;
+      console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+    }
+    ```
+
+7. 通过storeId的值删除指定的分布式键值数据库。示例代码如下所示：
+     
+    ```js
+    try {
+      kvStore = undefined;
+      kvManager.deleteKVStore('appId', 'storeId', (err: BusinessError)=> {
+        if (err) {
+          console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in closing KVStore');
+      });
+    } catch (e) {
+      let error = e as BusinessError;
+      console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+    }
+    ```

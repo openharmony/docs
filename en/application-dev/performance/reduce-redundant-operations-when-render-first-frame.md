@@ -260,7 +260,7 @@ Reducing layout time can be achieved by asynchronous loading and reduced nesting
 
 During synchronous loading, images are loaded in the main thread. This means that, page layout needs to wait until the main thread has completed the **makePixelMap** task, resulting in long page layout times. On the contrary, during asynchronous loading, images are loaded in other threads while page layout is executed in the main thread. In this way, no blocking occurs, leading to faster page layout and better performance. However, not all image loading must be asynchronous loading. For small local images that are fast to load, synchronous loading (with **syncLoad** set to **true**) is preferrable.
 
-**Negative example**: The **\<Image>** component is used to synchronously load high-resolution images, blocking the UI thread and increasing the total page layout time.
+**Negative example**: The **Image** component is used to synchronously load high-resolution images, blocking the UI thread and increasing the total page layout time.
 
 ```ts
 @Entry
@@ -288,7 +288,7 @@ struct SyncLoadImage {
 }
 ```
 
-**Optimization**: The **\<Image>** component is loaded in the default asynchronous loading mode, which avoids blocking the UI thread and reduces the page layout time.
+**Optimization**: The **Image** component is loaded in the default asynchronous loading mode, which avoids blocking the UI thread and reduces the page layout time.
 
 ```ts
 @Entry
@@ -321,7 +321,7 @@ struct AsyncLoadImage {
 
 The view hierarchy can significantly affect application performance. Flatter view hierarchies can bring faster page layout and better layout performance. Therefore, whenever possible, reduce nesting and eliminate misplaced container components.
 
-**Negative example**: A **\<Grid>** container is used to load 1000 grids at a time, and additional three-layer **\<Flex>** containers are used , resulting in an unnecessarily deeply nested structure.
+**Negative example**: A **Grid** container is used to load 1000 grids at a time, and additional three-layer **Flex** containers are used , resulting in an unnecessarily deeply nested structure.
 
 ```ts
 @Entry
@@ -360,7 +360,7 @@ struct Depth1 {
 }
 ```
 
-**Optimization**: A **\<Grid>** container is used to load 1000 grids at a time, but this time no unnecessary containers are used, which leads to faster layout.
+**Optimization**: A **Grid** container is used to load 1000 grids at a time, but this time no unnecessary containers are used, which leads to faster layout.
 
 ```ts
 @Entry

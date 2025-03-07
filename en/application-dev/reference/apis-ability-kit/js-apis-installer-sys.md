@@ -1,6 +1,6 @@
 # @ohos.bundle.installer (installer) (System API)
 
-The **bundle.installer** module provides APIs for you to install, uninstall, and recover bundles on devices.
+The bundle.installer module provides APIs for you to install, uninstall, and recover bundles on devices.
 
 > **NOTE**
 >
@@ -25,9 +25,9 @@ import installer from '@ohos.bundle.installer';
 | ohos.permission.UNINSTALL_BUNDLE | system_core | Allows an application to uninstall applications.|
 | ohos.permission.RECOVER_BUNDLE | system_core | Allows an application to restore pre-installed applications.|
 | ohos.permission.INSTALL_SELF_BUNDLE | system_core | Allows automatic updates of the enterprise MDM applications on enterprise devices.|
+| ohos.permission.INSTALL_INTERNALTESTING_BUNDLE | system_core | Allows an application to install beta applications.|
 
-
-For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
+For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
 ## BundleInstaller.getBundleInstaller
 
@@ -44,6 +44,15 @@ Obtains a **BundleInstaller** object. This API uses an asynchronous callback to 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback\<BundleInstaller> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **BundleInstaller** object obtained; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types.   |
 
 **Example**
 
@@ -80,6 +89,14 @@ Obtains a **BundleInstaller** object. This API uses an asynchronous callback to 
 | ------------------------------------------------------------ | ------------------------------------ |
 | Promise\<BundleInstaller> | Promise used to return the **BundleInstaller** object obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **Example**
 
 ```ts
@@ -112,6 +129,14 @@ Obtains a **BundleInstaller** object. This API is a synchronous API.
 | Type                                                        | Description                                |
 | ------------------------------------------------------------ | ------------------------------------ |
 | BundleInstaller | **BundleInstaller** object.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
 
@@ -147,6 +172,8 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 > To install an enterprise MDM application, you must have the **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE** permission.
 >
 > To install a common application, you must have the **ohos.permission.INSTALL_BUNDLE** permission.
+>
+> To install a beta application, you must have the **ohos.permission.INSTALL_INTERNALTESTING_BUNDLE** permission.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -160,10 +187,13 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE'.   |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter hapFiles is needed for code signature; 4. The size of specifiedDistributionType is greater than 128; 5. The size of additionalInfo is greater than 3000.   |
 | 17700004 | The specified user ID is not found.                          |
 | 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
 | 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
@@ -171,19 +201,22 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 | 17700015 | Failed to install the HAPs because they have different configuration information. |
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
-| 17700018 | Failed to install because the dependent module does not exist. |
-| 17700031 | Failed to install the HAP because the overlay check of the HAP is failed. |
-| 17700036 | Failed to install the HSP because lacks appropriate permissions. |
-| 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
-| 17700041 | Failed to install because enterprise device management disallow install. |
+| 17700018 | Failed to install the HAP or HSP because the dependent module does not exist. |
+| 17700031 | Failed to install the HAP because the overlay check of the HAP failed. |
+| 17700036 | Failed to install the HSP due to the lack of required permission. |
+| 17700039 | Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed. |
+| 17700041 | Failed to install the HAP because the installation is forbidden by enterprise device management. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
-| 17700048 | Failed to install the HAP because the code signature verification is failed. |
-| 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
-| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
+| 17700048 | Failed to install the HAP because the code signature verification failed. |
+| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
+| 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
+| 17700066 | Failed to install the HAP because installing the native package failed. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
+| 17700076 | Failed to install the HAP or HSP because the app distribution type is not allowed. |
 
 **Example**
 
@@ -234,6 +267,8 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 > To install an enterprise MDM application, you must have the **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE** permission.
 >
 > To install a common application, you must have the **ohos.permission.INSTALL_BUNDLE** permission.
+>
+> To install a beta application, you must have the **ohos.permission.INSTALL_INTERNALTESTING_BUNDLE** permission.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -246,29 +281,35 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE'.   |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
 | 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
 | 17700012 | Failed to install the HAP because the HAP path is invalid or the HAP is too large. |
 | 17700015 | Failed to install the HAPs because they have different configuration information. |
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
-| 17700018 | Failed to install because the dependent module does not exist. |
-| 17700031 | Failed to install the HAP because the overlay check of the HAP is failed. |
-| 17700036 | Failed to install the HSP because lacks appropriate permissions. |
-| 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
-| 17700041 | Failed to install because enterprise device management disallow install. |
+| 17700018 | Failed to install the HAP or HSP because the dependent module does not exist. |
+| 17700031 | Failed to install the HAP because the overlay check of the HAP failed. |
+| 17700036 | Failed to install the HSP due to the lack of required permission. |
+| 17700039 | Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed. |
+| 17700041 | Failed to install the HAP because the installation is forbidden by enterprise device management. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
-| 17700048 | Failed to install the HAP because the code signature verification is failed. |
-| 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
-| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
+| 17700048 | Failed to install the HAP because the code signature verification failed. |
+| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
+| 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
+| 17700066 | Failed to install the HAP because installing the native package failed. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
+| 17700076 | Failed to install the HAP or HSP because the app distribution type is not allowed. |
 
 **Example**
 
@@ -316,6 +357,8 @@ Installs a bundle. This API uses a promise to return the result.
 > To install an enterprise MDM application, you must have the **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE** permission.
 >
 > To install a common application, you must have the **ohos.permission.INSTALL_BUNDLE** permission.
+>
+> To install a beta application, you must have the **ohos.permission.INSTALL_INTERNALTESTING_BUNDLE** permission.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -334,10 +377,13 @@ Installs a bundle. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE'.   |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter hapFiles is needed for code signature; 4. The size of specifiedDistributionType is greater than 128; 5. The size of additionalInfo is greater than 3000.   |
 | 17700004 | The specified user ID is not found.                          |
 | 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
 | 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
@@ -345,19 +391,22 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 | 17700015 | Failed to install the HAPs because they have different configuration information. |
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
-| 17700018 | Failed to install because the dependent module does not exist. |
-| 17700031 | Failed to install the HAP because the overlay check of the HAP is failed. |
-| 17700036 | Failed to install the HSP because lacks appropriate permissions. |
-| 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
-| 17700041 | Failed to install because enterprise device management disallow install. |
+| 17700018 | Failed to install the HAP or HSP because the dependent module does not exist. |
+| 17700031 | Failed to install the HAP because the overlay check of the HAP failed. |
+| 17700036 | Failed to install the HSP due to the lack of required permission. |
+| 17700039 | Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed. |
+| 17700041 | Failed to install the HAP because the installation is forbidden by enterprise device management. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
-| 17700048 | Failed to install the HAP because the code signature verification is failed. |
-| 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
-| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
+| 17700048 | Failed to install the HAP because the code signature verification failed. |
+| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
+| 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
+| 17700066 | Failed to install the HAP because installing the native package failed. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
+| 17700076 | Failed to install the HAP or HSP because the app distribution type is not allowed. |
 
 **Example**
 
@@ -406,20 +455,26 @@ Uninstalls a bundle. This API uses an asynchronous callback to return the result
 | Name     | Type                                                | Mandatory| Description                                          |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | Yes  | Name of the target bundle.                                          |
-| installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the uninstall.                      |
+| installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the installation.                      |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.UNINSTALL_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
-| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
+| 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
+| 17700060 | The specified application cannot be uninstalled. |
+| 17700062 | Failed to uninstall the app because the app is locked. |
+| 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
 
 **Example**
 
@@ -473,14 +528,19 @@ Uninstalls a bundle. This API uses an asynchronous callback to return the result
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.UNINSTALL_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
-| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
+| 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
+| 17700060 | The specified application cannot be uninstalled. |
+| 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
 
 **Example**
 
@@ -524,7 +584,7 @@ Uninstalls a bundle. This API uses a promise to return the result.
 | Name      | Type                         | Mandatory| Description                                                        |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName | string                          | Yes  | Name of the target bundle.                                          |
-| installParam | [InstallParam](#installparam) | No  | Parameters required for the uninstall. For details about their default values, see [InstallParam](#installparam).                                    |
+| installParam | [InstallParam](#installparam) | No  | Parameters required for the installation. For details about their default values, see [InstallParam](#installparam).                                    |
 
 **Return value**
 
@@ -534,17 +594,24 @@ Uninstalls a bundle. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.UNINSTALL_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
-| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
+| 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
+| 17700060 | The specified application cannot be uninstalled. |
+| 17700062 | Failed to uninstall the app because the app is locked. |
+| 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
 
 **Example**
+
 ```ts
 import installer from '@ohos.bundle.installer';
 import { BusinessError } from '@ohos.base';
@@ -590,17 +657,22 @@ Rolls back a bundle to the initial installation state. This API uses an asynchro
 | Name     | Type                                                | Mandatory| Description                                          |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | Yes  | Name of the target bundle.                                          |
-| installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the recovery.                      |
+| installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the installation.                      |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.RECOVER_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
+| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **Example**
 
@@ -655,11 +727,16 @@ Rolls back a bundle to the initial installation state. This API uses an asynchro
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.RECOVER_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
+| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **Example**
 
@@ -704,7 +781,7 @@ Rolls back a bundle to the initial installation state. This API uses a promise t
 | Name      | Type                         | Mandatory| Description                                                        |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName | string                          | Yes  | Name of the target bundle.                                          |
-| installParam | [InstallParam](#installparam) | No  | Parameters required for the recovery. For details about their default values, see [InstallParam](#installparam).                                    |
+| installParam | [InstallParam](#installparam) | No  | Parameters required for the installation. For details about their default values, see [InstallParam](#installparam).                                    |
 
 **Return value**
 
@@ -714,12 +791,17 @@ Rolls back a bundle to the initial installation state. This API uses a promise t
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.RECOVER_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
+| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **Example**
 ```ts
@@ -752,9 +834,9 @@ try {
 
 ## BundleInstaller.uninstall<sup>10+</sup>
 
-uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void>) : void
+uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void\>) : void
 
-Uninstalls a shared bundle. This API uses an asynchronous callback to return the result.
+Uninstalls a shared package. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -771,12 +853,15 @@ Uninstalls a shared bundle. This API uses an asynchronous callback to return the
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.UNINSTALL_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
-| 17700037 | The version of shared bundle is dependent on other applications. |
+| 17700037 | The version of the shared bundle is dependent on other applications. |
 | 17700038 | The specified shared bundle does not exist.                  |
 
 **Example**
@@ -811,7 +896,7 @@ try {
 
 uninstall(uninstallParam: UninstallParam) : Promise\<void>
 
-Uninstalls a shared bundle. This API uses a promise to return the result.
+Uninstalls a shared package. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -833,12 +918,15 @@ Uninstalls a shared bundle. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.UNINSTALL_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
-| 17700037 | The version of shared bundle is dependent on other applications. |
+| 17700037 | The version of the shared bundle is dependent on other applications. |
 | 17700038 | The specified shared bundle does not exist.                  |
 
 **Example**
@@ -859,6 +947,130 @@ try {
             } else {
                 console.info('uninstall successfully.');
             }
+        });
+    }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
+## BundleInstaller.addExtResource<sup>12+</sup>
+
+addExtResource(bundleName: string, filePaths: Array\<string>): Promise\<void>;
+
+Adds extended resources based on the specified bundle name and HSP file path. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.INSTALL_BUNDLE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name        | Type                               | Mandatory| Description                        |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| bundleName | string | Yes  | Bundle name of the application to which extended resources are to be added.|
+| filePaths | Array\<string> | Yes  | Path of the extended resources to be added.|
+
+**Return value**
+
+| Type         | Description                                  |
+| ------------- | -------------------------------------- |
+| Promise\<void> | that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201 | Permission denied. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName is not found. |
+| 17700301 | Failed to add extended resources.                 |
+
+**Example**
+
+```ts
+import installer from '@ohos.bundle.installer';
+import hilog from '@ohos.hilog';
+import { BusinessError } from '@ohos.base';
+
+let bundleName : string = 'com.ohos.demo';
+let filePaths : Array<string> = ['/data/storage/el2/base/a.hsp'];
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.addExtResource(bundleName, filePaths).then((data) => {
+            hilog.info(0x0000, 'testTag', 'addExtResource successfully');
+        }).catch((err: BusinessError) => {
+            hilog.error(0x0000, 'testTag', 'addExtResource failed. Cause: %{public}s', err.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
+## BundleInstaller.removeExtResource<sup>12+</sup>
+
+removeExtResource(bundleName: string, moduleNames: Array\<string>): Promise\<void>;
+
+Removes extended resources based on the specified bundle name and HSP file path. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.INSTALL_BUNDLE or ohos.permission.UNINSTALL_BUNDLE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name        | Type                               | Mandatory| Description                        |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| bundleName | string | Yes  | Bundle name of the application for which extended resources are to be removed.|
+| moduleNames | Array\<string> | Yes  | Names of the modules whose extended resources are to be removed.|
+
+**Return value**
+
+| Type         | Description                                  |
+| ------------- | -------------------------------------- |
+| Promise\<void> | that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201 | Permission denied. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName is not found. |
+| 17700302 | Failed to remove extended resources.                  |
+
+**Example**
+
+```ts
+import installer from '@ohos.bundle.installer';
+import hilog from '@ohos.hilog';
+import { BusinessError } from '@ohos.base';
+
+let bundleName : string = 'com.ohos.demo';
+let moduleNames : Array<string> = ['moduleTest'];
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.removeExtResource(bundleName, moduleNames).then((data) => {
+            hilog.info(0x0000, 'testTag', 'removeExtResource successfully');
+        }).catch((err: BusinessError) => {
+            hilog.error(0x0000, 'testTag', 'removeExtResource failed. Cause: %{public}s', err.message);
         });
     }).catch((error: BusinessError) => {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
@@ -891,10 +1103,13 @@ Updates the current bundle. This API uses an asynchronous callback to return the
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_SELF_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter hapFiles is needed for code signature; 4. The size of specifiedDistributionType is greater than 128; 5. The size of additionalInfo is greater than 3000. |
 | 17700004 | The specified user ID is not found.                          |
 | 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
 | 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
@@ -902,17 +1117,17 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 | 17700015 | Failed to install the HAPs because they have different configuration information. |
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
-| 17700018 | Failed to install because the dependent module does not exist. |
-| 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
-| 17700041 | Failed to install because enterprise device management disallow install. |
+| 17700018 | Failed to install the HAP or HSP because the dependent module does not exist. |
+| 17700039 | Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed. |
+| 17700041 | Failed to install the HAP because the installation is forbidden by enterprise device management. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
-| 17700048 | Failed to install the HAP because the code signature verification is failed. |
+| 17700048 | Failed to install the HAP because the code signature verification failed. |
 | 17700049 | Failed to install the HAP because the bundleName is different from the bundleName of the caller application. |
-| 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
-| 17700051 | Failed to install the HAP because the distribution type of caller application is not enterprise_mdm. |
+| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
+| 17700051 | Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm. |
 
 **Example**
 
@@ -966,27 +1181,30 @@ Updates the current bundle. This API uses an asynchronous callback to return the
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_SELF_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
 | 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
 | 17700012 | Failed to install the HAP because the HAP path is invalid or the HAP is too large. |
 | 17700015 | Failed to install the HAPs because they have different configuration information. |
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
-| 17700018 | Failed to install because the dependent module does not exist. |
-| 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
-| 17700041 | Failed to install because enterprise device management disallow install. |
+| 17700018 | Failed to install the HAP or HSP because the dependent module does not exist. |
+| 17700039 | Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed. |
+| 17700041 | Failed to install the HAP because the installation is forbidden by enterprise device management. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
-| 17700048 | Failed to install the HAP because the code signature verification is failed. |
+| 17700048 | Failed to install the HAP because the code signature verification failed. |
 | 17700049 | Failed to install the HAP because the bundleName is different from the bundleName of the caller application. |
-| 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
-| 17700051 | Failed to install the HAP because the distribution type of caller application is not enterprise_mdm. |
+| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
+| 17700051 | Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm. |
 
 **Example**
 
@@ -1041,10 +1259,13 @@ Updates the current bundle. This API uses a promise to return the result. It can
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_SELF_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter hapFiles is needed for code signature; 4. The size of specifiedDistributionType is greater than 128; 5. The size of additionalInfo is greater than 3000. |
 | 17700004 | The specified user ID is not found.                          |
 | 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
 | 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
@@ -1052,17 +1273,17 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 | 17700015 | Failed to install the HAPs because they have different configuration information. |
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
-| 17700018 | Failed to install because the dependent module does not exist. |
-| 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
-| 17700041 | Failed to install because enterprise device management disallow install. |
+| 17700018 | Failed to install the HAP or HSP because the dependent module does not exist. |
+| 17700039 | Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed. |
+| 17700041 | Failed to install the HAP because the installation is forbidden by enterprise device management. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
-| 17700048 | Failed to install the HAP because the code signature verification is failed. |
+| 17700048 | Failed to install the HAP because the code signature verification failed. |
 | 17700049 | Failed to install the HAP because the bundleName is different from the bundleName of the caller application. |
-| 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
-| 17700051 | Failed to install the HAP because the distribution type of caller application is not enterprise_mdm. |
+| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
+| 17700051 | Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm. |
 
 **Example**
 
@@ -1084,6 +1305,346 @@ try {
                 console.info('updateBundleForSelf successfully: ' + JSON.stringify(data));
         }).catch((error: BusinessError) => {
             console.error('updateBundleForSelf failed:' + error.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
+## BundleInstaller.uninstallUpdates<sup>12+</sup>
+
+uninstallUpdates(bundleName: string, installParam?: InstallParam): Promise\<void\>;
+
+Uninstalls and updates a preinstalled application and restores it to the initial installation status. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.INSTALL_BUNDLE or ohos.permission.RECOVER_BUNDLE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name       | Type                         | Mandatory| Description                                                        |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName   | string                        | Yes  | Name of the target bundle.                                                 |
+| installParam | [InstallParam](#installparam) | No  | Parameters required for the uninstall and update. For details about their default values, see [InstallParam](#installparam). The **userId** parameter cannot be specified. Calling this API will uninstall and update the application for all users.|
+
+**Return value**
+
+| Type           | Description                                  |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.UNINSTALL_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundle name is not found. |
+| 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
+| 17700057 | Failed to uninstall updates because the HAP is not pre-installed. |
+| 17700060 | The specified application cannot be uninstalled. |
+| 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
+
+**Example**
+
+```ts
+import installer from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
+
+let bundleName = 'com.ohos.camera';
+let installParam: installer.InstallParam = {
+    isKeepData: true,
+    installFlag: 1,
+};
+
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.uninstallUpdates(bundleName, installParam)
+            .then(() => {
+                console.info('uninstallUpdates successfully.');
+        }).catch((error: BusinessError) => {
+            console.error('uninstallUpdates failed:' + error.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
+## BundleInstaller.createAppClone<sup>12+</sup>
+
+createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): Promise\<number\>;
+
+Creates an application clone. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.INSTALL_CLONE_BUNDLE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name       | Type                         | Mandatory| Description                                                         |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName   | string                        | Yes  | Bundle name of the application for which a clone is to be created.                                        |
+| createAppCloneParam  | [createAppCloneParam](#createappcloneparam12)   | No  | Other parameters required for creating the clone. For details about the default values of these parameters, see [createAppCloneParam](#createappcloneparam12).  |
+
+**Return value**
+
+| Type           | Description                                  |
+| --------------- | -------------------------------------- |
+| Promise\<number\> | Promise used to return the index of the application clone.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_CLONE_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName cannot be found or the bundle is not installed by the specified user. |
+| 17700004 | The userId is invalid. |
+| 17700061 | The appIndex is not in valid range or already exists. |
+| 17700069 | The app does not support the creation of an appClone instance. |
+
+**Example**
+```ts
+import installer from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
+
+let bundleName = 'com.ohos.camera';
+let createAppCloneParam: installer.CreateAppCloneParam = {
+    userId: 100,
+    appIndex: 1,
+};
+
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.createAppClone(bundleName, createAppCloneParam)
+            .then(() => {
+                console.info('createAppClone successfully.');
+        }).catch((error: BusinessError) => {
+            console.error('createAppClone failed:' + error.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
+## BundleInstaller.destroyAppClone<sup>12+</sup>
+
+destroyAppClone(bundleName: string, appIndex: number, userId?: number): Promise\<void\>;
+
+Destroys an application clone. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.UNINSTALL_CLONE_BUNDLE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name       | Type                         | Mandatory| Description                                                         |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName   | string                        | Yes  | Bundle name of the application for which a clone is to be destroyed.                                        |
+| appIndex     | number                        | Yes  | Index of the clone to destroy.                                        |
+| userId       | number                        | No  | ID of the user to whom the clone to destroy belongs. The default value is the user ID of the caller.                |
+
+**Return value**
+
+| Type           | Description                                  |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.UNINSTALL_CLONE_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName cannot be found or the bundle is not installed by the specified user. |
+| 17700004 | The userId is invalid. |
+| 17700061 | The appIndex is invalid. |
+
+**Example**
+```ts
+import installer from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
+
+let bundleName = 'com.ohos.camera';
+let index = 1;
+let userId = 100;
+
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.destroyAppClone(bundleName, index, userId)
+            .then(() => {
+                console.info('destroyAppClone successfully.');
+        }).catch((error: BusinessError) => {
+            console.error('destroyAppClone failed:' + error.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
+## BundleInstaller.destroyAppClone<sup>15+</sup>
+
+destroyAppClone(bundleName: string, appIndex: number, destroyAppCloneParam?: DestroyAppCloneParam): Promise\<void\>;
+
+Destroys an application clone. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.UNINSTALL_CLONE_BUNDLE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name       | Type                         | Mandatory| Description                                                         |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName   | string                        | Yes  | Bundle name of the application for which a clone is to be destroyed.                                        |
+| appIndex     | number                        | Yes  | Index of the clone to destroy.                                        |
+| destroyAppCloneParam       | [DestroyAppCloneParam](#destroyappcloneparam15)   | No  | Other parameters required for destroying the clone. For details about the default values of these parameters, see [DestroyAppCloneParam](#destroyappcloneparam15).  |
+
+**Return value**
+
+| Type           | Description                                  |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.UNINSTALL_CLONE_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 17700001 | The specified bundleName cannot be found or the bundle is not installed by the specified user. |
+| 17700004 | The userId is invalid. |
+| 17700061 | The appIndex is invalid. |
+| 17700062 | Failed to uninstall the app because the app is locked. |
+
+**Example**
+```ts
+import installer from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
+
+let bundleName = 'com.ohos.camera';
+let index = 1;
+let userId = 100;
+let key = 'ohos.bms.param.verifyUninstallRule';
+let value = 'false';
+let item: installer.Parameters = {key, value};
+let destroyAppCloneOpt: installer.DestroyAppCloneParam = {
+    userId: userId,
+    parameters: [item]
+};
+
+
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.destroyAppClone(bundleName, index, destroyAppCloneOpt)
+            .then(() => {
+                console.info('destroyAppClone successfully.');
+        }).catch((error: BusinessError) => {
+            console.error('destroyAppClone failed:' + error.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
+## BundleInstaller.installPreexistingApp<sup>12+</sup>
+
+installPreexistingApp(bundleName: string, userId?: number): Promise\<void\>;
+
+Installs a bundle. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.INSTALL_BUNDLE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name       | Type                         | Mandatory| Description                                                         |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName   | string                        | Yes  | Bundle name of the application to install.                                          |
+| userId       | number                        | No  | ID of the user for whom the application is to be installed. The value must be greater than 0. The default value is the user ID of the caller.   |
+
+**Return value**
+
+| Type           | Description                                  |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName cannot be found. |
+| 17700004 | The userId is invalid. |
+| 17700071 | It is not allowed to install the enterprise bundle. |
+| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
+
+**Example**
+```ts
+import installer from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
+
+let bundleName = 'com.ohos.camera';
+let userId = 100;
+
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.installPreexistingApp(bundleName, userId)
+            .then(() => {
+                console.info('installPreexistingApp successfully.');
+        }).catch((error: BusinessError) => {
+            console.error('installPreexistingApp failed:' + error.message);
         });
     }).catch((error: BusinessError) => {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
@@ -1117,7 +1678,7 @@ Defines the parameters that need to be specified for bundle installation, uninst
 
 | Name                       | Type                          | Mandatory                        | Description              |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
-| userId                         | number                         | No                       | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [queryOsAccountLocalIdFromProcess](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID of the current process.|
+| userId                         | number                         | No                       | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [queryOsAccountLocalIdFromProcess](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID of the current process. When a driver application is installed, uninstalled, or restored, this parameter is ignored and the operation is executed for all users.|
 | installFlag                    | number                         | No                       | Installation flag. The value **0x00** means initial installation, **0x01** means overwrite installation, and **0x10** means installation-free. The default value is **0x00**.|
 | isKeepData                     | boolean                        | No                      | Whether to retain the data directory during bundle uninstall. The default value is **false**.|
 | hashParams        | Array<[HashParam](#hashparam)> | No| Hash parameters. By default, no value is passed.        |
@@ -1127,7 +1688,7 @@ Defines the parameters that need to be specified for bundle installation, uninst
 | additionalInfo<sup>10+</sup> | string | No|Additional information during application installation (usually an enterprise application). By default, no value is passed. The maximum length is 3,000 bytes. This field is usually specified by the application market of the operating system operator.|
 | verifyCodeParams<sup>deprecated<sup> | Array<[VerifyCodeParam](#verifycodeparamdeprecated)> | No| Information about the code signature file. The default value is null.        |
 | pgoParams<sup>11+</sup> | Array<[PGOParam](#pgoparam11)> | No| Parameters of the Profile-guided Optimization (PGO) configuration file. The default value is null.        |
-
+| parameters<sup>15+</sup> | Array<[Parameters](#parameters15)> | No| Extended parameters, represented as an array of the Parameters type. The default value is empty. The options of **Parameters.key** are as follows:<br> - **ohos.bms.param.renameInstall**: If the value is **true**, the installation package is moved from the application sandbox to the installation directory using a shared directory. Otherwise, it is copied from the application sandbox to the installation directory using a regular directory.<br> - **ohos.bms.param.enterpriseForAllUser**: If the value is **true**, the enterprise application is installed for all users.<br> - **ohos.bms.param.verifyUninstallForced**: If the value is **true**, the preinstalled application is forcibly uninstalled.<br> - **ohos.bms.param.verifyUninstallRule**: If the value is **true**, an uninstallation handling rule is set to block application uninstallation.<br> If both **("ohos.bms.param.verifyUninstallRule," "true")** and **("ohos.bms.param.verifyUninstallForced," "true")** are configured, the later rule prevails.|
 ## UninstallParam<sup>10+</sup>
 
 Defines the parameters required for the uninstall of a shared bundle.
@@ -1168,3 +1729,42 @@ Defines the parameters of the PGO configuration file.
 | ---------- | ------ | ---------------- | ---------------- |
 | moduleName | string | Yes| Module name of the bundle.|
 | pgoFilePath  | string | Yes| Path of the PGO configuration file.          |
+
+## Parameters<sup>15+</sup>
+
+Describes the extended parameter information.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+ **System API**: This is a system API.
+
+| Name    | Type  | Mandatory| Description            |
+| ---------- | ------ | ---------------- | ---------------- |
+| key | string | Yes| Key of an extended parameter.|
+| value  | string | Yes| Value of the extended parameter. |
+
+## CreateAppCloneParam<sup>12+</sup>
+
+Describes the parameters used for creating an application clone.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**System API**: This is a system API.
+
+| Name       | Type  | Mandatory| Description                                                         |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| userId      | number | No  | ID of the user for whom the clone is created. The default value is the user ID of the caller.            |
+| appIndex    | number | No  | Index of the clone. The default value is the currently available minimum index.          |
+
+## DestroyAppCloneParam<sup>15+</sup>
+
+Describes the parameters used for destroying an application clone.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+ **System API**: This is a system API.
+
+| Name       | Type  | Mandatory| Description                                                         |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| userId      | number | No  | ID of the user for whom the clone is destroyed. The default value is the user ID of the caller.            |
+| parameters  | Array<[Parameters](#parameters15)> | No  | Extended parameters for destroying the clone. The default value is null.           |

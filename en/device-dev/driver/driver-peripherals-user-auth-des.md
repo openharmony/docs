@@ -10,7 +10,7 @@ The User_auth driver is developed based on the Hardware Driver Foundation (HDF).
 
 **Figure 1** User authentication architecture
 
-![image](figures/user_auth_architecture.png "User authentication architecture")
+![image](figures/user_auth_architecture.png "User Authentication Architecture")
 
 ### Basic Concepts
 The identity authentication consists of the User_auth framework and basic authentication services (including PIN authentication and facial recognition). It supports basic functions such as setting and deleting user credentials and performing authentication.
@@ -29,11 +29,11 @@ The identity authentication consists of the User_auth framework and basic authen
 
 - Executor role
 
-  - Executor: independently completes the entire process of credential registration and identity authentication. The executor can collect, process, store, and compare data to complete the authentication.
+  - ​    Executor: independently completes the entire process of credential registration and identity authentication. The executor can collect, process, store, and compare data to complete the authentication.
 
-  - Collector: only collects data during user authentication. It needs to work with the authenticator to complete user authentication.
+  - ​    Collector: only collects data during user authentication. It needs to work with the authenticator to complete user authentication.
 
-  - Authenticator: processes data, obtains the stored credential template, and compares it with the authentication information generated.
+  - ​    Authenticator: processes data, obtains the stored credential template, and compares it with the authentication information generated.
 
 - Executor type
 
@@ -86,7 +86,7 @@ The identity authentication consists of the User_auth framework and basic authen
 
 - HDI
 
-  The hardware device interface (HDI) is located between the basic system service layer and the device driver layer. It provides APIs for abstracting hardware device functions, which shields underlying hardware device differences for system services. For details, see [HDI Specifications](../../design/hdi-design-specifications.md).
+  The hardware device interface (HDI) is located between the basic system service layer and the device driver layer. It provides APIs for abstracting hardware device functions, which shield underlying hardware device differences for system services. For details, see [HDI Specifications](../../design/hdi-design-specifications.md).
 
 ### Working Principles
 
@@ -99,7 +99,7 @@ You can develop drivers to call Hardware Device Interface (HDI) APIs based on th
 
 ### Constraints
 
-The User_auth driver must be implemented in a Trusted Execution Environment (TEE) to ensure secure storage of user credentials and trustworthiness of user authentication results.
+The User_auth driver must be implemented in a TEE to ensure secure storage of user credentials and trustworthiness of user authentication results.
 
 ## Development Guidelines
 
@@ -117,29 +117,35 @@ The following table describes the C++ APIs generated from the Interface Definiti
 | API      | Description    |
 | --------------------------- | --------------------------- |
 | Init()           | Initializes cached information.                       |
-| AddExecutor(const ExecutorRegisterInfo& info, uint64_t& index, std::vector\<uint8_t>& publicKey,<br>        std::vector\<uint64_t>& templateIds) | Adds an executor to obtain the authentication capability.          |
+| AddExecutor(const HdiExecutorRegisterInfo &info, uint64_t &index, std::vector<uint8_t> &publicKey, std::vector<uint64_t> &templateIds) |Adds an executor to obtain the authentication capability.|
 | DeleteExecutor(uint64_t index)            | Deletes an executor.      |
-| OpenSession(int32_t userId, std::vector\<uint8_t>& challenge) | Opens a session for authentication credential management.     |
+| OpenSession(int32_t userId, std::vector<uint8_t> &challenge) | Opens a session for authentication credential management.     |
 | CloseSession(int32_t userId)        | Closes a session for authentication credential management.           |
-| BeginEnrollment(int32_t userId, const std::vector\<uint8_t>& authToken, const EnrollParam& param,<br>        ScheduleInfo& info) | Enrolls the user authentication credential (version V1_0). If a user has enrolled a PIN, the old PIN will be overwritten .|
-| UpdateEnrollmentResult(int32_t userId, const std::vector\<uint8_t>& scheduleResult, uint64_t& credentialId,<br>        CredentialInfo& oldInfo) | Updates the data to complete this enrollment.  |
-| CancelEnrollment(int32_t userId)     | Cancels an enrollment operation.         |
-| DeleteCredential(int32_t userId, uint64_t credentialId, const std::vector\<uint8_t>& authToken,<br>        CredentialInfo& info) | Deletes credential information based on the specified **credentialId**.                              |
-| DeleteUser(int32_t userId, const std::vector\<uint8_t>& authToken,<br>        std::vector\<CredentialInfo>& deletedInfos) | Deletes a user PIN from User_auth.                       |
-| EnforceDeleteUser(int32_t userId, std::vector\<CredentialInfo>& deletedInfos) | Forcibly deletes a user. This API will be called when a user is deleted from the system.              |
-| GetCredential(int32_t userId, AuthType authType, std::vector\<CredentialInfo>& infos) | Obtains user credential information by authentication type.            |
-| GetSecureInfo(int32_t userId, uint64_t& secureUid, std::vector\<EnrolledInfo>& infos) | Obtains the secure user ID and the enrolled tag ID of each authentication type.            |
-| BeginAuthentication(uint64_t contextId, const AuthSolution& param,<br>        std::vector\<ScheduleInfo>& scheduleInfos) | Starts authentication and generates the authentication scheme and scheduling information (version V1_0).                          |
-| UpdateAuthenticationResult(uint64_t contextId, const std::vector\<uint8_t>& scheduleResult,<br>        AuthResultInfo& info) | Updates the authentication result to evaluate the authentication scheme.                  |
+| BeginEnrollment(const std::vector<uint8_t> &authToken, const HdiEnrollParam &param, HdiScheduleInfo &info) | Enrolls the user authentication credential. If a user has enrolled a PIN, the old PIN will be overwritten. |
+| UpdateEnrollmentResult(int32_t userId, const std::vector<uint8_t> & scheduleResult, EnrollResultInfo &info)| Updates the data to complete this enrollment.  |
+| CancelEnrollment(int32_t userId)     | Cancels an enrollment.         |
+| DeleteCredential(int32_t userId, uint64_t credentialId, const std::vector<uint8_t> &authToken, CredentialInfo &info) | Deletes credential information based on the specified **credentialId**.                              |
+| DeleteUser(int32_t userId, const std::vector<uint8_t> &authToken, std::vector<CredentialInfo> &deletedInfos, std::vector<uint8_t> &rootSecret) | Deletes a user PIN from User_auth.                       |
+| EnforceDeleteUser(int32_t userId, std::vector<CredentialInfo> &deletedInfos) | Forcibly deletes a user. This API will be called when a user is deleted from the system.              |
+| GetCredential(int32_t userId, int32_t authType, std::vector<CredentialInfo> &infos) | Obtains user credential information by authentication type.            |
+| BeginAuthentication(uint64_t contextId, const HdiAuthParam &param, std::vector<HdiScheduleInfo> &infos) | Starts an authentication to generate the authentication scheme and scheduling information.                          |
+| UpdateAuthenticationResult(uint64_t contextId, const std::vector<uint8_t> & scheduleResult, HdiAuthResultInfo &info, HdiEnrolledState &enrolledState)| Updates the authentication result to evaluate the authentication scheme.                  |
 | CancelAuthentication(uint64_t contextId)      | Cancels an authentication.            |
-| BeginIdentification(uint64_t contextId, AuthType authType, const std::vector\<int8_t>& challenge,<br>        uint32_t executorId, ScheduleInfo& scheduleInfo) | Starts identification and generates the identification scheme and scheduling information (version V1_0).                          |
-| UpdateIdentificationResult(uint64_t contextId, const std::vector\<uint8_t>& scheduleResult,<br>        IdentifyResultInfo& info) | Updates the identification result to evaluate the identification scheme.                  |
+| BeginIdentification(uint64_t contextId, int32_t authType, const std::vector<uint8_t> &challenge, uint32_t executorSensorHint, HdiScheduleInfo &scheduleInfo) | Starts an identification to generate the identification scheme and scheduling information.                          |
+| UpdateIdentificationResult(uint64_t contextId, const std::vector<uint8_t> &scheduleResult, IdentifyResultInfo &info) | Updates the identification result to evaluate the identification scheme.                  |
 | CancelIdentification(uint64_t contextId)             | Cancels an identification.             |
-| GetAuthTrustLevel(int32_t userId, AuthType authType, uint32_t& authTrustLevel) | Obtains the authentication trust level of the specified authentication type.    |
-| GetValidSolution(int32_t userId, const std::vector\<AuthType>& authTypes, uint32_t authTrustLevel,<br>        std::vector\<AuthType>& validTypes) | Obtains the valid authentication scheme based on the authentication trust level for a user.                  |
-| BeginEnrollmentV1_1(int32_t userId, const std::vector\<uint8_t>& authToken, const EnrollParam& param, ScheduleInfoV1_1& info) | Enrolls the user authentication credential (version V1_1). If a user has enrolled a PIN, the old PIN will be overwritten.|
-| BeginAuthenticationV1_1(uint64_t contextId, const AuthSolution& param,  std::vector\<ScheduleInfoV1_1>& scheduleInfos) | Starts authentication and generates the authentication scheme and scheduling information (version V1_1).                          |
-| BeginIdentificationV1_1(uint64_t contextId, AuthType authType,<br/> const std::vector\<uint8_t>& challenge, uint32_t executorSensorHint, ScheduleInfoV1_1& scheduleInfo) | Starts identification and generates the identification scheme and scheduling information (version V1_1). |
+| GetAuthTrustLevel(int32_t userId, int32_t authType, uint32_t &authTrustLevel) | Obtains the authentication trust level of the specified authentication type.    |
+| GetValidSolution(int32_t userId, const std::vector<int32_t> &authTypes, uint32_t authTrustLevel, std::vector<int32_t> &validTypes) | Obtains the valid authentication scheme based on the authentication trust level for a user.                  |
+| GetAllUserInfo(std::vector<UserInfo> &userInfos) | Obtains all user information (excluding **userId**). |
+| GetUserInfo(int32_t userId, uint64_t &secureUid, int32_t &pinSubType, std::vector<EnrolledInfo> &infos) | Obtains user information. |
+| GetAllExtUserInfo(std::vector<ExtUserInfo> &userInfos) | Obtains all user information (including **userId**). |
+| GetEnrolledState(int32_t userId, int32_t authType, HdiEnrolledState &enrolledState) | Obtains enrollment information. |
+| CheckReuseUnlockResult(const ReuseUnlockParam& param, ReuseUnlockInfo& info) | Checks whether the device unlocking result is reused. |
+| SendMessage(uint64_t scheduleId, int32_t srcRole, const std::vector<uint8_t>& msg) | Sends messages to the executor. |
+| RegisterMessageCallback(const sptr<IMessageCallback>& messageCallback) | Registers a callback for executor messages.|
+| GetLocalScheduleFromMessage(const std::vector<uint8_t>& remoteDeviceId, const std::vector<uint8_t>& message, HdiScheduleInfo& scheduleInfo) | Obtains scheduling information of the local executor. |
+| GetSignedExecutorInfo(const std::vector<int32_t>& authTypes, int32_t executorRole, const std::vector<uint8_t>& remoteDeviceId, std::vector<uint8_t>& signedExecutorInfo) | Obtains information about the signed executor. |
+
 ### How to Develop
 
 The following uses the Hi3516D V300 development board as an example to demonstrate how to develop the User_auth driver. <br/>The directory structure is as follows:
@@ -147,12 +153,12 @@ The following uses the Hi3516D V300 development board as an example to demonstra
 ```undefined
 // drivers/peripheral/user_auth
 ├── BUILD.gn     # Build script
-├── bundle.json  # Component description file
-└── hdi_service  # User_auth driver implementation
-    ├── BUILD.gn # Build script
-    ├── module   # Implementation of functionalities
+├── bundle.json # Component description file
+└── hdi_service # User_auth driver implementation
+    ├── BUILD.gn     # Build script
+    ├── module # Implementation of functionalities
     └── service
-        ├── user_auth_interface_driver.cpp  # User_auth driver entry
+        ├── user_auth_interface_driver.cpp # User_auth driver entry
         └── user_auth_interface_service.cpp # Implementation of the APIs for obtaining the executor list
 ```
 
@@ -259,8 +265,8 @@ The development procedure is as follows:
 
    ```c++
    // Add an executor.
-   int32_t UserAuthInterfaceService::AddExecutor(const ExecutorRegisterInfo& info, uint64_t& index,
-       std::vector<uint8_t>& publicKey, std::vector<uint64_t>& templateIds)
+   int32_t UserAuthInterfaceService::AddExecutor(const HdiExecutorRegisterInfo &info, uint64_t &index,
+    std::vector<uint8_t> &publicKey, std::vector<uint64_t> &templateIds)
    {
        GlobalLock();
        ExecutorInfoHal executorInfoHal;
@@ -304,9 +310,9 @@ The development procedure is as follows:
        return ret;
    }
 
-   // Start enrollment and generate scheduling information (V1_1).
-   int32_t UserAuthInterfaceService::BeginEnrollmentV1_1(int32_t userId, const std::vector<uint8_t>& authToken,
-       const EnrollParam& param, ScheduleInfoV1_1& info)
+   // Start enrollment to generate enrollment and scheduling information.
+   int32_t UserAuthInterfaceService::BeginEnrollment(
+    const std::vector<uint8_t> &authToken, const HdiEnrollParam &param, HdiScheduleInfo &info)
    {
        IAM_LOGI("start");
        GlobalLock();
@@ -345,18 +351,7 @@ The development procedure is as follows:
        return ret;
    }
 
-   // Start enrollment and generate scheduling information (V1_0 version). The method of V1_0 is called to invoke the method of V1_1 through parameter conversion.
-   int32_t UserAuthInterfaceService::BeginEnrollment(int32_t userId, const std::vector<uint8_t> &authToken,
-       const EnrollParam &param, ScheduleInfo &info)
-   {
-       IAM_LOGI("start");
-       ScheduleInfoV1_1 infoV1_1;
-       int32_t ret = BeginEnrollmentV1_1(userId, authToken, param, infoV1_1);
-       CopyScheduleInfoV1_1ToV1_0(infoV1_1, info);
-       return ret;
-   }
-
-   // Cancel the enrollment operation.
+   // Cancel the enrollment.
    int32_t UserAuthInterfaceService::CancelEnrollment(int32_t userId)
    {
        IAM_LOGI("start");
@@ -365,8 +360,7 @@ The development procedure is as follows:
    }
 
    // Update the enrolled credential information.
-   int32_t UserAuthInterfaceService::UpdateEnrollmentResult(int32_t userId, const std::vector<uint8_t>& scheduleResult,
-       uint64_t& credentialId, CredentialInfo& oldInfo)
+   int32_t UserAuthInterfaceService::UpdateEnrollmentResult(int32_t userId, const std::vector<uint8_t> &scheduleResult, EnrollResultInfo &info)
    {
        IAM_LOGI("start");
        GlobalLock();
@@ -418,10 +412,10 @@ The development procedure is as follows:
        }
        return userAuthInterfaceService;
    }
-
+   
    // Start an authentication to generate the authentication scheme and scheduling information.
-   int32_t UserAuthInterfaceService::BeginAuthenticationV1_1(uint64_t contextId, const AuthSolution& param,
-       std::vector<ScheduleInfoV1_1>& infos)
+   int32_t UserAuthInterfaceService::BeginAuthentication(uint64_t contextId, const HdiAuthParam &param,
+    std::vector<HdiScheduleInfo> &infos)
    {
        IAM_LOGI("start");
        if (param.challenge.size() != sizeof(uint64_t)) {
@@ -461,21 +455,10 @@ The development procedure is as follows:
        GlobalUnLock();
        return ret;
    }
-
-   // Start user authentication, generate the authentication scheme and scheduling information. The method of V1_0 is called to invoke the method of V1_1 through parameter conversion.
-   int32_t UserAuthInterfaceService::BeginAuthentication(uint64_t contextId, const AuthSolution &param,
-       std::vector<ScheduleInfo> &infos)
-   {
-       IAM_LOGI("start");
-       std::vector<ScheduleInfoV1_1> infosV1_1;
-       int32_t ret = BeginAuthenticationV1_1(contextId, param, infosV1_1);
-       CopyScheduleInfosV1_1ToV1_0(infosV1_1, infos);
-       return ret;
-   }
-
+   
    // Update the authentication result to evaluate the authentication scheme.
    int32_t UserAuthInterfaceService::UpdateAuthenticationResult(uint64_t contextId,
-       const std::vector<uint8_t>& scheduleResult, AuthResultInfo& info)
+    const std::vector<uint8_t> &scheduleResult, HdiAuthResultInfo &info, HdiEnrolledState &enrolledState)
    {
        IAM_LOGI("start");
        GlobalLock();
@@ -511,7 +494,7 @@ The development procedure is as follows:
        GlobalUnLock();
        return RESULT_SUCCESS;
    }
-
+   
    // Cancel the authentication.
    int32_t UserAuthInterfaceService::CancelAuthentication(uint64_t contextId)
    {
@@ -531,61 +514,73 @@ The development procedure is as follows:
 
 ### Verification
 
-Use the [User Authentication APIs](../../application-dev/reference/apis/js-apis-useriam-userauth.md) to develop a JavaScript application and verify the application on the Hi3516D V300 development board. The sample code for verifying and canceling the authentication is as follows:
+Use the [User Authentication APIs](../../application-dev/reference/apis-user-authentication-kit/js-apis-useriam-userauth.md) to develop a HAP and verify the application on the RK3568 platform.
 
-    ```js
-    // API version 9
-    import userIAM_userAuth from '@ohos.userIAM.userAuth';
-    
-    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    let authType = userIAM_userAuth.UserAuthType.FACE;
-    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
-    
+1. Initiate a request for user authentication and obtain the authentication result.
+
+```ts
+  // API version 10
+  import type {BusinessError} from '@ohos.base';
+  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+  // Set authentication parameters.
+  const authParam: userIAM_userAuth.AuthParam = {
+    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+    authType: [userIAM_userAuth.UserAuthType.PIN, userIAM_userAuth.UserAuthType.FACE],
+    authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL3,
+  };
+  // Set the authentication page.
+  const widgetParam: userIAM_userAuth.WidgetParam = {
+    title: 'Verify identity',
+  };
+  try {
     // Obtain an authentication object.
-    let auth;
-    try {
-        auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-        console.log("get auth instance success");
-    } catch (error) {
-        console.log("get auth instance failed" + error);
-    }
-    
+    let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+    console.info('get userAuth instance success');
     // Subscribe to the authentication result.
-    try {
-        auth.on("result", {
-            callback: (result: userIAM_userAuth.AuthResultInfo) => {
-                console.log("authV9 result " + result.result);
-                console.log("authV9 token " + result.token);
-                console.log("authV9 remainAttempts " + result.remainAttempts);
-                console.log("authV9 lockoutDuration " + result.lockoutDuration);
-            }
-        });
-        console.log("subscribe authentication event success");
-    } catch (error) {
-        console.log("subscribe authentication event failed " + error);
-    }
-    
+    userAuthInstance.on('result', {
+      onResult(result) {
+        console.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
+        // Unsubscribe from the authentication result if required.
+        userAuthInstance.off('result');
+      }
+  });
+    console.info('auth on success');
+    userAuthInstance.start();
+    console.info('auth start success');
+  } catch (error) {
+    const err: BusinessError = error as BusinessError;
+    console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+  }
+```
+
+2. Cancel an authentication.
+
+```ts
+  // API version 10
+  import type {BusinessError} from '@ohos.base';
+  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+  const authParam: userIAM_userAuth.AuthParam = {
+    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+    authType: [userIAM_userAuth.UserAuthType.PIN, userIAM_userAuth.UserAuthType.FACE],
+    authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL3,
+  };
+  const widgetParam: userIAM_userAuth.WidgetParam = {
+    title: 'Verify identity',
+  };
+  try {
+    // Obtain an authentication object.
+    let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+    console.info('get userAuth instance success');
     // Start user authentication.
-    try {
-        auth.start();
-        console.info("authV9 start auth success");
-    } catch (error) {
-        console.info("authV9 start auth failed, error = " + error);
-    }
-    
+    userAuthInstance.start();
+    console.info('auth start success');
     // Cancel the authentication.
-    try {
-        auth.cancel();
-        console.info("Authentication canceled successfully");
-    } catch (error) {
-        console.info("cancel auth failed, error = " + error);
-    }
-    
-    // Unsubscribe from the authentication result.
-    try {
-        auth.off("result");
-        console.info("cancel subscribe authentication event success");
-    } catch (error) {
-        console.info("cancel subscribe authentication event failed, error = " + error);
-    }
-    ```
+    userAuthInstance.cancel();
+    console.info('auth cancel success');
+  } catch (error) {
+    const err: BusinessError = error as BusinessError;
+    console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+  }
+```

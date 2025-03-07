@@ -93,34 +93,29 @@ Stage卡片开发，即基于[Stage模型](../application-models/stage-model-dev
 
 ### 创建卡片FormExtensionAbility
 
-创建Stage模型的卡片，需实现FormExtensionAbility生命周期接口。先参考[DevEco Studio服务卡片开发指南](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/ide_service_widget-0000001078566997-V3)生成服务卡片模板。
+创建Stage模型的卡片，需实现FormExtensionAbility生命周期接口。先参考<!--RP1-->[DevEco Studio服务卡片开发指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-service-widget-V5)<!--RP1End-->生成服务卡片模板。
 
 1. 在EntryFormAbility.ets中，导入相关模块。
-
-   ```ts
-   import type Base from '@ohos.base';
-   import formBindingData from '@ohos.app.form.formBindingData';
-   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-   import formInfo from '@ohos.app.form.formInfo';
-   import formProvider from '@ohos.app.form.formProvider';
-   import hilog from '@ohos.hilog';
-   import type Want from '@ohos.app.ability.Want';
-   
-   const TAG: string = 'JsCardFormAbility';
-   const DOMAIN_NUMBER: number = 0xFF00;
-   ```
+    ```ts
+    import { Want } from '@kit.AbilityKit';
+    import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    
+    const TAG: string = 'JsCardFormAbility';
+    const DOMAIN_NUMBER: number = 0xFF00;
+    ```
 
 2. 在EntryFormAbility.ets中，实现FormExtension生命周期接口。
 
-   
-   ```ts
-    export default class JsCardFormAbility extends FormExtensionAbility {
+    ```ts
+    export default class EntryFormAbility extends FormExtensionAbility {
       onAddForm(want: Want): formBindingData.FormBindingData {
         hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAddForm');
         // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
         let obj: Record<string, string> = {
-         'title': 'titleOnCreate',
-         'detail': 'detailOnCreate'
+          'title': 'titleOnCreate',
+          'detail': 'detailOnCreate'
         };
         let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
         return formData;
@@ -137,13 +132,14 @@ Stage卡片开发，即基于[Stage模型](../application-models/stage-model-dev
           'detail': 'detailOnUpdate'
         };
         let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-        formProvider.updateForm(formId, formData).catch((error: Base.BusinessError) => {
+        formProvider.updateForm(formId, formData).catch((error: BusinessError) => {
           hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
         });
       }
       onChangeFormVisibility(newStatus: Record<string, number>): void {
         // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
         hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onChangeFormVisibility');
+        //...
       }
       onFormEvent(formId: string, message: string): void {
         // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
@@ -152,14 +148,15 @@ Stage卡片开发，即基于[Stage模型](../application-models/stage-model-dev
       onRemoveForm(formId: string): void {
         // 删除卡片实例数据
         hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onRemoveForm');
+        //...
       }
       onAcquireFormState(want: Want): formInfo.FormState {
         return formInfo.FormState.READY;
       }
     }
-   ```
+    ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > FormExtensionAbility不能常驻后台，即在卡片生命周期回调函数中无法处理长时间的任务。
 
 
@@ -172,7 +169,7 @@ Stage卡片开发，即基于[Stage模型](../application-models/stage-model-dev
    ```json
    {
      "module": {
-       ...
+       // ...
        "extensionAbilities": [
          {
            "name": "JsCardFormAbility",
@@ -201,7 +198,7 @@ Stage卡片开发，即基于[Stage模型](../application-models/stage-model-dev
    | name | 表示卡片的类名，字符串最大长度为127字节。 | 字符串 | 否 |
    | description | 表示卡片的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。字符串最大长度为255字节。 | 字符串 | 可缺省，缺省为空。 |
    | src | 表示卡片对应的UI代码的完整路径。 | 字符串 | 否 |
-   | window | 用于定义与显示窗口相关的配置。 | 对象 | 可缺省 |
+   | window | 用于定义与显示窗口相关的配置。 | 对象 | 可缺省。 |
    | isDefault | 表示该卡片是否为默认卡片，每个UIAbility有且只有一个默认卡片。<br/>-&nbsp;true：默认卡片。<br/>-&nbsp;false：非默认卡片。 | 布尔值 | 否 |
    | colorMode | 表示卡片的主题样式，取值范围如下：<br/>-&nbsp;auto：自适应。<br/>-&nbsp;dark：深色主题。<br/>-&nbsp;light：浅色主题。 | 字符串 | 可缺省，缺省值为“auto”。 |
    | supportDimensions | 表示卡片支持的外观规格，取值范围：<br/>-&nbsp;1&nbsp;\*&nbsp;2：表示1行2列的二宫格。<br/>-&nbsp;2&nbsp;\*&nbsp;2：表示2行2列的四宫格。<br/>-&nbsp;2&nbsp;\*&nbsp;4：表示2行4列的八宫格。<br/>-&nbsp;4&nbsp;\*&nbsp;4：表示4行4列的十六宫格。 | 字符串数组 | 否 |
@@ -248,13 +245,11 @@ Stage卡片开发，即基于[Stage模型](../application-models/stage-model-dev
 
 
 ```ts
-import type Base from '@ohos.base';
-import type common from '@ohos.app.ability.common';
-import dataPreferences from '@ohos.data.preferences';
-import formBindingData from '@ohos.app.form.formBindingData';
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import hilog from '@ohos.hilog';
-import type Want from '@ohos.app.ability.Want';
+import { common, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { formBindingData, FormExtensionAbility } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { preferences } from '@kit.ArkData';
 
 const TAG: string = 'JsCardFormAbility';
 const DATA_STORAGE_PATH: string = '/data/storage/el2/base/haps/form_store';
@@ -268,13 +263,13 @@ let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, 
     'updateCount': 0
   };
   try {
-    const storage: dataPreferences.Preferences = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+    const storage: preferences.Preferences = await preferences.getPreferences(context, DATA_STORAGE_PATH);
     // put form info
     await storage.put(formId, JSON.stringify(formInfo));
     hilog.info(DOMAIN_NUMBER, TAG, `[EntryFormAbility] storeFormInfo, put form info successfully, formId: ${formId}`);
     await storage.flush();
   } catch (err) {
-    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to storeFormInfo, err: ${JSON.stringify(err as Base.BusinessError)}`);
+    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to storeFormInfo, err: ${JSON.stringify(err as BusinessError)}`);
   }
 }
 
@@ -305,11 +300,11 @@ export default class JsCardFormAbility extends FormExtensionAbility {
 
 
 ```ts
-import type Base from '@ohos.base';
-import type common from '@ohos.app.ability.common';
-import dataPreferences from '@ohos.data.preferences';
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import hilog from '@ohos.hilog';
+import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { FormExtensionAbility } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { preferences } from '@kit.ArkData';
 
 const TAG: string = 'JsCardFormAbility';
 const DATA_STORAGE_PATH: string = '/data/storage/el2/base/haps/form_store';
@@ -317,13 +312,13 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
 let deleteFormInfo = async (formId: string, context: common.FormExtensionContext): Promise<void> => {
   try {
-    const storage: dataPreferences.Preferences = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+    const storage: preferences.Preferences = await preferences.getPreferences(context, DATA_STORAGE_PATH);
     // del form info
     await storage.delete(formId);
     hilog.info(DOMAIN_NUMBER, TAG, `[EntryFormAbility] deleteFormInfo, del form info successfully, formId: ${formId}`);
     await storage.flush();
   } catch (err) {
-    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to deleteFormInfo, err: ${JSON.stringify(err as Base.BusinessError)}`);
+    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to deleteFormInfo, err: ${JSON.stringify(err as BusinessError)}`);
   };
 };
 
@@ -342,9 +337,9 @@ export default class JsCardFormAbility extends FormExtensionAbility {
 
 需要注意的是，卡片使用方在请求卡片时传递给提供方应用的Want数据中存在临时标记字段，表示此次请求的卡片是否为临时卡片：
 
-- 常态卡片：卡片使用方会持久化的卡片；
+- 常态卡片：卡片使用方会持久化的卡片。
 
-- 临时卡片：卡片使用方不会持久化的卡片；
+- 临时卡片：卡片使用方不会持久化的卡片。
 
 由于临时卡片的数据具有非持久化的特殊性，某些场景例如卡片服务框架死亡重启，此时临时卡片数据在卡片管理服务中已经删除，且对应的卡片ID不会通知到提供方，所以卡片提供方需要自己负责清理长时间未删除的临时卡片数据。同时对应的卡片使用方可能会将之前请求的临时卡片转换为常态卡片。如果转换成功，卡片提供方也需要对对应的临时卡片ID进行处理，把卡片提供方记录的临时卡片数据转换为常态卡片数据，防止提供方在清理长时间未删除的临时卡片时，把已经转换为常态卡片的临时卡片信息删除，导致卡片信息丢失。
 
@@ -355,11 +350,9 @@ export default class JsCardFormAbility extends FormExtensionAbility {
 
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formBindingData from '@ohos.app.form.formBindingData';
-import formProvider from '@ohos.app.form.formProvider';
-import Base from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { formBindingData, FormExtensionAbility, formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = 'JsCardFormAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -373,7 +366,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
       'detail': 'detailOnUpdate'
     };
     let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-    formProvider.updateForm(formId, formData).catch((error: Base.BusinessError) => {
+    formProvider.updateForm(formId, formData).catch((error: BusinessError) => {
       hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
     });
   }
@@ -470,7 +463,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
 ### 开发卡片事件
 
-卡片支持为组件设置交互事件（action），包括**router**事件和**message**事件，其中router事件用于UIAbility跳转，message事件用于卡片开发人员自定义点击事件。
+卡片支持为组件设置交互事件（action），包括router事件和message事件，其中router事件用于UIAbility跳转，message事件用于卡片开发人员自定义点击事件。
 
 关键步骤说明如下：
 
@@ -599,7 +592,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
   "data"中JSON Value支持多级嵌套数据，在更新数据时，需要注意携带完整数据。
 
-  例如:当前卡片显示07.18日Mr.Zhang的课程信息，示例如下。
+  例如：当前卡片显示07.18日Mr.Zhang的课程信息，示例如下。
   ```ts
   "data": {
       "Day": "07.18",
@@ -609,7 +602,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
       }
   }
   ```
-  当卡片内容需要更新为07.18日Mr.Li的课程信息时，需要传递待更新的完整数据，不能值传递单个数据项，如只传name或只传course，示例如下。
+  当卡片内容需要更新为07.18日Mr.Li的课程信息时，需要传递待更新的完整数据，不能只传递单个数据项，如只传name或只传course，示例如下。
   ```ts
   "teacher": {
       "name": "Mr.Li",
@@ -627,10 +620,10 @@ export default class EntryFormAbility extends FormExtensionAbility {
   import Want from '@ohos.app.ability.Want';
   import hilog from '@ohos.hilog';
 
-  const TAG: string = 'JsCardEntryAbility';
+  const TAG: string = 'EtsCardEntryAbility';
   const DOMAIN_NUMBER: number = 0xFF00;
 
-  export default class EntryAbility extends UIAbility {
+  export default class EtsCardEntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
       if (want.parameters) {
         let params: Record<string, Object> = JSON.parse(JSON.stringify(want.parameters.params));
@@ -672,7 +665,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
     }
   };
   ```
-
+<!--Del-->
 ## 相关实例
 
 针对卡片开发，有以下相关实例可供参考：
@@ -682,3 +675,4 @@ export default class EntryFormAbility extends FormExtensionAbility {
 - [电影卡片（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Card/MovieCard)
 
 - [计步器卡片（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Card/StepsCardJS)
+<!--DelEnd-->

@@ -21,12 +21,14 @@ LightWeightSet和[HashSet](js-apis-hashset.md)都是用来存储键值的集合�
 ## 导入模块
 
 ```ts
-import LightWeightSet from '@ohos.util.LightWeightSet';  
+import { LightWeightSet } from '@kit.ArkTS';
 ```
 
 ## LightWeightSet
 
 ### 属性
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -40,6 +42,8 @@ import LightWeightSet from '@ohos.util.LightWeightSet';
 constructor()
 
 LightWeightSet的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -63,6 +67,8 @@ let lightWeightSet: LightWeightSet<number | string> = new LightWeightSet();
 isEmpty(): boolean
 
 判断该容器是否为空。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -92,6 +98,8 @@ let result = lightWeightSet.isEmpty();
 add(obj: T): boolean
 
 向此容器中添加数据。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -129,6 +137,8 @@ addAll(set: LightWeightSet&lt;T&gt;): boolean
 
 将另一个容器中的所有元素组添加到当前容器中。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -145,10 +155,11 @@ addAll(set: LightWeightSet&lt;T&gt;): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The addAll method cannot be bound. |
 
 **示例：**
@@ -169,6 +180,8 @@ hasAll(set: LightWeightSet&lt;T&gt;): boolean
 
 判断此容器中是否含有该指定set中的所有元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -185,10 +198,11 @@ hasAll(set: LightWeightSet&lt;T&gt;): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The hasAll method cannot be bound. |
 
 **示例：**
@@ -208,6 +222,8 @@ let result = lightWeightSet.hasAll(set);
 has(key: T): boolean
 
 判断此容器中是否含有该指定key。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -240,50 +256,13 @@ let result = lightWeightSet.has(123);
 ```
 
 
-### equal
-
-equal(obj: Object): boolean
-
-判断此容器中是否含有该指定obj同类型的对象。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| obj | Object | 是 | 比较对象。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 构成类型相同返回true，否则返回false。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200011 | The equal method cannot be bound. |
-
-**示例：**
-
-```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
-lightWeightSet.add("squirrel");
-lightWeightSet.add("sparrow");
-let obj = ["sparrow", "squirrel"];
-let result = lightWeightSet.equal(obj);
-```
-
-
 ### increaseCapacityTo
 
 increaseCapacityTo(minimumCapacity: number): void
 
-将当前容器扩容至可以容纳指定数量元素。
+将当前LightWeightSet扩容至可以容纳指定数量元素。如果传入的容量值大于或等于当前LightWeightSet中的元素个数，将容量变更为新容量，小于则不会变更。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -291,16 +270,17 @@ increaseCapacityTo(minimumCapacity: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| minimumCapacity | number | 是 | 需要容纳数量。 |
+| minimumCapacity | number | 是 | 需要容纳的元素数量。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The increaseCapacityTo method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of minimumCapacity is out of range. |
+| 10200011 | The increaseCapacityTo method cannot be bound. |
 
 **示例：**
 
@@ -315,6 +295,8 @@ lightWeightSet.increaseCapacityTo(10);
 getIndexOf(key: T): number
 
 获取指定key所对应的下标。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -354,6 +336,8 @@ remove(key: T): T
 
 删除并返回指定key对应的元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -392,13 +376,15 @@ removeAt(index: number): boolean
 
 删除指定下标所对应的元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定下标。 |
+| index | number | 是 | 指定下标。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -408,10 +394,11 @@ removeAt(index: number): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The removeAt method cannot be bound. |
 
 **示例：**
@@ -430,13 +417,15 @@ getValueAt(index: number): T
 
 获取此容器中指定下标对应的元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定下标。 |
+| index | number | 是 | 指定下标。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -446,10 +435,11 @@ getValueAt(index: number): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The getValueAt method cannot be bound. |
 
 **参数：**
@@ -467,6 +457,8 @@ let result = lightWeightSet.getValueAt(1);
 clear(): void
 
 清除容器中的所有元素，并把length置为0。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -494,6 +486,8 @@ toString(): String
 
 获取包含容器中所有键和值的字符串。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -517,6 +511,8 @@ let result = lightWeightSet.toString();
 toArray(): Array&lt;T&gt;
 
 获取包含此容器中所有对象的数组。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -549,6 +545,8 @@ let result = lightWeightSet.toArray();
 values(): IterableIterator&lt;T&gt;
 
 返回包含此映射中包含的键值的新迭代器对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -587,6 +585,8 @@ forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet&lt;T&gt;) => void,
 
 通过回调函数来遍历LightWeightSet实例对象上的元素以及元素对应的下标。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -605,10 +605,11 @@ callbackfn的参数说明：
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **示例：**
@@ -621,13 +622,24 @@ lightWeightSet.forEach((value ?: string, key ?: string) => {
   console.log("value:" + value, "key:" + key);
 });
 ```
-
+```ts
+// 不建议在forEach函数中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.add(i + "123");
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.remove(i + "123");
+}
+```
 
 ### entries
 
 entries(): IterableIterator<[T, T]>
 
 返回包含此映射中包含的键值对的新迭代器对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -658,7 +670,16 @@ while(index < lightWeightSet.length) {
   index++;
 }
 ```
-
+```ts
+// 不建议在entries中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.add(i + "123");
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.remove(i + "123");
+}
+```
 
 ### [Symbol.iterator]
 
@@ -666,9 +687,7 @@ while(index < lightWeightSet.length) {
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
 
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -706,4 +725,57 @@ while(!temp.done) {
   console.log("value:" + temp.value);
   temp = iter.next();
 }
+```
+```ts
+// 不建议在Symbol.iterator中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.add(i + "123");
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.remove(i + "123");
+}
+```
+
+
+### equal<sup>(deprecated)</sup>
+
+equal(obj: Object): boolean
+
+判断此容器与obj的构成元素是否相同。
+
+> **说明：**
+>
+> 此接口从API version 10开始支持，从API version 12开始废弃。无替代接口。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| obj | Object | 是 | 比较对象。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 当obj为仅含string或number的LightWeightSet或数组，且对象内部元素构成相同时，返回true；其它情况返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The equal method cannot be bound. |
+
+**示例：**
+
+```ts
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
+let obj = ["sparrow", "squirrel"];
+let result = lightWeightSet.equal(obj);
 ```

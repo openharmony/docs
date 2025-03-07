@@ -1,7 +1,7 @@
 # Application Package Structure in FA Model
 
 
-To develop an application based on the [FA model](application-configuration-file-overview-fa.md), it is essential to understand the application package structure used in this model.
+The following figure shows the package structure of an application developed based on the [FA Model](application-configuration-file-overview-fa.md). You should have a basic understanding of the related concepts.
 
 
 The difference between the application package structures in the FA model and stage model lies in the location where the internal files of a HAP file are stored. In the FA model, all the resource files, library files, and code files are stored in the **assets** folder, where the files are further organized.
@@ -19,6 +19,5 @@ The difference between the application package structures in the FA model and st
 
 - The **pack.info** file describes the HAP attributes in the bundle, for example, **bundleName** and **versionCode** in **app** and **name**, **type**, and **abilities** in **module**. The file is automatically generated when DevEco Studio builds the bundle.
 
-**Figure 1** Application package structure in FA model
-
+**Figure 1** Application package structure in FA model 
 ![app-pack-fa](figures/app-pack-fa.png)

@@ -26,7 +26,7 @@ A picker allows users to select a single option or a combination of options from
   | -------- |
   | ![aston](figures/aston.png) |
 
-For the software implementation of the time picker, see [Time Picker] (../../application-dev/reference/arkui-ts/ts-basic-components-timepicker.md).
+For the software implementation of the time picker, see [Time Picker](../../application-dev/reference/arkui-ts/ts-basic-components-timepicker.md).
 
 ## Date Selector
 

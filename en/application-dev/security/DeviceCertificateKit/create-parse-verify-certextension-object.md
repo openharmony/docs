@@ -1,27 +1,26 @@
 # Certificate Extension Development
 
 
-This topic walks you through on how to create a certificate extension (**CertExtension**) instance, obtain the certificate extension information based on an object identifier (OID), and check whether the certificate is a CA certificate.
+This topic walks you through on how to create a certificate extension (**CertExtension**) object, obtain the certificate extension information based on an object identifier (OID), and check whether the certificate is a CA certificate.
 
 
 ## How to Develop
 
-1. Import the [certFramework](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
+1. Import the [cert](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
    ```ts
-   import certFramework from '@ohos.security.cert';
+   import { cert } from '@kit.DeviceCertificateKit';
    ```
 
-2. Use [cryptoCert.createCertExtension](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatecertextension10) to create a **CertExtension** instance.
+2. Use [cert.createCertExtension](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatecertextension10) to create a **CertExtension** object.
 
 3. Use [CertExtension.getEntry](../../reference/apis-device-certificate-kit/js-apis-cert.md#getentry10) to obtain the certificate extension of the specified OID.
-     
-
+   
 4. Use [CertExtension.checkCA](../../reference/apis-device-certificate-kit/js-apis-cert.md#checkca10) to check whether the certificate is a CA certificate.
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
-import util from '@ohos.util';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { util } from '@kit.ArkTS';
 
 // Certificate extension data. The following is only an example.
 let extData = new Uint8Array([
@@ -39,29 +38,29 @@ let extData = new Uint8Array([
 // Certificate extension example.
 function certExtensionSample(): void {
   let textEncoder = new util.TextEncoder();
-  let encodingBlob: certFramework.EncodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: extData,
     // Certificate extension format. Currently, only the DER format is supported.
-    encodingFormat: certFramework.EncodingFormat.FORMAT_DER
+    encodingFormat: cert.EncodingFormat.FORMAT_DER
   };
 
-  // Create a CertExtension instance.
-  certFramework.createCertExtension(encodingBlob, (err, certExtension) => {
+  // Create a CertExtension object.
+  cert.createCertExtension(encodingBlob, (err, certExtension) => {
     if (err != null) {
-      // The CertExtension instance fails to be created.
+      // The CertExtension object fails to be created.
       console.error(`createCertExtension failed, errCode:${err.code}, errMsg:${err.message} `);
       return;
     }
-    // The CertExtension instance is created.
+    // The CertExtension object is created.
     console.log('createCertExtension success');
 
     try {
       // Obtain the certificate extension information based on an OID.
       let oidData = '2.5.29.14';
-      let oid: certFramework.DataBlob = {
+      let oid: cert.DataBlob = {
         data: textEncoder.encodeInto(oidData),
       }
-      let entry = certExtension.getEntry(certFramework.ExtensionEntryType.EXTENSION_ENTRY_TYPE_ENTRY, oid);
+      let entry = certExtension.getEntry(cert.ExtensionEntryType.EXTENSION_ENTRY_TYPE_ENTRY, oid);
 
       // Check whether the certificate is a CA certificate.
       let pathLen = certExtension.checkCA();

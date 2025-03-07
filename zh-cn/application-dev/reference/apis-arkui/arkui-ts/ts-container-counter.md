@@ -16,17 +16,23 @@
 
 Counter()
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性。 
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性。 
 
 ### enableInc<sup>10+</sup>
 
 enableInc(value: boolean)
 
 设置增加按钮禁用或使能。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -42,6 +48,8 @@ enableDec(value: boolean)
 
 设置减少按钮禁用或使能。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -52,30 +60,48 @@ enableDec(value: boolean)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onInc
 
-onInc(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
+onInc(event:&nbsp;VoidCallback)
 
 监听数值增加事件。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                           | 必填 | 说明                                 |
+| ------ | --------------------------------------------- | ---- | ----------------------------------- |
+| event  | [VoidCallback](ts-types.md#voidcallback12)    | 是   | Counter数值增加的回调函数。        |
 
 ### onDec
 
-onDec(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
+onDec(event:&nbsp;VoidCallback)
 
 监听数值减少事件。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                           | 必填 | 说明                                 |
+| ------ | --------------------------------------------- | ---- | ----------------------------------- |
+| event  | [VoidCallback](ts-types.md#voidcallback12)    | 是   | Counter数值减少的回调函数。        |
 
 
 ## 示例
+
+该示例展示了Counter组件的基本使用方法。点击+、-按钮可以修改value值。
 
 ```ts
 // xxx.ets

@@ -1,6 +1,6 @@
 # 使用AudioRenderer开发音频播放功能
 
-AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音频数据，相比AVPlayer而言，可以在输入前添加数据预处理，更适合有音频开发经验的开发者，以实现更灵活的播放功能。
+AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音频数据，相比[AVPlayer](../media/using-avplayer-for-playback.md)而言，可以在输入前添加数据预处理，更适合有音频开发经验的开发者，以实现更灵活的播放功能。
 
 ## 开发指导
 
@@ -29,19 +29,19 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 ### 开发步骤及注意事项
 
 1. 配置音频渲染参数并创建AudioRenderer实例，音频渲染参数的详细信息可以查看[AudioRendererOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiorendereroptions8)。
-     
+
     ```ts
-    import audio from '@ohos.multimedia.audio';
+    import { audio } from '@kit.AudioKit';
 
     let audioStreamInfo: audio.AudioStreamInfo = {
-      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-      channels: audio.AudioChannel.CHANNEL_1,
-      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
+      channels: audio.AudioChannel.CHANNEL_2, // 通道
+      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
+      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
     };
 
     let audioRendererInfo: audio.AudioRendererInfo = {
-      usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+      usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
       rendererFlags: 0
     };
 
@@ -61,10 +61,98 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
     });
     ```
 
-2. 调用start()方法进入running状态，开始渲染音频。
-     
+2. 调用on('writeData')方法，订阅监听音频数据写入回调，推荐使用API version 12支持返回回调结果的方式。
+
+   - API version 12开始该方法支持返回回调结果，系统可以根据开发者返回的值来决定此次回调中的数据是否播放。
+
+     > **注意：**
+     > 
+     > - 能填满回调所需长度数据的情况下，返回audio.AudioDataCallbackResult.VALID，系统会取用完整长度的数据缓冲进行播放。请不要在未填满数据的情况下返回audio.AudioDataCallbackResult.VALID，否则会导致杂音、卡顿等现象。
+     > 
+     > - 在无法填满回调所需长度数据的情况下，建议开发者返回audio.AudioDataCallbackResult.INVALID，系统不会处理该段音频数据，然后会再次向应用请求数据，确认数据填满后返回audio.AudioDataCallbackResult.VALID。
+     > 
+     > - 回调函数结束后，音频服务会把缓冲中数据放入队列里等待播放，因此请勿在回调外再次更改缓冲中的数据。对于最后一帧，如果数据不够填满缓冲长度，开发者需要使用剩余数据拼接空数据的方式，将缓冲填满，避免缓冲内的历史脏数据对播放效果产生不良的影响。
+
+     ```ts
+     import { audio } from '@kit.AudioKit';
+     import { BusinessError } from '@kit.BasicServicesKit';
+     import { fileIo as fs } from '@kit.CoreFileKit';
+
+     class Options {
+       offset?: number;
+       length?: number;
+     }
+
+     let bufferSize: number = 0;
+     let path = getContext().cacheDir;
+     // 确保该沙箱路径下存在该资源
+     let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+     let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+
+     let writeDataCallback = (buffer: ArrayBuffer) => {
+       let options: Options = {
+         offset: bufferSize,
+         length: buffer.byteLength
+       };
+
+       try {
+         fs.readSync(file.fd, buffer, options);
+         bufferSize += buffer.byteLength;
+         // 系统会判定buffer有效，正常播放。
+         return audio.AudioDataCallbackResult.VALID;
+       } catch (error) {
+         console.error('Error reading file:', error);
+         // 系统会判定buffer无效，不播放。
+         return audio.AudioDataCallbackResult.INVALID;
+       }
+     };
+
+     audioRenderer.on('writeData', writeDataCallback);
+     ```
+
+   - API version 11该方法不支持返回回调结果，系统默认回调中的数据均为有效数据。
+
+     > **注意：**
+     > 
+     > - 请确保填满回调所需长度数据，否则会导致杂音、卡顿等现象。
+     > 
+     > - 在无法填满回调所需长度数据的情况下，建议开发者选择暂时停止写入数据（不暂停音频流），阻塞回调函数，等待数据充足时，再继续写入数据，确保数据填满。在阻塞回调函数后，如需调用AudioRenderer相关接口，需先解阻塞。
+     > 
+     > - 开发者如果不希望播放本次回调中的音频数据，可以主动将回调中的数据块置空（置空后，也会被系统统计到已写入的数据，播放静音帧）。
+     > 
+     > - 回调函数结束后，音频服务会把缓冲中数据放入队列里等待播放，因此请勿在回调外再次更改缓冲中的数据。对于最后一帧，如果数据不够填满缓冲长度，开发者需要使用剩余数据拼接空数据的方式，将缓冲填满，避免缓冲内的历史脏数据对播放效果产生不良的影响。
+
+     ```ts
+     import { BusinessError } from '@kit.BasicServicesKit';
+     import { fileIo as fs } from '@kit.CoreFileKit';
+
+     class Options {
+       offset?: number;
+       length?: number;
+     }
+
+     let bufferSize: number = 0;
+     let path = getContext().cacheDir;
+     // 确保该沙箱路径下存在该资源
+     let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+     let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+     let writeDataCallback = (buffer: ArrayBuffer) => {
+       // 如果开发者不希望播放某段buffer，可在此处添加判断并对buffer进行置空处理。
+       let options: Options = {
+         offset: bufferSize,
+         length: buffer.byteLength
+       };
+       fs.readSync(file.fd, buffer, options);
+       bufferSize += buffer.byteLength;
+     };
+
+     audioRenderer.on('writeData', writeDataCallback);
+     ```
+
+3. 调用start()方法进入running状态，开始渲染音频。
+
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     audioRenderer.start((err: BusinessError) => {
       if (err) {
@@ -75,28 +163,10 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
     });
     ```
 
-3. 指定待渲染文件地址，打开文件调用write()方法向缓冲区持续写入音频数据进行渲染播放。如果需要对音频数据进行处理以实现个性化的播放，在写入之前操作即可。
-     
-    ```ts
-    import fs from '@ohos.file.fs';
-
-    let context = getContext(this);
-    async function read() {
-      const bufferSize: number = await audioRenderer.getBufferSize();
-      let path = context.filesDir;
-      
-      const filePath = path + '/voice_call_data.wav';
-      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-      let buf = new ArrayBuffer(bufferSize);
-      let readsize: number = await fs.read(file.fd, buf);
-      let writeSize: number = await audioRenderer.write(buf);
-    }
-    ```
-
 4. 调用stop()方法停止渲染。
-     
+
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     audioRenderer.stop((err: BusinessError) => {
       if (err) {
@@ -108,9 +178,9 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
     ```
 
 5. 调用release()方法销毁实例，释放资源。
-     
+
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     audioRenderer.release((err: BusinessError) => {
       if (err) {
@@ -121,50 +191,79 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
     });
     ```
 
+### 选择正确的StreamUsage
+
+创建播放器时候，开发者需要根据应用场景指定播放器的`StreamUsage`，选择正确的`StreamUsage`可以避免用户遇到不符合预期的行为。
+
+在音频API文档[StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)介绍中，列举了每一种类型推荐的应用场景。例如音乐场景推荐使用`STREAM_USAGE_MUSIC`，电影或者视频场景推荐使用`STREAM_USAGE_MOVIE`，游戏场景推荐使用`STREAM_USAGE_GAME`，等等。
+
+如果开发者配置了不正确的`StreamUsage`，可能带来一些不符合预期的行为。例如以下场景。
+
+- 游戏场景错误使用`STREAM_USAGE_MUSIC`类型，游戏应用将无法和其他音乐应用并发播放，而游戏场景通常可以与其他音乐应用并发播放。
+- 导航场景错误使用`STREAM_USAGE_MUSIC`类型，导航应用播报时候会导致正在播放的音乐停止播放，而导航场景我们通常期望正在播放的音乐仅仅降低音量播放。
+
 ### 完整示例
 
 下面展示了使用AudioRenderer渲染音频文件的示例代码。
-  
+
 ```ts
-import audio from '@ohos.multimedia.audio';
-import fs from '@ohos.file.fs';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 const TAG = 'AudioRendererDemo';
 
-let context = getContext(this);
+class Options {
+  offset?: number;
+  length?: number;
+}
+
+let bufferSize: number = 0;
 let renderModel: audio.AudioRenderer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
   channels: audio.AudioChannel.CHANNEL_2, // 通道
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
-}
+};
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型
   rendererFlags: 0 // 音频渲染器标志
-}
+};
 let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
-}
+};
+let path = getContext().cacheDir;
+// 确保该沙箱路径下存在该资源
+let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+let writeDataCallback = (buffer: ArrayBuffer) => {
+  let options: Options = {
+    offset: bufferSize,
+    length: buffer.byteLength
+  };
+
+  try {
+    fs.readSync(file.fd, buffer, options);
+    bufferSize += buffer.byteLength;
+    // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果
+    return audio.AudioDataCallbackResult.VALID;
+  } catch (error) {
+    console.error('Error reading file:', error);
+    // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果
+    return audio.AudioDataCallbackResult.INVALID;
+  }
+};
 
 // 初始化，创建实例，设置监听事件
-async function init() {
+function init() {
   audio.createAudioRenderer(audioRendererOptions, (err, renderer) => { // 创建AudioRenderer实例
     if (!err) {
       console.info(`${TAG}: creating AudioRenderer success`);
       renderModel = renderer;
       if (renderModel !== undefined) {
-        (renderModel as audio.AudioRenderer).on('stateChange', (state: audio.AudioState) => { // 设置监听事件，当转换到指定的状态时触发回调
-          if (state == 2) {
-            console.info('audio renderer state is: STATE_RUNNING');
-          }
-        });
-        (renderModel as audio.AudioRenderer).on('markReach', 1000, (position: number) => { // 订阅markReach事件，当渲染的帧数达到1000帧时触发回调
-          if (position == 1000) {
-            console.info('ON Triggered successfully');
-          }
-        });
+        (renderModel as audio.AudioRenderer).on('writeData', writeDataCallback);
       }
     } else {
       console.info(`${TAG}: creating AudioRenderer failed, error: ${err.message}`);
@@ -173,65 +272,40 @@ async function init() {
 }
 
 // 开始一次音频渲染
-async function start() {
+function start() {
   if (renderModel !== undefined) {
     let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
     if (stateGroup.indexOf((renderModel as audio.AudioRenderer).state.valueOf()) === -1) { // 当且仅当状态为prepared、paused和stopped之一时才能启动渲染
       console.error(TAG + 'start failed');
       return;
     }
-    await (renderModel as audio.AudioRenderer).start(); // 启动渲染
-    
-    const bufferSize = await (renderModel as audio.AudioRenderer).getBufferSize();
-    
-    let path = context.filesDir;
-    const filePath = path + '/test.wav'; // 使用沙箱路径获取文件，实际路径为/data/storage/el2/base/haps/entry/files/test.wav
-    
-    let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-    let stat = await fs.stat(filePath);
-    let buf = new ArrayBuffer(bufferSize);
-    let len = stat.size % bufferSize === 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
-    class Options {
-      offset: number = 0;
-      length: number = 0
-    }
-    for (let i = 0; i < len; i++) {
-      let options: Options = {
-        offset: i * bufferSize,
-        length: bufferSize
-      };
-      let readsize = await fs.read(file.fd, buf, options);
-      
-      // buf是要写入缓冲区的音频数据，在调用AudioRenderer.write()方法前可以进行音频数据的预处理，实现个性化的音频播放功能，AudioRenderer会读出写入缓冲区的音频数据进行渲染
-      
-      let writeSize: number = await (renderModel as audio.AudioRenderer).write(buf);
-        if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为released，关闭资源
-        fs.close(file);
+    // 启动渲染
+    (renderModel as audio.AudioRenderer).start((err: BusinessError) => {
+      if (err) {
+        console.error('Renderer start failed.');
+      } else {
+        console.info('Renderer start success.');
       }
-      if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RUNNING) {
-        if (i === len - 1) { // 如果音频文件已经被读取完，停止渲染
-          fs.close(file);
-          await (renderModel as audio.AudioRenderer).stop();
-        }
-      }
-    }
+    });
   }
 }
 
 // 暂停渲染
-async function pause() {
+function pause() {
   if (renderModel !== undefined) {
     // 只有渲染器状态为running的时候才能暂停
     if ((renderModel as audio.AudioRenderer).state.valueOf() !== audio.AudioState.STATE_RUNNING) {
       console.info('Renderer is not running');
       return;
     }
-    await (renderModel as audio.AudioRenderer).pause(); // 暂停渲染
-    if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_PAUSED) {
-      console.info('Renderer is paused.');
-    } else {
-      console.error('Pausing renderer failed.');
-    }
+    // 暂停渲染
+    (renderModel as audio.AudioRenderer).pause((err: BusinessError) => {
+      if (err) {
+        console.error('Renderer pause failed.');
+      } else {
+        console.info('Renderer pause success.');
+      }
+    });
   }
 }
 
@@ -243,12 +317,15 @@ async function stop() {
       console.info('Renderer is not running or paused.');
       return;
     }
-    await (renderModel as audio.AudioRenderer).stop(); // 停止渲染
-    if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_STOPPED) {
-      console.info('Renderer stopped.');
-    } else {
-      console.error('Stopping renderer failed.');
-    }
+    // 停止渲染
+    (renderModel as audio.AudioRenderer).stop((err: BusinessError) => {
+      if (err) {
+        console.error('Renderer stop failed.');
+      } else {
+        fs.close(file);
+        console.info('Renderer stop success.');
+      }
+    });
   }
 }
 
@@ -260,14 +337,16 @@ async function release() {
       console.info('Renderer already released');
       return;
     }
-    await renderModel.release(); // 释放资源
-    if (renderModel.state.valueOf() === audio.AudioState.STATE_RELEASED) {
-      console.info('Renderer released');
-    } else {
-      console.error('Renderer release failed.');
-    }
+    // 释放资源
+    (renderModel as audio.AudioRenderer).release((err: BusinessError) => {
+      if (err) {
+        console.error('Renderer release failed.');
+      } else {
+        console.info('Renderer release success.');
+      }
+    });
   }
 }
 ```
 
-当同优先级或高优先级音频流要使用输出设备时，当前音频流会被中断，应用可以自行响应中断事件并做出处理。具体的音频并发处理方式可参考[多音频播放的并发策略](audio-playback-concurrency.md)。
+当同优先级或高优先级音频流要使用输出设备时，当前音频流会被中断，应用可以自行响应中断事件并做出处理。具体的音频并发处理方式可参考[处理音频焦点事件](audio-playback-concurrency.md)。

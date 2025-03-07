@@ -10,10 +10,10 @@ The **inputMethod** module is oriented to common foreground applications (third-
 ## Modules to Import
 
 ```ts
-import inputMethod from '@ohos.inputMethod';
+import { inputMethod } from '@kit.IMEKit';
 ```
 
-## Constants<sup>8+</sup>
+## Constants
 
 Provides the constants.
 
@@ -21,7 +21,7 @@ Provides the constants.
 
 | Name| Type| Value| Description|
 | -------- | -------- | -------- | -------- |
-| MAX_TYPE_NUM | number | 128 | Maximum number of supported input methods.|
+| MAX_TYPE_NUM<sup>8+</sup> | number | 128 | Maximum number of supported input methods.|
 
 ## InputMethodProperty<sup>8+</sup>
 
@@ -29,15 +29,15 @@ Describes the input method application attributes.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | name<sup>9+</sup>  | string | Yes| No| Mandatory. Name of the input method package.|
-| id<sup>9+</sup>    | string | Yes| No| Mandatory. Unique ID of the input method.|
-| label<sup>9+</sup>    | string | Yes| No| Optional. External name of the input method.|
-| labelId<sup>10+</sup>    | number | Yes| No| Optional. External ID of the input method.|
-| icon<sup>9+</sup>    | string | Yes| No| Optional. Icon of the input method. It can be obtained by using **iconId**. This parameter is reserved.|
-| iconId<sup>9+</sup>    | number | Yes| No| Optional. Icon ID of the input method.|
-| extra<sup>9+</sup>    | object | Yes| Yes| Extra information about the input method. This parameter is reserved and currently has no specific meaning.<br>- API version 10 and later: optional<br>- API version 9: mandatory|
+| id<sup>9+</sup>    | string | Yes| No| Mandatory. Unique identifier of an input method extension in an app. **id** and **name** form a globally unique identifier of the input method extension.|
+| label<sup>9+</sup>    | string | Yes| Yes| Optional. External label of the input method extension. Use the label configured for the InputmethodExtensionAbility. If no label is configured, the label of the application entry ability is automatically used. If no label is configured for the application entry ability, the label configured in **AppScope** is automatically used.|
+| labelId<sup>10+</sup>    | number | Yes| Yes| Optional. External ID of the input method.|
+| icon<sup>9+</sup>    | string | Yes| Yes| Optional. Icon of the input method. It can be obtained by using **iconId**. This parameter is reserved.|
+| iconId<sup>9+</sup>    | number | Yes| Yes| Optional. Icon ID of the input method.|
+| extra<sup>9+</sup>    | object | No| Yes| Extra information about the input method. This parameter is reserved and currently has no specific meaning.<br>- API version 10 and later: optional<br>- API version 9: mandatory|
 | packageName<sup>(deprecated)</sup> | string | Yes| No| Name of the input method package. Mandatory.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. You are advised to use **name** instead.|
 | methodId<sup>(deprecated)</sup> | string | Yes| No| Unique ID of the input method. Mandatory.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. You are advised to use **id** instead.|
 
@@ -153,7 +153,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800007 |  settings extension error. |
+| 12800007 |  setter error. |
 
 **Example**
 
@@ -182,17 +182,18 @@ Switches to another input method. This API uses an asynchronous callback to retu
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800005 | configuration persisting error.        |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800005 | configuration persistence error.        |
 | 12800008 | input method manager service error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentIme = inputMethod.getCurrentInputMethod();
 try{
@@ -211,6 +212,11 @@ try{
   console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
 }
 ```
+
+> **NOTE**
+>
+> Since API version 11, the error code `201 permissions check fails` is removed.
+
 ## inputMethod.switchInputMethod<sup>9+</sup>
 switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
@@ -236,17 +242,18 @@ Switches to another input method. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800005 | configuration persisting error.        |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800005 | configuration persistence error.        |
 | 12800008 | input method manager service error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentIme = inputMethod.getCurrentInputMethod();
 try {
@@ -263,6 +270,10 @@ try {
   console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
 }
 ```
+
+> **NOTE**
+>
+> Since API version 11, the error code `201 permissions check fails` is removed.
 
 ## inputMethod.getCurrentInputMethod<sup>9+</sup>
 
@@ -302,22 +313,23 @@ Switches to another subtype of this input method. This API uses an asynchronous 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md)| Yes| Target input method subtype.|
+| target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Target input method subtype.|
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800005 | configuration persisting error.        |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800005 | configuration persistence error.        |
 | 12800008 | input method manager service error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let extra: Record<string, string> = {}
@@ -347,6 +359,10 @@ try {
 }
 ```
 
+> **NOTE**
+>
+> Since API version 11, the error code `201 permissions check fails` is removed.
+
 ## inputMethod.switchCurrentInputMethodSubtype<sup>9+</sup>
 
 switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&gt;
@@ -365,7 +381,7 @@ Switches to another subtype of this input method. This API uses a promise to ret
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-|target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md)| Yes| Target input method subtype.|
+|target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Target input method subtype.|
 
 **Return value**
 
@@ -375,17 +391,18 @@ Switches to another subtype of this input method. This API uses a promise to ret
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800005 | configuration persisting error.        |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800005 | configuration persistence error.        |
 | 12800008 | input method manager service error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let extra: Record<string, string> = {}
@@ -413,6 +430,10 @@ try {
 }
 ```
 
+> **NOTE**
+>
+> Since API version 11, the error code `201 permissions check fails` is removed.
+
 ## inputMethod.getCurrentInputMethodSubtype<sup>9+</sup>
 
 getCurrentInputMethodSubtype(): InputMethodSubtype
@@ -425,7 +446,7 @@ Obtains the current input method subtype.
 
 | Type                                        | Description                    |
 | -------------------------------------------- | ------------------------ |
-| [InputMethodSubtype](./js-apis-inputmethod-subtype.md) | Current input method subtype.|
+| [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype) | Current input method subtype.|
 
 **Example**
 
@@ -451,22 +472,23 @@ Switches to a specified subtype of a specified input method. This API uses an as
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 |inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| Yes| Target input method.|
-|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md)| Yes| Target input method subtype.|
+|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Target input method subtype.|
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800005 | configuration persisting error.        |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800005 | configuration persistence error.        |
 | 12800008 | input method manager service error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentIme = inputMethod.getCurrentInputMethod();
 let imSubType = inputMethod.getCurrentInputMethodSubtype();
@@ -487,6 +509,10 @@ try {
 }
 ```
 
+> **NOTE**
+>
+> Since API version 11, the error code `201 permissions check fails` is removed.
+
 ## inputMethod.switchCurrentInputMethodAndSubtype<sup>9+</sup>
 
 switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype): Promise&lt;boolean&gt;
@@ -505,7 +531,7 @@ Switches to a specified subtype of a specified input method. This API uses a pro
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 |inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| Yes| Target input method.|
-|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md)| Yes| Target input method subtype.|
+|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Target input method subtype.|
 
 **Return value**
 
@@ -515,17 +541,18 @@ Switches to a specified subtype of a specified input method. This API uses a pro
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800005 | configuration persisting error.        |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800005 | configuration persistence error.        |
 | 12800008 | input method manager service error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentIme = inputMethod.getCurrentInputMethod();
 let imSubType = inputMethod.getCurrentInputMethodSubtype();
@@ -544,11 +571,15 @@ try {
 }
 ```
 
+> **NOTE**
+>
+> Since API version 11, the error code `201 permissions check fails` is removed.
+
 ## inputMethod.getInputMethodController<sup>(deprecated)</sup>
 
 getInputMethodController(): InputMethodController
 
-Obtains an **[InputMethodController](#inputmethodcontroller)** instance.
+Obtains an [InputMethodController](#inputmethodcontroller) instance.
 
 > **NOTE**
 >
@@ -627,6 +658,7 @@ Enumerates the function types represented by the Enter key of the input method.
 | NEXT  | 5 |Next.|
 | DONE  | 6 |Done.|
 | PREVIOUS  | 7 |Previous.|
+| NEWLINE<sup>12+</sup>  | 8 | Line break.|
 
 ## KeyboardStatus<sup>10+</sup>
 
@@ -672,9 +704,9 @@ Describes the type of the input method function key.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| enterKeyType<sup>10+</sup>  | [EnterKeyType](#enterkeytype10) | Yes| Yes| Function type represented by the Enter key of the input method.|
+| enterKeyType<sup>10+</sup>  | [EnterKeyType](#enterkeytype10) | No| No| Function type represented by the Enter key of the input method.|
 
 ## InputAttribute<sup>10+</sup>
 
@@ -682,10 +714,10 @@ Describes the attributes of the edit box, including the text input type and Ente
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| textInputType<sup>10+</sup>  | [TextInputType](#textinputtype10) | Yes| Yes| Enumerates the text input types.|
-| enterKeyType<sup>10+</sup>  | [EnterKeyType](#enterkeytype10) | Yes| Yes| Function type represented by the Enter key.|
+| textInputType<sup>10+</sup>  | [TextInputType](#textinputtype10) | No| No| Enumerates the text input types.|
+| enterKeyType<sup>10+</sup>  | [EnterKeyType](#enterkeytype10) | No| No| Function type represented by the Enter key.|
 
 ## TextConfig<sup>10+</sup>
 
@@ -693,25 +725,25 @@ Describes the configuration of the edit box.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name| Type| Read-only| Mandatory| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| inputAttribute<sup>10+</sup>  | [InputAttribute](#inputattribute10) | No| Yes| Edit box attribute.|
-| cursorInfo<sup>10+</sup>  | [CursorInfo](#cursorinfo10) | No| No| Cursor information.|
-| selection<sup>10+</sup>  | [Range](#range10) | No| No| Text selection range.|
-| windowId<sup>10+</sup>  | number | No| No| ID of the window where the edit box is located.|
+| inputAttribute<sup>10+</sup>  | [InputAttribute](#inputattribute10) | No| No| Edit box attribute.|
+| cursorInfo<sup>10+</sup>  | [CursorInfo](#cursorinfo10) | No| Yes| Cursor information.|
+| selection<sup>10+</sup>  | [Range](#range10) | No| Yes| Text selection range.|
+| windowId<sup>10+</sup>  | number | No| Yes| ID of the window where the edit box is located.|
 
 ## CursorInfo<sup>10+</sup>
 
-Describes the cursor information.
+Represents the cursor information.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| left  | number | Yes| Yes| Left coordinate of the cursor.|
-| top  | number | Yes| Yes| Top coordinate of the cursor.|
-| width  | number | Yes| Yes| Width of the cursor.|
-| height  | number | Yes| Yes| Height of the cursor.|
+| left  | number | No| No| Left coordinate of the cursor.|
+| top  | number | No| No| Top coordinate of the cursor.|
+| width  | number | No| No| Width of the cursor.|
+| height  | number | No| No| Height of the cursor.|
 
 ## Range<sup>10+</sup>
 
@@ -719,10 +751,10 @@ Describes the range of the selected text.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| start  | number | Yes| Yes| Index of the first selected character in the text box.|
-| end  | number | Yes| Yes| Index of the last selected character in the text box.|
+| start  | number | No| No| Index of the first selected character in the text box.|
+| end  | number | No| No| Index of the last selected character in the text box.|
 
 ## Movement<sup>10+</sup>
 
@@ -730,9 +762,9 @@ Describes the direction in which the cursor moves when the text is selected.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| direction  | [Direction](#direction10) | Yes| Yes| Direction in which the cursor moves when the text is selected.|
+| direction  | [Direction](#direction10) | No| No| Direction in which the cursor moves when the text is selected.|
 
 ## InputWindowInfo<sup>10+</sup>
 
@@ -740,13 +772,119 @@ Describes the window information of the input method keyboard.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| name  | string | Yes| Yes| Name of the input method keyboard window.|
-| left  | number | Yes| Yes| Horizontal coordinate of the upper left corner of the input method keyboard window, in px.|
-| top  | number | Yes| Yes| Vertical coordinate of the upper left corner of the input method keyboard window, in px.|
-| width  | number | Yes| Yes| Width of the input method keyboard window, in px.|
-| height  | number | Yes| Yes| Height of the input method keyboard window, in px.|
+| name  | string | No| No| Name of the input method keyboard window.|
+| left  | number | No| No| Horizontal coordinate of the upper left corner of the input method keyboard window, in px.|
+| top  | number | No| No| Vertical coordinate of the upper left corner of the input method keyboard window, in px.|
+| width  | number | No| No| Width of the input method keyboard window, in px.|
+| height  | number | No| No| Height of the input method keyboard window, in px.|
+
+## EnabledState<sup>15+</sup>
+
+Indicates whether the input method is enabled.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name| Value|Description|
+| -------- | -------- |-------- |
+| DISABLED   | 0 |Disabled.|
+| BASIC_MODE  | 1 |Basic mode.|
+| FULL_EXPERIENCE_MODE  | 2 |Full experience mode.|
+
+## MessageHandler<sup>16+</sup>
+
+Represents a custom communication object.
+
+> **NOTE**
+>
+> You can register this object to receive custom communication data sent by the input method application. When the custom communication data is received, the [onMessage](#messagehandleronmessage16) callback in this object is triggered.
+>
+> This object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#messagehandleronterminated16) callback of the penultimate registered object is triggered.
+>
+> If this object is unregistered, its [onTerminated](#messagehandleronterminated16) callback will be triggered.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name        | Type    | Optional| Description                              |
+| ------------ | -------- | ---- | ---------------------------------- |
+| onTerminated | function | No  | Callback triggered when an object terminates receiving custom communication data.          |
+| onMessage    | function | No  | Callback triggered when an object starts to receive custom communication data.|
+
+## MessageHandler.onMessage<sup>16+</sup>
+
+onMessage(msgId: string, msgParam?: ArrayBuffer): void
+
+Receives custom data sent by the input method application.
+
+> **NOTE**
+>
+> This callback is triggered when the registered MeesageHandler receives custom communication data sent by the input method application.
+>
+> The **msgId** parameter is mandatory, and the **msgParam** parameter is optional. If only the custom **msgId** data is received, confirm it with the data sender.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type       | Optional| Description                            |
+| -------- | ----------- | ---- | -------------------------------- |
+| msgId    | string      | No  | Identifier of the received custom communication data.|
+| msgParam | ArrayBuffer | Yes  | Message body of the received custom communication data.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let messageHandler: inputmethod.MessageHandler = {
+        onTerminated(): void {
+            console.log('OnTerminated.');
+        },
+        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+        }
+    }
+    inputMethodController.recvMessage(messageHandler);
+} catch(err) {
+  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+}
+```
+
+## MessageHandler.onTerminated<sup>16+</sup>
+
+onTerminated(): void
+
+Listens for MessageHandler termination.
+
+> **NOTE**
+>
+> When an application registers a new MessageHandler object, the **OnTerminated** callback of the previous registered MessageHandler object is triggered.
+>
+> When an application unregisters a MessageHandler object, the **OnTerminated** callback of the current registered MessageHandler object is triggered.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let messageHandler: inputmethod.MessageHandler = {
+        onTerminated(): void {
+            console.log('OnTerminated.');
+        },
+        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+        }
+    }
+    inputMethodController.recvMessage(messageHandler);
+} catch(err) {
+  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+}
+```
 
 ## InputMethodController
 
@@ -774,17 +912,18 @@ Attaches a self-drawing component to the input method. This API uses an asynchro
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let textConfig: inputMethod.TextConfig = {
@@ -832,17 +971,18 @@ Attaches a self-drawing component to the input method. This API uses a promise t
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let textConfig: inputMethod.TextConfig = {
@@ -887,12 +1027,12 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | -------- | -------------------------------------- |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.showTextInput((err: BusinessError) => {
   if (err) {
@@ -929,12 +1069,12 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | -------- | -------------------------------------- |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.showTextInput().then(() => {
   console.log('Succeeded in showing text input.');
@@ -971,12 +1111,12 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | -------- | -------------------------------------- |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached.             |
+| 12800009 | input method client detached.             |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.hideTextInput((err: BusinessError) => {
   if (err) {
@@ -1015,12 +1155,12 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | -------- | -------------------------------------- |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.hideTextInput().then(() => {
   console.log('Succeeded in hiding inputMethod.');
@@ -1055,7 +1195,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.detach((err: BusinessError) => {
   if (err) {
@@ -1092,7 +1232,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.detach().then(() => {
   console.log('Succeeded in detaching inputMethod.');
@@ -1122,18 +1262,19 @@ Sets the window to be avoided by the input method. This API uses an asynchronous
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached.             |
+| 12800009 | input method client detached.             |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let windowId: number = 2000;
@@ -1175,18 +1316,19 @@ Sets the window to be avoided by the input method. This API uses a promise to re
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let windowId: number = 2000;
@@ -1217,18 +1359,19 @@ Updates the cursor information in this edit box. This API can be called to notif
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached.             |
+| 12800009 | input method client detached.             |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let cursorInfo: inputMethod.CursorInfo = { left: 0, top: 0, width: 600, height: 800 };
@@ -1266,18 +1409,19 @@ Updates the cursor information in this edit box. This API can be called to notif
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let cursorInfo: inputMethod.CursorInfo = { left: 0, top: 0, width: 600, height: 800 };
@@ -1310,18 +1454,19 @@ Updates the information about the selected text in this edit box, to notify the 
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached.             |
+| 12800009 | input method client detached.             |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputMethodController.changeSelection('text', 0, 5, (err: BusinessError) => {
@@ -1360,18 +1505,19 @@ Updates the information about the selected text in this edit box, to notify the 
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputMethodController.changeSelection('test', 0, 5).then(() => {
@@ -1401,18 +1547,19 @@ Updates the attribute information of this edit box. This API uses an asynchronou
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached.             |
+| 12800009 | input method client detached.             |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let inputAttribute: inputMethod.InputAttribute = { textInputType: 0, enterKeyType: 1 };
@@ -1450,18 +1597,19 @@ Updates the attribute information of this edit box. This API uses a promise to r
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let inputAttribute: inputMethod.InputAttribute = { textInputType: 0, enterKeyType: 1 };
@@ -1505,7 +1653,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputMethodController.stopInputSession((err: BusinessError, result: boolean) => {
@@ -1554,7 +1702,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputMethodController.stopInputSession().then((result: boolean) => {
@@ -1593,17 +1741,18 @@ Shows the soft keyboard. This API uses an asynchronous callback to return the re
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 201      | permissions check fails.  |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.showSoftKeyboard((err: BusinessError) => {
   if (!err) {
@@ -1636,17 +1785,18 @@ Shows the soft keyboard. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 201      | permissions check fails.  |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.showSoftKeyboard().then(() => {
   console.log('Succeeded in showing softKeyboard.');
@@ -1677,17 +1827,18 @@ Hides the soft keyboard. This API uses an asynchronous callback to return the re
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 201      | permissions check fails.  |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.hideSoftKeyboard((err: BusinessError) => {
   if (!err) {
@@ -1720,23 +1871,128 @@ Hides the soft keyboard. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 201      | permissions check fails.  |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.hideSoftKeyboard().then(() => {
   console.log('Succeeded in hiding softKeyboard.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to hide softKeyboard: ${JSON.stringify(err)}`);
 });
+```
+
+### sendMessage<sup>16+</sup>
+
+sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
+
+Sends the custom communication to the input method application. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API can be called only when the edit box is attached to the input method and enter the edit mode, and the input method application is in full experience mode.
+>
+> The maximum length of **msgId** is 256 B, and the maximum length of **msgParam** is 128 KB.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type       | Optional| Description                                      |
+| -------- | ----------- | ---- | ------------------------------------------ |
+| msgId    | string      | No  | Identifier of the custom data to be sent to the input method application.|
+| msgParam | ArrayBuffer | Yes  | Message body of the custom data to be sent to the input method application.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 401      | parameter error.                            |
+| 12800003 | input method client error.                  |
+| 12800009 | input method client detached.               |
+| 12800014 | the input method is in basic mode.          |
+| 12800015 | the other side does not accept the request. |
+| 12800016 | input method client is not editable.        |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let msgId: string = "testMsgId";
+let msgParam: ArrayBuffer = new ArrayBuffer(128);
+inputMethodController.sendMessage(msgId, msgParam).then(() => {
+  console.log('Succeeded send message.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to send message: ${JSON.stringify(err)}`);
+});
+```
+
+### recvMessage<sup>16+</sup>
+
+recvMessage(msgHandler?: MessageHandler): void
+
+Registers or unregisters MessageHandler.
+
+> **NOTE**
+>
+> The [MessageHandler](#messagehandler16) object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#messagehandleronterminated16) callback of the penultimate registered object is triggered.
+>
+> If no parameter is set, unregister [MessageHandler](#messagehandler16). Its [onTerminated](#messagehandleronterminated16) callback will be triggered.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                                        |
+| ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| msgHandler | [MessageHandler](#messagehandler16) | No  | This object receives custom communication data from the input method application through [onMessage](#messagehandleronmessage16) and receives a message for terminating the subscription to this object through [onTerminated](#messagehandleronterminated16). If no parameter is set, unregister [MessageHandler](#messagehandler16). Its [onTerminated](#messagehandleronterminated16) callback will be triggered.|
+
+**Return value**
+
+| Type| Description        |
+| ---- | ------------ |
+| void | No value is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | parameter error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+let messageHandler: inputmethod.MessageHandler = {
+    onTerminated(): void {
+        console.log('OnTerminated.');
+    },
+    onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+        console.log('recv message.');
+    }
+}
+inputMethodController.recvMessage(messageHandler);
+inputMethodController.recvMessage();
 ```
 
 ### stopInput<sup>(deprecated)</sup>
@@ -1762,7 +2018,7 @@ Ends this input session. This API uses an asynchronous callback to return the re
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.stopInput((err: BusinessError, result: boolean) => {
   if (err) {
@@ -1800,7 +2056,7 @@ Ends this input session. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.stopInput().then((result: boolean) => {
   if (result) {
@@ -1830,11 +2086,12 @@ Enables listening for the text insertion event of the input method. This API use
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800009 | input method client is detached. |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -1901,11 +2158,12 @@ Enables listening for the leftward delete event. This API uses an asynchronous c
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800009 | input method client is detached. |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -1961,11 +2219,12 @@ Enables listening for the rightward delete event. This API uses an asynchronous 
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800009 | input method client is detached. |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -1991,7 +2250,7 @@ Disables listening for the rightward delete event.
 
 | Name  | Type                    | Mandatory| Description                                                        |
 | -------- | ------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                   | Yes  | Listening type. The value is fixed at **'deleteRight'**.|
+| type     | string                   | Yes  | Listening type. The value is fixed at `deleteRight`.|
 | callback | (length: number) => void | No  | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Example**
@@ -2021,11 +2280,12 @@ Enables listening for the soft keyboard status event of the input method. This A
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800009 | input method client is detached. |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -2081,11 +2341,12 @@ Enables listening for the function key sending event of the input method. This A
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800009 | input method client is detached. |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -2141,11 +2402,12 @@ Enables listening for the cursor movement event of the input method. This API us
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                          |
 | -------- | -------------------------------- |
-| 12800009 | input method client is detached. |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -2201,11 +2463,12 @@ Enables listening for the extended action handling event of the input method. Th
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800009 | input method client is detached. |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -2263,6 +2526,14 @@ Enables listening for the select-by-range event. This API uses an asynchronous c
 | type     | string  | Yes  | Listening type. The value is fixed at **'selectByRange'**.|
 | callback | Callback&lt;[Range](#range10)&gt; | Yes  | Callback used to return the range of the text to be selected.<br>The application needs to select the text based on the range returned in the callback.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+
 **Example**
 
 ```ts
@@ -2295,7 +2566,7 @@ Disables listening for the select-by-range event. This API uses an asynchronous 
 ```ts
 try {
   let onSelectByRangeCallback = (range: inputMethod.Range) => {
-    console.log(`Succeeded in subscribing selectByRange, range: ${JSON.stringify(range)}`);
+    console.log(`Succeeded in subscribing selectByRange, start: ${range.start} , end: ${range.end}`);
   };
   inputMethodController.off('selectByRange', onSelectByRangeCallback);
   inputMethodController.off('selectByRange');
@@ -2318,6 +2589,14 @@ Enables listening for the select-by-cursor-movement event. This API uses an asyn
 | -------- | ----- | ---- | ------ |
 | type     | string  | Yes  | Listening type. The value is fixed at **'selectByMovement'**.|
 | callback | Callback&lt;[Movement](#movement10)&gt; | Yes  | Callback used to return the direction in which the cursor moves.<br>The application needs to select the text based on the direction returned in the callback.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **Example**
 
@@ -2377,11 +2656,12 @@ Enables listening for the event of obtaining the length of text deleted leftward
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800009 | input method client is detached. |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -2445,11 +2725,12 @@ Enables listening for the event of obtaining the length of text deleted rightwar
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800009 | input method client is detached. |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -2513,11 +2794,12 @@ Enables listening for the event of obtaining the index of text at the cursor. Th
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800009 | input method client is detached. |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -2581,12 +2863,12 @@ Enables listening for the input method and subtype change event. This API uses a
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | Yes  | Listening type. The value is fixed at **'imeChange'**.|
-| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md)) => void  | Yes| Callback used to return the input method attributes and subtype.|
+| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | Yes| Callback used to return the input method attributes and subtype.|
 
 **Example**
 
 ```ts
-import InputMethodSubtype from '@ohos.InputMethodSubtype';
+import { InputMethodSubtype } from '@kit.IMEKit';
 try {
   inputMethodSetting.on('imeChange', (inputMethodProperty: inputMethod.InputMethodProperty, inputMethodSubtype: InputMethodSubtype) => {
     console.log('Succeeded in subscribing imeChange: inputMethodProperty: ' + JSON.stringify(inputMethodProperty) + " , inputMethodSubtype: " + JSON.stringify(inputMethodSubtype));
@@ -2609,7 +2891,7 @@ Disables listening for the input method and subtype change event. This API uses 
 | Name  | Type   | Mandatory| Description         |
 | -------- | --------- | ---- | --------------- |
 | type     | string    | Yes  | Listening type. The value is fixed at **'imeChange'**.|
-| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md)) => void  | No| Callback used to return the input method attributes and subtype.|
+| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | No| Callback used to return the input method attributes and subtype.|
 
 **Example**
 
@@ -2630,22 +2912,23 @@ Obtains all subtypes of a specified input method. This API uses an asynchronous 
 | Name  | Type                                              | Mandatory| Description                  |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
 | inputMethodProperty | [InputMethodProperty](#inputmethodproperty8)| Yes| Input method.|
-| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md)>&gt; | Yes| Callback used to return all subtypes of the specified input method.|
+| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>&gt; | Yes| Callback used to return all subtypes of the specified input method.|
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | package manager error.                 |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800001 | bundle manager error.                 |
 | 12800008 | input method manager service error. |
 
 **Example**
 
 ```ts
-import InputMethodSubtype from '@ohos.InputMethodSubtype';
-import { BusinessError } from '@ohos.base';
+import { InputMethodSubtype } from '@kit.IMEKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inputMethodProperty: inputMethod.InputMethodProperty = {
   name: 'com.example.kikakeyboard',
@@ -2685,22 +2968,23 @@ Obtains all subtypes of a specified input method. This API uses a promise to ret
 
 | Type                                                       | Description                  |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md)>> | Promise used to return all subtypes of the specified input method.|
+| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>> | Promise used to return all subtypes of the specified input method.|
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | package manager error.                 |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 12800001 | bundle manager error.                 |
 | 12800008 | input method manager service error. |
 
 **Example**
 
 ```ts
-import InputMethodSubtype from '@ohos.InputMethodSubtype';
-import { BusinessError } from '@ohos.base';
+import { InputMethodSubtype } from '@kit.IMEKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inputMethodProperty: inputMethod.InputMethodProperty = {
   name: 'com.example.kikakeyboard',
@@ -2732,22 +3016,22 @@ Obtains all subtypes of this input method. This API uses an asynchronous callbac
 
 | Name  | Type                                              | Mandatory| Description                  |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md)>&gt; | Yes  | Callback used to return all subtypes of the current input method.|
+| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>&gt; | Yes  | Callback used to return all subtypes of the current input method.|
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | package manager error.                 |
+| 12800001 | bundle manager error.                 |
 | 12800008 | input method manager service error. |
 
 **Example**
 
 ```ts
-import InputMethodSubtype from '@ohos.InputMethodSubtype';
-import { BusinessError } from '@ohos.base';
+import { InputMethodSubtype } from '@kit.IMEKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inputMethodSetting = inputMethod.getSetting();
 try {
@@ -2775,22 +3059,22 @@ Obtains all subtypes of this input method. This API uses a promise to return the
 
 | Type                                                       | Description                  |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md)>> | Promise used to return all subtypes of the current input method.|
+| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>> | Promise used to return all subtypes of the current input method.|
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | package manager error.                 |
+| 12800001 | bundle manager error.                 |
 | 12800008 | input method manager service error. |
 
 **Example**
 
 ```ts
-import InputMethodSubtype from '@ohos.InputMethodSubtype';
-import { BusinessError } from '@ohos.base';
+import { InputMethodSubtype } from '@kit.IMEKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inputMethodSetting = inputMethod.getSetting();
 try {
@@ -2823,21 +3107,22 @@ Obtains a list of activated or deactivated input methods. This API uses an async
 | Name  | Type                                               | Mandatory| Description                         |
 | -------- | --------------------------------------------------- | ---- | ----------------------------- |
 | enable   | boolean                                             | Yes  |Whether to return a list of activated input methods. The value **true** means to return a list of activated input methods, and **false** means to return a list of deactivated input methods.|
-| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; | Yes  | Callback used to return a list of activated or deactivated input methods.|
+| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; |  Yes | Callback used to return a list of activated or deactivated input methods.|
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 12800001 | package manager error.               |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 12800001 | bundle manager error.               |
 | 12800008 | input method manager service error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputMethodSetting.getInputMethods(true, (err: BusinessError, data: Array<inputMethod.InputMethodProperty>) => {
@@ -2880,17 +3165,18 @@ Obtains a list of activated or deactivated input methods. This API uses a promis
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 12800001 | package manager error.               |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 12800001 | bundle manager error.               |
 | 12800008 | input method manager service error. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputMethodSetting.getInputMethods(true).then((data: Array<inputMethod.InputMethodProperty>) => {
@@ -2931,10 +3217,11 @@ Obtains a list of activated or deactivated input methods. This API returns the r
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800001 | bundle manager error.                 |
 | 12800008 |input method manager service error. |
 
@@ -2964,7 +3251,7 @@ Obtains a list of all input methods. This API uses an asynchronous callback to r
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -2974,7 +3261,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputMethodSetting.getAllInputMethods((err: BusinessError, data: Array<inputMethod.InputMethodProperty>) => {
@@ -3005,7 +3292,7 @@ Obtains a list of all input methods. This API uses a promise to return the resul
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -3015,7 +3302,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodSetting.getAllInputMethods().then((data: Array<inputMethod.InputMethodProperty>) => {
   console.log('Succeeded in getting all inputMethods.');
@@ -3082,7 +3369,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputMethodSetting.showOptionalInputMethods((err: BusinessError, data: boolean) => {
@@ -3122,7 +3409,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodSetting.showOptionalInputMethods().then((data: boolean) => {
   console.log('Succeeded in showing optionalInputMethods.');
@@ -3152,7 +3439,7 @@ Obtains a list of installed input methods. This API uses an asynchronous callbac
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodSetting.listInputMethod((err: BusinessError, data: Array<inputMethod.InputMethodProperty>) => {
   if (err) {
@@ -3184,7 +3471,7 @@ Obtains a list of installed input methods. This API uses a promise to return the
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodSetting.listInputMethod().then((data: Array<inputMethod.InputMethodProperty>) => {
   console.log('Succeeded in listing inputMethod.');
@@ -3214,7 +3501,7 @@ Displays a dialog box for selecting an input method. This API uses an asynchrono
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodSetting.displayOptionalInputMethod((err: BusinessError) => {
   if (err) {
@@ -3246,11 +3533,46 @@ Displays a dialog box for selecting an input method. This API uses a promise to 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodSetting.displayOptionalInputMethod().then(() => {
   console.log('Succeeded in displaying optionalInputMethod.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to displayOptionalInputMethod: ${JSON.stringify(err)}`);
+})
+```
+
+### getInputMethodState<sup>16+</sup>
+
+getInputMethodState(): Promise&lt;EnabledState&gt;
+
+Obtains the input method state. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type                                   | Description                                                        |
+| --------------------------------------- | ------------------------------------------------------------ |
+| Promise\<[EnabledState](#enabledstate15)> | Promise used to return the result. **EnabledState.DISABLED** indicates that the input method is disabled, **EnabledState.BASIC_MODE** indicates that the input method is in basic mode, and **EnabledState.FULL_EXPERIENCE_MODE** indicates that the input method is in full experience mode.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 12800004 | not an input method.              |
+| 12800008 | input method manager service error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+inputMethodSetting.getInputMethodState().then((status: inputMethod.EnabledState) => {
+  console.log(`Succeeded in getInputMethodState, status: ${status}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getInputMethodState: ${JSON.stringify(err)}`);
 })
 ```

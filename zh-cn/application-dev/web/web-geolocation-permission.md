@@ -1,8 +1,23 @@
 # 管理位置权限
 
 
-Web组件提供位置权限管理能力。开发者可以通过[onGeolocationShow()](../reference/apis-arkweb/ts-basic-components-web.md#ongeolocationshow)接口对某个网站进行位置权限管理。Web组件根据接口响应结果，决定是否赋予前端页面权限。获取设备位置，需要开发者配置[ohos.permission.LOCATION](../security/AccessToken/request-user-authorization.md)权限，并同时在设备上打开应用的位置权限和控制中心的位置信息。
+Web组件提供位置权限管理能力。开发者可以通过[onGeolocationShow()](../reference/apis-arkweb/ts-basic-components-web.md#ongeolocationshow)接口对某个网站进行位置权限管理。Web组件根据接口响应结果，决定是否赋予前端页面权限。
 
+- 使用获取设备位置功能前请在module.json5中添加位置相关权限，权限的添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+
+   ```
+   "requestPermissions":[
+      {
+        "name" : "ohos.permission.LOCATION"
+      },
+      {
+        "name" : "ohos.permission.APPROXIMATELY_LOCATION"
+      },
+      {
+        "name" : "ohos.permission.LOCATION_IN_BACKGROUND"
+      }
+    ]
+   ```
 
 在下面的示例中，用户点击前端页面"获取位置"按钮，Web组件通过弹窗的形式通知应用侧位置权限请求消息。
 
@@ -36,45 +51,32 @@ Web组件提供位置权限管理能力。开发者可以通过[onGeolocationSho
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import { abilityAccessCtrl, common }from '@kit.AbilityKit';
-  import {geoLocationManager} from '@kit.LocationKit';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { abilityAccessCtrl, common } from '@kit.AbilityKit';
 
   let context = getContext(this) as common.UIAbilityContext;
   let atManager = abilityAccessCtrl.createAtManager();
 
-  try{
-    atManager.requestPermissionsFromUser(context, ["ohos.permission.APPROXIMATELY_LOCATION"], (err, data) => {
-      let requestInfo: geoLocationManager.LocationRequest = {
-        'priority': 0x203,
-        'scenario': 0x300,
-        'maxAccuracy': 0
-      };
-      let locationChange = (location: geoLocationManager.Location):void => {
-        if(location){
-          console.log('locationChanger: location=' + JSON.stringify(location));
-        }
-      };
-      try{
-        geoLocationManager.on('locationChange', requestInfo, locationChange);
-        geoLocationManager.off('locationChange', locationChange);
-      } catch (err) {
-        console.error("errCode:" + err.code + ", errMessage:" + err.message);
-      }
-    })
-  } catch (err) {
-    console.error("err:", err);
-  }
+  // 向用户请求位置权限设置。
+  atManager.requestPermissionsFromUser(context, ["ohos.permission.APPROXIMATELY_LOCATION"]).then((data) => {
+    console.info('data:' + JSON.stringify(data));
+    console.info('data permissions:' + data.permissions);
+    console.info('data authResults:' + data.authResults);
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to request permissions from user. Code is ${error.code}, message is ${error.message}`);
+  })
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:$rawfile('getLocation.html'), controller:this.controller })
+        Web({ src: $rawfile('getLocation.html'), controller: this.controller })
           .geolocationAccess(true)
-          .onGeolocationShow((event) => {  // 地理位置权限申请通知
+          .onGeolocationShow((event) => { // 地理位置权限申请通知
             AlertDialog.show({
               title: '位置权限请求',
               message: '是否允许获取位置信息',
@@ -82,7 +84,7 @@ Web组件提供位置权限管理能力。开发者可以通过[onGeolocationSho
                 value: 'cancel',
                 action: () => {
                   if (event) {
-                    event.geolocation.invoke(event.origin, false, false);   // 不允许此站点地理位置权限请求
+                    event.geolocation.invoke(event.origin, false, false); // 不允许此站点地理位置权限请求
                   }
                 }
               },
@@ -90,13 +92,13 @@ Web组件提供位置权限管理能力。开发者可以通过[onGeolocationSho
                 value: 'ok',
                 action: () => {
                   if (event) {
-                    event.geolocation.invoke(event.origin, true, false);    // 允许此站点地理位置权限请求
+                    event.geolocation.invoke(event.origin, true, false); // 允许此站点地理位置权限请求
                   }
                 }
               },
               cancel: () => {
                 if (event) {
-                  event.geolocation.invoke(event.origin, false, false);   // 不允许此站点地理位置权限请求
+                  event.geolocation.invoke(event.origin, false, false); // 不允许此站点地理位置权限请求
                 }
               }
             })

@@ -1,4 +1,4 @@
-# 查询用户注册凭据的状态。
+# 查询用户注册凭据的状态
 
 
 调用者需感知用户注册凭据（人脸、指纹、口令）的变化，可以通过该接口查询当前用户注册凭据的状态。
@@ -17,13 +17,13 @@
 
 1. [申请权限](prerequisites.md#申请权限)：ohos.permission.ACCESS_BIOMETRIC。
 
-2. 指定认证类型（UserAuthType），调用[getEnrolledState](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthgetenrolledstate12)接口查询用户注册凭据的状态。
+2. 指定认证类型（[UserAuthType](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthtype8)），调用[getEnrolledState](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthgetenrolledstate12)接口查询用户注册凭据的状态。
 
 以查询用户人脸注册凭据的状态为例：
 
 ```ts
-import type {BusinessError} from '@ohos.base';
-import userAuth from '@ohos.userIAM.userAuth';
+import { BusinessError } from  '@kit.BasicServicesKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
   let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.FACE);

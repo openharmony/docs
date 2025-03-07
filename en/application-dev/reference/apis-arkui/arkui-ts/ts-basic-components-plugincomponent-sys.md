@@ -1,12 +1,13 @@
 # PluginComponent (System API)
 
-The **\<PluginComponent>** allows the UI provided by an external application to be displayed in the application. To implement the update through inter-process communication (IPC), see [@ohos.pluginComponent](../apis/js-apis-plugincomponent.md).
+The **PluginComponent** allows an application to display external UI from another application. To implement update through inter-process communication (IPC), see [@ohos.pluginComponent](../js-apis-plugincomponent.md).
 
 
 >  **NOTE**
 >
 >  - This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
->  - The APIs provided by this component are system APIs.
+>
+>  - The APIs provided by this module are system APIs.
 
 ## Child Components
 
@@ -21,9 +22,9 @@ Creates a **PluginComponent** to display the UI provided by an external applicat
 
 **Parameters**
 
-| Name| Type                                                                                                                                                       | Mandatory| Description                                                                                                 |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- | --------------------------------------------------------------------------------------------------------- |
-| value  | {<br>template:  [PluginComponentTemplate](#plugincomponenttemplate),<br>data: [KVObject](../apis/js-apis-plugincomponent.md#kvobject)<br>} | Yes  | **template**: template of the **PluginComponent**, which is bound to the component defined by the provider.<br>**data**: data passed to the **PluginComponent** provider.|
+| Name| Type                                                    | Mandatory| Description                                                    |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | {<br>template:  [PluginComponentTemplate](#plugincomponenttemplate),<br>data: [KVObject](../js-apis-plugincomponent.md#kvobject)<br>} | Yes  | **template**: template of the **PluginComponent**, which is bound to the component defined by the provider.<br>**data**: data passed to the **PluginComponent** provider.|
 
 ## PluginComponentTemplate
 
@@ -36,8 +37,9 @@ The width and height of the component must be explicitly set to non-zero valid v
 
 **NOTE**
 
-The template can be provided in either of the following modes:
+  The template can be provided in either of the following modes:
 * Use an absolute path. In this case, set **source** to the absolute path of the template and leave **bundleName** blank. This mode is not recommended as it is applicable only to standalone templates that do not need to load resources.
+
 * Use an application package. In this case, set **bundleName** to the application bundle name and **source** to the relative path of the HAP file template. In the multi-HAP scenario, a HAP file is identified based on its relative path and name.
 
   Example: **{source: 'pages/PluginProviderExample.ets&entry', bundleName:'com.example.provider'}**
@@ -53,10 +55,31 @@ Only the [gesture event](ts-gesture-settings.md) can be distributed to and proce
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name                                                                                                               | Description                                                              |
-| ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| onComplete(callback: () =&gt; void)                                                                  | Triggered when the component loading is complete.                                                    |
-| onError(callback: (info: { errcode: number, msg: string }) =&gt; void) | Triggered when an error occurs during component loading.<br>**errcode**: error code.<br>**msg**: error information.|
+### onComplete
+
+onComplete(callback: () =&gt; void)
+
+Triggered when the component loading is complete.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### onError
+
+onError(callback: (info: { errcode: number, msg: string }) =&gt; void)
+
+Triggered when an error occurs during component loading.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                           |
+| ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
+| info   |  { errcode: number, msg: string } | Yes  | **errcode**: error code.<br>**msg**: error information.|
 
 ## Example
 

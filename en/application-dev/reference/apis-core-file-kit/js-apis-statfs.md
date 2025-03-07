@@ -13,7 +13,7 @@ The **statfs** module provides APIs for obtaining file system information, inclu
 import statfs from '@ohos.statfs';
 ```
 
-## statfs.getFreeBytes
+## Statfs.getFreeBytes
 
 getFreeBytes(path:string):Promise&lt;number&gt;
 
@@ -41,11 +41,11 @@ Obtains the free size of the specified file system, in bytes. This API uses a pr
   statfs.getFreeBytes(path).then((number: number) => {
     console.info("getFreeBytes promise successfully:" + number);
   }).catch((err: BusinessError) => {
-    console.info("getFreeBytes failed with error:" + JSON.stringify(err));
+    console.error("getFreeBytes failed with error:" + JSON.stringify(err));
   });
   ```
 
-## statfs.getFreeBytes
+## Statfs.getFreeBytes
 
 getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 
@@ -58,12 +58,13 @@ Obtains the free size of the specified file system, in bytes. This API uses an a
   | Name  | Type                       | Mandatory| Description                        |
   | -------- | --------------------------- | ---- | ---------------------------- |
   | path     | string                      | Yes  | Path of the file system.|
-  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the free size obtained.|
+  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the free size obtained.|
 
 **Example**
 
   ```ts
   import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
   let context = getContext(this) as common.UIAbilityContext;
   let path = context.filesDir;
   statfs.getFreeBytes(path, (err: BusinessError, freeBytes:Number) => {
@@ -75,7 +76,7 @@ Obtains the free size of the specified file system, in bytes. This API uses an a
   });
   ```
 
-## statfs.getTotalBytes
+## Statfs.getTotalBytes
 
 getTotalBytes(path: string): Promise&lt;number&gt;
 
@@ -103,11 +104,11 @@ Obtains the total size of the specified file system, in byte. This API uses a pr
   statfs.getTotalBytes(path).then((number: number) => {
     console.info("getTotalBytes promise successfully:" + number);
   }).catch((err: BusinessError) => {
-    console.info("getTotalBytes failed with error:" + JSON.stringify(err));
+    console.error("getTotalBytes failed with error:" + JSON.stringify(err));
   });
   ```
 
-## statfs.getTotalBytes
+## Statfs.getTotalBytes
 
 getTotalBytes(path: string, callback: AsyncCallback&lt;number&gt;): void
 
@@ -120,12 +121,13 @@ Obtains the total size of the specified file system, in bytes. This API uses an 
   | Name  | Type                       | Mandatory| Description                        |
   | -------- | --------------------------- | ---- | ---------------------------- |
   | path     | string                      | Yes  | Path of the file system.|
-  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total size obtained.  |
+  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the total size obtained.  |
 
 **Example**
 
   ```ts
   import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
   let context = getContext(this) as common.UIAbilityContext;
   let path = context.filesDir;
   statfs.getTotalBytes(path, (err: BusinessError, totalBytes:Number) => {

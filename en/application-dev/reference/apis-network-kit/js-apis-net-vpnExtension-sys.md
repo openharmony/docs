@@ -1,6 +1,7 @@
 # @ohos.net.vpnExtension (Enhanced VPN Management) (System API)
 
 This module implements virtual private network (VPN) management, such as starting and stopping a third-party VPN.
+Third-party VPNs refer to VPN services provided by third parties. They usually support more security and privacy functions and more comprehensive customization options.
 
 > **NOTE**
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -9,11 +10,11 @@ This module implements virtual private network (VPN) management, such as startin
 ## Modules to Import
 
 ```js
-import vpnExt from "@ohos.net.vpnExtension";
+import { vpnExtension } from '@kit.NetworkKit';
 ```
 
 
-## vpnExt.setAlwaysOnVpnEnabled
+## vpnExtension.setAlwaysOnVpnEnabled
 
 setAlwaysOnVpnEnabled(enable: boolean, bundleName: string): Promise\<void>
 
@@ -52,43 +53,24 @@ Enables or disables the **always on** mode.
 Stage model:
 
 ```ts
-import vpnExt from '@ohos.net.vpnExtension';
-import Want from '@ohos.app.ability.Want';  
+import { vpnExtension } from '@kit.NetworkKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-build() {
-    Column() {
-      this.TipTextStyle(this.content, 20)
-      Text($r('app.string.title')).ControlText()
-      Text($r('app.string.warning')).fontSize(16).margin({ top: 0, bottom: 8, left: 24, right: 24 })
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
-        Text($r('app.string.notAllowButton'))
-          .ControlBtn(this.notAllowFontColor)
-          .onClick(() => {
-            this.destruction();
-          })
-        Text('|')
-          .fontSize(20)
-        Text($r('app.string.allowButton'))
-          .ControlBtn(this.allowFontColor)
-          .onClick(() => {
-            let bundleName = globalThis.bundleName;
-            let abilityName = globalThis.abilityName;
-            vpnExt.setAlwaysOnVpnEnabled(true,bundleName);
-            let want: Want = {
-              deviceId: "",
-              bundleName: bundleName,
-              abilityName: abilityName,
-            };
-            vpnExt.startVpnExtensionAbility(want);
-            this.destruction()
-          })
+let want: Want = {
+  deviceId: "",
+  bundleName: 'com.example.myvpndemo',
+  abilityName: 'MyVpnExtAbility',
+};
 
-      }.margin({ bottom: 16, left: 24, right: 24})
-    }
-  }
+vpnExtension.setAlwaysOnVpnEnabled(true, want.bundleName).then(() => {
+  console.info('setAlwaysOnVpnEnabled success.');
+}).catch((err : BusinessError) => {
+  console.error('setAlwaysOnVpnEnabled fail, err-> ${JSON.stringify(err)}');
+});
 ```
 
-## vpnExt.isAlwaysOnVpnEnabled
+## vpnExtension.isAlwaysOnVpnEnabled
 
 isAlwaysOnVpnEnabled(bundleName: string): Promise\<boolean>
 
@@ -126,43 +108,24 @@ Obtains the status of the **always on** mode.
 Stage model:
 
 ```ts
-import vpnExt from '@ohos.net.vpnExtension';
-import Want from '@ohos.app.ability.Want';  
+import { vpnExtension } from '@kit.NetworkKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-build() {
-    Column() {
-      this.TipTextStyle(this.content, 20)
-      Text($r('app.string.title')).ControlText()
-      Text($r('app.string.warning')).fontSize(16).margin({ top: 0, bottom: 8, left: 24, right: 24 })
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
-        Text($r('app.string.notAllowButton'))
-          .ControlBtn(this.notAllowFontColor)
-          .onClick(() => {
-            this.destruction()
-          })
-        Text('|')
-          .fontSize(20)
-        Text($r('app.string.allowButton'))
-          .ControlBtn(this.allowFontColor)
-          .onClick(() => {
-            let bundleName = globalThis.bundleName;
-            let abilityName = globalThis.abilityName;
-            vpnExt.isAlwaysOnVpnEnabled(bundleName);
-            let want: Want = {
-              deviceId: "",
-              bundleName: bundleName,
-              abilityName: abilityName,
-            };
-            vpnExt.startVpnExtensionAbility(want);
-            this.destruction();
-          })
+let want: Want = {
+  deviceId: "",
+  bundleName: 'com.example.myvpndemo',
+  abilityName: 'MyVpnExtAbility',
+};
 
-      }.margin({ bottom: 16, left: 24, right: 24})
-    }
-  }
+vpnExtension.isAlwaysOnVpnEnabled(want.bundleName).then((data : boolean) => {
+  console.info('isAlwaysOnVpnEnabled success.');
+}).catch((err : BusinessError) => {
+  console.error('setAlwaysOnVpnEnabled fail, err-> ${JSON.stringify(err)}');
+});
 ```
 
-## vpnExt.updateVpnAuthorizedState
+## vpnExtension.updateVpnAuthorizedState
 
 updateVpnAuthorizedState(bundleName: string): boolean
 
@@ -200,38 +163,15 @@ Updates the VPN pop-up authorization status.
 Stage model:
 
 ```ts
-import vpnExt from '@ohos.net.vpnExtension';
-import Want from '@ohos.app.ability.Want';  
+import { vpnExtension } from '@kit.NetworkKit';
+import { Want } from '@kit.AbilityKit';
 
-build() {
-    Column() {
-      this.TipTextStyle(this.content, 20)
-      Text($r('app.string.title')).ControlText()
-      Text($r('app.string.warning')).fontSize(16).margin({ top: 0, bottom: 8, left: 24, right: 24 })
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
-        Text($r('app.string.notAllowButton'))
-          .ControlBtn(this.notAllowFontColor)
-          .onClick(() => {
-            this.destruction();
-          })
-        Text('|')
-          .fontSize(20)
-        Text($r('app.string.allowButton'))
-          .ControlBtn(this.allowFontColor)
-          .onClick(() => {
-            let bundleName = globalThis.bundleName;
-            let abilityName = globalThis.abilityName;
-            vpnExt.updateVpnAuthorizedState(bundleName);
-            let want: Want = {
-              deviceId: "",
-              bundleName: bundleName,
-              abilityName: abilityName,
-            };
-            vpnExt.startVpnExtensionAbility(want);
-            this.destruction();
-          })
+let want: Want = {
+  deviceId: "",
+  bundleName: 'com.example.myvpndemo',
+  abilityName: 'MyVpnExtAbility',
+};
 
-      }.margin({ bottom: 16, left: 24, right: 24})
-    }
-  }
+let result: boolean = vpnExtension.updateVpnAuthorizedState(want.bundleName);
+console.log("Result: "+ result);
 ```

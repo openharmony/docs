@@ -12,7 +12,7 @@ debug(message: string, ...arguments: any[]): void
 
 Prints debugging information in formatted output mode.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -41,7 +41,7 @@ log(message: string, ...arguments: any[]): void
 
 Prints log information in formatted output mode.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -70,7 +70,7 @@ info(message: string, ...arguments: any[]): void
 
 Prints log information in formatted output mode. This API is the alias of **console.log ()**.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -99,7 +99,7 @@ warn(message: string, ...arguments: any[]): void
 
 Prints warning information in formatted output mode.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -128,7 +128,7 @@ error(message: string, ...arguments: any[]): void
 
 Prints error information in formatted output mode.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -158,6 +158,8 @@ assert(value?: Object, ...arguments: Object[]): void
 
 Prints assertion information.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -185,6 +187,8 @@ console.assert();
 count(label?: string): void
 
 Maintains an internal counter. When this counter is invoked, its label name and the corresponding call count are printed.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -218,6 +222,8 @@ countReset(label?: string): void
 
 Resets a counter based on the specified label name.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -241,6 +247,8 @@ console.count('abc');
 dir(dir?: Object): void
 
 Prints content of the specified object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -279,6 +287,8 @@ dirxml(...arguments: Object[]): void
 
 Displays an interactive tree of the descendant elements of the specified XML element. This API is implemented by calling **console.log()** internally. It does not produce any XML elements. The usage method is the same as that of **console.log()**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -305,6 +315,8 @@ group(...arguments: Object[]): void
 
 Increases the indentation of subsequent lines by two spaces.
 If the information to be printed is provided, the information is printed without extra indentation.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -335,6 +347,8 @@ groupCollapsed(...arguments: Object[]): void
 
 Creates a new inline group in collapsed mode. The usage and function of this API are the same as those of **console.group()**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -364,6 +378,8 @@ groupEnd(): void
 
 Reduces the indentation of subsequent lines by two spaces.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 
@@ -386,6 +402,8 @@ console.log("outter");
 table(tableData?: Object): void
 
 Prints data in a table.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -424,6 +442,8 @@ time(label?: string): void
 
 Starts a timer to track the duration of an operation. You can use **console.timeEnd()** to close the timer and print the elapsed time (in ms).
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -443,6 +463,8 @@ console.time('abc');
 timeEnd(label?: string): void
 
 Stops the timer started by calling **console.time()** and prints the elapsed time (in ms).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -466,6 +488,8 @@ timeLog(label?: string, ...arguments: Object[]): void
 
 Prints the elapsed time and other data parameters for the timer started by **console.time()**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -487,9 +511,11 @@ console.timeEnd('timer1');
 
 ## console.trace<sup>10+</sup>
 
-trace(...arguments: Object[]): void
+static trace(...arguments: Object[]): void
 
 Creates a stack trace.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -508,4 +534,22 @@ console.trace();
 console.trace("Show the trace");
 // Trace: Show the trace
 //     xxxxxxxxxx (current stack information)
+```
+
+## console.traceHybridStack<sup>12+</sup>
+
+static traceHybridStack(): void
+
+Prints information about the current hybrid stack of the calling thread in the main thread or worker thread.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Example**
+
+```ts
+console.traceHybridStack();
+// TraceHybridStack:
+// xxxxxxxxxxxxx (information about the current hybrid stack of the calling thread)
 ```

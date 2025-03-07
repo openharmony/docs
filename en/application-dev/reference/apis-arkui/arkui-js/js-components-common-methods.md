@@ -34,7 +34,7 @@ animate( keyframes: Keyframes, options: Options): void
 | opacity            | number                                   | 1                    | Opacity set for the component. The value ranges from 0 to 1.                     |
 | backgroundPosition | string                                   | -                    | The value format is **"x y"**, in percentage or pixels.<br>The first value indicates the horizontal position, and the second value indicates the vertical position.<br>If only one value is specified, the other value is **50%**.|
 | transformOrigin    | string                                   | 'center center' | Origin position of the transformed element.<br>The first value indicates the x-axis position. The value can be **left**, **center**, **right**, a length, or a percentage.<br>The second value indicates the y-axis position. The value can be **top**, **center**, **bottom**, a length, or a percentage.|
-| transform          | [Transform](../arkui-js/js-components-common-animation.md) | -                    | Transformation type set for a transformed element.                            |
+| transform          | [Transform](js-components-common-animation.md) | -                    | Transformation type set for a transformed element.                            |
 | offset             | number                                   | -                    | - The value of **offset** must be within (0.0, 1.0] and sorted in ascending order if it is provided.<br>- If there are only two frames, **offset** can be left empty.<br>- If there are more than two frames, **offset** is mandatory.|
 
   **Table 3** Options

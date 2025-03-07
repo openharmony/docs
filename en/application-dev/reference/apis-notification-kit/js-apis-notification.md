@@ -5,7 +5,6 @@ The **Notification** module provides notification management capabilities, cover
 > **NOTE**
 >
 > The APIs provided by this module are no longer maintained since API version 9. You are advised to use [@ohos.notificationManager](js-apis-notificationManager.md).
->
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > Notification subscription and unsubscription APIs are available only to system applications.
@@ -76,9 +75,9 @@ Publishes a notification. This API uses a promise to return the result.
 
 **Return value**
 
-| Type    | Description        |
+| Type    | Description        | 
 | ------- |------------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.|  
 
 **Example**
 
@@ -156,9 +155,9 @@ Cancels a notification with the specified ID and optional label. This API uses a
 
 **Return value**
 
-| Type    | Description        |
+| Type    | Description        | 
 | ------- |------------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.|  
 
 **Example**
 
@@ -247,9 +246,9 @@ Cancels all notifications. This API uses a promise to return the result.
 
 **Return value**
 
-| Type    | Description        |
+| Type    | Description        | 
 | ------- |------------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.|  
 
 **Example**
 
@@ -310,9 +309,9 @@ Adds a notification slot of a specified type. This API uses a promise to return 
 
 **Return value**
 
-| Type    | Description        |
+| Type    | Description        | 
 | ------- |------------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.|  
 
 **Example**
 
@@ -330,7 +329,7 @@ Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION).then(() => {
 
 getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 
-Obtains a notification slot of a specified type. This API uses a promise to return the result.
+Obtains a notification slot of a specified type. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -495,9 +494,9 @@ Removes a notification slot of a specified type. This API uses a promise to retu
 
 **Return value**
 
-| Type    | Description        |
+| Type    | Description        | 
 | ------- |------------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.|  
 
 **Example**
 
@@ -551,9 +550,9 @@ Removes all notification slots. This API uses a promise to return the result.
 
 **Return value**
 
-| Type    | Description        |
+| Type    | Description        | 
 | ------- |------------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.|  
 
 **Example**
 
@@ -730,9 +729,9 @@ Cancels notifications under a notification group of this application. This API u
 
 **Return value**
 
-| Type    | Description        |
+| Type    | Description        | 
 | ------- |------------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.|  
 
 **Example**
 
@@ -852,9 +851,9 @@ Requests notification to be enabled for this application. This API uses a promis
 
 **Return value**
 
-| Type    | Description        |
+| Type    | Description        | 
 | ------- |------------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.|  
 
 **Example**
 
@@ -953,7 +952,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 **System capability**: SystemCapability.Notification.Notification
 
-> **NOTE**<br>
+> **NOTE**
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [notificationManager.BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) instead.
 
 | Name  | Type  | Mandatory| Description  |
@@ -965,8 +964,8 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 **System capability**: SystemCapability.Notification.Notification
 
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [notificationManager.NotificationKey](js-apis-notificationSubscribe-sys.md#notificationkey) instead.
+> **NOTE**
+> This API is supported since API version 7 and deprecated since API version 9. <!--Del-->You are advised to use [notificationManager.NotificationKey](js-apis-notificationSubscribe-sys.md#notificationkey).<!--DelEnd-->
 
 | Name | Type  | Readable| Writable| Description    |
 | ----- | ------ | ---- | --- | -------- |
@@ -1070,39 +1069,11 @@ Describes the notification content.
 
 | Name       | Type                                                        | Readable| Writable| Description              |
 | ----------- | ------------------------------------------------------------ | ---- | --- | ------------------ |
-| contentType | [ContentType](#contenttype)                                  | Yes | Yes | Notification content type.      |
+| contentType | [notification.ContentType](#contenttype)                                  | Yes | Yes | Notification content type.      |
 | normal      | [NotificationBasicContent](#notificationbasiccontent)        | Yes | Yes | Normal text.  |
 | longText    | [NotificationLongTextContent](#notificationlongtextcontent)  | Yes | Yes | Long text.|
 | multiLine   | [NotificationMultiLineContent](#notificationmultilinecontent) | Yes | Yes | Multi-line text.  |
 | picture     | [NotificationPictureContent](#notificationpicturecontent)    | Yes | Yes | Picture-attached.  |
-
-
-## NotificationFlagStatus<sup>8+</sup>
-
-Describes the notification flag status.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name          | Value | Description                              |
-| -------------- | --- | --------------------------------- |
-| TYPE_NONE      | 0   | The default flag is used.                        |
-| TYPE_OPEN      | 1   | The notification flag is enabled.                    |
-| TYPE_CLOSE     | 2   | The notification flag is disabled.                    |
-
-
-## NotificationFlags<sup>8+</sup>
-
-Enumerates notification flags.
-
-**System capability**: SystemCapability.Notification.Notification
-
-| Name            | Type                   | Readable| Writable| Description                              |
-| ---------------- | ---------------------- | ---- | ---- | --------------------------------- |
-| soundEnabled     | [NotificationFlagStatus](#notificationflagstatus8) | Yes  | No  | Whether to enable the sound alert for the notification.                 |
-| vibrationEnabled | [NotificationFlagStatus](#notificationflagstatus8) | Yes  | No  | Whether to enable vibration for the notification.              |
-
 
 ## NotificationRequest
 
@@ -1114,7 +1085,7 @@ Describes the notification request.
 | --------------------- | --------------------------------------------- | ---- | --- | -------------------------- |
 | content               | [NotificationContent](#notificationcontent)   | Yes | Yes | Notification content.                  |
 | id                    | number                                        | Yes | Yes | Notification ID.                    |
-| slotType              | [SlotType](#slottype)                         | Yes | Yes | Slot type.                  |
+| slotType              | [notification.SlotType](#slottype)                         | Yes | Yes | Slot type.                  |
 | isOngoing             | boolean                                       | Yes | Yes | Whether the notification is an ongoing notification.            |
 | isUnremovable         | boolean                                       | Yes | Yes | Whether the notification can be removed.                |
 | deliveryTime          | number                                        | Yes | Yes | Time when the notification is sent.              |
@@ -1142,7 +1113,7 @@ Describes the notification request.
 | groupName<sup>8+</sup>| string                                        | Yes | Yes | Notification group name.                |
 | template<sup>8+</sup> | [NotificationTemplate](#notificationtemplate8) | Yes | Yes | Notification template.                  |
 | distributedOption<sup>8+</sup>   | [DistributedOptions](#distributedoptions8)                 | Yes | Yes | Distributed notification options.         |
-| notificationFlags<sup>8+</sup> | [NotificationFlags](#notificationflags8)                    | Yes | No | Notification flags.         |
+| notificationFlags<sup>8+</sup> | [NotificationFlags](./js-apis-inner-notification-notificationFlags.md)                    | Yes | No | Notification flags.         |
 | removalWantAgent<sup>9+</sup> | [WantAgent](../apis-ability-kit/js-apis-wantAgent.md) | Yes | Yes | **WantAgent** instance to which the notification will be redirected when it is removed.         |
 | badgeNumber<sup>9+</sup> | number                    | Yes | Yes | Number of notifications displayed on the application icon.         |
 
@@ -1167,8 +1138,8 @@ Describes the notification slot.
 
 | Name                | Type                 | Readable| Writable| Description                    |
 | -------------------- | --------------------- | ---- | --- |------------------------|
-| type                 | [SlotType](#slottype) | Yes | Yes | Slot type.                 |
-| level                | number                | Yes | Yes | Notification level. If this parameter is not set, the default value is used based on the notification slot type.|
+| type                 | [notification.SlotType](#slottype) | Yes | Yes | Slot type.                 |
+| level                | [notification.SlotLevel](#slotlevel)                | Yes | Yes | Notification level. If this parameter is not set, the default value is used based on the notification slot type.|
 | desc                 | string                | Yes | Yes | Notification slot description.             |
 | badgeFlag            | boolean               | Yes | Yes | Whether to display the badge.               |
 | bypassDnd            | boolean               | Yes | Yes | Whether to bypass DND mode in the system.      |
@@ -1189,7 +1160,7 @@ Describes the notification template.
 | Name| Type                   | Readable| Writable| Description      |
 | ---- | ---------------------- | ---- | ---- | ---------- |
 | name | string                 | Yes  | Yes  | Template name.|
-| data | {[key:string]: Object} | Yes  | Yes  | Template data.|
+| data | Record<string, Object> | Yes  | Yes  | Template data.|
 
 
 ## NotificationUserInput<sup>8+</sup>
@@ -1201,4 +1172,3 @@ Provides the notification user input.
 | Name    | Type  | Readable| Writable| Description                         |
 | -------- | ------ | --- | ---- | ----------------------------- |
 | inputKey | string | Yes | Yes | Key to identify the user input.|
-<!--no_check-->

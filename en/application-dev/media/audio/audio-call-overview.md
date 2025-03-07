@@ -11,16 +11,16 @@ When developing the audio call service, you must use a proper audio processing p
 ## Audio Scene
 
 When an application uses the audio call service, the system switches to the call-related audio scene (specified by [AudioScene](../../reference/apis-audio-kit/js-apis-audio.md#audioscene8)). The system has preset multiple audio scenes, including ringing, cellular call, and voice chat, and uses a scene-specific policy to process audio.
-
-For example, in the cellular call audio scene, the system prioritizes voice clarity. To deliver a crystal clear voice during calls, the system uses the 3A algorithm to preprocess audio data, suppress echoes, eliminates background noise, and adjusts the volume range. The 3A algorithm refers to three audio processing algorithms: Acoustic Echo Cancellation (AEC), Active Noise Control (ANC), and Automatic Gain Control (AGC).
+<!--Del-->
+For example, in the cellular call audio scene, the system prioritizes voice clarity. To deliver a crystal clear voice during calls, the system uses the 3A algorithm to preprocess audio data, suppress echoes, eliminates background noise, and adjusts the volume range. The 3A algorithm refers to three audio processing algorithms: Acoustic Echo Cancellation (AEC), Active Noise Control (ANC), and Automatic Gain Control (AGC).<!--DelEnd-->
 
 Currently, the following audio scenes are preset:
 
-- **AUDIO_SCENE_DEFAULT**: default audio scene, which can be used in all scenarios except audio calls.
+- **AUDIO_SCENE_DEFAULT**: default audio scene, which can be used in all scenarios except audio calls.<!--Del-->
 
 - **AUDIO_SCENE_RINGING**: ringing audio scene, which is used when a call is coming and is open only to system applications.
 
-- **AUDIO_SCENE_PHONE_CALL**: cellular call audio scene, which is used for cellular calls and is open only to system applications.
+- **AUDIO_SCENE_PHONE_CALL**: cellular call audio scene, which is used for cellular calls and is open only to system applications.<!--DelEnd-->
 
 - **AUDIO_SCENE_VOICE_CHAT**: voice chat scene, which is used for VoIP calls.
 
@@ -46,4 +46,4 @@ If the application wants to obtain the ringer mode changes in time, it can call 
 
 When a call is coming, the system selects an appropriate audio device based on the default priority. The application can switch the call to another audio device as required.
 
-The audio devices that can be used for the audio call are specified by [CommunicationDeviceType](../../reference/apis-audio-kit/js-apis-audio.md#communicationdevicetype9). The application can call **isCommunicationDeviceActive** in the [AudioRoutingManager](../../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9) class to check whether a communication device is active. It can also call **setCommunicationDevice** in the **AudioRoutingManager** class to set a communication device to the active state so that the device can be used for the call.
+For details, see [Using the Call Device Switching Component](../avsession/using-switch-call-devices.md).

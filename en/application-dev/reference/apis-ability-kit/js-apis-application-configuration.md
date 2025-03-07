@@ -13,14 +13,14 @@ The **Configuration** module defines environment change information. **Configura
 import Configuration from '@ohos.application.Configuration';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
   | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | language<sup>8+</sup> | string | Yes| Yes| Language of the application, for example, **zh**.|
-| colorMode<sup>8+</sup> | [ColorMode](js-apis-application-configurationConstant.md#configurationconstantcolormode) | Yes| Yes| Color mode, which can be **COLOR_MODE_LIGHT** or **COLOR_MODE_DARK**. The default value is **COLOR_MODE_LIGHT**.|
+| colorMode<sup>8+</sup> | [ConfigurationConstant.ColorMode](js-apis-application-configurationConstant.md#colormode) | Yes| Yes| Color mode, which can be **COLOR_MODE_LIGHT** or **COLOR_MODE_DARK**. The default value is **COLOR_MODE_LIGHT**.|
 
 For details about the fields, see the **ohos.application.Configuration.d.ts** file.
 
@@ -31,6 +31,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
 import Want from '@ohos.app.ability.Want';
 import Window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -52,7 +53,11 @@ export default class EntryAbility extends UIAbility {
         };
 
         let applicationContext = this.context.getApplicationContext();
-        applicationContext.on('environment',envCallback);
+        try {
+            applicationContext.on('environment',envCallback);
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+        }
 
         windowStage.loadContent('pages/index', (err, data) => {
             if (err.code) {

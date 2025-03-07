@@ -1,6 +1,6 @@
 # Updating Widget Content Through the message Event
 
-On the widget page, the **postCardAction** API can be used to trigger a message event to start a FormExtensionAbility, which then updates the widget content. The following is an example of this widget update mode.
+On the widget page, the [postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction) API can be used to trigger a message event to start a FormExtensionAbility, which then updates the widget content. The following is an example of this widget update mode.
 
 > **NOTE**
 >
@@ -65,11 +65,9 @@ On the widget page, the **postCardAction** API can be used to trigger a message 
 - Call the [updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform) API to update the widget in the **onFormEvent** callback of the FormExtensionAbility.
   
   ```ts
-  import type Base from '@ohos.base';
-  import formBindingData from '@ohos.app.form.formBindingData';
-  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import formProvider from '@ohos.app.form.formProvider';
-  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { formBindingData, FormExtensionAbility, formProvider } from '@kit.FormKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
   
   const TAG: string = 'EntryFormAbility';
   const DOMAIN_NUMBER: number = 0xFF00;
@@ -88,11 +86,11 @@ On the widget page, the **postCardAction** API can be used to trigger a message 
       let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
       formProvider.updateForm(formId, formInfo).then(() => {
         hilog.info(DOMAIN_NUMBER, TAG, 'FormAbility updateForm success.');
-      }).catch((error: Base.BusinessError) => {
+      }).catch((error: BusinessError) => {
         hilog.info(DOMAIN_NUMBER, TAG, `Operation updateForm failed. Cause: ${JSON.stringify(error)}`);
       })
     }
-    ...
+    //...
   }
   ```
   

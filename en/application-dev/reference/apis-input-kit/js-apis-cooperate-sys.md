@@ -4,7 +4,7 @@ The **inputDeviceCooperate** module implements screen hopping for two or more ne
 
 > **NOTE**
 >
->- The APIs provided by this module are no longer maintained since API Version 10. You are advised to use [@ohos.cooperate (Screen Hopping)](../apis-distributedservice-kit/js-apis-devicestatus-cooperate.md).
+>- The APIs provided by this module are no longer maintained since API Version 10. You are advised to use [@ohos.cooperate (Screen Hopping)](../apis-distributedservice-kit/js-apis-devicestatus-cooperate-sys.md).
 > 
 >- The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
@@ -13,7 +13,7 @@ The **inputDeviceCooperate** module implements screen hopping for two or more ne
 ## Modules to Import
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { inputDeviceCooperate } from '@kit.InputKit';
 ```
 
 ## inputDeviceCooperate.enable
@@ -31,13 +31,20 @@ Specifies whether to enable screen hopping. This API uses an asynchronous callba
 | enable   | boolean                   | Yes  | Whether to enable screen hopping.|
 | callback | AsyncCallback&lt;void&gt;  | Yes |Callback used to return the result.  |
 
+**Error codes**
+
+For details about the following error codes, see [Screen Hopping Error Codes](../apis-distributedservice-kit/errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | -----------------|
+| 401 | Parameter error.      |
 
 
 **Example**
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputDeviceCooperate.enable(true, (error: BusinessError) => {
@@ -67,21 +74,25 @@ Specifies whether to enable screen hopping. This API uses a promise to return th
 | --------- | ------- | ---- | -------------------------------------------------------------------                 |
 | enable    | boolean | Yes  | Whether to enable screen hopping.                  |
 
-
-
 **Return value**
 
 | Parameters                | Description                    |
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt;      | Promise used to return the result.       |
 
+**Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message         |
+| -------- | -----------------|
+| 401 | Parameter error.      |
 
 **Example**
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputDeviceCooperate.enable(true).then(() => {
@@ -112,18 +123,19 @@ Starts screen hopping. This API uses an asynchronous callback to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Screen Hopping Error Codes](errorcode-multimodalinput.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Screen Hopping Error Codes](errorcode-multimodalinput.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401      | Parameter error.    |
 | 4400001  | Incorrect descriptor for the target device.                |
 | 4400002  | Screen hop failed.    |
 
 **Example**
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let sinkDeviceDescriptor = "descriptor";
 let srcInputDeviceId = 0;
@@ -169,14 +181,15 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-mu
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401      | Parameter error.    |
 | 4400001  | Incorrect descriptor for the target device.          |
 | 4400002  | Screen hop failed.               |
 
 **Example**
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let sinkDeviceDescriptor = "descriptor";
 let srcInputDeviceId = 0;
@@ -205,13 +218,19 @@ Stops screen hopping. This API uses an asynchronous callback to return the resul
 | --------             | ---------------------------- | ----  | ----------------------------   |
 | callback             | AsyncCallback\<void>         |  Yes  | Callback used to return the result.       |
 
+**Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message          |
+| -------- | ----------------- |
+| 401      | Parameter error.  |
 
 **Example**
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputDeviceCooperate.stop((error: BusinessError) => {
@@ -243,8 +262,8 @@ Stops screen hopping. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputDeviceCooperate.stop().then(() => {
@@ -272,11 +291,20 @@ Checks whether screen hopping is enabled. This API uses an asynchronous callback
 | deviceDescriptor     | string                       |  Yes   | Descriptor of the target device for screen hopping.            |
 | callback             | AsyncCallback<{ state: boolean }> |  Yes   | Callback used to return the result.       |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401      | Parameter error.  |
+
+
 **Example**
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let deviceDescriptor = "descriptor";
 try {
@@ -306,21 +334,26 @@ Checks whether screen hopping is enabled. This API uses a promise to return the 
 | --------             | ---------                    | ----  | ----------------------------    |
 | deviceDescriptor     | string                       |  Yes   | Descriptor of the target device for screen hopping.           |
 
-
-
 **Return value**
 
 | Parameters                       | Description                    |
 | -------------------        | ------------------------------- |
 | Promise<{ state: boolean }>| Promise used to return the result.       |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401      | Parameter error.  |
 
 
 **Example**
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let deviceDescriptor = "descriptor";
 try {
@@ -349,12 +382,19 @@ Enables listening for screen hopping status change events.
 | type                 | string                                                          |  Yes | Event type. The value is **cooperation**.        |
 | callback             | AsyncCallback<{ deviceDescriptor: string, eventMsg: [EventMsg](#eventmsg) }> |  Yes | Callback used to return the result.   |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401      | Parameter error.  |
 
 
 **Example**
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { inputDeviceCooperate } from '@kit.InputKit';
 
 function callback(msg: object) {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
@@ -382,12 +422,19 @@ Disables listening for screen hopping status change events.
 | type                 | string                                                           |  Yes   | Event type. The value is **cooperation**.        |
 | callback             | AsyncCallback\<void> |  No | Callback to be unregistered. If this parameter is not specified, all callbacks registered by the current application will be unregistered.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401      | Parameter error.  |
 
 
 **Example**
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { inputDeviceCooperate } from '@kit.InputKit';
 
 // Unregister a single callback.
 function callbackOn(msg: object) {
@@ -406,7 +453,7 @@ try {
 }
 ```
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { inputDeviceCooperate } from '@kit.InputKit';
 
 // Unregister all callbacks.
 function callback(msg: object) {

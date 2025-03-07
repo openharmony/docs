@@ -6,14 +6,14 @@ The **adminManager** module provides enterprise device management capabilities s
 >
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts).
+> - The APIs of this module are available only to [device administrator applications](../../mdm/mdm-kit-guide.md#introduction).
 > 
-> - The APIs provided by this module are system APIs.
+> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.adminManager](js-apis-enterprise-adminManager.md).
 
 ## Modules to Import
 
 ```ts
-import adminManager from '@ohos.enterprise.adminManager';
+import { adminManager } from '@kit.MDMKit';
 ```
 
 ## adminManager.enableAdmin
@@ -37,22 +37,25 @@ Enables a device administrator application for the current user. The super devic
 | admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application to enable.           |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.     |
 | type           | [AdminType](#admintype)             | Yes   | Type of the device administrator application to enable.        |
-| callback       | AsyncCallback\<void>                | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback       | AsyncCallback\<void>                | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                        |
 | ------- | --------------------------------------------------------------- |
-| 9200003 | the administrator ability component is invalid.                 |
-| 9200004 | failed to enable the administrator application of the device.   |
-| 9200007 | the system ability work abnormally.                             |
+| 9200003 | The administrator ability component is invalid.                 |
+| 9200004 | Failed to activate the administrator application of the device.   |
+| 9200007 | The system ability works abnormally. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -93,22 +96,25 @@ Enables a device administrator application for the specified user. The super dev
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.                |
 | type           | [AdminType](#admintype)             | Yes   | Type of the device administrator application to enable.                 |
 | userId         | number                              | Yes   | User ID, which must be greater than or equal to 0.<br>The default value is the user ID of the caller. |
-| callback       | AsyncCallback\<void>                | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+| callback       | AsyncCallback\<void>                | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                        |
 | ------- | --------------------------------------------------------------- |
-| 9200003 | the administrator ability component is invalid.                 |
-| 9200004 | failed to enable the administrator application of the device.   |
-| 9200007 | the system ability work abnormally.                             |
+| 9200003 | The administrator ability component is invalid.                 |
+| 9200004 | Failed to activate the administrator application of the device.   |
+| 9200007 | The system ability works abnormally. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -148,7 +154,7 @@ Enables a device administrator application for the current or specified user. Th
 | admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application to enable.                     |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.                |
 | type           | [AdminType](#admintype)             | Yes   | Type of the device administrator application to enable.                  |
-| userId         | number                              | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, the application of the specified user is enabled.<br>- If **userId** is not passed in, the application of the current user is enabled.|
+| userId         | number                              | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, this API applies to the specified user.<br>- If **userId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
@@ -158,19 +164,22 @@ Enables a device administrator application for the current or specified user. Th
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                        |
 | ------- | --------------------------------------------------------------- |
-| 9200003 | the administrator ability component is invalid.                 |
-| 9200004 | failed to enable the administrator application of the device.   |
-| 9200007 | the system ability work abnormally.                             |
+| 9200003 | The administrator ability component is invalid.                 |
+| 9200004 | Failed to activate the administrator application of the device.   |
+| 9200007 | The system ability works abnormally. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -205,20 +214,23 @@ Disables a common administrator application for the current user. This API uses 
 | Name     | Type                                 | Mandatory  | Description                 |
 | -------- | ----------------------------------- | ---- | ------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Common administrator application to disable.          |
-| callback | AsyncCallback\<void>                | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void>                | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                          |
 | ------- | ----------------------------------------------------------------- |
-| 9200005 | failed to disable the administrator application of the device.    |
+| 9200005 | Failed to deactivate the administrator application of the device.    |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -253,20 +265,23 @@ Disables a common administrator application for the specified user. This API use
 | -------- | ----------------------------------- | ---- | ---------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Common administrator application to disable.                   |
 | userId   | number                              | Yes   | User ID, which must be greater than or equal to 0.<br>The default value is the user ID of the caller. |
-| callback | AsyncCallback\<void>                | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.       |
+| callback | AsyncCallback\<void>                | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.       |
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                          |
 | ------- | ----------------------------------------------------------------- |
-| 9200005 | failed to disable the administrator application of the device.    |
+| 9200005 | Failed to deactivate the administrator application of the device.    |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -278,56 +293,6 @@ adminManager.disableAdmin(wantTemp, 100, (err) => {
     return;
   }
   console.info('Succeeded in disabling admin');
-});
-```
-
-## adminManager.disableAdmin
-
-disableAdmin(admin: Want, userId?: number): Promise\<void>
-
-Disables a common administrator application for the current or specified user. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-
-
-**Model restriction**: This API can be used only in the stage model.
-
-**Parameters**
-
-| Name   | Type                                 | Mandatory  | Description                          |
-| ------ | ----------------------------------- | ---- | ---------------------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Common administrator application to disable.                   |
-| userId | number                              | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, the application of the specified user is disabled.<br>- If **userId** is not passed in, the application of the current user is disabled.|
-
-**Return value**
-
-| Type               | Description               |
-| ----------------- | ----------------- |
-| Promise\<void>    | Promise that returns no value. If the operation fails, an error object will be thrown.|
-
-**Error codes**
-
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
-
-| ID| Error Message                                                          |
-| ------- | ----------------------------------------------------------------- |
-| 9200005 | failed to disable the administrator application of the device.    |
-
-**Example**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
-};
-
-adminManager.disableAdmin(wantTemp, 100).catch((err: BusinessError) => {
-  console.error(`Failed to disable admin. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -350,20 +315,23 @@ Disables a super administrator application for the administrator based on **bund
 | Name       | Type                     | Mandatory  | Description                 |
 | ---------- | ----------------------- | ---- | ------------------- |
 | bundleName | String                  | Yes   | Bundle name of the super administrator application to disable.       |
-| callback   | AsyncCallback\<void>    | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback   | AsyncCallback\<void>    | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                          |
 | ------- | ----------------------------------------------------------------- |
-| 9200005 | failed to disable the administrator application of the device.    |
+| 9200005 | Failed to deactivate the administrator application of the device.    |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.disableSuperAdmin(bundleName, (err) => {
@@ -403,17 +371,20 @@ Disables a super administrator application for the administrator based on **bund
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                          |
 | ------- | ----------------------------------------------------------------- |
-| 9200005 | failed to disable the administrator application of the device.    |
+| 9200005 | Failed to deactivate the administrator application of the device.    |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.disableSuperAdmin(bundleName).catch((err: BusinessError) => {
@@ -438,12 +409,21 @@ Checks whether a device administrator application of the current user is enabled
 | Name     | Type                                 | Mandatory  | Description                  |
 | -------- | ----------------------------------- | ---- | -------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application to check.            |
-| callback | AsyncCallback\<boolean>             | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** means that the device administrator application is enabled; and **false** means the opposite). If the operation fails, **err** is an error object.|
+| callback | AsyncCallback\<boolean>             | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** means that the device administrator application is enabled; and **false** means the opposite). If the operation fails, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -476,12 +456,21 @@ Checks whether a device administrator application of the specified user is enabl
 | -------- | ----------------------------------- | ---- | ---------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application to check.                     |
 | userId   | number                              | Yes   | User ID, which must be greater than or equal to 0.<br>The default value is the user ID of the caller. |
-| callback | AsyncCallback\<boolean>             | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** means that the device administrator application is enabled; and **false** means the opposite). If the operation fails, **err** is an error object.     |
+| callback | AsyncCallback\<boolean>             | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** means that the device administrator application is enabled; and **false** means the opposite). If the operation fails, **err** is an error object.     |
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -513,7 +502,7 @@ Checks whether a device administrator application of the current or specified us
 | Name   | Type                                 | Mandatory  | Description                          |
 | ------ | ----------------------------------- | ---- | ---------------------------- |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application to check.                     |
-| userId | number                              | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, the application of the specified user is checked.<br>- If **userId** is not passed in, the application of the current user is checked.|
+| userId | number                              | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, this API applies to the specified user.<br>- If **userId** is not passed in, this API applies to the current user.|
 
 **Return value**
 
@@ -521,11 +510,20 @@ Checks whether a device administrator application of the current or specified us
 | ----------------- | ------------------- |
 | Promise\<boolean> | Promise used to return the result. The value **true** means the device administrator application is enabled; the value **false** means the opposite.|
 
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -555,12 +553,21 @@ Checks whether a super administrator application of the administrator is enabled
 | Name       | Type                     | Mandatory  | Description                  |
 | ---------- | ----------------------- | ---- | -------------------- |
 | bundleName | String                  | Yes   | Super administrator application to check.             |
-| callback   | AsyncCallback\<boolean> | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** means that the device administrator application is enabled; and **false** means the opposite). If the operation fails, **err** is an error object.|
+| callback   | AsyncCallback\<boolean> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** means that the device administrator application is enabled; and **false** means the opposite). If the operation fails, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.isSuperAdmin(bundleName, (err, result) => {
@@ -596,11 +603,20 @@ Checks whether a super administrator application of the administrator is enabled
 | ----------------- | ------------------- |
 | Promise\<boolean> | Promise used to return the result. The value **true** means the super administrator application is enabled; the value **false** means the opposite. |
 
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.isSuperAdmin(bundleName).then((result) => {
@@ -608,6 +624,44 @@ adminManager.isSuperAdmin(bundleName).then((result) => {
 }).catch((err: BusinessError) => {
   console.error(`Failed to query admin is super admin or not. Code: ${err.code}, message: ${err.message}`);
 });
+```
+
+## adminManager.getSuperAdmin<sup>12+</sup>
+
+getSuperAdmin(): Promise\<Want>
+
+Obtains the super device administrator application of this administrator. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Return value**
+
+| Type                                                        | Description                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Promise\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | Promise used to return the super device administrator application obtained. If no super device administrator application is activated on the device, **bundleName** and **abilityName** in **Want** returned are empty strings.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+adminManager.getSuperAdmin().then((result) => {
+  console.info(`Succeeded in getting super admin :${JSON.stringify(result)}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get super admin. Code: ${err.code}, message: ${err.message}`);
+})
 ```
 
 ## adminManager.setEnterpriseInfo
@@ -630,20 +684,23 @@ Sets enterprise information for a device administrator application. This API use
 | -------------- | ----------------------------------- | ---- | ---------------------- |
 | admin          | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.               |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information to set.          |
-| callback       | AsyncCallback\<void>              | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback       | AsyncCallback\<void>              | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
+| 9200001 | The application is not an administrator application of the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -691,17 +748,20 @@ Sets enterprise information for a device administrator application. This API use
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
+| 9200001 | The application is not an administrator application of the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -733,20 +793,22 @@ Obtains the enterprise information of a device administrator application. This A
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the enterprise information of the device administrator application obtained. If the operation fails, **err** is an error object.|
+| callback | AsyncCallback&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the enterprise information of the device administrator application obtained. If the operation fails, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
+| 9200001 | The application is not an administrator application of the device. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -787,17 +849,19 @@ Obtains the enterprise information of a device administrator application. This A
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
+| 9200001 | The application is not an administrator application of the device. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -829,22 +893,25 @@ Subscribes to system management events of a device administrator application. Th
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| managedEvents  | Array\<[ManagedEvent](#managedevent)> | Yes| Array of events to subscribe to.|
-| callback | AsyncCallback\<void> | Yes| Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| managedEvents  | Array\<[ManagedEvent](js-apis-enterprise-adminManager.md#managedevent)> | Yes| Array of events to subscribe to.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-|ID| Error Message                                               |
-| ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
-| 9200008 | the specified system events enum is invalid.          |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200008  | The specified system event is invalid.                       |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -879,7 +946,7 @@ Subscribes to system management events of a device administrator application. Th
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| managedEvents  | Array\<[ManagedEvent](#managedevent)> | Yes| Array of events to subscribe to.|
+| managedEvents  | Array\<[ManagedEvent](js-apis-enterprise-adminManager.md#managedevent)> | Yes| Array of events to subscribe to.|
 
 **Return value**
 
@@ -889,18 +956,21 @@ Subscribes to system management events of a device administrator application. Th
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
-| 9200008 | the specified system events enum is invalid.          |
+| 9200001 | The application is not an administrator application of the device. |
+| 9200008 | The specified system event is invalid.          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -932,22 +1002,25 @@ Unsubscribes from system management events of a device administrator application
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| managedEvents  | Array\<[ManagedEvent](#managedevent)> | Yes| Array of events to unsubscribe from.|
-| callback | AsyncCallback\<void> | Yes| Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| managedEvents  | Array\<[ManagedEvent](js-apis-enterprise-adminManager.md#managedevent)> | Yes| Array of events to unsubscribe from.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
-| 9200008 | the specified system events enum is invalid.          |
+| 9200001 | The application is not an administrator application of the device. |
+| 9200008 | The specified system event is invalid.          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -982,7 +1055,7 @@ Unsubscribes from system management events of a device administrator application
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| managedEvents  | Array\<[ManagedEvent](#managedevent)> | Yes| Array of events to unsubscribe from.|
+| managedEvents  | Array\<[ManagedEvent](js-apis-enterprise-adminManager.md#managedevent)> | Yes| Array of events to unsubscribe from.|
 
 **Return value**
 
@@ -992,18 +1065,21 @@ Unsubscribes from system management events of a device administrator application
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
-| 9200008 | the specified system events enum is invalid.          |
+| 9200001 | The application is not an administrator application of the device. |
+| 9200008 | The specified system event is invalid.          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -1036,22 +1112,25 @@ Authorizes the administrator rights to an application through the specified devi
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
 | bundleName  | string | Yes| Bundle name of the application to be authorized with the administrator rights.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
-| 9200002 | the administrator application does not have permission to manage the device.          |
-| 9200009 | authorize permission to the application failed.          |
+| 9200001 | The application is not an administrator application of the device. |
+| 9200002 | The administrator application does not have permission to manage the device.          |
+| 9200009 | Failed to grant the permission to the application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -1096,19 +1175,22 @@ Authorizes the administrator rights to an application through the specified devi
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
-| 9200002 | the administrator application does not have permission to manage the device.          |
-| 9200009 | authorize permission to the application failed.          |
+| 9200001 | The application is not an administrator application of the device. |
+| 9200002 | The administrator application does not have permission to manage the device.          |
+| 9200009 | Failed to grant the permission to the application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -1146,19 +1228,3 @@ Enumerates the types of device administrator applications.
 | ----------------- | ---- | ----- |
 | ADMIN_TYPE_NORMAL | 0x00 | Common administrator application.|
 | ADMIN_TYPE_SUPER  | 0x01 | Super administrator application.|
-
-## ManagedEvent
-
-Enumerates the system management events that can be subscribed to.
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-
-
-| Name                       | Value | Description          |
-| -------------------------- | ---- | ------------- |
-| MANAGED_EVENT_BUNDLE_ADDED | 0    | Application installed.|
-| MANAGED_EVENT_BUNDLE_REMOVED | 1  | Application uninstalled.|
-| MANAGED_EVENT_APP_START<sup>10+</sup> | 2    | Application started.|
-| MANAGED_EVENT_APP_STOP<sup>10+</sup> | 3  | Application stopped.|
-| MANAGED_EVENT_SYSTEM_UPDATE<sup>11+</sup> | 4   | System updated.|

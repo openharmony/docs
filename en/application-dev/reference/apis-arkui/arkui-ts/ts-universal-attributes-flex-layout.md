@@ -3,7 +3,7 @@
 >  **NOTE**
 >  - The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  - The flex layout is valid only when the parent container is a [\<Flex>](ts-container-flex.md), [\<Column>](ts-container-column.md), [\<Row>](ts-container-row.md), or [\<GridRow>](ts-container-gridrow.md) (only for **alignSelf**) component.
+>  - The flex layout is valid only when the parent container is a [Flex](ts-container-flex.md), [Column](ts-container-column.md), [Row](ts-container-row.md), or [GridRow](ts-container-gridrow.md) (only for **alignSelf**) component.
 
 ## flexBasis
 
@@ -11,7 +11,9 @@ flexBasis(value: number | string)
 
 Sets the base size of the component.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -19,7 +21,7 @@ Sets the base size of the component.
 
 | Name| Type                      | Mandatory| Description                                                        |
 | ------ | -------------------------- | ---- | ------------------------------------------------------------ |
-| value  | number \| string | Yes  | Base size of the component in the main axis of the parent container.<br>Default value: **'auto'** (indicating that the base size of the component in the main axis is the original size of the component)<br>This attribute cannot be set in percentage.|
+| value  | number \| string | Yes  | Base size of the component in the main axis of the parent container.<br>Default value: **'auto'** (indicating that the base size of the component in the main axis is the original size of the component)<br>For the string type, the value must be a string that can be converted into a number (for example, **'10'**), a string that includes a length unit (for example, **'10px'**), or the literal string **'auto'**; percentage-based strings are not supported.<br>For the number type, the value range is (0, +∞), and the unit is vp.<br>Invalid values are treated as the default value **'auto'**.|
 
 ## flexGrow
 
@@ -27,7 +29,9 @@ flexGrow(value: number)
 
 Sets the percentage of the parent container's remaining space that is allocated to the component.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -41,9 +45,11 @@ Sets the percentage of the parent container's remaining space that is allocated 
 
 flexShrink(value: number)
 
-Sets the percentage of the parent container's shrink size that is allocated to the component.
+Sets the percentage of the parent container's shrink size that is allocated to the component. When the parent container is **Column** or **Row**, you must set the size along the main axis.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -51,7 +57,7 @@ Sets the percentage of the parent container's shrink size that is allocated to t
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Percentage of the parent container's shrink size that is allocated to the component.<br>If the parent container is [\<Column>](ts-container-column.md) or [\<Row>](ts-container-row.md), the default value is **0**.<br> If the parent container is [\<Flex>](ts-container-flex.md), the default value is **1**.|
+| value  | number | Yes  | Percentage of the parent container's shrink size that is allocated to the component.<br>If the parent container is [Column](ts-container-column.md) or [Row](ts-container-row.md), the default value is **0**.<br> If the parent container is [Flex](ts-container-flex.md), the default value is **1**.<br>When [constraintSize](ts-universal-attributes-size.md#constraintsize) is applied to the [Column](ts-container-column.md) and [Row](ts-container-row.md) components without the main axis size specified (through [width](ts-universal-attributes-size.md#width), [height](ts-universal-attributes-size.md#height), or [size](ts-universal-attributes-size.md#size)), these components use their default layout behavior, adapting to the size of their child component along the main axis. In this case, **flexShrink** does not take effect.|
 
 ## alignSelf
 
@@ -59,7 +65,9 @@ alignSelf(value: ItemAlign)
 
 Sets the alignment mode of the child components along the cross axis of the parent container.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -67,10 +75,12 @@ Sets the alignment mode of the child components along the cross axis of the pare
 
 | Name| Type                                       | Mandatory| Description                                                        |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ItemAlign](ts-appendix-enums.md#itemalign) | Yes  | Alignment mode of the child components along the cross axis of the parent container. The setting overwrites the **alignItems** setting of the parent container ([\<Flex>](ts-container-flex.md), \<Column>](ts-container-column.md), \<Row>](ts-container-row.md), or [\<GridRow>](ts-container-gridrow.md)).<br>[\<GridCol>](./ts-container-gridcol.md) can have the **alignsSelf** attribute bound to change its own layout along the cross axis.<br>Default value: **ItemAlign.Auto**|
+| value  | [ItemAlign](ts-appendix-enums.md#itemalign) | Yes  | Alignment mode of the child components along the cross axis of the parent container. The setting overwrites the **alignItems** setting of the parent container ([Flex](ts-container-flex.md), [Column](ts-container-column.md), [Row](ts-container-row.md), or [GridRow](ts-container-gridrow.md)).<br>[GridCol](./ts-container-gridcol.md) can have the **alignsSelf** attribute bound to change its own layout along the cross axis.<br>Default value: **ItemAlign.Auto**|
 
 
 ## Example
+
+This example shows how to set up a flex layout through the **flexBasis**, **flexGrow**, **flexShrink**, and **alignSelf** attributes.
 
 ```ts
 // xxx.ets
@@ -100,12 +110,12 @@ struct FlexExample {
       // flexGrow() indicates the percentage of the remaining space allocated to the component.
       Flex() {
         Text('flexGrow(2)')
-          .flexGrow(2) // The width allocated to the <Text> component is 2/3 of the remaining width of the parent container.
+          .flexGrow(2) // The width allocated to the Text component is 2/3 of the remaining width of the parent container.
           .height(100)
           .backgroundColor(0xF5DEB3)
           .textAlign(TextAlign.Center)
         Text('flexGrow(1)')
-          .flexGrow(1) // The width allocated to the <Text> component is 1/3 of the remaining width of the parent container.
+          .flexGrow(1) // The width allocated to the Text component is 1/3 of the remaining width of the parent container.
           .height(100)
           .backgroundColor(0xD2B48C)
           .textAlign(TextAlign.Center)
@@ -113,7 +123,7 @@ struct FlexExample {
 
       Text('flexShrink').fontSize(9).fontColor(0xCCCCCC).width('90%')
       // flexShrink() indicates the percentage of the shrink size allocated to the component.
-      // The value is 0 for the first <Text> component and 1 for the other two <Text> components. This means that, if the components cannot be completely displayed in the parent container, the latter two are shrunk proportionally, while the former is not shrunk.
+      // The value is 0 for the first Text component and 1 for the other two Text components. This means that, if the components cannot be completely displayed in the parent container, the latter two are shrunk proportionally, while the former is not shrunk.
       Flex({ direction: FlexDirection.Row }) {
         Text('flexShrink(0)')
           .flexShrink(0)

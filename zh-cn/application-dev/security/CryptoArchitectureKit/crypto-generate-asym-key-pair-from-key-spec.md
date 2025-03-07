@@ -1,4 +1,4 @@
-# 指定密钥参数生成非对称密钥对
+# 指定密钥参数生成非对称密钥对(ArkTS)
 
 以RSA、ECC、SM2为例，根据指定的密钥参数，生成非对称密钥对（KeyPair），并获取密钥参数属性。
 
@@ -27,7 +27,7 @@
 
 - 以使用callback方式根据密钥参数生成RSA公钥为例：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   // RSA公钥密钥参数生成函数
   function genRsaPubKeySpec(nIn: bigint, eIn: bigint): cryptoFramework.RSAPubKeySpec {
     let rsaCommSpec: cryptoFramework.RSACommonParamsSpec = {
@@ -59,10 +59,10 @@
       console.error('type is number');
       return false;
     }
-    if (rsaKeySpec.params.n != n) {
+    if (rsaKeySpec.params.n !== n) {
       return false;
     }
-    if (rsaKeySpec.pk != e) {
+    if (rsaKeySpec.pk !== e) {
       return false;
     }
     return true;
@@ -78,7 +78,7 @@
       let pubKey = key;
       let nBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_N_BN);
       let eBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_PK_BN);
-      if (compareRsaPubKeyBySpec(rsaPubKeySpec, nBN, eBN) != true) {
+      if (compareRsaPubKeyBySpec(rsaPubKeySpec, nBN, eBN) !== true) {
         console.error('error pub key big number');
       } else {
         console.info('n, e in the pubKey are same as the spec.');
@@ -89,7 +89,7 @@
 
 - 同步返回结果（调用方法[generatePubKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatepubkeysync12)）：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   // RSA公钥密钥参数生成函数
   function genRsaPubKeySpec(nIn: bigint, eIn: bigint): cryptoFramework.RSAPubKeySpec {
     let rsaCommSpec: cryptoFramework.RSACommonParamsSpec = {
@@ -121,10 +121,10 @@
       console.error('type is number');
       return false;
     }
-    if (rsaKeySpec.params.n != n) {
+    if (rsaKeySpec.params.n !== n) {
       return false;
     }
-    if (rsaKeySpec.pk != e) {
+    if (rsaKeySpec.pk !== e) {
       return false;
     }
     return true;
@@ -135,10 +135,10 @@
     let rsaGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaPubKeySpec);
     try {
       let pubKey = rsaGeneratorSpec.generatePubKeySync();
-      if (pubKey != null) {
+      if (pubKey !== null) {
         let nBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_N_BN);
         let eBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_PK_BN);
-        if (compareRsaPubKeyBySpec(rsaPubKeySpec, nBN, eBN) != true) {
+        if (compareRsaPubKeyBySpec(rsaPubKeySpec, nBN, eBN) !== true) {
           console.error('error pub key big number');
         } else {
           console.info('n, e in the pubKey are same as the spec.');
@@ -170,8 +170,8 @@
 
 - 以使用Promise方式根据密钥参数生成ECC密钥为例：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // 打印bigint信息
   function showBigIntInfo(bnName: string, bnValue: bigint | string | number) {
@@ -234,10 +234,10 @@
       console.warn('--- field size: ' + fieldSize); // key field size: 224
       let curveName = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_CURVE_NAME_STR);
       console.warn('--- curve name: ' + curveName); // key curve name: NID_secp224r1
-      if (keyType == 'priKey') {
+      if (keyType === 'priKey') {
         let sk = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_SK_BN);
         showBigIntInfo('--- sk', sk);
-      } else if (keyType == 'pubKey') {
+      } else if (keyType === 'pubKey') {
         let pkX = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_X_BN);
         showBigIntInfo('--- pkX', pkX);
         let pkY = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_Y_BN);
@@ -274,7 +274,7 @@
 
 - 同步返回结果（调用方法[generateKeyPairSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypairsync12)）：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function showBigIntInfo(bnName: string, bnValue: bigint | string | number) {
     if (typeof bnValue === 'string') {
@@ -336,10 +336,10 @@
       console.warn('--- field size: ' + fieldSize); // key field size: 224
       let curveName = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_CURVE_NAME_STR);
       console.warn('--- curve name: ' + curveName); // key curve name: NID_secp224r1
-      if (keyType == 'priKey') {
+      if (keyType === 'priKey') {
         let sk = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_SK_BN);
         showBigIntInfo('--- sk', sk);
-      } else if (keyType == 'pubKey') {
+      } else if (keyType === 'pubKey') {
         let pkX = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_X_BN);
         showBigIntInfo('--- pkX', pkX);
         let pkY = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_Y_BN);
@@ -355,7 +355,7 @@
       let commKeySpec = genEccCommonSpec(); // 使用参数属性，构造ECC公私钥公共密钥参数对象
       let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(commKeySpec); // 使用密钥参数对象创建生成器
       let keyPair = generatorBySpec.generateKeyPairSync(); // Generate an ECC key pair.
-      if (keyPair != null) {
+      if (keyPair !== null) {
         showEccSpecDetailInfo(keyPair.priKey, 'priKey'); // 对私钥获取相关密钥参数属性
         showEccSpecDetailInfo(keyPair.pubKey, 'pubKey'); // 对公钥获取相关密钥参数属性
       } else {
@@ -387,7 +387,7 @@
 
 - 以使用Promise方式根据椭圆曲线名生成SM2密钥为例：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function genSM2KeyPairSpec() {
     let sm2CommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_sm2');
@@ -415,7 +415,7 @@
 
 - 同步返回结果（调用方法[generateKeyPairSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypairsync12)）：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function genSM2KeyPairSpec() {
     let sm2CommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_sm2');
@@ -436,7 +436,7 @@
     let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(sm2KeyPairSpec);
     try {
       let keyPair = generatorBySpec.generateKeyPairSync();
-      if (keyPair != null) {
+      if (keyPair !== null) {
         let sm2CurveName = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_CURVE_NAME_STR);
         console.info('ECC_CURVE_NAME_STR: ' + sm2CurveName); // NID_sm2
       } else {

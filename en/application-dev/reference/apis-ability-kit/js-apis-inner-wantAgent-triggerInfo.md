@@ -9,10 +9,12 @@ The **TriggerInfo** module defines the information required for triggering the W
 ## Modules to Import
 
 ```ts
-import wantAgent from '@ohos.app.ability.wantAgent';
+import { wantAgent } from '@kit.AbilityKit';
 ```
 
-## Attributes
+## Properties
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -21,5 +23,5 @@ import wantAgent from '@ohos.app.ability.wantAgent';
 | code       | number               | Yes  | Custom result code provided for the target WantAgent.|
 | want       | Want                 | No  | Carrier for information transfer between objects (application components).   |
 | permission | string               | No  | Permission.   |
-| extraInfo  | {[key: string]: any} | No  | Extra information.   |
-| extraInfos<sup>11+<sup>  | Record\<string, Object> | No  | Extra information. You are advised to use this attribute to replace **extraInfo**. When this attribute is set, **extraInfo** does not take effect.   |
+| extraInfo  | { [key: string]: any } | No  | Extra information.   |
+| extraInfos<sup>11+<sup>  | Record\<string, Object> | No  | Extra information. You are advised to use this property to replace **extraInfo**. When this property is set, **extraInfo** does not take effect.   |

@@ -1,6 +1,6 @@
 # 像素单位
 
-ArkUI为开发者提供4种像素单位，框架采用vp为基准数据单位。
+ArkUI为开发者提供4种像素单位，采用vp为基准数据单位。
 
 >**说明：**
 >
@@ -10,7 +10,7 @@ ArkUI为开发者提供4种像素单位，框架采用vp为基准数据单位。
 | 名称 | 描述                                                         |
 | ---- | ------------------------------------------------------------ |
 | px   | 屏幕物理像素单位。                                           |
-| vp   | 屏幕密度相关像素，根据屏幕像素密度转换为屏幕物理像素，当数值不带单位时，默认单位vp。在实际宽度为1440物理像素的屏幕上，1vp约等于3px。 |
+| vp   | 屏幕密度相关像素，根据屏幕像素密度转换为屏幕物理像素，当数值不带单位时，默认单位vp。<br/> **说明：** <br/>vp与px的比例与屏幕像素密度有关。 |
 | fp   | 字体像素，与vp类似适用屏幕密度变化，随系统字体大小设置变化。 |
 | lpx  | 视窗逻辑像素单位，lpx单位为实际屏幕宽度与逻辑宽度（通过[designWidth](../../../quick-start/module-configuration-file.md#pages标签)配置）的比值，designWidth默认值为720。当designWidth为720时，在实际宽度为1440物理像素的屏幕上，1lpx为2px大小。 |
 
@@ -19,17 +19,27 @@ ArkUI为开发者提供4种像素单位，框架采用vp为基准数据单位。
 
 提供其他单位与px单位互相转换的方法。
 
-| 接口                                       | 描述                                       |
-| ---------------------------------------- | ---------------------------------------- |
-| vp2px(value&nbsp;:&nbsp;number)&nbsp;:&nbsp;number | 将vp单位的数值转换为以px为单位的数值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/> **说明：** <br/> 默认使用当前UI实例所在屏幕的虚拟像素比进行转换，UI实例未创建时，使用默认屏幕的虚拟像素比进行转换。|
-| px2vp(value&nbsp;:&nbsp;number)&nbsp;:&nbsp;number | 将px单位的数值转换为以vp为单位的数值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/> **说明：** <br/> 默认使用当前UI实例所在屏幕的虚拟像素比进行转换，UI实例未创建时，使用默认屏幕的虚拟像素比进行转换。|
-| fp2px(value&nbsp;:&nbsp;number)&nbsp;:&nbsp;number | 将fp单位的数值转换为以px为单位的数值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| px2fp(value&nbsp;:&nbsp;number)&nbsp;:&nbsp;number | 将px单位的数值转换为以fp为单位的数值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| lpx2px(value&nbsp;:&nbsp;number)&nbsp;:&nbsp;number | 将lpx单位的数值转换为以px为单位的数值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| px2lpx(value&nbsp;:&nbsp;number)&nbsp;:&nbsp;number | 将px单位的数值转换为以lpx为单位的数值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 接口                                                | 描述                                                         |
+| --------------------------------------------------- | ------------------------------------------------------------ |
+| vp2px(value&nbsp;:&nbsp;number)&nbsp;:&nbsp;number  | 将vp单位的数值转换为以px为单位的数值。<br/> **说明：** <br/> 默认使用当前UI实例所在屏幕的虚拟像素比进行转换，UI实例未创建时，使用默认屏幕的虚拟像素比进行转换。 |
+| px2vp(value&nbsp;:&nbsp;number)&nbsp;:&nbsp;number  | 将px单位的数值转换为以vp为单位的数值。<br/> **说明：** <br/> 默认使用当前UI实例所在屏幕的虚拟像素比进行转换，UI实例未创建时，使用默认屏幕的虚拟像素比进行转换。 |
+| fp2px(value&nbsp;:&nbsp;number)&nbsp;:&nbsp;number  | 将fp单位的数值转换为以px为单位的数值。                       |
+| px2fp(value&nbsp;:&nbsp;number)&nbsp;:&nbsp;number  | 将px单位的数值转换为以fp为单位的数值。                       |
+| lpx2px(value&nbsp;:&nbsp;number)&nbsp;:&nbsp;number | 将lpx单位的数值转换为以px为单位的数值。                      |
+| px2lpx(value&nbsp;:&nbsp;number)&nbsp;:&nbsp;number | 将px单位的数值转换为以lpx为单位的数值。                      |
 
 
 ## 示例
+
+> **说明：**
+>
+> 直接使用vp2px/px2vp/fp2px/px2fp/lpx2px/px2lpx可能存在UI上下文不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，再使用UIContext下的[vp2px/px2vp/fp2px/px2fp/lpx2px/px2lpx](../js-apis-arkui-UIContext.md#vp2px12)调用绑定实例的接口。
 
 ```ts
 // xxx.ets
@@ -80,6 +90,7 @@ struct Example {
 
         Column() {
           Text("width(vp2px(220) + 'px')")
+            // 建议使用this.getUIContext().vp2px()
             .width(vp2px(220) + 'px')
             .height(40)
             .backgroundColor(0xF9CF93)
@@ -100,6 +111,7 @@ struct Example {
 
         Column() {
           Text("width(px2vp(220))")
+            // 建议使用this.getUIContext().px2vp()
             .width(px2vp(220))
             .height(40)
             .backgroundColor(0xF9CF93)

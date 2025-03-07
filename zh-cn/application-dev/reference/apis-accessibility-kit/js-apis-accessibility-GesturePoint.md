@@ -11,7 +11,7 @@ GesturePoint表示手势触摸点。
 ## 导入模块
 
 ```ts
-import GesturePoint from '@ohos.accessibility.GesturePoint';
+import { GesturePoint } from '@kit.AccessibilityKit';
 ```
 
 ## GesturePoint
@@ -27,11 +27,15 @@ import GesturePoint from '@ohos.accessibility.GesturePoint';
 | positionX | number | 是    | 是    | 触摸点X坐标。 |
 | positionY | number | 是    | 是    | 触摸点Y坐标。 |
 
-### constructor
+### constructor<sup>(deprecated)</sup>
 
 constructor(positionX: number, positionY: number);
 
 构造函数。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -45,7 +49,7 @@ constructor(positionX: number, positionY: number);
 **示例：**
 
 ```ts
-import GesturePoint from '@ohos.accessibility.GesturePoint';
+import { GesturePoint } from '@kit.AccessibilityKit';
 
-let gesturePoint = new GesturePoint.GesturePoint(1, 2);
+let gesturePoint = new GesturePoint(1, 2);
 ```

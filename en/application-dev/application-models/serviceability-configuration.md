@@ -4,7 +4,7 @@
 Similar to a PageAbility, a ServiceAbility is configured in **abilities** under **module** of the **config.json** file. The difference between a ServiceAbility and PageAbility lies in the **type** and **backgroundModes** fields.
 
 
- **Table 1** ServiceAbility configuration items
+**Table 1** ServiceAbility configuration items
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
@@ -13,4 +13,3 @@ Similar to a PageAbility, a ServiceAbility is configured in **abilities** under 
 
 
 For details about the configuration items, see [Internal Structure of module](../quick-start/module-structure.md).
-

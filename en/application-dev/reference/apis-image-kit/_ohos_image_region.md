@@ -19,7 +19,7 @@ The **OhosImageRegion** struct defines the region of an image source to decode. 
 
 | Name| Description| 
 | -------- | -------- |
-| [x](image.md#x) | Defines the X coordinate of the start point, in pixels.| 
-| [y](image.md#y) | Defines the Y coordinate of the start point, in pixels.| 
-| [width](image.md#width) | Defines the width of the region, in pixels.| 
-| [height](image.md#height) | Defines the height of the region, in pixels.| 
+| int32_t [x](image.md#x) | Defines the X coordinate of the start point, in pixels.| 
+| int32_t [y](image.md#y) | Defines the Y coordinate of the start point, in pixels.| 
+| int32_t [width](image.md#width) | Defines the width of the region, in pixels.| 
+| int32_t [height](image.md#height) | Defines the height of the region, in pixels.| 

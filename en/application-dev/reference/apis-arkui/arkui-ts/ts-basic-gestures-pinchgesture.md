@@ -11,6 +11,8 @@
 
 PinchGesture(value?: { fingers?: number, distance?: number })
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -23,18 +25,22 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 
 | Name| Description|
 | -------- | -------- |
-| onActionStart(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when a pinch gesture is recognized.|
-| onActionUpdate(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the user moves the finger in the pinch gesture on the screen.|
-| onActionEnd(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the finger used for the pinch gesture is lift.|
-| onActionCancel(event: () =&gt; void) | Triggered when a tap cancellation event is received after the pinch gesture is recognized.<br>**NOTE**<br>This event is triggered when the window loses focus.|
+| onActionStart(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when a pinch gesture is recognized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionUpdate(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the user moves the finger in the pinch gesture on the screen.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionEnd(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the fingers used for the pinch gesture are lifted.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionCancel(event: () =&gt; void) | Triggered when a tap cancellation event is received after the pinch gesture is recognized. No gesture event information is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionCancel(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void)<sup>16+</sup> | Triggered when a tap cancellation event is received after the pinch gesture is recognized. Gesture event information is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
 
 ## Attributes
 
 | Name| Type   |Description                                       |
 | ----  | ------  | ---------------------------------------- |
-| tag<sup>11+</sup>   | string  | Tag for the pinch gesture. It is used to distinguish the gesture during custom gesture judgment.|
+| tag<sup>11+</sup>   | string  | Tag for the pinch gesture. It is used to distinguish the gesture during custom gesture recognition.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool9)> | Allowed event input types for the pinch gesture.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## Example
+
+This example demonstrates the recognition of a three-finger pinch gesture using **PinchGesture**.
 
 ```ts
 // xxx.ets
@@ -61,17 +67,17 @@ struct PinchGestureExample {
       // The gesture event is triggered by pinching three fingers together.
       .gesture(
       PinchGesture({ fingers: 3 })
-        .onActionStart((event?: GestureEvent) => {
+        .onActionStart((event: GestureEvent) => {
           console.info('Pinch start')
         })
-        .onActionUpdate((event?: GestureEvent) => {
+        .onActionUpdate((event: GestureEvent) => {
           if (event) {
             this.scaleValue = this.pinchValue * event.scale
             this.pinchX = event.pinchCenterX
             this.pinchY = event.pinchCenterY
           }
         })
-        .onActionEnd(() => {
+        .onActionEnd((event: GestureEvent) => {
           this.pinchValue = this.scaleValue
           console.info('Pinch end')
         })

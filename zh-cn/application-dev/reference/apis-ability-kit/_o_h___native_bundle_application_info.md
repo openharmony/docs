@@ -7,13 +7,9 @@
 
 OH_NativeBundle_ApplicationInfo是[OH_NativeBundle_GetCurrentApplicationInfo()](_bundle.md#oh_nativebundle_getcurrentapplicationinfo)的输出参数，描述了应用的相关信息。
 
-**起始版本：**
+**起始版本**：9
 
-9
-
-**相关模块：**
-
-[Bundle](_bundle.md)
+**相关模块**：[Bundle](_bundle.md)
 
 
 ## 汇总
@@ -41,9 +37,7 @@ char* OH_NativeBundle_ApplicationInfo::bundleName
 
 应用的包名。
 
-**起始版本：**
-
-9
+**起始版本**：9
 
 
 ### fingerprint
@@ -57,6 +51,4 @@ char* OH_NativeBundle_ApplicationInfo::fingerprint
 
 应用的指纹信息。
 
-**起始版本：**
-
-9
+**起始版本**：9

@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **Camera_Rect** struct defines a rectangle.
+The Camera_Rect struct describes a rectangle.
 
 **Since**: 11
 

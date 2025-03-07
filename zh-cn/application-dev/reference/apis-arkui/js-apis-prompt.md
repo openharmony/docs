@@ -3,7 +3,7 @@
 创建并显示文本提示框、对话框和操作菜单。
 
 > **说明：**
-> 从API Version 9 开始，该接口不再维护，推荐使用新接口[@ohos.promptAction (弹窗)](js-apis-promptAction.md)
+> 从API Version 9 开始，该接口不再维护，推荐使用新接口[@ohos.promptAction (弹窗)](js-apis-promptAction.md)。
 > 
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -162,7 +162,7 @@ prompt.showDialog({
 
 | 名称  | 类型   | 必填 | 说明                            |
 | ----- | ------ | ---- | ------------------------------- |
-| index | number | 否   | 选中按钮在buttons数组中的索引。 |
+| index | number | 是   | 选中按钮在buttons数组中的索引。 |
 
 
 ## prompt.showActionMenu
@@ -270,9 +270,9 @@ prompt.showActionMenu({
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型     | 必填   | 说明                       |
-| ----- | ------ | ---- | ------------------------ |
-| index | number | 否    | 选中按钮在buttons数组中的索引，从0开始。 |
+| 名称  | 类型   | 必填 | 说明                                     |
+| ----- | ------ | ---- | ---------------------------------------- |
+| index | number | 是   | 选中按钮在buttons数组中的索引，从0开始。 |
 
 ## Button
 

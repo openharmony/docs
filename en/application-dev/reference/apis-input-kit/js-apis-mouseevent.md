@@ -9,7 +9,7 @@ The **mouseEvent** module provides mouse events reported by a device. It is inhe
 ## Modules to Import
 
 ```js
-import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInput.mouseEvent';
+import { Action, Button, Axis, AxisValue, MouseEvent } from '@kit.InputKit';
 ```
 
 ## Action

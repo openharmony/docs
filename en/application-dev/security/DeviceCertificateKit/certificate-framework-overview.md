@@ -8,6 +8,7 @@ You can use the APIs provided by the certificate framework to easily complete yo
 
 
 > **NOTE**
+>
 > The certificate framework provides the capabilities of processing certificates and CRL data, but does not provide the capabilities of generating or issuing certificates or CRLs. Certificates and CRLs are issued by a certificate authority (CA) rather than a single application.
 
 
@@ -59,7 +60,7 @@ CRL example:
 
 ## Constraints
 
-The certificate framework depends on the basic algorithm capabilities of the Crypto Architecture Kit, which does not support multi-thread concurrent operations. For details, see [Constraints](../../security/CryptoArchitectureKit/crypto-architecture-kit-intro.md#constraints).
+The certificate framework depends on the basic algorithm capabilities of the Crypto Architecture Kit, which does not support multi-thread concurrent operations. For details, see [Constraints](../CryptoArchitectureKit/crypto-architecture-kit-intro.md#constraints).
 
 
 ## Development
@@ -72,8 +73,9 @@ You can use the certificate framework to implement the following functionalities
 - [Certificate Chain Validator Development](create-verify-cerchainvalidator-object.md)
 - [Certificate and CRL Collection Development](create-get-cert-crl-object.md)
 - [Certificate Chain Development](create-verify-certchain-object.md)
+- [Creating a TrustAnchor Object Array from a p12 File](create-trustanchor-from-p12.md)
 
-The certificate framework provides the following classes.
+The following table lists the classes provided by the certificate framework. Based on the classes, you can learn the related APIs.
 
 | Name| Class| Description|
 | -------- | -------- | -------- |

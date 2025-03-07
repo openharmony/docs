@@ -10,6 +10,8 @@ A database fault may be caused by storage corruption, insufficient storage space
 
 - Access control by device and data level: The access to data across devices is controlled based on the device security level and data security labels.
 
+- EL5 database: The database in the **el5/** directory stores sensitive user information. To protect the data in such as database, the key will be destroyed when the screen is locked and certain conditions are met, and the database cannot be operated. After the screen is unlocked, the key is restored and the read and write operations on the database are restored.
+
 In addition, the backup database is stored in the application sandbox. When the storage space is insufficient, you can delete the local database backup to release space.
 
 

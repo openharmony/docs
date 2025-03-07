@@ -1,8 +1,8 @@
-# Core File Kit API Reference
+# Core File Kit (Basic File Service)
 
 - ArkTS APIs
-  - [@ohos.application.BackupExtensionAbility (BackupExtensionAbility)](js-apis-application-backupExtensionAbility.md)
-  - [@ohos.file.cloudSync (Device-Cloud Synchronization)](js-apis-file-cloudsync.md)
+  - [@ohos.application.BackupExtensionAbility (Backup ExtensionAbility)](js-apis-application-backupExtensionAbility.md)
+  - [@ohos.file.cloudSync (Device-Cloud Sync)](js-apis-file-cloudsync.md)
   - [@ohos.file.environment (Directory Environment Capability)](js-apis-file-environment.md)
   - [@ohos.file.fileuri (File URI)](js-apis-file-fileuri.md)
   - [@ohos.file.fs (File Management)](js-apis-file-fs.md)
@@ -12,9 +12,12 @@
   - [@ohos.file.statvfs (File System Space Statistics)](js-apis-file-statvfs.md)
   - [@ohos.file.storageStatistics (Application Storage Statistics)](js-apis-file-storage-statistics.md)
   - [@ohos.fileshare (File Sharing)](js-apis-fileShare.md)
+  - [@ohos.file.BackupExtensionContext (Backup and Restore Extension Capability](js-apis-file-backupextensioncontext.md)
+  <!--Del-->
+  - [@ohos.application.BackupExtensionAbility (Backup and Restore Extension Capability) (System API)](js-apis-application-backupExtensionAbility-sys.md)
   - [@ohos.file.backup (Backup and Restore) (System API)](js-apis-file-backup-sys.md)
-  - [@ohos.file.cloudSync (Device-Cloud Synchronization) (System API)](js-apis-file-cloudsync-sys.md)
-  - [@ohos.file.cloudSyncManager (Device-Cloud Synchronization Management) (System API)](js-apis-file-cloudsyncmanager-sys.md)
+  - [@ohos.file.cloudSync (Device-Cloud Sync) (System API)](js-apis-file-cloudsync-sys.md)
+  - [@ohos.file.cloudSyncManager (Device-Cloud Sync Management) (System API)](js-apis-file-cloudsyncmanager-sys.md)
   - [@ohos.file.environment (Directory Environment Capability) (System API)](js-apis-file-environment-sys.md)
   - [@ohos.file.fileAccess (User File Access and Management) (System API)](js-apis-fileAccess-sys.md)
   - [@ohos.file.fileExtensionInfo (User File Extension Information) (System API)](js-apis-fileExtensionInfo-sys.md)
@@ -24,6 +27,7 @@
   - [@ohos.file.volumeManager (volume Management) (System API)](js-apis-file-volumemanager-sys.md)
   - [@ohos.filemanagement.userFileManager (User Data Management) (System API)](js-apis-userFileManager-sys.md)
   - [@ohos.fileshare (File Sharing) (System API)](js-apis-fileShare-sys.md)
+  <!--DelEnd-->
   - APIs No Longer Maintained
     - [@ohos.document (File Operation)](js-apis-document.md)
     - [@ohos.fileio (File Management)](js-apis-fileio.md)

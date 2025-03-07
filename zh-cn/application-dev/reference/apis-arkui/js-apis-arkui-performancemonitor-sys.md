@@ -1,4 +1,4 @@
-﻿# @ohos.arkui.performanceMonitor (性能监测)(系统接口)
+# @ohos.arkui.performanceMonitor (性能监测)(系统接口)
 
 用户操作场景提供性能相关指标监测能力，目前仅包含响应时延、完成时延、丢帧。
 
@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import performanceMonitor from '@ohos.arkui.performanceMonitor';
+import { performanceMonitor } from '@kit.ArkUI';
 ```
 
 

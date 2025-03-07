@@ -5,7 +5,7 @@
 
 为马达服务提供统一的API以访问马达驱动程序属性。
 
-**起始版本：** 11
+**起始版本**：11
 
 
 ## 汇总
@@ -52,11 +52,11 @@
 ```
 typedef struct Vibrator_Attribute Vibrator_Attribute
 ```
-**描述：**
+**描述**：
 
 马达属性。
 
-**起始版本：** 11
+**起始版本**：11
 
 
 ### Vibrator_ErrorCode
@@ -64,11 +64,11 @@ typedef struct Vibrator_Attribute Vibrator_Attribute
 ```
 typedef enum Vibrator_ErrorCode Vibrator_ErrorCode
 ```
-**描述：**
+**描述**：
 
 为用户定义错误码。
 
-**起始版本：** 11
+**起始版本**：11
 
 
 ### Vibrator_FileDescription
@@ -76,11 +76,11 @@ typedef enum Vibrator_ErrorCode Vibrator_ErrorCode
 ```
 typedef struct Vibrator_FileDescription Vibrator_FileDescription
 ```
-**描述：**
+**描述**：
 
 振动文件描述。
 
-**起始版本：** 11
+**起始版本**：11
 
 
 ### Vibrator_Usage
@@ -88,11 +88,11 @@ typedef struct Vibrator_FileDescription Vibrator_FileDescription
 ```
 typedef enum Vibrator_Usage Vibrator_Usage
 ```
-**描述：**
+**描述**：
 
 振动优先级。
 
-**起始版本：** 11
+**起始版本**：11
 
 
 ## 枚举类型说明
@@ -103,11 +103,11 @@ typedef enum Vibrator_Usage Vibrator_Usage
 ```
 enum Vibrator_ErrorCode:int32_t
 ```
-**描述：**
+**描述**：
 
 为用户定义错误码。
 
-**起始版本：** 11
+**起始版本**：11
 
 | 枚举值 | 描述 |
 | -------- | -------- |
@@ -122,11 +122,11 @@ enum Vibrator_ErrorCode:int32_t
 ```
 enum Vibrator_Usage
 ```
-**描述：**
+**描述**：
 
 振动优先级。
 
-**起始版本：** 11
+**起始版本**：11
 
 | 枚举值 | 描述 |
 | -------- | -------- |

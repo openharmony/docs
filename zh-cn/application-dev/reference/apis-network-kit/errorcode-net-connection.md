@@ -26,7 +26,7 @@ Invalid parameter value.
 
 **错误信息**
 
-Operation failed. Cannot connect to service.
+Failed to connect to the service.
 
 **错误描述**
 
@@ -62,30 +62,11 @@ System internal error.
 
 2.系统异常，请稍后重试或重启设备。
 
-## 2101007 已存在相同的callback
+## 2101007 callback不存在
 
 **错误信息**
 
-The same callback exists.
-
-**错误描述**
-
-已经注册的callback。
-
-**可能原因**
-
-激活&监听指定属性网络并注册回调时，callback对象重复注册。
-
-**处理步骤**
-
-1.确保待注册的callback对象未进行过注册
-2.若callback对象已进行过注册，执行已存在的注册。
-
-## 2101008 callback不存在
-
-**错误信息**
-
-The callback is not exists.
+The callback does not exist.
 
 **错误描述**
 
@@ -99,11 +80,32 @@ The callback is not exists.
 
 检查callback对象，确保注销callback对象前，已执行注册函数。
 
+## 2101008 已存在相同的callback
+
+**错误信息**
+
+The callback already exists.
+
+**错误描述**
+
+已经注册的callback。
+
+**可能原因**
+
+激活&监听指定属性网络并注册回调时，callback对象重复注册。
+
+**处理步骤**
+
+1.确保待注册的callback对象未进行过注册
+
+2.若callback对象已进行过注册，执行已存在的注册。
+
+
 ## 2101022 请求数量超过最大值
 
 **错误信息**
 
-The number of requests exceeded the maximum.
+The number of requests exceeded the maximum allowed.
 
 **错误描述**
 

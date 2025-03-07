@@ -19,7 +19,7 @@ PageAbility生命周期是PageAbility被调度到INACTIVE、ACTIVE、BACKGROUND�
 | BACKGROUND | 后台状态，表示当前PageAbility退到后台，PageAbility在被销毁后由BACKGROUND状态进入INITIAL状态，或者重新被激活后由BACKGROUND状态进入ACTIVE状态。 |
 
 
-应用开发者可以在app.js/app.ets中重写生命周期相关回调函数，PageAbility生命周期相关回调函数见下表。
+应用开发者可以在app.js/app.ets中实现生命周期相关回调函数，PageAbility生命周期相关回调函数见下表。
 
 
   **表2** PageAbility生命周期回调接口说明

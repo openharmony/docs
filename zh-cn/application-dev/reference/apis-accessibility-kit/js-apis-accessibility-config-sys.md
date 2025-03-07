@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import config from '@ohos.accessibility.config';
+import { config } from '@kit.AccessibilityKit';
 ```
 
 ## 属性
@@ -70,15 +70,17 @@ enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): 
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300001 | Invalid bundle name or ability name.  |
 | 9300002 | Target ability already enabled. |
 
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
-import config from '@ohos.accessibility.config';
-import { BusinessError } from '@ohos.base';
+import { accessibility, config } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let name: string = 'com.ohos.example/axExtension';
 let capability: accessibility.Capability[] = ['retrieve'];
@@ -114,15 +116,17 @@ enableAbility(name: string, capability: Array&lt;[accessibility.Capability](js-a
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300001 | Invalid bundle name or ability name.  |
 | 9300002 | Target ability already enabled. |
 
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
-import config from '@ohos.accessibility.config';
-import { BusinessError } from '@ohos.base';
+import { accessibility, config } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let name: string = 'com.ohos.example/axExtension';
 let capability: accessibility.Capability[] = ['retrieve'];
@@ -164,14 +168,16 @@ disableAbility(name: string): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300001 | Invalid bundle name or ability name.  |
 
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
-import config from '@ohos.accessibility.config';
-import { BusinessError } from '@ohos.base';
+import { accessibility, config } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let name: string = 'com.ohos.example/axExtension';
 
@@ -205,14 +211,16 @@ disableAbility(name: string, callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300001 | Invalid bundle name or ability name.  |
 
 **示例：**
 
 ```ts
-import accessibility from '@ohos.accessibility';
-import config from '@ohos.accessibility.config';
-import { BusinessError } from '@ohos.base';
+import { accessibility, config } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let name: string = 'com.ohos.example/axExtension';
 
@@ -242,10 +250,20 @@ on(type: 'enabledAccessibilityExtensionListChange', callback: Callback&lt;void&g
 | type | string | 是 | 参数固定为enabledAccessibilityExtensionListChange，监听启用的辅助扩展的列表变化。 |
 | callback | Callback&lt;void&gt; | 是 | 回调函数，在启用的辅助扩展的列表变化时通过此函数进行通知。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201  | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import config from '@ohos.accessibility.config';
+import { config } from '@kit.AccessibilityKit';
 
 config.on('enabledAccessibilityExtensionListChange', () => {
   console.info('subscribe enabled accessibility extension list change state success');
@@ -269,10 +287,20 @@ off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void
 | type |  string | 是 | 参数固定为enabledAccessibilityExtensionListChange，监听启用的辅助扩展的列表变化。 |
 | callback | Callback&lt;void&gt; | 否 | 取消指定callback对象的事件响应。需与on('enabledAccessibilityExtensionListChange')的callback一致。缺省时，表示注销所有已注册事件。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201  | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import config from '@ohos.accessibility.config';
+import { config } from '@kit.AccessibilityKit';
 
 config.off('enabledAccessibilityExtensionListChange', () => {
   console.info('Unsubscribe enabled accessibility extension list change state success');
@@ -296,10 +324,20 @@ on(type: 'installedAccessibilityListChange', callback: Callback&lt;void&gt;): vo
 | type | string | 是 | 参数固定为installedAccessibilityListChange，监听已安装的辅助扩展的列表变化。 |
 | callback | Callback&lt;void&gt; | 是 | 回调函数，在已安装的辅助扩展的列表变化时通过此函数进行通知。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201  | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import config from '@ohos.accessibility.config';
+import { config } from '@kit.AccessibilityKit';
 
 config.on('installedAccessibilityListChange', () => {
   console.info('subscribe installed accessibility extension list change state success');
@@ -323,10 +361,20 @@ off(type: 'installedAccessibilityListChange', callback?: Callback&lt;void&gt;): 
 | type |  string | 是 | 参数固定为installedAccessibilityListChange，监听已安装的辅助扩展的列表变化。 |
 | callback | Callback&lt;void&gt; | 否 | 取消指定callback对象的事件响应。需与on('installedAccessibilityListChange')的callback一致。缺省时，表示注销所有已注册事件。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201  | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import config from '@ohos.accessibility.config';
+import { config } from '@kit.AccessibilityKit';
 
 config.off('installedAccessibilityListChange', () => {
   console.info('Unsubscribe installed accessibility extension list change state success');
@@ -359,11 +407,21 @@ set(value: T): Promise&lt;void&gt;;
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import config from '@ohos.accessibility.config';
-import { BusinessError } from '@ohos.base';
+import { config } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let value: boolean = true;
 
@@ -391,11 +449,21 @@ set(value: T, callback: AsyncCallback&lt;void&gt;): void;
 | value | T | 是 | 设置的属性值。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import config from '@ohos.accessibility.config';
-import { BusinessError } from '@ohos.base';
+import { config } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let value: boolean = true;
 
@@ -422,11 +490,20 @@ get(): Promise&lt;T&gt;;
 | -------- | -------- |
 | Promise&lt;T&gt; | Promise对象，返回对应属性值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **示例：**
 
 ```ts
-import config from '@ohos.accessibility.config';
-import { BusinessError } from '@ohos.base';
+import { config } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 config.highContrastText.get().then((data: boolean) => {
   console.info(`Succeeded in get highContrastText, data is ${data}`);
@@ -449,11 +526,19 @@ get(callback: AsyncCallback&lt;T&gt;): void;
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;T&gt; | 是 | 回调函数，返回属性值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **示例：**
 
 ```ts
-import config from '@ohos.accessibility.config';
-import { BusinessError } from '@ohos.base';
+import { config } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 config.highContrastText.get((err: BusinessError, data: boolean) => {
   if (err) {
@@ -480,10 +565,20 @@ on(callback: Callback&lt;T&gt;): void;
 | -------- | -------- | -------- | -------- |
 | callback | Callback&lt;T&gt; | 是 | 回调函数，在属性变化时通过此函数进行通知。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import config from '@ohos.accessibility.config';
+import { config } from '@kit.AccessibilityKit';
 
 config.highContrastText.on((data: boolean) => {
   console.info(`subscribe highContrastText success, result: ${JSON.stringify(data)}`);
@@ -506,10 +601,19 @@ off(callback?: Callback&lt;T&gt;): void;
 | -------- | -------- | -------- | -------- |
 | callback | Callback&lt;T&gt; | 否 | 取消指定callback对象的事件响应。需与on()的callback一致。缺省时，表示注销所有已注册事件。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201  | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **示例：**
 
 ```ts
-import config from '@ohos.accessibility.config';
+import { config } from '@kit.AccessibilityKit';
 
 config.highContrastText.off((data: boolean) => {
   console.info(`Unsubscribe highContrastText success, result: ${JSON.stringify(data)}`);

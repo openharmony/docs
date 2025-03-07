@@ -8,7 +8,7 @@
 
 **错误信息**
 
-If the resId invalid.
+Invalid resource ID.
 
 **错误描述**
 
@@ -20,13 +20,15 @@ If the resId invalid.
 
 **处理步骤**
 
-检查传入参数的资源id是否已有。
+1. 排查是否为以下场景：[HAR开启混淆](../../quick-start/har-package.md#编译)、中间码HAR、字节码HAR、跨HAP/HSP包。这四种场景推荐使用[getStringByName()](js-apis-resource-manager.md#getstringbyname9)等方法通过名称获取资源。
+
+2. 检查传入参数的资源id是否已有。  
 
 ## 9001002 根据当前资源id，找不到匹配的资源
 
 **错误信息**
 
-If the resource not found by resId.
+No matching resource is found based on the resource ID.
 
 **错误描述**
 
@@ -34,9 +36,9 @@ If the resource not found by resId.
 
 **可能原因**
 
-1、传入的是资源id有误。
+1. 传入的是资源id有误。
 
-2、资源解析有误。
+2. 资源解析有误。
 
 **处理步骤**
 
@@ -46,7 +48,7 @@ If the resource not found by resId.
 
 **错误信息**
 
-If the resName invalid.
+Invalid resource name.
 
 **错误描述**
 
@@ -64,7 +66,7 @@ If the resName invalid.
 
 **错误信息**
 
-If the resource not found by resName.
+No matching resource is found based on the resource name.
 
 **错误描述**
 
@@ -72,9 +74,9 @@ If the resource not found by resName.
 
 **可能原因**
 
-1、传入的是资源名称有误。
+1. 传入的是资源名称有误。
 
-2、资源解析有误。
+2. 资源解析有误。
 
 **处理步骤**
 
@@ -84,7 +86,7 @@ If the resource not found by resName.
 
 **错误信息**
 
-If the resource not found by path.
+Invalid relative path.
 
 **错误描述**
 
@@ -102,7 +104,7 @@ If the resource not found by path.
 
 **错误信息**
 
-If the resource re-ref too much.
+The resource is referenced cyclically.
 
 **错误描述**
 
@@ -120,7 +122,7 @@ If the resource re-ref too much.
 
 **错误信息**
 
-If the resource obtained by resId formatting error.
+Failed to format the resource obtained based on the resource ID.
 
 **错误描述**
 
@@ -128,11 +130,11 @@ resId获取的字符串资源格式化失败。
 
 **可能原因**
 
-1、参数类型不在支持范围内。
+1. 参数类型不在支持范围内。
 
-2、参数与占位符个数不等。
+2. 参数与占位符个数不等。
 
-3、参数与占位符类型不匹配。
+3. 参数与占位符类型不匹配。
 
 **处理步骤**
 
@@ -142,7 +144,7 @@ resId获取的字符串资源格式化失败。
 
 **错误信息**
 
-If the resource obtained by resName formatting error.
+Failed to format the resource obtained based on the resource Name.
 
 **错误描述**
 
@@ -150,11 +152,11 @@ resName获取的字符串资源格式化失败。
 
 **可能原因**
 
-1、参数类型不在支持范围内。
+1. 参数类型不在支持范围内。
 
-2、参数与占位符个数不等。
+2. 参数与占位符个数不等。
 
-3、参数与占位符类型不匹配。
+3. 参数与占位符类型不匹配。
 
 **处理步骤**
 
@@ -164,7 +166,7 @@ resName获取的字符串资源格式化失败。
 
 **错误信息**
 
-If application can't access system resource.
+Failed to access the system resource.
 
 **错误描述**
 
@@ -182,16 +184,16 @@ If application can't access system resource.
 
 **错误信息**
 
-If the overlay path is invalid.
+Invalid overlay path.
 
 **错误描述**
 
-传入的overlay路径无效
+传入的overlay路径无效。
 
 **可能原因**
 
-路径不存在或者没有在对应应用的安装路径下，访问不到
+路径不存在或者没有在对应应用的安装路径下，访问不到。
 
 **处理步骤**
 
-查看传入overlay路径放的位置
+查看传入overlay路径放的位置。

@@ -4,7 +4,7 @@
 
 ### 简介 
 
-OpenHarmony默认提供了热策略的特性。设备上发热的器件种类繁多，因此需要结合热等级和热场景，针对各类发热器件定制统一的管控策略。但是不同热等级下的管控动作在不同的产品上规格是不同的，产品希望根据产品的设计规格来定制此特性。OpenHarmony提供了热策略的定制方式，产品定制开发者可根据产品的设计规格来定制这些特性。
+OpenHarmony默认提供了热策略的特性。设备上发热的器件种类繁多，因此需要结合热等级和热场景，针对各类发热器件定制统一的管控策略。但是不同热等级下的管控动作在不同的产品上规格是不同的，产品希望根据产品的设计规格来定制此特性。OpenHarmony提供了热策略的定制方式，产品定制开发者可根据产品的设计规格来定制这些特性。同时，出于安全性考虑，提供了热策略配置文件加解密的功能支持（可选）。
 
 ### 约束与限制
 
@@ -118,7 +118,42 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     </policy>
     ```
 
-4. 参考[默认热策略配置文件夹中的BUILD.gn](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/BUILD.gn)编写BUILD.gn文件，将thermal_service_config.xml打包到`/vendor/etc/thermal_config`目录下
+4. （可选）对热策略配置文件进行本地加密，同时配置解密方法。
+
+    1. 开发者自行选择合适的加密工具对本地将编写好的thermal_service_config.xml进行加密。
+
+    2. 开发者需要编写动态库libthermal_manager_ext.z.so并安装在文件系统中，动态库中包含解密接口getDecryptConfig的实现，程序将调用动态库中实现了的getDecryptConfig（在[base/powermgr/thermal_manager/services/native/src/thermal_policy/thermal_srv_config_parser.cpp](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/src/thermal_policy/thermal_srv_config_parser.cpp)中）对配置文件进行解密，解密过程如下所示：
+
+        ```c++
+        bool ThermalSrvConfigParser::DecryptConfig(const std::string& path, std::string& result)
+        {
+            // 请开发者自行实现动态库libthermal_manager_ext.z.so
+            void *handler = dlopen(THERMAL_CONFIG_LIBRARY_PATH, RTLD_LAZY);
+            if (handler == nullptr) {
+                THERMAL_HILOGE(COMP_SVC, "dlopen failed, reason : %{public}s", dlerror());
+                return false;
+            }
+            // 请开发者根据所使用的工具自行实现解密接口getDecryptConfig
+            Func getDecryptConfig = reinterpret_cast<Func>(dlsym(handler, GET_THERMAL_EXT_CONGIH_FUNC)); 
+            if (getDecryptConfig == nullptr) {
+                THERMAL_HILOGE(COMP_SVC, "find function %{public}s failed, reason : %{public}s",
+                    GET_THERMAL_EXT_CONGIH_FUNC, dlerror());
+                dlclose(handler);
+                return false;
+            }
+            // 调用解密接口进行解密，将解密结果以字符串的形式存储在result中
+            int32_t ret = getDecryptConfig(THERMAL_SERVICE_CONFIG_INDEX, result);
+            if (ret != 0) {
+                THERMAL_HILOGE(COMP_SVC, "decrypt config failed, ret:%{public}d", ret);
+                dlclose(handler);
+                return false;
+            }
+            dlclose(handler);
+            return true;
+        }
+        ```
+
+5. 参考[默认热策略配置文件夹中的BUILD.gn](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/BUILD.gn)编写BUILD.gn文件，将thermal_service_config.xml打包到`/vendor/etc/thermal_config`目录下
 
     ```shell
     import("//build/ohos.gni")                      # 引用build/ohos.gni
@@ -131,7 +166,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     }
     ```
 
-5. 将编译目标添加到[ohos.build](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/ohos.build)的"module_list"中，例如：
+6. 将编译目标添加到[ohos.build](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/ohos.build)的"module_list"中，例如：
 
     ```json
     {
@@ -152,13 +187,13 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     ```
     “//vendor/hihope/rk3568/thermal/”为文件夹路径，“profile”为创建的文件夹名字，“thermal_service_config”为编译目标。
 
-6. 参考《[快速入门](../quick-start/quickstart-overview.md)》编译定制版本，编译命令如下：
+7. 参考《[快速入门](../quick-start/quickstart-overview.md)》编译定制版本，编译命令如下：
 
     ```shell
     ./build.sh --product-name rk3568 --ccache
     ```
 
-7. 将定制版本烧录到DAYU200开发板中。
+8. 将定制版本烧录到DAYU200开发板中。
 
 ### 调测验证 
 

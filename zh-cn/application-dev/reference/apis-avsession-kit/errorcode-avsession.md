@@ -1,5 +1,5 @@
-﻿# 媒体会话管理错误码
-
+# 媒体会话管理错误码
+ 
 > **说明：**
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
@@ -138,7 +138,7 @@ Too many commands or events.
 
 **错误信息**
 
-Device connecting failed.
+Device connection failed.
 
 **错误描述**
 

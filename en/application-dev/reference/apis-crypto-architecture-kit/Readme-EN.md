@@ -1,8 +1,25 @@
-# Crypto Architecture Kit API Reference
+# Crypto Architecture Kit (Crypto Architecture Service)
 
-- ArkTS APIs
+- ArkTS APIs<!--crypto-architecture-arkts-->
   - [@ohos.security.cryptoFramework (Crypto Framework)](js-apis-cryptoFramework.md)
-  - APIs No Longer Maintained
+  - APIs No Longer Maintained<!--crypto-architecture-arkts-dep-->
     - [@system.cipher (Cipher Algorithm)](js-apis-system-cipher.md)
-- Error Codes
+- C APIs<!--crypto-architecture-c-->
+  - Modules<!--crypto-architecture-module-->
+    - [CryptoAsymKeyApi](_crypto_asym_key_api.md)
+    - [CryptoCommonApi](_crypto_common_api.md)
+    - [CryptoDigestApi](_crypto_digest_api.md)
+    - [CryptoSignatureApi](_crypto_signature_api.md)
+    - [CryptoSymCipherApi](_crypto_sym_cipher_api.md)
+    - [CryptoSymKeyApi](_crypto_sym_key_api.md)
+  - Header Files<!--crypto-architecture-headerfile-->
+    - [crypto_asym_key.h](crypto__asym__key_8h.md)
+    - [crypto_common.h](crypto__common_8h.md)
+    - [crypto_digest.h](crypto__digest_8h.md)
+    - [crypto_signature.h](crypto__signature_8h.md)
+    - [crypto_sym_cipher.h](crypto__sym__cipher_8h.md)
+    - [crypto_sym_key.h](crypto__sym__key_8h.md)
+  - Structs<!--crypto-architecture-struct-->
+    - [Crypto_DataBlob](_crypto___data_blob.md)
+- Error Codes<!--crypto-architecture-arkts-errcode-->
   - [Crypto Framework Error Codes](errorcode-crypto-framework.md)

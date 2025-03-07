@@ -8,7 +8,7 @@
 
 **错误信息**
 
-The status of the system cpu usage is abnormal.
+The status of the system CPU usage is abnormal.
 
 **错误描述**
 

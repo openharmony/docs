@@ -15,12 +15,12 @@ None
 
 ## Child Components
 
-The following are supported: [\<svg>](js-components-svg.md), [\<rect>](js-components-svg-rect.md), [\<circle>](js-components-svg-circle.md), [\<ellipse>](../arkui-js/js-components-svg-ellipse.md), [\<path>](js-components-svg-path.md), [\<line](../arkui-js/js-components-svg-line.md), [\<polygon>](../arkui-js/js-components-svg-polygon.md), [\<polyline>](js-components-svg-polyline.md), [\<text>](js-components-svg-text.md), [\<animate>](js-components-svg-animate.md), and [\<animateTransform>](js-components-svg-animatetransform.md).
+The following are supported: [\<svg>](js-components-svg.md), [\<rect>](js-components-svg-rect.md), [\<circle>](js-components-svg-circle.md), [\<ellipse>](js-components-svg-ellipse.md), [\<path>](js-components-svg-path.md), [\<line](js-components-svg-line.md), [\<polygon>](js-components-svg-polygon.md), [\<polyline>](js-components-svg-polyline.md), [\<text>](js-components-svg-text.md), [\<animate>](js-components-svg-animate.md), and [\<animateTransform>](js-components-svg-animatetransform.md).
 
 
 ## Attributes
 
-The [universal attributes](../arkui-js/js-components-svg-common-attributes.md) and the attributes listed below are supported. The configured universal attributes are passed to the child components.
+The [universal attributes](js-components-svg-common-attributes.md) and the attributes listed below are supported. The configured universal attributes are passed to the child components.
 
 | Name    | Type                               | Default Value | Mandatory | Description                              |
 | ------- | ---------------------------------- | ------------- | --------- | ---------------------------------------- |

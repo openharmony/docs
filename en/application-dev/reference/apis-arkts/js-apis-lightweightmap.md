@@ -22,12 +22,14 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import LightWeightMap from '@ohos.util.LightWeightMap';  
+import { LightWeightMap } from '@kit.ArkTS';
 ```
 
 ## LightWeightMap
 
 ### Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -41,6 +43,8 @@ import LightWeightMap from '@ohos.util.LightWeightMap';
 constructor()
 
 A constructor used to create a **LightWeightMap** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -65,6 +69,8 @@ let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
 isEmpty(): boolean
 
 Checks whether this container is empty (contains no element).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -96,6 +102,8 @@ hasAll(map: LightWeightMap<K, V>): boolean
 
 Checks whether this container contains all elements of the specified **LightWeightMap** instance.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -112,10 +120,11 @@ Checks whether this container contains all elements of the specified **LightWeig
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The hasAll method cannot be bound. |
 
 **Example**
@@ -135,6 +144,8 @@ let result = lightWeightMap.hasAll(map);
 hasKey(key: K): boolean
 
 Checks whether this container contains the specified key.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -173,6 +184,8 @@ hasValue(value: V): boolean
 
 Checks whether this container contains the specified value.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -209,6 +222,10 @@ increaseCapacityTo(minimumCapacity: number): void
 
 Increases the capacity of this container.
 
+If the passed-in capacity is greater than or equal to the number of elements in this container, the container capacity is changed to the new capacity. If the passed-in capacity is less than the number of elements in this container, the capacity is not changed.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -219,10 +236,11 @@ Increases the capacity of this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The increaseCapacityTo method cannot be bound. |
 
 **Example**
@@ -237,6 +255,8 @@ lightWeightMap.increaseCapacityTo(10);
 get(key: K): V
 
 Obtains the value of the specified key in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -276,6 +296,8 @@ getIndexOfKey(key: K): number
 
 Obtains the index of the first occurrence of an element with the specified key in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -313,6 +335,8 @@ let result = lightWeightMap.getIndexOfKey("sparrow");
 getIndexOfValue(value: V): number
 
 Obtains the index of the first occurrence of an element with the specified value in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -352,13 +376,15 @@ getKeyAt(index: number): K
 
 Obtains the key of an element at the specified position in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the element.|
+| index | number | Yes| Position index of the element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -368,12 +394,13 @@ Obtains the key of an element at the specified position in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The getKeyAt method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The getKeyAt method cannot be bound. |
 
 **Example**
 
@@ -391,6 +418,8 @@ setAll(map: LightWeightMap<K, V>): void
 
 Adds all elements in a **LightWeightMap** instance to this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -401,10 +430,11 @@ Adds all elements in a **LightWeightMap** instance to this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The setAll method cannot be bound. |
 
 **Example**
@@ -422,6 +452,8 @@ map.setAll(lightWeightMap); // Add all elements in lightWeightMap to the map.
 set(key: K, value: V): Object
 
 Adds or updates an element in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -459,6 +491,8 @@ let result = lightWeightMap.set("squirrel", 123);
 remove(key: K): V
 
 Removes an element with the specified key from this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -498,13 +532,15 @@ removeAt(index: number): boolean
 
 Removes an element at the specified position from this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the element.|
+| index | number | Yes| Position index of the element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -514,10 +550,11 @@ Removes an element at the specified position from this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The removeAt method cannot be bound. |
 
 **Example**
@@ -536,13 +573,15 @@ setValueAt(index: number, newValue: V): boolean
 
 Sets a value for an element at the specified position in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes| Position index of the element. The value must be less than or equal to int32_max, that is, 2147483647.|
 | newValue | V | Yes| Value of the target element to set.|
 
 **Return value**
@@ -553,12 +592,13 @@ Sets a value for an element at the specified position in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The setValueAt method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The setValueAt method cannot be bound. |
 
 **Example**
 
@@ -576,13 +616,15 @@ getValueAt(index: number): V
 
 Obtains the value of an element at the specified position in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the element.|
+| index | number | Yes| Position index of the element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -592,12 +634,13 @@ Obtains the value of an element at the specified position in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The getValueAt method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The getValueAt method cannot be bound. |
 
 **Example**
 
@@ -614,6 +657,8 @@ let result = lightWeightMap.getValueAt(1);
 clear(): void
 
 Clears this container and sets its length to **0**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -640,6 +685,8 @@ lightWeightMap.clear();
 keys(): IterableIterator&lt;K&gt;
 
 Obtains an iterator that contains all the keys in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -678,6 +725,8 @@ values(): IterableIterator&lt;V&gt;
 
 Obtains an iterator that contains all the values in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -715,6 +764,8 @@ forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, th
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -733,10 +784,11 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **Example**
@@ -749,13 +801,24 @@ lightWeightMap.forEach((value?: number, key?: string) => {
   console.log("value:" + value, "key:" + key);
 });
 ```
-
+```ts
+// You are not advised to use the set, setValueAt, remove, or removeAt APIs in forEach because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+for(let i = 0; i < 10; i++) {
+  lightWeightMap.set("sparrow" + i, 123);
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightMap.remove("sparrow" + i);
+}
+```
 
 ### entries
 
 entries(): IterableIterator<[K, V]>
 
 Obtains an iterator that contains all the elements in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -787,12 +850,24 @@ while(!temp.done) {
   temp = iter.next();
 }
 ```
+```ts
+// You are not advised to use the set, setValueAt, remove, or removeAt APIs in entries because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+for(let i = 0; i < 10; i++) {
+  lightWeightMap.set("sparrow" + i, 123);
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightMap.remove("sparrow" + i);
+}
+```
 
 ### toString
 
 toString(): String
 
 Concatenates the elements in this container into a string and returns the string.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -825,9 +900,7 @@ let result = lightWeightMap.toString();
 
 Obtains an iterator, each item of which is a JavaScript object.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -870,5 +943,15 @@ while(!temp.done) {
   console.log("key:" + temp.value[0]);
   console.log("value:" + temp.value[1]);
   temp = iter.next();
+}
+```
+```ts
+// You are not advised to use the set, setValueAt, remove, or removeAt APIs in Symbol.iterator because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+for(let i = 0; i < 10; i++) {
+  lightWeightMap.set("sparrow" + i, 123);
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightMap.remove("sparrow" + i);
 }
 ```

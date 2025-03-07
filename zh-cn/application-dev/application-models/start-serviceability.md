@@ -7,28 +7,35 @@ ServiceAbility的启动与其他Ability并无区别，应用开发者可以在Pa
 如下示例展示了在PageAbility中通过startAbility启动bundleName为"com.example.myapplication"，abilityName为"ServiceAbility"的ServiceAbility的方法。启动FA模型的ServiceAbility时，需要在abilityName前拼接bundleName字符串。
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 import Want from '@ohos.app.ability.Want';
 import promptAction from '@ohos.promptAction';
 import hilog from '@ohos.hilog';
-```
-```ts
-const LOG_DOMAIN: number = 0x0000;
-const LOG_TAG: string = 'startServiceAbility';
-const startServiceAbility = async () => {
-  try {
-    hilog.info(LOG_DOMAIN, LOG_TAG, 'Begin to start ability');
-    let want: Want = {
-      bundleName: 'com.samples.famodelabilitydevelop',
-      abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility'
-    };
-    await featureAbility.startAbility({ want });
-    promptAction.showToast({
-      message: 'start service success'
-    });
-    hilog.info(LOG_DOMAIN, LOG_TAG, 'Start ability succeed');
-  } catch (error) {
-    hilog.info(LOG_DOMAIN, LOG_TAG, 'Start ability failed with ' + error);
+
+const TAG: string = 'PageServiceAbility';
+const domain: number = 0xFF00;
+
+@Entry
+@Component
+struct PageServiceAbility {
+  async startServiceAbility(): Promise<void> {
+    try {
+      hilog.info(domain, TAG, 'Begin to start ability');
+      let want: Want = {
+        bundleName: 'com.samples.famodelabilitydevelop',
+        abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility'
+      };
+      await featureAbility.startAbility({ want });
+      promptAction.showToast({
+        message: 'start_service_success_toast'
+      });
+      hilog.info(domain, TAG, `Start ability succeed`);
+    } catch (error) {
+      hilog.error(domain, TAG, 'Start ability failed with ' + error);
+    }
+  }
+  build() {
+    // ...
   }
 }
 ```

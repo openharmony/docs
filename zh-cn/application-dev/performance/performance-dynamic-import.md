@@ -2,171 +2,154 @@
 
 ## 简介
 
-应用在加载页面时，如果引入大量暂不需要加载的模块，会因过多模块导致页面加载缓慢。比如当页面在使用Navigation组件时，主页默认先加载所有页面，此时若包含大量子页面，仅加载主页这一项就需要很长时间，但这些复杂的子页面与主页渲染无关。
-本文推荐使用动态加载解决上述问题，不在应用程序加载时就将所有模块都加载进来，而是按需加载模块，增加应用灵活性，提升应用性能。
+应用在加载页面时，如果引入暂时不需要加载的模块，会导致页面加载缓慢和不必要的内存占用。例如当页面使用Navigation组件时，主页默认加载子页面，此时若子页面使用了Web组件，则会提前加载Web相关的so库，即使并没有进入子页面。
+
+本文推荐使用动态加载解决上述问题，不在进入主页面时就将所有模块都加载进来，而是按需加载模块，增加应用灵活性，提升应用性能。
 
 ## 场景示例
 
-| 主页                                       | 子页面                                        |
-|------------------------------------------|--------------------------------------------|
-| ![主页](./figures/dynamic-import-home.png) | ![子页面](./figures/dynamic-import-pages.png) |
+![场景示例图](figures/dynamic_import_1.gif)
 
 下面示例应用通过Navigation组件常规加载与动态加载的对比，介绍如何在跳转时触发加载方法，实现按需加载子模块。
 
 ### 常规加载
 
-开发者使用Navigation组件时，通常会在主页引入各子页面组件，在按钮中添加方法实现跳转。下述代码展示常规加载示例，通过import引入子组件。
+开发者使用Navigation组件时，通常会在主页引入子页面组件，在按钮中添加方法实现跳转。下述代码展示常规加载示例，通过import引入子组件。
 
-1. 加载模块引入子页面，Navigation组件使用这些子模块实现跳转子页面功能，但用户进入主页时并不会马上使用到这些模块，存在冗余加载影响性能的可能。
-    ```ts
-    import { pageOne, pageOneData } from './pageOne';
-    import { pageTwo, pagesTwoData } from './pageTwo';
-    ...
-    import router from '@ohos.router';
-    ```
-2. 主页通过Navigation组件实现点击Button跳转到不同的子页面。
-    ```ts
-    @Provide('pathInfos') pageInfos: NavPathStack = new NavPathStack();
-    
-    @Builder
-    PageMap(name: string) {
-      if (name === 'pageOne') {
-        pageOne(new pagesOneData(name, this.pageInfos));
-      } else if (name === 'pageTwo') {
-        pageTwo(new pagesTwoData(name, this.pageInfos));
-      }
-      ...
-    }
-    
-    build() {
-      Navigation(this.pageInfos) {
-        Button('返回', { stateEffect: true, type: ButtonType.Capsule })
-          .onClick(() => {
-             router.back();
-          })
-        Column() {
-          Button('pageOne', { stateEffect: true, type: ButtonType.Capsule })
-            .onClick(() => {
-               this.pageInfos.pushPath({ name: 'pageOne' }); // 将name指定的NavDestination页面信息入栈
-            })
-          Button('pageTwo', { stateEffect: true, type: ButtonType.Capsule })
-            .onClick(() => {
-               this.pageInfos.pushPath({ name: 'pageTwo' });
-            })
-          ...
-        }
-      }.title('主页').navDestination(this.PageMap)
-    }
-    ```
+1. 创建子页面，添加一个Web组件，并加载一个在线的H5页面。
+
+   ```
+   import { webview } from '@kit.ArkWeb'
+   
+   @Builder
+   export function buildPage() {
+     WebViewPage()
+   }
+   
+   @Component
+   export struct WebViewPage {
+     webController: WebviewController = new webview.WebviewController();
+     url: string = 'https://gitee.com/harmonyos-cases/cases';
+   
+     aboutToAppear(): void {
+       webview.WebviewController.initializeWebEngine();
+       webview.WebviewController.prepareForPageLoad(this.url, true, 2);
+     }
+   
+     build() {
+       Column() {
+         Web({ src: this.url, controller: this.webController })
+       }
+     }
+   }
+   ```
+
+2. 在主页面的Navigation中添加上一步创建的web组件作为子页面。
+
+   ```
+   import { WebViewPage } from './WebViewPage'
+   
+   @Entry
+   @Component
+   export struct Page1 {
+     pageStack: NavPathStack = new NavPathStack();
+   
+     @Builder
+     pageMap() {
+       NavDestination() {
+         WebViewPage()
+       }
+     }
+   
+     build() {
+       Stack() {
+         Navigation(this.pageStack) {
+           Column() {
+             Button('加载页面')
+               .onClick(() => {
+                 this.pageStack.pushPath({ name: "" })
+               })
+               .margin({
+                 top:30
+               })
+           }
+           .height('100%')
+           .width('100%')
+         }.navDestination(this.pageMap)
+       }
+     }
+   }
+   ```
+
+编译运行后，通过DevEco Studio中的[Profiler工具](application-performance-analysis.md)抓取Trace，可以得到图1。通过图中泳道可以看到，主页面加载完成共耗时22.9ms（从DispatchTouchEvent标签到sendCommands标签，即从点击进入页面到通知系统开始渲染页面）。其中，load page标签表示加载整个页面的时间，共耗时19ms。继续向下可以看到，虽然主页面并没有使用Web组件，但是依旧加载了libwebview_napi.z.so，耗时大概12ms左右。如果用户只是在主页面停留，并没有继续进入子页面，那么这个so库的初始化就是没有必要的，但是依旧产生了耗时，并且占用了一部分的内存，会降低应用的性能。
+
+图1 常规加载主页面泳道图
+
+![image-20240725204758662](figures/dynamic_import_normal_1.PNG)
 
 ### 动态加载
 
-当子组件较多、较复杂时，由于Navigation组件一次性加载所有模块，使用常规加载会导致主页加载缓慢。为了减少主页渲染时间，可以使用动态加载，在实际页面跳转时再按需动态引入子组件，优化用户的首次加载速度体验。以下是动态加载实现步骤：
+由于Navigation组件一次性加载所有模块，使用常规加载会导致主页加载耗时变长。为了减少主页面加载耗时，可以使用动态加载，在实际页面跳转时再按需动态引入子组件，优化用户的首次加载速度体验。下面将使用动态import的方式实现常规加载的功能。
 
-1. 将需要被动态加载的组件pageOne组件用PageOneLoader函数封装，当PageOneLoader被调用时，会渲染pageOne页面。
-    ```ts
-    import { pageOne } from './pageOne';
-    
-    @Builder
-    export function PageOneLoader() {
-      pageOne();
-    }
-    ```
-2. 由于在Navigation的PageMap中navDestination无法直接动态加载组件（import是函数，组件中无法引用函数），此处采用声明 @BuilderParam PageOneLoader 函数，在点击时初始化此函数，此时navDestination中可以调用 this.PageOneLoader() 从而加载组件pageOne。 
-在主页DynamicHome实现动态加载pageOne的步骤如下：  
-   a) 在主页DynamicHome中定义组件加载函数 `@BuilderParam PageOneLoader: () => void` ，用来承接await import异步导入pageOneLoader的结果。
-    ```ts
-    @BuilderParam PageOneLoader: () => void;
-    ```
-   b) 定义异步函数，点击时为PageOneLoader初始化。
-    ```ts
-    async loadPageOne(key: string){
-      if (key === "pageOne") {
-        let PageObj: ESObject = await import("../pages/PageOneLoader");
-        this.PageOneLoader = PageObj.PageOneLoader;
-      }
-    }
-    ```
-   c) 点击按钮触发点击函数，调用loadPageOne，此时真正的初始化 @BuilderParam PageOneLoader ，并使用Navigation加载组件。
-    ```ts
-    private onEntryClick(): void {
-      try {
-        this.loadPageOne('pageOne');
-        this.pageInfos.clear();
-        this.pageInfos.pushPathByName('pageOne', '');
-        logger.info('DynamicImport Success');
-      } catch (error) {
-        logger.info('DynamicImport Fail');
-      }
-    }
-    ```
-   d) 触发PageMap中已经被初始化的PageOneLoader函数，动态加载pageOne组件。
-    ```ts
-    @Builder
-    PageMap(name: string) {
-      if (name === 'pageOne') {
-        this.PageOneLoader();
-      }
-    }
-    ```
-完整的DynamicHome主页代码如下：
-```ts
-import router from '@ohos.router';
-import { logger } from '../../ets/utils/Logger';
-
+```
 @Entry
 @Component
-struct DynamicHome {
-  @Provide('pathInfos') pageInfos: NavPathStack = new NavPathStack();
-  @State active: boolean = false;
-  @BuilderParam PageOneLoader: () => void;
+export struct Page2 {
+  pageStack: NavPathStack = new NavPathStack();
+  @BuilderParam page: ESObject;
 
   @Builder
-  PageMap(name: string) {
-    if (name === 'pageOne') {
-      this.PageOneLoader();
+  pageMap() {
+    NavDestination() {
+      this.page();
     }
   }
 
   build() {
-    Navigation(this.pageInfos) {
+    Navigation(this.pageStack) {
       Column() {
-        Button('返回', { stateEffect: true, type: ButtonType.Capsule })
-          .width('80%')
-          .height(40)
-          .margin(20)
-          .onClick(() => {
-            router.back();
+        Button('加载页面')
+          .onClick(async () => {
+            import('./WebViewPage').then((result: ESObject) => {
+              this.page = result.buildPage;
+              this.pageStack.pushPath({ name: '' })
+            })
           })
-        Button('PageOne-动态', { stateEffect: true, type: ButtonType.Capsule })
-          .width('80%')
-          .height(40)
-          .margin(20)
-          .onClick(() => {
-            this.onEntryClick();
+          .margin({
+            top: 30
           })
       }
-    }.title('HOME').navDestination(this.PageMap)
-  }
-
-  async loadPageOne(key: String) {
-    if (key === "pageOne") {
-      let PageObj: ESObject = await import("../pages/PageOneLoader");
-      this.PageOneLoader = PageObj.PageOneLoader;
+      .height('100%')
+      .width('100%')
     }
-  }
-
-  // 触发动态加载
-  private onEntryClick(): void {
-    try {
-      this.loadPageOne('pageOne');
-      this.pageInfos.clear();
-      this.pageInfos.pushPathByName('pageOne', '');
-      logger.info('DynamicImport Success');
-    } catch (error) {
-      logger.info('DynamicImport Fail');
-    }
+    .navDestination(this.pageMap)
   }
 }
 ```
-当子页面逐渐增多时，Navigation组件使用常规加载会因默认加载所有子页面导致性能开销增大，主页内存占用增加，加载时间变长。此时改用动态加载不再提前加载子页面，可以有效地避免这些任务阻塞主线程，从而降低整体资源消耗，提高主页的加载速度。
+
+通过代码可以看到，在主页面中并没有直接import子页面，而是在点击事件中使用了动态import的方式加载子页面，再通过NavPathStack.pushPath方法进行了跳转。编译运行后，通过DevEco Studio中的Profiler工具抓取Trace，可以得到图2。通过图中泳道可以看到，使用动态import后，主页面加载耗时只有7.9ms（图2中红框所示），其中load page标签耗时只有4.3ms左右，相较于常规加载，耗时减少了15ms。
+
+继续查看下面的泳道，可以发现相较于常规加载，并没有加载libwebview_napi.z.so的耗时，而是直接开始创建主页中的组件（Build[page]标签）。因为代码里没有直接使用import引入子页面，而是通过动态import的方式将加载子页面的逻辑放在了点击事件里面。只有在进入子页面时才会触发WebView库的加载，如图3中白框所示，实现了按需加载，减少了主页面不必要的耗时和内存占用。
+
+图2 动态加载主页面泳道图
+
+![di1](figures/dynamic_import_dynamic_1.PNG)
+
+图3 动态加载子页面泳道图
+
+![di2](figures/dynamic_import_dynamic_2.PNG)
+
+### 性能对比
+
+|         | 主页面加载耗时 | 主页面so加载耗时 |
+| ------  | :--------------:   | :--------------:   |
+| 常规加载 |     22.9ms     |     12ms     |
+| 动态加载 |      7.9ms      |      0ms      |
+
+## 总结
+
+通过上面的示例可以看到，使用动态import能够更灵活地按需加载子页面，减少主页面的加载耗时，提升应用性能和用户体验。当子页面不会被马上使用或者可能占用大量内存时，可以通过动态import的方式进行性能方面的优化。
+
+## 参考链接
+
+[动态import](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-dynamic-import-V5)

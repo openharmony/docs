@@ -13,13 +13,15 @@ The **componentUtils** module provides API for obtaining the coordinates and siz
 ## Modules to Import
 
 ```ts
-import componentUtils from '@ohos.arkui.componentUtils'
+import { componentUtils } from '@kit.ArkUI';
 ```
 ## componentUtils.getRectangleById
 
 getRectangleById(id: string): ComponentInfo
 
 Obtains a **ComponentInfo** object based on the component ID.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -35,14 +37,24 @@ Obtains a **ComponentInfo** object based on the component ID.
 | ------ | ---------- |
 | [ComponentInfo](#componentinfo) | **ComponentInfo** object, which provides the size, position, translation, scaling, rotation, and affine matrix information of the component.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message               |
+| ------ | ------------------- |
+| 100001 | UI execution context not found. |
+
 **Example**
 
 ```ts
-import componentUtils from '@ohos.arkui.componentUtils';
+import { componentUtils } from '@kit.ArkUI';
 let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("onClick");
 ```
 
 ## ComponentInfo
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -55,9 +67,11 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 | translate      | [TranslateResult](#translateresult) | Yes| Translation of the component.               |
 | scale          | [ScaleResult](#scaleresult) | Yes| Scaling of the component.               |
 | rotate         | [RotateResult](#rotateresult) | Yes| Rotation of the component.               |
-| transform      | [Matrix4Result](#matrix4result) | Yes| Affine matrix of the component, which is a 4 x 4 matrix object created based on the input parameter. |
+| transform      | [Matrix4Result](#matrix4result) | Yes| Affine matrix of the component, which is a 4x4 matrix object created based on the input parameter. |
 
 ### Size 
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -68,6 +82,8 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### Offset
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name    | Type| Mandatory| Description                              |
@@ -76,6 +92,8 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 | y       | number | Yes| Y coordinate.<br>Unit: px                          |
 
 ### TranslateResult
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -86,6 +104,8 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 | z       | number | Yes| Translation distance along the z-axis.<br>Unit: px                      |
 
 ### ScaleResult
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -98,6 +118,8 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 | centerY | number | Yes| Y coordinate of the center point.<br>Unit: px               |
 
 ### RotateResult
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -112,9 +134,13 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### Matrix4Result
 
+type Matrix4Result = [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number]
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Value Range  | Description                              |
+| Type| Description                              |
 | --------| -----------------------------------|
 | [number,number,number,number,<br>number,number,number,number,<br>number,number,number,number,<br>number,number,number,number] | A number array whose length is 16 (4 x 4). The unit is px. For details, see **4 x 4 matrix description**. |
 
@@ -141,9 +167,12 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 **Example**
 
+> **NOTE**
+>
+> You are advised to use the [getComponentUtils](./js-apis-arkui-UIContext.md#getcomponentutils) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **ComponentUtils** object associated with the current UI context.
+
   ```ts
-import matrix4 from '@ohos.matrix4';
-import componentUtils from '@ohos.arkui.componentUtils';
+import { matrix4, componentUtils } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -156,10 +185,10 @@ struct Utils {
 
   build() {
     Column() {
-      Image($r("app.media.icon"))
+      Image($r("app.media.img"))
         .transform(this.matrix1)
-        .translate({ x: 100, y: 10, z: 50 })
-        .scale({ x: 2, y: 0.5, z: 1 })
+        .translate({ x: 20, y: 20, z: 20 })
+        .scale({ x: 0.5, y: 0.5, z: 1 })
         .rotate({
           x: 1,
           y: 1,
@@ -168,21 +197,21 @@ struct Utils {
           centerY: '50%',
           angle: 300
         })
-        .width("40%")
+        .width(300)
         .height(100)
         .key("image_01")
-      Button() {
-        Text('getRectangleById').fontSize(40).fontWeight(FontWeight.Bold);
-      }.margin(20)
+      Button('getRectangleById')
       .onClick(() => {
-        this.value = JSON.stringify(componentUtils.getRectangleById("image_01"))
-      }).id('onClick')
+        this.value = JSON.stringify(componentUtils.getRectangleById("image_01")) // You are advised to use this.getUIContext().getComponentUtils().
+      }).margin(10).id('onClick')
       Text(this.value)
         .margin(20)
         .width(300)
-        .height(400)
+        .height(300)
         .borderWidth(2)
-    }
+    }.margin({left: 50})
   }
 }
   ```
+
+  ![componentget](figures/getRectangleById.gif) 

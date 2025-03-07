@@ -17,7 +17,7 @@ A locale consists of four parts: language, script, country/region, and extended 
 | Part| Description| 
 | -------- | -------- |
 | Language| Language used by the user. The value consists of two or three lowercase letters. For example, **zh** indicates Chinese.<br>For more language codes, see the ISO-639 standard.| 
-| Script| Character set used by the user. The value consists of four letters with the first letter being capitalized. For example, **Hans** indicates simplified Chinese.<br>For more script codes, see the ISO-5924 standard.| 
+| Script| Character set used by the user. The value consists of four letters with the first letter being capitalized. For example, **Hans** indicates simplified Chinese.<br>For more script codes, see the ISO-15924 standard.| 
 | Country/region| Country/region where the user is located. The value consists of two uppercase letters. For example, **CN** indicates China.<br>For more country/region codes, see the ISO-3166 standard.| 
 | Extensions| Extended parameters that indicate other features of the user, including the calendar, string collation, numeral system, and hour cycle. The value starts with a lowercase letter **u**. Each extended parameter consists of a key and a value, which are separated using a hyphen (-). For example, **u-ca-chinese-co-pinyin** means collation by lunar calendar and pinyin.<br>For supported extended parameters, see Table 2. For more extended parameters, see BCP 47 Extensions.| 
 
@@ -53,7 +53,7 @@ The following uses date and time formatting as an example. For details about API
 
 1. Import the **intl** module.
    ```ts
-   import Intl from '@ohos.intl';
+   import { intl } from '@kit.LocalizationKit';
    ```
 
 2. Create a **Locale** object. Three methods are provided:
@@ -62,16 +62,16 @@ The following uses date and time formatting as an example. For details about API
    - Use the default **Locale** constructor to create a **Locale** object. This object will be used to represent the current system locale.
 
    ```ts
-   let date = new Date(2023, 9, 25);
+   let date = new Date(2023, 9, 15);
    
    // Method 1: Create a Locale object using the locale string.
-   let zhLocale = new Intl.Locale("zh-Hans-CN-u-nu-latn");
+   let zhLocale = new intl.Locale("zh-Hans-CN-u-nu-latn");
    
    // Method 2: Create a Locale object using the locale string and LocaleOptions.
-   let enLocale = new Intl.Locale("en", {numberingSystem: "latn"});
+   let enLocale = new intl.Locale("en", {numberingSystem: "latn"});
    
    // Method 3: Create a Locale object using the default Locale constructor.
-   let systemLocale = new Intl.Locale();
+   let systemLocale = new intl.Locale();
    ```
 
 3. Format the date and time.
@@ -79,14 +79,14 @@ The following uses date and time formatting as an example. For details about API
 
    ```ts
    // Method 1
-   let zhDateTimeFmt = new Intl.DateTimeFormat(zhLocale.toString());
-   let result = zhDateTimeFmt.format(date); // result = "2023/10/23"
+   let zhDateTimeFmt = new intl.DateTimeFormat(zhLocale.toString());
+   let result = zhDateTimeFmt.format(date); // result = "2023/10/15"
    
    // Method 2
-   let enDateTimeFmt = new Intl.DateTimeFormat(enLocale.toString());
-   result = enDateTimeFmt.format(date); // result = "10/23/2023"
+   let enDateTimeFmt = new intl.DateTimeFormat(enLocale.toString());
+   result = enDateTimeFmt.format(date); // result = "10/15/23"
    
    // Method 3
-   let systemDateTimeFmt = new Intl.DateTimeFormat(systemLocale.toString());
-   result = systemDateTimeFmt.format(date); // result = "2023/10/23" (The display effect depends on the current system environment.)
+   let systemDateTimeFmt = new intl.DateTimeFormat(systemLocale.toString());
+   result = systemDateTimeFmt.format(date); // result = "2023/10/15" (The display effect depends on the current system environment.)
    ```

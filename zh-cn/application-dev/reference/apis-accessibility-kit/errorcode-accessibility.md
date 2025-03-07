@@ -48,7 +48,7 @@ Target ability already enabled.
 
 **错误信息**
 
-Do not have accessibility right for this operation.
+No accessibility permission to perform the operation.
 
 **错误描述**
 

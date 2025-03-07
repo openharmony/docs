@@ -1,20 +1,12 @@
 # Accessing Backup and Restore
 
-You can use BackupExtensionAbility to enable an application to access the backup and restore framework.
+You can use **BackupExtensionAbility** to enable an application to access the backup and restore framework.
 
-BackupExtensionAbility is a class derived from [ExtensionAbility](../application-models/extensionability-overview.md) in the [stage model](../application-models/stage-model-development-overview.md). The application that has accessed the backup and restore framework can customize the backup and restore behavior, including whether to enable backup and restore and specifying the data to be backed up, in a profile. 
+**BackupExtensionAbility** is a class derived from [ExtensionAbility](../application-models/extensionability-overview.md) in the [stage model](../application-models/stage-model-development-overview.md). The application that has accessed the backup and restore framework can customize the backup and restore behavior, including whether to enable backup and restore and specifying the data to be backed up, in a profile. 
 
 ## Available APIs
 
-| Module       | Class                  | Interface                                         | Description                                                         |
-| ----------- | ---------------------- | --------------------------------------------- | ----------------------------------------------------------------- |
-| application | BundleVersion          | code: number                                  | Application version number.                                                     |
-| application | BundleVersion          | name: string                                  | Application version name.                                                   |
-| application | BackupExtensionAbility | onBackup(): void                              | Callback provided by BackupExtensionAbility to be invoked before the data backup is triggered.|
-| application | BackupExtensionAbility | onRestore(bundleVersion: BundleVersion): void | Callback provided by BackupExtensionAbility to be invoked after the data restore is triggered.|
-| application | BackupExtensionAbility | context: ExtensionContext                     | BackupExtensionAbility context, which inherits from **Context**.              |
-
-For details about how to use the APIs, see [BackupExtensionAbility](../reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md#backupextensionability).
+For details about how to use the APIs, see [BackupExtensionAbility](../reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md#backupextensionability) and [Backup and Restore Extension Capability](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md).
 
 ## Constraints
 
@@ -45,9 +37,9 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
                        "resource": "$profile:backup_config"
                    }
                ],
-               // In the BackupExtension.ts file, inherit from BackupExtensionAbility and override the onBackup and onRestore methods.
-               // If there is no special requirement, you do not have to override onBackup and onRestore. In this case, the backup and restore service backs up or restores data based on the unified backup and restore rules.
-               "srcEntry": "./ets/BackupExtension/BackupExtension.ts", 
+               // In the BackupExtension.ets file, define BackupExtensionAbility in extensionAbilities and override onBackup or onBackupEx and onRestore or onRestoreEx methods. The onBackupEx and onRestoreEx methods are recommended.
+               // Empty implementation can be used if there is no special requirement. In this case, the backup and restore service backs up or restores data based on the unified backup and restore rules.
+               "srcEntry": "./ets/BackupExtension/BackupExtension.ets", 
            }      
        ]
    }
@@ -55,9 +47,9 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
 
 2. Add a metadata profile.
 
-   The metadata profile defines the files to be transferred during the backup and restore process. The profile is located in the **resources/profile** directory of the project, and the file name must be the same as the value of **metadata.resource** in the **module.json5** file.
+   The metadata profile defines the files to be transferred during the backup and restore process. The profile is located in the **resources/base/profile** directory of the project, and the file name must be the same as the value of **metadata.resource**, for example, **backup_config.json** in the **module.json5** file.
 
-   Example:
+   Metadata profile example:
 
    ```json
    {
@@ -69,53 +61,93 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
            "/data/storage/el2/base/files/users/hidden/"
        ],
        "fullBackupOnly": false,
-       "restoreDeps": "",
+       "restoreDeps": ""
    }
    ```
 
-3. Customize **BackupExtensionAbility** inherited by the class in the **BackupExtension.ts** file and override **onBackup** or **onRestore** to back up preprocessed application data or process the data to be restored.
+3. Customize **BackupExtensionAbility** in the **BackupExtension.ets** file and override **onBackup**/**onBackupEx** or **onRestore**/**onRestoreEx** to back up preprocessed application data or process the data to be restored.
 
-   Use an empty implementation if there is no special requirement. In this case, the backup and restore service backs up or restores data based on the unified backup and restore rules.
+   Empty implementation can be used if there is no special requirement. In this case, the backup and restore service backs up or restores data based on the unified backup and restore rules.
 
-   The following example shows an empty implementation of the **BackupExtension.ts** file.
+   The following example shows an empty implementation of the **BackupExtension.ets** file.
 
     ```ts
-    import BackupExtensionAbility, {BundleVersion} from '@ohos.application.BackupExtensionAbility';
-    import Logger from '../common/Logger';
+    //onBackup && onRestore
+    import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
+    import {hilog} from '@kit.PerformanceAnalysisKit';
     
     const TAG = `FileBackupExtensionAbility`;
     export default class BackupExtension extends  BackupExtensionAbility {
+      //onBackup
       async onBackup ()   {
-        Logger.info(TAG, `onBackup ok`);
+        hilog.info(0x0000, TAG, `onBackup ok`);
+      }
+      //onRestore
+      async onRestore (bundleVersion : BundleVersion) {
+        hilog.info(0x0000, TAG, `onRestore ok ${JSON.stringify(bundleVersion)}`);
+        hilog.info(0x0000, TAG, `onRestore end`);
+      }
+    }
+    ```
+
+    ```ts
+    //onBackupEx && onRestoreEx
+    import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
+
+    interface ErrorInfo {
+      type: string,
+      errorCode: number,
+      errorInfo: string
+    }
+
+    class BackupExt extends BackupExtensionAbility {
+      //onBackupEx
+      async onBackupEx(backupInfo: string): Promise<string> {
+        console.log(`onBackupEx ok`);
+        let errorInfo: ErrorInfo = {
+          type: "ErrorInfo",
+          errorCode: 0,
+          errorInfo: "app diy error info"       
+        }
+        return JSON.stringify(errorInfo);
       }
 
-      async onRestore (bundleVersion : BundleVersion) {
-        Logger.info(TAG, `onRestore ok ${JSON.stringify(bundleVersion)}`);
-        Logger.info(TAG, `onRestore end`);
+      // onRestoreEx
+      async onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): Promise<string> {
+        console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
+        let errorInfo: ErrorInfo = {
+          type: "ErrorInfo",
+          errorCode: 0,
+          errorInfo: "app diy error info"
+        }
+        return JSON.stringify(errorInfo);
       }
     }
     ```
 
 ### Description of the Metadata Profile
 
-| Field            | Type  | Mandatory| Description                                                                                                                                                                                           |
-| -------------------- | ---------- | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| allowToBackupRestore | Boolean    | Yes  | Whether to enable backup and restore. The default value is **false**.                                                                                                                                                                |
-| includes             | String array| No  | Files and directories to be backed up in the application sandbox directory.<br>The pattern string that does not start with a slash (/) indicates a relative path.<br>If **includes** is not specified, the backup and restore framework uses the **includes** default (as listed in the code snippet below).|
-| excludes             | String array| No  | Items in **includes** that do not need to be backed up. The value is in the same format as **includes**.<br>If **excludes** is not configured, the backup and restore framework uses an empty array by default.                                             |
-| fullBackupOnly       | Boolean    | No  | Whether to use the default restore directory of the application. The default value is **false**. If the value is **true**, data is decompressed under **/data/storage/el2/backup/restore/** during the data restore process.<br>If the value is **false** or is not specified, data is decompressed under **/**.  |
-| restoreDeps          | String    | No  | Names of the applications, on which the application restore depends. Use commas (,) to separate multiple applications. The default value is "".                                                                                                          |
+| Field            | Type  | Mandatory| Description                                                        |
+| -------------------- | ---------- | ---- | ------------------------------------------------------------ |
+| allowToBackupRestore | Boolean    | Yes  | Whether to enable backup and restore. The default value is **false**.                             |
+| includes             | String array| No  | Files and directories to be backed up in the application sandbox directory.<br>The pattern string that does not start with a slash (/) indicates a relative path.<br>If **includes** is not configured, the backup and restore framework uses the **includes** default (as listed in the code snippet below).|
+| excludes             | String array| No  | Items in **includes** that do not need to be backed up. The value is in the same format as **includes**.<br>If **excludes** is not configured, the backup and restore framework uses an empty array by default.|
+| fullBackupOnly       | Boolean    | No  | Whether to use the default restore directory of the application. The default value is **false**. If the value is **true**, data will be cached in a temporary directory obtained by [backupDir](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md) in the data restore process. If it is **false** or not specified, the restored data is decompressed in **/**.|
+| restoreDeps          | String    | No  | **(Not recommended)** Dependencies for the application to restore.<br/>The default value is "". <br/>You need to configure the names of the dependent applications. Currently, only one dependency is supported. The configured dependency takes effect only in the context of one restore task. If no dependent application is detected, the dependency description will be ignored and the restore task continues. The application restore will fail if the dependent application is not restored or fails to be restored.|
+| extraInfo            | JSON string    | No  | Additional information to be passed.                                  |
 
 > **NOTE**
-> 
-> When setting **fullBackupOnly**, note the following:
-> - If **fullBackupOnly** is set to **false**, the restored files will overwrite the file with the same name in the directory.
-> - If **fullBackupOnly** is set to **true**, the restored data is decompressed in the **/data/storage/el2/backup/restore/** directory. You can access the data via **OnRestore** to restore it.
 >
-> You can set **fullBackupOnly** based on service requirements. If **fullBackupOnly** is set to **true**, you need to implement the data restore logic in **OnRestore**. For example, if the application backup path is **data/storage/el2/base/files/A/**, the data restored will be decompressed to the **/data/storage/el2/backup/restore/data/storage/el2/base/files/A/** directory.
+> When setting **fullBackupOnly**, observe the following:
 >
+> - If **fullBackupOnly** is set to **false**, the restored data will be decompressed in the root directory **/**, and the file with the same name in the directory will be overwritten.
+> - If **fullBackupOnly** is set to **true**, the restored data will be decompressed in a temporary directory. You need to implement the data restoration logic in **OnRestore** or **OnRestoreEx**.
+>
+> You can determine the data restore mode to use based on service requirements. Assume that the temporary directory is **/data/storage/el2/base/.backup/restore/** and the data backup directory of the application is **data/storage/el2/base/files/A/**.
+>
+> If **fullBackupOnly** is **false**, the restored data will be decompressed to the **/data/storage/el2/base/files/A/** directory. If **fullBackupOnly** is **true**, data will be decompressed to the **/data/storage/el2/base/.backup/restore/data/storage/el2/base/files/A/** directory.
 
-**includes** default:
+**includes** defaults:
 
 ```json
 {

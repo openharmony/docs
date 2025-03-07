@@ -36,4 +36,4 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVCodecBufferFlags](_core.md#oh_avcodecbufferflags-1) {<br/>AVCODEC_BUFFER_FLAGS_NONE = 0,<br/>AVCODEC_BUFFER_FLAGS_EOS = 1 &lt;&lt; 0, AVCODEC_BUFFER_FLAGS_SYNC_FRAME = 1 &lt;&lt; 1, AVCODEC_BUFFER_FLAGS_INCOMPLETE_FRAME = 1 &lt;&lt; 2,<br/>AVCODEC_BUFFER_FLAGS_CODEC_DATA = 1 &lt;&lt; 3<br/>} | 枚举OH_AVCodec缓冲区标记的类别。 | 
+| [OH_AVCodecBufferFlags](_core.md#oh_avcodecbufferflags-1) {<br/>AVCODEC_BUFFER_FLAGS_NONE = 0,<br/>AVCODEC_BUFFER_FLAGS_EOS = 1 &lt;&lt; 0, AVCODEC_BUFFER_FLAGS_SYNC_FRAME = 1 &lt;&lt; 1, AVCODEC_BUFFER_FLAGS_INCOMPLETE_FRAME = 1 &lt;&lt; 2,<br/>AVCODEC_BUFFER_FLAGS_CODEC_DATA = 1 &lt;&lt; 3, <br/>AVCODEC_BUFFER_FLAGS_DISCARD = 1 &lt;&lt; 4, <br/>AVCODEC_BUFFER_FLAGS_DISPOSABLE = 1 &lt;&lt; 5<br/>} | 枚举OH_AVCodec缓冲区标记的类别。  | 

@@ -8,13 +8,13 @@
    ```ts
     Text()
      .animation({
-      duration: 1200,
-      iterations: 10,
-      expectedFrameRateRange: { // 设置属性动画的帧率范围
-   ​    expected: 60, // 设置动画的期望帧率为60hz
-   ​    min: 0, // 设置帧率范围
-   ​    max: 120 // 设置帧率范围
-      },
+        duration: 1200,
+        iterations: 10,
+        expectedFrameRateRange: { // 设置属性动画的帧率范围
+          expected: 60, // 设置动画的期望帧率为60hz
+          min: 0, // 设置帧率范围
+          max: 120, // 设置帧率范围
+        },
      })
    ```
 

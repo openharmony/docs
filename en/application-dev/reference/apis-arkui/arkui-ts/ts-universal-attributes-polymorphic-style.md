@@ -14,7 +14,9 @@ stateStyles(value: StateStyles)
 
 Sets the state-specific styles for the component.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -26,7 +28,9 @@ Sets the state-specific styles for the component.
 
 ## StateStyles
 
-Since API version 9, this API is supported in ArkTS widgets. Only the [universal attributes](ts-universal-attributes-size.md) are supported.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9. Only the [universal attributes](ts-universal-attributes-size.md) are supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -55,7 +59,9 @@ Since API version 9, this API is supported in ArkTS widgets. Only the [universal
 
 ## Example
 
-### Example 1
+### Example 1: Setting Polymorphic Styles for the Text Component
+
+This example demonstrates the style changes of the **Text** component when its state is pressed or disabled.
 
 ```ts
 // xxx.ets
@@ -153,7 +159,9 @@ struct StyleExample {
 
 ![en-us_image_0000001211898512](figures/en-us_image_0000001211898512.gif)
 
-### Example 2
+### Example 1: Setting Polymorphic Styles for the Radio Component
+
+This example demonstrates the style changes of the **Radio** component when its state is selected.
 
 ```ts
 // xxx.ets

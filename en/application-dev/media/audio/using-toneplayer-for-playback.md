@@ -7,35 +7,35 @@ TonePlayer<sup>9+</sup> provides APIs for playing and managing Dual Tone Multi F
 
 The table below lists the supported [ToneType](../../reference/apis-audio-kit/js-apis-audio-sys.md#tonetype9)s. You can call **load()** with **audio.ToneType.*type*** as a parameter to load the tone resource of the specified type.
 
-| Tone Type| Value| Description|
+| Tone Type | Value | Description |
 | -------- | -------- | -------- |
-| TONE_TYPE_DIAL_0 | 0 | DTMF tone of key 0.|
-| TONE_TYPE_DIAL_1 | 1 | DTMF tone of key 1.|
-| TONE_TYPE_DIAL_2 | 2 | DTMF tone of key 2.|
-| TONE_TYPE_DIAL_3 | 3 | DTMF tone of key 3.|
-| TONE_TYPE_DIAL_4 | 4 | DTMF tone of key 4.|
-| TONE_TYPE_DIAL_5 | 5 | DTMF tone of key 5.|
-| TONE_TYPE_DIAL_6 | 6 | DTMF tone of key 6.|
-| TONE_TYPE_DIAL_7 | 7 | DTMF tone of key 7.|
-| TONE_TYPE_DIAL_8 | 8 | DTMF tone of key 8.|
-| TONE_TYPE_DIAL_9 | 9 | DTMF tone of key 9.|
-| TONE_TYPE_DIAL_S | 10 | DTMF tone of the star key (*).|
-| TONE_TYPE_DIAL_P | 11 | DTMF tone of the pound key (#).|
-| TONE_TYPE_DIAL_A | 12 | DTMF tone of key A.|
-| TONE_TYPE_DIAL_B | 13 | DTMF tone of key B.|
-| TONE_TYPE_DIAL_C | 14 | DTMF tone of key C.|
-| TONE_TYPE_DIAL_D | 15 | DTMF tone of key D.|
-| TONE_TYPE_COMMON_SUPERVISORY_DIAL | 100 | Supervisory tone - dial tone.|
-| TONE_TYPE_COMMON_SUPERVISORY_BUSY | 101 | Supervisory tone - busy.|
-| TONE_TYPE_COMMON_SUPERVISORY_CONGESTION | 102 | Supervisory tone - congestion.|
-| TONE_TYPE_COMMON_SUPERVISORY_RADIO_ACK | 103 | Supervisory tone - radio path acknowledgment.|
-| TONE_TYPE_COMMON_SUPERVISORY_RADIO_NOT_AVAILABLE | 104 | Supervisory tone - radio path not available.|
-| TONE_TYPE_COMMON_SUPERVISORY_CALL_WAITING | 106 | Supervisory tone - call waiting tone.|
-| TONE_TYPE_COMMON_SUPERVISORY_RINGTONE | 107 | Supervisory tone - ringing tone.|
-| TONE_TYPE_COMMON_PROPRIETARY_BEEP | 200 | Proprietary tone - beep tone.|
-| TONE_TYPE_COMMON_PROPRIETARY_ACK | 201 | Proprietary tone - ACK.|
-| TONE_TYPE_COMMON_PROPRIETARY_PROMPT | 203 | Proprietary tone - PROMPT.|
-| TONE_TYPE_COMMON_PROPRIETARY_DOUBLE_BEEP | 204 | Proprietary tone - double beep tone.|
+| TONE_TYPE_DIAL_0 | 0 | DTMF tone of key 0. |
+| TONE_TYPE_DIAL_1 | 1 | DTMF tone of key 1. |
+| TONE_TYPE_DIAL_2 | 2 | DTMF tone of key 2. |
+| TONE_TYPE_DIAL_3 | 3 | DTMF tone of key 3. |
+| TONE_TYPE_DIAL_4 | 4 | DTMF tone of key 4. |
+| TONE_TYPE_DIAL_5 | 5 | DTMF tone of key 5. |
+| TONE_TYPE_DIAL_6 | 6 | DTMF tone of key 6. |
+| TONE_TYPE_DIAL_7 | 7 | DTMF tone of key 7. |
+| TONE_TYPE_DIAL_8 | 8 | DTMF tone of key 8. |
+| TONE_TYPE_DIAL_9 | 9 | DTMF tone of key 9. |
+| TONE_TYPE_DIAL_S | 10 | DTMF tone of the star key (*). |
+| TONE_TYPE_DIAL_P | 11 | DTMF tone of the pound key (#). |
+| TONE_TYPE_DIAL_A | 12 | DTMF tone of key A. |
+| TONE_TYPE_DIAL_B | 13 | DTMF tone of key B. |
+| TONE_TYPE_DIAL_C | 14 | DTMF tone of key C. |
+| TONE_TYPE_DIAL_D | 15 | DTMF tone of key D. |
+| TONE_TYPE_COMMON_SUPERVISORY_DIAL | 100 | Supervisory tone - dial tone. |
+| TONE_TYPE_COMMON_SUPERVISORY_BUSY | 101 | Supervisory tone - busy. |
+| TONE_TYPE_COMMON_SUPERVISORY_CONGESTION | 102 | Supervisory tone - congestion. |
+| TONE_TYPE_COMMON_SUPERVISORY_RADIO_ACK | 103 | Supervisory tone - radio path acknowledgment. |
+| TONE_TYPE_COMMON_SUPERVISORY_RADIO_NOT_AVAILABLE | 104 | Supervisory tone - radio path not available. |
+| TONE_TYPE_COMMON_SUPERVISORY_CALL_WAITING | 106 | Supervisory tone - call waiting tone. |
+| TONE_TYPE_COMMON_SUPERVISORY_RINGTONE | 107 | Supervisory tone - ringing tone. |
+| TONE_TYPE_COMMON_PROPRIETARY_BEEP | 200 | Proprietary tone - beep tone. |
+| TONE_TYPE_COMMON_PROPRIETARY_ACK | 201 | Proprietary tone - ACK. |
+| TONE_TYPE_COMMON_PROPRIETARY_PROMPT | 203 | Proprietary tone - PROMPT. |
+| TONE_TYPE_COMMON_PROPRIETARY_DOUBLE_BEEP | 204 | Proprietary tone - double beep tone. |
 
 
 ## How to Develop
@@ -45,7 +45,7 @@ To implement audio playback with the TonePlayer, perform the following steps:
 1. Create a **TonePlayer** instance.
    
    ```ts
-   import audio from '@ohos.multimedia.audio';
+   import { audio } from '@kit.AudioKit';
    
    let audioRendererInfo: audio.AudioRendererInfo = {
      usage : audio.StreamUsage.STREAM_USAGE_DTMF,
@@ -99,8 +99,8 @@ To prevent the UI thread from being blocked, most **TonePlayer** calls are async
 
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let timerPro : number;
 // Promise mode.

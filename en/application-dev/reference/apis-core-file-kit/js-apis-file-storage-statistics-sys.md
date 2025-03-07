@@ -5,7 +5,7 @@ The **storageStatistics** module provides APIs for obtaining storage space infor
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.file.storageStatistics](js-apis-file-storage-statistics-sys.md).
+> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.file.storageStatistics](js-apis-file-storage-statistics.md).
 
 ## Modules to Import
 
@@ -45,7 +45,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -84,7 +84,7 @@ Obtains the total space of a volume in an external storage device, in bytes. Thi
   | Name    | Type                                | Mandatory| Description                      |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
   | volumeUuid | string                               | Yes  | UUID of the volume.                      |
-  | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the total volume space obtained.|
+  | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback used to return the total volume space obtained.|
 
 **Error codes**
 
@@ -94,7 +94,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -151,7 +151,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -190,7 +190,7 @@ Obtains the available space of a volume in an external storage device, in bytes.
   | Name    | Type                                | Mandatory| Description                        |
   | ---------- | ------------------------------------ | ---- | ---------------------------- |
   | volumeUuid | string                               | Yes  | UUID of the volume.                        |
-  | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the available volume space obtained.|
+  | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback used to return the available volume space obtained.|
 
 **Error codes**
 
@@ -200,7 +200,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -227,7 +227,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 ## storageStatistics.getBundleStats<sup>9+</sup>
 
-getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
+getBundleStats(packageName: string, index?: number): Promise&lt;BundleStats&gt;
 
 Obtains the storage space of an application, in bytes. This API uses a promise to return the result.
 
@@ -242,6 +242,7 @@ Obtains the storage space of an application, in bytes. This API uses a promise t
   | Name     | Type  | Mandatory| Description    |
   | ----------- | ------ | ---- | -------- |
   | packageName | string | Yes  | Bundle name.|
+  | index<sup>12+</sup> | number | No  | Index of an application clone. The default value is **0**, which indicates the application itself. When an application clone is created, an index is assigned from 1 sequentially to **appIndex** of [BundleResourceInfo](../apis-ability-kit/js-apis-bundleManager-BundleResourceInfo-sys.md#bundleresourceinfo). The index can be obtained by [getBundleResourceInfo](../apis-ability-kit/js-apis-bundleResourceManager-sys.md#bundleresourcemanagergetbundleresourceinfo12).|
 
 **Return value**
 
@@ -257,7 +258,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -265,18 +266,34 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
+  import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+  import storageStatistics from "@ohos.file.storageStatistics";
   import { BusinessError } from '@ohos.base';
-  let packageName: string = "";
-  storageStatistics.getBundleStats(packageName).then((BundleStats: storageStatistics.BundleStats) => {
-    console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
-  }).catch((err: BusinessError) => {
-    console.error("getBundleStats failed with error:" + JSON.stringify(err));
-  });
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  let bundleName = "com.example.myapplication";
+  let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+  try {
+    let resourceInfo = bundleResourceManager.getBundleResourceInfo(bundleName, bundleFlags);
+    hilog.info(0x0000, 'testTag', 'getBundleResourceInfo successfully. Data label: %{public}s', JSON.stringify(resourceInfo.label));
+
+    let packageName:string = bundleName;
+    let index:number = resourceInfo.appIndex;
+    storageStatistics.getBundleStats(packageName, index).then((BundleStats: storageStatistics.BundleStats) => {
+      hilog.info(0x0000, 'testTag', 'getBundleStats successfully. BundleStats: %{public}s', JSON.stringify(BundleStats));
+    }).catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', 'getBundleStats failed with error: %{public}s', JSON.stringify(err));
+    });
+  
+  } catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleResourceInfo failed with error: %{public}s', message);
+  }
   ```
 
 ## storageStatistics.getBundleStats<sup>9+</sup>
 
-getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;): void
+getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;, index?: number): void
 
 Obtains the storage space of an application, in bytes. This API uses an asynchronous callback to return the result.
 
@@ -291,7 +308,8 @@ Obtains the storage space of an application, in bytes. This API uses an asynchro
   | Name  | Type                                                     | Mandatory| Description                                |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
   | packageName | string | Yes  | Bundle name.|
-  | callback | AsyncCallback&lt;[Bundlestats](js-apis-file-storage-statistics.md#bundlestats9)&gt; | Yes  | Callback invoked to return the application storage space obtained.|
+  | callback | AsyncCallback&lt;[Bundlestats](js-apis-file-storage-statistics.md#bundlestats9)&gt; | Yes  | Callback used to return the application storage space obtained.|
+  | index<sup>12+</sup> | number | No  | Index of an application clone. The default value is **0**, which indicates the application itself. When an application clone is created, an index is assigned from 1 sequentially to **appIndex** of [BundleResourceInfo](../apis-ability-kit/js-apis-bundleManager-BundleResourceInfo-sys.md#bundleresourceinfo). The index can be obtained by [getBundleResourceInfo](../apis-ability-kit/js-apis-bundleResourceManager-sys.md#bundleresourcemanagergetbundleresourceinfo12).|
 
 **Error codes**
 
@@ -301,7 +319,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -309,16 +327,31 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
+  import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+  import storageStatistics from "@ohos.file.storageStatistics";
   import { BusinessError } from '@ohos.base';
-  let packageName: string = "";
-  storageStatistics.getBundleStats(packageName, (error: BusinessError, BundleStats: storageStatistics.BundleStats) => {
-    if (error) {
-      console.error("getBundleStats failed with error:" + JSON.stringify(error));
-    }  else {
-      // Do something.
-      console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
-    }
-  });
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  let bundleName = "com.example.myapplication";
+  let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+  try {
+    let resourceInfo = bundleResourceManager.getBundleResourceInfo(bundleName, bundleFlags);
+    hilog.info(0x0000, 'testTag', 'getBundleResourceInfo successfully. Data label: %{public}s', JSON.stringify(resourceInfo.label));
+
+    let packageName:string = bundleName;
+    let index:number = resourceInfo.appIndex;
+    storageStatistics.getBundleStats(packageName, (err: BusinessError, BundleStats: storageStatistics.BundleStats) => {
+      if (err) {
+        hilog.error(0x0000, 'testTag', 'getBundleStats failed with error: %{public}s', JSON.stringify(err));
+      } else {
+        hilog.info(0x0000, 'testTag', 'getBundleStats successfully. BundleStats: %{public}s', JSON.stringify(BundleStats));
+      }
+    }, index);
+  
+  } catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleResourceInfo failed: %{public}s', message);
+  }
   ```
 
 ## storageStatistics.getTotalSize<sup>9+</sup>
@@ -347,7 +380,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -378,7 +411,7 @@ Obtains the total space of the built-in storage, in bytes. This API uses an asyn
 
   | Name   | Type                                 | Mandatory | Description                    |
   | -------- | ------------------------------------ | ---- | ------------------------ |
-  | callback | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the built-in storage space obtained.|
+  | callback | AsyncCallback&lt;number&gt;          | Yes  | Callback used to return the built-in storage space obtained.|
 
 **Error codes**
 
@@ -388,7 +421,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -432,7 +465,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -475,7 +508,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -506,7 +539,7 @@ Obtains the available space of the built-in storage, in bytes. This API uses an 
 
   | Name   | Type                                 | Mandatory| Description                      |
   | -------- | ------------------------------------ | ---- | ------------------------- |
-  | callback | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the available space of the built-in storage obtained.|
+  | callback | AsyncCallback&lt;number&gt;          | Yes  | Callback used to return the available space of the built-in storage obtained.|
 
 **Error codes**
 
@@ -516,7 +549,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -560,7 +593,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -603,7 +636,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -634,7 +667,7 @@ Obtains the system data size, in bytes. This API uses an asynchronous callback t
 
   | Name    | Type                                | Mandatory| Description                      |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | callback   |  AsyncCallback&lt;number&gt;         | Yes  | Callback invoked to return the system data size obtained.|
+  | callback   |  AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the system data size obtained.|
 
 **Error codes**
 
@@ -644,7 +677,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -688,7 +721,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -719,7 +752,7 @@ Obtains the storage statistics of this user, in bytes. This API uses an asynchro
 
   | Name    | Type                                | Mandatory| Description                      |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
-| callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | Yes  | Callback invoked to return the storage statistics obtained. |
+  | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | Yes  | Callback used to return the storage statistics obtained.|
 
 **Error codes**
 
@@ -729,7 +762,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -779,7 +812,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600009 | User if out of range. |
 | 13900042 | Unknown error. |
@@ -813,7 +846,7 @@ Obtains the storage statistics of the specified user, in bytes. This API uses an
   | Name    | Type                                | Mandatory| Description                      |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
   | userId | number                               | Yes  | User ID|
-  | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | Yes  | Callback invoked to return the storage statistics obtained.|
+  | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | Yes  | Callback used to return the storage statistics obtained.|
 
 **Error codes**
 
@@ -823,7 +856,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600009 | User if out of range. |
 | 13900042 | Unknown error. |
@@ -849,7 +882,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **System API**: This is a system API.
 
-| Name     | Type  | Readable | Writable | Description          |
+| Name     | Type  | Read-Only | Writable | Description          |
 | --------- | ------ | ---- | ----- | -------------- |
 | total   | number | Yes| No| Total space of the built-in storage, in bytes.   |
 | audio | number  |Yes| No| Size of the audio data, in bytes. |

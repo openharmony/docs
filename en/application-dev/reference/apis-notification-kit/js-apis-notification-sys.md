@@ -2,10 +2,9 @@
 
 The **Notification** module provides notification management capabilities, covering notifications, notification slots, notification subscription, notification enabled status, and notification badge status.
 
-> **NOTE**
+> **NOTE**<br>
 >
 > The APIs provided by this module are no longer maintained since API version 9. You are advised to use [@ohos.notificationManager](js-apis-notificationManager.md).
->
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [Notification](./js-apis-notification.md).
@@ -588,7 +587,7 @@ Notification.enableNotification(bundle, false).then(() => {
 
 isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
-Checks whether notification is enabled for a specified application. This API uses a promise to return the result.
+Checks whether notification is enabled for a specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1397,7 +1396,7 @@ import Base from '@ohos.base';
 Notification.removeAll().then(() => {
   console.info("removeAll success");
 }).catch((err: Base.BusinessError) => {
-  ar
+  console.error(`removeAll failed, code is ${err}`);
 });
 ```
 
@@ -1464,7 +1463,7 @@ let userId: number = 1;
 Notification.removeAll(userId).then(() => {
   console.info("removeAll success");
 }).catch((err: Base.BusinessError) => {
-  ar
+  console.error(`removeAll failed, code is ${err}`);
 });
 ```
 
@@ -2319,8 +2318,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-> **NOTE**
->
+> **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [notificationManager.DeviceRemindType](js-apis-notificationManager-sys.md#deviceremindtype) instead.
 
 | Name                | Value | Description                              |
@@ -2337,8 +2335,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-> **NOTE**
->
+> **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [notificationManager.SourceType](js-apis-notificationManager-sys.md#sourcetype) instead.
 
 | Name                | Value | Description                 |
@@ -2353,8 +2350,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-> **NOTE**
->
+> **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [notificationManager.RemoveReason](js-apis-notificationSubscribe-sys.md#removereason) instead.
 
 | Name                | Value | Description                 |

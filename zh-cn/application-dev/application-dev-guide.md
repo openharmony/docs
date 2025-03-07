@@ -16,7 +16,7 @@
 
 
 - 应用框架相关Kit开放能力：Ability Kit（程序框架服务）、ArkUI（方舟UI框架）等。
-- 应用服务相关Kit开放能力：Account Kit（华为帐号服务）、Location Kit（位置服务）等。
+- 应用服务相关Kit开放能力：Calendar Kit（日历服务）、Location Kit（位置服务）等。
 - 系统相关Kit开放能力：Network Kit（网络服务）、Universal Keystore Kit（密钥管理服务）等。
 - 媒体相关Kit开放能力：Audio Kit（音频服务）、Media Library Kit（媒体文件管理服务）等。
 - 图形相关Kit开放能力：ArkGraphics 2D（方舟2D图形服务）等。

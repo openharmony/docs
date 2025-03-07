@@ -19,7 +19,7 @@ import bundle from '@ohos.bundle';
 | ohos.permission.GET_BUNDLE_INFO | normal | Permission to query information about a specified bundle.|
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED| system_basic | Permission to query information about all bundles.    |
 
-For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
+For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
 ## bundle.getApplicationInfo<sup>deprecated<sup>
 
@@ -57,17 +57,18 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 import bundle from '@ohos.bundle';
-import { BusinessError } from '@ohos.base'; 
+import { BusinessError } from '@ohos.base';
 
 let bundleName: string = "com.example.myapplication";
 let bundleFlags: number = 0;
 let userId: number = 100;
+
 bundle.getApplicationInfo(bundleName, bundleFlags, userId)
-.then((data) => {
+  .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
-})
+  })
 ```
 
 ## bundle.getApplicationInfo<sup>deprecated<sup>
@@ -105,13 +106,14 @@ import bundle from '@ohos.bundle';
 let bundleName: string = "com.example.myapplication";
 let bundleFlags: number = 0;
 let userId: number = 100;
+
 bundle.getApplicationInfo(bundleName, bundleFlags, userId, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
- })
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. Data:' + JSON.stringify(data));
+})
 ```
 
 ## bundle.getApplicationInfo<sup>deprecated<sup>
@@ -148,13 +150,14 @@ import bundle from '@ohos.bundle';
 
 let bundleName: string = "com.example.myapplication";
 let bundleFlags: number = 0;
+
 bundle.getApplicationInfo(bundleName, bundleFlags, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
- })
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. Data:' + JSON.stringify(data));
+})
 ```
 
 
@@ -197,11 +200,11 @@ let bundleFlag: number = 0;
 let userId: number = 100;
 
 bundle.getAllBundleInfo(bundleFlag, userId)
-.then((data) => {
+  .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
-})
+  })
 ```
 
 ## bundle.getAllBundleInfo<sup>deprecated<sup>
@@ -234,13 +237,14 @@ SystemCapability.BundleManager.BundleFramework
 import bundle from '@ohos.bundle';
 
 let bundleFlag: number = 0;
+
 bundle.getAllBundleInfo(bundleFlag, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
- })
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. Data:' + JSON.stringify(data));
+})
 ```
 
 ## bundle.getAllBundleInfo<sup>deprecated<sup>
@@ -276,13 +280,14 @@ import bundle from '@ohos.bundle';
 
 let bundleFlag: number = 0;
 let userId: number = 100;
+
 bundle.getAllBundleInfo(bundleFlag, userId, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
- })
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. Data:' + JSON.stringify(data));
+})
 ```
 
 ## bundle.getBundleInfo<sup>deprecated<sup>
@@ -327,14 +332,15 @@ import { BusinessError } from '@ohos.base';
 let bundleName: string = "com.example.myapplication";
 let bundleFlags: number = 1;
 let options: bundle.BundleOptions = {
-    "userId": 100
+  "userId": 100
 };
+
 bundle.getBundleInfo(bundleName, bundleFlags, options)
-.then((data) => {
+  .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
-})
+  })
 ```
 
 ## bundle.getBundleInfo<sup>deprecated<sup>
@@ -370,12 +376,13 @@ import bundle from '@ohos.bundle';
 
 let bundleName: string = "com.example.myapplication";
 let bundleFlags: number = 1;
+
 bundle.getBundleInfo(bundleName, bundleFlags, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. Data:' + JSON.stringify(data));
 })
 ```
 
@@ -414,14 +421,15 @@ import bundle from '@ohos.bundle';
 let bundleName: string = "com.example.myapplication";
 let bundleFlags: number = 1;
 let options: bundle.BundleOptions = {
-    "userId": 100
+  "userId": 100
 };
+
 bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. Data:' + JSON.stringify(data));
 })
 ```
 
@@ -462,12 +470,13 @@ import { BusinessError } from '@ohos.base';
 
 let bundleFlags: number = 8;
 let userId: number = 100;
+
 bundle.getAllApplicationInfo(bundleFlags, userId)
-.then((data) => {
+  .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
-})
+  })
 ```
 
 ## bundle.getAllApplicationInfo<sup>deprecated<sup>
@@ -501,12 +510,13 @@ import bundle from '@ohos.bundle';
 
 let bundleFlags: number = bundle.BundleFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
 let userId: number = 100;
+
 bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. Data:' + JSON.stringify(data));
 })
 ```
 
@@ -540,12 +550,13 @@ SystemCapability.BundleManager.BundleFramework
 import bundle from '@ohos.bundle';
 
 let bundleFlags: number = bundle.BundleFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
+
 bundle.getAllApplicationInfo(bundleFlags, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. Data:' + JSON.stringify(data));
 })
 ```
 
@@ -581,12 +592,13 @@ import { BusinessError } from '@ohos.base';
 
 let hapFilePath: string = "/data/storage/el2/base/test.hap";
 let bundleFlags: number = 0;
+
 bundle.getBundleArchiveInfo(hapFilePath, bundleFlags)
-.then((data) => {
+  .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
-})
+  })
 ```
 
 ## bundle.getBundleArchiveInfo<sup>deprecated<sup>
@@ -616,12 +628,13 @@ import bundle from '@ohos.bundle';
 
 let hapFilePath: string = "/data/storage/el2/base/test.hap";
 let bundleFlags: number = 0;
+
 bundle.getBundleArchiveInfo(hapFilePath, bundleFlags, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. Data:' + JSON.stringify(data));
 })
 ```
 
@@ -664,12 +677,13 @@ import { BusinessError } from '@ohos.base';
 
 let bundleName: string = "com.example.myapplication";
 let abilityName: string = "EntryAbility";
+
 bundle.getAbilityInfo(bundleName, abilityName)
-.then((data) => {
+  .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
-})
+  })
 ```
 
 ## bundle.getAbilityInfo<sup>deprecated<sup>
@@ -705,12 +719,13 @@ import bundle from '@ohos.bundle';
 
 let bundleName: string = "com.example.myapplication";
 let abilityName: string = "EntryAbility";
+
 bundle.getAbilityInfo(bundleName, abilityName, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. Data:' + JSON.stringify(data));
 })
 ```
 
@@ -753,12 +768,13 @@ import { BusinessError } from '@ohos.base';
 
 let bundleName: string = "com.example.myapplication";
 let abilityName: string = "EntryAbility";
+
 bundle.getAbilityLabel(bundleName, abilityName)
-.then((data) => {
+  .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
-})
+  })
 ```
 
 ## bundle.getAbilityLabel<sup>8+</sup> <sup>deprecated<sup>
@@ -794,12 +810,13 @@ import bundle from '@ohos.bundle';
 
 let bundleName: string = "com.example.myapplication";
 let abilityName: string = "EntryAbility";
+
 bundle.getAbilityLabel(bundleName, abilityName, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. Data:' + JSON.stringify(data));
 })
 ```
 
@@ -809,7 +826,7 @@ bundle.getAbilityLabel(bundleName, abilityName, (err, data) => {
 
 isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
 
-Checks whether the ability that matches a given **AbilityInfo** object is enabled. This API uses a promise to return the result.
+Checks whether the ability that matches a given AbilityInfo object is enabled. This API uses a promise to return the result.
 
 **System capability**
 
@@ -835,12 +852,13 @@ import { BusinessError } from '@ohos.base';
 
 let bundleName: string = "com.example.myapplication";
 let abilityName: string = "EntryAbility";
-bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
-    bundle.isAbilityEnabled(abilityInfo).then((data) => {
-        console.info('Operation successful. Data: ' + JSON.stringify(data));
-    }).catch((error: BusinessError) => {
-        console.error('Operation failed. Cause: ' + JSON.stringify(error));
-    })
+
+bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo) => {
+  bundle.isAbilityEnabled(abilityInfo).then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+  }).catch((error: BusinessError) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+  })
 })
 ```
 
@@ -850,7 +868,7 @@ bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
 
 isAbilityEnabled(info : AbilityInfo, callback : AsyncCallback\<boolean>): void
 
-Checks whether the ability that matches a given **AbilityInfo** object is enabled. This API uses an asynchronous callback to return the result.
+Checks whether the ability that matches a given AbilityInfo object is enabled. This API uses an asynchronous callback to return the result.
 
 **System capability**
 
@@ -870,14 +888,15 @@ import bundle from '@ohos.bundle';
 
 let bundleName: string = "com.example.myapplication";
 let abilityName: string = "EntryAbility";
-bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
-    bundle.isAbilityEnabled(abilityInfo, (err, data) => {
+
+bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo) => {
+  bundle.isAbilityEnabled(abilityInfo, (err, data) => {
     if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
+      console.error('Operation failed. Cause: ' + JSON.stringify(err));
+      return;
     }
     console.info('Operation successful. Data:' + JSON.stringify(data));
-    })
+  })
 })
 ```
 
@@ -912,12 +931,13 @@ import bundle from '@ohos.bundle';
 import { BusinessError } from '@ohos.base';
 
 let bundleName: string = "com.example.myapplication";
+
 bundle.isApplicationEnabled(bundleName)
-.then((data) => {
+  .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
-})
+  })
 ```
 
 ## bundle.isApplicationEnabled<sup>8+</sup> <sup>deprecated<sup>
@@ -945,12 +965,13 @@ SystemCapability.BundleManager.BundleFramework
 import bundle from '@ohos.bundle';
 
 let bundleName: string = "com.example.myapplication";
+
 bundle.isApplicationEnabled(bundleName, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. Data:' + JSON.stringify(data));
 })
 ```
 
@@ -996,15 +1017,16 @@ import Want from '@ohos.app.ability.Want';
 let bundleFlags: number = 0;
 let userId: number = 100;
 let want: Want = {
-    bundleName : "com.example.myapplication",
-    abilityName : "EntryAbility"
+  bundleName: "com.example.myapplication",
+  abilityName: "EntryAbility"
 };
+
 bundle.queryAbilityByWant(want, bundleFlags, userId)
-.then((data) => {
+  .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
-})
+  })
 ```
 
 
@@ -1045,15 +1067,16 @@ import Want from '@ohos.app.ability.Want';
 let bundleFlags: number = 0;
 let userId: number = 100;
 let want: Want = {
-    bundleName : "com.example.myapplication",
-    abilityName : "EntryAbility"
+  bundleName: "com.example.myapplication",
+  abilityName: "EntryAbility"
 };
+
 bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. Data:' + JSON.stringify(data));
 })
 ```
 
@@ -1091,15 +1114,16 @@ import Want from '@ohos.app.ability.Want';
 
 let bundleFlags: number = 0;
 let want: Want = {
-    bundleName : "com.example.myapplication",
-    abilityName : "EntryAbility"
+  bundleName: "com.example.myapplication",
+  abilityName: "EntryAbility"
 };
+
 bundle.queryAbilityByWant(want, bundleFlags, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. Data:' + JSON.stringify(data));
 })
 ```
 
@@ -1111,7 +1135,7 @@ bundle.queryAbilityByWant(want, bundleFlags, (err, data) => {
 
 getLaunchWantForBundle(bundleName: string): Promise\<Want>
 
-Obtains the **Want** object that launches the specified application. This API uses a promise to return the result.
+Obtains the Want object that launches the specified application. This API uses a promise to return the result.
 
 **Required permissions**
 
@@ -1139,12 +1163,13 @@ import bundle from '@ohos.bundle';
 import { BusinessError } from '@ohos.base';
 
 let bundleName: string = "com.example.myapplication";
+
 bundle.getLaunchWantForBundle(bundleName)
-.then((data) => {
+  .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
-})
+  })
 ```
 
 ## bundle.getLaunchWantForBundle<sup>deprecated<sup>
@@ -1153,7 +1178,7 @@ bundle.getLaunchWantForBundle(bundleName)
 
 getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 
-Obtains the **Want** object that launches the specified application. This API uses an asynchronous callback to return the result.
+Obtains the Want object that launches the specified application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**
 
@@ -1176,12 +1201,13 @@ SystemCapability.BundleManager.BundleFramework
 import bundle from '@ohos.bundle';
 
 let bundleName: string = "com.example.myapplication";
+
 bundle.getLaunchWantForBundle(bundleName, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. Data:' + JSON.stringify(data));
 })
 ```
 
@@ -1216,12 +1242,13 @@ import bundle from '@ohos.bundle';
 import { BusinessError } from '@ohos.base';
 
 let uid: number = 20010005;
+
 bundle.getNameForUid(uid)
-.then((data) => {
+  .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
-})
+  })
 ```
 
 ## bundle.getNameForUid<sup>8+</sup> <sup>deprecated<sup>
@@ -1249,12 +1276,13 @@ SystemCapability.BundleManager.BundleFramework
 import bundle from '@ohos.bundle';
 
 let uid: number = 20010005;
+
 bundle.getNameForUid(uid, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. Data:' + JSON.stringify(data));
 })
 ```
 
@@ -1265,7 +1293,7 @@ bundle.getNameForUid(uid, (err, data) => {
 
 getAbilityIcon(bundleName: string, abilityName: string): Promise\<image.PixelMap>
 
-Obtains the [pixel map](../apis-image-kit/js-apis-image.md) of the icon corresponding to a given bundle name and ability name. This API uses a promise to return the result.
+Obtains the [PixelMap](../apis-image-kit/js-apis-image.md) of the icon corresponding to a given bundle name and ability name. This API uses a promise to return the result.
 
 No permission is required for obtaining the caller's own information.
 
@@ -1297,12 +1325,13 @@ import { BusinessError } from '@ohos.base';
 
 let bundleName: string = "com.example.myapplication";
 let abilityName: string = "EntryAbility";
+
 bundle.getAbilityIcon(bundleName, abilityName)
-.then((data) => {
+  .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
-})
+  })
 ```
 
 ## bundle.getAbilityIcon<sup>8+</sup> <sup>deprecated<sup>
@@ -1311,7 +1340,7 @@ bundle.getAbilityIcon(bundleName, abilityName)
 
 getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void
 
-Obtains the [pixel map](../apis-image-kit/js-apis-image.md) of the icon corresponding to a given bundle name and ability name. This API uses an asynchronous callback to return the result.
+Obtains the [PixelMap](../apis-image-kit/js-apis-image.md) of the icon corresponding to a given bundle name and ability name. This API uses an asynchronous callback to return the result.
 
 No permission is required for obtaining the caller's own information.
 
@@ -1339,12 +1368,13 @@ import bundle from '@ohos.bundle';
 
 let bundleName: string = "com.example.myapplication";
 let abilityName: string = "EntryAbility";
+
 bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. Data:' + JSON.stringify(data));
 })
 ```
 
@@ -1364,7 +1394,7 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 | STATUS_INSTALL_FAILURE_INCOMPATIBLE                  | 6    | Installation incompatibility. (A downgrade occurs or the signature information is incorrect.)|
 | STATUS_UNINSTALL_FAILURE                             | 7    | Uninstallation failed. (The application to be uninstalled is not found.)                   |
 | STATUS_UNINSTALL_FAILURE_BLOCKED                     | 8    | Uninstallation aborted. (This error code is not in use.)                           |
-| STATUS_UNINSTALL_FAILURE_ABORTED                     | 9    | Uninstallation aborted. (Invalid parameters.)                       |
+| STATUS_UNINSTALL_FAILURE_ABORTED                     | 9    | Uninstallation aborted. (Invalid parameters.)                      |
 | STATUS_UNINSTALL_FAILURE_CONFLICT                    | 10   | Uninstallation conflict. (Failed to uninstall a system application or end the application process.)|
 | STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT              | 0x0B | Installation failed. (Download timed out.)                           |
 | STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED               | 0x0C | Installation failed. (Download failed.)                           |
@@ -1410,9 +1440,9 @@ Options that contain the user ID.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework
 
-| Name  | Type  | Readable| Writable| Description                                                 |
+| Name  | Type  | Read-Only| Optional| Description                                                 |
 | ------ | ------ | ---- | ---- | ----------------------------------------------------- |
-| userId | number | Yes  | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.|
+| userId | number | No  | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.|
 
 ## AbilityType<sup>deprecated<sup>
 
@@ -1477,7 +1507,7 @@ Enumerates the color modes of applications and widgets.
 
 | Name      | Value  | Description    |
 | ---------- | ---- | -------- |
-| AUTO_MODE  | -1   | Automatic mode.|
+| AUTO_MODE  | -1   | Auto mode.|
 | DARK_MODE  | 0    | Dark mode.|
 | LIGHT_MODE | 1    | Light mode.|
 
@@ -1494,5 +1524,3 @@ Enumerates the permission grant states.
 | ------------------ | ---- | ------------ |
 | PERMISSION_DENIED  | -1   | Permission denied.|
 | PERMISSION_GRANTED | 0    | Permission granted.    |
-
- <!--no_check--> 

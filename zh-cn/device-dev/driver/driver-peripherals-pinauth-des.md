@@ -88,25 +88,25 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
 
 |    接口名称    |   功能介绍   |
 | ------------------------------- | ------------------------------------------- |
-| GetExecutorList(std::vector\<sptr\<V1_0::IExecutor>>& executorList)  | 获取V1_0执行器列表。 |
-| GetExecutorListV1_1(std::vector\<sptr\<V1_1::IExecutor>>& executorList)      | 获取V1_1版本执行器列表。                         |
-| GetTemplateInfo(uint64_t templateId, TemplateInfo& info)  | 获取指定templateId的模板信息。   |
-| OnRegisterFinish(const std::vector\<uint64_t>& templateIdList,<br/>const std::vector\<uint8_t>& frameworkPublicKey,<br/>const std::vector\<uint8_t>&  extraInfo) | 执行器注册成功后，获取用户认证框架的公钥信息；获取用户认证框架的template 列表用于对账。 |
-| OnSetData(uint64_t scheduleId, uint64_t authSubType, <br/>const std::vector\<uint8_t> &data) | 回调函数，返回用户录入的口令子类型和录入的口令脱敏数据。       |
-| Enroll(uint64_t scheduleId, const std::vector\<uint8_t>& extraInfo,<br/>const sptr\<IExecutorCallback>& callbackObj) | 录入pin码。      |
-| Authenticate(uint64_t scheduleId, uint64_t templateId, const std::vector\<uint8_t>& extraInfo, const sptr\<IExecutorCallback>& callbackObj) | pin码认证。      |
+| GetExecutorInfo(ExecutorInfo& executorInfo)  | 获取执行器信息。 |
+| GetExecutorList(std::vector<sptr<V2_0::IAllInOneExecutor>>& allInOneExecutors, <br/>std::vector<sptr<V2_0::IVerifier>>& verifiers, <br/>std::vector<sptr<V2_0::ICollector>>& collectors)  | 获取V2_0执行器列表。 |
+| OnRegisterFinish(const std::vector<uint64_t>& templateIdList,<br/>const std::vector<uint8_t>& frameworkPublicKey,<br/>const std::vector<uint8_t>&  extraInfo) | 执行器注册成功后，获取用户认证框架的公钥信息；获取用户认证框架的template 列表用于对账。 |
+| Cancel(uint64_t scheduleId) | 通过scheduleId取消指定操作。       |
+| SetData(uint64_t scheduleId, uint64_t authSubType, <br/>const std::vector<uint8_t> &data, int32_t resultCode) | 回调函数，返回用户录入的口令子类型和录入的口令脱敏数据。       |
+| Enroll(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo, <br/>const sptr<IExecutorCallback>& callbackObj) | 录入pin码。      |
+| Authenticate(uint64_t scheduleId, const std::vector<uint64_t>& templateIdList, const std::vector<uint8_t>& extraInfo, const sptr<IExecutorCallback>& callbackObj) | pin码认证。      |
 | Delete(uint64_t templateId)       | 删除pin码模板。       |
-| Cancel(uint64_t scheduleId)     | 通过scheduleId取消指定操作。  |
-| SendCommand(int32_t commandId, const std::vector\<uint8_t>& extraInfo,<br/>const sptr\<IExecutorCallback>& callbackObj) | 预留接口。  |
-| GetProperty(const std::vector\<uint64_t>& templateIdList,<br/>const std::vector\<GetPropertyType>& propertyTypes, Property& property) | 获取执行器属性信息。 |
+| GetProperty(const std::vector<uint64_t>& templateIdList, <br/>const std::vector<GetPropertyType>& propertyTypes, Property& property) | 获取执行器属性信息。 |
 
 
 **表2** 回调函数介绍
 
 | 接口名称                                                       | 功能介绍             |
 | ------------------------------------------------------------ | -------------------- |
-| IExecutorCallback::OnResult(int32_t code, const std::vector\<uint8_t>& extraInfo) | 返回操作的最终结果。 |
-| IExecutorCallback::OnGetData(uint64_t scheduleId, const std::vector\<uint8_t>& salt,<br/> uint64_t authSubType)| 返回获取pin码数据信息。  |
+| IExecutorCallback::OnResult(int32_t result, const std::vector<uint8_t>& extraInfo) | 返回操作的最终结果。 |
+| IExecutorCallback::OnTip(int32_t tip, const std::vector<uint8_t>& extraInfo) | 返回操作的过程提示信息。 |
+| IExecutorCallback::OnGetData(const std::vector<uint8_t>& algoParameter, uint64_t authSubType, uint32_t algoVersion, const std::vector<uint8_t>& challenge)| 返回获取pin码数据信息。  |
+| IExecutorCallback::OnMessage(int32_t destRole, const std::vector<uint8_t>& msg)| 返回操作的过程交互消息。  |
 
 ### 开发步骤
 
@@ -126,10 +126,14 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
     └── service    # Pin_auth驱动实现入口
         ├── inc      # 头文件
         └── src      # 源文件
-            ├── executor_impl.cpp               # 认证、录入等功能接口实现
+            ├── all_in_one_impl.cpp             # 全功能执行器认证、录入等功能接口实现
+            ├── verifier_impl.cpp               # 认证器认证、录入等功能接口实现
+            ├── collector_impl.cpp              # 采集器认证、录入等功能接口实现
+            ├── executor_impl_common.cpp        # 工具类
             ├── pin_auth_interface_driver.cpp   # Pin_auth驱动入口
             └── pin_auth_interface_service.cpp  # 获取执行器列表接口实现
 ```
+
 
 下面结合DEMO实例介绍驱动开发的具体步骤。
 
@@ -143,7 +147,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
    };
 
    // 服务接口调用响应接口
-   static int32_t PinAuthInterfaceDriverDispatch(struct HdfDeviceIoClient *client, int cmdId, struct HdfSBuf *data,  struct HdfSBuf *reply)
+   static int32_t PinAuthInterfaceDriverDispatch(struct HdfDeviceIoClient *client, int cmdId, struct HdfSBuf *data, struct HdfSBuf *reply)
    {
        IAM_LOGI("start");
        auto *hdfPinAuthInterfaceHost = CONTAINER_OF(client->device->service,
@@ -185,7 +189,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
        IAM_LOGI("start");
        auto *hdfPinAuthInterfaceHost = new (std::nothrow) HdfPinAuthInterfaceHost;
        if (hdfPinAuthInterfaceHost == nullptr) {
-           IAM_LOGE("%{public}s: failed to create create HdfPinAuthInterfaceHost object", __func__);
+           IAM_LOGE("%{public}s: failed to create HdfPinAuthInterfaceHost object", __func__);
            return HDF_FAILURE;
        }
 
@@ -235,143 +239,115 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
 
 
 
-1. 完成获取执行器列表接口实现，详细代码参见[pin_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/pin_auth_interface_service.cpp)文件。
+2. 完成获取执行器列表接口实现，详细代码参见[pin_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/pin_auth_interface_service.cpp)文件。
 
    ```c++
    // 执行器实现类
-   class ExecutorImpl : public V1_1::IExecutor, public NoCopyable {
-   public:
-       explicit ExecutorImpl(std::shared_ptr<OHOS::UserIAM::PinAuth::PinAuth> pinHdi);
-       virtual ~ExecutorImpl() {}
-       int32_t GetExecutorInfo(ExecutorInfo &info) override;
-       int32_t GetTemplateInfo(uint64_t templateId, TemplateInfo &info) override;
-       int32_t OnRegisterFinish(const std::vector<uint64_t> &templateIdList,
-           const std::vector<uint8_t> &frameworkPublicKey, const std::vector<uint8_t> &extraInfo) override;
-       int32_t OnSetData(uint64_t scheduleId, uint64_t authSubType, const std::vector<uint8_t> &data) override;
-       int32_t Enroll(uint64_t scheduleId, const std::vector<uint8_t> &extraInfo,
-           const sptr<IExecutorCallback> &callbackObj) override;
-       int32_t Authenticate(uint64_t scheduleId, uint64_t templateId, const std::vector<uint8_t> &extraInfo,
-           const sptr<IExecutorCallback> &callbackObj) override;
-       int32_t Delete(uint64_t templateId) override;
-       int32_t Cancel(uint64_t scheduleId) override;
-       int32_t SendCommand(int32_t commandId, const std::vector<uint8_t> &extraInfo,
-           const sptr<IExecutorCallback> &callbackObj) override;
-       int32_t GetProperty(const std::vector<uint64_t> &templateIdList, const std::vector<GetPropertyType> &propertyTypes,
-           Property &property) override;
+    class ExecutorImpl : public HdiIExecutor, public NoCopyable {
+    public:
+        explicit ExecutorImpl(std::shared_ptr<OHOS::UserIam::PinAuth::PinAuth> pinHdi);
+        ~ExecutorImpl() override;
 
-   private:
-       class ScheduleMap {
-       public:
-           uint32_t AddScheduleInfo(const uint64_t scheduleId, const uint32_t commandId,
-               const sptr<IExecutorCallback> callback, const uint64_t templateId, const std::vector<uint8_t> salt);
-           uint32_t GetScheduleInfo(const uint64_t scheduleId, uint32_t &commandId, sptr<IExecutorCallback> &callback,
-               uint64_t &templateId, std::vector<uint8_t> &salt);
-           uint32_t DeleteScheduleId(const uint64_t scheduleId);
+        int32_t GetExecutorInfo(HdiExecutorInfo &info) override;
+        int32_t OnRegisterFinish(const std::vector<uint64_t> &templateIdList,
+            const std::vector<uint8_t> &frameworkPublicKey, const std::vector<uint8_t> &extraInfo) override;
+        int32_t Cancel(uint64_t scheduleId) override;
+        int32_t SendMessage(uint64_t scheduleId, int32_t srcRole, const std::vector<uint8_t>& msg) override;
+        int32_t SetData(uint64_t scheduleId, uint64_t authSubType, const std::vector<uint8_t> &data,
+            int32_t resultCode) override;
+        int32_t Enroll(uint64_t scheduleId, const std::vector<uint8_t> &extraInfo,
+            const sptr<HdiIExecutorCallback> &callbackObj) override;
+        int32_t Authenticate(uint64_t scheduleId, const std::vector<uint64_t>& templateIdList,
+            const std::vector<uint8_t> &extraInfo, const sptr<HdiIExecutorCallback> &callbackObj) override;
+        int32_t Delete(uint64_t templateId) override;
+        int32_t GetProperty(const std::vector<uint64_t> &templateIdList, const std::vector<int32_t> &propertyTypes,
+            HdiProperty &property) override;
 
-       private:
-           struct ScheduleInfo {
-               uint32_t commandId;
-               sptr<IExecutorCallback> callback;
-               uint64_t templateId;
-               std::vector<uint8_t> salt;
-           };
+    private:
+        class ScheduleMap {
+        public:
+            uint32_t AddScheduleInfo(const uint64_t scheduleId, const uint32_t commandId,
+                const sptr<HdiIExecutorCallback> callback, const uint64_t templateId,
+                const std::vector<uint8_t> algoParameter);
+            uint32_t GetScheduleInfo(const uint64_t scheduleId, uint32_t &commandId, sptr<HdiIExecutorCallback> &callback,
+                uint64_t &templateId, std::vector<uint8_t> &algoParameter);
+            uint32_t DeleteScheduleId(const uint64_t scheduleId);
 
-           std::mutex mutex_;
-           std::map<uint64_t, struct ScheduleInfo> scheduleInfo_;
-       };
+        private:
+            struct ScheduleInfo {
+                uint32_t commandId;
+                sptr<HdiIExecutorCallback> callback;
+                uint64_t templateId;
+                std::vector<uint8_t> algoParameter;
+            };
 
-   private:
-       uint32_t NewSalt(std::vector<uint8_t> &salt);
-       void CallError(const sptr<IExecutorCallback> &callbackObj, const uint32_t errorCode);
-       std::shared_ptr<OHOS::UserIAM::PinAuth::PinAuth> pinHdi_;
-       ScheduleMap scheduleMap_;
-   };
+            std::mutex mutex_;
+            std::map<uint64_t, struct ScheduleInfo> scheduleInfo_;
+        };
 
-   // 获取V1_1执行器列表实现，创建执行器（仅作示例）
-   int32_t PinAuthInterfaceService::GetExecutorListV1_1(std::vector<sptr<V1_1::IExecutor>> &executorList)
+    private:
+        void CallError(const sptr<HdiIExecutorCallback> &callbackObj, uint32_t errorCode);
+        int32_t AuthPin(uint64_t scheduleId, uint64_t templateId,
+            const std::vector<uint8_t> &data, std::vector<uint8_t> &resultTlv);
+        int32_t AuthenticateInner(uint64_t scheduleId, uint64_t templateId, std::vector<uint8_t> &algoParameter,
+            const sptr<HdiIExecutorCallback> &callbackObj);
+        int32_t EnrollInner(uint64_t scheduleId, const std::vector<uint8_t> &extraInfo,
+            const sptr<HdiIExecutorCallback> &callbackObj, std::vector<uint8_t> &algoParameter, uint32_t &algoVersion);
+        void ReportAuthenticate(uint64_t scheduleId, uint64_t templateId, PinAuthResultBigData pinAuthResultBigData);
+        std::shared_ptr<OHOS::UserIam::PinAuth::PinAuth> pinHdi_;
+        ScheduleMap scheduleMap_;
+        OHOS::ThreadPool threadPool_;
+    };
+
+   // 获取执行器列表实现，创建执行器（仅作示例）
+   int32_t PinAuthInterfaceService::GetExecutorList(std::vector<sptr<HdiIExecutor>>& allInOneExecutors,
+        std::vector<sptr<HdiIVerifier>>& verifiers, std::vector<sptr<HdiICollector>>& collectors)
    {
        IAM_LOGI("start");
-       std::shared_ptr<OHOS::UserIAM::PinAuth::PinAuth> pinHdi =
-           OHOS::UserIAM::Common::MakeShared<OHOS::UserIAM::PinAuth::PinAuth>();
+       static_cast<void>(verifiers);
+       static_cast<void>(collectors);
+       std::shared_ptr<OHOS::UserIam::PinAuth::PinAuth> pinHdi =
+           OHOS::UserIam::Common::MakeShared<OHOS::UserIam::PinAuth::PinAuth>();
        if (pinHdi == nullptr) {
            IAM_LOGE("Generate pinHdi failed");
            return HDF_FAILURE;
        }
-       sptr<IExecutor> executor = new (std::nothrow) ExecutorImpl(pinHdi);
+       sptr<HdiIExecutor> executor = new (std::nothrow) ExecutorImpl(pinHdi);
        if (executor == nullptr) {
            IAM_LOGE("Generate executor failed");
            return HDF_FAILURE;
        }
-       executorList.push_back(executor);
+       allInOneExecutors.push_back(executor);
        IAM_LOGI("end");
        return HDF_SUCCESS;
-   }
-
-   // 获取V1_0执行器列表实现，使用V1_1版本执行器实现V1_0版本执行器的功能
-   int32_t PinAuthInterfaceService::GetExecutorList(std::vector<sptr<V1_0::IExecutor>> &executorList)
-   {
-       std::vector<sptr<V1_1::IExecutor>> executorListV1_1;
-       int32_t result = GetExecutorListV1_1(executorListV1_1);
-       for (auto &executor : executorListV1_1) {
-           executorList.push_back(executor);
-       }
-       return result;
    }
    ```
 
 
 
-1. 完成执行器每个功能接口实现，详细代码参见[executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/executor_impl.cpp)文件。
+3. 完成执行器每个功能接口实现，详细代码参见[all_in_one_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/all_in_one_impl.cpp)文件。
 
    ```c++
    // 实现获取执行器信息接口（仅作示例）
-   int32_t ExecutorImpl::GetExecutorInfo(ExecutorInfo &info)
+   int32_t ExecutorImpl::GetExecutorInfo(HdiExecutorInfo &info)
    {
        IAM_LOGI("start");
-       constexpr unsigned short SENSOR_ID = 1;
-       info.sensorId = SENSOR_ID;
-       info.executorType = EXECUTOR_TYPE;
-       info.executorRole = ExecutorRole::ALL_IN_ONE;
-       info.authType = AuthType::PIN;
        if (pinHdi_ == nullptr) {
            IAM_LOGE("pinHdi_ is nullptr");
            return HDF_FAILURE;
        }
+       constexpr unsigned short SENSOR_ID = 1;
+       info.sensorId = SENSOR_ID;
+       info.executorMatcher = EXECUTOR_TYPE;
+       info.executorRole = HdiExecutorRole::ALL_IN_ONE;
+       info.authType = HdiAuthType::PIN;
        uint32_t eslRet = 0;
        int32_t result = pinHdi_->GetExecutorInfo(info.publicKey, eslRet);
        if (result != SUCCESS) {
            IAM_LOGE("Get ExecutorInfo failed, fail code : %{public}d", result);
            return result;
        }
-       info.esl = static_cast<ExecutorSecureLevel>(eslRet);
-
-       return HDF_SUCCESS;
-   }
-
-   // 实现获取指定templateId的模板信息接口
-   int32_t ExecutorImpl::GetTemplateInfo(uint64_t templateId, TemplateInfo &info)
-   {
-       IAM_LOGI("start");
-       if (pinHdi_ == nullptr) {
-           IAM_LOGE("pinHdi_ is nullptr");
-           return HDF_FAILURE;
-       }
-       OHOS::UserIAM::PinAuth::PinCredentialInfo infoRet = {};
-       int32_t result = pinHdi_->QueryPinInfo(templateId, infoRet);
-       if (result != SUCCESS) {
-           IAM_LOGE("Get TemplateInfo failed, fail code : %{public}d", result);
-           return result;
-       }
-       /* subType is stored in extraInfo */
-       info.extraInfo.resize(infoRet.subType);
-       if (memcpy_s(&(info.extraInfo[0]), sizeof(infoRet.subType), &(infoRet.subType), sizeof(infoRet.subType)) != EOK) {
-           IAM_LOGE("copy subType to extraInfo fail!");
-           return HDF_FAILURE;
-       }
-
-       info.executorType = EXECUTOR_TYPE;
-       info.remainAttempts = infoRet.remainTimes;
-       info.lockoutDuration = infoRet.freezingTime;
+       info.esl = static_cast<HdiExecutorSecureLevel>(eslRet);
 
        return HDF_SUCCESS;
    }
@@ -403,36 +379,38 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
        IAM_LOGI("start");
        if (callbackObj == nullptr) {
            IAM_LOGE("callbackObj is nullptr");
-           return HDF_FAILURE;
+           return HDF_ERR_INVALID_PARAM;
        }
-       static_cast<void>(extraInfo);
-       std::vector<uint8_t> salt;
-       if (NewSalt(salt) != HDF_SUCCESS) {
-           IAM_LOGE("new salt failed");
-           CallError(callbackObj, HDF_FAILURE);
-           return HDF_FAILURE;
+       if (pinHdi_ == nullptr) {
+           IAM_LOGE("pinHdi_ is nullptr");
+           CallError(callbackObj, INVALID_PARAMETERS);
+           return HDF_SUCCESS;
        }
-       int32_t result = scheduleMap_.AddScheduleInfo(scheduleId, ENROLL_PIN, callbackObj, 0, salt);
-       if (result != HDF_SUCCESS) {
-           IAM_LOGE("Add scheduleInfo failed, fail code : %{public}d", result);
-           CallError(callbackObj, HDF_FAILURE);
-           return result;
+       std::vector<uint8_t> algoParameter;
+       uint32_t algoVersion = 0;
+       int32_t result = EnrollInner(scheduleId, extraInfo, callbackObj, algoParameter, algoVersion);
+       if (result != SUCCESS) {
+           IAM_LOGE("EnrollInner failed, fail code : %{public}d", result);
+           return HDF_SUCCESS;
        }
-       result = callbackObj->OnGetData(scheduleId, salt, 0);
+
+       std::vector<uint8_t> challenge;
+       result = callbackObj->OnGetData(algoParameter, 0, algoVersion, challenge);
        if (result != SUCCESS) {
            IAM_LOGE("Enroll Pin failed, fail code : %{public}d", result);
+           CallError(callbackObj, GENERAL_ERROR);
            // If the enroll fails, delete scheduleId of scheduleMap
            if (scheduleMap_.DeleteScheduleId(scheduleId) != HDF_SUCCESS) {
                IAM_LOGI("delete scheduleId failed");
            }
-           return result;
        }
 
        return HDF_SUCCESS;
    }
 
    // 实现回调数据获取的接口
-   int32_t ExecutorImpl::OnSetData(uint64_t scheduleId, uint64_t authSubType, const std::vector<uint8_t> &data)
+   int32_t ExecutorImpl::SetData(uint64_t scheduleId, uint64_t authSubType, const std::vector<uint8_t> &data,
+       int32_t resultCode)
    {
        IAM_LOGI("start");
        if (pinHdi_ == nullptr) {
@@ -440,25 +418,30 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
            return HDF_FAILURE;
        }
        std::vector<uint8_t> resultTlv;
-       int32_t result = SUCCESS;
+       int32_t result = GENERAL_ERROR;
        constexpr uint32_t INVALID_ID = 2;
        uint32_t commandId = INVALID_ID;
-       sptr<IExecutorCallback> callback = nullptr;
+       sptr<HdiIExecutorCallback> callback = nullptr;
        uint64_t templateId = 0;
-       std::vector<uint8_t> salt(0, 0);
-       if (scheduleMap_.GetScheduleInfo(scheduleId, commandId, callback, templateId, salt) != HDF_SUCCESS) {
+       std::vector<uint8_t> algoParameter(0, 0);
+       if (scheduleMap_.GetScheduleInfo(scheduleId, commandId, callback, templateId, algoParameter) != HDF_SUCCESS) {
            IAM_LOGE("Get ScheduleInfo failed, fail code : %{public}d", result);
            return HDF_FAILURE;
        }
+       if (resultCode != SUCCESS && callback != nullptr) {
+           IAM_LOGE("SetData failed, resultCode is %{public}d", resultCode);
+           CallError(callback, resultCode);
+           return resultCode;
+       }
        switch (commandId) {
            case ENROLL_PIN:
-               result = pinHdi_->EnrollPin(scheduleId, authSubType, salt, data, resultTlv);
+               result = pinHdi_->EnrollPin(scheduleId, authSubType, algoParameter, data, resultTlv);
                if (result != SUCCESS) {
                    IAM_LOGE("Enroll Pin failed, fail code : %{public}d", result);
                }
                break;
            case AUTH_PIN:
-               result = pinHdi_->AuthPin(scheduleId, templateId, data, resultTlv);
+               result = AuthPin(scheduleId, templateId, data, resultTlv);
                if (result != SUCCESS) {
                    IAM_LOGE("Auth Pin failed, fail code : %{public}d", result);
                }
@@ -467,7 +450,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
                IAM_LOGE("Error commandId");
        }
 
-       if (callback->OnResult(result, resultTlv) != SUCCESS) {
+       if (callback == nullptr || callback->OnResult(result, resultTlv) != SUCCESS) {
            IAM_LOGE("callbackObj Pin failed");
        }
        // Delete scheduleId from the scheduleMap_ when the enroll and authentication are successful
@@ -477,42 +460,46 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
 
        return HDF_SUCCESS;
    }
+
    // 实现口令认证接口
-   int32_t ExecutorImpl::Authenticate(uint64_t scheduleId, uint64_t templateId, const std::vector<uint8_t> &extraInfo,
-       const sptr<IExecutorCallback> &callbackObj)
+   int32_t ExecutorImpl::Authenticate(uint64_t scheduleId, const std::vector<uint64_t>& templateIdList,
+       const std::vector<uint8_t> &extraInfo, const sptr<HdiIExecutorCallback> &callbackObj)
    {
        IAM_LOGI("start");
        if (callbackObj == nullptr) {
            IAM_LOGE("callbackObj is nullptr");
-           return HDF_FAILURE;
+           return HDF_ERR_INVALID_PARAM;
        }
-       if (pinHdi_ == nullptr) {
-           IAM_LOGE("pinHdi_ is nullptr");
-           CallError(callbackObj, HDF_FAILURE);
-           return HDF_FAILURE;
+       if (pinHdi_ == nullptr || templateIdList.size() != 1) {
+           IAM_LOGE("pinHdi_ is nullptr or templateIdList size not 1");
+           CallError(callbackObj, INVALID_PARAMETERS);
+           return HDF_SUCCESS;
        }
        static_cast<void>(extraInfo);
-       std::vector<uint8_t> salt;
-       int32_t result = pinHdi_->GetSalt(templateId, salt);
-       if (result  != SUCCESS) {
-           IAM_LOGE("get salt failed, fail code : %{public}d", result);
-           CallError(callbackObj, HDF_FAILURE);
-           return result;
+       std::vector<uint8_t> algoParameter;
+       uint32_t algoVersion = 0;
+       uint64_t templateId = templateIdList[0];
+       int32_t result = pinHdi_->GetAlgoParameter(templateId, algoParameter, algoVersion);
+       if (result != SUCCESS) {
+           IAM_LOGE("Get algorithm parameter failed, fail code : %{public}d", result);
+           CallError(callbackObj, result);
+           return GENERAL_ERROR;
        }
-       result = scheduleMap_.AddScheduleInfo(scheduleId, AUTH_PIN, callbackObj, templateId, salt);
-       if (result != HDF_SUCCESS) {
-           IAM_LOGE("Add scheduleInfo failed, fail code : %{public}d", result);
-           CallError(callbackObj, HDF_FAILURE);
-           return result;
+       result = AuthenticateInner(scheduleId, templateId, algoParameter, callbackObj);
+       if (result != SUCCESS) {
+           IAM_LOGE("AuthenticateInner failed, fail code : %{public}d", result);
+           return HDF_SUCCESS;
        }
-       result = callbackObj->OnGetData(scheduleId, salt, 0);
+   
+       std::vector<uint8_t> challenge;
+       result = callbackObj->OnGetData(algoParameter, 0, algoVersion, challenge);
        if (result != SUCCESS) {
            IAM_LOGE("Authenticate Pin failed, fail code : %{public}d", result);
+           CallError(callbackObj, GENERAL_ERROR);
            // If the authentication fails, delete scheduleId of scheduleMap
            if (scheduleMap_.DeleteScheduleId(scheduleId) != HDF_SUCCESS) {
                IAM_LOGI("delete scheduleId failed");
            }
-           return result;
        }
 
        return HDF_SUCCESS;
@@ -543,17 +530,6 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
            IAM_LOGE("scheduleId is not found");
            return HDF_FAILURE;
        }
-       return HDF_SUCCESS;
-   }
-
-   // 口令预留接口
-   int32_t ExecutorImpl::SendCommand(int32_t commandId, const std::vector<uint8_t> &extraInfo,
-       const sptr<IExecutorCallback> &callbackObj)
-   {
-       IAM_LOGI("Extension interface, temporarily useless");
-       static_cast<void>(commandId);
-       static_cast<void>(extraInfo);
-       static_cast<void>(callbackObj);
        return HDF_SUCCESS;
    }
 

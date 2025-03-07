@@ -8,6 +8,11 @@
 **图1** Stage模型概念图  
 ![stage-concepts](figures/stage-concepts.png)
 
+
+- [AbilityStage](abilitystage.md)
+
+  每个Entry类型或者Feature类型的[HAP](../quick-start/hap-package.md)在运行期都有一个AbilityStage类实例，当[HAP](../quick-start/hap-package.md)中的代码首次被加载到进程中的时候，系统会先创建AbilityStage实例。
+  
 - [UIAbility组件](uiability-overview.md)和[ExtensionAbility组件](extensionability-overview.md)
   
   Stage模型提供UIAbility和ExtensionAbility两种类型的组件，这两种组件都有具体的类承载，支持面向对象的开发方式。
@@ -23,9 +28,7 @@
 
   在Stage模型上，Context及其派生类向开发者提供在运行期可以调用的各种资源和能力。UIAbility组件和各种ExtensionAbility组件的派生类都有各自不同的Context类，他们都继承自基类Context，但是各自又根据所属组件，提供不同的能力。
 
-- [AbilityStage](abilitystage.md)
 
-  每个Entry类型或者Feature类型的HAP在运行期都有一个AbilityStage类实例，当HAP中的代码首次被加载到进程中的时候，系统会先创建AbilityStage实例。
 
 
 ## 开发流程
@@ -39,11 +42,10 @@
 | 应用组件开发 | 本章节介绍了如何使用Stage模型的UIAbility组件和ExtensionAbility组件开发应用。 | -&nbsp;[应用/组件级配置](application-component-configuration-stage.md)<br/>-&nbsp;[UIAbility组件](uiability-overview.md)<br/>-&nbsp;[ExtensionAbility组件](extensionability-overview.md)<br/>-&nbsp;[AbilityStage组件容器](abilitystage.md)<br/>-&nbsp;[应用上下文Context](application-context-stage.md)<br/>-&nbsp;[组件启动规则](component-startup-rules.md) |
 | 了解进程模型 | 本章节介绍了Stage模型的进程模型以及几种常用的进程间通信方式。 | [进程模型概述](process-model-stage.md)|
 | 了解线程模型 | 本章节介绍了Stage模型的线程模型以及几种常用的线程间通信方式。 | [线程模型概述](thread-model-stage.md) |
-| 任务管理 | 本章节介绍了Stage模型中任务管理的基本概念和典型场景。 | -&nbsp;[任务管理场景介绍](mission-management-overview.md)<br/>-&nbsp;[任务管理与启动模式](mission-management-launch-type.md)<br/>-&nbsp;[页面栈和任务链](page-mission-stack.md) |
 | 应用配置文件 | 本章节介绍Stage模型中应用配置文件的开发要求。 | [Stage模型应用配置文件](config-file-stage.md) |
 
 ## 相关实例
 
 针对Stage模型开发，有以下相关实例可供参考：
 
-- [Stage模型（ArkTS）（Full SDK）(API10)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/StageModel)
+- [Stage模型（ArkTS）（Full SDK）(API10)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/StageModel)

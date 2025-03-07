@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import thermal from '@ohos.thermal';
+import {thermal} from '@kit.BasicServicesKit';
 ```
 
 ## thermal.registerThermalLevelCallback<sup>9+</sup>
@@ -24,7 +24,7 @@ registerThermalLevelCallback(callback: Callback&lt;ThermalLevel&gt;): void
 
 | 参数名   | 类型                         | 必填 | 说明                           |
 | -------- | ---------------------------- | ---- | ------------------------------ |
-| callback | Callback&lt;ThermalLevel&gt; | 是   | 回调函数，返回变化后的热档位。 |
+| callback | Callback&lt;ThermalLevel&gt; | 是   | 回调函数，返回变化后的热档位；该参数是一个函数类型。 |
 
 **错误码：**
 
@@ -32,7 +32,8 @@ registerThermalLevelCallback(callback: Callback&lt;ThermalLevel&gt;): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4800101 | If connecting to the service failed. |
+| 4800101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1. Incorrect parameter types; |
 
 **示例：**
 
@@ -67,7 +68,8 @@ unregisterThermalLevelCallback(callback?: Callback\<void>): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4800101 | If connecting to the service failed. |
+| 4800101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1. Incorrect parameter types; |
 
 **示例：**
 
@@ -102,7 +104,7 @@ getLevel(): ThermalLevel
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4800101 | If connecting to the service failed. |
+| 4800101 | Failed to connect to the service. |
 
 **示例：**
 
@@ -188,8 +190,6 @@ console.info('thermal level is: ' + level);
 
 ## ThermalLevel
 
-> **说明：**<br>枚举ESCAPE从API version 11开始支持。
-
 热档位信息。
 
 **系统能力：** SystemCapability.PowerManager.ThermalManager
@@ -203,4 +203,4 @@ console.info('thermal level is: ' + level);
 | OVERHEATED | 4    | 表明设备发热严重，无感知业务与非关键业务应停止，前台关键业务应降低规格及负载。 |
 | WARNING    | 5    | 表明设备过热即将进入紧急状态，整机资源供给大幅降低，停止所有非关键业务，前台关键业务应降低至最低规格。 |
 | EMERGENCY  | 6    | 表明设备已经进入过热紧急状态，整机资源供给降至最低，设备功能受限，仅保留基础功能可用。 |
-| ESCAPE     | 7    | 表明设备即将进入热逃生状态，所有业务将被强制停止，业务需做好逃生措施，例如保存重要数据等。 |
+| ESCAPE<sup>11+</sup>     | 7    | 表明设备即将进入热逃生状态，所有业务将被强制停止，业务需做好逃生措施，例如保存重要数据等。 <br>**说明**: 从API version 11开始支持。|

@@ -175,8 +175,6 @@ struct Page {
               ForEach(this.infoList, (info: Info, index) => {
                 ListItem() {
                   Information({
-                    // in low version, DevEco may throw a warning, but it does not matter.
-                    // you can still compile and run.
                     info: info,
                     index: index
                   })
@@ -231,12 +229,12 @@ class UIStyle {
 @Component
 struct SpecialImage {
   @ObjectLink uiStyle: UIStyle;
-  private isRenderSpecialImage() : number { // function to show whether the component is rendered
+  private isRenderSpecialImage() : number { // 显示组件是否渲染的函数
     console.log("SpecialImage is rendered");
     return 1;
   }
   build() {
-    Image($r('app.media.icon'))
+    Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
       .width(this.uiStyle.imageWidth)
       .height(this.uiStyle.imageHeight)
       .margin({ top: 20 })
@@ -244,13 +242,13 @@ struct SpecialImage {
         x: this.uiStyle.translateImageX,
         y: this.uiStyle.translateImageY
       })
-      .opacity(this.isRenderSpecialImage()) // if the Image is rendered, it will call the function
+      .opacity(this.isRenderSpecialImage()) // 如果Image重新渲染，该函数将被调用
   }
 }
 @Component
-struct CompA {
+struct PageChild {
   @ObjectLink uiStyle: UIStyle
-  // the following functions are used to show whether the component is called to be rendered
+  // 下面的函数用于显示组件是否被渲染
   private isRenderColumn() : number {
     console.log("Column is rendered");
     return 1;
@@ -270,13 +268,11 @@ struct CompA {
   build() {
     Column() {
       SpecialImage({
-        // in low version, Dev Eco may throw a warning
-        // But you can still build and run the code
         uiStyle: this.uiStyle
       })
       Stack() {
         Column() {
-            Image($r('app.media.icon'))
+            Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
               .opacity(this.uiStyle.alpha)
               .scale({
                 x: this.uiStyle.scaleX,
@@ -355,9 +351,7 @@ struct Page {
   @State uiStyle: UIStyle = new UIStyle();
   build() {
     Stack() {
-      CompA({
-        // in low version, Dev Eco may throw a warning
-        // But you can still build and run the code
+      PageChild({
         uiStyle: this.uiStyle
       })
     }
@@ -370,6 +364,10 @@ struct Page {
 
 ![properly-use-state-management-to-develope-3](figures/properly-use-state-management-to-develope-3.gif)
 
+优化前点击move按钮的脏节点更新耗时如下图：
+
+![img](figures/properly-use-state-management-to-develope-11.PNG)
+
 在上面的示例中，UIStyle定义了多个属性，并且这些属性分别被多个组件关联。当点击任意一个按钮更改其中的某些属性时，会导致所有这些关联uiStyle的组件进行刷新，虽然它们其实并不需要进行刷新（因为组件的属性都没有改变）。通过定义的一系列isRender函数，可以观察到这些组件的刷新。当点击“move”按钮进行平移动画时，由于translateY的值的多次改变，会导致每一次都存在“冗余刷新”的问题，这对应用的性能有着很大的负面影响。
 
 这是因为当前状态管理的一个刷新机制，假设定义了一个有20个属性的类，创建类的对象实例，将20个属性绑定到组件上，这时修改其中的某个属性，除了这个属性关联的组件会刷新之外，其他的19个属性关联的组件也都会刷新，即使这些属性本身并没有发生变化。
@@ -378,47 +376,47 @@ struct Page {
 
 ```typescript
 @Observed
-class NeedRenderImage { // properties only used in the same component can be divided into the same new divided class
+class NeedRenderImage { // 在同一组件中使用的属性可以划分为相同的类
   public translateImageX: number = 0;
   public translateImageY: number = 0;
   public imageWidth:number = 78;
   public imageHeight:number = 78;
 }
 @Observed
-class NeedRenderScale { // properties usually used together can be divided into the same new divided class
+class NeedRenderScale { // 在一起使用的属性可以划分为相同的类
   public scaleX: number = 0.3;
   public scaleY: number = 0.3;
 }
 @Observed
-class NeedRenderAlpha { // properties that may be used in different places can be divided into the same new divided class
+class NeedRenderAlpha { // 在不同地方使用的属性可以划分为相同的类
   public alpha: number = 0.5;
 }
 @Observed
-class NeedRenderSize { // properties usually used together can be divided into the same new divided class
+class NeedRenderSize { // 在一起使用的属性可以划分为相同的类
   public width: number = 336;
   public height: number = 178;
 }
 @Observed
-class NeedRenderPos { // properties usually used together can be divided into the same new divided class
+class NeedRenderPos { // 在一起使用的属性可以划分为相同的类
   public posX: number = 10;
   public posY: number = 50;
 }
 @Observed
-class NeedRenderBorderRadius { // properties that may be used in different places can be divided into the same new divided class
+class NeedRenderBorderRadius { // 在不同地方使用的属性可以划分为相同的类
   public borderRadius: number = 24;
 }
 @Observed
-class NeedRenderFontSize { // properties that may be used in different places can be divided into the same new divided class
+class NeedRenderFontSize { // 在不同地方使用的属性可以划分为相同的类
   public fontSize: number = 20;
 }
 @Observed
-class NeedRenderTranslate { // properties usually used together can be divided into the same new divided class
+class NeedRenderTranslate { // 在一起使用的属性可以划分为相同的类
   public translateX: number = 0;
   public translateY: number = 0;
 }
 @Observed
 class UIStyle {
-  // define new variable instead of using old one
+  // 使用NeedRenderxxx类
   needRenderTranslate: NeedRenderTranslate = new NeedRenderTranslate();
   needRenderFontSize: NeedRenderFontSize = new NeedRenderFontSize();
   needRenderBorderRadius: NeedRenderBorderRadius = new NeedRenderBorderRadius();
@@ -431,34 +429,34 @@ class UIStyle {
 @Component
 struct SpecialImage {
   @ObjectLink uiStyle : UIStyle;
-  @ObjectLink needRenderImage: NeedRenderImage // receive the new class from its parent component
-  private isRenderSpecialImage() : number { // function to show whether the component is rendered
+  @ObjectLink needRenderImage: NeedRenderImage // 从其父组件接收新类
+  private isRenderSpecialImage() : number { // 显示组件是否渲染的函数
     console.log("SpecialImage is rendered");
     return 1;
   }
   build() {
-    Image($r('app.media.icon'))
-      .width(this.needRenderImage.imageWidth) // !! use this.needRenderImage.xxx rather than this.uiStyle.needRenderImage.xxx !!
+    Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
+      .width(this.needRenderImage.imageWidth) // 使用this.needRenderImage.xxx
       .height(this.needRenderImage.imageHeight)
       .margin({top:20})
       .translate({
         x: this.needRenderImage.translateImageX,
         y: this.needRenderImage.translateImageY
       })
-      .opacity(this.isRenderSpecialImage()) // if the Image is rendered, it will call the function
+      .opacity(this.isRenderSpecialImage()) // 如果Image重新渲染，该函数将被调用
   }
 }
 @Component
-struct CompA {
+struct PageChild {
   @ObjectLink uiStyle: UIStyle;
-  @ObjectLink needRenderTranslate: NeedRenderTranslate; // receive the new class from its parent component
+  @ObjectLink needRenderTranslate: NeedRenderTranslate; // 从其父组件接收新定义的NeedRenderxxx类的实例
   @ObjectLink needRenderFontSize: NeedRenderFontSize;
   @ObjectLink needRenderBorderRadius: NeedRenderBorderRadius;
   @ObjectLink needRenderPos: NeedRenderPos;
   @ObjectLink needRenderSize: NeedRenderSize;
   @ObjectLink needRenderAlpha: NeedRenderAlpha;
   @ObjectLink needRenderScale: NeedRenderScale;
-  // the following functions are used to show whether the component is called to be rendered
+  // 下面的函数用于显示组件是否被渲染
   private isRenderColumn() : number {
     console.log("Column is rendered");
     return 1;
@@ -478,17 +476,15 @@ struct CompA {
   build() {
     Column() {
       SpecialImage({
-        // in low version, Dev Eco may throw a warning
-        // But you can still build and run the code
         uiStyle: this.uiStyle,
-        needRenderImage: this.uiStyle.needRenderImage //send it to its child
+        needRenderImage: this.uiStyle.needRenderImage // 传递给子组件
       })
       Stack() {
         Column() {
-          Image($r('app.media.icon'))
+          Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
             .opacity(this.needRenderAlpha.alpha)
             .scale({
-              x: this.needRenderScale.scaleX, // use this.needRenderXxx.xxx rather than this.uiStyle.needRenderXxx.xxx
+              x: this.needRenderScale.scaleX, // 使用this.needRenderXxx.xxx
               y: this.needRenderScale.scaleY
             })
             .padding(this.isRenderImage())
@@ -552,7 +548,7 @@ struct CompA {
           .backgroundColor("#FF007DFF")
           .fontSize(20)
           .width(312)
-          .onClick(() => { // in the parent component, still use this.uiStyle.needRenderXxx.xxx to change the properties
+          .onClick(() => { // 在父组件中，仍使用 this.uiStyle.endRenderXxx.xxx 更改属性
             this.uiStyle.needRenderImage.imageWidth = (this.uiStyle.needRenderImage.imageWidth + 30) % 160;
             this.uiStyle.needRenderImage.imageHeight = (this.uiStyle.needRenderImage.imageHeight + 30) % 160;
           })
@@ -574,11 +570,9 @@ struct Page {
   @State uiStyle: UIStyle = new UIStyle();
   build() {
     Stack() {
-      CompA({
-        // in low version, Dev Eco may throw a warning
-        // But you can still build and run the code
+      PageChild({
         uiStyle: this.uiStyle,
-        needRenderTranslate: this.uiStyle.needRenderTranslate, //send all the new class child need
+        needRenderTranslate: this.uiStyle.needRenderTranslate, // 传递needRenderxxx类给子组件
         needRenderFontSize: this.uiStyle.needRenderFontSize,
         needRenderBorderRadius: this.uiStyle.needRenderBorderRadius,
         needRenderPos: this.uiStyle.needRenderPos,
@@ -594,13 +588,17 @@ struct Page {
 
 上述代码的运行效果如下。![properly-use-state-management-to-develope-4](figures/properly-use-state-management-to-develope-4.gif)
 
+优化后点击move按钮的脏节点更新耗时如下图：
+
+![img](figures/properly-use-state-management-to-develope-12.PNG)
+
 修改后的代码将原来的大类中的十五个属性拆成了八个小类，并且在绑定的组件上也做了相应的适配。属性拆分遵循以下几点原则：
 
 - 只作用在同一个组件上的多个属性可以被拆分进同一个新类，即示例中的NeedRenderImage。适用于组件经常被不关联的属性改变而引起刷新的场景，这个时候就要考虑拆分属性，或者重新考虑ViewModel设计是否合理。
 - 经常被同时使用的属性可以被拆分进同一个新类，即示例中的NeedRenderScale、NeedRenderTranslate、NeedRenderPos、NeedRenderSize。适用于属性经常成对出现，或者被作用在同一个样式上的情况，例如.translate、.position、.scale等（这些样式通常会接收一个对象作为参数）。
 - 可能被用在多个组件上或相对较独立的属性应该被单独拆分进一个新类，即示例中的NeedRenderAlpha，NeedRenderBorderRadius、NeedRenderFontSize。适用于一个属性作用在多个组件上或者与其他属性没有联系的情况，例如.opacity、.borderRadius等（这些样式通常相对独立）。
 
-属性拆分的原理和属性合并类似，都是在嵌套场景下，状态管理无法观测二层以上的属性变化，所以不会因为二层的数据变化导致一层关联的其他属性被刷新，同时利用@Observed和@ObjectLink在父子节点间传递二层的对象，从而在子组件中正常的观测二层的数据变化，实现精准刷新。关于属性拆分的详细内容，可以查看[精准控制组件的更新范围](../performance/precisely-control-render-scope.md)。
+属性拆分的原理和属性合并类似，都是在嵌套场景下，状态管理无法观测二层以上的属性变化，所以不会因为二层的数据变化导致一层关联的其他属性被刷新，同时利用@Observed和@ObjectLink在父子节点间传递二层的对象，从而在子组件中正常的观测二层的数据变化，实现精准刷新。<!--Del-->关于属性拆分的详细内容，可以查看[精准控制组件的更新范围](../performance/precisely-control-render-scope.md)。<!--DelEnd-->
 
 使用@Track装饰器则无需做属性拆分，也能达到同样控制组件更新范围的作用。
 
@@ -626,12 +624,12 @@ class UIStyle {
 @Component
 struct SpecialImage {
   @ObjectLink uiStyle: UIStyle;
-  private isRenderSpecialImage() : number { // function to show whether the component is rendered
+  private isRenderSpecialImage() : number { // 显示组件是否渲染的函数
     console.log("SpecialImage is rendered");
     return 1;
   }
   build() {
-    Image($r('app.media.icon'))
+    Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
       .width(this.uiStyle.imageWidth)
       .height(this.uiStyle.imageHeight)
       .margin({ top: 20 })
@@ -639,13 +637,13 @@ struct SpecialImage {
         x: this.uiStyle.translateImageX,
         y: this.uiStyle.translateImageY
       })
-      .opacity(this.isRenderSpecialImage()) // if the Image is rendered, it will call the function
+      .opacity(this.isRenderSpecialImage()) // 如果Image重新渲染，该函数将被调用
   }
 }
 @Component
-struct CompA {
+struct PageChild {
   @ObjectLink uiStyle: UIStyle
-  // the following functions are used to show whether the component is called to be rendered
+  // 下面的函数用于显示组件是否被渲染
   private isRenderColumn() : number {
     console.log("Column is rendered");
     return 1;
@@ -665,13 +663,11 @@ struct CompA {
   build() {
     Column() {
       SpecialImage({
-        // in low version, Dev Eco may throw a warning
-        // But you can still build and run the code
         uiStyle: this.uiStyle
       })
       Stack() {
         Column() {
-            Image($r('app.media.icon'))
+            Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
               .opacity(this.uiStyle.alpha)
               .scale({
                 x: this.uiStyle.scaleX,
@@ -750,9 +746,7 @@ struct Page {
   @State uiStyle: UIStyle = new UIStyle();
   build() {
     Stack() {
-      CompA({
-        // in low version, Dev Eco may throw a warning
-        // But you can still build and run the code
+      PageChild({
         uiStyle: this.uiStyle
       })
     }
@@ -851,8 +845,6 @@ struct CompList {
       List() {
         ForEach(this.childList, (item: Child, index) => {
           ListItem() {
-            // in low version, Dev Eco may throw a warning
-            // But you can still build and run the code
             CompChild({
               childList: this.childList,
               child: item
@@ -872,8 +864,6 @@ struct CompAncestor {
 
   build() {
     Column() {
-      // in low version, Dev Eco may throw a warning
-      // But you can still build and run the code
       CompList({ childList: this.ancestor.childList })
       Row() {
         Button("Clear")
@@ -899,8 +889,6 @@ struct Page {
 
   build() {
     Column() {
-      // in low version, Dev Eco may throw a warning
-      // But you can still build and run the code
       CompAncestor({ ancestor: this.ancestor})
     }
   }
@@ -1022,8 +1010,6 @@ struct CompList {
       List() {
         ForEach(this.childList, (item: Child, index) => {
           ListItem() {
-            // in low version, Dev Eco may throw a warning
-            // But you can still build and run the code
             CompChild({
               childList: this.childList,
               child: item
@@ -1043,8 +1029,6 @@ struct CompAncestor {
 
   build() {
     Column() {
-      // in low version, Dev Eco may throw a warning
-      // But you can still build and run the code
       CompList({ childList: this.ancestor.childList })
       Row() {
         Button("Clear")
@@ -1070,8 +1054,6 @@ struct Page {
 
   build() {
     Column() {
-      // in low version, Dev Eco may throw a warning
-      // But you can still build and run the code
       CompAncestor({ ancestor: this.ancestor})
     }
   }
@@ -1100,7 +1082,7 @@ ChildList类型在定义的时候使用了@Observed进行装饰，所以用new�
 
 ### 减少使用LazyForEach的重建机制刷新UI
 
-开发过程中通常会将LazyForEach和状态变量结合起来使用。
+开发过程中通常会将[LazyForEach](arkts-rendering-control-lazyforeach.md)和状态变量结合起来使用。
 
 ```typescript
 class BasicDataSource implements IDataSource {
@@ -1203,7 +1185,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 9; i++) {
-      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon')));
+      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon'))); // 在API12及以后的工程中使用app.media.app_icon
     }
   }
 
@@ -1340,7 +1322,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 9; i++) {
-      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon')));
+      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon'))); // 在API12及以后的工程中使用app.media.app_icon
     }
   }
 
@@ -1348,8 +1330,6 @@ struct MyComponent {
     List({ space: 3 }) {
       LazyForEach(this.data, (item: StringData, index: number) => {
         ListItem() {
-          // in low version, Dev Eco may throw a warning
-          // But you can still build and run the code
           ChildComponent({data: item})
         }
         .onClick(() => {
@@ -1387,14 +1367,14 @@ struct ChildComponent {
 
 ### 在ForEach中使用自定义组件搭配对象数组
 
-开发过程中经常会使用对象数组和ForEach结合起来使用，但是写法不当的话会出现UI不刷新的情况。
+开发过程中经常会使用对象数组和[ForEach](arkts-rendering-control-foreach.md)结合起来使用，但是写法不当的话会出现UI不刷新的情况。
 
 ```typescript
 @Observed
-class StyleList extends Array<TextStyle> {
+class StyleList extends Array<TextStyles> {
 };
 @Observed
-class TextStyle {
+class TextStyles {
   fontSize: number;
 
   constructor(fontSize: number) {
@@ -1407,7 +1387,7 @@ struct Page {
   @State styleList: StyleList = new StyleList();
   aboutToAppear() {
     for (let i = 15; i < 50; i++)
-    this.styleList.push(new TextStyle(i));
+    this.styleList.push(new TextStyles(i));
   }
   build() {
     Column() {
@@ -1420,7 +1400,7 @@ struct Page {
           console.log("change font size");
         })
       List() {
-        ForEach(this.styleList, (item: TextStyle) => {
+        ForEach(this.styleList, (item: TextStyles) => {
           ListItem() {
             Text("Hello World")
               .fontSize(item.fontSize)
@@ -1440,10 +1420,10 @@ struct Page {
 
 ```typescript
 @Observed
-class StyleList extends Array<TextStyle> {
+class StyleList extends Array<TextStyles> {
 };
 @Observed
-class TextStyle {
+class TextStyles {
   fontSize: number;
 
   constructor(fontSize: number) {
@@ -1452,7 +1432,7 @@ class TextStyle {
 }
 @Component
 struct TextComponent {
-  @ObjectLink textStyle: TextStyle;
+  @ObjectLink textStyle: TextStyles;
   build() {
     Text("Hello World")
       .fontSize(this.textStyle.fontSize)
@@ -1464,7 +1444,7 @@ struct Page {
   @State styleList: StyleList = new StyleList();
   aboutToAppear() {
     for (let i = 15; i < 50; i++)
-      this.styleList.push(new TextStyle(i));
+      this.styleList.push(new TextStyles(i));
   }
   build() {
     Column() {
@@ -1477,10 +1457,8 @@ struct Page {
           console.log("change font size");
         })
       List() {
-        ForEach(this.styleList, (item: TextStyle) => {
+        ForEach(this.styleList, (item: TextStyles) => {
           ListItem() {
-            // in low version, Dev Eco may throw a warning
-            // But you can still build and run the code
             TextComponent({ textStyle: item})
           }
         })

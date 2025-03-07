@@ -3,17 +3,13 @@
 
 ## Overview
 
-The **OH_AVScreenCaptureConfig** struct defines the screen capture configuration.
+The **OH_AVScreenCaptureConfig** struct describes the screen capture configuration.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[AVScreenCapture](_a_v_screen_capture.md)
+**Related module**: [AVScreenCapture](_a_v_screen_capture.md)
 
 
 ## Summary
@@ -23,11 +19,11 @@ The **OH_AVScreenCaptureConfig** struct defines the screen capture configuration
 
 | Name| Description| 
 | -------- | -------- |
-| [captureMode](#capturemode) | [OH_CaptureMode](_a_v_screen_capture.md#oh_capturemode)<br>Defines the screen capture mode.| 
-| [dataType](#datatype) | [OH_DataType](_a_v_screen_capture.md#oh_datatype)<br>Defines the data type of the screen capture stream.| 
-| [audioInfo](#audioinfo) | [OH_AudioInfo](_o_h___audio_info.md)<br>Defines audio capture parameters.| 
-| [videoInfo](#videoinfo) | [OH_VideoInfo](_o_h___video_info.md)<br>Defines video capture parameters.| 
-| [recorderInfo](#recorderinfo) | [OH_RecorderInfo](_o_h___recorder_info.md)<br>Defines recording file parameters. This member variable is mandatory when the data type is **OH_CAPTURE_FILE**.<br>**NOTE**: This member variable is reserved and will be provided in later versions.| 
+| [OH_CaptureMode](_a_v_screen_capture.md#oh_capturemode) [captureMode](#capturemode) | Screen capture mode.| 
+| [OH_DataType](_a_v_screen_capture.md#oh_datatype) [dataType](#datatype) | Data type of the screen capture stream.| 
+| [OH_AudioInfo](_o_h___audio_info.md) [audioInfo](#audioinfo) | Audio capture information.| 
+| [OH_VideoInfo](_o_h___video_info.md) [videoInfo](#videoinfo) | Video capture information.| 
+| [OH_RecorderInfo](_o_h___recorder_info.md) [recorderInfo](#recorderinfo) | Recording file information. This member variable is mandatory when the data type is **OH_CAPTURE_FILE**.| 
 
 
 ## Member Variable Description
@@ -41,7 +37,7 @@ OH_AudioInfo OH_AVScreenCaptureConfig::audioInfo
 
 **Description**
 
-Defines audio capture parameters.
+Audio capture information.
 
 
 ### captureMode
@@ -52,7 +48,7 @@ OH_CaptureMode OH_AVScreenCaptureConfig::captureMode
 
 **Description**
 
-Defines the screen capture mode.
+Screen capture mode.
 
 
 ### dataType
@@ -63,7 +59,7 @@ OH_DataType OH_AVScreenCaptureConfig::dataType
 
 **Description**
 
-Defines the data type of the screen capture stream.
+Data type of the screen capture stream.
 
 
 ### recorderInfo
@@ -74,11 +70,7 @@ OH_RecorderInfo OH_AVScreenCaptureConfig::recorderInfo
 
 **Description**
 
-Defines recording file parameters. This member variable is mandatory when the data type is **OH_CAPTURE_FILE**.
-
-> **NOTE**
-> 
-> This member variable is reserved and will be provided in later versions.
+Recording file information. This member variable is mandatory when the data type is **OH_CAPTURE_FILE**.
 
 
 ### videoInfo
@@ -89,4 +81,4 @@ OH_VideoInfo OH_AVScreenCaptureConfig::videoInfo
 
 **Description**
 
-Defines video capture parameters.
+Video capture information.

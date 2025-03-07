@@ -24,18 +24,20 @@
 
 特定事件：
 
-- `onScroll`：滚动事件回调会在列表滑动时触发。（滚动组件中如Scroll、List、Grid、WaterFlow等）
+- `onDidScroll`：滚动组件滑动时触发，返回当前帧滑动的偏移量和当前滑动状态。（滚动组件中如Scroll、List等）
 
 - `onActionUpdate`：手势移动过程更新事件会在手势移动过程中回调。（在基础手势中如PinchGesture、PinchGesture、RotationGesture等）
 
 **反例：**
 
-下面代码示例演示了在Scroll组件绑定了onScroll()滚动事件，是一个高频触发接口。添加冗余的Trace、日志打印和耗时操作。
+下面代码示例演示了在Scroll组件绑定了onDidScroll()滚动事件，是一个高频触发接口。添加冗余的Trace、日志打印和耗时操作。
 
-```ts
-// onScroll高频回调场景反例
+```typescript
+// onDidScroll高频回调场景反例
+import { hilog, hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+
 @Component
-struct NegativeOfOnScroll {
+struct NegativeOfOnDidScroll {
   Scroll() {
     ForEach(this.arr, (item: number) => {
       Text("TextItem" + item)
@@ -45,26 +47,26 @@ struct NegativeOfOnScroll {
   }
   .width('100%')
   .height('100%')
-  .onScroll(() => {
-    hitrace.startTrace("ScrollSlide", 1001);
+  .onDidScroll(() =>{
+    hiTraceMeter.startTrace("ScrollSlide", 1001);
     hilog.info(1001, 'Scroll', 'TextItem');
     // 耗时操作
-    ...
+    // ...
     // 业务逻辑
-    ...
-    hitrace.finishTrace("ScrollSlid", 1001);
+    // ...
+    hiTraceMeter.finishTrace("ScrollSlide", 1001);
   })
 }
 ```
 
 **正例：**
 
-在处理Scroll组件的滚动事件回调函数onScroll()时，应当避免冗余的Trace追踪、日志记录和耗时操作，以保持代码的简洁高效。在开发调试阶段或为了解决特定问题，加入此类追踪和日志输出指令。进入应用的实际运行环境，尤其是发布版本，应当移除Trace追踪、日志记录和耗时操作，避免对程序性能产生潜在的负面影响，并提升日志信息的针对性和价值。
+在处理Scroll组件的滚动事件回调函数onDidScroll()时，应当避免冗余的Trace追踪、日志记录和耗时操作，以保持代码的简洁高效。在开发调试阶段或为了解决特定问题，加入此类追踪和日志输出指令。进入应用的实际运行环境，尤其是发布版本，应当移除Trace追踪、日志记录和耗时操作，避免对程序性能产生潜在的负面影响，并提升日志信息的针对性和价值。
 
-```ts
-// onScroll高频回调场景正例
+```typescript
+// onDidScroll高频回调场景正例
 @Component
-struct PositiveOfOnScroll {
+struct PositiveOfOnDidScroll {
   Scroll() {
     ForEach(this.arr, (item: number) => {
       Text("ListItem" + item)
@@ -74,9 +76,9 @@ struct PositiveOfOnScroll {
   }
   .width('100%')
   .height('100%')
-  .onScroll(() => {
+  .onDidScroll(() =>{
     // 业务逻辑
-    ...
+    // ...
   })
 }
 ```
@@ -97,14 +99,14 @@ struct PositiveOfOnScroll {
 
 反例中，在`aboutToAppear`生命周期中添加了trace追踪，记录和追踪程序执行过程中的详细信息，会引入不必要的性能开销。
 
-```ts
+```typescript
 // Trace场景反例
 @Component
 struct NegativeOfTrace {
   aboutToAppear {
     hitrace.startTrace("HITRACE_TAG_APP", 1002);
     // 业务代码
-    ...
+    // ...
     hitrace.finishTrace("HITRACE_TAG_APP", 1002);
   }
 }
@@ -114,13 +116,13 @@ struct NegativeOfTrace {
 
 正例中，`aboutToAppear`生命周期函数中已移除了原本存在的Trace追踪。消除不必要的性能开销，确保应用程序在运行时更加高效。
 
-```ts
+```typescript
 // Trace场景正例
 @Component
 struct PositiveOfTrace {
   aboutToAppear {
     // 业务代码
-    ...
+    // ...
   }
 }
 ```
@@ -133,7 +135,7 @@ struct PositiveOfTrace {
 
 下面是一段用于演示日志执行原理的伪代码实例。在调用debug日志功能时，若待打印参数需要先行构造，那么参数的构建逻辑会在实际调用打印方法前被执行。例如，假设有一个将string1和string2参数拼接后输出的debug日志语句，在实际运行过程中，系统会首先执行字符串拼接操作，然后才执行日志的打印逻辑。
 
-```ts
+```typescript
 // debug日志打印反例
 @State string1: string = 'a';
 @State string2: string = 'b';
@@ -142,11 +144,11 @@ struct NegativeOfDebug {
   aboutToAppear {
     hilog.debug(1003, 'Debug', (this.string1 + this.string2));
     // 业务代码
-    ...
+    // ...
 }
 
 // 实际调用debug方法前会先将参数拼接为msg，再调用debug方法
-const msg = this.string1 + this.string2 ;
+const msg = this.string1 + this.string2;
 hilog.debug(msg);
 ```
 
@@ -154,19 +156,19 @@ hilog.debug(msg);
 
 在打印日志时，通过简化构造逻辑减少状态变量参与并在release模式下移除debug日志来优化性能。
 
-```ts
+```typescript
 // debug日志打印正例
 @Component
 struct PositiveOfDebug {
   aboutToAppear {
     // 业务代码
-    ...
+    // ...
 }
 ```
 
 通过上述案例可以看出，在release模式下，即使debug日志并未实际打印出来，其内部的构造逻辑依旧会被执行，这无疑会造成一定的性能开销。当涉及@state状态变量时，由于这类变量间的双向数据绑定特性，会加剧资源消耗。因此，在开发过程中，开发者应当留意并尽量避免编写这类在非调试状态下并无实际作用的冗余日志逻辑。为了在release模式下优化性能，应积极采取措施减少或移除这类不必要日志构造和打印操作。以下是对debug函数底层实现的一种简化版伪代码描述：
 
-```ts
+```typescript
 // debug函数底层实现
 void debug(string& msg){ // msg为string1与string2的拼接结果
     if(isDebug){ // isDebug判读是否为debug模式
@@ -183,7 +185,7 @@ void debug(string& msg){ // msg为string1与string2的拼接结果
 
 下面代码示例演示了，在Button按钮的点击事件回调函数.onClick()中，添加冗余的Trace和日志打印操作；而在.onAreaChange回调中，无任何实际执行的代码逻辑。
 
-```ts
+```typescript
 // onClick回调场景反例
 @Component
 struct NegativeOfOnClick {
@@ -207,7 +209,7 @@ struct NegativeOfOnClick {
 
 在处理Button按钮的点击事件回调函数onClick()时，应当避免添加无意义的Trace追踪及日志打印，以保持代码的精简和执行效率。仅在开发调试阶段或者定位问题时，才适宜插入这类跟踪和日志输出语句，在应用的正式运行环境下则应去除这些冗余部分，从而防止对程序性能造成潜在影响并提升日志信息的有效性。对于处理.onAreaChange回调函数时无任何业务逻辑代码的情形，可以直接安全地删除该空回调，避免系统对无意义事件做出响应，从而节省资源并提高程序运行效率。
 
-```ts
+```typescript
 // onClick回调场景正例
 @Component
 struct PositiveOfOnClick {

@@ -65,7 +65,7 @@ Obtains file information. This API uses a promise to return the result.
   fileio.stat(filePath).then((stat: fileio.Stat) => {
     console.info("getFileInfo succeed, the size of file is " + stat.size);
   }).catch((err: BusinessError) => {
-    console.info("getFileInfo failed with error:" + err);
+    console.error("getFileInfo failed with error:" + err);
   });
   ```
 
@@ -87,7 +87,7 @@ Obtains file information. This API uses an asynchronous callback to return the r
 | Name  | Type                              | Mandatory| Description                          |
 | -------- | ---------------------------------- | ---- | ------------------------------ |
 | path     | string                             | Yes  | Application sandbox path of the file.    |
-| callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes  | Callback invoked to return the file information obtained.|
+| callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes  | Callback used to return the file information obtained.|
 
 **Example**
 
@@ -164,7 +164,7 @@ Opens a directory. This API uses a promise to return the result.
   fileio.opendir(dirPath).then((dir: fileio.Dir) => {
     console.info("opendir succeed");
   }).catch((err: BusinessError) => {
-    console.info("opendir failed with error:" + err);
+    console.error("opendir failed with error:" + err);
   });
   ```
 
@@ -186,7 +186,7 @@ Opens a file directory. This API uses an asynchronous callback to return the res
 | Name  | Type                            | Mandatory| Description                          |
 | -------- | -------------------------------- | ---- | ------------------------------ |
 | path     | string                           | Yes  | Application sandbox path of the directory to open.|
-| callback | AsyncCallback&lt;[Dir](#dir)&gt; | Yes  | Callback invoked to return the result.  |
+| callback | AsyncCallback&lt;[Dir](#dir)&gt; | Yes  | Callback used to return the result.  |
 
 **Example**
 
@@ -265,7 +265,7 @@ Checks whether this process can access a file. This API uses a promise to return
   fileio.access(filePath).then(() => {
     console.info("Access successful");
   }).catch((err: BusinessError) => {
-    console.info("access failed with error:" + err);
+    console.error("access failed with error:" + err);
   });
   ```
 
@@ -288,7 +288,7 @@ Checks whether this process can access a file. This API uses an asynchronous cal
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                    | Yes  | Application sandbox path of the file.                                  |
 | mode     | number                    | No  | Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**.<br>The options are as follows:<br>- **0**: Check whether the file exists.<br>- **1**: Check whether the process has the execute permission on the file.<br>- **2**: Check whether the process has the write permission on the file.<br>- **4**: Check whether the process has the read permission on the file.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                |
 
 **Example**
 
@@ -329,7 +329,7 @@ Checks whether this process can access a file. This API returns the result synch
     fileio.accessSync(filePath);
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.info("accessSync failed with error:" + err);
+    console.error("accessSync failed with error:" + err);
   }
   ```
 
@@ -367,7 +367,7 @@ Closes a file. This API uses a promise to return the result.
   fileio.close(fd).then(() => {
     console.info("File closed");
   }).catch((err: BusinessError) => {
-    console.info("close file failed with error:" + err);
+    console.error("close file failed with error:" + err);
   });
   ```
 
@@ -389,7 +389,7 @@ Closes a file. This API uses an asynchronous callback to return the result.
   | Name     | Type                       | Mandatory  | Description          |
   | -------- | ------------------------- | ---- | ------------ |
   | fd       | number                    | Yes   | FD of the file to close.|
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result.|
+  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -465,7 +465,7 @@ Copies a file. This API uses a promise to return the result.
   fileio.copyFile(srcPath, dstPath).then(() => {
     console.info("File copied");
   }).catch((err: BusinessError) => {
-    console.info("copyFile failed with error:" + err);
+    console.error("copyFile failed with error:" + err);
   });
   ```
 
@@ -489,7 +489,7 @@ Copies a file. This API uses an asynchronous callback to return the result.
   | src      | string\|number | Yes   | Path or FD of the file to copy.                     |
   | dest     | string\|number | Yes   | Path or FD of the new file.                         |
   | mode     | number                     | No   | Whether to overwrite the file with the same name in the destination directory. The default value is **0**, which is the only value supported.<br>**0**: overwrite the file with the same name and truncate the part that is not overwritten.|
-  | callback | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked to return the result.                            |
+  | callback | AsyncCallback&lt;void&gt;  | Yes   | Callback used to return the result.                            |
 
 **Example**
 
@@ -565,7 +565,7 @@ Creates a directory. This API uses a promise to return the result.
   fileio.mkdir(dirPath).then(() => {
     console.info("Directory created");
   }).catch((error: BusinessError) => {
-    console.info("mkdir failed with error:" + error);
+    console.error("mkdir failed with error:" + error);
   });
   ```
 
@@ -588,7 +588,7 @@ Creates a directory. This API uses an asynchronous callback to return the result
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                    | Yes  | Application sandbox path of the directory.                                  |
 | mode     | number                    | No  | Permission on the directory to create. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o775**.<br>- **0o775**: The owner has the read, write, and execute permissions, and other users have the read and execute permissions.<br>- **0o700**: The owner has the read, write, and execute permissions.<br>- **0o400**: The owner has the read permission.<br>- **0o200**: The owner has the write permission.<br>- **0o100**: The owner has the execute permission.<br>- **0o070**: The user group has the read, write, and execute permissions.<br>- **0o040**: The user group has the read permission.<br>- **0o020**: The user group has the write permission.<br>- **0o010**: The user group has the execute permission.<br>- **0o007**: Other users have the read, write, and execute permissions.<br>- **0o004**: Other users have the read permission.<br>- **0o002**: Other users have the write permission.<br>- **0o001**: Other users have the execute permission.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                            |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                            |
 
 **Example**
 
@@ -645,7 +645,7 @@ Opens a file. This API uses a promise to return the result.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path of the file.                                  |
-| flags  | number | No  | Option for opening the file. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **0o0**: Open the file in read-only mode.<br>- **0o1**: Open the file in write-only mode.<br>- **0o2**: Open the file in read/write mode.<br>In addition, you can specify the following options, separated using a bitwise OR operator (&#124;). By default, no additional option is specified.<br>- **0o100**: If the file does not exist, create it. If you use this option, you must also specify **mode**.<br>- **0o200**: If **0o100** is added and the file already exists, throw an exception.<br>- **0o1000**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **0o2000**: Open the file in append mode. New data will be appended to the file (added to the end of the file).<br>- **0o4000**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>- **0o200000**: If **path** does not point to a directory, throw an exception.<br><br/>- **0o400000**: If **path** points to a symbolic link, throw an exception.<br>- **0o4010000**: Open the file in synchronous I/O mode.|
+| flags  | number | No  | Option for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **0o0**: Open the file in read-only mode.<br>- **0o1**: Open the file in write-only mode.<br>- **0o2**: Open the file in read/write mode.<br>In addition, you can specify the following options, separated using a bitwise OR operator (&#124;). By default, no additional option is specified.<br>- **0o100**: If the file does not exist, create it. If you use this option, you must also specify **mode**.<br>- **0o200**: If **0o100** is added and the file already exists, throw an exception.<br>- **0o1000**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **0o2000**: Open the file in append mode. New data will be appended to the file (added to the end of the file).<br>- **0o4000**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>- **0o200000**: If **path** does not point to a directory, throw an exception.<br><br/>- **0o400000**: If **path** points to a symbolic link, throw an exception.<br>- **0o4010000**: Open the file in synchronous I/O mode.|
 | mode   | number | No  | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o660**.<br>- **0o660**: The owner and user group have the read and write permissions.<br>- **0o700**: The owner has the read, write, and execute permissions.<br>- **0o400**: The owner has the read permission.<br>- **0o200**: The owner has the write permission.<br>- **0o100**: The owner has the execute permission.<br>- **0o070**: The user group has the read, write, and execute permissions.<br>- **0o040**: The user group has the read permission.<br>- **0o020**: The user group has the write permission.<br>- **0o010**: The user group has the execute permission.<br>- **0o007**: Other users have the read, write, and execute permissions.<br>- **0o004**: Other users have the read permission.<br>- **0o002**: Other users have the write permission.<br>- **0o001**: Other users have the execute permission.|
 
 **Return value**
@@ -662,7 +662,7 @@ Opens a file. This API uses a promise to return the result.
   fileio.open(filePath, 0o1, 0o0200).then((number: number) => {
     console.info("File opened");
   }).catch((err: BusinessError) => {
-    console.info("open file failed with error:" + err);
+    console.error("open file failed with error:" + err);
   });
   ```
 
@@ -684,9 +684,9 @@ Opens a file. This API uses an asynchronous callback to return the result.
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                          | Yes  | Application sandbox path of the file.                                  |
-| flags    | number                          | No  | Option for opening the file. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **0o0**: Open the file in read-only mode.<br>- **0o1**: Open the file in write-only mode.<br>- **0o2**: Open the file in read/write mode.<br>In addition, you can specify the following options, separated using a bitwise OR operator (&#124;). By default, no additional option is specified.<br>- **0o100**: If the file does not exist, create it. If you use this option, you must also specify **mode**.<br>- **0o200**: If **0o100** is added and the file already exists, throw an exception.<br>- **0o1000**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **0o2000**: Open the file in append mode. New data will be appended to the file (added to the end of the file).<br>- **0o4000**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>- **0o200000**: If **path** does not point to a directory, throw an exception.<br><br/>- **0o400000**: If **path** points to a symbolic link, throw an exception.<br>- **0o4010000**: Open the file in synchronous I/O mode.|
+| flags    | number                          | No  | Option for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **0o0**: Open the file in read-only mode.<br>- **0o1**: Open the file in write-only mode.<br>- **0o2**: Open the file in read/write mode.<br>In addition, you can specify the following options, separated using a bitwise OR operator (&#124;). By default, no additional option is specified.<br>- **0o100**: If the file does not exist, create it. If you use this option, you must also specify **mode**.<br>- **0o200**: If **0o100** is added and the file already exists, throw an exception.<br>- **0o1000**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **0o2000**: Open the file in append mode. New data will be appended to the file (added to the end of the file).<br>- **0o4000**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>- **0o200000**: If **path** does not point to a directory, throw an exception.<br><br/>- **0o400000**: If **path** points to a symbolic link, throw an exception.<br>- **0o4010000**: Open the file in synchronous I/O mode.|
 | mode     | number                          | No  | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o660**.<br>- **0o660**: The owner and user group have the read and write permissions.<br>- **0o700**: The owner has the read, write, and execute permissions.<br>- **0o400**: The owner has the read permission.<br>- **0o200**: The owner has the write permission.<br>- **0o100**: The owner has the execute permission.<br>- **0o070**: The user group has the read, write, and execute permissions.<br>- **0o040**: The user group has the read permission.<br>- **0o020**: The user group has the write permission.<br>- **0o010**: The user group has the execute permission.<br>- **0o007**: Other users have the read, write, and execute permissions.<br>- **0o004**: Other users have the read permission.<br>- **0o002**: Other users have the write permission.<br>- **0o001**: Other users have the execute permission.|
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result.                                    |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result.                                    |
 
 **Example**
 
@@ -716,7 +716,7 @@ Opens a file. This API returns the result synchronously.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path of the file.                                  |
-| flags  | number | No  | Option for opening the file. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **0o0**: Open the file in read-only mode.<br>- **0o1**: Open the file in write-only mode.<br>- **0o2**: Open the file in read/write mode.<br>In addition, you can specify the following options, separated using a bitwise OR operator (&#124;). By default, no additional option is specified.<br>- **0o100**: If the file does not exist, create it. If you use this option, you must also specify **mode**.<br>- **0o200**: If **0o100** is added and the file already exists, throw an exception.<br>- **0o1000**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **0o2000**: Open the file in append mode. New data will be appended to the file (added to the end of the file).<br>- **0o4000**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>- **0o200000**: If **path** does not point to a directory, throw an exception.<br><br/>- **0o400000**: If **path** points to a symbolic link, throw an exception.<br>- **0o4010000**: Open the file in synchronous I/O mode.|
+| flags  | number | No  | Option for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **0o0**: Open the file in read-only mode.<br>- **0o1**: Open the file in write-only mode.<br>- **0o2**: Open the file in read/write mode.<br>In addition, you can specify the following options, separated using a bitwise OR operator (&#124;). By default, no additional option is specified.<br>- **0o100**: If the file does not exist, create it. If you use this option, you must also specify **mode**.<br>- **0o200**: If **0o100** is added and the file already exists, throw an exception.<br>- **0o1000**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **0o2000**: Open the file in append mode. New data will be appended to the file (added to the end of the file).<br>- **0o4000**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>- **0o200000**: If **path** does not point to a directory, throw an exception.<br><br/>- **0o400000**: If **path** points to a symbolic link, throw an exception.<br>- **0o4010000**: Open the file in synchronous I/O mode.|
 | mode   | number | No  | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o660**.<br>- **0o660**: The owner and user group have the read and write permissions.<br>- **0o640**: The owner has the read and write permissions, and the user group has the read permission.<br>- **0o700**: The owner has the read, write, and execute permissions.<br>- **0o400**: The owner has the read permission.<br>- **0o200**: The owner has the write permission.<br>- **0o100**: The owner has the execute permission.<br>- **0o070**: The user group has the read, write, and execute permissions.<br>- **0o040**: The user group has the read permission.<br>- **0o020**: The user group has the write permission.<br>- **0o010**: The user group has the execute permission.<br>- **0o007**: Other users have the read, write, and execute permissions.<br>- **0o004**: Other users have the read permission.<br>- **0o002**: Other users have the write permission.<br>- **0o001**: Other users have the execute permission.<br>The file permissions on newly created files are affected by umask, which is set as the process starts. Currently, the modification of umask is not open.|
 
 **Return value**
@@ -790,7 +790,7 @@ Reads data from a file. This API uses a promise to return the result.
     console.log(`The content of file: ${buf.toString()}`);
     fileio.closeSync(fd);
   }).catch((err: BusinessError) => {
-    console.info("read file data failed with error:" + err);
+    console.error("read file data failed with error:" + err);
   });
   ```
 
@@ -814,7 +814,7 @@ Reads data from a file. This API uses an asynchronous callback to return the res
   | fd       | number                                   | Yes   | FD of the file to read.                            |
   | buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file data read.                       |
   | options  | Object                                   | No   | The options are as follows:<br>- **offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. This parameter is optional. The default value is **0**.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length minus the offset.<br>- **position** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>Constraints: offset + length <= Buffer size |
-  | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | Yes   | Callback invoked to return the result.                            |
+  | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | Yes   | Callback used to return the result.                            |
 
 **Example**
 
@@ -903,7 +903,7 @@ Deletes a directory. This API uses a promise to return the result.
   fileio.rmdir(dirPath).then(() => {
     console.info("Directory deleted");
   }).catch((err: BusinessError) => {
-    console.info("rmdir failed with error:" + err);
+    console.error("rmdir failed with error:" + err);
   });
   ```
 
@@ -925,7 +925,7 @@ Deletes a directory. This API uses an asynchronous callback to return the result
 | Name  | Type                     | Mandatory| Description                      |
 | -------- | ------------------------- | ---- | -------------------------- |
 | path     | string                    | Yes  | Application sandbox path of the directory.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.  |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.  |
 
 **Example**
 
@@ -997,7 +997,7 @@ Deletes a file. This API uses a promise to return the result.
   fileio.unlink(filePath).then(() => {
     console.info("File deleted");
   }).catch((error: BusinessError) => {
-    console.info("remove file failed with error:" + error);
+    console.error("remove file failed with error:" + error);
   });
   ```
 
@@ -1019,7 +1019,7 @@ Deletes a file. This API uses an asynchronous callback to return the result.
 | Name  | Type                     | Mandatory| Description                      |
 | -------- | ------------------------- | ---- | -------------------------- |
 | path     | string                    | Yes  | Application sandbox path of the file.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.  |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.  |
 
 **Example**
 
@@ -1093,7 +1093,7 @@ Writes data into a file. This API uses a promise to return the result.
   fileio.write(fd, "hello, world").then((number: number) => {
     console.info("write data to file succeed and size is:" + number);
   }).catch((err: BusinessError) => {
-    console.info("write data to file failed with error:" + err);
+    console.error("write data to file failed with error:" + err);
   });
   ```
 
@@ -1117,7 +1117,7 @@ Writes data to a file. This API uses an asynchronous callback to return the resu
   | fd       | number                          | Yes   | FD of the file to write.                            |
   | buffer   | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
   | options  | Object                          | No   | The options are as follows:<br>- **offset** (number): position of the data to write in reference to the start address of the data. This parameter is optional. The default value is **0**.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length minus the offset.<br>- **position** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.<br>Constraints: offset + length <= Buffer size|
-  | callback | AsyncCallback&lt;number&gt;     | Yes   | Callback invoked to return the result.                      |
+  | callback | AsyncCallback&lt;number&gt;     | Yes   | Callback used to return the result.                      |
 
 **Example**
 
@@ -1201,7 +1201,7 @@ Calculates the hash value of a file. This API uses a promise to return the resul
   fileio.hash(filePath, "sha256").then((str: string) => {
     console.info("calculate file hash succeed:" + str);
   }).catch((err: BusinessError) => {
-    console.info("calculate file hash failed with error:" + err);
+    console.error("calculate file hash failed with error:" + err);
   });
   ```
 
@@ -1272,7 +1272,7 @@ Changes file permissions. This API uses a promise to return the result.
   fileio.chmod(filePath, 0o700).then(() => {
     console.info("File permissions changed");
   }).catch((err: BusinessError) => {
-    console.info("chmod failed with error:" + err);
+    console.error("chmod failed with error:" + err);
   });
   ```
 
@@ -1295,7 +1295,7 @@ Changes file permissions. This API uses an asynchronous callback to return the r
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                    | Yes  | Application sandbox path of the file.                              |
 | mode     | number                    | Yes  | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;).<br>- **0o700**: The owner has the read, write, and execute permissions.<br>- **0o400**: The owner has the read permission.<br>- **0o200**: The owner has the write permission.<br>- **0o100**: The owner has the execute permission.<br>- **0o070**: The user group has the read, write, and execute permissions.<br>- **0o040**: The user group has the read permission.<br>- **0o020**: The user group has the write permission.<br>- **0o010**: The user group has the execute permission.<br>- **0o007**: Other users have the read, write, and execute permissions.<br>- **0o004**: Other users have the read permission.<br>- **0o002**: Other users have the write permission.<br>- **0o001**: Other users have the execute permission.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                |
 
 **Example**
 
@@ -1368,7 +1368,7 @@ Obtains file information based on an FD. This API uses a promise to return the r
   fileio.fstat(fd).then((stat: fileio.Stat) => {
     console.info("fstat succeed, the size of file is " + stat.size);
   }).catch((err: BusinessError) => {
-    console.info("fstat failed with error:" + err);
+    console.error("fstat failed with error:" + err);
   });
   ```
 
@@ -1390,7 +1390,7 @@ Obtains file information based on an FD. This API uses an asynchronous callback 
   | Name     | Type                                | Mandatory  | Description              |
   | -------- | ---------------------------------- | ---- | ---------------- |
   | fd       | number                             | Yes   | FD of the target file.    |
-  | callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes   | Callback invoked to return the file information obtained.|
+  | callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes   | Callback used to return the file information obtained.|
 
 **Example**
 
@@ -1471,7 +1471,7 @@ Truncates a file based on an FD. This API uses a promise to return the result.
   fileio.ftruncate(fd, 5).then(() => {
     console.info("File truncated");
   }).catch((err: BusinessError) => {
-    console.info("truncate file failed with error:" + err);
+    console.error("truncate file failed with error:" + err);
   });
   ```
 
@@ -1572,7 +1572,7 @@ Truncates a file based on a file path. This API uses a promise to return the res
   fileio.truncate(filePath, len).then(() => {
     console.info("File truncated");
   }).catch((err: BusinessError) => {
-    console.info("truncate file failed with error:" + err);
+    console.error("truncate file failed with error:" + err);
   });
   ```
 
@@ -1670,7 +1670,7 @@ Reads the text content of a file. This API uses a promise to return the result.
   fileio.readText(filePath).then((str: string) => {
     console.info("readText succeed:" + str);
   }).catch((err: BusinessError) => {
-    console.info("readText failed with error:" + err);
+    console.error("readText failed with error:" + err);
   });
   ```
 
@@ -1693,7 +1693,7 @@ Reads the text content of a file. This API uses an asynchronous callback to retu
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | filePath | string                      | Yes  | Application sandbox path of the file to read.                                  |
 | options  | Object                      | No  | The options are as follows:<br>- **position** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length minus the offset.<br>- **encoding**: format of the data to be encoded. The default value is **'utf-8'**, which is the only value supported.|
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the content read.                        |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the content read.                        |
 
 **Example**
 
@@ -1787,7 +1787,7 @@ Obtains information about a symbolic link that is used to refer to a file or dir
   fileio.lstat(filePath).then((stat: fileio.Stat) => {
     console.info("get link status succeed, the size of file is" + stat.size);
   }).catch((err: BusinessError) => {
-    console.info("get link status failed with error:" + err);
+    console.error("get link status failed with error:" + err);
   });
   ```
 
@@ -1809,7 +1809,7 @@ Obtains information about a symbolic link that is used to refer to a file or dir
 | Name  | Type                              | Mandatory| Description                                  |
 | -------- | ---------------------------------- | ---- | -------------------------------------- |
 | path     | string                             | Yes  | Application sandbox path of the target file.|
-| callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes  | Callback invoked to return the symbolic link information obtained.      |
+| callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes  | Callback used to return the symbolic link information obtained.      |
 
 **Example**
 
@@ -1888,7 +1888,7 @@ Renames a file. This API uses a promise to return the result.
   fileio.rename(srcFile, dstFile).then(() => {
     console.info("File renamed");
   }).catch((err: BusinessError) => {
-    console.info("rename failed with error:" + err);
+    console.error("rename failed with error:" + err);
   });
   ```
 
@@ -1911,7 +1911,7 @@ Renames a file. This API uses an asynchronous callback to return the result.
 | -------- | ------------------------- | ---- | ---------------------------- |
 | oldPath  | string                    | Yes  | Application sandbox path of the file to rename.|
 | newPath  | string                    | Yes  | Application sandbox path of the file renamed.  |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.  |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.  |
 
 **Example**
 
@@ -1984,7 +1984,7 @@ Synchronizes a file. This API uses a promise to return the result.
   fileio.fsync(fd).then(() => {
     console.info("Data flushed");
   }).catch((err: BusinessError) => {
-    console.info("sync data failed with error:" + err);
+    console.error("sync data failed with error:" + err);
   });
   ```
 
@@ -2006,7 +2006,7 @@ Synchronizes a file. This API uses an asynchronous callback to return the result
   | Name     | Type                       | Mandatory  | Description             |
   | -------- | ------------------------- | ---- | --------------- |
   | fd       | number                    | Yes   | FD of the file to synchronize.   |
-  | Callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result.|
+  | Callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -2080,7 +2080,7 @@ Synchronizes the data of a file. This API uses a promise to return the result. *
   fileio.fdatasync(fd).then(() => {
     console.info("Data flushed");
   }).catch((err: BusinessError) => {
-    console.info("sync data failed with error:" + err);
+    console.error("sync data failed with error:" + err);
   });
   ```
 
@@ -2102,7 +2102,7 @@ Synchronizes the data of a file. This API uses an asynchronous callback to retur
   | Name     | Type                             | Mandatory  | Description               |
   | -------- | ------------------------------- | ---- | ----------------- |
   | fd       | number                          | Yes   | FD of the file to synchronize.     |
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result.|
+  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -2177,7 +2177,7 @@ Creates a symbolic link based on a file path. This API uses a promise to return 
   fileio.symlink(srcFile, dstFile).then(() => {
     console.info("Symbolic link created");
   }).catch((err: BusinessError) => {
-    console.info("symlink failed with error:" + err);
+    console.error("symlink failed with error:" + err);
   });
   ```
 
@@ -2200,7 +2200,7 @@ Creates a symbolic link based on a file path. This API uses an asynchronous call
 | -------- | ------------------------- | ---- | -------------------------------- |
 | target   | string                    | Yes  | Application sandbox path of the target file.        |
 | srcPath  | string                    | Yes  | Application sandbox path of the symbolic link.    |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -2277,7 +2277,7 @@ Changes the file owner based on a file path. This API uses a promise to return t
   fileio.chown(filePath, stat.uid, stat.gid).then(() => {
     console.info("File owner changed");
   }).catch((err: BusinessError) => {
-    console.info("chown failed with error:" + err);
+    console.error("chown failed with error:" + err);
   });
   ```
 
@@ -2301,7 +2301,7 @@ Changes the file owner based on a file path. This API uses an asynchronous callb
 | path     | string                    | Yes  | Application sandbox path of the file.    |
 | uid      | number                    | Yes  | New UID.                     |
 | gid      | number                    | Yes  | New GID.                     |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -2374,7 +2374,7 @@ Creates a temporary directory. The folder name is created by replacing a string 
   fileio.mkdtemp(pathDir + "/XXXXXX").then((pathDir: string) => {
     console.info("mkdtemp succeed:" + pathDir);
   }).catch((err: BusinessError) => {
-    console.info("mkdtemp failed with error:" + err);
+    console.error("mkdtemp failed with error:" + err);
   });
   ```
 
@@ -2396,7 +2396,7 @@ Creates a temporary directory. The folder name is created by replacing a string 
   | Name     | Type                         | Mandatory  | Description                         |
   | -------- | --------------------------- | ---- | --------------------------- |
   | prefix   | string                      | Yes   | String to be replaced with six randomly generated characters to create a unique temporary directory.|
-  | callback | AsyncCallback&lt;string&gt; | Yes   | Callback invoked to return the result.             |
+  | callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.             |
 
 **Example**
 
@@ -2474,7 +2474,7 @@ Changes file permissions based on an FD. This API uses a promise to return the r
   fileio.fchmod(fd, mode).then(() => {
     console.info("File permissions changed");
   }).catch((err: BusinessError) => {
-    console.info("chmod failed with error:" + err);
+    console.error("chmod failed with error:" + err);
   });
   ```
 
@@ -2497,7 +2497,7 @@ Changes file permissions based on an FD. This API uses an asynchronous callback 
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                          | Yes   | FD of the target file.                            |
   | mode     | number                          | Yes   | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;).<br>- **0o700**: The owner has the read, write, and execute permissions.<br>- **0o400**: The owner has the read permission.<br>- **0o200**: The owner has the write permission.<br>- **0o100**: The owner has the execute permission.<br>- **0o070**: The user group has the read, write, and execute permissions.<br>- **0o040**: The user group has the read permission.<br>- **0o020**: The user group has the write permission.<br>- **0o010**: The user group has the execute permission.<br>- **0o007**: Other users have the read, write, and execute permissions.<br>- **0o004**: Other users have the read permission.<br>- **0o002**: Other users have the write permission.<br>- **0o001**: Other users have the execute permission.|
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result.                          |
+  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.                          |
 
 **Example**
 
@@ -2574,7 +2574,7 @@ Creates a stream based on a file path. This API uses a promise to return the res
   fileio.createStream(filePath, "r+").then((stream: fileio.Stream) => {
     console.info("Stream created");
   }).catch((err: BusinessError) => {
-    console.info("createStream failed with error:" + err);
+    console.error("createStream failed with error:" + err);
   });
   ```
 
@@ -2597,7 +2597,7 @@ Creates a stream based on a file path. This API uses an asynchronous callback to
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                  | Yes  | Application sandbox path of the file.                                  |
 | mode     | string                                  | Yes  | - **r**: Open a file for reading. The file must exist.<br>- **r+**: Open a file for both reading and writing. The file must exist.<br>- **w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>- **a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
-| callback | AsyncCallback&lt;[Stream](#stream)&gt; | Yes  | Callback invoked to return the result.                                  |
+| callback | AsyncCallback&lt;[Stream](#stream)&gt; | Yes  | Callback used to return the result.                                  |
 
 **Example**
 
@@ -2677,7 +2677,7 @@ Opens a stream based on an FD. This API uses a promise to return the result.
   fileio.fdopenStream(fd, "r+").then((stream: fileio.Stream) => {
     console.info("Stream opened");
   }).catch((err: BusinessError) => {
-    console.info("openStream failed with error:" + err);
+    console.error("openStream failed with error:" + err);
   });
   ```
 
@@ -2700,7 +2700,7 @@ Opens a stream based on an FD. This API uses an asynchronous callback to return 
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                                   | Yes   | FD of the target file.                            |
   | mode     | string                                   | Yes   | - **r**: Open a file for reading. The file must exist.<br>- **r+**: Open a file for both reading and writing. The file must exist.<br>- **w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>- **a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
-  | callback | AsyncCallback&lt;[Stream](#stream)&gt; | Yes   | Callback invoked to return the result.                           |
+  | callback | AsyncCallback&lt;[Stream](#stream)&gt; | Yes   | Callback used to return the result.                           |
 
 **Example**
 
@@ -2784,7 +2784,7 @@ Changes the file owner based on an FD. This API uses a promise to return the res
   fileio.fchown(fd, stat.uid, stat.gid).then(() => {
     console.info("File owner changed");
   }).catch((err: BusinessError) => {
-    console.info("chown failed with error:" + err);
+    console.error("chown failed with error:" + err);
   });
   ```
 
@@ -2808,7 +2808,7 @@ Changes the file owner based on an FD. This API uses an asynchronous callback to
   | fd       | number                    | Yes   | FD of the target file.   |
   | uid      | number                    | Yes   | New UID.     |
   | gid      | number                    | Yes   | New GID.     |
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result.|
+  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -2888,7 +2888,7 @@ Changes the file owner (owner of the symbolic link, not the file referred to by 
   fileio.lchown(filePath, stat.uid, stat.gid).then(() => {
     console.info("File owner changed");
   }).catch((err: BusinessError) => {
-    console.info("chown failed with error:" + err);
+    console.error("chown failed with error:" + err);
   });
   ```
 
@@ -2912,7 +2912,7 @@ Changes the file owner (owner of the symbolic link, not the file referred to by 
 | path     | string                    | Yes  | Application sandbox path of the file.    |
 | uid      | number                    | Yes  | New UID.                     |
 | gid      | number                    | Yes  | New GID.                     |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -2997,7 +2997,7 @@ Obtains the file read result. This class applies only to the **read()** method.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
-| Name       | Type      | Readable  | Writable  | Description               |
+| Name       | Type      | Read-Only  | Writable  | Description               |
 | --------- | ---------- | ---- | ---- | ----------------- |
 | bytesRead | number     | Yes   | Yes   | Length of the data read.          |
 | offset    | number     | Yes   | Yes   | Position of the buffer to which the data will be read in reference to the start address of the buffer.|
@@ -3010,13 +3010,13 @@ Provides detailed file information. Before calling a method of the **Stat** clas
 
 > **NOTE**
 >
-> This API is deprecated since API version 9. Use [fs.Stat](js-apis-file-fs.md#stat) instead.
+> This API is deprecated since API version 9. Use [fs.stat](js-apis-file-fs.md#stat) instead.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
-### Attributes
+### Properties
 
-| Name    | Type  | Readable  | Writable  | Description                                      |
+| Name    | Type  | Read-Only  | Writable  | Description                                      |
 | ------ | ------ | ---- | ---- | ---------------------------------------- |
 | dev    | number | Yes   | No   | Major device number.                           |
 | ino    | number | Yes   | No   | File identifier, which varies with files on the same device.                |
@@ -3048,7 +3048,7 @@ Checks whether this file is a block special file. A block special file supports 
 
   | Type     | Description              |
   | ------- | ---------------- |
-  | boolean | Whether the file is a block special file.|
+  | boolean | Returns **true** if it is a block special file; returns **false** otherwise.|
 
 **Example**
 
@@ -3074,7 +3074,7 @@ Checks whether this file is a character special file. A character special file s
 
   | Type     | Description               |
   | ------- | ----------------- |
-  | boolean | Whether the file is a character special file.|
+  | boolean | Returns **true** if it is a character special file; returns **false** otherwise. |
 
 **Example**
 
@@ -3100,7 +3100,7 @@ Checks whether this file is a directory.
 
   | Type     | Description           |
   | ------- | ------------- |
-  | boolean | Whether the file is a directory.|
+  | boolean | Returns **true** if it is a directory; returns **false** otherwise. |
 
 **Example**
 
@@ -3126,7 +3126,7 @@ Checks whether this file is a named pipe (or FIFO). Named pipes are used for int
 
   | Type     | Description                   |
   | ------- | --------------------- |
-  | boolean | Whether the file is an FIFO.|
+  | boolean | Returns **true** if it is a named pipe; returns **false** otherwise.|
 
 **Example**
 
@@ -3152,7 +3152,7 @@ Checks whether this file is a regular file.
 
   | Type     | Description             |
   | ------- | --------------- |
-  | boolean | Whether the file is a regular file.|
+  | boolean | Returns **true** if it is a regular file; returns **false** otherwise.|
 
 **Example**
 
@@ -3178,7 +3178,7 @@ Checks whether this file is a socket.
 
   | Type     | Description            |
   | ------- | -------------- |
-  | boolean | Whether the file is a socket.|
+  | boolean | Returns **true** if it is a socket; returns **false** otherwise.|
 
 **Example**
 
@@ -3204,7 +3204,7 @@ Checks whether this file is a symbolic link.
 
   | Type     | Description             |
   | ------- | --------------- |
-  | boolean | Whether the file is a symbolic link.|
+  | boolean | Returns **true** if it is a symbolic link; returns **false** otherwise. |
 
 **Example**
 
@@ -3252,7 +3252,7 @@ Stops the **watcher** instance. This API uses an asynchronous callback to return
 
   | Name     | Type                       | Mandatory  | Description                    |
   | -------- | ------------------------- | ---- | ---------------------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result.|
+  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -3302,7 +3302,7 @@ Closes the stream. This API uses a promise to return the result.
   ss.close().then(() => {
     console.info("File stream closed");
   }).catch((err: BusinessError) => {
-    console.info("close fileStream  failed with error:" + err);
+    console.error("close fileStream  failed with error:" + err);
   });
   ```
 
@@ -3323,7 +3323,7 @@ Closes this stream. This API uses an asynchronous callback to return the result.
 
   | Name     | Type                       | Mandatory  | Description           |
   | -------- | ------------------------- | ---- | ------------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result.|
+  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -3385,7 +3385,7 @@ Flushes this stream. This API uses a promise to return the result.
   ss.flush().then(() => {
     console.info("Stream flushed");
   }).catch((err: BusinessError) => {
-    console.info("flush failed with error:" + err);
+    console.error("flush failed with error:" + err);
   });
   ```
 
@@ -3406,7 +3406,7 @@ Flushes this stream. This API uses an asynchronous callback to return the result
 
   | Name     | Type                       | Mandatory  | Description            |
   | -------- | ------------------------- | ---- | -------------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result.|
+  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -3485,7 +3485,7 @@ Writes data into the stream. This API uses a promise to return the result.
   ss.write("hello, world", option).then((number: number) => {
     console.info("write succeed and size is:" + number);
   }).catch((err: BusinessError) => {
-    console.info("write failed with error:" + err);
+    console.error("write failed with error:" + err);
   });
   ```
 
@@ -3508,7 +3508,7 @@ Writes data to this stream. This API uses an asynchronous callback to return the
   | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
   | buffer   | ArrayBuffer\|string | Yes  | Data to write. It can be a string or data from a buffer.                    |
   | options  | Object                          | No  | The options are as follows:<br>- **offset** (number): position of the data to write in reference to the start address of the data. This parameter is optional. The default value is **0**.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length minus the offset.<br>- **position** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.<br>Constraints: offset + length <= Buffer size|
-  | callback | AsyncCallback&lt;number&gt;     | Yes  | Callback invoked to return the result.                              |
+  | callback | AsyncCallback&lt;number&gt;     | Yes  | Callback used to return the result.                              |
 
 **Example**
 
@@ -3626,7 +3626,7 @@ Reads data from the stream. This API uses a promise to return the result.
     let buf = buffer.from(arrayBuffer, 0, readResult.bytesRead);
     console.info(`The content of file: ${buf.toString()}`);
   }).catch((err: BusinessError) => {
-    console.info("read data failed with error:" + err);
+    console.error("read data failed with error:" + err);
   });
   ```
 
@@ -3649,7 +3649,7 @@ Reads data from this stream. This API uses an asynchronous callback to return th
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file read.                             |
   | options  | Object                                   | No   | The options are as follows:<br>- **offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. This parameter is optional. The default value is **0**.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length minus the offset.<br>- **position** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>Constraints: offset + length <= Buffer size |
-  | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | Yes   | Callback invoked to return the result.                        |
+  | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | Yes   | Callback used to return the result.                        |
 
 **Example**
 
@@ -3755,7 +3755,7 @@ Reads the next directory entry. This API uses a promise to return the result.
   dir.read().then((dirent: fileio.Dirent) => {
     console.log("read succeed, the name of dirent is " + dirent.name);
   }).catch((err: BusinessError) => {
-    console.info("read failed with error:" + err);
+    console.error("read failed with error:" + err);
   });
   ```
 
@@ -3776,7 +3776,7 @@ Reads the next directory entry. This API uses an asynchronous callback to return
 
   | Name     | Type                                    | Mandatory  | Description              |
   | -------- | -------------------------------------- | ---- | ---------------- |
-  | callback | AsyncCallback&lt;[Dirent](#dirent)&gt; | Yes   | Callback invoked to return the result.|
+  | callback | AsyncCallback&lt;[Dirent](#dirent)&gt; | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -3881,7 +3881,7 @@ Closes a directory. After a directory is closed, the FD in **Dir** will be relea
 
 ## Dirent
 
-Provides information about files and directories. Before calling a method of the **Dirent** class, use the [dir.read()](#read) method synchronously or asynchronously to create a **Dirent** instance.
+Provides information about files and directories. Before calling an API of the **Dirent** class, use [dir.read()](#read) synchronously or asynchronously to create a **Dirent** instance.
 
 > **NOTE**
 >
@@ -3889,9 +3889,9 @@ Provides information about files and directories. Before calling a method of the
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
-### Attributes
+### Properties
 
-| Name  | Type  | Readable  | Writable  | Description     |
+| Name  | Type  | Read-Only  | Writable  | Description     |
 | ---- | ------ | ---- | ---- | ------- |
 | name | string | Yes   | No   | Directory entry name.|
 
@@ -3912,7 +3912,7 @@ Checks whether this directory entry is a block special file. A block special fil
 
   | Type     | Description              |
   | ------- | ---------------- |
-  | boolean | Whether the directory entry is a block special file.|
+  | boolean | Returns **true** if it is a block special file; returns **false** otherwise.|
 
 **Example**
 
@@ -3926,7 +3926,7 @@ Checks whether this directory entry is a block special file. A block special fil
 
 isCharacterDevice(): boolean
 
-Checks whether a directory entry is a character special file. A character special file supports random access, and it is not cached when accessed.
+Checks whether this directory entry is a character special file. A character special file supports random access, and it is not cached when accessed.
 
 > **NOTE**
 >
@@ -3938,7 +3938,7 @@ Checks whether a directory entry is a character special file. A character specia
 
   | Type     | Description               |
   | ------- | ----------------- |
-  | boolean | Whether the directory entry is a character special file.|
+  | boolean | Returns **true** if it is a character special file; returns **false** otherwise.|
 
 **Example**
 
@@ -3952,7 +3952,7 @@ Checks whether a directory entry is a character special file. A character specia
 
 isDirectory(): boolean
 
-Checks whether a directory entry is a directory.
+Checks whether this directory entry is a folder.
 
 > **NOTE**
 >
@@ -3964,7 +3964,7 @@ Checks whether a directory entry is a directory.
 
   | Type     | Description           |
   | ------- | ------------- |
-  | boolean | Whether the directory entry is a directory.|
+  | boolean | Returns **true** if it is a folder; returns **false** otherwise. |
 
 **Example**
 
@@ -3978,7 +3978,7 @@ Checks whether a directory entry is a directory.
 
 isFIFO(): boolean
 
-Checks whether this directory entry is a named pipe (or FIFO). Named pipes are used for inter-process communication.
+Checks whether this directory entry is a named pipe (also called FIFO). Named pipes are used for inter-process communication.
 
 > **NOTE**
 >
@@ -3990,7 +3990,7 @@ Checks whether this directory entry is a named pipe (or FIFO). Named pipes are u
 
   | Type     | Description             |
   | ------- | --------------- |
-  | boolean | Whether the directory entry is a FIFO.|
+  | boolean | Returns **true** if it is a named pipe; returns **false** otherwise.|
 
 **Example**
 
@@ -4004,7 +4004,7 @@ Checks whether this directory entry is a named pipe (or FIFO). Named pipes are u
 
 isFile(): boolean
 
-Checks whether a directory entry is a regular file.
+Checks whether this directory entry is a regular file.
 
 > **NOTE**
 >
@@ -4016,7 +4016,7 @@ Checks whether a directory entry is a regular file.
 
   | Type     | Description             |
   | ------- | --------------- |
-  | boolean | Whether the directory entry is a regular file.|
+  | boolean | Returns **true** if it is a regular file; returns **false** otherwise. |
 
 **Example**
 
@@ -4030,7 +4030,7 @@ Checks whether a directory entry is a regular file.
 
 isSocket(): boolean
 
-Checks whether a directory entry is a socket.
+Checks whether this directory entry is a socket.
 
 > **NOTE**
 >
@@ -4042,7 +4042,7 @@ Checks whether a directory entry is a socket.
 
   | Type     | Description            |
   | ------- | -------------- |
-  | boolean | Whether the directory entry is a socket.|
+  | boolean | Returns **true** if it is a socket; returns **false** otherwise. |
 
 **Example**
 
@@ -4056,7 +4056,7 @@ Checks whether a directory entry is a socket.
 
 isSymbolicLink(): boolean
 
-Checks whether a directory entry is a symbolic link.
+Checks whether this directory entry is a symbolic link.
 
 > **NOTE**
 >
@@ -4068,7 +4068,7 @@ Checks whether a directory entry is a symbolic link.
 
   | Type     | Description             |
   | ------- | --------------- |
-  | boolean | Whether the directory entry is a symbolic link.|
+  | boolean | Returns **true** if it is a symbolic link; returns **false** otherwise.|
 
 **Example**
 

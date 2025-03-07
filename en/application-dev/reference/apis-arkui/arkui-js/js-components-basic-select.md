@@ -13,12 +13,12 @@ The **[<option\>](js-components-basic-option.md)** child component is supported.
 
 ## Attributes
 
-The [universal attributes](../arkui-js/js-components-common-attributes.md) are supported.
+The [universal attributes](js-components-common-attributes.md) are supported.
 
 
 ## Ad Asset
 
-In addition to the [universal styles](../arkui-js/js-components-common-styles.md), the following styles are supported.
+In addition to the [universal styles](js-components-common-styles.md), the following styles are supported.
 
 | Name       | Type  | Mandatory| Description                                                        |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
@@ -27,7 +27,7 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 
 ## Events
 
-In addition to the [universal events](../arkui-js/js-components-common-events.md), the following events are supported.
+In addition to the [universal events](js-components-common-events.md), the following events are supported.
 
 | Name  | Parameter                     | Description                                                        |
 | ------ | ------------------------- | ------------------------------------------------------------ |
@@ -40,7 +40,7 @@ In addition to the [universal events](../arkui-js/js-components-common-events.md
 
 ## Methods
 
-The [universal methods](../arkui-js/js-components-common-methods.md) are supported.
+The [universal methods](js-components-common-methods.md) are supported.
 
 
 ## Example

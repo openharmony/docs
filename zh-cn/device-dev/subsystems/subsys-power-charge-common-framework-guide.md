@@ -24,7 +24,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
 
 ### 开发步骤 
 
-本文以RK3568开发板为例，介绍如何实现配置
+本文以RK3568开发板为例，介绍如何实现配置。
 
 1. 修改[drivers_peripheral/battery/interfaces/hdi_service/profile](https://gitee.com/openharmony/drivers_peripheral/tree/master/battery/interfaces/hdi_service/profile)路径下的电池配置文件battery_config.json。
 
@@ -63,21 +63,21 @@ profile
 
 配置说明：
 
-- charger：原有配置，新增配置在该条配置后增加
+- charger：原有配置，新增配置在该条配置后增加。
 
-- charge_scene：新增配置，充电场景配置标识符，不可更改
+- charge_scene：新增配置，充电场景配置标识符，不可更改。
 
 - scene_name：充电场景名称，每个充电场景可以配置support、get、set三条属性。可以修改场景名称，但需要与系统API接口请求中场景名称保持一致；可以增加新的场景。
 
-- support：充电场景的支持属性，path为其默认存在的属性，表示充电冲场景对应的支持查询内核节点路径。除外还支持type和expect_value两个属性:
+- support：充电场景的支持属性，path为其默认存在的属性，表示充电场景对应的支持查询的内核节点路径。除外还支持type和expect_value两个属性：
 
-  ​	 type：充电场景的内核节点路径的类型，必填字段，只能填充dir/file。dir：表示内核节点路径为目录或者文件；file：表示内核节点路径为文件
+  ​- type：充电场景的内核节点路径的类型，必填字段，只能填充dir/file。dir：表示内核节点路径为目录或者文件；file：表示内核节点路径为文件。
 
-  ​	 expect_value：type为file时，支持该充电场景的预期值
+  ​- expect_value：type为file时，支持该充电场景的预期值。
 
-- get：充电场景的查询属性，path为其默认存在的属性，表示充电场景对应的查询内核节点路径
+- get：充电场景的查询属性，path为其默认存在的属性，表示充电场景对应的查询内核节点路径。
 
-- set：充电场景的设置属性，path为其默认存在的属性，表示充电场景对应的设置内核节点路径
+- set：充电场景的设置属性，path为其默认存在的属性，表示充电场景对应的设置内核节点路径。
 
 2. 修改[interface_sdk-js/api](https://gitee.com/openharmony/interface_sdk-js/tree/master/api)路径下的api文件@ohos.batteryInfo.d.ts。
 
@@ -147,11 +147,11 @@ declare namespace chargeScene {
 
 系统API说明：
 
-- setBatteryConfig：设置电池配置，sceneName表示充电场景名称，sceneValue表示充电场景配置值，返回值为0表示设置成功，其他表示设置失败
+- setBatteryConfig：设置电池配置，sceneName表示充电场景名称，sceneValue表示充电场景配置值，返回值为0表示设置成功，其他表示设置失败。
 
-- getBatteryConfig：查询电池配置，sceneName表示充电场景名称，返回值表示充电场景配置值
+- getBatteryConfig：查询电池配置，sceneName表示充电场景名称，返回值表示充电场景配置值。
 
-- isBatteryConfigSupported：是否支持电池配置，sceneName表示充电场景名称，返回值为true表示支持该充电场景，返回值为false表示不支持该充电场景
+- isBatteryConfigSupported：是否支持电池配置，sceneName表示充电场景名称，返回值为true表示支持该充电场景，返回值为false表示不支持该充电场景。
 
 3. 参考《[快速入门](../quick-start/quickstart-overview.md)》编译定制版本，编译命令如下：
 

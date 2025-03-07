@@ -13,11 +13,11 @@ ArkUI provides a comprehensive infrastructure for UI development of applications
 
 ## Two Development Paradigms
 
-ArkUI comes with two development paradigms: [ArkTS-based declarative development paradigm](arkts-ui-development-overview.md) (declarative development paradigm for short) and [JS-compatible web-like development paradigm](../ui/ui-js-overview.md) (web-like development paradigm for short). You can choose whichever development paradigm that aligns with your practice.
+ArkUI comes with two development paradigms: [ArkTS-based declarative development paradigm](arkts-ui-development-overview.md) (declarative development paradigm for short) and [JS-compatible web-like development paradigm](ui-js-overview.md) (web-like development paradigm for short). You can choose whichever development paradigm that aligns with your practice.
 
 - **Declarative development paradigm**: uses [ArkTS](../quick-start/arkts-get-started.md) – a superset of TypeScript with declarative UI syntax, providing UI drawing capabilities from three dimensions: component, animation, and state management.
 
-- **Web-like development paradigm**: uses the classical three-stage programming model, in which OpenHarmony Markup Language (HML) is used for building layouts, CSS for defining styles, and JS for adding processing logic. This development paradigm has a low learning curve for frontend web developers, allowing them to quickly transform existing web applications into ArkUI applications.
+- **Web-like development paradigm**: uses the classical three-stage programming model, in which HML is used for building layouts, CSS for defining styles, and JS for adding processing logic. This development paradigm has a low learning curve for frontend web developers, allowing them to quickly transform existing web applications into ArkUI applications.
 
 The declarative development paradigm is a better choice for building new application UIs for the following reasons:
 
@@ -25,16 +25,16 @@ The declarative development paradigm is a better choice for building new applica
 
 - **Higher application performance**: As shown below, the two development paradigms share the UI backend engine and language runtime. However, the declarative development paradigm does not require the JS framework for managing the page DOM. As such, it has more streamlined rendering and update links and less memory usage.
 
-- **Future proof**: The declarative development paradigm will continue to develop as the preferred development paradigm in OpenHarmony, providing increasingly more diverse and powerful capabilities.
+- **Future proof**: The declarative development paradigm will continue to develop as the preferred development paradigm, providing increasingly diverse and powerful capabilities.
 
-  **Figure 1** Ark UI framework
+  **Figure 1** ArkUI framework
 
   ![arkui-framework](figures/arkui-framework.png)
 
 
 ## Development Paradigm Support by Application Type
 
-The support for development paradigms varies according to the [application model](../application-models/application-model-description.md) and page form. For details, see the following table.
+The supported development paradigm varies according to the [application model](../application-models/application-models.md) and page form. For details, see the following table.
 
   **Table 1** Supported development paradigms
 

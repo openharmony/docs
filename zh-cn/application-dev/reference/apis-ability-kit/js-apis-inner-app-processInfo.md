@@ -14,7 +14,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -22,6 +22,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 | processName | string | 是 | 否 | 进程名称。 |
 
 **示例：**
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 

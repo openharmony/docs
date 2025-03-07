@@ -30,7 +30,7 @@
 ```
 ArkWeb_OnJavaScriptProxyCallback ArkWeb_ProxyMethod::callback
 ```
-**描述：** 
+**描述：**
 
 Proxy方法执行的回调。
 

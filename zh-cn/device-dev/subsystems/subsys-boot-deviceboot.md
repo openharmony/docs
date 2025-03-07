@@ -70,7 +70,7 @@
 | boot.img     | NA      | 内核和ramdisk镜像，bootloader加载的第一个镜像      |
 | system.img   | /system | 系统组件镜像，存放与芯片方案无关的平台业务         |
 | vendor.img   | /vendor | 芯片组件镜像，存放芯片相关的硬件抽象服务           |
-| updater.img  | /       | 升级组件镜像，用于完成升级；正常启动时不加载次镜像 |
+| updater.img  | /       | 升级组件镜像，用于完成升级；正常启动时不加载此镜像 |
 | userdata.img | /data   | 可写的用户数据镜像                                 |
 
 每个开发板都需要在存储器上划分好分区来存放上述镜像，SOC启动时都由bootloader来加载这些镜像，具体过程包括以下几个大的步骤：
@@ -356,7 +356,7 @@
   | mnt_point             | 在根文件系统中的挂载点                                       |
   | type                  | 文件系统的类型(常见有ext2、vfat、NTFS等)                     |
   | mnt_flags and options | 挂载的参数,详细的如下说明                                    |
-  | fs_mgr_flags          | 文化系统管理的标识(Android10引入)<br />可用值有：{"check","wait,"required","nofail","hvb"} |
+  | fs_mgr_flags          | 文化系统管理的标识<br />可用值有：{"check","wait,"required","nofail","hvb"} |
 
 - mnt_flags and options 参数说明
 

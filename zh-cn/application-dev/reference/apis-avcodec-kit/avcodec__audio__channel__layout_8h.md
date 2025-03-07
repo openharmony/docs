@@ -3,11 +3,13 @@
 
 ## 概述
 
-声明用于音频编解码的枚举。
+音频编解码枚举的声明。
 
 **库：** libnative_media_codecbase.so
 
 **起始版本：** 9
+
+**废弃版本：** 11
 
 **相关模块：**[CodecBase](_codec_base.md)
 

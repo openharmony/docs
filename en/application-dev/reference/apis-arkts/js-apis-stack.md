@@ -17,12 +17,14 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import Stack from '@ohos.util.Stack';  
+import { Stack } from '@kit.ArkTS';
 ```
 
 ## Stack
 
 ### Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -36,6 +38,8 @@ import Stack from '@ohos.util.Stack';
 constructor()
 
 A constructor used to create a **Stack** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -59,6 +63,8 @@ let stack : Stack<number | string | Object> = new Stack();
 push(item: T): T
 
 Adds an element at the top of this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -92,7 +98,7 @@ class C1 {
 let stack : Stack<number | string | C1> = new Stack();
 let result = stack.push("a");
 let result1 = stack.push(1);
-let c : C1  = {name : "Dylon", age : "13"};
+let c : C1  = {name : "Dylan", age : "13"};
 let result2 = stack.push(c);
 ```
 
@@ -101,6 +107,8 @@ let result2 = stack.push(c);
 pop(): T
 
 Removes the top element from this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -136,6 +144,8 @@ peek(): T
 
 Obtains the top element of this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -168,6 +178,8 @@ let result = stack.peek();
 locate(element: T): number
 
 Obtains the index of the first occurrence of the specified element in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -209,6 +221,8 @@ thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -228,10 +242,11 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **Example**
@@ -252,6 +267,8 @@ stack.forEach((value : number, index ?: number) :void => {
 isEmpty(): boolean
 
 Checks whether this container is empty (contains no elements).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -286,9 +303,7 @@ let result = stack.isEmpty();
 
 Obtains an iterator, each item of which is a JavaScript object.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 

@@ -1518,7 +1518,7 @@ Creates a **Path2D** object.
 
 **Return value**
 
-  [Path2D object](../arkui-js/js-components-canvas-path2d.md)
+  [Path2D object](js-components-canvas-path2d.md)
 
 **Example**
   ```html

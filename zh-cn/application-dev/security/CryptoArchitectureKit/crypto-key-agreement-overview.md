@@ -1,7 +1,7 @@
 # 密钥协商介绍及算法规格
 
 
-在非安全通道环境中，需要不共享任何秘密的情况下，协商出一个安全的共享秘密密钥，可以使用密钥协商算法。
+在非安全通道环境中，需要不共享任何秘密的情况下，协商出一个安全的共享密钥，可以使用密钥协商算法。
 
 
 接下来将说明系统目前支持的算法及其对应的规格。
@@ -35,6 +35,7 @@ ECDH（Elliptic Curve Diffie–Hellman key exchange），算法库框架提供�
 | ECC | ECC_BrainPoolP384t1 | 11+ | 
 | ECC | ECC_BrainPoolP512r1 | 11+ | 
 | ECC | ECC_BrainPoolP512t1 | 11+ | 
+| ECC | ECC_Secp256k1 | 14+ | 
 | ECC | ECC | 10+ | 
 
 

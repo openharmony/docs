@@ -8,9 +8,9 @@
 
 ### 触摸事件
 
-触摸事件（onTouch事件）是所有手势组成的基础，有Down，Move，Up，Cancel四种。手势均由触摸事件组成，例如，点击为Down+Up，滑动为Down+一系列Move+Up。触摸事件具有最特殊性：
+[触摸事件](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md)（onTouch事件）是所有手势组成的基础，有Down，Move，Up，Cancel四种。手势均由触摸事件组成，例如，点击为Down+Up，滑动为Down+一系列Move+Up。触摸事件具有最特殊性：
 
-1.监听了onTouch事件的组件，若在手指落下时被触摸则均会收到onTouch事件的回调，被触摸受到触摸热区和触摸控制影响。
+1.监听了onTouch事件的组件。若在手指落下时被触摸则均会收到onTouch事件的回调，被触摸受到触摸热区和触摸控制影响。
 
 2.onTouch事件的回调是闭环的。若一个组件收到了手指Id为0的Down事件，后续也会收到手指Id为0的Move事件和Up事件。
 
@@ -43,9 +43,9 @@ Stack A() {
 
 除了触摸事件（onTouch事件）外的所有手势与事件，均是通过基础手势或者组合手势实现的。例如，拖拽事件是由长按手势和滑动手势组成的一个顺序手势。
 
-在未显示声明的情况下，同一时间，一根手指对应的手势组中只会有一个手势获得成功从而触发所设置的回调。
+在未显式声明的情况下，同一时间，一根手指对应的手势组中只会有一个手势获得成功从而触发所设置的回调。
 
-因此，除非显示声明允许多个手势同时成功，同一时间只会有一个手势响应。
+因此，除非显式声明允许多个手势同时成功，同一时间只会有一个手势响应。
 
 响应优先级遵循以下条件：
 
@@ -72,7 +72,7 @@ ComponentA()
 )
 ```
 当组件A上绑定了由点击和滑动手势组成的互斥手势组时，先达到手势触发条件的手势触发对应的回调。
-若使用者做了一次点击操作，则响应点击对应的回调。若使用者进行了一次滑动操作，则响应滑动对应的回调。
+若使用者做了一次点击操作，则响应点击对应的回调。若使用者进行了一次滑动操作并且滑动距离达到了阈值，则响应滑动对应的回调。
 
 ## 自定义控制的多层级手势事件
 
@@ -125,7 +125,7 @@ ComponentA() {
 .onTouch(() => {})
 .gesture(TapGesture({count: 1}))
 ```
-HitTestMode.Block的效果为，自身会响应触摸测试，阻塞子节点和兄弟节点的触摸测试，从而导致子节点和兄弟节点的onTouch事件和手势均无法触发。
+HitTestMode.Block自身会响应触摸测试，阻塞子节点和兄弟节点的触摸测试，从而导致子节点和兄弟节点的onTouch事件和手势均无法触发。
     
 当组件C未设置hitTestBehavior时，点击组件D区域，组件A、组件C和组件D的onTouch事件会触发，组件D的点击手势会触发。
 
@@ -145,7 +145,7 @@ Stack A() {
 .onTouch(() => {})
 .gesture(TapGesture({count: 1}))
 ```
-HitTestMode.Transparent的效果为，自身响应触摸测试，不会阻塞兄弟节点的触摸测试。
+HitTestMode.Transparent自身响应触摸测试，不会阻塞兄弟节点的触摸测试。
 
 当组件C未设置hitTestBehavior时，点击组件B和组件C的重叠区域时，Stack A和组件C的onTouch事件会触发，组件C的点击事件会触发，组件B的onTouch事件和点击手势均不触发。
 
@@ -161,7 +161,7 @@ ComponentA() {
 .gesture(TapGesture({count: 1}))
 .hitTestBehavior(HitTestMode.None)
 ```
-HitTestMode.None的效果为，自身不响应触摸测试，不会阻塞子节点和兄弟节点的触摸控制。
+HitTestMode.None自身不响应触摸测试，不会阻塞子节点和兄弟节点的触摸控制。
 
 当组件A未设置hitTestBehavior时，点击组件B区域时，组件A和组件B的onTouch事件均会触发，组件B的点击手势会触发。
 

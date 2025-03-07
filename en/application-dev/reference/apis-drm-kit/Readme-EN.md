@@ -1,4 +1,4 @@
-# DRM Kit API Reference
+# DRM Kit
 
 - ArkTS APIs
   - [@ohos.multimedia.drm (Digital Rights Management)](js-apis-drm.md)
@@ -15,10 +15,12 @@
     - [DRM_MediaKeyRequest](_d_r_m___media_key_request.md)
     - [DRM_MediaKeyRequestInfo](_d_r_m___media_key_request_info.md)
     - [DRM_MediaKeyStatus](_d_r_m___media_key_status.md)
+    - [DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md)
     - [DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md)
     - [DRM_OfflineMediakeyIdArray](_d_r_m___offline_mediakey_id_array.md)
     - [DRM_PsshInfo](_d_r_m___pssh_info.md)
     - [DRM_Statistics](_d_r_m___statistics.md)
     - [MediaKeySession_Callback](_media_key_session___callback.md)
+    - [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md)
 - Error Codes
   - [DRM Error Codes](errorcode-drm.md)

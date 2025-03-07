@@ -15,8 +15,7 @@ External storage devices are managed by the StorageManager and StorageDaemon ser
   - If the check fails, the volume state changes to **UNMOUNTED**.
 
 - For a volume in the **MOUNTED** state:
-  - If the user chooses **Eject device**, the volume state changes to **EJECTING** and COMMON_EVENT_VOLUME_EJECT is broadcast. After StorageDaemon unmounts the volume, the volume state changes to **UNMOUNTED** and COMMON_EVENT_VOLUME_UNMOUNTED is broadcast.
-    <br>For a volume in the **UNMOUNTED** state, removing the device will delete the volume information and broadcast COMMON_EVENT_VOLUME_REMOVED.
+  - If the user chooses **Eject device**, the volume state changes to **EJECTING** and COMMON_EVENT_VOLUME_EJECT is broadcast. After StorageDaemon unmounts the volume, the volume state changes to **UNMOUNTED** and COMMON_EVENT_VOLUME_UNMOUNTED is broadcast.<br>For a volume in the **UNMOUNTED** state, removing the device will delete the volume information and broadcast COMMON_EVENT_VOLUME_REMOVED.
   - If the user removes the device, the volume state changes to **EJECTING** and then to **UNMOUNTED**, and the broadcasts of the corresponding states are sent. After the device is removed, the volume information is deleted and the COMMON_EVENT_VOLUME_BAD_REMOVAL broadcast is sent.
 
 ## Available APIs
@@ -27,13 +26,13 @@ The following table describes the broadcast related parameters.
 
 **Table 1** Broadcast parameters
 
-| Broadcast| Parameter| 
+| Broadcast| Parameter|
 | -------- | -------- |
-| usual.event.data.VOLUME_REMOVED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.| 
-| usual.event.data.VOLUME_UNMOUNTED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.| 
-| usual.event.data.VOLUME_MOUNTED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.<br>**fsUuid**: universally unique identifier (UUID) of the volume.<br>**path**: path where the volume is mounted.| 
-| usual.event.data.VOLUME_BAD_REMOVAL | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.| 
-| usual.event.data.VOLUME_EJECT | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.| 
+| usual.event.data.VOLUME_REMOVED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.|
+| usual.event.data.VOLUME_UNMOUNTED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.|
+| usual.event.data.VOLUME_MOUNTED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.<br>**fsUuid**: universally unique identifier (UUID) of the volume.<br>**path**: path where the volume is mounted.|
+| usual.event.data.VOLUME_BAD_REMOVAL | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.|
+| usual.event.data.VOLUME_EJECT | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.|
 
 ## How to Develop
 
@@ -52,13 +51,13 @@ You can subscribe to broadcast events to observe the insertion and removal of ex
    - "usual.event.data.VOLUME_EJECT": The device is being ejected.
 
    ```ts
-   import CommonEvent from '@ohos.commonEventManager';
-   import volumeManager from '@ohos.file.volumeManager';
-   import { BusinessError } from '@ohos.base';
+   import { commonEventManager } from '@kit.BasicServicesKit';
+   import { volumeManager } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-   let subscriber: CommonEvent.CommonEventSubscriber;
+   let subscriber: commonEventManager.CommonEventSubscriber;
    async function example() {
-     const subscribeInfo: CommonEvent.CommonEventSubscribeInfo = {
+     const subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
        events: [
          "usual.event.data.VOLUME_REMOVED",
          "usual.event.data.VOLUME_UNMOUNTED",
@@ -67,24 +66,28 @@ You can subscribe to broadcast events to observe the insertion and removal of ex
          "usual.event.data.VOLUME_EJECT"
        ]
      };
-     subscriber = await CommonEvent.createSubscriber(subscribeInfo);
+     subscriber = await commonEventManager.createSubscriber(subscribeInfo);
    }
    ```
 
 3. Obtain volume information from the broadcast.
 
    ```ts
-   CommonEvent.subscribe(subscriber, (err: BusinessError, data: CommonEvent.CommonEventData) => {
-     if (data.event === 'usual.event.data.VOLUME_MOUNTED') {
-       // Manage the volume device based on the information obtained from the broadcast.
-       let volId: string = data.parameters.id;
-       volumeManager.getVolumeById(volId, (error: BusinessError, vol: volumeManager.Volume) => {
-         if (error) {
-           console.error('volumeManager getVolumeById failed for ' + JSON.stringify(error));
-         } else {
-           console.info('volumeManager getVolumeById successfully, the volume state is ' + vol.state);
-         }
-       })
-     }
-   })
+   let subscriber: commonEventManager.CommonEventSubscriber|undefined;
+   // Note that the subscriber value is obtained from await commonEventManager.createSubscriber (subscribeInfo) in step 2.
+   if (subscriber !== undefined) {
+    commonEventManager.subscribe(subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
+      if (data.event === 'usual.event.data.VOLUME_MOUNTED' && data.parameters !== undefined) {
+        // Manage the volume device based on the information obtained from the broadcast.
+        let volId: string = data.parameters.id;
+        volumeManager.getVolumeById(volId, (error: BusinessError, vol: volumeManager.Volume) => {
+          if (error) {
+            console.error('volumeManager getVolumeById failed for ' + JSON.stringify(error));
+          } else {
+            console.info('volumeManager getVolumeById successfully, the volume state is ' + vol.state);
+          }
+        })
+      }
+    })
+   }
    ```

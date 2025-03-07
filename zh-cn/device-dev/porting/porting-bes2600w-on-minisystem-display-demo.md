@@ -1,5 +1,3 @@
-
-
 # 轻量带屏解决方案之恒玄芯片移植案例
 
 本文章基于恒玄科技`BES2600W`芯片的欧智通[Multi-modal V200Z-R开发板](https://gitee.com/openharmony/device_board_fnlink)，进行轻量带屏开发板的标准移植，开发了智能开关面板样例，同时实现了`ace_engine_lite`、`arkui_ui_lite`、`aafwk_lite`、`appexecfwk_lite`、`HDF`等部件基于`OpenHarmony LiteOS-M`内核的适配。移植架构上采用`Board`与`SoC`分离的方案，工具链`Newlib C`库与`Musl C`库可选，`LiteOS-M`内核编译采用`gn`结合`Kconfig`图形化配置等需求。
@@ -298,9 +296,9 @@ if (ohos_kernel_type == "liteos_m") {                    --- 由于多内核设�
 
 | 阶段名称  | 分区规划                 | 描述                          |
 | --------- | ------------------------ | ----------------------------- |
-| BOOT1     | [0, 0x10000]             | 第一阶段启动，进行固件启动    |
-| BOOT2     | [0x2C010000, 0x2C020000] | 第二阶段启动，进行OTA升级启动 |
-| RTOS_MAIN | [0x2C080000, 0x2C860000] | 第三阶段启动，进行内核启动    |
+| BOOT1     | [0, 0x10000]             | 第一阶段启动，进行固件启动。    |
+| BOOT2     | [0x2C010000, 0x2C020000] | 第二阶段启动，进行OTA升级启动。 |
+| RTOS_MAIN | [0x2C080000, 0x2C860000] | 第三阶段启动，进行内核启动。    |
 
 在第三阶段内核启动中，需要适配的文件路径在 `//device/soc/bestechnic/bes2600/liteos_m/sdk/bsp/rtos/liteos/liteos_m/board.c`
 
@@ -827,29 +825,29 @@ ethernetif_init(struct netif *netif)
 
 | 配置项                                     | 描述                     |
 | ------------------------------------------ | ------------------------ |
-| dsoftbus_feature_disc_ble         | 是否开启BLE发现功能      |
-| dsoftbus_feature_disc_coap        | 是否开启COAP发现功能     |
-| dsoftbus_feature_conn_tcp         | 是否开启TCP连接功能      |
-| dsoftbus_feature_conn_br          | 是否开启BR连接功能       |
-| dsoftbus_feature_conn_ble         | 是否开启BLE连接功能      |
-| dsoftbus_feature_conn_p2p         | 是否开启P2P连接功能      |
-| dsoftbus_feature_trans_udp        | 是否开启UDP传输功能      |
-| dsoftbus_feature_trans_udp_stream | 是否开启UDP传输流功能    |
-| dsoftbus_feature_trans_udp_file   | 是否开启UDP传输文件功能  |
-| dsoftbus_feature_ip_auth          | 是否开启认证传输通道功能 |
-| dsoftbus_feature_auth_account     | 是否开启基于账号认证功能 |
-| dsoftbus_feature_qos              | 是否开启QoS功能          |
+| dsoftbus_feature_disc_ble         | 是否开启BLE发现功能。      |
+| dsoftbus_feature_disc_coap        | 是否开启COAP发现功能。     |
+| dsoftbus_feature_conn_tcp         | 是否开启TCP连接功能。      |
+| dsoftbus_feature_conn_br          | 是否开启BR连接功能。       |
+| dsoftbus_feature_conn_ble         | 是否开启BLE连接功能。      |
+| dsoftbus_feature_conn_p2p         | 是否开启P2P连接功能。     |
+| dsoftbus_feature_trans_udp        | 是否开启UDP传输功能。      |
+| dsoftbus_feature_trans_udp_stream | 是否开启UDP传输流功能。    |
+| dsoftbus_feature_trans_udp_file   | 是否开启UDP传输文件功能。  |
+| dsoftbus_feature_ip_auth          | 是否开启认证传输通道功能。 |
+| dsoftbus_feature_auth_account     | 是否开启基于账号认证功能。 |
+| dsoftbus_feature_qos              | 是否开启QoS功能。          |
 
 在`softbus_config_adapter.c`文件中规定了以下配置项：
 
 | 配置项                               | 描述                          |
 | ------------------------------------ | ----------------------------- |
-| SOFTBUS_INT_MAX_BYTES_LENGTH         | SendBytes发送最大Bytes长度    |
-| SOFTBUS_INT_MAX_MESSAGE_LENGTH       | SendMessage发送最大消息的长度 |
-| SOFTBUS_INT_CONN_BR_MAX_DATA_LENGTH  | 蓝牙最大接收数据量            |
-| SOFTBUS_INT_CONN_RFCOM_SEND_MAX_LEN  | 蓝牙最大接收数据量            |
-| SOFTBUS_INT_ADAPTER_LOG_LEVEL        | 日志级别设置                  |
-| SOFTBUS_STR_STORAGE_DIRECTORY        | 存储目录设置                  |
+| SOFTBUS_INT_MAX_BYTES_LENGTH         | SendBytes发送最大Bytes长度。    |
+| SOFTBUS_INT_MAX_MESSAGE_LENGTH       | SendMessage发送最大消息的长度。 |
+| SOFTBUS_INT_CONN_BR_MAX_DATA_LENGTH  | 蓝牙最大接收数据量。            |
+| SOFTBUS_INT_CONN_RFCOM_SEND_MAX_LEN  | 蓝牙最大接收数据量。            |
+| SOFTBUS_INT_ADAPTER_LOG_LEVEL        | 日志级别设置。                  |
+| SOFTBUS_STR_STORAGE_DIRECTORY        | 存储目录设置。                  |
 
 因为软总线配置了后，不会默认启动，所以需要在通过启动框架调用`InitSoftBusServer`函数，如下：
 
@@ -1012,10 +1010,10 @@ APP_FEATURE_INIT(WifiDHCPRpcServerCB);
 
 | 接口名                 | 描述                             |
 | ---------------------- | -------------------------------- |
-| SYS_SERVICE_INIT(func) | 标识核心系统服务的初始化启动入口 |
-| SYS_FEATURE_INIT(func) | 标识核心系统功能的初始化启动入口 |
-| APP_SERVICE_INIT(func) | 标识应用层服务的初始化启动入口   |
-| APP_FEATURE_INIT(func) | 标识应用层功能的初始化启动入口   |
+| SYS_SERVICE_INIT(func) | 标识核心系统服务的初始化启动入口。 |
+| SYS_FEATURE_INIT(func) | 标识核心系统功能的初始化启动入口。 |
+| APP_SERVICE_INIT(func) | 标识应用层服务的初始化启动入口。   |
+| APP_FEATURE_INIT(func) | 标识应用层功能的初始化启动入口。   |
 
 ![](../public_sys-resources/icon-note.gif) **说明：** 
 	通过上面加载的组件编译出来的lib文件需要手动加入强制链接。
@@ -1244,10 +1242,10 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 | 配置项                                   | 说明                            |
 | ---------------------------------------- | ------------------------------- |
-| histreamer_enable_plugin_hdi_adapter     | 是否使能histreamer对接到hdi接口 |
-| histreamer_enable_plugin_minimp3_adapter | 是否使能插件适配minimp3         |
-| histreamer_enable_plugin_ffmpeg_adapter  | 是否使能插件适配FFmpeg          |
-| config_ohos_histreamer_stack_size        | histreamer栈大小设置            |
+| histreamer_enable_plugin_hdi_adapter     | 是否使能histreamer对接到hdi接口。 |
+| histreamer_enable_plugin_minimp3_adapter | 是否使能插件适配minimp3。         |
+| histreamer_enable_plugin_ffmpeg_adapter  | 是否使能插件适配FFmpeg。          |
+| config_ohos_histreamer_stack_size        | histreamer栈大小设置。            |
 
 #### 公共基础库子系统适配
 
@@ -1349,7 +1347,7 @@ APP_FEATURE_INIT(AppEntry);
         {
           "component": "ace_engine_lite",
           "features": [
-            "enable_ohos_ace_engine_lite_product_config = true"
+            "ace_engine_lite_feature_product_config = true"
           ]
         }
       ]
@@ -1384,8 +1382,8 @@ APP_FEATURE_INIT(AppEntry);
         {
           "component": "aafwk_lite",
           "features": [
-            "enable_ohos_appexecfwk_feature_ability = true",	 --- 支持FA特性，即包含图形能力
-            "config_ohos_aafwk_ams_task_size = 4096"			 --- 配置aafwk栈的大小
+            "ability_lite_enable_ohos_appexecfwk_feature_ability = true",	 --- 支持FA特性，即包含图形能力
+            "ability_lite_config_ohos_aafwk_ams_task_size = 4096"			 --- 配置aafwk栈的大小
           ]
         }
       ]

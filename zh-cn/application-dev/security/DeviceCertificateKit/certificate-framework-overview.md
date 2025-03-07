@@ -55,7 +55,7 @@
 
 ## 约束与限制
 
-依赖加解密算法库框架的基础算法能力的部分，算法库框架不支持多线程并发操作，详情请参考[加解密算法框架](../../security/CryptoArchitectureKit/crypto-architecture-kit-intro.md#约束与限制)。
+依赖加解密算法库框架的基础算法能力的部分，算法库框架不支持多线程并发操作，详情请参考[加解密算法框架](../CryptoArchitectureKit/crypto-architecture-kit-intro.md#约束与限制)。
 
 
 ## 开发总览
@@ -70,7 +70,7 @@
 - [证书链对象的创建和校验](create-verify-certchain-object.md)
 - [证书链校验时从p12文件构造TrustAnchor对象数组](create-trustanchor-from-p12.md)
 
-证书算法库框架主要提供了以下类，开发者可以查阅对应API参考，了解以下接口。
+证书算法库框架主要提供了以下类，开发者可以查阅对应API参考，了解以下接口：
 
 | 名称 | 类 | 功能 |
 | -------- | -------- | -------- |

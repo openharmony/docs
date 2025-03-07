@@ -1085,7 +1085,7 @@ product.gni中指定了chipset_build_deps camera_device_manager_deps 和 camera_
 
 ####  框架适配介绍
 
-        ![dayu200-camera-01.png](figures/dayu200/dayu200-camera-01.png)
+![dayu200-camera-01.png](figures/dayu200/dayu200-camera-01.png)
 ​      
 
 以V4l2为例，pipeline的连接方式是在HCS配置文件中配置连接，数据源我们称之为SourceNode，主要包括硬件设备的控制、数据流的轮转等。

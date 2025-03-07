@@ -8,7 +8,7 @@
 
 **Error Message**
 
-The application is not an administrator of the device.
+The application is not an administrator application of the device.
 
 **Description**
 
@@ -20,7 +20,7 @@ The enterprise device management APIs can be called only by a device administrat
 
 **Solution**
 
-Check that the caller is an enabled device administrator application.
+Check whether the caller is a device administrator application that is enabled.
 
 ## 9200002 Permission Denied
 
@@ -34,7 +34,7 @@ This error code is reported when the device administrator application does not h
 
 **Possible Causes**
 
-The device administrator application cannot call the APIs that are accessible only by a super device administrator application.
+A device administrator application calls an API that is accessible only by a super administrator application.
 
 **Solution**
 
@@ -48,17 +48,18 @@ The administrator ability component is invalid.
 
 **Description**
 
-This error code is reported when the specified device administrator ability component is invalid.
+This error code is reported when the specified device manager ability component is invalid.
 
 **Possible Causes**
 
+The specified administrator ability component is invalid due to any of the following causes:
 1. The administrator ability component does not exist when the device administrator application is enabled.
 2. The administrator ability component is not a valid enterprise administrator ability component.
 
 **Solution**
 
 1. Check that the name of the administrator ability component is included in the application bundle when the application is enabled as a device administrator application.
-2. Check that the administrator ability component inherits the **EnterpriseAdminExtensionAbility** component defined by the enterprise device management framework.
+2. Check that the administrator ability component inherits from the **EnterpriseAdminExtensionAbility** component defined by the enterprise device management framework.
 
 ## 9200004 Failed to Enable the Device Administrator Application
 
@@ -73,13 +74,13 @@ This error code is reported when an application fails to be enabled as a device 
 **Possible Causes**
 
 1. Multiple applications are enabled as the super device administrator application.
-2. The application has been enabled as a device administrator application with a different administrator type.
+2. The application has been enabled as a device administrator application, but the administrator type has changed.
 3. Multiple device administrator ability components are enabled for the same application.
 
 **Solution**
 
 1. Check that only one super device administrator application exists.
-2. Check whether the current application has been enabled as a device administrator with a different device administrator type. If yes, disable the device administrator application and try again.
+2. Check whether the current application has been enabled as a device administrator with a different device administrator type. If yes, deactivate the device administrator application and try again.
 3. Check whether a device administrator ability component has been enabled for the application. Only one device administrator ability component can be enabled for an application.
 
 ## 9200005 Failed to Disable the Device Administrator Application
@@ -94,7 +95,7 @@ This error code is reported when the operation for disabling a device administra
 
 **Possible Causes**
 
-1. The application to be disabled is not an enabled device administrator application.
+1. The device administrator application to be disabled has not been enabled.
 2. The caller cannot disable other device administrator applications.
 
 **Solution**
@@ -116,7 +117,7 @@ This error code is reported when the specified user ID does not exist or the spe
 **Possible Causes**
 
 1. The user ID specified for setting a user policy does not exist.
-2. The specified user ID is different from the caller's user ID when the application is not a super device administrator application.
+2. When the application is not a super device administrator application, the specified user ID is different from the caller's user ID.
 
 **Solution**
 
@@ -127,7 +128,7 @@ This error code is reported when the specified user ID does not exist or the spe
 
 **Error Message**
 
-The system ability work abnormally.
+The system ability works abnormally.
 
 **Description**
 
@@ -135,10 +136,10 @@ This error code is reported when the enterprise device management ability is not
 
 **Possible Causes**
 
-- The EnterpriseAdminAbility is not started.
-- The RPC object for enterprise device management cannot be obtained.
-- Other abilities, on which the EnterpriseAdminAbility depends, are not started, or the RPC object cannot be obtained.
-- A system exception occurs during the running of EnterpriseAdminAbility.
+1. The EnterpriseAdminAbility is not started.
+2. The RPC object for enterprise device management cannot be obtained.
+3. Other abilities, on which the EnterpriseAdminAbility depends, are not started, or the RPC object cannot be obtained.
+4. A system exception occurs during the running of EnterpriseAdminAbility.
 
 **Solution**
 
@@ -148,7 +149,7 @@ Try again later or restart the device.
 
 **Error Message**
 
-The specified system events enum is invalid.
+The specified system event is invalid.
 
 **Description**
 
@@ -162,11 +163,11 @@ The enterprise device management module does not support subscription to the spe
 
 Check that the specified event is valid and supported by the enterprise device management module.
 
-## 9200009 Failed to Grant Permissions to the Application
+## 9200009 Failed to Grant Permissions to an Application
 
 **Error Message**
 
-Authorize permission to the application failed.
+Failed to grant the permission to the application.
 
 **Description**
 
@@ -184,7 +185,7 @@ Check that the target application has been installed by the administrator.
 
 **Error Message**
 
-a conflicting policy has been configured.
+A conflict policy has been configured.
 
 **Description**
 
@@ -202,7 +203,7 @@ Resolve the conflict, and then deliver the policy.
 
 **Error Message**
 
-manage certificate failed
+Failed to manage the certificate.
 
 **Description**
 
@@ -220,7 +221,7 @@ Check that the user certificate is correct.
 
 **Error Message**
 
-The application installation failed.
+Failed to install the application.
 
 **Description**
 
@@ -229,7 +230,7 @@ This error code is reported when a device administrator application fails to ins
 **Possible Causes**
 
 1. The application installation path is empty or invalid, or does not exist.
-2. The operation attempts to install multiple apps with different bundle names.
+2. The operation attempts to install multiple applications with different bundle names.
 3. The application to be installed already exists when the installation parameter flag is 0.
 4. The user ID is invalid.
 
@@ -238,3 +239,50 @@ This error code is reported when a device administrator application fails to ins
 1. Check that the application installation path is valid.
 2. Check that all the installation parameters are valid.
 3. Check that the same application is installed.
+
+## 9201003 Failed to Add an Account
+
+**Error Message**
+
+Failed to add an OS account.
+
+**Description**
+
+This error code is reported when an account fails to be added.
+
+**Possible Causes**
+
+1. The account already exists.
+2. The account name is invalid.
+3. The network is not connected when the account is added.
+4. The system does not support multiple accounts.
+
+**Solution**
+
+1. Check whether the account name exists. If yes, change the account name and try again.
+2. Check that the account name is valid.
+3. Check that the network is connected when the account is added.
+
+## 9201004 Update Package Not Exist or Fails to be Parsed
+
+**Error Message**
+
+The update packages do not exist or analyzing failed.
+
+**Description**
+
+This error code is reported when the enterprise device administrator application fails to notify the system of the package update.
+
+**Possible Causes**
+
+1. The system update package does not exist.
+2. The verification of the system update package name fails.
+3. The system update package fails to be opened.
+4. The system update package fails to be parsed.
+
+**Solution**
+
+1. Check whether the system update package exists.
+2. Check whether the name of the system update package is valid.
+3. Check whether the system update package is readable.
+4. Check whether the system update package is complete.

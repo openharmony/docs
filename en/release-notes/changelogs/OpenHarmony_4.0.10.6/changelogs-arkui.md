@@ -180,7 +180,7 @@ API version 10: Custom title bar without the back button
 
 ![NavDestination](figures/navdestination_no_back_sdk10.png)
 
-## cl.arkui.3 OnStateChange Callback Change of the \<NavRouter> Component
+## cl.arkui.3 OnStateChange Callback Change of the NavRouter Component
 
 Changed the number of **OnStateChange** calls for displaying the **\<NavDestination>** component from 2 to 1, which does not affect the call sequence.
 
@@ -188,6 +188,6 @@ Changed the number of **OnStateChange** calls for displaying the **\<NavDestinat
 
 Applications that use **OnStateChange** for call timing are affected.
 
-- Call sequence before the change: **OnStateChange(true)** triggered by display of **\<NavRouter>** -> **OnStateChange(false)** triggered by exiting of **\<NavRouter>** -> **OnStateChange(true)** triggered by display of **\<NavRouter>**
+- Call sequence before the change: **OnStateChange(true)** triggered by display of **NavRouter** -> **OnStateChange(false)** triggered by exiting of **NavRouter** -> **OnStateChange(true)** triggered by display of **NavRouter**
 
-- Call sequence after the change: **OnStateChange(true)** triggered by display of **\<NavRouter>** -> **OnStateChange(false)** triggered by exiting of **\<NavRouter>**
+- Call sequence after the change: **OnStateChange(true)** triggered by display of **NavRouter** -> **OnStateChange(false)** triggered by exiting of **NavRouter**

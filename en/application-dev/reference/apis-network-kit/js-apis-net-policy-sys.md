@@ -10,7 +10,7 @@ The **policy** module provides APIs for managing network policies, through which
 ## Modules to Import
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
 ```
 
 ## policy.setBackgroundAllowed<sup>10+</sup>
@@ -40,13 +40,14 @@ Specifies whether background applications are allowed to access the network. Thi
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.setBackgroundAllowed(true, (error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
@@ -78,7 +79,7 @@ Specifies whether background applications are allowed to access the network. Thi
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Return value**
@@ -90,7 +91,8 @@ Specifies whether background applications are allowed to access the network. Thi
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.setBackgroundAllowed(true).then(() => {
   console.log("setBackgroundAllowed success");
 }).catch((error: BusinessError) => {
@@ -124,13 +126,14 @@ Checks whether the current application is allowed to access the network when run
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.isBackgroundAllowed((error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -163,13 +166,14 @@ Checks whether the current application is allowed to access the network when run
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .isBackgroundAllowed()
   .then((data: boolean) => {
@@ -208,13 +212,14 @@ Sets the metered network access policy for the application specified by a given 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE, (error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
@@ -253,13 +258,14 @@ Sets the metered network access policy for the application specified by a given 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE)
   .then(() => {
@@ -297,13 +303,14 @@ Obtains the network access policy for the application specified by a given UID. 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.getPolicyByUid(11111, (error: BusinessError, data: policy.NetUidPolicy) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -342,13 +349,14 @@ Obtains the network access policy for the application specified by a given UID. 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .getPolicyByUid(11111)
   .then((data: policy.NetUidPolicy) => {
@@ -386,13 +394,14 @@ Obtains all UIDs that match the specified network policy. This API uses an async
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.getUidsByPolicy(11111, (error: BusinessError, data: number[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -431,13 +440,14 @@ Obtains all UIDs that match the specified network policy. This API uses a promis
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .getUidsByPolicy(11111)
   .then((data: object) => {
@@ -474,13 +484,14 @@ Obtains the network quota policies. This API uses an asynchronous callback to re
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.getNetQuotaPolicies((error: BusinessError, data: policy.NetQuotaPolicy[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -512,13 +523,14 @@ Obtains the network quota policies. This API uses a promise to return the result
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .getNetQuotaPolicies()
   .then((data: policy.NetQuotaPolicy[]) => {
@@ -556,14 +568,14 @@ Sets network quota policies. This API uses an asynchronous callback to return th
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let netQuotaPolicyList: Array<policy.NetQuotaPolicy> = [];
 let netquotapolicy: policy.NetQuotaPolicy = {
@@ -613,7 +625,7 @@ Sets network quota policies. This API uses a promise to return the result.
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Return value**
@@ -625,8 +637,8 @@ Sets network quota policies. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let netQuotaPolicyList: Array<policy.NetQuotaPolicy> = [];
 let netquotapolicy: policy.NetQuotaPolicy = {
@@ -683,13 +695,14 @@ Checks whether the application specified by a given UID is allowed to access a m
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.isUidNetAllowed(11111, true, (error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -729,13 +742,14 @@ Checks whether the application specified by a given UID is allowed to access a m
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .isUidNetAllowed(11111, true)
   .then((data: boolean) => {
@@ -774,13 +788,14 @@ Checks whether an application is allowed to access the specified network. This A
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.isUidNetAllowed(11111, 'wlan0', (error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -820,13 +835,14 @@ Checks whether an application is allowed to access the specified network. This A
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .isUidNetAllowed(11111, 'wlan0')
   .then((data: boolean) => {
@@ -865,13 +881,14 @@ Adds applications specified by given UIDs to the device idle allowlist. This API
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.setDeviceIdleTrustlist([11111, 22222], true, (error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
@@ -910,13 +927,14 @@ Adds applications specified by given UIDs to the device idle allowlist. This API
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .setDeviceIdleTrustlist([11111, 22222], true)
   .then(() => {
@@ -953,13 +971,14 @@ Obtains the UIDs of applications that are on the device idle allowlist. This API
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.getDeviceIdleTrustlist((error: BusinessError, data: number[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -991,13 +1010,14 @@ Obtains the UIDs of applications that are on the device idle allowlist. This API
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .getDeviceIdleTrustlist()
   .then((data: number[]) => {
@@ -1035,13 +1055,14 @@ Obtains the background network policy for the application specified by a given U
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.getBackgroundPolicyByUid(11111, (error: BusinessError, data: policy.NetBackgroundPolicy) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -1080,13 +1101,14 @@ Obtains the background network policies configured for the specified application
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .getBackgroundPolicyByUid(11111)
   .then((data: policy.NetBackgroundPolicy) => {
@@ -1124,13 +1146,14 @@ Restores all the policies (cellular network, background network, firewall, and a
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.resetPolicies('1', (error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
@@ -1168,13 +1191,14 @@ Restores all the policies (cellular network, background network, firewall, and a
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .resetPolicies('1')
   .then(() => {
@@ -1214,14 +1238,15 @@ Updates a reminder policy. This API uses an asynchronous callback to return the 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.updateRemindPolicy(
   connection.NetBearType.BEARER_CELLULAR,
   '1',
@@ -1266,14 +1291,15 @@ Updates a reminder policy. This API uses a promise to return the result.
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .updateRemindPolicy(
     connection.NetBearType.BEARER_CELLULAR,
@@ -1316,13 +1342,14 @@ Sets whether to add the application specified by a given UID to the power-saving
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.setPowerSaveTrustlist([11111, 22222], true, (error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
@@ -1361,13 +1388,14 @@ Sets whether to add the application specified by a given UID to the power-saving
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .setPowerSaveTrustlist([11111, 22222], true)
   .then(() => {
@@ -1404,13 +1432,14 @@ Obtains the UID array of applications that are on the power-saving allowlist. Th
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.getPowerSaveTrustlist((error: BusinessError, data: number[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -1442,13 +1471,14 @@ Obtains the UID array of applications that are on the device idle allowlist. Thi
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .getPowerSaveTrustlist()
   .then((data: number[]) => {
@@ -1456,6 +1486,171 @@ policy
   })
   .catch((error: BusinessError) => {
     console.log(JSON.stringify(error));
+  });
+```
+
+## policy.setNetworkAccessPolicy<sup>12+</sup>
+
+setNetworkAccessPolicy(uid: number, policy: NetworkAccessPolicy, isReconfirmed?: boolean): Promise<void>
+
+Specifies whether an application with the specified UID can access the network. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.MANAGE_NET_STRATEGY
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name        | Type                                          | Mandatory| Description                                                                         |
+| ------------- | ---------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
+| uid           | number                                         | Yes  | Unique ID of the application.                                                               |
+| policy        | [NetworkAccessPolicy](#networkaccesspolicy12)  | Yes  | Network policy.                                                                     |
+| isReconfirmed | boolean                                        | No  | Whether reconfirmation is required. The value **true** indicates that reconfirmation is not required and no dialog box is displayed. The value **false** indicates that reconfirmation is required and a dialog box is displayed when the application accesses the network. The default value is **false**. |
+
+**Return value**
+
+| Type          | Description                                                         |
+| -------------- | ------------------------------------------------------------ |
+| Promise\<void> | Promise used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 201       | Permission denied.                           |
+| 202       | Non-system applications use system APIs.     |
+| 401       | Parameter error.                             |
+| 2100001   | Invalid parameter value.                     |
+| 2100002   | Failed to connect to the service.            |
+| 2100003   | System internal error.                       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let accessPolicy: policy.NetworkAccessPolicy = {
+  allowWiFi: false,
+  allowCellular: true,
+}
+policy
+  .setNetworkAccessPolicy(11111, accessPolicy)
+  .then(() => {
+    console.log('setNetworkAccessPolicy success');
+  })
+  .catch((error: BusinessError) => {
+    console.error(JSON.stringify(error));
+  });
+```
+
+## policy.getNetworkAccessPolicy<sup>12+</sup>
+
+getNetworkAccessPolicy(uid: number): Promise<NetworkAccessPolicy>
+
+Checks whether an application with the specified UID can access the network. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.MANAGE_NET_STRATEGY
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description          |
+| ------ | ------ | ---- | -------------- |
+| uid    | number | Yes  | Unique ID of the application.|
+
+**Return value**
+
+| Type                                                   | Description                         |
+| ------------------------------------------------------- | ----------------------------- |
+| Promise\<[NetworkAccessPolicy](#networkaccesspolicy12)> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 201       | Permission denied.                           |
+| 202       | Non-system applications use system APIs.     |
+| 401       | Parameter error.                             |
+| 2100001   | Invalid parameter value.                     |
+| 2100002   | Failed to connect to the service.            |
+| 2100003   | System internal error.                       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+policy
+  .getNetworkAccessPolicy(11111)
+  .then((data: policy.NetworkAccessPolicy) => {
+    console.log(JSON.stringify(data));
+  })
+  .catch((error: BusinessError) => {
+    console.error(JSON.stringify(error));
+  });
+```
+
+## policy.getNetworkAccessPolicy<sup>12+</sup>
+
+getNetworkAccessPolicy(): Promise<UidNetworkAccessPolicy>
+
+Checks whether all applications of the current user can access the network. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.MANAGE_NET_STRATEGY
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type                                                         | Description                       |
+| ------------------------------------------------------------- | --------------------------- |
+| Promise\<[UidNetworkAccessPolicy](#uidnetworkaccesspolicy12)> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 201       | Permission denied.                           |
+| 202       | Non-system applications use system APIs.     |
+| 2100002   | Failed to connect to the service.            |
+| 2100003   | System internal error.                       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+policy
+  .getNetworkAccessPolicy()
+  .then((data: policy.UidNetworkAccessPolicy) => {
+    let keyMap: Map<string, object> = new Map<string, object>(Object.entries(data));
+    let uid:number = 0;
+    let allowWiFi: string = "";
+    let allowCellular: string = "";
+
+    keyMap.forEach((value:object, key:string) => {
+      let valueMap: Map<string, string> = new Map<string, string>(Object.entries(value));
+      uid = Number.parseInt(key);
+      valueMap.forEach((value:string, key:string)=>{
+        if (key == "allowWiFi") {
+          allowWiFi = value;
+        }
+        if (key == "allowCellular") {
+          allowCellular = value;
+        }
+      })
+    })
+    console.log(JSON.stringify(data));
+  })
+  .catch((error: BusinessError) => {
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -1490,20 +1685,26 @@ Subscribes to policy changes. This API uses an asynchronous callback to return t
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
+
 interface Data {
   uid: number,
   policy: policy.NetUidPolicy
 }
-policy.on('netUidPolicyChange', (data: Data) => {
-  console.log('on netUidPolicyChange: ' + JSON.stringify(data));
-});
+
+try {
+  policy.on('netUidPolicyChange', (data: Data) => {
+    console.log('on netUidPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netUidPolicyChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### off('netUidPolicyChange')<sup>10+</sup>
@@ -1533,17 +1734,34 @@ Unsubscribes from policy changes. This API uses an asynchronous callback to retu
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-let callback = (data: object) => {
-  console.log('on netUidPolicyChange, data:' + JSON.stringify(data));
-};
-policy.on('netUidPolicyChange', callback);
-policy.off('netUidPolicyChange', callback);
+import { policy } from '@kit.NetworkKit';
+
+interface Data {
+  uid: number,
+  policy: policy.NetUidPolicy
+}
+
+try {
+  policy.on('netUidPolicyChange', (data: Data) => {
+    console.log('on netUidPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netUidPolicyChange error: ' + JSON.stringify(err));
+}
+
+try {
+  policy.off('netUidPolicyChange', (data: Data) => {
+    console.log('off netUidPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('off netUidPolicyChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### on('netUidRuleChange')<sup>10+</sup>
@@ -1573,15 +1791,26 @@ Subscribes to rule changes. This API uses an asynchronous callback to return the
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-policy.on('netUidRuleChange', (data: object) => {
-  console.log('on netUidRuleChange: ' + JSON.stringify(data));
-});
+import { policy } from '@kit.NetworkKit';
+
+interface Data {
+  uid: number,
+  rule: policy.NetUidRule
+}
+
+try {
+  policy.on('netUidRuleChange', (data: Data) => {
+    console.log('on netUidRuleChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netUidRuleChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### off('netUidRuleChange')<sup>10+</sup>
@@ -1611,17 +1840,34 @@ Unsubscribes from rule changes. This API uses an asynchronous callback to return
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-let callback = (data: object) => {
-  console.log('on netUidRuleChange, data:' + JSON.stringify(data));
-};
-policy.on('netUidRuleChange', callback);
-policy.off('netUidRuleChange', callback);
+import { policy } from '@kit.NetworkKit';
+
+interface Data {
+  uid: number,
+  rule: policy.NetUidRule
+}
+
+try {
+  policy.on('netUidRuleChange', (data: Data) => {
+    console.log('on netUidRuleChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netUidRuleChange error: ' + JSON.stringify(err));
+}
+
+try {
+  policy.off('netUidRuleChange', (data: Data) => {
+    console.log('off netUidRuleChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('off netUidRuleChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### on('netMeteredIfacesChange')<sup>10+</sup>
@@ -1651,15 +1897,21 @@ Subscribes to metered **iface** changes. This API uses an asynchronous callback 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-policy.on('netMeteredIfacesChange', (data: string[]) => {
-  console.log('on netMeteredIfacesChange: ' + JSON.stringify(data));
-});
+import { policy } from '@kit.NetworkKit';
+
+try {
+  policy.on('netMeteredIfacesChange', (data: string[]) => {
+    console.log('on netMeteredIfacesChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netMeteredIfacesChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### off('netMeteredIfacesChange')<sup>10+</sup>
@@ -1689,17 +1941,29 @@ Unsubscribes from metered **iface** changes. This API uses an asynchronous callb
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-let callback = (data: string[]) => {
-  console.log('on netMeteredIfacesChange, data:' + JSON.stringify(data));
-};
-policy.on('netMeteredIfacesChange', callback);
-policy.off('netMeteredIfacesChange', callback);
+import { policy } from '@kit.NetworkKit';
+
+try {
+  policy.on('netMeteredIfacesChange', (data: string[]) => {
+    console.log('on netMeteredIfacesChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netMeteredIfacesChange error: ' + JSON.stringify(err));
+}
+
+try {
+  policy.off('netMeteredIfacesChange', (data: string[]) => {
+    console.log('off netMeteredIfacesChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('off netMeteredIfacesChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### on('netQuotaPolicyChange')<sup>10+</sup>
@@ -1729,15 +1993,26 @@ Subscribes to network quota policy changes. This API uses an asynchronous callba
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-policy.on('netQuotaPolicyChange', (data: policy.NetQuotaPolicy[]) => {
-  console.log('on netQuotaPolicyChange: ' + JSON.stringify(data));
-});
+import { policy } from '@kit.NetworkKit';
+
+interface Data {
+  uid: number,
+  policy: policy.NetUidPolicy
+}
+
+try {
+  policy.on('netQuotaPolicyChange', (data: policy.NetQuotaPolicy[]) => {
+    console.log('on netQuotaPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netQuotaPolicyChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### off('netQuotaPolicyChange')<sup>10+</sup>
@@ -1767,18 +2042,29 @@ Unsubscribes from network quota policy changes. This API uses an asynchronous ca
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-policy.on('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
-  console.log('on netQuotaPolicyChange, data:' + JSON.stringify(data));
-});
-policy.off('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
-  console.log('on netQuotaPolicyChange, data:' + JSON.stringify(data));
-});
+import { policy } from '@kit.NetworkKit';
+
+try {
+  policy.on('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
+    console.log('on netQuotaPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netQuotaPolicyChange error: ' + JSON.stringify(err));
+}
+
+try {
+  policy.off('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
+    console.log('off netQuotaPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('off netQuotaPolicyChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### on('netBackgroundPolicyChange')<sup>10+</sup>
@@ -1808,15 +2094,21 @@ Subscribes to background network policy changes. This API uses an asynchronous c
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-policy.on('netBackgroundPolicyChange', (data: boolean) => {
-  console.log('on netBackgroundPolicyChange: ' + JSON.stringify(data));
-});
+import { policy } from '@kit.NetworkKit';
+
+try {
+  policy.on('netBackgroundPolicyChange', (data: boolean) => {
+    console.log('on netBackgroundPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netBackgroundPolicyChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### off('netBackgroundPolicyChange')<sup>10+</sup>
@@ -1846,17 +2138,29 @@ Unsubscribes from background network policy changes. This API uses an asynchrono
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```ts
-let callback = (data: boolean) => {
-  console.log('on netBackgroundPolicyChange, data:' + JSON.stringify(data));
-};
-policy.on('netBackgroundPolicyChange', callback);
-policy.off('netBackgroundPolicyChange', callback);
+import { policy } from '@kit.NetworkKit';
+
+try {
+  policy.on('netBackgroundPolicyChange', (data: boolean) => {
+    console.log('on netBackgroundPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netBackgroundPolicyChange error: ' + JSON.stringify(err));
+}
+
+try {
+  policy.off('netBackgroundPolicyChange', (data: boolean) => {
+    console.log('off netBackgroundPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('off netBackgroundPolicyChange error: ' + JSON.stringify(err));
+}
 ```
 
 ## NetBackgroundPolicy<sup>10+</sup>
@@ -1909,15 +2213,15 @@ Defines the network quota policy.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name             | Type                         | Mandatory| Description                                                                                    |
-| ----------------- | ----------------------------- | ---- | ---------------------------------------------------------------------------------------- |
+| Name             | Type                           | Mandatory| Description                                                 |
+| ----------------- |-------------------------------| ---- |-----------------------------------------------------|
 | periodDuration    | string                        | Yes  | Metering period for the quota limit. **D1**, **M1**, and **Y1** indicate one day, one month, and one year, respectively. If the specified metering period is exceeded, the quota is not limited.|
-| warningBytes      | number                        | Yes  | Data volume threshold for generating an alarm.                                                                    |
-| limitBytes        | number                        | Yes  | Data volume quota.                                                                        |
-| metered           | string                        | Yes  | Whether the network is a metered network.                                                                        |
-| limitAction       | [LimitAction](#limitaction10) | Yes  | Action to take when the data volume quota is reached.                                                                  |
-| lastWarningRemind | string                        | No  | Last time when an alarm was generated.                                                                |
-| lastLimitRemind   | string                        | No  | Last time when the quota was exhausted.                                                                |
+| warningBytes      | number                        | Yes  | Data volume threshold for generating an alarm.                                         |
+| limitBytes        | number                        | Yes  | Data volume quota.                                           |
+| metered           | boolean                       | Yes  | Whether the network is a metered network.                                           |
+| limitAction       | [LimitAction](#limitaction10) | Yes  | Action to take when the data volume quota is reached.                                        |
+| lastWarningRemind | number                        | No  | Last time when an alarm was generated. Default value: **-1**                                 |
+| lastLimitRemind   | number                        | No  | Last time when the quota was exhausted. Default value: **-1**                                       |
 
 ## LimitAction<sup>10+</sup>
 
@@ -2002,3 +2306,28 @@ Enumerates network access policies for the application.
 | NET_POLICY_NONE                      | 0      | Default network policy.              |
 | NET_POLICY_ALLOW_METERED_BACKGROUND  | 1 << 0 | Background applications are allowed to access a metered network.|
 | NET_POLICY_REJECT_METERED_BACKGROUND | 1 << 1 | Applications running in the background are not allowed to access a metered network.|
+
+## NetworkAccessPolicy<sup>12+</sup>
+
+Network access policy.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+| Name             | Type      | Mandatory| Description                         |
+| ----------------- | --------- | ---- | ----------------------------- |
+| allowWiFi         | boolean   | Yes  | Wi-Fi access policy.|
+| allowCellular     | boolean   | Yes  | Cellular network access policy.|
+
+## UidNetworkAccessPolicy<sup>12+</sup>
+
+Defines the network policy for an application with the specified UID.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+| Name      | Type                                                        | Mandatory| Description                |
+| --------- | -----------------------------------------------------------  | ---- | ------------------- |
+| undefined | [uid: string]: [NetworkAccessPolicy](#networkaccesspolicy12) | No  | Network policy. The data type is key-value pair.     |

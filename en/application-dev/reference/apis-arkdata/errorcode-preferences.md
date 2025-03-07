@@ -4,10 +4,32 @@
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
+## 15500000 Internal Error
+**Error Message**
+
+Inner error.
+
+**Description**
+
+An internal error occurred.
+
+**Possible Causes**
+
+View the error log to determine the cause of the error. Possible causes include the following:
+1. The internal state is abnormal.
+2. There is API that is incorrectly used.
+3. A system error, such as insufficient memory, I/O error, or JS engine exception, occurs.
+
+**Solution**
+
+1. Check whether a closed object is reused.
+2. Check whether the APIs are correctly used.
+3. If the problem persists, ask the user to restart or update the application or upgrade the device version.
+
 ## 15500010 Failed to Delete the User Preference Persistence File
 **Error Message**
 
-Failed to delete preferences file.
+Failed to delete the user preferences persistence file.
 
 **Description**
 
@@ -28,7 +50,7 @@ The possible causes are as follows:
 
 **Error Message**
 
-Failed to obtain subscription service.
+Failed to obtain the subscription service.
 
 **Description**
 
@@ -42,11 +64,11 @@ The platform does not support service subscription.
 
 Deploy the subscription service on the platform.
 
-## 14801001 Stage Model Required
+## 15501001 Stage Model Required
 
 **Error Message**
 
- Only supported in stage mode.
+The operations is supported in stage mode only.
 
 **Description**
 
@@ -64,7 +86,7 @@ Perform the operation on the stage model.
 
 **Error Message**
 
-The data group id is not valid.
+Invalid dataGroupId.
 
 **Description**
 

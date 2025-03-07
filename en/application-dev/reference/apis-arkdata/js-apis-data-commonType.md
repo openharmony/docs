@@ -9,7 +9,7 @@ The **commonType** module defines common data types in data management.
 ## Modules to Import
 
 ```ts
-import { commonType } from '@ohos.data.commonType';
+import { commonType } from '@kit.ArkData';
 ```
 
 ## AssetStatus
@@ -29,7 +29,7 @@ Enumerates the asset statuses. Use the enum name rather than the enum value.
 
 ## Asset
 
-Defines information about an asset (such as a document, image, and video). The asset APIs do not support **Datashare**.
+Defines information about an asset (such as a document, image, and video).
 
 **System capability**: SystemCapability.DistributedDataManager.CommonType
 
@@ -45,6 +45,8 @@ Defines information about an asset (such as a document, image, and video). The a
 
 ## Assets
 
+type Assets = Array\<Asset>
+
 Represents an array of [Assets](#asset).
 
 **System capability**: SystemCapability.DistributedDataManager.CommonType
@@ -54,6 +56,8 @@ Represents an array of [Assets](#asset).
 | Array&lt;[Asset](#asset)&gt; | Array of assets.|
 
 ## ValueType
+
+type ValueType = null | number | string | boolean | Uint8Array | Asset | Assets
 
 Enumerates the value types, which vary with the parameter function.
 
@@ -71,10 +75,12 @@ Enumerates the value types, which vary with the parameter function.
 
 ## ValuesBucket
 
+type ValuesBucket = Record<string, ValueType>
+
 Defines the types of the key and value in a KV pair. This type is not multi-thread safe. If a **ValuesBucket** instance is operated by multiple threads at the same time in an application, use a lock for the instance.
 
 **System capability**: SystemCapability.DistributedDataManager.CommonType
 
-| Key Type| Value Type                 |
+| Type| Description                 |
 | ------ | ----------------------- |
-| string | [ValueType](#valuetype) |
+| Record<string, [ValueType](#valuetype)> | Types of the key and value in a KV pair. The key type is string, and the value type is [ValueType](#valuetype).|

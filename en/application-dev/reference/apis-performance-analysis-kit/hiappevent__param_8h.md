@@ -16,6 +16,12 @@ int res = OH_HiAppEvent_Write("user_domain", EVENT_USER_LOGIN, BEHAVIOR, list);
 OH_HiAppEvent_DestroyParamList(list);
 ```
 
+**File to include**: <hiappevent/hiappevent_param.h>
+
+**Library**: libhiappevent_ndk.z.so
+
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
+
 **Since**: 8
 
 **Related module**: [HiAppEvent](_hi_app_event.md)
@@ -28,6 +34,6 @@ OH_HiAppEvent_DestroyParamList(list);
 
 | Name| Description| 
 | -------- | -------- |
-| [PARAM_USER_ID](_hi_app_event.md#param_user_id)   "user_id" | User ID.| 
-| [PARAM_DISTRIBUTED_SERVICE_NAME](_hi_app_event.md#param_distributed_service_name)   "ds_name" | Distributed service name.| 
-| [PARAM_DISTRIBUTED_SERVICE_INSTANCE_ID](_hi_app_event.md#param_distributed_service_instance_id)   "ds_instance_id" | Distributed service instance ID.| 
+| [PARAM_USER_ID](_hi_app_event.md#param_user_id)&nbsp;&nbsp;&nbsp;"user_id" | User ID. | 
+| [PARAM_DISTRIBUTED_SERVICE_NAME](_hi_app_event.md#param_distributed_service_name)&nbsp;&nbsp;&nbsp;"ds_name" | Distributed service name. | 
+| [PARAM_DISTRIBUTED_SERVICE_INSTANCE_ID](_hi_app_event.md#param_distributed_service_instance_id)&nbsp;&nbsp;&nbsp;"ds_instance_id" | Distributed service instance ID. | 

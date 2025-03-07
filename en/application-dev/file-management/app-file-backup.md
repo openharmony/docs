@@ -1,6 +1,6 @@
-# Backup and Restoration Triggered by System Applications
+# Backup and Restore Triggered by System Applications
 
-The backup and restoration framework provides a complete data backup and restoration solution for application data, user data, and system services on devices. You can follow the procedure below to enable an application to trigger data backup or restoration:
+The backup and restore framework provides a solution for backing up and restoring data of applications and services on a device. You can follow the procedure below to enable an application to trigger data backup or restoration:
 
 - [Obtain capability files](#obtaining-capability-files): Obtain capability files of all applications of the user in the system. The capability files are indispensable for data backup and restoration.
 
@@ -28,7 +28,7 @@ Obtain capability files of all applications of the current user. The capability 
 
 The capability file of an application contains the device type, device version, and basic application information, such as the application name, application size, application version, whether to allow backup and restoration, and whether to install the application during restoration.
 
-Use **backup.getLocalCapabilities()** to obtain capability files.
+Call [backup.getLocalCapabilities()](../reference/apis-core-file-kit/js-apis-file-backup-sys.md#backupgetlocalcapabilities) to obtain the capability file.
 
 ```ts
 import backup from '@ohos.file.backup';
@@ -59,13 +59,13 @@ async function getLocalCapabilities(): Promise<void> {
 | Name      | Type| Mandatory| Description                  |
 | -------------- | -------- | ---- | ---------------------- |
 | bundleInfos    | Array    | Yes  | Application information.          |
-| &nbsp;&nbsp;&nbsp;&nbsp; allToBackup    | Boolean  | Yes  | Whether to allow backup and restoration.      |
-| &nbsp;&nbsp;&nbsp;&nbsp; extensionName  | String  | Yes  | Extension name of the application.          |
-| &nbsp;&nbsp;&nbsp;&nbsp; name           | String  | Yes  | Bundle name of the application.            |
-| &nbsp;&nbsp;&nbsp;&nbsp; needToInstall  | Boolean  | Yes  | Whether to install the application during data restoration.|
-| &nbsp;&nbsp;&nbsp;&nbsp; spaceOccupied  | Number    | Yes  | Space occupied by the application data.|
-| &nbsp;&nbsp;&nbsp;&nbsp; versionCode    | Number    | Yes  | Application version number.          |
-| &nbsp;&nbsp;&nbsp;&nbsp; versionName    | String  | Yes  | Application version name.        |
+| allToBackup    | Boolean  | Yes  | Whether to allow backup and restoration.      |
+| extensionName  | String  | Yes  | Extension name of the application.          |
+| name           | String  | Yes  | Bundle name of the application.            |
+| needToInstall  | Boolean  | Yes  | Whether to install the application during data restoration.|
+| spaceOccupied  | Number    | Yes  | Space occupied by the application data.|
+| versionCode    | Number    | Yes  | Application version number.          |
+| versionName    | String  | Yes  | Application version name.        |
 | deviceType     | String  | Yes  | Type of the device.              |
 | systemFullName | String  | Yes  | Device version.              |
 
@@ -126,14 +126,14 @@ You can save the file to a local directory as required.
           console.error('onFileReady failed with err: ' + e);
         }
       },
-      onBundleBegin: (err: BusinessError, bundleName: string) => {
+      onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.info('onBundleBegin err: ' + JSON.stringify(err));
         } else {
           console.info('onBundleBegin bundleName: ' + bundleName);
         }
       },
-      onBundleEnd: (err: BusinessError, bundleName: string) => {
+      onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.info('onBundleEnd err: ' + JSON.stringify(err));
         } else {
@@ -150,6 +150,14 @@ You can save the file to a local directory as required.
       onBackupServiceDied: () => {
         console.info('onBackupServiceDied');
       },
+      onResultReport: (bundleName: string, result: string) => {
+        console.info('onResultReport  bundleName: ' + bundleName);
+        console.info('onResultReport  result: ' + result);
+      },
+      onProcess:(bundleName: string, process: string) => { 
+        console.info('onPross bundleName: ' + JSON.stringify(bundleName));
+        console.info('onPross result: ' + JSON.stringify(process));
+      }
     }
     let sessionBackup = new backup.SessionBackup(generalCallbacks);
     return sessionBackup;
@@ -183,10 +191,16 @@ When all the data of the application is ready, the service starts to restore the
   import { BusinessError } from '@ohos.base';
   // Create a SessionRestore instance for data restoration.
   let g_session: backup.SessionRestore;
+  let initMap = new Map<string, number>();
+  testFileNum = 123; // Number of files initialized.
+  let testBundleName = 'com.example.myapplication'; // Test bundle name.
+  initMap.set(testBundleName, testFileNum);
+  let countMap = new Map<string, number>();
+  countMap.set(testBundleName, 0); // Initialization count.
   async function publishFile(file: backup.File): Promise<void> {
     let fileMeta: backup.FileMeta = {
       bundleName: file.bundleName,
-      uri: file.uri
+      uri: ''
     }
     await g_session.publishFile(fileMeta);
   }
@@ -204,16 +218,19 @@ When all the data of the application is ready, the service starts to restore the
         fs.copyFileSync(bundlePath, file.fd);
         fs.closeSync(file.fd);
         // After the data is transferred, notify the server that the files are ready.
-        publishFile(file);
+        countMap[file.bundleName]++;
+        if (countMap[file.bundleName] == initMap[file.bundleName]) { // Trigger publishFile when all the files of each bundle are received.
+          publishFile(file);
+        }
         console.info('onFileReady success');
       },
-      onBundleBegin: (err: BusinessError, bundleName: string) => {
+      onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
         }
         console.info('onBundleBegin success');
       },
-      onBundleEnd: (err: BusinessError, bundleName: string) => {
+      onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
         }
@@ -227,6 +244,14 @@ When all the data of the application is ready, the service starts to restore the
       },
       onBackupServiceDied: () => {
         console.info('service died');
+      },
+      onResultReport: (bundleName: string, result: string) => {
+        console.info('onResultReport  bundleName: ' + bundleName);
+        console.info('onResultReport  result: ' + result);
+      },
+      onProcess:(bundleName: string, process: string) => { 
+        console.info('onPross bundleName: ' + JSON.stringify(bundleName));
+        console.info('onPross result: ' + JSON.stringify(process));
       }
     }
     let sessionRestore = new backup.SessionRestore(generalCallbacks);

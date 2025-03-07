@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```js
-import charger from '@ohos.charger';
+import {charger} from '@kit.BasicServicesKit';
 ```
 
 ## ChargeType

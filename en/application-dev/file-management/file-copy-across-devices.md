@@ -12,10 +12,10 @@ The distributed file system provides the cross-device file copy capability for a
    Copy the file of device A from the sandbox directory to the **distributedfiles/** directory of device A.
 
    ```ts
-   import fs from '@ohos.file.fs';
-   import common from '@ohos.app.ability.common';
-   import { BusinessError } from '@ohos.base';
-   import fileUri from '@ohos.file.fileuri';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { common } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileUri } from '@kit.CoreFileKit';
 
    let context = getContext(this) as common.UIAbilityContext; // Obtain the UIAbilityContext of device A.
    let pathDir: string = context.filesDir;
@@ -29,8 +29,7 @@ The distributed file system provides the cross-device file copy capability for a
     fs.writeSync(file.fd, 'Create file success');
     fs.closeSync(file);
    } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`Failed to createFile. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to createFile. Code: ${error.code}, message: ${error.message}`);
    }
 
    // Obtain the URI of the file to copy.
@@ -44,23 +43,22 @@ The distributed file system provides the cross-device file copy capability for a
     fs.copy(srcUri, destUri).then(()=>{
       console.info("Succeeded in copying---. ");
       console.info("src: " + srcUri + "dest: " + destUri);
-    }).catch((error)=>{
+    }).catch((error: BusinessError)=>{
       let err: BusinessError = error as BusinessError;
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
    } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`Failed to getData. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to getData. Code: ${error.code}, message: ${error.message}`);
    }
    ```
 
    Device B copies the file from the distributed file directory of device B.
 
    ```ts
-   import fs from '@ohos.file.fs';
-   import common from '@ohos.app.ability.common';
-   import { BusinessError } from '@ohos.base';
-   import fileUri from '@ohos.file.fileuri';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { common } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileUri } from '@kit.CoreFileKit';
 
    let context = getContext(this) as common.UIAbilityContext; // Obtain the UIAbilityContext of device B.
    let pathDir: string = context.filesDir;
@@ -87,12 +85,11 @@ The distributed file system provides the cross-device file copy capability for a
     fs.copy(srcUri, destUri, options).then(()=>{
       console.info("Succeeded in copying of paste. ");
       console.info("src: " + srcUri + "dest: " + destUri); // file://com.example.myapplication/data/storage/el2/distributedfiles/src.txt
-    }).catch((error)=>{
+    }).catch((error: BusinessError)=>{
       let err: BusinessError = error as BusinessError;
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
    } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to copy. Code: ${error.code}, message: ${error.message}`);
    }
    ```

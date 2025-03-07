@@ -22,24 +22,30 @@ Shape(value?: PixelMap)
 
 从API version 9开始，该接口支持在ArkTS卡片中使用，卡片中不支持使用PixelMap对象。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | - | 绘制目标，可将图形绘制在指定的PixelMap对象中，若未设置，则在当前绘制目标中进行绘制。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 绘制目标，可将图形绘制在指定的PixelMap对象中，若未设置，则在当前绘制目标中进行绘制。 |
 
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### viewPort
 
-viewPort(value: { x?: number | string; y?: number | string; width?: number | string; height?: number | string })
+viewPort(value: ViewportRect)
 
 设置形状的视口。 
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -47,15 +53,33 @@ viewPort(value: { x?: number | string; y?: number | string; width?: number | str
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | {<br/>x?:&nbsp;number \| string,<br/>y?:&nbsp;number \| string,<br/>width?:&nbsp;number \| string,<br/>height?:&nbsp;number \| string<br/>} | 是 | 形状的视口。 <br/>默认值：{ x:0, y:0, width:0, height:0 } |
+| value | [ViewportRect](ts-drawing-components-shape.md#viewportrect16对象说明) | 是 | Viewport绘制属性。 |
+
+## ViewportRect<sup>16+</sup>对象说明
+用于描述Viewport绘制属性。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| x | string \| number | 否 | 形状视口起始点的水平坐标。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| y | string \| number | 否 | 形状视口起始点的垂直坐标。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| width | string \| number | 否 | 形状视口的宽度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| height | string \| number | 否 | 形状视口的高度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ### fill
 
 fill(value: ResourceColor)
 
-设置填充区域颜色。异常值按照默认值处理。
+设置填充区域的颜色，异常值按照默认值处理。与通用属性foregroundColor同时设置时，后设置的属性生效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -73,6 +97,8 @@ fillOpacity(value: number | string | Resource)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -88,6 +114,8 @@ stroke(value: ResourceColor)
 设置边框颜色，不设置时，默认没有边框。异常值不会绘制边框。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -105,13 +133,15 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型             | 必填 | 说明                      |
 | ------ | ---------------- | ---- | ------------------------- |
-| value  | Array&lt;any&gt; | 是   | 边框间隙。<br/>默认值：[] |
+| value  | Array&lt;any&gt; | 是   | 边框间隙。<br/>默认值：[]<br/>默认单位：vp |
 
 ### strokeDashOffset
 
@@ -121,13 +151,15 @@ strokeDashOffset(value: number | string)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                       | 必填 | 说明                                 |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
 
 ### strokeLineCap
 
@@ -136,6 +168,8 @@ strokeLineCap(value: LineCapStyle)
 设置边框端点绘制样式。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -152,6 +186,8 @@ strokeLineJoin(value: LineJoinStyle)
 设置边框拐角绘制样式。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -171,6 +207,8 @@ strokeMiterLimit(value: number | string)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -187,6 +225,8 @@ strokeOpacity(value: number | string | Resource)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -197,11 +237,13 @@ strokeOpacity(value: number | string | Resource)
 
 ### strokeWidth
 
-strokeWidth(value: Length)
+strokeWidth(value: number | string)
 
 设置边框宽度。该属性若为string类型, 暂不支持百分比，百分比按照1px处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -209,7 +251,7 @@ strokeWidth(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                     |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 边框宽度。<br/>默认值：1 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 边框宽度。<br/>默认值：1<br/>默认单位：vp |
 
 ### antiAlias
 
@@ -218,6 +260,8 @@ antiAlias(value: boolean)
 设置是否开启抗锯齿效果。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -235,6 +279,8 @@ mesh(value: Array&lt;number&gt;, column: number, row: number)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -246,6 +292,8 @@ mesh(value: Array&lt;number&gt;, column: number, row: number)
 | row    | number              | 是   | mesh矩阵行数。                                               |
 
 ## 示例
+
+Shape绘制矩形、椭圆、直线路径。
 
 ```ts
 // xxx.ets
@@ -265,7 +313,12 @@ struct ShapeExample {
       }
       .width(350)
       .height(140)
-      .viewPort({ x: -2, y: -2, width: 304, height: 130 })
+      .viewPort({
+        x: -2,
+        y: -2,
+        width: 304,
+        height: 130
+      })
       .fill(0x317AF7)
       .stroke(Color.Black)
       .strokeWidth(4)
@@ -274,13 +327,19 @@ struct ShapeExample {
       .strokeLineCap(LineCapStyle.Round)
       .strokeLineJoin(LineJoinStyle.Round)
       .antiAlias(true)
+
       // 分别在Shape的(0, 0)、(-5, -5)点绘制一个 300 * 50 带边框的矩形,可以看出之所以将视口的起始位置坐标设为负值是因为绘制的起点默认为线宽的中点位置，因此要让边框完全显示则需要让视口偏移半个线宽
       Shape() {
         Rect().width(300).height(50)
       }
       .width(350)
       .height(80)
-      .viewPort({ x: 0, y: 0, width: 320, height: 70 })
+      .viewPort({
+        x: 0,
+        y: 0,
+        width: 320,
+        height: 70
+      })
       .fill(0x317AF7)
       .stroke(Color.Black)
       .strokeWidth(10)
@@ -290,7 +349,12 @@ struct ShapeExample {
       }
       .width(350)
       .height(80)
-      .viewPort({ x: -5, y: -5, width: 320, height: 70 })
+      .viewPort({
+        x: -5,
+        y: -5,
+        width: 320,
+        height: 70
+      })
       .fill(0x317AF7)
       .stroke(Color.Black)
       .strokeWidth(10)
@@ -302,49 +366,78 @@ struct ShapeExample {
       }
       .width(350)
       .height(20)
-      .viewPort({ x: 0, y: -5, width: 300, height: 20 })
+      .viewPort({
+        x: 0,
+        y: -5,
+        width: 300,
+        height: 20
+      })
       .stroke(0xEE8443)
       .strokeWidth(10)
       .strokeDashArray([20])
+
       // 在Shape的(0, -5)点绘制一条直线路径,颜色0xEE8443,线条宽度10,线条间隙20,向左偏移10
       Shape() {
         Path().width(300).height(10).commands('M0 0 L900 0')
       }
       .width(350)
       .height(20)
-      .viewPort({ x: 0, y: -5, width: 300, height: 20 })
+      .viewPort({
+        x: 0,
+        y: -5,
+        width: 300,
+        height: 20
+      })
       .stroke(0xEE8443)
       .strokeWidth(10)
       .strokeDashArray([20])
       .strokeDashOffset(10)
+
       // 在Shape的(0, -5)点绘制一条直线路径,颜色0xEE8443,线条宽度10,透明度0.5
       Shape() {
         Path().width(300).height(10).commands('M0 0 L900 0')
       }
       .width(350)
       .height(20)
-      .viewPort({ x: 0, y: -5, width: 300, height: 20 })
+      .viewPort({
+        x: 0,
+        y: -5,
+        width: 300,
+        height: 20
+      })
       .stroke(0xEE8443)
       .strokeWidth(10)
       .strokeOpacity(0.5)
+
       // 在Shape的(0, -5)点绘制一条直线路径,颜色0xEE8443,线条宽度10,线条间隙20,线条两端样式为半圆
       Shape() {
         Path().width(300).height(10).commands('M0 0 L900 0')
       }
       .width(350)
       .height(20)
-      .viewPort({ x: 0, y: -5, width: 300, height: 20 })
+      .viewPort({
+        x: 0,
+        y: -5,
+        width: 300,
+        height: 20
+      })
       .stroke(0xEE8443)
       .strokeWidth(10)
       .strokeDashArray([20])
       .strokeLineCap(LineCapStyle.Round)
+
       // 在Shape的(-20, -5)点绘制一个封闭路径,颜色0x317AF7,线条宽度10,边框颜色0xEE8443,拐角样式锐角（默认值）
       Shape() {
         Path().width(200).height(60).commands('M0 0 L400 0 L400 150 Z')
       }
       .width(300)
       .height(200)
-      .viewPort({ x: -20, y: -5, width: 310, height: 90 })
+      .viewPort({
+        x: -20,
+        y: -5,
+        width: 310,
+        height: 90
+      })
       .fill(0x317AF7)
       .stroke(0xEE8443)
       .strokeWidth(10)

@@ -10,7 +10,7 @@ The APIs of the **rpc** module return exceptions since API version 9.
 
 **Error Message**
 
-Call mmap function failed.
+Failed to call mmap.
 
 **Description**
 
@@ -30,7 +30,7 @@ The mmap function failed.
 
 **Error Message**
 
-Call os ioctl function failed.
+Failed to call ioctl.
 
 **Description**
 
@@ -50,7 +50,7 @@ Failed to call **ioctl** with the shared memory file descriptor.
 
 **Error Message**
 
-Write to ashmem failed.
+Failed to write data to the shared memory.
 
 **Description**
 
@@ -70,7 +70,7 @@ Failed to write data to the shared memory.
 
 **Error Message**
 
-Read from ashmem failed.
+Failed to read data from the shared memory.
 
 **Description**
 
@@ -90,7 +90,7 @@ Failed to read data from the shared memory.
 
 **Error Message**
 
-Only proxy object permitted.
+Operation allowed only for the proxy object.
 
 **Description**
 
@@ -108,7 +108,7 @@ Check whether a method supported only by the **RemoteProxy** object is called fo
 
 **Error Message**
 
-Only remote object permitted.
+Operation allowed only for the remote object.
 
 **Description**
 
@@ -146,7 +146,7 @@ Failed to communicate with the remote object over IPC.
 
 **Error Message**
 
-Proxy or remote object is invalid.
+The proxy or remote object is invalid.
 
 **Description**
 
@@ -166,7 +166,7 @@ The proxy or remote object is invalid.
 
 **Error Message**
 
-Write data to message sequence failed.
+Failed to write data to the message sequence.
 
 **Description**
 
@@ -184,7 +184,7 @@ Use the method provided by **MessageSequence** to check whether **MessageSequenc
 
 **Error Message**
 
-Read data from message sequence failed.
+Failed to read data from the message sequence.
 
 **Description**
 
@@ -202,7 +202,7 @@ Check that the data read sequence is the same as the data write sequence.
 
 **Error Message**
 
-Sequence memory alloc failed.
+Memory allocation failed.
 
 **Description**
 
@@ -220,7 +220,7 @@ Check whether the data to write is too large or whether parameters are set impro
 
 **Error Message**
 
-Call JS callback function failed.
+Failed to call the JS callback function.
 
 **Description**
 
@@ -238,7 +238,7 @@ Check whether the JS function is successfully executed.
 
 **Error Message**
 
-Call os dup function failed.
+Failed to call dup.
 
 **Description**
 

@@ -10,7 +10,7 @@ N-API 是 Node.js Addon Programming Interface 的缩写，是 Node.js 提供的�
 
 ## 对象生命周期管理
 
-在进行 N-API 调用时，引擎堆中对象的句柄 handle 会作为 napi_value 返回，对象的生命周期由这些句柄控制。对象的句柄会与一个 scope 保持一致，默认情况下，对象当前所在 native 方法是 handle 的 scope。在应用 native 模块实际开发过程中，需要对象有比当前所在 native 方法更短或更长的 scope。本文描述了管理对象生命周期的 N-API 接口，开发者通过这些接口可以合理的管理对象生命周期，满足业务诉求。
+在进行 N-API 调用时，引擎堆中对象的句柄 handle 会作为 [napi_value](https://nodejs.org/api/n-api.html#napi_value) 返回，对象的生命周期由这些句柄控制。对象的句柄会与一个 scope 保持一致，默认情况下，对象当前所在 native 方法是 handle 的 scope。在应用 native 模块实际开发过程中，需要对象有比当前所在 native 方法更短或更长的 scope。本文描述了管理对象生命周期的 N-API 接口，开发者通过这些接口可以合理的管理对象生命周期，满足业务诉求。
 
 ### 缩短对象生命周期
 
@@ -146,7 +146,7 @@ napi_remove_wrap(env, jsobject, result1)
 开发者可以通过如下示例将耗时任务用异步方式实现，大概逻辑包括以下三步： 
 * 用 napi_create_promise 接口创建 promise，将创建一个 deferred 对象并与 promise 一起返回，deferred 对象会绑定到已创建的 promise；
 * 执行耗时任务，并将执行结果传递给 promise；
-* 使用 napi_resolve_deferred 或 napi_reject_deffered 接口来 resolve 或 reject 创建的 promise，并释放 deferred 对象。
+* 使用 napi_resolve_deferred 或 napi_reject_deffered 接口来 resolve 或 reject 创建的 promise，并释放 deferred 对象。此处不建议执行耗时操作，否则会阻塞主线程，导致丢帧等问题。  
 
 ```cpp
 // 在executeCB、completeCB之间传递数据
@@ -165,7 +165,7 @@ static void addExecuteCB(napi_env env, void *data) {
     addonData->result = addonData->args[0] + addonData->args[1];
 };
 
-// 3、使用 napi_resolve_deferred 或 napi_reject_deffered 接口来 resolve 或 reject 创建的 promise，并释放 deferred 对象;
+// 3、使用 napi_resolve_deferred 或 napi_reject_deffered 接口来 resolve 或 reject 创建的 promise，并释放 deferred 对象。此处不建议执行耗时操作，否则会阻塞主线程，导致丢帧等问题。  
 static void addPromiseCompleteCB(napi_env env, napi_status status, void *data) {
     AddonData *addonData = (AddonData *)data;
     napi_value result = nullptr;
@@ -225,7 +225,7 @@ static napi_value addPromise(napi_env env, napi_callback_info info) {
 }
 ```
 
-在异步操作完成后，回调函数将被调用，并将结果传递给 Promise 对象。在 JavaScript 中，可以使用 Promise 对象的 then() 方法来处理异步操作的结果。 
+在异步操作完成后，回调函数将被调用，并将结果传递给 Promise 对象。在 JavaScript 中，可以使用 Promise 对象的 then() 方法来处理异步操作的结果。then() 方法中不建议执行耗时操作，否则会阻塞主线程，导致丢帧等问题。   
 
 ```js
 import hilog from '@ohos.hilog';
@@ -272,7 +272,7 @@ typedef enum {
 
 * N-API 层封装了对外的接口，对接 libuv 层 uv_queue_work_with_qos(uv_loop_t* loop, uv_work_t* req, uv_work_cb work_cb, uv_after_work_cb after_work_cb, uv_qos_t qos) 函数。
 
-* 相较于已有接口 napi_queue_async_work，增加了 qos 等级，用于控制任务调度的优先级。使用示例:
+* 相较于已有接口 napi_queue_async_work，增加了 qos 等级，用于控制任务调度的优先级。使用示例：
 ```cpp
 static void PromiseOnExec(napi_env env, void *data) { 
     OH_LOG_INFO(LOG_APP, "PromiseOnExec"); 

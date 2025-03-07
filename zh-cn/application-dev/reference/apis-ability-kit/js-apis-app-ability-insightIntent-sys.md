@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```ts
-import insightIntent from '@ohos.app.ability.insightIntent';
+import { insightIntent } from '@kit.AbilityKit';
 ```
 
 ## ExecuteMode
@@ -24,4 +24,4 @@ import insightIntent from '@ohos.app.ability.insightIntent';
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| SERVICE_EXTENSION_ABILITY | 3 | 拉起ServiceExtensionAbility。<br/>**系统接口：** 该接口为系统接口。|
+| SERVICE_EXTENSION_ABILITY | 3 | 拉起ServiceExtensionAbility。<br/>**系统接口**：该接口为系统接口。|

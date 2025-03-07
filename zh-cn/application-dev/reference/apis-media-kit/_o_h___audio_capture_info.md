@@ -7,15 +7,11 @@
 
 当audioSampleRate和audioChannels同时为0时，忽略该类型音频相关参数，不录制该类型音频数据。
 
-**系统能力**：SystemCapability.Multimedia.Media.AVScreenCapture
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
-**起始版本：**
+**起始版本：** 10
 
-10
-
-**相关模块:**
-
-[AVScreenCapture](_a_v_screen_capture.md)
+**相关模块：**[AVScreenCapture](_a_v_screen_capture.md)
 
 
 ## 汇总
@@ -25,9 +21,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [audioSampleRate](#audiosamplerate) | int32_t<br/>音频采样率，支持列表参考**OH_AudioCapturer_GetSamplingRate**。 | 
-| [audioChannels](#audiochannels) | int32_t<br/>音频声道数。 | 
-| [audioSource](#audiosource) | [OH_AudioCaptureSourceType](_a_v_screen_capture.md#oh_audiocapturesourcetype)<br/>音频源。 | 
+| int32_t [audioSampleRate](#audiosamplerate) | 音频采样率。  | 
+| int32_t [audioChannels](#audiochannels) | 音频声道数。  | 
+| [OH_AudioCaptureSourceType](_a_v_screen_capture.md#oh_audiocapturesourcetype) [audioSource](#audiosource) | 音频源。  | 
 
 
 ## 结构体成员变量说明
@@ -38,9 +34,7 @@
 ```
 int32_t OH_AudioCaptureInfo::audioChannels
 ```
-
-**描述:**
-
+**描述**
 音频声道数。
 
 
@@ -49,10 +43,8 @@ int32_t OH_AudioCaptureInfo::audioChannels
 ```
 int32_t OH_AudioCaptureInfo::audioSampleRate
 ```
-
-**描述:**
-
-音频采样率，支持列表参考**OH_AudioCapturer_GetSamplingRate**。
+**描述**
+音频采样率，支持列表请查阅Audio Kit的[AudioSamplingRate](../apis-audio-kit/js-apis-audio.md#audiosamplingrate8)。
 
 
 ### audioSource
@@ -60,7 +52,5 @@ int32_t OH_AudioCaptureInfo::audioSampleRate
 ```
 OH_AudioCaptureSourceType OH_AudioCaptureInfo::audioSource
 ```
-
-**描述:**
-
+**描述**
 音频源。

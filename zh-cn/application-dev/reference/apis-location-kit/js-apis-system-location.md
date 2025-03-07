@@ -45,10 +45,10 @@ export default {
   getLocation() {        
     geolocation.getLocation({            
       success: function(data) {                
-        console.log('success get location data. latitude:' + data.latitude);            
+        console.info('success get location data. latitude:' + data.latitude);            
       },            
       fail: function(data, code) {                
-        console.log('fail to get location. code:' + code + ', data:' + data);            
+        console.info('fail to get location. code:' + code + ', data:' + data);            
       }
     });    
   }
@@ -80,10 +80,10 @@ export default {
   getLocationType() {        
     geolocation.getLocationType({            
       success: function(data) {                
-        console.log('success get location type:' + data.types[0]);            
+        console.info('success get location type:' + data.types[0]);            
       },            
       fail: function(data, code) {                
-        console.log('fail to get location. code:' + code + ', data:' + data);            
+        console.info('fail to get location. code:' + code + ', data:' + data);            
        },        
      });    
   },
@@ -117,10 +117,10 @@ export default {
   subscribe() {        
     geolocation.subscribe({            
       success: function(data) {                
-        console.log('get location. latitude:' + data.latitude);            
+        console.info('get location. latitude:' + data.latitude);            
       },            
       fail: function(data, code) {                
-        console.log('fail to get location. code:' + code + ', data:' + data);            
+        console.info('fail to get location. code:' + code + ', data:' + data);            
       },        
     });    
   },
@@ -217,13 +217,13 @@ fail返回错误代码：
 
 **系统能力**：SystemCapability.Location.Location.Lite
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| longitude | number | 是 | 否 | 设备位置信息：经度。 |
-| latitude | number | 是 | 否 | 设备位置信息：纬度。 |
-| altitude | number | 是 | 否 | 设备位置信息：海拔。 |
-| accuracy | number | 是 | 否 | 设备位置信息：精确度。 |
-| time | number | 是 | 否 | 设备位置信息：时间。 |
+| longitude | number | 否 | 否 | 设备位置信息：经度。 |
+| latitude | number | 否 | 否 | 设备位置信息：纬度。 |
+| altitude | number | 否 | 否 | 设备位置信息：海拔。 |
+| accuracy | number | 否 | 否 | 设备位置信息：精确度。 |
+| time | number | 否 | 否 | 设备位置信息：时间。 |
 
 ## GetLocationTypeOption<sup>(deprecated)</sup>
 
@@ -249,9 +249,9 @@ fail返回错误代码：
 
 **系统能力**：SystemCapability.Location.Location.Lite
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| types | Array&lt;string&gt; | 是 | 否 | 可选的定位类型['gps',&nbsp;'network']。 |
+| types | Array&lt;string&gt; | 否 | 否 | 可选的定位类型['gps',&nbsp;'network']。 |
 
 ## SubscribeLocationOption<sup>(deprecated)</sup>
 

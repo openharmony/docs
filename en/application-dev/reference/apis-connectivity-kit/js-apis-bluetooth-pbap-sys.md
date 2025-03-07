@@ -11,7 +11,7 @@ The **pbap** module provides APIs for accessing the phone book of a device using
 ## Modules to Import
 
 ```js
-import pbap from '@ohos.bluetooth.pbap';
+import { pbap } from '@kit.ConnectivityKit';
 ```
 
 ## PbapServerProfile
@@ -42,15 +42,19 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let pbapServerProfile = pbap.createPbapServerProfile();
     pbapServerProfile.disconnect('XX:XX:XX:XX:XX:XX');
@@ -77,7 +81,7 @@ Sets the share type of the phone book information for a device. This API uses an
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 | type | [ShareType](#sharetype) | Yes   | Share type to set.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
@@ -85,15 +89,19 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let pbapServerProfile = pbap.createPbapServerProfile();
     pbapServerProfile.setShareType('XX:XX:XX:XX:XX:XX', 0, (err: BusinessError) => {
@@ -136,15 +144,19 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let pbapServerProfile = pbap.createPbapServerProfile();
     pbapServerProfile.setShareType('XX:XX:XX:XX:XX:XX', 0).then(() => {
@@ -172,7 +184,7 @@ Obtains the phone book share type of a device. This API uses an asynchronous cal
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
-| callback | AsyncCallback&lt;[ShareType](#sharetype)&gt; | Yes   | Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+| callback | AsyncCallback&lt;[ShareType](#sharetype)&gt; | Yes   | Callback used to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
@@ -180,15 +192,19 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let pbapServerProfile = pbap.createPbapServerProfile();
     pbapServerProfile.getShareType('XX:XX:XX:XX:XX:XX', (err, type) => {
@@ -229,15 +245,19 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let pbapServerProfile = pbap.createPbapServerProfile();
     pbapServerProfile.getShareType('XX:XX:XX:XX:XX:XX').then((type) => {
@@ -266,7 +286,7 @@ Sets the phone book access authorization for a device. This API uses an asynchro
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 | authorization | [AccessAuthorization](js-apis-bluetooth-constant-sys.md#AccessAuthorization) | Yes   | Phone book access authorization to set.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
@@ -274,15 +294,19 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let pbapServerProfile = pbap.createPbapServerProfile();
     pbapServerProfile.setPhoneBookAccessAuthorization('XX:XX:XX:XX:XX:XX', 0, (err: BusinessError) => {
@@ -325,15 +349,19 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let pbapServerProfile = pbap.createPbapServerProfile();
     pbapServerProfile.setPhoneBookAccessAuthorization('XX:XX:XX:XX:XX:XX', 0).then(() => {
@@ -361,7 +389,7 @@ Obtains the phone book access authorization of a device. This API uses an asynch
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
-| callback | AsyncCallback&lt;[AccessAuthorization](js-apis-bluetooth-constant-sys.md#AccessAuthorization)&gt; | Yes   | Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+| callback | AsyncCallback&lt;[AccessAuthorization](js-apis-bluetooth-constant-sys.md#AccessAuthorization)&gt; | Yes   | Callback used to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
@@ -369,15 +397,19 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let pbapServerProfile = pbap.createPbapServerProfile();
     pbapServerProfile.getPhoneBookAccessAuthorization('XX:XX:XX:XX:XX:XX', (err, authorization) => {
@@ -418,15 +450,19 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let pbapServerProfile = pbap.createPbapServerProfile();
     pbapServerProfile.getPhoneBookAccessAuthorization('XX:XX:XX:XX:XX:XX').then((authorization) => {

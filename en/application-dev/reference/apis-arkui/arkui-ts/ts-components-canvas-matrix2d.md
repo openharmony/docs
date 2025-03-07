@@ -8,20 +8,36 @@
 
 ## APIs
 
-Matrix2D()
+Matrix2D(unit?: LengthMetricsUnit)
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type | Mandatory | Description                             |
+| ------ | -------- | ---- | ------------------------------------- |
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | No  | Unit mode of the **Matrix2D** object. The value cannot be dynamically changed once set. The configuration method is the same as that of [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12).<br>Default value: **DEFAULT**|
 
 ## Attributes
 
-| Name                     | Type  | Description                                                        |
-| ------------------------- | ------ | ------------------------------------------------------------ |
-| [scaleX](#scalex)         | number | Horizontal scale factor. Since API version 9, this API is supported in ArkTS widgets.|
-| [scaleY](#scaley)         | number | Vertical scale factor. Since API version 9, this API is supported in ArkTS widgets.|
-| [rotateX](#rotatex)       | number | Horizontal tilt coefficient. Since API version 9, this API is supported in ArkTS widgets.|
-| [rotateY](#rotatey)       | number | Vertical tilt coefficient. Since API version 9, this API is supported in ArkTS widgets.|
-| [translateX](#translatex) | number | Horizontal translation distance, in vp. Since API version 9, this API is supported in ArkTS widgets.|
-| [translateY](#translatey) | number | Vertical translation distance, in vp. Since API version 9, this API is supported in ArkTS widgets.|
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Type | Read Only | Optional  | Description |
+| ----- | ----- | --------------- | ------ | ------------------------ |
+| [scaleX](#scalex)         | number | No | Yes | Horizontal scale factor.          |
+| [scaleY](#scaley)         | number | No | Yes | Vertical scale factor.          |
+| [rotateX](#rotatex)       | number | No | Yes | Horizontal tilt coefficient.          |
+| [rotateY](#rotatey)       | number | No | Yes | Vertical tilt coefficient.          |
+| [translateX](#translatex) | number | No | Yes | Distance to translate on the x-axis.<br>Default unit: vp |
+| [translateY](#translatey) | number | No | Yes | Distance to translate on the y-axis.<br>Default unit: vp |
 
 >  **NOTE**
 >  
@@ -245,13 +261,17 @@ identity(): Matrix2D
 
 Creates an identity matrix.
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
 | Type                 | Description      |
 | --------------------- | ---------- |
-| [Matrix2D](#matrix2d) | Identity matrix.|
+| [Matrix2D](#matrix2d) | Identity matrix. |
 
 **Example**
 
@@ -294,13 +314,17 @@ invert(): Matrix2D
 
 Obtains an inverse of this matrix.
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
 | Type                 | Description        |
 | --------------------- | ------------ |
-| [Matrix2D](#matrix2d) | Inverse of the current matrix.|
+| [Matrix2D](#matrix2d) | Inverse of the current matrix. |
 
 **Example**
 
@@ -349,21 +373,21 @@ multiply(other?: Matrix2D): Matrix2D
 
 Multiplies this matrix by the target matrix.
 
-Since API version 9, this API is supported in ArkTS widgets. This API is a null API.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9. This API is an empty API.
 
 This API is deprecated since API version 10.
 
 **Parameters**
 
-| Parameter | Type    | Mandatory| Default Value| Description      |
-| ----- | -------- | ---- | ------ | ---------- |
-| other | Matrix2D | No  | null   | Target matrix.|
+| Name | Type    | Mandatory |  Description  |
+| ----- | -------- | ---- | ---------- |
+| other | Matrix2D | No | Target matrix.<br>Default value: **null** |
 
 **Return value**
 
 | Type                 | Description          |
 | --------------------- | -------------- |
-| [Matrix2D](#matrix2d) | Matrix of the multiplication result.|
+| [Matrix2D](#matrix2d) | Matrix of the multiplication result. |
 
 **Example**
 
@@ -419,22 +443,22 @@ rotate(rx?: number, ry?: number): Matrix2D
 
 Performs a rotation operation on this matrix.
 
-Since API version 9, this API is supported in ArkTS widgets. This API is a null API.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9. This API is an empty API.
 
 This API is deprecated since API version 10. You are advised to use [rotate](#rotate10) instead.
 
 **Parameters**
 
-| Parameter| Type  | Mandatory| Default Value| Description                            |
-| ---- | ------ | ---- | ------ | -------------------------------- |
-| rx   | number | No  | 0      | Horizontal coordinate (in vp) of the rotation point.|
-| ry   | number | No  | 0      | Vertical coordinate (in vp) of the rotation point.|
+| Name | Type  | Mandatory | Description                         |
+| ---- | ------ | ---- | -------------------------------- |
+| rx   | number | No  | Horizontal coordinate of the rotation point.<br>Default unit: vp<br>Default value: **0** |
+| ry   | number | No  | Vertical coordinate of the rotation point.<br>Default unit: vp<br>Default value: **0** |
 
 **Return value**
 
 | Type                 | Description                |
 | --------------------- | -------------------- |
-| [Matrix2D](#matrix2d) | Matrix of the rotation result.|
+| [Matrix2D](#matrix2d) | Matrix of the rotation result. |
 
 **Example**
 
@@ -483,21 +507,25 @@ rotate(degree: number, rx?: number, ry?: number): Matrix2D
 
 Performs a right multiplication rotation operation on this matrix, with the specified rotation point as the transform origin.
 
-Since API version 10, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Parameter  | Type  | Mandatory| Default Value| Description                                                        |
-| ------ | ------ | ---- | ------ | ------------------------------------------------------------ |
-| degree | number | Yes  | 0      | Rotation angle, in radians. A positive angle denotes a clockwise rotation. You can use **Math.PI& / 180** to convert the angle to a radian value.|
-| rx     | number | No  | 0      | Horizontal coordinate (in vp) of the rotation point.                            |
-| ry     | number | No  | 0      | Vertical coordinate (in vp) of the rotation point.                            |
+| Name  | Type  | Mandatory | Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| degree | number | Yes | Rotation angle, in radians. A positive angle denotes a clockwise rotation. You can use **Math.PI& / 180** to convert the angle to a radian value.<br>Default value: **0**|
+| rx     | number | No | Horizontal coordinate of the rotation point.<br>Default unit: vp<br>Default value: **0**   |
+| ry     | number | No | Vertical coordinate of the rotation point.<br>Default unit: vp<br>Default value: **0**   |
 
 **Return value**
 
 | Type                 | Description                |
 | --------------------- | -------------------- |
-| [Matrix2D](#matrix2d) | Matrix of the rotation result.|
+| [Matrix2D](#matrix2d) | Matrix of the rotation result. |
 
 **Example**
 
@@ -546,20 +574,24 @@ translate(tx?: number, ty?: number): Matrix2D
 
 Performs a left multiplication translation operation on this matrix.
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Parameter| Type  | Mandatory| Default Value| Description                        |
-| ---- | ------ | ---- | ------ | ---------------------------- |
-| tx   | number | No  | 0      | Horizontal translation distance, in vp.|
-| ty   | number | No  | 0      | Vertical translation distance, in vp.|
+| Name | Type  | Mandatory | Description                 |
+| ---- | ------ | ---- | ---------------------------- |
+| tx   | number | No  | Distance to translate on the x-axis.<br>Default unit: vp<br>Default value: **0** |
+| ty   | number | No  | Distance to translate on the y-axis.<br>Default unit: vp<br>Default value: **0** |
 
 **Return value**
 
 | Type                 | Description                |
 | --------------------- | -------------------- |
-| [Matrix2D](#matrix2d) | Matrix of the translation result.|
+| [Matrix2D](#matrix2d) | Matrix of the translation result. |
 
 **Example**
 
@@ -608,20 +640,24 @@ scale(sx?: number, sy?: number): Matrix2D
 
 Performs a right multiplication scaling operation on this matrix.
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Parameter| Type  | Mandatory| Default Value| Description              |
-| ---- | ------ | ---- | ------ | ------------------ |
-| sx   | number | No  | 1      | Horizontal scale factor.|
-| sy   | number | No  | 1      | Vertical scale factor.|
+| Name | Type  | Mandatory | Description              |
+| ---- | ------ | ---- | ------------------ |
+| sx   | number | No  | Horizontal scale factor.<br>Default value: **1** |
+| sy   | number | No  | Vertical scale factor.<br>Default value: **1** |
 
 **Return value**
 
 | Type                 | Description              |
 | --------------------- | ------------------ |
-| [Matrix2D](#matrix2d) | Matrix of the scale result.|
+| [Matrix2D](#matrix2d) | Matrix of the scale result. |
 
 **Example**
 

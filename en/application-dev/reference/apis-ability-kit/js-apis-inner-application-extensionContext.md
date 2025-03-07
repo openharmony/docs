@@ -12,10 +12,12 @@ This module provides APIs for accessing resources of a specific Extension abilit
 ## Modules to Import
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -57,9 +59,8 @@ export class GlobalContext {
 ```
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import formBindingData from '@ohos.app.form.formBindingData';
+import { FormExtensionAbility, formBindingData } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
 import { GlobalContext } from '../GlobalContext';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {

@@ -26,7 +26,7 @@ Specify a protocol version supported by the server.
 
 **Error Message**
 
-URL using bad/illegal format or missing URL.
+Invalid URL format or missing URL.
 
 **Description**
 
@@ -44,7 +44,7 @@ Specify a URL of the correct format.
 
 **Error Message**
 
-Couldn't resolve proxy name.
+Failed to resolve the proxy name.
 
 **Description**
 
@@ -62,7 +62,7 @@ Specify a URL of the correct format.
 
 **Error Message**
 
-Couldn't resolve host name.
+Failed to resolve the host name.
 
 **Description**
 
@@ -84,7 +84,7 @@ This error code is reported if the domain name of the host cannot be resolved.
 
 **Error Message**
 
-Couldn't connect to server.
+Failed to connect to the server.
 
 **Description**
 
@@ -102,7 +102,7 @@ Specify a URL of the correct format.
 
 **Error Message**
 
-Weird server reply.
+Invalid server response.
 
 **Description**
 
@@ -120,7 +120,7 @@ Check the server implementation.
 
 **Error Message**
 
-Access denied to remote resource.
+Access to the remote resource denied.
 
 **Description**
 
@@ -174,7 +174,7 @@ Check the server implementation.
 
 **Error Message**
 
-Failed writing received data to disk/application.
+Failed to write the received data to the disk or application.
 
 **Description**
 
@@ -182,7 +182,8 @@ This error code is reported if an error occurs while writing received data to th
 
 **Cause**
 
-The application does not have the permission to write files or the file to be downloaded exceeds 5 MB.
+- The application does not have the permission to write files or the file to be downloaded exceeds 5 MB.
+- The **destroy** function is called before the data of the last request is fully received.
 
 **Solution**
 
@@ -210,7 +211,7 @@ Check the file size and network status.
 
 **Error Message**
 
-Failed to open/read local data from file/application.
+Failed to open or read local data from the file or application.
 
 **Description**
 
@@ -246,7 +247,7 @@ Check the system memory.
 
 **Error Message**
 
-Timeout was reached.
+Operation timeout.
 
 **Description**
 
@@ -258,13 +259,13 @@ The TCP connection or the read/write operation times out.
 
 **Solution**
 
-Rectify network faults.
+Check whether the network is stable and the signal strength is strong. If the network is normal, check whether the server is overloaded or service processing is slow.
 
 ## 2300047 Maximum Redirections Reached
 
 **Error Message**
 
-Number of redirects hit maximum amount.
+The number of redirections reaches the maximum allowed.
 
 **Description**
 
@@ -282,7 +283,7 @@ Check the server implementation.
 
 **Error Message**
 
-Server returned nothing (no headers, no data).
+The server returned nothing (no header or data).
 
 **Description**
 
@@ -300,7 +301,7 @@ Check the server implementation.
 
 **Error Message**
 
-Failed sending data to the peer.
+Failed to send data to the peer.
 
 **Description**
 
@@ -318,7 +319,7 @@ Rectify network faults.
 
 **Error Message**
 
-Failure when receiving data from the peer.
+Failed to receive data from the peer.
 
 **Description**
 
@@ -336,7 +337,7 @@ Rectify network faults.
 
 **Error Message**
 
-Problem with the local SSL certificate.
+Local SSL certificate error.
 
 **Description**
 
@@ -354,7 +355,7 @@ Check the format of the SSL certificate.
 
 **Error Message**
 
-Couldn't use specified SSL cipher.
+The specified SSL cipher cannot be used.
 
 **Description**
 
@@ -372,7 +373,7 @@ Capture and analyze packets to check whether the cipher algorithm is supported.
 
 **Error Message**
 
-SSL peer certificate or SSH remote key was not OK.
+Invalid SSL peer certificate or SSH remote key.
 
 **Description**
 
@@ -390,7 +391,7 @@ Check whether the certificate is valid.
 
 **Error Message**
 
-Unrecognized or bad HTTP Content or Transfer-Encoding.
+Invalid HTTP encoding format.
 
 **Description**
 
@@ -426,7 +427,7 @@ Check the server implementation.
 
 **Error Message**
 
-Remote disk full or allocation exceeded.
+Remote disk full.
 
 **Description**
 
@@ -462,7 +463,7 @@ Check the server for files that already exist.
 
 **Error Message**
 
-Problem with the SSL CA cert (path? access rights?).
+The SSL CA certificate does not exist or is unaccessible.
 
 **Description**
 
@@ -498,7 +499,7 @@ Check whether the file requested by the specified URL exists.
 
 **Error Message**
 
-An authentication function returned an error.
+Authentication error.
 
 **Description**
 
@@ -512,11 +513,29 @@ The specified identity verification field does not match that on the server.
 
 Check whether the specified identity verification field matches that on the server.
 
+## 2300998 Domain Access Denied
+
+**Error Message**
+
+It is not allowed to access this domain.
+
+**Description**
+
+This error code is reported if access to a certain domain is prohibited.
+
+**Cause**
+
+An incorrect server domain name is configured for the atomic service.
+
+**Solution**
+
+Configure a correct server domain name for the atomic service.
+
 ## 2300999 Unknown Error
 
 **Error Message**
 
-Unknown Other Error.
+Unknown error.
 
 **Description**
 

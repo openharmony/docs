@@ -13,23 +13,23 @@
 1. 导入音频接口。
 
     ```ts
-    import audio from '@ohos.multimedia.audio';
+    import { audio } from '@kit.AudioKit';
     ```
 
 2. 配置音频渲染参数并创建AudioRenderer实例，音频渲染参数的详细信息可以查看[AudioRendererOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiorendereroptions8)，创建AudioRenderer实例时会默认挂载EFFECT_DEFAULT模式音效。
 
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     let audioStreamInfo: audio.AudioStreamInfo = {
-      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-      channels: audio.AudioChannel.CHANNEL_1,
+      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+      channels: audio.AudioChannel.CHANNEL_2,
       sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
       encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
     };
 
     let audioRendererInfo: audio.AudioRendererInfo = {
-      usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+      usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
       rendererFlags: 0
     };
 
@@ -53,8 +53,8 @@
 ### 查询当前播放实例的音效模式
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   audioRenderer.getAudioEffectMode((err: BusinessError, effectMode: audio.AudioEffectMode) => {
     if (err) {
@@ -71,8 +71,8 @@
 关闭系统音效：
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_NONE, (err: BusinessError) => {
     if (err) {
@@ -87,8 +87,8 @@
 开启系统音效默认模式：
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT, (err: BusinessError) => {
     if (err) {
@@ -110,7 +110,7 @@
 创建AudioStreamManager实例。在使用AudioStreamManager的API前，需要使用getStreamManager()创建一个AudioStreamManager实例。
 
    ```ts
-   import audio from '@ohos.multimedia.audio';
+   import { audio } from '@kit.AudioKit';
 
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
@@ -119,10 +119,10 @@
 ### 查询对应场景的音效模式
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA, async (err: BusinessError, audioEffectInfoArray: audio.AudioEffectInfoArray) => {
+  audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MUSIC, async (err: BusinessError, audioEffectInfoArray: audio.AudioEffectInfoArray) => {
     if (err) {
       console.error('Failed to get effect info array');
       return;    

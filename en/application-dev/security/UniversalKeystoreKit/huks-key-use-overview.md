@@ -4,9 +4,9 @@
 The key generated or imported can be used to perform the following operations to ensure data confidentiality and integrity:
 
 
-- [Encryption/Decryption](huks-encryption-decryption-overview.md)
+- [Encryption and decryption](huks-encryption-decryption-overview.md)
 
-- [Signing/Signature Verification](huks-signing-signature-verification-overview.md)
+- [Signing and signature verification](huks-signing-signature-verification-overview.md)
 
 - [Key agreement](huks-key-agreement-overview.md)
 

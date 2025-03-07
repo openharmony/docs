@@ -10,14 +10,14 @@
 
    通过代码切换的方法（需要系统应用权限）：
    ```ts
-   import I18n from '@ohos.i18n'
-   I18n.System.setSystemLanguage('ar-XB')
+   import { i18n } from '@kit.LocalizationKit';
+   i18n.System.setSystemLanguage('ar-XB')
    ```
 
 2. 遍历需要测试的APP。
 
 ## 测试事项
 
-1. 检查界面布局、文字方向、界面控制逻辑是否符合从右至左的阅读习惯。详细要点见[界面镜像](i18n-ui-design.md#界面镜像)章节
+1. 检查界面布局、文字方向、界面控制逻辑是否符合从右至左的阅读习惯。详细要点见[界面镜像](i18n-ui-design.md#界面镜像)章节。
 
 2. 检查相关功能是否存在异常无法使用。

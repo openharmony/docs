@@ -20,15 +20,15 @@ import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
 | ------------------------------------------ | ------------ | -------------------- |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息。 |
 
-权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
+权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
 ## BusinessType
 
 此枚举值用于标识过滤条件类型。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API：**  此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 | 名称        | 值   | 说明                                 |
 | ----------- | ---- | ------------------------------------ |
@@ -39,9 +39,9 @@ import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
 
 此过滤值用于过滤查询的ability类型。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API：**  此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 | 名称         | 类型         | 只读 | 必填 | 说明                                   |
 | ------------ | ------------ | ---- | ---- | -------------------------------------- |
@@ -53,13 +53,13 @@ import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
 
 queryBusinessAbilityInfo(filter: BusinessAbilityFilter, callback: AsyncCallback\<Array\<BusinessAbilityInfo\>\>): void;
 
-以异步方法通过给定的过滤条件查询ability信息。使用callback异步回调。成功返回查询到的路由ability信息，失败返回对应错误信息。
+通过给定的过滤条件查询ability信息。使用callback异步回调。成功返回查询到的路由ability信息，失败返回对应错误信息。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API：**  此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -67,6 +67,16 @@ queryBusinessAbilityInfo(filter: BusinessAbilityFilter, callback: AsyncCallback\
 | ----------- | ------ | ---- | --------------------------------------- |
 | filter | [BusinessAbilityFilter](#businessabilityfilter) | 是    | 支持按业务类型过滤的对象。 |
 | callback | AsyncCallback\<Array\<[BusinessAbilityInfo](js-apis-bundleManager-businessAbilityInfo-sys.md#businessabilityinfo)\>\> | 是 | 回调函数。返回查询到的ability信息，否则为错误对象。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -94,13 +104,13 @@ try {
 
 queryBusinessAbilityInfo(filter: BusinessAbilityFilter): Promise\<Array\<BusinessAbilityInfo\>\>;
 
-以异步方法通过给定的过滤条件查询ability信息。使用Promise异步回调，成功返回查询到的路由ability信息，失败返回对应错误信息。
+通过给定的过滤条件查询ability信息。使用Promise异步回调，成功返回查询到的路由ability信息，失败返回对应错误信息。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API：**  此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -113,6 +123,16 @@ queryBusinessAbilityInfo(filter: BusinessAbilityFilter): Promise\<Array\<Busines
 | 类型                                                         | 说明                                        |
 | ------------------------------------------------------------ | ------------------------------------------- |
 | Promise\<Array\<[BusinessAbilityInfo](js-apis-bundleManager-businessAbilityInfo-sys.md#businessabilityinfo)\>\> | Promise对象，返回符合过滤条件的ability信息。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **示例：**
 

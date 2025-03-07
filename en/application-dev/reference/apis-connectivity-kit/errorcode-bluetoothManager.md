@@ -26,7 +26,7 @@ Start the Bluetooth service.
 
 **Error Message**
 
-Bluetooth switch is off.
+Bluetooth disabled.
 
 **Description**
 
@@ -44,7 +44,7 @@ Enable Bluetooth.
 
 **Error Message**
 
-Profile is not supported.
+Profile not supported.
 
 **Description**
 
@@ -62,7 +62,7 @@ Check whether the device supports the profile. Use a profile supported by the de
 
 **Error Message**
 
-This device not connected.
+Device not connected.
 
 **Description**
 
@@ -80,7 +80,7 @@ Turn on Bluetooth again to start the pairing process.
 
 **Error Message**
 
-Max connection has reached.
+The maximum number of connections has been reached.
 
 **Description**
 
@@ -94,11 +94,29 @@ The number of connections reaches the limit.
 
 Check whether the number of paired devices reaches the threshold.
 
+## 2900007
+
+**Error Message**
+
+Asynchronous interface invoking timeout.
+
+**Description**
+
+The asynchronous call timed out.
+
+**Possible Causes**
+
+The remote device does not respond.
+
+**Solution**
+
+Try again after the timeout. If the local and remote devices are connected, disconnect them and try again.
+
 ## 2900008
 
 **Error Message**
 
-Proxy is nullptr.
+The value of proxy is a null pointer.
 
 **Description**
 
@@ -134,7 +152,7 @@ Perform this operation again.
 
 **Error Message**
 
-IPC transmit failed.
+IPC failed.
 
 **Description**
 
@@ -164,7 +182,7 @@ The caller does not have the read permission.
 
 **Solution**
 
-Check that the caller has the read permission.
+Check whether the caller has the read permission.
 
 ## 2901001
 
@@ -182,7 +200,7 @@ The caller does not have the write permission.
 
 **Solution**
 
-Check that the caller has the write permission.
+Check whether the caller has the write permission.
 
 ## 2901054
 
@@ -200,4 +218,4 @@ The I/O transmission is abnormal.
 
 **Solution**
 
-Perform the operation again.
+Perform this operation again.

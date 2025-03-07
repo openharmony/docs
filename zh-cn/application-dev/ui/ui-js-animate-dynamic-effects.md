@@ -85,7 +85,7 @@ export default {
 
 ## 添加动画事件和调用接口
 
-animator支持事件和接口，可以通过添加frame、cancel、repeat、finish事件和调用update、play、pause、cancel、reverse、finish接口自定义动画效果。animator支持的事件和接口具体见动画中的[createAnimator](../reference/apis-arkui/js-apis-animator.md)。
+animator支持事件和接口，可以通过添加frame、cancel、repeat、finish事件和调用update、play、pause、cancel、reverse、finish接口自定义动画效果。animator支持的事件和接口具体见动画中的[create](../reference/apis-arkui/js-apis-animator.md#create9)。
 
 ```html
 <!-- xxx.hml -->
@@ -231,5 +231,6 @@ export default {
 
 ![zh-cn_image_0000001220635059](figures/zh-cn_image_0000001220635059.gif)
 
-> **说明：**
-> 在调用update接口的过程中可以使用这个接口更新动画参数，入参与createAnimator一致。
+> **说明：** 
+>
+> 在调用[update](../reference/apis-arkui/js-apis-animator.md#updatedeprecated)接口的过程中可以使用这个接口更新动画参数，入参与[createAnimator](../reference/apis-arkui/js-apis-animator.md#createanimatordeprecated)一致。

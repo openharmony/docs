@@ -1,6 +1,6 @@
 # @ohos.net.networkSecurity (Network Security)
 
-本模块提供网络安全校验能力。应用可以通过证书链校验API完成证书链校验功能。
+本模块提供网络安全校验能力。应用可以通过证书校验API完成证书校验功能。
 
 > **说明：**
 >
@@ -9,13 +9,13 @@
 ## 导入模块
 
 ```ts
-import networkSecurity from '@ohos.net.networkSecurity';
+import { networkSecurity } from '@kit.NetworkKit';
 ```
 
 ## 完整实例
 
 ```ts
-import networkSecurity from '@ohos.net.networkSecurity';
+import { networkSecurity } from '@kit.NetworkKit';
 
 // Define certificate blobs
 const cert: networkSecurity.CertBlob = {
@@ -38,7 +38,9 @@ networkSecurity.certVerification(cert, caCert)
   });
 ```
 
-> **注意**：请务必将示例中的证书数据替换为实际的证书内容。
+> **注意**：
+> 
+> 请务必将示例中的证书数据替换为实际的证书内容。
 
 ## CertType
 
@@ -60,15 +62,15 @@ networkSecurity.certVerification(cert, caCert)
 
 | 名称  | 类型                   | 必填      | 说明           |
 | ----- | --------------------- | --------- | -------------- |
-| type  | CertType              | Yes       | 证书编码类型。  |
-| data  | string \| ArrayBuffer | Yes       | 证书内容。      |
+| type  | CertType              | 是      | 证书编码类型。  |
+| data  | string \| ArrayBuffer | 是       | 证书内容。      |
 
 
 ## networkSecurity.certVerification
 
 certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
 
-从证书管理获取系统预置的CA证书和用户安装的CA证书，对应用传入的证书链进行校验。
+从证书管理获取系统预置的CA证书和用户安装的CA证书，对应用传入的证书进行校验。
 
 **系统能力**: SystemCapability.Communication.NetStack
 
@@ -76,8 +78,8 @@ certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
 
 | 参数名 | 类型     | 必填 | 说明                   |
 | ------ | -------- | ---- | ---------------------- |
-| cert   | CertBlob | 是   | 被校验的证书链。       |
-| caCert | CertBlob | 否   | 传入自定义的CA证书链。 |
+| cert   | CertBlob | 是   | 被校验的证书。       |
+| caCert | CertBlob | 否   | 传入自定义的CA证书。 |
 
 **返回值：**
 
@@ -102,24 +104,29 @@ certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
 | 2305010  | Certificate has expired.                             |
 | 2305011  | CRL is not yet valid.                                |
 | 2305012  | CRL has expired.                                     |
+| 2305018  | Self-signed certificate.                             |
 | 2305023  | Certificate has been revoked.                        |
 | 2305024  | Invalid certificate authority (CA).                  |
 | 2305027  | Certificate is untrusted.                            |
+| 2305069  | Invalid certificate verification context.            |
 
-> **说明：**这些错误代码对应于证书验证过程中的各种失败，提供有关所遇到问题的详细信息。
+> **说明：**
+> 
+> 这些错误代码对应于证书验证过程中的各种失败，提供有关所遇到问题的详细信息。
 
 **示例：**
 
 ```ts
-import networkSecurity from '@ohos.net.networkSecurity';
+import { networkSecurity } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Define certificate blobs
-const cert = {
+const cert:networkSecurity.CertBlob = {
   type: networkSecurity.CertType.CERT_TYPE_PEM,
   data: '-----BEGIN CERTIFICATE-----\n... (certificate data) ...\n-----END CERTIFICATE-----',
 };
 
-const caCert = {
+const caCert:networkSecurity.CertBlob = {
   type: networkSecurity.CertType.CERT_TYPE_PEM,
   data: '-----BEGIN CERTIFICATE-----\n... (CA certificate data) ...\n-----END CERTIFICATE-----',
 };
@@ -129,11 +136,13 @@ networkSecurity.certVerification(cert, caCert)
   .then((result) => {
     console.info('Certificate verification result:', result);
   })
-  .catch((error) => {
+  .catch((error: BusinessError) => {
     console.error('Certificate verification failed:', error);
   });
 ```
-> **注意**：请务必将示例中的证书数据替换为实际的证书内容。
+> **注意**：
+> 
+> 请务必将示例中的证书数据替换为实际的证书内容。
 
 
 
@@ -141,7 +150,7 @@ networkSecurity.certVerification(cert, caCert)
 
 certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 
-从证书管理获取系统预置的CA证书和用户安装的CA证书，对应用传入的证书链进行校验。
+从证书管理获取系统预置的CA证书和用户安装的CA证书，对应用传入的证书进行校验。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -149,14 +158,14 @@ certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 
 | 参数名 | 类型     | 必填 | 说明                   |
 | ------ | -------- | ---- | ---------------------- |
-| cert   | CertBlob | 是  | 被校验的证书链。       |
-| caCert | CertBlob | 否   | 传入自定义的CA证书链。 |
+| cert   | CertBlob | 是  | 被校验的证书。       |
+| caCert | CertBlob | 否   | 传入自定义的CA证书。 |
 
 **返回值：**
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| number | 表示证书链验证的结果。如果证书链验证成功，则返回0； 否则验证失败。 |
+| number | 表示证书验证的结果。如果证书验证成功，则返回0； 否则验证失败。 |
 
 **错误码：**
 
@@ -175,16 +184,21 @@ certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 | 2305010  | Certificate has expired.                             |
 | 2305011  | CRL is not yet valid.                                |
 | 2305012  | CRL has expired.                                     |
+| 2305018  | Self-signed certificate.                             |
 | 2305023  | Certificate has been revoked.                        |
 | 2305024  | Invalid certificate authority (CA).                  |
 | 2305027  | Certificate is untrusted.                            |
+| 2305069  | Invalid certificate verification context.            |
 
-> **说明：**这些错误代码对应于证书验证过程中的各种失败，提供有关所遇到问题的详细信息。
+> **说明：**
+>
+> 这些错误代码对应于证书验证过程中的各种失败，提供有关所遇到问题的详细信息。
 
 **示例：**
 
 ```ts
-import networkSecurity from '@ohos.net.networkSecurity';
+import { networkSecurity } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Create certificate blobs
 const cert: networkSecurity.CertBlob = {
@@ -202,13 +216,15 @@ networkSecurity.certVerification(cert, caCert)
   .then((result) => {
     console.info('Verification Result:', result);
   })
-  .catch((error) => {
+  .catch((error: BusinessError) => {
     console.error('Verification Error:', error);
   });
 
 // Synchronous verification
-let resultSync ：number = networkSecurity.certVerificationSync(cert, caCert);
+let resultSync: number = networkSecurity.certVerificationSync(cert, caCert);
 console.info('Synchronous Verification Result:', resultSync);
 ```
 
-> **注意**：请务必将示例中的证书数据替换为实际的证书内容。
+> **注意**：
+>
+> 请务必将示例中的证书数据替换为实际的证书内容。

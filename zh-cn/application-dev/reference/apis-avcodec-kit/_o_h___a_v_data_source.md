@@ -31,7 +31,9 @@
 ```
 OH_AVDataSourceReadAt OH_AVDataSource::readAt
 ```
+
 **描述**
+
 数据源的数据回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
@@ -44,7 +46,9 @@ OH_AVDataSourceReadAt OH_AVDataSource::readAt
 ```
 int64_t OH_AVDataSource::size
 ```
+
 **描述**
+
 数据源的总大小。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase

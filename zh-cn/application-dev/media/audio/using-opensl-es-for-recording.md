@@ -3,7 +3,7 @@
 OpenSL ES全称为Open Sound Library for Embedded Systems，是一个嵌入式、跨平台、免费的音频处理库。为嵌入式移动多媒体设备上的应用开发者提供标准化、高性能、低延迟的API。OpenHarmony的Native API基于[Khronos Group](https://www.khronos.org/)开发的[OpenSL ES](https://www.khronos.org/opensles/) 1.0.1 API 规范实现，开发者可以通过&lt;OpenSLES.h&gt;和&lt;OpenSLES_OpenHarmony.h&gt;在OpenHarmony上使用相关API。
 
 ## 使用OHAudio替代OpenSL ES
-OpenHarmony上的OpenSL ES接口，是早期SDK8版本开始提供，用于支持应用Native层音频开发的系统接口。但随着版本演进，接口定义的可扩展性不足，不再能满足音频系统的能力拓展，因此当前已不再推荐应用开发者继续使用此接口进行音频功能开发，可能存在一些接口能力不足的缺陷。
+OpenHarmony上的OpenSL ES接口，是早期SDK8版本开始提供，用于支持应用Native层音频开发的接口。但随着版本演进，接口定义的可扩展性不足，不再能满足音频系统的能力拓展，因此当前已不再推荐应用开发者继续使用此接口进行音频功能开发，可能存在一些接口能力不足的缺陷。
 
 在SDK10版本，OpenHarmony推出了OHAudio接口，并将系统具备的所有音频功能都通过此接口开放。OHAudio接口已能够覆盖OpenSL ES在OpenHarmony中已提供的所有能力，并拓展支持音频焦点事件，低时延等新版本特性。
 
@@ -64,9 +64,9 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
 
 参考下列示例代码，完成音频录制。
 
-1. 添加头文件
+1. 添加头文件。
 
-   ```c++
+   ```cpp
    #include "SLES/OpenSLES.h"
    #include "SLES/OpenSLES_OpenHarmony.h"
    #include "SLES/OpenSLES_Platform.h"
@@ -74,7 +74,7 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
 
 2. 使用slCreateEngine接口创建引擎对象和实例化引擎对象engine。
      
-   ```c++
+   ```cpp
    SLObjectItf engineObject = nullptr;
    slCreateEngine(&engineObject, 0, nullptr, 0, nullptr, nullptr);
    (*engineObject)->Realize(engineObject, SL_BOOLEAN_FALSE);
@@ -82,14 +82,14 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
 
 3. 获取接口SL_IID_ENGINE的引擎接口engineEngine实例。
      
-   ```c++
+   ```cpp
    SLEngineItf engineItf = nullptr;
    (*engineObject)->GetInterface(engineObject, SL_IID_ENGINE, &engineItf);
    ```
 
 4. 配置录音器信息（配置输入源audiosource、输出源audiosink），创建录音对象pcmCapturerObject。
      
-   ```c++
+   ```cpp
    SLDataLocator_IODevice io_device = {
        SL_DATALOCATOR_IODEVICE,
        SL_IODEVICE_AUDIOINPUT,
@@ -123,26 +123,25 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
    (*engineItf)->CreateAudioRecorder(engineItf, &pcmCapturerObject,
        &audioSource, &audioSink, 0, nullptr, nullptr);
    (*pcmCapturerObject)->Realize(pcmCapturerObject, SL_BOOLEAN_FALSE);
-   
    ```
 
 5. 获取录音接口SL_IID_RECORD的recordItf接口实例。
      
-   ```c++
+   ```cpp
    SLRecordItf  recordItf;
    (*pcmCapturerObject)->GetInterface(pcmCapturerObject, SL_IID_RECORD, &recordItf);
    ```
 
-6. 获取接口 SL_IID_OH_BUFFERQUEUE 的 bufferQueueItf 实例
+6. 获取接口SL_IID_OH_BUFFERQUEUE的bufferQueueItf实例。
      
-   ```c++
+   ```cpp
    SLOHBufferQueueItf bufferQueueItf;
    (*pcmCapturerObject)->GetInterface(pcmCapturerObject, SL_IID_OH_BUFFERQUEUE, &bufferQueueItf);
    ```
 
 7. 注册BufferQueueCallback回调。
      
-   ```c++
+   ```cpp
    static void BufferQueueCallback(SLOHBufferQueueItf bufferQueueItf, void *pContext, SLuint32 size)
    {
        // 可从pContext获取注册时传入的使用者信息
@@ -160,13 +159,13 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
 
 8. 开始录音。
      
-   ```c++
+   ```cpp
    (*recordItf)->SetRecordState(recordItf, SL_RECORDSTATE_RECORDING);
    ```
 
 9. 结束音频录制。
      
-   ```c++
+   ```cpp
    (*recordItf)->SetRecordState(recordItf, SL_RECORDSTATE_STOPPED);
    (*pcmCapturerObject)->Destroy(pcmCapturerObject);
    (*engineObject)->Destroy(engineObject);

@@ -11,18 +11,15 @@ This module provides the context required for APIs to access the resources of a 
 
 ## Modules to Import
 ```ts
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
+import { VpnExtensionAbility } from '@kit.NetworkKit';
 ```
 ## How to Use
 
 You can obtain a **VpnExtensionContext** object through a **VpnExtensionAbility** child class instance.
 
 ```ts
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import vpnExt from '@ohos.net.vpnExtension';
-
-let VpnConnection: vpnExt.VpnConnection;
+import { VpnExtensionAbility, vpnExtension } from '@kit.NetworkKit';
+import { Want } from '@kit.AbilityKit';
 
 export default class MyVpnExtAbility extends VpnExtensionAbility {
   private vpnServerIp: string = 'xxx.xxx.x.x';
@@ -30,8 +27,8 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
   private blockedAppName: string = 'xxxx';
 
   onCreate(want: Want) {
-    // this.context is VpnExtensionContext
-    VpnConnection = vpnExt.createVpnConnection(this.context);
+    let VpnConnection: vpnExtension.VpnConnection = vpnExtension.createVpnConnection(this.context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
   }
 }
 ```
@@ -74,11 +71,3 @@ Represents the callback triggered when the extended VPN is destroyed.
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core.
 
 **Model restriction**: This API can be used only in the stage model.
-
-**Parameters**
-
-| Name| Type                               | Mandatory| Description       |
-| ------ | ----------------------------------- | ---- |-----------|
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Want information.|
-
-<!--no_check-->

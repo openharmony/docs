@@ -11,7 +11,7 @@ dialogRequest模块用于处理模态弹框的能力，包括获取RequestInfo�
 ## 导入模块
 
 ```ts
-import dialogRequest from '@ohos.app.ability.dialogRequest';
+import { dialogRequest } from '@kit.AbilityKit';
 ```
 
 ## dialogRequest.getRequestInfo
@@ -38,13 +38,18 @@ getRequestInfo(want: Want): RequestInfo
 | ------ | ------------------------ |
 | [RequestInfo](#requestinfo) | 请求方RequestInfo,用于绑定模态窗口。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import dialogRequest from '@ohos.app.ability.dialogRequest';
+import { AbilityConstant, UIAbility, Want, dialogRequest } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -81,13 +86,18 @@ getRequestCallback(want: Want): RequestCallback
 | ------ | ------------------------ |
 | [RequestCallback](#requestcallback) | 请求方RequestCallback,用于设置返回结果。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import dialogRequest from '@ohos.app.ability.dialogRequest';
+import { AbilityConstant, UIAbility, Want, dialogRequest } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -130,10 +140,7 @@ export default class EntryAbility extends UIAbility {
 **示例：**
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import dialogRequest from '@ohos.app.ability.dialogRequest';
+import { AbilityConstant, UIAbility, Want, dialogRequest } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -167,10 +174,10 @@ export default class EntryAbility extends UIAbility {
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| result | [ResultCode](#resultcode) | 否 | 是 | 表示结果码。 |
-| want<sup>10+</sup> | [ResultWant](js-apis-app-ability-want.md)  | 否 | 否 | 表示Want类型信息，如ability名称，包名等。 |
+| result | [ResultCode](#resultcode) | 否 | 否 | 表示结果码。 |
+| want<sup>10+</sup> | [Want](js-apis-app-ability-want.md)  | 否 | 是 | 表示Want类型信息，如ability名称，包名等。 |
 
 ## RequestCallback
 
@@ -194,21 +201,18 @@ setRequestResult(result: RequestResult): void
 | -------- | -------- | -------- | -------- |
 | result | [RequestResult](#requestresult) | 是 | 模态弹框请求结果信息。 |
 
-**错误码：**
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import dialogRequest from '@ohos.app.ability.dialogRequest';
+import { AbilityConstant, UIAbility, Want, dialogRequest } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {

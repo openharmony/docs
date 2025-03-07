@@ -26,7 +26,7 @@ import bundle from '@ohos.bundle';
 | ohos.permission.INSTALL_BUNDLE             | system_core  | 可安装、卸载应用。      |
 | ohos.permission.REMOVE_CACHE_FILES | system_basic | 清理应用缓存。 |
 
-权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
+权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
 ## bundle.getBundleInstaller<sup>deprecated<sup>
 
@@ -61,9 +61,9 @@ import bundle from '@ohos.bundle';
 import { BusinessError } from '@ohos.base';
 
 bundle.getBundleInstaller().then((data) => {
-    console.info('getBundleInstaller successfully.');
+  console.info('getBundleInstaller successfully.');
 }).catch((error: BusinessError) => {
-    console.error('getBundleInstaller failed.');
+  console.error('getBundleInstaller failed.');
 });
 ```
 
@@ -99,11 +99,11 @@ SystemCapability.BundleManager.BundleFramework
 import bundle from '@ohos.bundle';
 
 bundle.getBundleInstaller((err, data) => {
-    if (err.code == 0) {
-        console.error('getBundleInstaller failed.');
-    } else {
-        console.info('getBundleInstaller successfully');
-    }
+  if (err.code == 0) {
+    console.error('getBundleInstaller failed.');
+  } else {
+    console.info('getBundleInstaller successfully');
+  }
 });
 ```
 ## bundle.cleanBundleCacheFiles<sup>8+</sup> <sup>deprecated<sup>
@@ -141,11 +141,11 @@ import bundle from '@ohos.bundle';
 let bundleName: string = "com.example.myapplication";
 
 bundle.cleanBundleCacheFiles(bundleName, err => {
-    if (err) {
-        console.error('cleanBundleCacheFiles failed.');
-    } else {
-        console.info('cleanBundleCacheFiles successfully.');
-    }
+  if (err) {
+    console.error('cleanBundleCacheFiles failed.');
+  } else {
+    console.info('cleanBundleCacheFiles successfully.');
+  }
 });
 ```
 
@@ -189,10 +189,10 @@ import { BusinessError } from '@ohos.base';
 
 let bundleName: string = "com.example.myapplication";
 
-bundle.cleanBundleCacheFiles(bundleName).then(()=> {
-    console.info('cleanBundleCacheFiles successfully.');
+bundle.cleanBundleCacheFiles(bundleName).then(() => {
+  console.info('cleanBundleCacheFiles successfully.');
 }).catch((error: BusinessError) => {
-    console.error('cleanBundleCacheFiles failed.');
+  console.error('cleanBundleCacheFiles failed.');
 });
 ```
 
@@ -232,11 +232,11 @@ import bundle from '@ohos.bundle';
 let bundleName: string = "com.example.myapplication";
 
 bundle.setApplicationEnabled(bundleName, false, err => {
-    if (err) {
-        console.error('setApplicationEnabled failed.');
-    } else {
-        console.info('setApplicationEnabled successfully.');
-    }
+  if (err) {
+    console.error('setApplicationEnabled failed.');
+  } else {
+    console.info('setApplicationEnabled successfully.');
+  }
 });
 ```
 
@@ -281,10 +281,10 @@ import { BusinessError } from '@ohos.base';
 
 let bundleName: string = "com.example.myapplication";
 
-bundle.setApplicationEnabled(bundleName, false).then(()=> {
-    console.info('setApplicationEnabled successfully.');
+bundle.setApplicationEnabled(bundleName, false).then(() => {
+  console.info('setApplicationEnabled successfully.');
 }).catch((error: BusinessError) => {
-    console.error('setApplicationEnabled failed.');
+  console.error('setApplicationEnabled failed.');
 });
 ```
 
@@ -359,15 +359,15 @@ let bundleName: string = "com.example.myapplication";
 let abilityName: string = "EntryAbility";
 
 bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo) => {
-    console.info('getAbilityInfo successfully. Data: ' + JSON.stringify(abilityInfo));
+  console.info('getAbilityInfo successfully. Data: ' + JSON.stringify(abilityInfo));
 
-    bundle.setAbilityEnabled(abilityInfo, false).then(data => {
-        console.info('setAbilityEnabled successfully.');
-    }).catch((error: BusinessError) => {
-        console.error('setAbilityEnabled failed:' + JSON.stringify(error));
-    })
+  bundle.setAbilityEnabled(abilityInfo, false).then(data => {
+    console.info('setAbilityEnabled successfully.');
+  }).catch((error: BusinessError) => {
+    console.error('setAbilityEnabled failed:' + JSON.stringify(error));
+  })
 }).catch((error: BusinessError) => {
-    console.error('getAbilityInfo failed. Cause: ' + JSON.stringify(error));
+  console.error('getAbilityInfo failed. Cause: ' + JSON.stringify(error));
 });
 ```
 ## bundle.getPermissionDef<sup>8+</sup> <sup>deprecated<sup>
@@ -404,11 +404,11 @@ import bundle from '@ohos.bundle';
 
 let permission: string = "ohos.permission.GET_BUNDLE_INFO";
 bundle.getPermissionDef(permission, (err, data) => {
-    if (err) {
-        console.error('getPermissionDef failed:' + err.message);
-    } else {
-        console.info('getPermissionDef successfully:' + JSON.stringify(data));
-    }
+  if (err) {
+    console.error('getPermissionDef failed:' + err.message);
+  } else {
+    console.info('getPermissionDef successfully:' + JSON.stringify(data));
+  }
 });
 ```
 
@@ -452,8 +452,8 @@ import { BusinessError } from '@ohos.base';
 
 let permissionName: string = "ohos.permission.GET_BUNDLE_INFO";
 bundle.getPermissionDef(permissionName).then((data) => {
-    console.info('getPermissionDef successfully. Data: ' + JSON.stringify(data));
+  console.info('getPermissionDef successfully. Data: ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.error('getPermissionDef failed. Cause: ' + error.message);
+  console.error('getPermissionDef failed. Cause: ' + error.message);
 });
 ```

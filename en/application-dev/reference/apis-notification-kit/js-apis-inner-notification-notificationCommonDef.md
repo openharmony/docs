@@ -1,6 +1,6 @@
 # NotificationCommonDef
 
-The **NotificationCommonDef** module implements APIs for providing **BundleOption** information.
+The **NotificationCommonDef** module provides APIs for describing the **BundleOption** information, that is, the bundle information of a specified application.
 
 > **NOTE**
 >
@@ -8,11 +8,9 @@ The **NotificationCommonDef** module implements APIs for providing **BundleOptio
 
 ## BundleOption
 
-Provides the bundle information of an application.
-
 **System capability**: SystemCapability.Notification.Notification
 
-| Name  | Type  | Mandatory| Description  |
-| ------ | ------ | ------ |  ------ |
-| bundle | string | Yes| Bundle information of the application.|
-| uid    | number | No| User ID. The default value is 0.|
+| Name  | Type  | Read Only| Optional| Description  |
+| ------ | ------ | ----| -- |  ------ |
+| bundle | string | No | No| Application name.|
+| uid    | number | No | Yes| UID of an application, which is obtained from [ApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md). The default value is **0**.|

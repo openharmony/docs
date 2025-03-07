@@ -12,6 +12,10 @@ onSizeChange(event: SizeChangeCallback): T
 
 组件区域变化时触发该回调。仅会响应由布局变化所导致的组件尺寸发生变化时的回调。由绘制变化所导致的渲染属性变化不会响应回调，如translate、offset。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -32,6 +36,10 @@ SizeChangeCallback = (oldValue: SizeOptions, newValue: SizeOptions) => void
 
 组件区域变化时的回调类型。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -43,6 +51,8 @@ SizeChangeCallback = (oldValue: SizeOptions, newValue: SizeOptions) => void
 
 
 ## 示例
+
+该示例通过Text组件设置组件尺寸变化事件，当Text尺寸变化时可以触发onSizeChange事件，获取相关参数。
 
 ```ts
 // xxx.ets

@@ -10,7 +10,7 @@ The **distributedAccount** module provides APIs for managing distributed account
 ## Modules to Import
 
 ```ts
-import account_distributedAccount from '@ohos.account.distributedAccount';
+import { distributedAccount } from '@kit.BasicServicesKit';
 ```
 
 ## DistributedAccountAbility
@@ -31,27 +31,30 @@ Obtains distributed information about a system account. This API uses an asynchr
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
   | localId | number | Yes| ID of the target system account.|
-  | callback | AsyncCallback&lt;[DistributedInfo](js-apis-distributed-account.md#distributedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object.|
+  | callback | AsyncCallback&lt;[DistributedInfo](js-apis-distributed-account.md#distributedinfo)&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
 try {
   accountAbility.getOsAccountDistributedInfoByLocalId(100,
-    (err: BusinessError, data: account_distributedAccount.DistributedInfo) => {
+    (err: BusinessError, data: distributedAccount.DistributedInfo) => {
       if (err) {
         console.log('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
       } else {
@@ -77,26 +80,29 @@ Obtains distributed information about a system account. This API uses a promise 
 
 **Return value**
 
-  | Type| Description|
+  | Type | Description |
   | -------- | -------- |
-  | Promise&lt;[DistributedInfo](js-apis-distributed-account.md#distributedinfo)&gt; | Promise used to return the distributed account information obtained.|
+  | Promise&lt;[DistributedInfo](js-apis-distributed-account.md#distributedinfo)&gt; | Promise used to return the distributed account information obtained. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
 try {
   accountAbility.getOsAccountDistributedInfoByLocalId(100).then((
-    data: account_distributedAccount.DistributedInfo) => {
+    data: distributedAccount.DistributedInfo) => {
     console.log('distributed information: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.log('getOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
@@ -120,16 +126,19 @@ Sets the distributed information for a system account. This API uses an asynchro
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
   | localId | number | Yes| ID of the target system account.|
   | accountInfo | [DistributedInfo](js-apis-distributed-account.md#distributedinfo) | Yes| Distributed account information to set.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the distributed information is set successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+  | callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the distributed information is set successfully, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid distributedInfo. |
 | 12300003 | Account identified by localId or by distributedInfo not found. |
@@ -138,10 +147,10 @@ Sets the distributed information for a system account. This API uses an asynchro
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-let accountInfo: account_distributedAccount.DistributedInfo =
+const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+let accountInfo: distributedAccount.DistributedInfo =
   {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
 try {
   accountAbility.setOsAccountDistributedInfoByLocalId(100, accountInfo, (err: BusinessError) => {
@@ -170,21 +179,24 @@ Sets the distributed information for a system account. This API uses a promise t
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
   | localId | number | Yes| ID of the target system account.|
   | distributedInfo | [DistributedInfo](js-apis-distributed-account.md#distributedinfo) | Yes| Distributed account information to set.|
 
 **Return value**
 
-  | Type| Description|
+  | Type | Description |
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+  | Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
-| ID| Error Message|
+| ID | Error Message|
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid distributedInfo. |
 | 12300003 | Account identified by localId or by distributedInfo not found. |
@@ -193,10 +205,10 @@ Sets the distributed information for a system account. This API uses a promise t
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-let accountInfo: account_distributedAccount.DistributedInfo =
+const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+let accountInfo: distributedAccount.DistributedInfo =
   {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
 try {
   accountAbility.setOsAccountDistributedInfoByLocalId(100, accountInfo).then(() => {

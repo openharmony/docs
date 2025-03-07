@@ -19,5 +19,5 @@ The **OhosImageSourceProperty** struct defines the property string (in key-value
 
 | Name| Description| 
 | -------- | -------- |
-| [value](image.md#value) = nullptr | Defines a pointer to the head of the property string.| 
-| [size](image.md#size-77) = 0 | Defines the size of the property string.| 
+| char \* [value](image.md#value) = nullptr | Defines a pointer to the head of the property string.| 
+| size_t [size](image.md#size-77) = 0 | Defines the size of the property string.| 

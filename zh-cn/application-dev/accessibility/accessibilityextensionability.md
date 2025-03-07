@@ -17,7 +17,7 @@ Accessibility Kit（无障碍开发服务）通过基于ExtensionAbility框架�
 在已创建工程的ets文件夹下创建AccessibilityExtAbility文件夹，在该文件夹下创建AccessibilityExtAbility.ets文件，可在该文件中实现一些回调函数，并加入业务处理逻辑的调用：
 
 ```ts
-import AccessibilityExtensionAbility, { AccessibilityEvent } from '@ohos.application.AccessibilityExtensionAbility';
+import { AccessibilityExtensionAbility, AccessibilityEvent } from '@kit.AccessibilityKit';
 import AccessibilityManager from './AccessibilityManager';
 
 class AccessibilityExtAbility extends AccessibilityExtensionAbility {
@@ -58,7 +58,7 @@ import {
   AccessibilityEvent,
   AccessibilityExtensionContext,
   ElementAttributeKeys
-} from '@ohos.application.AccessibilityExtensionAbility';
+} from '@kit.AccessibilityKit';
 
 interface Rect {
   left: number,
@@ -245,4 +245,4 @@ onAccessibilityEvent(accessibilityEvent: AccessibilityEvent) {
 
 针对AccessibilityExtensionAbility开发，有以下相关实例可供参考：
 
-- [无障碍扩展（ArkTS)（API9及以上版本）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/AccessibilityExtAbility)
+- [AccessibilityExtensionAbility示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/AccessibilityExtAbility)

@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Initialize failed.
+Initialization failed.
 
 **Description**
 
@@ -25,11 +25,11 @@ Run the **param set persist.ace.testmode.enabled 1** command and restart the dev
 ## 17000002 Unable to Call the API
 **Error Message**
 
-API does not allow calling concurrently.
+The async function is not called with await.
 
 **Description**
 
-This error code is reported when the API fails to be called.
+The API is not called asynchronously.
 
 **Possible Causes**
 
@@ -42,7 +42,7 @@ Check test cases and make sure asynchronous APIs are called using **await**.
 ## 17000003 Assertion Failure
 **Error Message**
 
-Component existence assertion failed.
+Assertion failed.
 
 **Description**
 
@@ -59,7 +59,7 @@ Check the existence of the component that is asserted to exist.
 ## 17000004 Target Component/Window Lost
 **Error Message**
 
-Component lost/UiWindow lost.
+The window or component is invisible or destroyed.
 
 **Description**
 

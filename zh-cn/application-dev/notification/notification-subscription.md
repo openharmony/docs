@@ -32,29 +32,35 @@
 
 **表2** 通知订阅回调接口介绍
 
+详细接口介绍请参见[NotificationSubscriber](../reference/apis-notification-kit/js-apis-inner-notification-notificationSubscriber-sys.md)。
+
 | **接口名** | **描述** |
 | -------- | -------- |
-| onConsume?:(data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void  | 通知回调。               |
-| onCancel?:(data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void   | 通知取消回调。           |
-| onUpdate?:(data:&nbsp;NotificationSortingMap)&nbsp;=&gt;&nbsp;void  | 通知排序更新回调。       |
-| onConnect?:()&nbsp;=&gt;&nbsp;void;                                 | 订阅成功回调。           |
-| onDisconnect?:()&nbsp;=&gt;&nbsp;void;                              | 取消订阅回调。           |
-| onDestroy?:()&nbsp;=&gt;&nbsp;void                                  | 与通知子系统断开回调。   |
-| onDoNotDisturbDateChange<sup>deprecated</sup>?:(mode:&nbsp;notification.DoNotDisturbDate<sup>deprecated</sup>)&nbsp;=&gt;&nbsp;void | 免打扰时间选项变更回调（从API11起已废弃）。 |
-| onDoNotDisturbChanged?:(mode:&nbsp;notificationManager.DoNotDisturbDate)&nbsp;=&gt;&nbsp;void           | 免打扰时间选项变更回调。 |
-| onEnabledNotificationChanged?:(callbackData:&nbsp;EnabledNotificationCallbackData)&nbsp;=&gt;&nbsp;void | 通知开关变更回调。       |
-| onBadgeChanged?:(data:&nbsp;BadgeNumberCallbackData)&nbsp;=&gt;&nbsp;void                               | 应用角标个数变化回调。   |
+| onConsume?: (data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void  | 通知回调。               |
+| onCancel?: (data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void   | 通知取消回调。           |
+| onUpdate?: (data:&nbsp;NotificationSortingMap)&nbsp;=&gt;&nbsp;void  | 通知排序更新回调。       |
+| onConnect?: ()&nbsp;=&gt;&nbsp;void;                                 | 订阅成功回调。           |
+| onDisconnect?: ()&nbsp;=&gt;&nbsp;void;                              | 取消订阅回调。           |
+| onDestroy?: ()&nbsp;=&gt;&nbsp;void                                  | 与通知子系统断开回调。   |
+| onDoNotDisturbDateChange<sup>deprecated</sup>?: (mode:&nbsp;notification.DoNotDisturbDate<sup>deprecated</sup>)&nbsp;=&gt;&nbsp;void | 免打扰时间选项变更回调（从API11起已废弃）。 |
+| onDoNotDisturbChanged?: (mode:&nbsp;notificationManager.DoNotDisturbDate)&nbsp;=&gt;&nbsp;void           | 免打扰时间选项变更回调。 |
+| onEnabledNotificationChanged?: (callbackData:&nbsp;EnabledNotificationCallbackData)&nbsp;=&gt;&nbsp;void | 通知开关变更回调。       |
+| onBadgeChanged?: (data:&nbsp;BadgeNumberCallbackData)&nbsp;=&gt;&nbsp;void                               | 应用角标个数变化回调。   |
 
 
 ## 开发步骤
 
-1. 申请`ohos.permission.NOTIFICATION_CONTROLLER`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+1. 申请`ohos.permission.NOTIFICATION_CONTROLLER`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
 
 2. 导入通知订阅模块。
    
    ```ts
-   import notificationSubscribe from '@ohos.notificationSubscribe';
-   import Base from '@ohos.base';
+   import { notificationSubscribe } from '@kit.NotificationKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+
+   const TAG: string = '[SubscribeOperations]';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 3. 创建订阅者对象。
@@ -62,24 +68,24 @@
    ```ts
    let subscriber:notificationSubscribe.NotificationSubscriber = {
      onConsume: (data:notificationSubscribe.SubscribeCallbackData) => {
-       let req = data.request;
-       console.info(`onConsume callback. req.id: ${req.id}`);
+       let req: notificationManager.NotificationRequest = data.request;
+       hilog.info(DOMAIN_NUMBER, TAG, `onConsume callback. req.id: ${req.id}`);
      },
      onCancel: (data:notificationSubscribe.SubscribeCallbackData) => {
-       let req = data.request;
-       console.info(`onCancel callback. req.id: ${req.id}`);
+       let req: notificationManager.NotificationRequest = data.request;
+       hilog.info(DOMAIN_NUMBER, TAG, `onCancel callback. req.id: ${req.id}`);
      },
      onUpdate: (data) => {
-       console.info(`onUpdate callback. req.id: ${data.sortedHashCode}`);
+       hilog.info(DOMAIN_NUMBER, TAG, `onUpdate callback. req.id: ${data.sortedHashCode}`);
      },
      onConnect: () => {
-       console.info(`onConnect callback.}`);
+       hilog.info(DOMAIN_NUMBER, TAG, `onConnect callback.`);
      },
      onDisconnect: () => {
-       console.info(`onDisconnect callback.}`);
+       hilog.info(DOMAIN_NUMBER, TAG, `onDisconnect callback.`);
      },
      onDestroy: () => {
-       console.info(`onDestroy callback.}`);
+       hilog.info(DOMAIN_NUMBER, TAG, `onDestroy callback.`);
      },
    };
    ```
@@ -87,9 +93,9 @@
 4. 发起通知订阅。
    
    ```ts
-   notificationSubscribe.subscribe(subscriber, (err:Base.BusinessError) => { // callback形式调用异步接口
+   notificationSubscribe.subscribe(subscriber, (err: BusinessError) => { // callback形式调用异步接口
      if (err) {
-       console.error(`Failed to subscribe notification. Code is ${err.code}, message is ${err.message}`);
+       hilog.error(DOMAIN_NUMBER, TAG, `Failed to subscribe notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
    });

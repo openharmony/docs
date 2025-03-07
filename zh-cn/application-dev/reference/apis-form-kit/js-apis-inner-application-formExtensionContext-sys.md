@@ -15,7 +15,7 @@ FormExtensionContext模块提供FormExtensionAbility具有的接口和能力。
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## FormExtensionContext.startAbility
@@ -30,15 +30,15 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **参数：**
 
@@ -50,9 +50,9 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import Base from '@ohos.base';
+import { FormExtensionAbility } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onFormEvent(formId: string, message: string) {
@@ -66,7 +66,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
         'message': message
       }
     };
-    this.context.startAbility(want, (error: Base.BusinessError) => {
+    this.context.startAbility(want, (error: BusinessError) => {
       if (error) {
         console.error(`FormExtensionContext startAbility, error:${JSON.stringify(error)}`);
       } else {
@@ -101,22 +101,22 @@ startAbility(want: Want): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import Base from '@ohos.base';
+import { FormExtensionAbility } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onFormEvent(formId: string, message: string) {
@@ -132,7 +132,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     };
     this.context.startAbility(want).then(() => {
       console.info('StartAbility Success');
-    }).catch((error: Base.BusinessError) => {
+    }).catch((error: BusinessError) => {
       console.error(`StartAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
     });
   }
@@ -164,8 +164,12 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201      | Permissions denied.             |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -177,17 +181,16 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
-
 **示例：**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import rpc from '@ohos.rpc';
-import Base from '@ohos.base';
+import { rpc } from '@kit.IPCKit';
+import { FormExtensionAbility } from '@kit.FormKit';
+import { common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let commRemote: rpc.IRemoteObject | null = null;
+
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onFormEvent(formId: string, message: string) {
     // 当触发卡片message事件时，执行connectServiceExtensionAbility
@@ -201,12 +204,16 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
       }
     };
     let options: common.ConnectOptions = {
-      onConnect(elementName, remote) { 
+      onConnect(elementName, remote) {
         commRemote = remote; // remote 用于与ServiceExtensionAbility进行通信
-        console.log('----------- onConnect -----------'); 
+        console.log('----------- onConnect -----------');
       },
-      onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
-      onFailed(code) { console.error('----------- onFailed -----------') }
+      onDisconnect(elementName) {
+        console.log('----------- onDisconnect -----------')
+      },
+      onFailed(code) {
+        console.error('----------- onFailed -----------')
+      }
     };
 
     let connection: number | null = null;
@@ -214,7 +221,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
       connection = this.context.connectServiceExtensionAbility(want, options);
     } catch (paramError) {
       // 处理入参错误异常
-      console.error(`error.code: ${(paramError as Base.BusinessError).code}, error.message: ${(paramError as Base.BusinessError).message}`);
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 };
@@ -239,19 +246,20 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback&lt
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import rpc from '@ohos.rpc';
-import Base from '@ohos.base';
+import { FormExtensionAbility } from '@kit.FormKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // commRemote为onConnect回调内返回的remote对象，此处定义为null无任何实际意义，仅作示例
 let commRemote: rpc.IRemoteObject | null = null;
@@ -261,7 +269,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     let connection: number = 1;
 
     try {
-      this.context.disconnectServiceExtensionAbility(connection, (error: Base.BusinessError) => {
+      this.context.disconnectServiceExtensionAbility(connection, (error: BusinessError) => {
         commRemote = null;
         if (error.code) {
           // 处理业务逻辑错误
@@ -274,7 +282,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     } catch (paramError) {
       commRemote = null;
       // 处理入参错误异常
-      console.error(`error.code: ${(paramError as Base.BusinessError).code}, error.message: ${(paramError as Base.BusinessError).message}`);
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 };
@@ -304,19 +312,20 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import rpc from '@ohos.rpc';
-import Base from '@ohos.base';
+import { FormExtensionAbility } from '@kit.FormKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // commRemote为onConnect回调内返回的remote对象，此处定义为null无任何实际意义，仅作示例
 let commRemote: rpc.IRemoteObject | null = null;
@@ -332,7 +341,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
           // 执行正常业务
           console.log('disconnectServiceExtensionAbility succeed');
         })
-        .catch((error: Base.BusinessError) => {
+        .catch((error: BusinessError) => {
           commRemote = null;
           // 处理业务逻辑错误
           console.error(`disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
@@ -340,7 +349,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     } catch (paramError) {
       commRemote = null;
       // 处理入参错误异常
-      console.error(`error.code: ${(paramError as Base.BusinessError).code}, error.message: ${(paramError as Base.BusinessError).message}`);
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 };

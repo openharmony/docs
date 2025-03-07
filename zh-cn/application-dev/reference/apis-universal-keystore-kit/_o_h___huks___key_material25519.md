@@ -21,7 +21,7 @@
 | uint32_t [keySize](#keysize) | 25519类型密钥的长度。  | 
 | uint32_t [pubKeySize](#pubkeysize) | 公钥的长度。  | 
 | uint32_t [priKeySize](#prikeysize) | 私钥的长度。  | 
-| uint32_t [reserved](#reserved) | 保留。  | 
+| uint32_t [reserved](#reserved) | 预留字段。建议开发者赋值为0。  | 
 
 
 ## 结构体成员变量说明

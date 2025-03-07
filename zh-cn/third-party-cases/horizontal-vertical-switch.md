@@ -99,6 +99,6 @@ struct HorVerSwitch{
 }
 ```
 ## 参考
-- [获取当前窗口(getLastWindow)](../application-dev/reference/apis-as/js-apis-window.md)
-- [横竖屏切换(setPreferredOrientation)](../application-dev/reference/apis-as/js-apis-window.md)
+- [获取当前窗口(getLastWindow)](../application-dev/reference/apis-arkui/js-apis-window.md)
+- [横竖屏切换(setPreferredOrientation)](../application-dev/reference/apis-arkui/js-apis-window.md)
 

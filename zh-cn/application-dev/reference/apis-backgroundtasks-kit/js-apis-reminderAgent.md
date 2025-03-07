@@ -183,8 +183,6 @@ reminderAgent.getValidReminders((err: BusinessError, reminders: Array<reminderAg
     }
     console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent?.pkgName);
     console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent?.abilityName);
-    console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent?.pkgName);
-    console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent?.abilityName);
     console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
     console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
     console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
@@ -231,8 +229,6 @@ reminderAgent.getValidReminders().then((reminders: Array<reminderAgent.ReminderR
     }
     console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent?.pkgName);
     console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent?.abilityName);
-    console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent?.pkgName);
-    console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent?.abilityName);
     console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
     console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
     console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
@@ -523,7 +519,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | reminderType | [ReminderType](#remindertypedeprecated) | 是 | 指明提醒类型。 |
-| actionButton | [ActionButton](#actionbuttondeprecated) | 否 | 弹出的提醒通知栏中显示的按钮（参数可选，支持0/1/2个按钮）。 |
+| actionButton | [[ActionButton?, ActionButton?]](#actionbuttondeprecated) | 否 | 弹出的提醒通知栏中显示的按钮（参数可选，支持0/1/2个按钮）。 |
 | wantAgent | WantAgent | 否 | 点击通知后需要跳转的目标ability信息。 |
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagentdeprecated) | 否 | 提醒到达时跳转的目标包。如果设备正在使用中，则弹出一个通知框。 |
 | ringDuration | number | 否 | 指明响铃时长（单位：秒），默认1秒。 |

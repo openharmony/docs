@@ -624,13 +624,13 @@
 * COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED
 （预留事件，暂未支持）提示检测到NFC设备RF字段处于使能状态。
   - 值：usual.event.nfc.action.RF_FIELD_ON_DETECTED
-  - 订阅者所需权限：ohos.permission.MANAGE_SECURE_SETTINGS
+  - 订阅者所需权限：ohos.permission.MANAGE_SECURE_SETTINGS（该权限仅系统应用可申请）
 
 
 * COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED
 （预留事件，暂未支持）提示检测到NFC设备RF字段处于关闭状态。
   - 值：usual.event.nfc.action.RF_FIELD_OFF_DETECTED
-  - 订阅者所需权限：ohos.permission.MANAGE_SECURE_SETTINGS
+  - 订阅者所需权限：ohos.permission.MANAGE_SECURE_SETTINGS（该权限仅系统应用可申请）
 
 
 * COMMON_EVENT_DISCHARGING
@@ -862,13 +862,13 @@
 
 
 * COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED
-（预留事件，暂未支持）提示帐户发生可见性的更改。
+（预留事件，暂未支持）提示账户发生可见性的更改。
   - 值：usual.event.data.VISIBLE_ACCOUNTS_UPDATED
   - 订阅者所需权限：ohos.permission.GET_APP_ACCOUNTS，该权限仅系统应用可申请。
 
 
 * COMMON_EVENT_ACCOUNT_DELETED
-（预留事件，暂未支持）提示有帐户被删除。
+（预留事件，暂未支持）提示有账户被删除。
   - 值：usual.event.data.ACCOUNT_DELETED
   - 订阅者所需权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
@@ -885,7 +885,7 @@
   - 订阅者所需权限：无
 
 
-* [COMMON_EVENT_SPLIT_SCREEN<sup>8+</sup>](../common_event/commonEvent-window.md)
+* COMMON_EVENT_SPLIT_SCREEN<sup>8+</sup>
 提示分屏。
 
 
@@ -911,5 +911,5 @@
   - 值：usual.event.USER_INFO_UPDATED
   - 订阅者所需权限：无
 
-* [COMMON_EVENT_SMS_RECEIVE_COMPLETED](../common_event/commonEvent-mms.md)
+* COMMON_EVENT_SMS_RECEIVE_COMPLETED
 表示设备接收到信息的动作。

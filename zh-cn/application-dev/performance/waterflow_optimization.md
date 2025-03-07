@@ -1,5 +1,3 @@
-
-
 # WaterFlow高性能开发指导
 
 ## 背景
@@ -14,7 +12,7 @@
   build() {
     Column({ space: 2 }) {
       WaterFlow() {
-        LazyForEach(this.datasource, (item: number) => {
+        LazyForEach(this.dataSource, (item: number) => {
           FlowItem() {
             Column() {
               Text("N" + item).fontSize(12).height('16')
@@ -54,7 +52,7 @@
   build() {
     Column({ space: 2 }) {
       WaterFlow({ footer: this.itemFoot.bind(this) }) {
-        LazyForEach(this.datasource, (item: number) => {
+        LazyForEach(this.dataSource, (item: number) => {
           FlowItem() {
             Column() {
               Text("N" + item).fontSize(12).height('16')
@@ -73,9 +71,7 @@
       .onReachEnd(() => {
         console.info("onReachEnd")
         setTimeout(() => {
-          for (let i = 0; i < 100; i++) {
-            this.datasource.AddLastItem()
-          }
+          this.dataSource.addNewItems(100)
         }, 1000)
       })
       .columnsTemplate("1fr 1fr")
@@ -87,16 +83,19 @@
     }
   }
 
-  // 在数据尾部增加一个元素  
-  public AddLastItem(): void {
-    this.dataArray.splice(this.dataArray.length, 0, this.dataArray.length)
-    this.notifyDataAdd(this.dataArray.length - 1)
+  // 在数据尾部增加count个元素
+  public addNewItems(count: number): void {
+    let len = this.dataArray.length
+    for (let i = 0; i < count; i++) {
+      this.dataArray.push(this.dataArray.length)
+    }
+    this.notifyDatasetChange([{ type: DataOperationType.ADD, index: len, count: count }]);
   }
 ```
 
 此处需要通过在尾部增加元素的方式新增数据，不能使用直接修改dataArray后通过LazyForEach的onDataReloaded()通知瀑布流重新加载数据。
 
-由于瀑布流布局子组件高度不相等的特点，下面节点的位置依赖上面的节点，重新加载所有数据会触发整个瀑布流重新计算布局导致卡顿。而在数据末尾增加数据后使用notifyDataAdd(this.dataArray.length - 1)通知，瀑布流就知道有新增数据可以继续加载，同时又不会重复处理已有数据。
+由于瀑布流布局子组件高度不相等的特点，下面节点的位置依赖上面的节点，重新加载所有数据会触发整个瀑布流重新计算布局导致卡顿。而在数据末尾增加数据后使用notifyDatasetChange([{ type: DataOperationType.ADD, index: len, count: count }])通知，瀑布流就知道有新增数据可以继续加载，同时又不会重复处理已有数据。
 
 ![](figures/waterflow-perf-demo1.gif)
 
@@ -110,7 +109,7 @@
   build() {
     Column({ space: 2 }) {
       WaterFlow() {
-        LazyForEach(this.datasource, (item: number) => {
+        LazyForEach(this.dataSource, (item: number) => {
           FlowItem() {
             Column() {
               Text("N" + item).fontSize(12).height('16')
@@ -122,10 +121,8 @@
           }
           .onAppear(() => {
             // 即将触底时提前增加数据  
-            if (item + 20 == this.datasource.totalCount()) {
-              for (let i = 0; i < 100; i++) {
-                this.datasource.AddLastItem()
-              }
+            if (item + 20 == this.dataSource.totalCount()) {
+              this.dataSource.addNewItems(100)
             }
           })
           .width('100%')
@@ -157,17 +154,15 @@
   build() {
     Column({ space: 2 }) {
       WaterFlow() {
-        LazyForEach(this.datasource, (item: number) => {
+        LazyForEach(this.dataSource, (item: number) => {
           FlowItem() {
             // 使用可复用自定义组件  
             ResuableFlowItem({ item: item })
           }
           .onAppear(() => {
             // 即将触底时提前增加数据  
-            if (item + 20 == this.datasource.totalCount()) {
-              for (let i = 0; i < 100; i++) {
-                this.datasource.AddLastItem()
-              }
+            if (item + 20 == this.dataSource.totalCount()) {
+              this.dataSource.addNewItems(100)
             }
           })
           .width('100%')

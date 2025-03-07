@@ -1,7 +1,7 @@
 # &lt;chart&gt; Development
 
 
-The **&lt;chart&gt;** component displays line charts, gauge charts, and bar charts. For details, see [chart](../reference/arkui-js/js-components-basic-chart.md).
+The **&lt;chart&gt;** component displays line charts, gauge charts, and bar charts. For details, see [chart](../reference/apis-arkui/arkui-js/js-components-basic-chart.md).
 
 
 ## Creating a &lt;chart&gt; Component

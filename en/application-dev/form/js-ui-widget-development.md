@@ -93,34 +93,29 @@ The widget provider development based on the [stage model](../application-models
 
 ### Creating a FormExtensionAbility Instance
 
-To create a widget in the stage model, you need to implement the lifecycle callbacks of FormExtensionAbility. Create a widget template in DevEco Studio and then perform the following:
+To create a widget in the stage model, you need to implement the lifecycle callbacks of FormExtensionAbility. For details about how to generate a service widget template, see <!--RP1-->[Developing a Service Widget](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-service-widget-V5)<!--RP1End-->.
 
 1. Import related modules to **EntryFormAbility.ets**.
-
-   ```ts
-   import type Base from '@ohos.base';
-   import formBindingData from '@ohos.app.form.formBindingData';
-   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-   import formInfo from '@ohos.app.form.formInfo';
-   import formProvider from '@ohos.app.form.formProvider';
-   import hilog from '@ohos.hilog';
-   import type Want from '@ohos.app.ability.Want';
-   
-   const TAG: string = 'JsCardFormAbility';
-   const DOMAIN_NUMBER: number = 0xFF00;
-   ```
+    ```ts
+    import { Want } from '@kit.AbilityKit';
+    import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    
+    const TAG: string = 'JsCardFormAbility';
+    const DOMAIN_NUMBER: number = 0xFF00;
+    ```
 
 2. Implement the FormExtension lifecycle callbacks in **EntryFormAbility.ets**.
 
-   
-   ```ts
-    export default class JsCardFormAbility extends FormExtensionAbility {
+    ```ts
+    export default class EntryFormAbility extends FormExtensionAbility {
       onAddForm(want: Want): formBindingData.FormBindingData {
         hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAddForm');
         // Called when the widget is created. The widget provider should return the widget data binding class.
         let obj: Record<string, string> = {
-         'title': 'titleOnCreate',
-         'detail': 'detailOnCreate'
+          'title': 'titleOnCreate',
+          'detail': 'detailOnCreate'
         };
         let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
         return formData;
@@ -137,13 +132,14 @@ To create a widget in the stage model, you need to implement the lifecycle callb
           'detail': 'detailOnUpdate'
         };
         let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-        formProvider.updateForm(formId, formData).catch((error: Base.BusinessError) => {
+        formProvider.updateForm(formId, formData).catch((error: BusinessError) => {
           hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
         });
       }
       onChangeFormVisibility(newStatus: Record<string, number>): void {
         // Called when the widget host initiates an event about visibility changes. The widget provider should do something to respond to the notification. This callback takes effect only for system applications.
         hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onChangeFormVisibility');
+        //...
       }
       onFormEvent(formId: string, message: string): void {
         // If the widget supports event triggering, override this method and implement the trigger.
@@ -152,14 +148,16 @@ To create a widget in the stage model, you need to implement the lifecycle callb
       onRemoveForm(formId: string): void {
         // Delete widget data.
         hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onRemoveForm');
+        //...
       }
       onAcquireFormState(want: Want): formInfo.FormState {
         return formInfo.FormState.READY;
       }
     }
-   ```
+    ```
 
 > **NOTE**
+>
 > FormExtensionAbility cannot reside in the background. Therefore, continuous tasks cannot be processed in the widget lifecycle callbacks.
 
 
@@ -172,7 +170,7 @@ To create a widget in the stage model, you need to implement the lifecycle callb
    ```json
    {
      "module": {
-       ...
+       // ...
        "extensionAbilities": [
          {
            "name": "JsCardFormAbility",
@@ -248,13 +246,11 @@ A widget provider is usually started when it is needed to provide information ab
 
 
 ```ts
-import type Base from '@ohos.base';
-import type common from '@ohos.app.ability.common';
-import dataPreferences from '@ohos.data.preferences';
-import formBindingData from '@ohos.app.form.formBindingData';
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import hilog from '@ohos.hilog';
-import type Want from '@ohos.app.ability.Want';
+import { common, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { formBindingData, FormExtensionAbility } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { preferences } from '@kit.ArkData';
 
 const TAG: string = 'JsCardFormAbility';
 const DATA_STORAGE_PATH: string = '/data/storage/el2/base/haps/form_store';
@@ -268,13 +264,13 @@ let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, 
     'updateCount': 0
   };
   try {
-    const storage: dataPreferences.Preferences = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+    const storage: preferences.Preferences = await preferences.getPreferences(context, DATA_STORAGE_PATH);
     // put form info
     await storage.put(formId, JSON.stringify(formInfo));
     hilog.info(DOMAIN_NUMBER, TAG, `[EntryFormAbility] storeFormInfo, put form info successfully, formId: ${formId}`);
     await storage.flush();
   } catch (err) {
-    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to storeFormInfo, err: ${JSON.stringify(err as Base.BusinessError)}`);
+    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to storeFormInfo, err: ${JSON.stringify(err as BusinessError)}`);
   }
 }
 
@@ -305,11 +301,11 @@ You should override **onRemoveForm** to implement widget data deletion.
 
 
 ```ts
-import type Base from '@ohos.base';
-import type common from '@ohos.app.ability.common';
-import dataPreferences from '@ohos.data.preferences';
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import hilog from '@ohos.hilog';
+import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { FormExtensionAbility } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { preferences } from '@kit.ArkData';
 
 const TAG: string = 'JsCardFormAbility';
 const DATA_STORAGE_PATH: string = '/data/storage/el2/base/haps/form_store';
@@ -317,13 +313,13 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
 let deleteFormInfo = async (formId: string, context: common.FormExtensionContext): Promise<void> => {
   try {
-    const storage: dataPreferences.Preferences = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+    const storage: preferences.Preferences = await preferences.getPreferences(context, DATA_STORAGE_PATH);
     // Delete the widget information.
     await storage.delete(formId);
     hilog.info(DOMAIN_NUMBER, TAG, `[EntryFormAbility] deleteFormInfo, del form info successfully, formId: ${formId}`);
     await storage.flush();
   } catch (err) {
-    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to deleteFormInfo, err: ${JSON.stringify(err as Base.BusinessError)}`);
+    hilog.error(DOMAIN_NUMBER, TAG, `[EntryFormAbility] failed to deleteFormInfo, err: ${JSON.stringify(err as BusinessError)}`);
   };
 };
 
@@ -355,11 +351,9 @@ When an application initiates a scheduled or periodic update, the application ob
 
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formBindingData from '@ohos.app.form.formBindingData';
-import formProvider from '@ohos.app.form.formProvider';
-import Base from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { formBindingData, FormExtensionAbility, formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = 'JsCardFormAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -373,7 +367,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
       'detail': 'detailOnUpdate'
     };
     let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-    formProvider.updateForm(formId, formData).catch((error: Base.BusinessError) => {
+    formProvider.updateForm(formId, formData).catch((error: BusinessError) => {
       hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
     });
   }
@@ -406,66 +400,64 @@ You can use the web-like paradigm (HML+CSS+JSON) to develop JS widget pages. Thi
 
 - CSS: defines style information about the web-like paradigm components in HML.
 
-
-  ```css
-  .container {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .bg-img {
-    flex-shrink: 0;
-    height: 100%;
-  }
-  
-  .container-inner {
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
-    height: 100%;
-    width: 100%;
-    padding: 12px;
-  }
-  
-  .title {
-    font-size: 19px;
-    font-weight: bold;
-    color: white;
-    text-overflow: ellipsis;
-    max-lines: 1;
-  }
-  
-  .detail_text {
-    font-size: 16px;
-    color: white;
-    opacity: 0.66;
-    text-overflow: ellipsis;
-    max-lines: 1;
-    margin-top: 6px;
-  }
-  ```
+    ```css
+    .container {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .bg-img {
+      flex-shrink: 0;
+      height: 100%;
+    }
+    
+    .container-inner {
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      height: 100%;
+      width: 100%;
+      padding: 12px;
+    }
+    
+    .title {
+      font-size: 19px;
+      font-weight: bold;
+      color: white;
+      text-overflow: ellipsis;
+      max-lines: 1;
+    }
+    
+    .detail_text {
+      font-size: 16px;
+      color: white;
+      opacity: 0.66;
+      text-overflow: ellipsis;
+      max-lines: 1;
+      margin-top: 6px;
+    }
+    ```
 
 - JSON: defines data and event interaction on the widget UI page.
 
-  
-  ```json
-  {
-    "data": {
-      "title": "TitleDefault",
-      "detail": "TextDefault"
-    },
-    "actions": {
-      "routerEvent": {
-        "action": "router",
-        "abilityName": "EntryAbility",
-        "params": {
-          "message": "add detail"
+    ```json
+    {
+      "data": {
+        "title": "TitleDefault",
+        "detail": "TextDefault"
+      },
+      "actions": {
+        "routerEvent": {
+          "action": "router",
+          "abilityName": "EntryAbility",
+          "params": {
+            "message": "add detail"
+          }
         }
       }
     }
-  }
-  ```
+    ```
 
 
 ### Developing Widget Events
@@ -491,7 +483,6 @@ The following are examples:
 
 - HML file:
 
-
   ```html
   <div class="container">
       <stack>
@@ -510,96 +501,94 @@ The following are examples:
 
 - CSS file:
 
-
-  ```css
-  .container {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-  }
-
-  .bg-img {
-      flex-shrink: 0;
-      height: 100%;
-      z-index: 1;
-  }
-
-  .bottom-img {
-      position: absolute;
-      width: 150px;
-      height: 56px;
-      top: 63%;
-      background-color: rgba(216, 216, 216, 0.15);
-      filter: blur(20px);
-      z-index: 2;
-  }
-
-  .container-inner {
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: flex-start;
-      height: 100%;
-      width: 100%;
-      padding: 12px;
-  }
-
-  .title {
-      font-family: HarmonyHeiTi-Medium;
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.90);
-      letter-spacing: 0.6px;
-      font-weight: 500;
-      width: 100%;
-      text-overflow: ellipsis;
-      max-lines: 1;
-  }
-
-  .detail_text {
-      ffont-family: HarmonyHeiTi;
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.60);
-      letter-spacing: 0.51px;
-      font-weight: 400;
-      text-overflow: ellipsis;
-      max-lines: 1;
-      margin-top: 6px;
-      width: 100%;
-  }
-  ```
+    ```css
+    .container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+      
+    .bg-img {
+        flex-shrink: 0;
+        height: 100%;
+        z-index: 1;
+    }
+      
+    .bottom-img {
+        position: absolute;
+        width: 150px;
+        height: 56px;
+        top: 63%;
+        background-color: rgba(216, 216, 216, 0.15);
+        filter: blur(20px);
+        z-index: 2;
+    }
+      
+    .container-inner {
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        height: 100%;
+        width: 100%;
+        padding: 12px;
+    }
+      
+    .title {
+        font-family: HarmonyHeiTi-Medium;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.90);
+        letter-spacing: 0.6px;
+        font-weight: 500;
+        width: 100%;
+        text-overflow: ellipsis;
+        max-lines: 1;
+    }
+      
+    .detail_text {
+        ffont-family: HarmonyHeiTi;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.60);
+        letter-spacing: 0.51px;
+        font-weight: 400;
+        text-overflow: ellipsis;
+        max-lines: 1;
+        margin-top: 6px;
+        width: 100%;
+    }
+    ```
 
 - JSON file:
 
-  
-  ```json
-  {
-    "data": {
-      "title": "TitleDefault",
-      "detail": "TextDefault"
-    },
-    "actions": {
-      "routerEvent": {
-        "action": "router",
-        "abilityName": "JSCardEntryAbility",
-        "params": {
-          "info": "router info",
-          "message": "router message"
-        }
+    ```json
+    {
+      "data": {
+        "title": "TitleDefault",
+        "detail": "TextDefault"
       },
-      "messageEvent": {
-        "action": "message",
-        "params": {
-          "detail": "message detail"
+      "actions": {
+        "routerEvent": {
+          "action": "router",
+          "abilityName": "JSCardEntryAbility",
+          "params": {
+            "info": "router info",
+            "message": "router message"
+          }
+        },
+        "messageEvent": {
+          "action": "message",
+          "params": {
+            "detail": "message detail"
+          }
         }
       }
     }
-  }
-  ```
+    ```
 
   > **NOTE**
   >
   > **JSON Value** in **data** supports multi-level nested data. When updating data, ensure that complete data is carried.
 
-  Assume that a widget is displaying the course information of Mr. Zhang on July 18, as shown in the following code snippet.
+Assume that a widget is displaying the course information of Mr. Zhang on July 18, as shown in the following code snippet.
   ```ts
   "data": {
       "Day": "07.18",
@@ -609,7 +598,7 @@ The following are examples:
       }
   }
   ```
-  To update the widget content to the course information of Mr. Li on July 18, you must pass the complete data as follows, instead of only a single date item such as **name** or **course**:
+To update the widget content to the course information of Mr. Li on July 18, you must pass the complete data as follows, instead of only a single date item such as **name** or **course**:
   ```ts
   "teacher": {
       "name": "Mr.Li",
@@ -620,55 +609,53 @@ The following are examples:
 
 - Receive the router event in UIAbility and obtain parameters.
 
-
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
-  import hilog from '@ohos.hilog';
-
-  const TAG: string = 'JsCardEntryAbility';
-  const DOMAIN_NUMBER: number = 0xFF00;
-
-  export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-      if (want.parameters) {
-        let params: Record<string, Object> = JSON.parse(JSON.stringify(want.parameters.params));
-        // Obtain the info parameter passed in the router event.
-        if (params.info === 'router info') {
-          // Execute the service logic.
-          hilog.info(DOMAIN_NUMBER, TAG, `router info: ${params.info}`);
-        }
-        // Obtain the message parameter passed in the router event.
-        if (params.message === 'router message') {
-          // Execute the service logic.
-          hilog.info(DOMAIN_NUMBER, TAG, `router message: ${params.message}`);
+    ```ts
+    import UIAbility from '@ohos.app.ability.UIAbility';
+    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+    import Want from '@ohos.app.ability.Want';
+    import hilog from '@ohos.hilog';
+      
+    const TAG: string = 'EtsCardEntryAbility';
+    const DOMAIN_NUMBER: number = 0xFF00;
+      
+    export default class EtsCardEntryAbility extends UIAbility {
+      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+        if (want.parameters) {
+          let params: Record<string, Object> = JSON.parse(JSON.stringify(want.parameters.params));
+          // Obtain the info parameter passed in the router event.
+          if (params.info === 'router info') {
+            // Execute the service logic.
+            hilog.info(DOMAIN_NUMBER, TAG, `router info: ${params.info}`);
+          }
+          // Obtain the message parameter passed in the router event.
+          if (params.message === 'router message') {
+            // Execute the service logic.
+            hilog.info(DOMAIN_NUMBER, TAG, `router message: ${params.message}`);
+          }
         }
       }
-    }
-  };
-  ```
+    };
+    ```
 
 - Receive the message event in FormExtensionAbility and obtain parameters.
 
-  
-  ```ts
-  import FormExtension from '@ohos.app.form.FormExtensionAbility';
-  import hilog from '@ohos.hilog';
-
-  const TAG: string = 'FormAbility';
-  const DOMAIN_NUMBER: number = 0xFF00;
-
-  export default class FormAbility extends FormExtension {
-    onFormEvent(formId: string, message: string): void {
-      // If the widget supports event triggering, override this method and implement the trigger.
-      hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onFormEvent');
-      // Obtain the detail parameter passed in the message event.
-      let msg: Record<string, string> = JSON.parse(message);
-      if (msg.detail === 'message detail') {
-        // Execute the service logic.
-        hilog.info(DOMAIN_NUMBER, TAG, 'message info:' + msg.detail);
+    ```ts
+    import FormExtension from '@ohos.app.form.FormExtensionAbility';
+    import hilog from '@ohos.hilog';
+    
+    const TAG: string = 'FormAbility';
+    const DOMAIN_NUMBER: number = 0xFF00;
+    
+    export default class FormAbility extends FormExtension {
+      onFormEvent(formId: string, message: string): void {
+        // If the widget supports event triggering, override this method and implement the trigger.
+        hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onFormEvent');
+        // Obtain the detail parameter passed in the message event.
+        let msg: Record<string, string> = JSON.parse(message);
+        if (msg.detail === 'message detail') {
+          // Execute the service logic.
+          hilog.info(DOMAIN_NUMBER, TAG, 'message info:' + msg.detail);
+        }
       }
-    }
-  };
-  ```
+    };
+    ```

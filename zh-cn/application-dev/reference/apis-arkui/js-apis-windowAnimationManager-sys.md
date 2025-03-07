@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import windowAnimationManager from '@ohos.animation.windowAnimationManager'
+import { windowAnimationManager } from '@kit.ArkUI';
 ```
 
 ## windowAnimationManager.setController
@@ -76,7 +76,7 @@ windowAnimationManager.setController(controller);
 
 minimizeWindowWithAnimation(windowTarget: WindowAnimationTarget, callback: AsyncCallback&lt;WindowAnimationFinishedCallback&gt;): void
 
-最小化动画目标窗口，并返回动画完成的回调。使用callback异步回调
+最小化动画目标窗口，并返回动画完成的回调。使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -90,7 +90,7 @@ minimizeWindowWithAnimation(windowTarget: WindowAnimationTarget, callback: Async
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let target: windowAnimationManager.WindowAnimationTarget | null = null;
 let controller: windowAnimationManager.WindowAnimationController = {
@@ -175,7 +175,7 @@ minimizeWindowWithAnimation(windowTarget: WindowAnimationTarget): Promise&lt;Win
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let target: windowAnimationManager.WindowAnimationTarget | null  = null;
 let controller: windowAnimationManager.WindowAnimationController = {
@@ -354,7 +354,7 @@ onScreenUnlock(finishCallback: [WindowAnimationFinishedCallback](#windowanimatio
 
 onWindowAnimationTargetsUpdate(fullScreenWindowTarget: WindowAnimationTarget, floatingWindowTargets: Array&lt;WindowAnimationTarget&gt;): void
 
-动画目标窗口更新时的回调
+动画目标窗口更新时的回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 

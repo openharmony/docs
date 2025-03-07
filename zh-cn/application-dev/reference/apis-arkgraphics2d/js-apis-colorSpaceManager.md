@@ -9,12 +9,14 @@
 ## 导入模块
 
 ```ts
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+import { colorSpaceManager } from '@kit.ArkGraphics2D';
 ```
 
 ## ColorSpace
 
 色域类型枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.ColorManager.Core
 
@@ -91,11 +93,12 @@ create(colorSpaceName: ColorSpace): ColorSpaceManager
 
 **错误码：**
 
-以下错误码的详细介绍请参见[色彩管理错误码](errorcode-colorspace-manager.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[色彩管理错误码](errorcode-colorspace-manager.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 401 | Parameter error. Possible cause: 1.Incorrect parameter type. 2.Parameter verification failed.|
+| 18600001 | The parameter value is abnormal. |
 
 **示例：**
 
@@ -131,11 +134,12 @@ create(primaries: ColorSpacePrimaries, gamma: number): ColorSpaceManager
 
 **错误码：**
 
-以下错误码的详细介绍请参见[色彩管理错误码](errorcode-colorspace-manager.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[色彩管理错误码](errorcode-colorspace-manager.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 401 | Parameter error. Possible cause: 1.Incorrect parameter type. 2.Parameter verification failed.|
+| 18600001 | The parameter value is abnormal. |
 
 **示例：**
 
@@ -163,7 +167,7 @@ try {
 
 当前色域对象实例。
 
-下列API示例中都需先使用[create()](#colorspacemanagercreate)获取到ColorSpaceManager实例（i.e. `colorSpace`），再通过此实例调用对应方法。
+下列API示例中都需先使用[create()](#colorspacemanagercreate)获取到ColorSpaceManager实例，再通过此实例调用对应方法。
 
 ### getColorSpaceName
 
@@ -185,13 +189,13 @@ getColorSpaceName(): ColorSpace
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **示例：**
 
 ```ts
 try {
-    colorSpace.getColorSpaceName();
+    let spaceName = colorSpace.getColorSpaceName();
 } catch (err) {
     console.log(`Fail to get colorSpace's name. Cause: ` + JSON.stringify(err));
 }
@@ -217,13 +221,13 @@ getWhitePoint(): Array\<number\>
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **示例：**
 
 ```ts
 try {
-    colorSpace.getWhitePoint();
+    let point = colorSpace.getWhitePoint();
 } catch (err) {
     console.log(`Failed to get white point. Cause: ` + JSON.stringify(err));
 }
@@ -249,13 +253,13 @@ getGamma(): number
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **示例：**
 
 ```ts
 try {
-    colorSpace.getGamma();
+    let gamma = colorSpace.getGamma();
 } catch (err) {
     console.log(`Failed to get gamma. Cause: ` + JSON.stringify(err));
 }

@@ -22,12 +22,14 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import TreeMap from '@ohos.util.TreeMap';
+import { TreeMap } from '@kit.ArkTS';
 ```
 
 ## TreeMap
 
 ### Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -42,6 +44,8 @@ constructor(comparator?:(firstValue: K, secondValue: K) => boolean)
 
 A constructor used to create a **TreeMap** instance. It supports sorting elements in ascending or descending order by using comparators.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -52,10 +56,11 @@ A constructor used to create a **TreeMap** instance. It supports sorting element
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
 | 10200012 | The TreeMap's constructor cannot be directly invoked. |
 
 **Example**
@@ -103,6 +108,8 @@ isEmpty(): boolean
 
 Checks whether this container is empty (contains no element).
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -132,6 +139,8 @@ let result = treeMap.isEmpty();
 hasKey(key: K): boolean
 
 Checks whether this container has the specified key.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -170,6 +179,8 @@ hasValue(value: V): boolean
 
 Checks whether this container has the specified value.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -206,6 +217,8 @@ let result = treeMap.hasValue(123);
 get(key: K): V
 
 Obtains the value of the specified key in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -245,6 +258,8 @@ getFirstKey(): K
 
 Obtains the first key in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -276,6 +291,8 @@ let result = treeMap.getFirstKey();
 getLastKey(): K
 
 Obtains the last key in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -309,6 +326,8 @@ setAll(map: TreeMap<K, V>): void
 
 Adds all elements in a **TreeMap** instance to this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -319,10 +338,11 @@ Adds all elements in a **TreeMap** instance to this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The setAll method cannot be bound. |
 
 **Example**
@@ -346,6 +366,8 @@ set(key: K, value: V): Object
 
 Adds or updates an element in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -363,10 +385,11 @@ Adds or updates an element in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200011 | The set method cannot be bound. |
 
 **Example**
@@ -382,6 +405,8 @@ treeMap.set("squirrel", 123);
 remove(key: K): V
 
 Removes the element with the specified key from this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -420,6 +445,8 @@ let result = treeMap.remove("sparrow");
 getLowerKey(key: K): K
 
 Obtains the key that is equal to placed in front of the input key in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -460,6 +487,8 @@ getHigherKey(key: K): K
 
 Obtains the key that is equal to or placed next to the input key in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -497,6 +526,8 @@ let result = treeMap.getHigherKey("sparrow");
 replace(key: K, newValue: V): boolean
 
 Replaces an element in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -536,6 +567,8 @@ clear(): void
 
 Clears this container and sets its length to **0**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Error codes**
@@ -561,6 +594,8 @@ treeMap.clear();
 keys(): IterableIterator&lt;K&gt;
 
 Obtains an iterator that contains all the keys in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -599,6 +634,8 @@ values(): IterableIterator&lt;V&gt;
 
 Obtains an iterator that contains all the values in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -636,6 +673,8 @@ forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?:
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -654,10 +693,11 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **Example**
@@ -670,13 +710,24 @@ treeMap.forEach((value ?: number, key ?: string) : void => {
   console.log("value:" + value, "key:" + key);
 });
 ```
-
+```ts
+ // You are not advised to use the set or remove APIs in forEach because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+ let treeMap : TreeMap<string, number> = new TreeMap();
+ for(let i = 0; i < 10; i++) {
+   treeMap.set("sparrow" + i, 123);
+ }
+ for(let i = 0;i < 10; i++) {
+   treeMap.remove("sparrow" + i);
+ }
+```
 
 ### entries
 
 entries(): IterableIterator<[K, V]>
 
 Obtains an iterator that contains all the elements in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -707,7 +758,16 @@ while(!t.done) {
   t = it.next()
 }
 ```
-
+```ts
+ // You are not advised to use the set or remove APIs in entries because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+ let treeMap : TreeMap<string, number> = new TreeMap();
+ for(let i = 0; i < 10; i++) {
+   treeMap.set("sparrow" + i, 123);
+ }
+ for(let i = 0;i < 10; i++) {
+   treeMap.remove("sparrow" + i);
+ }
+```
 
 ### [Symbol.iterator]
 
@@ -715,9 +775,7 @@ while(!t.done) {
 
 Obtains an iterator, each item of which is a JavaScript object.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -756,5 +814,15 @@ while(!t.done) {
    console.log("key:" + temp.value[0]);
    console.log("value:" + temp.value[1]);
    temp = iter.next();
+ }
+```
+```ts
+ // You are not advised to use the set or remove APIs in Symbol.iterator because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+ let treeMap : TreeMap<string, number> = new TreeMap();
+ for(let i = 0; i < 10; i++) {
+   treeMap.set("sparrow" + i, 123);
+ }
+ for(let i = 0;i < 10; i++) {
+   treeMap.remove("sparrow" + i);
  }
 ```

@@ -30,5 +30,9 @@
 | [OH_NetConn_GetAddrInfo](_net_connection.md#oh_netconn_getaddrinfo) (char \*host, char \*serv, struct addrinfo \*hint, struct addrinfo \*\*res, int32_t netId) | 通过netId获取DNS结果。 | 
 | [OH_NetConn_FreeDnsResult](_net_connection.md#oh_netconn_freednsresult) (struct addrinfo \*res) | 释放DNS结果。 | 
 | [OH_NetConn_GetAllNets](_net_connection.md#oh_netconn_getallnets) ([NetConn_NetHandleList](_net_conn___net_handle_list.md) \*netHandleList) | 查询所有激活的数据网络。 | 
-| [OHOS_NetConn_RegisterDnsResolver](_net_connection.md#ohos_netconn_registerdnsresolver) ([OH_NetConn_CustomDnsResolver](_net_connection.md#oh_netconn_customdnsresolver) resolver) | 注册自定义 DNS 解析器。 | 
-| [OHOS_NetConn_UnregisterDnsResolver](_net_connection.md#ohos_netconn_unregisterdnsresolver) (void) | 取消注册自定义 DNS 解析器。 | 
+| [OHOS_NetConn_RegisterDnsResolver](_net_connection.md#ohos_netconn_registerdnsresolver-deprecated) ([OH_NetConn_CustomDnsResolver](_net_connection.md#oh_netconn_customdnsresolver) resolver) | 注册自定义 DNS 解析器。<br/>**弃用：** 从API version 13开始废弃。<br/>**替代：** 推荐使用OH_NetConn_RegisterDnsResolver。|
+| [OHOS_NetConn_UnregisterDnsResolver](_net_connection.md#ohos_netconn_unregisterdnsresolver-deprecated) (void) | 取消注册自定义 DNS 解析器。<br/>**弃用：** 从API version 13开始废弃。<br/>**替代：** 推荐使用OH_NetConn_UnregisterDnsResolver。|
+| [OH_NetConn_RegisterDnsResolver](_net_connection.md#oh_netconn_registerdnsresolver) ([OH_NetConn_CustomDnsResolver](_net_connection.md#oh_netconn_customdnsresolver) resolver) | 注册自定义 DNS 解析器。 |
+| [OH_NetConn_UnregisterDnsResolver](_net_connection.md#oh_netconn_unregisterdnsresolver) (void) | 取消注册自定义 DNS 解析器。 |
+| [OH_NetConn_SetPacUrl](_net_connection.md#oh_netconn_setpacurl) (const char \*pacUrl) | 设置系统级代理自动配置(PAC)脚本地址。 |
+| [OH_NetConn_GetPacUrl](_net_connection.md#oh_netconn_getpacurl) (char \*pacUrl) | 获取系统级代理自动配置(PAC)脚本地址。 |

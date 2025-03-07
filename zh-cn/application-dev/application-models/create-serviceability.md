@@ -3,65 +3,65 @@
 
 1. 创建ServiceAbility。
 
-   重写ServiceAbility的生命周期方法，添加其他Ability请求与ServiceAbility交互时的处理方法。
+    通过DevEco Studio开发平台创建ServiceAbility时，DevEco Studio会默认生成onStart、onStop、onCommand方法，其他方法需要开发者自行实现，接口说明参见前述章节。开发者也可以添加其他Ability请求与ServiceAbility交互时的处理方法，示例如下：
 
-   ```ts
-   import type Want from '@ohos.app.ability.Want';
-   import rpc from '@ohos.rpc';
-   import hilog from '@ohos.hilog';
-   
-   const TAG: string = '[Sample_FAModelAbilityDevelop]';
-   const domain: number = 0xFF00;
-   
-   class FirstServiceAbilityStub extends rpc.RemoteObject {
-     constructor(des: Object) {
-       if (typeof des === 'string') {
-         super(des);
-       } else {
-         return;
-       }
-     }
-   
-     onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
-       hilog.info(domain, TAG, 'ServiceAbility onRemoteRequest called');
-       if (code === 1) {
-         let string = data.readString();
-         hilog.info(domain, TAG, `ServiceAbility string=${string}`);
-         let result = Array.from(string).sort().join('');
-         hilog.info(domain, TAG, `ServiceAbility result=${result}`);
-         reply.writeString(result);
-       } else {
-         hilog.info(domain, TAG, 'ServiceAbility unknown request code');
-       }
-       return true;
-     }
-   }
-   
-   class ServiceAbility {
-     onStart(): void {
-       hilog.info(domain, TAG, 'ServiceAbility onStart');
-     }
-   
-     onStop(): void {
-       hilog.info(domain, TAG, 'ServiceAbility onStop');
-     }
-   
-     onCommand(want: Want, startId: number): void {
-       hilog.info(domain, TAG, 'ServiceAbility onCommand');
-     }
-   
-     onConnect(want: Want): rpc.RemoteObject {
-       hilog.info(domain, TAG, 'ServiceAbility onDisconnect' + want);
-       return new FirstServiceAbilityStub('test');
-     }
-   
-     onDisconnect(want: Want): void {
-       hilog.info(domain, TAG, 'ServiceAbility onDisconnect' + want);
-     }
-   }
-   
-   export default new ServiceAbility();
-   ```
+    ```ts
+    import { Want } from '@kit.AbilityKit';
+    import { rpc } from '@kit.IPCKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+
+    const TAG: string = '[Sample_FAModelAbilityDevelop]';
+    const domain: number = 0xFF00;
+
+    class FirstServiceAbilityStub extends rpc.RemoteObject {
+      constructor(des: Object) {
+        if (typeof des === 'string') {
+          super(des);
+        } else {
+          return;
+        }
+      }
+
+      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
+        hilog.info(domain, TAG, 'ServiceAbility onRemoteRequest called');
+        if (code === 1) {
+          let string = data.readString();
+          hilog.info(domain, TAG, `ServiceAbility string=${string}`);
+          let result = Array.from(string).sort().join('');
+          hilog.info(domain, TAG, `ServiceAbility result=${result}`);
+          reply.writeString(result);
+        } else {
+          hilog.info(domain, TAG, 'ServiceAbility unknown request code');
+        }
+        return true;
+      }
+    }
+
+    class ServiceAbility {
+      onStart(): void {
+        hilog.info(domain, TAG, 'ServiceAbility onStart');
+      }
+
+      onStop(): void {
+        hilog.info(domain, TAG, 'ServiceAbility onStop');
+      }
+
+      onCommand(want: Want, startId: number): void {
+        hilog.info(domain, TAG, 'ServiceAbility onCommand');
+      }
+
+      onConnect(want: Want): rpc.RemoteObject {
+        hilog.info(domain, TAG, 'ServiceAbility onDisconnect' + want);
+        return new FirstServiceAbilityStub('test');
+      }
+
+      onDisconnect(want: Want): void {
+        hilog.info(domain, TAG, 'ServiceAbility onDisconnect' + want);
+      }
+    }
+
+    export default new ServiceAbility();
+    ```
 
 2. 注册ServiceAbility。
    

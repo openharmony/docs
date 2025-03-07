@@ -20,8 +20,12 @@ NetConnection常用接口如下表所示，详细的接口说明请参考[NetCon
 | OH_NetConn_GetAddrInfo (char \*host, char \*serv, struct addrinfo \*hint, struct addrinfo \*\*res, int32_t netId) | 通过netId获取DNS结果。 |
 | OH_NetConn_FreeDnsResult(struct addrinfo \*res) | 释放DNS结果内存。 |
 | OH_NetConn_GetAllNets(NetConn_NetHandleList \*netHandleList) | 获取所有处于连接状态的网络列表。 |
-| OHOS_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver) | 注册自定义dns解析器。 |
-| OHOS_NetConn_UnregisterDnsResolver(void) | 去注册自定义dns解析器。 |
+| OHOS_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver) | 注册自定义dns解析器。<br/>**弃用：** 从API version 13开始废弃。<br/>**替代：** 推荐使用OH_NetConn_RegisterDnsResolver。|
+| OHOS_NetConn_UnregisterDnsResolver(void) | 去注册自定义dns解析器。<br/>**弃用：** 从API version 13开始废弃。<br/>**替代：** 推荐使用OH_NetConn_UnregisterDnsResolver。|
+| OH_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver) | 注册自定义dns解析器。 |
+| OH_NetConn_UnregisterDnsResolver(void) | 去注册自定义dns解析器。|
+| OH_NetConn_SetPacUrl(const char \*pacUrl) | 设置系统级代理自动配置(PAC)脚本地址。 |
+| OH_NetConn_GetPacUrl(char \*pacUrl) | 获取系统级代理自动配置(PAC)脚本地址。 |
 
 ## 网络管理接口开发示例
 
@@ -139,7 +143,7 @@ export const GetDefaultNet: (code: number) => number;
 export const NetId: () => number;
 ```
 
-5、在index.ets文件中对上述封装好的接口进行调用
+5、在index.ets文件中对上述封装好的接口进行调用。
 
 ```ts
 import testNetManager from 'libentry.so';
@@ -197,7 +201,7 @@ struct Index {
 
 ## 测试步骤
 
-1、连接设备，使用DevEco Studio打开搭建好的工程
+1、连接设备，使用DevEco Studio打开搭建好的工程。
 
 2、运行工程，设备上会弹出以下所示图片：
 

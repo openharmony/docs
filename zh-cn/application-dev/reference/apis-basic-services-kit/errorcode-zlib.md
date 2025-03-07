@@ -48,7 +48,7 @@ The input destination file is invalid.
 
 **错误信息**
 
-The input source file is not ZIP format or damaged.
+The input source file is not in ZIP format or is damaged.
 
 **错误描述**
 
@@ -64,3 +64,127 @@ The input source file is not ZIP format or damaged.
 
 1. 检查源文件压缩格式是否为ZIP格式。
 2. 检查源文件是否完整，如果是网络下载的，需要确保文件下载完成后再调用decompress接口。
+
+## 17800002 传入的文件或访问模式错误
+
+**错误信息**
+
+No such file or access mode error.
+
+**错误描述**
+
+当调用gzopen或gzdopen接口时，传入的文件路径、文件描述符或文件访问模式错误。
+
+**可能原因**
+
+1. 当调用gzopen接口时，传入的文件路径或文件访问模式错误。
+2. 当调用gzdopen接口时，传入的文件描述符或文件访问模式错误。
+
+**处理步骤**
+
+1. 检查gz文件路径或文件描述符是否正确，如果是新建gz文件的操作，需要确保文件访问模式为压缩模式(w或wb等)。
+2. 检查文件访问模式，是否为"w"、"wb"、"r"、"rb"、"a"、"ab"等。
+
+## 17800004 压缩流或解压流错误
+
+**错误信息**
+
+ZStream error.
+
+**错误描述**
+
+当调用deflate或inflate等接口时，压缩流或解压流发生错误。
+
+**可能原因**
+
+1. 当调用deflate或inflate等接口时，未先使用deflateInit或inflateInit接口对压缩或解压流进行初始化。
+2. 当调用gzsetparams、gzclose或gzflush等接口时，传入的刷新模式错误或接口调用前，调用打开gz文件的相关接口时传入的文件访问模式错误。
+
+**处理步骤**
+
+1. 当调用deflate或inflate等接口前，先使用deflateInit或inflateInit接口对压缩或解压流进行初始化。
+2. 检查接口调用前，打开gz文件的相关接口是否未被调用或调用失败。
+3. 检查接口调用前，调用打开gz文件的相关接口时传入的访问模式是否与该接口匹配。例如gzprintf属于压缩操作接口，调用打开gz文件的相关接口时传入的访问模式需要为压缩模式(w或wb等)。
+4. 检查传入的枚举参数是否正确。
+
+## 17800005 传入的数据错误
+
+**错误信息**
+
+Data error.
+
+**错误描述**
+
+当调用uncompress或uncompress2等接口时，传入的数据错误。
+
+**可能原因**
+
+当调用uncompress或uncompress2接口时，未先使用compress接口进行压缩。
+
+**处理步骤**
+
+先使用compress进行压缩后再通过uncompress2或uncompress进行解压。
+
+## 17800006 内存分配失败错误
+
+**错误信息**
+
+Memory allocation failed.
+
+**错误描述**
+
+当调用gzclose或gzclosew接口时，内存分配失败。
+
+**可能原因**
+
+在调用gzclose或gzclosew接口前，调用了gzsetparams接口，传入错误的压缩级别或压缩策略。
+
+**处理步骤**
+
+检查gzsetparams接口的调用，传入正确的压缩级别和压缩策略。
+
+## 17800007 传入的缓冲区错误
+
+**错误信息**
+
+Buffer error.
+
+**错误描述**
+
+当调用compress或compress2或uncompress或uncompress2接口时，传入的缓冲区错误。
+
+**可能原因**
+
+1. 当调用uncompress或uncompress2接口时，传入的输入buffer大小大于解压后输出buffer的大小。
+2. 当调用compress或compress2接口时，传入的输入buffer大小大于压缩后输出buffer的大小。
+3. 当调用compress或compress2或uncompress或uncompress2接口，传入的buffer大小为0。
+
+**处理步骤**
+
+增大对应buffer的大小。
+
+## 17800009 内部结构错误
+
+**错误信息**
+
+Internal structure error.
+
+**错误描述**
+
+当调用gzputc、gzwrite、gzread等接口时，传入的参数错误或接口调用前，调用打开gz文件的相关接口时传入的文件访问模式错误。
+
+**可能原因**
+
+1. 当调用接口前，打开gz文件的相关接口未被调用或调用失败。
+2. 当调用接口前，调用打开gz文件的相关接口时传入的文件访问模式错误。
+3. 当调用gzwrite接口时，传入的未压缩字节长度为0。
+4. 当调用gzfwrite或gzfread接口时，传入的数据块大小或数量为0。
+5. 当调用gzprintf接口时，传入的格式化描述符和纯文本为空字符穿串。
+6. 当调用gzgets接口时，传入空的ArrayBuffer。
+7. 当调用gzgetc接口时，gz文件为空文件。
+
+**处理步骤**
+
+1. 检查接口调用前，打开gz文件的相关接口是否未被调用或调用失败。
+2. 检查接口调用前，调用打开gz文件的相关接口时传入的访问模式是否与该接口匹配。例如gzgetc属于解压缩操作接口，调用打开gz文件的相关接口时传入的访问模式需要为解压缩模式(r或rb等)。
+3. 检查传入的参数是否正确。

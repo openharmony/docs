@@ -9,7 +9,7 @@ The **keyCode** module provides keycode values for key devices, such as the keyb
 ## Modules to Import
 
 ```js
-import {KeyCode} from '@ohos.multimodalInput.keyCode';
+import { KeyCode } from '@kit.InputKit';
 ```
 
 ## KeyCode
@@ -24,12 +24,13 @@ Keycode value.
 | KEYCODE_UNKNOWN                  |  -1 |  Unknown key                       |
 | KEYCODE_HOME                     |  1 | Function (Home) key                 |
 | KEYCODE_BACK                     |  2 | Back key                        |
-| KEYCODE_MEDIA_PLAY_PAUSE         |  10 | Play/Pause key                 |
-| KEYCODE_MEDIA_STOP               |  11 | Stop key                    |
-| KEYCODE_MEDIA_NEXT               |  12 | Next key                   |
-| KEYCODE_MEDIA_PREVIOUS           |  13 | Previous key                   |
-| KEYCODE_MEDIA_REWIND             |  14 | Rewind key                    |
-| KEYCODE_MEDIA_FAST_FORWARD       |  15 | Fast Forward key                    |
+| KEYCODE_SEARCH<sup>13+</sup> | 9 | Search key|
+| KEYCODE_MEDIA_PLAY_PAUSE        |  10 | Play/Pause key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
+| KEYCODE_MEDIA_STOP               |  11 | Stop key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                    |
+| KEYCODE_MEDIA_NEXT               |  12 | Next key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                   |
+| KEYCODE_MEDIA_PREVIOUS           |  13 | Previous key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                   |
+| KEYCODE_MEDIA_REWIND            |  14 | Rewind key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                    |
+| KEYCODE_MEDIA_FAST_FORWARD       |  15 | Fast Forward key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                    |
 | KEYCODE_VOLUME_UP                |  16 | Volume Up key                      |
 | KEYCODE_VOLUME_DOWN              |  17 | Volume Down key                      |
 | KEYCODE_POWER                    |  18 | Power key                        |
@@ -123,8 +124,8 @@ Keycode value.
 | KEYCODE_MOVE_END                 |  2082 | Move to End key                   |
 | KEYCODE_INSERT                   |  2083 | Insert key                        |
 | KEYCODE_FORWARD                  |  2084 | Forward key                        |
-| KEYCODE_MEDIA_PLAY               |  2085 | Play key                    |
-| KEYCODE_MEDIA_PAUSE              |  2086 | Pause key                    |
+| KEYCODE_MEDIA_PLAY               |  2085 | Play key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                    |
+| KEYCODE_MEDIA_PAUSE              |  2086 | Pause key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                    |
 | KEYCODE_MEDIA_CLOSE              |  2087 | Close key                    |
 | KEYCODE_MEDIA_EJECT              |  2088 | Eject key                    |
 | KEYCODE_MEDIA_RECORD             |  2089 | Record key                    |
@@ -162,6 +163,19 @@ Keycode value.
 | KEYCODE_NUMPAD_LEFT_PAREN        |  2121 | Key ( on numeric keypad                   |
 | KEYCODE_NUMPAD_RIGHT_PAREN       |  2122 | Key ) on numeric keypad                   |
 | KEYCODE_VIRTUAL_MULTITASK        |  2210 | Multi-task key                     |
+| KEYCODE_BUTTON_A<sup>16+</sup>   |  2301 | Joystick key A           |
+| KEYCODE_BUTTON_B<sup>16+</sup>   |  2302 | Joystick key B           |
+| KEYCODE_BUTTON_X<sup>16+</sup>   |  2304 | Joystick key X           |
+| KEYCODE_BUTTON_Y<sup>16+</sup>   |  2305 | Joystick key Y           |
+| KEYCODE_BUTTON_L1<sup>16+</sup>  |  2307 | Joystick key L1          |
+| KEYCODE_BUTTON_R1<sup>16+</sup>  |  2308 | Joystick key R1          |
+| KEYCODE_BUTTON_L2<sup>16+</sup>  |  2309 | Joystick key L2          |
+| KEYCODE_BUTTON_R2<sup>16+</sup>  |  2310 | Joystick key R2          |
+| KEYCODE_BUTTON_SELECT<sup>16+</sup>   |  2311 | Joystick key Select      |
+| KEYCODE_BUTTON_START<sup>16+</sup>    |  2312 | Joystick key Start       |
+| KEYCODE_BUTTON_MODE<sup>16+</sup>     |  2313 | Joystick key Mode        |
+| KEYCODE_BUTTON_THUMBL<sup>16+</sup>   |  2314 | Joystick key THUMBL      |
+| KEYCODE_BUTTON_THUMBR<sup>16+</sup>   |  2315 | Joystick key THUMBR      |
 | KEYCODE_SLEEP                    |  2600 | Sleep key                        |
 | KEYCODE_ZENKAKU_HANKAKU          |  2601 | Zenkaku/Hankaku key                   |
 | KEYCODE_102ND                    |  2602 | 102nd key                    |
@@ -211,8 +225,8 @@ Keycode value.
 | KEYCODE_FINANCE                  |  2647 | Finance key                        |
 | KEYCODE_CANCEL                   |  2648 | Cancel key                        |
 | KEYCODE_KBDILLUM_TOGGLE          |  2649 | Keyboard Illumination Toggle key                    |
-| KEYCODE_KBDILLUM_DOWN            |  2650 | Keyboard Illumination Up key                    |
-| KEYCODE_KBDILLUM_UP              |  2651 | Keyboard Illumination Down key                    |
+| KEYCODE_KBDILLUM_DOWN            |  2650 | Keyboard Illumination Down key                    |
+| KEYCODE_KBDILLUM_UP              |  2651 | Keyboard Illumination Up key                    |
 | KEYCODE_SEND                     |  2652 | Send key                        |
 | KEYCODE_REPLY                    |  2653 | Reply key                        |
 | KEYCODE_FORWARDMAIL              |  2654 | Forward Mail key                      |
@@ -283,7 +297,7 @@ Keycode value.
 | KEYCODE_CONTROLPANEL             |  2719 | Control Panel key                      |
 | KEYCODE_APPSELECT                |  2720 | App Select key                    |
 | KEYCODE_SCREENSAVER              |  2721 | Screen Saver key                    |
-| KEYCODE_ASSISTANT                |  2722 | Assistant key                        |
+| KEYCODE_ASSISTANT                |  2722 | Smart key                     |
 | KEYCODE_KBD_LAYOUT_NEXT          |  2723 | Next Keyboard Layout key                   |
 | KEYCODE_BRIGHTNESS_MIN           |  2724 | Min Brightness key                      |
 | KEYCODE_BRIGHTNESS_MAX           |  2725 | Max Brightness key                      |

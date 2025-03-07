@@ -1,6 +1,6 @@
 # \<picker> Development
 
-The **\<picker>** component supports common, date, time, data and time, and multi-column text selectors. For details, see [picker](../reference/arkui-js/js-components-basic-picker.md).
+The **\<picker>** component supports common, date, time, data and time, and multi-column text selectors. For details, see [picker](../reference/apis-arkui/arkui-js/js-components-basic-picker.md).
 
 
 ## Creating a \<picker> Component

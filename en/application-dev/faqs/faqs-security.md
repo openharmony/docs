@@ -46,7 +46,7 @@ Only **reason** can be customized. The text on the options displayed cannot be c
 
 **Reference**
 
-[Workflow for Using Permissions](../security/AccessToken/determine-application-mode.md)
+[Workflow for Requesting Permissions](../security/AccessToken/determine-application-mode.md)
 
 ## Are synchronous APIs provided by @ohos.security.cryptoFramework? Will synchronous APIs be provided in the future? (API version 10)
 
@@ -56,11 +56,11 @@ Only **reason** can be customized. The text on the options displayed cannot be c
 
 2. Synchronous encryption and decryption APIs will be provided in later versions.
 
-## When and how do I use \<SaveButton>? What are the differences between using \<SaveButton> and using a Picker? (API version 10)
+## When and how do I use SaveButton? What are the differences between using SaveButton and using a Picker? (API version 10)
 
 **Solution**
 
-1. You can integrate \<**SaveButton**> into your application and register the **onClick** callback. When a user taps \<**SaveButton**>, the application calls the **mediaLibrary** API in the callback to quickly save an image. During this process, operations such as authorization via a dialog box and selecting the directory for saving the image are not required.
+1. You can integrate **SaveButton** into your application and register the **onClick** callback. When a user taps **SaveButton**, the application calls the **mediaLibrary** API in the callback to quickly save an image. During this process, operations such as authorization via a dialog box and selecting the directory for saving the image are not required.
 2. You can use this component when your application needs to save images or videos to the media library.
 3. This component allows for simpler operations than Pickers, which have to start a system application and have the user select a directory for saving the image or video.
 
@@ -68,4 +68,5 @@ Only **reason** can be customized. The text on the options displayed cannot be c
 
 [Security Component Overview](../security/AccessToken/security-component-overview.md)
 
-[SaveButton](../reference/arkui-ts/ts-security-components-savebutton.md)
+[SaveButton](../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)
+

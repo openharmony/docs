@@ -27,7 +27,7 @@ Invalid parameter value.
 
 **错误信息**
 
-Operation failed. Cannot connect to service.
+Failed to connect to the service.
 
 **错误描述**
 
@@ -67,7 +67,7 @@ System internal error.
 
 **错误信息**
 
-Failed to read map.
+Failed to read the system map.
 
 **错误描述**
 
@@ -85,7 +85,7 @@ Failed to read map.
 
 **错误信息**
 
-Failed to create map.
+Failed to create a system map.
 
 **错误描述**
 
@@ -103,7 +103,7 @@ Failed to create map.
 
 **错误信息**
 
-Get iface name failed.
+Failed to obtain the NIC name.
 
 **错误描述**
 
@@ -121,7 +121,7 @@ Get iface name failed.
 
 **错误信息**
 
-Read data from database failed.
+Failed to read the database.
 
 **错误描述**
 

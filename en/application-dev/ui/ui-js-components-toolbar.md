@@ -1,7 +1,7 @@
 # &lt;toolbar&gt; Development
 
 
-The **&lt;toolbar&gt;** component shows actions available on the current screen and can be used for level-1 navigation. For details, see [toolbar](../reference/arkui-js/js-components-basic-toolbar.md).
+The **&lt;toolbar&gt;** component shows actions available on the current screen and can be used for level-1 navigation. For details, see [toolbar](../reference/apis-arkui/arkui-js/js-components-basic-toolbar.md).
 
 
 ## Creating a &lt;toolbar&gt; Component

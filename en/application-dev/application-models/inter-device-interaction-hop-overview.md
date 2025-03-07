@@ -1,18 +1,18 @@
-# Continuation Overview
+# Hopping Overview
 
 
 ## When to Use
 
 As the all-scenario, multi-device lifestyle becomes popular, users have an increasing number of devices. Each device provides users with what they need in a certain scenario. For example, watches allow users to view information in a timely manner, and smart TVs deliver an immersive watching experience. However, each device has its limitations. For example, typing text on a smart TV is frustrating as it is much more difficult than on a mobile device. If multiple devices can sense each other through a distributed OS and together form a super device, the strengths of each device can be fully exerted, thereby providing a more natural and smoother distributed experience for users.
 
-Distributed operations across devices are called continuation (also named hopping), which is further classified into [cross-device migration](hop-cross-device-migration.md) and [multi-device collaboration](hop-multi-device-collaboration.md).
+Distributed operations across devices are called hopping, which is further classified into [cross-device migration](hop-cross-device-migration.md) and [multi-device collaboration](hop-multi-device-collaboration.md).
 
 
 ## Basic Concepts
 
-- **Continuation**
+- **Hopping**
   
-  Continuation refers to distributed operations across devices. It breaks device boundaries and makes applications modular. For example, a user can edit the same email, carry out fitness, or play a game across devices. Continuation provides broad application scenarios, innovative product perspectives, enhanced product advantages, and superior experience.  
+  Hopping refers to distributed operations across devices. It breaks device boundaries and makes applications modular. For example, a user can edit the same email, carry out fitness, or play a game across devices. Hopping provides broad application scenarios, innovative product perspectives, enhanced product advantages, and superior experience.  
   
 - **Cross-device migration**
 
@@ -26,19 +26,19 @@ Distributed operations across devices are called continuation (also named hoppin
   - Scenario 2: : You are chatting with a customer on device A, and the customer asks for a file, which is stored on device B. You can use the chat software to open the file application on device B, select the required file, and send it back to device A. Then, you use the chat software to send it to the customer. From the perspective of application development, multi-device collaboration enables different UIAbility or ServiceExtensionAbility components to run simultaneously or alternately on multiple devices to provide a complete service, or enables the same UIAbility and ServiceExtensionAbility component to run simultaneously on multiple devices to provide a complete service.
 
 
-## Continuation Architecture
+## Hopping Architecture
 
-The system provides APIs for you to implement continuation in your applications. The continuation architecture has the following advantages:
+The system provides APIs for you to implement application hopping. The hopping architecture has the following advantages:
 
 - Capabilities such as remote service invocation to facilitate service design
 
-- Simultaneous continuation of multiple applications
+- Simultaneous hopping of multiple applications
 
 - Different device forms supported, such as tablets, smart TVs, and watches
 
-The following figure shows the continuation architecture.
+The following figure shows the hopping architecture.
 
-**Figure 1** Continuation architecture
+  **Figure 1** Hopping architecture
 
  ![hop-structure](figures/hop-structure.png)  
 

@@ -18,7 +18,7 @@
 * 在状态栏显示通知消息时
 
 
-入口图标和标签是应用安装完成后可以在设备桌面上显示出来的。入口图标是以Page类型的Ability为粒度，支持同一个应用存在多个入口图标和入口标签，点击后进入对应的Ability界面。比如：
+入口图标和标签是应用安装完成后可以在设备桌面上显示出来的。入口图标是以Page类型的Ability为粒度，支持同一个应用存在一个入口图标和入口标签（存在多个入口Ability时，仅entry类型HAP中的mainAbility会生效），点击后进入对应的Ability界面。比如：
 * 桌面上需要显示图标时
 * 最近任务列表中显示时
 
@@ -30,7 +30,7 @@ FA模型不支持直接配置应用图标和标签，会以符合规则的PageAb
 FA模型的入口图标和标签是Page类型的Ability配置的icon和label。
 
 PageAbility的图标和标签配置请参见[PageAbility组件配置](pageability-configuration.md)。需在config.json文件的abilities标签下做如下配置：
-* 配置icon字段，标签值为资源文件的索引。图标需要在配置IDE的资源文件中，路径为/resource/base/media。取值示例：$media:ability_icon。
+* 配置icon字段，标签值为资源文件的索引。图标需要在配置DevEco Studio的资源文件中，路径为/resource/base/media。取值示例：$media:ability_icon。
 * 配置label字段，标签值为资源文件的索引，标识Ability对用户显示的名称。取值可以是Ability名称，也可以是对该名称的资源索引，以支持多语言。
 
 如果在该PageAbility的skills属性中，actions的取值包含 "action.system.home"，entities取值中包含"entity.system.home"，则该Ability的icon和label将同时作为应用的icon和label。如果存在多个符合条件的Ability，则取位置靠前的Ability的icon和label作为应用的icon和label。图标和标签配置可以参考[abilities标签说明](../quick-start/module-structure.md)。
@@ -73,7 +73,7 @@ PageAbility的图标和标签配置请参见[PageAbility组件配置](pageabilit
 #### 入口图标和标签管控规则
 系统对无图标应用实施严格管控，防止一些恶意应用故意配置无入口图标，导致用户找不到软件所在的位置，无法操作卸载应用，在一定程度上保证用户终端设备的安全。
 
-如果应用确需隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。详细的入口图标及入口标签的显示规则如下。
+如果应用确需隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权<!--Del-->，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)<!--DelEnd-->。详细的入口图标及入口标签的显示规则如下。
 
 * HAP中包含PageAbility
   * 在config.json配置文件的abilities标签中设置了入口图标

@@ -17,12 +17,15 @@
 
 Stepper(value?: { index?: number })
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数:**
 
-| 参数名 | 参数类型 | 必填  | 参数描述 |
+| 参数名 | 类型 | 必填  | 说明 |
 | ------| -------- | --------------- | -------- |
-| index | number   | 否 | 设置步骤导航器当前显示StepperItem的索引值。<br/>默认值：0<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| value | { index?: number }   | 否 | 设置步骤导航器当前显示StepperItem的索引值。<br/>默认值：0<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 
 
 ## 属性
@@ -37,6 +40,8 @@ onFinish(callback: () => void)
 
 步骤导航器最后一个StepperItem的nextLabel被点击时，并且ItemState属性为Normal时，触发该回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onSkip
@@ -45,6 +50,8 @@ onSkip(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 当前显示的StepperItem状态为ItemState.Skip时，nextLabel被点击时触发该回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onChange
@@ -52,6 +59,8 @@ onSkip(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 onChange(callback:&nbsp;(prevIndex:&nbsp;number,&nbsp;index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 点击当前StepperItem的prevLabel进行步骤切换时触发该回调；或点击当前StepperItem的nextLabel，当前页面不为步骤导航器最后一个StepperItem且ItemState属性为Normal时，触发该回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -68,6 +77,8 @@ onNext(callback:&nbsp;(index:&nbsp;number,&nbsp;pendingIndex:&nbsp;number)&nbsp;
 
 点击StepperItem的nextLabel切换下一步骤时，当前页面不为步骤导航器最后一个StepperItem且ItemState属性为Normal时，触发该回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -83,6 +94,8 @@ onPrevious(callback:&nbsp;(index:&nbsp;number,&nbsp;pendingIndex:&nbsp;number)&n
 
 点击StepperItem的prevLabel切换上一步骤时触发该回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -94,6 +107,8 @@ onPrevious(callback:&nbsp;(index:&nbsp;number,&nbsp;pendingIndex:&nbsp;number)&n
 
 
 ## 示例
+
+该示例主要演示如何使用步骤导航器组件。
 
 ```ts
 // xxx.ets

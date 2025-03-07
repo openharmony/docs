@@ -4,6 +4,8 @@
 
 > **说明：**
 >
+> 从API Version 13 开始，该组件不再维护，推荐使用组件[Navigation](ts-basic-components-navigation.md)进行页面路由。
+>
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -16,16 +18,24 @@
 
 Navigator(value?: {target: string, type?: NavigationType})
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名 | 参数类型       | 必填 | 参数描述                                       |
+| 参数名 | 类型       | 必填 | 说明                                       |
 | ------ | -------------- | ---- | ---------------------------------------------- |
 | target | string         | 是   | 指定跳转目标页面的路径。     |
 | type   | [NavigationType](#navigationtype枚举说明) | 否   | 指定路由方式。<br/>默认值：NavigationType.Push |
 
 ## NavigationType枚举说明
 
-| 名称      | 枚举值  | 描述                         |
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 值  | 说明                       |
 | ------- | ------- | -------------------------- |
 | Push    | 1 | 跳转到应用内的指定页面。               |
 | Replace | 2 | 用应用内的某个页面替换当前页面，并销毁被替换的页面。 |
@@ -39,19 +49,23 @@ active(value: boolean)
 
 设置当前路由组件是否处于激活状态，处于激活状态时，会生效相应的路由操作。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型    | 必填 | 说明                       |
 | ------ | ------- | ---- | -------------------------- |
-| value  | boolean | 是   | 路由组件是否处于激活状态。 |
+| value  | boolean | 是   | 路由组件是否处于激活状态。设置为true时，组件处于激活态。设置为false时，组件不处于激活态。 |
 
 ### params
 
 params(value: object)
 
 设置跳转时传递到目标页面的数据。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -67,18 +81,22 @@ target(value: string)
 
 设置跳转目标页面的路径。 目标页面需加入main_pages.json文件中。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| value  | object | 是   | 转目标页面的路径。 |
+| value  | string | 是   | 转目标页面的路径。 |
 
 ### type
 type(value: NavigationType)
 
 设置路由跳转方式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -86,8 +104,7 @@ type(value: NavigationType)
 
 | 参数名 | 类型   | 必填 | 说明                                           |
 | ------ | ------ | ---- | ---------------------------------------------- |
-| value  | object | 是   | 路由跳转方式。<br/>默认值：NavigationType.Push |
-
+| value  | [NavigationType](#navigationtype枚举说明) | 是   | 路由跳转方式。<br/>默认值：NavigationType.Push |
 
 ## 示例
 
@@ -131,7 +148,7 @@ class TextObject {
 
 ```ts
 // Detail.ets
-import router from '@ohos.router'
+import { router } from '@kit.ArkUI'
 
 @Entry
 @Component

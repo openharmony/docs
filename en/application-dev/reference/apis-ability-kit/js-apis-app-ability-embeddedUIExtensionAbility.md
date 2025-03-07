@@ -1,6 +1,6 @@
-# @ohos.app.ability.EmbeddedUIExtensionAbility (ExtensionAbilities for Embeddable UI in Cross-Process Scenarios)
+# @ohos.app.ability.EmbeddedUIExtensionAbility (ExtensionAbilities for Embedded UIs Across Processes)
 
-**EmbeddedUIExtensionAbility**, inherited from [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md), provides ExtensionAbilities for the embeddable UI across processes. Currently, the EmbeddedUIExtensionAbility can be started only by the UIAbility of the same application and can be used only in scenarios with multi-process permissions.
+**EmbeddedUIExtensionAbility**, inherited from [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md), provides ExtensionAbilities for the embedded UI across processes. Currently, the EmbeddedUIExtensionAbility can be started only by the UIAbility of the same application and can be used only in scenarios with multi-process permissions. For details about the inheritance relationship of each ability, see [Inheritance Relationship](./js-apis-app-ability-ability.md#ability-inheritance-relationship).
 
 > **NOTE**
 >
@@ -11,10 +11,10 @@
 ## Modules to Import
 
 ```ts
-import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
+import { EmbeddedUIExtensionAbility } from '@kit.AbilityKit';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -22,7 +22,7 @@ import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbi
 | -------- | -------- | -------- | -------- | -------- |
 | context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | No| No| Context of the ExtensionAbility.|
 
-## UIExtensionAbility.onCreate
+## EmbeddedUIExtensionAbility.onCreate
 
 onCreate(): void
 
@@ -33,7 +33,7 @@ Called to initialize the service logic when an EmbeddedUIExtensionAbility is cre
 **Example**
 
   ```ts
-  import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
+  import { EmbeddedUIExtensionAbility } from '@kit.AbilityKit';
 
   const TAG: string = '[testTag] EmbeddedUIExt';
 
@@ -44,7 +44,7 @@ Called to initialize the service logic when an EmbeddedUIExtensionAbility is cre
   }
   ```
 
-## UIExtensionAbility.onSessionCreate
+## EmbeddedUIExtensionAbility.onSessionCreate
 
 onSessionCreate(want: Want, session: UIExtensionContentSession): void
 
@@ -62,9 +62,7 @@ Called when a **UIExtensionContentSession** instance is created for this Embedde
 **Example**
 
   ```ts
-  import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
-  import Want from '@ohos.app.ability.Want';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+  import { EmbeddedUIExtensionAbility, Want, UIExtensionContentSession } from '@kit.AbilityKit';
 
   const TAG: string = '[testTag] EmbeddedUIExt';
 
@@ -75,7 +73,7 @@ Called when a **UIExtensionContentSession** instance is created for this Embedde
   }
   ```
 
-## UIExtensionAbility.onSessionDestroy
+## EmbeddedUIExtensionAbility.onSessionDestroy
 
 onSessionDestroy(session: UIExtensionContentSession): void
 
@@ -92,8 +90,7 @@ Called when a **UIExtensionContentSession** instance is destroyed for this Embed
 **Example**
 
   ```ts
-  import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+  import { EmbeddedUIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 
   const TAG: string = '[testTag] EmbeddedUIExt';
 
@@ -104,7 +101,7 @@ Called when a **UIExtensionContentSession** instance is destroyed for this Embed
   }
   ```
 
-## UIExtensionAbility.onForeground
+## EmbeddedUIExtensionAbility.onForeground
 
 onForeground(): void
 
@@ -115,7 +112,7 @@ Called when this EmbeddedUIExtensionAbility is switched from the background to t
 **Example**
 
   ```ts
-  import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
+  import { EmbeddedUIExtensionAbility } from '@kit.AbilityKit';
 
   const TAG: string = '[testTag] EmbeddedUIExt';
 
@@ -126,7 +123,7 @@ Called when this EmbeddedUIExtensionAbility is switched from the background to t
   }
   ```
 
-## UIExtensionAbility.onBackground
+## EmbeddedUIExtensionAbility.onBackground
 
 onBackground(): void
 
@@ -137,7 +134,7 @@ Called when this EmbeddedUIExtensionAbility is switched from the foreground to t
 **Example**
 
   ```ts
-  import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
+  import { EmbeddedUIExtensionAbility } from '@kit.AbilityKit';
 
   const TAG: string = '[testTag] EmbeddedUIExt';
 
@@ -148,12 +145,11 @@ Called when this EmbeddedUIExtensionAbility is switched from the foreground to t
   }
   ```
 
-## UIExtensionAbility.onDestroy
+## EmbeddedUIExtensionAbility.onDestroy
 
 onDestroy(): void | Promise&lt;void&gt;
 
 Called to clear resources when this EmbeddedUIExtensionAbility is destroyed.
-
 After the **onDestroy()** lifecycle callback is executed, the application may exit. Consequently, the asynchronous function (for example, asynchronously writing data to the database) in **onDestroy()** may fail to be executed. You can use the asynchronous lifecycle to ensure that the subsequent lifecycle continues only after the asynchronous function in **onDestroy()** finishes the execution.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -162,12 +158,12 @@ After the **onDestroy()** lifecycle callback is executed, the application may ex
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| void \| Promise\<void> | No return value or a Promise object that returns no result.      |
+| void \| Promise\<void> | No return value or a Promise object that returns no value.      |
 
 **Example**
 
   ```ts
-  import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
+  import { EmbeddedUIExtensionAbility } from '@kit.AbilityKit';
 
   const TAG: string = '[testTag] EmbeddedUIExt';
 

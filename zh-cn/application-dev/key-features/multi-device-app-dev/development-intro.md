@@ -3,29 +3,32 @@
 
 ## 系统能力
 
-[系统能力](../../reference/syscap.md)（即SystemCapability，缩写为SysCap）指操作系统中每一个相对独立的特性，如蓝牙，WIFI，NFC，摄像头等，都是系统能力之一。每个系统能力对应多个API，随着目标设备是否支持该系统能力共同存在或消失。
+<!--RP1-->
+[系统能力](../../reference/syscap.md)<!--RP1End-->（即SystemCapability，缩写为SysCap）指操作系统中每一个相对独立的特性，如蓝牙，WIFI，NFC，摄像头等，都是系统能力之一。每个系统能力对应多个API，随着目标设备是否支持该系统能力共同存在或消失。
 
 与系统能力相关的，有支持能力集、联想能力集和要求能力集三个核心概念。
 
 - **支持能力集**：设备具备的系统能力集合，在设备配置文件中配置。
 - **要求能力集**：应用需要的系统能力集合，在应用配置文件中配置。
-- **联想能力集**：开发应用时IDE可联想的API所在的系统能力集合，在应用配置文件中配置。
+- **联想能力集**：开发应用时DevEco Studio可联想的API所在的系统能力集合，在应用配置文件中配置。
 
 >  **说明：**
 >
 >  - 只有当应用要求能力集是设备支持能力集的子集的时候，应用才可以在该设备上分发、安装和运行。
->  - 可以访问[系统能力列表](../../reference/syscap-list.md)了解全量的系统能力。
->  - 支持的设备类型分为两大类： 典型设备和厂商自定义设备。默认设备、平板等常用的设备类型属于典型设备，其它的属于厂商自定义设备。对于典型设备，系统已经预定义了相应的系统能力集合；对于厂商自定义设备，需要厂商给出其系统能力集合的定义。
+>  - 可以访问<!--RP2-->[系统能力列表](../../reference/syscap-list.md)<!--RP2End-->了解全量的系统能力。<!--Del-->
+>  - 支持的设备类型分为两大类： 典型设备和厂商自定义设备。默认设备、平板等常用的设备类型属于典型设备，其它的属于厂商自定义设备。对于典型设备，系统已经预定义了相应的系统能力集合；对于厂商自定义设备，需要厂商给出其系统能力集合的定义。<!--DelEnd-->
 
-## 开发指导
- ### 设备要求能力集的获取及导入
+<!--Del-->
+## 设备要求能力集的获取及导入
 
-对于厂商自定义设备，需要开发者自行从厂商处获取该设备的要求能力集并导入到IDE中。
+对于厂商自定义设备，需要开发者自行从厂商处获取该设备的要求能力集并导入到DevEco Studio中。
 
-在IDE中点击File->New->Import...后选择“Import Product Compatibility ID”即可选择及导入设备要求能力集，导入后的设备要求能力集会被写入工程的syscap.json文件中。
+在DevEco Studio中点击File->New->Import...后选择“Import Product Compatibility ID”即可选择及导入设备要求能力集，导入后的设备要求能力集会被写入工程的syscap.json文件中。
 
 ![20230920-103626](figures/20230920-103626.gif)
-### 多设备应用开发
+<!--DelEnd-->
+
+## 多设备应用开发
 开发多设备应用时，工程中默认的要求能力集是多个设备支持能力集的交集，默认的联想能力集是多个设备支持能力集的并集。
 
 - 开发者可以在运行时动态判断某设备是否支持特定的系统能力。
@@ -50,12 +53,12 @@
 - 方法2：开发者可通过import的方式将模块导入，若当前设备不支持该模块，import的结果为undefined，开发者在使用其API时，需要判断其是否存在。 
 
   ```ts
-  import controller from '@ohos.nfc.controller';
+  import { nfcController } from '@kit.ConnectivityKit';
   try {
-      controller.enableNfc();
-      console.log("controller enableNfc success");
+      nfcController.enableNfc();
+      console.log("nfcController enableNfc success");
   } catch (busiError) {
-      console.log("controller enableNfc busiError: " + busiError);
+      console.log("nfcController enableNfc busiError: " + busiError);
   }
   ```
 
@@ -66,7 +69,7 @@
 
 **配置联想能力集和要求能力集**
 
-IDE会根据创建的工程所支持的设备自动配置联想能力集和要求能力集，同时也支持开发者修改。 
+DevEco Studio会根据创建的工程所支持的设备自动配置联想能力集和要求能力集，同时也支持开发者修改。 
 
 ```json
 // syscap.json
@@ -99,7 +102,7 @@ IDE会根据创建的工程所支持的设备自动配置联想能力集和要�
 > **说明：**
 >
 > - 对于要求能力集，开发者修改时要十分慎重，修改不当会导致应用无法分发和安装到目标设备上。
-> - 对于联想能力集，通过增加系统能力可以扩大IDE可联想的API范围。但要注意这些API可能在某些设备上不支持，使用前需要判断。 
+> - 对于联想能力集，通过增加系统能力可以扩大DevEco Studio可联想的API范围。但要注意这些API可能在某些设备上不支持，使用前需要判断。 
 
 ## 总结
 

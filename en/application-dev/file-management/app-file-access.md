@@ -32,6 +32,10 @@ You can use [ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) t
 | OpenMode | Defines the mode for opening a file.| Attribute| N/A| N/A| 
 | Filter | Defines the options for filtering files.| Type| N/A| N/A| 
 
+> **NOTE**
+>
+> When using ohos.file.fs APIs, you are advised to use asynchronous APIs for time-consuming operations, such as read and write operations, to prevent application crashes.
+
 ## Development Example
 
 Before performing any file operation, obtain the [application file path](../application-models/application-context-stage.md#obtaining-application-file-paths). The following example shows how to obtain a HAP file path using **UIAbilityContext**. For details about how to obtain **UIAbilityContext**, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
@@ -44,9 +48,9 @@ The following example demonstrates how to create a file, read data from it, and 
 
 ```ts
 // pages/xxx.ets
-import fs, { ReadOptions } from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
-import buffer from '@ohos.buffer';
+import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+import { buffer } from '@kit.ArkTS';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
@@ -78,8 +82,8 @@ The following example demonstrates how to read data from a file and copy it to a
 
 ```ts
 // pages/xxx.ets
-import fs, { ReadOptions } from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
+import { fileIo as fs, ReadOptions, WriteOptions } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
@@ -100,7 +104,10 @@ function readWriteFile(): void {
   let readLen = fs.readSync(srcFile.fd, buf, readOptions);
   while (readLen > 0) {
     readSize += readLen;
-    fs.writeSync(destFile.fd, buf);
+    let writeOptions: WriteOptions = {
+      length: readLen
+    };
+    fs.writeSync(destFile.fd, buf, writeOptions);
     readOptions.offset = readSize;
     readLen = fs.readSync(srcFile.fd, buf, readOptions);
   }
@@ -120,8 +127,8 @@ The following example demonstrates how to read and write file data using a strea
 
 ```ts
 // pages/xxx.ets
-import fs, { ReadOptions } from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
+import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
@@ -142,7 +149,8 @@ async function readWriteFileWithStream(): Promise<void> {
   let readLen = await inputStream.read(buf, readOptions);
   readSize += readLen;
   while (readLen > 0) {
-    await outputStream.write(buf);
+    const writeBuf = readLen < bufSize ? buf.slice(0, readLen) : buf;
+    await outputStream.write(writeBuf);
     readOptions.offset = readSize;
     readLen = await inputStream.read(buf, readOptions);
     readSize += readLen;
@@ -155,17 +163,17 @@ async function readWriteFileWithStream(): Promise<void> {
 
 > **NOTE**
 >
-> - Close the stream once it is not required. 
-> - Comply with the programming specifications for **Stream** APIs in asynchronous mode and avoid mixed use of the APIs in synchronous mode and asynchronous mode.
+> - Close the stream once it is not required.
+> - Comply with the programming specifications for **Stream** APIs in asynchronous mode and avoid mixed use of the APIs in synchronous mode and asynchronous mode. 
 > - The **Stream** APIs do not support concurrent read and write operations.
 
 ### Listing Files
 
-The following example demonstrates how to list files that meet the specified conditions.
+The following example demonstrates how to obtain files that meet the specified conditions.
 
 ```ts
-import fs, { Filter, ListFileOptions } from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
+import { fileIo as fs, Filter, ListFileOptions } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
@@ -188,4 +196,80 @@ function getListFile(): void {
     console.info(`The name of file: ${files[i]}`);
   }
 }
+```
+
+### Using File Streams
+
+The following example demonstrates how to use readable and writable streams.
+
+```ts
+// pages/xxx.ets
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+
+// Obtain the application file path.
+let context = getContext(this) as common.UIAbilityContext;
+let filesDir = context.filesDir;
+
+function copyFileWithReadable(): void {
+  // Create a readable stream.
+  const rs = fs.createReadStream(`${filesDir}/read.txt`);
+  // Create a writable stream.
+  const ws = fs.createWriteStream(`${filesDir}/write.txt`);
+  // Copy files in paused mode. 
+  rs.on('readable', () => {
+    const data = rs.read();
+    if (!data) {
+      return;
+    }
+    ws.write(data);
+  });
+}
+
+function copyFileWithData(): void {
+  // Create a readable stream.
+  const rs = fs.createReadStream(`${filesDir}/read.txt`);
+  // Create a writable stream.
+  const ws = fs.createWriteStream(`${filesDir}/write.txt`);
+  // Copy files in flowing mode.
+  rs.on('data', (emitData) => {
+    const data = emitData?.data;
+    if (!data) {
+      return;
+    }
+    ws.write(data as Uint8Array);
+  });
+}
+
+```
+
+The following example demonstrates how to use a file hash stream.
+
+```ts
+// pages/xxx.ets
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { hash } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+
+// Obtain the application file path.
+let context = getContext(this) as common.UIAbilityContext;
+let filesDir = context.filesDir;
+
+function hashFileWithStream() {
+  const filePath = `${filesDir}/test.txt`;
+  // Create a readable stream.
+  const rs = fs.createReadStream(filePath);
+  // Create a hash stream.
+  const hs = hash.createHash('sha256');
+  rs.on('data', (emitData) => {
+    const data = emitData?.data;
+    hs.update(new Uint8Array(data?.split('').map((x: string) => x.charCodeAt(0))).buffer);
+  });
+  rs.on('close', async () => {
+    const hashResult = hs.digest();
+    const fileHash = await hash.hash(filePath, 'sha256');
+    console.info(`hashResult: ${hashResult}, fileHash: ${fileHash}`);
+  });
+}
+
 ```

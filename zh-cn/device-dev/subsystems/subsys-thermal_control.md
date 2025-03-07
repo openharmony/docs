@@ -42,37 +42,45 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
 
     | 管控动作配置项名称 | 管控动作配置项描述 | 管控动作配置项参数 | 管控动作配置项参数描述 | 数据类型 |取值范围 |
     | -------- | -------- | -------- | -------- | -------- | -------- |
+    | name="airplane" | 飞行模式管控动作 | 无 | 无 | 无 | 无 |
     | name="cpu_big" | 大核CPU管控动作（控制大核CPU频率） | 无 | 无 | 无 | 无 |
     | name="cpu_med" | 中核CPU管控动作（控制中核CPU频率） | 无 | 无 | 无 | 无 |
     | name="cpu_lit" | 小核CPU管控动作（控制小核CPU频率） | 无 | 无 | 无 | 无 |
     | name="gpu" | GPU管控动作（控制GPU频率） | 无 | 无 | 无 | 无 |
+    | name="boost" | SOCPERF热等级管控动作 | event | 为1时发送事件，为0时不发送事件 | int | 0，1 |
+    | name="isolate" | CPU提高频率管控动作 | event | 为1时发送事件，为0时不发送事件 | int | 0，1 |
     | name="lcd" | LCD管控动作（控制屏幕亮度） | 无 | 无 | 无 | 无 |
     | name="volume" | 声音管控动作（控制音量大小） | uid | 用户id | int | 根据产品定义 | 
     | name="current_xxx" | 充电电流管控动作（控制快充和慢充时的充电电流大小） | protocol<br>param | protocol填写current，param填写支持的充电协议，快充（sc）和慢充（buck） | string |protocol="current" param="sc" |
     | name="current_xxx" | 充电电流管控动作 | event | 为1时发送事件，为0时不发送事件 | int | 0，1 |
     | name="voltage_xxx" | 充电电压管控动作（控制快充和慢充时的充电电压大小） | protocol<br>param | protocol填写voltage，param填写支持的充电协议，快充（sc）和慢充（buck） | string | protocol="voltage" param="buck" |
     | name="voltage_xxx" | 充电电压管控动作 | event | 为1时发送事件，为0时不发送事件 | int | 0，1 |
+    | name="process_ctrl" | 进程管控动作（控制前台和后台进程存活状态） | param | param填写任意字符串 | string | 无 |
     | name="process_ctrl" | 进程管控动作（控制前台和后台进程存活状态） | event | 为1时发送事件，为0时不发送事件，为空时默认值为0 | int | 0，1 |
     | name="shut_down" | 关机管控动作（控制是否关机） | event | 为1时发送事件，为0时不发送事件 | int | 0，1 |
     | name="thermallevel" | 热等级管控动作（控制热等级上报） | event | 为1时发送事件，为0时不发送事件 | int | 0，1 |
     | name="popup" | 弹窗管控动作（控制是否弹窗） | 无 | 无 | 无 | 无 |
-    | name="xxx" | 节点定制温控动作 | protocol<br>param | protocol填入node<br>param填入节点路径及回退值，用逗号隔开 | string | 无 |
+    | name="xxx" | 节点定制温控动作 | protocol<br>param | protocol填入node<br>param填入节点路径及回退值，用"\|"隔开 | string | 无 |
 
     ```shell
     <action>
+        <item name="airplane"/>
         <item name="cpu_big"/>
         <item name="cpu_med"/>
         <item name="cpu_lit"/>
         <item name="gpu"/>
+        <item name="boost" event="1"/>
+        <item name="isolate" event="1"/>
         <item name="lcd"/>
         <item name="volume" uid="2001,2002"/>
         <item name="current_sc" protocol="current" param="sc" event="1"/>
         <item name="voltage_buck" protocol="voltage" param="buck" event="1"/>
-        <item name="process_ctrl" event=""/>
+        <item name="process_ctrl" param="32,64,128,256" event=""/>
         <item name="shut_down" event="0"/>
-        <item name="thermallevel" event="0"/>
+        <item name="thermallevel" event="1"/>
         <item name="popup"/>
         <item name="(action_name)" protocol="node" param="/sys/class/thermal/xxx"/>
+        <item name="test"/>
     </action>
     ```
 
@@ -120,6 +128,8 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
 
 ### 调测验证 
 
+OpenHarmony从5.0.0 Release版本起，支持温度模拟调测功能。下述操作通过模拟温度变化实现温度等级的跃迁，以此来验证热管控策略的定制能力。下述调测验证步骤，默认定制的thermal_service_config.xml按照[默认热管控的配置文件夹中的thermal_service_config.xml](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/thermal_service_config.xml)配置。
+
 1. 开机后，进入shell命令行：
     ```shell
     hdc shell
@@ -136,19 +146,90 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
 
 
     ----------------------------------ThermalService---------------------------------
+    name: airplane	strict: 0	enableEvent: 0
     name: cpu_big	strict: 0	enableEvent: 0
     name: cpu_med	strict: 0	enableEvent: 0
     name: cpu_lit	strict: 0	enableEvent: 0
     name: gpu	strict: 0	enableEvent: 0
-    name: boost	strict: 0	enableEvent: 0
+    name: boost	strict: 0	enableEvent: 1
+    name: isolate	strict: 0	enableEvent: 1
     name: lcd	strict: 0	enableEvent: 0
     name: volume	uid: 2001,2002	strict: 0	enableEvent: 0
-    name: current	protocol: sc,buck	strict: 0	enableEvent: 1
-    name: voltage	protocol: sc,buck	strict: 0	enableEvent: 1
-    name: process_ctrl	strict: 0	enableEvent: 0
+    name: current_sc    params: sc	protocol: current	strict: 0	enableEvent: 1
+    name: current_buck    params: buck	protocol: current	strict: 0	enableEvent: 1
+    name: voltage_sc   params: sc	protocol: voltage	strict: 0	enableEvent: 1
+    name: voltage_buck   params: buck	protocol: voltage	strict: 0	enableEvent: 1
+    name: process_ctrl  params: 32,64,128,256	strict: 0	enableEvent: 0
     name: shut_down	strict: 0	enableEvent: 0
-    name: thermallevel	strict: 0	enableEvent: 0
+    name: thermallevel	strict: 0	enableEvent: 1
     name: popup	strict: 0	enableEvent: 0
+    name: test	strict: 0	enableEvent: 0
+    ```
+
+3. 停止自动上报温度。
+    
+    使用```hidumper -s 3303 -a '-st [f] [...]'```指令控制是否自动上报温度。其中...表示任意字符串。如果f为0，则停止自动上报温度；否则，则恢复自动上报温度。
+
+    ```shell
+    $ hidumper -s 3303 -a '-st 0'
+
+    -------------------------------[ability]-------------------------------
+
+
+    ----------------------------------ThermalService----------------------------------
+    Temperature reporting has been stopped.
+    ```
+
+4. 模拟温度变化。
+    
+    为触发热管控策略，先设置低温，再设置高温。使用```hidumper -s 3303 -a '-te [name] [num]'```指令上报模拟温度。其中name表示温度传感器名称，num表示该传感器对应的模拟温度。多组name和num，表示同时上传多组模拟温度。
+
+    ```shell
+    $ hidumper -s 3303 -a '-te battery 32000 charger 32000'
+
+    -------------------------------[ability]-------------------------------
+
+
+    ----------------------------------ThermalService----------------------------------
+    Report temperature [ battery ]: 32000
+    Report temperature [ charger ]: 32000
+    $ hidumper -s 3303 -a '-te battery 39000 charger 39000'
+
+    -------------------------------[ability]-------------------------------
+
+
+    ----------------------------------ThermalService----------------------------------
+    Report temperature [ battery ]: 39000
+    Report temperature [ charger ]: 39000
+    ```
+
+5. 获取当前温度等级信息。
+    ```shell
+    hidumper -s 3303 -a -l
+    ```
+
+    查看上传模拟温度后的温度等级信息如下：
+    ```shell
+    -------------------------------[ability]-------------------------------
+
+
+    ----------------------------------ThermalService----------------------------------
+    name: base_safe level: 1
+    name: cold_safe level: 0
+    name: high_safe level: 0
+    name: screenoff_charge  level: 0
+    name: warm_5G   level: 0
+    name: warm_safe level: 0
+    ```
+
+6. 查看温控结点信息。
+    ```shell
+    cat /data/service/el0/thermal/config/process_ctrl
+    ```
+
+    查看温控结点信息如下，表明process_ctrl热管控策略正确执行：
+    ```shell
+    3
     ```
 
 ## 参考 

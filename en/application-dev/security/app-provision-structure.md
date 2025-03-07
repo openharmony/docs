@@ -37,7 +37,11 @@ An example of the **HarmonyAppProvision** file is as follows:
 		"distribution-certificate": "Base64 string",
 		"bundle-name": "com.OpenHarmony.app.test",
 		"apl": "normal",
-        "app-feature": "hos_normal_app"
+		"app-feature": "hos_normal_app",
+		"data-group-ids": [
+			"testGroupId1",
+			"testGroupId2"
+		]
 	},
 	"acls": {
 		"allowed-acls": ["string"]
@@ -74,6 +78,8 @@ An example of the **HarmonyAppProvision** file is as follows:
 | bundle-name  | Bundle name of the application.| String   | Yes| No  |
 | apl  | [Ability Privilege Level (APL)](AccessToken/access-token-overview.md) of the application. The predefined APLs includes normal, system_basic, and system_core.| String   | Yes| No  |
 | app-feature  | Type of your application. The value can be **hos_system_app** (system application) or **hos_normal_app** (normal application). Only system applications are allowed to call system APIs. If a normal application calls a system API, the call cannot be successful or the application may run abnormally.| String   | Yes| No  |
+| data-group-ids  | IDs of application data groups. When an application is installed, a directory is generated for each data group ID. If two applications or an ExtensionAbility and its application have the same data group ID in **data-group-ids**, they can share the data in the directory corresponding to the data group ID. An ExtensionAbility declares the data group IDs in the **dataGroupIds** field in the [module.json5](../quick-start/module-configuration-file.md#extensionabilities) file.| String array   | No| Yes (initial value: left empty)  |
+| app-identifier | Unique ID of the application, which is allocated by the cloud. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.| String array   | No| Yes (initial value: left empty)  |
 
 
 ### acls
@@ -113,3 +119,4 @@ To modify the HarmonyAppProvision configuration file, perform the following step
 
 After modifying the configuration file, [sign the application](hapsigntool-guidelines.md).
 
+<!--no_check-->

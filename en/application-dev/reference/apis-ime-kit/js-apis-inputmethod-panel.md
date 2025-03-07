@@ -9,7 +9,7 @@ The **inputMethod.Panel** module provides APIs for managing the attributes of th
 ## Modules to Import
 
 ```ts
-import panel from '@ohos.inputMethod.Panel';
+import { PanelInfo, PanelType, PanelFlag } from '@kit.IMEKit';
 ```
 
 ## PanelInfo
@@ -31,8 +31,8 @@ Enumerates the types of the input method panel.
 
 | Name         | Value  | Description        |
 | ------------- | ---- | ------------ |
-| SOFT_KEYBOARD | 0    | Soft keyboard type.|
-| STATUS_BAR    | 1    | Status bar type.|
+| SOFT_KEYBOARD | 0    | Soft keyboard.|
+| STATUS_BAR    | 1    | Status bar.|
 
 ##  PanelFlag
 

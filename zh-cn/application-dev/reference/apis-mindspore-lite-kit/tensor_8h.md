@@ -3,7 +3,7 @@
 
 ## 概述
 
-提供了张量相关的接口，可用于创建和修改张量信息。
+提供了张量相关的接口，可用于创建和修改张量信息，该接口是非线程安全的。
 
 **起始版本：**
 
@@ -22,6 +22,7 @@
 | 类型定义名称 | 描述 |
 | -------- | -------- |
 | [OH_AI_TensorHandle](_mind_spore.md#oh_ai_tensorhandle) | 指向张量对象句柄。 |
+| [OH_AI_AllocatorHandle](_mind_spore.md#oh_ai_allocatorhandle) | 指向内存分配器对象句柄。 |
 
 
 ### 函数
@@ -45,3 +46,5 @@
 | [OH_AI_TensorGetElementNum](_mind_spore.md#oh_ai_tensorgetelementnum) (const OH_AI_TensorHandle tensor) | 获取张量元素数量。 |
 | [OH_AI_TensorGetDataSize](_mind_spore.md#oh_ai_tensorgetdatasize) (const OH_AI_TensorHandle tensor) | 获取张量中的数据的字节数大小。 |
 | [OH_AI_TensorSetUserData](_mind_spore.md#oh_ai_tensorsetuserdata) ([OH_AI_TensorHandle](_mind_spore.md#oh_ai_tensorhandle) tensor, void \*data, size_t data_size) | 设置张量为用户自行管理的数据。此接口常用于复用用户数据作为模型输入，可减少一次数据拷贝。 |
+| [OH_AI_TensorGetAllocator](_mind_spore.md#oh_ai_tensorgetallocator)([OH_AI_TensorHandle](_mind_spore.md#oh_ai_tensorhandle) tensor) | 获取内存分配器。 |
+| [OH_AI_TensorSetAllocator](_mind_spore.md#oh_ai_tensorsetallocator)([OH_AI_TensorHandle](_mind_spore.md#oh_ai_tensorhandle) tensor, [OH_AI_AllocatorHandle](_mind_spore.md#oh_ai_allocatorhandle) allocator) | 设置内存分配器。 |

@@ -1,7 +1,7 @@
 # DataAbility的生命周期
 
 
-应用开发者可以根据业务场景重写生命周期相关接口。DataAbility生命周期接口说明见下表。
+应用开发者可以根据业务场景实现data.js/data.ets中的生命周期相关接口。DataAbility生命周期接口说明见下表。
 
 
   **表1** DataAbility相关生命周期API功能介绍

@@ -13,7 +13,7 @@
 import statfs from '@ohos.statfs';
 ```
 
-## statfs.getFreeBytes
+## Statfs.getFreeBytes
 
 getFreeBytes(path:string):Promise&lt;number&gt;
 
@@ -41,11 +41,11 @@ getFreeBytes(path:string):Promise&lt;number&gt;
   statfs.getFreeBytes(path).then((number: number) => {
     console.info("getFreeBytes promise successfully:" + number);
   }).catch((err: BusinessError) => {
-    console.info("getFreeBytes failed with error:" + JSON.stringify(err));
+    console.error("getFreeBytes failed with error:" + JSON.stringify(err));
   });
   ```
 
-## statfs.getFreeBytes
+## Statfs.getFreeBytes
 
 getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 
@@ -64,6 +64,7 @@ getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 
   ```ts
   import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
   let context = getContext(this) as common.UIAbilityContext;
   let path = context.filesDir;
   statfs.getFreeBytes(path, (err: BusinessError, freeBytes:Number) => {
@@ -75,7 +76,7 @@ getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
   });
   ```
 
-## statfs.getTotalBytes
+## Statfs.getTotalBytes
 
 getTotalBytes(path: string): Promise&lt;number&gt;
 
@@ -103,11 +104,11 @@ getTotalBytes(path: string): Promise&lt;number&gt;
   statfs.getTotalBytes(path).then((number: number) => {
     console.info("getTotalBytes promise successfully:" + number);
   }).catch((err: BusinessError) => {
-    console.info("getTotalBytes failed with error:" + JSON.stringify(err));
+    console.error("getTotalBytes failed with error:" + JSON.stringify(err));
   });
   ```
 
-## statfs.getTotalBytes
+## Statfs.getTotalBytes
 
 getTotalBytes(path: string, callback: AsyncCallback&lt;number&gt;): void
 
@@ -126,6 +127,7 @@ getTotalBytes(path: string, callback: AsyncCallback&lt;number&gt;): void
 
   ```ts
   import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
   let context = getContext(this) as common.UIAbilityContext;
   let path = context.filesDir;
   statfs.getTotalBytes(path, (err: BusinessError, totalBytes:Number) => {

@@ -8,7 +8,7 @@
 
 **Error Message**
 
-If the resId invalid.
+Invalid resource ID.
 
 **Description**
 
@@ -20,13 +20,15 @@ The specified **resId** does not exist.
 
 **Solution**
 
-Check whether the specified **resId** exists.
+1. Check for any of the following cases: [HAR with obfuscation enabled](../../quick-start/har-package.md#building-an-har), intermediate-code HAR, bytecode HAR, and cross-HAP/HSP. In these cases, you are advised to use APIs such as [getStringByName()](js-apis-resource-manager.md#getstringbyname9) to obtain resources by name.
+
+2. Check whether the specified **resId** exists. 
 
 ## 9001002 Matching Resource Not Found Based on the Specified Resource ID
 
 **Error Message**
 
-If the resource not found by resId.
+No matching resource is found based on the resource ID.
 
 **Description**
 
@@ -36,7 +38,7 @@ This error code is reported if the specified **resId** meets the type requiremen
 
 1. The specified **resId** is incorrect.
 
-2. Resource parsing is incorrect.
+2. An error occurs during resource parsing.
 
 **Solution**
 
@@ -46,7 +48,7 @@ Check whether the specified **resId** is correct.
 
 **Error Message**
 
-If the resName invalid.
+Invalid resource name.
 
 **Description**
 
@@ -64,7 +66,7 @@ Check whether the specified **resName** is correct.
 
 **Error Message**
 
-If the resource not found by resName.
+No matching resource is found based on the resource name.
 
 **Description**
 
@@ -74,7 +76,7 @@ This error code is reported if the specified resId meets the type requirement bu
 
 1. The specified **resName** is incorrect.
 
-2. Resource parsing is incorrect.
+2. An error occurs during resource parsing.
 
 **Solution**
 
@@ -84,7 +86,7 @@ Check whether the specified **resName** is correct.
 
 **Error Message**
 
-If the resource not found by path.
+Invalid relative path.
 
 **Description**
 
@@ -102,7 +104,7 @@ Check whether the specified relative path is correct.
 
 **Error Message**
 
-If the resource re-ref too much.
+The resource is referenced cyclically.
 
 **Description**
 
@@ -120,7 +122,7 @@ Check the reference of resource $, and remove the cyclic reference, if any.
 
 **Error Message**
 
-If the resource obtained by resId formatting error.
+Failed to format the resource obtained based on the resource ID.
 
 **Description**
 
@@ -142,7 +144,7 @@ Check whether the number and type of **args** parameters are the same as those o
 
 **Error Message**
 
-If the resource obtained by resName formatting error.
+Failed to format the resource obtained based on the resource Name.
 
 **Description**
 
@@ -164,7 +166,7 @@ Check whether the number and type of **args** parameters are the same as those o
 
 **Error Message**
 
-If application can't access system resource.
+Failed to access the system resource.
 
 **Description**
 
@@ -182,7 +184,7 @@ Check whether the application process contains the sandbox path of system resour
 
 **Error Message**
 
-If the overlay path is invalid.
+Invalid overlay path.
 
 **Description**
 

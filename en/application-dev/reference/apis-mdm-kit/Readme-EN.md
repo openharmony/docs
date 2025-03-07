@@ -1,8 +1,24 @@
-# MDM Kit API Reference
+# MDM Kit (Enterprise Device Management Service)
 
 - ArkTS APIs
-  - [@ohos.configPolicy (Configuration Policy) (System API)](js-apis-configPolicy-sys.md)
-  - [Enterprise Device Management Overview (for System Applications Only)](enterpriseDeviceManagement-overview.md)
+  - [@ohos.enterprise.accountManager (Account Management)](js-apis-enterprise-accountManager.md)
+  - [@ohos.enterprise.adminManager (Enterprise Device Management)](js-apis-enterprise-adminManager.md)
+  - [@ohos.enterprise.applicationManager (Application Management)](js-apis-enterprise-applicationManager.md)
+  - [@ohos.enterprise.bluetoothManager (Bluetooth Management)](js-apis-enterprise-bluetoothManager.md)
+  - [@ohos.enterprise.browser (Browser Management)](js-apis-enterprise-browser.md)
+  - [@ohos.enterprise.bundleManager (Bundle Management)](js-apis-enterprise-bundleManager.md)
+  - [@ohos.enterprise.deviceControl (Device Control Management)](js-apis-enterprise-deviceControl.md)
+  - [@ohos.enterprise.deviceInfo (Device Information Management)](js-apis-enterprise-deviceInfo.md)
+  - [@ohos.enterprise.deviceSettings (Device Settings Management)](js-apis-enterprise-deviceSettings.md)
+  - [@ohos.enterprise.locationManager (Location Service Management)](js-apis-enterprise-locationManager.md)
+  - [@ohos.enterprise.networkManager (Network Management)](js-apis-enterprise-networkManager.md)
+  - [@ohos.enterprise.restrictions (Restrictions)](js-apis-enterprise-restrictions.md)
+  - [@ohos.enterprise.securityManager (Security Management)](js-apis-enterprise-securityManager.md)
+  - [@ohos.enterprise.systemManager (System Management)](js-apis-enterprise-systemManager.md)
+  - [@ohos.enterprise.usbManager (USB Management)](js-apis-enterprise-usbManager.md)
+  - [@ohos.enterprise.wifiManager (Wi-Fi Management)](js-apis-enterprise-wifiManager.md)
+  - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
+  <!--Del-->
   - [@ohos.enterprise.accountManager (Account Management) (System API)](js-apis-enterprise-accountManager-sys.md)
   - [@ohos.enterprise.adminManager (Enterprise Device Management) (System API)](js-apis-enterprise-adminManager-sys.md)
   - [@ohos.enterprise.applicationManager (Application Management) (System API)](js-apis-enterprise-applicationManager-sys.md)
@@ -13,13 +29,11 @@
   - [@ohos.enterprise.deviceControl (Device Control) (System API)](js-apis-enterprise-deviceControl-sys.md)
   - [@ohos.enterprise.deviceInfo (Device Information Management) (System API)](js-apis-enterprise-deviceInfo-sys.md)
   - [@ohos.enterprise.deviceSettings (Device Settings) (System API)](js-apis-enterprise-deviceSettings-sys.md)
-  - [@ohos.enterprise.locationManager (Location Management) (System API)](js-apis-enterprise-locationManager-sys.md)
   - [@ohos.enterprise.networkManager (Network Management) (System API)](js-apis-enterprise-networkManager-sys.md)
   - [@ohos.enterprise.restrictions (Restrictions) (System API)](js-apis-enterprise-restrictions-sys.md)
   - [@ohos.enterprise.securityManager (Security Management) (System API)](js-apis-enterprise-securityManager-sys.md)
-  - [@ohos.enterprise.systemManager (System Management) (System API)](js-apis-enterprise-systemManager-sys.md)
   - [@ohos.enterprise.usbManager (USB Management) (System API)](js-apis-enterprise-usbManager-sys.md)
   - [@ohos.enterprise.wifiManager (Wi-Fi Management) (System API)](js-apis-enterprise-wifiManager-sys.md)
-  - [@ohos.enterprise.EnterpriseAdminExtensionAbility (Enterprise Device Management ExtensionAbility) (System API)](js-apis-EnterpriseAdminExtensionAbility-sys.md)
+  <!--DelEnd-->
 - Error Codes
   - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)

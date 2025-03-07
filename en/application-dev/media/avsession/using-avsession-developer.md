@@ -38,7 +38,7 @@ To enable an audio and video application to access the AVSession service as a pr
 1. Call an API in the **AVSessionManager** class to create and activate an **AVSession** object.
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    // Start to create and activate an AVSession object.
    // Create an AVSession object.
@@ -58,8 +58,8 @@ To enable an audio and video application to access the AVSession service as a pr
    The controller will call an API in the **AVSessionController** class to obtain the information and display or process the information.
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import { BusinessError } from '@ohos.base';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let context: Context = getContext(this);
    async function setSessionInfo() {
@@ -70,6 +70,7 @@ To enable an audio and video application to access the AVSession service as a pr
      let metadata: AVSessionManager.AVMetadata = {
        assetId: '0', // Specified by the application, used to identify the media asset in the application media library.
        title: 'TITLE',
+       mediaImage: 'IMAGE',
        artist: 'ARTIST'
      };
      session.setAVMetadata(metadata).then(() => {
@@ -131,16 +132,11 @@ To enable an audio and video application to access the AVSession service as a pr
    ```
 
 3. Set the UIAbility to be started by the controller. The UIAbility configured here is started when a user operates the UI of the controller, for example, clicking a widget in Media Controller.
-   
    The UIAbility is set through the **WantAgent** API. For details, see [WantAgent](../../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md).
- 
-   ```ts
-   import wantAgent from "@ohos.app.ability.wantAgent";
-   ```
 
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import wantAgent from '@ohos.app.ability.wantAgent';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { wantAgent } from '@kit.AbilityKit';
 
    let context: Context = getContext(this);
    async function getWantAgent() {
@@ -151,10 +147,11 @@ To enable an audio and video application to access the AVSession service as a pr
        wants: [
          {
            bundleName: 'com.example.musicdemo',
-           abilityName: 'com.example.musicdemo.MainAbility'
+           abilityName: 'MainAbility'
          }
        ],
-       operationType: wantAgent.OperationType.START_ABILITIES,
+       // OperationType.START_ABILITIES
+       operationType: 2,
        requestCode: 0,
        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
      }
@@ -172,8 +169,8 @@ To enable an audio and video application to access the AVSession service as a pr
 
    ```ts
 
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import { BusinessError } from '@ohos.base';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let context: Context = getContext(this);
    async function dispatchSessionEvent() {
@@ -197,8 +194,8 @@ To enable an audio and video application to access the AVSession service as a pr
    > The data set by using **setExtras** is stored in the AVSession service. The data lifecycle is the same as that of the **AVSession** object, and the controller corresponding to the object can use **getExtras** to obtain the data.
 
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import { BusinessError } from '@ohos.base';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let context: Context = getContext(this);
    async function setExtras() {
@@ -221,12 +218,12 @@ To enable an audio and video application to access the AVSession service as a pr
 
    > **NOTE**
    >
-   > After the provider registers a listener for fixed playback control commands, the commands will be reflected in **getValidCommands()** of the controller. In other words, the controller determines that the command is valid and triggers the corresponding event as required. To ensure that the playback control commands delivered by the controller can be executed normally, the provider should not use a null implementation for listening.
+   > After the provider registers a listener for fixed playback control commands, the commands will be reflected in **getValidCommands()** of the controller. In other words, the controller determines that the command is valid and triggers the corresponding event (not used temporarily) as required. To ensure that the playback control commands delivered by the controller can be executed normally, the provider should not use a null implementation for listening.
 
-   Fixed playback control commands on the session side include basic operation commands such as play, pause, previous, and next. For details, see [AVControlCommand](../../reference/apis-avsession-kit/js-apis-avsession.md).
+   Fixed playback control commands on the session side include basic operation commands such as play, pause, previous, and next. For details, see [AVControlCommand](../../reference/apis-avsession-kit/js-apis-avsession.md#avcontrolcommand10).
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    let context: Context = getContext(this);
    async function setListenerForMesFromController() {
@@ -237,36 +234,43 @@ To enable an audio and video application to access the AVSession service as a pr
      // After the processing is complete, use the setter to synchronize the playback information. For details, see the code snippet above.
      session.on('play', () => {
        console.info(`on play , do play task`);
-       // do some tasks ···
+       // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('play') to cancel listening.
+       // After the processing is complete, call SetAVPlayState to report the playback state.
      });
      session.on('pause', () => {
        console.info(`on pause , do pause task`);
-       // do some tasks ···
+        // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('pause') to cancel listening.
+        // After the processing is complete, call SetAVPlayState to report the playback state.
      });
      session.on('stop', () => {
        console.info(`on stop , do stop task`);
-       // do some tasks ···
+        // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('stop') to cancel listening.
+        // After the processing is complete, call SetAVPlayState to report the playback state.
      });
      session.on('playNext', () => {
        console.info(`on playNext , do playNext task`);
-       // do some tasks ···
+        // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('playNext') to cancel listening.
+        // After the processing is complete, call SetAVPlayState to report the playback state and call SetAVMetadata to report the media information.
      });
      session.on('playPrevious', () => {
        console.info(`on playPrevious , do playPrevious task`);
-       // do some tasks ···
+        // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('playPrevious') to cancel listening.
+        // After the processing is complete, call SetAVPlayState to report the playback state and call SetAVMetadata to report the media information.
      });
      session.on('fastForward', () => {
        console.info(`on fastForward , do fastForward task`);
-       // do some tasks ···
+        // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('fastForward') to cancel listening.
+        // After the processing is complete, call SetAVPlayState to report the playback state and position.
      });
      session.on('rewind', () => {
        console.info(`on rewind , do rewind task`);
-       // do some tasks ···
+        // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('rewind') to cancel listening.
+        // After the processing is complete, call SetAVPlayState to report the playback state and position.
      });
-
      session.on('seek', (time) => {
        console.info(`on seek , the seek time is ${time}`);
-       // do some tasks ···
+        // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('seek') to cancel listening.
+        // After the processing is complete, call SetAVPlayState to report the playback state and position.
      });
      session.on('setSpeed', (speed) => {
        console.info(`on setSpeed , the speed is ${speed}`);
@@ -274,11 +278,13 @@ To enable an audio and video application to access the AVSession service as a pr
      });
      session.on('setLoopMode', (mode) => {
        console.info(`on setLoopMode , the loop mode is ${mode}`);
-       // do some tasks ···
+        // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('setLoopMode') to cancel listening.
+        // The application determines the next loop mode. After the processing is complete, call SetAVPlayState to report the new loop mode.
      });
      session.on('toggleFavorite', (assetId) => {
        console.info(`on toggleFavorite , the target asset Id is ${assetId}`);
-       // do some tasks ···
+        // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('toggleFavorite') to cancel listening.
+        // After the processing is complete, call SetAVPlayState to report the value of isFavorite.
      });
    }
    ```
@@ -293,7 +299,7 @@ To enable an audio and video application to access the AVSession service as a pr
    - **commonCommand**: triggered when a custom playback control command changes.
 
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    let context: Context = getContext(this);
    async function setListenerForMesFromController() {
@@ -324,7 +330,7 @@ To enable an audio and video application to access the AVSession service as a pr
 7. Obtain an **AVSessionController** object for this **AVSession** object for interaction.
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    let context: Context = getContext(this);
    async function createControllerFromSession() {
@@ -354,7 +360,7 @@ To enable an audio and video application to access the AVSession service as a pr
    The code snippet below is used for canceling the listener for playback control commands:
 
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    let context: Context = getContext(this);
    async function unregisterSessionListener() {
@@ -378,7 +384,7 @@ To enable an audio and video application to access the AVSession service as a pr
      The code snippet below is used for destroying the AVSession object:
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    let context: Context = getContext(this);
    async function destroySession() {

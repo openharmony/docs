@@ -11,12 +11,12 @@
 ## 导入模块
 
 ```ts
-import distributedMissionManager from '@ohos.distributedMissionManager';
+import { distributedMissionManager } from '@kit.AbilityKit';
 ```
 
 ## 属性
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 

@@ -5,6 +5,10 @@
 
 声明图像常用的枚举值和结构体。
 
+**库**：libimage_ndk.z.so
+
+**引用文件**：&lt;multimedia/image_framework/image_mdk_common.h&gt;
+
 **起始版本：** 10
 
 **相关模块：** [Image](image.md)
@@ -17,7 +21,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OhosImageSize](_ohos_image_size.md) | 定义图像大小。 | 
+| struct  [OhosImageSize](_ohos_image_size.md) | 定义图像大小。  | 
+
 
 ### 宏定义
 

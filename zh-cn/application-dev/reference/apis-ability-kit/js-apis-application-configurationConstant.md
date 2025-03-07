@@ -12,11 +12,11 @@ ConfigurationConstant模块提供配置信息枚举值定义的能力。
 import ConfigurationConstant from '@ohos.application.ConfigurationConstant';
 ```
 
-## ConfigurationConstant.ColorMode
+## ColorMode
 
 表示颜色模式的枚举。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+**系统能力**：SystemCapability.Ability.AbilityBase
 
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |

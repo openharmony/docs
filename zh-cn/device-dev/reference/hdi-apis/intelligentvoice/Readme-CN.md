@@ -1,0 +1,33 @@
+# Intelligent Voice HDI 参考
+
+- 模块
+    - [IntelligentVoiceEngine](_intelligent_voice_engine.md)
+    - [IntelligentVoiceTrigger](_intelligent_voice_trigger.md)
+- 头文件
+    - IntelligentVoiceEngine
+        - [IIntellVoiceEngineAdapter.idl](_i_intell_voice_engine_adapter_8idl.md)
+        - [IIntellVoiceEngineCallback.idl](_i_intell_voice_engine_callback_8idl.md)
+        - [IIntellVoiceEngineManager.idl](_i_intell_voice_engine_manager_8idl.md)
+        - [IntellVoiceEngineTypes.idl](_intell_voice_engine_types_8idl.md)
+    - IntelligentVoiceTrigger
+        - [IIntellVoiceTriggerAdapter.idl](_i_intell_voice_trigger_adapter_8idl.md)
+        - [IIntellVoiceTriggerCallback.idl](_i_intell_voice_trigger_callback_8idl.md)
+        - [IIntellVoiceTriggerManager.idl](_i_intell_voice_trigger_manager_8idl.md)
+        - [IntellVoiceTriggerTypes.idl](_intell_voice_trigger_types_8idl.md)
+- 结构体
+    - IntelligentVoiceEngine
+        - [IIntellVoiceEngineAdapter](interface_i_intell_voice_engine_adapter.md)
+        - [IIntellVoiceEngineCallback](interface_i_intell_voice_engine_callback.md)
+        - [IIntellVoiceEngineManager](interface_i_intell_voice_engine_manager.md)
+        - [IntellVoiceEngineAdapterDescriptor](_intell_voice_engine_adapter_descriptor.md)
+        - [IntellVoiceEngineAdapterInfo](_intell_voice_engine_adapter_info.md)
+        - [IntellVoiceEngineCallBackEvent](_intell_voice_engine_call_back_event.md)
+        - [StartInfo](_start_info.md)
+    - IntelligentVoiceTrigger
+        - [IIntellVoiceTriggerAdapter](interface_i_intell_voice_trigger_adapter.md)
+        - [IIntellVoiceTriggerCallback](interface_i_intell_voice_trigger_callback.md)
+        - [IIntellVoiceTriggerManager](interface_i_intell_voice_trigger_manager.md)
+        - [IntellVoiceRecognitionEvent](_intell_voice_recognition_event.md)
+        - [IntellVoiceTriggerAdapterDsecriptor](_intell_voice_trigger_adapter_dsecriptor.md)
+        - [IntellVoiceTriggerModel](_intell_voice_trigger_model.md)
+        - [IntellVoiceTriggerProperties](_intell_voice_trigger_properties.md)

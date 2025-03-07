@@ -10,20 +10,20 @@ For details about the parameters, return values, and error codes, see [getEnroll
 
 | API| Description| 
 | -------- | -------- |
-| getEnrolledState(authType : UserAuthType): EnrolledStated | Obtains information about the enrolled credentials based on the specified authentication type.| 
+| getEnrolledState(authType : UserAuthType): EnrolledState | Obtains the status of the enrolled credentials based on the specified authentication type.| 
 
 
 ## How to Develop
 
 1. Check that the application has the ohos.permission.ACCESS_BIOMETRIC permission. For details about how to request permissions, see [Requesting Permissions](prerequisites.md#requesting-permissions).
 
-2. Use [getEnrolledState](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthgetenrolledstate12) with **UserAuthType** to obtain information about the credentials enrolled by the user.
+2. Specify the authentication type ([UserAuthType](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthtype8)) and call [getEnrolledState](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthgetenrolledstate12) to obtain the status of the credentials enrolled by the user.
 
 Example: Obtain information about the credentials enrolled for facial authentication.
 
 ```ts
-import type {BusinessError} from '@ohos.base';
-import userAuth from '@ohos.userIAM.userAuth';
+import { BusinessError } from  '@kit.BasicServicesKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
   let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.FACE);

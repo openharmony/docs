@@ -13,7 +13,7 @@ The **dialogSession** module provides APIs related to the dialog box.
 ## Modules to Import
 
 ```ts
-import dialogSession from '@ohos.app.ability.dialogSession';
+import { dialogSession } from '@kit.AbilityKit';
 ```
 
 ## DialogAbilityInfo
@@ -31,6 +31,9 @@ Provides DialogAbility information, including the bundle name, module name, and 
 | abilityLabelId | number | Yes| Yes| ID of the ability label.|
 | bundleIconId | number | Yes| Yes| ID of the bundle icon.|
 | bundleLabelId | number | Yes| Yes| ID of the bundle label.|
+| visible<sup>12+</sup> | boolean | Yes| Yes| Whether the ability is visible.|
+| appIndex<sup>12+</sup> | number | Yes| Yes| Index of the application clone.|
+| multiAppMode<sup>12+</sup> | [MultiAppMode](./js-apis-bundleManager-applicationInfo.md#multiappmode12) | Yes| Yes| Multi-app mode.|
 
 ## DialogSessionInfo
 
@@ -68,19 +71,20 @@ Obtains the session information based on the session ID.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006  | Cross-user operations are not allowed. |
 | 16000050  | Internal error. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 **Example**
 
 ```ts
-import dialogSession from '@ohos.app.ability.dialogSession';
-import Want from '@ohos.app.ability.Want';
+import { dialogSession, Want } from '@kit.AbilityKit';
 
 // want is specified by the system. dialogSessionId is a built-in parameter.
 let dialogSessionId: string = want?.parameters?.dialogSessionId;
@@ -110,19 +114,21 @@ Sends a request for a dialog box. This API uses an asynchronous callback to retu
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006  | Cross-user operations are not allowed. |
 | 16000050  | Internal error. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 **Example**
 
 ```ts
-import dialogSession from '@ohos.app.ability.dialogSession';
-import Want from '@ohos.app.ability.Want';
+import { dialogSession, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // want is specified by the system. dialogSessionId is a built-in parameter.
 let dialogSessionId: string = want?.parameters?.dialogSessionId;
@@ -130,7 +136,7 @@ let dialogSessionId: string = want?.parameters?.dialogSessionId;
 // Obtain DialogSessionInfo.
 let dialogSessionInfo: dialogSession.DialogSessionInfo = dialogSession.getDialogSessionInfo(dialogSessionId);
 
-let isAllow: Boolean = true;
+let isAllow: boolean = true;
 
 // When isAllow is true, targetWant is one of dialogSessionInfo.targetAbilityInfos.
 let targetWant: Want = {
@@ -140,14 +146,14 @@ let targetWant: Want = {
 
 try {
   dialogSession.sendDialogResult(dialogSessionId, targetWant, isAllow, (err, data) => {
-    if (data) {
-      console.log(`sendDialogResult success, data: ${data}`);
-    } else {
+    if (err) {
       console.error(`sendDialogResult error, errorCode: ${err.code}`);
+    } else {
+      console.log(`sendDialogResult success`);
     }
   });
 } catch (err) {
-  console.error(`sendDialogResult error, errorCode: ${err.code}`);
+  console.error(`sendDialogResult error, errorCode: ${(err as BusinessError).code}`);
 }
 ```
 
@@ -177,19 +183,21 @@ Sends a request for a dialog box. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006  | Cross-user operations are not allowed. |
 | 16000050  | Internal error. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 **Example**
 
 ```ts
-import dialogSession from '@ohos.app.ability.dialogSession';
-import Want from '@ohos.app.ability.Want';
+import { dialogSession, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // want is specified by the system. dialogSessionId is a built-in parameter.
 let dialogSessionId: string = want?.parameters?.dialogSessionId;
@@ -197,7 +205,7 @@ let dialogSessionId: string = want?.parameters?.dialogSessionId;
 // Obtain DialogSessionInfo.
 let dialogSessionInfo: dialogSession.DialogSessionInfo = dialogSession.getDialogSessionInfo(dialogSessionId);
 
-let isAllow: Boolean = true;
+let isAllow: boolean = true;
 
 // When isAllow is true, targetWant is one of dialogSessionInfo.targetAbilityInfos.
 let targetWant: Want = {
@@ -213,6 +221,6 @@ try {
       console.error(`startChildProcess error, errorCode: ${err.code}`);
     })
 } catch (err) {
-  console.error(`sendDialogResult error, errorCode: ${err.code}`);
+  console.error(`sendDialogResult error, errorCode: ${(err as BusinessError).code}`);
 }
 ```

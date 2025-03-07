@@ -18,8 +18,6 @@ Function Flow is a task-based and data-driven concurrent programming model that 
 | Scheduling overhead      | Thread scheduling is implemented by a kernel-mode scheduler, resulting in high scheduling overhead.                      | Thread scheduling is implemented by a user-mode coroutine scheduler, requiring less scheduling overhead. In addition, FFRT can further reduce the scheduling overhead through hardware-based scheduling offload.|
 | Dependency expression      | A thread is in the executable state once it is created, and it is executed parallelly with other threads, causing frequent thread switching.| FFRT determines whether a task can be executed based on the input and output dependencies explicitly expressed during task creation. If the input dependencies do not meet the requirements, the task is not scheduled.|
 
-
-
 ### Function Flow
 
 The Function Flow programming model allows you to develop an application by creating tasks and describing their dependencies. Its most outstanding features are task-based and data-driven.
@@ -66,9 +64,9 @@ With the data-driven dependency expression, FFRT can dynamically build different
 
   A dependency formed between the producer task of a data object of a specific version and a producer task of the data object of the next version. It is also referred to as a write-after-write dependency.
 
-
 Assume that the relationship between some tasks and data A is as follows:
-```{.cpp}
+
+```cpp
 task1(OUT A);
 task2(IN A);
 task3(IN A);
@@ -76,13 +74,14 @@ task4(OUT A);
 task5(OUT A);
 ```
 
-<img src="figures/ffrtfigure3.png" style="zoom:60%" />
+![image](figures/ffrtfigure3.png)
 
 > **NOTE**
 >
 > For ease of description, circles are used to represent tasks and squares are used to represent data.
 
 The following conclusions can be drawn:
+
 - task1 and task2/task3 form a producer-consumer dependency. This means that task2/task3 can read data A only after task1 writes data A.
 - task2/task3 and task4 form a consumer-producer dependency. This means that task4 can write data A only after task2/task3 reads data A.
 - task 4 and task 5 form a producer-producer dependency. This means that task 5 can write data A only after task 4 writes data A.
@@ -97,9 +96,9 @@ In C++ semantics, the **thread_local** variable can be compiled, but it is uncer
 
 For non-worker threads in FFRT processes, the behavior of the **thread_local** variable is not affected by FFRT.
 
-> Similar problems occur for thread-bound features such as thread_idx, pthread_specific, recursive lock, thread priority, thread affinity, and recursive lock.
->
-> Do not use these features. If these features are required, use **task local** of FFRT instead.
+Similar problems occur for thread-bound features such as thread_idx, pthread_specific, recursive lock, thread priority, thread affinity, and recursive lock.
+
+Do not use these features. If these features are required, use **task local** of FFRT instead.
 
 ### Do not use FFRT in forked subprocesses.
 

@@ -13,7 +13,7 @@ The **insightIntentDriver** module provides APIs for executing InsightIntent cal
 ## Modules to Import
 
 ```ts
-import insightIntentDriver from '@ohos.app.ability.insightIntentDriver';
+import { insightIntentDriver } from '@kit.AbilityKit';
 ```
 
 ## ExecuteParam
@@ -22,7 +22,7 @@ Defines the parameter used to execute an InsightIntent call.
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -35,6 +35,8 @@ Defines the parameter used to execute an InsightIntent call.
 | insightIntentParam | string | Yes| InsightIntent call parameter.|
 | executeMode | [insightIntent.ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) | Yes| InsightIntent call execution mode.|
 | displayId<sup>12+</sup> | number | No| Physical screen ID specified during InsightIntent call. The value must be an integer. This parameter is valid only when **executeMode** is set to **UI_ABILITY_FOREGROUND**.|
+| uris<sup>16+</sup> | Array&lt;string&gt; | No| List of URIs authorized by the InsightIntent caller to the InsightIntent executor during the call.|
+| flags<sup>16+</sup> | number | No| [Flags](js-apis-app-ability-wantConstant.md#flags) of the URIs authorized by the InsightIntent caller to the InsightIntent executor during the call.<br>**NOTE**<br>This parameter supports only **FLAG_AUTH_READ_URI_PERMISSION**, **FLAG_AUTH_WRITE_URI_PERMISSION**, and **FLAG_AUTH_READ_URI_PERMISSION\|FLAG_AUTH_WRITE_URI_PERMISSION**.|
 
 ## insightIntentDriver.execute
 
@@ -42,9 +44,13 @@ execute(param: ExecuteParam, callback: AsyncCallback<insightIntent.ExecuteResult
 
 Executes a call to an InsightIntent. This API uses an asynchronous callback to return the result.
 
+When the caller is in the background, the ohos.permission.START_ABILITIES_FROM_BACKGROUND permission is required.
+
+When [ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) of the InsightIntent call is set to **UI_ABILITY_BACKGROUND**, the ohos.permission.ABILITY_BACKGROUND_COMMUNICATION permission is required.
+
 **Model restriction**: This API can be used only in the stage model.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.EXECUTE_INSIGHT_INTENT
 
@@ -52,18 +58,23 @@ Executes a call to an InsightIntent. This API uses an asynchronous callback to r
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | param | [ExecuteParam](#executeparam) | Yes| Parameter used to execute the InsightIntent call.|
-  | callback | AsyncCallback<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Yes| Callback used to return the InsightIntent call execution result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| param | [ExecuteParam](#executeparam) | Yes| Parameter used to execute the InsightIntent call.|
+| callback | AsyncCallback<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Yes| Callback used to return the InsightIntent call execution result.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | -------- | -------- |
+| 201      | Permission denied. |
+| 202      | Not system application. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -76,14 +87,11 @@ Executes a call to an InsightIntent. This API uses an asynchronous callback to r
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 **Example**
 
 ```ts
-  import insightIntentDriver from '@ohos.app.ability.insightIntentDriver';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import hilog from '@ohos.hilog';
+  import { insightIntentDriver, insightIntent } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   function executeInsightIntentAsync() {
     let param: insightIntentDriver.ExecuteParam = {
@@ -119,9 +127,13 @@ execute(param: ExecuteParam): Promise<insightIntent.ExecuteResult>
 
 Executes a call to an InsightIntent. This API uses a promise to return the result.
 
+When the caller is in the background, the ohos.permission.START_ABILITIES_FROM_BACKGROUND permission is required.
+
+When [ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) of the InsightIntent call is set to **UI_ABILITY_BACKGROUND**, the ohos.permission.ABILITY_BACKGROUND_COMMUNICATION permission is required.
+
 **Model restriction**: This API can be used only in the stage model.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.EXECUTE_INSIGHT_INTENT
 
@@ -129,9 +141,9 @@ Executes a call to an InsightIntent. This API uses a promise to return the resul
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | param | [ExecuteParam](#executeparam) | Yes| Parameter used to execute the InsightIntent call.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| param | [ExecuteParam](#executeparam) | Yes| Parameter used to execute the InsightIntent call.|
 
 **Return value**
 
@@ -141,11 +153,16 @@ Executes a call to an InsightIntent. This API uses a promise to return the resul
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | -------- | -------- |
+| 201      | Permission denied. |
+| 202      | Not system application. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -158,14 +175,11 @@ Executes a call to an InsightIntent. This API uses a promise to return the resul
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 **Example**
 
 ```ts
-  import insightIntentDriver from '@ohos.app.ability.insightIntentDriver';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import hilog from '@ohos.hilog';
+  import { insightIntentDriver, insightIntent } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   async function executeSearchMusicIntentPromise() {
     let param: insightIntentDriver.ExecuteParam = {

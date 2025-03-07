@@ -4,9 +4,15 @@
 The process model is shown below.
 
 
-- All UIAbility, ServiceExtensionAbility, and DataShareExtensionAbility components of an application (with the same bundle name) run in an independent process, which is **Main process** in green in the figure.
+- Generally, all UIAbility, ServiceExtensionAbility, and DataShareExtensionAbility components of an application (with the same bundle name) run in an independent process, which is **Main process** in green in the figure.
 - All ExtensionAbility components of the same type (except ServiceExtensionAbility and DataShareExtensionAbility) of an application (with the same bundle name) run in an independent process, such as **FormExtensionAbility process**, **InputMethodExtensionAbility process**, and other **ExtensionAbility process** in blue in the figure.
 - WebView has an independent render process, which is **Render process** in yellow in the figure.
+
+> **NOTE**
+>
+> For 2-in-1 devices, you can set a specific HAP or UIAbility to run in an independent process.
+> - To enable a HAP to run in an independent process, set the **isolationMode** field in the **module.json5** file to **isolationOnly** (running only in an independent process) or **isolationFirst** (running in an independent process preferentially).
+> - To enable a UIAbility to run in an independent process, set the **isolationProcess** field in the **module.json5** file to **true** and return a unique process ID in the [onNewProcessRequest](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md) callback.
 
 **Figure 1** Process model
 
@@ -29,4 +35,3 @@ The system provides the following inter-process communication (IPC) mechanism:
 
 [Common Events](../basic-services/common-event/common-event-overview.md): This mechanism is used in one-to-many communication scenarios. Multiple subscribers may receive events at the same time.
 
- <!--no_check--> 

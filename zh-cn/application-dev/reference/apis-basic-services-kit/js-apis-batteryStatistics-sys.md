@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import batteryStats from '@ohos.batteryStatistics';
+import {batteryStats} from '@kit.BasicServicesKit';
 ```
 
 ## batteryStats.getBatteryStats
@@ -36,7 +36,8 @@ getBatteryStats(): Promise<Array&lt;BatteryStatsInfo&gt;>
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4600101 | If connecting to the service failed. |
+| 4600101 | Failed to connect to the service. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 
@@ -64,7 +65,7 @@ getBatteryStats(callback: AsyncCallback<Array&lt;BatteryStatsInfo&gt;>): void
 
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<Array<[BatteryStatsInfo](#batterystatsinfo)>> | 是   | 回调函数。当获取耗电信息列表成功，err为undefined，data为获取到的Array<[BatteryStatsInfo](#batterystatsinfo)>>；否则为错误对象。 |
+| callback | AsyncCallback<Array<[BatteryStatsInfo](#batterystatsinfo)>> | 是   | 回调函数。当获取耗电信息列表成功，err为undefined，data为获取到的Array<[BatteryStatsInfo](#batterystatsinfo)>>；否则为错误对象；AsyncCallback封装了一个BatteryStatsInfo类型的接口。 |
 
 **错误码：**
 
@@ -72,7 +73,9 @@ getBatteryStats(callback: AsyncCallback<Array&lt;BatteryStatsInfo&gt;>): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4600101 | If connecting to the service failed. |
+| 4600101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 
@@ -114,7 +117,9 @@ getAppPowerValue(uid: number): number
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4600101 | If connecting to the service failed. |
+| 4600101 | Failed to connect to the service. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 
 **示例：**
 
@@ -155,7 +160,9 @@ getAppPowerPercent(uid: number): number
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4600101 | If connecting to the service failed. |
+| 4600101 | Failed to connect to the service. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 
 **示例：**
 
@@ -182,7 +189,7 @@ getHardwareUnitPowerValue(type: ConsumptionType): number
 
 | 参数名 | 类型                                | 必填 | 说明           |
 | ------ | ----------------------------------- | ---- | -------------- |
-| type   | [ConsumptionType](#consumptiontype) | 是   | 电量消耗类型。 |
+| type   | [ConsumptionType](#consumptiontype) | 是   | 电量消耗类型；该参数类型是枚举类。 |
 
 **返回值：**
 
@@ -196,7 +203,9 @@ getHardwareUnitPowerValue(type: ConsumptionType): number
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4600101 | If connecting to the service failed. |
+| 4600101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 
@@ -223,7 +232,7 @@ getHardwareUnitPowerPercent(type: ConsumptionType): number
 
 | 参数名 | 类型                                | 必填 | 说明           |
 | ------ | ----------------------------------- | ---- | -------------- |
-| type   | [ConsumptionType](#consumptiontype) | 是   | 电量消耗类型。 |
+| type   | [ConsumptionType](#consumptiontype) | 是   | 电量消耗类型；该参数类型是枚举类。 |
 
 **返回值：**
 
@@ -237,7 +246,9 @@ getHardwareUnitPowerPercent(type: ConsumptionType): number
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4600101 | If connecting to the service failed. |
+| 4600101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 
 **示例：**
 

@@ -26,7 +26,7 @@ Internal error.
 
 **错误信息**
 
-marshalling or unmarshalling error.
+Marshalling or unmarshalling error.
 
 **错误描述**
 
@@ -44,7 +44,7 @@ marshalling or unmarshalling error.
 
 **错误信息**
 
-Failed to connect service.
+Failed to connect to the service.
 
 **错误描述**
 
@@ -62,7 +62,7 @@ Failed to connect service.
 
 **错误信息**
 
-Notification is not enabled.
+Notification disabled.
 
 **错误描述**
 
@@ -80,7 +80,7 @@ Notification is not enabled.
 
 **错误信息**
 
-Notification slot is not enabled.
+Notification slot disabled.
 
 **错误描述**
 
@@ -100,7 +100,7 @@ Notification slot is not enabled.
 
 **错误信息**
 
-Notification is not allowed to remove.
+Notification deletion disabled.
 
 **错误描述**
 
@@ -112,13 +112,13 @@ Notification is not allowed to remove.
 
 **处理步骤**
 
-参考[NotificationRequest](./js-apis-notificationManager.md#notificationrequest)通知禁止删除属性。
+参考[NotificationRequest](./js-apis-inner-notification-notificationRequest.md)通知禁止删除属性。
 
 ## 1600007 通知不存在
 
 **错误信息**
 
-The notification is not exist.
+The notification does not exist.
 
 **错误描述**
 
@@ -136,7 +136,7 @@ The notification is not exist.
 
 **错误信息**
 
-The user is not exist.
+The user does not exist.
 
 **错误描述**
 
@@ -154,7 +154,7 @@ The user is not exist.
 
 **错误信息**
 
-Over max number notifications per second.
+The notification sending frequency reaches the upper limit.
 
 **错误描述**
 
@@ -162,7 +162,7 @@ Over max number notifications per second.
 
 **可能原因**
 
-通知发送频率超过每秒10个。
+通知发送频率超过每秒10个，或者更新频率超过每秒20条。
 
 **处理步骤**
 
@@ -190,7 +190,7 @@ Distributed operation failed.
 
 **错误信息**
 
-Read template config failed.
+Failed to read the template configuration.
 
 **错误描述**
 
@@ -221,6 +221,169 @@ No memory space.
 **处理步骤**
 
 确认系统内存是否足够。
+
+## 1600013 通知弹窗已弹出
+
+**错误信息**
+
+A notification dialog box is already displayed.
+
+**错误描述**
+
+通知弹窗已经弹出，方法将返回该错误码。
+
+**可能原因**
+
+通知弹窗已经弹出。
+
+**处理步骤**
+
+确认通知弹窗是否弹出。
+
+
+## 1600014 没有相关权限
+
+**错误信息**
+
+No permission.
+
+**错误描述**
+
+没有相关权限，方法将返回该错误码。
+
+**可能原因**
+
+没有相关权限。
+
+**处理步骤**
+
+确认是否具有相关权限。
+
+## 1600015 当前通知状态不支持重复配置
+
+**错误信息**
+
+The current notification status does not support duplicate configurations.
+
+**错误描述**
+
+当前通知状态不支持重复配置，方法将返回该错误码。
+
+**可能原因**
+
+当前通知状态不支持重复配置。
+
+**处理步骤**
+
+确认是否重复配置通知状态。
+
+## 1600016 本次更新的通知版本太低
+
+**错误信息**
+
+The notification version for this update is too low.
+
+**错误描述**
+
+本次更新的通知版本太低，方法将返回该错误码。
+
+**可能原因**
+
+本次更新的通知版本太低。
+
+**处理步骤**
+
+确认通知版本。
+
+## 1600017 没有对应的代理关系配置
+
+**错误信息**
+
+There is no corresponding agent relationship configuration.
+
+**错误描述**
+
+没有对应的代理关系配置，方法将返回该错误码。
+
+**可能原因**
+
+没有对应的代理关系配置。
+
+**处理步骤**
+
+确认代理关系配置。
+
+## 1600018 通知设置页面已经拉起
+
+**错误信息**
+
+The notification settings window is already displayed.
+
+**错误描述**
+
+通知设置页面已经拉起，方法将返回该错误码。
+
+**可能原因**
+
+通知设置页面已经拉起。
+
+**处理步骤**
+
+确认通知设置页面是否拉起。
+
+## 1600019 没有对应勿扰模式编号的配置信息
+
+**错误信息**
+
+The do-not-disturb profile does not exist.
+
+**错误描述**
+
+勿扰模式编号对应的配置信息不存在时，将返回该错误码。
+
+**可能原因**
+
+没有对应勿扰模式编号的配置信息。
+
+**处理步骤**
+
+确认查询的勿扰模式编号是否正确。
+
+## 1600020 不允许权限管控名单中的应用发布通知
+
+**错误信息**
+
+The application is not allowed to publish notifications due to permission control settings.
+
+**错误描述**
+
+当发布通知时，若应用被列入权限管控名单，将返回该错误码。
+
+**可能原因**
+
+该场景为企业定制设备场景。
+
+**处理步骤**
+
+该应用受到企业设备管理[Enterprise Device Manager](../../mdm/mdm-kit-admin.md)的权限管控，应用无法主动退出权限管控名单。
+
+## 2300007 网络无法访问
+
+**错误信息**
+
+Network unreachable.
+
+**错误描述**
+
+当网络无法访问时，系统会报此错误码。
+
+**可能原因**
+
+网络无法访问。
+
+**处理步骤**
+
+检查网络情况。
 
 ## 17700001 包名不存在
 

@@ -1,0 +1,48 @@
+# USB HDI 参考
+
+- 模块
+    - [HdiUsbfnMtp](_hdi_usbfn_mtp.md)
+    - [HdiUsb](_hdi_usb.md)
+    - [USB (V1_0)](_u_s_b_v10.md)
+    - [USB](_u_s_b.md)
+- 头文件
+    - HdiUsbfnMtp
+        - [IUsbfnMtpInterface.idl](_i_usbfn_mtp_interface_8idl.md)
+        - [UsbfnMtpTypes.idl](_usbfn_mtp_types_8idl.md)
+    - HdiUsb
+        - [IUsbInterface.idl](_i_usb_interface_8idl_v11.md)
+        - [UsbTypes.idl](_usb_types_8idl_v11.md)
+    - USB (V1_0)
+        - [IUsbdBulkCallback.idl](_i_usbd_bulk_callback_8idl_v10.md)
+        - [IUsbdSubscriber.idl](_i_usbd_subscriber_8idl_v10.md)
+        - [IUsbInterface.idl](_i_usb_interface_8idl_v10.md)
+        - [UsbTypes.idl](_usb_types_8idl_v10.md)
+    - USB
+        - [usb_info.h](usb__info_8h.md)
+        - [usbd_client.h](usbd__client_8h.md)
+        - [usbd_subscriber.h](usbd__subscriber_8h.md)
+        - [usbd_type.h](usbd__type_8h.md)
+- 结构体
+    - HdiUsbfnMtp
+        - [IUsbfnMtpInterface](interface_i_usbfn_mtp_interface.md)
+        - [UsbFnMtpFileSlice](_usb_fn_mtp_file_slice.md)
+    - HdiUsb
+        - [IUsbInterface](interface_i_usb_interface_v11.md)
+        - [UsbCtrlTransferParams](_usb_ctrl_transfer_params_v11.md)
+    - USB (V1_0)
+        - [IUsbdBulkCallback](interface_i_usbd_bulk_callback_v10.md)
+        - [IUsbdSubscriber](interface_i_usbd_subscriber_v10.md)
+        - [IUsbInterface](interface_i_usb_interface_v10.md)
+        - [PortInfo](_port_info_v10.md)
+        - [UsbCtrlTransfer](_usb_ctrl_transfer_v10.md)
+        - [UsbDev](_usb_dev_v10.md)
+        - [USBDeviceInfo](_u_s_b_device_info_v10.md)
+        - [UsbPipe](_usb_pipe_v10.md)
+    - USB
+        - [UsbCtrlTransfer](_o_h_o_s_1_1_u_s_b_1_1_usb_ctrl_transfer.md)
+        - [UsbdClient](_o_h_o_s_1_1_u_s_b_1_1_usbd_client.md)
+        - [UsbDev](_o_h_o_s_1_1_u_s_b_1_1_usb_dev.md)
+        - [USBDeviceInfo](_o_h_o_s_1_1_u_s_b_1_1_u_s_b_device_info.md)
+        - [UsbdSubscriber](_o_h_o_s_1_1_u_s_b_1_1_usbd_subscriber.md)
+        - [UsbInfo](_o_h_o_s_1_1_u_s_b_1_1_usb_info.md)
+        - [UsbPipe](_o_h_o_s_1_1_u_s_b_1_1_usb_pipe.md)

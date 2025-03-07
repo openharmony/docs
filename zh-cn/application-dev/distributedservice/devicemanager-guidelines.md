@@ -67,8 +67,7 @@ ohos.permission.DISTRIBUTED_DATASYNC：分布式数据同步权限
 2. 导入common和abilityAccessCtrl模块，用于获取权限申请的能力。
 
    ```ts
-   import common from '@ohos.app.ability.common';
-   import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+   import { common, abilityAccessCtrl } from '@kit.AbilityKit';
    ```
 
 3. 分布式数据同步权限的授权方式为user_grant，因此需要调用requestPermissionsFromUser接口，以动态弹窗的方式向用户申请授权。
@@ -95,7 +94,7 @@ ohos.permission.DISTRIBUTED_DATASYNC：分布式数据同步权限
 
 ### 接口说明
 
-startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object} ): void;
+startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object;} ): void;
 
 发现周边同局域网或者开启蓝牙的设备。详细信息参见：[startDiscovering](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#startdiscovering)。
 
@@ -104,23 +103,23 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOption
 
 1. 申请分布式数据同步权限。
 
-2. 导入deviceManager模块，所有与设备管理相关的功能API，都是通过该模块提供的。
+2. 导入distributedDeviceManager模块，所有与设备管理相关的功能API，都是通过该模块提供的。
    
    ```ts
-   import deviceManager from '@ohos.distributedDeviceManager';
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
    ```
 
-3. 导入BusinessError模块，用于获取deviceManager模块相关接口抛出的错误码。
+3. 导入BusinessError模块，用于获取distributedDeviceManager模块相关接口抛出的错误码。
    
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 4. 创建设备管理实例，设备管理实例是分布式设备管理方法的调用入口，并注册发现设备的回调。
 
    ```ts
    try {
-     let dmInstance = deviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
+     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
      dmInstance.on('discoverSuccess', data => console.log('discoverSuccess on:' + JSON.stringify(data)));
      dmInstance.on('discoverFailure', data => console.log('discoverFailure on:' + JSON.stringify(data)));
    } catch(err) {
@@ -163,7 +162,7 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOption
 
 ### 接口说明
 
-bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , callback: AsyncCallback&lt;{deviceId: string}>): void;
+bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , callback: AsyncCallback&lt;{deviceId: string;}>): void;
 
 设备绑定。详细信息参见：[bindTarget](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#bindtarget)。
 
@@ -221,11 +220,11 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
    
 3. 建立设备间的可信关系。
 
-4. 查询周围上线并且可行的设备。
+4. 查询周围上线并且可信的设备。
 
    ```ts
    try {
-     let deviceInfoList: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
+     let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
    } catch (err) {
      let e: BusinessError = err as BusinessError;
      console.error('getAvailableDeviceListSync errCode:' + e.code + ',errMessage:' + e.message);
@@ -240,7 +239,7 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 
 ### 接口说明
 
-on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange, device: DeviceBasicInfo }&gt;): void;
+on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange; device: DeviceBasicInfo; }&gt;): void;
 
 设备上下线监听。详细信息参见：[on('deviceStateChange')](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#ondevicestatechange)。
 
@@ -248,23 +247,23 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange,
 
 1. 申请分布式数据同步权限。
 
-2. 导入deviceManager模块，所有与设备管理相关的功能API，都是通过该模块提供的。
+2. 导入distributedDeviceManager模块，所有与设备管理相关的功能API，都是通过该模块提供的。
    
    ```ts
-   import deviceManager from '@ohos.distributedDeviceManager';
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
    ```
 
-3. 导入BusinessError模块，用于获取deviceManager模块相关接口抛出的错误码。
+3. 导入BusinessError模块，用于获取distributedDeviceManager模块相关接口抛出的错误码。
    
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 4. 创建设备管理实例，设备管理实例是分布式设备管理方法的调用入口，并注册设备上下线回调。
 
    ```ts
    try {
-     let dmInstance = deviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
+     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
      dmInstance.on('deviceStateChange', data => console.log('deviceStateChange on:' + JSON.stringify(data)));
    } catch(err) {
      let e: BusinessError = err as BusinessError;

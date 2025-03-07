@@ -12,7 +12,7 @@ The **Sensor** module provides APIs for obtaining the sensor list and subscribin
 ## Modules to Import
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 ```
 
 ## sensor.on
@@ -33,21 +33,23 @@ Subscribes to data of the color sensor.
 | -------- | ------------------------------------------------- | ---- | ----------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).COLOR                      | Yes  | Sensor type. The value is fixed at **SensorId.COLOR**.                     |
 | callback | Callback&lt;[ColorResponse](#colorresponse10)&gt; | Yes  | Callback used to report the sensor data, which is a **ColorResponse** object.        |
-| options  | [Options](#options)                               | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
+| options  | [Options](js-apis-sensor.md#options)              | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission check failed. A non-system application uses the system API. |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
   sensor.on(sensor.SensorId.COLOR, (data: sensor.ColorResponse) => {
@@ -58,7 +60,7 @@ try{
         sensor.off(sensor.SensorId.COLOR);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -79,21 +81,23 @@ Subscribes to data of the Sodium Adsorption Ratio (SAR) sensor.
 | -------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).SAR                    | Yes  | Sensor type. The value is fixed at **SensorId.SAR**.                       |
 | callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | Yes  | Callback used to report the sensor data, which is a **SarResponse** object.          |
-| options  | [Options](#options)                           | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
+| options  | [Options](js-apis-sensor.md#options)          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission check failed. A non-system application uses the system API. |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.SAR, (data: sensor.SarResponse) => {
@@ -103,7 +107,7 @@ try {
     sensor.off(sensor.SensorId.SAR);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -127,11 +131,20 @@ Unsubscribes from data of the color sensor.
 | type     | [SensorId](#sensorid9).COLOR                      | Yes  | Sensor type. The value is fixed at **SensorId.COLOR**.                      |
 | callback | Callback&lt;[ColorResponse](#colorresponse10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission check failed. A non-system application uses the system API. |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -149,7 +162,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.COLOR type.
   sensor.off(sensor.SensorId.COLOR);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -171,11 +184,20 @@ Unsubscribes from data of the SAR sensor.
 | type     | [SensorId](#sensorid9).SAR                    | Yes  | Sensor type. The value is fixed at **SensorId.SAR**.                        |
 | callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission check failed. A non-system application uses the system API. |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -193,7 +215,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.SAR type.
   sensor.off(sensor.SensorId.SAR);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -209,33 +231,9 @@ Enumerates the sensor types.
 | COLOR<sup>10+</sup> | 14   | Color sensor.<br>System API: This is a system API.    |
 | SAR<sup>10+</sup>   | 15   | Sodium Adsorption Ratio (SAR) sensor.<br>System API: This is a system API.|
 
-## SensorAccuracy<sup>11+</sup>
-
-Enumerates the accuracy levels of sensor data.
-
-**System capability**: SystemCapability.Sensors.Sensor
-
-| Name               | Value  | Description              |
-| ------------------- | ---- | ------------------ |
-| ACCURACY_UNRELIABLE | 0    | The sensor data is unreliable.|
-| ACCURACY_LOW        | 1    | The sensor data is at a low accuracy level.|
-| ACCURACY_MEDIUM     | 2    | The sensor data is at a medium accuracy level.|
-| ACCURACY_HIGH       | 3    | The sensor data is at a high accuracy level.|
-
-## Response
-
-Describes the timestamp of the sensor data.
-
-**System capability**: SystemCapability.Sensors.Sensor
-
-| Name                  | Type                                             | Readable| Writable| Description                        |
-| ---------------------- | ------------------------------------------------- | ---- | ---- | ---------------------------- |
-| timestamp              | number                                            | Yes  | Yes  | Timestamp when the sensor reports data.    |
-| accuracy<sup>11+</sup> | [SensorAccuracy](#sensoraccuracy11)<sup>11+</sup> | Yes  | No  | Accuracy of the sensor data.|
-
 ## ColorResponse<sup>10+</sup>
 
-Describes the color sensor data. It extends from [Response](#response).
+Describes the color sensor data. It extends from [Response](js-apis-sensor.md#response).
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -249,7 +247,7 @@ Describes the color sensor data. It extends from [Response](#response).
 
 ## SarResponse<sup>10+ </sup>
 
-Describes the SAR sensor data. It extends from [Response](#response).
+Describes the SAR sensor data. It extends from [Response](js-apis-sensor.md#response).
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -259,13 +257,3 @@ Describes the SAR sensor data. It extends from [Response](#response).
 | Name           | Type  | Readable| Writable| Description                           |
 | --------------- | ------ | ---- | ---- | ------------------------------- |
 | absorptionRatio | number | Yes  | Yes  | Absorption ratio, in W/kg.|
-
-## Options
-
-Describes the sensor data reporting frequency.
-
-**System capability**: SystemCapability.Sensors.Sensor
-
-| Name    | Type                                                    | Readable| Writable| Description                                                        |
-| -------- | -------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| interval | number/[SensorAccuracy](#sensoraccuracy11)<sup>11+</sup> | Yes  | Yes  | Frequency at which a sensor reports data. The default value is 200,000,000 ns. This attribute has restrictions on the minimum and maximum values, determined by the reporting frequency supported by the hardware.|

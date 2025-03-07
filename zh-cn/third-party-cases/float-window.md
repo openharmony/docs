@@ -392,6 +392,6 @@ struct FloatContent {
 ```
 ## 参考
 - [管理应用窗口（Stage模型）](../application-dev/windowmanager/application-window-stage.md)
-- [@ohos.window (窗口)](../application-dev/reference/apis-as/js-apis-window.md)
+- [@ohos.window (窗口)](../application-dev/reference/apis-arkui/js-apis-window.md)
 - [单一手势](../application-dev/ui/arkts-gesture-events-single-gesture.md)
 - [@Watch：状态变量更改通知](../application-dev/quick-start/arkts-watch.md)

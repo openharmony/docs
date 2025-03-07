@@ -38,10 +38,10 @@
 1. 通过AVSessionManager的方法创建并激活媒体会话。
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
-   // 开始创建并激活媒体会话
-   // 创建session
+   // 开始创建并激活媒体会话。
+   // 创建session。
    let context: Context = getContext(this);
    async function createSession() {
      let type: AVSessionManager.AVSessionType = 'audio';
@@ -58,18 +58,19 @@
    音视频应用设置的媒体会话信息，会被媒体会话控制方通过AVSessionController相关方法获取后进行显示或处理。
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import { BusinessError } from '@ohos.base';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let context: Context = getContext(this);
    async function setSessionInfo() {
-     // 假设已经创建了一个session，如何创建session可以参考之前的案例
+     // 假设已经创建了一个session，如何创建session可以参考之前的案例。
      let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
-     // 播放器逻辑··· 引发媒体信息与播放状态的变更
+     // 播放器逻辑··· 引发媒体信息与播放状态的变更。
      // 设置必要的媒体信息
      let metadata: AVSessionManager.AVMetadata = {
-       assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体
+       assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体。
        title: 'TITLE',
+       mediaImage: 'IMAGE',
        artist: 'ARTIST'
      };
      session.setAVMetadata(metadata).then(() => {
@@ -77,7 +78,7 @@
      }).catch((err: BusinessError) => {
        console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
      });
-     // 简单设置一个播放状态 - 暂停 未收藏
+     // 简单设置一个播放状态 - 暂停 未收藏。
      let playbackState: AVSessionManager.AVPlaybackState = {
        state:AVSessionManager.PlaybackState.PLAYBACK_STATE_PAUSE,
        isFavorite:false
@@ -89,7 +90,7 @@
          console.info(`SetAVPlaybackState successfully`);
        }
      });
-     // 设置一个播放列表
+     // 设置一个播放列表。
      let queueItemDescription_1: AVSessionManager.AVMediaDescription = {
        assetId: '001',
        title: 'music_name',
@@ -120,7 +121,7 @@
      }).catch((err: BusinessError) => {
        console.error(`Failed to set AVQueueItem, error code: ${err.code}, error message: ${err.message}`);
      });
-     // 设置媒体播放列表名称
+     // 设置媒体播放列表名称。
      let queueTitle = 'QUEUE_TITLE';
      session.setAVQueueTitle(queueTitle).then(() => {
        console.info(`SetAVQueueTitle successfully`);
@@ -132,28 +133,25 @@
 
 3. 设置用于被媒体会话控制方拉起的UIAbility。当用户操作媒体会话控制方的界面时，例如点击播控中心的卡片，可以拉起此处配置的UIAbility。
    设置UIAbility时通过WantAgent接口实现，更多关于WantAgent的信息请参考[WantAgent](../../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)。
- 
-   ```ts
-   import wantAgent from "@ohos.app.ability.wantAgent";
-   ```
 
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import wantAgent from '@ohos.app.ability.wantAgent';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { wantAgent } from '@kit.AbilityKit';
 
    let context: Context = getContext(this);
    async function getWantAgent() {
      let type: AVSessionManager.AVSessionType = 'audio';
-     // 假设已经创建了一个session，如何创建session可以参考之前的案例
+     // 假设已经创建了一个session，如何创建session可以参考之前的案例。
      let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
      let wantAgentInfo: wantAgent.WantAgentInfo = {
        wants: [
          {
            bundleName: 'com.example.musicdemo',
-           abilityName: 'com.example.musicdemo.MainAbility'
+           abilityName: 'MainAbility'
          }
        ],
-       operationType: wantAgent.OperationType.START_ABILITIES,
+       // OperationType.START_ABILITIES
+       operationType: 2,
        requestCode: 0,
        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
      }
@@ -170,12 +168,12 @@
 
    ```ts
 
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import { BusinessError } from '@ohos.base';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let context: Context = getContext(this);
    async function dispatchSessionEvent() {
-     // 假设已经创建了一个session，如何创建session可以参考之前的案例
+     // 假设已经创建了一个session，如何创建session可以参考之前的案例。
      let type: AVSessionManager.AVSessionType = 'audio';
      let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
      let eventName = 'dynamic_lyric';
@@ -194,12 +192,12 @@
    > 通过setExtras方法设置的数据包会被存储在AVSession服务中，数据的生命周期与会话一致；会话对应的Controller可以使用getExtras来获取该数据。
 
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
-   import { BusinessError } from '@ohos.base';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let context: Context = getContext(this);
    async function setExtras() {
-     // 假设已经创建了一个session，如何创建session可以参考之前的案例
+     // 假设已经创建了一个session，如何创建session可以参考之前的案例。
      let type: AVSessionManager.AVSessionType = 'audio';
      let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
      await session.setExtras({extra : 'This is my custom meida packet'}).then(() => {
@@ -218,52 +216,59 @@
 
    > **说明：**
    >
-   > 媒体会话提供方在注册相关固定播控命令事件监听时，监听的事件会在媒体会话控制方的getValidCommands()方法中体现，即媒体会话控制方会认为对应的方法有效，进而根据需要触发相应的事件。为了保证媒体会话控制方下发的播控命令可以被正常执行，媒体会话提供方请勿进行无逻辑的空实现监听。
+   > 媒体会话提供方在注册相关固定播控命令事件监听时，监听的事件会在媒体会话控制方的getValidCommands()方法中体现，即媒体会话控制方会认为对应的方法有效，进而根据需要触发相应暂不使用时的事件。为了保证媒体会话控制方下发的播控命令可以被正常执行，媒体会话提供方请勿进行无逻辑的空实现监听。
 
-   Session侧的固定播控命令主要包括播放、暂停、上一首、下一首等基础操作命令，详细介绍请参见[AVControlCommand](../../reference/apis-avsession-kit/js-apis-avsession.md)
+   Session侧的固定播控命令主要包括播放、暂停、上一首、下一首等基础操作命令，详细介绍请参见[AVControlCommand](../../reference/apis-avsession-kit/js-apis-avsession.md#avcontrolcommand10)
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    let context: Context = getContext(this);
    async function setListenerForMesFromController() {
-     // 假设已经创建了一个session，如何创建session可以参考之前的案例
+     // 假设已经创建了一个session，如何创建session可以参考之前的案例。
      let type: AVSessionManager.AVSessionType = 'audio';
      let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-     // 一般在监听器中会对播放器做相应逻辑处理
-     // 不要忘记处理完后需要通过set接口同步播放相关信息，参考上面的用例
+     // 一般在监听器中会对播放器做相应逻辑处理。
+     // 不要忘记处理完后需要通过set接口同步播放相关信息，参考上面的用例。
      session.on('play', () => {
        console.info(`on play , do play task`);
-       // do some tasks ···
+       // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('play')取消监听。
+       // 处理完毕后，请使用SetAVPlayState上报播放状态。
      });
      session.on('pause', () => {
        console.info(`on pause , do pause task`);
-       // do some tasks ···
+        // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('pause')取消监听。
+        // 处理完毕后，请使用SetAVPlayState上报播放状态。
      });
      session.on('stop', () => {
        console.info(`on stop , do stop task`);
-       // do some tasks ···
+        // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('stop')取消监听。
+        // 处理完毕后，请使用SetAVPlayState上报播放状态。
      });
      session.on('playNext', () => {
        console.info(`on playNext , do playNext task`);
-       // do some tasks ···
+        // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('playNext')取消监听。
+        // 处理完毕后，请使用SetAVPlayState上报播放状态，使用SetAVMetadata上报媒体信息。
      });
      session.on('playPrevious', () => {
        console.info(`on playPrevious , do playPrevious task`);
-       // do some tasks ···
+        // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('playPrevious')取消监听。
+        // 处理完毕后，请使用SetAVPlayState上报播放状态，使用SetAVMetadata上报媒体信息。
      });
      session.on('fastForward', () => {
        console.info(`on fastForward , do fastForward task`);
-       // do some tasks ···
+        // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('fastForward')取消监听。
+        // 处理完毕后，请使用SetAVPlayState上报播放状态和播放position。
      });
      session.on('rewind', () => {
        console.info(`on rewind , do rewind task`);
-       // do some tasks ···
+        // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('rewind')取消监听。
+        // 处理完毕后，请使用SetAVPlayState上报播放状态和播放position。
      });
-
      session.on('seek', (time) => {
        console.info(`on seek , the seek time is ${time}`);
-       // do some tasks ···
+        // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('seek')取消监听。
+        // 处理完毕后，请使用SetAVPlayState上报播放状态和播放position。
      });
      session.on('setSpeed', (speed) => {
        console.info(`on setSpeed , the speed is ${speed}`);
@@ -271,11 +276,13 @@
      });
      session.on('setLoopMode', (mode) => {
        console.info(`on setLoopMode , the loop mode is ${mode}`);
-       // do some tasks ···
+        // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('setLoopMode')取消监听。
+        // 应用自定下一个模式，处理完毕后，请使用SetAVPlayState上报切换后的LoopMode。
      });
      session.on('toggleFavorite', (assetId) => {
        console.info(`on toggleFavorite , the target asset Id is ${assetId}`);
-       // do some tasks ···
+        // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('toggleFavorite')取消监听。
+        // 处理完毕后，请使用SetAVPlayState上报收藏结果isFavorite。
      });
    }
    ```
@@ -290,15 +297,15 @@
    - commonCommand: 自定义控制命令变化的事件。
 
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    let context: Context = getContext(this);
    async function setListenerForMesFromController() {
-     // 假设已经创建了一个session，如何创建session可以参考之前的案例
+     // 假设已经创建了一个session，如何创建session可以参考之前的案例。
      let type: AVSessionManager.AVSessionType = 'audio';
      let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-     // 一般在监听器中会对播放器做相应逻辑处理
-     // 不要忘记处理完后需要通过set接口同步播放相关信息，参考上面的用例
+     // 一般在监听器中会对播放器做相应逻辑处理。
+     // 不要忘记处理完后需要通过set接口同步播放相关信息，参考上面的用例。
      session.on('skipToQueueItem', (itemId) => {
        console.info(`on skipToQueueItem , do skip task`);
        // do some tasks ···
@@ -321,28 +328,28 @@
 7. 获取当前媒体会话自身的控制器，与媒体会话对应进行通信交互。
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    let context: Context = getContext(this);
    async function createControllerFromSession() {
-     // 假设已经创建了一个session，如何创建session可以参考之前的案例
+     // 假设已经创建了一个session，如何创建session可以参考之前的案例。
      let type: AVSessionManager.AVSessionType = 'audio';
      let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
-     // 通过已有session获取一个controller对象
+     // 通过已有session获取一个controller对象。
      let controller = await session.getController();
 
-     // controller可以与原session对象进行基本的通信交互，比如下发播放命令
+     // controller可以与原session对象进行基本的通信交互，比如下发播放命令。
      let avCommand: AVSessionManager.AVControlCommand = {command:'play'};
      controller.sendControlCommand(avCommand);
 
-     // 或者做状态变更监听
+     // 或者做状态变更监听。
      controller.on('playbackStateChange', 'all', (state) => {
 
-       // do some things
+       // do some things.
      });
 
-     // controller可以做的操作还有很多，具体可以参考媒体会话控制方相关的说明
+     // controller可以做的操作还有很多，具体可以参考媒体会话控制方相关的说明。
    }
    ```
 
@@ -350,15 +357,15 @@
    取消播控命令监听的示例代码如下所示 ：
 
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    let context: Context = getContext(this);
    async function unregisterSessionListener() {
-     // 假设已经创建了一个session，如何创建session可以参考之前的案例
+     // 假设已经创建了一个session，如何创建session可以参考之前的案例。
      let type: AVSessionManager.AVSessionType = 'audio';
      let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
-     // 取消指定session下的相关监听
+     // 取消指定session下的相关监听。
      session.off('play');
      session.off('pause');
      session.off('stop');
@@ -374,14 +381,14 @@
      销毁媒体会话示例代码如下所示：
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
    let context: Context = getContext(this);
    async function destroySession() {
-     // 假设已经创建了一个session，如何创建session可以参考之前的案例
+     // 假设已经创建了一个session，如何创建session可以参考之前的案例。
      let type: AVSessionManager.AVSessionType = 'audio';
      let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-     // 主动销毁已创建的session
+     // 主动销毁已创建的session。
      session.destroy((err) => {
        if (err) {
          console.error(`Failed to destroy session. Code: ${err.code}, message: ${err.message}`);

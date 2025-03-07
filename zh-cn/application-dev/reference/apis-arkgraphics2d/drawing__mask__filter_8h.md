@@ -35,5 +35,5 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_Drawing_MaskFilter](_drawing.md#oh_drawing_maskfilter) \* [OH_Drawing_MaskFilterCreateBlur](_drawing.md#oh_drawing_maskfiltercreateblur) ([OH_Drawing_BlurType](_drawing.md#oh_drawing_blurtype) blurType, float sigma, bool respectCTM) | 创建具有模糊效果的模板滤波器。 |
-| void [OH_Drawing_MaskFilterDestroy](_drawing.md#oh_drawing_maskfilterdestroy) ([OH_Drawing_MaskFilter](_drawing.md#oh_drawing_maskfilter) \*) | 销毁模板滤波器对象，并收回该对象占用的内存。 |
+| [OH_Drawing_MaskFilter](_drawing.md#oh_drawing_maskfilter) \* [OH_Drawing_MaskFilterCreateBlur](_drawing.md#oh_drawing_maskfiltercreateblur) ([OH_Drawing_BlurType](_drawing.md#oh_drawing_blurtype) blurType, float sigma, bool respectCTM) | 创建具有模糊效果的蒙版滤波器。 |
+| void [OH_Drawing_MaskFilterDestroy](_drawing.md#oh_drawing_maskfilterdestroy) ([OH_Drawing_MaskFilter](_drawing.md#oh_drawing_maskfilter) \*) | 销毁蒙版滤波器对象，并收回该对象占用的内存。 |

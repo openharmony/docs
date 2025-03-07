@@ -9,7 +9,7 @@
 
 1. 调用[cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10)、[AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3)，指定密钥参数，生成RSA非对称密钥对（KeyPair）。
    
-   如何生成RSA非对称密钥对，开发者可参考下文示例，并结合[非对称密钥生成和转换规格：RSA](crypto-asym-key-generation-conversion-spec.md#rsa)和[指定密钥参数生成密钥对](crypto-generate-asym-key-pair-from-key-spec.md)理解，参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
+   如何生成RSA非对称密钥对，开发者可参考下文示例，并结合[非对称密钥生成和转换规格：RSA](crypto-asym-key-generation-conversion-spec.md#rsa)和[指定密钥参数生成非对称密钥对](crypto-generate-asym-key-pair-from-key-spec.md)理解，参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
 
 2. 调用[cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，指定字符串参数'RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1'，创建非对称密钥类型为RSA2048、填充模式为PKCS1_OAEP、摘要算法为SHA256、掩码摘要为MGF1_SHA1的RSA密钥的Cipher实例，用于完成加解密操作。
 
@@ -37,8 +37,8 @@
 - 异步方法示例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
   // 根据密钥参数属性构造RSA非对称密钥对密钥参数
   function genRsaKeyPairSpec(nIn: bigint, eIn: bigint, dIn: bigint) {
     let rsaCommSpec: cryptoFramework.RSACommonParamsSpec = {
@@ -71,7 +71,7 @@
     let cipher = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
     let decoder = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
     // RSA加解密PKCS1-OAEP模式填充字节流P
-    let pSource = new Uint8Array([1, 2, 3, 4]);
+    let pSource = new Uint8Array([1, 2, 3, 4]); // 此处为示例，可以是任意值，由开发者自行决定
     let input: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(plan, 'utf-8').buffer) };
     // 生成密钥对
     let keyPair = await rsaGeneratorSpec.generateKeyPair();
@@ -81,7 +81,7 @@
     cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
     let retP = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
     // 比较get出来的P字节流与set进去的P字节流是否一致
-    if (retP.toString() != pSource.toString()) {
+    if (retP.toString() !== pSource.toString()) {
       console.error("error init pSource" + retP);
     } else {
       console.info("pSource changed ==" + retP);
@@ -98,7 +98,7 @@
     decoder.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
     retP = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
     // 比较get出来的P字节流与set进去的P字节流是否一致
-    if (retP.toString() != pSource.toString()) {
+    if (retP.toString() !== pSource.toString()) {
       console.error("error init pSource" + retP);
     } else {
       console.info("pSource changed ==" + retP);
@@ -125,8 +125,8 @@
 - 同步方法示例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
   // 根据密钥参数属性构造RSA非对称密钥对密钥参数
   function genRsaKeyPairSpec(nIn: bigint, eIn: bigint, dIn: bigint) {
     let rsaCommSpec: cryptoFramework.RSACommonParamsSpec = {
@@ -150,7 +150,7 @@
     let dIn = BigInt("0x6a7df2ca63ead4dda191d614b6b385e0d9056a3d6d5cfe07db1daabee022db08212d97613d3328e0267c9dd23d787abde2afcb306aeb7dfce69246cc73f5c87fdf06030179a2114b767db1f083ff841c025d7dc00cd82435b9a90f695369e94df23d2ce458bc3b3283ad8bba2b8fa1ba62e2dce9accff3799aae7c840016f3ba8e0048c0b6cc4339af7161003a5beb864a0164b2c1c9237b64bc87556994351b27506c33d4bcdfce0f9c491a7d6b0628c7c852be4f0a9c3132b2ed3a2c8881e9aab07e20e17deb074691be677776a78b5c502e05d9bdde72126b3738695e2dd1a0a98a14247c65d8a7ee79432a092cb0721a12df798e44f7cfce0c498147a9b1");
     return genRsaKeyPairSpec(nIn, eIn, dIn);
   }
-  async function main() {
+  function main() {
     let plan = "This is a test";
     // 获得RSA密钥对密钥参数对象
     let rsaKeyPairSpec = genRsa2048KeyPairSpec();
@@ -159,17 +159,17 @@
     let cipher = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
     let decoder = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
     // RSA加解密PKCS1-OAEP模式填充字节流P
-    let pSource = new Uint8Array([1, 2, 3, 4]);
+    let pSource = new Uint8Array([1, 2, 3, 4]); // 此处为示例，可以是任意值，由开发者自行决定
     let input: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(plan, 'utf-8').buffer) };
     // 生成密钥对
-    let keyPair = await rsaGeneratorSpec.generateKeyPair();
+    let keyPair = rsaGeneratorSpec.generateKeyPairSync();
     // 进行加密操作初始化
     cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null);
     // get和set操作可以放在Cipher对象init之后，此处对cipher进行set和get操作
     cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
     let retP = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
     // 比较get出来的P字节流与set进去的P字节流是否一致
-    if (retP.toString() != pSource.toString()) {
+    if (retP.toString() !== pSource.toString()) {
       console.error("error init pSource" + retP);
     } else {
       console.info("pSource changed ==" + retP);
@@ -186,7 +186,7 @@
     decoder.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
     retP = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
     // 比较get出来的P字节流与set进去的P字节流是否一致
-    if (retP.toString() != pSource.toString()) {
+    if (retP.toString() !== pSource.toString()) {
       console.error("error init pSource" + retP);
     } else {
       console.info("pSource changed ==" + retP);

@@ -26,7 +26,7 @@ Ability生命周期状态。
 | BACKGROUND    | 3    | 表示Ability处于后台状态。   |
 | DESTROY       | 4    | 表示Ability处于已销毁状态。 |
 
-## AbilityDelegatorRegistry.getAbilityDelegator
+## abilityDelegatorRegistry.getAbilityDelegator
 
 getAbilityDelegator(): AbilityDelegator
 
@@ -48,7 +48,7 @@ import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 ```
 
-## AbilityDelegatorRegistry.getArguments
+## abilityDelegatorRegistry.getArguments
 
 getArguments(): AbilityDelegatorArgs
 

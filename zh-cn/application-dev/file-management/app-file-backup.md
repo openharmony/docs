@@ -1,6 +1,6 @@
 # 应用触发数据备份/恢复（仅对系统应用开放）
 
-备份恢复是为设备上应用数据、公共数据和系统服务提供的完整的数据备份和恢复解决方案。系统应用开发者可以根据需求，按下述指导开发应用，以触发备份/恢复数据。
+备份恢复框架是为设备上的应用、服务提供自身数据备份和恢复的解决方案。系统应用开发者可以根据需求，按下述指导开发应用，以触发备份/恢复数据。
 
 - [获取能力文件](#获取能力文件)：获取当前系统用户内所有应用与备份恢复相关基础信息的能力文件。能力文件在应用备份/恢复数据时不可缺少。
 
@@ -14,7 +14,7 @@
 
 在使用备份恢复接口之前，需要：
 
-1. [申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)：`ohos.permission.BACKUP`
+1. [申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)：`ohos.permission.BACKUP`
 
 2. 导入依赖模块：`@ohos.file.backup`
 
@@ -28,7 +28,7 @@
 
 该文件包含设备类型、设备版本、应用的基础性信息，如应用名称、应用数据大小、应用版本信息、是否支持备份恢复、是否在恢复时安装应用。
 
-调用`backup.getLocalCapabilities()`获取能力文件。
+调用[backup.getLocalCapabilities()](../reference/apis-core-file-kit/js-apis-file-backup-sys.md#backupgetlocalcapabilities)获取能力文件。
 
 ```ts
 import backup from '@ohos.file.backup';
@@ -59,13 +59,13 @@ async function getLocalCapabilities(): Promise<void> {
 | 属性名称       | 数据类型 | 必填 | 含义                   |
 | -------------- | -------- | ---- | ---------------------- |
 | bundleInfos    | 数组     | 是   | 应用信息列表           |
-| &nbsp;&nbsp;&nbsp;&nbsp; allToBackup    | 布尔值   | 是   | 是否允许备份恢复       |
-| &nbsp;&nbsp;&nbsp;&nbsp; extensionName  | 字符串   | 是   | 应用的扩展名           |
-| &nbsp;&nbsp;&nbsp;&nbsp; name           | 字符串   | 是   | 应用的包名             |
-| &nbsp;&nbsp;&nbsp;&nbsp; needToInstall  | 布尔值   | 是   | 应用恢复时是否需要安装 |
-| &nbsp;&nbsp;&nbsp;&nbsp; spaceOccupied  | 数值     | 是   | 应用数据占用的空间大小 |
-| &nbsp;&nbsp;&nbsp;&nbsp; versionCode    | 数值     | 是   | 应用的版本号           |
-| &nbsp;&nbsp;&nbsp;&nbsp; versionName    | 字符串   | 是   | 应用的版本名称         |
+| allToBackup    | 布尔值   | 是   | 是否允许备份恢复       |
+| extensionName  | 字符串   | 是   | 应用的扩展名           |
+| name           | 字符串   | 是   | 应用的包名             |
+| needToInstall  | 布尔值   | 是   | 应用恢复时是否需要安装 |
+| spaceOccupied  | 数值     | 是   | 应用数据占用的空间大小 |
+| versionCode    | 数值     | 是   | 应用的版本号           |
+| versionName    | 字符串   | 是   | 应用的版本名称         |
 | deviceType     | 字符串   | 是   | 设备类型               |
 | systemFullName | 字符串   | 是   | 设备版本               |
 
@@ -126,14 +126,14 @@ async function getLocalCapabilities(): Promise<void> {
           console.error('onFileReady failed with err: ' + e);
         }
       },
-      onBundleBegin: (err: BusinessError, bundleName: string) => {
+      onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.info('onBundleBegin err: ' + JSON.stringify(err));
         } else {
           console.info('onBundleBegin bundleName: ' + bundleName);
         }
       },
-      onBundleEnd: (err: BusinessError, bundleName: string) => {
+      onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.info('onBundleEnd err: ' + JSON.stringify(err));
         } else {
@@ -150,6 +150,14 @@ async function getLocalCapabilities(): Promise<void> {
       onBackupServiceDied: () => {
         console.info('onBackupServiceDied');
       },
+      onResultReport: (bundleName: string, result: string) => {
+        console.info('onResultReport  bundleName: ' + bundleName);
+        console.info('onResultReport  result: ' + result);
+      },
+      onProcess:(bundleName: string, process: string) => { 
+        console.info('onPross bundleName: ' + JSON.stringify(bundleName));
+        console.info('onPross result: ' + JSON.stringify(process));
+      }
     }
     let sessionBackup = new backup.SessionBackup(generalCallbacks);
     return sessionBackup;
@@ -183,10 +191,16 @@ async function getLocalCapabilities(): Promise<void> {
   import { BusinessError } from '@ohos.base';
   // 创建SessionRestore类的实例用于恢复数据
   let g_session: backup.SessionRestore;
+  let initMap = new Map<string, number>();
+  let testFileNum = 123; // 123: 初始化文件个数
+  let testBundleName = 'com.example.myapplication'; // 测试包名
+  initMap.set(testBundleName, testFileNum);
+  let countMap = new Map<string, number>();
+  countMap.set(testBundleName, 0); // 初始化计数
   async function publishFile(file: backup.File): Promise<void> {
     let fileMeta: backup.FileMeta = {
       bundleName: file.bundleName,
-      uri: file.uri
+      uri: ''
     }
     await g_session.publishFile(fileMeta);
   }
@@ -204,16 +218,19 @@ async function getLocalCapabilities(): Promise<void> {
         fs.copyFileSync(bundlePath, file.fd);
         fs.closeSync(file.fd);
         // 恢复数据传输完成后，会通知服务端文件准备就绪
-        publishFile(file);
+        countMap[file.bundleName]++;
+        if (countMap[file.bundleName] == initMap[file.bundleName]) { // 每个包的所有文件收到后触发publishFile
+          publishFile(file);
+        }
         console.info('onFileReady success');
       },
-      onBundleBegin: (err: BusinessError, bundleName: string) => {
+      onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
         }
         console.info('onBundleBegin success');
       },
-      onBundleEnd: (err: BusinessError, bundleName: string) => {
+      onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
         }
@@ -227,6 +244,14 @@ async function getLocalCapabilities(): Promise<void> {
       },
       onBackupServiceDied: () => {
         console.info('service died');
+      },
+      onResultReport: (bundleName: string, result: string) => {
+        console.info('onResultReport  bundleName: ' + bundleName);
+        console.info('onResultReport  result: ' + result);
+      },
+      onProcess:(bundleName: string, process: string) => { 
+        console.info('onPross bundleName: ' + JSON.stringify(bundleName));
+        console.info('onPross result: ' + JSON.stringify(process));
       }
     }
     let sessionRestore = new backup.SessionRestore(generalCallbacks);

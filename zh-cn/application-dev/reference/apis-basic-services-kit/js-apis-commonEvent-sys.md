@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import CommonEvent from '@ohos.commonEvent';
+import commonEvent from '@ohos.commonEvent';
 ```
 
 ## Support
@@ -21,7 +21,7 @@ import CommonEvent from '@ohos.commonEvent';
 
 全部系统公共事件枚举定义请参见[系统公共事件定义](./common_event/commonEvent-definitions.md)。
 
-## CommonEvent.publishAsUser<sup>(deprecated)</sup>
+## commonEvent.publishAsUser<sup>(deprecated)</sup>
 
 publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): void
 
@@ -60,10 +60,10 @@ function publishCB(err:Base.BusinessError) {
 let userId = 100;
 
 // 发布公共事件
-CommonEvent.publishAsUser("event", userId, publishCB);
+commonEvent.publishAsUser("event", userId, publishCB);
 ```
 
-## CommonEvent.publishAsUser<sup>(deprecated)</sup>
+## commonEvent.publishAsUser<sup>(deprecated)</sup>
 
 publishAsUser(event: string, userId: number, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
 
@@ -111,7 +111,7 @@ function publishCB(err:Base.BusinessError) {
 let userId = 100;
 
 // 发布公共事件
-CommonEvent.publishAsUser("event", userId, options, publishCB);
+commonEvent.publishAsUser("event", userId, options, publishCB);
 ```
 
 
@@ -161,7 +161,7 @@ function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManag
         console.info("createSubscriber");
         subscriber = commonEventSubscriber;
         // Subscribe to a common event.
-        CommonEvent.subscribe(subscriber, subscribeCB);
+        commonEvent.subscribe(subscriber, subscribeCB);
     }
 }
 
@@ -175,8 +175,8 @@ function unsubscribeCB(err:Base.BusinessError) {
 }
 
 // 创建订阅者
-CommonEvent.createSubscriber(subscribeInfo, createCB);
+commonEvent.createSubscriber(subscribeInfo, createCB);
 
 // 取消订阅公共事件
-CommonEvent.unsubscribe(subscriber, unsubscribeCB);
+commonEvent.unsubscribe(subscriber, unsubscribeCB);
 ```

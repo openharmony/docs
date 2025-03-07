@@ -47,6 +47,8 @@ Camera_Profile** Camera_OutputCapability::photoProfiles
 **描述**
 拍照配置文件列表。
 
+配置文件中的size设置的是相机分辨率宽高，非实际出图宽高。
+
 
 ### photoProfilesSize
 

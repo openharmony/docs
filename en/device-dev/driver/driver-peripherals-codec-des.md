@@ -84,11 +84,11 @@ The codec module implements hardware encoding and decoding of video data. It con
 
 For more information, see [codec](https://gitee.com/openharmony/drivers_peripheral/tree/master/codec).
 
-### How to Develop
+### Development Procedure
 The codec HDI driver development procedure is as follows:
 
 #### Registering and Initializing the Driver
-Define the **HdfDriverEntry** struct (which defines the driver initialization method) and fill in the **g_codeccomponentmanagerDriverEntry** struct to implement the **Bind()**, **Init()**, and **Release()** pointers.
+Define the **HdfDriverEntry** structure (which defines the driver initialization method) and fill in the **g_codeccomponentmanagerDriverEntry** structure to implement the pointers in **Bind()**, **Init()**, and **Release()**.
 
 ```c
 static struct HdfDriverEntry g_codeccomponentmanagerDriverEntry = {
@@ -97,7 +97,7 @@ static struct HdfDriverEntry g_codeccomponentmanagerDriverEntry = {
     .Bind = HdfCodecComponentManagerDriverBind,
     .Init = HdfCodecComponentManagerDriverInit,
     .Release = HdfCodecComponentManagerDriverRelease,
-}; // Register the HdfDriverEntry struct of the codec HDI with the HDF.
+}; // Register the HdfDriverEntry structure of the codec HDI with the HDF.
 ```
 
 - **HdfCodecComponentManagerDriverBind**: binds the device in the HDF to the **HdfCodecComponentManagerHost** and registers the codec service with the HDF.
@@ -137,7 +137,7 @@ static struct HdfDriverEntry g_codeccomponentmanagerDriverEntry = {
     }
     ```
 
-- **HdfCodecComponentManagerDriverInit**: loads the attribute configuration from the HDF Configuration Source (HCS).
+- **HdfCodecComponentManagerDriverInit**: loads the attribute configuration in the HDF Configuration Source (HCS).
 
     ```c
     static int HdfCodecComponentManagerDriverInit(struct HdfDeviceObject *deviceObject)
@@ -167,22 +167,20 @@ static struct HdfDriverEntry g_codeccomponentmanagerDriverEntry = {
     }
     ```
 
-#### Configuring the Driver HCS
+#### Driver HCS
 The HCS consists of the following:
 
 - Device configuration
 - Configuration of the supported components
 
-The HCS includes the driver node, loading sequence, and service name. For details about the HCS syntax, see [Configuration Management](driver-hdf-manage.md).
+You need to configure the driver node, loading sequence, and service name. For details about the HCS syntax, see [Configuration Management](driver-hdf-manage.md).
 
-The following uses the RK3568 development board as an example. The configuration files of the standard system are in the **vendor/hihope/rk3568/hdf_config/uhdf/** directory.
+The following uses the RK3568 development board as an example. The configuration files of the standard system are in the
+**vendor/hihope/rk3568/hdf_config/uhdf/** directory.
 
 1. Configure the device.
 
-    Add the **codec_component_manager_service** configuration to **codec_host** in **device_info.hcs**. 
-
-    Example:
-
+    Add the **codec_component_manager_service** configuration to **codec_host** in **device_info.hcs**. The following is an example:
     ```c
     codec :: host {
         hostName = "codec_host";
@@ -202,12 +200,9 @@ The following uses the RK3568 development board as an example. The configuration
 
 2. Configure supported components.
 
-    Add the component configuration to the **media_codec\media_codec_capabilities.hcs** file. 
-    
-    Example:
-    
+    Add the component configuration to the **media_codec\media_codec_capabilities.hcs** file. The following is an example:
     ```c
-    /* node name explanation -- HDF_video_hw_enc_avc_rk:
+    /* Explanation to the node name HDF_video_hw_enc_avc_rk:
     **
     **    HDF____________video__________________hw____________________enc____________avc_______rk
     **     |               |                    |                      |              |        |
@@ -217,7 +212,7 @@ The following uses the RK3568 development board as an example. The configuration
         role = 1;                                           // Role of the audio and video codec.
         type = 1;                                           // Codec type.
         name = "OMX.rk.video_encoder.avc";                  // Component name.
-        supportProfiles = [1, 32768, 2, 32768, 8, 32768];   // Supported profiles.
+        supportProfiles = [1, 32768, 2, 32768, 8, 32768]; // Supported profiles.
         maxInst = 4;                                        // Maximum number of instances.
         isSoftwareCodec = false;                            // Whether it is software codec.
         processModeMask = [];                               // Codec processing mode.
@@ -226,7 +221,7 @@ The following uses the RK3568 development board as an example. The configuration
         maxBitRate = 40000000;                              // Maximum bit rate.
         minWidth = 176;                                     // Minimum video width.
         minHeight = 144;;                                   // Minimum video height.
-        maxWidth = 1920;                                    // Maximum video width.
+        maxWidth = 1920;                                   // Maximum video width.
         maxHeight = 1088;                                   // Maximum video height.
         widthAlignment = 16;                                // Horizontal alignment.
         heightAlignment = 8;                                // Vertical alignment.
@@ -238,8 +233,8 @@ The following uses the RK3568 development board as an example. The configuration
         blockSizeHeight = 0xFFFFFFFF;
         supportPixelFmts = [28, 24, 20, 12];                // List of colors supported by the display.
         measuredFrameRate = [320, 240, 165, 165, 720, 480, 149, 149, 1280, 720, 73, 73, 1920, 1080, 18, 18];
-        bitRateMode = [1, 2];                               // Bit rate mode.
-        minFrameRate = 0;                                   // Frame rate.
+        bitRateMode = [1, 2];                                // Bit rate mode.
+        minFrameRate = 0;                                // Frame rate.
         maxFrameRate = 0;
     }
     ```
@@ -247,8 +242,8 @@ The following uses the RK3568 development board as an example. The configuration
 ### Development Example
 After completing codec module driver adaptation, use the HDI APIs provided by the codec module for further development. The codec HDI provides the following features:
 
-- Provides codec HDI APIs for video services to implement encoding and decoding for video services.
-- Provides standard interfaces for device developers to ensure that the OEM vendors comply with the HDI adapter standard. This promises a healthy evolution of the ecosystem.
+1. Provides codec HDI APIs for video services to implement encoding and decoding for video services.
+2. Provides standard interfaces for device developers to ensure that the OEM vendors comply with the HDI adapter standard. This promises a healthy evolution of the ecosystem.
 
 The development procedure is as follows:
 
@@ -498,7 +493,7 @@ int32_t CodecHdiDecode::UseBufferOnPort(PortIndex portIndex, int bufferCount, in
 }
 ```
 
-#### Flipping Codec Buffers 
+#### Codec Buffer Flipping
 Set the component to the **CODEC_STATE_EXECUTING** state, fill the input buffer, read data from the output buffer, and flip the buffers.
 
 ```cpp
@@ -556,7 +551,7 @@ return;
 }
 ```
 
-Automatic framing is not supported in rk OMX decoding. Therefore, you need to manually divide data into frames. Currently, data is divided into frames from code 0x000001 or 0x00000001 and sent to the server for processing. The sample code is as follows:
+The RK3568 development board does not support data framing during the decoding process. Therefore, you need to manually divide the data into frames from code 0x000001 or 0x00000001 and sent the frames to the server for processing. The sample code is as follows:
 
 ```cpp
 // Read a file by frame.
@@ -679,7 +674,7 @@ int32_t CodecHdiDecode::EventHandler(CodecEventType event, const EventInfo &info
 #### Destroying a Component
 Change the component state to **CODEC_STATE_IDLE**, release the input and output buffers, change the component state to **CODEC_STATE_LOADED**, and call **DestoryComponent** to destroy the component.
 
-##### Releasing Buffers
+##### Example of Releasing Buffers
 
 ```cpp
 // Change the component state to OMX_StateLoaded.
@@ -715,7 +710,7 @@ do {
 } while ((status != CODEC_STATE_LOADED) && (tryCount > 0));
 ```
 
-##### Destroying a Component Instance
+##### Example of Destroying a Component Instance
 
 ```cpp
 // Destroy a component instance.
@@ -776,4 +771,4 @@ View the **codec_host** log generated during encoding, search for "encode params
 
 # Reference
 
-For more information, see [Codec](https://gitee.com/openharmony/drivers_peripheral/tree/master/codec).
+For more information, see [codec](https://gitee.com/openharmony/drivers_peripheral/tree/master/codec).

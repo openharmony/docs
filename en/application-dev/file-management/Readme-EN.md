@@ -7,26 +7,32 @@
   - Application File Access and Management
     - [Accessing Application Files (ArkTS)](app-file-access.md)
     - [Accessing Application Files (C/C++)](native-fileio-guidelines.md)
-    - [Uploading and Downloading Application Files](app-file-upload-download.md)
     - [Obtaining Application and File System Space Statistics](app-fs-space-statistics.md)
+  <!--Del-->
   - [Pushing Files to an Application Sandbox Directory](send-file-to-app-sandbox.md)
+  <!--DelEnd-->
   - [Sharing an Application File](share-app-file.md)
   - Application Data Backup and Restore
     - [Application Data Backup and Restore Overview](app-file-backup-overview.md)
     - [Accessing Backup and Restore](app-file-backup-extension.md)
+    <!--Del-->
     - [Triggering Backup and Restore (for System Applications Only)](app-file-backup.md)
-  - [Authorizing File Access (ArkTS)](app-file-authorization.md)
-  - [Authorizing File Access (C/C++)](native-fileshare-guidelines.md)
+    <!--DelEnd-->
 - User Files
   - [User File Overview](user-file-overview.md)
   - [User File URI](user-file-uri-intro.md)
   - [FileUri Development (C/C++)](native-fileuri-guidelines.md)
   - [Obtaining the User Directory Environment (C/C++)](native-environment-guidelines.md)
-  - Selecting and Saving User Files (FilePicker)
+  - Selecting and Saving User Files
     - [Selecting User Files](select-user-file.md)
     - [Saving User Files](save-user-file.md)
-  - [Developing a FileManager Application (for System Applications Only)](dev-user-file-manager.md)
+    - [Persisting Temporary Permissions (ArkTS)](file-persistPermission.md)
+    - [Persisting Temporary Permissions (C/C++)](native-fileshare-guidelines.md)
+  - [Obtaining and Accessing a User Directory](request-dir-permission.md)
+  <!--Del-->
+  - [Developing a File Manager Application (for System Applications Only)](dev-user-file-manager.md)
   - [Managing External Storage Devices (for System Applications Only)](manage-external-storage.md)
+  <!--DelEnd-->
 - Distributed File System
   - [Distributed File System Overview](distributed-fs-overview.md)
   - [Setting the Security Level of a Distributed File](set-security-label.md)

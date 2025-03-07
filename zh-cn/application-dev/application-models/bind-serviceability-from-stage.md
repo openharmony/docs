@@ -6,15 +6,13 @@
 
 ## UIAbility关联访问ServiceAbility
 
-UIAbility关联访问ServiceAbility和UIAbility关联访问ServiceExtensionAbility的方式完全相同。
+[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)关联访问ServiceAbility和UIAbility关联访问[ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)的方式完全相同。
 
 
 ```ts
-import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog';
-import Logger from '../utils/Logger';
-import promptAction from '@ohos.promptAction'
-import Want from '@ohos.app.ability.Want';
+import { common, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { promptAction } from '@kit.ArkUI';
 
 const TAG: string = '[Page_StartFAModel]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -25,33 +23,42 @@ struct Page_StartFAModel {
   private context = getContext(this) as common.UIAbilityContext;
 
   build() {
-    // ...
-    Button() {
+    Column() {
+      // ...
+      List({ initialIndex: 0 }) {
+        // ...
+        ListItem() {
+          Row() {
+            // ...
+          }
+          .onClick(() => {
+            let want: Want = {
+              bundleName: 'com.samples.famodelabilitydevelop',
+              abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility',
+            };
+            let options: common.ConnectOptions = {
+              onConnect: (elementName, proxy) => {
+                hilog.info(DOMAIN_NUMBER, TAG, 'onConnect called.');
+                promptAction.showToast({
+                  message: 'ConnectFAServiceAbility'
+                });
+              },
+              onDisconnect: (elementName) => {
+                hilog.info(DOMAIN_NUMBER, TAG, 'onDisconnect called.');
+              },
+              onFailed: (code) => {
+                hilog.info(DOMAIN_NUMBER, TAG, 'onFailed code is: ' + code);
+              }
+            };
+            let connectionId = this.context.connectServiceExtensionAbility(want, options);
+            hilog.info(DOMAIN_NUMBER, TAG, 'connectionId is ' + JSON.stringify(connectionId));
+          })
+        }
+        // ...
+      }
       // ...
     }
-    .onClick(() => {
-      let want: Want = {
-        bundleName: 'com.samples.famodelabilitydevelop',
-        abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility',
-      }
-
-      let options: common.ConnectOptions = {
-        onConnect: (elementName, proxy) => {
-          Logger.info('onConnect called.');
-          promptAction.showToast({
-            message: $r('app.string.ConnectFAServiceAbility')
-          });
-        },
-        onDisconnect: (elementName) => {
-          Logger.info('onDisconnect called.');
-        },
-        onFailed: (code) => {
-          Logger.info('onFailed code is: ' + code);
-        }
-      };
-      let connectionId = this.context.connectServiceExtensionAbility(want, options);
-      hilog.info(DOMAIN_NUMBER, TAG, 'connectionId is ' + JSON.stringify(connectionId));
-    })
+    // ...
   }
 }
 ```
@@ -59,15 +66,13 @@ struct Page_StartFAModel {
 
 ## ExtensionAbility关联访问ServiceAbility
 
-下面以ServiceExtensionAbility为例来说明ExtensionAbility关联访问ServiceAbility。ServiceExtensionAbility关联访问ServiceAbility和ServiceExtensionAbility关联访问ServiceExtensionAbility的方式完全相同。
+下面以[ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)为例来说明[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)关联访问ServiceAbility。ServiceExtensionAbility关联访问ServiceAbility和ServiceExtensionAbility关联访问ServiceExtensionAbility的方式完全相同。
 
 
 ```ts
-import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog';
-import Logger from '../utils/Logger';
-import promptAction from '@ohos.promptAction'
-import Want from '@ohos.app.ability.Want';
+import { common, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { promptAction } from '@kit.ArkUI';
 
 const TAG: string = '[Page_StartFAModel]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -78,33 +83,42 @@ struct Page_StartFAModel {
   private context = getContext(this) as common.UIAbilityContext;
 
   build() {
-    // ...
-    Button() {
+    Column() {
+      // ...
+      List({ initialIndex: 0 }) {
+        // ...
+        ListItem() {
+          Row() {
+            // ...
+          }
+          .onClick(() => {
+            let want: Want = {
+              bundleName: 'com.samples.famodelabilitydevelop',
+              abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility',
+            };
+            let options: common.ConnectOptions = {
+              onConnect: (elementName, proxy) => {
+                hilog.info(DOMAIN_NUMBER, TAG, 'onConnect called.');
+                promptAction.showToast({
+                  message: 'ConnectFAServiceAbility'
+                });
+              },
+              onDisconnect: (elementName) => {
+                hilog.info(DOMAIN_NUMBER, TAG, 'onDisconnect called.');
+              },
+              onFailed: (code) => {
+                hilog.info(DOMAIN_NUMBER, TAG, 'onFailed code is: ' + code);
+              }
+            };
+            let connectionId = this.context.connectServiceExtensionAbility(want, options);
+            hilog.info(DOMAIN_NUMBER, TAG, 'connectionId is ' + JSON.stringify(connectionId));
+          })
+        }
+        // ...
+      }
       // ...
     }
-    .onClick(() => {
-      let want: Want = {
-        bundleName: 'com.samples.famodelabilitydevelop',
-        abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility',
-      }
-
-      let options: common.ConnectOptions = {
-        onConnect: (elementName, proxy) => {
-          Logger.info('onConnect called.');
-          promptAction.showToast({
-            message: $r('app.string.ConnectFAServiceAbility')
-          });
-        },
-        onDisconnect: (elementName) => {
-          Logger.info('onDisconnect called.');
-        },
-        onFailed: (code) => {
-          Logger.info('onFailed code is: ' + code);
-        }
-      };
-      let connectionId = this.context.connectServiceExtensionAbility(want, options);
-      hilog.info(DOMAIN_NUMBER, TAG, 'connectionId is ' + JSON.stringify(connectionId));
-    })
+    // ...
   }
 }
 ```

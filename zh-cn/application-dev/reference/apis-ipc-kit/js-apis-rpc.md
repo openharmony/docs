@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```
-import rpc from '@ohos.rpc';
+import { rpc } from '@kit.IPCKit';
 ```
 
 ## ErrorCode<sup>9+</sup>
@@ -38,6 +38,26 @@ import rpc from '@ohos.rpc';
   | OS_DUP_ERROR                          | 1900013 | 执行系统调用dup失败。                         |
 
 
+## TypeCode<sup>12+</sup>
+
+从API version 12起，IPC新增[writeArrayBuffer](#writearraybuffer12)和[readArrayBuffer](#readarraybuffer12)方法传递ArrayBuffer数据，传递数据时通过具体类型值来分辨业务是以哪一种TypedArray去进行数据的读写。类型码对应数值及含义如下。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+  | 名称                         | 值     | 说明                                          |
+  | ---------------------------- | ------ | --------------------------------------------  |
+  | INT8_ARRAY                   | 0      | TypedArray类型为INT8_ARRAY。                  |
+  | UINT8_ARRAY                  | 1      | TypedArray类型为UINT8_ARRAY。                 |
+  | INT16_ARRAY                  | 2      | TypedArray类型为INT16_ARRAY。                 |
+  | UINT16_ARRAY                 | 3      | TypedArray类型为UINT16_ARRAY。                |
+  | INT32_ARRAY                  | 4      | TypedArray类型为INT32_ARRAY。                 |
+  | UINT32_ARRAY                 | 5      | TypedArray类型为UINT32_ARRAY。                |
+  | FLOAT32_ARRAY                | 6      | TypedArray类型为FLOAT32_ARRAY。               |
+  | FLOAT64_ARRAY                | 7      | TypedArray类型为FLOAT64_ARRAY。               |
+  | BIGINT64_ARRAY               | 8      | TypedArray类型为BIGINT64_ARRAY。              |
+  | BIGUINT64_ARRAY              | 9      | TypedArray类型为BIGUINT64_ARRAY。             |
+
+
 ## MessageSequence<sup>9+</sup>
 
   在RPC或IPC过程中，发送方可以使用MessageSequence提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageSequence提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。
@@ -59,10 +79,13 @@ import rpc from '@ohos.rpc';
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageSequence.create();
   hilog.info(0x0000, 'testTag', 'RpcClient: data is ' + data);
+
+  // 当MessageSequence对象不再使用，由业务主动调用reclaim方法去释放资源。
+  data.reclaim();
   ```
 
 ### reclaim
@@ -100,14 +123,15 @@ writeRemoteObject(object: IRemoteObject): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900008  | The proxy or remote object is invalid. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -145,14 +169,14 @@ readRemoteObject(): IRemoteObject
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
-  | 1900010  | read data from message sequence failed |
+  | 1900008  | The proxy or remote object is invalid. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -192,13 +216,14 @@ writeInterfaceToken(token: string): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes:<br/> 1.The number of parameters is incorrect;<br/> 2.The parameter type does not match;<br/> 3.The string length exceeds 40960 bytes;<br/> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -230,13 +255,13 @@ readInterfaceToken(): string
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
 ```ts
-import hilog from '@ohos.hilog';
-import { BusinessError } from '@ohos.base';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class Stub extends rpc.RemoteObject {
   onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -270,7 +295,7 @@ getSize(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageSequence.create();
   let size = data.getSize();
@@ -294,7 +319,7 @@ getCapacity(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageSequence.create();
   let result = data.getCapacity();
@@ -315,11 +340,19 @@ setSize(size: number): void
   | ------ | ------ | ---- | ------ |
   | size   | number | 是   | MessageSequence实例的数据大小。以字节为单位。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   data.writeString('Hello World');
@@ -352,13 +385,14 @@ setCapacity(size: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900011  | parcel memory alloc failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900011  | Memory allocation failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -387,7 +421,7 @@ getWritableBytes(): number
 **示例：**
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class Stub extends rpc.RemoteObject {
   onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -415,7 +449,7 @@ getReadableBytes(): number
 **示例：**
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class Stub extends rpc.RemoteObject {
   onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -443,7 +477,7 @@ getReadPosition(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageSequence.create();
   let readPos = data.getReadPosition();
@@ -467,7 +501,7 @@ getWritePosition(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageSequence.create();
   data.writeInt(10);
@@ -489,11 +523,19 @@ rewindRead(pos: number): void
   | ------ | ------ | ---- | ------- |
   | pos    | number | 是   | 开始读取数据的目标位置。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   data.writeInt(12);
@@ -525,11 +567,19 @@ rewindWrite(pos: number): void
   | ------ | ------ | ---- | ----- |
   | pos    | number | 是   | 开始写入数据的目标位置。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   data.writeInt(4);
@@ -565,13 +615,14 @@ writeByte(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------  |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -603,13 +654,13 @@ readByte(): number
 
   | 错误码ID | 错误信息 |
   | ------- | --------  |
-  | 1900010 | read data from message sequence failed |
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -649,13 +700,14 @@ writeShort(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -687,13 +739,13 @@ readShort(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -733,13 +785,14 @@ writeInt(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -771,13 +824,13 @@ readInt(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -817,13 +870,14 @@ writeLong(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -855,13 +909,13 @@ readLong(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -901,13 +955,14 @@ writeFloat(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -939,13 +994,13 @@ readFloat(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -985,13 +1040,14 @@ writeDouble(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1023,13 +1079,13 @@ readDouble(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1069,13 +1125,14 @@ writeBoolean(val: boolean): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1107,13 +1164,13 @@ readBoolean(): boolean
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1153,13 +1210,14 @@ writeChar(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1191,13 +1249,13 @@ readChar(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1237,13 +1295,14 @@ writeString(val: string): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The string length exceeds 40960 bytes; <br/> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1275,13 +1334,13 @@ readString(): string
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1321,13 +1380,14 @@ writeParcelable(val: Parcelable): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
@@ -1378,14 +1438,15 @@ readParcelable(dataIn: Parcelable): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
-  | 1900012  | call js callback function failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect. |
+  | 1900010  | Failed to read data from the message sequence. |
+  | 1900012  | Failed to call the JS callback function. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
@@ -1438,13 +1499,14 @@ writeByteArray(byteArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array. <br/> 5.The type of the element in the array is incorrect. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
@@ -1477,13 +1539,14 @@ readByteArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
@@ -1524,13 +1587,14 @@ readByteArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 401      | check param failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   let byteArrayVar = [1, 2, 3, 4, 5];
@@ -1571,13 +1635,14 @@ writeShortArray(shortArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array; <br/> 5.The type of the element in the array is incorrect. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1609,13 +1674,14 @@ readShortArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1655,13 +1721,13 @@ readShortArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1701,13 +1767,14 @@ writeIntArray(intArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array; <br/> 5.The type of the element in the array is incorrect. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1739,13 +1806,14 @@ readIntArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1785,13 +1853,13 @@ readIntArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1831,13 +1899,14 @@ writeLongArray(longArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array; <br/> 5.The type of the element in the array is incorrect. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1869,13 +1938,14 @@ readLongArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1915,13 +1985,13 @@ readLongArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1961,13 +2031,14 @@ writeFloatArray(floatArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array; <br/> 5.The type of the element in the array is incorrect. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1999,13 +2070,14 @@ readFloatArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2045,13 +2117,13 @@ readFloatArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2091,13 +2163,14 @@ writeDoubleArray(doubleArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array; <br/> 5.The type of the element in the array is incorrect. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2129,13 +2202,14 @@ readDoubleArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2175,13 +2249,13 @@ readDoubleArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2221,13 +2295,14 @@ writeBooleanArray(booleanArray: boolean[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2259,13 +2334,14 @@ readBooleanArray(dataIn: boolean[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2305,13 +2381,13 @@ readBooleanArray(): boolean[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2351,13 +2427,14 @@ writeCharArray(charArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2389,13 +2466,14 @@ readCharArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2435,13 +2513,13 @@ readCharArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2481,13 +2559,14 @@ writeStringArray(stringArray: string[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The string length exceeds 40960 bytes; <br/> 5.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2519,13 +2598,14 @@ readStringArray(dataIn: string[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2565,13 +2645,13 @@ readStringArray(): string[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2605,13 +2685,13 @@ writeNoException(): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -2650,18 +2730,15 @@ readException(): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -2684,14 +2761,17 @@ readException(): void
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
@@ -2745,13 +2825,14 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
@@ -2805,14 +2886,15 @@ readParcelableArray(parcelableArray: Parcelable[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
-  | 1900012  | call js callback function failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The length of the array passed when reading is not equal to the length passed when writing to the array; <br/> 5.The element does not exist in the array. |
+  | 1900010  | Failed to read data from the message sequence. |
+  | 1900012  | Failed to call the JS callback function. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
@@ -2868,13 +2950,14 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array; <br/> 5.The obtained remoteObject is null. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -2917,13 +3000,14 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The length of the array passed when reading is not equal to the length passed when writing to the array. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -2968,13 +3052,13 @@ readRemoteObjectArray(): IRemoteObject[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -3013,15 +3097,23 @@ static closeFileDescriptor(fd: number): void
   | ------ | ------ | ---- | -------------------- |
   | fd     | number | 是   | 要关闭的文件描述符。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   try {
     rpc.MessageSequence.closeFileDescriptor(file.fd);
   } catch (error) {
@@ -3033,7 +3125,7 @@ static closeFileDescriptor(fd: number): void
 
 ### dupFileDescriptor
 
-static dupFileDescriptor(fd: number) :number
+static dupFileDescriptor(fd: number): number
 
 静态方法，复制给定的文件描述符。
 
@@ -3057,17 +3149,18 @@ static dupFileDescriptor(fd: number) :number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900013  | call os dup function failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900013  | Failed to call dup. |
 
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   try {
     rpc.MessageSequence.dupFileDescriptor(file.fd);
   } catch (error) {
@@ -3094,13 +3187,13 @@ containFileDescriptors(): boolean
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   try {
     sequence.writeFileDescriptor(file.fd);
   } catch (error) {
@@ -3138,18 +3231,19 @@ writeFileDescriptor(fd: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   try {
     sequence.writeFileDescriptor(file.fd);
   } catch (error) {
@@ -3179,18 +3273,18 @@ readFileDescriptor(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   try {
     sequence.writeFileDescriptor(file.fd);
   } catch (error) {
@@ -3228,13 +3322,14 @@ writeAshmem(ashmem: Ashmem): void
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
-  | 1900003  | write to ashmem failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter is not an instance of the Ashmem object. |
+  | 1900003  | Failed to write data to the shared memory. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let ashmem: rpc.Ashmem | undefined = undefined;
@@ -3274,13 +3369,14 @@ readAshmem(): Ashmem
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900004  | read from ashmem failed |
+  | 401      | check param failed |
+  | 1900004  | Failed to read data from the shared memory. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let ashmem: rpc.Ashmem | undefined = undefined;
@@ -3319,12 +3415,12 @@ getRawDataCapacity(): number
 
   | 类型   | 说明                                                         |
   | ------ | ------------------------------------------------------------ |
-  | number | 返回MessageSequence可以容纳的最大原始数据量，即128&nbsp;Mb。 |
+  | number | 返回MessageSequence可以容纳的最大原始数据量，即128MB。 |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let sequence = new rpc.MessageSequence();
   let result = sequence.getRawDataCapacity();
@@ -3333,11 +3429,16 @@ getRawDataCapacity(): number
 
 ### writeRawData<sup>(deprecated)</sup>
 
->从API version 11 开始不再维护，建议使用[writeRawDataBuffer](#writerawdatabuffer11)类替代。
-
 writeRawData(rawData: number[], size: number): void
 
 将原始数据写入MessageSequence对象。
+
+> **说明：**
+>
+> 从API version 11 开始废弃，建议使用[writeRawDataBuffer](#writerawdatabuffer11)替代。
+>
+> 该接口是一次性接口，不允许在一次parcel通信中多次调用该接口。
+> 该接口在传输数据时，当数据量较大时（超过32KB），会使用共享内存传输数据，此时需注意selinux配置。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -3345,7 +3446,7 @@ writeRawData(rawData: number[], size: number): void
 
   | 参数名  | 类型     | 必填 | 说明                               |
   | ------- | -------- | ---- | ---------------------------------- |
-  | rawData | number[] | 是   | 要写入的原始数据。                 |
+  | rawData | number[] | 是   | 要写入的原始数据，大小不能超过128MB。 |
   | size    | number   | 是   | 发送的原始数据大小，以字节为单位。 |
 
 **错误码：**
@@ -3354,13 +3455,14 @@ writeRawData(rawData: number[], size: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The transferred size cannot be obtained; <br/> 5.The transferred size is less than or equal to 0;<br/> 6.The element does not exist in the array; <br/> 7.Failed to obtain typedArray information; <br/> 8.The array is not of type int32; <br/> 9.The length of typedarray is smaller than the size of the original data sent. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let arr = [1, 2, 3, 4, 5];
@@ -3379,14 +3481,19 @@ writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
 
 将原始数据写入MessageSequence对象。
 
+> **说明：**
+>
+> 该接口是一次性接口，不允许在一次parcel通信中多次调用该接口。
+> 该接口在传输数据时，当数据量较大时（超过32KB），会使用共享内存传输数据，此时需注意selinux配置。
+
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
 
-  | 参数名  | 类型     | 必填 | 说明                               |
-  | ------- | -------- | ---- | ---------------------------------- |
-  | rawData | ArrayBuffer | 是   | 要写入的原始数据。                 |
-  | size    | number   | 是   | 发送的原始数据大小，以字节为单位。 |
+  | 参数名  | 类型        | 必填 | 说明                                 |
+  | ------- | ----------- | ---- | ------------------------------------ |
+  | rawData | ArrayBuffer | 是   | 要写入的原始数据，大小不能超过128MB。 |
+  | size    | number      | 是   | 发送的原始数据大小，以字节为单位。    |
 
 **错误码：**
 
@@ -3394,13 +3501,14 @@ writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain arrayBuffer information; <br/> 4.The transferred size cannot be obtained; <br/> 5.The transferred size is less than or equal to 0; <br/> 6.The transferred size is greater than the byte length of ArrayBuffer. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let buffer = new ArrayBuffer(64 * 1024);
   let int32View = new Int32Array(buffer);
@@ -3420,11 +3528,14 @@ writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
 
 ### readRawData<sup>(deprecated)</sup>
 
->从API version 11 开始不再维护，建议使用[readRawDataBuffer](#readrawdatabuffer11)类替代。
-
 readRawData(size: number): number[]
 
 从MessageSequence读取原始数据。
+
+> **说明：**
+>
+> 从API version 11 开始废弃，建议使用[readRawDataBuffer](#readrawdatabuffer11)替代。
+
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -3446,13 +3557,14 @@ readRawData(size: number): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let arr = [1, 2, 3, 4, 5];
@@ -3499,13 +3611,14 @@ readRawDataBuffer(size: number): ArrayBuffer
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let buffer = new ArrayBuffer(64 * 1024);
   let int32View = new Int32Array(buffer);
@@ -3532,11 +3645,123 @@ readRawDataBuffer(size: number): ArrayBuffer
   }
   ```
 
+### writeArrayBuffer<sup>12+</sup>
+
+writeArrayBuffer(buf: ArrayBuffer, typeCode: TypeCode): void
+
+将ArrayBuffer类型数据写入MessageSequence对象。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名    | 类型                      | 必填 | 说明                        |
+  | --------- | ------------------------- | ---- | --------------------------- |
+  | buf       | ArrayBuffer               | 是   | 要写入的ArrayBuffer数据。   |
+  | typeCode  | [TypeCode](#typecode12)   | 是   | ArrayBuffer数据具体是以哪一种TypedArray来访问和操作(会根据业务传递的类型枚举值去决定底层的写入方式，需要业务正确传递枚举值。) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The obtained value of typeCode is incorrect; <br/> 5.Failed to obtain arrayBuffer information. |
+  | 1900009  | Failed to write data to the message sequence. |
+
+**示例：**
+
+  ```ts
+  // TypeCode 类型枚举较多，示例代码以Int16Array为例
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  const data = rpc.MessageSequence.create();
+
+  let buffer = new ArrayBuffer(10);
+  let int16View = new Int16Array(buffer);
+  for (let i = 0; i < int16View.length; i++) {
+    int16View[i] = i * 2 + 1;
+  }
+
+  try {
+    data.writeArrayBuffer(buffer, rpc.TypeCode.INT16_ARRAY);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorMessage ' + e.message);
+  }
+  ```
+
+### readArrayBuffer<sup>12+</sup>
+
+readArrayBuffer(typeCode: TypeCode): ArrayBuffer
+
+从MessageSequence读取ArrayBuffer类型数据。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名   | 类型                     | 必填 | 说明                   |
+  | -------- | ----------------------- | ---- | ------------------------|
+  | typeCode | [TypeCode](#typecode12) | 是   | ArrayBuffer数据具体是以哪一种TypedArray来访问和操作(会根据业务传递的类型枚举值去决定底层的读取方式，需要业务正确传递枚举值，读写枚举值不匹配会导致数据异常。)  |
+
+**返回值：**
+
+  | 类型     | 说明                                         |
+  | -------- | -------------------------------------------- |
+  | ArrayBuffer | 返回ArrayBuffer类型数据（以字节为单位）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The obtained value of typeCode is incorrect; |
+  | 1900010  | Failed to read data from the message sequence. |
+
+**示例：**
+
+  ```ts
+  // TypeCode 类型枚举较多，示例代码以Int16Array为例
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  const data = rpc.MessageSequence.create();
+
+  let buffer = new ArrayBuffer(10);
+  let int16View = new Int16Array(buffer);
+  for (let i = 0; i < int16View.length; i++) {
+    int16View[i] = i * 2 + 1;
+  }
+
+  try {
+    data.writeArrayBuffer(buffer, rpc.TypeCode.INT16_ARRAY);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorMessage ' + e.message);
+  }
+  try {
+    let result = data.readArrayBuffer(rpc.TypeCode.INT16_ARRAY);
+    let readInt16View = new Int16Array(result);
+    hilog.info(0x0000, 'testTag', 'RpcTest: read ArrayBuffer result is ' + readInt16View);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read ArrayBuffer fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read ArrayBuffer fail, errorMessage ' + e.message);
+  }
+  ```
+
 ## MessageParcel<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[MessageSequence](#messagesequence9)类替代。
-
 在RPC过程中，发送方可以使用MessageParcel提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageParcel提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[MessageSequence](#messagesequence9)替代。
 
 ### create
 
@@ -3555,10 +3780,13 @@ static create(): MessageParcel
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   hilog.info(0x0000, 'testTag', 'RpcClient: data is ' + data);
+
+  // 当MessageParcel对象不再使用，由业务主动调用reclaim方法去释放资源。
+  data.reclaim();
   ```
 
 ### reclaim
@@ -3599,7 +3827,7 @@ writeRemoteObject(object: IRemoteObject): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -3642,7 +3870,7 @@ readRemoteObject(): IRemoteObject
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -3693,7 +3921,7 @@ writeInterfaceToken(token: string): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeInterfaceToken("aaa");
@@ -3717,7 +3945,7 @@ readInterfaceToken(): string
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
@@ -3745,7 +3973,7 @@ getSize(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let size = data.getSize();
@@ -3769,7 +3997,7 @@ getCapacity(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.getCapacity();
@@ -3799,7 +4027,7 @@ setSize(size: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let setSize = data.setSize(16);
@@ -3829,7 +4057,7 @@ setCapacity(size: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.setCapacity(100);
@@ -3853,7 +4081,7 @@ getWritableBytes(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
@@ -3881,7 +4109,7 @@ getReadableBytes(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
@@ -3909,7 +4137,7 @@ getReadPosition(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let readPos = data.getReadPosition();
@@ -3933,7 +4161,7 @@ getWritePosition(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   data.writeInt(10);
@@ -3964,7 +4192,7 @@ rewindRead(pos: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   data.writeInt(12);
@@ -3999,7 +4227,7 @@ rewindWrite(pos: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   data.writeInt(4);
@@ -4032,7 +4260,7 @@ writeByte(val: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeByte(2);
@@ -4056,7 +4284,7 @@ readByte(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeByte(2);
@@ -4088,7 +4316,7 @@ writeShort(val: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeShort(8);
@@ -4112,7 +4340,7 @@ readShort(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeShort(8);
@@ -4144,7 +4372,7 @@ writeInt(val: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeInt(10);
@@ -4168,7 +4396,7 @@ readInt(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeInt(10);
@@ -4200,7 +4428,7 @@ writeLong(val: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeLong(10000);
@@ -4224,7 +4452,7 @@ readLong(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeLong(10000);
@@ -4256,7 +4484,7 @@ writeFloat(val: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeFloat(1.2);
@@ -4280,7 +4508,7 @@ readFloat(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeFloat(1.2);
@@ -4312,7 +4540,7 @@ writeDouble(val: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeDouble(10.2);
@@ -4336,7 +4564,7 @@ readDouble(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeDouble(10.2);
@@ -4368,7 +4596,7 @@ writeBoolean(val: boolean): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeBoolean(false);
@@ -4392,7 +4620,7 @@ readBoolean(): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeBoolean(false);
@@ -4424,7 +4652,7 @@ writeChar(val: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeChar(97);
@@ -4448,7 +4676,7 @@ readChar(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeChar(97);
@@ -4480,7 +4708,7 @@ writeString(val: string): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeString('abc');
@@ -4504,7 +4732,7 @@ readString(): string
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeString('abc');
@@ -4536,7 +4764,7 @@ writeSequenceable(val: Sequenceable): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
@@ -4585,7 +4813,7 @@ readSequenceable(dataIn: Sequenceable): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
@@ -4637,7 +4865,7 @@ writeByteArray(byteArray: number[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
@@ -4662,7 +4890,7 @@ readByteArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
@@ -4689,7 +4917,7 @@ readByteArray(): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
@@ -4722,7 +4950,7 @@ writeShortArray(shortArray: number[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
@@ -4746,7 +4974,7 @@ readShortArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
@@ -4772,7 +5000,7 @@ readShortArray(): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
@@ -4804,7 +5032,7 @@ writeIntArray(intArray: number[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
@@ -4828,7 +5056,7 @@ readIntArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
@@ -4854,7 +5082,7 @@ readIntArray(): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
@@ -4886,7 +5114,7 @@ writeLongArray(longArray: number[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
@@ -4910,7 +5138,7 @@ readLongArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
@@ -4936,7 +5164,7 @@ readLongArray(): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
@@ -4968,7 +5196,7 @@ writeFloatArray(floatArray: number[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
@@ -4992,7 +5220,7 @@ readFloatArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
@@ -5018,7 +5246,7 @@ readFloatArray(): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
@@ -5050,7 +5278,7 @@ writeDoubleArray(doubleArray: number[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
@@ -5074,7 +5302,7 @@ readDoubleArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
@@ -5100,7 +5328,7 @@ readDoubleArray(): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
@@ -5132,7 +5360,7 @@ writeBooleanArray(booleanArray: boolean[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
@@ -5156,7 +5384,7 @@ readBooleanArray(dataIn: boolean[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
@@ -5182,7 +5410,7 @@ readBooleanArray(): boolean[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
@@ -5214,7 +5442,7 @@ writeCharArray(charArray: number[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 88]);
@@ -5238,7 +5466,7 @@ readCharArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 99]);
@@ -5264,7 +5492,7 @@ readCharArray(): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 99]);
@@ -5296,7 +5524,7 @@ writeStringArray(stringArray: string[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
@@ -5320,7 +5548,7 @@ readStringArray(dataIn: string[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
@@ -5346,7 +5574,7 @@ readStringArray(): string[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
@@ -5366,7 +5594,7 @@ writeNoException(): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -5409,14 +5637,11 @@ readException(): void
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -5439,13 +5664,16 @@ readException(): void
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
@@ -5497,7 +5725,7 @@ writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
@@ -5543,7 +5771,7 @@ readSequenceableArray(sequenceableArray: Sequenceable[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
@@ -5597,7 +5825,7 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -5645,7 +5873,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -5694,7 +5922,7 @@ readRemoteObjectArray(): IRemoteObject[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -5744,10 +5972,10 @@ static closeFileDescriptor(fd: number): void
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
+  import { fileIo } from '@kit.CoreFileKit';
 
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   rpc.MessageParcel.closeFileDescriptor(file.fd);
   ```
 
@@ -5774,10 +6002,10 @@ static dupFileDescriptor(fd: number) :number
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
+  import { fileIo } from '@kit.CoreFileKit';
 
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   rpc.MessageParcel.dupFileDescriptor(file.fd);
   ```
 
@@ -5798,12 +6026,12 @@ containFileDescriptors(): boolean
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   let writeResult = parcel.writeFileDescriptor(file.fd);
   hilog.info(0x0000, 'testTag', 'RpcTest: parcel writeFd result is ' + writeResult);
   let containFD = parcel.containFileDescriptors();
@@ -5833,12 +6061,12 @@ writeFileDescriptor(fd: number): boolean
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   let writeResult = parcel.writeFileDescriptor(file.fd);
   hilog.info(0x0000, 'testTag', 'RpcTest: parcel writeFd result is ' + writeResult);
   ```
@@ -5860,12 +6088,12 @@ readFileDescriptor(): number
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   parcel.writeFileDescriptor(file.fd);
   let readFD = parcel.readFileDescriptor();
   hilog.info(0x0000, 'testTag', 'RpcTest: parcel read fd is ' + readFD);
@@ -5894,7 +6122,7 @@ writeAshmem(ashmem: Ashmem): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024);
@@ -5919,7 +6147,7 @@ readAshmem(): Ashmem
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024);
@@ -5941,12 +6169,12 @@ getRawDataCapacity(): number
 
   | 类型   | 说明                                                       |
   | ------ | ---------------------------------------------------------- |
-  | number | 返回MessageParcel可以容纳的最大原始数据量，即128&nbsp;Mb。 |
+  | number | 返回MessageParcel可以容纳的最大原始数据量，即128MB。 |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let result = parcel.getRawDataCapacity();
@@ -5977,7 +6205,7 @@ writeRawData(rawData: number[], size: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let arr = [1, 2, 3, 4, 5];
@@ -6008,7 +6236,7 @@ readRawData(size: number): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let arr = [1, 2, 3, 4, 5];
@@ -6045,7 +6273,7 @@ marshalling(dataOut: MessageSequence): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
@@ -6062,16 +6290,15 @@ marshalling(dataOut: MessageSequence): boolean
     unmarshalling(messageSequence: rpc.MessageSequence): boolean {
       this.num = messageSequence.readInt();
       this.str = messageSequence.readString();
+      hilog.info(0x0000, 'testTag', 'RpcClient: readInt is ' + this.num + ' readString is ' + this.str);
       return true;
     }
   }
   let parcelable = new MyParcelable(1, "aaa");
   let data = rpc.MessageSequence.create();
-  let result = data.writeParcelable(parcelable);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeParcelable is ' + result);
+  data.writeParcelable(parcelable);
   let ret = new MyParcelable(0, "");
-  let result2 = data.readParcelable(ret);
-  hilog.info(0x0000, 'testTag', 'RpcClient: readParcelable is ' + result2);
+  data.readParcelable(ret);
   ```
 
 ### unmarshalling
@@ -6097,7 +6324,7 @@ unmarshalling(dataIn: MessageSequence): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
@@ -6114,23 +6341,24 @@ unmarshalling(dataIn: MessageSequence): boolean
     unmarshalling(messageSequence: rpc.MessageSequence): boolean {
       this.num = messageSequence.readInt();
       this.str = messageSequence.readString();
+      hilog.info(0x0000, 'testTag', 'RpcClient: readInt is ' + this.num + ' readString is ' + this.str);
       return true;
     }
   }
   let parcelable = new MyParcelable(1, "aaa");
   let data = rpc.MessageSequence.create();
-  let result = data.writeParcelable(parcelable);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeParcelable is ' + result);
+  data.writeParcelable(parcelable);
   let ret = new MyParcelable(0, "");
-  let result2 = data.readParcelable(ret);
-  hilog.info(0x0000, 'testTag', 'RpcClient: readParcelable is ' + result2);
+  data.readParcelable(ret);
   ```
 
 ## Sequenceable<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[Parcelable](#parcelable9)类替代。
-
 在进程间通信（IPC）期间，将类的对象写入MessageParcel并从MessageParcel中恢复它们。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[Parcelable](#parcelable9)替代。
 
 ### marshalling
 
@@ -6155,7 +6383,7 @@ marshalling(dataOut: MessageParcel): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
@@ -6207,7 +6435,7 @@ unmarshalling(dataIn: MessageParcel): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
@@ -6267,15 +6495,11 @@ asObject(): IRemoteObject
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -6298,7 +6522,10 @@ asObject(): IRemoteObject
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的asObject接口方法获取代理或远端对象
@@ -6333,7 +6560,7 @@ onRemoteDied(): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -6355,11 +6582,13 @@ onRemoteDied(): void
 | data    | [MessageSequence](#messagesequence9) | 是   | 否   | 发送给对端进程的MessageSequence对象。 |
 | reply   | [MessageSequence](#messagesequence9) | 是   | 否   | 对端进程返回的MessageSequence对象。   |
 
-## SendRequestResult<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[RequestResult](#requestresult9)类替代。
+## SendRequestResult<sup>(deprecated)</sup>
 
 发送请求的响应结果。
+
+> **说明：**
+>
+> 从API version 8 开始支持，API version 9 开始废弃，建议使用[RequestResult](#requestresult9)替代。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
@@ -6394,13 +6623,23 @@ getLocalInterface(descriptor: string): IRemoteBroker
 | ------------- | --------------------------------------------- |
 | [IRemoteBroker](#iremotebroker) | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
 
-### queryLocalInterface<sup>(deprecated)</sup>
+**错误码：**
 
->从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9)类替代。
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The string length exceeds 40960 bytes; <br/> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+
+### queryLocalInterface<sup>(deprecated)</sup>
 
 queryLocalInterface(descriptor: string): IRemoteBroker
 
 查询接口描述符的字符串。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[getLocalInterface](#getlocalinterface9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6418,11 +6657,13 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 8开始不再维护，建议使用[sendRequest](#sendrequest8deprecated)类替代。
-
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6431,7 +6672,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | 参数名  | 类型                                      | 必填 | 说明                                                                                   |
   | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                                    | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的MessageParcel对象。                                              |
   | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options | [MessageOption](#messageoption)           | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
@@ -6454,7 +6695,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | 参数名  | 类型                                 | 必填 | 说明                                                                                   |
   | ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                               | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的MessageSequence对象。                                            |
   | reply   | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
   | options | [MessageOption](#messageoption)      | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
@@ -6464,13 +6705,23 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | ---------------------------- | ----------------------------------------- |
   | Promise&lt;[RequestResult](#requestresult9)&gt; | 返回一个期约，兑现值是requestResult实例。 |
 
-### sendRequest<sup>8+(deprecated)</sup>
+**错误码：**
 
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
+
+### sendRequest<sup>(deprecated)</sup>
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6479,7 +6730,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | 参数名  | 类型                                      | 必填 | 说明                                                                                   |
   | ------- | ----------------------------------------  | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                                    | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的MessageParcel对象。                                              |
   | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options | [MessageOption](#messageoption)           | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
@@ -6487,7 +6738,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 | 类型                                                         | 说明                                          |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 ### sendMessageRequest<sup>9+</sup>
 
@@ -6502,18 +6753,28 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | 参数名   | 类型                                 | 必填 | 说明                                                                                   |
   | -------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
   | code     | number                               | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data     | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | data     | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的MessageSequence对象。                                            |
   | reply    | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
   | options  | [MessageOption](#messageoption)      | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
   | callback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt;   | 是   | 接收发送结果的回调。                                                                   |
 
-### sendRequest<sup>8+(deprecated)</sup>
+**错误码：**
 
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-1)类替代。
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
+
+### sendRequest<sup>(deprecated)</sup>
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-1)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6522,10 +6783,10 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | code     | number                                                       | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-| data     | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                    |
+| data     | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的MessageParcel对象。                    |
 | reply    | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
 | options  | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
-| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
+| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 是   | 接收发送结果的回调。                                         |
 
 ### registerDeathRecipient<sup>9+</sup>
 
@@ -6548,15 +6809,18 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The callback used to receive remote object death notifications is empty. |
+  | 1900008  | The proxy or remote object is invalid. |
 
-### addDeathrecipient<sup>(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[registerDeathRecipient](#registerdeathrecipient9)类替代。
+### addDeathRecipient<sup>(deprecated)</sup>
 
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 注册用于接收远程对象死亡通知的回调。如果与RemoteProxy对象匹配的远程对象进程死亡，则调用此方法。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[registerDeathRecipient](#registerdeathrecipient9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6594,15 +6858,18 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The callback used to receive remote object death notifications is empty. |
+  | 1900008  | The proxy or remote object is invalid. |
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9)类替代。
 
 removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 注销用于接收远程对象死亡通知的回调。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6639,15 +6906,17 @@ getDescriptor(): string
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
+  | 1900008  | The proxy or remote object is invalid. |
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9)类替代。
 
 getInterfaceDescriptor(): string
 
 获取对象的接口描述符，接口描述符为字符串。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[getDescriptor](#getdescriptor9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6675,23 +6944,28 @@ isObjectDead(): boolean
 
 实现IRemoteObject代理对象。
 
+### 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-| 名称                  | 值                      | 说明                              |
-| --------------------- | ----------------------- | --------------------------------- |
-| PING_TRANSACTION      | 1599098439 (0x5f504e47) | 内部指令码，用于测试IPC服务正常。 |
-| DUMP_TRANSACTION      | 1598311760 (0x5f444d50) | 内部指令码，获取Binder内部状态。  |
-| INTERFACE_TRANSACTION | 1598968902 (0x5f4e5446) | 内部指令码，获取对端接口描述符。  |
-| MIN_TRANSACTION_ID    | 1 (0x00000001)          | 最小有效指令码。                  |
-| MAX_TRANSACTION_ID    | 16777215 (0x00FFFFFF)   | 最大有效指令码。                  |
+  | 名称                  | 类型   | 可读  | 可写 | 说明                                     |
+  | --------------------- | -------| ------|------|------------------------------------------ |
+  | PING_TRANSACTION      | number | 是    | 否   | 内部指令码，用于测试IPC服务是否正常。     |
+  | DUMP_TRANSACTION      | number | 是    | 否   | 内部指令码，获取IPC服务相关的状态信息。   |
+  | INTERFACE_TRANSACTION | number | 是    | 否   | 内部指令码，获取对端接口描述符。          |
+  | MIN_TRANSACTION_ID    | number | 是    | 否   | 最小有效指令码。                          |
+  | MAX_TRANSACTION_ID    | number | 是    | 否   | 最大有效指令码。                          |
+
 
 ### sendRequest<sup>(deprecated)</sup>
-
->从API version 8 开始不再维护，建议使用[sendRequest](#sendrequest8deprecated-2)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-2)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6700,7 +6974,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | 参数名  | 类型                                      | 必填 | 说明                                                                                   |
   | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                                    | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的MessageParcel对象。                                              |
   | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options | [MessageOption](#messageoption)           | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
@@ -6712,15 +6986,11 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -6743,13 +7013,16 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
@@ -6759,9 +7032,9 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   if (proxy != undefined) {
     let ret: boolean = proxy.sendRequest(1, data, reply, option);
     if (ret) {
-    hilog.info(0x0000, 'testTag', 'sendRequest got result');
-    let msg = reply.readString();
-    hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
+      hilog.info(0x0000, 'testTag', 'sendRequest got result');
+      let msg = reply.readString();
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
     } else {
       hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed');
     }
@@ -6784,7 +7057,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | 参数名  | 类型                                 | 必填 | 说明                                                                                   |
   | ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                               | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的MessageSequence对象。                                            |
   | reply   | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
   | options | [MessageOption](#messageoption)      | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
@@ -6794,16 +7067,22 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | ---------------------------- | ----------------------------------------- |
   | Promise&lt;[RequestResult](#requestresult9)&gt; | 返回一个期约，兑现值是requestResult实例。 |
 
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
+
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -6826,13 +7105,16 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
@@ -6861,13 +7143,15 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   }
   ```
 
-### sendRequest<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-2)类替代。
+### sendRequest<sup>(deprecated)</sup>
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-2)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6876,7 +7160,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | 参数名  | 类型                                      | 必填 | 说明                                                                                   |
   | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                                    | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的MessageParcel对象。                                              |
   | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options | [MessageOption](#messageoption)           | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
@@ -6884,18 +7168,15 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 | 类型                                                         | 说明                                          |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -6918,13 +7199,16 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
@@ -6967,22 +7251,28 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | 参数名   | 类型                                 | 必填 | 说明                                                                                   |
   | -------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
   | code     | number                               | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data     | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | data     | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的MessageSequence对象。                                            |
   | reply    | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
   | options  | [MessageOption](#messageoption)      | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
   | callback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt;   | 是   | 接收发送结果的回调。                                                                   |
 
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
+
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base'; 
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7019,14 +7309,17 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
@@ -7044,13 +7337,15 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   }
   ```
 
-### sendRequest<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-3)类替代。
+### sendRequest<sup>(deprecated)</sup>
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-3)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7059,22 +7354,19 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | code     | number                                                       | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-| data     | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                    |
+| data     | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的MessageParcel对象。                    |
 | reply    | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
 | options  | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
-| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
+| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 是   | 接收发送结果的回调。                                         |
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7111,7 +7403,10 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect); 
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
@@ -7153,18 +7448,16 @@ getLocalInterface(interface: string): IRemoteBroker
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900006  | only remote object permitted |
+  | 401      | check param failed |
+  | 1900006  | Operation allowed only for the remote object. |
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7187,19 +7480,22 @@ getLocalInterface(interface: string): IRemoteBroker
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getLocalInterface接口方法查询接口对象
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   if (proxy != undefined) {
     try {
-    let broker: rpc.IRemoteBroker = proxy.getLocalInterface("testObject");
-    hilog.info(0x0000, 'testTag', 'RpcClient: getLocalInterface is ' + broker);
+      let broker: rpc.IRemoteBroker = proxy.getLocalInterface("testObject");
+      hilog.info(0x0000, 'testTag', 'RpcClient: getLocalInterface is ' + broker);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorCode ' + e.code);
@@ -7210,11 +7506,13 @@ getLocalInterface(interface: string): IRemoteBroker
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9-1)类替代。
-
 queryLocalInterface(interface: string): IRemoteBroker
 
 查询并获取当前接口描述符对应的本地接口对象。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[getLocalInterface](#getlocalinterface9-1)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7232,14 +7530,11 @@ queryLocalInterface(interface: string): IRemoteBroker
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7262,13 +7557,16 @@ queryLocalInterface(interface: string): IRemoteBroker
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的queryLocalInterface接口获取接口对象
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   if (proxy != undefined) {
     let broker: rpc.IRemoteBroker = proxy.queryLocalInterface("testObject");
@@ -7297,18 +7595,16 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The callback used to receive remote object death notifications is empty. |
+  | 1900008  | The proxy or remote object is invalid. |
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7331,14 +7627,17 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的registerDeathRecipient接口注册死亡回调
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -7359,11 +7658,13 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 ### addDeathRecipient<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[registerDeathRecipient](#registerdeathrecipient9-1)类替代。
-
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 注册用于接收远程对象死亡通知的回调，增加proxy对象上的死亡通知。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[registerDeathRecipient](#registerdeathrecipient9-1)类替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7382,14 +7683,11 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7412,13 +7710,16 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的addDeathRecipient接口方法新增死亡回调
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -7452,18 +7753,16 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The callback used to receive remote object death notifications is empty. |
+  | 1900008  | The proxy or remote object is invalid. |
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7486,14 +7785,17 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的unregisterDeathRecipient接口方法注销死亡回调
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -7515,11 +7817,13 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9-1)类替代。
-
 removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 注销用于接收远程对象死亡通知的回调。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9-1)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7538,14 +7842,11 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7568,13 +7869,16 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的removeDeathRecipient接口方法去注册死亡回调
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -7608,19 +7912,16 @@ getDescriptor(): string
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
-  | 1900007  | communication failed              |
+  | 1900007  | communication failed.              |
+  | 1900008  | The proxy or remote object is invalid. |
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7643,13 +7944,16 @@ getDescriptor(): string
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getDescriptor接口方法获取对象的接口描述符
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   if (proxy != undefined) {
     try {
@@ -7665,11 +7969,13 @@ getDescriptor(): string
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9-1)类替代。
-
 getInterfaceDescriptor(): string
 
 查询当前代理对象接口的描述符。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[getDescriptor](#getdescriptor9-1)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7681,14 +7987,11 @@ getInterfaceDescriptor(): string
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7711,13 +8014,16 @@ getInterfaceDescriptor(): string
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getInterfaceDescriptor接口方法查询当前代理对象接口的描述符
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   if (proxy != undefined) {
     let descriptor: string = proxy.getInterfaceDescriptor();
@@ -7741,14 +8047,11 @@ isObjectDead(): boolean
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7771,13 +8074,16 @@ isObjectDead(): boolean
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的isObjectDead接口方法判断当前对象是否已经死亡
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   if (proxy != undefined) {
     let isDead: boolean = proxy.isObjectDead();
@@ -7789,14 +8095,16 @@ isObjectDead(): boolean
 
 公共消息选项，使用指定的标志类型，构造指定的MessageOption对象。
 
+### 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 名称          | 值        | 说明                                                        |
-  | ------------- | --------- | ----------------------------------------------------------- |
-  | TF_SYNC       | 0 (0x00)  | 同步调用标识。                                              |
-  | TF_ASYNC      | 1 (0x01)  | 异步调用标识。                                              |
-  | TF_ACCEPT_FDS | 16 (0x10) | 指示sendMessageRequest<sup>9+</sup>接口可以返回文件描述符。 |
-  | TF_WAIT_TIME  | 8 (0x8)   | RPC等待时间(单位/秒)，不用于IPC的情况。                                     |
+  | 名称          | 类型   | 可读  | 可写  | 说明                                                                      |
+  | ------------- | ------ | ----- | ----- | ------------------------------------------------------------------------ |
+  | TF_SYNC       | number | 是    | 否    | 同步调用标识。                                                            |
+  | TF_ASYNC      | number | 是    | 否    | 异步调用标识。                                                            |
+  | TF_ACCEPT_FDS | number | 是    | 否    | 指示sendMessageRequest<sup>9+</sup>接口可以传递文件描述符。               |
+  | TF_WAIT_TIME  | number | 是    | 是    | RPC等待时间(单位/秒)，IPC场景下无效。默认等待为8秒（不建议修改等待时间）。 |
 
 ### constructor<sup>9+</sup>
 
@@ -7835,7 +8143,7 @@ MessageOption构造函数。
   | 参数名    | 类型   | 必填 | 说明                                          |
   | --------- | ------ | ---- | --------------------------------------------- |
   | syncFlags | number | 否   | 同步调用或异步调用标志。默认同步调用。        |
-  | waitTime  | number | 否   | 调用rpc最长等待时间。默认&nbsp;TF_WAIT_TIME。 |
+  | waitTime  | number | 否   | 调用rpc最长等待时间。默认TF_WAIT_TIME。 |
 
 **示例：**
 
@@ -7884,7 +8192,7 @@ setAsync(async: boolean): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let option = new rpc.MessageOption();
   option.setAsync(true);
@@ -7908,7 +8216,7 @@ getFlags(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   try {
     let option = new rpc.MessageOption();
@@ -7941,7 +8249,7 @@ setFlags(flags: number): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   try {
     let option = new rpc.MessageOption();
@@ -7971,7 +8279,7 @@ getWaitTime(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   try {
     let option = new rpc.MessageOption();
@@ -8002,7 +8310,7 @@ setWaitTime(waitTime: number): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   try {
     let option = new rpc.MessageOption();
@@ -8035,7 +8343,7 @@ static getContextObject(): IRemoteObject
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let samgr = rpc.IPCSkeleton.getContextObject();
   hilog.info(0x0000, 'testTag', 'RpcServer: getContextObject result: ' + samgr);
@@ -8058,7 +8366,7 @@ static getCallingPid(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8086,7 +8394,7 @@ static getCallingUid(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8114,7 +8422,7 @@ static getCallingTokenId(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8142,7 +8450,7 @@ static getCallingDeviceID(): string
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8170,7 +8478,7 @@ static getLocalDeviceID(): string
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8198,7 +8506,7 @@ static isLocalCalling(): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8223,11 +8531,19 @@ static flushCmdBuffer(object: IRemoteObject): void
   | ------ | ------------------------------- | ---- | ------------------- |
   | object | [IRemoteObject](#iremoteobject) | 是   | 指定的RemoteProxy。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8246,11 +8562,13 @@ static flushCmdBuffer(object: IRemoteObject): void
 
 ### flushCommands<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[flushCmdBuffer](#flushcmdbuffer9)类替代。
-
 static flushCommands(object: IRemoteObject): number
 
 静态方法，将所有挂起的命令从指定的RemoteProxy刷新到相应的RemoteObject。建议在任何时间执行敏感操作之前调用此方法。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[flushCmdBuffer](#flushcmdbuffer9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8269,7 +8587,7 @@ static flushCommands(object: IRemoteObject): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -8312,7 +8630,7 @@ static resetCallingIdentity(): string
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8337,10 +8655,18 @@ static restoreCallingIdentity(identity: string): void
   | -------- | ------ | ---- | ------------------------------------------------------------------ |
   | identity | string | 是   | 标识表示包含远程用户UID和PID的字符串。由resetCallingIdentity返回。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The string length exceeds 40960 bytes; <br/> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8354,11 +8680,13 @@ static restoreCallingIdentity(identity: string): void
 
 ### setCallingIdentity<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[restoreCallingIdentity](#restorecallingidentity9)类替代。
-
 static setCallingIdentity(identity: string): boolean
 
 静态方法，将UID和PID恢复为远程用户的UID和PID。它通常在使用resetCallingIdentity后调用，需要resetCallingIdentity返回的远程用户的UID和PID。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[restoreCallingIdentity](#restorecallingidentity9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8377,7 +8705,7 @@ static setCallingIdentity(identity: string): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8408,13 +8736,24 @@ RemoteObject构造函数。
   | ---------- | ------ | ---- | ------------ |
   | descriptor | string | 是   | 接口描述符。 |
 
-### sendRequest<sup>(deprecated)</sup>
+**示例：**
 
->从API version 8 开始不再维护，建议使用[sendRequest](#sendrequest8deprecated-4)类替代。
+  ```ts
+  class TestRemoteObject extends rpc.RemoteObject {
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+  }
+  ```
+### sendRequest<sup>(deprecated)</sup>
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-4)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8423,7 +8762,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | 参数名  | 类型                                      | 必填 | 说明                                                                                   |
   | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                                    | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的MessageParcel对象。                                              |
   | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options | [MessageOption](#messageoption)           | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
@@ -8436,7 +8775,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -8489,7 +8828,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | 参数名  | 类型                                 | 必填 | 说明                                                                                   |
   | ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                               | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                                            |
+  | data    | [MessageSequence](#messagesequence9) | 是   | 保存待发送数据的MessageSequence对象。                                            |
   | reply   | [MessageSequence](#messagesequence9) | 是   | 接收应答数据的MessageSequence对象。                                                    |
   | options | [MessageOption](#messageoption)      | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
@@ -8499,10 +8838,19 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 | ----------------------------------------------- | ----------------------------------------- |
 | Promise&lt;[RequestResult](#requestresult9)&gt; | 返回一个期约，兑现值是RequestResult实例。 |
 
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
+
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8535,13 +8883,15 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
     });
   ```
 
-### sendRequest<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-4)类替代。
+### sendRequest<sup>(deprecated)</sup>
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-4)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8550,7 +8900,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   | 参数名  | 类型                                      | 必填 | 说明                                                                                   |
   | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
   | code    | number                                    | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                                              |
+  | data    | [MessageParcel](#messageparceldeprecated) | 是   | 保存待发送数据的MessageParcel对象。                                              |
   | reply   | [MessageParcel](#messageparceldeprecated) | 是   | 接收应答数据的MessageParcel对象。                                                      |
   | options | [MessageOption](#messageoption)           | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
 
@@ -8558,12 +8908,12 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 | 类型                                                         | 说明                                          |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -8624,16 +8974,25 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 | 参数名        | 类型                                                  | 必填 | 说明                                                         |
 | ------------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | code          | number                                                | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-| data          | [MessageSequence](#messagesequence9)                  | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                  |
+| data          | [MessageSequence](#messagesequence9)                  | 是   | 保存待发送数据的MessageSequence对象。                  |
 | reply         | [MessageSequence](#messagesequence9)                  | 是   | 接收应答数据的MessageSequence对象。                          |
 | options       | [MessageOption](#messageoption)                       | 是   | 本次请求的同异步模式，默认同步调用。                         |
-| AsyncCallback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt; | 是   | 接收发送结果的回调。                                         |
+| callback      | AsyncCallback&lt;[RequestResult](#requestresult9)&gt; | 是   | 接收发送结果的回调。                                         |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8663,13 +9022,15 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   testRemoteObject.sendMessageRequest(1, data, reply, option, sendRequestCallback);
   ```
 
-### sendRequest<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-5)类替代。
+### sendRequest<sup>(deprecated)</sup> 
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-5)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8678,16 +9039,16 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 | 参数名        | 类型                                                         | 必填 | 说明                                                         |
 | ------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | code          | number                                                       | 是   | 本次请求调用的消息码（1-16777215），由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
-| data          | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                    |
+| data          | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的MessageParcel对象。                    |
 | reply         | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
 | options       | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
-| AsyncCallback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
+| callback      | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 是   | 接收发送结果的回调。                                         |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -8751,7 +9112,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
   | code   | number                               | 是   | 对端发送的服务请求码。                    |
   | data   | [MessageSequence](#messagesequence9) | 是   | 携带客户端调用参数的MessageSequence对象。 |
   | reply  | [MessageSequence](#messagesequence9) | 是   | 写入结果的MessageSequence对象。           |
-  | option | [MessageOption](#messageoption)      | 是   | 指示操作是同步还是异步。                  |
+  | options | [MessageOption](#messageoption)      | 是   | 指示操作是同步还是异步。                  |
 
 **返回值：**
 
@@ -8763,7 +9124,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 **重载onRemoteMessageRequest方法同步处理请求示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8785,7 +9146,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
   **重载onRemoteMessageRequest方法异步处理请求示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8810,7 +9171,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 **同时重载onRemoteMessageRequest和onRemoteRequest方法同步处理请求示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8842,7 +9203,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
   **同时重载onRemoteMessageRequest和onRemoteRequest方法异步处理请求示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
@@ -8875,11 +9236,13 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
 ### onRemoteRequest<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[onRemoteMessageRequest](#onremotemessagerequest9)类替代。
-
 onRemoteRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
 sendRequest请求的响应处理函数，服务端在该函数里处理请求，回复结果。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[onRemoteMessageRequest](#onremotemessagerequest9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8890,7 +9253,7 @@ sendRequest请求的响应处理函数，服务端在该函数里处理请求，
   | code   | number                                    | 是   | 对端发送的服务请求码。                  |
   | data   | [MessageParcel](#messageparceldeprecated) | 是   | 携带客户端调用参数的MessageParcel对象。 |
   | reply  | [MessageParcel](#messageparceldeprecated) | 是   | 写入结果的MessageParcel对象。           |
-  | option | [MessageOption](#messageoption)           | 是   | 指示操作是同步还是异步。                |
+  | options | [MessageOption](#messageoption)           | 是   | 指示操作是同步还是异步。                |
 
 **返回值：**
 
@@ -8901,7 +9264,7 @@ sendRequest请求的响应处理函数，服务端在该函数里处理请求，
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -8949,7 +9312,7 @@ getCallingUid(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8977,7 +9340,7 @@ getCallingPid(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -9006,13 +9369,21 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
   | 类型          | 说明                                          |
   | ------------- | --------------------------------------------- |
-  | IRemoteBroker | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
+  | [IRemoteBroker](#iremotebroker) | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The string length exceeds 40960 bytes; <br/> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -9049,11 +9420,13 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9-2)类替代。
-
 queryLocalInterface(descriptor: string): IRemoteBroker
 
 查询并获取当前接口描述符对应的远端对象是否已经存在。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[getLocalInterface](#getlocalinterface9-2)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9067,12 +9440,12 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
   | 类型          | 说明                                                               |
   | ------------- | ------------------------------------------------------------------ |
-  | IRemoteBroker | 如果接口描述符对应的远端对象存在，则返回该远端对象，否则返回Null。 |
+  | [IRemoteBroker](#iremotebroker) | 如果接口描述符对应的远端对象存在，则返回该远端对象，否则返回Null。 |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -9121,13 +9494,13 @@ getDescriptor(): string
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
+  | 1900008  | The proxy or remote object is invalid. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -9161,11 +9534,13 @@ getDescriptor(): string
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9-2)类替代。
-
 getInterfaceDescriptor(): string
 
 查询接口描述符。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[getDescriptor](#getdescriptor9-2)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9178,7 +9553,7 @@ getInterfaceDescriptor(): string
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -9219,11 +9594,19 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 | localInterface | [IRemoteBroker](#iremotebroker) | 是   | 将与描述符绑定的IRemoteBroker对象。   |
 | descriptor     | string                          | 是   | 用于与IRemoteBroker对象绑定的描述符。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The string length exceeds 40960 bytes; <br/> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -9259,11 +9642,13 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 ### attachLocalInterface<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[modifyLocalInterface](#modifylocalinterface9)类替代。
-
 attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 此接口用于把接口描述符和IRemoteBroker对象绑定。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[modifyLocalInterface](#modifylocalinterface9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9277,7 +9662,7 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -9308,17 +9693,18 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 ## Ashmem<sup>8+</sup>
 
 提供与匿名共享内存对象相关的方法，包括创建、关闭、映射和取消映射Ashmem、从Ashmem读取数据和写入数据、获取Ashmem大小、设置Ashmem保护。
+共享内存只适用与本设备内跨进程通信。
+
+### 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-映射内存保护类型：
-
-  | 名称       | 值  | 说明               |
-  | ---------- | --- | ------------------ |
-  | PROT_EXEC  | 4   | 映射的内存可执行。   |
-  | PROT_NONE  | 0   | 映射的内存不可访问。 |
-  | PROT_READ  | 1   | 映射的内存可读。     |
-  | PROT_WRITE | 2   | 映射的内存可写。     |
+  | 名称       | 类型   | 可读  | 可写  | 说明                                     |
+  | ---------- | ------ | ----- | ----- |----------------------------------------- |
+  | PROT_EXEC  | number | 是    | 否    | 映射内存保护类型，代表映射的内存可执行。  |
+  | PROT_NONE  | number | 是    | 否    | 映射内存保护类型，代表映射的内存不可访问。|
+  | PROT_READ  | number | 是    | 否    | 映射内存保护类型，代表映射的内存可读。    |
+  | PROT_WRITE | number | 是    | 否    | 映射内存保护类型，代表映射的内存可写。    |
 
 ### create<sup>9+</sup>
 
@@ -9341,11 +9727,19 @@ static create(name: string, size: number): Ashmem
 | ------------------ | ---------------------------------------------- |
 | [Ashmem](#ashmem8) | 返回创建的Ashmem对象；如果创建失败，返回null。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The Ashmem name passed is empty; <br/> 4.The Ashmem size passed is less than or equal to 0. |
+
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem: rpc.Ashmem | undefined = undefined;
   try {
@@ -9359,13 +9753,15 @@ static create(name: string, size: number): Ashmem
   }
   ```
 
-### createAshmem<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[create](#create9)类替代。
+### createAshmem<sup>(deprecated)</sup>
 
 static createAshmem(name: string, size: number): Ashmem
 
 静态方法，根据指定的名称和大小创建Ashmem对象。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[create](#create9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9385,7 +9781,7 @@ static createAshmem(name: string, size: number): Ashmem
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let size = ashmem.getAshmemSize();
@@ -9412,11 +9808,19 @@ static create(ashmem: Ashmem): Ashmem
 | ------------------ | ---------------------- |
 | [Ashmem](#ashmem8) | 返回创建的Ashmem对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The passed parameter is not an Ahmem object; <br/> 3.The ashmem instance for obtaining packaging is empty. |
+
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
@@ -9430,13 +9834,15 @@ static create(ashmem: Ashmem): Ashmem
   }
   ```
 
-### createAshmemFromExisting<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[create](#create9-1)替代。
+### createAshmemFromExisting<sup>(deprecated)</sup>
 
 static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
 静态方法，通过复制现有Ashmem对象的文件描述符(fd)来创建Ashmem对象。两个Ashmem对象指向同一个共享内存区域。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[create](#create9-1)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9455,7 +9861,7 @@ static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let ashmem2 = rpc.Ashmem.createAshmemFromExisting(ashmem);
@@ -9468,6 +9874,10 @@ static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 closeAshmem(): void
 
 关闭这个Ashmem。
+
+> **说明：**
+>
+> 关闭Ashmem对象前需要先解除地址映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9510,7 +9920,7 @@ getAshmemSize(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let size = ashmem.getAshmemSize();
@@ -9537,13 +9947,14 @@ mapTypedAshmem(mapType: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900001  | call mmap function failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect;  <br/> 2.The parameter type does not match; <br/> 3.The passed mapType exceeds the maximum protection level. |
+  | 1900001  | Failed to call mmap. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
@@ -9555,13 +9966,15 @@ mapTypedAshmem(mapType: number): void
   }
   ```
 
-### mapAshmem<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[mapTypedAshmem](#maptypedashmem9)类替代。
+### mapAshmem<sup>(deprecated)</sup>
 
 mapAshmem(mapType: number): boolean
 
 在此进程的虚拟地址空间上创建共享文件映射，映射区域大小由此Ashmem对象指定。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[mapTypedAshmem](#maptypedashmem9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9580,7 +9993,7 @@ mapAshmem(mapType: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let mapReadAndWrite = ashmem.mapAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
@@ -9601,13 +10014,13 @@ mapReadWriteAshmem(): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900001  | call mmap function failed |
+  | 1900001  | Failed to call mmap. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
@@ -9619,13 +10032,15 @@ mapReadWriteAshmem(): void
   }
   ```
 
-### mapReadAndWriteAshmem<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[mapReadWriteAshmem](#mapreadwriteashmem9)类替代。
+### mapReadAndWriteAshmem<sup>(deprecated)</sup>
 
 mapReadAndWriteAshmem(): boolean
 
 在此进程虚拟地址空间上创建可读写的共享文件映射。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[mapReadWriteAshmem](#mapreadwriteashmem9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9638,7 +10053,7 @@ mapReadAndWriteAshmem(): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
@@ -9659,13 +10074,13 @@ mapReadonlyAshmem(): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900001  | call mmap function failed |
+  | 1900001  | Failed to call mmap. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
@@ -9677,13 +10092,15 @@ mapReadonlyAshmem(): void
   }
   ```
 
-### mapReadOnlyAshmem<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[mapReadonlyAshmem](#mapreadonlyashmem9)类替代。
+### mapReadOnlyAshmem<sup>(deprecated)</sup>
 
 mapReadOnlyAshmem(): boolean
 
 在此进程虚拟地址空间上创建只读的共享文件映射。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[mapReadonlyAshmem](#mapreadonlyashmem9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9696,7 +10113,7 @@ mapReadOnlyAshmem(): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadOnlyAshmem();
@@ -9723,17 +10140,18 @@ setProtectionType(protectionType: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900002  | call os ioctl function failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900002  | Failed to call ioctl. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
-    ashmem.setProtection(ashmem.PROT_READ);
+    ashmem.setProtectionType(ashmem.PROT_READ);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc set protection type fail, errorCode ' + e.code);
@@ -9741,13 +10159,15 @@ setProtectionType(protectionType: number): void
   }
   ```
 
-### setProtection<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[setProtectionType](#setprotectiontype9)类替代。
+### setProtection<sup>(deprecated)</sup>
 
 setProtection(protectionType: number): boolean
 
 设置映射内存区域的保护等级。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[setProtectionType](#setprotectiontype9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9766,7 +10186,7 @@ setProtection(protectionType: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let result = ashmem.setProtection(ashmem.PROT_READ);
@@ -9778,6 +10198,10 @@ setProtection(protectionType: number): boolean
 writeDataToAshmem(buf: ArrayBuffer, size: number, offset: number): void
 
 将数据写入此Ashmem对象关联的共享文件。
+
+> **说明：**
+>
+> 对Ashmem对象进行写操作时，需要先调用[mapReadWriteAshmem](#mapreadwriteashmem9)进行映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9795,13 +10219,14 @@ writeDataToAshmem(buf: ArrayBuffer, size: number, offset: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900003  | write to ashmem failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain arrayBuffer information. |
+  | 1900003  | Failed to write data to the shared memory. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let buffer = new ArrayBuffer(1024);
   let int32View = new Int32Array(buffer);
@@ -9820,13 +10245,17 @@ writeDataToAshmem(buf: ArrayBuffer, size: number, offset: number): void
   }
   ```
 
-### writeAshmem<sup>9+(deprecated)</sup>
-
->从API version 11 开始不再维护，建议使用[writeDataToAshmem](#writedatatoashmem11)类替代。
+### writeAshmem<sup>(deprecated)</sup>
 
 writeAshmem(buf: number[], size: number, offset: number): void
 
 将数据写入此Ashmem对象关联的共享文件。
+
+> **说明：**
+>
+> 从API version 9 开始支持，从API version 11 开始废弃，建议使用[writeDataToAshmem](#writedatatoashmem11)替代。
+> 
+> 对Ashmem对象进行写操作时，需要先调用[mapReadWriteAshmem](#mapreadwriteashmem9)进行映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9844,13 +10273,14 @@ writeAshmem(buf: number[], size: number, offset: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900003  | write to ashmem failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The element does not exist in the array. |
+  | 1900003  | Failed to write data to the shared memory. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.mapReadWriteAshmem();
@@ -9864,13 +10294,17 @@ writeAshmem(buf: number[], size: number, offset: number): void
   }
   ```
 
-### writeToAshmem<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[writeAshmem](#writeashmem9deprecated)类替代。
+### writeToAshmem<sup>(deprecated)</sup>
 
 writeToAshmem(buf: number[], size: number, offset: number): boolean
 
 将数据写入此Ashmem对象关联的共享文件。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[writeDataToAshmem](#writedatatoashmem11)替代。
+> 
+> 对Ashmem对象进行写操作时，需要先调用[mapReadWriteAshmem](#mapreadwriteashmem9)进行映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9891,7 +10325,7 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
@@ -9906,6 +10340,10 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
 readDataFromAshmem(size: number, offset: number): ArrayBuffer
 
 从此Ashmem对象关联的共享文件中读取数据。
+
+> **说明：**
+>
+> 对Ashmem对象进行写操作时，需要先调用[mapReadWriteAshmem](#mapreadwriteashmem9)进行映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9928,13 +10366,14 @@ readDataFromAshmem(size: number, offset: number): ArrayBuffer
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900004  | read from ashmem failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900004  | Failed to read data from the shared memory. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let buffer = new ArrayBuffer(1024);
   let int32View = new Int32Array(buffer);
@@ -9962,13 +10401,18 @@ readDataFromAshmem(size: number, offset: number): ArrayBuffer
   }
   ```
 
-### readAshmem<sup>9+(deprecated)</sup>
-
->从API version 11 开始不再维护，建议使用[readDataFromAshmem](#readdatafromashmem11)类替代。
+### readAshmem<sup>(deprecated)</sup>
 
 readAshmem(size: number, offset: number): number[]
 
 从此Ashmem对象关联的共享文件中读取数据。
+
+> **说明：**
+>
+> 从API version 9 开始支持，从API version 11 开始废弃，建议使用[readDataFromAshmem](#readdatafromashmem11)替代。
+> 
+> 对Ashmem对象进行写操作时，需要先调用[mapReadWriteAshmem](#mapreadwriteashmem9)进行映射。
+
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9991,13 +10435,14 @@ readAshmem(size: number, offset: number): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900004  | read from ashmem failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900004  | Failed to read data from the shared memory. |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.mapReadWriteAshmem();
@@ -10013,13 +10458,17 @@ readAshmem(size: number, offset: number): number[]
   }
   ```
 
-### readFromAshmem<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[readAshmem](#readashmem9deprecated)类替代。
+### readFromAshmem<sup>(deprecated)</sup>
 
 readFromAshmem(size: number, offset: number): number[]
 
 从此Ashmem对象关联的共享文件中读取数据。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[readDataFromAshmem](#readdatafromashmem11)替代。
+> 
+> 对Ashmem对象进行写操作时，需要先调用[mapReadWriteAshmem](#mapreadwriteashmem9)进行映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -10039,7 +10488,7 @@ readFromAshmem(size: number, offset: number): number[]
 **示例：**
 
  ``` ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
@@ -10049,42 +10498,4 @@ readFromAshmem(size: number, offset: number): number[]
   hilog.info(0x0000, 'testTag', 'RpcTest: write to Ashmem result is ' + writeResult);
   let readResult = ashmem.readFromAshmem(5, 0);
   hilog.info(0x0000, 'testTag', 'RpcTest: read to Ashmem result is ' + readResult);
- ```
-
-## 获取context
-
-**示例：**
-此处只介绍一种获取context的方式，更多获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
- ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import hilog from '@ohos.hilog';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import window from '@ohos.window';
-  
-  export default class MainAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onCreate');
-      let context = this.context;
-    }
-    onDestroy() {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onDestroy');
-    }
-    onWindowStageCreate(windowStage: window.WindowStage) {
-      // Main window is created, set main page for this ability
-  	  hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageCreate');
-    }
-    onWindowStageDestroy() {
-      // Main window is destroyed, release UI related resources
-  	  hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageDestroy');
-    }
-    onForeground() {
-      // Ability has brought to foreground
-      hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onForeground');
-    }
-    onBackground() {
-      // Ability has back to background
-      hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onBackground');
-    }
-  }
  ```

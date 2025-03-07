@@ -152,7 +152,7 @@ ar-AE.json
 
   | 属性 | 类型     | 参数               | 必填 | 描述                                                         |
   | ---- | -------- | ------------------ | ---- | ------------------------------------------------------------ |
-  | $tc  | Function | 请见表 $tc参数说明 | 是   | 根据系统语言完成单复数替换：this.$tc('strings.people')。<br/>> 说明：<br/>>&nbsp;定义资源的内容通过json格式的key为“zero”、“one”、“two”、“few”、“many”和“other”区分。 |
+  | $tc  | Function | 请见表 $tc参数说明 | 是   | 根据系统语言完成单复数替换：this.$tc('strings.people')。<br/>**说明：** <br/>定义资源的内容通过json格式的key为“zero”、“one”、“two”、“few”、“many”和“other”区分。 |
 
   表5 $tc参数说明
 
@@ -183,4 +183,4 @@ ar-AE.json
 
 ## 获取语言
 
-获取语言功能请参考[应用配置](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)。
+获取语言功能请参考[@ohos.app.ability.Configuration (Configuration)](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)。

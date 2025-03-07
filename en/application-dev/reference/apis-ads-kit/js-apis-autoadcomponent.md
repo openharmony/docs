@@ -12,7 +12,7 @@ The AutoAdComponent module provides the capability of displaying carousel ads.
 ## Modules to Import
 
 ```ts
-import { AutoAdComponent } from '@ohos.advertising.AutoAdComponent';
+import { AutoAdComponent } from '@kit.AdsKit';
 ```
 
 
@@ -20,11 +20,11 @@ import { AutoAdComponent } from '@ohos.advertising.AutoAdComponent';
 
 AutoAdComponent(adParam: advertising.AdRequestParams, adOptions: advertising.AdOptions, displayOptions: advertising.AdDisplayOptions, interactionListener: advertising.AdInteractionListener): void
 
-Shows a non-full-screen ad.
+Component used to automatically play ads.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Advertising.Ads
-
-**Since**: 11
 
 
 **Parameters**
@@ -40,22 +40,21 @@ Shows a non-full-screen ad.
 
 **Example**
 ```ts
-import advertising from '@ohos.advertising';
-import { AutoAdComponent } from '@ohos.advertising.AutoAdComponent';
-import hilog from '@ohos.hilog'; 
+import { AutoAdComponent, advertising } from '@kit.AdsKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
 export struct ShowCarouselAd {
   private adRequestParam: advertising.AdRequestParams = {
     // Ad type.
-    adType: 8, 
+    adType: 8,
     // Ad ID.
-    adId: "test1", 
+    adId: "test1"
   };
   private adOptions: advertising.AdOptions = {
     // Set the maximum ad content rating.
-    adContentClassification: 'A',
+    adContentClassification: 'A'
   };
   // Ad display parameters.
   private adDisplayOptions: advertising.AdDisplayOptions = {
@@ -68,11 +67,14 @@ export struct ShowCarouselAd {
   build() {
     Column() {
       // The AutoAdComponent is used to show the carousel ad in non-full-screen mode.
-      AutoAdComponent({ adParam: this.adRequestParam, adOptions: this.adOptions, displayOptions: this.adDisplayOptions,
+      AutoAdComponent({
+        adParam: this.adRequestParam,
+        adOptions: this.adOptions,
+        displayOptions: this.adDisplayOptions,
         interactionListener: {
           // Ad status change callback.
           onStatusChanged: (status: string, ad: advertising.Advertisement, data: string) => {
-            switch(status) {
+            switch (status) {
               case 'onAdOpen':
                 hilog.info(0x0000, 'testTag', '%{public}s', 'onAdOpen');
                 break;
@@ -83,7 +85,9 @@ export struct ShowCarouselAd {
                 hilog.info(0x0000, 'testTag', '%{public}s', 'onAdClose');
                 break;
             }
-          }}})
+          }
+        }
+      })
         .width('100%')
         .height('100%')
     }.width('100%').height('100%')

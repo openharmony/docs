@@ -1,6 +1,6 @@
 # Column
 
-The **<Column\>** component lays out child components vertically.
+The **Column** component lays out child components vertically.
 
 >  **NOTE**
 >
@@ -16,26 +16,83 @@ Supported
 
 Column(value?: {space?: string | number})
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| space | string \| number | No| Vertical spacing between two adjacent child components.<br>Since API version 9, this parameter does not take effect when it is set to a negative number or when **justifyContent** is set to **FlexAlign.SpaceBetween**, **FlexAlign.SpaceAround** or **FlexAlign.SpaceEvenly**.<br>Default value: **0**<br>Unit: vp<br>**NOTE**<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number.|
+| space | string \| number | No| Vertical spacing between two adjacent child components.<br>Since API version 9, this parameter does not take effect when it is set to a negative number or when [justifyContent](ts-container-column.md#justifycontent8) is set to **FlexAlign.SpaceBetween**, **FlexAlign.SpaceAround**, or **FlexAlign.SpaceEvenly**.<br>Default value: **0**<br>Unit: vp<br>**NOTE**<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number.|
 
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| alignItems | [HorizontalAlign](ts-appendix-enums.md#horizontalalign) | Alignment mode of the child components in the horizontal direction.<br>Default value: **HorizontalAlign.Center**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | Alignment mode of the child components in the vertical direction.<br>Default value: **FlexAlign.Start**<br>Since API version 9, this API is supported in ArkTS widgets.|
+### alignItems
 
->  **NOTE**   
+alignItems(value: HorizontalAlign)
+
+Alignment mode of the child components in the horizontal direction.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                   | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [HorizontalAlign](ts-appendix-enums.md#horizontalalign) | Yes  | Alignment mode of child components in the horizontal direction.<br>Default value: **HorizontalAlign.Center**|
+
+### justifyContent<sup>8+</sup>
+
+justifyContent(value: FlexAlign)
+
+Alignment mode of the child components in the vertical direction.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                       | Mandatory| Description                                                      |
+| ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
+| value  | [FlexAlign](ts-appendix-enums.md#flexalign) | Yes  | Alignment mode of child components in the vertical direction.<br>Default value: **FlexAlign.Start**|
+
+>  **NOTE**
 >
 >  During column layout, child components do not shrink if [flexShrink](ts-universal-attributes-flex-layout.md#flexshrink) is not set for them. In this case, the total size of the child components on the main axis can exceed the size of the container on the main axis.
+
+### reverse<sup>12+</sup>
+
+reverse(isReversed: Optional\<boolean\>)
+
+Sets whether to reverse the arrangement of child components on the main axis (vertical direction).
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                       | Mandatory| Description                                                      |
+| ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
+| isReversed  | Optional\<boolean\> | Yes  | Whether to reverse the arrangement of child components on the main axis (vertical direction).<br>Default value: **true**|
+
+>  **NOTE**
+>
+>  If the **reverse** attribute is not set, the arrangement on the main axis remains in the normal order. If the attribute is set to **undefined**, it defaults to **true**, which reverses the arrangement on the main axis.<br>The **direction** attribute only changes the cross axis direction of the column and does not impact the main axis direction. Therefore, it is independent of the **reverse** attribute.
 
 ## Events
 
@@ -93,4 +150,4 @@ struct ColumnExample {
 }
 ```
 
-![column](figures/Column.png)
+![column](figures/column.png)

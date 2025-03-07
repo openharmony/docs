@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import resourceManager from '@ohos.resourceManager';
+import { resourceManager } from '@kit.LocalizationKit'
 ```
 
 ## 使用说明
@@ -19,8 +19,8 @@ FA模型仍需要先导入包，再调用[getResourceManager](#resourcemanagerge
 Stage模型下Context的引用方法请参考[Stage模型的Context详细介绍](../../application-models/application-context-stage.md)。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -47,13 +47,14 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
 | callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | 是    |返回资源管理ResourceManager对象。 |
 
 **示例：** 
+  <!--code_no_check_fa-->
   ```js
   resourceManager.getResourceManager((error, mgr) => {
     if (error != null) {
       console.error("error is " + error);
       return;
     }
-    mgr.getStringValue($r('app.string.text').id, (error: BusinessError, value: string) => {
+    mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -81,7 +82,7 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
 | callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | 是    | 返回资源管理ResourceManager对象。 |
 
 **示例：** 
-
+  <!--code_no_check_fa-->
   ```js
   resourceManager.getResourceManager("com.example.myapplication", (error, mgr) => {
   });
@@ -104,12 +105,13 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | 返回资源管理ResourceManager对象。 |
 
 **示例：** 
+  <!--code_no_check_fa-->
   ```js
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
-    mgr.getStringValue($r('app.string.text').id, (error: BusinessError, value: string) => {
+    mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -144,9 +146,10 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | 返回资源管理ResourceManager对象。 |
 
 **示例：** 
+  <!--code_no_check_fa-->
   ```js
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager("com.example.myapplication").then((mgr: resourceManager.ResourceManager) => {
   }).catch((error: BusinessError) => {
@@ -158,6 +161,8 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 getSystemResourceManager(): ResourceManager
 
 获取系统资源管理对象，返回系统资源的ResourceManager对象。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -173,12 +178,12 @@ getSystemResourceManager(): ResourceManager
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001009  | If application can't access system resource.                       |
+| 9001009  | Failed to access the system resource.which is not mapped to application sandbox, This error code will be thrown. |
 
 **示例：**
   ```js
-import resourceManager from '@ohos.resourceManager';
-import { BusinessError } from '@ohos.base';
+import { resourceManager } from '@kit.LocalizationKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let systemResourceManager = resourceManager.getSystemResourceManager();
@@ -198,6 +203,8 @@ import { BusinessError } from '@ohos.base';
 
 用于表示设备屏幕方向。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 | 名称                   | 值  | 说明   |
@@ -210,19 +217,25 @@ import { BusinessError } from '@ohos.base';
 
 用于表示当前设备类型。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力**：SystemCapability.Global.ResourceManager
+<!--RP1-->
 | 名称                   | 值  | 说明   |
 | -------------------- | ---- | ---- |
+| DEVICE_TYPE_PHONE    | 0x00 | 手机。   |
 | DEVICE_TYPE_TABLET   | 0x01 | 平板。   |
 | DEVICE_TYPE_CAR      | 0x02 | 汽车。   |
 | DEVICE_TYPE_TV       | 0x04 | 电视。  |
 | DEVICE_TYPE_WEARABLE | 0x06 | 穿戴。   |
-
+| DEVICE_TYPE_2IN1<sup>11+</sup>     | 0x07 | 2in1。   |
+<!--RP1End-->
 
 ## ScreenDensity
 
 用于表示当前设备屏幕密度。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -236,27 +249,45 @@ import { BusinessError } from '@ohos.base';
 | SCREEN_XXXLDPI | 640  | 超特大规模的屏幕密度。 |
 
 
+## ColorMode<sup>12+</sup>
+
+用于表示当前设备颜色模式。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+| 名称  | 值   | 说明       |
+| ----- | ---- | ---------- |
+| DARK  | 0    | 深色模式。 |
+| LIGHT | 1    | 浅色模式。 |
+
+
 ## Configuration
 
 表示当前设备的状态。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
-**参数：** 
+| 名称                        | 类型                            | 可读 | 可写 | 说明               |
+| --------------------------- | ------------------------------- | ---- | ---- | ------------------ |
+| direction                   | [Direction](#direction)         | 是   | 是   | 屏幕方向。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。         |
+| locale                      | string                          | 是   | 是   | 语言文字国家地区。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| deviceType<sup>12+</sup>    | [DeviceType](#devicetype)       | 是   | 是   | 设备类型。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。         |
+| screenDensity<sup>12+</sup> | [ScreenDensity](#screendensity) | 是   | 是   | 屏幕密度。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。         |
+| colorMode<sup>12+</sup>     | [ColorMode](#colormode12)       | 是   | 是   | 颜色模式。 <br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。        |
+| mcc<sup>12+</sup>           | number                          | 是   | 是   | 移动国家码。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。       |
+| mnc<sup>12+</sup>           | number                          | 是   | 是   | 移动网络码。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。       |
 
-| 名称        | 类型                    | 可读   | 可写   | 说明       |
-| --------- | ----------------------- | ---- | ---- | -------- |
-| direction | [Direction](#direction) | 是    | 否    | 当前设备屏幕方向。 |
-| locale    | string                  | 是    | 否    | 当前系统语言。   |
 
 
 ## DeviceCapability
 
 表示设备支持的能力。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-**参数：**
+**系统能力**：SystemCapability.Global.ResourceManager
 
 | 名称            | 类型                            | 可读   | 可写   | 说明       |
 | ------------- | ------------------------------- | ---- | ---- | -------- |
@@ -264,35 +295,29 @@ import { BusinessError } from '@ohos.base';
 | deviceType    | [DeviceType](#devicetype)       | 是    | 否    | 当前设备类型。   |
 
 
-## RawFileDescriptor<sup>8+</sup>
+## RawFileDescriptor<sup>9+</sup>
 
-表示rawfile文件所在hap的的descriptor信息。
+type RawFileDescriptor = _RawFileDescriptor
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
-**参数：**
-
-| 名称     | 类型    | 可读   | 可写  | 说明           |
-| ------ | ------  | ---- | ---- | ------------------ |
-| fd     | number  | 是    | 否 | 文件描述符。 |
-| offset | number  | 是    | 否 | 起始偏移量。      |
-| length | number  | 是    | 否 | 文件长度。       |
+| 类型    | 说明   |
+| ------  | ---- | 
+|[_RawFileDescriptor](js-apis-rawFileDescriptor.md#rawfiledescriptor-1)|表示rawfile文件所在hap的descriptor信息。|
 
 ## Resource<sup>9+</sup>
 
-表示的资源信息。
+type Resource = _Resource
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Global.ResourceManager
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**参数：**
+**系统能力：** SystemCapability.Global.ResourceManager
 
-| 名称         | 类型     | 可读   | 可写  |说明          |
-| ---------- | ------ | ----- | ----  | ---------------|
-| bundleName | string | 是    | 否 | 应用的bundle名称。 |
-| moduleName | string | 是    | 否 | 应用的module名称。 |
-| id         | number | 是    | 否 | 资源的id值。      |
-| params     | any[] | 是    | 否 | 其他资源参数（可选）。      |
-| type       | number | 是    | 否 | 资源的类型（可选）。      |
+| 类型    | 说明   |
+| ------  | ---- | 
+|[_Resource](js-apis-resource.md#resource-1)|表示资源信息。|
 
 ## ResourceManager
 
@@ -302,17 +327,21 @@ import { BusinessError } from '@ohos.base';
 >
 > - ResourceManager涉及到的方法，仅限基于TS扩展的声明式开发范式使用。
 >
-> - 资源文件在工程的resources目录中定义，通过resId、resName、resource对象等可以获取对应的字符串、字符串数组等，resId可通过r(资源地址).id的方式获取，例如r('app.string.test').id。
+> - 资源文件在工程的resources目录中定义，通过resId、resName、resource对象等可以获取对应的字符串、字符串数组等，resId可通过`$r(资源地址).id`的方式获取，例如`$r('app.string.test').id`。
 >
 > - resource对象适用于多工程应用内的跨包访问，因resource对象需创建对应module的context获取资源，故相比于入参为resId、resName的接口耗时长。
 >
 > - 单HAP包和跨HAP/HSP包资源的访问方式具体请参考[资源访问](../../quick-start/resource-categories-and-access.md#资源访问)。
+>
+> - 示例代码中test文件的具体内容请参考[附录](#附录)。
 
 ### getStringSync<sup>9+</sup>
 
 getStringSync(resId: number): string
 
 用户获取指定资源ID对应的字符串，使用同步方式返回。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -330,17 +359,18 @@ getStringSync(resId: number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringSync($r('app.string.test').id);
@@ -357,6 +387,8 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 
 用户获取指定资源ID对应的字符串，根据args参数进行格式化，使用同步方式返回。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -364,7 +396,7 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字\\$d、%数字\\$f、%数字\\$s<br>说明：%%转义为%; %数字\\$d表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1\\$d表示使用第一个参数|
+| ...args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。|
 
 **返回值：**
 
@@ -373,19 +405,19 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 | string | 资源ID值对应的格式化字符串。|
 
 **错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
-| -------- | ----------------------------------------------- |
-| 9001001  | If the resId invalid.                               |
-| 9001002  | If the resource not found by resId.                 |
-| 9001006  | If the resource re-ref too much.                    |
-| 9001007  | If the resource obtained by resId formatting error. |
+| -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                               |
+| 9001002  | No matching resource is found based on the resource ID.                 |
+| 9001006  | The resource is referenced cyclically.                    |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringSync($r('app.string.test').id, "format string", 10, 98.78);
@@ -401,6 +433,8 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 getStringSync(resource: Resource): string
 
 用户获取指定resource对象对应的字符串，使用同步方式返回字符串。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -420,18 +454,19 @@ getStringSync(resource: Resource): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -453,6 +488,8 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 
 用户获取指定resource对象对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -462,7 +499,7 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字\\$d、%数字\\$f、%数字\\$s<br>说明：%%转义为%; %数字\\$d表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1\\$d表示使用第一个参数|
+| ...args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。|
 
 **返回值：**
 
@@ -471,20 +508,20 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 | string | resource对象对应的格式化字符串。|
 
 **错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
-| 9001007  | If the resource obtained by resId formatting error. |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -498,13 +535,15 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
     let message = (error as BusinessError).message;
     console.error(`getStringSync failed, error code: ${code}, message: ${message}.`);
   }
- ```
+  ```
 
 ### getStringByNameSync<sup>9+</sup>
 
 getStringByNameSync(resName: string): string
 
 用户获取指定资源名称对应的字符串，使用同步方式返回字符串。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -522,17 +561,18 @@ getStringByNameSync(resName: string): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringByNameSync("test");
@@ -549,6 +589,8 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
 用户获取指定资源名称对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -556,7 +598,7 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字\\$d、%数字\\$f、%数字\\$s<br>说明：%%转义为%; %数字\\$d表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1\\$d表示使用第一个参数|
+| ...args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。|
 
 **返回值：**
 
@@ -566,18 +608,19 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
-| 9001008  | If the resource obtained by resName formatting error. |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
+| 9001008  | Failed to format the resource obtained based on the resource Name. |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringByNameSync("test", "format string", 10, 98.78);
@@ -586,13 +629,15 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
     let message = (error as BusinessError).message;
     console.error(`getStringByNameSync failed, error code: ${code}, message: ${message}.`);
   }
- ```
+  ```
 
 ### getStringValue<sup>9+</sup>
 
 getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源ID对应的字符串，使用callback异步回调。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -605,17 +650,18 @@ getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the module resId invalid.             |
-| 9001002  | If the resource not found by resId.      |
-| 9001006  | If the resource re-ref too much.         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.         |
 
 **示例Stage：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
@@ -638,6 +684,8 @@ getStringValue(resId: number): Promise&lt;string&gt;
 
 用户获取指定资源ID对应的字符串，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -654,17 +702,18 @@ getStringValue(resId: number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringValue($r('app.string.test').id).then((value: string) => {
@@ -685,6 +734,8 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定resource对象对应的字符串，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -702,14 +753,15 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -737,6 +789,8 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
 
 用户获取指定resource对象对应的字符串，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -759,14 +813,15 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -792,6 +847,8 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源名称对应的字符串，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -802,18 +859,18 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 | callback | AsyncCallback&lt;string&gt; | 是    |返回获取的字符串。 |
 
 **错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringByName("test", (error: BusinessError, value: string) => {
@@ -836,6 +893,8 @@ getStringByName(resName: string): Promise&lt;string&gt;
 
 用户获取指定资源名称对应的字符串，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -852,17 +911,18 @@ getStringByName(resName: string): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringByName("test").then((value: string) => {
@@ -882,6 +942,8 @@ getStringByName(resName: string): Promise&lt;string&gt;
 getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
 用户获取指定资源ID对应的字符串数组，使用同步方式返回。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -903,13 +965,14 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringArrayValueSync($r('app.strarray.test').id);
@@ -925,6 +988,8 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
 用户获取指定resource对象对应的字符串数组，使用同步方式返回。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -948,14 +1013,15 @@ getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -977,6 +1043,8 @@ getStringArrayByNameSync(resName: string): Array&lt;string&gt;
 
 用户获取指定资源名称对应的字符串数组，使用同步方式返回。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -997,9 +1065,10 @@ getStringArrayByNameSync(resName: string): Array&lt;string&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1018,6 +1087,8 @@ getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt
 
 用户获取指定资源ID对应的字符串数组，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1028,18 +1099,18 @@ getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 返回获取的字符串数组。 |
 
 **错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id, (error: BusinessError, value: Array<string>) => {
@@ -1062,13 +1133,15 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 用户获取指定资源ID对应的字符串数组，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
@@ -1077,18 +1150,18 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 | Promise&lt;Array&lt;string&gt;&gt; | 资源ID值对应的字符串数组。 |
 
 **错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id).then((value: Array<string>) => {
@@ -1108,6 +1181,9 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 用户获取指定resource对象对应的字符串数组，使用callback异步回调。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -1125,14 +1201,15 @@ getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;stri
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1160,6 +1237,8 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
 用户获取指定resource对象对应的字符串数组，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -1182,14 +1261,15 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1215,6 +1295,8 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
 
 用户获取指定资源名称对应的字符串数组，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -1226,17 +1308,18 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringArrayByName("test", (error: BusinessError, value: Array<string>) => {
@@ -1259,6 +1342,8 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 
 用户获取指定资源名称对应的字符串数组，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1275,17 +1360,18 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringArrayByName("test").then((value: Array<string>) => {
@@ -1300,63 +1386,72 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
   }
   ```
 
-### getPluralStringValueSync<sup>10+</sup>
+### getIntPluralStringValueSync<sup>18+</sup>
 
-getPluralStringValueSync(resId: number, num: number): string
+getIntPluralStringValueSync(resId: number, num: number, ...args: Array<string | number>): string;
 
-根据指定数量获取指定ID字符串表示的单复数字符串，使用同步方式返回。
+获取指定资源ID的单复数字符串。
 
->**说明**
+> **说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
 
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值。 |
-| num   | number | 是    | 数量值。   |
+| 参数名  | 类型                    | 必填 | 说明                                                         |
+| ------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| resId   | number                  | 是   | 资源ID值。                                                   |
+| num     | number                  | 是   | 数量值（整数）。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
+| ...args | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。 |
 
 **返回值：**
 
-| 类型                    | 说明          |
-| -------- | ----------- |
-| string   | 根据指定数量获取指定ID字符串表示的单复数字符串。 |
+| 类型   | 说明                   |
+| ------ | ---------------------- |
+| string | 指定ID的单复数字符串。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **示例：** 
-  ```ts
-  import { BusinessError } from '@ohos.base';
 
-  try {
-    this.context.resourceManager.getPluralStringValueSync($r('app.plural.test').id, 1);
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`getPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
-  }
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    // 参数num取值为1，根据语言单复数规则对应的quantity为one, 因此在资源$r('app.plural.format_test')中取quantity为one的字符串
+	this.context.resourceManager.getIntPluralStringValueSync($r('app.plural.format_test').id, 1, 1, "aaa", 1.1);
+} catch (error) {
+	let code = (error as BusinessError).code;
+	let message = (error as BusinessError).message;
+	console.error(`getIntPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+}
   ```
 
-### getPluralStringValueSync<sup>10+</sup>
+### getIntPluralStringValueSync<sup>18+</sup>
 
-getPluralStringValueSync(resource: Resource, num: number): string
+getIntPluralStringValueSync(resource: Resource, num: number, ...args: Array<string | number>): string;
 
-根据指定数量获取指定resource对象表示的单复数字符串，使用同步方式返回。
+获取指定资源信息的单复数字符串。
 
->**说明**
+> **说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1364,204 +1459,172 @@ getPluralStringValueSync(resource: Resource, num: number): string
 
 **参数：** 
 
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
-| resource | [Resource](#resource9) | 是    | 资源信息。 |
-| num      | number                 | 是    | 数量值。   |
+| 参数名   | 类型                    | 必填 | 说明                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| resource | [Resource](#resource9)  | 是   | 资源信息。                                                   |
+| num      | number                  | 是   | 数量值（整数）。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
+| ...args  | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。 |
 
 **返回值：**
 
-| 类型                    | 说明          |
-| --------------------- | ----------- |
-| string | 根据指定数量获取指定resource对象表示的单复数字符串。 |
+| 类型   | 说明                                 |
+| ------ | ------------------------------------ |
+| string | 指定resource对象表示的单复数字符串。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **示例：** 
-  ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
 
-  let resource: resourceManager.Resource = {
-    bundleName: "com.example.myapplication",
-    moduleName: "entry",
-    id: $r('app.plural.test').id
-  };
-  try {
-    this.context.resourceManager.getPluralStringValueSync(resource, 1);
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`getPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
-  }
+  ```ts
+import { resourceManager } from '@kit.LocalizationKit'
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let resource: resourceManager.Resource = {
+	bundleName: "com.example.myapplication",
+	moduleName: "entry",
+	id: $r('app.plural.format_test').id
+};
+try {
+    // 参数num取值为1，根据语言单复数规则对应的quantity为one, 因此在资源$r('app.plural.format_test')中取quantity为one的字符串
+	this.context.resourceManager.getIntPluralStringValueSync(resource, 1, 1, "aaa", 1.1);
+} catch (error) {
+	let code = (error as BusinessError).code;
+	let message = (error as BusinessError).message;
+	console.error(`getIntPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+}
   ```
 
-### getPluralStringByNameSync<sup>10+</sup>
+### getIntPluralStringByNameSync<sup>18+</sup>
 
-getPluralStringByNameSync(resName: string, num: number): string
+getIntPluralStringByNameSync(resName: string, num: number, ...args: Array<string | number>): string;
 
-根据指定数量获取指定资源名称表示的单复数字符串，使用同步方式返回。
+获取指定资源名称的单复数字符串。
 
->**说明**
+> **说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
 
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
-| resName | string | 是    | 资源名称。 |
-| num      | number                 | 是    | 数量值。   |
+| 参数名  | 类型                    | 必填 | 说明                                                         |
+| ------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| resName | string                  | 是   | 资源名称。                                                   |
+| num     | number                  | 是   | 数量值（整数）。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
+| ...args | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。 |
 
 **返回值：**
 
-| 类型                    | 说明          |
-| --------------------- | ----------- |
-| string | 根据指定数量获取指定资源名称表示的单复数字符串。 |
+| 类型   | 说明                                 |
+| ------ | ------------------------------------ |
+| string | 获取指定资源名称表示的单复数字符串。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
-| 9001006  | If the resource re-ref too much.            |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001003  | Invalid resource name.                                       |
+| 9001004  | No matching resource is found based on the resource name.    |
+| 9001006  | The resource is referenced cyclically.                       |
+| 9001008  | Failed to format the resource obtained based on the resource name. |
 
 **示例：** 
-  ```ts
-  import { BusinessError } from '@ohos.base';
 
-  try {
-    this.context.resourceManager.getPluralStringByNameSync("test", 1);
-  } catch (error) {
-    let code = (error as BusinessError).code;
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    // 参数num取值为1，根据语言单复数规则对应的quantity为one, 因此在资源$r('app.plural.format_test')中取quantity为one的字符串
+	this.context.resourceManager.getIntPluralStringByNameSync("format_test", 1, 1, "aaa", 1.1);
+} catch (error) {
+	let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.error(`getPluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
-  }
+	console.error(`getIntPluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
+}
   ```
 
-### getPluralStringValue<sup>9+</sup>
+### getDoublePluralStringValueSync<sup>18+</sup>
 
-getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
+getDoublePluralStringValueSync(resId: number, num: number, ...args: Array<string | number>): string;
 
-根据指定数量获取指定ID字符串表示的单复数字符串，使用callback异步回调。
+获取指定资源ID的单复数字符串。
 
->**说明**
+> **说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
 
-| 参数名      | 类型                          | 必填   | 说明                              |
-| -------- | --------------------------- | ---- | ------------------------------- |
-| resId    | number                      | 是    | 资源ID值。                           |
-| num      | number                      | 是    | 数量值。                             |
-| callback | AsyncCallback&lt;string&gt; | 是    | 根据指定数量，获取指定ID字符串表示的单复数字符串。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
-
-**示例：** 
-  ```ts
-  import { BusinessError } from '@ohos.base';
-
-  try {
-    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getPluralStringValue failed, error code: ${code}, message: ${message}.`);
-  }
-  ```
-
-### getPluralStringValue<sup>9+</sup>
-
-getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
-
-根据指定数量获取对指定ID字符串表示的单复数字符串，使用Promise异步回调。
-
->**说明**
->
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**参数：** 
-
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值。 |
-| num   | number | 是    | 数量值。  |
+| 参数名  | 类型                    | 必填 | 说明                                                         |
+| ------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| resId   | number                  | 是   | 资源ID值。                                                   |
+| num     | number                  | 是   | 数量值（浮点数）。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
+| ...args | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。 |
 
 **返回值：**
 
-| 类型                    | 说明                        |
-| --------------------- | ------------------------- |
-| Promise&lt;string&gt; | 根据提供的数量，获取对应ID字符串表示的单复数字符串。 |
+| 类型   | 说明                             |
+| ------ | -------------------------------- |
+| string | 指定ID字符串表示的单复数字符串。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **示例：** 
-  ```ts
-  import { BusinessError } from '@ohos.base';
 
-  try {
-    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1).then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getPluralStringValue promise error is " + error);
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getPluralStringValue failed, error code: ${code}, message: ${message}.`);
-  }
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    // 参数num取值为2.1，根据语言单复数规则对应的quantity为other, 因此在资源$r('app.plural.format_test')中取quantity为other的字符串
+	this.context.resourceManager.getDoublePluralStringValueSync($r('app.plural.format_test').id, 2.1, 2, "aaa", 1.1);
+} catch (error) {
+	let code = (error as BusinessError).code;
+	let message = (error as BusinessError).message;
+	console.error(`getDoublePluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+}
   ```
 
-### getPluralStringValue<sup>9+</sup>
+### getDoublePluralStringValueSync<sup>18+</sup>
 
-getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt;string&gt;): void
+getDoublePluralStringValueSync(resource: Resource, num: number, ...args: Array<string | number>): string;
 
-根据指定数量获取指定resource对象表示的单复数字符串，使用callback异步回调。
+获取指定资源信息的单复数字符串。
 
->**说明**
+> **说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1569,206 +1632,104 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 
 **参数：** 
 
-| 参数名      | 类型                          | 必填   | 说明                                   |
-| -------- | --------------------------- | ---- | ------------------------------------ |
-| resource | [Resource](#resource9)      | 是    | 资源信息。                                 |
-| num      | number                      | 是    | 数量值。                                  |
-| callback | AsyncCallback&lt;string&gt; | 是    | 根据指定数量，获取指定resource对象表示的单复数字符串。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
-
-**示例：** 
-  ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
-
-  let resource: resourceManager.Resource = {
-    bundleName: "com.example.myapplication",
-    moduleName: "entry",
-    id: $r('app.plural.test').id
-  };
-  try {
-    this.context.resourceManager.getPluralStringValue(resource, 1, (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getPluralStringValue failed, error code: ${code}, message: ${message}.`);
-  }
-  ```
-
-### getPluralStringValue<sup>9+</sup>
-
-getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
-
-根据指定数量获取对指定resource对象表示的单复数字符串，使用Promise异步回调。
-
->**说明**
->
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**模型约束**：此接口仅可在Stage模型下使用。
-
-**参数：** 
-
-| 参数名      | 类型                     | 必填   | 说明   |
-| -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | 是    | 资源信息。 |
-| num      | number                 | 是    | 数量值。  |
+| 参数名   | 类型                    | 必填 | 说明                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| resource | [Resource](#resource9)  | 是   | 资源信息。                                                   |
+| num      | number                  | 是   | 数量值（浮点数）。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
+| ...args  | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。 |
 
 **返回值：**
 
-| 类型                    | 说明                             |
-| --------------------- | ------------------------------ |
-| Promise&lt;string&gt; | 根据提供的数量，获取对应resource对象表示的单复数字符串。 |
+| 类型   | 说明                                     |
+| ------ | ---------------------------------------- |
+| string | 获取指定resource对象表示的单复数字符串。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **示例：** 
-  ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
 
-  let resource: resourceManager.Resource = {
-    bundleName: "com.example.myapplication",
-    moduleName: "entry",
-    id: $r('app.plural.test').id
-  };
-  try {
-    this.context.resourceManager.getPluralStringValue(resource, 1).then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getPluralStringValue promise error is " + error);
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getPluralStringValue failed, error code: ${code}, message: ${message}.`);
-  }
+  ```ts
+import { resourceManager } from '@kit.LocalizationKit'
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let resource: resourceManager.Resource = {
+	bundleName: "com.example.myapplication",
+	moduleName: "entry",
+	id: $r('app.plural.format_test').id
+};
+try {
+    // 参数num取值为2.1，根据语言单复数规则对应的quantity为other, 因此在资源$r('app.plural.format_test')中取quantity为other的字符串
+	this.context.resourceManager.getDoublePluralStringValueSync(resource, 2.1, 2, "aaa", 1.1);
+} catch (error) {
+	let code = (error as BusinessError).code;
+	let message = (error as BusinessError).message;
+	console.error(`getDoublePluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+}
   ```
 
-### getPluralStringByName<sup>9+</sup>
+### getDoublePluralStringByNameSync<sup>18+</sup>
 
-getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;string&gt;): void
+getDoublePluralStringByNameSync(resName: string, num: number, ...args: Array<string | number>): string;
 
-根据传入的数量值，获取资源名称对应的字符串资源，使用callback异步回调。
+获取指定资源名称的单复数字符串。
 
->**说明**
+> **说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
 
-| 参数名      | 类型                          | 必填   | 说明                            |
-| -------- | --------------------------- | ---- | ----------------------------- |
-| resName  | string                      | 是    | 资源名称。                          |
-| num      | number                      | 是    | 数量值。                           |
-| callback | AsyncCallback&lt;string&gt; | 是    | 根据传入的数量值，获取资源名称对应的字符串资源。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
-
-**示例：** 
-  ```ts
-  import { BusinessError } from '@ohos.base';
-
-  try {
-    this.context.resourceManager.getPluralStringByName("test", 1, (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getPluralStringByName failed, error code: ${code}, message: ${message}.`);
-  }
-  ```
-
-### getPluralStringByName<sup>9+</sup>
-
-getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
-
-根据传入的数量值，获取资源名称对应的字符串资源，使用Promise异步回调。
-
->**说明**
->
-> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**参数：** 
-
-| 参数名     | 类型     | 必填   | 说明   |
-| ------- | ------ | ---- | ---- |
-| resName | string | 是    | 资源名称。 |
-| num     | number | 是    | 数量值。  |
+| 参数名  | 类型                    | 必填 | 说明                                                         |
+| ------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| resName | string                  | 是   | 资源名称。                                                   |
+| num     | number                  | 是   | 数量值（浮点数）。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
+| ...args | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。 |
 
 **返回值：**
 
-| 类型                    | 说明                     |
-| --------------------- | ---------------------- |
-| Promise&lt;string&gt; | 根据传入的数量值，获取资源名称对应的字符串资源。 |
+| 类型   | 说明                             |
+| ------ | -------------------------------- |
+| string | 指定资源名称表示的单复数字符串。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001003  | Invalid resource name.                                       |
+| 9001004  | No matching resource is found based on the resource name.    |
+| 9001006  | The resource is referenced cyclically.                       |
+| 9001008  | Failed to format the resource obtained based on the resource name. |
 
 **示例：** 
-  ```ts
-  import { BusinessError } from '@ohos.base';
 
-  try {
-    this.context.resourceManager.getPluralStringByName("test", 1).then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getPluralStringByName promise error is " + error);
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getPluralStringByName failed, error code: ${code}, message: ${message}.`);
-  }
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    // 参数num取值为2.1，根据语言单复数规则对应的quantity为other, 因此在资源$r('app.plural.format_test')中取quantity为other的字符串
+	this.context.resourceManager.getDoublePluralStringByNameSync("format_test", 2.1, 2, "aaa", 1.1);
+} catch (error) {
+	let code = (error as BusinessError).code;
+	let message = (error as BusinessError).message;
+	console.error(`getDoublePluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
+}
   ```
 
 ### getMediaContentSync<sup>10+</sup>
@@ -1776,6 +1737,8 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 getMediaContentSync(resId: number, density?: number): Uint8Array
 
 用户获取指定资源ID对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1798,12 +1761,13 @@ getMediaContentSync(resId: number, density?: number): Uint8Array
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentSync($r('app.media.test').id); // 默认屏幕密度
@@ -1828,6 +1792,8 @@ getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
 用户获取指定resource对象对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -1851,13 +1817,14 @@ getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1887,6 +1854,8 @@ getMediaByNameSync(resName: string, density?: number): Uint8Array
 
 用户获取指定资源名称对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -1908,12 +1877,13 @@ getMediaByNameSync(resName: string, density?: number): Uint8Array
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaByNameSync("test"); // 默认屏幕密度
@@ -1938,6 +1908,8 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定资源ID对应的媒体文件内容，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1949,16 +1921,17 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.              | 
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id, (error: BusinessError, value: Uint8Array) => {
@@ -1981,6 +1954,8 @@ getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8
 
 用户获取指定资源ID对应的指定屏幕密度媒体文件内容，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1993,16 +1968,17 @@ getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id, 120, (error: BusinessError, value: Uint8Array) => {
@@ -2025,6 +2001,8 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 
 用户获取指定资源ID对应的媒体文件内容，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2041,16 +2019,17 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id).then((value: Uint8Array) => {
@@ -2070,6 +2049,8 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
 用户获取指定资源ID对应的指定屏幕密度媒体文件内容，使用Promise异步回调。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2092,12 +2073,13 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id, 120).then((value: Uint8Array) => {
@@ -2118,6 +2100,8 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
 
 用户获取指定resource对象对应的媒体文件内容，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -2135,13 +2119,14 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2169,6 +2154,8 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
 
 用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -2187,13 +2174,14 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2221,6 +2209,8 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
 用户获取指定resource对象对应的媒体文件内容，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -2243,13 +2233,14 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2275,6 +2266,8 @@ getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
 用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -2298,13 +2291,14 @@ getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2330,6 +2324,8 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定资源名称对应的媒体文件内容，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2340,17 +2336,17 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 | callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
 
 **错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaByName("test", (error: BusinessError, value: Uint8Array) => {
@@ -2373,6 +2369,8 @@ getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint
 
 用户获取指定资源名称对应的指定屏幕密度媒体文件内容，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2389,12 +2387,13 @@ getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaByName("test", 120, (error: BusinessError, value: Uint8Array) => {
@@ -2417,6 +2416,8 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 
 用户获取指定资源名称对应的媒体文件内容，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2433,16 +2434,17 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaByName("test").then((value: Uint8Array) => {
@@ -2462,6 +2464,8 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 
 用户获取指定资源名称对应的指定屏幕密度媒体文件内容，使用Promise异步回调。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2484,12 +2488,13 @@ getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaByName("test", 120).then((value: Uint8Array) => {
@@ -2509,6 +2514,8 @@ getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 getMediaContentBase64Sync(resId: number, density?: number): string
 
 用户获取指定资源ID对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2531,12 +2538,13 @@ getMediaContentBase64Sync(resId: number, density?: number): string
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentBase64Sync($r('app.media.test').id); // 默认屏幕密度
@@ -2561,6 +2569,8 @@ getMediaContentBase64Sync(resource: Resource, density?: number): string
 
 用户获取指定resource对象对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -2584,13 +2594,14 @@ getMediaContentBase64Sync(resource: Resource, density?: number): string
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2620,6 +2631,8 @@ getMediaBase64ByNameSync(resName: string, density?: number): string
 
 用户获取指定资源名称对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2641,12 +2654,13 @@ getMediaBase64ByNameSync(resName: string, density?: number): string
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaBase64ByNameSync("test"); // 默认屏幕密度
@@ -2671,6 +2685,8 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
 
 用户获取指定资源ID对应的图片资源Base64编码，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** Content
@@ -2682,16 +2698,17 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, (error: BusinessError, value: string) => {
@@ -2714,6 +2731,8 @@ getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt
 
 用户获取指定资源ID对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2730,12 +2749,13 @@ getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120, (error: BusinessError, value: string) => {
@@ -2758,6 +2778,8 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
 
 用户获取指定资源ID对应的图片资源Base64编码，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2774,16 +2796,17 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id).then((value: string) => {
@@ -2803,6 +2826,8 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
 getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
 用户获取指定资源ID对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2825,12 +2850,13 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120).then((value: string) => {
@@ -2851,6 +2877,8 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
 
 用户获取指定resource对象对应的图片资源Base64编码，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -2868,13 +2896,14 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2902,6 +2931,8 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
 
 用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -2920,13 +2951,14 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2954,6 +2986,8 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
 用户获取指定resource对象对应的图片资源Base64编码，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -2976,13 +3010,14 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3008,6 +3043,8 @@ getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt
 
 用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -3031,13 +3068,14 @@ getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3063,6 +3101,8 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 
 用户获取指定资源名称对应的图片资源Base64编码，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -3074,16 +3114,17 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaBase64ByName("test", (error: BusinessError, value: string) => {
@@ -3106,6 +3147,8 @@ getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&l
 
 用户获取指定资源名称对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -3122,12 +3165,13 @@ getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&l
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaBase64ByName("test", 120, (error: BusinessError, value: string) => {
@@ -3150,6 +3194,8 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 
 用户获取指定资源名称对应的图片资源Base64编码，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -3166,16 +3212,17 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaBase64ByName("test").then((value: string) => {
@@ -3195,6 +3242,8 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
 用户获取指定资源名称对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3217,12 +3266,13 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaBase64ByName("test", 120).then((value: string) => {
@@ -3239,9 +3289,11 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
 ### getDrawableDescriptor<sup>10+</sup>
 
-getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableDescriptor;
+getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableDescriptor
 
 用户获取指定资源ID对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3257,37 +3309,39 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
 
 | 类型     | 说明         |
 | ------ | ---------- |
-| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象。|
+| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 资源ID值对应的DrawableDescriptor对象。|
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { DrawableDescriptor } from '@kit.ArkUI';
 
   try {
-    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 0, 1);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3297,9 +3351,11 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
 
 ### getDrawableDescriptor<sup>10+</sup>
 
-getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor;
+getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor
 
 用户获取指定resource对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3317,21 +3373,23 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
 
 | 类型      | 说明                |
 | ------- | ----------------- |
-| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象。 |
+| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 资源ID值对应的DrawableDescriptor对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { DrawableDescriptor } from '@kit.ArkUI';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3339,21 +3397,21 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
     id: $r('app.media.icon').id
   };
   try {
-    this.context.resourceManager.getDrawableDescriptor(resource);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor(resource);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor(resource, 120);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor(resource, 120);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor(resource, 0, 1);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor(resource, 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3363,9 +3421,11 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
 
 ### getDrawableDescriptorByName<sup>10+</sup>
 
-getDrawableDescriptorByName(resName: string, density?: number, type?: number): DrawableDescriptor;
+getDrawableDescriptorByName(resName: string, density?: number, type?: number): DrawableDescriptor
 
 用户获取指定资源名称对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3381,37 +3441,39 @@ getDrawableDescriptorByName(resName: string, density?: number, type?: number): D
 
 | 类型     | 说明        |
 | ------ | --------- |
-| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象。 |
+| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 资源ID值对应的DrawableDescriptor对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { DrawableDescriptor } from '@kit.ArkUI';
 
   try {
-    this.context.resourceManager.getDrawableDescriptorByName('icon');
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptorByName('icon');
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptorByName('icon', 0, 1);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptorByName('icon', 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3424,6 +3486,8 @@ getDrawableDescriptorByName(resName: string, density?: number, type?: number): D
 getBoolean(resId: number): boolean
 
 使用同步方式，返回获取指定资源ID对应的布尔结果。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3441,17 +3505,18 @@ getBoolean(resId: number): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getBoolean($r('app.boolean.boolean_test').id);
@@ -3466,6 +3531,8 @@ getBoolean(resId: number): boolean
 getBoolean(resource: Resource): boolean
 
 使用同步方式，返回获取指定resource对象对应的布尔结果。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3485,18 +3552,19 @@ getBoolean(resource: Resource): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3518,6 +3586,8 @@ getBooleanByName(resName: string): boolean
 
 使用同步方式，返回获取指定资源名称对应的布尔结果。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -3534,17 +3604,18 @@ getBooleanByName(resName: string): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getBooleanByName("boolean_test");
@@ -3561,6 +3632,8 @@ getNumber(resId: number): number
 
 用户获取指定资源ID对应的integer数值或者float数值，使用同步方式返回。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -3573,21 +3646,22 @@ getNumber(resId: number): number
 
 | 类型     | 说明         |
 | ------ | ---------- | 
-| number | 资源ID值对应的数值。Integer对应的是原数值，float对应的是真实像素点值，具体参考示例代码。 |
+| number | 资源ID值对应的数值。integer对应的是原数值，float对应的是真实像素点值，具体参考示例代码。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getNumber($r('app.integer.integer_test').id); // integer对应返回的是原数值
@@ -3612,6 +3686,12 @@ getNumber(resource: Resource): number
 
 用户获取指定resource对象对应的integer数值或者float数值，使用同步方式返回。
 
+> **说明**
+>
+> 使用接口获取单位为"vp"的float值时，通过resId和resource对象获取到的值不一致，resId获取的值是准确的。该问题正在优化改进。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -3626,22 +3706,23 @@ getNumber(resource: Resource): number
 
 | 类型     | 说明              |
 | ------ | --------------- |
-| number | 资源名称对应的数值。Interger对应的是原数值，float不带单位对应的是原数值；带"vp","fp"单位时对应的是px值。 |
+| number | 资源名称对应的数值。<br>integer对应的是原数值，float不带单位时对应的是原数值，带"vp","fp"单位时对应的是px值。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3663,6 +3744,8 @@ getNumberByName(resName: string): number
 
 用户获取指定资源名称对应的integer数值或者float数值，使用同步方式返回。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -3675,21 +3758,22 @@ getNumberByName(resName: string): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 资源名称对应的数值。Interger对应的是原数值，float不带单位对应的是原数值；带"vp","fp"单位时对应的是px值。 |
+| number | 资源名称对应的数值。<br>integer对应的是原数值，float不带单位时对应的是原数值，带"vp","fp"单位时对应的是px值。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getNumberByName("integer_test");
@@ -3714,6 +3798,8 @@ getColorSync(resId: number) : number;
 
 用户获取指定资源ID对应的颜色值，使用同步方式返回。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -3734,13 +3820,14 @@ getColorSync(resId: number) : number;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColorSync($r('app.color.test').id);
@@ -3756,6 +3843,8 @@ getColorSync(resId: number) : number;
 getColorSync(resource: Resource): number
 
 用户获取指定resource对象对应的颜色值，使用同步方式返回。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3779,14 +3868,15 @@ getColorSync(resource: Resource): number
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3808,6 +3898,8 @@ getColorByNameSync(resName: string) : number;
 
 用户获取指定资源名称对应的颜色值，使用同步方式返回。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -3828,13 +3920,14 @@ getColorByNameSync(resName: string) : number;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColorByNameSync("test");
@@ -3851,6 +3944,8 @@ getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
 
 用户获取指定资源ID对应的颜色值，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -3866,13 +3961,14 @@ getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the module resId invalid.             |
-| 9001002  | If the resource not found by resId.      |
-| 9001006  | If the resource re-ref too much.         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.         |
 
 **示例Stage：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColor($r('app.color.test').id, (error: BusinessError, value: number) => {
@@ -3895,6 +3991,8 @@ getColor(resId: number): Promise&lt;number&gt;
 
 用户获取指定资源ID对应的颜色值，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -3915,13 +4013,14 @@ getColor(resId: number): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColor($r('app.color.test').id).then((value: number) => {
@@ -3942,6 +4041,8 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
 用户获取指定resource对象对应的颜色值，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -3959,14 +4060,15 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3994,6 +4096,8 @@ getColor(resource: Resource): Promise&lt;number&gt;;
 
 用户获取指定resource对象对应的颜色值，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -4016,14 +4120,15 @@ getColor(resource: Resource): Promise&lt;number&gt;;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -4049,6 +4154,8 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
 
 用户获取指定资源名称对应的颜色值，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4064,13 +4171,14 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColorByName("test", (error: BusinessError, value: number) => {
@@ -4093,6 +4201,8 @@ getColorByName(resName: string): Promise&lt;number&gt;
 
 用户获取指定资源名称对应的颜色值，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4113,13 +4223,14 @@ getColorByName(resName: string): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColorByName("test").then((value: number) => {
@@ -4139,6 +4250,8 @@ getColorByName(resName: string): Promise&lt;number&gt;
 getRawFileContentSync(path: string): Uint8Array
 
 用户获取resources/rawfile目录下对应的rawfile文件内容，使用同步形式返回。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -4160,11 +4273,12 @@ getRawFileContentSync(path: string): Uint8Array
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getRawFileContentSync("test.txt");
@@ -4181,6 +4295,8 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取resources/rawfile目录下对应的rawfile文件内容，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -4192,15 +4308,15 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getRawFileContent("test.txt", (error: BusinessError, value: Uint8Array) => {
@@ -4223,6 +4339,8 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 
 用户获取resources/rawfile目录下对应的rawfile文件内容，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -4239,15 +4357,16 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getRawFileContent("test.txt").then((value: Uint8Array) => {
@@ -4272,6 +4391,8 @@ getRawFileListSync(path: string): Array\<string>
 >
 > 若文件夹中无文件，则不返回；若文件夹中有文件，则返回文件夹及文件列表。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4292,11 +4413,12 @@ getRawFileListSync(path: string): Array\<string>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.       |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try { // 传入""表示获取rawfile根目录下的文件列表
     this.context.resourceManager.getRawFileListSync("")
@@ -4317,6 +4439,8 @@ getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): vo
 >
 > 若文件夹中无文件，则不返回；若文件夹中有文件，则返回文件夹及文件列表。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -4332,11 +4456,12 @@ getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): vo
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.       |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try { // 传入""表示获取rawfile根目录下的文件列表
     this.context.resourceManager.getRawFileList("", (error: BusinessError, value: Array<string>) => {
@@ -4363,6 +4488,8 @@ getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
 >
 > 若文件夹中无文件，则不返回；若文件夹中有文件，则返回文件夹及文件列表。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -4383,11 +4510,12 @@ getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try { // 传入""表示获取rawfile根目录下的文件列表
     this.context.resourceManager.getRawFileList("").then((value: Array<string>) => {
@@ -4408,6 +4536,8 @@ getRawFdSync(path: string): RawFileDescriptor
 
 用户获取resources/rawfile目录下rawfile文件所在hap的descriptor信息。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4420,7 +4550,7 @@ getRawFdSync(path: string): RawFileDescriptor
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| [RawFileDescriptor](#rawfiledescriptor8) | rawfile文件所在hap的descriptor信息。 |
+| [RawFileDescriptor](#rawfiledescriptor9) | rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
@@ -4428,11 +4558,12 @@ getRawFdSync(path: string): RawFileDescriptor
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getRawFdSync("test.txt");
@@ -4449,6 +4580,8 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 用户获取resources/rawfile目录下对应rawfile文件所在hap的descriptor信息，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -4456,20 +4589,21 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | 是    | rawfile文件路径。                      |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 返回获取的rawfile文件所在hap的descriptor信息。 |
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | 是    | 返回获取的rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getRawFd("test.txt", (error: BusinessError, value: resourceManager.RawFileDescriptor) => {
@@ -4494,6 +4628,8 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 用户获取resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -4506,20 +4642,21 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件所在hap的descriptor信息。 |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getRawFd("test.txt").then((value: resourceManager.RawFileDescriptor) => {
@@ -4542,6 +4679,8 @@ closeRawFdSync(path: string): void
 
 用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4556,11 +4695,12 @@ closeRawFdSync(path: string): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | The resource not found by path.          |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.closeRawFdSync("test.txt");
@@ -4577,6 +4717,8 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -4588,15 +4730,16 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | The resource not found by path.          |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.closeRawFd("test.txt", (error: BusinessError) => {
@@ -4617,6 +4760,8 @@ closeRawFd(path: string): Promise&lt;void&gt;
 
 用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -4633,15 +4778,16 @@ closeRawFd(path: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.closeRawFd("test.txt");
@@ -4657,6 +4803,8 @@ closeRawFd(path: string): Promise&lt;void&gt;
 getConfigurationSync(): Configuration
 
 用户获取设备的Configuration，使用同步形式返回。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4683,6 +4831,8 @@ getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
 
 用户获取设备的Configuration，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -4693,7 +4843,7 @@ getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getConfiguration((error: BusinessError, value: resourceManager.Configuration) => {
@@ -4715,6 +4865,8 @@ getConfiguration(): Promise&lt;Configuration&gt;
 
 用户获取设备的Configuration，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **返回值：**
@@ -4725,8 +4877,8 @@ getConfiguration(): Promise&lt;Configuration&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getConfiguration().then((value: resourceManager.Configuration) => {
@@ -4745,6 +4897,8 @@ getConfiguration(): Promise&lt;Configuration&gt;
 getDeviceCapabilitySync(): DeviceCapability
 
 用户获取设备的DeviceCapability，使用同步形式返回。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4771,6 +4925,8 @@ getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
 
 用户获取设备的DeviceCapability，使用callback异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -4781,7 +4937,7 @@ getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getDeviceCapability((error: BusinessError, value: resourceManager.DeviceCapability) => {
@@ -4803,6 +4959,8 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 
 用户获取设备的DeviceCapability，使用Promise异步回调。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **返回值：**
@@ -4813,8 +4971,8 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getDeviceCapability().then((value: resourceManager.DeviceCapability) => {
@@ -4828,28 +4986,13 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
   }
   ```
 
-### release<sup>7+</sup>
-
-release()
-
-用户释放创建的resourceManager, 此接口暂不支持。
-
-**系统能力**：SystemCapability.Global.ResourceManager
-
-**示例：** 
-  ```ts
-  try {
-    this.context.resourceManager.release();
-  } catch (error) {
-    console.error("release error is " + error);
-  }
-  ```
-
 ### addResource<sup>10+</sup>
 
 addResource(path: string) : void
 
 应用运行时，加载指定的资源路径，实现资源覆盖。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4865,11 +5008,12 @@ addResource(path: string) : void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001010  | If the overlay path is invalid.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001010  | Invalid overlay path.            |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
   try {
@@ -4887,6 +5031,8 @@ removeResource(path: string) : void
 
 用户运行时，移除指定的资源路径，还原被覆盖前的资源。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4901,11 +5047,12 @@ removeResource(path: string) : void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001010  | If the overlay path is invalid.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001010  | Invalid overlay path.            |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
   try {
@@ -4923,6 +5070,8 @@ getLocales(includeSystem?: boolean): Array\<string>
 
 获取应用的语言列表。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4935,12 +5084,12 @@ getLocales(includeSystem?: boolean): Array\<string>
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| Array\<string> | 返回获取的语言列表，列表中的字符串由语言、脚本(可选)、地区(可选)，按照顺序使用中划线"-"连接组成。|
+| Array\<string> | 返回获取的语言列表，列表中的字符串由语言、脚本（可选）、地区（可选），按照顺序使用中划线“-”连接组成。|
 
 **示例：**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getLocales(); // 仅获取应用资源语言列表
@@ -4971,7 +5120,9 @@ getLocales(includeSystem?: boolean): Array\<string>
 
 getSymbol(resId: number):number
 
-用户获取指定资源ID对应的符号值，是用同步方式返回。
+用户获取指定资源ID对应的符号值，使用同步方式返回。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4993,13 +5144,14 @@ getSymbol(resId: number):number
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getSymbol($r('app.symbol.test').id);
@@ -5013,7 +5165,9 @@ getSymbol(resId: number):number
 ### getSymbol<sup>11+</sup>
 getSymbol(resource: Resource): number
 
-用户获取指定resource对象对应的符号值，是用同步方式返回。
+用户获取指定resource对象对应的符号值，使用同步方式返回。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -5037,14 +5191,15 @@ getSymbol(resource: Resource): number
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -5066,6 +5221,8 @@ getSymbolByName(resName: string) : number;
 
 用户获取指定资源名称对应的符号值，使用同步方式返回。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -5086,13 +5243,14 @@ getSymbolByName(resName: string) : number;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getSymbolByName("test");
@@ -5108,6 +5266,8 @@ getSymbolByName(resName: string) : number;
 isRawDir(path: string) : bool
 
 用户判断指定路径是否是rawfile下的目录，使用同步方式返回。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -5129,11 +5289,12 @@ isRawDir(path: string) : bool
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.isRawDir("test.txt");
@@ -5141,6 +5302,144 @@ isRawDir(path: string) : bool
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`isRawDir failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getOverrideResourceManager<sup>12+</sup>
+
+getOverrideResourceManager(configuration?: Configuration) : ResourceManager
+
+获取可以加载差异化资源的资源管理对象，使用同步方式返回。
+
+普通的资源管理对象获取的资源的样式（语言、深浅色、分辨率、横竖屏等）是由系统决定的，而通过该接口返回的对象，应用可以获取符合指定配置的资源，即差异化资源，比如浅色模式时可以获取深色资源。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名        | 类型                            | 必填 | 说明                                                         |
+| ------------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| configuration | [Configuration](#configuration) | 否   | 指定想要获取的资源样式。<br>通过[getOverrideConfiguration](#getoverrideconfiguration12)获取差异化配置后，根据需求修改配置项，再作为参数传入该函数。<br>若缺省则获取与当前系统最匹配的资源。 |
+
+**返回值：**
+
+| 类型            | 说明                               |
+| --------------- | ---------------------------------- |
+| ResourceManager | 可以加载差异化资源的资源管理对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
+
+  try {
+    let resMgr = this.context.resourceManager
+    let overrideConfig = resMgr.getOverrideConfiguration()
+    overrideConfig.colorMode = resourceManager.ColorMode.DARK
+    let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig)
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getOverrideResourceManager failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getOverrideConfiguration<sup>12+</sup>
+
+getOverrideConfiguration() : Configuration
+
+获取差异化资源的配置，使用同步方式返回。普通资源管理对象与通过它的[getOverrideResourceManager](#getoverrideresourcemanager12)接口获取的差异化资源管理对象调用该方法可获得相同的返回值。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**返回值：**
+
+| 类型                            | 说明             |
+| ------------------------------- | ---------------- |
+| [Configuration](#configuration) | 差异化资源的配置。 |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
+
+  let overrideConfig = this.context.resourceManager.getOverrideConfiguration()
+  ```
+
+### updateOverrideConfiguration<sup>12+</sup>
+
+updateOverrideConfiguration(configuration: Configuration) : void
+
+更新差异化资源配置。普通资源管理对象与通过它的[getOverrideResourceManager](#getoverrideresourcemanager12)接口获取的差异化资源管理对象调用该方法均可更新差异化资源管理对象的配置。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名        | 类型                            | 必填 | 说明                                                         |
+| ------------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| configuration | [Configuration](#configuration) | 是   | 指定差异化资源的配置项。通过[getOverrideConfiguration](#getoverrideconfiguration12)获取差异化配置后，根据需求修改配置项，再作为参数传入。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
+
+  try {
+    let resMgr = this.context.resourceManager
+    let overrideConfig = resMgr.getOverrideConfiguration()
+    overrideConfig.colorMode = resourceManager.ColorMode.DARK
+    let overrideResMgr = resMgr.updateOverrideConfiguration(overrideConfig)
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`updateOverrideConfiguration failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### release<sup>(deprecated)</sup>
+
+release()
+
+用户释放创建的resourceManager, 此接口暂不支持。
+
+从API version 7开始支持，API version 12开始不再维护。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**示例：** 
+  ```ts
+  try {
+    this.context.resourceManager.release();
+  } catch (error) {
+    console.error("release error is " + error);
   }
   ```
 
@@ -5199,7 +5498,7 @@ getString(resId: number): Promise&lt;string&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getString($r('app.string.test').id).then((value: string) => {
@@ -5266,7 +5565,7 @@ getStringArray(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
        mgr.getStringArray($r('app.strarray.test').id).then((value: Array<string>) => {
@@ -5322,17 +5621,17 @@ getMedia(resId: number): Promise&lt;Uint8Array&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
 | 类型                        | 说明             |
 | ------------------------- | -------------- |
-| Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容 |
+| Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容。 |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMedia($r('app.media.test').id).then((value: Uint8Array) => {
@@ -5358,8 +5657,8 @@ getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名      | 类型                          | 必填   | 说明                       |
 | -------- | --------------------------- | ---- | ------------------------ |
-| resId    | number                      | 是    | 资源ID值                    |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
+| resId    | number                      | 是    | 资源ID值。                    |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码。 |
 
 **示例：** 
   ```ts
@@ -5389,17 +5688,17 @@ getMediaBase64(resId: number): Promise&lt;string&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
 | 类型                    | 说明                   |
 | --------------------- | -------------------- |
-| Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码 |
+| Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码。 |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMediaBase64($r('app.media.test').id).then((value: string) => {
@@ -5410,18 +5709,542 @@ getMediaBase64(resId: number): Promise&lt;string&gt;
   });
   ```
 
+### getPluralStringValueSync<sup>(deprecated)</sup>
+
+getPluralStringValueSync(resId: number, num: number): string
+
+获取指定资源ID，指定资源数量的单复数字符串，使用同步方式返回。
+
+> **说明**
+>
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+>
+> 从API version 10开始支持，从API version 18开始废弃，建议使用[getIntPluralStringValueSync](#getintpluralstringvaluesync18)替代。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| resId  | number | 是   | 资源ID值。                                                   |
+| num    | number | 是   | 数量值。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
+
+**返回值：**
+
+| 类型   | 说明                                             |
+| ------ | ------------------------------------------------ |
+| string | 根据指定数量获取指定ID字符串表示的单复数字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**示例：** 
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    this.context.resourceManager.getPluralStringValueSync($r('app.plural.test').id, 1);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringValueSync<sup>(deprecated)</sup>
+
+getPluralStringValueSync(resource: Resource, num: number): string
+
+获取指定资源信息，指定资源数量的单复数字符串，使用同步方式返回。
+
+> **说明**
+>
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+>
+> 从API version 10开始支持，从API version 18开始废弃，建议使用[getIntPluralStringValueSync](#getintpluralstringvaluesync18-1)替代。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：** 
+
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| resource | [Resource](#resource9) | 是   | 资源信息。                                                   |
+| num      | number                 | 是   | 数量值。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
+
+**返回值：**
+
+| 类型   | 说明                                                 |
+| ------ | ---------------------------------------------------- |
+| string | 根据指定数量获取指定resource对象表示的单复数字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**示例：** 
+
+  ```ts
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let resource: resourceManager.Resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.plural.test').id
+  };
+  try {
+    this.context.resourceManager.getPluralStringValueSync(resource, 1);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringByNameSync<sup>(deprecated)</sup>
+
+getPluralStringByNameSync(resName: string, num: number): string
+
+获取指定资源名称，指定资源数量的单复数字符串，使用同步方式返回。
+
+> **说明**
+>
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+>
+> 从API version 10开始支持，从API version 18开始废弃，建议使用[getIntPluralStringByNameSync](#getintpluralstringbynamesync18)替代。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名  | 类型   | 必填 | 说明                                                         |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| resName | string | 是   | 资源名称。                                                   |
+| num     | number | 是   | 数量值。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
+
+**返回值：**
+
+| 类型   | 说明                                             |
+| ------ | ------------------------------------------------ |
+| string | 根据指定数量获取指定资源名称表示的单复数字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001003  | Invalid resource name.                                       |
+| 9001004  | No matching resource is found based on the resource name.    |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**示例：** 
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    this.context.resourceManager.getPluralStringByNameSync("test", 1);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getPluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringValue<sup>(deprecated)</sup>
+
+getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
+
+获取指定资源ID，指定资源数量的单复数字符串，使用callback异步回调。
+
+> **说明**
+>
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+>
+> 从API version 9开始支持，从API version 18开始废弃，建议使用[getIntPluralStringValueSync](#getintpluralstringvaluesync18)替代。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| resId    | number                      | 是   | 资源ID值。                                                   |
+| num      | number                      | 是   | 数量值。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
+| callback | AsyncCallback&lt;string&gt; | 是   | 根据指定数量，获取指定ID字符串表示的单复数字符串。           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**示例：** 
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, (error: BusinessError, value: string) => {
+      if (error != null) {
+        console.error("error is " + error);
+      } else {
+        let str = value;
+      }
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getPluralStringValue failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringValue<sup>(deprecated)</sup>
+
+getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
+
+获取指定资源ID，指定资源数量的单复数字符串，使用Promise异步回调。
+
+> **说明**
+>
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+>
+> 从API version 9开始支持，从API version 18开始废弃，建议使用[getIntPluralStringValueSync](#getintpluralstringvaluesync18)替代。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| resId  | number | 是   | 资源ID值。                                                   |
+| num    | number | 是   | 数量值。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
+
+**返回值：**
+
+| 类型                  | 说明                                                 |
+| --------------------- | ---------------------------------------------------- |
+| Promise&lt;string&gt; | 根据提供的数量，获取对应ID字符串表示的单复数字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**示例：** 
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1).then((value: string) => {
+      let str = value;
+    }).catch((error: BusinessError) => {
+      console.error("getPluralStringValue promise error is " + error);
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getPluralStringValue failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringValue<sup>(deprecated)</sup>
+
+getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt;string&gt;): void
+
+获取指定资源信息，指定资源数量的单复数字符串，使用callback异步回调。
+
+> **说明**
+>
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+>
+> 从API version 9开始支持，从API version 18开始废弃，建议使用[getIntPluralStringValueSync](#getintpluralstringvaluesync18-1)替代。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：** 
+
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| resource | [Resource](#resource9)      | 是   | 资源信息。                                                   |
+| num      | number                      | 是   | 数量值。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
+| callback | AsyncCallback&lt;string&gt; | 是   | 根据指定数量，获取指定resource对象表示的单复数字符串。       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**示例：** 
+
+  ```ts
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let resource: resourceManager.Resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.plural.test').id
+  };
+  try {
+    this.context.resourceManager.getPluralStringValue(resource, 1, (error: BusinessError, value: string) => {
+      if (error != null) {
+        console.error("error is " + error);
+      } else {
+        let str = value;
+      }
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getPluralStringValue failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringValue<sup>(deprecated)</sup>
+
+getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
+
+获取指定资源信息，指定资源数量的单复数字符串，使用Promise异步回调。
+
+> **说明**
+>
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+>
+> 从API version 9开始支持，从API version 18开始废弃，建议使用[getIntPluralStringValueSync](#getintpluralstringvaluesync18-1)替代。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：** 
+
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| resource | [Resource](#resource9) | 是   | 资源信息。                                                   |
+| num      | number                 | 是   | 数量值。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
+
+**返回值：**
+
+| 类型                  | 说明                                                     |
+| --------------------- | -------------------------------------------------------- |
+| Promise&lt;string&gt; | 根据提供的数量，获取对应resource对象表示的单复数字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**示例：** 
+
+  ```ts
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let resource: resourceManager.Resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.plural.test').id
+  };
+  try {
+    this.context.resourceManager.getPluralStringValue(resource, 1).then((value: string) => {
+      let str = value;
+    }).catch((error: BusinessError) => {
+      console.error("getPluralStringValue promise error is " + error);
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getPluralStringValue failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringByName<sup>(deprecated)</sup>
+
+getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;string&gt;): void
+
+获取指定资源名称，指定资源数量的单复数字符串，使用callback异步回调。
+
+> **说明**
+>
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+>
+> 从API version 9开始支持，从API version 18开始废弃，建议使用[getIntPluralStringByNameSync](#getintpluralstringbynamesync18)替代。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| resName  | string                      | 是   | 资源名称。                                                   |
+| num      | number                      | 是   | 数量值。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
+| callback | AsyncCallback&lt;string&gt; | 是   | 根据传入的数量值，获取资源名称对应的字符串资源。             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001003  | Invalid resource name.                                       |
+| 9001004  | No matching resource is found based on the resource name.    |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**示例：** 
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    this.context.resourceManager.getPluralStringByName("test", 1, (error: BusinessError, value: string) => {
+      if (error != null) {
+        console.error("error is " + error);
+      } else {
+        let str = value;
+      }
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getPluralStringByName failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringByName<sup>(deprecated)</sup>
+
+getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
+
+获取指定资源名称，指定资源数量的单复数字符串，使用Promise异步回调。
+
+> **说明**
+>
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+>
+> 从API version 9开始支持，从API version 18开始废弃，建议使用[getIntPluralStringByNameSync](#getintpluralstringbynamesync18)替代。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名  | 类型   | 必填 | 说明                                                         |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| resName | string | 是   | 资源名称。                                                   |
+| num     | number | 是   | 数量值。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
+
+**返回值：**
+
+| 类型                  | 说明                                             |
+| --------------------- | ------------------------------------------------ |
+| Promise&lt;string&gt; | 根据传入的数量值，获取资源名称对应的字符串资源。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001003  | Invalid resource name.                                       |
+| 9001004  | No matching resource is found based on the resource name.    |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**示例：** 
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    this.context.resourceManager.getPluralStringByName("test", 1).then((value: string) => {
+      let str = value;
+    }).catch((error: BusinessError) => {
+      console.error("getPluralStringByName promise error is " + error);
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getPluralStringByName failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
 
 ### getPluralString<sup>(deprecated)</sup>
 
 getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
-根据指定数量获取对指定ID字符串表示的单复数字符串，使用Promise异步回调。
+获取指定资源ID，指定资源数量的单复数字符串，使用Promise异步回调。
 
->**说明**
+> **说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
-
-从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue9)代替。
+>
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[getIntPluralStringValueSync](#getintpluralstringvaluesync18)替代。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -5429,18 +6252,19 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
-| num   | number | 是    | 数量值   |
+| resId | number | 是    | 资源ID值。 |
+| num   | number | 是    | 数量值。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
 
 **返回值：**
 
 | 类型                    | 说明                        |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | 根据提供的数量获取对应ID字符串表示的单复数字符串 |
+| Promise&lt;string&gt; | 根据提供的数量获取对应ID字符串表示的单复数字符串。 |
 
 **示例：** 
+
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getPluralString($r("app.plural.test").id, 1).then((value: string) => {
@@ -5456,13 +6280,13 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
 getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
 
-根据指定数量获取指定ID字符串表示的单复数字符串，使用callback异步回调。
+获取指定资源ID，指定资源数量的单复数字符串，使用callback异步回调。
 
->**说明**
+> **说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
-
-从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue9-1)代替。
+>
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[getIntPluralStringValueSync](#getintpluralstringvaluesync18)替代。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -5470,11 +6294,12 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 
 | 参数名      | 类型                          | 必填   | 说明                              |
 | -------- | --------------------------- | ---- | ------------------------------- |
-| resId    | number                      | 是    | 资源ID值                           |
-| num      | number                      | 是    | 数量值                             |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据指定数量获取指定ID字符串表示的单复数字符串 |
+| resId    | number                      | 是    | 资源ID值。                           |
+| num      | number                      | 是    | 数量值。根据当前语言的复数规则获取该数量值对应的字符串数字，语言的复数规则参见[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。 |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据指定数量获取指定ID字符串表示的单复数字符串。 |
 
 **示例：** 
+
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getPluralString($r("app.plural.test").id, 1, (error: Error, value: string) => {
@@ -5502,8 +6327,8 @@ getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 | 参数名      | 类型                              | 必填   | 说明                      |
 | -------- | ------------------------------- | ---- | ----------------------- |
-| path     | string                          | 是    | rawfile文件路径             |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的rawfile文件内容 |
+| path     | string                          | 是    | rawfile文件路径。             |
+| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的rawfile文件内容。 |
 
 **示例：** 
   ```ts
@@ -5533,17 +6358,17 @@ getRawFile(path: string): Promise&lt;Uint8Array&gt;
 
 | 参数名  | 类型     | 必填   | 说明          |
 | ---- | ------ | ---- | ----------- |
-| path | string | 是    | rawfile文件路径 |
+| path | string | 是    | rawfile文件路径。 |
 
 **返回值：**
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| Promise&lt;Uint8Array&gt; | rawfile文件内容 |
+| Promise&lt;Uint8Array&gt; | rawfile文件内容。 |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFile("test.txt").then((value: Uint8Array) => {
@@ -5569,12 +6394,12 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
 
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
-| path     | string                                   | 是    | rawfile文件路径                      |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor |
+| path     | string                                   | 是    | rawfile文件路径。                      |
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor。 |
 
 **示例：** 
   ```ts
-  import resourceManager from '@ohos.resourceManager';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFileDescriptor("test.txt", (error: Error, value: resourceManager.RawFileDescriptor) => {
@@ -5603,17 +6428,17 @@ getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
 | 参数名  | 类型     | 必填   | 说明          |
 | ---- | ------ | ---- | ----------- |
-| path | string | 是    | rawfile文件路径 |
+| path | string | 是    | rawfile文件路径。 |
 
 **返回值：**
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件descriptor |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | rawfile文件descriptor。 |
 
 **示例：** 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFileDescriptor("test.txt").then((value: resourceManager.RawFileDescriptor) => {
@@ -5642,8 +6467,8 @@ closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名      | 类型                        | 必填   | 说明          |
 | -------- | ------------------------- | ---- | ----------- |
-| path     | string                    | 是    | rawfile文件路径 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 异步回调        |
+| path     | string                    | 是    | rawfile文件路径。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 异步回调。        |
 
 **示例：** 
   ```ts
@@ -5670,13 +6495,13 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
 | 参数名  | 类型     | 必填   | 说明          |
 | ---- | ------ | ---- | ----------- |
-| path | string | 是    | rawfile文件路径 |
+| path | string | 是    | rawfile文件路径。 |
 
 **返回值：**
 
 | 类型                  | 说明   |
 | ------------------- | ---- |
-| Promise&lt;void&gt; | 无返回值 |
+| Promise&lt;void&gt; | 无返回值。 |
 
 **示例：** 
   ```ts
@@ -5684,3 +6509,135 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
       mgr.closeRawFileDescriptor("test.txt");
   });
   ```
+
+### 附录
+
+- 示例代码中用到的'app.string.test'文件内容如下：
+
+    ```json
+    {
+    "string": [
+        {
+        "name": "test",
+        "value": "10"
+        }
+    ]
+    }
+    ```
+
+    ```json
+    {
+    "string": [
+     {
+        "name": "test",
+        "value": "%s %d %f"
+        }
+    ]
+    }
+    ```
+
+- 示例代码中用到的'app.strarray.test'文件内容如下：
+
+    ```json
+    {
+    "strarray": [
+        {
+        "name": "test",
+        "value": [
+          {
+            "value": "strarray_test"
+          }
+        ]
+        }
+    ]
+    }
+    ```
+
+- 示例代码中用到的'app.plural.test'文件内容如下：
+    ```json
+    {
+      "plural": [
+        {
+        "name": "test",
+        "value": [
+            {
+            "quantity": "one",
+            "value": "%d apple"
+            },
+            {
+            "quantity": "other",
+            "value": "%d apples"
+            }
+        ]
+        }
+    ]
+    }
+    ```
+
+- 示例代码中用到的'app.plural.format_test'文件内容如下：
+
+    ```
+    {
+      "plural": [
+        {
+        "name": "format_test",
+        "value": [
+            {
+            "quantity": "one",
+            "value": "%d apple, %s, %f"
+            },
+            {
+            "quantity": "other",
+            "value": "%d apples, %s, %f"
+            }
+        ]
+        }
+    ]
+    }
+    ```
+
+- 示例代码中用到的'app.boolean.boolean_test'文件内容如下：
+    ```json
+    {
+        "boolean": [
+            {
+                "name": "boolean_test",
+                "value": true
+            }
+        ]
+    }
+    ```
+
+- 示例代码中用到的"integer_test"和"float_test"文件内容如下：
+    ```json
+    {
+      "integer": [
+        {
+          "name": "integer_test",
+          "value": 100
+        }
+      ]
+    }
+    ```
+
+    ```json
+    {
+      "float": [
+        {
+          "name": "float_test",
+          "value": "30.6"
+        }
+      ]
+    }
+    ```
+- 示例代码中用到的'app.color.test'文件内容如下：
+    ```json
+    {
+      "color": [
+        {
+          "name": "test",
+          "value": "#FFFFFF"
+       }
+      ]
+    }
+    ```

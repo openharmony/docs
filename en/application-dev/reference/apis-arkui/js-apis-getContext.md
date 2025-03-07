@@ -8,6 +8,12 @@ The **getContext** API enables you to obtain the context of the ability (either 
 
 getContext(component?: Object):Context
 
+Obtains the **Context** object associated with an ability on the page.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name| Type         | Mandatory| Description                            |
@@ -24,13 +30,15 @@ getContext(component?: Object):Context
 
 Load a page by calling **windowStage.loadContent** in the UIAbility.
 
+> **NOTE**
+> 
+> To avoid confusion with instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](js-apis-arkui-UIContext.md#uicontext) API, and then call **getContext** bound to the context through the [getHostContext](js-apis-arkui-UIContext.md#gethostcontext12) API.
+
 ```ts
-// EntryAbility.ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
+// EntryAbility.ets
+import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -82,6 +90,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
+            // You are advised to use this.getUIContext().getHostContext().
             let context : Context = getContext(this) as Context
             console.info("CacheDir:" + context.cacheDir)
           })

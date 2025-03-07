@@ -1,96 +1,96 @@
-# 管理系统帐号（仅对系统应用开放）
+# 管理系统账号（仅对系统应用开放）
 
-系统提供了用于管理系统帐号的接口。
-系统应用开发者在申请对应的权限后，可以创建、激活、修改和删除系统帐号，实现对系统帐号的生命周期管理；三方应用开发者可以查询系统帐号的基本信息，以完成与系统帐号相关的业务逻辑开发。
+系统提供了用于管理系统账号的接口。
+系统应用开发者在申请对应的权限后，可以创建、激活、修改和删除系统账号，实现对系统账号的生命周期管理；三方应用开发者可以查询系统账号的基本信息，以完成与系统账号相关的业务逻辑开发。
 
 ## 基本概念
 
-### 帐号类型
+### 账号类型
 
-当前，系统仅允许创建以下预定义类型的系统帐号：
+当前，系统仅允许创建以下预定义类型的系统账号：
 | 名称   | 值 | 说明         |
 | ------ | ------ | ----------- |
-| ADMIN  | 0      | 管理员帐号。 |
-| NORMAL | 1      | 普通帐号。   |
-| GUEST  | 2      | 访客帐号。   |
-| PRIVATE<sup>12+</sup> | 1024  | 隐私帐号。   |
+| ADMIN  | 0      | 管理员账号。 |
+| NORMAL | 1      | 普通账号。   |
+| GUEST  | 2      | 访客账号。   |
+| PRIVATE<sup>12+</sup> | 1024  | 隐私账号。   |
 
-### 帐号完整信息
+### 账号完整信息
 
-系统帐号的完整信息请参考[OsAccountInfo](../../reference/apis-basic-services-kit/js-apis-osAccount.md#osaccountinfo)定义。
+系统账号的完整信息请参考[OsAccountInfo](../../reference/apis-basic-services-kit/js-apis-osAccount.md#osaccountinfo)定义。
 
 ## 开发准备
 
-1. 申请权限：ohos.permission.MANAGE_LOCAL_ACCOUNTS。申请流程请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+1. 申请权限：ohos.permission.MANAGE_LOCAL_ACCOUNTS。申请流程请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
 
-2. 导入系统帐号模块。
-
-   ```ts
-   import account_osAccount from '@ohos.account.osAccount';
-   ```
-
-3. 获取帐号管理单实例对象。
+2. 导入系统账号模块。
 
    ```ts
-   let accountManager = account_osAccount.getAccountManager();
+   import { osAccount, BusinessError } from '@kit.BasicServicesKit';
    ```
 
-## 创建系统帐号
+3. 获取账号管理单实例对象。
 
-系统初始化阶段，会创建默认系统帐号。此外，可以创建多个系统帐号，以满足用户不同诉求。
+   ```ts
+   let accountManager = osAccount.getAccountManager();
+   ```
+
+## 创建系统账号
+
+系统初始化阶段，会创建默认系统账号。此外，可以创建多个系统账号，以满足用户不同诉求。
 
 具体开发实例如下：
 
-调用[createOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccount)接口，指定昵称和类型信息来创建系统帐号。
+调用[createOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccount)接口，指定昵称和类型信息来创建系统账号。
 
 ```ts
 let name: string = 'Bob';
-let type: account_osAccount.OsAccountType = account_osAccount.OsAccount.NORMAL;
+let type: osAccount.OsAccountType = osAccount.OsAccountType.NORMAL;
 
-accountManager.createOsAccount(name, type, (err: BusinessError, osAccountInfo: account_osAccount.OsAccountInfo)=>{
+accountManager.createOsAccount(name, type, (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
   console.log('createOsAccount err:' + JSON.stringify(err));
   console.log('createOsAccount osAccountInfo:' + JSON.stringify(osAccountInfo));
 });
 ```
 
-## 查询所有已创建的系统帐号
+## 查询所有已创建的系统账号
 
-帐号管理界面通常需要获取所有帐号信息时，以方便用户操作不同帐号。
+账号管理界面通常需要获取所有账号信息时，以方便用户操作不同账号。
 
 具体开发实例如下：
 
-调用[queryAllCreatedOsAccounts](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#queryallcreatedosaccounts)接口查询全量帐号。  
+调用[queryAllCreatedOsAccounts](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#queryallcreatedosaccounts)接口查询全量账号。  
 
 ```ts
-accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: account_osAccount.OsAccountInfo[])=>{
+accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: osAccount.OsAccountInfo[])=>{
   console.log('queryAllCreatedOsAccounts err:' + JSON.stringify(err));
   console.log('queryAllCreatedOsAccounts accountArr:' + JSON.stringify(accountArr));
 });
 ```
 
-## 查询指定系统帐号信息
+## 查询指定系统账号信息
 
-除了查询所有帐号信息，还可以根据帐号标识查询指定系统帐号的详细信息。
+除了查询所有账号信息，还可以根据账号标识查询指定系统账号的详细信息。
 
 具体开发实例如下：
 
-调用[queryOsAccountById](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#queryosaccountbyid)接口查询指定帐号的详细信息。
+调用[queryOsAccountById](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#queryosaccountbyid)接口查询指定账号的详细信息。
 
 ```ts
 let localId: number = 100;
-accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: account_osAccount.OsAccountInfo)=>{
+accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: osAccount.OsAccountInfo)=>{
   console.log('queryOsAccountById err:' + JSON.stringify(err));
   console.log('queryOsAccountById accountInfo:' + JSON.stringify(accountInfo));
 });
 ```
 
-## 修改系统帐号头像和昵称
+## 修改系统账号头像和昵称
 
-可以修改系统帐号的头像、昵称，以满足用户的个性化需求。
+可以修改系统账号的头像、昵称，以满足用户的个性化需求。
 
 具体开发实例如下：
 
-1. 调用[setOsAccountProfilePhoto](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#setosaccountprofilephoto)接口修改系统帐号头像。
+1. 调用[setOsAccountProfilePhoto](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#setosaccountprofilephoto)接口修改系统账号头像。
 
    ```ts
    let localId: number = 100;
@@ -104,7 +104,7 @@ accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: acc
    });
    ```
 
-2. 调用[setOsAccountName](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#setosaccountname)接口修改系统帐号名称。
+2. 调用[setOsAccountName](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#setosaccountname)接口修改系统账号名称。
 
    ```ts
    let localId: number = 100;
@@ -118,13 +118,13 @@ accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: acc
    });
    ```
 
-## 激活系统帐号
+## 激活系统账号
 
-系统帐号默认处于未激活状态，需要激活后才能使用。开发者可以使用[activateOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#activateosaccount)接口完成此操作。
+系统账号默认处于未激活状态，需要激活后才能使用。开发者可以使用[activateOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#activateosaccount)接口完成此操作。
 
 具体开发实例如下：
 
-调用[activateOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#activateosaccount)接口激活指定系统帐号。
+调用[activateOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#activateosaccount)接口激活指定系统账号。
 
 ```ts
 let localId: number = 101;
@@ -137,13 +137,13 @@ accountManager.activateOsAccount(localId, (err: BusinessError)=>{
 });
 ```
 
-## 删除系统帐号
+## 删除系统账号
 
-不再使用某个系统帐号时，可以将该系统帐号删除。
+不再使用某个系统账号时，可以将该系统账号删除。
 
 具体开发实例如下：
 
-调用[removeOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#removeosaccount)接口删除指定的帐号。
+调用[removeOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#removeosaccount)接口删除指定的账号。
 
 ```ts
 let localId: number = 101;

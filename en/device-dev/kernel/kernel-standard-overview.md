@@ -15,4 +15,4 @@ The standard-system devices come with application processors and memory greater 
 
 ## OpenHarmony Kernel Versions
 
-OpenHarmony uses Linux LTS versions as its base kernel. Currently, it supports Linux-4.19 and Linux-5.10.
+OpenHarmony uses Linux LTS versions as its base kernel. Currently, it supports Linux-4.19 and Linux-5.10，and board rk3568 has been adapted with Linux-6.6.

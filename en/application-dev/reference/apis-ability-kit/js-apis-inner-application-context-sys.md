@@ -11,14 +11,20 @@ The **Context** module provides context for abilities or applications. It allows
 ## Modules to Import
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
-## Context.createBundleContext
+## Context.createBundleContext<sup>(deprecated)</sup>
 
 createBundleContext(bundleName: string): Context
 
 Creates the context based on the bundle name.
+
+> **NOTE**
+>
+> If there are multiple modules in the stage model, resource ID conflicts may occur. You are advised to use [application.createModuleContext](./js-apis-app-ability-application-sys.md#applicationcreatemodulecontext12) instead.
+>
+> This API is deprecated since API version 12. You are advised to use [application.createBundleContext](./js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12) instead.
 
 **System API**: This is a system API.
 
@@ -38,11 +44,19 @@ Creates the context based on the bundle name.
 | -------- | -------- |
 | Context | Context created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
+import { common, UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
@@ -51,17 +65,21 @@ export default class EntryAbility extends UIAbility {
     try {
       bundleContext = this.context.createBundleContext('com.example.test');
     } catch (error) {
-      console.error(`createBundleContext failed, error.code: ${error.code}, error.message: ${error.message}`);
+      console.error(`createBundleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
     }
   }
 }
 ```
 
-## Context.createModuleContext
+## Context.createModuleContext<sup>(deprecated)</sup>
 
 createModuleContext(bundleName: string, moduleName: string): Context
 
 Creates the context based on the bundle name and module name.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12. You are advised to use [application.createModuleContext](./js-apis-app-ability-application-sys.md#applicationcreatemodulecontext12) instead.
 
 **System API**: This is a system API.
 
@@ -80,11 +98,19 @@ Creates the context based on the bundle name and module name.
 | -------- | -------- |
 | Context | Context created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
+import { common, UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
@@ -93,7 +119,7 @@ export default class EntryAbility extends UIAbility {
     try {
       moduleContext = this.context.createModuleContext('com.example.test', 'entry');
     } catch (error) {
-      console.error(`createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}`);
+      console.error(`createModuleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
     }
   }
 }
@@ -124,12 +150,21 @@ Creates a resource management object for a module.
 | -------- | -------- |
 | resmgr.ResourceManager | Object for resource management.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
-import resourceManager from '@ohos.resourceManager';
+import { UIAbility } from '@kit.AbilityKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 export default class EntryAbility extends UIAbility {
   onCreate() {
     console.log('MyAbility onCreate');
@@ -137,8 +172,46 @@ export default class EntryAbility extends UIAbility {
     try {
       ModuleResourceManager = this.context.createModuleResourceManager('com.example.test', 'entry');
     } catch (error) {
-      console.error(`createModuleResourceManager failed, error.code: ${error.code}, error.message: ${error.message}`);
+      console.error(`createModuleResourceManager failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
     }
+  }
+}
+```
+## Context.createSystemHspModuleResourceManager<sup>12+</sup>
+
+createSystemHspModuleResourceManager(bundleName: string, moduleName: string): resmgr.ResourceManager
+
+Creates a resource manager object for a module of the system-level HSP.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name      | Type    | Mandatory  | Description  |
+| -------- |--------| ---- |------|
+| bundleName | string | Yes   | Bundle name. |
+| moduleName | string | Yes   | Module name.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 16400001 | The specified ability does not exist. |
+
+**Example**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    console.log('MyAbility onCreate');
+    this.context.createSystemHspModuleResourceManager("com.example.myapplication", "library");
   }
 }
 ```

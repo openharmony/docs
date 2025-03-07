@@ -29,7 +29,7 @@
 
 | 名称                    | 类型             | 默认值  | 必填   | 描述                     |
 | --------------------- | -------------- | ---- | ---- | ---------------------- |
-| src                   | &lt;uri&gt;    | -    | 是    | 图片路径，图片格式为svg，png和jpg。 |
+| src                   | &lt;uri&gt;    | -    | 是    | 图片路径，图片格式支持svg、png、jpg和heif。 |
 | width                 | &lt;length&gt; | 0    | 否    | 图片宽度。                  |
 | height                | &lt;length&gt; | 0    | 否    | 图片高度。                  |
 | top                   | &lt;length&gt; | 0    | 否    | 图片相对于组件左上角的纵向坐标。       |
@@ -64,7 +64,7 @@
 | pause    | -    | 暂停播放图片帧动画。                               |
 | stop     | -    | 停止播放图片帧动画。                               |
 | resume   | -    | 继续播放图片帧。                                 |
-| getState | -    | 获取播放状态。<br/>-&nbsp;playing：播放中<br/>-&nbsp;paused：已暂停<br/>-&nbsp;stopped：已停止。 |
+| getState | -    | 获取播放状态。<br/>-&nbsp;playing：播放中。<br/>-&nbsp;paused：已暂停。<br/>-&nbsp;stopped：已停止。 |
 
 
 ## 示例

@@ -32,7 +32,7 @@
 1. 数据提供方以`key + subscriberId`作为数据的标识，将数据存储到数据库。
 2. 数据管理服务感知到数据库变化，将新的数据发布给当前注册的所有订阅实例。
 3. 卡片管理服务从订阅实例中解析出数据，发送给卡片渲染服务。
-4. 卡片渲染服务运行卡片页面代码widgets.abc，widgets.abc按新数据进行渲染，并将渲染后的数据发送至卡片使用方对应的[卡片组件](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)。
+4. 卡片渲染服务运行卡片页面代码widgets.abc，widgets.abc按新数据进行渲染，并将渲染后的数据发送至卡片使用方对应的<!--Del-->[<!--DelEnd-->卡片组件<!--Del-->](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)<!--DelEnd-->。
 
 数据提供方提供的共享数据有两种类型：
 
@@ -41,11 +41,11 @@
 - 持久化数据，仅系统应用可以订阅。
 
 相应的卡片代理刷新配置有所不同，下面分别介绍具体开发方式。
-
+<!--Del-->
 ## 数据提供方开发步骤
 
 参考[数据管理](../database/share-data-by-silent-access.md)开发指南。
-
+<!--DelEnd-->
 ## 卡片提供方开发步骤（过程数据）
 
 - 配置form_config.json文件中的`dataProxyEnabled`字段为`true`，以启用卡片代理刷新功能，当订阅的过程数据更新时，系统会自动更新卡片数据。
@@ -80,10 +80,9 @@
   >
   > key可以是uri也可以是简单字符串，subscriberId默认值为当前formId，实际取值都依赖于数据发布方的定义。
   ```ts
-  import formBindingData from '@ohos.app.form.formBindingData';
-  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import hilog from '@ohos.hilog';
-  import type Want from '@ohos.app.ability.Want';
+  import { formBindingData, FormExtensionAbility } from '@kit.FormKit';
+  import { Want } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
   
   const TAG: string = 'ProcessDataFormAbility';
   const DOMAIN_NUMBER: number = 0xFF00;
@@ -105,7 +104,7 @@
   }
   ```
   
-- 在[卡片页面文件](arkts-ui-widget-creation.md)中，通过LocalStorage变量获取订阅到的数据，LocalStorage绑定了一个字符串，以key:value的键值对格式来刷新卡片订阅数据，其中key必须与卡片提供方订阅的key保持一致。示例中，通过'detail'获取订阅的数据，并在Text组件显示。
+- 在[卡片页面文件](arkts-ui-widget-creation.md)中，通过LocalStorage变量获取订阅到的数据，LocalStorage绑定了一个字符串，以key:value的键值对格式来刷新卡片订阅数据，其中key必须与卡片提供方订阅的key保持一致。示例中，通过'city'获取订阅的数据，并在Text组件显示。
   ```ts
   let storageProcess = new LocalStorage();
   
@@ -160,23 +159,21 @@
   }
   ```
 
-- 在[onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform)回调中添加订阅模板[addTemplate](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#addtemplate10)，通过模板谓词告诉数据库订阅的数据条件。然后配置订阅信息[proxyData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#proxydata10)，并通过[formBinding](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata)返回给卡片管理服务。示例中将谓词设置为`"list" : "select type from TBL00 limit 0,1"`，表示从TBL00数据库中获取type列的第一条数据，数据将会以`{"list":[{"type":"value0"}]}`格式返回到卡片页面代码widgets.abc中。当订阅的持久化数据更新时，系统会自动更新卡片数据。
+- 在[onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform)回调中添加订阅模板<!--Del-->[<!--DelEnd-->addTemplate<!--Del-->](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#addtemplate10)<!--DelEnd-->，通过模板谓词告诉数据库订阅的数据条件。然后配置订阅信息[proxyData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#proxydata10)，并通过[FormBindingData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata)返回给卡片管理服务。示例中将谓词设置为`"list" : "select type from TBL00 limit 0,1"`，表示从TBL00数据库中获取type列的第一条数据，数据将会以`{"list":[{"type":"value0"}]}`格式返回到卡片页面代码widgets.abc中。当订阅的持久化数据更新时，系统会自动更新卡片数据。
 
   > **说明：**
   >
   > - key的取值是uri，依赖于数据发布方定义。
   > - subscriberId可自定义，addTemplate中的subscriberId参数与proxies.subscriberId保持一致即可。
   ```ts
-  import dataShare from '@ohos.data.dataShare';
-  import type formBindingData from '@ohos.app.form.formBindingData';
-  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import type Want from '@ohos.app.ability.Want';
-  
+  import { formBindingData, FormExtensionAbility } from '@kit.FormKit';
+  import { Want } from '@kit.AbilityKit';
+  import { dataShare } from '@kit.ArkData';
+
   export default class PersistentDataFormAbility extends FormExtensionAbility {
     onAddForm(want: Want): formBindingData.FormBindingData {
-      let dataShareHelper;
       let subscriberId = '111';
-      let template = {
+      let template: dataShare.Template = {
         predicates: {
           'list': `select type from TBL00 where cityId = ${subscriberId}`
         },
@@ -185,18 +182,18 @@
       dataShare.createDataShareHelper(this.context, 'datashareproxy://com.samples.widgetupdatebyproxy', {
         isProxy: true
       }).then((data) => {
-        dataShareHelper = data;
+        let dataShareHelper = data;
         dataShareHelper.addTemplate('datashareproxy://com.samples.widgetupdatebyproxy/test', subscriberId, template);
       });
-      let formData = {};
-      let proxies = [
+      let formData: Record<string, Object> = {};
+      let proxies: formBindingData.ProxyData[] = [
         {
           key: 'datashareproxy://com.samples.widgetupdatebyproxy/test',
           subscriberId: subscriberId
         }
       ];
-  
-      let formBinding = {
+
+      let formBinding: formBindingData.FormBindingData = {
         data: JSON.stringify(formData),
         proxies: proxies
       };
@@ -232,9 +229,10 @@
     }
   }
   ```
-
+<!--Del-->
 ## 相关实例
 
 针对卡片代理开发，有以下相关实例可供参考：
 
-- [应用主动添加数据代理卡片到桌面（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/RequestAddForm)
+- [应用主动添加数据代理卡片到桌面（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Widget/RequestAddForm)
+<!--DelEnd-->

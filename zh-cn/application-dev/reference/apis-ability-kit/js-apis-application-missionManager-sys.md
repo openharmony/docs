@@ -28,7 +28,7 @@ registerMissionListener(listener: MissionListener): number
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -70,7 +70,7 @@ unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -111,7 +111,7 @@ unregisterMissionListener(listenerId: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -158,7 +158,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -201,7 +201,7 @@ getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -245,7 +245,7 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -281,7 +281,7 @@ getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionIn
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -324,7 +324,7 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -364,7 +364,7 @@ getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnaps
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -407,7 +407,7 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -446,7 +446,7 @@ lockMission(missionId: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -489,7 +489,7 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -528,7 +528,7 @@ unlockMission(missionId: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -571,7 +571,7 @@ clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -610,7 +610,7 @@ clearMission(missionId: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -653,7 +653,7 @@ clearAllMissions(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -690,7 +690,7 @@ clearAllMissions(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **返回值：**
 
@@ -726,7 +726,7 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -765,7 +765,7 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -805,7 +805,7 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 

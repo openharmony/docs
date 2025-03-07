@@ -11,7 +11,7 @@ GesturePath表示手势路径信息。
 ## 导入模块
 
 ```ts
-import GesturePath from '@ohos.accessibility.GesturePath';
+import { GesturePath } from '@kit.AccessibilityKit';
 ```
 
 ## GesturePath
@@ -27,11 +27,15 @@ import GesturePath from '@ohos.accessibility.GesturePath';
 | points       | Array&lt;[GesturePoint](js-apis-accessibility-GesturePoint.md#gesturepoint)&gt; | 是    | 是    | 手势触摸点。    |
 | durationTime | number                                                                          | 是    | 是    | 手势总耗时, 单位为毫秒。 |
 
-### constructor
+### constructor<sup>(deprecated)</sup>
 
 constructor(durationTime: number);
 
 构造函数。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -44,7 +48,7 @@ constructor(durationTime: number);
 **示例：**
 
 ```ts
-import GesturePath from '@ohos.accessibility.GesturePath';
+import { GesturePath } from '@kit.AccessibilityKit';
 
-let gesturePath = new GesturePath.GesturePath(20);
+let gesturePath = new GesturePath(20);
 ```

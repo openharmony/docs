@@ -17,7 +17,7 @@ The APIs provided by **DataSharePredicates** correspond to the filter criteria o
 ## Modules to Import
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 ```
 
 ## DataSharePredicates

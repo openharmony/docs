@@ -26,7 +26,7 @@ Error code 28 refers to **CURLE_OPERATION_TIMEDOUT**, which means a libcurl libr
 
 **Reference**
 
-[Common HTTP Response Codes](../reference/apis/js-apis-http.md#responsecode) and [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html)
+[Common HTTP Response Codes](../reference/apis-network-kit/js-apis-http.md#responsecode) and [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html)
 
 
 ## What does error code 6 mean in the response to an HTTP request? (API 9)
@@ -41,7 +41,7 @@ Error code 6 indicates a failure to resolve the host in the address. You can pin
 
 **Reference**
 
-For more common error codes, see [Common HTTP Response Codes](../reference/apis/js-apis-http.md#responsecode) and [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
+For more common error codes, see [Common HTTP Response Codes](../reference/apis-network-kit/js-apis-http.md#responsecode) and [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 ## How are parameters passed to queryParams of the POST request initiated by \@ohos/axios? (API 9)
 
@@ -130,7 +130,7 @@ After the application is started and the permission is obtained, have the system
 
 **Reference**
 
-[Upload and Download](../reference/apis/js-apis-request.md)
+[Upload and Download](../reference/apis-basic-services-kit/js-apis-request.md)
 
 
 ## What should I do if calling connection.hasDefaultNet() fails even when the network is normal? (API 9)
@@ -143,7 +143,7 @@ The network connection is normal, and web pages can be opened properly on the br
 
 Declare the **ohos.permission.GET_NETWORK_INFO** permission when calling **connection.hasDefaultNet**.
 
-For details, see [Applying for Permissions](../security/accesstoken-guidelines.md).
+Permission application: [Declaring Permissions](../security/AccessToken/declare-permissions.md)
 
 
 ## What does netId mean in the netHandle object returned by connection.getDefaultNet? (API 9)
@@ -171,21 +171,21 @@ Use the **\@ohos.net.http** module to initiate an HTTP request.
 
 **Reference**
 
-[HTTP Data Request](../connectivity/http-request.md)
+[HTTP Data Request](../network/http-request.md)
 
 
 ## How do I encapsulate network requests by using JavaScript? (API 9)
 
 **Solution**
 
-The JavaScript development mode is supported. You can directly use JavaScript to encapsulate network requests. For details, see [Network Connection](../reference/apis/js-apis-http.md).
+The JavaScript development mode is supported. You can directly use JavaScript to encapsulate network requests. For details, see [Network Connection](../reference/apis-network-kit/js-apis-http.md).
 
 
 ## How do I write network requests when developing a JavaScript-based application for smart watches? (API 9)
 
 **Solution**
 
-The JavaScript development mode is supported. You can directly use JavaScript to encapsulate network requests. For details, see [Network Connection](../reference/apis/js-apis-http.md).
+The JavaScript development mode is supported. You can directly use JavaScript to encapsulate network requests. For details, see [Network Connection](../reference/apis-network-kit/js-apis-http.md).
 
 
 ## Why does an application fail to start after the ohos.permission.NOTIFICATION_CONTROLLER permission is declared? (API 9)
@@ -207,4 +207,38 @@ When **wifi.getIpInfo().ipAddress** is used in the Wi-Fi module, the following e
 
 **Solution**
 
-This problem is due to insufficient permissions. Check whether you have applied for the required permissions. For details, see [Permission Management](../security/accesstoken-overview.md).
+This problem is due to insufficient permissions. Check whether you have applied for the required permissions. For details, see [Permission Management](../security/AccessToken/determine-application-mode.md).
+
+## The address parameter of NetAddress can only be an IP address for socket-related APIs. What should I do if only the host is available?(API 11)
+
+**Solution**
+
+Use **getAddressByName** to resolve the host name to obtain the IP address.
+
+**References**
+
+[@ohos.net.connection (Network Connection Management)](../reference/apis-network-kit/js-apis-net-connection.md)
+
+## How do I use the C APIs to use network-related functions?(API 11)
+ 
+**Solution**
+
+Currently, the following modules provide C APIs: 
+Custom DNS resolver, certificate verification, and WebSocket 
+
+If the C APIs are not provided, use the AKI mechanism to call ArkTS APIs.
+
+  
+**References**
+
+https://gitee.com/openharmony/interface_sdk_c/tree/master/network
+
+## Will the default certificate on the device be used if TLSConnectOptions is not specified?(API 11)
+
+**Solution**
+
+To use TLSSocket requests, you need to manually configure **TLSConnectOptions**. The default certificate on the device will not be used. In **TLSConnectOptions**, the certificate content must match the request address. You can place the certificate in the rawfile and use **getRawFileContent()** to read and convert the certificate content into strings. 
+
+**References**
+
+[@ohos.net.socket (Socket Connection)](../reference/apis-network-kit/js-apis-socket.md)

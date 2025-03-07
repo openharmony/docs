@@ -3,7 +3,7 @@
 
 ## Overview
 
-The flex layout, implemented using the [\<Flex>](../reference/apis-arkui/arkui-ts/ts-container-flex.md) container component, provides simple and powerful tools for flexibly distributing space and aligning items. The flex layout is widely used in scenarios such as the navigation bar distribution on the page header, page framework setup, and arrangement of multiple lines of data.
+The flex layout, implemented using the [Flex](../reference/apis-arkui/arkui-ts/ts-container-flex.md) container component, provides simple and powerful tools for flexibly distributing space and aligning items. The flex layout is widely used in scenarios such as the navigation bar distribution on the page header, page framework setup, and arrangement of multiple lines of data.
 
 By default, the flex container has a main axis and a cross axis, and child elements are arranged along the main axis. The size of a child element along the main axis is referred to as its main axis size. Similarly, the size of a child element along the cross axis is referred to as its cross axis size.
 
@@ -16,7 +16,7 @@ By default, the flex container has a main axis and a cross axis, and child eleme
 
 ## Basic Concepts
 
-- Main axis: axis along which child elements are placed in the **\<Flex>** component. Child elements are laid out along the main axis by default. The start point of the main axis is referred to as main-start, and the end point is referred to as main-end.
+- Main axis: axis along which child elements are placed in the **Flex** component. Child elements are laid out along the main axis by default. The start point of the main axis is referred to as main-start, and the end point is referred to as main-end.
 
 - Cross axis: axis that runs perpendicular to the main axis. The start point of the cross axis is referred to as cross-start, and the end point is referred to as cross-end.
 
@@ -162,14 +162,13 @@ Use the **justifyContent** parameter to set alignment of child elements on the m
 
 
   ```ts
-  let PTopBottom:Record<string,number> = { 'top': 10, 'bottom': 10 }
   Flex({ justifyContent: FlexAlign.Start }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)    
     Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
   }
   .width('90%')
-  .padding(PTopBottom)
+  .padding({ top: 10, bottom: 10 })
   .backgroundColor(0xAFEEEE)
   ```
 
@@ -179,14 +178,13 @@ Use the **justifyContent** parameter to set alignment of child elements on the m
 
 
   ```ts
-  let PTopBottom:Record<string,number> = { 'top': 10, 'bottom': 10 }
   Flex({ justifyContent: FlexAlign.Center }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
     Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
   }
   .width('90%')
-  .padding(PTopBottom)
+  .padding({ top: 10, bottom: 10 })
   .backgroundColor(0xAFEEEE)
   ```
 
@@ -196,14 +194,13 @@ Use the **justifyContent** parameter to set alignment of child elements on the m
 
 
   ```ts
-  let PTopBottom:Record<string,number> = { 'top': 10, 'bottom': 10 }
   Flex({ justifyContent: FlexAlign.End }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
     Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
   }
   .width('90%')
-  .padding(PTopBottom)
+  .padding({ top: 10, bottom: 10 })
   .backgroundColor(0xAFEEEE)
   ```
 
@@ -213,14 +210,13 @@ Use the **justifyContent** parameter to set alignment of child elements on the m
 
 
   ```ts
-  let PTopBottom1:Record<string,number> = { 'top': 10, 'bottom': 10 }
   Flex({ justifyContent: FlexAlign.SpaceBetween }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
     Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
   }
   .width('90%')
-  .padding(PTopBottom1)
+  .padding({ top: 10, bottom: 10 })
   .backgroundColor(0xAFEEEE)
   ```
 
@@ -230,14 +226,13 @@ Use the **justifyContent** parameter to set alignment of child elements on the m
 
 
   ```ts
-  let PTopBottom:Record<string,number> = { 'top': 10, 'bottom': 10 }
   Flex({ justifyContent: FlexAlign.SpaceAround }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
     Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
   }
   .width('90%')
-  .padding(PTopBottom)
+  .padding({ top: 10, bottom: 10 })
   .backgroundColor(0xAFEEEE)
   ```
 
@@ -247,14 +242,13 @@ Use the **justifyContent** parameter to set alignment of child elements on the m
 
 
   ```ts
-  let PTopBottom:Record<string,number> = { 'top': 10, 'bottom': 10 }
   Flex({ justifyContent: FlexAlign.SpaceEvenly }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
     Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
   }
   .width('90%')
-  .padding(PTopBottom)
+  .padding({ top: 10, bottom: 10 })
   .backgroundColor(0xAFEEEE)
   ```
 
@@ -268,20 +262,19 @@ Alignment on the cross axis can be set for both the container and child elements
 
 ### Setting Alignment on the Cross Axis for the Container
 
-Use the **alignItems** parameter of the **\<Flex>** component to set alignment of child elements on the cross axis.
+Use the **alignItems** parameter of the **Flex** component to set alignment of child elements on the cross axis.
 
 
 - **ItemAlign.Auto**: The child elements are automatically aligned in the flex container.
 
 
   ```ts
-  let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.Auto }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
     Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
   }
-  .size(SWh)
+  .size({ width: '90%', height: 80 })
   .padding(10)
   .backgroundColor(0xAFEEEE)
   ```
@@ -292,13 +285,12 @@ Use the **alignItems** parameter of the **\<Flex>** component to set alignment o
 
 
   ```ts
-  let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.Start }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
     Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
   }
-  .size(SWh)
+  .size({ width: '90%', height: 80 })
   .padding(10)
   .backgroundColor(0xAFEEEE)
   ```
@@ -309,13 +301,12 @@ Use the **alignItems** parameter of the **\<Flex>** component to set alignment o
 
 
   ```ts
-  let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.Center }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
     Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
   }
-  .size(SWh)
+  .size({ width: '90%', height: 80 })
   .padding(10)
   .backgroundColor(0xAFEEEE)
   ```
@@ -326,13 +317,12 @@ Use the **alignItems** parameter of the **\<Flex>** component to set alignment o
 
 
   ```ts
-  let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.End }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
     Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
   }
-  .size(SWh)
+  .size({ width: '90%', height: 80 })
   .padding(10)
   .backgroundColor(0xAFEEEE)
   ```
@@ -343,13 +333,12 @@ Use the **alignItems** parameter of the **\<Flex>** component to set alignment o
 
 
   ```ts
-  let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.Stretch }) {  
     Text('1').width('33%').backgroundColor(0xF5DEB3)  
     Text('2').width('33%').backgroundColor(0xD2B48C)  
     Text('3').width('33%').backgroundColor(0xF5DEB3)
   }
-  .size(SWh)
+  .size({ width: '90%', height: 80 })
   .padding(10)
   .backgroundColor(0xAFEEEE)
   ```
@@ -360,13 +349,12 @@ Use the **alignItems** parameter of the **\<Flex>** component to set alignment o
 
 
   ```ts
-  let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.Baseline }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
     Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
   }
-  .size(SWh)
+  .size({ width: '90%', height: 80 })
   .padding(10)
   .backgroundColor(0xAFEEEE)
   ```
@@ -403,7 +391,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // The ch
 ![en-us_image_0000001562940533](figures/en-us_image_0000001562940533.png)
 
 
-In the preceding example, the **alignItems** parameter of the **\<Flex>** container and the **alignSelf** attribute of the child element are both set. In this case, the **alignSelf** settings take effect.
+In the preceding example, the **alignItems** parameter of the **Flex** container and the **alignSelf** attribute of the child element are both set. In this case, the **alignSelf** settings take effect.
 
 
 ### Content Alignment
@@ -523,7 +511,7 @@ Use the [alignContent](../reference/apis-arkui/arkui-ts/ts-container-flex.md#api
 
 When the size of the flex container is not large enough, the following attributes of the child element can be used to achieve adaptive layout:
 
-- **flexBasis**: base size of the child element in the container along the main axis. It sets the space occupied by the child element. If this attribute is not set, the space occupied by the child element is the result of width/height.
+- [flexBasis](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis): base size of the child element in the container along the main axis. It sets the space occupied by the child element. If this attribute is not set, the space occupied by the child element is the result of width/height.
 
 
   ```ts
@@ -553,7 +541,7 @@ When the size of the flex container is not large enough, the following attribute
 
   ![en-us_image_0000001562940505](figures/en-us_image_0000001562940505.png)
 
-- **flexGrow**: percentage of the flex container's remaining space that is allocated to the child element. In other words, it is the grow factor of the child element.
+- [flexGrow](../reference/apis-arkui//arkui-ts/ts-universal-attributes-flex-layout.md#flexgrow): percentage of the flex container's remaining space that is allocated to the child element. In other words, it is the grow factor of the child element.
 
   ```ts
   Flex() {
@@ -581,7 +569,7 @@ When the size of the flex container is not large enough, the following attribute
   
   After receiving their share of remaining space at the 2:3 ratio, the first and second child elements are at a width of 140 vp (100 vp + 100 vp x 2/5) and 160 vp (100 vp + 100 vp x 3/5), respectively.
   
-- **flexShrink**: shrink factor of the child element when the size of all child elements is larger than the flex container.
+- [flexShrink](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink): shrink factor of the child element when the size of all child elements is larger than the flex container.
 
 
   ```ts

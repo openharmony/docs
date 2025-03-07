@@ -1,4 +1,4 @@
-# 使用MindSpore Lite引擎进行模型推理 (C/C++)
+# 使用MindSpore Lite进行模型推理 (C/C++)
 
 ## 场景介绍
 
@@ -17,12 +17,14 @@ MindSpore Lite是一款AI引擎，它提供了面向不同硬件设备AI模型�
 
 
 ## 接口说明
+
 这里给出MindSpore Lite推理的通用开发流程中涉及的一些接口，具体请见下列表格。
+
 ### Context 相关接口
 
 | 接口名称        | 描述        |
 | ------------------ | ----------------- |
-|OH_AI_ContextHandle OH_AI_ContextCreate()|创建一个上下文的对象。|
+|OH_AI_ContextHandle OH_AI_ContextCreate()|创建一个上下文的对象。注意：此接口需跟OH_AI_ContextDestroy配套使用。|
 |void OH_AI_ContextSetThreadNum(OH_AI_ContextHandle context, int32_t thread_num)|设置运行时的线程数量。|
 | void OH_AI_ContextSetThreadAffinityMode(OH_AI_ContextHandle context, int mode)|设置运行时线程绑定CPU核心的策略，按照CPU物理核频率分为大、中、小三种类型的核心，并且仅需绑大核或者绑中核，不需要绑小核。
 |OH_AI_DeviceInfoHandle OH_AI_DeviceInfoCreate(OH_AI_DeviceType device_type)|创建一个运行时设备信息对象。|
@@ -49,9 +51,11 @@ MindSpore Lite是一款AI引擎，它提供了面向不同硬件设备AI模型�
 |void *OH_AI_TensorGetMutableData(const OH_AI_TensorHandle tensor)|获取可变的张量数据指针。|
 
 ## 开发步骤
+
 使用MindSpore Lite进行模型推理的开发流程如下图所示。
 
 **图 1** 使用MindSpore Lite进行模型推理的开发流程
+
 ![how-to-use-mindspore-lite](figures/01.png)
 
 进入主要流程之前需要先引用相关的头文件，并编写函数生成随机的输入，具体如下：
@@ -80,6 +84,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
 ```
 
 然后进入主要的开发步骤，具括包括模型的准备、读取、编译、推理和释放，具体开发过程及细节请见下文的开发步骤及示例。
+
 1. 模型准备。
 
     需要的模型可以直接下载，也可以通过模型转换工具获得。
@@ -117,11 +122,11 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
     情形2：创建NNRT（Neural Network Runtime）和CPU异构推理上下文。
 
     NNRT是面向AI领域的跨芯片推理计算运行时，一般来说，NNRT对接的加速硬件如NPU，推理能力较强，但支持的算子规格少；而通用CPU推理能力较弱，但支持算子规格更全面。MindSpore Lite支持配置NNRT硬件和CPU异构推理：优先将模型算子调度到NNRT推理，若某些算子NNRT不支持，将其调度到CPU进行推理。通过下面的操作即可配置NNRT/CPU异构推理。
-
+   <!--Del-->
    > **说明：**
    >
    > NNRT/CPU异构推理，需要有实际的NNRT硬件接入，NNRT相关资料请参考：[OpenHarmony/ai_neural_network_runtime](https://gitee.com/openharmony/ai_neural_network_runtime)。
-
+   <!--DelEnd-->
     ```c
     // 创建并配置上下文，设置运行时的线程数量为2，绑核策略为大核优先
     OH_AI_ContextHandle context = OH_AI_ContextCreate();
@@ -172,12 +177,13 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
     if (ret != OH_AI_STATUS_SUCCESS) {
       printf("OH_AI_ModelBuildFromFile failed, ret: %d.\n", ret);
       OH_AI_ModelDestroy(&model);
+      OH_AI_ContextDestroy(&context);
       return ret;
     }
     ```
 
 4. 输入数据。
- 
+
     模型执行之前需要向输入的张量中填充数据。本例使用随机的数据对模型进行填充。
 
     ```c
@@ -186,6 +192,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
     if (inputs.handle_list == NULL) {
       printf("OH_AI_ModelGetInputs failed, ret: %d.\n", ret);
       OH_AI_ModelDestroy(&model);
+      OH_AI_ContextDestroy(&context);
       return ret;
     }
     // 使用随机数据填充张量
@@ -193,6 +200,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
     if (ret != OH_AI_STATUS_SUCCESS) {
       printf("GenerateInputDataWithRandom failed, ret: %d.\n", ret);
       OH_AI_ModelDestroy(&model);
+      OH_AI_ContextDestroy(&context);
       return ret;
     }
    ```
@@ -208,6 +216,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
     if (ret != OH_AI_STATUS_SUCCESS) {
       printf("OH_AI_ModelPredict failed, ret: %d.\n", ret);
       OH_AI_ModelDestroy(&model);
+      OH_AI_ContextDestroy(&context);
       return ret;
     }
     ```
@@ -220,7 +229,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
     // 获取模型的输出张量，并打印
     for (size_t i = 0; i < outputs.handle_num; ++i) {
       OH_AI_TensorHandle tensor = outputs.handle_list[i];
-      int64_t element_num = OH_AI_TensorGetElementNum(tensor);
+      long long element_num = OH_AI_TensorGetElementNum(tensor);
       printf("Tensor name: %s, tensor size is %zu ,elements num: %lld.\n", OH_AI_TensorGetName(tensor),
             OH_AI_TensorGetDataSize(tensor), element_num);
       const float *data = (const float *)OH_AI_TensorGetData(tensor);
@@ -238,8 +247,9 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
     不再使用MindSpore Lite推理框架时，需要释放已经创建的模型。
 
     ```c
-    // 释放模型
+    // 释放模型和上下文
     OH_AI_ModelDestroy(&model);
+    OH_AI_ContextDestroy(&context);
     ```
 
 ## 调测验证
@@ -254,13 +264,13 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
 
     target_link_libraries(
             demo
-            mindspore-lite.huawei
+            mindspore_lite_ndk
             pthread
             dl
     )
     ```
-   - 使用ohos-sdk交叉编译，需要对CMake设置native工具链路径，即：`-DCMAKE_TOOLCHAIN_FILE="/xxx/native/build/cmake/ohos.toolchain.camke"`。
-    
+   - 使用ohos-sdk交叉编译，需要对CMake设置native工具链路径，即：`-DCMAKE_TOOLCHAIN_FILE="/xxx/native/build/cmake/ohos.toolchain.cmake"`。
+
    - 工具链默认编译64位的程序，如果要编译32位，需要添加：`-DOHOS_ARCH="armeabi-v7a"`。
 
 2. 运行。
@@ -275,12 +285,14 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
     得到如下输出:
 
     ```shell
-    # ./QuickStart ./mobilenetv2.ms                                            
+    # ./demo ./mobilenetv2.ms                                            
     Tensor name: Softmax-65, tensor size is 4004 ,elements num: 1001.
     output data is:
     0.000018 0.000012 0.000026 0.000194 0.000156 0.001501 0.000240 0.000825 0.000016 0.000006 0.000007 0.000004 0.000004 0.000004 0.000015 0.000099 0.000011 0.000013 0.000005 0.000023 0.000004 0.000008 0.000003 0.000003 0.000008 0.000014 0.000012 0.000006 0.000019 0.000006 0.000018 0.000024 0.000010 0.000002 0.000028 0.000372 0.000010 0.000017 0.000008 0.000004 0.000007 0.000010 0.000007 0.000012 0.000005 0.000015 0.000007 0.000040 0.000004 0.000085 0.000023 
     ```
 
 ## 相关实例
+
 针对MindSpore Lite 的使用，有以下相关实例可供参考：
+
 - [简易MSLite教程](https://gitee.com/openharmony/third_party_mindspore/tree/OpenHarmony-3.2-Release/mindspore/lite/examples/quick_start_c)

@@ -164,15 +164,15 @@ The width and height of a component need to be obtained to calculate the size an
 [Component Area Change Event](../reference/apis-arkui/arkui-ts/ts-universal-component-area-change-event.md), [Click Event](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md), [Touch Event](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md)
 
 
-## How do I clear the content of the \<TextInput> and \<TextArea> components by one click? (API version 9)
+## How do I clear the content of the TextInput and TextArea components by one click? (API version 9)
 
 **Symptom**
 
-A click-to-clear feature is required to remove all characters in the **\<TextInput>** and **\<TextArea>** component at once.
+A click-to-clear feature is required to remove all characters in the **TextInput** and **TextArea** component at once.
 
 **Solution**
 
-Convert the **text** attribute of the **\<TextInput>** and **\<TextArea>** component to a state variable. Assign an empty string to the state variable when the click-to-clear event is performed.
+Convert the **text** attribute of the **TextInput** and **TextArea** component to a state variable. Assign an empty string to the state variable when the click-to-clear event is performed.
 
 **Example**
 
@@ -276,41 +276,41 @@ To remove the white background, set the custom dialog box to a custom style.
 [Custom Dialog Box](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)
 
 
-## How do I customize the eye icon for the password input mode of the \<TextInput> component? (API version 9)
+## How do I customize the eye icon for the password input mode of the TextInput component? (API version 9)
 
 **Symptom**
 
-The eye icon for the password input mode (with the **type** attribute of the **\<TextInput>** component set to **InputType.Password**) cannot be customized.
+The eye icon for the password input mode (with the **type** attribute of the **TextInput** component set to **InputType.Password**) cannot be customized.
 
 **Solution**
 
-The eye icon itself cannot be customized. You can use set the **showPasswordIcon** attribute of the **\<TextInput>** component to **false** to hide the icon, and use the **\<Image>** component to control the type of the **\<TextInput>** component.
+The eye icon itself cannot be customized. You can use set the **showPasswordIcon** attribute of the **TextInput** component to **false** to hide the icon, and use the **Image** component to control the type of the **TextInput** component.
 
 **Reference**
 
 [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)
 
 
-## How do I use the onSubmit event of the \<TextInput> component? (API version 9)
+## How do I use the onSubmit event of the TextInput component? (API version 9)
 
 **Solution**
 
-The **onSubmit** event is triggered when a user presses **Enter** on the (physical or soft) keyboard. The callback parameter in the event is the current Enter key type. The Enter key type can be set through the **enterKeyType** attribute of the **\<TextInput>** component. Setting the key style of the soft keyboard requires support by the input method.
+The **onSubmit** event is triggered when a user presses **Enter** on the (physical or soft) keyboard. The callback parameter in the event is the current Enter key type. The Enter key type can be set through the **enterKeyType** attribute of the **TextInput** component. Setting the key style of the soft keyboard requires support by the input method.
 
 **Reference**
 
 [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)
 
 
-## How do I set the caret position to the start point for when the \<TextInput> component obtains focus? (API version 9)
+## How do I set the caret position to the start point for when the TextInput component obtains focus? (API version 9)
 
 **Symptom**
 
-When the **\<TextInput>** component obtains focus, the caret automatically moves to the position of the touch point, instead of the start position.
+When the **TextInput** component obtains focus, the caret automatically moves to the position of the touch point, instead of the start position.
 
 **Solution**
 
-1. Bind the **\<TextInput>** component to the **onEditChange** event, which is triggered when the component enters the input state.
+1. Bind the **TextInput** component to the **onEditChange** event, which is triggered when the component enters the input state.
 
 2. Call the **setTimeout** API for asynchronous processing. Then call the **TextInputController.caretPosition** API in the event callback to set the caret position.
 
@@ -346,7 +346,7 @@ struct TextInputDemo {
 
 **Solution**
 
-1. During initialization of the scrollable component, such as **\<List>**, **\<Grid>**, and **\<Scroll>**, set the **scroller** parameter to bind the component to a scroll controller.
+1. During initialization of the scrollable component, such as **List**, **Grid**, and **Scroll**, set the **scroller** parameter to bind the component to a scroll controller.
 
 2. Call the **currentOffset** API of the controller to obtain the horizontal and vertical scrolling offsets.
 
@@ -359,11 +359,11 @@ struct TextInputDemo {
 
 **Symptom**
 
-Text cannot be aligned vertically in the **\<Text>** component.
+Text cannot be aligned vertically in the **Text** component.
 
 **Solution**
 
-Text is aligned horizontally in the **\<Text>** component. To enable text to align vertically, you can split the file, include it in a **\<Flex>** container, and set the container's main axis direction to vertical.
+Text is aligned horizontally in the **Text** component. To enable text to align vertically, you can split the file, include it in a **Flex** container, and set the container's main axis direction to vertical.
 
 **Example**
 
@@ -422,7 +422,7 @@ If **constraintSize** is set for a component and the width of its child componen
 
 **Solution**
 
-You can use the **\<Scroll>** component at the outer layer. In this way, when **constraintSize** is set and the space occupied by a child component exceeds the specified constraint value, a scrollbar will be displayed.
+You can use the **Scroll** component at the outer layer. In this way, when **constraintSize** is set and the space occupied by a child component exceeds the specified constraint value, a scrollbar will be displayed.
 
 
 ## How do I set the background color to transparent? (API version 9)
@@ -432,20 +432,20 @@ You can use the **\<Scroll>** component at the outer layer. In this way, when **
 Set **backgroundColor** to **'\#00000000'**.
 
 
-## What should I do if the \<Scroll> component cannot scroll to the bottom? (API version 9)
+## What should I do if the Scroll component cannot scroll to the bottom? (API version 9)
 
 Applicable to: stage model
 
 **Symptom**
 
-Unless otherwise specified, the height of the **\<Scroll>** component is equal to the window height. In this case, the component's bottom area will be blocked by components (if any) outside of it.
+Unless otherwise specified, the height of the **Scroll** component is equal to the window height. In this case, the component's bottom area will be blocked by components (if any) outside of it.
 
 **Solution**
 
-Set the height of the **\<Scroll>** component or use the flex layout to limit this height.
+Set the height of the **Scroll** component or use the flex layout to limit this height.
 
 
-## How do I customize the control bar style of the \<Video> component? (API version 9)
+## How do I customize the control bar style of the Video component? (API version 9)
 
 Applicable to: stage model
 
@@ -453,7 +453,7 @@ Applicable to: stage model
 
 1. Set **controls** to **false** to disable the default control bar.
 
-2. Sets **controller** for the **\<Video>** component.
+2. Set **controller** for the **Video** component.
 
 3. Implement a custom control bar in ArkTS and use **VideoController** to control video playback.
 
@@ -604,17 +604,17 @@ struct StyleExample {
 
 [Polymorphic Style](../reference/apis-arkui/arkui-ts/ts-universal-attributes-polymorphic-style.md)
 
-## What should I do if the flex width and height in the \<Scroll> component conflicts with the scrolling? (API version 9)
+## What should I do if the flex width and height in the Scroll component conflicts with the scrolling? (API version 9)
 
 Applicable to: stage model
 
 **Symptom**
 
-When a container component with a fixed size is added to the **\<Scroll>** component, a scrolling error occurs.
+When a container component with a fixed size is added to the **Scroll** component, a scrolling error occurs.
 
 **Solution**
 
-Do not set a size for any container component in the **\<Scroll>** component. In this way, the **\<Scroll>** component can adapt its size to the content.
+Do not set a size for any container component in the **Scroll** component. In this way, the **Scroll** component can adapt its size to the content.
 
 
 ## How does a component process click events in its child components? (API version 9)
@@ -677,7 +677,7 @@ You can use **focusControl.requestFocus** to control the focus of the text input
 [Focus Control](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md)
 
 
-## How do I set the controlButton attribute for the \<SideBarContainer> component? (API version 9)
+## How do I set the controlButton attribute for the SideBarContainer component? (API version 9)
 
 **Solution**
 
@@ -747,27 +747,27 @@ In the **Canvas** component, there are two types of content: 1. content rendered
 
 [CanvasRenderingContext2D](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md)
 
-## What should I do if the \<List> component cannot scroll to the bottom with its height not specified? (API version 10)
+## What should I do if the List component cannot scroll to the bottom with its height not specified? (API version 10)
 
 **Cause**
 
-If no height is set for a **\<List>** component and the total height of its child components is greater than the height of its parent component, the component is displayed at the height of its parent component. In this case, if the **\<List>** component has sibling nodes, part of it may be pushed outside of the display area of the parent component, making it seemingly unable to be scrolled to the bottom.
+If no height is set for a **List** component and the total height of its child components is greater than the height of its parent component, the component is displayed at the height of its parent component. In this case, if the **List** component has sibling nodes, part of it may be pushed outside of the display area of the parent component, making it seemingly unable to be scrolled to the bottom.
 
 **Solution**
 
-Add the **layoutWeight** attribute for the **\<List>** component so that it takes up the remaining space.
+Add the **layoutWeight(1)** attribute for the **List** component so that it takes up the remaining space.
 
 **Reference**
 
 [Size](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)
 
-## How do I implement infinite data loading and display for scrolling with a water flow layout?
+## How do I implement infinite data loading and display for scrolling with a water flow layout? (API version 10)
 
 **Solution**
 
-1. Use **LazyForEach** as a child node of the **\<WaterFlow>** component.
+1. Use **LazyForEach** as a child node of the **WaterFlow** component.
 
-2. Determine whether the bottom is about to be reached in **onAppear** of the **\<FlowItem>** component, and append new data to the **LazyForEach** data source in advance. Alternatively, determine whether the bottom is about to be reached based on the current index in the **onScrollIndex11+** event.
+2. Determine whether the bottom is about to be reached in **onAppear** of the **FlowItem** component, and append new data to the **LazyForEach** data source in advance. Alternatively, determine whether the bottom is about to be reached based on the current index in the **onScrollIndex**<sup>11+</sup> event.
 
 **Reference**
 
@@ -803,7 +803,7 @@ Logs cannot be inserted into the **build** method of the UI. As a result, the ap
 
 **Solution**
 
-Use @Watch to listen for state variables. The \@Watch callback is called when any value change has occurred. In this case, the UI of the changed variable is re-rendered when the VSYNC signal is sent next time.
+Use the @Watch callback to listen for changes in state variables. If the callback function is executed, it indicates that the UI using the state variable will be re-rendered during the next VSync signal.
 
 The sample code is as follows:
 
@@ -830,6 +830,6 @@ In the declarative UI, custom components do not support inheritance. To extend f
 
 **Solution**
 
-ArkUI provides several pixel units:<br>px: physical pixel unit of the screen. 1 px indicates a pixel on the screen. lpx: logical pixel unit of the window. It is the ratio of the actual screen width to the logical width (configured by **designWidth**, representing the baseline width for page design. The size of an element is scaled at this ratio to the actual screen width. vp: virtual pixel unit. fp: font pixel unit. The formula for calculating vp is as follows: vp = px/(DPI/160). 
+ArkUI provides several pixel units:<br>px: physical pixel unit of the screen. 1 px indicates a pixel on the screen. lpx: logical pixel unit of the window. It is the ratio of the actual screen width to the logical width (configured by **designWidth**), representing the baseline width for page design. The size of an element is scaled at this ratio to the actual screen width. vp: virtual pixel unit. fp: font pixel unit. The formula for calculating vp is as follows: vp = px/(DPI/160). 
 A virtual pixel (vp) describes the virtual size of a device for an application. It is different from the unit used by the screen hardware, pixel (px). Its use allows elements to have a consistent visual volume on devices with different densities. By default, the font pixel (fp) size is the same as that of the virtual pixel size. That is, 1 fp = 1 vp. If you select a larger font size in **Settings**, the actual font size is the virtual pixel size multiplied by the scale coefficient. That is, 1 fp = 1 vp \* scale. Percentage: The unit must be %, for example, **'10%'**. 
 Resource: Size referenced from system or application resources.

@@ -1,6 +1,6 @@
 # 拦截Web组件发起的网络请求
 
-通过[网络拦截接口](../reference/apis-arkweb/arkweb__scheme__handler_8h.md)对Web组件发出的请求进行拦截，并可以为被拦截的请求提供自定义的响应头以及响应体。
+通过[网络拦截接口(arkweb_scheme_handler.h)](../reference/apis-arkweb/arkweb__scheme__handler_8h.md)对Web组件发出的请求进行拦截，并可以为被拦截的请求提供自定义的响应头以及响应体。
 
 ## 为Web组件设置网络拦截器
 
@@ -74,7 +74,7 @@ scheme注册完毕后，通过[initializeWebEngine](../reference/apis-arkweb/js-
 
 ## 获取被拦截请求的请求信息
 
-通过OH_ArkWebResourceRequest_*接口获取被拦截请求的信息。可以获取url、method、referrer、headers等信息。
+通过OH_ArkWebResourceRequest_*接口获取被拦截请求的信息。可以获取url、method、referrer、headers、resourceType等信息。
 
   ```c++
     char* url;
@@ -84,6 +84,12 @@ scheme注册完毕后，通过[initializeWebEngine](../reference/apis-arkweb/js-
     char* method;
     OH_ArkWebResourceRequest_GetMethod(resourceRequest_, &method);
     OH_ArkWeb_ReleaseString(method);
+
+    int32_t resourceType = OH_ArkWebResourceRequest_GetResourceType(resourceRequest_);
+
+    char* frameUrl;
+    OH_ArkWebResourceRequest_GetFrameUrl(resourceRequest_, &frameUrl);
+    OH_ArkWeb_ReleaseString(frameUrl);
     ...
   ```
 
@@ -100,7 +106,7 @@ scheme注册完毕后，通过[initializeWebEngine](../reference/apis-arkweb/js-
 
 ## 为被拦截的请求提供自定义的响应体
 
-Web组件的网络拦截支持在worker线程以流的方式为被拦截的请求提供自定义的响应体。也可以以特定的[网络错误码](../reference/apis-arkweb/arkweb__net__error__list_8h.md)结束当前被拦截的请求。
+Web组件的网络拦截支持在worker线程以流的方式为被拦截的请求提供自定义的响应体。也可以以特定的[网络错误码(arkweb_net_error_list.h)](../reference/apis-arkweb/arkweb__net__error__list_8h.md)结束当前被拦截的请求。
 
   ```c++
     // 为被拦截的请求创建一个响应头。
@@ -131,13 +137,13 @@ Web组件的网络拦截支持在worker线程以流的方式为被拦截的请�
 main/ets/pages/index.ets
 ```ts
 import testNapi from 'libentry.so';
-import web_webview from '@ohos.web.webview';
-import resource_manager from '@ohos.resourceManager';
+import { webview } from '@kit.ArkWeb';
+import { resourceManager } from '@kit.LocalizationKit';
 
 @Entry
 @Component
 struct Index {
-  mycontroller: web_webview.WebviewController = new web_webview.WebviewController("scheme-handler");
+  mycontroller: webview.WebviewController = new webview.WebviewController("scheme-handler");
 
   build() {
     Row() {
@@ -171,7 +177,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import testNapi from 'libentry.so';
-import webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {

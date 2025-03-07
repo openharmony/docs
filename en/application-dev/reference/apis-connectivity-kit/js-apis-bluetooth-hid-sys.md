@@ -11,12 +11,12 @@ The **hid** module provides APIs for using the Bluetooth Human Interface Device 
 ## Modules to Import
 
 ```js
-import hid from '@ohos.bluetooth.hid';
+import { hid } from '@kit.ConnectivityKit';
 ```
 
 ## HidHostProfile
 
-Before using any API of **HidHostProfile**, you need to create an instance of this class by using **createHidHostProfile()**.
+Before using the **HidHostProfile** APIs, you need to create an instance of this class by using [createHidHostProfile()](js-apis-bluetooth-hid.md#hidcreatehidhostprofile).
 
 ### connect
 
@@ -42,15 +42,19 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let hidHostProfile = hid.createHidHostProfile();
     hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
@@ -84,15 +88,19 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let hidHostProfile = hid.createHidHostProfile();
     hidHostProfile.disconnect('XX:XX:XX:XX:XX:XX');

@@ -5,12 +5,18 @@ The area change event is triggered when the component's size, position, or any o
 >  **NOTE**
 >
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> The **onAreaChange** callback is specific to the current component only. There is no strict execution order or guarantee of constraints for the **onAreaChange** callbacks on ancestor or descendant components.
 
 ## onAreaChange
 
-onAreaChange(event: (oldValue: Area, newValue: Area) => void)
+onAreaChange(event: (oldValue: Area, newValue: Area) => void): T
 
-Triggered when the component area changes in size or position due to layout updates. This event is not triggered for render attribute changes caused by re-rendering, such as changes of **translate** and **offset**.
+Triggered when the component area changes in size or position due to layout updates.
+
+This event is not triggered for changes in render attributes caused by re-rendering, such as changes in [translate](ts-universal-attributes-transformation.md#translate) and [offset](ts-types.md#offset). In addition, if the component position is altered due to drawing changes, for example, through [bindSheet](ts-universal-attributes-sheet-transition.md#bindsheet), this event is also not triggered.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -21,8 +27,15 @@ Triggered when the component area changes in size or position due to layout upda
 | oldValue | [Area](ts-types.md#area8) | Yes  | Width and height of the target element as well as its coordinates relative to the parent element and the upper left corner of the page before the change.|
 | newValue | [Area](ts-types.md#area8) | Yes  | Width and height of the target element as well as its coordinates relative to the parent element and the upper left corner of the page after the change.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 ## Example
+
+This example demonstrates how to set an area change event for a **Text** component. When the layout of the **Text** component changes, the **onAreaChange** event is triggered, allowing you to obtain relevant parameters.
 
 ```ts
 // xxx.ets

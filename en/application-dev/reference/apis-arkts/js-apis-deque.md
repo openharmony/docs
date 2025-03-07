@@ -2,7 +2,7 @@
 
 Double-ended queue (deque) is a sequence container implemented based on the queue data structure that follows the principles of First In First Out (FIFO) and Last In First Out (LIFO). It allows insertion and removal of elements at both the ends. **Deque** can dynamically adjust the capacity based on project requirements. It doubles the capacity each time. **Deque** differs from **[Queue](js-apis-queue.md)** and **[Vector](js-apis-vector.md)** mainly in the following aspects:
 
-**Queue** follows the principle of FIFO only and allows element removal at the front and insertion at the rear.
+**Queue** allows element removal at the front and insertion at the rear.
 
 **Vector** supports insertion and deletion of elements in between, as well as at both the ends. When compared with **Vector**, **Deque** is more efficient in inserting and removing header elements, but less efficient in accessing elements.
 
@@ -19,12 +19,14 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import Deque from '@ohos.util.Deque'; 
+import { Deque } from '@kit.ArkTS';
 ```
 
 ## Deque
 
 ### Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -37,6 +39,8 @@ import Deque from '@ohos.util.Deque';
 constructor()
 
 A constructor used to create a **Deque** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -59,6 +63,8 @@ let deque: Deque<string | number | boolean | Object> = new Deque();
 insertFront(element: T): void
 
 Inserts an element at the front of this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -88,7 +94,7 @@ deque.insertFront("a");
 deque.insertFront(1);
 let b = [1, 2, 3];
 deque.insertFront(b);
-let c: C1 = {name : "Dylon", age : "13"};
+let c: C1 = {name : "Dylan", age : "13"};
 deque.insertFront(c);
 deque.insertFront(false);
 ```
@@ -98,6 +104,8 @@ deque.insertFront(false);
 insertEnd(element: T): void
 
 Inserts an element at the end of this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -128,7 +136,7 @@ deque.insertEnd("a");
 deque.insertEnd(1);
 let b = [1, 2, 3];
 deque.insertEnd(b);
-let c: C1 = {name : "Dylon", age : "13"};
+let c: C1 = {name : "Dylan", age : "13"};
 deque.insertEnd(c);
 deque.insertEnd(false);
 ```
@@ -138,6 +146,8 @@ deque.insertEnd(false);
 has(element: T): boolean
 
 Checks whether this container has the specified element.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -175,6 +185,8 @@ popFirst(): T
 
 Removes the first element of this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -208,6 +220,8 @@ let result = deque.popFirst();
 popLast(): T
 
 Removes the last element of this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -244,6 +258,8 @@ thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -263,10 +279,11 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **Example**
@@ -287,6 +304,8 @@ deque.forEach((value: number, index?: number | undefined, deque?: Deque<number> 
 getFirst(): T
 
 Obtains the first element of this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -321,6 +340,8 @@ getLast(): T
 
 Obtains the last element of this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -354,9 +375,7 @@ let result = deque.getLast();
 
 Obtains an iterator, each item of which is a JavaScript object.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 

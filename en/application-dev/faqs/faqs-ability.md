@@ -20,7 +20,7 @@ Configure a widget event with the redirected-to UIAbility specified, and call **
 
 **References**
 
-[Developing Widget Events](../application-models/arkts-ui-widget-configuration.md)
+[Configuring Widget Configuration Files](../form/arkts-ui-widget-configuration.md)
 
 
 ## How do I create a background service in the stage model? (API version 9)
@@ -339,7 +339,7 @@ To create a service widget in the FA model, perform the following steps:
 
 **References**
 
-[Widget Development in the FA Model](../application-models/widget-development-fa.md)
+[Service Widget Development in FA Model](../form/widget-development-fa.md)
 
 
 ## How do I redirect to the application details page in Settings? (API version 9)
@@ -439,7 +439,7 @@ The widget interacts with the widget provider through the **postCardAction** API
 
 **References**
 
-[Widget Development in the FA Model](../application-models/widget-development-fa.md)
+[Service Widget Development in FA Model](../form/widget-development-fa.md)
 
 ## Can I create a shortcut entry for an application on the home screen to directly open a specified page? (API version 10)
 

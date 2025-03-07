@@ -4,10 +4,10 @@
 本文介绍如何在开发应用程序时合理地使用动效，来获得更好的性能。主要通过减少布局和属性的变更频次，避免冗余刷新，从而降低性能开销。
 基于上述考虑，提供四种较为推荐的动效实现方式：
 
-- 组件转场动画使用transition
-- 组件布局改动时使用图形变换属性动画
-- 动画参数相同时使用同一个animateTo
-- 多次animateTo时统一更新状态变量
+- 组件转场动画使用transition。
+- 组件布局改动时使用图形变换属性动画。
+- 动画参数相同时使用同一个animateTo。
+- 多次animateTo时统一更新状态变量。
 
 ## 合理使用动效
 
@@ -93,8 +93,8 @@ struct MyComponent {
 ### 组件布局改动时使用图形变换属性动画
 改动组件的布局显示有两种方式：
 
-- 改动[布局属性](../ui/arkts-attribute-animation-overview.md)。当布局属性发生改变时，界面将重新布局。常见的布局属性有width、height、layoutWeight等。
-- 改动[图形变换属性](../reference/arkui-ts/ts-universal-attributes-transformation.md)。图形变换是对组件布局结果的变换操作，如平移、旋转、缩放等操作。
+- 通过改变布局属性，实现[属性动画](../ui/arkts-attribute-animation-overview.md)：当布局属性发生改变时，界面将重新布局。常见的布局属性有width、height、layoutWeight等。
+- 通过改变[图形变换属性](../reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md)，实现[属性动画](../ui/arkts-attribute-animation-overview.md)：图形变换是对组件布局结果的变换操作，如平移、旋转、缩放等操作。
 
 界面布局是非常耗时的操作，而当图形变换属性发生变化时，并不会重新触发布局。因此，优先推荐使用图形变换属性来实现组件布局的改动。接下来，采用上述两种方式分别对组件实现放大10倍的效果。
 

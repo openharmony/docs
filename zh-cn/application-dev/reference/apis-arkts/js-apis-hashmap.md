@@ -20,12 +20,14 @@ HashMap和[TreeMap](js-apis-treemap.md)相比，HashMap依据键的hashCode存�
 ## 导入模块
 
 ```ts
-import HashMap from '@ohos.util.HashMap'; 
+import { HashMap } from '@kit.ArkTS';
 ```
 
 ## HashMap
 
 ### 属性
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -39,6 +41,8 @@ import HashMap from '@ohos.util.HashMap';
 constructor()
 
 HashMap的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -62,6 +66,8 @@ let hashMap: HashMap<string, number> = new HashMap();
 isEmpty(): boolean
 
 判断该HashMap是否为空。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -92,6 +98,8 @@ let result = hashMap.isEmpty();
 hasKey(key: K): boolean
 
 判断此HashMap中是否含有该指定key。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -130,6 +138,8 @@ hasValue(value: V): boolean
 
 判断此HashMap中是否含有该指定value。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -166,6 +176,8 @@ let result = hashMap.hasValue(123);
 get(key: K): V
 
 获取指定key所对应的value，不存在返回undefined。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -205,6 +217,8 @@ setAll(map: HashMap<K, V>): void
 
 将一个HashMap中的所有元素组添加到另一个hashMap中。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -215,10 +229,11 @@ setAll(map: HashMap<K, V>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The setAll method cannot be bound. |
 
 **示例：**
@@ -239,6 +254,8 @@ set(key: K, value: V): Object
 
 向HashMap中添加或更新一组数据。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -256,10 +273,11 @@ set(key: K, value: V): Object
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 10200011 | The set method cannot be bound. |
 
 **示例：**
@@ -275,6 +293,8 @@ let result = hashMap.set("squirrel", 123);
 remove(key: K): V
 
 删除指定key所对应元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -314,6 +334,8 @@ clear(): void
 
 清除HashMap中的所有元素，并把length置为0。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -339,6 +361,8 @@ hashMap.clear();
 keys(): IterableIterator&lt;K&gt;
 
 返回包含此映射中包含的键的新迭代器对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -377,6 +401,8 @@ values(): IterableIterator&lt;V&gt;
 
 返回包含此映射中包含的键对应的值的新迭代器对象。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -413,6 +439,8 @@ while(!temp.done) {
 replace(key: K, newValue: V): boolean
 
 对HashMap中一组数据进行更新（替换）。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -452,6 +480,8 @@ forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?:
 
 通过回调函数来遍历HashMap实例对象上的元素以及元素对应的下标。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -470,10 +500,11 @@ callbackfn的参数说明：
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **示例：**
@@ -486,13 +517,25 @@ hashMap.forEach((value?: number, key?: string) => {
   console.log("value:" + value, "key:" + key);
 });
 ```
+```ts
+// 不建议在forEach中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let hashMap: HashMap<string, number> = new HashMap();
+for(let i = 0; i < 10; i++) {
+  hashMap.set("sparrow" + i, 123);
+}
 
+for(let i = 0; i < 10; i++) {
+  hashMap.remove("sparrow" + i);
+}
+```
 
 ### entries
 
 entries(): IterableIterator&lt;[K, V]&gt;
 
 返回包含此映射中包含的键值对的新迭代器对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -524,17 +567,24 @@ while(!temp.done) {
   temp = iter.next();
 }
 ```
+```ts
+// 不建议在entries中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let hashMap: HashMap<string, number> = new HashMap();
+for(let i = 0; i < 10; i++) {
+  hashMap.set("sparrow" + i, 123);
+}
 
-
+for(let i = 0; i < 10; i++) {
+  hashMap.remove("sparrow" + i);
+}
+```
 ### [Symbol.iterator]
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
 
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -573,4 +623,16 @@ for (let key of keys) {
    console.log("value:" + temp.value[1]);
    temp = iter.next();
  }
+```
+
+```ts
+// 不建议在Symbol.iterator中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let hashMap: HashMap<string, number> = new HashMap();
+for(let i = 0; i < 10; i++) {
+  hashMap.set("sparrow" + i, 123);
+}
+
+for(let i = 0; i < 10; i++) {
+  hashMap.remove("sparrow" + i);
+}
 ```

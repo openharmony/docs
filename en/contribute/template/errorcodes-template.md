@@ -16,21 +16,22 @@
 
 ## 1300001 Repeated Operation (Error Code + Space + Error Description)
 
-### Error Message
+**Error Message**
 
-Repeated operation.
+This is repeat operation.
 
-### Description
+**Description**
 
-> **NOTE**
-> 
+> *Writing instructions*:
+>
 > Describe the use case (for example, developing a specific service or feature) when the error code is thrown and the symptom.
+
 
 This error code is generated when a repeated operation is performed on the same **Window** object.
 
-### Possible Causes
+**Possible Causes**
 
-> **NOTE**
+> *Writing instructions*:
 >
 > List all possible causes of the error.
 >
@@ -40,13 +41,14 @@ This error code is generated when a repeated operation is performed on the same 
 >
 > *3. Sort the causes by possibility in descending order.*
 
+
 1. The **Window** object to create already exists.
 
 2. xxx.
 
-### Procedure
+**Procedure**
 
-> **NOTE**
+> *Writing instructions*:
 >
 > *Describe how to handle the error based on the symptom and possible causes.*
 >
@@ -55,6 +57,7 @@ This error code is generated when a repeated operation is performed on the same 
 > 2. The steps should be clear, specific, and executable. If judgment is involved, provide clear judgment criteria.
 >
 > 3. If an operation has impact on the system or services, provide warning information in the form of Caution or Warning before the operation.
+
 
 1. Check whether the **Window** object has been created.
 
@@ -78,21 +81,21 @@ This error code is generated when a repeated operation is performed on the same 
 
    b. xxx.
 
-## 1300002 Abnormal Window Status
+## 1300002 Abnormal Window State
 
-### Error Message
-
-xxx
-
-### Description
+**Error Message**
 
 xxx
 
-### Possible Causes
+**Description**
+
+xxx
+
+**Possible Causes**
 
 1. xxx
 
-### Procedure
+**Procedure**
 
 1. Check whether the **Window** object has been created.
 

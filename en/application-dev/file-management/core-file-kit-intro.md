@@ -37,9 +37,10 @@ You can use Core File Kit in any of the following scenarios:
 - Uploading application files to a network server and downloading network resource files from a network server to the local application file directory.
 - Obtaining the storage space of an application, and the total and available space of a file system.
 - Sharing application files to other applications and using the files shared by other applications.
-- Accessing the data backup and restore framework to customize data backup and restore behaviors, such as whether to allow backup and restore and specifying the data to be backed up, by modifying the configuration file.
+- Accessing the data backup and restore framework to customize data backup and restore behaviors, such as whether to allow backup and restore and specifying the data to be backed up, by modifying the configuration file.<!--Del-->
 - Triggering data backup and restore (available only for system applications).
-- Accessing and managing user files with the [user file access framework](#user-file-access-framework). For example, selecting and saving user files and developing a user file manager (available only for system applications).
+<!--DelEnd-->
+- Accessing and managing user files with the [user file access framework](#user-file-access-framework). For example, selecting and saving user files<!--Del--> , and develop the user file manager (only for system applications)<!--DelEnd-->.
 - Accessing and copying files across devices.
 
 ## Features
@@ -65,7 +66,7 @@ The application file access framework is implemented through [ohos.file.fs](../r
 
 You can use the user file access framework to access and manage user files. This framework leverages the ExtensionAbility of OpenHarmony to provide a set of methods and interfaces for accessing user files.
 
-**Figure 1** User file access framework
+**Figure 2** User file access framework
 
 ![User file access framework](figures/user-file-access-framework.png)
 
@@ -73,7 +74,7 @@ You can use the user file access framework to access and manage user files. This
 
 - **FilePicker**: allows a file access client to select and save user files without any permission. For details, see [Selecting User Files](select-user-file.md).
 
-- **FileManager**: You can also develop your own file picker or file manager application as required. File picker is a subset of file manager. For details about how to develop a file manager application, see [Developing a File Manager Application](dev-user-file-manager.md).
+- **FileManager**: You can also develop your own file picker or file manager application as required. <!--RP1-->File picker is a subset of file manager. For details about how to develop a file manager application, see [Developing a File Manager Application](dev-user-file-manager.md).<!--RP1End-->
 
 - The user file access framework provides the following functional modules:
   - **File Access Helper**: provides APIs for the **FileManager** and **FilePicker** to access user files.
@@ -84,3 +85,4 @@ You can use the user file access framework to access and manage user files. This
 ## Related Kits
 
 Ability Kit: The user file access framework of Core File Kit depends on the Extension capability provided by Ability Kit and is scheduled and managed by Ability Kit.
+

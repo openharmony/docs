@@ -15,16 +15,21 @@ Inner error.
 
 **可能原因**
 
-读写持久化文件失败。
+优先查看错误日志，通过日志可以详细了解错误原因，主要有以下几种：
+1. 内部状态异常。
+2. 错误地使用接口。
+3. 系统错误，如内存不足、I/O错误、JS引擎异常等。
 
 **处理步骤**
 
-需通过日志信息确认错误发生原因或者寻找开发人员支持。
+1. 开发者排查是否存在对象关闭后再使用。
+2. 开发者排查是否按接口文档正确使用接口。
+3. 尝试重试，如果依然无法解决，可以提示用户重启应用、升级应用或升级设备版本。
 
 ## 15500010 删除用户首选项持久化文件失败
 **错误信息**
 
-Failed to delete preferences file.
+Failed to delete the user preferences persistence file.
 
 **错误描述**
 
@@ -45,7 +50,7 @@ Failed to delete preferences file.
 
 **错误信息**
 
-Failed to obtain subscription service.
+Failed to obtain the subscription service.
 
 **错误描述**
 
@@ -63,7 +68,7 @@ Failed to obtain subscription service.
 
 **错误信息**
 
- Only supported in stage mode.
+The operations is supported in stage mode only.
 
 **错误描述**
 
@@ -81,7 +86,7 @@ Failed to obtain subscription service.
 
 **错误信息**
 
-The data group id is not valid.
+Invalid dataGroupId.
 
 **错误描述**
 

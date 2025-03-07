@@ -1,6 +1,6 @@
 # @ohos.filemanagement.userFileManager (用户数据管理)(系统接口)
 
-该模块提供用户数据管理能力，包括访问、修改用户公共媒体数据信息等常用功能。
+该模块提供用户数据管理能力：包括访问、修改用户公共媒体数据信息等常用功能。
 
 > **说明：**
 >
@@ -47,7 +47,7 @@ let mgr = userFileManager.getUserFileMgr(context);
 
 ### getPhotoAssets
 
-getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void;
+getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void
 
 获取图片和视频资源，使用callback方式返回结果。
 
@@ -73,7 +73,7 @@ getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getPhotoAssets');
@@ -99,7 +99,7 @@ async function example() {
 
 ### getPhotoAssets
 
-getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
+getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;
 
 获取图片和视频资源，使用Promise方式返回结果。
 
@@ -130,7 +130,7 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getPhotoAssets');
@@ -155,7 +155,7 @@ async function example() {
 ```
 ### createPhotoAsset
 
-createPhotoAsset(displayName: string, albumUri: string, callback: AsyncCallback&lt;FileAsset&gt;): void;
+createPhotoAsset(displayName: string, albumUri: string, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 指定待创建的图片或者视频的文件名和所在相册的uri，创建图片或视频资源，使用callback方式返回结果。
 
@@ -183,7 +183,7 @@ createPhotoAsset(displayName: string, albumUri: string, callback: AsyncCallback&
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('createPhotoAssetDemo');
@@ -207,7 +207,7 @@ async function example() {
 
 ### createPhotoAsset
 
-createPhotoAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;): void;
+createPhotoAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 指定待创建的图片或者视频的文件名，创建图片或视频资源，使用callback方式返回结果。
 
@@ -250,7 +250,7 @@ async function example() {
 
 ### createPhotoAsset
 
-createPhotoAsset(displayName: string, albumUri?: string): Promise&lt;FileAsset&gt;;
+createPhotoAsset(displayName: string, albumUri?: string): Promise&lt;FileAsset&gt;
 
 指定待创建的图片或者视频的文件名和所在相册的uri，创建图片或视频资源，使用Promise方式返回结果。
 
@@ -297,7 +297,7 @@ async function example() {
 
 ### createPhotoAsset
 
-createPhotoAsset(displayName: string, createOption: PhotoCreateOptions, callback: AsyncCallback&lt;FileAsset&gt;): void;
+createPhotoAsset(displayName: string, createOption: PhotoCreateOptions, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 指定待创建的图片或者视频的文件名和创建选项，创建图片或视频资源，使用callback方式返回结果。
 
@@ -344,7 +344,7 @@ async function example() {
 
 ### createPhotoAsset
 
-createPhotoAsset(displayName: string, createOption: PhotoCreateOptions): Promise&lt;FileAsset&gt;;
+createPhotoAsset(displayName: string, createOption: PhotoCreateOptions): Promise&lt;FileAsset&gt;
 
 指定待创建的图片或者视频的文件名和创建选项，创建图片或视频资源，使用Promise方式返回结果。
 
@@ -394,7 +394,7 @@ async function example() {
 
 ### createAudioAsset<sup>10+</sup>
 
-createAudioAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;): void;
+createAudioAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 创建音频文件资源，使用callback方式返回结果。
 
@@ -437,7 +437,7 @@ async function example() {
 
 ### createAudioAsset<sup>10+</sup>
 
-createAudioAsset(displayName: string): Promise&lt;FileAsset&gt;;
+createAudioAsset(displayName: string): Promise&lt;FileAsset&gt;
 
 创建音频文件资源，使用Promise方式返回结果。
 
@@ -483,7 +483,7 @@ async function example() {
 
 ### createAlbum<sup>10+</sup>
 
-createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void;
+createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 
 创建相册，使用callback方式返回结果。
 
@@ -522,7 +522,7 @@ async function example() {
 
 ### createAlbum<sup>10+</sup>
 
-createAlbum(name: string): Promise&lt;Album&gt;;
+createAlbum(name: string): Promise&lt;Album&gt;
 
 创建相册，使用Promise方式返回结果。
 
@@ -551,7 +551,7 @@ createAlbum(name: string): Promise&lt;Album&gt;;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('createAlbumDemo');
@@ -566,7 +566,7 @@ async function example() {
 
 ### deleteAlbums<sup>10+</sup>
 
-deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): void;
+deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 删除相册，使用callback方式返回结果。
 
@@ -586,7 +586,7 @@ deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   // 示例代码为删除相册名为newAlbumName的相册。
@@ -612,7 +612,7 @@ async function example() {
 
 ### deleteAlbums<sup>10+</sup>
 
-deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;;
+deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;
 
 删除相册，使用Promise方式返回结果。
 
@@ -637,8 +637,8 @@ deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   // 示例代码为删除相册名为newAlbumName的相册。
@@ -662,7 +662,7 @@ async function example() {
 
 ### getAlbums<sup>10+</sup>
 
-getAlbums(type: AlbumType, subType: AlbumSubType, options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
+getAlbums(type: AlbumType, subType: AlbumSubType, options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void
 
 根据检索选项和相册类型获取相册，使用callback方式返回结果。
 
@@ -694,7 +694,7 @@ getAlbums(type: AlbumType, subType: AlbumSubType, options: FetchOptions, callbac
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   // 示例代码中为获取相册名为newAlbumName的相册。
@@ -723,7 +723,7 @@ async function example() {
 
 ### getAlbums<sup>10+</sup>
 
-getAlbums(type: AlbumType, subType: AlbumSubType, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
+getAlbums(type: AlbumType, subType: AlbumSubType, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void
 
 根据相册类型获取相册，使用callback方式返回结果。
 
@@ -775,7 +775,7 @@ async function example() {
 
 ### getAlbums<sup>10+</sup>
 
-getAlbums(type: AlbumType, subType: AlbumSubType, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
+getAlbums(type: AlbumType, subType: AlbumSubType, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 
 根据检索选项和相册类型获取相册，使用Promise方式返回结果。
 
@@ -812,8 +812,8 @@ getAlbums(type: AlbumType, subType: AlbumSubType, options?: FetchOptions): Promi
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   // 示例代码中为获取相册名为newAlbumName的相册。
@@ -840,7 +840,7 @@ async function example() {
 
 ### getPhotoAlbums
 
-getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
+getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void
 
 获取相册，使用callback方式返回结果。
 
@@ -870,7 +870,7 @@ getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResul
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getPhotoAlbumsDemo');
@@ -898,7 +898,7 @@ async function example() {
 
 ### getPhotoAlbums
 
-getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
+getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 
 获取相册，使用Promise方式返回结果。
 
@@ -933,7 +933,7 @@ getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getPhotoAlbumsDemo');
@@ -954,7 +954,7 @@ async function example() {
 
 ### getPrivateAlbum
 
-getPrivateAlbum(type: PrivateAlbumType, callback: AsyncCallback&lt;FetchResult&lt;PrivateAlbum&gt;&gt;): void;
+getPrivateAlbum(type: PrivateAlbumType, callback: AsyncCallback&lt;FetchResult&lt;PrivateAlbum&gt;&gt;): void
 
 获取系统相册，使用 callback 方式返回系统相册的数组。
 
@@ -997,7 +997,7 @@ async function example() {
 
 ### getPrivateAlbum
 
-getPrivateAlbum(type: PrivateAlbumType): Promise&lt;FetchResult&lt;PrivateAlbum&gt;&gt;;
+getPrivateAlbum(type: PrivateAlbumType): Promise&lt;FetchResult&lt;PrivateAlbum&gt;&gt;
 
 获取系统相册，使用Promise方式返回结果。
 
@@ -1044,7 +1044,7 @@ async function example() {
 
 ### getAudioAssets
 
-getAudioAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void;
+getAudioAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void
 
 获取音频文件，使用callback方式返回结果。
 
@@ -1070,7 +1070,7 @@ getAudioAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getAudioAssets');
@@ -1096,10 +1096,10 @@ async function example() {
 
 ### getAudioAssets
 
-getAudioAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
+getAudioAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;
 
 
-获取音频文件，使用callback方式返回结果。
+获取音频文件，使用promise方式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1128,7 +1128,7 @@ getAudioAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getAudioAssets');
@@ -1154,7 +1154,7 @@ async function example() {
 
 ### delete
 
-delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
+delete(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除媒体文件，删除的文件进入到回收站。
 
@@ -1180,7 +1180,7 @@ delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('deleteAssetDemo');
@@ -1206,14 +1206,14 @@ async function example() {
       }
     });
   } catch (err) {
-    console.info('fetch failed, message =', err);
+    console.error('fetch failed, message =', err);
   }
 }
 ```
 
 ### delete
 
-delete(uri: string): Promise&lt;void&gt;;
+delete(uri: string): Promise&lt;void&gt;
 
 删除媒体文件,删除的文件进入到回收站。
 
@@ -1244,7 +1244,7 @@ delete(uri: string): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('deleteDemo');
@@ -1270,7 +1270,7 @@ async function example() {
 
 ### getActivePeers
 
-getActivePeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void;
+getActivePeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void
 
 获取在线对端设备的信息，使用callback方式返回异步结果。
 
@@ -1302,7 +1302,7 @@ async function example() {
 
 ### getActivePeers
 
-getActivePeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;;
+getActivePeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;
 
 获取在线对端设备的信息，使用promise方式返回异步结果。
 
@@ -1337,7 +1337,7 @@ async function example() {
 
 ### getAllPeers
 
-getAllPeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void;
+getAllPeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void
 
 获取所有对端设备的信息，使用callback方式返回异步结果。
 
@@ -1369,7 +1369,7 @@ async function example() {
 
 ### getAllPeers
 
-getAllPeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;;
+getAllPeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;
 
 获取所有对端设备的信息，使用promise方式返回异步结果。
 
@@ -1430,12 +1430,12 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callbac
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -1462,11 +1462,11 @@ async function example() {
       if (err == undefined) {
         console.info(`getPhotoIndex successfully and index is : ${index}`);
       } else {
-        console.info(`getPhotoIndex failed;`);
+        console.error(`getPhotoIndex failed;`);
       }
     });
   } catch (error) {
-    console.info(`getPhotoIndex failed; error: ${error}`);
+    console.error(`getPhotoIndex failed; error: ${error}`);
   }
 }
 ```
@@ -1503,13 +1503,13 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promis
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   try {
@@ -1535,10 +1535,10 @@ async function example() {
     mgr.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions).then((index) => {
       console.info(`getPhotoIndex successfully and index is : ${index}`);
     }).catch((err: BusinessError) => {
-      console.info(`getPhotoIndex failed; error: ${err}`);
+      console.error(`getPhotoIndex failed; error: ${err}`);
     });
   } catch (error) {
-    console.info(`getPhotoIndex failed; error: ${error}`);
+    console.error(`getPhotoIndex failed; error: ${error}`);
   }
 }
 ```
@@ -1615,7 +1615,7 @@ on(uri: string, forSubUri: boolean, callback: Callback&lt;ChangeData&gt;) : void
 | 参数名    | 类型                                        | 必填 | 说明                                                         |
 | --------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri       | string                                      | 是   | FileAsset的uri, Album的uri或[DefaultChangeUri](#defaultchangeuri10)的值。 |
-| forSubUri | boolean                                     | 是   | 是否模糊监听，uri为相册uri时，forSubUri 为true能监听到相册中文件的变化，如果是false只能监听相册本身变化。uri为fileAsset时，forSubUri 为true、false没有区别。uri为DefaultChangeUri时，forSubUri必须为true，如果为false将找不到该uri，收不到任何消息。 |
+| forSubUri | boolean                                     | 是   | 是否模糊监听。uri为相册uri时，forSubUri 为true能监听到相册中文件的变化；如果是false只能监听相册本身变化。uri为fileAsset时，forSubUri 为true、false没有区别。uri为DefaultChangeUri时，forSubUri必须为true；如果为false将找不到该uri，收不到任何消息。 |
 | callback  | Callback&lt;[ChangeData](#changedata10)&gt; | 是   | 返回要监听的[ChangeData](#changedata10)。注：uri可以注册多个不同的callback监听，[off<sup>10+</sup>](#off10)可以关闭该uri所有监听，也可以关闭指定callback的监听。 |
 
 **错误码：**
@@ -1629,7 +1629,7 @@ on(uri: string, forSubUri: boolean, callback: Callback&lt;ChangeData&gt;) : void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('onDemo');
@@ -1692,7 +1692,7 @@ async function example() {
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('offDemo');
@@ -1742,8 +1742,8 @@ on(type: ChangeEvent, callback: Callback&lt;void&gt;): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | [ChangeEvent](#changeevent)               | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
-| callback | Callback&lt;void&gt; | 是   | callback返回void                                                   |
+| type     | [ChangeEvent](#changeevent)               | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更。 <br/>'albumChange'：&nbsp;相册变更。<br/>'imageChange'：&nbsp;图片文件变更。<br/>'audioChange'： &nbsp;音频文件变更。<br/>'videoChange'：  &nbsp;视频文件变更。<br/>'remoteFileChange'：&nbsp;注册设备上文件变更。 |
+| callback | Callback&lt;void&gt; | 是   | callback返回void。                                                   |
 
 **示例：**
 
@@ -1789,7 +1789,7 @@ off(type: ChangeEvent, callback?: Callback&lt;void&gt;): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | [ChangeEvent](#changeevent)               | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更。 |
+| type     | [ChangeEvent](#changeevent)               | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更。 <br/>'albumChange'：&nbsp;相册变更。<br/>'imageChange'：&nbsp;图片文件变更。<br/>'audioChange'： &nbsp;音频文件变更。<br/>'videoChange'：  &nbsp;视频文件变更。<br/>'remoteFileChange'：&nbsp;注册设备上文件变更。 |
 | callback | Callback&lt;void&gt; | 否   | callback返回void。                                                   |
 
 **示例：**
@@ -1832,15 +1832,15 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称                      | 类型                     | 可读 | 可写 | 说明                                                   |
+| 名称                      | 类型                     | 只读 | 可写 | 说明                                                   |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
 | uri                       | string                   | 是   | 否   | 媒体文件资源uri（如：file://media/Photo/1/IMG_datetime_0001/displayName.jpg），详情参见用户文件uri介绍中的[媒体文件uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。         |
-| fileType   | [FileType](#filetype) | 是   | 否   | 媒体文件类型                                               |
+| fileType   | [FileType](#filetype) | 是   | 否   | 媒体文件类型。                                               |
 | displayName               | string                   | 是   | 是   | 显示文件名，包含后缀名。                                 |
 
 ### get
 
-get(member: string): MemberType;
+get(member: string): MemberType
 
 获取FileAsset成员参数。
 
@@ -1850,12 +1850,12 @@ get(member: string): MemberType;
 
 | 参数名      | 类型                        | 必填   | 说明    |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | 是    | 成员参数名称例如：ImageVideoKey.DISPLAY_NAME。在get时，除了uri、photoType和displayName三个属性之外，其他的属性都需要在fetchColumns中填入需要get的PhotoKeys，例如：get title属性fetchColumns: ['title']。 |
+| member | string | 是    | 成员参数名称例如：ImageVideoKey.DISPLAY_NAME。在get时，除了uri、photoType和displayName三个属性之外，其他的属性都需要在fetchColumns中填入需要get的PhotoKeys。例如：get title属性fetchColumns: ['title']。 |
 
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('fileAssetGetDemo');
@@ -1878,7 +1878,7 @@ async function example() {
 
 ### set
 
-set(member: string, value: string): void;
+set(member: string, value: string): void
 
 设置FileAsset成员参数。
 
@@ -1894,7 +1894,7 @@ set(member: string, value: string): void;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('fileAssetSetDemo');
@@ -1933,7 +1933,7 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('commitModifyDemo');
@@ -1980,7 +1980,7 @@ commitModify(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('commitModifyDemo');
@@ -2023,7 +2023,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名      | 类型                          | 必填   | 说明                                  |
 | -------- | --------------------------- | ---- | ----------------------------------- |
-| mode     | string                      | 是    | 打开文件方式，如：'r'（只读）, 'w'（只写）, 'rw'（读写）。 |
+| mode     | string                      | 是    | 打开文件方式。如：'r'（只读）, 'w'（只写）, 'rw'（读写）。 |
 | callback | AsyncCallback&lt;number&gt; | 是    | callback返回文件描述符。                            |
 
 **示例：**
@@ -2107,7 +2107,7 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('closeDemo');
@@ -2157,7 +2157,7 @@ close(fd: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('closeDemo');
@@ -2198,7 +2198,7 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getThumbnailDemo');
@@ -2240,8 +2240,8 @@ getThumbnail(size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;): v
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import image from '@ohos.multimedia.image';
+import { dataSharePredicates } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
 
 async function example() {
   console.info('getThumbnailDemo');
@@ -2289,9 +2289,9 @@ getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import image from '@ohos.multimedia.image';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('getThumbnailDemo');
@@ -2326,13 +2326,13 @@ favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名        | 类型                        | 必填   | 说明                                 |
 | ---------- | ------------------------- | ---- | ---------------------------------- |
-| isFavorite | boolean                   | 是    | 是否设置为收藏文件， true：设置为收藏文件，false：取消收藏。 |
+| isFavorite | boolean                   | 是    | 是否设置为收藏文件。true：设置为收藏文件；false：取消收藏。 |
 | callback   | AsyncCallback&lt;void&gt; | 是    | callback返回void。                              |
 
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('favoriteDemo');
@@ -2367,7 +2367,7 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| isFavorite | boolean | 是    | 是否设置为收藏文件， true：设置为收藏文件，false：取消收藏。 |
+| isFavorite | boolean | 是    | 是否设置为收藏文件。true：设置为收藏文件；false：取消收藏。 |
 
 **返回值：**
 
@@ -2378,8 +2378,8 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('favoriteDemo');
@@ -2414,7 +2414,7 @@ setHidden(hiddenState: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名        | 类型                        | 必填   | 说明                                 |
 | ---------- | ------------------------- | ---- | ---------------------------------- |
-| hiddenState | boolean                   | 是    | 是否设置为隐藏文件，true:将文件资产放入隐藏相册;false:从隐藏相册中恢复。 |
+| hiddenState | boolean                   | 是    | 是否设置为隐藏文件。true：将文件资产放入隐藏相册；false：从隐藏相册中恢复。 |
 | callback   | AsyncCallback&lt;void&gt; | 是    | callback返回void。                              |
 
 **错误码：**
@@ -2429,7 +2429,7 @@ setHidden(hiddenState: boolean, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('setHiddenDemo');
@@ -2466,7 +2466,7 @@ setHidden(hiddenState: boolean): Promise&lt;void&gt;
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| hiddenState | boolean | 是    | 是否设置为隐藏文件，true:将文件资产放入隐藏相册;false:从隐藏相册中恢复。 |
+| hiddenState | boolean | 是    | 是否设置为隐藏文件。true：将文件资产放入隐藏相册；false：从隐藏相册中恢复。 |
 
 **返回值：**
 
@@ -2486,8 +2486,8 @@ setHidden(hiddenState: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   // 示例代码为将文件从隐藏相册中恢复，需要先在隐藏相册预置资源
@@ -2535,46 +2535,46 @@ Exif标签的详细信息请参考[image.PropertyKey](../apis-image-kit/js-apis-
 
 | 标签key值                                    | 标签说明              |
 | --------------------------------------- | ----------------- |
-| BitsPerSample | 每个像素比特数 |
-| Orientation | 图像方向 |
-| ImageLength | 图像长度 |
-| ImageWidth | 图像宽度 |
-| GPSLatitude | GPS纬度 |
-| GPSLongitude | GPS经度 |
-| GPSLatitudeRef | 经度引用，例如W或E |
-| GPSLongitudeRef | 纬度引用，例如N或S |
-| DateTimeOriginal | 拍摄时间 |
-| ExposureTime | 曝光时间 |
-| SceneType | 场景类型 |
-| ISOSpeedRatings | ISO感光度分值 |
-| FNumber | 光圈F值 |
-| DateTime | 修改时间 |
-| GPSTimeStamp | GPS时间戳 |
-| GPSDateStamp | GPS日期戳 |
-| ImageDescription | 图像描述 |
-| Make | 制造商 |
-| MakeNote | 制造商 |
-| Model | 型号 |
-| PhotoMode | 拍摄模式 |
-| SensitivityType | 感光类型 |
-| StandardOutputSensitivity | 标准输出感光度 |
-| RecommendedExposureIndex | 推荐曝光指数 |
-| ApertureValue | 光圈 |
-| MeteringMode | 测光模式 |
-| LightSource | 光源 |
-| Flash | 闪光灯 |
-| FocalLength | 镜头焦距 |
-| UserComment | 用户注释 |
-| PixelXDimension | 有效图像宽度 |
-| PixelYDimension | 有效图像高度 |
-| WhiteBalance | 白平衡 |
-| FocalLengthIn35mmFilm | 35mm等效焦距 |
-| ExposureBiasValue | 曝光补偿 |
+| BitsPerSample | 每个像素比特数。 |
+| Orientation | 图像方向。 |
+| ImageLength | 图像长度。 |
+| ImageWidth | 图像宽度。 |
+| GPSLatitude | GPS纬度。 |
+| GPSLongitude | GPS经度。 |
+| GPSLatitudeRef | 经度引用，例如W或E。 |
+| GPSLongitudeRef | 纬度引用，例如N或S。 |
+| DateTimeOriginal | 拍摄时间。 |
+| ExposureTime | 曝光时间。 |
+| SceneType | 场景类型。 |
+| ISOSpeedRatings | ISO感光度分值。 |
+| FNumber | 光圈F值。 |
+| DateTime | 修改时间。 |
+| GPSTimeStamp | GPS时间戳。 |
+| GPSDateStamp | GPS日期戳。 |
+| ImageDescription | 图像描述。 |
+| Make | 制造商。 |
+| MakeNote | 制造商。 |
+| Model | 型号。 |
+| PhotoMode | 拍摄模式。 |
+| SensitivityType | 感光类型。 |
+| StandardOutputSensitivity | 标准输出感光度。 |
+| RecommendedExposureIndex | 推荐曝光指数。 |
+| ApertureValue | 光圈。 |
+| MeteringMode | 测光模式。 |
+| LightSource | 光源。 |
+| Flash | 闪光灯。 |
+| FocalLength | 镜头焦距。 |
+| UserComment | 用户注释。 |
+| PixelXDimension | 有效图像宽度。 |
+| PixelYDimension | 有效图像高度。 |
+| WhiteBalance | 白平衡。 |
+| FocalLengthIn35mmFilm | 35mm等效焦距。 |
+| ExposureBiasValue | 曝光补偿。 |
 
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2625,46 +2625,46 @@ Exif标签的详细信息请参考[image.PropertyKey](../apis-image-kit/js-apis-
 
 | 标签key值                                    | 标签说明              |
 | --------------------------------------- | ----------------- |
-| BitsPerSample | 每个像素比特数 |
-| Orientation | 图像方向 |
-| ImageLength | 图像长度 |
-| ImageWidth | 图像宽度 |
-| GPSLatitude | GPS纬度 |
-| GPSLongitude | GPS经度 |
-| GPSLatitudeRef | 经度引用，例如W或E |
-| GPSLongitudeRef | 纬度引用，例如N或S |
-| DateTimeOriginal | 拍摄时间 |
-| ExposureTime | 曝光时间 |
-| SceneType | 场景类型 |
-| ISOSpeedRatings | ISO感光度分值 |
-| FNumber | 光圈F值 |
-| DateTime | 修改时间 |
-| GPSTimeStamp | GPS时间戳 |
-| GPSDateStamp | GPS日期戳 |
-| ImageDescription | 图像描述 |
-| Make | 制造商 |
-| MakeNote | 制造商 |
-| Model | 型号 |
-| PhotoMode | 拍摄模式 |
-| SensitivityType | 感光类型 |
-| StandardOutputSensitivity | 标准输出感光度 |
-| RecommendedExposureIndex | 推荐曝光指数 |
-| ApertureValue | 光圈 |
-| MeteringMode | 测光模式 |
-| LightSource | 光源 |
-| Flash | 闪光灯 |
-| FocalLength | 镜头焦距 |
-| UserComment | 用户注释 |
-| PixelXDimension | 有效图像宽度 |
-| PixelYDimension | 有效图像高度 |
-| WhiteBalance | 白平衡 |
-| FocalLengthIn35mmFilm | 35mm等效焦距 |
-| ExposureBiasValue | 曝光补偿 |
+| BitsPerSample | 每个像素比特数。 |
+| Orientation | 图像方向。 |
+| ImageLength | 图像长度。 |
+| ImageWidth | 图像宽度。 |
+| GPSLatitude | GPS纬度。 |
+| GPSLongitude | GPS经度。 |
+| GPSLatitudeRef | 经度引用，例如W或E。 |
+| GPSLongitudeRef | 纬度引用，例如N或S。 |
+| DateTimeOriginal | 拍摄时间。 |
+| ExposureTime | 曝光时间。 |
+| SceneType | 场景类型。 |
+| ISOSpeedRatings | ISO感光度分值。 |
+| FNumber | 光圈F值。 |
+| DateTime | 修改时间。 |
+| GPSTimeStamp | GPS时间戳。 |
+| GPSDateStamp | GPS日期戳。 |
+| ImageDescription | 图像描述。 |
+| Make | 制造商。 |
+| MakeNote | 制造商。 |
+| Model | 型号。 |
+| PhotoMode | 拍摄模式。 |
+| SensitivityType | 感光类型。 |
+| StandardOutputSensitivity | 标准输出感光度。 |
+| RecommendedExposureIndex | 推荐曝光指数。 |
+| ApertureValue | 光圈。 |
+| MeteringMode | 测光模式。 |
+| LightSource | 光源。 |
+| Flash | 闪光灯。 |
+| FocalLength | 镜头焦距。 |
+| UserComment | 用户注释。 |
+| PixelXDimension | 有效图像宽度。 |
+| PixelYDimension | 有效图像高度。 |
+| WhiteBalance | 白平衡。 |
+| FocalLengthIn35mmFilm | 35mm等效焦距。 |
+| ExposureBiasValue | 曝光补偿。 |
 
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2720,10 +2720,19 @@ setUserComment(userComment: string): Promise&lt;void&gt;
 | --------------------------------------- | ----------------- |
 |Promise&lt;void&gt; | Promise对象，返回void。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202   | Called by non-system application.                |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2764,10 +2773,19 @@ setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 | userComment | string | 是   | 待修改的图片或视频的备注信息，备注信息最长为140字符。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202   | Called by non-system application.                |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2814,7 +2832,7 @@ getCount(): number
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getCountDemo');
@@ -2841,12 +2859,12 @@ isAfterLast(): boolean
 
 | 类型      | 说明                                 |
 | ------- | ---------------------------------- |
-| boolean | 当读到最后一条记录后，后续没有记录返回true，否则返回false。 |
+| boolean | 当读到最后一条记录后，后续没有记录返回true；否则返回false。 |
 
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2877,7 +2895,7 @@ close(): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('fetchResultCloseDemo');
@@ -2913,7 +2931,7 @@ getFirstObject(callback: AsyncCallback&lt;T&gt;): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getFirstObjectDemo');
@@ -2950,7 +2968,7 @@ getFirstObject(): Promise&lt;T&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getFirstObjectDemo');
@@ -2983,7 +3001,7 @@ getNextObject(callback: AsyncCallback&lt;T&gt;): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getNextObjectDemo');
@@ -3024,7 +3042,7 @@ getNextObject(): Promise&lt;T&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getNextObjectDemo');
@@ -3059,7 +3077,7 @@ getLastObject(callback: AsyncCallback&lt;T&gt;): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getLastObjectDemo');
@@ -3096,7 +3114,7 @@ getLastObject(): Promise&lt;T&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getLastObjectDemo');
@@ -3137,7 +3155,7 @@ getPositionObject(index: number, callback: AsyncCallback&lt;T&gt;): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getPositionObjectDemo');
@@ -3188,7 +3206,7 @@ getPositionObject(index: number): Promise&lt;T&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getPositionObjectDemo');
@@ -3220,7 +3238,7 @@ getAllObject(callback: AsyncCallback&lt;Array&lt;T&gt;&gt;): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getAllObjectDemo');
@@ -3257,7 +3275,7 @@ getAllObject(): Promise&lt;Array&lt;T&gt;&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getAllObjectDemo');
@@ -3274,13 +3292,13 @@ async function example() {
 
 ## Album
 
-实体相册
+实体相册。
 
 ### 属性
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称           | 类型    | 可读   | 可写  | 说明   |
+| 名称           | 类型    | 只读   | 可写  | 说明   |
 | ------------ | ------ | ---- | ---- | ------- |
 | albumType<sup>10+</sup> | [AlbumType]( #albumtype10) | 是    | 否    | 相册类型。    |
 | albumSubType<sup>10+</sup> | [AlbumSubType]( #albumsubtype10) | 是    | 否   | 相册子类型。    |
@@ -3291,7 +3309,7 @@ async function example() {
 
 ### getPhotoAssets
 
-getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void;
+getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void
 
 获取相册中的文件。该方法使用callback形式来返回文件。
 
@@ -3317,7 +3335,7 @@ getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('albumGetFileAssetsDemoCallback');
@@ -3344,7 +3362,7 @@ async function example() {
 
 ### getPhotoAssets
 
-getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
+getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;
 
 获取相册中的文件。该方法使用Promise来返回文件。
 
@@ -3375,8 +3393,8 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('albumGetFileAssetsDemoPromise');
@@ -3401,7 +3419,7 @@ async function example() {
 
 ### commitModify
 
-commitModify(callback: AsyncCallback&lt;void&gt;): void;
+commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 更新相册属性修改到数据库中。该方法使用callback形式来返回结果。
 
@@ -3418,7 +3436,7 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('albumCommitModifyDemo');
@@ -3441,7 +3459,7 @@ async function example() {
 
 ### commitModify
 
-commitModify(): Promise&lt;void&gt;;
+commitModify(): Promise&lt;void&gt;
 
 更新相册属性修改到数据库中。该方法使用Promise来返回结果。
 
@@ -3458,8 +3476,8 @@ commitModify(): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('albumCommitModifyDemo');
@@ -3484,7 +3502,7 @@ async function example() {
 
 ### addPhotoAssets<sup>10+</sup>
 
-addPhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+addPhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 往相册中添加图片或者视频，需要先预置相册和文件资源。该方法使用callback形式来返回结果。
 
@@ -3510,7 +3528,7 @@ addPhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&g
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -3539,7 +3557,7 @@ async function example() {
 
 ### addPhotoAssets<sup>10+</sup>
 
-addPhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
+addPhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;
 
 往相册中添加图片或者视频，需要先预置相册和文件资源。该方法使用Promise来返回结果。
 
@@ -3570,8 +3588,8 @@ addPhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   try {
@@ -3598,7 +3616,7 @@ async function example() {
 
 ### removePhotoAssets<sup>10+</sup>
 
-removePhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+removePhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 从相册中移除图片或者视频，需要先预置相册和文件资源。该方法使用callback形式来返回结果。
 
@@ -3624,7 +3642,7 @@ removePhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;voi
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -3653,7 +3671,7 @@ async function example() {
 
 ### removePhotoAssets<sup>10+</sup>
 
-removePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
+removePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;
 
 从相册中移除图片或者视频，需要先预置相册和文件资源。该方法使用Promise来返回结果。
 
@@ -3684,8 +3702,8 @@ removePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   try {
@@ -3712,7 +3730,7 @@ async function example() {
 
 ### recoverPhotoAssets<sup>10+</sup>
 
-recoverPhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+recoverPhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 从回收站中恢复图片或者视频，需要先在回收站中预置文件资源。该方法使用callback形式来返回结果。
 
@@ -3738,7 +3756,7 @@ recoverPhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;vo
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -3767,7 +3785,7 @@ async function example() {
 
 ### recoverPhotoAssets<sup>10+</sup>
 
-recoverPhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
+recoverPhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;
 
 从回收站中恢复图片或者视频，需要先在回收站中预置文件资源。该方法使用Promise来返回结果。
 
@@ -3798,8 +3816,8 @@ recoverPhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   try {
@@ -3826,7 +3844,7 @@ async function example() {
 
 ### deletePhotoAssets<sup>10+</sup>
 
-deletePhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+deletePhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 从回收站中彻底删除图片或者视频，需要先在回收站中预置文件资源。该方法使用callback形式来返回结果。
 
@@ -3854,7 +3872,7 @@ deletePhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;voi
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -3883,7 +3901,7 @@ async function example() {
 
 ### deletePhotoAssets<sup>10+</sup>
 
-deletePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
+deletePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;
 
 从回收站中彻底删除图片或者视频，需要先在回收站中预置文件资源。该方法使用Promise来返回结果。
 
@@ -3916,8 +3934,8 @@ deletePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   try {
@@ -3952,7 +3970,7 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称           | 类型    | 可读   | 可写   | 说明      |
+| 名称           | 类型    | 只读   | 可写   | 说明      |
 | ------------ | ------ | ---- | ---- | ------- |
 | albumName | string | 是    | 是    | 相册名称。    |
 | albumUri | string | 是    | 否    | 相册Uri。   |
@@ -3962,7 +3980,7 @@ async function example() {
 
 ### getPhotoAssets
 
-getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void;
+getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void
 
 获取系统相册中的文件。该方法使用callback形式来返回文件。
 
@@ -3990,7 +4008,7 @@ getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('privateAlbumGetFileAssetsDemoCallback');
@@ -4015,7 +4033,7 @@ async function example() {
 
 ### getPhotoAssets
 
-getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
+getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;
 
 获取系统相册中的文件。该方法使用Promise来返回文件。
 
@@ -4048,7 +4066,7 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('privateAlbumGetFileAssetsDemoPromise');
@@ -4067,7 +4085,7 @@ async function example() {
 
 ### delete
 
-delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
+delete(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除系统相册中的文件，仅支持删除回收站相册中文件。
 
@@ -4087,7 +4105,7 @@ delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('privateAlbumDeleteCallback');
@@ -4113,7 +4131,7 @@ async function example() {
 
 ### delete
 
-delete(uri: string): Promise&lt;void&gt;;
+delete(uri: string): Promise&lt;void&gt;
 
 删除系统相册中的文件，仅支持删除回收站相册中文件。
 
@@ -4138,8 +4156,8 @@ delete(uri: string): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('privateAlbumDeleteDemoPromise');
@@ -4163,7 +4181,7 @@ async function example() {
 
 ### recover
 
-recover(uri: string, callback: AsyncCallback&lt;void&gt;): void;
+recover(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 恢复系统相册中的文件，仅支持恢复回收站相册中文件。
 
@@ -4183,7 +4201,7 @@ recover(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('privateAlbumRecoverDemoCallback');
@@ -4209,7 +4227,7 @@ async function example() {
 
 ### recover
 
-recover(uri: string): Promise&lt;void&gt;;
+recover(uri: string): Promise&lt;void&gt;
 
 恢复系统相册中的文件，仅支持恢复回收站相册中文件。
 
@@ -4234,8 +4252,8 @@ recover(uri: string): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('privateAlbumRecoverDemoPromise');
@@ -4263,7 +4281,7 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称  |  类型 |  可读  |  可写  |  说明  |
+| 名称  |  类型 |  只读  |  可写  |  说明  |
 | ----- |  ---- |  ---- |  ---- |  ---- |
 | number |  number | 是 | 是 | number类型。 |
 | string |  string | 是 | 是 | string类型。|
@@ -4275,7 +4293,7 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称  |  类型 |  可读  |  可写  |  说明 |
+| 名称  |  类型 |  只读  |  可写  |  说明 |
 | ----- |  ---- |  ---- |  ---- |  ---- |
 | deviceChange |  string | 是 | 是 |  设备。 |
 | albumChange |  string | 是 | 是 |  相册。 |
@@ -4290,11 +4308,11 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.DistributedCore
 
-| 名称       | 类型                       | 可读 | 可写 | 说明             |
+| 名称       | 类型                       | 只读 | 可写 | 说明             |
 | ---------- | -------------------------- | ---- | ---- | ---------------- |
 | deviceName | string                     | 是   | 否   | 注册设备的名称。   |
 | networkId  | string                     | 是   | 否   | 注册设备的网络ID。 |
-| isOnline   | boolean                    | 是   | 否   | 是否在线。         |
+| isOnline   | boolean                    | 是   | 否   | 是否在线。true是在线，false为不在线         |
 
 ## FileType
 
@@ -4448,7 +4466,7 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称                   | 类型                | 可读 | 可写 | 说明                                              |
+| 名称                   | 类型                | 只读 | 可写 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
 | fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、fileType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
 | predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | 是   | 是   | 谓词查询，显示过滤条件。 |
@@ -4459,7 +4477,7 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称                   | 类型                | 可读 | 可写 | 说明                                              |
+| 名称                   | 类型                | 只读 | 可写 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
 | predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | 是   | 是   | 谓词查询，显示过滤条件。 |
 
@@ -4469,7 +4487,7 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称    | 类型                        | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型                        | 只读 | 可写 | 说明                                                         |
 | ------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | type    | [NotifyType](#notifytype10) | 是   | 否   | ChangeData的通知类型。                                       |
 | uris    | Array&lt;string&gt;         | 是   | 否   | 相同[NotifyType](#notifytype10)的所有uri，可以是FileAsset或Album。 |

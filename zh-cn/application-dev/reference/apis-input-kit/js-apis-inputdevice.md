@@ -13,7 +13,7 @@
 
 
 ```js
-import inputDevice from '@ohos.multimodalInput.inputDevice';
+import { inputDevice } from '@kit.InputKit';
 ```
 
 ## inputDevice.getDeviceList<sup>9+</sup>
@@ -29,6 +29,14 @@ getDeviceList(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 | 参数名     | 类型                                     | 必填 | 说明                                     |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，异步返回所有输入设备的id列表。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -87,6 +95,14 @@ getDeviceInfo(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;):
 | deviceId | number                                                   | 是   | 输入设备id。                  |
 | callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | 是   | 回调函数，异步返回输入设备信息。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -124,6 +140,14 @@ getDeviceInfo(deviceId: number): Promise&lt;InputDeviceData&gt;
 | -------------------------------------------------- | ------------------------------- |
 | Promise&lt;[InputDeviceData](#inputdevicedata)&gt; | Promise对象，异步返回输入设备信息。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -157,6 +181,14 @@ getDeviceInfoSync(deviceId: number): InputDeviceData
 | -------------------------------------------------- | ------------------------------- |
 | [InputDeviceData](#inputdevicedata) | 返回输入设备信息。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -183,6 +215,14 @@ on(type: "change", listener: Callback&lt;DeviceListener&gt;): void
 | -------- | ---------------------------------------- | ---- | ----------- |
 | type     | string                                   | 是    | 输入设备的事件【鼠标、键盘、触摸屏等】类型。  |
 | listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | 是    | 回调函数，异步上报输入设备热插拔事件。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -222,6 +262,14 @@ off(type: "change", listener?: Callback&lt;DeviceListener&gt;): void
 | -------- | ---------------------------------------- | ---- | ----------- |
 | type     | string                                   | 是    | 输入设备的事件【鼠标、键盘、触摸屏等】类型。  |
 | listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | 否    | 取消监听的回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -380,6 +428,14 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: AsyncCallbac
 | keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode)  | 是   | 需要查询的键码值，最多支持5个按键查询。                |
 | callback | AsyncCallback&lt;Array&lt;boolean&gt;&gt; | 是   | 回调函数，异步返回查询结果。                           |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -413,6 +469,14 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;b
 | 参数                                | 说明                            |
 | ----------------------------------- | ------------------------------- |
 | Promise&lt;Array&lt;boolean&gt;&gt; | Promise对象，异步返回查询结果。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -448,6 +512,14 @@ supportKeysSync(deviceId: number, keys: Array&lt;KeyCode&gt;): Array&lt;boolean&
 | ----------------------------------- | ------------------------------- |
 | Array&lt;boolean&gt; | 返回查询结果。true表示支持，false表示不支持。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -474,6 +546,14 @@ getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): 
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | deviceId | number                                              | 是   | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
 | callback | AsyncCallback&lt;[KeyboardType](#keyboardtype9)&gt; | 是   | 回调函数，异步返回查询结果。                                 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -512,6 +592,14 @@ getKeyboardType(deviceId: number): Promise&lt;KeyboardType&gt;
 | --------------------------------------------- | ------------------------------- |
 | Promise&lt;[KeyboardType](#keyboardtype9)&gt; | Promise对象，异步返回查询结果。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -545,6 +633,14 @@ getKeyboardTypeSync(deviceId: number): KeyboardType
 | --------------------------------------------- | ------------------------------- |
 | [KeyboardType](#keyboardtype9) | 返回查询结果。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -555,6 +651,117 @@ try {
 } catch (error) {
   console.log(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`)
 }
+```
+
+## inputDevice.isFunctionKeyEnabled<sup>15+</sup>
+
+isFunctionKeyEnabled(functionKey: FunctionKey): Promise&lt;boolean&gt;
+
+检查功能键是否使能。使用Promise异步回调。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| functionKey | [FunctionKey](#functionkey15) | 是   | 需要设置的功能键类型。 |
+
+**返回值**：
+
+| 参数                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise对象。返回查询结果，true表示功能键使能，false表示功能键未使能。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[输入设备错误码](errorcode-inputdevice.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 3900002      | There is currently no keyboard device connected. |
+
+**示例**：
+
+```js
+import { inputDevice } from '@kit.InputKit';
+
+try {
+  inputDevice.isFunctionKeyEnabled(inputDevice.FunctionKey.CAPS_LOCK).then((state: boolean) => {
+    console.log(`capslock state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`Failed to get capslock state, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.setFunctionKeyEnabled<sup>15+</sup>
+
+setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;void&gt;
+
+设置功能键使能状态。使用Promise异步回调。
+
+**需要权限**：ohos.permission.INPUT_KEYBOARD_CONTROLLER
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数名   | 类型    | 必填 | 说明                      |
+| -------- | ------- | ---- | ------------------------- |
+| functionKey | [FunctionKey](#functionkey15) | 是   | 需要设置的功能键类型。 |
+| enabled  | boolean | 是   | 功能键使能状态。取值为true表示使能功能键，取值为false表示不使能功能键。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[输入设备错误码](errorcode-inputdevice.md)。
+
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 3900002      | There is currently no keyboard device connected. |
+| 3900003      | It is prohibited for non-input applications. |
+
+**示例**：
+
+```js
+import { inputDevice } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  inputDevice.setFunctionKeyEnabled(inputDevice.FunctionKey.CAPS_LOCK, true).then(() => {
+    console.info(`Set capslock state success`);
+  }).catch((error: BusinessError) => {
+    console.info(`Set capslock state failed, error=${JSON.stringify(error)}`);
+  });
+} catch (error) {
+    console.info(`Set capslock enable error`);
+}
+```
+
+## inputDevice.getIntervalSinceLastInput<sup>14+</sup>
+
+getIntervalSinceLastInput(): Promise&lt;number&gt;
+
+获取距离上次系统输入事件的时间间隔，使用Promise异步回调。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**返回值**：
+
+| 参数                                          | 说明                            |
+| --------------------------------------------- | ------------------------------- |
+| Promise&lt;number&gt; | Promise对象，异步返回获取的时间间隔，单位为微秒（μs）。|
+
+**示例**：
+
+```js
+  inputDevice.getIntervalSinceLastInput().then((timeInterval: number) => {
+    console.log(`Interval since last input: ${JSON.stringify(timeInterval)}`);
+  });
 ```
 
 ## DeviceListener<sup>9+</sup>
@@ -589,21 +796,23 @@ try {
 
 ## AxisType<sup>9+</sup>
 
+type AxisType = 'touchmajor' | 'touchminor' | 'orientation' | 'x' | 'y' | 'pressure' | 'toolminor' | 'toolmajor' | 'null'
+
 输入设备的轴类型。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
-| --------- | ------ | ---- | ---- | ------- |
-| touchmajor  | string | 是 | 否 | 表示touchmajor轴。  |
-| touchminor  | string | 是 | 否 | 表示touchminor轴。  |
-| toolminor   | string | 是 | 否 | 表示toolminor轴。   |
-| toolmajor   | string | 是 | 否 | 表示toolmajor轴。   |
-| orientation | string | 是 | 否 | 表示orientation轴。 |
-| pressure    | string | 是 | 否 | 表示pressure轴。    |
-| x           | string | 是 | 否 | 表示x轴。           |
-| y           | string | 是 | 否 | 表示y轴。           |
-| null        | string | 是 | 否 | 无。              |
+| 类型      |说明      |
+| --------- | ------- |
+| 'touchmajor'  | 椭圆触摸区域长轴。 |
+| 'touchminor'  | 椭圆触摸区域短轴。 |
+| 'toolminor'   | 工具区域短轴。 |
+| 'toolmajor'   | 工具区域长轴。 |
+| 'orientation' | 方向轴。 |
+|'pressure'    | 压力轴。  |
+| 'x'          | 横坐标轴。         |
+| 'y'           | 纵坐标轴。         |
+|'null'        |  无。             |
 
 ## AxisRange
 
@@ -623,29 +832,33 @@ try {
 
 ## SourceType<sup>9+</sup>
 
+type SourceType = 'keyboard' | 'mouse' | 'touchpad' | 'touchscreen' | 'joystick' | 'trackball'
+
 轴的输入源类型。比如鼠标设备可上报x轴事件，则x轴的输入源就是鼠标。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
-| --------- | ------ | ---- | ---- | ------- |
-| keyboard    | string | 是 | 否 | 表示输入设备是键盘。  |
-| touchscreen | string | 是 | 否 | 表示输入设备是触摸屏。 |
-| mouse       | string | 是 | 否 | 表示输入设备是鼠标。  |
-| trackball   | string | 是 | 否 | 表示输入设备是轨迹球。 |
-| touchpad    | string | 是 | 否 | 表示输入设备是触摸板。 |
-| joystick    | string | 是 | 否 | 表示输入设备是操纵杆。 |
+| 类型       |说明      |
+| --------- |  ------- |
+| 'keyboard'    | 表示输入设备是键盘。  |
+| 'touchscreen' | 表示输入设备是触摸屏。 |
+| 'mouse'       | 表示输入设备是鼠标。  |
+| 'trackball'   | 表示输入设备是轨迹球。 |
+| 'touchpad'    | 表示输入设备是触摸板。 |
+| 'joystick'   | 表示输入设备是操纵杆。 |
 
 ## ChangedType<sup>9+</sup>
+
+type ChangedType = 'add' | 'remove'
 
 定义监听设备热插拔事件。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
-| --------- | ------ | ---- | ---- | ------- |
-| add    | string | 是 | 否 | 表示输入设备插入。 |
-| remove | string | 是 | 否 | 表示输入设备移除。 |
+| 类型        | 说明      |
+| --------- | ------- |
+| 'add'    | 表示输入设备插入。 |
+| 'remove' | 表示输入设备移除。 |
 
 ## KeyboardType<sup>9+</sup>
 
@@ -661,3 +874,13 @@ try {
 | DIGITAL_KEYBOARD    | 3    | 表示小键盘设备。  |
 | HANDWRITING_PEN     | 4    | 表示手写笔设备。  |
 | REMOTE_CONTROL      | 5    | 表示遥控器设备。  |
+
+## FunctionKey<sup>15+</sup>
+
+定义功能键的类型。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+| 名称                  | 值    | 说明        |
+| ------------------- | ---- | --------- |
+| CAPS_LOCK                | 1    | CapsLock键，仅支持对输入键盘扩展的CapsLock键设置使能。 |

@@ -16,9 +16,9 @@ The **PermissionDef** module provides permission details defined in the configur
 
 **System API**: This is a system API.
 
-| Name          | Type  | Readable| Writable| Description          |
+| Name          | Type  | Read-Only| Optional| Description          |
 | -------------- | ------ | ---- | ---- | -------------- |
-| permissionName | string | Yes  | No  | Name of the permission.  |
-| grantMode      | number | Yes  | No  | Grant mode of the permission. The value **0** means that the system automatically grants the permission after the application installation, and **1** means that the application needs to dynamically request the permission from the user.|
-| labelId        | number | Yes  | No  | ID of the permission label.  |
-| descriptionId  | number | Yes  | No  | ID of the permission description.  |
+| permissionName | string | No  | No  | Name of the permission.  |
+| grantMode      | number | No  | No  | Grant mode of the permission. The value **0** means that the system automatically grants the permission after the application installation, and **1** means that the application needs to dynamically request the permission from the user.|
+| labelId        | number | No  | No  | ID of the permission label.  |
+| descriptionId  | number | No  | No  | ID of the permission description.  |

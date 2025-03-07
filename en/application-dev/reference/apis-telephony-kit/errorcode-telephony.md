@@ -28,7 +28,7 @@ Enter a valid parameter value.
 
 **Error Message**
 
-Operation failed. Cannot connect to service.
+Service connection failed.
 
 **Description**
 
@@ -67,7 +67,7 @@ Operation error. Try again later.
 
 **Error Message**
 
-Do not have sim card.
+No SIM card found.
 
 **Description**
 
@@ -86,7 +86,7 @@ Insert the SIM card or remove and insert the SIM card again.
 
 **Error Message**
 
-Unknown error code.
+Unknown error.
 
 **Description**
 
@@ -124,7 +124,7 @@ Activate the SIM card.
 
 **Error Message**
 
-SIM card operation error.
+The SIM card failed to read or update data.
 
 **Description**
 

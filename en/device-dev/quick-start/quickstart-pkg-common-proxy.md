@@ -6,14 +6,15 @@
 1. Create a proxy configuration file.
      
    ```
-   mkdir ~/.pipvim ~/.pip/pip.conf
+   mkdir ~/.pip
+   vim ~/.pip/pip.conf
    ```
 
 2. Add the following proxy information to the file, save the file, and exit:
      
    ```
    [global]
-   index-url = http://Proxy URL
+   index-url = http:// Proxy URL
    trusted-host = Trusted image path
    timeout = 120
    ```
@@ -30,13 +31,13 @@
 2. Add the following proxy information to the file, save the file, and exit:
      
    ```
-   Registry=http://Proxy URL
+   registry=http:// Proxy URL
    strict-ssl=false
    ```
 
 3. Add the following content to the **.bashrc** file, save the file, and exit:
      
    ```
-   export NPM_REGISTRY=http://Proxy URL
+   export NPM_REGISTRY=http:// Proxy URL
    source .bashrc
    ```

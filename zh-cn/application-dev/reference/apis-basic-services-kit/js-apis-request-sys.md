@@ -5,21 +5,19 @@ request部件主要给应用提供上传下载文件、后台传输代理的基�
 > **说明：**
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 当前界面仅包含本模块的系统接口，其他公开接口参见[@ohos.request](./js-apis-request.md)。
+> 当前界面仅包含本模块的系统接口，其他公开接口参见[@ohos.request](js-apis-request.md)。
 
 
 ## 导入模块
 
 
 ```js
-import request from '@ohos.request';
+import { request } from '@kit.BasicServicesKit';
 ```
 
 
 ## Filter<sup>10+</sup>
 过滤条件。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -30,8 +28,6 @@ import request from '@ohos.request';
 
 ## TaskInfo<sup>10+</sup> 
 查询结果的任务信息数据结构，提供普通查询和系统查询，两种字段的可见范围不同。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -65,13 +61,18 @@ query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
 | 错误码ID | 错误信息 |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | permission denied. |
+| 202 | permission verification failed, application which is not a system application uses system API. |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
 | 13400003 | task service ability error. |
-| 21900006 | task not found error. |
+| 21900006 | task not found. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.query("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
       console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -110,13 +111,18 @@ query(id: string): Promise&lt;TaskInfo&gt;
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
 | 错误码ID | 错误信息 |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | permission denied. |
+| 202 | permission verification failed, application which is not a system application uses system API. |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
 | 13400003 | task service ability error. |
-| 21900006 | task not found error. |
+| 21900006 | task not found. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.query("123456").then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in querying a upload task. result: ${taskInfo.uid}`);
   }).catch((err: BusinessError) => {

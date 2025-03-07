@@ -64,7 +64,7 @@ HUKS采用分层架构，包含应用层、服务层、核心层（领域层）�
 
 - **密钥材料格式** 
   
-  导入/导出密钥时（包括密钥对、公钥、私钥），密钥材料的数据格式必须满足HUKS要求的格式，具体各个密码算法密钥材料见[密钥材料格式](../../application-dev/security/huks-appendix.md#密钥材料格式)。
+  导入/导出密钥时（包括密钥对、公钥、私钥），密钥材料的数据格式必须满足HUKS要求的格式，具体各个密码算法密钥材料见[密钥材料格式](../../application-dev/security/UniversalKeystoreKit/huks-concepts.md#密钥材料格式)。
 
 - **证书链格式** 
 
@@ -73,6 +73,7 @@ HUKS采用分层架构，包含应用层、服务层、核心层（领域层）�
   ![CertChain格式图](figures/HUKS-CertChain.png)
 
 - **KeyBlob格式**
+
   接口返回的密钥必须按照密钥存储态组装成KeyBlob，哪些接口需要遵循该限制请见[接口说明](#接口说明)。
 
   ![KeyBlob格式图](figures/HUKS-KeyBlob.png)
@@ -112,1012 +113,689 @@ HUKS Core作为向应用提供密钥库能力的基础，包括密钥管理及�
 | [DeriveKey()](#derivekey)        | 密钥派生     | 无                      | 无 |
 | [Mac()](#mac)        | 消息认证码     | 无                      | 无 |
 
-- - -
+
 
 #### ModuleInit
+
+**接口原型**
+```
+int32_t ModuleInit(struct IHuks *self);
+```
 
 **接口描述**
 
 HUKS Core的初始化，一般用于初始化全局变量，比如全局线程锁，算法库，用于访问控制的AuthToken Key和根密钥。
 
-**接口原型**
-<pre><code>int32_t ModuleInit(struct IHuks *self);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  </pre>
-</details>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针 |
 
-<details>
-  <summary><strong>返回值</strong></summary>
+**返回值**
 
-  - HKS_SUCCESS：成功，值为0，下同
-
-  - 其他：失败，值为负数，具体参考<a href="https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type.h">HksErrorCode枚举值定义</a>，下同
-</details>
-
-- - -
-
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
 #### ModuleDestroy
+
+**接口原型**
+```
+int32_t ModuleDestroy(struct IHuks *self);
+```
 
 **接口描述**
 
 HUKS Core的销毁，一般用于释放全局变量，包括锁，销毁内存中的AuthToken Key和根密钥等。
 
-**接口原型**
-<pre><code>int32_t ModuleDestroy(struct IHuks *self);</code></pre>
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  </pre>
-</details>
+**参数说明**
 
-<details>
-  <summary><strong>返回值</strong></summary>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针 |
 
-  - HKS_SUCCESS：成功
 
-  - 其他：失败
-</details>
+**返回值**
 
-- - -
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
+
 
 #### GenerateKey
+
+**接口原型**
+```
+int32_t GenerateKey(struct IHuks *self, const struct HuksBlob *keyAlias, const struct HuksParamSet *paramSet, const struct HuksBlob *keyIn, struct HuksBlob *encKeyOut);
+```
 
 **接口描述**
 
 根据密钥属性paramSet生成密钥。
 
-**接口原型**
-<pre><code>int32_t GenerateKey(struct IHuks *self, const struct HuksBlob *keyAlias, const struct HuksParamSet *paramSet,
-    const struct HuksBlob *keyIn, struct HuksBlob *encKeyOut);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  <br></br>
-  <strong>const struct HuksBlob *keyAlias</strong>
-  将要生成的密钥的别名，要求：
-  1. keyAlias != null
-  2. keyAlias -> data != null
-  3. keyAlias -> dataLen != 0
-  <br></br>
-  <strong>const struct HuksParamSet *paramSet</strong>
-  要生成密钥的参数
-  <br></br>
-  <strong>const struct HuksBlob *keyIn</strong>
-  可选，通过密钥协商或密钥派生生成密钥时，传原密钥材料
-  <br></br>
-  <strong>struct HuksBlob *encKeyOut</strong>
-  出参，密钥密文材料，将密钥属性paramset和生成的密钥密文存放在这里，格式参考KeyBlob
-  </pre>
-</details>
-<br></br>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针。 |
+|keyAlias | 将要生成的密钥的别名，要求：<br>1. keyAlias != null <br>2. keyAlias -> data != null<br>3. keyAlias -> dataLen != 0 |
+|paramSet | 要生成密钥的参数。 |
+|keyIn | 可选，通过密钥协商或密钥派生生成密钥时，传原密钥材料。|
+|encKeyOut | 出参，密钥密文材料，将密钥属性paramset和生成的密钥密文存放在这里，格式参考KeyBlob。|
 
-<details>
-  <summary><strong>约束与限制</strong></summary>
+**约束与限制**
+  
+- 请在接口内检查上述参数是否符合要求，如是否是空指针、密钥算法是否支持等。
+- encKeyOut请参照KeyBlob的结构。
 
-  1. 请在接口内检查上述参数是否符合要求，如是否是空指针、密钥算法是否支持等。
+**返回值**
 
-  2. keyOut请参照KeyBlob的结构。
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
-</details>
-<br></br>
-
-<details>
-  <summary><strong>返回值</strong></summary>
-
-  - HKS_SUCCESS：成功
-
-  - 其他：失败
-</details>
-
-- - -
 
 #### ImportKey
+
+**接口原型**
+```
+int32_t ImportKey(struct IHuks *self, const struct HuksBlob *keyAlias, const struct HuksBlob *key, const struct HuksParamSet *paramSet, struct HuksBlob *encKeyOut);
+```
 
 **接口描述**
 
 导入明文密钥。
 
-**接口原型**
-<pre><code>int32_t ImportKey(struct IHuks *self, const struct HuksBlob *keyAlias, const struct HuksBlob *key,
-    const struct HuksParamSet *paramSet, struct HuksBlob *encKeyOut);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  <br></br>
-  <strong>const struct HuksBlob *keyAlias</strong>
-  待导入的密钥的别名，要求：
-  1. keyAlias != null
-  2. keyAlias -> data != null
-  3. keyAlias -> dataLen != 0
-  <br></br>
-  <strong>const struct HuksBlob *key</strong>
-  待导入的密钥明文材料，密钥材料格式见<a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/huks-appendix.md#%E5%AF%86%E9%92%A5%E6%9D%90%E6%96%99%E6%A0%BC%E5%BC%8F">密钥材料格式</a>，要求：
-  1. key != null
-  2. key -> data != null
-  3. key -> dataLen != 0
-  <br></br>
-  <strong>const struct HuksParamSet *paramSet</strong>
-  待导入密钥的参数
-  <br></br>
-  <strong>struct HuksBlob *encKeyOut</strong>
-  出参，密钥密文材料，将密钥属性paramset和生成的密钥密文存放在这里，格式参考KeyBlob
-  </pre>
-</details>
-<br></br>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针。 |
+|keyAlias | 待导入的密钥的别名，要求：<br>1. keyAlias != null <br>2. keyAlias -> data != null<br>3. keyAlias -> dataLen != 0 |
+|key | 待导入的密钥明文材料，密钥材料格式见[密钥材料格式](../../application-dev/security/UniversalKeystoreKit/huks-concepts.md)，要求： <br>1. key != null  <br>2. key -> data != null <br>3. key -> dataLen != 0 |
+|paramSet | 待导入密钥的参数。 |
+|encKeyOut | 出参，密钥密文材料，将密钥属性paramset和生成的密钥密文存放在这里，格式参考KeyBlob。|
 
-<details>
-  <summary><strong>约束与限制</strong></summary>
+**约束与限制**
+  
+- 请在接口内检查上述参数是否符合要求，如是否是空指针、密钥算法是否支持等。
+- encKeyOut请参照KeyBlob的结构。
 
-  1. 请在接口内检查上述参数是否符合要求，如是否是空指针、密钥算法是否支持等。
+**返回值**
 
-  2. encKeyOut请参照KeyBlob的结构。
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
-</details>
-<br></br>
-
-<details>
-  <summary><strong>返回值</strong></summary>
-
-  - HKS_SUCCESS：成功
-
-  - 其他：失败
-</details>
-
-- - -
 
 #### ImportWrappedKey
+
+**接口原型**
+```
+int32_t ImportWrappedKey(struct IHuks *self, const struct HuksBlob *wrappingKeyAlias, const struct HuksBlob *wrappingEncKey, const struct HuksBlob *wrappedKeyData, const struct HuksParamSet *paramSet, struct HuksBlob *encKeyOut);
+```
 
 **接口描述**
 
 导入加密密钥。
 
-**接口原型**
-<pre><code>int32_t ImportWrappedKey(struct IHuks *self, const struct HuksBlob *wrappingKeyAlias,
-    const struct HuksBlob *wrappingEncKey, const struct HuksBlob *wrappedKeyData, const struct HuksParamSet *paramSet,
-    struct HuksBlob *encKeyOut);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  <br></br>
-  <strong>const struct HuksBlob *wrappingKeyAlias</strong>
-  用于做加密导入的密钥的别名（非导入密钥本身的别名），要求：
-  1. wrappingKeyAlias != null
-  2. wrappingKeyAlias -> data != null
-  3. wrappingKeyAlias -> dataLen != 0
-  <br></br>
-  <strong>const struct HuksBlob *wrappingEncKey</strong>
-  要导入的密钥数据被加密时使用的密钥，要求：
-  1. wrappingEncKey != null
-  2. wrappingEncKey -> data != null
-  3. wrappingEncKey -> dataLen != 0
-  <br></br>
-  <strong>const struct HuksBlob *wrappedKeyData</strong>
-  要导入的密钥的密钥材料数据，格式参考<a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/huks-guidelines.md#%E5%8A%A0%E5%AF%86%E5%AF%BC%E5%85%A5">加密导入材料格式</a>，要求：
-  1. wrappedKeyData != null
-  2. wrappedKeyData -> data != null
-  3. wrappedKeyData -> dataLen != 0
-  <br></br>
-  <strong>const struct HuksParamSet *paramSet</strong>
-  待导入密钥的密钥属性
-  <br></br>
-  <strong>struct HuksBlob *encKeyOut</strong>
-  导入密钥的密文材料，参考KeyBlob格式
-  </pre>
-</details>
-<br></br>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针。 |
+|wrappingKeyAlias | 用于做加密导入的密钥的别名（非导入密钥本身的别名），要求：<br>1. wrappingKeyAlias != null <br>2. wrappingKeyAlias -> data != null <br>3. wrappingKeyAlias -> dataLen != 0 |
+|wrappingEncKey | 要导入的密钥数据被加密时使用的密钥，要求：<br>1. wrappingEncKey != null <br>2. wrappingEncKey -> data != null <br>3. wrappingEncKey -> dataLen != 0 |
+|wrappedKeyData | 要导入的密钥的密钥材料数据，格式参考[加密导入材料格式](../../application-dev/security/UniversalKeystoreKit/huks-concepts.md)，要求：<br>1. wrappedKeyData != null <br>2. wrappedKeyData -> data != null <br>3. wrappedKeyData -> dataLen != 0 |
+|paramSet | 待导入密钥的密钥属性。|
+|encKeyOut | 导入密钥的密文材料，参考KeyBlob格式。|
 
-<details>
-  <summary><strong>约束与限制</strong></summary>
+**约束与限制**
+  
+- 请在接口内检查上述参数是否符合要求，如是否是空指针、密钥算法是否支持等。
+- encKeyOut请参照KeyBlob的结构。
 
-  1. 请在接口内检查上述参数是否符合要求，如是否是空指针、密钥算法是否支持等。
+**返回值**
 
-  2. encKeyOut请参照KeyBlob的结构。
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
-</details>
-<br></br>
-
-<details>
-  <summary><strong>返回值</strong></summary>
-
-  - HKS_SUCCESS：成功
-
-  - 其他：失败
-</details>
-
-- - -
 
 #### ExportPublicKey
+
+**接口原型**
+```
+int32_t ExportPublicKey(struct IHuks *self, const struct HuksBlob *encKey, const struct HuksParamSet *paramSet, struct HuksBlob *keyOut);
+```
 
 **接口描述**
 
 导出密钥对的公钥。
 
-**接口原型**
-<pre><code>int32_t ExportPublicKey(struct IHuks *self, const struct HuksBlob *encKey,
-    const struct HuksParamSet *paramSet, struct HuksBlob *keyOut);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  <br></br>
-  <strong>const struct HuksBlob *encKey</strong>
-  与要导出的公钥的密钥对材料，要求：
-  1. encKey != null
-  2. encKey -> data != null
-  3. encKey -> dataLen != 0
-  <br></br>
-  <strong>const struct HuksParamSet *paramSet</strong>
-  导出公钥的所需要的参数，默认为空
-  <br></br>
-  <strong>struct HuksBlob *keyOut</strong>
-  出参，存放导出的公钥
-  </pre>
-</details>
-<br></br>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针。 |
+|encKey| 与要导出的公钥的密钥对材料，要求：<br>1. encKey != null <br>2. encKey -> data != null<br>3. encKey -> dataLen != 0 |
+|paramSet | 导出公钥的所需要的参数，默认为空。 |
+|keyOut | 出参，存放导出的公钥。|
 
-<details>
-  <summary><strong>返回值</strong></summary>
+**返回值**
 
-  - HKS_SUCCESS：成功
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
-  - 其他：失败
-</details>
-
-- - -
 
 #### Init
 
+**接口原型**
+```
+int32_t Init(struct IHuks *self, const struct HuksBlob *encKey, const struct HuksParamSet *paramSet, struct HuksBlob *handle, struct HuksBlob *token);
+```
+
 **接口描述**
 
-初始化密钥会话的接口，传入密钥材料密文，在HUKS Core进行解密，并生成密钥会话句柄和令牌（按需）
+初始化密钥会话的接口，传入密钥材料密文，在HUKS Core进行解密，并生成密钥会话句柄和令牌（按需）。
 
-**接口原型**
-<pre><code>int32_t Init(struct IHuks *self, const struct HuksBlob *encKey, const struct HuksParamSet *paramSet,
-    struct HuksBlob *handle, struct HuksBlob *token);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  <br></br>
-  <strong>const struct HuksBlob *encKey</strong>
-  待操作密钥的密文材料，要求：
-  1. encKey != null
-  2. encKey -> data != null
-  3. encKey -> dataLen != 0
-  <br></br>
-  <strong>const struct HuksParamSet *paramSet</strong>
-  初始化密钥会话的参数
-  <br></br>
-  <strong>struct HuksBlob *handle</strong>
-  出参，密钥会话的句柄，作为Update、Finish和Abort的入参，用于索引密钥会话
-  <br></br>
-  <strong>struct HuksBlob *token</strong>
-  出参，存放密钥访问控制的认证令牌（按需）
-  </pre>
-</details>
-<br></br>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针。 |
+|encKey| 待操作密钥的密文材料，要求：<br>1. encKey != null <br>2. encKey -> data != null<br>3. encKey -> dataLen != 0 |
+|paramSet | 初始化密钥会话的参数。 |
+|handle | 出参，密钥会话的句柄，作为Update、Finish和Abort的入参，用于索引密钥会话。|
+|token | 出参，存放密钥访问控制的认证令牌（按需）。|
 
-<details>
-  <summary><strong>约束与限制</strong></summary>
+**约束与限制**
 
-  1. 密钥会话操作函数，业务配合Update、Finish、Abort使用
+密钥会话操作函数，业务配合Update、Finish、Abort使用。
 
-</details>
-<br></br>
+**返回值**
 
-<details>
-  <summary><strong>返回值</strong></summary>
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
-  - HKS_SUCCESS：成功
-
-  - 其他：失败
-</details>
-
-- - -
 
 #### Update
+
+**接口原型**
+```
+int32_t Update(struct IHuks *self, const struct HuksBlob *handle, const struct HuksParamSet *paramSet, const struct HuksBlob *inData, struct HuksBlob *outData);
+```
 
 **接口描述**
 
 追加密钥操作数据，如密码算法的要求需要对数据进行分段操作。
 
-**接口原型**
-<pre><code>int32_t Update(struct IHuks *self, const struct HuksBlob *handle, const struct HuksParamSet *paramSet,
-    const struct HuksBlob *inData, struct HuksBlob *outData);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  <br></br>
-  <strong>const struct HuksBlob *handle</strong>
-  密钥会话的句柄
-  <br></br>
-  <strong> const struct HuksParamSet *paramSet</strong>
-  追加操作的参数
-  <br></br>
-  <strong> const struct HuksBlob *inData</strong>
-  追加操作的输入
-  <br></br>
-  <strong> struct HuksBlob *outData</strong>
-  追加操作的结果
-  </pre>
-</details>
-<br></br>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针。 |
+|handle | 密钥会话的句柄。|
+|paramSet | 追加操作的参数。|
+|inData | 追加操作的输入。|
+|outData | 追加操作的结果。|
 
-<details>
-  <summary><strong>约束与限制</strong></summary>
+**约束与限制**
 
-  1. 密钥会话操作函数，业务配合Init、Finish、Abort使用。
+- 密钥会话操作函数，业务配合Init、Finish、Abort使用。
+- 在进行签名验签时inData要传入原文数据。
 
-  2. 在进行签名验签时inData要传入原文数据。
+**返回值**
 
-</details>
-<br></br>
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
-<details>
-  <summary><strong>返回值</strong></summary>
-
-  - HKS_SUCCESS：成功
-
-  - 其他：失败
-</details>
-
-- - -
 
 #### Finish
+
+**接口原型**
+```
+int32_t Finish(struct IHuks *self, const struct HuksBlob *handle, const struct HuksParamSet *paramSet, const struct HuksBlob *inData, struct HuksBlob *outData);
+```
 
 **接口描述**
 
 结束密钥会话，操作最后一段数据并结束密钥会话。
 
-**接口原型**
-<pre><code>int32_t Finish(struct IHuks *self, const struct HuksBlob *handle, const struct HuksParamSet *paramSet,
-    const struct HuksBlob *inData, struct HuksBlob *outData);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  <br></br>
-  <strong>const struct HuksBlob *handle</strong>
-  密钥会话的句柄
-  <br></br>
-  <strong>const struct HuksParamSet *paramSet</strong>
-  最后一段操作的参数
-  <br></br>
-  <strong>const struct HuksBlob *inData</strong>
-  最后一段操作的输入
-  <br></br>
-  <strong>struct HuksBlob *outData</strong>
-  密钥操作的结果
-  </pre>
-</details>
-<br></br>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针。 |
+|handle | 密钥会话的句柄。|
+|paramSet | 最后一段操作的参数。|
+|inData | 最后一段操作的输入。|
+|outData | 密钥操作的结果。|
 
-<details>
-  <summary><strong>约束与限制</strong></summary>
+**约束与限制**
 
-  1. 密钥会话操作函数，业务配合Init、Update、Abort使用。
+- 密钥会话操作函数，业务配合Init、Update、Abort使用。
+- 在进行验签时inData要传入需要验证的签名数据，通过返回结果表示验签是否成功。
 
-  2. 在进行验签时inData要传入需要验证的签名数据，通过返回结果表示验签是否成功。
+**返回值**
 
-</details>
-<br></br>
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
-<details>
-  <summary><strong>返回值</strong></summary>
-
-  - HKS_SUCCESS：成功
-
-  - 其他：失败
-</details>
-
-- - -
 
 #### Abort
+
+**接口原型**
+```
+int32_t Abort(struct IHuks *self, const struct HuksBlob *handle, const struct HuksParamSet *paramSet);
+```
 
 **接口描述**
 
 取消密钥会话。当Init，Update和Finish操作中的任一阶段发生错误时，都要调用abort来终止密钥会话。
 
-**接口原型**
-<pre><code>int32_t Abort(struct IHuks *self, const struct HuksBlob *handle, const struct HuksParamSet *paramSet);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  <br></br>
-  <strong>const struct HuksBlob *handle</strong>
-  密钥会话的句柄
-  <br></br>
-  <strong>const struct HuksParamSet *paramSet</strong>
-  Abort操作的参数
-  </pre>
-</details>
-<br></br>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针。 |
+|handle | 密钥会话的句柄。|
+|paramSet | Abort操作的参数。|
 
-<details>
-  <summary><strong>约束与限制</strong></summary>
+**约束与限制**
 
-  1. 密钥会话操作函数，业务配合Init、Update、Finish使用。
+密钥会话操作函数，业务配合Init、Update、Finish使用。
 
-</details>
-<br></br>
+**返回值**
 
-<details>
-  <summary><strong>返回值</strong></summary>
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
-  - HKS_SUCCESS：成功
-
-  - 其他：失败
-</details>
-
-- - -
 
 #### CheckKeyValidity
+
+**接口原型**
+```
+int32_t CheckKeyValidity(struct IHuks *self, const struct HuksParamSet *paramSet, const struct HuksBlob *encKey);
+```
 
 **接口描述**
 
 获取密钥属性。
 
-**接口原型**
-<pre><code>int32_t CheckKeyValidity(struct IHuks *self, const struct HuksParamSet *paramSet,
-    const struct HuksBlob *encKey);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  <br></br>
-  <strong>const struct HuksParamSet *paramSet</strong>
-  用于校验密钥完整性接口的参数，默认传空
-  <br></br>
-  <strong>const struct HuksBlob *encKey</strong>
-  待校验密钥完整性的密钥材料（密文）
-  </pre>
-</details>
-<br></br>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针。 |
+|paramSet | 用于校验密钥完整性接口的参数，默认传空。|
+|encKey | 待校验密钥完整性的密钥材料（密文）。|
 
-<details>
-  <summary><strong>返回值</strong></summary>
+**返回值**
 
-  - HKS_SUCCESS：成功
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
-  - 其他：失败
-</details>
 
-- - -
 
 #### AttestKey
+
+**接口原型**
+```
+int32_t AttestKey(struct IHuks *self, const struct HuksBlob *encKey, const struct HuksParamSet *paramSet, struct HuksBlob *certChain);
+```
 
 **接口描述**
 
 获取密钥证书。
 
-**接口原型**
-<pre><code>int32_t AttestKey(struct IHuks *self, const struct HuksBlob *encKey, const struct HuksParamSet *paramSet,
-    struct HuksBlob *certChain);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  <br></br>
-  <strong>const struct HuksBlob *encKey</strong>
-  要获取证书的密钥对材料密文
-  <br></br>
-  <strong>const struct HuksParamSet *paramSet</strong>
-  获取密钥证书操作的参数，如challenge等
-  <br></br>
-  <strong>struct HuksBlob *certChain</strong>
-  出参，存放证书链，格式参考上述证书链格式
-  </pre>
-</details>
-<br></br>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针。 |
+|encKey| 要获取证书的密钥对材料密文。|
+|paramSet |获取密钥证书操作的参数，如challenge等。|
+|certChain |出参，存放证书链，格式参考上述证书链格式。|
 
-<details>
-  <summary><strong>约束与限制</strong></summary>
+**约束与限制**
 
-  1. certChain的格式需遵循[约束与限制第二点](#约束与限制)。
+certChain的格式需遵循[约束与限制第二点](#约束与限制)。
 
-</details>
-<br></br>
 
-<details>
-  <summary><strong>返回值</strong></summary>
+**返回值**
 
-  - HKS_SUCCESS：成功
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
-  - 其他：失败
-</details>
-
-- - -
 
 #### ExportChipsetPlatformPublicKey
+
+**接口原型**
+```
+int32_t ExportChipsetPlatformPublicKey(struct IHuks *self, const struct HuksBlob *salt, enum HuksChipsetPlatformDecryptScene scene, struct HuksBlob *publicKey);
+```
 
 **接口描述**
 
 导出芯片平台级密钥对的公钥。
 
-**接口原型**
-<pre><code>int32_t ExportChipsetPlatformPublicKey(struct IHuks *self, const struct HuksBlob *salt,
-    enum HuksChipsetPlatformDecryptScene scene, struct HuksBlob *publicKey);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  <br></br>
-  <strong>const struct HuksBlob *salt</strong>
-  用来派生芯片平台密钥对时的派生因子
-  <br></br>
-  <strong>enum HuksChipsetPlatformDecryptScene scene</strong>
-  业务预期进行芯片平台解密的场景
-  <br></br>
-  <strong>struct HuksBlob *publicKey</strong>
-  出参为ECC P256的x y轴值裸数据，各32字节
-  </pre>
-</details>
-<br></br>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针。 |
+|salt| 用来派生芯片平台密钥对时的派生因子。|
+|scene |业务预期进行芯片平台解密的场景。|
+|publicKey |出参为ECC P256的x y轴值裸数据，各32字节。|
 
-<details>
-  <summary><strong>约束与限制</strong></summary>
 
-  1. 入参`salt`长度必须为16字节，且最后一个字节的内容会被忽略，将由huks内部根据入参`scene`进行修改填充。<br>
-  当前huks的芯片平台级密钥对为软实现，硬编码了一对ECC-P256密钥对到代码中，`salt`值被忽略，即无论传入什么`salt`，派生出的密钥都是一样的。在真正基于硬件的芯片平台级密钥实现中，`salt`为用来派生密钥的派生因子，传入不同的`salt`会得到不同的密钥对。
+**约束与限制**
 
-</details>
-<br></br>
+入参`salt`长度必须为16字节，且最后一个字节的内容会被忽略，将由huks内部根据入参`scene`进行修改填充。
 
-<details>
-  <summary><strong>返回值</strong></summary>
+当前huks的芯片平台级密钥对为软实现，硬编码了一对ECC-P256密钥对到代码中，`salt`值被忽略，即无论传入什么`salt`，派生出的密钥都是一样的。在真正基于硬件的芯片平台级密钥实现中，`salt`为用来派生密钥的派生因子，传入不同的`salt`会得到不同的密钥对。
 
-  - HKS_SUCCESS：成功
+**返回值**
 
-  - 其他：失败
-</details>
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
-- - -
 
 #### UpgradeKey
+
+**接口原型**
+```
+int32_t UpgradeKey(struct IHuks *self, const struct HuksBlob *encOldKey, const struct HuksParamSet *paramSet, struct HuksBlob *encNewKey);
+```
 
 **接口描述**
 
 升级密钥文件。当密钥文件版本号小于最新版本号时，触发该升级能力。
 
-**接口原型**
-<pre><code>int32_t UpgradeKey(struct IHuks *self, const struct HuksBlob *encOldKey, const struct HuksParamSet *paramSet,
-    struct HuksBlob *encNewKey);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  <br></br>
-  <strong>const struct HuksBlob *encOldKey</strong>
-  待升级的密钥文件数据
-  <br></br>
-  <strong>const struct HuksParamSet *paramSet</strong>
-  升级密钥文件数据的参数
-  <br></br>
-  <strong>struct HuksBlob *newKey</strong>
-  出参，升级后的密钥文件数据
-  </pre>
-</details>
-<br></br>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针。 |
+|encOldKey| 待升级的密钥文件数据。|
+|paramSet |升级密钥文件数据的参数。|
+|encNewKey |出参，升级后的密钥文件数据。|
 
-<details>
-  <summary><strong>返回值</strong></summary>
+**返回值**
 
-  - HKS_SUCCESS：成功
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
-  - 其他：失败
-</details>
 
-- - -
 
 #### GenerateRandom
 
+**接口原型**
+```
+int32_t GenerateRandom(struct IHuks *self, const struct HuksParamSet *paramSet, struct HuksBlob *random);
+```
+
 **接口描述**
 
-生成安全随机数
+生成安全随机数。
 
-**接口原型**
-<pre><code>int32_t GenerateRandom(struct IHuks *self, const struct HuksParamSet *paramSet, struct HuksBlob *random);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  <br></br>
-  <strong>const struct HuksParamSet *paramSet</strong>
-  待生成安全随机数的参数，如长度
-  <br></br>
-  <strong>struct HuksBlob *random</strong>
-  出参，随机数
-  </pre>
-</details>
-<br></br>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针。 |
+|paramSet |待生成安全随机数的参数，如长度。|
+|random|出参，随机数。|
 
-<details>
-  <summary><strong>返回值</strong></summary>
+**返回值**
 
-  - HKS_SUCCESS：成功
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
-  - 其他：失败
-</details>
-
-- - -
 
 #### Sign
+
+**接口原型**
+```
+int32_t Sign(struct IHuks *self, const struct HuksBlob *encKey, const struct HuksParamSet *paramSet, const struct HuksBlob *srcData, struct HuksBlob *signature);
+```
 
 **接口描述**
 
 对数据进行签名
 
-**接口原型**
-<pre><code>int32_t Sign(struct IHuks *self, const struct HuksBlob *encKey, const struct HuksParamSet *paramSet,
-    const struct HuksBlob *srcData, struct HuksBlob *signature);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  <br></br>
-  <strong>const struct HuksBlob *encKey</strong>
-  用于签名的密钥对材料（密文）
-  <br></br>
-  <strong>const struct HuksParamSet *paramSet</strong>
-  用于签名的参数，如摘要模式
-  <br></br>
-  <strong>const struct HuksBlob *srcData</strong>
-  用于签名的数据
-  <br></br>
-  <strong>struct HuksBlob *signature</strong>
-  出参，数据签名
-  </pre>
-</details>
-<br></br>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针。 |
+|encKey |用于签名的密钥对材料（密文）。|
+|paramSet |用于签名的参数，如摘要模式。|
+|srcData | 用于签名的数据。|
+|signature |出参，数据签名。|
 
-<details>
-  <summary><strong>返回值</strong></summary>
+**返回值**
 
-  - HKS_SUCCESS：成功
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
-  - 其他：失败
-</details>
-
-- - -
 
 #### Verify
+
+**接口原型**
+```
+int32_t Verify(struct IHuks *self, const struct HuksBlob *encKey, const struct HuksParamSet *paramSet, const struct HuksBlob *srcData, const struct HuksBlob *signature);
+```
 
 **接口描述**
 
 对数据签名进行验签
 
-**接口原型**
-<pre><code>int32_t Verify(struct IHuks *self, const struct HuksBlob *encKey, const struct HuksParamSet *paramSet,
-    const struct HuksBlob *srcData, const struct HuksBlob *signature);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  <br></br>
-  <strong>const struct HuksBlob *encKey</strong>
-  用于验签的密钥对材料（密文）
-  <br></br>
-  <strong>const struct HuksParamSet *paramSet</strong>
-  用于验签的参数，如摘要模式
-  <br></br>
-  <strong>const struct HuksBlob *srcData</strong>
-  待验签的数据
-  <br></br>
-  <strong>const struct HuksBlob *signature</strong>
-  用于验签的签名
-  </pre>
-</details>
-<br></br>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针。 |
+|encKey |用于验签的密钥对材料（密文）。|
+|paramSet |用于验签的参数，如摘要模式。|
+|srcData | 待验签的数据。|
+|signature | 用于验签的签名。|
 
-<details>
-  <summary><strong>返回值</strong></summary>
+**返回值**
 
-  - HKS_SUCCESS：成功
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
-  - 其他：失败
-</details>
-
-- - -
 
 #### Encrypt
+
+**接口原型**
+```
+int32_t Encrypt(struct IHuks *self, const struct HuksBlob *encKey, const struct HuksParamSet *paramSet, const struct HuksBlob *plainText, struct HuksBlob *cipherText);
+```
 
 **接口描述**
 
 对数据进行单次加密，相比密钥会话接口，该接口需满足一次调用即可完成加密操作
 
-**接口原型**
-<pre><code>int32_t Encrypt(struct IHuks *self, const struct HuksBlob *encKey, const struct HuksParamSet *paramSet,
-     const struct HuksBlob *plainText, struct HuksBlob *cipherText);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  <br></br>
-  <strong>const struct HuksBlob *encKey</strong>
-  用于加密的密钥材料（密文）
-  <br></br>
-  <strong>const struct HuksParamSet *paramSet</strong>
-  用于加密的密钥参数，如密钥工作模式、填充模式等
-  <br></br>
-  <strong>const struct HuksBlob *plainText</strong>
-  待加密的数据明文
-  <br></br>
-  <strong>const struct HuksBlob *cipherText</strong>
-  加密后的数据密文
-  </pre>
-</details>
-<br></br>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针。 |
+|encKey |用于加密的密钥材料（密文）。|
+|paramSet |用于加密的密钥参数，如密钥工作模式、填充模式等。|
+|plainText| 待加密的数据明文。|
+|cipherText| 加密后的数据密文。|
 
-<details>
-  <summary><strong>返回值</strong></summary>
+**返回值**
 
-  - HKS_SUCCESS：成功
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
-  - 其他：失败
-</details>
-
-- - -
 
 #### Decrypt
+
+**接口原型**
+```
+int32_t Decrypt(struct IHuks *self, const struct HuksBlob *encKey, const struct HuksParamSet *paramSet, const struct HuksBlob *cipherText, struct HuksBlob *plainText);
+```
 
 **接口描述**
 
 对数据进行单次解密，相比密钥会话接口，该接口需要满足一次调用完成解密操作
 
-**接口原型**
-<pre><code>int32_t Decrypt(struct IHuks *self, const struct HuksBlob *encKey, const struct HuksParamSet *paramSet,
-    const struct HuksBlob *cipherText, struct HuksBlob *plainText);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  <br></br>
-  <strong>const struct HuksBlob *encKey</strong>
-  用于解密的密钥材料（密文）
-  <br></br>
-  <strong>const struct HuksParamSet *paramSet</strong>
-  用于解密的密钥参数，如密钥工作模式、填充模式等
-  <br></br>
-  <strong>const struct HuksBlob *cipherText</strong>
-  待解密的数据密文
-  <br></br>
-  <strong>const struct HuksBlob *plainText</strong>
-  解密后的数据明文
-  </pre>
-</details>
-<br></br>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针。 |
+|encKey | 用于解密的密钥材料（密文）。|
+|paramSet |用于解密的密钥参数，如密钥工作模式、填充模式等。|
+|cipherText| 待解密的数据密文。|
+|plainText| 解密后的数据明文。|
 
-<details>
-  <summary><strong>返回值</strong></summary>
+**返回值**
 
-  - HKS_SUCCESS：成功
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
-  - 其他：失败
-</details>
-
-- - -
 
 #### AgreeKey
+
+**接口原型**
+```
+int32_t AgreeKey(struct IHuks *self, const struct HuksParamSet *paramSet, const struct HuksBlob *encPrivateKey, const struct HuksBlob *peerPublicKey, struct HuksBlob *agreedKey);
+```
 
 **接口描述**
 
 对密钥进行协商，相比密钥会话接口，该接口需要满足一次调用完成密钥协商操作
 
-**接口原型**
-<pre><code>int32_t AgreeKey(struct IHuks *self, const struct HuksParamSet *paramSet,
-    const struct HuksBlob *encPrivateKey, const struct HuksBlob *peerPublicKey, struct HuksBlob *agreedKey);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  <br></br>
-  <strong>const struct HuksParamSet *paramSet</strong>
-  用于协商的参数，如协商密钥的长度
-  <br></br>
-  <strong>const struct HuksBlob *encPrivateKey</strong>
-  用于协商的密钥对材料（密文）
-  <br></br>
-  <strong>const struct HuksBlob *peerPublicKey</strong>
-  用于协商密钥对公钥（明文）
-  <br></br>
-  <strong>struct HuksBlob *agreedKey</strong>
-  出参，协商出的密钥明文
-  </pre>
-</details>
-<br></br>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针。 |
+|paramSet |用于协商的参数，如协商密钥的长度。|
+|encPrivateKey|  用于协商的密钥对材料（密文）。|
+|peerPublicKey| 用于协商密钥对公钥（明文）。|
+|agreedKey |出参，协商出的密钥明文。|
 
-<details>
-  <summary><strong>返回值</strong></summary>
+**返回值**
 
-  - HKS_SUCCESS：成功
-
-  - 其他：失败
-</details>
-
-- - -
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
 #### DeriveKey
+
+**接口原型**
+```
+int32_t DeriveKey(struct IHuks *self, const struct HuksParamSet *paramSet, const struct HuksBlob *encKdfKey, struct HuksBlob *derivedKey);
+```
 
 **接口描述**
 
 对密钥进行派生，相比密钥会话接口，该接口需要满足一次调用完成密钥派生操作
 
-**接口原型**
-<pre><code>int32_t DeriveKey(struct IHuks *self, const struct HuksParamSet *paramSet, const struct HuksBlob *encKdfKey,
-     struct HuksBlob *derivedKey);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  <br></br>
-  <strong>const struct HuksParamSet *paramSet</strong>
-  用于密钥派生的参数，如派生密钥的长度
-  <br></br>
-  <strong>const struct HuksBlob *encKdfKey</strong>
-  用于派生的密钥材料（密文）
-  <br></br>
-  <strong>struct HuksBlob *derivedKey</strong>
-  出参，派生出的密钥（明文）
-  </pre>
-</details>
-<br></br>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针。 |
+|paramSet |用于密钥派生的参数，如派生密钥的长度。|
+|encKdfKey| 用于派生的密钥材料（密文）。|
+|derivedKey| 出参，派生出的密钥（明文）。|
 
-<details>
-  <summary><strong>返回值</strong></summary>
 
-  - HKS_SUCCESS：成功
+**返回值**
 
-  - 其他：失败
-</details>
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
-- - -
 
 #### Mac
 
+**接口原型**
+```
+int32_t Mac(struct IHuks *self, const struct HuksBlob *encKey, const struct HuksParamSet *paramSet, const struct HuksBlob *srcData, struct HuksBlob *mac);
+```
+
 **接口描述**
 
-根据密钥生成消息认证码
+根据密钥生成消息认证码。
 
-**接口原型**
-<pre><code>int32_t Mac(struct IHuks *self, const struct HuksBlob *encKey, const struct HuksParamSet *paramSet,
-     const struct HuksBlob *srcData, struct HuksBlob *mac);</code></pre>
+**参数说明**
 
-<details>
-  <summary><strong>参数说明</strong></summary>
-  <pre>
-  <strong>struct IHuks *self</strong>
-  HUKS HDI函数指针结构体指针
-  <br></br>
-  <strong>const struct HuksBlob *encKey</strong>
-  用于生成消息认证码的密钥材料（密文）
-  <br></br>
-  <strong>const struct HuksParamSet *paramSet</strong>
-  用于生成消息认证码的参数
-  <br></br>
-  <strong>const struct HuksBlob *srcData</strong>
-  消息数据
-  <br></br>
-  <strong>struct HuksBlob *mac</strong>
-  出参，消息认证码
-  </pre>
-</details>
-<br></br>
+| 名称 | 描述 |
+| ------ | ---- | 
+|self| HUKS HDI函数指针结构体指针。 |
+|encKey| 用于生成消息认证码的密钥材料（密文）。|
+|paramSet | 用于生成消息认证码的参数。|
+|srcData | 消息数据。|
+|mac| 出参，消息认证码。|
 
-<details>
-  <summary><strong>返回值</strong></summary>
 
-  - HKS_SUCCESS：成功
+**返回值**
 
-  - 其他：失败
-</details>
+- HKS_SUCCESS：表示成功，值为0。
+- 其他：表示失败，值为负数，具体参考[HksErrorCode枚举值定义](https://gitee.com/openharmony/security_huks/blob/master/interfaces/inner_api/huks_standard/main/include/hks_type_enum.h)。
 
-- - -
+
 ### 开发步骤
 
 #### 代码目录
 
 1. HDI接口的适配在以下目录中：
 
-```undefined
-//drivers_peripheral/huks
-├── BUILD.gn # 编译脚本
-├── hdi_service # 实现依赖，通过dloppen方式引用libhuks_engine_core_standard.z.so(软实现的HUKS Core，仅用于参考)
-    ├── huks_sa_type.h # HUKS服务层的数据结构定义
-    ├── huks_sa_hdi_struct.h # libhuks_engine_core_standard.z.so中函数指针结构体的定义
-    ├── huks_hdi_template.h # HUKS服务层和HDI接口数据结构的转化适配
-    ├── huks_hdi_service.c # HUKS直通式HDI服务层的接口实现
-    └── huks_hdi_passthrough_adapter.c # HUKS直通式HDI服务层到软实现HUKS Core的适配层
-└── test # HUKS HDI接口unittest和fuzztest
+    ```undefined
+    //drivers_peripheral/huks
     ├── BUILD.gn # 编译脚本
-    ├── fuzztest # fuzz测试
-    └── unittest # 单元测试
-```
+    ├── hdi_service # 实现依赖，通过dlopen方式引用libhuks_engine_core_standard.z.so(软实现的HUKS Core，仅用于参考)
+        ├── huks_sa_type.h # HUKS服务层的数据结构定义
+        ├── huks_sa_hdi_struct.h # libhuks_engine_core_standard.z.so中函数指针结构体的定义
+        ├── huks_hdi_template.h # HUKS服务层和HDI接口数据结构的转化适配
+        ├── huks_hdi_service.c # HUKS直通式HDI服务层的接口实现
+        └── huks_hdi_passthrough_adapter.c # HUKS直通式HDI服务层到软实现HUKS Core的适配层
+    └── test # HUKS HDI接口unittest和fuzztest
+        ├── BUILD.gn # 编译脚本
+        ├── fuzztest # fuzz测试
+        └── unittest # 单元测试
+    ```
 
 2. HUKS Core软实现的代码在以下目录中：
 
-```undefined
-//base/security/huks/services/huks_standard/huks_engine
-├── BUILD.gn # 编译脚本
-├── core_dependency # HUKS Core依赖
-└── core # HUKS Core层的软实现
+    ```undefined
+    //base/security/huks/services/huks_standard/huks_engine
     ├── BUILD.gn # 编译脚本
-    ├── include 
-    └── src
-        ├── hks_core_interfaces.c # HDI到HUKS Core的适配层
-        └── hks_core_service.c # HUKS Core详细实现
-        └── ... #其他功能代码
-```
-**注意事项!!!**
+    ├── core_dependency # HUKS Core依赖
+    └── core # HUKS Core层的软实现
+        ├── BUILD.gn # 编译脚本
+        ├── include 
+        └── src
+            ├── hks_core_interfaces.c # HDI到HUKS Core的适配层
+            └── hks_core_service.c # HUKS Core详细实现
+            └── ... #其他功能代码
+    ```
 
-  <summary><strong>HUKS Core软实现中存在硬编码相关敏感数据，包括根密钥、访问控制用的AuthToken密钥、加密AuthToken用的密钥、证书相关等，如设备开发者使用了相关代码，一定要替换成自有实现</strong></summary>
+   > ![icon-caution.gif](public_sys-resources/icon-caution.gif) **注意：**
+   >
+   > HUKS Core软实现中存在硬编码相关敏感数据，包括根密钥、访问控制用的AuthToken密钥、加密AuthToken用的密钥、证书相关等，如设备开发者使用了相关代码，一定要替换成自有实现。
 
-  - **根密钥**
 
-    用于加密HUKS业务密钥，一般由设备根密钥派生而来，HUKS Core软实现中硬编码在代码中，详细代码见<a href="https://gitee.com/openharmony/security_huks/blob/master/frameworks/huks_standard/main/crypto_engine/openssl/src/hks_openssl_get_main_key.c">hks_openssl_get_main_key.c</a>
+   - **根密钥**
 
- - **访问控制用于对AuthToken做HMAC的密钥**
+     用于加密HUKS业务密钥，一般由设备根密钥派生而来，HUKS Core软实现中硬编码在代码中，详细代码见[hks_core_get_main_key.c](https://gitee.com/openharmony/security_huks/blob/master/frameworks/huks_standard/main/crypto_engine/crypto_common/src/hks_core_get_main_key.c)。
 
-   用于UserIAM对AuthToken进行HMAC，HUKS Core软实现中硬编码在代码中，值为"huks_default_user_auth_token_key"，详细代码见<a href="https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c">hks_keyblob.c</a>
+   - **访问控制用于对AuthToken做HMAC的密钥**   
 
- - **访问控制用于对AuthToken敏感字段加密的密钥**
+     用于UserIAM对AuthToken进行HMAC，HUKS Core软实现中硬编码在代码中，值为"huks_default_user_auth_token_key"，详细代码见[hks_keyblob.c](https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c)。
 
-   用于UserIAM对AuthToken敏感字段进行加密的密钥，HUKS Core软实现中硬编码在代码中，值为"huks_default_user_auth_token_key"，详细代码见<a href="https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c">hks_keyblob.c</a>
+   - **访问控制用于对AuthToken敏感字段加密的密钥**
 
-  - **根证书、设备CA、设备证书**
+     用于UserIAM对AuthToken敏感字段进行加密的密钥，HUKS Core软实现中硬编码在代码中，值为"huks_default_user_auth_token_key"，详细代码见[hks_keyblob.c](https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c)。
 
-    用于密钥证明，一般由设备证书管理模块预置在硬件设备安全存储当中，HUKS Core软实现中硬编码在代码中，详细代码见<a href="https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/device_cert_manager/include/dcm_certs_and_key.h">dcm_certs_and_key.h</a>
+   - **根证书、设备CA、设备证书**
+
+     用于密钥证明，一般由设备证书管理模块预置在硬件设备安全存储当中，HUKS Core软实现中硬编码在代码中，详细代码见[dcm_certs_and_key.h](https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/device_cert_manager/include/dcm_certs_and_key.h)。
 
 #### 适配样例
 
@@ -1330,11 +1008,11 @@ HUKS Core的销毁，一般用于释放全局变量，包括锁，销毁内存�
 
 ### 调测验证
 
-开发完成后，通过[HUKS JS接口](https://gitee.com/openharmony/security_huks/blob/master/interfaces/kits/js/@ohos.security.huks.d.ts)开发JS应用来验证能力是否完备。
+开发完成后，通过[HUKS JS接口](hhttps://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.security.huks.d.ts)开发JS应用来验证能力是否完备。
 
 对于每个HDI接口，[接口说明](#接口说明)都提供了对应的JS接口。可以通过调用JS接口组合来验证对应的HDI接口的能力，也可以通过完整的密钥操作来验证接口的能力。
 
-JS测试代码示例如下（仅供参考），如果整个流程能够正常运行，代表HDI接口能力正常。更多的密钥操作类型和完整样例请见[huks-guidelines.md](../../application-dev/security/huks-guidelines.md)。
+JS测试代码示例如下（仅供参考），如果整个流程能够正常运行，代表HDI接口能力正常。更多的密钥操作类型和完整样例请见[密钥管理服务](../../application-dev/security/UniversalKeystoreKit/huks-overview.md)。
 
 **AES生成密钥和加密**
 
@@ -1387,9 +1065,9 @@ JS测试代码示例如下（仅供参考），如果整个流程能够正常运
         properties: genProperties
       }
       await huks.generateKeyItem(aesKeyAlias, options).then((data) => {
-        console.log("generateKeyItem success");
+        console.info("generateKeyItem success");
       }).catch((error: BusinessError) => {
-        console.log("generateKeyItem failed");
+        console.error("generateKeyItem failed");
       })
     }
    ```
@@ -1446,12 +1124,12 @@ JS测试代码示例如下（仅供参考），如果整个流程能够正常运
       await huks.initSession(aesKeyAlias, options).then((data) => {
         handle = data.handle;
       }).catch((error: BusinessError) => {
-        console.log("initSession failed");
+        console.error("initSession failed");
       })
       await huks.finishSession(handle, options).then((data) => {
-        console.log("finishSession success");
+        console.info("finishSession success");
       }).catch((error: BusinessError) => {
-        console.log("finishSession failed");
+        console.error("finishSession failed");
       })
     }
 

@@ -201,12 +201,12 @@ The table below provides only the sites for downloading the latest OpenHarmony L
 | Hi3516 solution-Linux (binary)| 3.0 | [Download](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus_linux.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus_linux.tar.gz.sha256) | 418.1 MB |
 | RELEASE-NOTES | 3.0 | [Download](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.0-LTS/en/release-notes/OpenHarmony-v3.0-LTS.md)| - | - |
 | **Source Code of the Latest Release**| **Version**| **Site**| **SHA-256 Checksum**| **Software Package Size**|
-| Full code base (for mini, small, and standard systems)       | 4.1 Beta1    | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/code-v4.1-Beta1.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/code-v4.1-Beta1.tar.gz.sha256)| 31.0 GB |
-| Hi3861 solution (binary)       | 4.1 Beta1    | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/hispark_pegasus.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/hispark_pegasus.tar.gz.sha256)| 28.7 MB |
-| Hi3516 solution-LiteOS (binary)| 4.1 Beta1    | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/hispark_taurus_LiteOS.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/hispark_taurus_LiteOS.tar.gz.sha256)| 316 MB |
-| Hi3516 solution-Linux (binary) | 4.1 Beta1    | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/hispark_taurus_Linux.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/hispark_taurus_Linux.tar.gz.sha256)| 213 MB |
-| RK3568 standard system solution (binary)       | 4.1 Beta1    | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/dayu200_standard_arm32.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/dayu200_standard_arm32.tar.gz.sha256)| 	7.9 GB |
-| RELEASE-NOTES | 4.1 Beta1    | [Download](../../release-notes/OpenHarmony-v4.1-beta1.md)| - | - |
+| Full code base (for mini, small, and standard systems)       | 4.1 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/code-v4.1-Release.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/code-v4.1-Release.tar.gz.sha256)| 31.6 GB |
+| Hi3861 solution (binary)       | 4.1 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_pegasus.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_pegasus.tar.gz.sha256)| 29.2 MB |
+| Hi3516 solution-LiteOS (binary)| 4.1 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_taurus_LiteOS.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_taurus_LiteOS.tar.gz.sha256) | 318.7 MB |
+| Hi3516 solution-Linux (binary) | 4.1 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_taurus_Linux.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/hispark_taurus_Linux.tar.gz.sha256)| 215.8 MB |
+| RK3568 standard system solution (binary)       | 4.1 Release    | [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/dayu200_standard_arm32.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/4.1-Release/dayu200_standard_arm32.tar.gz.sha256)| 8.4 GB |
+| RELEASE-NOTES | 4.1 Release   | [Download](../../release-notes/OpenHarmony-v4.1-release.md)| - | - |
 | **Compiler Toolchain**| **Version**| **Site**| **SHA-256 Checksum**| **Software Package Size**|
 | Compiler toolchain| - | [Download](https://repo.huaweicloud.com/openharmony/os/2.0/tool_chain/)| - | - |
 

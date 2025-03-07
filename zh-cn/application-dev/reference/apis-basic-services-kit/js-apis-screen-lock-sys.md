@@ -68,6 +68,14 @@ isLocked(): boolean
 | ------- | ------------------------------------------------- |
 | boolean | 返回true表示屏幕已锁屏；返回false表示屏幕未锁屏。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
+
 **示例：** 
 
 ```ts
@@ -92,10 +100,12 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[锁屏服务错误码](errorcode-screenlock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[锁屏服务错误码](errorcode-screenlock.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
 | 13200003  | illegal use.         |
 
@@ -135,10 +145,11 @@ unlock(): Promise&lt;boolean&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[锁屏服务错误码](errorcode-screenlock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[锁屏服务错误码](errorcode-screenlock.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
 | 13200003  | illegal use.         |
 
@@ -178,10 +189,13 @@ lock(callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[锁屏服务错误码](errorcode-screenlock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[锁屏服务错误码](errorcode-screenlock.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 201  | permission denied.         |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
@@ -218,10 +232,12 @@ lock(): Promise&lt;boolean&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[锁屏服务错误码](errorcode-screenlock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[锁屏服务错误码](errorcode-screenlock.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201  | permission denied.         |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
@@ -262,10 +278,13 @@ onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 
 **错误码**：
 
-以下错误码的详细介绍请参见[锁屏服务错误码](errorcode-screenlock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[锁屏服务错误码](errorcode-screenlock.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 201  | permission denied.         |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
@@ -303,10 +322,13 @@ sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt
 
 **错误码**：
 
-以下错误码的详细介绍请参见[锁屏服务错误码](errorcode-screenlock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[锁屏服务错误码](errorcode-screenlock.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 201  | permission denied.         |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  |the screenlock management service is abnormal.         |
 
 **示例：** 
@@ -350,10 +372,13 @@ sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[锁屏服务错误码](errorcode-screenlock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[锁屏服务错误码](errorcode-screenlock.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 201  | permission denied.         |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 

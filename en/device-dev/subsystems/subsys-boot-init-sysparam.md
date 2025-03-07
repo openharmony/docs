@@ -1,7 +1,5 @@
 # Parameter Management
-
 ## Overview
-
 ### Function Introduction
 
 The parameter management module, namely, sysparam, provides an easy-to-use key-value pair access interface for system services to configure service functions based on their own system parameters.
@@ -9,17 +7,15 @@ The parameter management module, namely, sysparam, provides an easy-to-use key-v
 ### System Parameter Definition
 
 Each subsystem defines the system parameters of its own modules, including the system parameter name, default value, and access permission information.
-
 #### System Parameter Definition File
 
-The system parameter definition file ends with the **.para** extension. An example of the file format is as follows:
+- The system parameter definition file ends with the **.para** extension. An example of the file format is as follows:
 
-```
-const.product.name=OHOS-PRODUCT
-const.os.version.api=26
-const.telephony.enable=false|true
-```
-
+	```
+	const.product.name=OHOS-PRODUCT
+	const.os.version.api=26
+	const.telephony.enable=false|true
+	```
 #### System Parameter Name (Key)
 
 - Naming format
@@ -50,7 +46,6 @@ const.telephony.enable=false|true
   ```java
   [ const | persist ].$sub_system.$desc
   ```
-
   **$sub_system** is the name of the subsystem or module.
 
   **$desc** indicates the description of a system parameter. The description can contain multiple segments in dotted notation.
@@ -70,7 +65,6 @@ Types of system parameter values
 ### System Parameter Permission Configuration
 
 DAC and MAC are supported.
-
 #### Default Permission
 
 If no DAC or MAC permission has been defined for a system parameter, the default permission is as follows:
@@ -151,15 +145,15 @@ Other processes access system parameters with the default permission as follows:
 
 #### Basic Requirements for System Parameter Permissions
 
-The system parameters mapping to a SELinux tag take up an independent shared memory area. It is recommended that system parameters of the same type share a SELinux tag to reduce the overhead of the system shared memory.
+    The system parameters mapping to a SELinux tag take up an independent shared memory area. It is recommended that system parameters of the same type share a SELinux tag to reduce the overhead of the system shared memory.
 
-Take the sample component as an example. You are advised to add the following types of tags for access control:
+    Take the sample component as an example. You are advised to add the following types of tags for access control:
 
-a) For open read-only system parameters, use **default_param** instead of defining new tags. .
+    a) For open read-only system parameters, use **default_param** instead of defining new tags. .
 
-b) For writable system parameters, add the **{component}_writable_param** tag.
+    b) For writable system parameters, add the **{component}_writable_param** tag.
 
-c) For readable system parameters (privacy data) within a component, add the **[optional]{component}_private_param** tag.
+    c) For readable system parameters (privacy data) within a component, add the **[optional]{component}_private_param** tag.
 
 ### System Parameter Tag Configuration
 
@@ -214,7 +208,6 @@ Default shared memory size of system parameters: 80 KB
   hilog.                   u:object_r:hilog_param:s0  # System parameters with the hilog. prefix are stored in the shared memory corresponding to the hilog_param tag.
   persist.sys.hilog.       u:object_r:hilog_param:s0  # System parameters with the persist.sys.hilog. prefix are also stored in the shared memory corresponding to the hilog_param tag.
   ```
-
 ### Checking Shared Memory Usage of System Parameters
 
     You can run the **param dump [verbose]** command to query the shared memory usage of system parameters.
@@ -240,10 +233,9 @@ Default shared memory size of system parameters: 80 KB
 ### System Parameter Loading
 
 The following table describes the sequence of loading system parameters.
-
 | Category| Directory| Description|
 | -------- | -------- | -------- |
-| Kernel parameters  | /proc/cmdline | Convert some values of kernel parameters into system parameters. Specifically, convert all **ohospara.xxx=valXXX** parameters to **ohos.boot.xxx=valXXX** parameters.|
+| Kernel parameters   | /proc/cmdline | Convert some values of kernel parameters into system parameters. Specifically, convert all **ohospara.xxx=valXXX** parameters to **ohos.boot.xxx=valXXX** parameters.|
 | OS system parameters| /system/etc/param/ohos_const/*.para | Load the definition file containing OS constants preferentially.                   |
 | Vendor parameters| /vendor/etc/param/*.para | Load the system parameters defined by vendors with the secondary priority.                            |
 | System parameters| /system/etc/param/*.para | Load the parameters defined by each subsystem. If a system parameter already exists, ignore it.|
@@ -251,22 +243,20 @@ The following table describes the sequence of loading system parameters.
 
 ### Parameter and Tag Viewing
 
-Currently, parameter and tag statistics are recorded in the database by subsystem and component. You can set up the [OpenHarmony real-time architecture information collection and analysis system](https://gitee.com/handyohos/ohos_archinfo/tree/master) to view the statistics.
+   Currently, parameter and tag statistics are recorded in the database by subsystem and component. You can set up the [OpenHarmony real-time architecture information collection and analysis system](https://gitee.com/handyohos/ohos_archinfo/tree/master) to view the statistics.
 
-For details about how to set up the system, see the [Analyser Module](https://gitee.com/handyohos/ohos_archinfo/blob/master/analyser/README.md) for OpenHarmony real-time architecture information analysis.
+   For details about how to set up the system, see the [Analyser Module](https://gitee.com/handyohos/ohos_archinfo/blob/master/analyser/README.md) for OpenHarmony real-time architecture information analysis.
 
-For details about how to collect database information, see the [Collector Module](https://gitee.com/handyohos/ohos_archinfo/tree/master#/handyohos/ohos_archinfo/blob/master/collector/README.md) for OpenHarmony real-time architecture information collection.
+   For details about how to collect database information, see the [Collector Module](https://gitee.com/handyohos/ohos_archinfo/tree/master#/handyohos/ohos_archinfo/blob/master/collector/README.md) for OpenHarmony real-time architecture information collection.
 
-You can also obtain the database from the daily dayu200-db build.
-
+   You can also obtain the database from the daily dayu200-db build.
 ### Basic System Parameter Operations
 
 Operation primitives for system parameters
 
-![System parameter operation primitives](figures/system-parameter-operation-primitives.png)
+![System parameter operation primitives](figure/system-parameter-operation-primitives.png)
 
 Description of operation primitives
-
 | Function| Description|
 | -------- | -------- |
 | get      | Obtains the value of a system parameter.       |
@@ -302,7 +292,6 @@ You can set specific system parameters as needed to meet your service demand.
     The following table lists the APIs used to obtain system parameter values. The return result is a const string and the free operation is not supported.
 
     **Table 7** Description of syspara APIs
-
     | API| Description|
     | -------- | -------- |
     | int&nbsp;GetParameter(const&nbsp;char\*&nbsp;key,&nbsp;const&nbsp;char\*&nbsp;def,&nbsp;char\*&nbsp;value,&nbsp;unsigned&nbsp;int&nbsp;len) | Obtains system parameters.|
@@ -387,9 +376,7 @@ You can set specific system parameters as needed to meet your service demand.
       outputs = [ "$target_gen_dir/${target_name}_param_cfg_to_code.log" ]
     }
     ```
-
 2. Development example
-
     ```
     // set && get
     char key1[] = "rw.sys.version";
@@ -532,7 +519,6 @@ You can set specific system parameters as needed to meet your service demand.
     WatchParameter failed! the errNum is xx!
 
     SystemWatchParameter is failed! keyPrefix is:xxx, errNum is:xx!
-
 ## FAQs
 
 ### How to Set a System Parameter

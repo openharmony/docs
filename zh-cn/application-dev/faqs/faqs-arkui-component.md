@@ -845,6 +845,6 @@ onCountUpdated(propName: string): void {
 
 **解决措施**
 
-屏幕像素单位px(pixel)，表示屏幕上的实际像素，1px代表手机屏幕上的一个像素点。视窗逻辑像素单位lpx，lpx单位为实际屏幕宽度与逻辑宽度（通过designWidth配置）的比值，标识页面设计基准宽度。以此为基准，根据实际设备宽度来缩放元素大小。距离使用vp(virtual pixel)，字体大小使用fp(font pixel)，虚拟像素单位vp(virtual pixel)，vp具体计算公式为：vp= px/（DPI/160）。  
+屏幕像素单位px(pixel)，表示屏幕上的实际像素，1px代表设备屏幕上的一个像素点。视窗逻辑像素单位lpx，lpx单位为实际屏幕宽度与逻辑宽度（通过designWidth配置）的比值，标识页面设计基准宽度。以此为基准，根据实际设备宽度来缩放元素大小。距离使用vp(virtual pixel)，字体大小使用fp(font pixel)，虚拟像素单位vp(virtual pixel)，vp具体计算公式为：vp= px/（DPI/160）。  
 以屏幕相对像素为单位, 是一台设备针对应用而言所具有的虚拟尺寸（区别于屏幕硬件本身的像素单位）。它提供了一种灵活的方式来适应不同屏幕密度的显示效果,使用虚拟像素，使元素在不同密度的设备上具有一致的视觉体量。字体像素单位fp(font pixel)，字体像素(font pixel)大小默认情况下与vp相同，即默认情况下1fp=1vp。如果用户在设置中选择了更大的字体，字体的实际显示大小就会在vp的基础上乘以scale系数，即1fp=1vp*scale。Percentage - 需要指定以%像素单位，如'10%'。  
 Resource - 资源引用类型，引入系统资源或者应用资源中的尺寸。 

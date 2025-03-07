@@ -1,4 +1,4 @@
-# 随机生成非对称密钥对
+# 随机生成非对称密钥对(ArkTS)
 
 
 以RSA和SM2为例，随机生成非对称密钥对（KeyPair），并获得二进制数据。
@@ -21,7 +21,7 @@
 
 - 以使用Promise方式随机生成RSA密钥对为例：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function generateAsyKey() {
     // 创建一个AsyKeyGenerator实例
@@ -42,7 +42,7 @@
 
 - 同步返回结果（调用方法[generateKeyPairSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypairsync12)）：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function generateAsyKeySync() {
     // 创建一个AsyKeyGenerator实例
@@ -50,7 +50,7 @@
     // 使用密钥生成器随机生成非对称密钥对
     try {
       let keyPair = rsaGenerator.generateKeyPairSync();
-      if (keyPair != null) {
+      if (keyPair !== null) {
         let pubKey = keyPair.pubKey;
         let priKey = keyPair.priKey;
         // 获取非对称密钥对的二进制数据
@@ -82,7 +82,7 @@
 
 - 以使用Promise方式随机生成SM2密钥对为例：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function generateSM2Key() {
     // 创建一个AsyKeyGenerator实例
@@ -103,7 +103,7 @@
 
 - 同步返回结果（调用方法[generateKeyPairSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypairsync12)）：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function generateSM2KeySync() {
     // 创建一个AsyKeyGenerator实例
@@ -111,7 +111,7 @@
     // 使用密钥生成器随机生成非对称密钥对
     try {
       let keyPair = rsaGenerator.generateKeyPairSync();
-      if (keyPair != null) {
+      if (keyPair !== null) {
         let pubKey = keyPair.pubKey;
         let priKey = keyPair.priKey;
         // 获取非对称密钥对的二进制数据

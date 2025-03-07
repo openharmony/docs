@@ -12,7 +12,7 @@
 
 1. 导入模块。
    ```ts
-   import I18n from '@ohos.i18n';
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. 创建PhoneNumberFormat对象。
@@ -20,7 +20,7 @@
    构造函数支通过PhoneNumberFormatOptions设置不同的电话号码格式，具体请参考表1。
 
    ```ts
-   let phoneNumberFormat: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat(country: string, options?: PhoneNumberFormatOptions);
+   let phoneNumberFormat: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat(country: string, options?: PhoneNumberFormatOptions);
    ```
 
 3. 电话号码格式化。
@@ -45,28 +45,39 @@
 | E164 | +86 158\*\*\*\*2312 | 
 | INTERNATIONAL | +86 158 \*\*\*\* 2312 | 
 | NATIONAL | 158 \*\*\*\* 2312 | 
-| RFC3966 | tel:+86-158-\*\*\*\*-2312 | 
+| RFC3966 | tel:+86-158-\*\*\*\*-2312 |
+| TYPING | 158 \*\*\* |
 
 
 **开发实例**
 
 ```ts
 // 导入模块
-import I18n from '@ohos.i18n'
+import { i18n } from '@kit.LocalizationKit';
 
 // 格式化电话号码
-let phoneNumberFormat1 = new I18n.PhoneNumberFormat('CN');
+let phoneNumberFormat1 = new i18n.PhoneNumberFormat('CN');
 let formattedPhoneNumber1 = phoneNumberFormat1.format('158****2312'); // formattedPhoneNumber1: 158 **** 2312
 
 // RFC3966类型的电话号码
-let phoneNumberFormat2 = new I18n.PhoneNumberFormat('CN', {type: 'RFC3966'});
+let phoneNumberFormat2 = new i18n.PhoneNumberFormat('CN', {type: 'RFC3966'});
 let formattedPhoneNumber2 = phoneNumberFormat2.format('158****2312'); // formattedPhoneNumber2: tel:+86-158-****-2312
 
 // 判断电话号码是否有效
-let phoneNumberFormat3 = new I18n.PhoneNumberFormat('CN');
+let phoneNumberFormat3 = new i18n.PhoneNumberFormat('CN');
 let isValid = phoneNumberFormat3.isValidNumber('158****2312'); // isValid: true
 
 // 以某种语言显示号码归属地
-let phoneNumberFormat4 = new I18n.PhoneNumberFormat("CN");
+let phoneNumberFormat4 = new i18n.PhoneNumberFormat("CN");
 let locationName4 = phoneNumberFormat4.getLocationName('158****2312', 'en-GB') // locationName4: XiAn, Shanxi
+
+// 拨号中的电话号码格式化
+let phoneNumberFmt = new i18n.PhoneNumberFormat('CN', {type: 'TYPING'});
+let phoneNumber : string = "0755453";
+let formatResult : string = "";
+for (let i = 0; i < phoneNumber.length; i++) {
+  formatResult += phoneNumber.charAt(i);
+  formatResult = phoneNumberFmt.format(formatResult);
+}
+console.log(formatResult); // formatResult: 0755 453
 ```
