@@ -44,10 +44,7 @@
 - 模态转场设置<!--transition-->
   - [全屏模态转场](ts-universal-attributes-modal-transition.md)
   - [半模态转场](ts-universal-attributes-sheet-transition.md)
-<!--DelEnd-->
-  <!--Del-->
   - [半模态转场 (系统接口)](ts-universal-attributes-sheet-transition-sys.md)
-  <!--DelEnd-->
 - [隐私遮罩](ts-universal-attributes-obscured.md)
 - [文本通用](ts-universal-attributes-text-style.md)
 - [拖拽控制](ts-universal-attributes-drag-drop.md)
@@ -56,7 +53,6 @@
 - [事件独占控制](ts-universal-attributes-monopolize-events.md)
 - [鼠标光标控制](ts-universal-attributes-cursor.md)
 - [特效绘制合并](ts-universal-attributes-use-effect.md)
-<!--Del-->
 - [点光源设置 (系统接口)](ts-universal-attributes-point-light-style-sys.md)
 - [图像效果 (系统接口)](ts-universal-attributes-image-effect-sys.md)
 <!--DelEnd-->
