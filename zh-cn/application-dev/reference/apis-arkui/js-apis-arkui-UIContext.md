@@ -2489,13 +2489,13 @@ unbindTabsFromNestedScrollable(tabsController: TabsController, parentScroller: S
 
 参考[bindTabsToScrollable](#bindtabstoscrollable13)接口示例。
 
-### enableSwipeBack<sup>16+</sup>
+### enableSwipeBack<sup>18+</sup>
 
 enableSwipeBack(enabled: Optional\<boolean\>): void
 
 设置是否支持应用内横向滑动返回上一级。
 
-**原子化服务API:** 从API Version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API:** 从API Version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -2546,13 +2546,13 @@ getTextMenuController(): TextMenuController
 
 参考[TextMenuController](#textmenucontroller16)接口示例。
 
-### notifyDragStartRequest<sup>16+</sup>
+### notifyDragStartRequest<sup>18+</sup>
 
 notifyDragStartRequest(requestStatus: draController.DragStartRequestStatus): void
 
 控制应用是否可以发起拖拽。
 
-**原子化服务API**: 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API**: 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -2560,7 +2560,7 @@ notifyDragStartRequest(requestStatus: draController.DragStartRequestStatus): voi
 
 | 参数名 | 类型   | 必填| 说明                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| requestStatus  | [draController.DragStartRequestStatus](js-apis-arkui-dragController.md#dragstartrequeststatus16)    | 是  |定义应用是否可以发起拖拽。|
+| requestStatus  | [draController.DragStartRequestStatus](js-apis-arkui-dragController.md#dragstartrequeststatus18)    | 是  |定义应用是否可以发起拖拽。|
 
 **示例：**
 
@@ -9670,13 +9670,13 @@ struct SnapshotExample {
 }
 ```
 
-### createFromComponent<sup>16+</sup>
+### createFromComponent<sup>18+</sup>
 
 createFromComponent\<T extends Object>(content: ComponentContent\<T>, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
 将传入的content对象进行截图，并通过Promise返回结果。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

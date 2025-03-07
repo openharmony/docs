@@ -41,9 +41,9 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 ## 环境准备
 
 - 在Windows上，下载安装OpenSSL工具，并配置环境变量。
-- 准备升级包制作工具
-- 编译出版本镜像文件
-- 将编译结果中的 out/rk3568/clang_x64/updater/updater/ 下的 diff 文件，out/rk3568/clang_x64/thirdparty/e2fsprogs 路径下的 libext2fs.so、e2fsdriod、libext2_com_err.so、libext2_misc.so 文件放入做包工具此路径下：packaging_tools/lib/
+- 准备升级包制作工具。
+- 编译出版本镜像文件。
+- 将编译结果中的 out/rk3568/clang_x64/updater/updater/ 下的 diff 文件，out/rk3568/clang_x64/thirdparty/e2fsprogs 路径下的 libext2fs.so、e2fsdriod、libext2_com_err.so、libext2_misc.so 文件放入做包工具此路径下：packaging_tools/lib/。
 
 
 ## 开发流程
@@ -73,7 +73,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 
 
 ### 生成公私钥对
-1. 使用OpenSSL工具生成公私钥对，将公钥 signing_cert.crt 放入做包工具此路径下：packaging_tools/sign_cert/
+1. 使用OpenSSL工具生成公私钥对，将公钥 signing_cert.crt 放入做包工具此路径下：packaging_tools/sign_cert/。
 
 3. 请妥善保管私钥文件，在升级包制作过程中将私钥文件作为制作命令的参数带入，用于升级包签名，公钥用于升级时对升级包进行签名校验，公钥的放置如下： 轻量和小型系统将生成的公钥内容预置在代码中，需要厂商实现 HotaHalGetPubKey 这个接口来获取公钥。标准系统需要将生成的公钥放在device或vendor目录下的 /hisilicon/hi3516dv300/build/updater_config/signing_cert.crt 这个文件中。
 
@@ -133,16 +133,16 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    
    | 信息类别 | 节点名称 | 节点标签 | 是否必填 | 内容说明 | 
    | -------- | -------- | -------- | -------- | -------- |
-   | 头信息（head节点） | info节点 | / | 必填 | 该节点内容配置为：head&nbsp;info | 
-   | 头信息（head节点） | info节点 | fileVersion | 必填 | update.bin文件校验方式，该节点内容配置为：02 |
-   | 头信息（head节点） | info节点 | prdID | 必填 | 保留字段，内容不影响升级包生成 | 
-   | 头信息（head节点） | info节点 | softVersion | 必填 | 软件版本号，即升级包版本号，版本必须比基础版本大，且OpenHarmony后没有其他字母，否则无法生产升级 | 
-   | 头信息（head节点） | info节点 | _date_ | _必填_ | 升级包制作日期，保留字段，不影响升级包生成 | 
-   | 头信息（head节点） | info节点 | _time_ | _必填_ | 升级包制作时间，保留字段，不影响升级包生成 |  
-   | 组件信息（group节点） | component节点 | / | 必填 | 该节点内容配置为：要打入升级包的组件/镜像文件的路径，默认为版本包根路径 | 
+   | 头信息（head节点） | info节点 | / | 必填 | 该节点内容配置为：head&nbsp;info。 | 
+   | 头信息（head节点） | info节点 | fileVersion | 必填 | update.bin文件校验方式，该节点内容配置为：02。 |
+   | 头信息（head节点） | info节点 | prdID | 必填 | 保留字段，内容不影响升级包生成。 | 
+   | 头信息（head节点） | info节点 | softVersion | 必填 | 软件版本号，即升级包版本号，版本必须比基础版本大，且OpenHarmony后没有其他字母，否则无法生产升级。 | 
+   | 头信息（head节点） | info节点 | _date_ | _必填_ | 升级包制作日期，保留字段，不影响升级包生成。 | 
+   | 头信息（head节点） | info节点 | _time_ | _必填_ | 升级包制作时间，保留字段，不影响升级包生成。 |  
+   | 组件信息（group节点） | component节点 | / | 必填 | 该节点内容配置为：要打入升级包的组件/镜像文件的路径，默认为版本包根路径。 | 
    | 组件信息（group节点） | component节点 | compAddr | 必填 | 该组件所对应的分区名称，例如：system、vendor等。 | 
-   | 组件信息（group节点） | component节点 | compId | 必填 | 组件Id，不同组件Id不重复 | 
-   | 组件信息（group节点） | component节点 | resType | 必填 | 保留字段，不影响升级包生成 | 
+   | 组件信息（group节点） | component节点 | compId | 必填 | 组件Id，不同组件Id不重复。 | 
+   | 组件信息（group节点） | component节点 | resType | 必填 | 保留字段，不影响升级包生成。 | 
    | 组件信息（group节点） | component节点 | compType | 必填 | 处理方式全量/差分，配置镜像处理方式的，0为全量处理、1为差分处理。 | 
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -174,8 +174,8 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    - ./target_package/：指定target_package路径。
    - ./output_package/：指定升级包输出路径。
    - -pk ./rsa_private_key3072.pem：指定私钥路径。
-   - -nz：打开not zip模式开关
-   - -nl2：打开非“标准系统”模式开关
+   - -nz：打开not zip模式开关。
+   - -nl2：打开非“标准系统”模式开关。
 
 
 #### 标准系统升级包制作
@@ -196,9 +196,9 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 
 2. 将待升级的组件（包括镜像文件和updater_binary文件）放入目标版本文件夹的根目录下，代替上文结构中的{component_N}部分。
 
-   以RK3568为例，镜像文件的构建位置为：out/rk3568/packages/phone/images/
+   以RK3568为例，镜像文件的构建位置为：out/rk3568/packages/phone/images/。
 
-   二进制升级文件updater_binary位置为：out/rk3568/packages/phone/system/bin/
+   二进制升级文件updater_binary位置为：out/rk3568/packages/phone/system/bin/。
 
 3. 填写“updater_config”文件夹中的组件配置文件。
 
@@ -228,7 +228,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    Hi3516DV300-eng 10 QP1A.190711.020
    ```
 
-   请确保基础版本号包含在VERSION.mbn中
+   请确保基础版本号包含在VERSION.mbn中。
 
 6. 针对增量（差分）升级包，还需要准备一个源版本（source_package），文件内容格式与目标版本（target_package）相同，需要打包成zip格式，即为：source_package.zip。
 
@@ -315,14 +315,14 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 
 ### 厂商应用集成OTA能力
 
-1. 轻量与小型系统
+1. 轻量与小型系统：
 
    - 调用OTA模块的动态库libhota.so，对应头文件hota_partition.h和hota_updater.h路径：base\update\sys_installer_lite\interfaces\kits\。
    - libhota.so对应的源码路径为：base\update\sys_installer_lite\frameworks\source。
    - API的使用方法，见本文“API应用场景”和API文档的OTA接口章节。
    - 如果需要适配开发板，请参考HAL层头文件：base\update\sys_installer_lite\hals\hal_hota_board.h。
 
-2. 标准系统请参考[JS参考规范](../../application-dev/reference/apis/js-apis-update.md)指导中的升级接口参考规范。
+2. 标准系统请参考[JS参考规范](../../application-dev/reference/apis-basic-services-kit/js-apis-update-sys.md)指导中的升级接口参考规范。
 
 
 #### API 应用默认场景
@@ -508,15 +508,15 @@ const char *get_local_version(void)
 
 ##### 开发流程
 
-1. 应用侧下载获取当前设备升级包
-2. update_service 通过 SAMGR 将系统安装部件拉起
-3. 由系统安装部件完成静默热安装
-4. 下一次重启时激活新版本
+1. 应用侧下载获取当前设备升级包。
+2. update_service 通过 SAMGR 将系统安装部件拉起。
+3. 由系统安装部件完成静默热安装。
+4. 下一次重启时激活新版本。
 
 
 ##### 开发步骤
 
-- JS API 通过 update_service 模块处理AB升级相关流程
+- JS API 通过 update_service 模块处理AB升级相关流程。
 
    1.升级包安装进度显示接口：
    ```cpp
@@ -529,7 +529,7 @@ const char *get_local_version(void)
    ```
 
 
-- update_service 通过 SAMGR 将系统安装服务拉起
+- update_service 通过 SAMGR 将系统安装服务拉起。
    
    1.拉起系统安装服务，并建立IPC连接：
    ```cpp
@@ -552,7 +552,7 @@ const char *get_local_version(void)
    ```
 
 
-- 使用 HDI 接口南向激活新版本
+- 使用 HDI 接口南向激活新版本。
 
    1.获取当前启动的slot，来决策待升级的分区：
    ```cpp
@@ -577,11 +577,11 @@ const char *get_local_version(void)
 
 ##### 常见问题
 
-1. 升级包下载，安装过程出现异常
-<br>系统保持当前版本继续运行，在下一个搜包周期重新完成版本升级过程
+1. 升级包下载，安装过程出现异常。
+<br>系统保持当前版本继续运行，在下一个搜包周期重新完成版本升级过程。
 
-2. 升级包完成非启动分区的包安装，在激活过程中出现异常
-<br>需要进行异常回滚，并将无法启动的分区设置为 unbootable，下次则不从该分区启动
+2. 升级包完成非启动分区的包安装，在激活过程中出现异常。
+<br>需要进行异常回滚，并将无法启动的分区设置为 unbootable，下次则不从该分区启动。
 
 
 ##### 调测验证
