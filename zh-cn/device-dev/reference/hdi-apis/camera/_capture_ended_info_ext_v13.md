@@ -3,7 +3,7 @@
 
 ## 概述
 
-拍照结束信息，使用于[IStreamOperatorCallback::OnCaptureEndedExt](interface_i_stream_operator_callback.md#oncaptureendedext)。
+拍照结束信息，使用于[IStreamOperatorCallback::OnCaptureEndedExt](interface_i_stream_operator_callback_v13.md#oncaptureendedext)。
 
 **起始版本：** 5.0
 
