@@ -59,9 +59,9 @@ enum GeofenceEvent
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| GEOFENCE_EVENT_UNCERTAIN | 状态不确定 | 
-| GEOFENCE_EVENT_ENTERED | 进入围栏 | 
-| GEOFENCE_EVENT_EXITED | 退出围栏 | 
+| GEOFENCE_EVENT_UNCERTAIN | 状态不确定。 | 
+| GEOFENCE_EVENT_ENTERED | 进入围栏。 | 
+| GEOFENCE_EVENT_EXITED | 退出围栏。 | 
 
 
 ### GeofenceOperateResult
@@ -79,11 +79,11 @@ enum GeofenceOperateResult
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OPERATION_SUCCESS | 操作成功 | 
-| OPERATION_ERROR_UNKNOWN | 未知错误 | 
-| OPERATION_ERROR_TOO_MANY_GEOFENCES | 围栏个数超过限制 | 
-| OPERATION_ERROR_GEOFENCE_INDEX_EXISTS | 围栏ID重复 | 
-| OPERATION_ERROR_PARAMS_INVALID | 入参错误 | 
+| OPERATION_SUCCESS | 操作成功。 | 
+| OPERATION_ERROR_UNKNOWN | 未知错误。 | 
+| OPERATION_ERROR_TOO_MANY_GEOFENCES | 围栏个数超过限制。 | 
+| OPERATION_ERROR_GEOFENCE_INDEX_EXISTS | 围栏ID重复。 | 
+| OPERATION_ERROR_PARAMS_INVALID | 入参错误。 | 
 
 
 ### GeofenceOperateType
@@ -101,5 +101,5 @@ enum GeofenceOperateType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| TYPE_ADD | 添加围栏 | 
-| TYPE_DELETE | 删除围栏 | 
+| TYPE_ADD | 添加围栏。 | 
+| TYPE_DELETE | 删除围栏。 | 

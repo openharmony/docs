@@ -97,9 +97,9 @@ Registers a global error observer with any thread in the process to capture exce
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| void | No value is returned.|
+  | Type| Description|
+  | -------- | -------- |
+  | void | No value is returned.|
 
 **Error codes**
 
@@ -431,6 +431,41 @@ let promise1 = new Promise<void>(() => {}).then(() => {
   throw new Error("uncaught error");
 });
 ```
+## errorManager.on('freeze')<sup>16+</sup>
+
+on(type: 'freeze', observer: FreezeObserver): void
+
+Registers an observer for the main thread freeze event of the application. This API can be called only in the main thread. A new observer will overwrite the previous one.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+ 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. It is fixed at **'freeze'**, indicating an observer for the freeze event of the main thread.|
+| observer | [FreezeObserver](#freezeobserver16) | Yes| Observer to register.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.   |
+
+**Example**
+    
+```ts
+import { errorManager } from '@kit.AbilityKit';
+
+function freezeCallback() {
+    console.log("freezecallback");
+}
+errorManager.on("freeze", freezeCallback);
+```
 
 ## errorManager.off('loopObserver')<sup>12+</sup>
 
@@ -597,6 +632,72 @@ let promise1 = new Promise<void>(() => {}).then(() => {
 errorManager.off("unhandledRejection", observer);
 ```
 
+## errorManager.off('freeze')<sup>16+</sup>
+
+off(type: 'freeze', observer?: FreezeObserver): void
+
+Unregisters an observer for the main thread freeze event of the application. This API can be called only in the main thread.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+ 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. It is fixed at **'freeze'**, indicating an observer for the freeze event of the main thread.|
+| observer | [FreezeObserver](#freezeobserver16) | No| Observer to unregister. If this parameter is not specified, the subscriptions to the specified event with all the callbacks are canceled.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 16300004 | If the observer does not exist. |
+
+**Example**
+    
+```ts
+import { errorManager } from '@kit.AbilityKit';
+
+function freezeCallback() {
+    console.log("freezecallback");
+}
+errorManager.on("freeze", freezeCallback);
+errorManager.off("freeze", freezeCallback);
+```
+
+## ErrorObserver
+
+type ErrorObserver = _ErrorObserver.default
+
+Defines the ErrorObserver module.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_ErrorObserver.default](js-apis-inner-application-errorObserver.md) | ErrorObserver module.|
+
+## LoopObserver<sup>12+</sup>
+
+type LoopObserver = _LoopObserver
+
+Defines the LoopObserver module.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_LoopObserver](js-apis-inner-application-loopObserver.md) | LoopObserver module.|
+
 ## UnhandledRejectionObserver<sup>12+</sup>
 
 type UnhandledRejectionObserver = (reason: Error | any, promise: Promise\<any>) => void
@@ -613,3 +714,14 @@ Defines an observer to capture the cause of a rejected promise.
 |--------|---------------|---| -------- |
 | reason | Error \| any  | Yes| Generally, the value is of the **Error** type, indicating the reason for rejection.|
 | promise | Promise\<any> | Yes| Rejected promise.|
+
+## FreezeObserver<sup>16+</sup>
+
+type FreezeObserver = () => void;
+
+Defines an observer for the main thread freeze event of the application. It is used by the application to customize freeze information.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+ 

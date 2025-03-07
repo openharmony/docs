@@ -17,8 +17,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| String [ssid](#ssid) | WiFi扫描的SSID。| 
-| int [ssidLen](#ssidlen) | SSID长度。| 
+| String [ssid](#ssid) | WiFi扫描的SSID。 | 
+| int [ssidLen](#ssidlen) | SSID长度。 | 
 
 
 ## 类成员变量说明

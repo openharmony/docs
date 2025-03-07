@@ -1,12 +1,9 @@
 # @ohos.advertising.AdComponent (非全屏广告展示组件)
 
-
 本模块提供展示非全屏广告的能力。
-
 
 > **说明：**
 > 本模块首批接口从API Version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 
 ## 导入模块
 
@@ -14,10 +11,9 @@
 import { AdComponent } from '@kit.AdsKit';
 ```
 
-
 ## AdComponent
 
-AdComponent(ads: Array<advertising.Advertisement>, displayOptions: advertising.AdDisplayOptions, interactionListener: advertising.AdInteractionListener, adRenderer?:() => void): void
+AdComponent(ads: advertising.Advertisement[], displayOptions: advertising.AdDisplayOptions, interactionListener: advertising.AdInteractionListener, @BuilderParam adRenderer?: () => void, @Prop rollPlayState?: number): void
 
 展示非全屏广告。
 
@@ -25,13 +21,13 @@ AdComponent(ads: Array<advertising.Advertisement>, displayOptions: advertising.A
 
 **参数：**
 
-
-| **参数名** | **类型** | 必填 | 说明 | 
-| -------- | -------- | -------- | -------- |
-| ads | Array&lt;advertising.[Advertisement](js-apis-advertising.md#advertisement)&gt; | 是 | 广告对象数组。<br/>原子化服务API：从API version 12开始，该接口支持在原子化服务中使用。 | 
-| displayOptions | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions) | 是 | 广告展示参数。<br/>原子化服务API：从API version 12开始，该接口支持在原子化服务中使用。 | 
-| interactionListener | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | 是 | 广告状态变化回调。<br/>原子化服务API：从API version 12开始，该接口支持在原子化服务中使用。 | 
-| adRenderer<sup>12+</sup> | () => void | 否 | 应用自渲染广告样式。 | 
+| 参数名                         | 类型                                                                                | 必填 | 说明                                                       | 
+|-----------------------------|-----------------------------------------------------------------------------------|----|----------------------------------------------------------|
+| ads                         | advertising.[Advertisement](js-apis-advertising.md#advertisement)[]               | 是  | 广告对象数组。<br/>原子化服务API：从API version 12开始，该接口支持在原子化服务中使用。   | 
+| displayOptions              | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions)           | 是  | 广告展示参数。<br/>原子化服务API：从API version 12开始，该接口支持在原子化服务中使用。   | 
+| interactionListener         | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | 是  | 广告状态变化回调。<br/>原子化服务API：从API version 12开始，该接口支持在原子化服务中使用。 | 
+| adRenderer<sup>12+</sup>    | () => void                                                                        | 否  | 应用自渲染广告样式。                                               | 
+| rollPlayState<sup>15+</sup> | number                                                                            | 否  | 用于对外提供贴片广告播放状态，设置1为播放，2为暂停，其他值为非法值，不改变之前的播放状态。           | 
 
 **示例：**
 
@@ -41,7 +37,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
-export struct ShowNonFullScreenAd {
+struct ShowNonFullScreenAd {
   // 请求到的广告内容
   private ads: Array<advertising.Advertisement> = [];
   // 广告展示参数

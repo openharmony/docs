@@ -13,7 +13,7 @@ HiCollie模块对外提供函数执行时间超长的检测机制。
 >
 > 函数执行超时故障日志：1. APP_HICOLLIE-进程号-时间.log，生成在“设备/data/log/eventlog/”路径下；2. syswarning-应用包名-应用UID-秒级时间，生成在”设备/data/log/faultlog/faultlogger/”路径下。
 
-API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiCollie](../reference/apis-performance-analysis-kit/_hi_hicollie.md)。
+API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiCollie](../reference/apis-performance-analysis-kit/_hi_collie.md)。
 
 ## 开发步骤
 

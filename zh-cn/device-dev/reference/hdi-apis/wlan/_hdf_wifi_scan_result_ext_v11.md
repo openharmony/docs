@@ -3,7 +3,7 @@
 
 ## 概述
 
-定义Wi-Fi扫描扩展结果
+定义Wi-Fi扫描扩展结果。
 
 **起始版本：** 4.0
 
@@ -17,18 +17,18 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| unsigned int [flags](#flags) | BSS/IBSS的标志位。 | 
-| unsigned char[] [bssid](#bssid) | BSSID信息  | 
-| unsigned short [caps](#caps) | Capability信息字段（主机字节序排列）  | 
-| unsigned int [freq](#freq) | 信道频率  | 
-| unsigned short [beaconInt](#beaconint) | Beacon帧间隔  | 
-| int [qual](#qual) | 信号质量  | 
-| int [level](#level) | 信号强度  | 
+| unsigned int [flags](#flags) | BSS/IBSS的标志位。  | 
+| unsigned char[] [bssid](#bssid) | BSSID信息。  | 
+| unsigned short [caps](#caps) | Capability信息字段（主机字节序排列）。  | 
+| unsigned int [freq](#freq) | 信道频率。  | 
+| unsigned short [beaconInt](#beaconint) | Beacon帧间隔。  | 
+| int [qual](#qual) | 信号质量。  | 
+| int [level](#level) | 信号强度。  | 
 | unsigned int [age](#age) | 收到最新的Beacon或者探测响应帧数据的时间长度，单位为毫秒。  | 
-| unsigned long [tsf](#tsf) | 时间戳  | 
-| unsigned char[] [variable](#variable) | 扫描结果中的变量值  | 
-| unsigned char[] [ie](#ie) | 紧跟的Probe Response中IE字段  | 
-| unsigned char[] [beaconIe](#beaconie) | 紧跟的Beacon中IE字段  | 
+| unsigned long [tsf](#tsf) | 时间戳。 | 
+| unsigned char[] [variable](#variable) | 扫描结果中的变量值。  | 
+| unsigned char[] [ie](#ie) | 紧跟的Probe Response中IE字段。  | 
+| unsigned char[] [beaconIe](#beaconie) | 紧跟的Beacon中IE字段。  | 
 
 
 ## 类成员变量说明

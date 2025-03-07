@@ -105,7 +105,6 @@ import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 let serverNumber = -1;
 let acceptClientSocket = (code: BusinessError, number: number) => {
-  console.info('bluetooth error code: ' + code.code);
   if (code) {
     console.error('sppListen error, code is ' + code);
     return;
@@ -137,7 +136,7 @@ Initiates an SPP connection to a remote device from the client. This API uses an
 | Name     | Type                         | Mandatory  | Description                            |
 | -------- | --------------------------- | ---- | ------------------------------ |
 | deviceId | string                      | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
-| options   | [SppOptions](#sppoptions)     | Yes   | SPP listening configuration for the connection.                 |
+| options   | [SppOptions](#sppoptions)     | Yes   | SPP listening configuration for client.                 |
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the client socket ID.       |
 
 **Error codes**
@@ -159,15 +158,13 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
-let clientNumber = -1;
 let clientSocket = (code: BusinessError, number: number) => {
   if (code) {
     console.error('sppListen error, code is ' + code);
     return;
   } else {
+    // The obtained number is used as the socket ID for subsequent read/write operations on the client.
     console.info('bluetooth serverSocket Number: ' + number);
-    // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
-    clientNumber = number;
   }
 }
 let sppOption:socket.SppOptions = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
@@ -183,7 +180,7 @@ try {
 
 sppCloseServerSocket(socket: number): void
 
-Closes an SPP listening socket of the server.
+Closes a listening socket of the server.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -221,7 +218,7 @@ try {
 
 sppCloseClientSocket(socket: number): void
 
-Closes an SPP listening socket of the client.
+Closes a client socket.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -345,7 +342,7 @@ try {
 
 off(type: 'sppRead', clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt;): void
 
-Unsubscribes from SPP read request events.
+Unsubscribes from the SPP read request events.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -354,7 +351,7 @@ Unsubscribes from SPP read request events.
 | Name         | Type                         | Mandatory  | Description                                      |
 | ------------ | --------------------------- | ---- | ---------------------------------------- |
 | type         | string                      | Yes   | Event type. The value is **sppRead**, which indicates an SPP read request event.              |
-| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.                       |
+| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.                           |
 | callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Error codes**
@@ -381,7 +378,7 @@ try {
 
 ## SppOptions
 
-Defines the SPP configuration.
+Defines the SPP configuration parameters.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 

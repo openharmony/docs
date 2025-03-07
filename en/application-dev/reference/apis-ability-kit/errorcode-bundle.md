@@ -1107,11 +1107,11 @@ The app does not support the creation of an appClone instance.
 
 **Description**
 
-An **AppClone** instance cannot be created for an application that is not in **appClone** mode.
+An AppClone instance cannot be created for an application that is not in appClone mode.
 
 **Possible Causes**
 
-The multi-app mode is set to another mode other than **appClone**.
+The multi-app mode is set to another mode other than appClone.
 
 **Solution**
 
@@ -1207,7 +1207,7 @@ Check whether **appIdentifier** is an empty string.
 
 **Error Message**
 
-The specified bundleName of want is not the same with caller. 
+The specified bundleName of want is not the same with caller.
 
 **Description**
 
@@ -1220,6 +1220,138 @@ When setting an uninstallation disposed rule, the bundle name specified in **wan
 **Solution**
 
 Change the value of **bundleName** in **want** to be the same as that of the caller.
+
+<!--Del-->
+## 17700080 Invalid Source Paths
+
+**Error Message**
+
+The source paths are invalid.
+
+**Description**
+
+The source paths are invalid.
+
+**Possible Causes**
+1. The source path array is empty.
+2. A source path includes the special sequence **../**.
+3. None of the paths can be resolved to the intended location.
+
+**Solution**
+
+Pass in a valid path that does not include the special sequence **../**.
+
+## 17700081 Invalid Destination Path
+
+**Error Message**
+
+The destination path is invalid.
+
+**Description**
+
+The destination path is invalid.
+
+**Possible Causes**
+1. The destination path is empty.
+2. The destination path includes the special sequence **../**.
+3. The destination path cannot be resolved to the intended location.
+
+**Solution**
+
+Pass in a valid path that does not include the special sequence **../**.
+
+## 17700082 User Authentication Failed
+
+**Error Message**
+
+User authentication failed.
+
+**Description**
+
+User authentication fails.
+
+**Possible Causes**
+1. The current system does not support user authentication.
+2. The current user has not enabled user authentication.
+3. User authentication information is incorrect or the user cancels authentication.
+
+**Solution**
+1. Check whether the current system supports user authentication. If not, the API cannot be used.
+2. Ensure that user authentication is enabled for the current user.
+3. Have the user re-enter accurate authentication details to ensure successful authentication.
+
+## 17700083 User Authentication Times Out
+
+**Error Message**
+
+Waiting for user authentication timeout.
+
+**Description**
+
+Waiting for user authentication times out.
+
+**Possible Causes**
+
+The user authentication process exceeds the 5-minute waiting period.
+
+**Solution**
+
+Ensure that the user completes the authentication process within the allowed time.
+
+## 17700084 No Read Permissions for Source Paths
+
+**Error Message**
+
+There are inaccessible path in the source paths.
+
+**Description**
+
+Some paths in the source path array lack read permissions.
+
+**Possible Causes**
+
+Read permissions are not enabled for some source paths.
+
+**Solution**
+
+Provide a valid path with read permissions enabled.
+
+## 17700085 No Write Permissions for the Destination Path
+
+**Error Message**
+
+The destination path cannot be accessed.
+
+**Description**
+
+The destination path cannot be accessed.
+
+**Possible Causes**
+
+Write permissions are not enabled for the destination path.
+
+**Solution**
+
+Provide a valid path with write permissions enabled.
+
+## 17700086 System Error
+
+**Error Message**
+
+System error occurred during copy execution.
+
+**Description**
+
+A system error occurred during the copy operation.
+
+**Possible Causes**
+
+Errors related to file operations occurs, such as insufficient space at the destination or the removal of files from the source path.
+
+**Solution**
+1. Ensure that the destination path has sufficient space.
+2. Ensure the files in the source path are still present.
+<!--DelEnd-->
 
 ## 17700201 .abc File Verification Failure
 
@@ -1358,3 +1490,20 @@ The HSP does not contain the correct icon resource.
 **Solution**
 
 Before querying the dynamic icon, ensure that the HSP corresponding to the bundle name contains the icon resource.
+
+## 17700076 Failed to Install the HAP or HSP Because the Distribution Type in the Signature File Restricts Installation
+**Error Message**
+
+Failed to install the HAP or HSP because the app distribution type is not allowed.
+
+**Description**
+
+The distribution type in the signature file restricts installation, leading to a failure in installing the HAP or HSP.
+
+**Possible Causes**
+
+The distribution type specified in the signature file restricts installation on the current device.
+
+**Solution**
+
+Change the distribution type of the signature file.

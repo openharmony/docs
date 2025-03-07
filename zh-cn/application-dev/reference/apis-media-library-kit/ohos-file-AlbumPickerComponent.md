@@ -95,16 +95,16 @@ struct PickerDemo {
   
   private onAlbumClick(albumInfo: AlbumInfo): boolean {
     if (albumInfo?.uri) {
-      // 通过pickerController向PhotoPickerComponent发送消息，通知其刷新
+      // 通过pickerController向PhotoPickerComponent发送消息，通知其刷新。
     }
     if (albumInfo?.albumName) {
-      // 基于获取到的albumName后续逻辑处理
+      // 基于获取到的albumName后续逻辑处理。
     }
     return true;
   }
   
   private onEmptyAreaClick(): void {
-    // 点击组件空白区域回调
+    // 点击组件空白区域回调。
   }
 
   build() {

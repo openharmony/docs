@@ -38,7 +38,7 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 | CM_DIGEST_SHA256 | 4      | SHA256摘要算法。 |
 | CM_DIGEST_SHA384 | 5      | SHA384摘要算法。 |
 | CM_DIGEST_SHA512 | 6      | SHA512摘要算法。 |
-| CM_DIGEST_SM3<sup>16+</sup> | 7 | SM3摘要算法。 |
+| CM_DIGEST_SM3<sup>18+</sup> | 7 | SM3摘要算法。 |
 
 ## CmKeyPadding
 
@@ -165,8 +165,9 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 | CM_ERROR_INCORRECT_FORMAT  | 17500003      | 表示输入证书或凭据的数据格式无效。 |
 | CM_ERROR_MAX_CERT_COUNT_REACHED<sup>12+</sup>  | 17500004      | 表示证书或凭据数量达到上限。 |
 | CM_ERROR_NO_AUTHORIZATION<sup>12+</sup>  | 17500005      | 表示应用未经用户授权。 |
+| CM_ERROR_DEVICE_ENTER_ADVSECMODE<sup>18+</sup> | 17500007 | 表示设备进入坚盾守护模式。 |
 
-## CertType<sup>16+</sup>
+## CertType<sup>18+</sup>
 
 表示证书类型。
 
@@ -177,7 +178,7 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 | CA_CERT_SYSTEM   | 0      | 表示系统CA证书。 |
 | CA_CERT_USER   | 1      | 表示用户CA证书。 |
 
-## CertScope<sup>16+</sup>
+## CertScope<sup>18+</sup>
 
 表示证书的位置。
 
@@ -188,7 +189,7 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 | CURRENT_USER   | 1      | 表示当前用户。 |
 | GLOBAL_USER   | 2      | 表示设备公共，即所有用户都可以访问的位置。 |
 
-## CertStoreProperty<sup>16+</sup>
+## CertStoreProperty<sup>18+</sup>
 
 表示获取证书存储位置的参数集合，包括证书的类型及证书的位置。
 
@@ -196,9 +197,20 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 
 | 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
 | -------------- | --------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| certType          | [CertType](#certtype16)                     | 否  | 否  | 表示证书的类型。 |
-| certScope        | [CertScope](#certscope16)                     | 否   | 是  | 表示证书的存储位置。当证书类型为CA_CERT_USER时，此项为必选项。 |
+| certType          | [CertType](#certtype18)                     | 否  | 否  | 表示证书的类型。 |
+| certScope        | [CertScope](#certscope18)                     | 否   | 是  | 表示证书的存储位置。当证书类型为CA_CERT_USER时，此项为必选项。 |
 
+## AuthStorageLevel<sup>18+</sup>
+
+表示凭据的存储级别。
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+| 名称         | 值   | 说明                                       |
+| ------------ | ---- | ------------------------------------------ |
+| EL1  | 1    | EL1级别，表示设备启动后可以访问。               |
+| EL2  | 2    | EL2级别，表示设备首次解锁后可以访问。           |
+| EL4  | 4    | EL4级别，表示设备解锁时可以访问。             |
 
 ## certificateManager.installPrivateCertificate
 
@@ -303,6 +315,68 @@ let keystore: Uint8Array = new Uint8Array([
 let keystorePwd: string = "123456";
 try {
   certificateManager.installPrivateCertificate(keystore, keystorePwd, 'test').then((cmResult) => {
+    let uri: string = (cmResult?.uri == undefined) ? '' : cmResult.uri;
+    console.info('Succeeded in installing private certificate.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (error) {
+  console.error(`Failed to install private certificate. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## certificateManager.installPrivateCertificate<sup>18+</sup>
+
+installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string, level: AuthStorageLevel): Promise\<CMResult>
+
+表示安装私有凭据并指定凭据的存储级别。使用Promise异步回调。
+
+**需要权限：** ohos.permission.ACCESS_CERT_MANAGER
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+**参数：**
+
+| 参数名      | 类型       | 必填 | 说明                                                         |
+| ----------- | ---------- | ---- | ------------------------------------------------------------ |
+| keystore    | Uint8Array | 是   | 表示带有密钥对和证书的密钥库文件。                           |
+| keystorePwd | string     | 是   | 表示密钥库文件的密码。<br>长度限制：32字节以内。                   |
+| certAlias   | string     | 是   | 表示用户输入的凭据别名，当前仅支持传入数字、字母或下划线。<br>长度建议：32字节以内。 |
+| level   | [AuthStorageLevel](#authstoragelevel18)   | 是   | 表示凭据的存储级别。 |
+
+**返回值：**
+
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](#cmresult)> | Promise对象。表示安装私有凭据的结果，返回值为[CMResult](#cmresult)对象中的uri属性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
+
+| 错误码ID               | 错误信息                                                     |
+| ---------------------- | ------------------------------------------------------------ |
+| 201                    | Permission verification failed. The application does not have the permission required to call the API. |
+| 401                    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001               | Internal error.                                              |
+| 17500003               | The keystore is in an invalid format or the keystore password is incorrect. |
+| 17500004<sup>12+</sup> | The number of certificates or credentials reaches the maximum allowed. |
+
+**示例：**
+
+```ts
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+/* 安装的凭据数据需要业务赋值，本例数据非凭据数据。 */
+let keystore: Uint8Array = new Uint8Array([
+  0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01,
+]);
+let keystorePwd: string = "123456";
+try {
+  /* 安装凭据在首次解锁设备后可以使用。 */
+  let level = certificateManager.AuthStorageLevel.EL2;
+  certificateManager.installPrivateCertificate(keystore, keystorePwd, 'test', level).then((cmResult) => {
     let uri: string = (cmResult?.uri == undefined) ? '' : cmResult.uri;
     console.info('Succeeded in installing private certificate.');
   }).catch((err: BusinessError) => {
@@ -515,7 +589,7 @@ try {
 }
 ```
 
-## certificateManager.installUserTrustedCertificateSync<sup>16+</sup>
+## certificateManager.installUserTrustedCertificateSync<sup>18+</sup>
 
 installUserTrustedCertificateSync(cert: Uint8Array, certScope: CertScope) : CMResult
 
@@ -530,7 +604,7 @@ installUserTrustedCertificateSync(cert: Uint8Array, certScope: CertScope) : CMRe
 | 参数名       | 类型                         | 必填 | 说明           |
 |-----------|----------------------------|----|--------------|
 | cert      | Uint8Array                 | 是  | 表示CA证书数据。    |
-| certScope | [CertScope](#certscope16)  | 是  | 表示CA证书安装的位置。 |
+| certScope | [CertScope](#certscope18)  | 是  | 表示CA证书安装的位置。 |
 
 **返回值**：
 
@@ -549,7 +623,7 @@ installUserTrustedCertificateSync(cert: Uint8Array, certScope: CertScope) : CMRe
 | 17500001               | Internal error.                                                                                                                                 |
 | 17500003               | Indicates that the certificate is in an invalid format.                                                                                         |
 | 17500004<sup>12+</sup> | Indicates that the number of certificates reaches the maximum allowed.                                                                          |
-| 17500007<sup>16+</sup> | Indicates that the device enters advanced security mode. In this mode, the user CA certificate cannot be installed.                             |
+| 17500007<sup>18+</sup> | Indicates that the device enters advanced security mode. In this mode, the user CA certificate cannot be installed.                             |
 
 **示例**：
 
@@ -573,7 +647,7 @@ try {
 }
 ```
 
-## certificateManager.uninstallUserTrustedCertificateSync<sup>16+</sup>
+## certificateManager.uninstallUserTrustedCertificateSync<sup>18+</sup>
 
 uninstallUserTrustedCertificateSync(certUri: string) : void
 
@@ -1263,7 +1337,7 @@ try {
 }
 ```
 
-## certificateManager.getAllUserTrustedCertificates<sup>16+</sup>
+## certificateManager.getAllUserTrustedCertificates<sup>18+</sup>
 
 getAllUserTrustedCertificates(scope: CertScope): Promise\<CMResult>
 
@@ -1277,7 +1351,7 @@ getAllUserTrustedCertificates(scope: CertScope): Promise\<CMResult>
 
 | 参数名 | 类型                      | 必填 | 说明             |
 | ------ | ------------------------- | ---- | ---------------- |
-| scope  | [CertScope](#certscope16) | 是   | 表示证书的位置。 |
+| scope  | [CertScope](#certscope18) | 是   | 表示证书的位置。 |
 
 **返回值**：
 
@@ -1422,7 +1496,7 @@ try {
   console.error(`Failed to get all private certificates installed by the application. Code: ${error.code}, message: ${error.message}`);
 }
 ```
-## certificateManager.getCertificateStorePath<sup>16+</sup>
+## certificateManager.getCertificateStorePath<sup>18+</sup>
 
 getCertificateStorePath(property: CertStoreProperty): string;
 
@@ -1434,7 +1508,7 @@ getCertificateStorePath(property: CertStoreProperty): string;
 
 | 参数名   | 类型                                      | 必填 | 说明                             |
 | -------- | ----------------------------------------- | ---- | -------------------------------- |
-| property | [CertStoreProperty](#certstoreproperty16) | 是   | 表示获取证书存储路径的参数集合。 |
+| property | [CertStoreProperty](#certstoreproperty18) | 是   | 表示获取证书存储路径的参数集合。 |
 
 **返回值**：
 
@@ -1462,7 +1536,7 @@ try {
   }
   let systemCAPath = certificateManager.getCertificateStorePath(property1);
   console.info(`Success to get system ca path: ${systemCAPath}`);
-    
+
   /* 获取当前用户的用户CA存储位置 */
   let property2: certificateManager.CertStoreProperty = {
     certType: certificateManager.CertType.CA_CERT_USER,
@@ -1470,7 +1544,7 @@ try {
   }
   let userCACurrentPath = certificateManager.getCertificateStorePath(property2);
   console.info(`Success to get current user's user ca path: ${userCACurrentPath}`);
-  
+
   /* 获取设备公共的用户CA存储位置 */
   let property3: certificateManager.CertStoreProperty = {
     certType: certificateManager.CertType.CA_CERT_USER,

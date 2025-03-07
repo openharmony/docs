@@ -21,4 +21,4 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| interface&nbsp;&nbsp;[IHostapdCallback](interface_i_hostapd_callback.md) | hostapd回调的接口。  | 
+| interface&nbsp;&nbsp;[IHostapdCallback](interface_i_hostapd_callback.md) | Hostapd回调的接口。  | 

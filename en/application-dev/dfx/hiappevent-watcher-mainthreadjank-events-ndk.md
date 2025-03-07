@@ -1,5 +1,9 @@
 # Subscribing to Main Thread Jank Events (C/C++)
 
+## Main Thread Jank Event Specifications
+
+For details, see [Main Thread Jank Event Overview](./hiappevent-watcher-mainthreadjank-events.md).
+
 ## Available APIs
 
 For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent).
@@ -9,7 +13,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
 | API                                                      | Description                                        |
 | ------------------------------------------------------------ | -------------------------------------------- |
 | int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher *watcher)   | Adds a watcher to listen for application events.|
-| int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher *watcher)| Removes a watcher to unsubscribe from application events.|
+| int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher *watcher) | Removes a watcher to unsubscribe from application events.|
 
 ## How to Develop
 
@@ -169,11 +173,9 @@ For details about how to use the APIs (such as parameter usage restrictions and 
       })
    ```
 
-8. If the nolog version is used and the developer mode is disabled, the main thread checker will collect tracing data when a task times out.
+8. In DevEco Studio, click the **Run** button to run the application project. Click the **timeOut350** button twice consecutively to trigger a main thread jank event.
 
-9. In DevEco Studio, click the **Run** button to run the application project. Click the **timeOut350** button twice consecutively to trigger a main thread jank event.
-
-10. After the main thread jank event is reported, you can view the following event information in the **Log** window.
+9. After the main thread jank event is reported, you can view the following event information in the **Log** window.
 
     ```text
       HiAppEvent eventInfo.domain=OS
@@ -191,7 +193,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
     ```
 
     > **NOTE**
-    > For details, see [Main Thread Jank Event Time Specifications](./hiappevent-watcher-mainthreadjank-events-arkts.md#main-thread-jank-event-time-specifications) and [Main Thread Jank Event Specifications](./hiappevent-watcher-mainthreadjank-events-arkts.md#main-thread-jank-event-specifications).
+    > For details, see [Default Main Thread Jank Event Time Specifications](./hiappevent-watcher-mainthreadjank-events.md#default-main-thread-jank-event-time-specifications) and [Main Thread Jank Event Specifications](./hiappevent-watcher-mainthreadjank-events.md#main-thread-jank-event-specifications).
 
 11. Remove the event watcher.
 

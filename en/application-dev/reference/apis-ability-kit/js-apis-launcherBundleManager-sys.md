@@ -1,6 +1,6 @@
 # @ohos.bundle.launcherBundleManager (launcherBundleManager) (System API)
 
-The **bundle.launcherBundleManager** module providers APIs for the **Home Screen** application to obtain the [launcher ability information](js-apis-bundleManager-launcherAbilityInfo-sys.md) and [shortcut information](js-apis-bundleManager-shortcutInfo-sys.md).
+The bundle.launcherBundleManager module providers APIs for the **Home Screen** application to obtain the [launcher ability information](js-apis-bundleManager-launcherAbilityInfo-sys.md) and [shortcut information](js-apis-bundleManager-shortcutInfo-sys.md).
 
 > **NOTE**
 >

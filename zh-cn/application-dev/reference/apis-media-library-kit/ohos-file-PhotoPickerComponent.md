@@ -251,9 +251,9 @@ replacePhotoPickerPreview(originalUri: string, newUri: string, callback: AsyncCa
 
 | 参数名         | 类型                     |     必填     | 说明                |
 |-------------|----------------------------| -------------- |-------------------|
-| originalUri     | string  | 是 | 原uri，将会被替换掉的uri |
+| originalUri     | string  | 是 | 原uri，将会被替换掉的uri。 |
 | newUri  | boolean   | 是 | 新uri，即替换后的uri。基于originalUri修改后期望在photoPicker上替换originalUri显示的，暂存在应用沙箱的图片/视频uri。      |
-| callback   | AsyncCallback&lt;void&gt;   | 是 | 调用接口完成替换后的回调      |
+| callback   | AsyncCallback&lt;void&gt;   | 是 | 调用接口完成替换后的回调。      |
 
 ### saveTrustedPhotoAssets<sup>15+</sup>
 
@@ -559,14 +559,14 @@ struct PickerDemo {
   }
 
   private onSelect(uri: string): void {
-    // 添加
+    // 添加。
     if (uri) {
       this.selectUris.push(uri);
     }
   }
 
   private onDeselect(uri: string): void {
-    // 移除
+    // 移除。
     if (uri) {
       this.selectUris = this.selectUris.filter((item: string) => {
         return item != uri;
@@ -581,11 +581,11 @@ struct PickerDemo {
     let type: ItemType | undefined = itemInfo.itemType;
     let uri: string | undefined = itemInfo.uri;
     if (type === ItemType.CAMERA) {
-      // 点击相机item
+      // 点击相机item。
       return true; // 返回true则拉起系统相机，若应用需要自行处理则返回false。
     } else {
       if (clickType === ClickType.SELECTED) {
-        // 应用做自己的业务处理
+        // 应用做自己的业务处理。
         if (uri) {
           this.selectUris.push(uri);
           this.pickerOptions.preselectedUris = [...this.selectUris];
@@ -604,13 +604,13 @@ struct PickerDemo {
   }
 
   private onEnterPhotoBrowser(photoBrowserInfo: PhotoBrowserInfo): boolean {
-    // 进入大图的回调
+    // 进入大图的回调。
     this.isBrowserShow = true;
     return true;
   }
 
   private onExitPhotoBrowser(photoBrowserInfo: PhotoBrowserInfo): boolean {
-    // 退出大图的回调
+    // 退出大图的回调。
     this.isBrowserShow = false;
     return true;
   }
@@ -618,29 +618,29 @@ struct PickerDemo {
   private onPickerControllerReady(): void {
     // 接收到该回调后，便可通过pickerController相关接口向picker发送数据，在此之前不生效。
     let elements: number[] = [PhotoBrowserUIElement.BACK_BUTTON];
-    this.pickerController.setPhotoBrowserUIElementVisibility(elements, false); // 设置大图页不显示返回按钮
+    this.pickerController.setPhotoBrowserUIElementVisibility(elements, false); // 设置大图页不显示返回按钮。
   }
 
   private onPhotoBrowserChanged(browserItemInfo: BaseItemInfo): boolean {
-    // 大图左右滑动的回调
+    // 大图左右滑动的回调。
     this.currentUri = browserItemInfo.uri ?? '';
     return true;
   }
 
   private onSelectedItemsDeleted(baseItemInfos: Array<BaseItemInfo>): void {
-    // 已勾选图片被删除时的回调
+    // 已勾选图片被删除时的回调。
   }
 
   private onExceedMaxSelected(exceedMaxCountType: MaxCountType): void {
-    // 超过最大选择数量再次点击时的回调
+    // 超过最大选择数量再次点击时的回调。
   }
 
   private onCurrentAlbumDeleted(): void {
-    // 当前相册被删除时的回调
+    // 当前相册被删除时的回调。
   }
 
   private videoPlayStateChanged(stata: videoPlayerState): void {
-    // 当视频播放状态变化时回调
+    // 当视频播放状态变化时回调。
   }
   build() {
     Flex({
@@ -650,7 +650,7 @@ struct PickerDemo {
     }) {
       Column() {
         if (this.isBrowserShow) {
-          // 这里模拟应用自己的大图返回按钮
+          // 这里模拟应用自己的大图返回按钮。
           Row() {
             Button("退出大图").width('33%').height('8%').onClick(() => {
               this.pickerController.exitPhotoBrowser();
@@ -663,7 +663,7 @@ struct PickerDemo {
           // onSelect: (uri: string): void => this.onSelect(uri),
           // onDeselect: (uri: string): void => this.onDeselect(uri),
           onItemClicked: (itemInfo: ItemInfo, clickType: ClickType): boolean => this.onItemClicked(itemInfo,
-            clickType), // 该接口可替代上面两个接口
+            clickType), // 该接口可替代上面两个接口。
           onEnterPhotoBrowser: (photoBrowserInfo: PhotoBrowserInfo): boolean => this.onEnterPhotoBrowser(photoBrowserInfo),
           onExitPhotoBrowser: (photoBrowserInfo: PhotoBrowserInfo): boolean => this.onExitPhotoBrowser(photoBrowserInfo),
           onPickerControllerReady: (): void => this.onPickerControllerReady(),
@@ -675,7 +675,7 @@ struct PickerDemo {
           pickerController: this.pickerController,
         }).height('60%').width('100%')
 
-        // 这里模拟应用侧底部的选择栏
+        // 这里模拟应用侧底部的选择栏。
         if (this.isBrowserShow) {
           Row() {
             ForEach(this.selectUris, (uri: string) => {

@@ -65,8 +65,8 @@ IHostapdCallback::OnEventHostApdNotify ([in] String notifyParam, [in] String ifN
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| notifyParam | 表示Hostapd的参数。| 
-| ifName | 表示网卡名称。| 
+| notifyParam | 表示Hostapd的参数。 | 
+| ifName | 表示网卡名称。 | 
 
 
 ### OnEventStaJoin()
@@ -86,5 +86,5 @@ Wi-Fi Hal回调STA加入AP。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| staJoinParm | 表示STA加入内容 | 
-| ifName | 表示网卡名称 | 
+| staJoinParm | 表示STA加入内容。 | 
+| ifName | 表示网卡名称。 | 
