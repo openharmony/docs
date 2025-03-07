@@ -19,7 +19,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OnProcessDoneExt](#onprocessdoneext) ([in] String imageId, [in] [ImageBufferInfoExt](_image_buffer_info_ext.md) buffer) | 在进程完成时调用。 | 
+| [OnProcessDoneExt](#onprocessdoneext) ([in] String imageId, [in] [ImageBufferInfoExt](_image_buffer_info_ext_v13.md) buffer) | 在进程完成时调用。 | 
 
 
 ## 成员函数说明
