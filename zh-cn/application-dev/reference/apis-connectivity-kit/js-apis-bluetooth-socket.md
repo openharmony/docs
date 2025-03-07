@@ -401,6 +401,7 @@ sppWriteAsync(clientSocket: number, data: ArrayBuffer): Promise<void>;
 |801 | Capability not supported.          |
 |2901054 | IO error. |
 |2900099 | Operation failed. |
+
 **示例：**
 
 ```js
@@ -423,6 +424,10 @@ sppReadAsync(clientSocket: number): Promise<void>;
 
 通过socket读取对端所发送数据的异步接口，该接口支持断开连接时SPP操作异常错误返回。
 
+**注意事项**：
+1.该接口不可以与socket.on('sppRead')接口混用，同一路socket只能使用socket.on('sppRead')或者socket.sppReadAsync其中一个接口。
+2.该接口与socket.on('sppRead')使用方式不同，需要业务循环使用读取数据。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -430,10 +435,6 @@ sppReadAsync(clientSocket: number): Promise<void>;
 | 参数名          | 类型                          | 必填   | 说明                                       |
 | ------------ | --------------------------- | ---- | ---------------------------------------- |
 | clientSocket | number                      | 是    | 客户端Socket的id。                            |
-
-**注意事项**：
-1.该接口不可以与socket.on('sppRead')接口混用，同一路socket只能使用socket.on('sppRead')或者socket.sppReadAsync其中一个接口。
-2.该接口与socket.on('sppRead')使用方式不同，需要业务循环使用读取数据。
 
 **错误码**：
 
@@ -445,6 +446,7 @@ sppReadAsync(clientSocket: number): Promise<void>;
 |801 | Capability not supported.          |
 |2901054 | IO error. |
 |2900099 | Operation failed. |
+
 **示例：**
 
 ```js
