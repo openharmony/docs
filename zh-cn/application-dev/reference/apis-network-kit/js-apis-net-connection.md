@@ -321,65 +321,65 @@ cat server.pem \
 
 ```
 
-**各个字段含义:**
+**各个字段含义。**
 
-**network-security-config(object:网络安全配置)**
+**network-security-config(object:网络安全配置)。**
 
-可包含0或者1个base-config
+可包含0个或者1个base-config。
 
-必须包含1个domain-config
+必须包含1个domain-config。
 
-**trust-global-user-ca: 是否信任企业MDM系统或设备管理员用户手动安装的CA证书，默认true**
+**trust-global-user-ca: 是否信任企业MDM系统或设备管理员用户手动安装的CA证书，默认true。**
 
-**trust-current-user-ca: 是否信任当前用户安装的证书，默认true**
+**trust-current-user-ca: 是否信任当前用户安装的证书，默认true。**
 
-**base-config(object:指示应用程序范围的安全配置)**
+**base-config(object:指示应用程序范围的安全配置)。**
 
-必须包含1个trust-anchors
+必须包含1个trust-anchors。
 
-可以包含0或者1个cleartextTrafficPermitted(boolean:指示整体明文HTTP是否允许，默认为true)
+可以包含0个或者1个cleartextTrafficPermitted(boolean:指示整体明文HTTP是否允许，默认为true)。
 
-**domain-config(array:指示每个域的安全配置)**
+**domain-config(array:指示每个域的安全配置)。**
 
-可以包含任意个item
+可以包含任意个item。
 
-item必须包含1个domain
+item必须包含1个domain。
 
-item可以包含0或者1个trust-anchors
+item可以包含0个或者1个trust-anchors。
 
-item可包含0个或者1个pin-set
+item可包含0个或者1个pin-set。
 
-item可以包含0或者1个cleartextTrafficPermitted(boolean:指示按域名的明文HTTP是否允许，默认为true)
+item可以包含0个或者1个cleartextTrafficPermitted(boolean:指示按域名的明文HTTP是否允许，默认为true)。
 
-**trust-anchors(array:受信任的CA)**
+**trust-anchors(array:受信任的CA)。**
 
-可以包含任意个item
+可以包含任意个item。
 
-item必须包含1个certificates(string:CA证书路径)
+item必须包含1个certificates(string:CA证书路径)。
 
-**domain(array:域)**
+**domain(array:域)。**
 
-可以包含任意个item
+可以包含任意个item。
 
-item必须包含1个name(string:指示域名)
+item必须包含1个name(string:指示域名)。
 
-item可以包含0或者1个include-subdomains(boolean:指示规则是否适用于子域)
+item可以包含0个或者1个include-subdomains(boolean:指示规则是否适用于子域)。
 
-**pin-set(object:证书PIN设置)**
+**pin-set(object:证书PIN设置)。**
 
-必须包含1个pin
+必须包含1个pin。
 
-可以包含0或者1个expiration(string:指示证书PIN的过期时间)
+可以包含0个或者1个expiration(string:指示证书PIN的过期时间)。
 
-**pin(array:证书PIN)**
+**pin(array:证书PIN)。**
 
-可以包含任意个item
+可以包含任意个item。
 
-item必须包含1个digest-algorithm(string:指示用于生成pin的摘要算法)
+item必须包含1个digest-algorithm(string:指示用于生成pin的摘要算法)。
 
-item必须包含1个digest(string:指示公钥PIN)
+item必须包含1个digest(string:指示公钥PIN)。
 
-**cleartextTrafficPermitted(boolean:明文HTTP是否允许，默认为true)**
+**cleartextTrafficPermitted(boolean:明文HTTP是否允许，默认为true)。**
 
 ## connection.getDefaultHttpProxy<sup>10+</sup>
 
