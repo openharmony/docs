@@ -953,3 +953,185 @@ getFileSyncState(uri: string): FileSyncState
 | TO_BE_UPLOADED<sup>12+</sup> |  4 | 正在等待上行。 |
 | UPLOAD_SUCCESS<sup>12+</sup> |  5 | 文件已成功上行。 |
 | UPLOAD_FAILURE<sup>12+</sup> |  6 | 文件上行失败。 |
+
+## cloudSync.optimizeStorage<sup>17+</sup>
+
+optimizeStorage(): Promise&lt;void&gt;
+
+优化图库已同步云空间的本地资源，按照本地剩余空间执行自动老化策略。使用Promise异步回调。
+
+**需要权限**：ohos.permission.CLOUDFILE_SYNC
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口**：此接口为系统接口。
+
+**返回值：**
+
+  | 类型                  | 说明                           |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 13600001  | IPC error. |
+| 13900042  | Unknown error. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  cloudSync.optimizeStorage().then(() => {
+	  console.info("optimize storage successfully");   // 前台UX按需阻塞等待
+  }).catch((err: BusinessError) => {
+	  console.error("optimize storage failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+## cloudSync.startOptimizeSpace<sup>17+</sup>
+
+startOptimizeSpace(optimizePara: OptimizeSpacePara, callback?: Callback\<OptimizeSpaceProgress>): Promise&lt;void&gt;
+
+优化图库已同步云空间的本地资源，执行立即优化空间策略，对老化天数前未访问的本地图片/视频进行优化。使用Promise异步回调。
+
+startOptimizeSpace的使用和stopOptimizeSpace方法调用一一对应，重复开启将返回其他任务正在执行的错误信息（22400006）。
+
+**需要权限**：ohos.permission.CLOUDFILE_SYNC
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| para | [OptimizeSpacePara](#optimizespacepara17) | 是   | 优化参数。 |
+| callback | Callback&lt;[OptimizeSpaceProgress](#optimizespaceprogress17)&gt; | 否   | 返回优化进度。缺省情况下返回401错误，不执行清理任务 |
+
+**返回值：**
+
+  | 类型                  | 说明                           |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 13600001  | IPC error. |
+| 22400005  | Inner error. |
+| 22400006  | Other optimize task is running. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let para:cloudSync.OptimizeSpacePara = {totalSize: 1073741824, agingDays: 30};
+  let callback = (data:cloudSync.OptimizeSpaceProgress) => {
+    if (data.state == cloudSync.OptimizeState.FAILED) {
+      console.info("optimize space failed");
+    } else if (data.state == cloudSync.OptimizeState.COMPLETED && data.progress == 100) {
+      console.info("optimize space successfully");
+    } else if (data.state == cloudSync.OptimizeState.RUNNING) {
+      console.info("optimize space progress:" + data.progress);
+    }
+  }
+  cloudSync.startOptimizeSpace(para, callback).then(() => {
+	  console.info("start optimize space");
+  }).catch((err: BusinessError) => {
+	  console.error("start optimize space failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+## cloudSync.stopOptimizeSpace<sup>17+</sup>
+
+stopOptimizeSpace(): void
+
+同步方法停止图库云图资源空间优化，和startOptimizeSpace配对使用。
+
+**需要权限**：ohos.permission.CLOUDFILE_SYNC
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口**：此接口为系统接口。
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 13600001  | IPC error. |
+| 22400005  | Inner error. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let para:cloudSync.OptimizeSpacePara = {totalSize: 1073741824, agingDays: 30};
+  let callback = (data:cloudSync.OptimizeSpaceProgress) => {
+    if (data.state == cloudSync.OptimizeState.FAILED) {
+      console.info("optimize space failed");
+    } else if (data.state == cloudSync.OptimizeState.RUNNING) {
+      console.info("optimize space progress:" + data.progress);
+    }
+  }
+  cloudSync.startOptimizeSpace(para, callback);
+  cloudSync.stopOptimizeSpace();   // 停止空间优化
+  ```
+
+## OptimizeState<sup>17+</sup>
+
+优化空间状态，为枚举类型。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口**：此接口为系统接口。
+
+| 名称 |  值|  说明 |
+| ----- |  ---- |  ---- |
+| RUNNING |  0 | 正在优化空间。 |
+| COMPLETED |  1 | 优化空间成功结束。 |
+| FAILED |  2 | 优化空间失败。 |
+| STOPPED |  3 | 优化空间停止。 |
+
+## OptimizeSpaceProgress<sup>17+</sup>
+
+立即优化空间状态和当前进度。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口**：此接口为系统接口。
+
+| 名称     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| state | [OptimizeState](#optimizestate17) | 是   | 枚举值，优化空间状态。|
+| progress | number | 是   | 优化进度百分比，范围[0,100]。|
+
+## OptimizeSpacePara<sup>17+</sup>
+
+立即优化空间设置参数，设置优化总空间和老化天数。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口**：此接口为系统接口。
+
+| 名称     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| totalSize | number | 是   | 优化空间总大小。查询媒体库接口获得需要老化的所有文件总大小，由应用传入，单位byte。|
+| agingDays | number | 是   | 老化天数。系统会以当前时间为基准，优化老化天数前未访问、已同步云空间的本地图片/视频。|
