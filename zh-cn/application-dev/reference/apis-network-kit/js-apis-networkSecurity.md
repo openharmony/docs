@@ -261,7 +261,7 @@ try {
   let result: boolean = networkSecurity.isCleartextPermitted();
   console.info(`isCleartextPermitted Result: ${JSON.stringify(result)}`);
 } catch (error) {
-  console.info(`isCleartextPermitted Error: ${JSON.stringify(error)}`);
+  console.error(`isCleartextPermitted Error: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -303,6 +303,6 @@ try {
   let result: boolean = networkSecurity.isCleartextPermittedByHostName("xxx");
   console.info(`isCleartextPermitted Result: ${JSON.stringify(result)}`);
 } catch (error) {
-  console.info(`isCleartextPermitted Error: ${JSON.stringify(error)}`);
+  console.error(`isCleartextPermitted Error: ${JSON.stringify(error)}`);
 }
 ```
