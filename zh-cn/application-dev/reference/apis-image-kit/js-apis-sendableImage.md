@@ -954,7 +954,7 @@ createAlphaPixelmapSync(): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Parameter verification failed. |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 |  501    | Resource Unavailable. |
 
 **示例：**
@@ -1846,7 +1846,7 @@ createImageReceiver(size: image.Size, format: image.ImageFormat, capacity: numbe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401| The parameter check failed. |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
