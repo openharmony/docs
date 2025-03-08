@@ -20,14 +20,6 @@ isActive(): boolean
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
-**错误码：**
-
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
-
-| 错误码ID   | 错误信息    |
-|---------|---------|
-| 4900101 | Failed to connect to the service. |
-
 **示例：**
 
 ```js
@@ -77,14 +69,6 @@ getPowerMode(): DevicePowerMode
 | 类型                                 | 说明       |
 | ------------------------------------ | ---------- |
 | [DevicePowerMode](#devicepowermode9) | 电源模式。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
-
-| 错误码ID   | 错误信息    |
-|---------|---------|
-| 4900101 | Failed to connect to the service. |
 
 **示例：**
 
