@@ -437,6 +437,11 @@ on(type: 'freeze', observer: FreezeObserver): void
 
 注册应用主线程freeze监听。只能在主线程调用，多次注册后，后一次的注册会覆盖前一次的。
 
+> **注意：**
+>
+> 如果该回调函数执行时间超过1s，可能导致[AppRecovery](./js-apis-app-ability-appRecovery.md)功能不可用。通过解析hilog日志中的begin与Freeze callback execution completed两者的时间差可以计算回调函数执行时长，如果超过1秒，可以尝试采用异步处理、减少阻塞操作、优化数据结构等方法优化回调逻辑，降低执行时长。
+> 
+
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
