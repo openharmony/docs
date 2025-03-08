@@ -161,7 +161,10 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 const TAG = 'VideoRecorderDemo:';
 export class VideoRecorderDemo {
-  const context: Context = getContext(this);
+  private context: Context;
+  constructor() {
+    this.context = getContext(this);
+  }
   private avRecorder: media.AVRecorder | undefined = undefined;
   private videoOutSurfaceId: string = "";
   private avProfile: media.AVRecorderProfile = {
@@ -185,7 +188,7 @@ export class VideoRecorderDemo {
   
   // 创建文件以及设置avConfig.url。
   async createAndSetFd() {
-    const path: string = context.filesDir + '/example.mp4'; // 文件沙箱路径，文件后缀名应与封装格式对应。
+    const path: string = this.context.filesDir + '/example.mp4'; // 文件沙箱路径，文件后缀名应与封装格式对应。
     const videoFile: fs.File = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     this.avConfig.url = 'fd://' + videoFile.fd; // 设置url。
     this.fileFd = videoFile.fd; // 文件fd。
