@@ -3362,10 +3362,10 @@ getSupportedDecoders(): Promise\<Array\<DecoderType>>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-avSession.getSupportedDecoders().then((decoderTypes: avSession.DecoderType[]) => {
-  console.info(`getSupportedDecoders : SUCCESS : descriptors.length : ${decoderTypes.length}`);
+aVCastController.getSupportedDecoders().then((decoderTypes: avSession.DecoderType[]) => {
+  console.info(`getSupportedDecoders : SUCCESS : decoderTypes.length : ${decoderTypes.length}`);
   if (descriptors.length > 0 ) {
-    console.info(`getSupportedDecoders : SUCCESS : descriptors[0] : ${decoderTypes[0]}`);
+    console.info(`getSupportedDecoders : SUCCESS : decoderTypes[0] : ${decoderTypes[0]}`);
   }
 }).catch((err: BusinessError) => {
   console.error(`getSupportedDecoders BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -3401,8 +3401,9 @@ getRecommendedResolutionLevel(decoderType: DecoderType): Promise\<ResolutionLeve
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let decoderType: avSession.DecoderType = {OH_AVCODEC_MIMETYPE_VIDEO_AVC:"video/avc"};
-aVCastController.getRecommendedResolutionLevel(decoderType).then((ResolutionLevel：avSession.ResolutionLevel) => {
+let decoderType = avSession.DecoderType.OH_AVCODEC_MIMETYPE_VIDEO_AVC;
+let resolutionLeve = avSession.ResolutionLevel;
+aVCastController.getRecommendedResolutionLevel(decoderType).then((resolutionLeve) => {
   console.info('getRecommendedResolutionLevel successfully');
 }).catch((err: BusinessError) => {
   console.error(`getRecommendedResolutionLevel BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -3439,7 +3440,7 @@ getSupportedHdrCapabilities(): Promise\<Array\<hdrCapability.HDRFormat>>
 import { BusinessError } from '@kit.BasicServicesKit';
 import type hdrCapability from './@ohos.graphics.hdrCapability';
 
-avSession.getSupportedHdrCapabilities().then((hdrFormats: hdrCapability.HDRFormat[]) => {
+aVCastController.getSupportedHdrCapabilities().then((hdrFormats: hdrCapability.HDRFormat[]) => {
   console.info(`getSupportedHdrCapabilities : SUCCESS : hdrFormats.length : ${hdrFormats.length}`);
   if (hdrFormats.length > 0 ) {
     console.info(`getSupportedHdrCapabilities : SUCCESS : descriptors[0] : ${hdrFormats[0]}`);
@@ -3478,7 +3479,7 @@ getSupportedPlaySpeeds(): Promise\<Array\<number>>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-avSession.getSupportedPlaySpeeds().then((nums: number[]) => {
+aVCastController.getSupportedPlaySpeeds().then((nums: number[]) => {
   console.info(`getSupportedPlaySpeeds : SUCCESS : hdrFormats.length : ${nums.length}`);
   if (nums.length > 0 ) {
     console.info(`getSupportedPlaySpeeds : SUCCESS : descriptors[0] : ${nums[0]}`);
