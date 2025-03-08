@@ -2584,7 +2584,7 @@ setWindowDelayRaiseOnDrag(isEnabled: boolean): void
 try {
   windowClass.setWindowDelayRaiseOnDrag(true);
 } catch (exception) {
-  console.error(Failed to set window delay raise. Cause code: ${exception.code}, message: ${exception.message});
+  console.error(`Failed to set window delay raise. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
