@@ -1,6 +1,6 @@
 # @ohos.app.ability.InsightIntentExecutor (Base Class for InsightIntent Call Execution)
 
-The **InsightIntentExecutor** module provides the base class for InsightIntent call execution. Through this base class, you can access the InsightIntent framework on the device side. You need to implement the service logic to respond to InsightIntent calls. To access the InsightIntent framework, you need to declare the InsightIntent name and InsightIntent access mode in the InsightIntent configuration file. The system calls the InsightIntent based on the user interaction and InsightIntent configuration file and triggers the corresponding InsightIntent call execution callback.
+The InsightIntentExecutor module provides the base class for InsightIntent call execution. Through this base class, you can access the InsightIntent framework on the device side. You need to implement the service logic to respond to InsightIntent calls. To access the InsightIntent framework, you need to declare the InsightIntent name and InsightIntent access mode in the InsightIntent configuration file. The system calls the InsightIntent based on the user interaction and InsightIntent configuration file and triggers the corresponding InsightIntent call execution callback.
 
 > **NOTE**
 >

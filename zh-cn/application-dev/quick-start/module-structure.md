@@ -120,7 +120,7 @@ distro示例：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| parameters | 标识调用Ability时所有调用参数的元信息。每个调用参数的元信息由以下三个标签组成：description、name、type。 | 对象数组 | 可缺省，缺省值为空 |
+| parameters | 标识调用Ability时所有调用参数的元信息。每个调用参数的元信息由以下三个标签组成：description、name、type。 | 对象数组 | 可缺省，缺省值为空。 |
 | results | 标识Ability返回值的元信息。每个返回值的元信息由以下三个标签组成：description、name、type。 | 对象数组 | 可缺省，缺省值为空。 |
 | customizeData | 该标签标识父级组件的自定义元信息，Parameters和results在application不可配。 | 对象数组 | 可缺省，缺省值为空。 |
 
@@ -142,7 +142,7 @@ distro示例：
 | -------- | -------- | -------- | -------- |
 | description | 标识对返回值的描述，可以是表示描述内容的字符串，也可以是对描述内容的资源索引以支持多语言。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
 | name | 标识返回值的名字。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
-| type | 标识返回值的类型，如Integer。 | 字符串 | 不可缺省 |
+| type | 标识返回值的类型，如Integer。 | 字符串 | 不可缺省。 |
 
 ## customizeData对象的内部结构
 
@@ -200,7 +200,7 @@ metadata对象示例：
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | process | 运行应用程序或Ability的进程名称。如果在deviceConfig标记中配置了进程，则应用程序的所有能力都在此进程中运行。您还可以为特定能力设置流程属性，以便该能力可以在此流程中运行。如果此属性设置为与其他应用程序相同的进程名称，则所有这些应用程序可以在同一进程中运行，前提是他们具有相同的联合用户ID和相同的签名。该标签最大字节数为31个字节。 | 字符串 | 可缺省，缺省值为空。 |
-| name | 标识Ability名称。取值可采用反向域名方式表示，由包名和类名组成，如"com.example.myapplication.EntryAbility"；也可采用"."开头的类名方式表示，如".EntryAbility"。<br/>Ability的名称，需在一个应用的范围内保证唯一。说明：在使用DevEco&nbsp;Studio新建项目时，默认生成首个Ability的配置，即"config.json"中"EntryAbility"的配置。如使用其他IDE工具，可自定义名称。该标签最大长度为127个字节。 | 字符串 | 不可缺省 |
+| name | 标识Ability名称。取值可采用反向域名方式表示，由包名和类名组成，如"com.example.myapplication.EntryAbility"；也可采用"."开头的类名方式表示，如".EntryAbility"。<br/>Ability的名称，需在一个应用的范围内保证唯一。说明：在使用DevEco&nbsp;Studio新建项目时，默认生成首个Ability的配置，即"config.json"中"EntryAbility"的配置。如使用其他IDE工具，可自定义名称。该标签最大长度为127个字节。 | 字符串 | 不可缺省。 |
 | description | 标识对Ability的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
 | icon | 标识Ability图标资源文件的索引。取值示例：$media:ability_icon。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的icon将同时作为应用的icon。如果存在多个符合条件的Ability，则取位置靠前的Ability的icon作为应用的icon。<br/>说明：应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。 | 字符串 | 可缺省，缺省值为空。 |
 | label | 标识Ability对用户显示的名称。取值是对该名称的资源索引，支持多语言，例：$string:ability_label。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的label将同时作为应用的label。如果存在多个符合条件的Ability，则取位置靠前的Ability的label作为应用的label。<br/>说明：&nbsp;应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。该标签为资源文件中定义的字符串的引用，或以"{}"包括的字符串。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
@@ -239,7 +239,7 @@ metadata对象示例：
 {
   "module":{
 
-    ...
+    // ...
 
     "abilities": [{
       "icon": "$media:icon",
@@ -251,7 +251,7 @@ metadata对象示例：
       }]
     }],
 
-    ...
+    // ...
 
   }
 }
@@ -417,8 +417,8 @@ skills示例：
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | name | 需要使用的权限名称。 | 字符串 | 否 |
-| reason | 描述申请权限的原因。需要做多语种适配。 | 字符串 | 分情况：当申请的权限为user_grant时，必须填写此字段，否则不允许在应用市场上架；其他权限可缺省，缺省为空 |
-| usedScene | 描述权限使用的场景和时机。场景类型如下两种：<br/>-&nbsp;ability：ability的名称，可配置多个。<br/>-&nbsp;when：调用时机，可填的值有inuse（使用时）、always（始终）。 | 对象 | 可缺省，缺省值为空。<br/>when可缺省，缺省值为"inuse" |
+| reason | 描述申请权限的原因。需要做多语种适配。 | 字符串 | 分情况：当申请的权限为user_grant时，必须填写此字段，否则不允许在应用市场上架；其他权限可缺省，缺省为空。 |
+| usedScene | 描述权限使用的场景和时机。场景类型如下两种：<br/>-&nbsp;ability：ability的名称，可配置多个。<br/>-&nbsp;when：调用时机，可填的值有inuse（使用时）、always（始终）。 | 对象 | 可缺省，缺省值为空。<br/>when可缺省，缺省值为"inuse"。 |
 
 ## usedScene对象内部结构
 

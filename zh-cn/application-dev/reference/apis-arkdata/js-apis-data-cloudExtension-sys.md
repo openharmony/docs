@@ -65,7 +65,7 @@ import { cloudExtension } from '@kit.ArkData';
 
 | 名称           | 类型    | 必填 | 说明                                                         |
 | -------------- | ------- | ---- | ------------------------------------------------------------ |
-| enableCloud    | boolean | 是   | 表示是否启用了云服务，为true时是启用云服务，为false时是未启用。 |
+| enableCloud    | boolean | 是   | 表示是否启用了云服务。为true时是启用云服务，为false时是未启用。 |
 | id             | string  | 是   | 使用哈希函数SHA256生成的云账号ID。                           |
 | totalSpace     | number  | 是   | 服务器上账号的总空间（KB）。                                 |
 | remainingSpace | number  | 是   | 服务器上账号的可用空间（KB）。                               |
@@ -132,7 +132,7 @@ import { cloudExtension } from '@kit.ArkData';
 | 名称       | 类型                                                       | 必填 | 说明                                                         |
 | ---------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | nextCursor | string                                                     | 是   | 查询游标。                                                   |
-| hasMore    | boolean                                                    | 是   | 服务器是否存在更多数据可供查询，true表示服务器上还有数据等待查询，false表示服务器上不存在可查询的数据。 |
+| hasMore    | boolean                                                    | 是   | 服务器是否存在更多数据可供查询。true表示服务器上还有数据等待查询，false表示服务器上不存在可查询的数据。 |
 | values     | Array&lt;Record&lt;string, [CloudType](#cloudtype)&gt;&gt; | 是   | 需要查询数据的数组，包括data value（数据值）和[ExtensionValue](#extensionvalue)（扩展值)。 |
 
 ## AppBriefInfo
@@ -145,7 +145,7 @@ import { cloudExtension } from '@kit.ArkData';
 | ----------- | ------- | ---- | ---------------------------------- |
 | appId       | string  | 是   | 应用程序ID。                      |
 | bundleName  | string  | 是   | 应用包名。                         |
-| cloudSwitch | boolean | 是   | 云开关，表示应用程序是否启用云，true表示启用云，false表示不启用云。 |
+| cloudSwitch | boolean | 是   | 云开关，表示应用程序是否启用云。true表示启用云，false表示不启用云。 |
 | instanceId  | number  | 是   | 应用分身ID，0表示应用本身，分身ID依次递增。 |
 
 ## FieldType
@@ -719,7 +719,7 @@ export default class MyCloudDB implements cloudExtension.CloudDB {
 
 ### unlock
 
-unlock(lockId: number): Promise&lt;Result&lt;boolean&gt;&gt;;
+unlock(lockId: number): Promise&lt;Result&lt;boolean&gt;&gt;
 
 为云数据库解锁。
 

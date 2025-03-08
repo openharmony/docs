@@ -49,7 +49,7 @@ interface ParticleInterface {
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外还支持以下属性：
 
 ### disturbanceFields<sup>12+</sup>
 
@@ -83,7 +83,7 @@ emitter(value: Array&lt;EmitterProperty&gt;)
 | value  | Array<[EmitterProperty](#emitterproperty12)> | 是   | 需要更新的emitter参数数组 |
 
 ## 事件
-支持[通用事件](ts-universal-events-click.md)
+支持[通用事件](ts-component-general-events.md)
 
 ## ParticleOptions
 
@@ -296,7 +296,7 @@ interface ParticlePropertyAnimation<T> {
 | to | T | 是 | 属性目标值。非法输入取对应属性的默认值。|
 |startMillis|number | 是 | 动画开始时间。|
 |endMillis|number | 是 | 动画结束时间。|
-|curve|[Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve)| 否 | 设置动画曲线。<br>默认值：Curve.Linear|
+|curve|[Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve9)| 否 | 设置动画曲线。<br>默认值：Curve.Linear|
 
 
 ## ParticleType

@@ -688,7 +688,7 @@ Sets whether to wake up the screen when this feature is restored. This API uses 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 12. Its substitute **window.setWakeUpScreen** is available only to system applications.
+> This API is supported since API version 7 and deprecated since API version 12. Its substitute, **window.setWakeUpScreen**, is available only to system applications.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

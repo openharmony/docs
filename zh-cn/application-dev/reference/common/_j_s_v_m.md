@@ -647,6 +647,9 @@ enum JSVM_PropertyAttributes
 | JSVM_STATIC | 该属性将被定义为类的静态属性，而不是默认的实例属性。这仅由OH_JSVM_DefineClass使用。 | 
 | JSVM_DEFAULT_METHOD | 就像JS类中的方法一样，该属性是可配置和可写的，但不可枚举。 | 
 | JSVM_DEFAULT_JSPROPERTY | 就像JavaScript中通过赋值设置的属性一样，属性是可写、可枚举和可配置的。 | 
+| JSVM_NO_RECEIVER_CHECK | 设置该属性后会取消对方法接收者的校验。 |
+| JSVM_METHOD_NO_RECEIVER_CHECK | 同时设置 JSVM_NO_RECEIVER_CHECK 和 JSVM_DEFAULT_METHOD 属性。 |
+| JSVM_JSPROPERTY_NO_RECEIVER_CHECK | 同时设置 JSVM_NO_RECEIVER_CHECK 和 JSVM_DEFAULT_JSPROPERTY 属性。 |
 
 
 ### JSVM_RegExpFlags

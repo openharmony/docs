@@ -27,7 +27,7 @@ If you are just starting out with Node-API, see [Node-API Development Process](u
 
 ### napi_is_arraybuffer
 
-Use **napi_is_arraybuffer** to check whether a JS value is an **ArrayBuffer** object.
+Call **napi_is_arraybuffer** to check whether a JS value is an **ArrayBuffer** object.
 
 CPP code:
 
@@ -78,22 +78,22 @@ try {
 
 ### napi_get_arraybuffer_info
 
-Use **napi_get_arraybuffer_info** to obtain the underlying data buffer and length of an **ArrayBuffer** object.
+Call **napi_get_arraybuffer_info** to obtain the underlying data buffer and length of an **ArrayBuffer** object.
 
 CPP code:
 
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value GetArraybufferInfo(napi_env env, napi_callback_info info)
+static napi_value GetArrayBufferInfo(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     // Check whether the parameter is an ArrayBuffer object.
-    bool isArraybuffer = false;
-    napi_is_arraybuffer(env, args[0], &isArraybuffer);
-    if (!isArraybuffer) {
+    bool isArrayBuffer = false;
+    napi_is_arraybuffer(env, args[0], &isArrayBuffer);
+    if (!isArrayBuffer) {
         napi_throw_type_error(env, nullptr, "Argument must be an ArrayBuffer");
         return nullptr;
     }
@@ -128,7 +128,7 @@ export class ArrayBufferInfo {
   byteLength: number;
   buffer: Object;
 }
-export const getArraybufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | void;
+export const getArrayBufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | void;
 ```
 
 ArkTS code:
@@ -138,23 +138,23 @@ import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
 
 const buffer = new ArrayBuffer(10);
-hilog.info(0x0000, 'testTag', 'Test Node-API get_arraybuffer_info:%{public}s ', JSON.stringify(testNapi.getArraybufferInfo(buffer)));
+hilog.info(0x0000, 'testTag', 'Test Node-API get_arrayBuffer_info:%{public}s ', JSON.stringify(testNapi.getArrayBufferInfo(buffer)));
 ```
 
 ### napi_detach_arraybuffer
 
-Use **napi_detach_arraybuffer** to detach the underlying data from an **ArrayBuffer** object.
+Call **napi_detach_arraybuffer** to detach the underlying data from an **ArrayBuffer** object.
 
 ### napi_is_detached_arraybuffer
 
-Use **napi_is_detached_arraybuffer** to check whether an **ArrayBuffer** object has been detached.
+Call **napi_is_detached_arraybuffer** to check whether an **ArrayBuffer** object has been detached.
 
 CPP code:
 
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value DetachedArraybuffer(napi_env env, napi_callback_info info)
+static napi_value DetachedArrayBuffer(napi_env env, napi_callback_info info)
 {
     // Call napi_detach_arraybuffer to detach the underlying data from an ArrayBuffer object.
     size_t argc = 1;
@@ -166,7 +166,7 @@ static napi_value DetachedArraybuffer(napi_env env, napi_callback_info info)
     return arrayBuffer;
 }
 
-static napi_value IsDetachedArraybuffer(napi_env env, napi_callback_info info)
+static napi_value IsDetachedArrayBuffer(napi_env env, napi_callback_info info)
 {
     // Call napi_is_detached_arraybuffer to check whether the specified ArrayBuffer object has been detached.
     size_t argc = 1;
@@ -186,8 +186,8 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const detachedArraybuffer: (buffer:ArrayBuffer) => ArrayBuffer;
-export const isDetachedArraybuffer: (arrarBeffer: ArrayBuffer) => boolean;
+export const detachedArrayBuffer: (buffer:ArrayBuffer) => ArrayBuffer;
+export const isDetachedArrayBuffer: (arrayBuffer: ArrayBuffer) => boolean;
 ```
 
 ArkTS code:
@@ -197,8 +197,8 @@ import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
 try {
   const bufferArray = new ArrayBuffer(8);
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_detached_arraybuffer one: %{public}s', testNapi.isDetachedArraybuffer(bufferArray));
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_detached_arraybuffer two: %{public}s ', testNapi.isDetachedArraybuffer(testNapi.detachedArraybuffer(bufferArray)));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_detached_arraybuffer one: %{public}s', testNapi.isDetachedArrayBuffer(bufferArray));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_detached_arraybuffer two: %{public}s ', testNapi.isDetachedArrayBuffer(testNapi.detachedArrayBuffer(bufferArray)));
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_detached_arraybuffer error: %{public}s', error.message);
 }
@@ -206,7 +206,7 @@ try {
 
 ### napi_create_arraybuffer
 
-Use **napi_create_arraybuffer** to create an ArkTS **ArrayBuffer** object with the specified byte length in C/C++. If the caller wants to directly operate the buffer, return the underlying buffer to the caller. To write data to this buffer from ArkTS, you need to create a **TypedArray** or **DataView** object.
+Call **napi_create_arraybuffer** to create an ArkTS **ArrayBuffer** object with the specified byte length in C/C++. If the caller wants to directly operate the buffer, return the underlying buffer to the caller. To write data to this buffer from ArkTS, you need to create a **TypedArray** or **DataView** object.
 
 > **NOTE**
 >
@@ -217,7 +217,7 @@ CPP code:
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value CreateArraybuffer(napi_env env, napi_callback_info info)
+static napi_value CreateArrayBuffer(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value argv[1] = {nullptr};
@@ -244,7 +244,7 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const createArraybuffer: (size: number) => ArrayBuffer;
+export const createArrayBuffer: (size: number) => ArrayBuffer;
 ```
 
 ArkTS code:
@@ -253,7 +253,7 @@ ArkTS code:
 import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
 
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_arraybuffer:%{public}s', testNapi.createArraybuffer(10).toString());
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_arraybuffer:%{public}s', testNapi.createArrayBuffer(10).toString());
 ```
 
 To print logs in the native CPP, add the following information to the **CMakeLists.txt** file and add the header file by using **#include "hilog/log.h"**.

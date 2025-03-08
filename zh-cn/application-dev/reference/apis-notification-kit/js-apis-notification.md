@@ -925,7 +925,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 ## ContentType
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称                              | 值          | 说明               |
 | --------------------------------- | ----------- | ------------------ |
@@ -937,7 +937,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 ## SlotLevel
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称                              | 值          | 说明               |
 | --------------------------------- | ----------- | ------------------ |
@@ -950,10 +950,10 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 ## BundleOption<sup>deprecated</sup>
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[notificationManager.BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)替代
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[notificationManager.BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)替代。
 
 | 名称   | 类型   | 必填 | 说明   |
 | ------ | ------ | --- |  ------ |
@@ -962,7 +962,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 ## NotificationKey<sup>deprecated</sup>
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 > **说明：**
 > 从 API version 7开始支持，从API version 9开始废弃。<!--Del-->建议使用[notificationManager.NotificationKey](js-apis-notificationSubscribe-sys.md#notificationkey)替代。<!--DelEnd-->
@@ -975,7 +975,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 ## SlotType
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称                 | 值       | 说明       |
 | -------------------- | -------- | ---------- |
@@ -990,7 +990,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 描述通知中显示的操作按钮。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称      | 类型                                            | 可读 | 可写 | 说明                      |
 | --------- | ----------------------------------------------- | --- | ---- | ------------------------- |
@@ -1004,7 +1004,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 描述普通文本通知。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称           | 类型   | 可读 | 可写 | 说明                               |
 | -------------- | ------ | ---- | ---- | ---------------------------------- |
@@ -1017,7 +1017,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 描述长文本通知。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称           | 类型   | 可读 | 可写 | 说明                             |
 | -------------- | ------ | ---- | --- | -------------------------------- |
@@ -1033,7 +1033,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 描述多行文本通知。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称           | 类型            | 可读 | 可写 | 说明                             |
 | -------------- | --------------- | --- | --- | -------------------------------- |
@@ -1049,7 +1049,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 描述附有图片的通知。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称           | 类型           | 可读 | 可写 | 说明                             |
 | -------------- | -------------- | ---- | --- | -------------------------------- |
@@ -1065,7 +1065,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 描述通知类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称        | 类型                                                         | 可读 | 可写 | 说明               |
 | ----------- | ------------------------------------------------------------ | ---- | --- | ------------------ |
@@ -1079,7 +1079,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 描述通知的请求。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称                  | 类型                                          | 可读 | 可写 | 说明                       |
 | --------------------- | --------------------------------------------- | ---- | --- | -------------------------- |
@@ -1121,7 +1121,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 描述分布式选项。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称                   | 类型            | 可读 | 可写 | 说明                               |
 | ---------------------- | -------------- | ---- | ---- | ---------------------------------- |
@@ -1134,7 +1134,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 描述通知槽
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称                 | 类型                  | 可读 | 可写 | 说明                     |
 | -------------------- | --------------------- | ---- | --- |------------------------|
@@ -1155,7 +1155,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 通知模板。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：SystemCapability.Notification.Notification
 
 | 名称 | 类型                    | 可读 | 可写 | 说明       |
 | ---- | ---------------------- | ---- | ---- | ---------- |

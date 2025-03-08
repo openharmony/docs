@@ -72,3 +72,37 @@ struct zIndexTest {
 实现效果如下图所示：
 
 ![pagePath](figures/zIndex_before.png)  
+
+## cl.arkui.2 富文本组件RichEditor的onCopy回调中设置preventDefault()时的行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+在富文本组件RichEditor的onCopy回调中，当调用preventDefault()时，复制操作完成后，选中区消失。这导致了一个接口同时管理了复制功能和选中区关闭这两个相互独立的行为。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：富文本组件RichEditor的onCopy回调中设置preventDefault()时，复制之后选中区消失，触发OnSelectionChange回调。
+
+变更后：富文本组件RichEditor的onCopy回调中设置preventDefault()时，复制之后选中区不消失，不触发OnSelectionChange回调。
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.1.44开始。
+
+**变更的接口/组件**
+
+富文本组件RichEditor
+
+**适配指导**
+
+此变更不涉及应用适配。

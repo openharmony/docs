@@ -5,7 +5,7 @@ The **connection** module provides basic network management capabilities. With t
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> Unless otherwise specified, the APIs of this module do no support concurrent calls.
+> Unless otherwise specified, the APIs of this module do not support concurrent calls.
 
 ## Modules to Import
 
@@ -1818,6 +1818,73 @@ connection.clearCustomDnsRules().then(() => {
 }).catch((error: BusinessError) => {
     console.log(JSON.stringify(error));
 })
+```
+
+## connection.setPacUrl<sup>15+</sup>
+
+setPacUrl(pacUrl: string): void
+
+Sets the URL of the system-level proxy auto-config (PAC) script.
+
+**Required permissions**: ohos.permission.SET_PAC_URL
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name  | Type                                             | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| pacUrl   | string                                            | Yes  | URL of the PAC script. Note that this URL will not be verified by the API.            |
+
+**Error codes**
+
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                         |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
+
+**Example**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+
+let pacUrl = "xxx";
+connection.setPacUrl(pacUrl);
+```
+
+## connection.getPacUrl<sup>15+</sup>
+
+getPacUrl(): string
+
+Obtains the URL of the system-level PAC script.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type                  | Description                   |
+| ---------------------- | ----------------------- |
+| string        | URL of the PAC script. If the URL does not exist, the error code 2100003 is returned. |
+
+**Error codes**
+
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                         |
+| ------- | --------------------------------- |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
+
+**Example**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+
+let pacUrl = connection.getPacUrl();
 ```
 
 

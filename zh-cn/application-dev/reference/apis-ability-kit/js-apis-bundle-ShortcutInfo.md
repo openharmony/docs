@@ -7,7 +7,7 @@
 
 ## ShortcutInfo<sup>(deprecated)<sup>
 
-**系统能力:** SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework
 
 | 名称                    | 类型                                       | 只读 | 可选 | 说明                         |
 | ----------------------- | ------------------------------------------ | ---- | ---- | ---------------------------- |
@@ -20,6 +20,6 @@
 | labelId<sup>8+</sup>    | number                                     | 是   | 否   | 快捷方式的名称Id。             |
 | disableMessage          | string                                     | 是   | 否   | 快捷方式的禁用消息。           |
 | wants                   | Array&lt;<!--Del-->[<!--DelEnd-->ShortcutWant<!--Del-->](js-apis-bundle-ShortcutInfo-sys.md#shortcutwantdeprecated)<!--DelEnd-->&gt; | 是   | 否   | 快捷方式意图列表。         |
-| isStatic                | boolean                                    | 是   | 是   | 快捷方式是否为静态。           |
-| isHomeShortcut          | boolean                                    | 是   | 是   | 快捷方式是否为主页面快捷方式。 |
-| isEnabled               | boolean                                    | 是   | 是   | 是否启用快捷方式。             |
+| isStatic                | boolean                                    | 是   | 否   | 快捷方式是否为静态，取值为true表示是静态的快捷方式，取值为false表示不是静态的快捷方式。          |
+| isHomeShortcut          | boolean                                    | 是   | 否   | 快捷方式是否为主页面快捷方式，取值为true表示是主页面快捷方式，取值为false表示不是主页面快捷方式。 |
+| isEnabled               | boolean                                    | 是   | 否   | 是否启用快捷方式，取值为true表示启用快捷方式，取值为false表示停用快捷方式。             |

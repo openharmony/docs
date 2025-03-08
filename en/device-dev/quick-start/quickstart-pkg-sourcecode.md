@@ -64,7 +64,16 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
 
 
 - **Obtaining OpenHarmony master code**
+
+  > It is recommended that you create a new directory in the root directory and then download the source code.
   
+  ```
+  cd ~
+  mkdir ohos_master       # Create a new directory named ohos_master in the root directory.
+  cd ohos_master          # Access the ohos_master directory to download the code.
+  ```
+  
+
    Method 1 (recommended): Use the **repo** tool to download the source code over SSH. (You must have registered an SSH public key for access to Gitee.)
    
   ```
@@ -73,7 +82,7 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
   repo forall -c 'git lfs pull'
   ```
 
-  Method 2: Use the **repo** tool to download the source code over HTTPS.
+  Method 2 (recommended for cloud servers): Use the **repo** tool to download the source code over HTTPS.
 
   
   ```

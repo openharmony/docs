@@ -47,7 +47,7 @@ Provides information about an accessibility application.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-### Attributes
+### Properties
 
 | Name                            | Type                                      | Readable  | Writable  | Description              |
 | ------------------------------ | ---------------------------------------- | ---- | ---- | ---------------- |
@@ -84,20 +84,20 @@ Target actions supported by the application. The target actions for which parame
 | 'clearSelection'          | Clearing selection. Not supported yet.|
 | 'accessibilityFocus'      | Obtaining the accessibility focus.      |
 | 'clearAccessibilityFocus'      | Clearing the accessibility focus.      |
-| 'cut'                     | Cut.  |
-| 'copy'                    | Copy.  |
-| 'paste'                   | Paste.  |
-| 'select'                  | Select.  |
-| 'setCursorPosition'                 | Set text. You need to set the **setText** parameter.|
+| 'cut'                     | Cutting.  |
+| 'copy'                    | Copying.  |
+| 'paste'                   | Pasting.  |
+| 'select'                  | Selecting.  |
+| 'setText'                 | Setting text. You need to set the **setText** parameter.|
 | 'delete'                  | Delete. Not supported yet.  |
-| 'setSelection'            | Select. You need to set the **selectTextBegin**, **selectTextEnd** and **selectTextInForWard** parameters.  |
+| 'setSelection'            | Selecting. You need to set the **selectTextBegin**, **selectTextEnd** and **selectTextInForWard** parameters.  |
 | 'common'            | Common actions used in auto-focusing and auto-broadcasting.  |
-| 'home'                | Return to the home screen.  |
-| 'back'                | Return to the previous screen.  |
-| 'recentTask'          | Open a recent task.  |
-| 'notificationCenter'      | Open the notification bar.  |
-| 'controlCenter'       | Open the control center.  |
-| 'setCursorPosition'     | Set cursor location. You need to set the **offset** parameter.  |
+| 'home'                | Returning to the home screen.  |
+| 'back'                | Returning to the previous screen.  |
+| 'recentTask'          | Opening a recent task.  |
+| 'notificationCenter'      | Opening the notification bar.  |
+| 'controlCenter'       | Opening the control center.  |
+| 'setCursorPosition'     | Setting cursor location. You need to set the **offset** parameter.  |
 
 ## Capability
 
@@ -172,7 +172,7 @@ Implements configuration management for captions. Before calling any API of **Ca
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
-### Attributes
+### Properties
 
 | Name     | Type                              | Readable  | Writable  | Description         |
 | ------- | -------------------------------- | ---- | ---- | ----------- |
@@ -342,7 +342,7 @@ Describes a GUI change event.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-### Attributes
+### Properties
 
 | Name              | Type                                   | Mandatory | Description                   |
 | ---------------- | ------------------------------------- |-----|-----------------------|
@@ -362,6 +362,7 @@ Describes a GUI change event.
 | itemCount        | number                                | No  | Total number of records.       |
 | elementId<sup>12+</sup>        | number                                | No  | Element ID of the component.       |
 | textAnnouncedForAccessibility<sup>12+</sup>        | string                                | No  | Content for auto-broadcasting.       |
+| textResourceAnnouncedForAccessibility<sup>16+</sup>        | Resource      | No  | Content for auto-broadcasting, which supports resources of the string type. |
 | customId<sup>12+</sup>        | string                                | No  | Component ID for auto-focusing.       |
 
 ### constructor
@@ -402,7 +403,7 @@ Implements a constructor.
 
 | Name | Type               | Mandatory| Description           |
 |------|-------------------|---|---------------|
-| type | [EventType](#eventtype)          | Yes| Enumerates accessibility event types.     |
+| type | [EventType](#eventtype)          | Yes| Accessibility event types.     |
 | bundleName | string | Yes| Target application name.       |
 | triggerAction | [Action](#action) | Yes| Action that triggers the event.|
 
@@ -419,7 +420,8 @@ Implements a constructor.
 type EventType = 'accessibilityFocus' | 'accessibilityFocusClear' |
 'click' | 'longClick' | 'focus' | 'select' | 'hoverEnter' | 'hoverExit' |
 'textUpdate' | 'textSelectionUpdate' | 'scroll' | 'requestFocusForAccessibility' |
-'announceForAccessibility'
+'announceForAccessibility' | 'requestFocusForAccessibilityNotInterrupt' |
+'announceForAccessibilityNotInterrupt' | 'scrolling'
 
 Enumerates accessibility event types.
 
@@ -427,10 +429,10 @@ Enumerates accessibility event types.
 
 | Type                     | Description                    |
 | ----------------------- |------------------------|
-| 'accessibilityFocus'      | Represents an event indicating that the accessibility focus is obtained.         |
-| 'accessibilityFocusClear' | Represents an event indicating that the accessibility focus is cleared.         |
+| 'accessibilityFocus'      | Event indicating that the accessibility focus is obtained.         |
+| 'accessibilityFocusClear' | Event indicating that the accessibility focus is cleared.         |
 | 'click'                   | Event of clicking a component.            |
-| 'longClick'               | Represents an event indicating that the component is long pressed.            |
+| 'longClick'               | Event indicating that the component is long pressed.            |
 | 'select'                  | Event of selecting a component.   |
 | 'hoverEnter'              | Event indicating that the hover enters a component. |
 | 'hoverExit'               | Event indicating that the hover exits a component. |
@@ -440,7 +442,9 @@ Enumerates accessibility event types.
 | 'scroll'                  | Event of the scroll view.   |
 | 'requestFocusForAccessibility'     | Event of the auto-focusing.|
 | 'announceForAccessibility'         | Event of the auto-broadcasting.|
-
+| 'requestFocusForAccessibilityNotInterrupt'     | Event of the auto-focusing without interruption.<br>This event is supported since API version 16.|
+| 'announceForAccessibilityNotInterrupt'         | Event of the auto-broadcasting without interruption.<br>This event is supported since API version 16.|
+| 'scrolling'                  | Event indicating that an item is scrolled out of the screen in the scrolling view.<br>This event is supported since API version 16.|
 
 ## TextMoveUnit
 
@@ -721,7 +725,7 @@ Enables listening for the enabled status changes of the accessibility applicatio
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                  | Yes  | Listening type, which is set to **'accessibilityStateChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | Yes  | Callback used to return the result. The returned result indicates the global enabled status of the accessibility application.|
+| callback | Callback&lt;boolean&gt; | Yes  | Callback invoked when the enabled status of accessibility application changes. The returned result indicates the global enabled status of the accessibility application.|
 
 **Error codes**
 
@@ -754,7 +758,7 @@ Enables listening for the enabled status changes of the touch guide mode. This A
 | Name     | Type                     | Mandatory  | Description                                      |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | type     | string                  | Yes   | Listening type, which is set to **'touchGuideStateChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | Yes   | Callback used to return the result.          |
+| callback | Callback&lt;boolean&gt; | Yes   | Callback invoked when the enabled status of touch guide mode changes.          |
 
 **Error codes**
 
@@ -771,6 +775,39 @@ import { accessibility } from '@kit.AccessibilityKit';
 
 accessibility.on('touchGuideStateChange', (data: boolean) => {
   console.info(`subscribe touch guide state change, result: ${JSON.stringify(data)}`);
+});
+```
+
+## accessibility.on('screenReaderStateChange')<sup>16+</sup>
+
+on(type: 'screenReaderStateChange', callback: Callback&lt;boolean&gt;): void
+
+Enables listening for the enabled status changes of the screen reader. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Vision
+
+**Parameters**
+
+| Name     | Type                     | Mandatory  | Description                                      |
+| -------- | ----------------------- | ---- | ---------------------------------------- |
+| type     | string                  | Yes   | Listening type, which is set to **'screenReaderStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | Yes   | Callback invoked when the enabled status of screen reader changes.          |
+
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+
+accessibility.on('screenReaderStateChange', (data: boolean) => {
+  console.info(`subscribe screen reader state change, result: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -837,6 +874,39 @@ import { accessibility } from '@kit.AccessibilityKit';
 
 accessibility.off('touchGuideStateChange', (data: boolean) => {
   console.info(`Unsubscribe touch guide state change, result: ${JSON.stringify(data)}`);
+});
+```
+
+## accessibility.off('screenReaderStateChange')<sup>16+</sup>
+
+off(type: 'screenReaderStateChange', callback?: Callback&lt;boolean&gt;): void
+
+Disables listening for the enabled status changes of the screen reader. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Parameters**
+
+| Name  | Type                   | Mandatory| Description                                                        |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                  | Yes  | Listening type, which is set to **'screenReaderStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | No  | Callback used for disable listening. The value must be the same as the value of **callback** in **accessibility.on('screenReaderStateChange')**. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+
+accessibility.off('screenReaderStateChange', (data: boolean) => {
+  console.info(`Unsubscribe screen reader state change, result: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -1023,6 +1093,30 @@ Checks whether touch guide mode is enabled.
 import { accessibility } from '@kit.AccessibilityKit';
 
 let status: boolean = accessibility.isOpenTouchGuideSync();
+```
+
+## accessibility.isScreenReaderOpenSync<sup>16+</sup>
+
+isScreenReaderOpenSync(): boolean
+
+Checks whether the screen reader mode is enabled.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Vision
+
+**Return value**
+
+| Type   | Description                                 |
+| ------- | ------------------------------------- |
+| boolean | Returns **true** if screen reader is enabled; returns **false** otherwise.|
+
+**Example**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+
+let status: boolean = accessibility.isScreenReaderOpenSync();
 ```
 
 ## accessibility.sendEvent<sup>(deprecated)</sup>
@@ -1225,6 +1319,28 @@ let eventInfo: accessibility.EventInfo = ({
   bundleName: 'com.example.MyApplication',
   triggerAction: 'common',
   customId: 'click' // ID of the component to be focused.
+});
+
+accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
+  if (err) {
+    console.error(`failed to send event, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in send event, eventInfo is ${eventInfo}`);
+});
+```
+
+**Example of resource-supported auto-broadcasting<sup>16+</sup>:**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let eventInfo: accessibility.EventInfo = ({
+  type: 'announceForAccessibility',
+  bundleName: 'com.example.MyApplication',
+  triggerAction: 'common',
+  textResourceAnnouncedForAccessibility: $r('app.string.ResourceName'),
 });
 
 accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {

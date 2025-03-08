@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -43,7 +43,7 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 | 参数名   | 类型                                    | 必填 | 说明                                                     |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)等绑定同一个滚动控制对象。 |
+| scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[ArcList](ts-container-arclist.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)等绑定同一个滚动控制对象。 |
 | layoutOptions<sup>10+</sup> | [GridLayoutOptions](#gridlayoutoptions10对象说明) | 否 | Grid布局选项。 |
 
 ## GridLayoutOptions<sup>10+</sup>对象说明
@@ -63,7 +63,7 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)和[滚动组件通用属性](ts-container-scrollable-common.md#属性)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)和[滚动组件通用属性](ts-container-scrollable-common.md#属性)外，还支持以下属性：
 
 ### columnsTemplate
 
@@ -454,7 +454,7 @@ nestedScroll(value: NestedScrollOptions)
 
 friction(value: number | Resource)
 
-设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理
+设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -520,7 +520,7 @@ alignItems(alignment: Optional\<GridItemAlignment\>)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)和[滚动组件通用事件](ts-container-scrollable-common.md#事件)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)和[滚动组件通用事件](ts-container-scrollable-common.md#事件)外，还支持以下事件：
 
 ### onScrollIndex
 
@@ -615,7 +615,9 @@ onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void)
 
 onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void)
 
-绑定该事件的网格元素可作为拖拽释放目标，当在网格元素内停止拖拽时触发。
+绑定该事件的网格元素可作为拖拽释放目标，当GridItem停止拖拽时触发。
+
+当拖拽释放位置在网格元素之内时，isSuccess会返回true；在网格元素之外时，isSuccess会返回false。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1397,7 +1399,7 @@ struct GridExample {
 ![pinch](figures/grid-pinch.gif)
 
 ### 示例8（设置自适应列数）
-属性[columnsTemplate](#columnstemplate)中auto-fill、auto-fit和auto-stretch的使用示例
+属性[columnsTemplate](#columnstemplate)中auto-fill、auto-fit和auto-stretch的使用示例。
 
 ```ts
 @Entry

@@ -215,7 +215,7 @@ typedef enum AVPlayerSeekMode AVPlayerSeekMode
 typedef enum AVPlayerState AVPlayerState
 ```
 **描述**
-播放状态
+播放状态。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -497,7 +497,7 @@ enum AVPlayerSeekMode
 enum AVPlayerState
 ```
 **描述**
-播放状态
+播放状态。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -505,15 +505,15 @@ enum AVPlayerState
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| AV_IDLE | 空闲 | 
-| AV_INITIALIZED | 初始化 | 
-| AV_PREPARED | 准备 | 
-| AV_PLAYING | 播放 | 
-| AV_PAUSED | 暂停 | 
-| AV_STOPPED | 停止 | 
-| AV_COMPLETED | 结束 | 
-| AV_RELEASED | 释放 | 
-| AV_ERROR | 错误 | 
+| AV_IDLE | 空闲。 | 
+| AV_INITIALIZED | 初始化。 | 
+| AV_PREPARED | 准备。 | 
+| AV_PLAYING | 播放。 | 
+| AV_PAUSED | 暂停。 | 
+| AV_STOPPED | 停止。 | 
+| AV_COMPLETED | 结束。 | 
+| AV_RELEASED | 释放。 | 
+| AV_ERROR | 错误。 | 
 
 
 ## 函数说明

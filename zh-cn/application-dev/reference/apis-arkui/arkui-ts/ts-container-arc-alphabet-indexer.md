@@ -38,7 +38,7 @@ ArcAlphabetIndexer(info: ArcAlphabetIndexerInitInfo)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### color
 
@@ -119,6 +119,10 @@ popupBackground(color: Optional&lt;ColorMetrics&gt;)
 | 参数名 | 类型                                                     | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | color  | [Optional&lt;ColorMetrics&gt;](../js-apis-arkui-graphics.md#colormetrics12) | 是   | 提示弹窗背景色。<br/>默认值：0xD8404040 |
+
+>  **说明：**
+>
+>  当通过popupBackground设置弹窗气泡的背景颜色后，不建议再通过[popupBackgroundBlurStyle](#popupbackgroundblurstyle)设置背景模糊效果。
 
 ### usePopup
 
@@ -214,7 +218,7 @@ selected(index: Optional&lt;number&gt;)
 
 | 参数名 | 类型   | 必填 | 说明                         |
 | ------ | ------ | ---- | ---------------------------- |
-| index  | Optional&lt;number&gt; | 是   | 选中项索引值 <br/>默认值：0 <br/>该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量|
+| index  | Optional&lt;number&gt; | 是   | 选中项索引值 <br/>默认值：0 <br/>该参数支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。|
 
 ### autoCollapse
 
@@ -230,7 +234,7 @@ autoCollapse(enable: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| enable  | Optional&lt;boolean&gt; | 是   | 是否使用自适应折叠模式。<br/>默认值：false |
+| enable  | Optional&lt;boolean&gt; | 是   | 是否使用自适应折叠模式。<br/>默认值：true |
 
 ### popupBackgroundBlurStyle
 
@@ -246,11 +250,15 @@ popupBackgroundBlurStyle(style: Optional&lt;BlurStyle&gt;)
 
 | 参数名 | 类型                                         | 必填 | 说明                                                         |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| style  | [Optional&lt;BlurStyle&gt;](ts-universal-attributes-background.md#blurstyle9) | 是   | 设置提示弹窗的背景模糊材质。<br/>默认值：COMPONENT_REGULAR。 |
+| style  | [Optional&lt;BlurStyle&gt;](ts-universal-attributes-background.md#blurstyle9) | 是   | 设置提示弹窗的背景模糊材质。<br/>默认值：NONE。 |
+
+>  **说明：**
+>
+>  当通过popupBackgroundBlurStyle设置弹窗气泡的背景模糊材质时，不建议再通过[popupBackground](#popupbackground)设置背景色。
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onSelect
 
@@ -282,7 +290,7 @@ onSelect(handler: Optional&lt;OnSelectCallback&gt;)
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | arrayValue | string[] | 是 | 字母索引字符串数组，不可设置为空。 |
-| selected   | number              | 是 | 初始选中项索引值，若超出索引值范围，则取默认值0。<br />该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| selected   | number              | 是 | 初始选中项索引值，若超出索引值范围，则取默认值0。<br />该参数支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。|
 
 ## OnSelectCallback
 
@@ -349,7 +357,7 @@ struct ArcListAndIndexer {
   @State indexerIndex: number = 0;
 
   private watchSize: string = '466px' // 手表默认宽高：233*233
-  private itemSize: number = 16  // 索引项默认大小：24
+  private itemSize: number = 24  // 索引项默认大小：24
 
   build() {
     Column() {

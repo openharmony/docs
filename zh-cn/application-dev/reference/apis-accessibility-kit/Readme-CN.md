@@ -1,6 +1,6 @@
 # Accessibility Kit（无障碍开发服务）
 
-- ArkTS API
+- ArkTS API<!--accessibility-arkts-->
   - [@ohos.accessibility (辅助功能)](js-apis-accessibility.md)
   - [@ohos.accessibility.GesturePath (手势路径)](js-apis-accessibility-GesturePath.md)
   - [@ohos.accessibility.GesturePoint (手势触摸点)](js-apis-accessibility-GesturePoint.md)
@@ -10,5 +10,5 @@
   - [@ohos.accessibility.config (系统辅助功能配置)(系统接口)](js-apis-accessibility-config-sys.md)
   - [AccessibilityExtensionContext (辅助功能扩展上下文)(系统接口)](js-apis-inner-application-accessibilityExtensionContext-sys.md)
   <!--DelEnd-->
-- 错误码
+- 错误码<!--accessibility-arkts-errcode--> 
   - [无障碍子系统错误码](errorcode-accessibility.md)

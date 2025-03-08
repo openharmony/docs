@@ -7,7 +7,7 @@
 
 **起始版本：** 11
 
-**相关模块：**[HidDdk](_hid_ddk.md)
+**相关模块：**[HID DDK](_hid_ddk.md)
 
 
 ## 汇总

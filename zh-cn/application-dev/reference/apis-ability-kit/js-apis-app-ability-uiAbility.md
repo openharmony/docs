@@ -460,7 +460,13 @@ class MyUIAbility extends UIAbility {
 
 onPrepareToTerminate(): boolean
 
-UIAbility生命周期回调，当系统预关闭开关打开后（配置系统参数persist.sys.prepare_terminate为true打开），在UIAbility关闭时触发，可在回调中定义操作来决定是否继续执行关闭UIAbility的操作。如果UIAbility在退出时需要与用户交互确认是否关闭UIAbility，可在此生命周期回调中定义预关闭操作配合[terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)接口退出，如弹窗确认是否关闭，并配置预关闭生命周期返回true取消正常关闭。
+UIAbility生命周期回调，在UIAbility关闭时触发，用于在UIAbility正式关闭前执行其他操作。例如，询问用户是否确认关闭UIAbility。如果用户确认关闭UIAbility，可配合[terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)接口关闭。
+
+当前仅在2in1设备上生效。
+
+> **说明：**
+>
+> - 从API version 15开始，当[UIAbility.onPrepareToTerminateAsync](#uiabilityonpreparetoterminateasync15)实现时，本回调函数将不执行。当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
 
 **需要权限**：ohos.permission.PREPARE_APP_TERMINATE
 
@@ -472,7 +478,7 @@ UIAbility生命周期回调，当系统预关闭开关打开后（配置系统�
 
 | 类型 | 说明 |
 | -- | -- |
-| boolean | 是否执行UIAbility关闭操作，返回true表示本次UIAbility关闭流程取消，不再退出，返回false表示UIAbility继续正常关闭。 |
+| boolean | 是否执行UIAbility关闭操作，返回true表示本次UIAbility关闭流程取消，返回false表示UIAbility继续正常关闭。 |
 
 **示例：**
 
@@ -502,6 +508,47 @@ export default class EntryAbility extends UIAbility {
       this.context.terminateSelf();
     })
 
+    return true; // 已定义预关闭操作后，返回true表示UIAbility取消关闭
+  }
+}
+```
+
+## UIAbility.onPrepareToTerminateAsync<sup>15+</sup>
+
+onPrepareToTerminateAsync(): Promise\<boolean>
+
+UIAbility生命周期异步回调，在UIAbility关闭时触发，通过使用Promise异步回调的方式，在UIAbility正式关闭前执行操作。例如，询问用户是否确认关闭UIAbility。如果用户确认关闭UIAbility，可配合[terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)接口关闭。
+
+当前仅在2in1设备上生效。
+
+> **说明：**
+>
+> - 当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
+>
+> - 若异步回调内发生crash，按超时处理，执行等待超过10秒未响应，UIAbility将被强制关闭。
+
+**需要权限**：ohos.permission.PREPARE_APP_TERMINATE
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**返回值：**
+
+| 类型 | 说明 |
+| -- | -- |
+| Promise\<boolean> | Promise对象。表示是否执行UIAbility关闭操作，返回true表示本次UIAbility关闭流程取消，返回false表示UIAbility继续正常关闭。 |
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+  async onPrepareToTerminateAsync(): Promise<boolean> {
+    await new Promise<boolean>((res, rej) => {
+      setTimeout(res, 2000); // 延时2秒
+    });
     return true; // 已定义预关闭操作后，返回true表示UIAbility取消关闭
   }
 }

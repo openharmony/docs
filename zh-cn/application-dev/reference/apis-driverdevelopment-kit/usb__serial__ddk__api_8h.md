@@ -7,13 +7,13 @@
 
 **库：** libusb_serial.z.so
 
-**引用文件：**&lt;[serial/usb_serial_ddk_api.h](zh-cn_topic_0000002155321226.xml)&gt;
+**引用文件：**&lt;serial/usb_serial_ddk_api.h&gt;
 
 **系统能力：** SystemCapability.Driver.SERIAL.Extension
 
-**起始版本：** 16
+**起始版本：** 18
 
-**相关模块：**[Serial DDK](_serial_ddk.md)
+**相关模块：**[USB Serial DDK](_serial_ddk.md)
 
 
 ## 汇总

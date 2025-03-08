@@ -163,7 +163,7 @@ onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
 
 ```ts
 onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
-  if (DismissSheetAction.reason == DismissReason.SLIDE_DOWN) {
+  if (DismissSheetAction.reason === DismissReason.SLIDE_DOWN) {
     DismissSheetAction.dismiss() //注册dismiss行为
   }
 }),
@@ -176,7 +176,7 @@ onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
 
 ```ts
 onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
-  if (DismissSheetAction.reason == DismissReason.SLIDE_DOWN) {
+  if (DismissSheetAction.reason === DismissReason.SLIDE_DOWN) {
     DismissSheetAction.dismiss() //注册dismiss行为
   }
 }),

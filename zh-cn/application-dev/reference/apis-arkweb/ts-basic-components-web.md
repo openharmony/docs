@@ -3100,47 +3100,6 @@ blurOnKeyboardHideMode(mode: BlurOnKeyboardHideMode)
 </html>
 ```
 
-### enableSmoothDragResize<sup>16+</sup>
-
-enableSmoothDragResize(mode: boolean)
-
-
-设置是否开启Web组件窗口拖拽缩放优化能力，默认关闭。开启后在2in1上Web窗口拖拽放大时减少白块面积。
-
-> **说明：**
->
-> 不支持全量展开（WebLayoutMode.FIT_CONTENT）和同步模式（RenderMode.SYNC_RENDER）。
-> 
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名  | 类型 | 必填 | 说明           |
-| ------- | -------- | ---- | ------------------ |
-| mode | boolean  | 是   | 是否开启Web拖拽放大优化。默认值：false。 |
-
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .enableSmoothDragResize(true)
-      }
-    }
-  }
-  ```
-
 ### enableFollowSystemFontWeight<sup>16+</sup>
 
 enableFollowSystemFontWeight(follow: boolean)
@@ -3178,7 +3137,7 @@ enableFollowSystemFontWeight(follow: boolean)
   }
   ```
 
-### optimizeParserBudget<sup>16+</sup>
+### optimizeParserBudget<sup>15+</sup>
 
 optimizeParserBudget(optimizeParserBudget: boolean)
 
@@ -3194,9 +3153,9 @@ ArkWeb内核在解析HTML文档结构时采取分段解析策略，旨在避免�
 
 **参数：**
 
-| 参数名        | 参数类型    | 必填   | 默认值  | 参数描述                   |
-| ---------- | ------- | ---- | ---- | ---------------------- |
-| optimizeParserBudget | boolean | 是    | false | 设置为true时将使用解析个数代替解析时间作为HTML分段解析的分段点，并减少每段解析的个数上限。设置为false时则使用解析时间作为HTML分段解析的分段点。默认值：false。 |
+| 参数名        | 类型    | 必填   | 说明                   |
+| ---------- | ------- | ---- | ---------------------- |
+| optimizeParserBudget | boolean | 是    | 设置为true时将使用解析个数代替解析时间作为HTML分段解析的分段点，并减少每段解析的个数上限。设置为false时则使用解析时间作为HTML分段解析的分段点。默认值：false。 |
 
 
 **示例：**
@@ -3216,6 +3175,108 @@ ArkWeb内核在解析HTML文档结构时采取分段解析策略，旨在避免�
       }
     }
   }
+  ```
+
+### enableWebAVSession<sup>16+</sup>
+
+enableWebAVSession(enabled: boolean)
+
+设置是否支持应用对接到播控中心。默认支持应用对接到播控中心。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型 | 必填 | 说明           |
+| ------- | -------- | ---- | ------------------ |
+| enabled | boolean  | 是   | 设置是否支持应用对接到播控中心。默认值：true。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    build() {
+      Column() {
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+          .enableWebAVSession(true)
+      }
+    }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>视频播放页面</title>
+  </head>
+  <body>
+      <h1>视频播放</h1>
+      <video id="testVideo" controls>
+          // 在resources的rawfile目录中放置任意一个mp4媒体文件，并将其命名为example.mp4
+          <source src="example.mp4" type="video/mp4">
+      </video>
+  </body>
+  </html>
+  ```
+
+### nativeEmbedOptions<sup>16+</sup>
+
+nativeEmbedOptions(options?: EmbedOptions)
+
+设置同层渲染相关配置，该属性仅在[enableNativeEmbedMode](#enablenativeembedmode11)开启时生效，不支持动态修改。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名       | 类型                             | 必填 | 说明                                |
+| ------------ | ------------------------------- | ---- | ----------------------------------- |
+| options | [EmbedOptions](#embedoptions16) | 否    | 同层渲染相关配置，默认值：{supportDefaultIntrinsicSize: false}。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    options: EmbedOptions = {supportDefaultIntrinsicSize: true};
+
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .enableNativeEmbedMode(true)
+          .nativeEmbedOptions(this.options)
+      }
+    }
+  }
+  ```
+加载的html文件
+  ```
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>同层渲染固定大小测试html</title>
+  </head>
+  <body>
+  <div>
+      <embed id="input" type = "native/view" style = "background-color:red"/>
+  </div>
+  </body>
+  </html>
   ```
 
 ## 事件
@@ -8106,9 +8167,9 @@ EventResult的构造函数。
 
 ### setGestureEventResult<sup>12+</sup>
 
-设置手势事件消费结果。
-
 setGestureEventResult(result: boolean): void
+
+设置手势事件消费结果。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8122,11 +8183,11 @@ setGestureEventResult(result: boolean): void
 
 请参考[onNativeEmbedGestureEvent事件](#onnativeembedgestureevent11)。
 
-### setGestureEventResult<sup>12+</sup>
-
-设置手势事件消费结果。
+### setGestureEventResult<sup>14+</sup>
 
 setGestureEventResult(result: boolean, stopPropagation?: boolean): void
+
+设置手势事件消费结果。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8135,7 +8196,7 @@ setGestureEventResult(result: boolean, stopPropagation?: boolean): void
 | 参数名          | 类型 | 必填  | 说明             |
 | --------------- | -------- | ----  |------- |
 | result          | boolean  | 是    | 是否消费该手势事件。默认值为true。 |
-| stopPropagation<sup>14+</sup>| boolean  | 否   | 是否阻止冒泡，在result为true时生效。默认值为true。 |
+| stopPropagation | boolean  | 否   | 是否阻止冒泡，在result为true时生效。默认值为true。 |
 
 **示例：**
 
@@ -10243,7 +10304,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | -------------- | ---- | ---- | ---------------------------------------- |
 | handler | [SslErrorHandler](#sslerrorhandler9) | 是 | 通知Web组件用户操作行为。 |
 | error   | [SslError](#sslerror9枚举说明)           | 是 | 错误码。           |
-| certChainData<sup>14+</sup>   | Array<Uint8Array\>           | 否 | 证书链数据。           |
+| certChainData<sup>15+</sup>   | Array<Uint8Array\>           | 否 | 证书链数据。           |
 
 ## OnClientAuthenticationEvent<sup>12+</sup>
 
@@ -10469,3 +10530,13 @@ type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeE
 | ------ | -- | ----------- |
 | SILENT  | 0 | 软键盘收起时web组件失焦功能关闭。 |
 | BLUR | 1 | 软键盘收起时web组件失焦功能开启。 |
+
+## EmbedOptions<sup>16+</sup>
+
+Web同层渲染的配置。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ------- | ---- | ---------------------------------------- |
+| supportDefaultIntrinsicSize | boolean | 否    | 设置同层渲染元素是否支持固定大小 300 * 150。<br>为true时，固定大小为 300 * 150<br>为false时，固定大小为 0 * 0<br>默认值：false<br>单位：px |

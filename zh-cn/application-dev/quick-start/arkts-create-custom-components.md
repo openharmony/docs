@@ -317,7 +317,7 @@ struct Son {
   build() {
     // 反例：不允许本地作用域
     {
-      ...
+      // ...
     }
   }
   ```
@@ -447,12 +447,12 @@ struct Son {
     @State arr : Array<...> = [ ... ];
     ForEach(this.arr.sort().filter(...), 
       item => { 
-      ...
+      // ...
     })
     // 正确的执行方式为：filter返回一个新数组，后面的sort方法才不会改变原数组this.arr
     ForEach(this.arr.filter(...).sort(), 
       item => { 
-      ...
+      // ...
     })
     ```
 

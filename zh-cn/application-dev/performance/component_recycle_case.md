@@ -265,7 +265,7 @@ export struct OneMomentNoModifier {
 
 优化前，由`H:ViewPU.viewPropertyHasChanged OneMomentNoModifier color 1`标签可知，OneMomentNoModifier自定义组件下的状态变量color发生变化，与之相关联的子控件数量为1，即有一个子控件发生了标脏，之后Text全部属性会进行了刷新。
 
-此时，`H:CustomNode:BuildRecycle`耗时543μs，`Create[Text]`耗时为4μs。  
+此时，`H:CustomNode:BuildRecycle`耗时543μs，`Create[Text]`耗时为4μs。
 
 ![noModifier2](./figures/component_recycle_case/noModifier2.png)
 
@@ -359,7 +359,7 @@ export struct OneMomentNoModifier {
 
 ![useUpdater1](./figures/component_recycle_case/useUpdater1.png)
 
-优化后，在`H:aboutToReuse`标签下没有`H:ViewPU.viewPropertyHasChanged`标签，后续也没有`Create[Text]`标签。此时，`H:CustomNode:BuildRecycle`耗时415μs
+优化后，在`H:aboutToReuse`标签下没有`H:ViewPU.viewPropertyHasChanged`标签，后续也没有`Create[Text]`标签。此时，`H:CustomNode:BuildRecycle`耗时415μs。
 
 **优化效果**
 

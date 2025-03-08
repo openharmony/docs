@@ -28,7 +28,7 @@
 
    ```ts
    // EntryAbility.ets
-   import {abilityAccessCtrl,AbilityConstant, common, PermissionRequestResult, Permissions, UIAbility, Want } from '@kit.AbilityKit';
+   import { abilityAccessCtrl, AbilityConstant, common, PermissionRequestResult, Permissions, UIAbility, Want } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { calendarManager } from '@kit.CalendarKit';
    import { window } from '@kit.ArkUI';

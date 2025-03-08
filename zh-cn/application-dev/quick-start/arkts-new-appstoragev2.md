@@ -4,7 +4,7 @@
 
 AppStorageV2是提供状态变量在应用级全局共享的能力，开发者可以通过connect绑定同一个key，进行跨ability的数据共享。
 
-在阅读本文当前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)，[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)，配合阅读：[AppStorageV2-API文档](../reference/apis-arkui/js-apis-StateManagement.md#appstoragev2)。
+在阅读本文档前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)，[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)，配合阅读：[AppStorageV2-API文档](../reference/apis-arkui/js-apis-StateManagement.md#appstoragev2)。
 
 >**说明：**
 >
@@ -89,8 +89,20 @@ static keys(): Array<string>;
 
 ### 在两个页面之间存储数据
 
+数据页面
+```ts
+// 数据中心
+// Sample.ets
+@ObservedV2
+export class Sample {
+  @Trace p1: number = 0;
+  p2: number = 10;
+}
+```
+
 页面1
 ```ts
+// Page1.ets
 import { AppStorageV2 } from '@kit.ArkUI';
 import { Sample } from '../Sample';
 
@@ -145,6 +157,7 @@ struct Page1 {
 
 页面2
 ```ts
+// Page2.ets
 import { AppStorageV2 } from '@kit.ArkUI';
 import { Sample } from '../Sample';
 
@@ -198,22 +211,12 @@ struct Page2 {
   "routerMap": [
     {
       "name": "Page2",
-      "pageSourceFile": "src/main/ets/pages/PersistenceV2-2.ets",
+      "pageSourceFile": "src/main/ets/pages/Page2.ets",
       "buildFunction": "Page2Builder",
       "data": {
-        "description" : "PersistenceV2 example"
+        "description" : "AppStorageV2 example"
       }
     }
   ]
-}
-```
-
-数据页面
-```ts
-// 数据中心
-@ObservedV2
-export class Sample {
-  @Trace p1: number = 0;
-  p2: number = 10;
 }
 ```

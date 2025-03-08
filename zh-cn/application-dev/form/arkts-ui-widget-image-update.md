@@ -108,6 +108,7 @@
               } catch (err) {
                 hilog.error(DOMAIN_NUMBER, TAG, "write data to file failed with error message: " + err.message + ", error code: " + err.code);
               } finally {
+                // 在fileIo.closeSync执行之前，确保formProvider.updateForm已执行完毕。
                 fileIo.closeSync(imgFile);
               };
             } catch (e) {

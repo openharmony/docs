@@ -777,7 +777,7 @@ bool OH_AVCapability_IsHardware (OH_AVCapability *capability)
 
 **返回：**
 
-如果能力实例描述的是硬件编解码器，则返回true， 如果功能实例描述的是软件编解码器，则为false。
+如果能力实例描述的是硬件编解码器，则返回true，如果功能实例描述的是软件编解码器，则为false。
 
 
 ### OH_AVCapability_IsVideoSizeSupported()
@@ -821,7 +821,7 @@ OH_AVCapability* OH_AVCodec_GetCapability (const char *mime, bool isEncoder)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mime | MIME类型描述字符串，请参阅**AVCODEC_MIME_TYPE**。  | 
+| mime | MIME类型描述字符串，请参阅[AVCODEC_MIME_TYPE](_codec_base.md#变量)。  | 
 | isEncoder | 编码器为true，解码器为false。  | 
 
 **返回：**

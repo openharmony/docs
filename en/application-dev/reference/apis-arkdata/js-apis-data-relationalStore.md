@@ -63,7 +63,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14800010  | Invalid database path.   |
 | 14800011  | Database corrupted.    |
 | 14801001  | The operation is supported in the stage model only.    |
-| 14801002  | Invalid data ground ID.     |
+| 14801002  | Invalid data group ID.    |
 | 14800017  | Config changed.   |
 | 14800020  | The secret key is corrupted or lost.   |
 | 14800021  | SQLite: Generic error.    |
@@ -170,7 +170,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14800010  | Invalid database path. |
 | 14800011  | Database corrupted.  |
 | 14801001  | The operation is supported in the stage model only.                               |
-| 14801002  | Invalid data ground ID.                             |
+| 14801002  | Invalid data group ID.                             |
 | 14800017  | Config changed. |
 | 14800020  | The secret key is corrupted or lost.   |
 | 14800021  | SQLite: Generic error. |
@@ -407,7 +407,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14800000  | Inner error.        |
 | 14800010  | Failed to open or delete database by invalid database path.        |
 | 14801001  | The operation is supported in the stage model only.         |
-| 14801002  | Invalid data ground ID.        |
+| 14801002  | Invalid data group ID.        |
 
 **Example**
 
@@ -497,7 +497,7 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 | 14800000  | Inner error.      |
 | 14800010  | Invalid database path.   |
 | 14801001  | The operation is supported in the stage model only.   |
-| 14801002  | Invalid data ground ID.   |
+| 14801002  | Invalid data group ID.   |
 
 **Example**
 
@@ -7203,7 +7203,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14800015  | The database does not respond.                 |
 | 14800016  | The database alias already exists.                |
 | 14801001  | The operation is supported in the stage model only.                 |
-| 14801002  | Invalid data ground ID.                |
+| 14801002  | Invalid data group ID.                |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |

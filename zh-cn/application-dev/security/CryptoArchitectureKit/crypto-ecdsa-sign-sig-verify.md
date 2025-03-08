@@ -34,7 +34,7 @@
 4. 调用[Verify.verify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify-1)，对数据进行验签。
 
 
-- 异步方法示例:
+- 异步方法示例：
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';

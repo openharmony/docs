@@ -36,7 +36,7 @@ EXTERN_C_END
 
 ### JS侧调用
 
-1. 打开src\main\cpp\types\libentry\index.d.ts（其中libentry根据工程名生成），导入如下引用文件:
+1. 打开src\main\cpp\types\libentry\index.d.ts（其中libentry根据工程名生成），导入如下引用文件：
 
     ```js
     import { image } from '@kit.ImageKit';
@@ -44,7 +44,7 @@ EXTERN_C_END
     export const createFromReceiver: (a: image.ImageReceiver) => image.Image;
     ```
 
-2. 打开src\main\ets\pages\index.ets，导入"libentry.so（根据工程名生成）"，调用Native接口，传入JS的资源对象。示例如下:
+2. 打开src\main\ets\pages\index.ets，导入"libentry.so（根据工程名生成）"，调用Native接口，传入JS的资源对象。示例如下：
 
     ```js
     import testNapi from 'libentry.so'
@@ -60,12 +60,12 @@ EXTERN_C_END
          let context = getContext()
          abilityAccessCtrl.createAtManager().requestPermissionsFromUser(context,['ohos.permission.CAMERA']).then(async () => {
             let cameraManager = await camera.getCameraManager(context);
-            // 获取支持的相机设备对象
+            // 获取支持的相机设备对象。
             let cameraDevices: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
             if (cameraDevices.length <= 0) {
             return;
             }
-            // 获取对应相机设备的profiles
+            // 获取对应相机设备的profiles。
             let profiles: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevices[0], camera.SceneMode.NORMAL_PHOTO);
             let previewProfiles: Array<camera.Profile> = profiles.previewProfiles;
             if (previewProfiles.length <= 0) {
@@ -74,22 +74,22 @@ EXTERN_C_END
             let profileObj = previewProfiles[0];
             this.receiver = image.createImageReceiver({width:profileObj.size.width, height:profileObj.size.height}, image.ImageFormat.JPEG, 8);
             let receiverSurfaceId: string = await this.receiver.getReceivingSurfaceId();
-            // 创建预览流输出对象
+            // 创建预览流输出对象。
             let previewOutput: camera.PreviewOutput = cameraManager.createPreviewOutput(profileObj,receiverSurfaceId);
             let cameraInput : camera.CameraInput = cameraManager.createCameraInput(cameraDevices[0]);
-            // 打开相机
+            // 打开相机。
             await cameraInput.open();
-            // 会话流程
+            // 会话流程。
             let session : camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
-            // 配置会话
+            // 配置会话。
             session.beginConfig();
-            // 把cameraInput加入到会话
+            // 把cameraInput加入到会话。
             session.addInput(cameraInput);
-            // 把预览流加入到会话
+            // 把预览流加入到会话。
             session.addOutput(previewOutput);
-            // 提交配置信息
+            // 提交配置信息。
             await session.commitConfig();
-            // 会话开始
+            // 会话开始。
             await session.start();
 
             this.receiver.on('imageArrival', () => {

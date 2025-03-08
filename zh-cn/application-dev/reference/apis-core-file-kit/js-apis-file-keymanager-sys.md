@@ -15,7 +15,7 @@ import { keyManager } from "@kit.CoreFileKit";
 
 ## keyManager.deactivateUserKey
 
-deactivateUserKey(userId: number):void;
+deactivateUserKey(userId: number):void
 
 用户锁屏时，同步卸载指定用户对应秘钥。**（该接口目前仅开放给锁屏应用）**
 
@@ -23,13 +23,13 @@ deactivateUserKey(userId: number):void;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Encryption
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
   | 参数名     | 类型   | 必填 | 说明 |
   | ---------- | ------ | ---- | ---- |
-  | userId | number | 是   | 用户id. 锁屏应用感知设备当前登录的用户，指定为该用户. |
+  | userId | number | 是   | 用户id。锁屏应用感知设备当前登录的用户，指定为该用户。|
 
 **错误码：**
 

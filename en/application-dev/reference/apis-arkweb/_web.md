@@ -178,6 +178,7 @@ In addition, ArkWeb capabilities on the native side are also provided, such as r
 | [NativeArkWeb_OnValidCallback](#nativearkweb_onvalidcallback) [OH_NativeArkWeb_GetJavaScriptProxyValidCallback](#oh_nativearkweb_getjavascriptproxyvalidcallback) (const char \*webTag) | Obtains the callback used when a registered object is valid. |
 | void [OH_NativeArkWeb_SetDestroyCallback](#oh_nativearkweb_setdestroycallback) (const char \*webTag, [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) callback) | Sets a callback used when a component is destroyed. |
 | [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) [OH_NativeArkWeb_GetDestroyCallback](#oh_nativearkweb_getdestroycallback) (const char \*webTag) | Obtains the callback used when a registered component is destroyed. |
+| [ArkWeb_ErrorCode](#arkweb_errorcode) [OH_NativeArkWeb_LoadData](#oh_nativearkweb_loaddata) (const char* webTag,const char* data,const char* mimeType,const char* encoding,const char* baseUrl,const char* historyUrl) | Loads data or URLs. This function must be called in the main thread. |
 
 
 ## Macro Description
@@ -652,7 +653,7 @@ Enumerates the custom scheme options.
 
 | Value| Description|
 | -------- | -------- |
-| ARKWEB_SCHEME_OPTION_STANDARD  | If **ARKWEB_SCHEME_OPTION_STANDARD** is set, the scheme is processed as a standard scheme. The standard scheme must comply with the URL normalization and parsing rules defined in section 3.1 of RFC 1738. The rules can be found in [http://www.ietf.org/rfc/rfc1738.txt](http://www.ietf.org/rfc/rfc1738.txt).  |
+| ARKWEB_SCHEME_OPTION_STANDARD  | If **ARKWEB_SCHEME_OPTION_STANDARD** is set, the scheme is processed as a standard scheme. The standard scheme must comply with the URL normalization and parsing rules defined in section 3.1 of [RFC 1738](http://www.ietf.org/rfc/rfc1738.txt).  |
 | ARKWEB_SCHEME_OPTION_LOCAL  | If **ARKWEB_SCHEME_OPTION_LOCAL** is set, the scheme is processed using the same security rule as the file URL.  |
 | ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED  | If **ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED** is set, the request of the scheme can be initiated only by the page loaded using the same scheme.  |
 | ARKWEB_SCHEME_OPTION_SECURE  | If **ARKWEB_SCHEME_OPTION_SECURE** is set, the scheme is processed using the same security rule as the HTTPS URL.  |
@@ -722,7 +723,7 @@ Enumerates the native API types.
 | ARKWEB_NATIVE_WEB_MESSAGE_PORT  | APIs related to **webMessagePort**.  |
 | ARKWEB_NATIVE_WEB_MESSAGE  | APIs related to **webMessage**.  |
 | ARKWEB_NATIVE_COOKIE_MANAGER  | APIs related to **cookieManager**.  |
-| ARKWEB_NATIVE_JAVASCRIPT_VALUE  | APIs related to **JavaScriptValue** since API version 14.<br> <br> |
+| ARKWEB_NATIVE_JAVASCRIPT_VALUE  | APIs related to **JavaScriptValue** since API version 14. |
 
 
 ### ArkWeb_NetError
@@ -971,7 +972,7 @@ Enumerates the error codes of the ArkWeb network protocol stack.
 | ARKWEB_ERR_CERT_VERIFIER_CHANGED  | The certificate verifier configuration is changed.  |
 | ARKWEB_ERR_DNS_MALFORMED_RESPONSE  | The DNS resolver receives a response that the format is incorrect.  |
 | ARKWEB_ERR_DNS_SERVER_REQUIRES_TCP  | The DNS server requires TCP.  |
-| ARKWEB_ERR_DNS_SERVER_FAILED  |  The DNS server failed. This error is returned for all of the following cases: 1 - Format error - The name server cannot interpret the query. 2-Server failure: The name server cannot process the query due to its own problems. 3-Not Implemented: The name server does not support the query type of the request. 4-Rejection: The name server refuses to perform the specified operation for policy reasons. |
+| ARKWEB_ERR_DNS_SERVER_FAILED  | The DNS server failed. This error is returned for all of the following cases: 1 - Format error - The name server cannot interpret the query. 2-Server failure: The name server cannot process the query due to its own problems. 3-Not Implemented: The name server does not support the query type of the request. 4-Rejection: The name server refuses to perform the specified operation for policy reasons.  |
 | ARKWEB_ERR_DNS_TIMED_OUT  | The DNS transaction timed out.  |
 | ARKWEB_ERR_DNS_CACHE_MISS  | The entry is not found in the cache or other local sources.  |
 | ARKWEB_ERR_DNS_SEARCH_EMPTY  | The suffix search list rule prevents the resolution of a given host name.  |
@@ -2528,6 +2529,35 @@ Obtains the callback used when a registered component is destroyed.
 **Returns**
 
 Returns the callback used when a registered component is destroyed.
+
+### OH_NativeArkWeb_LoadData()
+
+```
+ArkWeb_ErrorCode OH_NativeArkWeb_LoadData (const char* webTag,const char* data,const char* mimeType,const char* encoding,const char* baseUrl,const char* historyUrl)
+```
+**Description**
+
+Loads data or URLs. This function must be called in the main thread.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| webTag | The name of a \<Web> component. |
+| data   | String being base64 or URL encoded, which cannot be empty. |
+| mimeType  | Media type, such as **text/html**, which cannot be empty. |
+| encoding  | Encoding type, such as **UTF-8**, which cannot be empty. |
+| baseUrl   | URL (HTTP/HTTPS/data compliant), which is assigned by the **Web** component to **window.origin**. |
+| historyUrl  | Historical URL. If this parameter is not empty, it can be managed in historical records to implement page going backward and forward. |
+
+
+**Returns**
+
+Error codes of ArkWeb NDK APIs.
 
 
 ### OH_NativeArkWeb_GetJavaScriptProxyValidCallback()

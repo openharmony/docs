@@ -3,12 +3,12 @@
 ## 简介
 
 网络防火墙提供如下功能：
-- 防火墙的基础能力，包括防火墙的使能、规则的启用与禁用、审计能力
-- 防火墙规则的配置能力，包括规则的名称、描述、操作、生效应用、协议类型、地址、端口、出站/入站方向等
-- DNS策略的配置能力，包括配置禁止/允许解析的域名、解析使用的DNS服务器（主选/备选）（应用级）
+- 防火墙的基础能力，包括防火墙的使能、规则的启用与禁用、审计能力。
+- 防火墙规则的配置能力，包括规则的名称、描述、操作、生效应用、协议类型、地址、端口、出站/入站方向等。
+- DNS策略的配置能力，包括配置禁止/允许解析的域名、解析使用的DNS服务器（主选/备选）（应用级）。
 
 > **说明：**
-> 为了保证应用的运行效率，所有API调用都是异步的，对于异步调用的API均提供了Promise的方式，以下示例均采用promise方式，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-netfirewall.md)。
+> 为了保证应用的运行效率，所有API调用都是异步的，对于异步调用的API均提供了Promise的方式，以下示例均采用Promise方式，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-netfirewall.md)。
 
 ## 约束
 
@@ -18,17 +18,19 @@
 
 防火墙的典型场景有：
 - 针对特定IP联网访问控制
-1. 支持限制特定应用访问网络
-2. 支持限制对特定IP、特定协议、特定端口的网络通信
-3. 支持限制特定应用对特定IP、特定协议、特定端口的网络通信
-4. 支持拦截规则下发后立即生效（此点针对TCP协议：需断开已有被拦截的TCP连接）	
+1. 支持限制特定应用访问网络。
+2. 支持限制对特定IP、特定协议、特定端口的网络通信。
+3. 支持限制特定应用对特定IP、特定协议、特定端口的网络通信。
+4. 支持拦截规则下发后立即生效（此点针对TCP协议：需断开已有被拦截的TCP连接）	。
 - 针对域名联网访问控制支持拦截
-1. 支持限制应用对特定域名的DNS解析能力（仅限制非加密标准DNS协议，不限制加密、私标DNS协议）
-2. 支持限制特地应用对特定域名的DNS解析能力（仅限制非加密标准DNS协议，不限制加密、私标DNS协议）
-3. 支持拦截规则下发后立即生效（此点针对TCP协议：需断开已有被拦截的TCP连接）
+1. 支持限制应用对特定域名的DNS解析能力（仅限制非加密标准DNS协议，不限制加密、私标DNS协议）。
+2. 支持限制特地应用对特定域名的DNS解析能力（仅限制非加密标准DNS协议，不限制加密、私标DNS协议）。
+3. 支持拦截规则下发后立即生效（此点针对TCP协议：需断开已有被拦截的TCP连接）。
+<!--Del-->
 - 联网访问控制支持可追溯
-1. 支持拦截记录追溯，支持对系统应用提供查询拦截记录的能力
-2. 支持所有拦截规则的自动保存和开机自动恢复
+1. 支持拦截记录追溯，支持对系统应用提供查询拦截记录的能力。
+2. 支持所有拦截规则的自动保存和开机自动恢复。
+<!--DelEnd-->
 
 以下分别介绍具体开发方式。
 
@@ -38,19 +40,19 @@
 
 | 接口                                                                                               | 描述              |
 | -------------------------------------------------------------------------------------------------- | ----------------- |
-| setNetFirewallPolicy(userId: number, policy: NetFirewallPolicy): Promise\<void>                    | 设置防火墙状态    |
-| getNetFirewallPolicy(userId: number): Promise\<NetFirewallPolicy>                                  | 查询防火墙状态    |
-| addNetFirewallRule(rule: NetFirewallRule): Promise\<number>                                        | 添加防火墙规则    |
-| updateNetFirewallRule(rule: NetFirewallRule): Promise\<void>                                       | 更新防火墙规则    |
-| removeNetFirewallRule(userId: number, ruleId: number): Promise\<void>                              | 删除防火墙规则    |
-| getNetFirewallRules(userId: number, requestParam: RequestParam): Promise\<FirewallRulePage>        | 分页查询防火墙规则 |
-| getNetFirewallRule(userId: number, ruleId: number): Promise\<NetFirewallRule>                      | 查询单条防火墙规则 |
-| getInterceptedRecords(userId: number, requestParam: RequestParam): Promise\<InterceptedRecordPage> | 查询防火墙拦截记录 |
+| setNetFirewallPolicy(userId: number, policy: NetFirewallPolicy): Promise\<void>                    | 设置防火墙状态。    |
+| getNetFirewallPolicy(userId: number): Promise\<NetFirewallPolicy>                                  | 查询防火墙状态。    |
+| addNetFirewallRule(rule: NetFirewallRule): Promise\<number>                                        | 添加防火墙规则。    |
+| updateNetFirewallRule(rule: NetFirewallRule): Promise\<void>                                       | 更新防火墙规则。   |
+| removeNetFirewallRule(userId: number, ruleId: number): Promise\<void>                              | 删除防火墙规则。    |
+| getNetFirewallRules(userId: number, requestParam: RequestParam): Promise\<FirewallRulePage>        | 分页查询防火墙规则。 |
+| getNetFirewallRule(userId: number, ruleId: number): Promise\<NetFirewallRule>                      | 查询单条防火墙规则。 |
+| <!--DelRow-->getInterceptedRecords(userId: number, requestParam: RequestParam): Promise\<InterceptedRecordPage> | 查询防火墙拦截记录。 |
 
 ## 针对特定IP联网访问控制
 
 1. 设备通过硬件接口，插入网线。
-2. 从@ohos.net.netFirewall中导入netfirewall命名空间。
+2. 从@kit.NetworkKit中导入netfirewall命名空间。
 3. 用户调用setNetFirewallPolicy方法，打开防火墙。
 4. 用户通过addNetFirewallRule方法，添加防火墙规则。
 
@@ -132,7 +134,7 @@ netFirewall.addNetFirewallRule(ipRule).then((result: number) => {
 ## 针对域名联网访问控制支持拦截
 
 1. 设备通过硬件接口，插入网线。
-2. 从@ohos.net.netfirewall中导入netFirewall命名空间。
+2. 从@kit.NetworkKit中导入netFirewall命名空间。
 3. 用户态调用setNetFirewallPolicy方法，打开防火墙。
 4. 用户态通过addNetFirewallRule方法，添加防火墙规则。
 
@@ -185,7 +187,7 @@ netFirewall.addNetFirewallRule(domainRule).then((result: number) => {
 ## 查询防火墙拦截记录
 
 1. 设备通过硬件接口，插入网线。
-2. 从@ohos.net.netFirewall中导入netfirewall命名空间。
+2. 从@kit.NetworkKit中导入netfirewall命名空间。
 3. 用户态通过getInterceptRecords方法查询拦截记录。
 
 ```ts
@@ -206,4 +208,4 @@ netFirewall.getInterceptedRecords(100, interceptRecordParam).then((result: netFi
   console.error("get intercept records failed: " + JSON.stringify(error));
 });
 ```
-<!--Del-->
+<!--DelEnd-->

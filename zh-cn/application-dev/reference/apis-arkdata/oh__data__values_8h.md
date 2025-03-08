@@ -5,7 +5,7 @@
 
 提供与多条数据值相关的函数和枚举。
 
-**引用文件：** &lt;database/rdb/oh_data_values.h&gt;
+**引用文件：** &lt;database/data/oh_data_values.h&gt;
 
 **库：** libnative_rdb_ndk.z.so
 

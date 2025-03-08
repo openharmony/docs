@@ -22,7 +22,7 @@ The following table lists the APIs for event interception. For details, see [Inp
 Before calling interception-related APIs, you need to link the related dynamic library. You can do this by editing the **CMakeList.txt** file as follows:
 
 ```txt
-   target_link_libraries(entry PUBLIC libohinput.so)
+target_link_libraries(entry PUBLIC libohinput.so)
 ```
 
 ### Applying for Required Permissions

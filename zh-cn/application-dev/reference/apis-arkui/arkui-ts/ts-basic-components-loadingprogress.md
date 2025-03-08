@@ -28,7 +28,11 @@ LoadingProgress()
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
+
+>  **说明：**
+>
+> 组件应设置合理的宽高，当组件宽高设置过大时加载动效可能不符合预期效果。
 
 ### color
 
@@ -83,7 +87,7 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](ts-component-general-events.md)。
 
 ## LoadingProgressConfiguration<sup>12+</sup>对象说明
 

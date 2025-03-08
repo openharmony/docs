@@ -35,7 +35,7 @@ Blank(min?: number&nbsp;|&nbsp;string)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### color
 
@@ -53,11 +53,11 @@ color(value: ResourceColor)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | [ResourceColor](ts-types.md#resourcecolor) | 是 | 空白填充的填充颜色。<br/><br/>默认值：Color.Transparent |
+| value | [ResourceColor](ts-types.md#resourcecolor) | 是 | 空白填充的填充颜色。<br/>默认值：Color.Transparent |
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 

@@ -80,7 +80,7 @@ ArkWeb同层渲染特性主要提供两种能力：同层标签生命周期和�
 **同层标签的输入事件分发处理：**
 - 支持触摸事件TouchEvent的DOWN/UP/MOVE/CANCEL。支持[配置触摸事件消费结果](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedgestureevent11)，默认为应用侧消费。
 
-- 不支持同层标签所在的应用页面缩放和[initialScale](../reference/apis-arkweb/ts-basic-components-web.md#initialscale)、[zoom](../reference/apis-arkweb/js-apis-webview.md#zoom)、[zoomIn](../reference/apis-arkweb/js-apis-webview.md#zoomin)、[zoomOut](../reference/apis-arkweb/js-apis-webview.md#zoomout)等缩放接口。
+- 不支持同层标签所在的应用页面缩放和[initialScale](../reference/apis-arkweb/ts-basic-components-web.md#initialscale9)、[zoom](../reference/apis-arkweb/js-apis-webview.md#zoom)、[zoomIn](../reference/apis-arkweb/js-apis-webview.md#zoomin)、[zoomOut](../reference/apis-arkweb/js-apis-webview.md#zoomout)等缩放接口。
 
 - 暂不支持鼠标、键盘、触摸板事件。
 

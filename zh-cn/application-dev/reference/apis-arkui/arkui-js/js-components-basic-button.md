@@ -17,10 +17,10 @@
 
 | 名称                     | 类型      | 默认值   | 必填   | 描述                                       |
 | ---------------------- | ------- | ----- | ---- | ---------------------------------------- |
-| type                   | string  | -     | 否    | 不支持动态修改。默认展示类胶囊型按钮，不同于胶囊类型，四边圆角可以通过border-radius分别指定。该属性可选值包括：<br/>-&nbsp;capsule：胶囊型按钮，带圆角按钮，有背景色和文本；<br/>-&nbsp;circle：圆形按钮，支持放置图标；<br/>-&nbsp;text：文本按钮，仅包含文本显示；<br/>-&nbsp;arc：弧形按钮，仅支持智能穿戴；<br/>-&nbsp;download：下载按钮，额外增加下载进度条功能。 |
+| type                   | string  | -     | 否    | 不支持动态修改。默认展示类胶囊型按钮，不同于胶囊类型，四边圆角可以通过border-radius分别指定。该属性可选值包括：<br/>-&nbsp;capsule：胶囊型按钮，带圆角按钮，有背景色和文本。<br/>-&nbsp;circle：圆形按钮，支持放置图标。<br/>-&nbsp;text：文本按钮，仅包含文本显示。<br/>-&nbsp;arc：弧形按钮，仅支持智能穿戴。<br/>-&nbsp;download：下载按钮，额外增加下载进度条功能。 |
 | value                  | string  | -     | 否    | button的文本值。                              |
 | icon                   | string  | -     | 否    | button的图标路径，图标格式为jpg，png和svg。            |
-| placement<sup>5+</sup> | string  | end   | 否    | 仅在type属性为缺省时生效，设置图标位于文本的位置，可选值为：<br/>-&nbsp;start：图标位于文本起始处；<br/>-&nbsp;end：图标位于文本结束处；<br/>-&nbsp;top：图标位于文本上方；<br/>-&nbsp;bottom：图标位于文本下方。 |
+| placement<sup>5+</sup> | string  | end   | 否    | 仅在type属性为缺省时生效，设置图标位于文本的位置，可选值为：<br/>-&nbsp;start：图标位于文本起始处。<br/>-&nbsp;end：图标位于文本结束处。<br/>-&nbsp;top：图标位于文本上方。<br/>-&nbsp;bottom：图标位于文本下方。 |
 | waiting                | boolean | false | 否    | waiting状态，waiting为true时展现等待中转圈效果，位于文本左侧。类型为download时不生效。 |
 
 

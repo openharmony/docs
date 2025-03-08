@@ -59,7 +59,7 @@ Radio(options: RadioOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### checked
 
@@ -153,7 +153,7 @@ contentModifier(modifier: Optional<ContentModifier\<RadioConfiguration>>)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onChange
 
@@ -189,7 +189,7 @@ onChange(callback: Optional\<OnRadioChangeCallback>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnRadioChangeCallback](#onradiochangecallback16)> | 是   | 单选框选中状态改变时触发该回调。<br/>当callback的值为undefined时，不使用回掉函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnRadioChangeCallback](#onradiochangecallback16)> | 是   | 单选框选中状态改变时触发该回调。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ## OnRadioChangeCallback<sup>16+</sup>
 

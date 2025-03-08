@@ -28,10 +28,10 @@
 | float [maxRange](#maxrange) | 传感器的最大测量范围。 | 
 | float [accuracy](#accuracy) | 传感器精度。 | 
 | float [power](#power) | 传感器功率。 | 
-| long [minDelay](#mindelay) | 允许的最小采样周期（微秒） | 
-| long [maxDelay](#maxdelay) | 允许的最大采样周期（微秒） | 
-| unsigned int [fifoMaxEventCount](#fifomaxeventcount) | 此传感器可批处理的最大事件数 | 
-| unsigned int [reserved](#reserved) | 保留字段 | 
+| long [minDelay](#mindelay) | 允许的最小采样周期（微秒）。 | 
+| long [maxDelay](#maxdelay) | 允许的最大采样周期（微秒）。 | 
+| unsigned int [fifoMaxEventCount](#fifomaxeventcount) | 此传感器可批处理的最大事件数。 | 
+| unsigned int [reserved](#reserved) | 保留字段。 | 
 
 
 ## 类成员变量说明
@@ -58,7 +58,7 @@ unsigned int HdfSensorInformation::fifoMaxEventCount
 **描述**
 
 
-此传感器可批处理的最大事件数
+此传感器可批处理的最大事件数。
 
 
 ### firmwareVersion
@@ -94,7 +94,7 @@ long HdfSensorInformation::maxDelay
 **描述**
 
 
-允许的最大采样周期（微秒）
+允许的最大采样周期（微秒）。
 
 
 ### maxRange
@@ -118,7 +118,7 @@ long HdfSensorInformation::minDelay
 **描述**
 
 
-允许的最小采样周期（微秒）
+允许的最小采样周期（微秒）。
 
 
 ### power
@@ -142,7 +142,7 @@ unsigned int HdfSensorInformation::reserved
 **描述**
 
 
-保留字段
+保留字段。
 
 
 ### sensorId

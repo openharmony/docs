@@ -24,11 +24,13 @@ AlphabetIndexer、Badge、Blank、Button、CalendarPicker、Checkbox、CheckboxG
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                         |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| modifier  | &nbsp;DrawModifier&nbsp;\|&nbsp;undefined | 是   | 自定义绘制修改器，其中定义了自定义绘制的逻辑。 <br> 默认值：undefined <br/>**说明：** <br/> 每个自定义修改器只对当前绑定组件的FrameNode生效，对其子节点不生效。 |
+| modifier  | &nbsp;[DrawModifier](#drawmodifier-1)&nbsp;\|&nbsp;undefined | 是   | 自定义绘制修改器，其中定义了自定义绘制的逻辑。 <br> 默认值：undefined <br/>**说明：** <br/> 每个自定义修改器只对当前绑定组件的FrameNode生效，对其子节点不生效。 |
 
 ## DrawModifier
 
 DrawModifier可设置前景(drawFront)、内容(drawContent)和背景(drawBehind)的绘制方法，还提供主动触发重绘的方法invalidate。每个DrawModifier实例只能设置到一个组件上，禁止进行重复设置。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -104,8 +106,7 @@ class MyFullDrawModifier extends DrawModifier {
   public scaleX: number = 1;
   public scaleY: number = 1;
 
-  drawBehind(context: DrawContext): void
-  {
+  drawBehind(context: DrawContext): void {
     const brush = new drawing.Brush();
     brush.setColor({
       alpha: 255,
@@ -124,8 +125,7 @@ class MyFullDrawModifier extends DrawModifier {
     });
   }
 
-  drawContent(context: DrawContext): void
-  {
+  drawContent(context: DrawContext): void {
     const brush = new drawing.Brush();
     brush.setColor({
       alpha: 255,
@@ -144,8 +144,7 @@ class MyFullDrawModifier extends DrawModifier {
     });
   }
 
-  drawFront(context: DrawContext): void
-  {
+  drawFront(context: DrawContext): void {
     const brush = new drawing.Brush();
     brush.setColor({
       alpha: 255,
@@ -165,8 +164,7 @@ class MyFrontDrawModifier extends DrawModifier {
   public scaleX: number = 1;
   public scaleY: number = 1;
 
-  drawFront(context: DrawContext): void
-  {
+  drawFront(context: DrawContext): void {
     const brush = new drawing.Brush();
     brush.setColor({
       alpha: 255,
@@ -216,48 +214,49 @@ struct DrawModifierExample {
     Column() {
       Row() {
         Text('test text')
-        .width(100)
-        .height(100)
-        .margin(10)
-        .backgroundColor(Color.Gray)
-        .onClick(() => {
-          const tempModifier = this.modifier as MyFullDrawModifier | MyFrontDrawModifier;
-          tempModifier.scaleX -= 0.1;
-          tempModifier.scaleY -= 0.1;
-        })
-        .drawModifier(this.modifier)
+          .width(100)
+          .height(100)
+          .margin(10)
+          .backgroundColor(Color.Gray)
+          .onClick(() => {
+            const tempModifier = this.modifier as MyFullDrawModifier | MyFrontDrawModifier;
+            tempModifier.scaleX -= 0.1;
+            tempModifier.scaleY -= 0.1;
+          })
+          .drawModifier(this.modifier)
       }
+
       Row() {
         Button('create')
-        .width(100)
-        .height(100)
-        .margin(10)
-        .onClick(() => {
-          this.create();
-        })
+          .width(100)
+          .height(100)
+          .margin(10)
+          .onClick(() => {
+            this.create();
+          })
         Button('play')
-        .width(100)
-        .height(100)
-        .margin(10)
-        .onClick(() => {
-          if (this.drawAnimator) {
-            this.drawAnimator.play();
-          }
-        })
+          .width(100)
+          .height(100)
+          .margin(10)
+          .onClick(() => {
+            if (this.drawAnimator) {
+              this.drawAnimator.play();
+            }
+          })
         Button('changeModifier')
-        .width(100)
-        .height(100)
-        .margin(10)
-        .onClick(() => {
-          this.count += 1;
-          if (this.count % 2 === 1) {
-            console.log('change to full modifier');
-            this.modifier = this.fullModifier;
-          } else {
-            console.log('change to front modifier');
-            this.modifier = this.frontModifier;
-          }
-        })
+          .width(100)
+          .height(100)
+          .margin(10)
+          .onClick(() => {
+            this.count += 1;
+            if (this.count % 2 === 1) {
+              console.log('change to full modifier');
+              this.modifier = this.fullModifier;
+            } else {
+              console.log('change to front modifier');
+              this.modifier = this.frontModifier;
+            }
+          })
       }
     }
     .width('100%')

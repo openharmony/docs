@@ -137,7 +137,7 @@ let pasteData: pasteboard.PasteData = pasteboard.createData(record);
 
 ## pasteboard.createRecord<sup>9+</sup>
 
-createRecord(mimeType: string, value: ValueType):PasteDataRecord;
+createRecord(mimeType: string, value: ValueType):PasteDataRecord
 
 创建一条自定义数据内容条目。
 
@@ -480,9 +480,11 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 | localOnly<sup>7+</sup> | boolean | 是 | 是 | 配置剪贴板内容是否为“仅在本地”，默认值为false。其值会被shareOption属性覆盖，推荐使用shareOption属性。ShareOption.INAPP、ShareOption.LOCALDEVICE会将localOnly设置为true，ShareOption.CROSSDEVICE会将localOnly设置为false。<br/>- 配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>- 配置为false时，表示内容将在设备间传递。 |
 | shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围，如果未设置或设置不正确，则默认值为CROSSDEVICE。                                                                                                                                                                                            |
 
-## FileConflictOption<sup>15+</sup>
+## FileConflictOptions<sup>15+</sup>
 
 定义文件拷贝冲突时的选项。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -494,6 +496,8 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 ## ProgressIndicator<sup>15+</sup>
 
 定义进度条指示选项，可选择是否采用系统默认进度显示。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -547,33 +551,41 @@ cancel(): void
 **示例：**
 
 ```ts
-import { AbilityConstant, UIAbility, Want} from '@kit.AbilityKit'
-import { BusinessError pasteboard } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-    async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
-        let text = "test";
-        let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
-        let systemPasteboard = pasteboard.getSystemPasteboard();
-        await systemPasteboard.setData(pasteData);
-        let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-        let signal = new pasteboard.ProgressSignal;
-		let ProgressListener = (progress: pasteData.ProgressInfo) => {
-    		console.log('progressListener success, progress:' + progress.progress);
-            signal.cancel();
-		}
-		let params: pasteData.GetDataParams = {
-    		destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
-    		fileConflictOption: pasteData.FileConflictOption.OVERWRITE,
-    		progressIndicator: pasteData.ProgressIndicator.DEFAULT,
-    		progressListener: ProgressListener
-		}
-		systemPasteboard.getDataWithProgress().then((pasteData: pasteboard.PasteData) => {
-    		let text: string = pasteData.getPrimaryText();
-		}).catch((err: BusinessError) => {
-    		console.error('Failed to get PasteData. Cause: ' + err.message);
-		});   
+import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
+@Entry
+@Component
+struct PasteboardTest {
+ build() {
+   RelativeContainer() {
+     Column() {
+       Column() {
+         Button("Copy txt")
+           .onClick(async ()=>{
+              let text = "test";
+              let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
+              let systemPasteboard = pasteboard.getSystemPasteboard();
+        	  await systemPasteboard.setData(pasteData);
+              let signal = new pasteboard.ProgressSignal;
+              let ProgressListener = (progress: pasteboard.ProgressInfo) => {
+    		    console.log('progressListener success, progress:' + progress.progress);
+                signal.cancel();
+              }
+              let params: pasteboard.GetDataParams = {
+                destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
+                fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
+                progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
+                progressListener: ProgressListener
+              };
+              systemPasteboard.getDataWithProgress(params).then((pasteData: pasteboard.PasteData) => {
+                console.error('getDataWithProgress succ');
+              }).catch((err: BusinessError) => {
+                console.error('Failed to get PasteData. Cause: ' + err.message);
+              })   
+          })
+        }
+      }
     }
+  }
 }
 ```
 
@@ -585,13 +597,13 @@ export default class EntryAbility extends UIAbility {
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称               | 类型                                        | 必填 | 说明                                                         |
-| ------------------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| destUri            | string                                      | 否   | 拷贝文件时目标路径。若不支持文件处理，则不需要设置此参数；若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理。 |
-| fileConflictOption | [FileConflictOption](#fileconflictoption15) | 否   | 定义文件拷贝冲突时的选项，默认为OVERWRITE。                  |
-| progressIndicator  | [ProgressIndicator](#progressindicator15)   | 是   | 定义进度条指示选项，可选择是否采用系统默认进度显示。         |
-| progressListener   | [ProgressListener](#progresslistener15)     | 否   | 定义进度数据变化的订阅函数，当选择不使用系统默认进度显示时，可设置该项获取粘贴过程的进度。 |
-| progressSignal     | [ProgressSignal](#progresssignal15)         | 否   | 定义进度取消的函数，在粘贴过程中可选择取消任务，且仅当进度指示选项[ProgressIndicator](#progressindicator15)设置为NONE时此参数才有意义。 |
+| 名称                | 类型                                          | 必填 | 说明                                                         |
+| ------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| destUri             | string                                        | 否   | 拷贝文件时目标路径。若不支持文件处理，则不需要设置此参数；若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理。 |
+| fileConflictOptions | [FileConflictOptions](#fileconflictoptions15) | 否   | 定义文件拷贝冲突时的选项，默认为OVERWRITE。                  |
+| progressIndicator   | [ProgressIndicator](#progressindicator15)     | 是   | 定义进度条指示选项，可选择是否采用系统默认进度显示。         |
+| progressListener    | [ProgressListener](#progresslistener15)       | 否   | 定义进度数据变化的订阅函数，当选择不使用系统默认进度显示时，可设置该项获取粘贴过程的进度。 |
+| progressSignal      | [ProgressSignal](#progresssignal15)           | 否   | 定义进度取消的函数，在粘贴过程中可选择取消任务，且仅当进度指示选项[ProgressIndicator](#progressindicator15)设置为NONE时此参数才有意义。 |
 
 ## PasteDataRecord<sup>7+</sup>
 
@@ -1838,8 +1850,8 @@ setData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste operation is in progress. |
-| 12900004 | Replication is prohibited. |
+| 27787277 | Another copy or paste operation is in progress. |
+| 27787278 | Replication is prohibited. |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **示例：**
@@ -1884,8 +1896,8 @@ setData(data: PasteData): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste operation is in progress. |
-| 12900004 | Replication is prohibited. |
+| 27787277 | Another copy or paste operation is in progress. |
+| 27787278 | Replication is prohibited. |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **示例：**
@@ -1926,7 +1938,7 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste operation is in progress. |
+| 27787277 | Another copy or paste operation is in progress. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
@@ -1969,7 +1981,7 @@ getData(): Promise&lt;PasteData&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste operation is in progress. |
+| 27787277 | Another copy or paste operation is in progress. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **示例：**
@@ -2619,7 +2631,7 @@ getUnifiedData(): Promise&lt;unifiedDataChannel.UnifiedData&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 12900003 | Another copy or paste operation is in progress. |
+| 27787277 | Another copy or paste operation is in progress. |
 
 **示例：**
 
@@ -2712,8 +2724,8 @@ setUnifiedData(data: unifiedDataChannel.UnifiedData): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 12900003 | Another copy or paste operation is in progress. |
-| 12900004 | Replication is prohibited. |
+| 27787277 | Another copy or paste operation is in progress. |
+| 27787278 | Replication is prohibited. |
 
 **示例：**
 
@@ -2983,7 +2995,7 @@ getDataWithProgress(params: GetDataParams): Promise&lt;PasteData&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed. The application does not have the. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error.                                             |
 | 12900003 | Another copy or paste operation is in progress.              |
 | 12900007 | Copy file failed.                                            |
@@ -2994,35 +3006,43 @@ getDataWithProgress(params: GetDataParams): Promise&lt;PasteData&gt;
 **示例：**
 
 ```ts
-import { AbilityConstant, UIAbility, Want} from '@kit.AbilityKit'
-import { BusinessError pasteboard } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-    async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
-        let text = "test";
-        let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
-        let systemPasteboard = pasteboard.getSystemPasteboard();
-        await systemPasteboard.setData(pasteData);
-        let signal = new pasteboard.ProgressSignal;
-		let ProgressListener = (progress: pasteData.ProgressInfo) => {
-    		console.log('progressListener success, progress:' + progress.progress);
-		}
-		let params: pasteData.GetDataParams = {
-    		destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
-    		fileConflictOption: pasteData.FileConflictOption.OVERWRITE,
-    		progressIndicator: pasteData.ProgressIndicator.DEFAULT,
-    		progressListener: ProgressListener
-		}
-		systemPasteboard.getDataWithProgress().then((pasteData: pasteboard.PasteData) => {
-    		let text: string = pasteData.getPrimaryText();
-		}).catch((err: BusinessError) => {
-    		console.error('Failed to get PasteData. Cause: ' + err.message);
-		});   
+import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
+@Entry
+@Component
+struct PasteboardTest {
+ build() {
+   RelativeContainer() {
+     Column() {
+       Column() {
+         Button("Copy txt")
+           .onClick(async ()=>{
+              let text = "test";
+              let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
+              let systemPasteboard = pasteboard.getSystemPasteboard();
+        	  await systemPasteboard.setData(pasteData);
+              let ProgressListener = (progress: pasteboard.ProgressInfo) => {
+    		    console.log('progressListener success, progress:' + progress.progress);
+              }
+              let params: pasteboard.GetDataParams = {
+                destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
+                fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
+                progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
+                progressListener: ProgressListener
+              };
+              systemPasteboard.getDataWithProgress(params).then((pasteData: pasteboard.PasteData) => {
+                console.error('getDataWithProgress succ');
+              }).catch((err: BusinessError) => {
+                console.error('Failed to get PasteData. Cause: ' + err.message);
+              })   
+          })
+        }
+      }
     }
+  }
 }
 ```
 
-### getChangeCount<sup>16+</sup>
+### getChangeCount<sup>18+</sup>
 
 getChangeCount(): number
 
@@ -3034,7 +3054,7 @@ getChangeCount(): number
 
 系统重启或剪贴板服务异常重启时，剪贴板内容变化次数重新从0开始计数。对同一内容连续多次复制会被视作多次更改，每次复制均会导致内容变化次数增加。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -3047,7 +3067,7 @@ getChangeCount(): number
 **示例：**
 
 ```ts
-import { BusinessError pasteboard } from '@kit.BasicServicesKit';
+import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {

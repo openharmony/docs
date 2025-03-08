@@ -5,7 +5,7 @@
 
 本模块提供获取组件截图的能力。
 
-**起始版本：** 16
+**起始版本：** 15
 
 ## 汇总
 
@@ -38,7 +38,7 @@ typedef struct ArkUI_SnapshotOptions ArkUI_SnapshotOptions;
 
 定义截图的可选项。
 
-**起始版本：** 16
+**起始版本：** 15
 
 ## 函数说明
 
@@ -53,7 +53,7 @@ int32_t OH_ArkUI_GetNodeSnapshot(ArkUI_NodeHandle node, ArkUI_SnapshotOptions* s
 
 获取节点的快照像素图。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
@@ -83,7 +83,7 @@ ArkUI_SnapshotOptions* OH_ArkUI_CreateSnapshotOptions()
 
 创建一个截图选项，当返回值不再使用时必须通过`OH_ArkUI_SnapshotOptions_Dispose`释放。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **返回：**
 
@@ -102,7 +102,7 @@ void OH_ArkUI_DestroySnapshotOptions(ArkUI_SnapshotOptions* snapshotOptions)
 
 销毁截图选项指针。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
@@ -120,7 +120,7 @@ int32_t OH_ArkUI_SnapshotOptions_SetScale(ArkUI_SnapshotOptions* snapshotOptions
 
 配置截图选项中的缩放属性
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 

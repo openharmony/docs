@@ -32,7 +32,7 @@
 
 ## 使用指导
 
-- 预加载子组件的个数在[cachedCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#属性)属性中配置。
+- 预加载子组件的个数在[cachedCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#cachedcount8)属性中配置。
 
 Swiper 共 5 页，当开发者设置了 cachedCount 属性为 1 且 loop 属性为 false 时，预加载的结果如下：\
  ![loop=false](figures/swiper_loop_false.png)

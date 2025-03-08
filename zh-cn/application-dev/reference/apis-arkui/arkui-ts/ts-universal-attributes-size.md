@@ -56,15 +56,15 @@ height(value: Length)
 >
 >  在[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[RelativeContainer](./ts-container-relativecontainer.md)组件中，width、height设置auto表示自适应子组件。
 
-## width<sup>16+</sup>
+## width<sup>15+</sup>
 
 width(widthValue: Length | LayoutPolicy)
 
 设置组件自身的宽度或水平方向布局策略，缺省时使用元素自身内容需要的宽度。若子组件的宽大于父组件的宽，则会画出父组件的范围。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -72,17 +72,17 @@ width(widthValue: Length | LayoutPolicy)
 
 | 参数名   | 类型                           | 必填   | 说明                  |
 | ----- | ---------------------------- | ---- | ------------------- |
-| widthValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-types.md#LayoutPolicy) | 是    | 要设置的组件宽度。<br/>单位：vp |
+| widthValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-types.md#layoutpolicy15) | 是    | 要设置的组件宽度。<br/>单位：vp |
 
-## height<sup>16+</sup>
+## height<sup>15+</sup>
 
 height(heightValue: Length | LayoutPolicy)
 
 设置组件自身的高度或垂直方向布局策略，缺省时使用元素自身内容需要的高度。若子组件的高大于父组件的高，则会画出父组件的范围。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -90,11 +90,11 @@ height(heightValue: Length | LayoutPolicy)
 
 | 参数名   | 类型                           | 必填   | 说明                  |
 | ----- | ---------------------------- | ---- | ------------------- |
-| heightValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-types.md#LayoutPolicy) | 是    | 要设置的组件高度。<br/>单位：vp |
+| heightValue | [Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp;[LayoutPolicy](ts-types.md#layoutpolicy15) | 是    | 要设置的组件高度。<br/>单位：vp |
 
 >  **说明：**
 > 
->  [Row](./ts-container-row.md)和[Column](./ts-container-column.md)组件的width、height属性支持设置[LayoutPolicy](ts-types.md#LayoutPolicy)类型参数。
+>  [Row](./ts-container-row.md)和[Column](./ts-container-column.md)组件的width、height属性支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型参数。
 
 ## size
 

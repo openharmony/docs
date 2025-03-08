@@ -15,10 +15,11 @@ HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides
 | -------- | -------- |
 | isLoggable(domain: number, tag: string, level: LogLevel) | Checks whether logs of the specified domain, tag, and level can be printed.|
 | debug(domain: number, tag: string, format: string, ...args: any[]) | Outputs DEBUG logs, which are used only for debugging applications and services.<br>To set the log level to **DEBUG**, run the **hdc shell hilogcat** command in the **Terminal** window of DevEco Studio or in the **cmd** window.|
-| info(domain: number, tag: string, format: string, ...args: any[]) | Outputs INFO logs, which provide prevalent, highlighting events related to key service processes..|
+| info(domain: number, tag: string, format: string, ...args: any[]) | Outputs INFO logs, which provide prevalent, highlighting events related to key service processes.|
 | warn(domain: number, tag: string, format: string, ...args: any[]) | Outputs WARN logs, which indicate issues that have little impact on the system.|
 | error(domain: number, tag: string, format: string, ...args: any[]) | Outputs ERROR logs, which indicate program or functional errors.|
 | fatal(domain: number, tag: string, format: string, ...args: any[]) | Outputs FATAL logs, which indicate program or functionality crashes that cannot be rectified.|
+| setMinLogLevel(level: LogLevel) | Sets the minimum log level. When a process prints logs, both the minimum log level and the global log level are verified. Therefore, the minimum log level cannot be lower than the global log level. The default value of [global log level](hilog.md#displaying-and-setting-log-levels) is **Info**.|
 
 ### Parameters
 
@@ -94,8 +95,12 @@ Add a click event in a button, which prints a log when the button is clicked.
            .height('5%')
            // Add a onClick event with the button to print a log when the button is clicked.
            .onClick(() => {
-             hilog.isLoggable(0xFF00, "testTag", hilog.LogLevel.INFO);    
+             hilog.isLoggable(0xFF00, "testTag", hilog.LogLevel.INFO);
              hilog.info(0xFF00, "testTag", "%{public}s World %{public}d", "hello", 3);
+             // Set the minimum log level to Warn.
+             hilog.setMinLogLevel(hilog.LogLevel.WARN);
+             hilog.info(0x0000, 'testTag', 'this is an info level log');
+             hilog.error(0x0000, 'testTag', 'this is an error level log');
            })
          }
          .width('100%')
@@ -108,9 +113,8 @@ Add a click event in a button, which prints a log when the button is clicked.
    For example, output an INFO log in the following format: 
 
    ```txt
-   "%{public}s World %{public}d"
+   '%{public}s World %{public}d'
    ```
-
    *%{public}s* indicates a string, and *%{public}d* indicates an integer. Both of them are displayed in plaintext. 
 
 4. Run the project on a real device, and click the **Next** button on the app/service.
@@ -118,7 +122,11 @@ Add a click event in a button, which prints a log when the button is clicked.
 5. At the bottom of DevEco Studio, switch to the **Log** tab and set the filter criteria.
    Specifically, select the current device and process, set the log level to **Verbose**, and enter **testTag** in the search box. Then, only the logs that meet the filter criteria are displayed.
 
-   In this example, the printed log is "hello World 3".
+   The log result is as follows:
+   ```txt
+   01-02 08:18:24.947   30988-30988   A0ff00/testTag                  com.example.hilogemo  I     hello World 3
+   01-02 08:18:24.947   30988-30988   A00000/testTag                  com.example.hilogemo  E     this is an error level log
+   ```
 
 <!--RP1-->
 <!--RP1End-->

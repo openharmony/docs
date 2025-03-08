@@ -18,7 +18,7 @@ import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from
 
 ## 属性
 
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)
 
 ## InterstitialDialogAction
 
@@ -71,7 +71,7 @@ closeDialog(): void
 | 名称| 类型 | 必填 | 说明 |
 | - | - | - | - |
 | uiContext | [UIContext](../js-apis-arkui-UIContext.md#uicontext) | 是 | UI上下文实例。 |
-| bottomOffsetType | [BottomOffset](#bottomoffset) | 是 | 弹框距离底部偏移类型 |
+| bottomOffsetType | [BottomOffset](#bottomoffset) | 否 | 弹框距离底部偏移类型。 |
 | title | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹框标题文本。 |
 | subtitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹框副标题文本。 |
 | titleColor | [ResourceStr](ts-types.md#resourcestr) \| [Color](ts-appendix-enums.md#color) | 否 | 弹框标题文本颜色。 |
@@ -123,7 +123,7 @@ closeDialog(): void
 | OFFSET_FOR_NONE | 1 | 不存在菜单栏情况下与窗口底部的距离。<br>设置后弹框距离底部44vp。 |
 
 ## 事件
-不支持[通用事件](ts-universal-events-click.md)
+不支持[通用事件](ts-component-general-events.md)
 
 ## 示例
 

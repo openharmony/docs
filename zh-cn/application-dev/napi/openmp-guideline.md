@@ -1,11 +1,11 @@
 # OpenMP应用构建和运行指南
 
-Harmony OS NDK中提供了OpenMP的动态库和静态库文件，支持开发者在Native应用中使用OpenMP。本文用于指导开发者在[DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)中调用库文件使用OpenMP的并行化能力，更详细的使用示例和API标准请查看官方文档[clang-OpenMPSupport](https://clang.llvm.org/docs/OpenMPSupport.html)。
+OpenHarmony NDK中提供了OpenMP的动态库和静态库文件，支持开发者在Native应用中使用OpenMP。本文用于指导开发者在[DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)中调用库文件使用OpenMP的并行化能力，更详细的使用示例和API标准请查看官方文档[clang-OpenMPSupport](https://clang.llvm.org/docs/OpenMPSupport.html)。
 
 ## 开发步骤
 
 ### 1. 创建Native C++工程
-[创建Ndk工程](./create-with-ndk.md)
+[创建NDK工程](./create-with-ndk.md)
 
 ### 2. 添加依赖
 
@@ -152,6 +152,6 @@ struct Index {
 
 > **注意：**
 > 
-> OpenMP程序运行时，Hilog中会输出“dlopen_impl load library header failed for libarcher.so”的报错信息（如下图）。该报错信息中提到的libarcher.so，在OpenMP程序开启Tsan检测时才需要使用。目前Harmony OS未支持OpenMP程序的Tsan检测能力，因此该错误信息可忽略，不影响程序正常运行。
+> OpenMP程序运行时，Hilog中会输出“dlopen_impl load library header failed for libarcher.so”的报错信息（如下图）。该报错信息中提到的libarcher.so，在OpenMP程序开启Tsan检测时才需要使用。目前OpenHarmony未支持OpenMP程序的Tsan检测能力，因此该错误信息可忽略，不影响程序正常运行。
 >
 > ![image2](./figures/omp-error.png)

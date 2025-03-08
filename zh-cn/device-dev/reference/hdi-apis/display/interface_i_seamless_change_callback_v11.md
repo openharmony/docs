@@ -17,7 +17,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OnSeamlessChange](#onseamlesschange) ([in] unsigned int devId) | 准备好更改帧速率时要调用的回调 | 
+| [OnSeamlessChange](#onseamlesschange) ([in] unsigned int devId) | 准备好更改帧速率时要调用的回调。 | 
 
 
 ## 成员函数说明
@@ -32,7 +32,7 @@ ISeamlessChangeCallback::OnSeamlessChange ([in] unsigned int devId)
 **描述**
 
 
-准备好更改帧速率时要调用的回调
+准备好更改帧速率时要调用的回调。
 
 **起始版本：** 4.1
 

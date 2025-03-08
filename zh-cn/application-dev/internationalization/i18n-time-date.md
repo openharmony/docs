@@ -6,7 +6,7 @@
 
 时间日期国际化包括时间日期格式化、相对时间格式化、时间段格式化。时间日期格式化是指将时间和日期转换为指定格式的字符串。相对时间格式化是指将一个时间点与另一个时间点之间的时间差转换为指定格式，时间差如“30秒前”、“1天后”。时间段格式化是指将一段时间转换为指定格式，时间段如“星期三”、“8:00--11:30”。
 
-## 约束与限制 
+## 约束与限制
 
 1. 日期格式和时间格式需同时设置。若设置了时间格式，未设置日期格式，只显示时间格式；若设置了日期格式，未设置时间格式，只显示日期格式。
 
@@ -25,7 +25,7 @@
 
 2. 创建DateTimeFormat对象。
    传入单独的locale参数或locale列表，若传入列表使用第一个有效的locale创建对象。不传入locale参数时，使用系统当前的locale创建对象。
-   构造函数支持通过DateTimeOptions设置不同的时间日期格式，具体请参考表1-表6。
+   构造函数支持通过DateTimeOptions设置不同的时间日期格式，具体请参考表1-表10。
 
    ```ts
    let dateFormat: intl.DateTimeFormat = new intl.DateTimeFormat(locale: string | Array<string>, options?: DateTimeOptions);
@@ -36,7 +36,7 @@
    ```ts
    // 时间日期格式化
    let formattedDate: string = dateFormat.format(date: Date);
-   
+
    // 相对时间格式化
    let formattedDateRange: string = dateFormat.formatRange(startDate: Date, endDate: Date);
    ```
@@ -48,50 +48,100 @@
 
 **时间日期格式化选项**
 
-以时间：2021年9月17日 13:04:00，locale: zh-CN为例，说明[DateTimeOptions](../reference/apis-localization-kit/js-apis-intl.md#datetimeoptions)不同的取值和显示结果。
+以时间：2021年9月17日 13:04:00、2021年9月17日 00:25:00，locale: zh-CN和en为例，说明[DateTimeOptions](../reference/apis-localization-kit/js-apis-intl.md#datetimeoptions)不同的取值和显示结果。
 
 **表1** 日期显示格式(dateStyle)
 
-| 取值 | 显示结果 | 
-| -------- | -------- |
-| full | 2021年9月17日星期五 | 
-| long | 2021年9月17日 | 
-| short | 2021/9/17 | 
-| medium | 2021年9月17日 | 
+| 取值   | 描述                                    | 2021年9月17日 13:04:00，locale为zh-CN显示结果 | 2021年9月17日 13:04:00，locale为en显示结果 |
+| ------ | --------------------------------------- | ------------------------------------------  | ---------------------------------------- |
+| full   | 完整的日期显示，包含年份、月份、天数和星期。| 2021年9月17日星期五                          | Friday, September 17, 2021               |
+| long   | 详细的日期显示，包含年份、月份和天数。     | 2021年9月17日                                | September 17, 2021                       |
+| short  | 简短的日期显示，包含年份、月份和天数。     | 2021/9/17                                   | 9/17/21                                  |
+| medium | 中等长度日期显示，包含年份、月份和天数。   | 2021年9月17日                                | Sep 17, 2021                             |
 
 **表2** 时间显示格式(timeStyle)
 
-| 取值 | 显示效果 | 
-| -------- | -------- |
-| full | 中国标准时间 13:04:00 | 
-| long | GMT+8 13:4:00 | 
-| short | 13:04 | 
-| medium | 13:04:00 | 
+| 取值   | 描述 | 2021年9月17日 13:04:00，locale为zh-CN显示结果 |　2021年9月17日 13:04:00，locale为en显示结果 |
+| ------ | ------------- | -------- | -------- |
+| full   | 完整的时间显示，包含时区和时间，时间精确到秒。 | 中国标准时间 13:04:00 | 13:04:00 China Standard Time |
+| long   | 详细的时间显示，包含时区和时间，时区以GMT+时区偏移表示，时间精确到秒。 | GMT+8 13:04:00 | 13:04:00 GMT+8 |
+| short  | 简短时间显示，包含小时和分钟。 | 13:04 | 13:04 |
+| medium | 中等长度时间显示，包含小时、分钟和秒。 | 13:04:00 | 13:04:00 |
 
 **表3** 年份显示格式(year)
 
-| 取值 | 显示效果 | 
-| -------- | -------- |
-| numeric | 2021 | 
-| 2-digit | 21 | 
+| 取值 | 描述 | 2021年9月17日 13:04:00，locale为zh-CN显示结果 | 2021年9月17日 13:04:00，locale为en显示结果 |
+| -------- | --------- | -------- | -------- |
+| numeric | 完整的年份显示。 | 2021年 | 2021 |
+| 2-digit | 用完整年份的后2位数字表示年份。 | 21年 | 21 |
 
-**表4** 工作日显示格式(weekday)
+**表4** 星期显示格式(weekday)
 
-| 取值 | 显示效果 | 
-| -------- | -------- |
-| long | 星期五 | 
-| short | 周五 | 
-| narrow | 五 | 
-
+| 取值 | 描述 | 2021年9月17日 13:04:00，locale为zh-CN显示结果 | 2021年9月17日 13:04:00，locale为en显示结果 |
+| -------- | ------- | -------- | -------- |
+| long | 详细的星期显示。 | 星期五 | Friday |
+| short | 简短的星期显示。 | 周五 | Fri |
+| narrow | 最简短的星期显示。 | 五 | F |
 
 **表5** 时制格式(hourCycle)
 
-| 取值 | 显示效果 | 
-| -------- | -------- |
-| h11 | 下午13:04 | 
-| h12 | 下午1:04 | 
-| h23 | 1:04 | 
-| h24 | 13:04 | 
+| 取值 | 描述            | 2021年9月17日 13:04:00，locale为zh-CN显示结果 | 2021年9月17日 00:25:00，locale为zh-CN显示结果 |
+| --- | --------------- | -------------------------------------------- | ------------------------------------------- |
+| h11 | 用0-11表示小时。 | 下午1:04                                     |  上午0:25                                    |
+| h12 | 用1-12表示小时。 | 下午1:04                                     |  上午12:25                                   |
+| h23 | 用0-23表示小时。 | 13:04                                        | 00:25                                       |
+| h24 | 用1-24表示小时。 | 13:04                                        | 24:25                                       |
+
+> **说明**
+>
+> 在不设置dateStyle或timeStyle参数时，hourCycle不同取值的显示效果如上表格。
+
+
+**表6** 时制格式(hourCycle)
+
+| 取值 | 描述            | 2021年9月17日 13:04:00，locale为zh-CN显示结果 | 2021年9月17日 00:25:00，locale为zh-CN显示结果 |
+| --- | --------------- | -------------------------------------------- | ------------------------------------------- |
+| h11 | 用1-24表示小时。 | 下午13:04                                    |  上午24:25                                   |
+| h12 | 用1-12表示小时。 | 下午1:04                                     |  上午12:25                                   |
+| h23 | 用0-11表示小时。 | 1:04                                         |  0:25                                       |
+| h24 | 用0-23表示小时。 | 13:04                                        |  0:25                                       |
+
+> **说明**
+>
+> 在设置dateStyle或timeStyle参数时，hourCycle不同取值的显示效果如上表格。
+
+**表7** 月份格式(month)
+
+| 取值 | 描述 | 2021年9月17日 13:04:00，locale为zh-CN显示结果 | 2021年9月17日 13:04:00，locale为en显示结果 |
+| -------- | --------- | -------- | -------- |
+| numeric | 以数字形式显示月份。 | 9月 | 9 |
+| 2-digit | 以两位数字形式显示月份。 | 09月 | 09 |
+| long | 详细的月份显示。 | 九月 | September |
+| short | 简短的月份显示。 | 9月 | Sep |
+| narrow | 最简短的月份显示。 | 9 | S |
+
+**表8** 时区名称的本地化表示(timeZoneName)
+
+| 取值  | 描述                | 2021年9月17日 13:04:00，locale为zh-CN显示结果 | 2021年9月17日 13:04:00，locale为en显示结果 |
+| ----- | ------------------ | -------------------------------------------- | ---------------------------------------- |
+| long  | 详细的时区名称显示。 | 中国标准时间                                  | China Standard Time                      |
+| short | 简短的时区名称显示。 | GMT+8                                        | GMT+8                                    |
+
+**表9** 纪元的显示格式(era)
+
+| 取值 | 描述 | 2021年9月17日 13:04:00，locale为zh-CN显示效果 | 2021年9月17日 13:04:00，locale为en显示效果 |
+| -------- | ------ | -------- | -------- |
+| long | 详细的纪元显示。 | 公元 | Anno Domini |
+| short | 简短的纪元显示。 | 公元 | AD |
+| narrow | 最简短的纪元显示。 | 公元 | A |
+
+**表10** 时段的显示格式(dayPeriod)
+
+| 取值 | 描述 | 2021年9月17日 13:04:00，locale为zh-CN显示效果 | 2021年9月17日 13:04:00，locale为en显示效果 |
+| -------- | ------ | -------- | -------- |
+| long | 详细的时段表述。 | 下午 | in the afternoon |
+| short | 简短的时段表示。 | 下午 | in the afternoon |
+| narrow | 最简短的时段表示。 | 下午 | in the afternoon |
 
 **开发实例**
 ```ts
@@ -108,7 +158,7 @@ let formattedDate1 = dateFormat1.format(date); // formattedDate1: 2021年9月17�
 
 // 在有限的空间展示简短的时间信息
 let dateFormat2 = new intl.DateTimeFormat('zh-CN', {dateStyle: 'short', timeStyle: 'short'});
-let formattedDate2 = dateFormat2.format(date); // formattedDate2: 2021/9/17 13:04 
+let formattedDate2 = dateFormat2.format(date); // formattedDate2: 2021/9/17 13:04
 
 // 自定义年月日时分秒的显示效果
 let dateFormat3 = new intl.DateTimeFormat('zh-CN', {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'});
@@ -170,20 +220,20 @@ let dateStyle = options.dateStyle; // dateStyle: full
 
 以相对时间：一天前，locale: fr-FR和en-GB为例，说明[RelativeTimeFormatInputOptions](../reference/apis-localization-kit/js-apis-intl.md#relativetimeformatinputoptions8)不同的取值和显示结果。
 
-**表6** 输出消息格式(numeric)
+**表11** 数值表示(numeric)
 
-| 取值 | 显示效果(fr-FR) | 显示效果(en-GB) | 
-| -------- | -------- | -------- |
-| always | il y a 1 jour | 1 day ago | 
-| auto | hier | yesterday | 
+| 取值   | 描述                                          | 显示效果(fr-FR) | 显示效果(en-GB) |
+| ------ | -------------------------------------------- | -------------- | --------------- |
+| always | 使用数值表示相对时间。                         | il y a 1 jour  | 1 day ago       |
+| auto   | 根据locale自适应的选择短语或者数值表示相对时间。 | hier           | yesterday       |
 
-**表7** 国际化消息长度(style)
+**表12** 相对时间样式(style)
 
-| 取值 | 显示效果(fr-FR) | 显示效果(en-GB) | 
-| -------- | -------- | -------- |
-| long | il y a 1 jour | 1 day ago | 
-| short | il y a 1 j | 1 day ago | 
-| narrow | -1 j | 1 day ago | 
+| 取值   | 描述                  | 显示效果(fr-FR) | 显示效果(en-GB) |
+| ------ | -------------------- | -------------- | --------------  |
+| long   | 详细的相对时间显示。   | il y a 1 jour  | 1 day ago       |
+| short  | 简短的相对时间显示。   | il y a 1 j     | 1 day ago       |
+| narrow | 最简短的相对时间显示。 | -1 j           | 1 day ago       |
 
 
 **开发实例**

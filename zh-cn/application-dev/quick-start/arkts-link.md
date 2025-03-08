@@ -59,13 +59,14 @@ struct DateComponent {
 
   build() {
     Column() {
-      Button(`child increase the year by 1`).onClick(() => {
-        this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1)
+      Button(`child increase the year by 1`)
+      .onClick(() => {
+        this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
       })
       Button('child update the new date')
         .margin(10)
         .onClick(() => {
-          this.selectedDate = new Date('2023-09-09')
+          this.selectedDate = new Date('2023-09-09');
         })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -87,12 +88,12 @@ struct ParentComponent {
       Button('parent increase the month by 1')
         .margin(10)
         .onClick(() => {
-          this.parentSelectedDate.setMonth(this.parentSelectedDate.getMonth() + 1)
+          this.parentSelectedDate.setMonth(this.parentSelectedDate.getMonth() + 1);
         })
       Button('parent update the new date')
         .margin(10)
         .onClick(() => {
-          this.parentSelectedDate = new Date('2023-07-07')
+          this.parentSelectedDate = new Date('2023-07-07');
         })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -448,7 +449,7 @@ struct Parent {
 ```ts
 @Component
 struct Child {
-  @Link value: Map<number, string>
+  @Link value: Map<number, string>;
 
   build() {
     Column() {
@@ -458,19 +459,19 @@ struct Child {
         Divider()
       })
       Button('child init map').onClick(() => {
-        this.value = new Map([[0, "a"], [1, "b"], [3, "c"]])
+        this.value = new Map([[0, "a"], [1, "b"], [3, "c"]]);
       })
       Button('child set new one').onClick(() => {
-        this.value.set(4, "d")
+        this.value.set(4, "d");
       })
       Button('child clear').onClick(() => {
-        this.value.clear()
+        this.value.clear();
       })
       Button('child replace the first one').onClick(() => {
-        this.value.set(0, "aa")
+        this.value.set(0, "aa");
       })
       Button('child delete the first one').onClick(() => {
-        this.value.delete(0)
+        this.value.delete(0);
       })
     }
   }
@@ -480,7 +481,7 @@ struct Child {
 @Entry
 @Component
 struct MapSample {
-  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
 
   build() {
     Row() {
@@ -505,7 +506,7 @@ struct MapSample {
 ```ts
 @Component
 struct Child {
-  @Link message: Set<number>
+  @Link message: Set<number>;
 
   build() {
     Column() {
@@ -514,16 +515,16 @@ struct Child {
         Divider()
       })
       Button('init set').onClick(() => {
-        this.message = new Set([0, 1, 2, 3, 4])
+        this.message = new Set([0, 1, 2, 3, 4]);
       })
       Button('set new one').onClick(() => {
-        this.message.add(5)
+        this.message.add(5);
       })
       Button('clear').onClick(() => {
-        this.message.clear()
+        this.message.clear();
       })
       Button('delete the first one').onClick(() => {
-        this.message.delete(0)
+        this.message.delete(0);
       })
     }
     .width('100%')
@@ -534,7 +535,7 @@ struct Child {
 @Entry
 @Component
 struct SetSample {
-  @State message: Set<number> = new Set([0, 1, 2, 3, 4])
+  @State message: Set<number> = new Set([0, 1, 2, 3, 4]);
 
   build() {
     Row() {
@@ -552,7 +553,7 @@ struct SetSample {
 
 使用[\@Watch](./arkts-watch.md)可以在双向同步时，更改本地变量。
 
-下面的示例中，在\@Link的\@Watch里面修改了一个\@State装饰的变量sourceNumber，实现了父子组件间的变量同步。但是\@State装饰的变量memberMessage在本地修改又不会影响到父组件中的变量改变。
+下面的示例中，在\@Link的\@Watch里面修改了一个\@State装饰的变量memberMessage，实现了父子组件间的变量同步。但是\@State装饰的变量memberMessage在本地修改又不会影响到父组件中的变量改变。
 
 ```ts
 @Entry
@@ -603,19 +604,19 @@ struct Child {
 ```ts
 @Component
 struct Child {
-  @Link name: string | undefined
+  @Link name: string | undefined;
 
   build() {
     Column() {
 
       Button('Child change name to Bob')
         .onClick(() => {
-          this.name = "Bob"
+          this.name = "Bob";
         })
 
       Button('Child change name to undefined')
         .onClick(() => {
-          this.name = undefined
+          this.name = undefined;
         })
 
     }.width('100%')
@@ -625,7 +626,7 @@ struct Child {
 @Entry
 @Component
 struct Index {
-  @State name: string | undefined = "mary"
+  @State name: string | undefined = "mary";
 
   build() {
     Column() {
@@ -635,12 +636,12 @@ struct Index {
 
       Button('Parents change name to Peter')
         .onClick(() => {
-          this.name = "Peter"
+          this.name = "Peter";
         })
 
       Button('Parents change name to undefined')
         .onClick(() => {
-          this.name = undefined
+          this.name = undefined;
         })
     }
   }
