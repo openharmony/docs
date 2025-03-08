@@ -104,7 +104,7 @@ HiTraceMeter打点接口按功能/行为分类，主要分三类：同步时间�
    PS D:\xxx\xxx> hdc shell
    $ hitrace --trace_begin app
    ```
-   执行抓取trace命令后，先在设备中执行自己的业务调用逻辑，继续依次执行如下命令：
+   启动应用，执行自己的业务调用逻辑（包含HiTraceMeter打点接口），然后依次执行如下命令：
 
    ```shell
    $ hitrace --trace_dump | grep myTest

@@ -138,7 +138,7 @@ hiTraceMeter.traceByValue("myTestCount", traceCount);
 
 ## hiTraceMeter.startAsyncTrace<sup>18+</sup>
 
-function startAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number, customCategory: string, customArgs?: string): void
+startAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number, customCategory: string, customArgs?: string): void
 
 标记一个异步跟踪耗时任务的开始，分级控制跟踪输出。
 
@@ -175,7 +175,7 @@ hiTraceMeter.startAsyncTrace(COMMERCIAL, "myTestFunc", 4, "categoryTest", "key1=
 
 ## hiTraceMeter.finishAsyncTrace<sup>18+</sup>
 
-function finishAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number): void
+finishAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number): void
 
 标记一个异步跟踪耗时任务的结束，分级控制跟踪输出。
 
@@ -234,7 +234,7 @@ hiTraceMeter.finishAsyncTrace(COMMERCIAL, "myTestFunc", 1);
 
 ## hiTraceMeter.startSyncTrace<sup>18+</sup>
 
-function startSyncTrace(level: HiTraceOutputLevel, name: string, customArgs?: string): void
+startSyncTrace(level: HiTraceOutputLevel, name: string, customArgs?: string): void
 
 标记一个同步跟踪耗时任务的开始，分级控制跟踪输出。具体示例可参考[finishSyncTrace](#hitracemeterfinishsynctrace18)中的示例。
 
@@ -264,7 +264,7 @@ hiTraceMeter.startSyncTrace(COMMERCIAL, "myTestFunc", "key1=value1,key2=value2")
 
 ## hiTraceMeter.finishSyncTrace<sup>18+</sup>
 
-function finishSyncTrace(level: HiTraceOutputLevel): void
+finishSyncTrace(level: HiTraceOutputLevel): void
 
 标记一个同步跟踪耗时任务的结束，分级控制跟踪输出。
 
@@ -305,7 +305,7 @@ hiTraceMeter.finishSyncTrace(COMMERCIAL);
 
 ## hiTraceMeter.traceByValue<sup>18+</sup>
 
-function traceByValue(level: HiTraceOutputLevel, name: string, count: number): void
+traceByValue(level: HiTraceOutputLevel, name: string, count: number): void
 
 整数跟踪事件，分级控制跟踪输出。用来标记一个预跟踪的整数变量名及整数值。
 
@@ -334,7 +334,7 @@ hiTraceMeter.traceByValue(COMMERCIAL, "myTestCount", traceCount);
 
 ## hiTraceMeter.isTraceEnabled<sup>18+</sup>
 
-function isTraceEnabled(): boolean
+isTraceEnabled(): boolean
 
 判断当前是否开启应用trace捕获。
 
