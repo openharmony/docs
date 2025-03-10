@@ -43,7 +43,7 @@ IMetadata::EraseMetadataKey ([in] NativeBuffer handle, [in] unsigned int key )
 
 **返回：**
 
-返回0 表示执行成功。
+返回0表示执行成功。
 
 返回其他值表示执行失败，具体错误码查看[DispErrCode](_display_v10.md#disperrcode)。
 
@@ -69,7 +69,7 @@ IMetadata::GetMetadata ([in] NativeBuffer handle, [in] unsigned int key, [out] u
 
 **返回：**
 
-返回0 表示执行成功。
+返回0表示执行成功。
 
 返回其他值表示执行失败，具体错误码查看[DispErrCode](_display_v10.md#disperrcode)。
 
@@ -94,7 +94,7 @@ IMetadata::ListMetadataKeys ([in] NativeBuffer handle, [out] unsigned int[] keys
 
 **返回：**
 
-返回0 表示执行成功。
+返回0表示执行成功。
 
 返回其他值表示执行失败，具体错误码查看[DispErrCode](_display_v10.md#disperrcode)。
 
@@ -118,7 +118,7 @@ IPC后的初始化NativeBuffer。
 
 **返回：**
 
-返回0 表示执行成功。
+返回0表示执行成功。
 
 返回其他值表示执行失败，具体错误码查看[DispErrCode](_display_v10.md#disperrcode)。
 
@@ -144,6 +144,6 @@ IMetadata::SetMetadata ([in] NativeBuffer handle, [in] unsigned int key, [in] un
 
 **返回：**
 
-返回0 表示执行成功。
+返回0表示执行成功。
 
 返回其他值表示执行失败，具体错误码查看[DispErrCode](_display_v10.md#disperrcode)。
