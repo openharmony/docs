@@ -22,6 +22,8 @@
 
 WaterFlow(options?:  WaterFlowOptions)
 
+创建瀑布流容器。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -34,6 +36,8 @@ WaterFlow(options?:  WaterFlowOptions)
 
 
 ## WaterFlowOptions对象说明
+
+瀑布流组件参数对象。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -207,6 +211,8 @@ type GetItemMainSizeByIndex = (index: number) => number
 | number | 指定index的FlowItem的主轴大小，纵向瀑布流时为高度，横向瀑布流时为宽度，单位vp。 |
 
 ## WaterFlowLayoutMode<sup>12+</sup>枚举说明
+
+瀑布流组件布局模式枚举。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
