@@ -120,7 +120,7 @@
 
 ## ohos.permission.WRITE_PROTECTION_ADVICE_POLICY
 
-允许系统应用读取“安全建议”的数据库。
+允许系统应用修改“安全建议”的数据库。
 
 **权限级别**：system_basic
 
@@ -132,7 +132,7 @@
 
 ## ohos.permission.READ_PROTECTION_ADVICE_POLICY
 
-允许系统应用修改“安全建议”的数据库。
+允许系统应用读取“安全建议”的数据库。
 
 **权限级别**：system_basic
 
@@ -4501,5 +4501,4 @@
 
 **变更信息**：API 10-11，ACL使能为false；从API 12开始，变更为true。
 
-## system_grant，不允许ACL跨级申请
 
