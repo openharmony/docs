@@ -15,7 +15,7 @@
 本次变更主要涉及如下模块的注释更新，详细请参考对应的对外接口声明及API开发指导文档：
 
 | 模块名                                | 类名                | 接口声明                                                   |主要变更点说明    |
-| ------------------------------------ | ------------------- | ------------------------------------------------------------ | 
+| ------------------------------------ | ------------------- | ------------------------------------------------------------ | -------------- |
 | @ohos.distributedDeviceManager       | function             | **function** releaseDeviceManager(deviceManager: DeviceManager): void; | 删除201错误码返回说明。 |
 | @ohos.distributedDeviceManager       | DeviceManager        | **function** getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;; | 删除401错误码返回说明。 |
 | @ohos.distributedDeviceManager       | DeviceManager        | **function** stopDiscovering(): void; | 删除401、11600104错误码返回说明。   |
