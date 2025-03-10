@@ -713,11 +713,11 @@ App clone is not supported.
 
 **可能原因**
 
-在不支持应用分身的应用中调用getCurrentAppCloneIndex时，则返回该错误码。
+该应用没有在app.json5配置文件[multiAppMode](../../quick-start/app-configuration-file.md#multiappmode标签)标签中配置应用分身字段，导致该应用不支持分身模式，调用[getCurrentAppCloneIndex](./js-apis-inner-application-applicationContext.md#applicationcontextgetcurrentappcloneindex12)接口时返回该错误码。
 
 **处理步骤**
 
-在不支持应用分身的应用中，避免调用getCurrentAppCloneIndex。
+参考[应用多实例的配置方法](../../quick-start/multiInstance.md#应用多实例的配置方法)，在app.json5配置文件中配置multiAppMode标签，开启应用分身功能后，再调用[getCurrentAppCloneIndex](./js-apis-inner-application-applicationContext.md#applicationcontextgetcurrentappcloneindex12)接口。
 
 <!--Del-->
 ## 16000072 不支持应用多开
