@@ -68,7 +68,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.SUBSCRIBE_SWING_ABILITY
 
@@ -128,7 +128,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.READ_PROTECTION_ADVICE_POLICY
 
@@ -140,7 +140,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.PROXY_MESSAGE_AUTH
 
@@ -368,7 +368,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.RECEIVE_UPDATE_MESSAGE
 
@@ -728,7 +728,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.CAPTURE_SCREEN
 
@@ -1066,7 +1066,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.MICROPHONE_BACKGROUND
 
@@ -1078,7 +1078,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.START_DLP_CRED
 
@@ -1680,7 +1680,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
@@ -3558,7 +3558,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACTIVATE_DEVICE_PSI
 
@@ -4016,7 +4016,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.SYNC_ASSET_BETWEEN_TRUSTED_ACCOUNT
 
@@ -4028,7 +4028,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
 
@@ -4138,7 +4138,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
 
@@ -4174,7 +4174,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.WATCH_WRITE_EMERGENCY_INFO
 
@@ -4186,7 +4186,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.WATCH_START_SOS_SERVICE
 
@@ -4198,7 +4198,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 **变更信息**：API 12-14，该权限仅向系统服务开放；从API 15开始，开放范围变更为系统应用。
 
@@ -4212,7 +4212,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.DLP_GET_HIDE_STATUS
 
@@ -4224,7 +4224,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.GET_ANIM_POLICY
 
@@ -4236,7 +4236,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.VIRTUAL_KEYBOARD_WINDOW
 
@@ -4262,7 +4262,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_FUSION_AWARENESS_DATA
 
@@ -4274,7 +4274,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_ACCOUNT_RECOMMENDATION_DATA
 
@@ -4286,7 +4286,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_VIRTUAL_SCREEN
 
@@ -4298,7 +4298,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.GET_PAGE_INFO
 
@@ -4310,7 +4310,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_DDK_DRIVERS
 
@@ -4327,7 +4327,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
 
@@ -4345,7 +4345,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_DDK_USB_SERIAL
 
@@ -4363,7 +4363,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_CUSTOM_RINGTONE
 
@@ -4375,7 +4375,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_STARTUPGUIDE
 
@@ -4389,7 +4389,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_DEVAUTH_CRED_MGR
 
@@ -4401,7 +4401,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_DEVAUTH_CRED_PRIVILEGE
 
@@ -4413,7 +4413,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_DEVAUTH_CRED_AUTH
 
@@ -4425,7 +4425,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ANTIFRAUD_DETECT
 
