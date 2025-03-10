@@ -67,7 +67,7 @@ OpenHarmony提供了mbedtls的开源三方库，路径为“//third_party/mbedtl
    }
    ```
 
-3. 适配硬件随机数接口
+3. 适配硬件随机数接口。
    接口定义如下：
 
    路径：“third_party/mbedtls/include/mbedtls/entropy_poll.h”

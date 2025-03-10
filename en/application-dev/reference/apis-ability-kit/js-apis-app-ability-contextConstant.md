@@ -31,7 +31,7 @@ Enumerates the data encryption levels.
 
 ## ProcessMode<sup>12+</sup>
 
-Enumerates the process modes. It takes effect only on tablets.
+Enumerates the process modes. It takes effect only on 2-in-1 devices and tablets.
 
 As a property of [StartOptions](js-apis-app-ability-startOptions.md), **ProcessMode** takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1) and is used to specify the process mode of the target ability.
 
@@ -83,7 +83,7 @@ As a property of [StartOptions](js-apis-app-ability-startOptions.md), **ProcessM
 
 ## StartupVisibility<sup>12+</sup>
 
-Enumerates the visibility statuses of an ability after it is started. It takes effect only on tablets.
+Enumerates the visibility statuses of an ability after it is started. It takes effect only on 2-in-1 devices and tablets.
 
 As a property of [StartOptions](js-apis-app-ability-startOptions.md), **StartupVisibility** takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1) and specifies the visibility of the target ability after it is started.
 

@@ -920,11 +920,11 @@ struct DragControllerPage {
   ```
   ![zh-cn_executeDrag5](figures/executeDrag5.gif)
 
-## DragStartRequestStatus<sup>16+</sup>
+## DragStartRequestStatus<sup>18+</sup>
 
 定义应用是否可以发起拖拽的枚举类型。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

@@ -140,7 +140,7 @@ NO_ERROR 表示执行成功。
 ### GetStreamOperator()
 
 ```
-ICameraDevice::GetStreamOperator ([in] IStreamOperatorCallback callbackObj, [out] IStreamOperator streamOperator )
+ICameraDevice::GetStreamOperator ([in] IStreamOperatorCallback callbackObj, [out] IStreamOperator streamOperator)
 ```
 
 **描述**

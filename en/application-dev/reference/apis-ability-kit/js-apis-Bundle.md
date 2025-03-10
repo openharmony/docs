@@ -826,7 +826,7 @@ bundle.getAbilityLabel(bundleName, abilityName, (err, data) => {
 
 isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
 
-Checks whether the ability that matches a given **AbilityInfo** object is enabled. This API uses a promise to return the result.
+Checks whether the ability that matches a given AbilityInfo object is enabled. This API uses a promise to return the result.
 
 **System capability**
 
@@ -868,7 +868,7 @@ bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo) => {
 
 isAbilityEnabled(info : AbilityInfo, callback : AsyncCallback\<boolean>): void
 
-Checks whether the ability that matches a given **AbilityInfo** object is enabled. This API uses an asynchronous callback to return the result.
+Checks whether the ability that matches a given AbilityInfo object is enabled. This API uses an asynchronous callback to return the result.
 
 **System capability**
 
@@ -1135,7 +1135,7 @@ bundle.queryAbilityByWant(want, bundleFlags, (err, data) => {
 
 getLaunchWantForBundle(bundleName: string): Promise\<Want>
 
-Obtains the **Want** object that launches the specified application. This API uses a promise to return the result.
+Obtains the Want object that launches the specified application. This API uses a promise to return the result.
 
 **Required permissions**
 
@@ -1178,7 +1178,7 @@ bundle.getLaunchWantForBundle(bundleName)
 
 getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 
-Obtains the **Want** object that launches the specified application. This API uses an asynchronous callback to return the result.
+Obtains the Want object that launches the specified application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**
 
@@ -1293,7 +1293,7 @@ bundle.getNameForUid(uid, (err, data) => {
 
 getAbilityIcon(bundleName: string, abilityName: string): Promise\<image.PixelMap>
 
-Obtains the [pixel map](../apis-image-kit/js-apis-image.md) of the icon corresponding to a given bundle name and ability name. This API uses a promise to return the result.
+Obtains the [PixelMap](../apis-image-kit/js-apis-image.md) of the icon corresponding to a given bundle name and ability name. This API uses a promise to return the result.
 
 No permission is required for obtaining the caller's own information.
 
@@ -1340,7 +1340,7 @@ bundle.getAbilityIcon(bundleName, abilityName)
 
 getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void
 
-Obtains the [pixel map](../apis-image-kit/js-apis-image.md) of the icon corresponding to a given bundle name and ability name. This API uses an asynchronous callback to return the result.
+Obtains the [PixelMap](../apis-image-kit/js-apis-image.md) of the icon corresponding to a given bundle name and ability name. This API uses an asynchronous callback to return the result.
 
 No permission is required for obtaining the caller's own information.
 
@@ -1394,7 +1394,7 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 | STATUS_INSTALL_FAILURE_INCOMPATIBLE                  | 6    | Installation incompatibility. (A downgrade occurs or the signature information is incorrect.)|
 | STATUS_UNINSTALL_FAILURE                             | 7    | Uninstallation failed. (The application to be uninstalled is not found.)                   |
 | STATUS_UNINSTALL_FAILURE_BLOCKED                     | 8    | Uninstallation aborted. (This error code is not in use.)                           |
-| STATUS_UNINSTALL_FAILURE_ABORTED                     | 9    | Uninstallation aborted. (Invalid parameters.)                       |
+| STATUS_UNINSTALL_FAILURE_ABORTED                     | 9    | Uninstallation aborted. (Invalid parameters.)                      |
 | STATUS_UNINSTALL_FAILURE_CONFLICT                    | 10   | Uninstallation conflict. (Failed to uninstall a system application or end the application process.)|
 | STATUS_INSTALL_FAILURE_DOWNLOAD_TIMEOUT              | 0x0B | Installation failed. (Download timed out.)                           |
 | STATUS_INSTALL_FAILURE_DOWNLOAD_FAILED               | 0x0C | Installation failed. (Download failed.)                           |
@@ -1507,7 +1507,7 @@ Enumerates the color modes of applications and widgets.
 
 | Name      | Value  | Description    |
 | ---------- | ---- | -------- |
-| AUTO_MODE  | -1   | Automatic mode.|
+| AUTO_MODE  | -1   | Auto mode.|
 | DARK_MODE  | 0    | Dark mode.|
 | LIGHT_MODE | 1    | Light mode.|
 

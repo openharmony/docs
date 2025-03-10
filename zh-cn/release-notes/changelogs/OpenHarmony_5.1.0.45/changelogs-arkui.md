@@ -123,7 +123,7 @@ DatePickerDialog和TimePickerDialog调用show()方法，若参数缺省，无法
 
 **变更影响**
 
-该变更为不兼容变更。
+此变更不涉及应用适配。
 
 举例说明，执行以下用例：
 

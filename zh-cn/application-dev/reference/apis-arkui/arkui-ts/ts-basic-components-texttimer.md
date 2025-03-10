@@ -38,7 +38,7 @@ TextTimer(options?: TextTimerOptions)
 
 | 名称   | 类型     | 必填  | 说明                   |
 | ----------- | -------- | -------- | -------- |
-| isCountDown | boolean  | 否   | 是否倒计时。值为true时，计时器开启倒计时，值为false时，计时器开始计时。<br/>默认值：false |
+| isCountDown | boolean  | 否   | 是否倒计时。值为true时，计时器开启倒计时，例如从30秒 ~ 0秒。值为false时，计时器开始计时，例如从0秒 ~ 30秒。<br/>默认值：false |
 | count       | number   | 否   | 计时器时间（isCountDown为true时生效），单位为毫秒。最长不超过86400000毫秒（24小时）。&nbsp;0&lt;count&lt;86400000时，count值为计时器初始值。否则，使用默认值为计时器初始值。<br/>默认值：60000 |
 | controller  | [TextTimerController](#texttimercontroller) | 否  | TextTimer控制器。 |
 
@@ -282,7 +282,7 @@ reset()
 | 名称 | 类型    |    必填      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |
 | count | number | 是 | 计时器时间（isCountDown为true时生效），单位为毫秒。最长不超过86400000毫秒（24小时）。 0<count<86400000时，count值为倒计时初始值。否则，使用默认值为倒计时初始值。<br> 默认值：60000。 |
-| isCountDown | boolean| 是 | 是否倒计时。值为true时，计时器开启倒计时，值为false时，计时器开始计时。<br> 默认值：false |
+| isCountDown | boolean| 是 | 是否倒计时。值为true时，计时器开启倒计时，例如从30秒 ~ 0秒。值为false时，计时器开始计时，例如从0秒 ~ 30秒。<br> 默认值：false |
 | started | boolean | 是 | 是否已经开始了计时。 |
 | elapsedTime | number | 是 | 计时器经过的时间，单位为设置格式的最小单位。 |
 

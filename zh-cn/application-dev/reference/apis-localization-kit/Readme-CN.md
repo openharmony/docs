@@ -9,9 +9,9 @@
   - [@ohos.i18n (国际化-I18n)(系统接口)](js-apis-i18n-sys.md)
   <!--DelEnd-->
   - global<!--localization-global-arkts-->
-    - [RawFileDescriptor](rawFileDescriptor.md) 
-    - [Resource](resource.md)
-    - [SendableResource](sendableResource.md)
+    - [RawFileDescriptor](js-apis-rawFileDescriptor.md) 
+    - [Resource](js-apis-resource.md)
+    - [SendableResource](js-apis-sendableResource.md)
 - C API<!--localization-c-->
   - 模块<!--localization-module-->
     - [Rawfile](rawfile.md)

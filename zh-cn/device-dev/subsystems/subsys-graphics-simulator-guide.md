@@ -56,25 +56,25 @@ git clone https://gitee.com/openharmony/third_party_libjpeg-turbo.git           
 
 ### 打开 QT Creator
 
-1. 点击菜单：文件—>打开文件或项目
-2. 弹出的文件选择框中选择工程项目
+1. 点击菜单：文件—>打开文件或项目。
+2. 弹出的文件选择框中选择工程项目。
 
-参考源码路径：
-```bash
-foundation/arkui/ui_lite/tools/qt/simulator/simulator.pro
-```
+   参考源码路径：
+   ```bash
+   foundation/arkui/ui_lite/tools/qt/simulator/simulator.pro
+   ```
 
-注意：第一次打开项目时，需要在 Configure Project 界面，kits 列表中勾选 minGW（仅勾选 minGW ）。
+   注意：第一次打开项目时，需要在 Configure Project 界面，kits 列表中勾选 minGW（仅勾选 minGW）。
 
-![打开项目](figures/graphic_lite_qt_project_open.png "打开项目")
+   ![打开项目](figures/graphic_lite_qt_project_open.png "打开项目")
 
 3. 点击 configure project 按钮加载工程。
 
-![勾选minGW](figures/graphic_lite_qt_project_open2.png "勾选minGW")
+   ![勾选minGW](figures/graphic_lite_qt_project_open2.png "勾选minGW")
 
 ### UI Test应用运行入口
 
-展开项目树
+展开项目树。
 
 ```
 simulator

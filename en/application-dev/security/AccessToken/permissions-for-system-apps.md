@@ -153,7 +153,7 @@ Allows a system application to call the Message application authorization interf
 
 **Authorization mode**: system_grant
 
-**Valid since**: 15
+**Valid since**: 18
 
 ### ohos.permission.MANAGE_SETTINGS
 
@@ -4642,6 +4642,30 @@ Allows a system application to perform face swapping detection for images.
 Allows a system application to use model download APIs.
 
 **Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+### ohos.permission.ACCESS_APP_CLONE_DIR
+
+Allows a system application to access the installation file path copied from another device.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 18
+
+### ohos.permission.ACCESS_TRUST_LIST_OOBE_MANAGER
+
+Allows an application to access the list of applications that can be started in the out-of-box experience.
+
+**Permission level**: system_core
 
 **Authorization mode**: system_grant
 

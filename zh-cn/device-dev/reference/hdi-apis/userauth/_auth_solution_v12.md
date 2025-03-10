@@ -7,7 +7,7 @@
 
 **弃用:**
 
-从4.1版本开始废弃，使用[AuthSolutionV1_2](_auth_solution_v1__2_v12.md)接口代替
+从4.1版本开始废弃，使用[AuthSolutionV1_2](_auth_solution_v1__2_v12.md)接口代替。
 
 **起始版本：** 4.1
 

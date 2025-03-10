@@ -137,7 +137,7 @@ let pasteData: pasteboard.PasteData = pasteboard.createData(record);
 
 ## pasteboard.createRecord<sup>9+</sup>
 
-createRecord(mimeType: string, value: ValueType):PasteDataRecord;
+createRecord(mimeType: string, value: ValueType):PasteDataRecord
 
 创建一条自定义数据内容条目。
 
@@ -3042,7 +3042,7 @@ struct PasteboardTest {
 }
 ```
 
-### getChangeCount<sup>16+</sup>
+### getChangeCount<sup>18+</sup>
 
 getChangeCount(): number
 
@@ -3054,7 +3054,7 @@ getChangeCount(): number
 
 系统重启或剪贴板服务异常重启时，剪贴板内容变化次数重新从0开始计数。对同一内容连续多次复制会被视作多次更改，每次复制均会导致内容变化次数增加。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 

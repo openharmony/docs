@@ -16,4 +16,3 @@ Typical key generation operations involve the following:
 
 
 The key object can be a symmetric key object (**SymKey**) or an asymmetric key pair object (**KeyPair**). The **KeyPair** object consists a public key (**PubKey**) and a private key (**PriKey**).
-

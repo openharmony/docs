@@ -64,7 +64,7 @@ IPC通信鉴权提供的API，仅供Samgr调用，开发者在开发服务时需
    };
    ```
 
-2. 将步骤1中定义的Feature的策略加配到全局策略中，需要配置feature数量；
+2. 将步骤1中定义的Feature的策略加配到全局策略中，需要配置feature数量。
      
    ```
    static PolicySetting g_presetPolicies[] = {
@@ -79,7 +79,7 @@ IPC通信鉴权提供的API，仅供Samgr调用，开发者在开发服务时需
    };
    ```
 
-3. 将步骤1中定义的BmsFeature注册到Samgr；
+3. 将步骤1中定义的BmsFeature注册到Samgr。
      
    ```
    const char BMS_SERVICE[] = "bundlems";

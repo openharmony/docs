@@ -113,7 +113,9 @@ struct AddLog {
 
 ## 限制条件
 
-- 如果class类中使用了\@Track装饰器，那么该class类中非\@Track装饰的属性不能在UI中使用，包括不能绑定在组件上、不能用于初始化子组件，错误的使用将导致运行时报错，详见[在UI中使用非\@Track装饰的属性发生运行时报错](#在ui中使用非track装饰的属性发生运行时报错)；可以在非UI中使用非\@Track装饰的属性，如事件回调函数中、生命周期函数中等。
+- 如果class类中使用了\@Track装饰器，那么该class类中非\@Track装饰的属性不能在\@Component UI中使用，包括不能绑定在组件上、不能用于初始化子组件，错误的使用将导致运行时报错，详见[在UI中使用非\@Track装饰的属性发生运行时报错](#在ui中使用非track装饰的属性发生运行时报错)；可以在非UI中使用非\@Track装饰的属性，如事件回调函数中、生命周期函数中等。
+
+- API version 18及以后，\@Track使用在\@ComponentV2的UI中，不会引起运行时报错，但依旧不会刷新。具体例子见[常见场景](./arkts-v1-v2-mixusage.md#observed装饰的class)。
 
 - 建议开发者不要混用包含\@Track的class对象和不包含\@Track的class对象，如联合类型中、类继承中等。
 

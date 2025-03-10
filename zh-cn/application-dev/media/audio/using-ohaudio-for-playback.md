@@ -331,7 +331,7 @@ OH_AudioStream_Result OH_AudioRenderer_SetVolume(audioRenderer, volume);
 
 ## 设置低时延模式
 
-当设备支持低时延通路时，开发者可以使用低时延模式创建播放器，获得更高质量的音频体验。
+当设备支持低时延通路且采样率设置为48000时，开发者可以使用低时延模式创建播放器，获得更高质量的音频体验。
 
 开发流程与普通播放场景一致，仅需要在创建音频流构造器时，调用[OH_AudioStreamBuilder_SetLatencyMode()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setlatencymode)设置低时延模式。
 

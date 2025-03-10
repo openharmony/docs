@@ -8,11 +8,11 @@ If the **type** field in **startAbilityByType** is set to **finance**, **wantPar
 
 | Name           | Type                                                        | Mandatory| Description|
 | -------------------- | ------------------------------------------------------------ | -------- | -------- |
-| sceneType            | number                          | No| The options are as follows: 1: transfer; 2: credit card repayment. The default value is **1**.|
+| sceneType            | number                          | No| Intent scene, which indicates the purpose of the current request. The options are as follows: 1: transfer; 2: credit card repayment. The default value is **1**.|
 | bankCardNo      | string                                               | No | Bank card number.|
 
 ## Developing a Caller Application
-1. Import the **ohos.app.ability.common** module.
+1. Import the module.
     ```ts
     import { common } from '@kit.AbilityKit';
     ```
@@ -87,7 +87,7 @@ If the **type** field in **startAbilityByType** is set to **finance**, **wantPar
 2. Parse and process the parameters transferred from the panel.
 
     ```ts
-    UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
+    UIAbility.onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
     ```
 
     The **want.uri** parameter carries the URI corresponding to **linkFeature** configured by the target application.

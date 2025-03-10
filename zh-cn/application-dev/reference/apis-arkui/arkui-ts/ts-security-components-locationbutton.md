@@ -118,7 +118,7 @@ LocationButtonCallback = (event: ClickEvent, result: LocationButtonOnClickResult
 
 点击位置按钮触发该回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -150,7 +150,7 @@ onClick(event: LocationButtonCallback)
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| event | [LocationButtonCallback](#locationbuttoncallback) |是 |见LocationButtonCallback。|
+| event | [LocationButtonCallback](#locationbuttoncallback) |是 |见LocationButtonCallback。<br>在API10-17时，参数类型为：(event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明), result: [LocationButtonOnClickResult](#locationbuttononclickresult枚举说明)) => void。<br>从API18开始，变更为LocationButtonCallback。|
 
 ## 示例
 

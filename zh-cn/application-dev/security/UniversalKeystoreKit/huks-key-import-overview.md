@@ -48,16 +48,16 @@
 | Shared_Key加密参数AAD2 | L<sub>AAD2</sub>字节 |
 | Shared_Key加密参数Nonce2长度L<sub>Nonce2</sub> | 4字节 |
 | Shared_Key加密参数Nonce2 | L<sub>Nonce2</sub>字节 |
-| Shared_Key加密参数AEAD2长度L<sub>AEAD2</sub> | 4字节 |
-| Shared_Key加密参数AEAD2 | L<sub>AEAD2</sub>字节 |
+| Shared_Key加密参数TAG2长度L<sub>TAG2</sub> | 4字节 |
+| Shared_Key加密参数TAG2 | L<sub>TAG2</sub>字节 |
 | Caller_Kek密文长度L<sub>Caller_Kek_enc</sub> | 4字节 |
 | Caller_Kek密文Caller_Kek_enc | L<sub>Caller_Kek_enc</sub>字节 |
 | Caller_Kek加密参数AAD3长度L<sub>AAD3</sub> | 4字节 |
 | Caller_Kek加密参数AAD3 | L<sub>AAD3</sub>字节 |
 | Caller_Kek加密参数Nonce3长度L<sub>Nonce3</sub> | 4字节 |
 | Caller_Kek加密参数Nonce3 | L<sub>Nonce3</sub>字节 |
-| Caller_Kek加密参数AEAD3长度L<sub>AEAD3</sub> | 4字节 |
-| Caller_Kek加密参数AEAD3 | L<sub>AEAD3</sub>字节 |
+| Caller_Kek加密参数TAG3长度L<sub>TAG3</sub> | 4字节 |
+| Caller_Kek加密参数TAG3 | L<sub>TAG3</sub>字节 |
 | 密钥明文材料长度的长度L<sub>To_Import_Key_size</sub> | 4字节 |
 | 密钥明文材料长度To_Import_Key_size | L<sub>To_Import_Key_size</sub>字节 |
 | To_Import_Key密文长度L<sub>To_Import_Key_enc</sub> | 4字节 |
@@ -78,7 +78,7 @@
 | AES | 128、192、256 | 8+ | 是 |
 | <!--DelRow-->RSA | 512、768、1024 | 8+ | 否 |
 | RSA | 2048、3072、4096 | 8+ | 是 |
-| RSA | 1024-2048（含），必须是8的倍数 | 16+ | 是 |
+| RSA | 1024-2048（含），必须是8的倍数 | 18+ | 是 |
 | HMAC | 8-1024（含），必须是8的倍数 | 8+ | 是 |
 | <!--DelRow-->ECC | 224 | 8+ | 否 |
 | ECC | 256、384、521 | 8+ | 是 |
@@ -89,8 +89,8 @@
 | <!--DelRow-->DH | 3072、4096 | 8+ | 否 |
 | SM2 | 256 | 9+ | 是 |
 | SM4 | 128 | 9+ | 是 |
-| DES | 64 | 16+ | 是 |
-| 3DES | 128、192 | 16+ | 是 |
+| DES | 64 | 18+ | 是 |
+| 3DES | 128、192 | 18+ | 是 |
 
 **轻量级设备规格**
 

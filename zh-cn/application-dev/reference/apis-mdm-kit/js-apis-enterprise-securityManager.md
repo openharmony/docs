@@ -129,7 +129,7 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
 });
 ```
 
-## securityManager.installUserCertificate<sup>16+</sup>
+## securityManager.installUserCertificate<sup>18+</sup>
 
 installUserCertificate(admin: Want, certificate: CertBlob, accountId: number): string
 
@@ -187,7 +187,7 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
   }
 });
 ```
-## securityManager.getUserCertificates<sup>16+</sup>
+## securityManager.getUserCertificates<sup>18+</sup>
 
 getUserCertificates(admin: Want, accountId: number): Array&lt;string&gt;
 
