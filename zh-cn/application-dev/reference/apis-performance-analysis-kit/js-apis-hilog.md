@@ -258,7 +258,7 @@ hilog.info(0x0001, "jsHilogTest", "print bigNum: %{public}d %{public}i", bigNum,
 hilog.info(0x0001, "jsHilogTest", "print boolean: %{public}s", isBol);
 ```
 
-打印结果
+**打印结果：**
 ```
 08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: print object: {"name":"Jack","age":22}
 08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: private flag: <private> <private>, print null: null
