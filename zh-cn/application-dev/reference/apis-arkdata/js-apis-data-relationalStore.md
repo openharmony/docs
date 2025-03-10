@@ -729,12 +729,7 @@ class EntryAbility extends UIAbility {
       securityLevel: relationalStore.SecurityLevel.S3,
       tokenizer: relationalStore.Tokenizer.ICU_TOKENIZER
     };
-    relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
-      store = rdbStore;
-      console.info('Get RdbStore successfully.')
-    }).catch((err: BusinessError) => {
-      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-    })
+    store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
 
     const SQL_CREATE_TABLE = "CREATE VIRTUAL TABLE example USING fts4(name, content, tokenize=icu zh_CN)"
     if(store != undefined) {
@@ -767,12 +762,7 @@ class EntryAbility extends UIAbility {
       securityLevel: relationalStore.SecurityLevel.S3,
       tokenizer: relationalStore.Tokenizer.CUSTOM_TOKENIZER
     };
-    relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
-      store = rdbStore;
-      console.info('Get RdbStore successfully.')
-    }).catch((err: BusinessError) => {
-      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-    })
+    store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
 
     const SQL_CREATE_TABLE = "CREATE VIRTUAL TABLE example USING fts5(name, content, tokenize='customtokenizer')"
     if(store != undefined) {
@@ -7835,7 +7825,6 @@ if(store != undefined) {
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
