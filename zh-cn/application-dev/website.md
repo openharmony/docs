@@ -778,8 +778,8 @@
               - [刷新本地图片和网络图片](form/arkts-ui-widget-image-update.md)
               - [根据卡片状态刷新不同内容](form/arkts-ui-widget-update-by-status.md)
           - ArkTS卡片页面编辑
-            - [ArkTS卡片页面编辑交互概述](form/arkts-ui-widget-event-formExidextensionability-overview.md)
-            - [编辑刷新卡片页面内容](form/arkts-ui-widget-event-formExidextensionability.md)
+            - [ArkTS卡片页面编辑交互概述](form/arkts-ui-widget-event-formexidextensionability-overview.md)
+            - [编辑刷新卡片页面内容](form/arkts-ui-widget-event-formexidextensionability.md)
           <!--Del-->
           - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
           <!--DelEnd-->
