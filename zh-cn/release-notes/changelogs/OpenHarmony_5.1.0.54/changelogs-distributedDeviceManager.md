@@ -1,10 +1,10 @@
 # 设备管理ChangeLog
 
-从OpenHarmony 5.1.0.54版本开始，设备管理的API删除了无效错误码信息。
+从OpenHarmony 5.1.0.54版本开始，设备管理的API删除了部分接口无效错误码描述信息。
 
-## cl.distributedDeviceManager.1 API删除无效错误码及描述
+## cl.distributedDeviceManager.1 API删除无效错误码描述
 
-相较之前版本，删除API接口中无效错误码及描述。
+相较之前版本，删除部分API接口中无效错误码描述信息。
 
 **变更影响**
 
@@ -16,9 +16,9 @@
 
 | 模块名                                | 类名                | 接口声明                                                   |主要变更点说明    |
 | ------------------------------------ | ------------------- | ------------------------------------------------------------ | -------------- |
-| @ohos.distributedDeviceManager       | function             | **function** releaseDeviceManager(deviceManager: DeviceManager): void; | 删除201错误码返回说明。 |
-| @ohos.distributedDeviceManager       | DeviceManager        | **function** getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;; | 删除401错误码返回说明。 |
-| @ohos.distributedDeviceManager       | DeviceManager        | **function** stopDiscovering(): void; | 删除401、11600104错误码返回说明。   |
+| @ohos.distributedDeviceManager       | function             | **function** releaseDeviceManager(deviceManager: DeviceManager): void; | 删除201错误码描述信息。 |
+| @ohos.distributedDeviceManager       | DeviceManager        | **function** getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;; | 删除401错误码描述信息。 |
+| @ohos.distributedDeviceManager       | DeviceManager        | **function** stopDiscovering(): void; | 删除401、11600104错误码描述信息。   |
 
 **适配指导**
 
