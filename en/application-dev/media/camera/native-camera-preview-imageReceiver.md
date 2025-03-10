@@ -62,7 +62,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
    }
    ```
 
-4. Create a preview stream based on the surface ID obtained. For details, see step 4 in [Camera Preview (C/C++)](./native-camera-preview.md).
+4. Create a preview stream based on the surface ID obtained. (Note that you must convert the surface ID type to char * before the creation of the preview stream.) For details, see step 4 in [Camera Preview (C/C++)](./native-camera-preview.md).
 
 5. Create a session and enable it. For details, see [Camera Session Management (C/C++)](./native-camera-session-management.md).
 
