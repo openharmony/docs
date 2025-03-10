@@ -52,7 +52,7 @@ init日志根据OpenHarmony版本不同实现方式不同。
   ```
   STARTUP_LOGI 是对StartupLog 定义的宏，在头文件/base/startup/init/interfaces/innerkits/include/beget_ext.h中定义，其他log都是基于STARTUP_LOGI这个宏重定义的：
 
-  - deviceInfo模块(init/device_info/idevice_info.h):
+  - deviceInfo模块(init/device_info/idevice_info.h)：
   ```
     DINFO_LOGI
     DINFO_LOGE
