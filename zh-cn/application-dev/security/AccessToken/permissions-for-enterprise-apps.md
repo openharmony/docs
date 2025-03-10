@@ -196,7 +196,7 @@
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.MANAGE_NET_FIREWALL
 
@@ -243,7 +243,7 @@
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.MANAGE_DOMAIN_ACCOUNT_SERVER_CONFIGS
 
@@ -256,7 +256,7 @@
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.MANAGE_DOMAIN_ACCOUNTS
 
@@ -269,7 +269,7 @@
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.GET_SIGNATURE_INFO
 
@@ -282,7 +282,7 @@
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.VISIBLE_WINDOW_INFO
 
