@@ -780,7 +780,7 @@ for (let i = 0; i < device.configs[0].interfaces.length; i++) {
 
 ## usbManager.usbSubmitTransfer<sup>18+</sup>
 
-usbSubmitTransfer(transfer: USBDataTransferParams): void;
+usbSubmitTransfer(transfer: USBDataTransferParams): void
 
 提交异步传输请求。
 
@@ -865,7 +865,7 @@ try {
 
 ## usbManager.usbCancelTransfer<sup>18+</sup>
 
-usbCancelTransfer(transfer: USBDataTransferParams): void;
+usbCancelTransfer(transfer: USBDataTransferParams): void
 
 取消异步传输请求。
 
@@ -889,18 +889,18 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes:Mandatory parameters are left unspecified; Incorrect parameter types. |
-| 801 | Capability not supported. |
-| 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
-| 14400008 | No such device (it may have been disconnected). |
-| 14400010 | Other USB error. Possible causes:<br>1.Unrecognized discard error code. |
-| 14400011 | The transfer is not in progress, or is already complete or cancelled.|
+| 401 | Parameter error. Possible causes:Mandatory parameters are left unspecified; Incorrect parameter types。 |
+| 801 | Capability not supported。 |
+| 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first。 |
+| 14400008 | No such device (it may have been disconnected)。 |
+| 14400010 | Other USB error. Possible causes:<br>1.Unrecognized discard error code。 |
+| 14400011 | The transfer is not in progress, or is already complete or cancelled。|
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| &lt;void&gt; | 无 |
+| &lt;void&gt; | 无。 |
 
 **示例：**
 
@@ -1094,7 +1094,7 @@ try {
 
 ## usbManager.cancelAccessoryRight<sup>14+</sup>
 
-cancelAccessoryRight(accessory: USBAccessory): void;
+cancelAccessoryRight(accessory: USBAccessory): void
 
 取消当前应用程序访问USB配件的权限。
 
@@ -1171,7 +1171,7 @@ try {
 
 ## usbManager.openAccessory<sup>14+</sup>
 
-openAccessory(accessory: USBAccessory): USBAccessoryHandle;
+openAccessory(accessory: USBAccessory): USBAccessoryHandle
 
 获取配件句柄并打开配件文件描述符。
 
@@ -1221,7 +1221,7 @@ try {
 
 ## usbManager.closeAccessory<sup>14+</sup>
 
-closeAccessory(accessoryHandle: USBAccessoryHandle): void;
+closeAccessory(accessoryHandle: USBAccessoryHandle): void
 
 关闭配件文件描述符。
 
