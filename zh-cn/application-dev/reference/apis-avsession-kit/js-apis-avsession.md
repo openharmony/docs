@@ -5413,7 +5413,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 
 ## ResolutionLevel<sup>18+</sup>
 
-枚举，表示设备所支持的分辨率。
+枚举，设备所支持的分辨率。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
