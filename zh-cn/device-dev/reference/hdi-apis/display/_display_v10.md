@@ -493,7 +493,7 @@ enum InterfaceType
 | DISP_INTF_VGA | VGA 接口。 | 
 | DISP_INTF_MIPI | MIPI 接口。 | 
 | DISP_INTF_PANEL | PANEL 接口。 | 
-| DISP_INTF_BUTT | BUTT 接口, 一个不可用类型, 用于默认初始化。 | 
+| DISP_INTF_BUTT | BUTT 接口， 一个不可用类型， 用于默认初始化。 | 
 
 ### LayerType
 
@@ -676,6 +676,6 @@ enum TransformType
 | ROTATE_270 | 旋转270度。 | 
 | MIRROR_H | 水平方向镜像转换。 | 
 | MIRROR_V | 垂直方向镜像转换。 | 
-| MIRROR_H_ROTATE_90 | 水平方向镜像转换, 旋转90度。 | 
-| MIRROR_V_ROTATE_90 | 垂直方向镜像转换, 旋转90度。 | 
+| MIRROR_H_ROTATE_90 | 水平方向镜像转换， 旋转90度。 | 
+| MIRROR_V_ROTATE_90 | 垂直方向镜像转换， 旋转90度。 | 
 | ROTATE_BUTT | 无效操作。 | 
