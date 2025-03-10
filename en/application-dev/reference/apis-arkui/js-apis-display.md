@@ -47,18 +47,28 @@ Enumerates the orientations of a display.
 
 ## FoldStatus<sup>10+</sup>
 
-Enumerates the fold statuses of a foldable device.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
+Enumerates the fold statuses of a foldable device. For dual-fold axis devices, when oriented with the charging port at the bottom, the hinges are identified from right to left as the first and second fold axes, respectively.
 
 **System capability**: SystemCapability.Window.SessionManager
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| FOLD_STATUS_UNKNOWN | 0 | The fold status of the device is unknown.|
-| FOLD_STATUS_EXPANDED | 1 | The device is fully open. |
-| FOLD_STATUS_FOLDED | 2 | The device is folded (completely closed). |
-| FOLD_STATUS_HALF_FOLDED | 3 | The device is half-folded, somehow between fully open and completely closed. |
+| FOLD_STATUS_UNKNOWN<sup>10+</sup> | 0 | The fold status of the device is unknown.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FOLD_STATUS_EXPANDED<sup>10+</sup> | 1 | The device is fully open. For dual-fold axis devices, the first fold axis is fully open, and the second fold axis is folded.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FOLD_STATUS_FOLDED<sup>10+</sup> | 2 | The device is folded (completely closed). For dual-fold axis devices, the first fold axis is folded, and the second fold axis is folded.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FOLD_STATUS_HALF_FOLDED<sup>10+</sup> | 3 | The device is half-folded, somehow between fully open and completely closed. For dual-fold axis devices, the first fold axis is half-folded, and the second fold axis is folded.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FOLD_STATUS_EXPANDED_WITH_SECOND_EXPANDED<sup>15+</sup> | 11 | For dual-fold axis devices, the first fold axis is fully open, and the second fold axis is fully open.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| FOLD_STATUS_EXPANDED_WITH_SECOND_HALF_FOLDED<sup>15+</sup> | 21 | For dual-fold axis devices, the first fold axis is fully open, and the second fold axis is half-folded.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| FOLD_STATUS_FOLDED_WITH_SECOND_EXPANDED<sup>15+</sup> | 12 | For dual-fold axis devices, the first fold axis is folded, and the second fold axis is fully open.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| FOLD_STATUS_FOLDED_WITH_SECOND_HALF_FOLDED<sup>15+</sup> | 22 | For dual-fold axis devices, the first fold axis is folded, and the second fold axis is fully folded.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| FOLD_STATUS_HALF_FOLDED_WITH_SECOND_EXPANDED<sup>15+</sup> | 13 | For dual-fold axis devices, the first fold axis is half-folded, and the second fold axis is fully open.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| FOLD_STATUS_HALF_FOLDED_WITH_SECOND_HALF_FOLDED<sup>15+</sup> | 23 | For dual-fold axis devices, the first fold axis is half-folded, and the second fold axis is half-folded.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+
+>**NOTE**
+
+> Devices with only one fold axis can be in the **FOLD_STATUS_EXPANDED**, **FOLD_STATUS_FOLDED**, or **FOLD_STATUS_HALF_FOLDED** state.
+
+> Devices with two fold axes can be in any of the states provided in the table above, except for **FOLD_STATUS_UNKNOWN**, which indicates an unusable fold status.
 
 ## FoldDisplayMode<sup>10+</sup>
 
@@ -72,13 +82,14 @@ Enumerates the display modes of a foldable device.
 | -------- | -------- | -------- |
 | FOLD_DISPLAY_MODE_UNKNOWN | 0 | The display mode of the device is unknown.|
 | FOLD_DISPLAY_MODE_FULL | 1 | The device is displayed in full screen.|
-| FOLD_DISPLAY_MODE_MAIN | 2 | The main screen of the device is displayed.|
-| FOLD_DISPLAY_MODE_SUB | 3 | The subscreen of the device is displayed.|
+| FOLD_DISPLAY_MODE_MAIN | 2 | The primary screen of the device is displayed.|
+| FOLD_DISPLAY_MODE_SUB | 3 | The secondary screen of the device is displayed.|
 | FOLD_DISPLAY_MODE_COORDINATION | 4 | Both screens of the device are displayed in collaborative mode.|
 
->**NOTE**<br>
->&bullet; For large-screen inward-foldable devices, the inner screen is the **FOLD_DISPLAY_MODE_FULL** state, and the outer screen is in the **FOLD_DISPLAY_MODE_MAIN** state.<br>
->&bullet; For small-screen inward-foldable devices, the inner screen is the **FOLD_DISPLAY_MODE_MAIN** state, and the outer screen is in the **FOLD_DISPLAY_MODE_SUB** state.
+>**NOTE**
+>For foldable devices where both the inner and outer screens can serve as the primary screen, the inner screen's display mode is **FOLD_DISPLAY_MODE_FULL**, and the outer screen's display mode is **FOLD_DISPLAY_MODE_MAIN**.<br>
+>
+>For foldable devices where the outer screen serves only as an auxiliary display, the inner screen's display mode is **FOLD_DISPLAY_MODE_MAIN**, and the outer screen's display mode is **FOLD_DISPLAY_MODE_SUB**.
 
 ## FoldCreaseRegion<sup>10+</sup>
 
@@ -133,7 +144,7 @@ Describes the unusable area of a display, including punch hole, notch, and curve
 
 | Name                       | Type     | Readable| Writable| Description              |
 | --------------------------- | ------------- | ---- | ---- | ------------------ |
-| boundingRects                | Array\<[Rect](#rect9)> | Yes  | No  | Unusable areas (bounding rectangles) designed for punch holes and notches.|
+| boundingRects                | Array\<[Rect](#rect9)> | Yes  | No  | Unusable areas (bounding rectangles) designed for punch holes and notches. If there are no punch holes or notches, an empty array is returned.|
 | waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfalldisplayarearects9) | Yes| No| Curved area on a waterfall display.|
 
 ## DisplayPhysicalResolution<sup>12+</sup>
@@ -155,9 +166,9 @@ getDisplayByIdSync(displayId: number): Display
 
 Obtains a **Display** object based on the display ID.
 
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
@@ -441,7 +452,7 @@ Unsubscribes from display changes.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type.<br>- **add**, indicating the display addition event. Example: event that a display is connected.<br>- **remove**, indicating the display removal event. Example: event that a display is disconnected.<br>- **change**, indicating the display change event. Example: event that the display orientation is changed.|
-| callback | Callback&lt;number&gt; | No| Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
+| callback | Callback&lt;number&gt; | No| Callback used for unsubscription. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -655,7 +666,7 @@ Unsubscribes from fold status change events of the foldable device.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes  | Event type. The event **'foldStatusChange'** is triggered when the fold status of the device changes.|
-| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
+| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -684,7 +695,7 @@ display.off('foldStatusChange', callback);
 
 on(type: 'foldAngleChange', callback: Callback&lt;Array&lt;number&gt;&gt;): void
 
-Subscribes to folding angle change events of the foldable device.
+Subscribes to folding angle change events of the foldable device. Note that there are two folding angles for dual-fold axis devices. When oriented with the charging port at the bottom, the hinges are identified from right to left as the first and second fold axes, respectively.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -695,7 +706,7 @@ Subscribes to folding angle change events of the foldable device.
 | Name  | Type                                     | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes| Event type. The event **'foldAngleChange'** is triggered when the folding angle of the device changes.|
-| callback | Callback&lt;Array&lt;number&gt;&gt; | Yes| Callback used to return the folding angle (0–180 degrees). |
+| callback | Callback&lt;Array&lt;number&gt;&gt; | Yes| Callback used to return the folding angle (0–180 degrees). For dual-fold axis devices, the array contains two angles. The first value represents the folding angle of the first fold axis, while the second value represents the folding angle of the second fold axis.|
 
 **Error codes**
 
@@ -732,7 +743,7 @@ Unsubscribes from folding angle change events of the foldable device.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                    | Yes | Event type. The event **'foldAngleChange'** is triggered when the folding angle of the device changes.|
-| callback | Callback&lt;Array&lt;number&gt;&gt; | No | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
+| callback | Callback&lt;Array&lt;number&gt;&gt; | No | Callback used for unsubscription. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -801,7 +812,7 @@ Unsubscribes from screen capture, casting, or recording status changes.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes| Event type. The event **'captureStatusChange'** is triggered when the screen capture, casting, or recording status changes.|
-| callback | Callback&lt;boolean&gt; | No| Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
+| callback | Callback&lt;boolean&gt; | No| Callback used for unsubscription. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -910,7 +921,7 @@ Unsubscribes from display mode change events of the foldable device.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes  | Event type. The event **'foldDisplayModeChange'** is triggered when the display mode of the device changes.|
-| callback | Callback&lt;[FoldDisplayMode](#folddisplaymode10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
+| callback | Callback&lt;[FoldDisplayMode](#folddisplaymode10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
