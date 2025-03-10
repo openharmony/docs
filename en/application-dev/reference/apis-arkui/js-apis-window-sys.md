@@ -159,11 +159,11 @@ Describes the translation parameters.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name| Type| Read Only| Mandatory| Description                        |
+| Name| Type| Read Only| Optional| Description                        |
 | ---- | -------- | ---- | ---- | ---------------------------- |
-| x    | number   | No  | No | Distance to translate along the x-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
-| y    | number   | No  | No | Distance to translate along the y-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
-| z    | number   | No  | No | Distance to translate along the z-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
+| x    | number   | No  | Yes | Distance to translate along the x-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
+| y    | number   | No  | Yes | Distance to translate along the y-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
+| z    | number   | No  | Yes | Distance to translate along the z-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
 
 ## WindowInfo<sup>12+</sup>
 
@@ -1037,7 +1037,7 @@ In the following API examples, you must use [getLastWindow()](js-apis-window.md#
 
 hide (callback: AsyncCallback&lt;void&gt;): void
 
-Hides this window. This API uses an asynchronous callback to return the result. This API takes effect only for a system window or an application subwindow.
+Hides this window. This API uses an asynchronous callback to return the result. This API takes effect only for a system window or an application child window.
 
 **System API**: This is a system API.
 
@@ -1077,7 +1077,7 @@ windowClass.hide((err: BusinessError) => {
 
 hide(): Promise&lt;void&gt;
 
-Hides this window. This API uses a promise to return the result. This API takes effect only for a system window or an application subwindow.
+Hides this window. This API uses a promise to return the result. This API takes effect only for a system window or an application child window.
 
 **System API**: This is a system API.
 
@@ -2367,7 +2367,7 @@ try {
 
 raiseToAppTop(callback: AsyncCallback&lt;void&gt;): void
 
-Raises the application subwindow to the top layer of the application. This API uses an asynchronous callback to return the result.
+Raises the application child window to the top layer of the application. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2563,7 +2563,7 @@ try {
 
 raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
-Raises a subwindow above a target subwindow. This API uses an asynchronous callback to return the result.
+Raises a child window above a target child window. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2573,7 +2573,7 @@ Raises a subwindow above a target subwindow. This API uses an asynchronous callb
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| windowId | number                    | Yes  | ID of the target subwindow, which is the value of **properties.id** in [properties](js-apis-window.md#windowproperties) obtained through [getWindowProperties](js-apis-window.md#getwindowproperties9).|
+| windowId | number                    | Yes  | ID of the target child window, which is the value of **properties.id** in [properties](js-apis-window.md#windowproperties) obtained through [getWindowProperties](js-apis-window.md#getwindowproperties9).|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -2602,7 +2602,7 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
-    // Create a subwindow.
+    // Create a child window.
     try {
       let subWindow = windowStage.createSubWindow("testSubWindow");
       subWindow.then((data) => {
@@ -2634,7 +2634,7 @@ export default class EntryAbility extends UIAbility {
 
 raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
-Raises a subwindow above a target subwindow. This API uses a promise to return the result.
+Raises a child window above a target child window. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2644,7 +2644,7 @@ Raises a subwindow above a target subwindow. This API uses a promise to return t
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| windowId | number                    | Yes  | ID of the target subwindow, which is the value of **properties.id** in [properties](js-apis-window.md#windowproperties) obtained through [getWindowProperties](js-apis-window.md#getwindowproperties9).|
+| windowId | number                    | Yes  | ID of the target child window, which is the value of **properties.id** in [properties](js-apis-window.md#windowproperties) obtained through [getWindowProperties](js-apis-window.md#getwindowproperties9).|
 
 **Return value**
 
@@ -2678,7 +2678,7 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
-    // Create a subwindow.
+    // Create a child window.
     try {
       let subWindow = windowStage.createSubWindow("testSubWindow");
       subWindow.then((data) => {
@@ -2709,9 +2709,9 @@ export default class EntryAbility extends UIAbility {
 
 setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether to enable a subwindow to raise itself by click. This API uses an asynchronous callback to return the result.
+Sets whether to enable a child window to raise itself by click. This API uses an asynchronous callback to return the result.
 
-Generally, when a user clicks a subwindow, the subwindow is displayed on the top. If the **enable** parameter is set to **false**, the subwindow is not displayed on the top when being clicked.
+Generally, when a user clicks a child window, the child window is displayed on the top. If the **enable** parameter is set to **false**, the child window is not displayed on the top when being clicked.
 
 **System API**: This is a system API.
 
@@ -2721,7 +2721,7 @@ Generally, when a user clicks a subwindow, the subwindow is displayed on the top
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| enable   | boolean                   | Yes  | Whether to enable a subwindow to raise itself by click. The value **true** means to enable the subwindow to raise itself by click, and **false** means the opposite.|
+| enable   | boolean                   | Yes  | Whether to enable a child window to raise itself by click. The value **true** means to enable the child window to raise itself by click, and **false** means the opposite.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -2750,7 +2750,7 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
-    // Create a subwindow.
+    // Create a child window.
     try {
       let subWindow = windowStage.createSubWindow("testSubWindow");
       subWindow.then((data) => {
@@ -3284,13 +3284,13 @@ promise.then(() => {
 
 ## SubWindowOptions<sup>11+</sup>
 
-Describes the parameters used for creating a subwindow.
+Describes the parameters used for creating a child window.
 
 **System capability**: SystemCapability.Window.SessionManager
 
 | Name     | Type | Read Only| Optional| Description        |
 | ---------- | ---- | ---- | ---- | ----------- |
-| isTopmost<sup>12+</sup>  | boolean | No| Yes| Whether the subwindow is topmost. The value **true** means that the subwindow is topmost, and **false** means the opposite. The default value is **false**.      |
+| isTopmost<sup>12+</sup>  | boolean | No| Yes| Whether the child window is topmost. The value **true** means that the child window is topmost, and **false** means the opposite. The default value is **false**.      |
 
 ## WindowStage<sup>9+</sup>
 
@@ -3664,7 +3664,7 @@ Enumerates the attributes of a window for a UI ServiceExtensionAbility.
 | Name     | Value| Description        |
 | ---------- | ----- | ----------- |
 | SYSTEM_WINDOW  | 0 | System window|
-| SUB_WINDOW  | 1 | Subwindow.|
+| SUB_WINDOW  | 1 | child window.|
 
 ## SystemWindowOptions<sup>14+</sup>
 
@@ -3693,9 +3693,7 @@ Describes the parameters for creating a window for a UI ServiceExtensionAbility.
 | Name| Type                     | Read Only |Optional| Description      |
 | ------ | ------------------------- | ---- | ---- |---------- |
 | windowName   | string | No| No | Window name.|
-| windowAttribute   | [ExtensionWindowAttribute](#extensionwindowattribute14) | No| No  | Window attribute. It specifies whether the created window is a subwindow or a system window. When **windowAttribute** is set to **SUB_WINDOW**, **subWindowOptions** is mandatory. When **windowAttribute** is set to **SYSTEM_WINDOW**, **systemWindowOptions** is mandatory. Otherwise, the window fails to be created.|
+| windowAttribute   | [ExtensionWindowAttribute](#extensionwindowattribute14) | No| No  | Window attribute. It specifies whether the created window is a child window or a system window. When **windowAttribute** is set to **SUB_WINDOW**, **subWindowOptions** is mandatory. When **windowAttribute** is set to **SYSTEM_WINDOW**, **systemWindowOptions** is mandatory. Otherwise, the window fails to be created.|
 | windowRect   | [Rect](js-apis-window.md#rect7) | No| No  | Rectangular area of the window.|
-| subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions11) | No| Yes| Parameters used for creating a subwindow. There is no default value. This parameter is mandatory when **windowAttribute** is set to **SUB_WINDOW**. Otherwise, the window fails to be created.|
+| subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions11) | No| Yes| Parameters used for creating a child window. There is no default value. This parameter is mandatory when **windowAttribute** is set to **SUB_WINDOW**. Otherwise, the window fails to be created.|
 | systemWindowOptions   | [SystemWindowOptions](#systemwindowoptions14) | No| Yes| Parameters for creating a system window. There is no default value. This parameter is mandatory when **windowAttribute** is set to **SYSTEM_WINDOW**. Otherwise, the window fails to be created.|
-
- <!--no_check--> 
