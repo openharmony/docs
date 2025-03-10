@@ -1,6 +1,5 @@
 # ISeamlessChangeCallback
 
-
 ## 概述
 
 更改帧速率需要使用的接口。
@@ -9,9 +8,7 @@
 
 **相关模块：**[Display](_display_v11.md)
 
-
 ## 汇总
-
 
 ### Public 成员函数
 
@@ -19,9 +16,7 @@
 | -------- | -------- |
 | [OnSeamlessChange](#onseamlesschange) ([in] unsigned int devId) | 准备好更改帧速率时要调用的回调。 | 
 
-
 ## 成员函数说明
-
 
 ### OnSeamlessChange()
 
@@ -30,7 +25,6 @@ ISeamlessChangeCallback::OnSeamlessChange ([in] unsigned int devId)
 ```
 
 **描述**
-
 
 准备好更改帧速率时要调用的回调。
 
