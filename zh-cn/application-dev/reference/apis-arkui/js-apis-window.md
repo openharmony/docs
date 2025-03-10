@@ -2107,7 +2107,7 @@ try {
 
 getWindowDensityInfo(): WindowDensityInfo
 
-获取当前窗口所在屏幕的系统显示大小缩放系数、系统默认显示大小缩放系数和自定义显示大小缩放系数信息。WindowDensityInfo中各参数返回-1则代表无效。
+获取当前窗口所在屏幕的系统显示大小缩放系数、系统默认显示大小缩放系数和自定义显示大小缩放系数信息。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -2117,7 +2117,7 @@ getWindowDensityInfo(): WindowDensityInfo
 
 | 类型 | 说明 |
 | ------------------------------------- | ------------- |
-| [WindowDensityInfo](#windowdensityinfo15) | 当前窗口的显示大小缩放系数信息。 |
+| [WindowDensityInfo](#windowdensityinfo15) | 当前窗口的显示大小缩放系数信息。当返回值为[-1, -1, -1]时，代表设备不支持该接口。 |
 
 **错误码：**
 
