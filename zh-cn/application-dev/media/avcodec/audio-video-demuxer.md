@@ -193,7 +193,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    //       获取时必须使用完整key，截断使用"com.openharmony.custom.meta.abc"会失败。
    // 2. value类型需与封装时数据类型匹配（示例为string类型，int/float类型需调用对应接口）。
    const char *customKey = "com.openharmony.custom.meta.string"; // 替换为实际封装时使用的完整key。
-   std::string customValue;
+   char *customValue;
    if (!OH_AVFormat_GetStringValue(customMetadataFormat, customKey, &customValue)) {
       printf("get custom metadata from custom metadata format failed");
       return;
