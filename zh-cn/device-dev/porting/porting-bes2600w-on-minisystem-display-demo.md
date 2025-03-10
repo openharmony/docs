@@ -1018,7 +1018,7 @@ APP_FEATURE_INIT(WifiDHCPRpcServerCB);
 ![](../public_sys-resources/icon-note.gif) **说明：** 
 	通过上面加载的组件编译出来的lib文件需要手动加入强制链接。
 
-​	如在 `vendor/bestechnic/display_demo/config.json` 中配置了`bootstrap_lite` 部件
+​	如在 `vendor/bestechnic/display_demo/config.json` 中配置了`bootstrap_lite` 部件。
 
 ```
     {
