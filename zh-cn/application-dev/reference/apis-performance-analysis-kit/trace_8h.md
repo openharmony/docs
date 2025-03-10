@@ -94,11 +94,11 @@ OH_HiTrace_CountTrace("hitraceTest", 500);
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [HiTraceId_Valid](_hitrace.md#hitraceid_valid) { [HITRACE_ID_INVALID] = 0, [HITRACE_ID_VALID] = 1 } | HiTraceId是否有效标志。  | 
-| [HiTrace_Version](_hitrace.md#hitrace_version) { [HITRACE_VER_1] = 0 } | HiTrace版本号。  | 
-| [HiTrace_Flag](_hitrace.md#hitrace_flag) {<br/>[HITRACE_FLAG_DEFAULT] = 0, [HITRACE_FLAG_INCLUDE_ASYNC] = 1 &lt;&lt; 0, [HITRACE_FLAG_DONOT_CREATE_SPAN] = 1 &lt;&lt; 1, [HITRACE_FLAG_TP_INFO] = 1 &lt;&lt; 2,<br/>[HITRACE_FLAG_NO_BE_INFO] = 1 &lt;&lt; 3, [HITRACE_FLAG_DONOT_ENABLE_LOG] = 1 &lt;&lt; 4, [HITRACE_FLAG_FAULT_TRIGGER] = 1 &lt;&lt; 5, [HITRACE_FLAG_D2D_TP_INFO] = 1 &lt;&lt; 6<br/>} | HiTrace标志位。  | 
-| [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) {<br/>[HITRACE_TP_CS] = 0, [HITRACE_TP_CR] = 1, [HITRACE_TP_SS] = 2, [HITRACE_TP_SR] = 3,<br/>[HITRACE_TP_GENERAL] = 4<br/>} | HiTrace打点类型。  | 
-| [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) { [HITRACE_CM_DEFAULT] = 0, [HITRACE_CM_THREAD] = 1, [HITRACE_CM_PROCESS] = 2, [HITRACE_CM_DEVICE] = 3 } | HiTrace通信模式枚举。  | 
+| [HiTraceId_Valid](_hitrace.md#hitraceid_valid) { HITRACE_ID_INVALID = 0, HITRACE_ID_VALID = 1 } | HiTraceId是否有效标志。  | 
+| [HiTrace_Version](_hitrace.md#hitrace_version) { HITRACE_VER_1 = 0 } | HiTrace版本号。  | 
+| [HiTrace_Flag](_hitrace.md#hitrace_flag) {<br/>HITRACE_FLAG_DEFAULT = 0, HITRACE_FLAG_INCLUDE_ASYNC = 1 &lt;&lt; 0, HITRACE_FLAG_DONOT_CREATE_SPAN = 1 &lt;&lt; 1, HITRACE_FLAG_TP_INFO = 1 &lt;&lt; 2,<br/>HITRACE_FLAG_NO_BE_INFO = 1 &lt;&lt; 3, HITRACE_FLAG_DONOT_ENABLE_LOG = 1 &lt;&lt; 4, HITRACE_FLAG_FAULT_TRIGGER = 1 &lt;&lt; 5, HITRACE_FLAG_D2D_TP_INFO = 1 &lt;&lt; 6<br/>} | HiTrace标志位。  | 
+| [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) {<br/>HITRACE_TP_CS = 0, HITRACE_TP_CR = 1, HITRACE_TP_SS = 2, HITRACE_TP_SR = 3,<br/>HITRACE_TP_GENERAL = 4<br/>} | HiTrace打点类型。  | 
+| [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) { HITRACE_CM_DEFAULT = 0, HITRACE_CM_THREAD = 1, HITRACE_CM_PROCESS = 2, HITRACE_CM_DEVICE = 3 } | HiTrace通信模式枚举。  | 
 
 
 ### 函数
