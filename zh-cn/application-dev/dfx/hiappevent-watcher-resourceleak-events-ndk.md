@@ -86,8 +86,8 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                           auto bundleName = params["bundle_name"].asString();
                           auto bundleVersion = params["bundle_version"].asString();
                           auto memory = writer.write(params["memory"]);
-                          auto externalLog = writer.write(eventInfo["external_log"]);
-                          std::string logOverLimit = eventInfo["log_over_limit"].asBool() ? "true":"false";
+                          auto externalLog = writer.write(params["external_log"]);
+                          std::string logOverLimit = params["log_over_limit"].asBool() ? "true":"false";
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
