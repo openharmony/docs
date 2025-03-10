@@ -4015,7 +4015,7 @@ let myContact: contact.Contact = {
 
 | 名称       |            类型           | 只读 | 可选 | 说明             |
 | ---------- | ------------------------- | ---- | ---- | ---------------- |
-| attributes | [Attribute](#attribute)[] | 否   | 是   | 联系人属性列表。 |
+| attributes | [Attribute](#attribute)[] | 否   | 否   | 联系人属性列表。 |
 
 
 **对象创建示例：**
