@@ -1628,7 +1628,8 @@ struct TextInputExample {
 
   build() {
     Column() {
-      TextInput({ text: this.text, placeholder: 'input your word...', controller: this.controller })
+      // 使用!!实现text参数的双向数据绑定
+      TextInput({ text: this.text!!, placeholder: 'input your word...', controller: this.controller })
         .placeholderColor(Color.Grey)
         .placeholderFont({ size: 14, weight: 400 })
         .caretColor(Color.Blue)
@@ -1639,9 +1640,6 @@ struct TextInputExample {
         .fontColor(Color.Black)
         .inputFilter('[a-z]', (e) => {
           console.log(JSON.stringify(e))
-        })
-        .onChange((value: string) => {
-          this.text = value
         })
       Text(this.text)
       Button('Set caretPosition 1')
@@ -1688,7 +1686,7 @@ struct TextInputExample {
 }
 ```
 
-![TextInput](figures/TextInput.png)
+![TextInput](figures/TextInput.gif)
 
 ### 示例2（设置下划线）
 
