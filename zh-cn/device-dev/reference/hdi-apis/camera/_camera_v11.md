@@ -1,6 +1,5 @@
 # Camera (V1_1)
 
-
 ## 概述
 
 Camera模块接口定义。
@@ -9,9 +8,7 @@ Camera模块涉及相机设备的操作、流的操作、离线流的操作和�
 
 **起始版本：** 4.0
 
-
 ## 汇总
-
 
 ### 文件
 
@@ -21,7 +18,6 @@ Camera模块涉及相机设备的操作、流的操作、离线流的操作和�
 | [ICameraHost.idl](_i_camera_host_8idl_v11.md) | Camera服务的管理类，对上层提供HDI接口。 | 
 | [IStreamOperator.idl](_i_stream_operator_8idl_v11.md) | 流的操作接口。 | 
 | [Types.idl](camera_types_8idl_v11.md) | Camera模块HDI接口使用的数据类型。 | 
-
 
 ### 类
 
@@ -34,7 +30,6 @@ Camera模块涉及相机设备的操作、流的操作、离线流的操作和�
 | struct&nbsp;&nbsp;[StreamInfo_V1_1](_stream_info___v1__1_v11.md) | 流信息，用于创建流时传入相关的配置参数。 | 
 | struct&nbsp;&nbsp;[PrelaunchConfig](_prelaunch_config_v11.md) | 预启动配置信息，用于[Prelaunch](interface_i_camera_host_v11.md#prelaunch)。 | 
 
-
 ### 枚举
 
 | 名称 | 描述 | 
@@ -42,9 +37,7 @@ Camera模块涉及相机设备的操作、流的操作、离线流的操作和�
 | [ExtendedStreamInfoType](#extendedstreaminfotype) { EXTENDED_STREAM_INFO_QUICK_THUMBNAIL = 0 } | 扩展流信息。 | 
 | [OperationMode_V1_1](#operationmode_v1_1) {<br/>NORMAL = 0 , CAPTURE = 1 , VIDEO = 2 , PORTRAIT = 3 , NIGHT = 4 , PROFESSIONAL = 5 , SLOW_MOTION = 6<br/>} | 流的使用模式。 | 
 
-
 ## 枚举类型说明
-
 
 ### ExtendedStreamInfoType
 
@@ -60,8 +53,7 @@ enum ExtendedStreamInfoType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| EXTENDED_STREAM_INFO_QUICK_THUMBNAIL | 快速缩略图的扩展流信息. | 
-
+| EXTENDED_STREAM_INFO_QUICK_THUMBNAIL | 快速缩略图的扩展流信息。 | 
 
 ### OperationMode_V1_1
 
