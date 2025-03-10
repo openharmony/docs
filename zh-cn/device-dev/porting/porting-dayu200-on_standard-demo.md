@@ -1233,13 +1233,13 @@ platform目录下的Nodes为依据linux v4l2标准实现的硬件模块v4l2_sour
                 RetCode Stop(const int32_t streamId) override;
           RetCode GetDeviceController();
                 void SetBufferCallback() override;
-          RetCode ProvideBuffers(std::shared_ptr<FrameSpec> frameSpec) override;
+          RetCode ProvideBuffers(std::shared_ptr\<FrameSpec\> frameSpec) override;
             
       private:
                 std::mutex                              requestLock_;
           std::map<int32_t, std::list<int32_t>>   captureRequests_ = {};
-                std::shared_ptr<SensorController>       sensorController_ = nullptr;
-          std::shared_ptr<IDeviceManager>     deviceManager_ = nullptr;
+                std::shared_ptr\<SensorController\>       sensorController_ = nullptr;
+          std::shared_ptr\<IDeviceManager\>     deviceManager_ = nullptr;
             };
       } // namespace OHOS::Camera
 
@@ -1287,10 +1287,10 @@ deviceManager中需要实现关键接口介绍。
           RetCode Configure(std::shared_ptr<CameraStandard::CameraMetadata> meta);
           RetCode Start(int buffCont, DeviceFormat& format);
           RetCode Stop();
-          RetCode SendFrameBuffer(std::shared_ptr<FrameSpec> buffer);
+          RetCode SendFrameBuffer(std::shared_ptr\<FrameSpec\> buffer);
           void SetNodeCallBack(const NodeBufferCb cb);
           void SetMetaDataCallBack(const MetaDataCb cb);
-          void BufferCallback(std::shared_ptr<FrameSpec> buffer);
+          void BufferCallback(std::shared_ptr\<FrameSpec\> buffer);
           void SetAbilityMetaDataTag(std::vector<int32_t> abilityMetaDataTag);
     } 
 ```
@@ -1624,7 +1624,7 @@ device/board/hihope/rk3568/camera/src/pipeline_core/BUILD.gn中添加rk_codec_no
  openharmony/device/board/hihope/rk3568/camera/src/pipeline_core/node/rk_codec_node.cpp主要接口：
 
 
-       void RKCodecNode::DeliverBuffer(std::shared_ptr<IBuffer>& buffer)
+       void RKCodecNode::DeliverBuffer(std::shared_ptr\<IBuffer\>& buffer)
         {
             if (buffer == nullptr) {
                 CAMERA_LOGE("RKCodecNode::DeliverBuffer frameSpec is null");
@@ -1699,7 +1699,7 @@ V4L2AllocBuffer error:ioctl VIDIOC_QUERYBUF failed: Not a tty
 
 ```
 
-    RetCode HosV4L2Buffers::V4L2AllocBuffer(int fd, const std::shared_ptr<FrameSpec>& frameSpec)
+    RetCode HosV4L2Buffers::V4L2AllocBuffer(int fd, const std::shared_ptr\<FrameSpec\>& frameSpec)
     {
         struct v4l2_buffer buf = {};
         struct v4l2_plane planes[1] = {};
@@ -1827,7 +1827,7 @@ struct v4l2_buffer {
 
         static constexpr uint32_t nalBit = 0x1F;
         #define NAL_TYPE(value)             ((value) & nalBit)
-        void RKCodecNode::SearchIFps(unsigned char* buf, size_t bufSize, std::shared_ptr<IBuffer>& buffer)
+        void RKCodecNode::SearchIFps(unsigned char* buf, size_t bufSize, std::shared_ptr\<IBuffer\>& buffer)
         {
             size_t nalType = 0;
             size_t idx = 0;
