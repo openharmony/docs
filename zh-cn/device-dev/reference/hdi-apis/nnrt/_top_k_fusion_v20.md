@@ -1,6 +1,5 @@
 # TopKFusion
 
-
 ## 概述
 
 查找沿axis轴的前K个最大值和对应索引。
@@ -21,20 +20,16 @@
 
 **相关模块：**[NNRt](_n_n_rt_v20.md)
 
-
 ## 汇总
-
 
 ### Public 属性
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | boolean [sorted](#sorted) | 如果为True，按照大到小排序，如果为False，按照小到大排序。  | 
-| long [axis](#axis) | 作用的轴  | 
-
+| long [axis](#axis) | 作用的轴。  | 
 
 ## 类成员变量说明
-
 
 ### axis
 
@@ -43,8 +38,7 @@ long TopKFusion::axis
 ```
 **描述**
 
-作用的轴
-
+作用的轴。
 
 ### sorted
 
