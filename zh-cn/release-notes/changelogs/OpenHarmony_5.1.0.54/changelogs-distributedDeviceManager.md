@@ -1,10 +1,10 @@
 # 设备管理ChangeLog
 
-从OpenHarmony 5.1.0.54版本开始，设备管理的API删除了部分接口无效错误码描述信息。
+从OpenHarmony 5.1.0.54版本开始，设备管理的部分API接口删除了无效错误码描述信息。
 
 ## cl.distributedDeviceManager.1 API删除无效错误码描述
 
-相较之前版本，删除部分API接口中无效错误码描述信息。
+相较之前版本，部分API接口删除了无效错误码描述信息。
 
 **变更影响**
 
