@@ -83,11 +83,11 @@ struct PickerHapticFeedbackExample {
 
 **起始API Level**
 
-12, 在api 15进行版本隔离。
+12
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.1.0.51开始。
+从OpenHarmony SDK 5.1.0.51开始，API version 15及以上生效。
 
 **适配指导**
 

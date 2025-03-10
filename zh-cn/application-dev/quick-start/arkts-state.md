@@ -20,7 +20,7 @@
 
 \@State装饰的变量拥有以下特点：
 
-- \@State装饰的变量与子组件中的\@Prop装饰变量之间建立单向数据同步,与\@Link、\@ObjectLink装饰变量之间建立双向数据同步。
+- \@State装饰的变量与子组件中的\@Prop装饰变量之间建立单向数据同步，与\@Link、\@ObjectLink装饰变量之间建立双向数据同步。
 
 - \@State装饰的变量生命周期与其所属自定义组件的生命周期相同。
 
@@ -668,115 +668,115 @@ export class Model {
 【示例1】
 
 ```ts
-class Parent {
-  son: string = '000';
+class Info {
+  address: string = '杭州';
 }
 
 @Entry
 @Component
 struct Test {
-  @State son: string = '111';
-  @State parent: Parent = new Parent();
+  @State message: string = '上海';
+  @State info: Info = new Info();
 
   aboutToAppear(): void {
-    this.parent.son = this.son;
+    this.info.address = this.message;
   }
 
   build() {
     Column() {
-      Text(`${this.son}`);
-      Text(`${this.parent.son}`);
+      Text(`${this.message}`);
+      Text(`${this.info.address}`);
       Button('change')
         .onClick(() => {
-          this.parent.son = '222';
+          this.info.address = '北京';
         })
     }
   }
 }
 ```
 
-以上示例点击Button('change')，此时第一行文本'111'不会更新，第二行文本'111'更新为'222'，因为son是简单类型String，简单类型是值拷贝，所以点击按钮改变的是parent中的son值，不会影响this.son的值。
+以上示例点击Button('change')，只会触发第二个Text组件的刷新，因为message是简单类型string，简单类型是值拷贝，所以点击按钮改变的是info中的address值，不会影响this.message的值。
 
 【示例2】
 
 ```ts
-class Son {
-  son: string = '000';
+class Info {
+  address: string = '杭州';
 
-  constructor(son: string) {
-    this.son = son;
+  constructor(address: string) {
+    this.address = address;
   }
 }
 
-class Parent {
-  son: Son = new Son('111');
+class User {
+  info: Info = new Info('天津');
 }
 
 @Entry
 @Component
 struct Test {
-  @State son: Son = new Son('222');
-  @State parent: Parent = new Parent();
+  @State info: Info = new Info('上海');
+  @State user: User = new User();
 
   aboutToAppear(): void {
-    this.parent.son = this.son;
+    this.user.info = this.info;
   }
 
   build() {
     Column() {
-      Text(`${this.son.son}`);
-      Text(`${this.parent.son.son}`);
+      Text(`${this.info.address}`);
+      Text(`${this.user.info.address}`);
       Button('change')
         .onClick(() => {
-          this.parent.son.son = '333';
+          this.user.info.address = '北京';
         })
     }
   }
 }
 ```
 
-以上示例，因为在aboutToAppear中将son的引用赋值给了parent的成员属性son，因此点击按钮改变son中的属性时，会触发第一个Text组件的刷新，而第二个Text组件因为观测能力仅有一层，无法观测到二层属性的变化。
+在上述示例中，由于在aboutToAppear中将info的引用赋值给了user的成员属性info，因此点击按钮改变info中的属性时，会触发第一个Text组件的刷新。而第二个Text组件因为观测能力仅有一层，无法观测到二层属性的变化，所以不会刷新。
 
 【示例3】
 
 ```ts
-class Son {
-  son: string = '000';
+class Info {
+  address: string = '杭州';
 
-  constructor(son: string) {
-    this.son = son;
+  constructor(address: string) {
+    this.address = address;
   }
 }
 
-class Parent {
-  son: Son = new Son('111');
+class User {
+  info: Info = new Info('天津');
 }
 
 @Entry
 @Component
 struct Test {
-  @State son: Son = new Son('222');
-  @State parent: Parent = new Parent();
+  @State info: Info = new Info('上海');
+  @State user: User = new User();
 
   aboutToAppear(): void {
-    this.parent.son = this.son;
+    this.user.info = this.info;
   }
 
   build() {
     Column() {
-      Text(`${this.son.son}`);
-      Text(`${this.parent.son.son}`);
+      Text(`${this.info.address}`);
+      Text(`${this.user.info.address}`);
       Button('change')
         .onClick(() => {
-          this.parent.son = new Son('444');
-          this.parent.son.son = '333';
+          this.user.info = new Info('广州');
+          this.user.info.address = '北京';
         })
     }
   }
 }
 ```
 
-以上示例点击Button('change')，此时第一行文本'222'不会更新，第二行文本'222'更新为'333'，因为在点击按钮后先执行'this.parent.son = new Son('444')'，此时会新创建出来一个Son对象，再执行'this.parent.son.son = '333''，改变的是新new出来的Son里面的son的值，原来对象Son中的son值并不会受到影响。
+上述示例中，点击Button('change')，只会触发第二个Text组件的刷新。这是因为点击按钮后，首先执行`this.user.info = new Info('广州')`，会创建一个新的Info对象。再执行`this.user.info.address = '北京'`，改变的是这个新创建的Info对象中的address值，而原始的Info对象中的address值不会受到影响。
 
 ### 复杂类型常量重复赋值给状态变量触发刷新
 

@@ -36,7 +36,7 @@ The following table describes the attributes for querying an asset.
 | ASSET_TAG_RETURN_OFFSET         | Type: uint32_t<br>Value range: 1-65536                           | No    | Offset of the asset query result.<br>**NOTE**: This parameter specifies the starting asset record to return in batch asset query.                 |
 | ASSET_TAG_RETURN_ORDERED_BY     | Type: uint32_t<br>Value: ASSET_TAG_DATA_LABEL_xxx          | No    | How the query results are sorted. Currently, the results can be sorted only by **ASSET_TAG_DATA_LABEL**.<br>**NOTE**: By default, assets are returned in the order in which they are added.|
 | ASSET_TAG_REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | Type: bool| No| Whether to query the customized asset attribute information that is encrypted. By default, the unencrypted, customized asset attribute information is queried.|
-| ASSET_TAG_GROUP_ID<sup>16+</sup> | Type: Uint8[]<br>Length: 7-127 bytes| No| Group to which the asset to be queried belongs. By default, this parameter is not specified.|
+| ASSET_TAG_GROUP_ID<sup>18+</sup> | Type: Uint8[]<br>Length: 7-127 bytes| No| Group to which the asset to be queried belongs. By default, this parameter is not specified.|
 
 ## Constraints
 

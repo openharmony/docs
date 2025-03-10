@@ -5465,7 +5465,7 @@ try {
 }
 ```
 
-## bundleManager.migrateData<sup>16+</sup>
+## bundleManager.migrateData<sup>18+</sup>
 
 migrateData(sourcePaths: Array&lt;string&gt;, destinationPath: string): Promise&lt;void&gt;
 
