@@ -27,7 +27,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 表示心跳广播策略。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **系统API**： 此接口为系统接口。
 
@@ -209,7 +209,7 @@ setHeartbeatPolicy(policy: StrategyForHeartbeat, delayTime: number): void;
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
   | policy        |  &nbsp;[StrategyForHeartbeat](#strategyforheartbeat15)&nbsp;         | 是    | 心跳广播策略。       |
-  | delayTime     | number          | 是    | 临时关闭心跳广播的时长。            |
+  | delayTime     | number          | 是    | 临时关闭心跳广播的时长，单位为：ms。            |
 
 **错误码：**
 
