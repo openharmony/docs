@@ -27,7 +27,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 | -k | - | &lt;on/off&gt; | Kernel日志读取开关控制。 | 
 |  |  | on | 打开读取kernel日志。 | 
 |  |  | off | 关闭读取kernel日志。 | 
-| -s | --statistics |  | 查询统计信息，需配合-t或-D使用。 | 
+| -s | --statistics | - | 查询统计信息，需配合-t或-D使用。 | 
 | -S | - | - | 清除统计信息，需配合-t或-D使用。 | 
 | -Q | - | &lt;control-type&gt; | 流控缺省配额开关控制。 | 
 |  |  | pidon | 进程流控开关打开。 | 
@@ -262,7 +262,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
    ```
    $ hilog -L E
-   08-28 09:01:25.730  2678  2678 E A00F00/com.hmos.aidataservice/AiDataService_5.10.7.320: DataChangeNotifyManager: notifyDataChange CommonEntity no valid entity to notify
+   08-28 09:01:25.730  2678  2678 E A00F00/com.aidataservice/AiDataService_5.10.7.320: DataChangeNotifyManager: notifyDataChange CommonEntity no valid entity to notify
    08-28 09:01:56.058  8560  8560 E A00500/com.ohos.settingsdata/SettingsData: DB not ready request = datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=analysis_service_switch_on , retry after DB startup
    08-28 09:01:56.082  8560  8560 E A00500/com.ohos.settingsdata/SettingsData: decoder failure: /data/migrate/settings_global.xml , error code:-1
    08-28 09:01:56.082  8560  8560 E A00500/com.ohos.settingsdata/SettingsData: clearXml failed:No such file or directory, error code:13900002
