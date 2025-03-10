@@ -72,7 +72,7 @@ kernel_version = "3.0.0"                --- 内核版本，跟config.json中kern
    执行`hb set`输入项目根目录，并且回车，`hb`命令会遍历所有`//vendor/<product_company>/<product_name>`目录下的`config.json`，给出可选产品编译选项，`config.json`的`product_name`用于显示产品名，`device_company`和`board`用于关联出`//device/board/<device_company>/<board>`目录，并且匹配`<any_dir_name>/config.gni`文件，如果能够匹配多个文件，表示该单板适配了多个内核，那么可以根据`config.json`的`kernel_type`和`kernel_version`来唯一匹配`config.gni`的`kernel_type`和`kernel_version`，即可确定了需要编译适配了哪个内核的单板。
 ![hb set](figures/bes2600_hb_set.png)
 
-			通过`hb env`可以查看选择出来的预编译环境变量。
+	通过`hb env`可以查看选择出来的预编译环境变量。
 
 ![hb env](figures/bes2600_hb_env.png)
 
@@ -305,9 +305,9 @@ if (ohos_kernel_type == "liteos_m") {                    --- 由于多内核设�
 内核启动适配总体思路如下：
 
 1. 中断向量的初始化`os_vector_init` ，初始化中断的处理函数。
-2. 内核初始化`osKernelInitialize` 。
+2. 内核初始化`osKernelInitialize`。
 3. 创建线程`board_main`，进行芯片平台初始化。
-4. 内核启动，开始调度线程`osKernelStart` 。
+4. 内核启动，开始调度线程`osKernelStart`。
 
 其中，本章节详细对第3步进行展开，其他几步为对内核函数调用，不作详细描述。
 
