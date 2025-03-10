@@ -230,24 +230,24 @@ struct Parent {
   @ObjectLink count: Info;
   ```
 
-  4. \@ObjectLink装饰的变量不能本地初始化，仅能通过构造参数从父组件传入初始值，否则编译期会报错。
+4. \@ObjectLink装饰的变量不能本地初始化，仅能通过构造参数从父组件传入初始值，否则编译期会报错。
 
-    ```ts
-    @Observed
-    class Info {
-      count: number;
+  ```ts
+  @Observed
+  class Info {
+    count: number;
 
-      constructor(count: number) {
-        this.count = count;
-      }
+    constructor(count: number) {
+      this.count = count;
     }
+  }
 
-    // 错误写法，编译报错
-    @ObjectLink count: Info = new Info(10);
+  // 错误写法，编译报错
+  @ObjectLink count: Info = new Info(10);
 
-    // 正确写法
-    @ObjectLink count: Info;
-    ```
+  // 正确写法
+  @ObjectLink count: Info;
+  ```
 
 5. \@ObjectLink装饰的变量是只读的，不能被赋值，否则会有运行时报错提示Cannot set property when setter is undefined。如果需要对\@ObjectLink装饰的变量进行整体替换，可以在父组件对其进行整体替换。
 
