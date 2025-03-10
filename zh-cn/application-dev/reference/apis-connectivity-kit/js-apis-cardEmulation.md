@@ -173,7 +173,7 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 
 | 参数名         | 类型                                       | 必填   | 说明                      |
 | ----------- | ---------------------------------------- | ---- |-------------------------|
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | 是    | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname) | 是    | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 | type        | [CardType](#cardtype9)                   | 是    | 卡模拟业务类型。目前只支持默认支付应用查询。   |
 
 **错误码**：
@@ -246,7 +246,7 @@ startHCE(aidList: string[]): boolean
 
 ### start<sup>9+</sup>
 
-start(elementName: [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname), aidList: string[]): void
+start(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname), aidList: string[]): void
 
 启动HCE业务功能。包括设置当前应用为前台优先，动态注册AID列表。
 
@@ -260,7 +260,7 @@ start(elementName: [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 | aidList | string[] | 是   | 动态注册卡模拟的AID列表，允许为空。 |
 
 **错误码：**
@@ -313,7 +313,7 @@ stop(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elemen
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 
 **错误码：**
 
