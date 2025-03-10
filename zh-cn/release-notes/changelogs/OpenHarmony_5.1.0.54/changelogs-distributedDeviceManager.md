@@ -4,7 +4,7 @@
 
 ## cl.distributedDeviceManager.1 API删除无效错误码及描述
 
-相较之前版本，删除API接口中无效错误码，开发者可以通过相关错误码进行更为准确的错误流程控制。
+相较之前版本，删除API接口中无效错误码。
 
 **变更影响**
 
@@ -16,6 +16,6 @@
 
 | 模块名                                | 类名                | 接口声明                                                   |主要变更点说明    |
 | ------------------------------------ | ------------------- | ------------------------------------------------------------ | 
-| @ohos.distributedDeviceManager       | function             | **function** releaseDeviceManager(deviceManager: DeviceManager): void; | 删除201错误码返回说明 |
-| @ohos.distributedDeviceManager       | DeviceManager        | **function** getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;; | 删除401错误码返回说明 |
-| @ohos.distributedDeviceManager       | DeviceManager        | **function** stopDiscovering(): void; | 删除401、11600104错误码返回说明   |
+| @ohos.distributedDeviceManager       | function             | **function** releaseDeviceManager(deviceManager: DeviceManager): void; | 删除201错误码返回说明。 |
+| @ohos.distributedDeviceManager       | DeviceManager        | **function** getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;; | 删除401错误码返回说明。 |
+| @ohos.distributedDeviceManager       | DeviceManager        | **function** stopDiscovering(): void; | 删除401、11600104错误码返回说明。   |
