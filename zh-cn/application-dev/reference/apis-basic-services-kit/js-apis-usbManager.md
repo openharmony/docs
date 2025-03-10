@@ -889,12 +889,12 @@ usbCancelTransfer(transfer: USBDataTransferParams): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes:Mandatory parameters are left unspecified; Incorrect parameter types。 |
-| 801 | Capability not supported。 |
-| 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first。 |
-| 14400008 | No such device (it may have been disconnected)。 |
-| 14400010 | Other USB error. Possible causes:<br>1.Unrecognized discard error code。 |
-| 14400011 | The transfer is not in progress, or is already complete or cancelled。|
+| 401 | Parameter error. Possible causes:Mandatory parameters are left unspecified; Incorrect parameter types. |
+| 801 | Capability not supported. |
+| 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
+| 14400008 | No such device (it may have been disconnected). |
+| 14400010 | Other USB error. Possible causes:<br>1.Unrecognized discard error code. |
+| 14400011 | The transfer is not in progress, or is already complete or cancelled.|
 
 **返回值：**
 
