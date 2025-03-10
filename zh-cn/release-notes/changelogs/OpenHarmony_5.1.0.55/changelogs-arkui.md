@@ -62,7 +62,7 @@ struct RepeatRerender {
       .backgroundColor(0xFAEEE0)
 
       Button('click').onClick(() => {
-        this.dataArr[0].msg = 'new msg'; // 改变第一项数据对象的msg属性的值
+        this.dataArr.splice(0, 1, new RepeatData('key0', 'new msg')); // 改变列表第一项的数据，保持key不变
       })
     }
   }
@@ -132,7 +132,7 @@ struct RepeatRerender {
       .backgroundColor(0xFAEEE0)
 
       Button('click').onClick(() => {
-        this.dataArr[0].msg = 'new msg'; // 改变第一项数据对象的msg属性的值
+        this.dataArr.splice(0, 1, new RepeatData('key0', 'new msg')); // 改变列表第一项的数据，保持key不变
       })
     }
   }
@@ -183,7 +183,7 @@ struct RepeatRerender {
       .backgroundColor(0xFAEEE0)
 
       Button('click').onClick(() => {
-        this.dataArr[0].msg = 'new msg'; // 改变第一项数据对象的msg属性的值
+        this.dataArr.splice(0, 1, new RepeatData('key0', 'new msg')); // 改变列表第一项的数据，保持key不变
       })
     }
   }
