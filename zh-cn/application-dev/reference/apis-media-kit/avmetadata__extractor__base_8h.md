@@ -36,6 +36,6 @@
 | static const char\* [OH_AVMETADATA_EXTRACTOR_VIDEO_HEIGHT](_a_v_metadata_extractor.md#oh_avmetadata_extractor_video_height) = "videoHeight" | 获取视频的高度的关键字，对应值类型int32_t，单位为像素。  | 
 | static const char\* [OH_AVMETADATA_EXTRACTOR_VIDEO_WIDTH](_a_v_metadata_extractor.md#oh_avmetadata_extractor_video_width) = "videoWidth" | 获取视频的宽度的关键字，对应值类型int32_t，单位为像素。  | 
 | static const char\* [OH_AVMETADATA_EXTRACTOR_VIDEO_ORIENTATION](_a_v_metadata_extractor.md#oh_avmetadata_extractor_video_orientation) = "videoOrientation" | 获取视频的旋转方向的关键字，对应值类型int32_t，单位为度（°）。  | 
-| static const char\* [OH_AVMETADATA_EXTRACTOR_VIDEO_IS_HDR_VIVID](_a_v_metadata_extractor.md#oh_avmetadata_extractor_video_is_hdr_vivid) = "hdrType" | 获取是否是HDR Vivid视频的关键字，对应值类型int32_t。 详情请参阅 [OH_Core_HdrType](_core.md#oh_core_hdrtype) 定义在 [media_types.h](media__types_8h.md) 。  | 
+| static const char\* [OH_AVMETADATA_EXTRACTOR_VIDEO_IS_HDR_VIVID](_a_v_metadata_extractor.md#oh_avmetadata_extractor_video_is_hdr_vivid) = "hdrType" | 获取是否是HDR Vivid视频的关键字，对应值类型int32_t。 详情请参阅 [OH_Core_HdrType](../apis-avcodec-kit/_core.md#oh_core_hdrtype) 定义在 [media_types.h](../apis-avcodec-kit/media__types_8h.md) 。  | 
 | static const char\* [OH_AVMETADATA_EXTRACTOR_LOCATION_LATITUDE](_a_v_metadata_extractor.md#oh_avmetadata_extractor_location_latitude) = "latitude" | 获取地理位置中的纬度值的关键字，对应值类型float。  | 
 | static const char\* [OH_AVMETADATA_EXTRACTOR_LOCATION_LONGITUDE](_a_v_metadata_extractor.md#oh_avmetadata_extractor_location_longitude) = "longitude" | 获取地理位置中的经度值的关键字，对应值类型float。  | 

@@ -33,10 +33,10 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [OH_AVMetadataExtractor](#oh_avmetadataextractor) \* [OH_AVMetadataExtractor_Create](#oh_avmetadataextractor_create) (void) | 创建OH_AVMetadataExtractor实例。  | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMetadataExtractor_SetFDSource](#oh_avmetadataextractor_setfdsource) ([OH_AVMetadataExtractor](#oh_avmetadataextractor) \*extractor, int32_t fd, int64_t offset, int64_t size) | 通过媒体文件描述设置数据源。  | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMetadataExtractor_FetchMetadata](#oh_avmetadataextractor_fetchmetadata) ([OH_AVMetadataExtractor](#oh_avmetadataextractor) \*extractor, OH_AVFormat \*avMetadata) | 从媒体资源中获取元数据。 此函数必须在[SetFDSource](#oh_avmetadataextractor_setfdsource)之后调用。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMetadataExtractor_FetchAlbumCover](#oh_avmetadataextractor_fetchalbumcover) ([OH_AVMetadataExtractor](#oh_avmetadataextractor) \*extractor, OH_PixelmapNative \*\*pixelMap) | 获取音频专辑封面。 此函数必须在[SetFDSource](#oh_avmetadataextractor_setfdsource)之后调用。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMetadataExtractor_Release](#oh_avmetadataextractor_release) ([OH_AVMetadataExtractor](#oh_avmetadataextractor) \*extractor) | 释放用于OH_AVMetadataExtractor的资源以及销毁OH_AVMetadataExtractor对象。  | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVMetadataExtractor_SetFDSource](#oh_avmetadataextractor_setfdsource) ([OH_AVMetadataExtractor](#oh_avmetadataextractor) \*extractor, int32_t fd, int64_t offset, int64_t size) | 通过媒体文件描述设置数据源。  | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVMetadataExtractor_FetchMetadata](#oh_avmetadataextractor_fetchmetadata) ([OH_AVMetadataExtractor](#oh_avmetadataextractor) \*extractor, OH_AVFormat \*avMetadata) | 从媒体资源中获取元数据。 此函数必须在[SetFDSource](#oh_avmetadataextractor_setfdsource)之后调用。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVMetadataExtractor_FetchAlbumCover](#oh_avmetadataextractor_fetchalbumcover) ([OH_AVMetadataExtractor](#oh_avmetadataextractor) \*extractor, OH_PixelmapNative \*\*pixelMap) | 获取音频专辑封面。 此函数必须在[SetFDSource](#oh_avmetadataextractor_setfdsource)之后调用。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVMetadataExtractor_Release](#oh_avmetadataextractor_release) ([OH_AVMetadataExtractor](#oh_avmetadataextractor) \*extractor) | 释放用于OH_AVMetadataExtractor的资源以及销毁OH_AVMetadataExtractor对象。  | 
 
 
 ### 变量
@@ -61,7 +61,7 @@
 | static const char\* [OH_AVMETADATA_EXTRACTOR_VIDEO_HEIGHT](#oh_avmetadata_extractor_video_height) = "videoHeight" | 获取视频的高度的关键字，对应值类型int32_t，单位为像素。  | 
 | static const char\* [OH_AVMETADATA_EXTRACTOR_VIDEO_WIDTH](#oh_avmetadata_extractor_video_width) = "videoWidth" | 获取视频的宽度的关键字，对应值类型int32_t，单位为像素。  | 
 | static const char\* [OH_AVMETADATA_EXTRACTOR_VIDEO_ORIENTATION](#oh_avmetadata_extractor_video_orientation) = "videoOrientation" | 获取视频的旋转方向的关键字，对应值类型int32_t，单位为度（°）。  | 
-| static const char\* [OH_AVMETADATA_EXTRACTOR_VIDEO_IS_HDR_VIVID](#oh_avmetadata_extractor_video_is_hdr_vivid) = "hdrType" | 获取是否是HDR Vivid视频的关键字，对应值类型int32_t。 详情请参阅 [OH_Core_HdrType](_core.md#oh_core_hdrtype) 定义在 [media_types.h](media__types_8h.md) 。  | 
+| static const char\* [OH_AVMETADATA_EXTRACTOR_VIDEO_IS_HDR_VIVID](#oh_avmetadata_extractor_video_is_hdr_vivid) = "hdrType" | 获取是否是HDR Vivid视频的关键字，对应值类型int32_t。 详情请参阅 [OH_Core_HdrType](../apis-avcodec-kit/_core.md#oh_core_hdrtype) 定义在 [media_types.h](../apis-avcodec-kit/media__types_8h.md) 。  | 
 | static const char\* [OH_AVMETADATA_EXTRACTOR_LOCATION_LATITUDE](#oh_avmetadata_extractor_location_latitude) = "latitude" | 获取地理位置中的纬度值的关键字，对应值类型float。  | 
 | static const char\* [OH_AVMETADATA_EXTRACTOR_LOCATION_LONGITUDE](#oh_avmetadata_extractor_location_longitude) = "longitude" | 获取地理位置中的经度值的关键字，对应值类型float。  | 
 
@@ -476,7 +476,7 @@ static const char* OH_AVMETADATA_EXTRACTOR_VIDEO_HEIGHT = "videoHeight"
 static const char* OH_AVMETADATA_EXTRACTOR_VIDEO_IS_HDR_VIVID = "hdrType"
 ```
 **描述**
-获取是否是HDR Vivid视频的关键字，对应值类型int32_t。 详情请参阅 [OH_Core_HdrType](_core.md#oh_core_hdrtype) 定义在 [media_types.h](media__types_8h.md) 。
+获取是否是HDR Vivid视频的关键字，对应值类型int32_t。 详情请参阅 [OH_Core_HdrType](../apis-avcodec-kit/_core.md#oh_core_hdrtype) 定义在 [media_types.h](../apis-avcodec-kit/media__types_8h.md) 。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
 
