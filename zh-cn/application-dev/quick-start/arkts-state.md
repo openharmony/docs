@@ -65,54 +65,55 @@
   ```
 
 - 当装饰的数据类型为class或者Object时，可以观察到自身的赋值的变化，和其属性赋值的变化，即Object.keys(observedObject)返回的所有属性。例子如下。
-    声明Person和Model类。
+  
+  声明Person和Model类。
 
-    ```ts
-      class Person {
-        public value: string;
-      
-        constructor(value: string) {
-          this.value = value;
-        }
-      }
-      
-      class Model {
-        public value: string;
-        public name: Person;
-        constructor(value: string, person: Person) {
-          this.value = value;
-          this.name = person;
-        }
-      }
-    ```
+  ```ts
+  class Person {
+    public value: string;
+  
+    constructor(value: string) {
+      this.value = value;
+    }
+  }
+  
+  class Model {
+    public value: string;
+    public name: Person;
+    constructor(value: string, person: Person) {
+      this.value = value;
+      this.name = person;
+    }
+  }
+  ```
 
-    \@State装饰的类型是Model
+  \@State装饰的类型是Model
 
-    ```ts
-    // class类型
-    @State title: Model = new Model('Hello', new Person('World'));
-    ```
+  ```ts
+  // class类型
+  @State title: Model = new Model('Hello', new Person('World'));
+  ```
 
-    对\@State装饰变量的赋值。
+  对\@State装饰变量的赋值。
 
-    ```ts
-    // class类型赋值
-    this.title = new Model('Hi', new Person('ArkUI'));
-    ```
+  ```ts
+  // class类型赋值
+  this.title = new Model('Hi', new Person('ArkUI'));
+  ```
 
-    对\@State装饰变量的属性赋值。
+  对\@State装饰变量的属性赋值。
 
-    ```ts
-    // class属性的赋值
-    this.title.value = 'Hi';
-    ```
+  ```ts
+  // class属性的赋值
+  this.title.value = 'Hi';
+  ```
 
-    嵌套属性的赋值观察不到。
+  嵌套属性的赋值观察不到。
 
-    ```ts
-    // 嵌套的属性赋值观察不到
-    this.title.name.value = 'ArkUI';
-    ```
+  ```ts
+  // 嵌套的属性赋值观察不到
+  this.title.name.value = 'ArkUI';
+  ```
 - 当装饰的对象是array时，可以观察到数组本身的赋值和添加、删除、更新数组的变化。例子如下。
   声明Model类。
 
@@ -224,13 +225,13 @@
 
 1. \@State装饰的变量必须初始化，否则编译期会报错。
 
-```ts
-// 错误写法，编译报错
-@State count: number;
+  ```ts
+  // 错误写法，编译报错
+  @State count: number;
 
-// 正确写法
-@State count: number = 10;
-```
+  // 正确写法
+  @State count: number = 10;
+  ```
 
 2. \@State不支持装饰Function类型的变量，框架会抛出运行时错误。
 
@@ -268,8 +269,6 @@ struct MyComponent {
 - 自定义组件MyComponent定义了被\@State装饰的状态变量count和title，其中title的类型为自定义类Model。如果count或title的值发生变化，则查询MyComponent中使用该状态变量的UI组件，并进行重新渲染。
 
 - EntryComponent中有多个MyComponent组件实例，第一个MyComponent内部状态的更改不会影响第二个MyComponent。
-
-
 
 ```ts
 class Model {
