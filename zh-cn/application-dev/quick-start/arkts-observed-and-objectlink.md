@@ -233,7 +233,7 @@ API version 18及以后，\@ObjectLink也可以被[makeV1Observed](../reference/
   @ObjectLink count: Info;
   ```
 
-4. \@ObjectLink装饰的变量不能本地初始化，仅能通过构造参数从父组件传入初始值，否则编译期会报错。
+5. \@ObjectLink装饰的变量不能本地初始化，仅能通过构造参数从父组件传入初始值，否则编译期会报错。
 
   ```ts
   @Observed
@@ -252,7 +252,7 @@ API version 18及以后，\@ObjectLink也可以被[makeV1Observed](../reference/
   @ObjectLink count: Info;
   ```
 
-5. \@ObjectLink装饰的变量是只读的，不能被赋值，否则会有运行时报错提示Cannot set property when setter is undefined。如果需要对\@ObjectLink装饰的变量进行整体替换，可以在父组件对其进行整体替换。
+6. \@ObjectLink装饰的变量是只读的，不能被赋值，否则会有运行时报错提示Cannot set property when setter is undefined。如果需要对\@ObjectLink装饰的变量进行整体替换，可以在父组件对其进行整体替换。
 
   【反例】
 
