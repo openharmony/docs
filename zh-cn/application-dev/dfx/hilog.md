@@ -27,7 +27,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 | -k | - | &lt;on/off&gt; | Kernel日志读取开关控制。 | 
 |  |  | on | 打开读取kernel日志。 | 
 |  |  | off | 关闭读取kernel日志。 | 
-| -s | --statistics |  | 查询统计信息，需配合-t或-D使用。 | 
+| -s | --statistics | - | 查询统计信息，需配合-t或-D使用。 | 
 | -S | - | - | 清除统计信息，需配合-t或-D使用。 | 
 | -Q | - | &lt;control-type&gt; | 流控缺省配额开关控制。 | 
 |  |  | pidon | 进程流控开关打开。 | 
