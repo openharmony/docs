@@ -389,7 +389,7 @@ struct ParentPage {
 
 ### 在@ComponentV2修饰的自定义组件中使用@BuilderParam
 
-使用全局@Builder和局部@Builder去初始化@CompoentV2修饰的自定义组件中的@BuilderParam属性。
+使用全局@Builder和局部@Builder去初始化@ComponentV2修饰的自定义组件中的@BuilderParam属性。
 
 ```ts
 @ComponentV2
