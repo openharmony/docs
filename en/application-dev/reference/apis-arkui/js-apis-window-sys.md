@@ -1035,7 +1035,7 @@ In the following API examples, you must use [getLastWindow()](js-apis-window.md#
 
 hide (callback: AsyncCallback&lt;void&gt;): void
 
-Hides this window. This API uses an asynchronous callback to return the result. This API takes effect only for a system window or an application subwindow.
+Hides this window. This API uses an asynchronous callback to return the result. This API takes effect only for a system window or an application child window.
 
 **System API**: This is a system API.
 
@@ -1075,7 +1075,7 @@ windowClass.hide((err: BusinessError) => {
 
 hide(): Promise&lt;void&gt;
 
-Hides this window. This API uses a promise to return the result. This API takes effect only for a system window or an application subwindow.
+Hides this window. This API uses a promise to return the result. This API takes effect only for a system window or an application child window.
 
 **System API**: This is a system API.
 
@@ -2365,7 +2365,7 @@ try {
 
 raiseToAppTop(callback: AsyncCallback&lt;void&gt;): void
 
-Raises the application subwindow to the top layer of the application. This API uses an asynchronous callback to return the result.
+Raises the application child window to the top layer of the application. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2408,7 +2408,7 @@ windowClass.raiseToAppTop((err: BusinessError) => {
 
 raiseToAppTop(): Promise&lt;void&gt;
 
-Raises the application subwindow to the top layer of the application. This API uses a promise to return the result.
+Raises the application child window to the top layer of the application. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2602,7 +2602,7 @@ try {
 
 raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
-Raises a subwindow above a target subwindow. This API uses an asynchronous callback to return the result.
+Raises a child window above a target child window. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2612,7 +2612,7 @@ Raises a subwindow above a target subwindow. This API uses an asynchronous callb
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| windowId | number                    | Yes  | ID of the target subwindow, which is the value of **properties.id** in [properties](js-apis-window.md#windowproperties) obtained through [getWindowProperties](js-apis-window.md#getwindowproperties9).|
+| windowId | number                    | Yes  | ID of the target child window, which is the value of **properties.id** in [properties](js-apis-window.md#windowproperties) obtained through [getWindowProperties](js-apis-window.md#getwindowproperties9).|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -2641,7 +2641,7 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
-    // Create a subwindow.
+    // Create a child window.
     try {
       let subWindow = windowStage.createSubWindow("testSubWindow");
       subWindow.then((data) => {
@@ -2673,7 +2673,7 @@ export default class EntryAbility extends UIAbility {
 
 raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
-Raises a subwindow above a target subwindow. This API uses a promise to return the result.
+Raises a child window above a target child window. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2683,7 +2683,7 @@ Raises a subwindow above a target subwindow. This API uses a promise to return t
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| windowId | number                    | Yes  | ID of the target subwindow, which is the value of **properties.id** in [properties](js-apis-window.md#windowproperties) obtained through [getWindowProperties](js-apis-window.md#getwindowproperties9).|
+| windowId | number                    | Yes  | ID of the target child window, which is the value of **properties.id** in [properties](js-apis-window.md#windowproperties) obtained through [getWindowProperties](js-apis-window.md#getwindowproperties9).|
 
 **Return value**
 
@@ -2717,7 +2717,7 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
-    // Create a subwindow.
+    // Create a child window.
     try {
       let subWindow = windowStage.createSubWindow("testSubWindow");
       subWindow.then((data) => {
@@ -2748,9 +2748,9 @@ export default class EntryAbility extends UIAbility {
 
 setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether to enable a subwindow to raise itself by click. This API uses an asynchronous callback to return the result.
+Sets whether to enable a child window to raise itself by click. This API uses an asynchronous callback to return the result.
 
-Generally, when a user clicks a subwindow, the subwindow is displayed on the top. If the **enable** parameter is set to **false**, the subwindow is not displayed on the top when being clicked.
+Generally, when a user clicks a child window, the child window is displayed on the top. If the **enable** parameter is set to **false**, the child window is not displayed on the top when being clicked.
 
 **System API**: This is a system API.
 
@@ -2760,7 +2760,7 @@ Generally, when a user clicks a subwindow, the subwindow is displayed on the top
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| enable   | boolean                   | Yes  | Whether to enable a subwindow to raise itself by click. The value **true** means to enable the subwindow to raise itself by click, and **false** means the opposite.|
+| enable   | boolean                   | Yes  | Whether to enable a child window to raise itself by click. The value **true** means to enable the child window to raise itself by click, and **false** means the opposite.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -2789,7 +2789,7 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
-    // Create a subwindow.
+    // Create a child window.
     try {
       let subWindow = windowStage.createSubWindow("testSubWindow");
       subWindow.then((data) => {
@@ -2818,9 +2818,9 @@ export default class EntryAbility extends UIAbility {
 
 setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
 
-Sets whether to enable a subwindow to raise itself by click. This API uses a promise to return the result.
+Sets whether to enable a child window to raise itself by click. This API uses a promise to return the result.
 
-Generally, when a user clicks a subwindow, the subwindow is displayed on the top. If the **enable** parameter is set to **false**, the subwindow is not displayed on the top when being clicked.
+Generally, when a user clicks a child window, the child window is displayed on the top. If the **enable** parameter is set to **false**, the child window is not displayed on the top when being clicked.
 
 **System API**: This is a system API.
 
@@ -2830,7 +2830,7 @@ Generally, when a user clicks a subwindow, the subwindow is displayed on the top
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| enable   | boolean                   | Yes  | Whether to enable a subwindow to raise itself by click. The value **true** means to enable the subwindow to raise itself by click, and **false** means the opposite.|
+| enable   | boolean                   | Yes  | Whether to enable a child window to raise itself by click. The value **true** means to enable the child window to raise itself by click, and **false** means the opposite.|
 
 **Return value**
 
@@ -2864,7 +2864,7 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
-    // Create a subwindow.
+    // Create a child window.
     try {
       let subWindow = windowStage.createSubWindow("testSubWindow");
       subWindow.then((data) => {
@@ -3435,13 +3435,13 @@ promise.then(() => {
 
 ## SubWindowOptions<sup>11+</sup>
 
-Describes the parameters used for creating a subwindow.
+Describes the parameters used for creating a child window.
 
 **System capability**: SystemCapability.Window.SessionManager
 
 | Name     | Type | Read Only| Optional| Description        |
 | ---------- | ---- | ---- | ---- | ----------- |
-| isTopmost<sup>12+</sup>  | boolean | No| Yes| Whether the subwindow is topmost. The value **true** means that the subwindow is topmost, and **false** means the opposite. The default value is **false**.      |
+| isTopmost<sup>12+</sup>  | boolean | No| Yes| Whether the child window is topmost. The value **true** means that the child window is topmost, and **false** means the opposite. The default value is **false**.      |
 
 ## WindowStage<sup>9+</sup>
 
