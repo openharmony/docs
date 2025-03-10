@@ -778,8 +778,8 @@
               - [刷新本地图片和网络图片](form/arkts-ui-widget-image-update.md)
               - [根据卡片状态刷新不同内容](form/arkts-ui-widget-update-by-status.md)
           - ArkTS卡片页面编辑
-            - [ArkTS卡片页面编辑交互概述](form/arkts-ui-widget-event-formExidextensionability-overview.md)
-            - [编辑刷新卡片页面内容](form/arkts-ui-widget-event-formExidextensionability.md)
+            - [ArkTS卡片页面编辑交互概述](form/arkts-ui-widget-event-formeditextensionability-overview.md)
+            - [编辑刷新卡片页面内容](form/arkts-ui-widget-event-formeditextensionability.md)
           <!--Del-->
           - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
           <!--DelEnd-->
@@ -1110,7 +1110,9 @@
         - [分布式设备管理](distributedservice/devicemanager-guidelines.md)
         - 应用跨设备连接管理<!--abilityconnect-distributed-->
           - [UIAbility与UIAbility连接开发指南](distributedservice/abilityconnectmanager-guidelines.md)
+          <!--Del-->
           - [UIAbility与Extension连接开发指南](distributedservice/distributedextension-duidelines.md)
+          <!--DelEnd-->
         - 硬件跨设备连接管理<!--devconnect-distributed-->
           - [分布式相机开发指南](distributedservice/camera-distributed.md)
       - Network Kit（网络服务）<!--network-kit-->
