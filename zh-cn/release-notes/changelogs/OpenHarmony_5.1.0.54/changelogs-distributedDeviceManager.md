@@ -1,25 +1,37 @@
-# 设备管理ChangeLog
+# 分布式设备管理ChangeLog
 
-从OpenHarmony 5.1.0.54版本开始，设备管理的部分API接口删除了无效错误码描述信息。
+## cl.distributedDeviceManager.1 分布式设备管理API接口错误码变更
 
-## cl.distributedDeviceManager.1 API删除无效错误码描述
+**访问级别**
 
-相较之前版本，部分API接口删除了无效错误码描述信息。
+公开接口
+
+**变更原因**
+
+1、错误码401可能原因：（1）必选参数未指定；（2）参数类型不正确；（3）参数校验失败。接口getAvailableDeviceListSync与stopDiscovering没有可传参数，所以需要删除错误码401。
+
+2、错误码11600104可能原因：上一次发现业务未结束。接口stopDiscovering流程不会触发该错误，所以需要删除错误码11600104。
+
+3、错误码201可能原因：权限校验失败。接口releaseDeviceManager和createDeviceManager配对使用，两者权限校验逻辑保持一致，createDeviceManager不存在权限校验，所以需要删除错误码201。
 
 **变更影响**
 
-影响API10版本的JS接口对外声明，对实际功能无影响，开发者可选择是否适配。
+此变更不涉及应用适配。
 
-**关键的接口/组件变更**
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.54开始。
+
+**变更的接口/组件**
 
 本次变更主要涉及如下模块的注释更新，详细请参考对应的对外接口声明及API开发指导文档：
 
 | 模块名                                | 类名                | 接口声明                                                   |主要变更点说明    |
 | ------------------------------------ | ------------------- | ------------------------------------------------------------ | -------------- |
-| @ohos.distributedDeviceManager       | function             | **function** releaseDeviceManager(deviceManager: DeviceManager): void; | 删除201错误码描述信息。 |
-| @ohos.distributedDeviceManager       | DeviceManager        | **function** getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;; | 删除401错误码描述信息。 |
-| @ohos.distributedDeviceManager       | DeviceManager        | **function** stopDiscovering(): void; | 删除401、11600104错误码描述信息。   |
+| @ohos.distributedDeviceManager       | function             | **function** releaseDeviceManager(deviceManager: DeviceManager): void; | 删除201错误码。 |
+| @ohos.distributedDeviceManager       | DeviceManager        | **function** getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;; | 删除401错误码。 |
+| @ohos.distributedDeviceManager       | DeviceManager        | **function** stopDiscovering(): void; | 删除401、11600104错误码。   |
 
 **适配指导**
 
-请参考各接口的[API参考](../../../application-dev/reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)。
+无
