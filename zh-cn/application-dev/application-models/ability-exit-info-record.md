@@ -4,7 +4,7 @@
 
 ## 约束限制
 
-仅[UIAbility](uiability-overview.md)和[UIExtensionAbility](uiextensionability.md)支持获取上次的退出原因。
+仅[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)和[UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)支持获取上次的退出原因。
 
 ## 接口说明
 
