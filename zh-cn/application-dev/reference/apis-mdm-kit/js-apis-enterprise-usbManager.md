@@ -467,10 +467,10 @@ USB设备类型信息。其中具体编号可查询：[defined-class-codes](http
 
 | 名称       | 类型                        | 必填 | 说明                                                         |
 | ---------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| baseClass  | number                      | 是   | 类型编号。对应通过[getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices)接口获取的结果中的clazz字段。若descriptor为DEVICE，则看外层的字段，若descriptor为INTERFACE，则看configs-interfaces层级的字段。 |
-| subClass   | number                      | 是   | 子类型编号。对应通过[getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices)接口获取的结果中的subClass字段。若descriptor为DEVICE，则看外层的字段，若descriptor为INTERFACE，则看configs-interfaces层级的字段。 |
-| protocol   | number                      | 是   | 协议编号。对应通过[getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices)接口获取的结果中的protocol字段。若descriptor为DEVICE，则看外层的字段，若descriptor为INTERFACE，则看configs-interfaces层级的字段。 |
-| descriptor | [Descriptor](#descriptor14) | 是   | USB描述符。请严格按照[defined-class-codes](https://www.usb.org/defined-class-codes) 中Descriptor Usage的给定类型来传入此参数值，若Descriptor Usage为Both，则根据调用意图（是要设备级禁用还是接口级禁用）来传入此参数值。 |
+| baseClass  | number                      | 是   | 类型编号，可通过[getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices)接口获取。若descriptor为DEVICE，则取返回值中的USBDevice.clazz字段，若descriptor为INTERFACE，则取返回值中的USBDevice.configs.interfaces.clazz字段。 |
+| subClass   | number                      | 是   | 子类型编号，可通过[getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices)接口获取。若descriptor为DEVICE，则取返回值中的USBDevice.subClass字段，若descriptor为INTERFACE，则取返回值中的USBDevice.configs.interfaces.subClass字段。 |
+| protocol   | number                      | 是   | 协议编号，可通过[getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices)接口获取。若descriptor为DEVICE，则取返回值中的USBDevice.protocol字段，若descriptor为INTERFACE，则取返回值中的USBDevice.configs.interfaces.protocol字段。 |
+| descriptor | [Descriptor](#descriptor14) | 是   | USB描述符。须按照[defined-class-codes](https://www.usb.org/defined-class-codes)，取baseClass对应的Descriptor Usage值作为参数传入，若Descriptor Usage为Both，则设备级禁用时传入DEVICE、接口级禁用时传入INTERFACE。 |
 
 ## UsbPolicy
 
