@@ -306,12 +306,16 @@ AVImageGenerator 主要用于获取视频缩略图。通过使用 AVImageGenerat
 
 AVTranscoder主要用于将已压缩编码的视频文件按照指定参数转换为另一种格式的视频。
 
-### 支持的格式
+### 支持的转码格式
 
 当前版本AVTranscoder提供以下转码服务：
 
 支持修改源视频文件的编码参数（格式、码率）和封装格式。源视频的音视频编码和封装格式为系统AVCodec支持的解码和解封装格式，目标视频的音视频编码和封装格式为系统AVCodec支持的编码和封装格式。
 
+- 支持将HDR VIVID视频转换为SDR视频，以及SDR视频的转码。
+- 支持转码时降低视频分辨率。
+原视频分辨率不高于4K，且目标视频分辨率不低于240p。
+目标视频宽、高不能大于源视频宽、高，且不能设置为奇数，详情请参考[设置正确的视频宽高](../avcodec/obtain-supported-codecs.md)。
 - 支持的源视频格式：
   - [解封装格式](../avcodec/audio-video-demuxer.md)
   - [音频解码格式](../avcodec/audio-decoding.md)
@@ -330,5 +334,3 @@ AVTranscoder主要用于将已压缩编码的视频文件按照指定参数转�
     > 当前不支持H.265。
    
     <!--DelEnd-->
-
-<!--RP1--><!--RP1End-->
