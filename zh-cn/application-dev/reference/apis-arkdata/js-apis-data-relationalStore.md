@@ -2157,13 +2157,35 @@ predicates.notLike("NAME", "os");
 **示例：**
 
 ```ts
-// 设置数据库版本
-if(store != undefined) {
-  (store as relationalStore.RdbStore).version = 3;
-  // 获取数据库版本
-  console.info(`RdbStore version is ${store.version}`);
-  // 获取数据库是否重建
-  console.info(`RdbStore rebuilt is ${store.rebuilt}`);
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+let store: relationalStore.RdbStore | undefined = undefined;
+
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    const STORE_CONFIG: relationalStore.StoreConfig = {
+      name: "RdbTest.db",
+      securityLevel: relationalStore.SecurityLevel.S3,
+    };
+
+    relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
+      store = rdbStore;
+      console.info('Get RdbStore successfully.')
+    }).catch((err: BusinessError) => {
+      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+    })
+
+    // 设置数据库版本
+    if(store != undefined) {
+      (store as relationalStore.RdbStore).version = 3;
+      // 获取数据库版本
+      console.info(`RdbStore version is ${store.version}`);
+      // 获取数据库是否重建
+      console.info(`RdbStore rebuilt is ${store.rebuilt}`);
+    }
+  }
 }
 ```
 
@@ -7409,15 +7431,37 @@ if(store != undefined) {
 
 <!--code_no_check-->
 ```ts
-let resultSet: relationalStore.ResultSet | undefined = undefined;
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("AGE", 18);
-if(store != undefined) {
-  (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((result: relationalStore.ResultSet) => {
-    resultSet = result;
-    console.info(`resultSet columnNames: ${resultSet.columnNames}`);
-    console.info(`resultSet columnCount: ${resultSet.columnCount}`);
-  });
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+let store: relationalStore.RdbStore | undefined = undefined;
+
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    const STORE_CONFIG: relationalStore.StoreConfig = {
+      name: "RdbTest.db",
+      securityLevel: relationalStore.SecurityLevel.S3,
+    };
+
+    relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
+      store = rdbStore;
+      console.info('Get RdbStore successfully.')
+    }).catch((err: BusinessError) => {
+      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+    })
+
+    let resultSet: relationalStore.ResultSet | undefined = undefined;
+    let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+    predicates.equalTo("AGE", 18);
+    if(store != undefined) {
+      (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((result: relationalStore.ResultSet) => {
+        resultSet = result;
+        console.info(`resultSet columnNames: ${resultSet.columnNames}`);
+        console.info(`resultSet columnCount: ${resultSet.columnCount}`);
+      });
+    }
+  }
 }
 ```
 
@@ -8464,16 +8508,34 @@ if(resultSet != undefined) {
 **示例：**
 
 ```ts
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 let store: relationalStore.RdbStore | undefined = undefined;
 
-if(store != undefined) {
-  (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
-    console.info(`createTransaction success`);
-  }).catch((err: BusinessError) => {
-    console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
-  });
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    const STORE_CONFIG: relationalStore.StoreConfig = {
+      name: "RdbTest.db",
+      securityLevel: relationalStore.SecurityLevel.S3,
+    };
+
+    relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
+      store = rdbStore;
+      console.info('Get RdbStore successfully.')
+    }).catch((err: BusinessError) => {
+      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+    })
+
+    if(store != undefined) {
+      (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+        console.info(`createTransaction success`);
+      }).catch((err: BusinessError) => {
+        console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
+      });
+    }
+  }
 }
 ```
 
