@@ -479,7 +479,7 @@ PROCESS NAME:com.xxx.xxx
 
 开发者可以通过 “mainHandler dump is” 关键字搜索日志中的 eventHandler dump 信息。
 
-1、dump begin curTime & Current Running
+1、dump begin curTime & Current Running。
 
 ```
 mainHandler dump is:
@@ -495,7 +495,7 @@ mainHandler dump is:
 
 若任务运行时长较小，表示当前任务仅是检测时间区间内主线程运行的任务之一，主要耗时不一定是该任务，建议优先查看近期耗时最长任务（History event queue information中）。该情形多为线程繁忙导致的watchdog无法调度执行。
 
-2、 History event queue information
+2、 History event queue information。
 
 ```
  Current Running: start at 2024-08-08 12:17:16.629, Event { send thread = 35882, send time = 2024-08-08 12:17:16.628, handle time = 2024-08-08 12:17:16.629, trigger time = 2024-08-08 12:17:16.630, task name = , caller = [extension_ability_thread.cpp(ScheduleAbilityTransaction:393)]}
@@ -512,7 +512,7 @@ mainHandler dump is:
 任务运行耗时 = CompleteTime time - trigger time。  
 筛选出耗时较高的任务，排查其运行情况。
 
-3、VIP priority event queue information
+3、VIP priority event queue information。
 
 ```
  VIP priority event queue information:
@@ -530,7 +530,7 @@ mainHandler dump is:
 
 为保障第一时间响应用户，用户输入事件传递链中的任务都属于高优先级任务。此任务事件队列均由系统创建，通常记录用户输入->屏幕->窗口->ArkUI->应用的传输过程，与三方应用事件无关，开发者无需额外关注。
 
-4、High priority event queue information
+4、High priority event queue information。
 
 ```
  High priority event queue information:
@@ -853,7 +853,7 @@ Uid:20020029
 Reason:THREAD_BLOCK_6S
 ```
 
-THREAD_BLOCK_3S 上报的时间为 08:24:29:612；
+THREAD_BLOCK_3S 上报的时间为 08:24:29:612；  
 THREAD_BLOCK_6S 上报的时间为 08:24:32:638；相隔 3s 符合预期。
 
 ```
@@ -1113,7 +1113,7 @@ mainHandler dump is:
  No.205 : Event { send thread = 3370, send time = 2024-03-14 02:40:56.305, handle time = 2024-03-14 02:40:56.305, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
 ```
 
-从逻辑来看，input event 触发应用主线程任务开始执行，但是 6s 还没有执行完，没有反馈，导致 ANR 超时；
+从逻辑来看，input event 触发应用主线程任务开始执行，但是 6s 还没有执行完，没有反馈，导致 ANR 超时；  
 因此我们只需要关心 input 触发了应用执行什么任务，该任务为什么会执行超时即可。
 
 主线程栈：此时运行时状态，栈顶的 ark_jsruntime GetCurrentThreadId 也不是持锁阻塞或耗时很长函数，抓到的栈为瞬时栈，没有参考意义。
