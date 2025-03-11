@@ -1,7 +1,7 @@
 # User Authentication Kit (User Authentication Service)
 
 - [Introduction to User Authentication Kit](user-authentication-overview.md)
-- User Authentication Development
+- User Authentication Development<!--user-authentication-dev-->
   - [Before You Start](prerequisites.md)
   - [Obtaining Supported Authentication Capabilities](obtain-supported-authentication-capabilities.md)
   - [Initiating User Authentication](start-authentication.md)
