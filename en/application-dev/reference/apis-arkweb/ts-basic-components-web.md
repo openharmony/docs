@@ -261,7 +261,7 @@ Provides methods for the web controller.
 
 ## Attributes
 
-Common attributes support only [aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio), [backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur), [backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor), [bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover), [bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8), [bindMenu ](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu), [bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet), [borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor), [borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius), [borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle), [borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth), [clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip), [constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize), [defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9), [focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable), [tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9), [groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9), [focusOnTouch](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9), [displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority), [enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled), [flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis), [flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink), [layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight), [id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md), [gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height), [touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md), [margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin), [markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor), [offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset), [width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width), [zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex), [visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility), [scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale), [translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate), [responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion), [size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size), [opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity), [shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow), [sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md) and [transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md).
+Supported common attributes: [aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio), [backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur), [backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor), [bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover), [bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8), [bindMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu), [bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet), [borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor), [borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius), [borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle), [borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth), [clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip), [constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize), [defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9), [focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable), [tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9), [groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9), [displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority), [enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled), [flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis), [flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink), [layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight), [id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md), [gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height), [touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md), [margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin), [markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor), [offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset), [width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width), [zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex), [visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility), [scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale), [translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate), [responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion), [size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size), [opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity), [shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow), [sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md), and [transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md).
 
 ### domStorageAccess
 
@@ -2033,7 +2033,7 @@ Sets nested scrolling options.
 
 | Name  | Type                                    | Mandatory  | Description            |
 | ----- | ---------------------------------------- | ---- | ---------------- |
-| value | [NestedScrollOptions](../apis-arkui/arkui-ts/ts-container-scrollable-common.md#nestedscrolloptions10)\| [NestedScrollOptionsExt](#nestedscrolloptionsext14) <sup>14+</sup> | Yes   | Nested scrolling options.|
+| value | [NestedScrollOptions](../apis-arkui/arkui-ts/ts-container-scrollable-common.md#nestedscrolloptions10)\| [NestedScrollOptionsExt](#nestedscrolloptionsext14) <sup>14+</sup>| Yes   | Nested scrolling options.|
 
 **Example**
 
@@ -4153,7 +4153,7 @@ To include errors with requests for subframes, use the [OnSslErrorEvent](#onssle
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
-  
+
   @Entry
   @Component
   struct WebComponent {
@@ -4996,7 +4996,7 @@ Note that there is no reliable method to determine which page requests a new win
 
 | Name   | Type  | Mandatory  | Description                 |
 | ------ | ------ | ---- | --------------------- |
-| callback       | Callback\<[OnWindowNewEvent](#onwindownewevent12)\>           | Yes| Callback invoked when the web page requests the user to create a new window.   |
+| callback       | Callback\<[OnWindowNewEvent](#onwindownewevent12)\>           | Yes| Callback invoked when the web page requests the user to create a window.   |
 
 **Example**
 
@@ -6771,6 +6771,18 @@ Closes this custom keyboard.
 
 Implements the **ConsoleMessage** object. For the sample code, see [onConsole](#onconsole).
 
+### constructor
+
+constructor(message: string, sourceId: string, lineNumber: number, messageLevel: MessageLevel)
+
+Constructs the **ConsoleMessage** object.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [constructor](#constructor9) instead.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### constructor<sup>9+</sup>
 
 constructor()
@@ -6929,7 +6941,7 @@ Sets a **WebviewController** object. If opening a new window is not needed, set 
 
 Implements the **WebResourceError** object. For the sample code, see [onErrorReceive](#onerrorreceive).
 
-### constructor<sup>9+</sup>
+### constructor
 
 constructor()
 
@@ -7602,7 +7614,7 @@ Grants the permission for resources requested by the web page.
 
 Implements the **ScreenCaptureHandler** object for accepting or rejecting a screen capture request. For the sample code, see [onScreenCaptureRequest Event](#onscreencapturerequest10).
 
-### constructor<sup>9+</sup>
+### constructor<sup>10+</sup>
 
 constructor()
 
@@ -7680,7 +7692,7 @@ setGestureEventResult(result: boolean): void
 
 See [onNativeEmbedGestureEvent](#onnativeembedgestureevent11).
 
-### setGestureEventResult<sup>12+</sup>
+### setGestureEventResult<sup>14+</sup>
 
 Sets the gesture event consumption result.
 
@@ -7995,6 +8007,10 @@ paste(): void
 
 Performs the paste operation related to this context menu.
 
+> **NOTE**
+>
+> The **ohos.permission.READ_PASTEBOARD** permission must be declared.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 ### cut<sup>9+</sup>
@@ -8086,7 +8102,7 @@ Enumerates the reasons why the rendering process exits.
 | Default<sup>9+</sup> | 0 | The cache that has not expired is preferentially used to load resources. If the cache is invalid or no cache is available, resources are obtained from the network.|
 | None    | 1 | The cache (including expired caches) is preferentially used to load resources. If no cache is available, resources are obtained from the network.    |
 | Online  | 2 | The latest resources are forcibly obtained from the network without using any cache.              |
-| Only    | 3 | The local cache alone is used to load the resources.                       |
+| Only    | 3 | Only the local cache is used to load resources.                       |
 
 ## FileSelectorMode<sup>9+</sup>
 
@@ -8302,6 +8318,18 @@ This API is deprecated since API version 9. You are advised to use [WebviewContr
 ```ts
 let webController: WebController = new WebController()
 ```
+
+### constructor
+
+constructor()
+
+Constructs a **WebController** object.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. No API is provided for substitute.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ### getCookieManager<sup>(deprecated)</sup>
 
@@ -9059,7 +9087,7 @@ This API is deprecated since API version 9. You are advised to use [clearHistory
 
 Manages behavior of cookies in **Web** components. All **Web** components in an application share a **WebCookie**. You can use the **getCookieManager** API in **controller** to obtain the **WebCookie** for subsequent cookie management.
 
-### constructor<sup>9+</sup>
+### constructor
 
 constructor()
 
@@ -9802,7 +9830,7 @@ Represents the callback invoked when an SSL client certificate is required from 
 
 ## OnWindowNewEvent<sup>12+</sup>
 
-Represents the callback invoked when the web page requests the user to create a new window.
+Represents the callback invoked when the web page requests the user to create a window.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
