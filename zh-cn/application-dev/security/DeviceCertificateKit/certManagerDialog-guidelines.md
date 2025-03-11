@@ -6,7 +6,6 @@
 
 证书管理对话框，可用于拉起证书管理页面并管理证书，如安装、存储、使用、销毁证书。
 
-
 ## 接口说明
 
 详细接口说明可参考[API参考](../../reference/apis-device-certificate-kit/js-apis-certManagerDialog.md)。
