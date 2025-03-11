@@ -228,3 +228,81 @@ console.info('Synchronous Verification Result:', resultSync);
 > **注意**：
 >
 > 请务必将示例中的证书数据替换为实际的证书内容。
+
+## networkSecurity.isCleartextPermitted<sup>18+</sup>
+
+isCleartextPermitted(): boolean
+
+从应用预置network_config.json文件中获取整体明文HTTP是否允许信息，默认允许明文HTTP访问。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| boolean | 整体明文HTTP是否允许。返回true表示允许访问明文HTTP，false表示不允许。默认返回true。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission denied.                                  |
+
+**示例：**
+
+```ts
+import { networkSecurity } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let result: boolean = networkSecurity.isCleartextPermitted();
+  console.info(`isCleartextPermitted Result: ${JSON.stringify(result)}`);
+} catch (error) {
+  console.error(`isCleartextPermitted Error: ${JSON.stringify(error)}`);
+}
+```
+
+## networkSecurity.isCleartextPermittedByHostName<sup>18+</sup>
+
+isCleartextPermittedByHostName(hostName: string): boolean
+
+从应用预置network_config.json文件中获取按域名明文HTTP是否允许信息，默认允许明文HTTP访问。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数**：
+
+| 参数名 | 类型     | 必填 | 说明                   |
+| ------ | -------- | ---- | ---------------------- |
+| hostName | string | 是  | 需要查询的主机名。|
+
+**返回值：**
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| boolean | 按域名明文HTTP是否允许。返回true表示允许明文HTTP访问该主机，false表示不允许。默认返回true。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission denied.                                     |
+
+**示例：**
+
+```ts
+import { networkSecurity } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let result: boolean = networkSecurity.isCleartextPermittedByHostName("xxx");
+  console.info(`isCleartextPermitted Result: ${JSON.stringify(result)}`);
+} catch (error) {
+  console.error(`isCleartextPermitted Error: ${JSON.stringify(error)}`);
+}
+```

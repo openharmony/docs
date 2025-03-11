@@ -38,7 +38,7 @@ The following table describes the related APIs.
 7. (Optional) Subscribe to the data written by the client.
 8. Close the server socket.
 9. Close the client socket.
-10. Example:
+Example:
 
     ```ts
     import { socket } from '@kit.ConnectivityKit';
@@ -112,7 +112,7 @@ The following table describes the related APIs.
     console.info('sppCloseClientSocket success');
     ```
 
-11. For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
+For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
 
 ### Connecting to the Peer Device over a Socket
 1. Import the **socket** module.
@@ -120,7 +120,7 @@ The following table describes the related APIs.
 3. Enable Bluetooth on the device.
 4. Start Bluetooth scanning to obtain the MAC address of the peer device.
 5. Connect to the peer device.
-6. Example:
+Example:
 
     ```ts
     import { socket } from '@kit.ConnectivityKit';
@@ -143,4 +143,4 @@ The following table describes the related APIs.
     })
     ```
 
-7. For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
+For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).

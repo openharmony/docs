@@ -87,6 +87,7 @@ build(builder: WrappedBuilder\<Args>, arg?: Object): void
 
 依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)最多拥有一个根节点。
 支持自定义组件。不支持自定义组件使用[@Reusable](../../quick-start/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../quick-start/arkts-link.md)、[@Provide](../../quick-start/arkts-provide-and-consume.md)、[@Consume](../../quick-start/arkts-provide-and-consume.md)等装饰器，来同步BuilderNode挂载的页面与BuilderNode中自定义组件的状态。
+从API version 12开始，自定义组件支持接收[LocalStorage](../../quick-start/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../quick-start/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../quick-start/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../quick-start/arkts-localstorage.md#localstoragelink)。
 
 > **说明**
 > 
@@ -126,6 +127,7 @@ build(builder: WrappedBuilder\<Args>, arg: Object, options: [BuildOptions](#buil
 
 依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)最多拥有一个根节点。
 支持自定义组件。不支持使用自定义组件使用[@Reusable](../../quick-start/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../quick-start/arkts-link.md)、[@Provide](../../quick-start/arkts-provide-and-consume.md)、[@Consume](../../quick-start/arkts-provide-and-consume.md)等装饰器用于当前页面与自定义组件的状态同步。
+从API version 12开始，自定义组件支持接收[LocalStorage](../../quick-start/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../quick-start/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../quick-start/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../quick-start/arkts-localstorage.md#localstoragelink)。
 
 > **说明**
 > 
@@ -664,6 +666,12 @@ struct MyComponent {
 dispose(): void
 
 立即释放当前BuilderNode。当BuilderNode对象调用dispose接口之后，不仅BuilderNode对象与后端实体节点解除引用关系，BuilderNode中的FrameNode与RenderNode也会同步和实体节点解除引用关系。
+
+> **说明：**
+>
+> 当BuilderNode对象调用dispose之后，不仅BuilderNode对象与后端实体节点解除引用关系，BuilderNode中的FrameNode与RenderNode也会同步和实体节点解除引用关系。
+>
+> 若前端对象BuilderNode无法释放，容易导致内存泄漏。建议在不再需要对该BuilderNode对象进行操作时，开发者应主动调用dispose释放后端节点，以减少引用关系的复杂性，降低内存泄漏的风险。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

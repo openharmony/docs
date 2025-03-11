@@ -187,7 +187,7 @@ canvas.detachBrush();
 ```
 
 
-| 原始图 | 旋转后的效果图 |
+| 原始图 | 缩放后的效果图 |
 | -------- | -------- |
 | ![Screenshot_20241129145853573](figures/Screenshot_20241129145853573.jpg) | ![Screenshot_20241129151044798](figures/Screenshot_20241129151044798.jpg) |
 

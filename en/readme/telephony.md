@@ -1,6 +1,15 @@
-# Telephony
+# Telephony <a name="EN-US_TOPIC_0000001162422291"></a>
 
-## Introduction
+-   [Introduction](#section104mcpsimp)
+-   [Directory Structure](#section119mcpsimp)
+-   [Constraints](#section123mcpsimp)
+-   [Usage](#section128mcpsimp)
+    -   [Obtaining the Current Cellular Network Signal Information](#section1458213210369)
+    -   [Observing Changes to the Cellular Network Status](#section750135512369)
+
+-   [Repositories Involved](#section152mcpsimp)
+
+## Introduction<a name="section104mcpsimp"></a>
 
 The Telephony subsystem provides APIs for obtaining information about the wireless cellular network and SIM card. Applications can call these APIs to obtain information such as the name of the currently registered network, network service status, signal strength, and SIM card information.
 
@@ -15,11 +24,11 @@ The Telephony subsystem consists of the following modules:
 -   Data storage module: stores persistent data and provides **DataAbility** access APIs.
 -   RIL Adapter module: implements adaptation of the modem communication interfaces.
 
-**Figure 1** Telephony subsystem architecture
+**Figure 1** Architecture of the network management subsystem
 
 ![](figures/en-us_architecture-of-telephony-subsystem.png)
 
-## Directory Structure
+## Directory Structure<a name="section119mcpsimp"></a>
 
 ```
 base/telephony/
@@ -30,27 +39,27 @@ base/telephony/
 ├── sms_mms                 # SMS & MMS module
 ├── state_registry          # State registry module
 ├── data_storage            # Data storage module
-└── ril_adapter             # RIL Adapter module
+└── ril_adapter             # RIL Adapter
 ```
 
-## Constraints
+## Constraints<a name="section123mcpsimp"></a>
 
 1.  The open-source version currently provides the cellular call (CS call only), SMS & MMS, and cellular data services and supports the dual-SIM framework.
-2.  The Hardware Device Interface (HDI) support is subject to the chip vendors' adaptation capability. For details, see [Telephony Development](../device-dev/subsystems/subsys-tel-overview.md).
+2.  The southbound HDI depends on the chip vendor. For details, see [Telephony Service Southbound Development Guide](../device-dev/subsystems/subsys-tel-overview.md).
 
-## Usage Guidelines
+## Usage<a name="section128mcpsimp"></a>
 
 To learn more about the usage of each subsystem module, refer to the respective README. The following illustrates API usage by exemplifying how to obtain the current cellular network signal information and observe the cellular network status changes.
 
-### Obtaining the Current Cellular Network Signal Information
+### Obtaining the Current Cellular Network Signal Information<a name="section1458213210369"></a>
 
 1.  Import the **radio** namespace from **@ohos.telephony.radio.d.ts**.
-2.  Call the **getSignalInformation\(slotId: number\)** function via callback or promise. This function works in asynchronous mode. 
+2.  Call [getSignalInformation\(slotId: number\)](../application-dev/reference/apis-telephony-kit/js-apis-radio.md#radiogetsignalinformation7) in callback mode or call [getSignalInformation\(slotId: number\)](../application-dev/reference/apis-telephony-kit/js-apis-radio.md#radiogetsignalinformation7-1) in promise mode.
 3.  Obtain the result from the **SignalInformation** array in the callback.
 4.  Traverse the **SignalInformation** array to obtain the **signalLevel** (signal strength) for each **signalType** (radio access technology).
 
     ```
-    // Import the radio package.
+    // Import the http namespace.
     import radio from "@ohos.telephony.radio";
     
     // Set the value of slotId.
@@ -83,16 +92,16 @@ To learn more about the usage of each subsystem module, refer to the respective 
     ```
 
 
-### Observing Cellular Network Status Changes
+### Observing Cellular Network Status Changes<a name="section750135512369"></a>
 
-Adding an Observer
+**Adding an Observer**
 
 1.  Import the **observer** namespace from **@ohos.telephony.observer.d.ts**.
-2.  Call the **on\(type:'networkStateChange'\)** function with **slotId** (slot ID, optional) and **callback** (callback processing function) passed in.
+2.  Call [on\(type:'networkStateChange'\)](../application-dev/reference/apis-telephony-kit/js-apis-observer.md#observeronnetworkstatechange-1) with **slotId** (optional) and **callback** specified.
 3.  Register an **observer** instance for callback events of network status changes.
 
     ```
-    // Import the observer package.
+    // Import the http namespace.
     import observer from '@ohos.telephony.observer';
     
     // Registers an observer.
@@ -102,13 +111,13 @@ Adding an Observer
     ```
 
 
-Removing the Observer
+**Removing the Observer**
 
 1.  Import the **observer** namespace from **@ohos.telephony.observer.d.ts**.
-2.  Call the **off\(type: 'networkStateChange'\)** function with the **callback** object passed to **observer**.
+2.  Call [off\(type: 'networkStateChange'\)](../application-dev/reference/apis-telephony-kit/js-apis-observer.md#observeroffnetworkstatechange) with **callback** (optional) specified for a certain type of event.
 
     ```
-    // Import the observer package.
+    // Import the http namespace.
     import observer from '@ohos.telephony.observer';
     
     // Unregister the observer.
@@ -116,9 +125,9 @@ Removing the Observer
     ```
 
 
-## Repositories Involved
+## Repositories Involved<a name="section152mcpsimp"></a>
 
-**Telephony Subsystem**
+**Telephony**
 
 [telephony\_core\_service](https://gitee.com/openharmony/telephony_core_service/blob/master/README.md)
 
@@ -132,6 +141,6 @@ Removing the Observer
 
 [telephony\_state\_registry](https://gitee.com/openharmony/telephony_state_registry/blob/master/README.md)
 
-[telephony\_data\_storage](https://gitee.com/openharmony/telephony_data_storage)
+[telephony\_data\_storage](https://gitee.com/openharmony/telephony_data_storage/blob/master/README.md)
 
 [telephony\_ril\_adapter](https://gitee.com/openharmony/telephony_ril_adapter/blob/master/README.md)

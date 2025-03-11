@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -35,6 +35,8 @@
 
 Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
+创建网格容器。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -43,16 +45,14 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 | 参数名   | 类型                                    | 必填 | 说明                                                     |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)等绑定同一个滚动控制对象。 |
+| scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[ArcList](ts-container-arclist.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)等绑定同一个滚动控制对象。 |
 | layoutOptions<sup>10+</sup> | [GridLayoutOptions](#gridlayoutoptions10对象说明) | 否 | Grid布局选项。 |
 
 ## GridLayoutOptions<sup>10+</sup>对象说明
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+Grid布局选项。其中，irregularIndexes和onGetIrregularSizeByIndex可对仅设置rowsTemplate或columnsTemplate的Grid使用，可以指定一个index数组，并为其中的index对应的GridItem设置其占据的行数与列数，使用方法参见[示例3](#示例3可滚动grid设置跨行跨列节点)；onGetRectByIndex可对同时设置rowsTemplate和columnsTemplate的Grid使用，为指定的index对应的GridItem设置位置和大小，使用方法参见[示例1](#示例1固定行列grid)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-布局选项。其中，irregularIndexes和onGetIrregularSizeByIndex可对仅设置rowsTemplate或columnsTemplate的Grid使用，可以指定一个index数组，并为其中的index对应的GridItem设置其占据的行数与列数，使用方法参见[示例3](#示例3可滚动grid设置跨行跨列节点)；onGetRectByIndex可对同时设置rowsTemplate和columnsTemplate的Grid使用，为指定的index对应的GridItem设置位置和大小，使用方法参见[示例1](#示例1固定行列grid)。
 
 | 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
@@ -484,6 +484,8 @@ alignItems(alignment: Optional\<GridItemAlignment\>)
 
 ## GridItemAlignment<sup>12+</sup>枚举说明
 
+GridItem的对齐方式枚举。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -502,6 +504,8 @@ alignItems(alignment: Optional\<GridItemAlignment\>)
 > 4、设置STRETCH后，Grid布局时会有额外的布局流程，可能会带来额外的性能开销。
 
 ## GridDirection<sup>8+</sup>枚举说明
+
+主轴布局方向枚举。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -745,6 +749,8 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-l
 | scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是 | 当前滑动状态。 |
 
 ## ComputedBarAttribute<sup>10+</sup>对象说明
+
+滚动条位置和长度对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

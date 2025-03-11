@@ -88,8 +88,81 @@ uint64_t JsDeviceIdToNative(uint64_t deviceId)
 }
 ~~~
 
-## 枚举类型说明
+## 类型定义说明
 
+### UsbDdkEndpointDescriptor
+
+```
+typedef struct UsbDdkEndpointDescriptor UsbDdkEndpointDescriptor
+```
+
+**描述**
+
+端点描述符。
+
+**起始版本：** 10
+
+### UsbDdkInterfaceDescriptor
+
+```
+typedef struct UsbDdkInterfaceDescriptor UsbDdkInterfaceDescriptor
+```
+
+**描述**
+
+接口描述符。
+
+**起始版本：** 10
+
+### UsbDdkInterface
+
+```
+typedef struct UsbDdkInterface UsbDdkInterface
+```
+
+**描述**
+
+USB接口。
+
+**起始版本：** 10
+
+### UsbDdkConfigDescriptor
+
+```
+typedef struct UsbDdkConfigDescriptor UsbDdkConfigDescriptor
+```
+
+**描述**
+
+配置描述符。
+
+**起始版本：** 10
+
+### UsbDeviceMemMap
+
+```
+typedef struct UsbDeviceMemMap UsbDeviceMemMap
+```
+
+**描述**
+
+ 设备内存映射，通过[OH_Usb_CreateDeviceMemMap()](_usb_ddk.md#oh_usb_createdevicememmap)创建设备内存映射，使用内存映射后的缓冲区，获得更好的性能。
+
+**起始版本：** 10
+
+### Usb_DeviceArray
+
+```
+typedef struct Usb_DeviceArray usb_DeviceArray
+```
+
+**描述**
+
+设备ID清单，用于存放[OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices16)接口获取到的设备ID列表和设备数量。
+
+**起始版本：** 10
+
+## 枚举类型说明
 
 ### UsbDdkErrCode
 
@@ -120,7 +193,7 @@ USB DDK 错误码定义。
 
 
 ```
-int32_t OH_Usb_ClaimInterface (uint64_t deviceId, uint8_t interfaceIndex, uint64_t * interfaceHandle )
+int32_t OH_Usb_ClaimInterface (uint64_t deviceId, uint8_t interfaceIndex, uint64_t * interfaceHandle)
 ```
 
 **描述:**
@@ -149,7 +222,7 @@ int32_t OH_Usb_ClaimInterface (uint64_t deviceId, uint8_t interfaceIndex, uint64
 
 
 ```
-int32_t OH_Usb_CreateDeviceMemMap (uint64_t deviceId, size_t size, UsbDeviceMemMap ** devMmap )
+int32_t OH_Usb_CreateDeviceMemMap (uint64_t deviceId, size_t size, UsbDeviceMemMap ** devMmap)
 ```
 
 **描述:**
@@ -218,7 +291,7 @@ void OH_Usb_FreeConfigDescriptor (struct UsbDdkConfigDescriptor *const config)
 
 
 ```
-int32_t OH_Usb_GetConfigDescriptor (uint64_t deviceId, uint8_t configIndex, struct UsbDdkConfigDescriptor **const config )
+int32_t OH_Usb_GetConfigDescriptor (uint64_t deviceId, uint8_t configIndex, struct UsbDdkConfigDescriptor **const config)
 ```
 
 **描述:**
@@ -248,7 +321,7 @@ int32_t OH_Usb_GetConfigDescriptor (uint64_t deviceId, uint8_t configIndex, stru
 
 
 ```
-int32_t OH_Usb_GetCurrentInterfaceSetting (uint64_t interfaceHandle, uint8_t * settingIndex )
+int32_t OH_Usb_GetCurrentInterfaceSetting (uint64_t interfaceHandle, uint8_t * settingIndex)
 ```
 
 **描述:**
@@ -276,7 +349,7 @@ int32_t OH_Usb_GetCurrentInterfaceSetting (uint64_t interfaceHandle, uint8_t * s
 
 
 ```
-int32_t OH_Usb_GetDeviceDescriptor (uint64_t deviceId, struct UsbDeviceDescriptor * desc )
+int32_t OH_Usb_GetDeviceDescriptor (uint64_t deviceId, struct UsbDeviceDescriptor * desc)
 ```
 
 **描述:**
@@ -378,7 +451,7 @@ int32_t OH_Usb_ReleaseInterface (uint64_t interfaceHandle)
 
 
 ```
-int32_t OH_Usb_SelectInterfaceSetting (uint64_t interfaceHandle, uint8_t settingIndex )
+int32_t OH_Usb_SelectInterfaceSetting (uint64_t interfaceHandle, uint8_t settingIndex)
 ```
 
 **描述:**
@@ -405,7 +478,7 @@ int32_t OH_Usb_SelectInterfaceSetting (uint64_t interfaceHandle, uint8_t setting
 
 
 ```
-int32_t OH_Usb_SendControlReadRequest (uint64_t interfaceHandle, const struct UsbControlRequestSetup * setup, uint32_t timeout, uint8_t * data, uint32_t * dataLen )
+int32_t OH_Usb_SendControlReadRequest (uint64_t interfaceHandle, const struct UsbControlRequestSetup * setup, uint32_t timeout, uint8_t * data, uint32_t * dataLen)
 ```
 
 **描述:**
@@ -439,7 +512,7 @@ int32_t OH_Usb_SendControlReadRequest (uint64_t interfaceHandle, const struct Us
 
 
 ```
-int32_t OH_Usb_SendControlWriteRequest (uint64_t interfaceHandle, const struct UsbControlRequestSetup * setup, uint32_t timeout, const uint8_t * data, uint32_t dataLen )
+int32_t OH_Usb_SendControlWriteRequest (uint64_t interfaceHandle, const struct UsbControlRequestSetup * setup, uint32_t timeout, const uint8_t * data, uint32_t dataLen)
 ```
 
 **描述:**
@@ -472,7 +545,7 @@ int32_t OH_Usb_SendControlWriteRequest (uint64_t interfaceHandle, const struct U
 
 
 ```
-int32_t OH_Usb_SendPipeRequest (const struct UsbRequestPipe * pipe, UsbDeviceMemMap * devMmap )
+int32_t OH_Usb_SendPipeRequest (const struct UsbRequestPipe * pipe, UsbDeviceMemMap * devMmap)
 ```
 
 **描述:**
@@ -501,7 +574,7 @@ int32_t OH_Usb_SendPipeRequest (const struct UsbRequestPipe * pipe, UsbDeviceMem
 
 
 ```
-int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_Ashmem *ashmem);
+int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_Ashmem *ashmem)
 ```
 
 **描述:**
@@ -530,7 +603,7 @@ int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_
 
 
 ```
-int32_t OH_Usb_GetDevices(struct Usb_DeviceArray *devices);
+int32_t OH_Usb_GetDevices(struct Usb_DeviceArray *devices)
 ```
 
 **描述:**
@@ -550,4 +623,4 @@ int32_t OH_Usb_GetDevices(struct Usb_DeviceArray *devices);
 - [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
 - [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
 - [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
-- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示入参devices的地址为空指针。
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示参数devices的地址为空指针。

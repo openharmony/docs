@@ -38,23 +38,8 @@ onFocusAxisEvent(event: Callback\<FocusAxisEvent>): T
 
 | 名称                                    | 属性类型                                       | 描述                 |
 | ------------------------------------- | ---------------------------------------- | --------------------------- |
-| axisMap                               | Map<[AxisModel](#axismodel), number>     | 焦点轴事件的轴值表。          |
+| axisMap                               | Map<[AxisModel](ts-appendix-enums.md#axismodel15), number>     | 焦点轴事件的轴值表。          |
 | stopPropagation                       | Callback\<void>                           | 阻塞事件冒泡传递。            |
-
-## AxisModel
-
-定义焦点轴事件的轴类型。
-
-| 名称    | 值   | 描述                               |
-| ------- | ---- | ---------------------------------- |
-| ABS_X  | 0    | 游戏手柄X轴。 |
-| ABS_Y  | 1    | 游戏手柄Y轴。 |
-| ABS_Z  | 2    | 游戏手柄Z轴。 |
-| ABS_RZ | 3    | 游戏手柄RZ轴。 |
-| ABS_GAS | 4    | 游戏手柄GAS轴。 |
-| ABS_BRAKE | 5    | 游戏手柄BRAKE轴。 |
-| ABS_HAT0X | 6    | 游戏手柄HAT0X轴。 |
-| ABS_HAT0Y | 7    | 游戏手柄HAT0Y轴。 |
 
 ## 示例
 

@@ -5,7 +5,7 @@
 
 定义OH_HiCollie_SetTimer函数的输入参数。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **相关模块：**[HiCollie](_hi_collie.md)
 

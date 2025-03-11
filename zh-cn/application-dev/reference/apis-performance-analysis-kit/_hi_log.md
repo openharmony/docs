@@ -60,6 +60,7 @@ HiLog模块实现日志打印功能。
 | void [OH_LOG_SetMinLogLevel](#oh_log_setminloglevel) ([LogLevel](#loglevel) level) | 设置应用日志打印的最低日志级别。 进程在打印日志时，需要同时校验该日志级别和全局日志级别，<br/>所以设置的日志级别不能低于全局日志级别，[全局日志级别](../../dfx/hilog.md#查看和设置日志级别)默认为Info。 | 
 | int [OH_LOG_PrintMsg](#oh_log_printmsg) ([LogType](#logtype) type, [LogLevel](#loglevel) level, unsigned int domain, const char \*tag, const char \*message) | 写日志接口。输出指定type、level、domain、tag的常量日志字符串。  | 
 | int [OH_LOG_PrintMsgByLen](#oh_log_printmsgbylen) ([LogType](#logtype) type, [LogLevel](#loglevel) level, unsigned int domain, const char \*tag, size_t tagLen, const char \*message, size_t messageLen) | 写日志接口。输出指定domain、tag和日志级别的常量日志字符串，需要指定tag及字符串长度，和OH_LOG_PrintMsg区别是可以接受不带结束符的字符串。  | 
+| int [OH_LOG_VPrint](#oh_log_vprint)(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *fmt, va_list ap) | - | 写日志接口。指定日志类型、日志级别、业务领域、TAG，按照类printf格式类型和隐私指示确定需要输出的变参，变参为va_list类型。 |
 
 
 ## 宏定义说明
@@ -106,7 +107,7 @@ DEBUG级别写日志，宏封装接口。
 | 名称 | 描述 | 
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。  | 
-| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。  | 
+| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中%%符号后类型前增加{public}、{private}标识。  | 
 | ... | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。  | 
 
 **参见：**
@@ -131,7 +132,7 @@ ERROR级别写日志，宏封装接口。
 | 名称 | 描述 | 
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。  | 
-| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。  | 
+| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中%符号后类型前增加{public}、{private}标识。  | 
 | ... | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。  | 
 
 **参见：**
@@ -156,7 +157,7 @@ FATAL级别写日志，宏封装接口。
 | 名称 | 描述 | 
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。  | 
-| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。  | 
+| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中%符号后类型前增加{public}、{private}标识。  | 
 | ... | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。  | 
 
 **参见：**
@@ -181,7 +182,7 @@ INFO级别写日志，宏封装接口。
 | 名称 | 描述 | 
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。  | 
-| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。  | 
+| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中%符号后类型前增加{public}、{private}标识。  | 
 | ... | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。  | 
 
 **参见：**
@@ -206,7 +207,7 @@ WARN级别写日志，宏封装接口。
 | 名称 | 描述 | 
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。  | 
-| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。  | 
+| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中%符号后类型前增加{public}、{private}标识。  | 
 | ... | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。  | 
 
 **参见：**
@@ -286,7 +287,7 @@ enum LogType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| LOG_APP  | 应用日志&nbsp;&nbsp; | 
+| LOG_APP  | 应用日志。| 
 
 
 ## 函数说明
@@ -335,7 +336,7 @@ int OH_LOG_Print (LogType type, LogLevel level, unsigned int domain, const char 
 | level | 日志级别，日志级别包括LOG_DEBUG、LOG_INFO、LOG_WARN、LOG_ERROR、LOG_FATAL。  | 
 | domain | 日志业务领域，16进制整数，范围0x0~0xFFFF，超出范围则日志无法打印。  | 
 | tag | 日志TAG，字符串，标识调用所在的类或者业务，tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。  | 
-| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。  | 
+| fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中%符号后类型前增加{public}、{private}标识。  | 
 | ... | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。  | 
 
 **返回：**
@@ -351,7 +352,7 @@ int OH_LOG_PrintMsg (LogType type, LogLevel level, unsigned int domain, const ch
 **描述**
 写日志接口。输出指定type、level、domain、tag的常量日志字符串。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -376,7 +377,7 @@ int OH_LOG_PrintMsgByLen (LogType type, LogLevel level, unsigned int domain, con
 **描述**
 写日志接口。输出指定domain、tag和日志级别的常量日志字符串，需要指定tag及字符串长度，和OH_LOG_PrintMsg区别是可以接受不带结束符的字符串。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -394,6 +395,35 @@ int OH_LOG_PrintMsgByLen (LogType type, LogLevel level, unsigned int domain, con
 
 大于等于0表示成功；小于0表示失败。
 
+### OH_LOG_VPrint()
+
+```
+int OH_LOG_VPrint(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *fmt, va_list ap)
+```
+
+**描述**
+
+写日志接口。指定日志类型、日志级别、业务领域、TAG，按照类printf格式类型和隐私指示确定需要输出的变参，变参为va_list类型。
+
+**起始版本：** 18
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| LogType type | type 日志类型，三方应用日志类型为LOG_APP。 |
+| LogLevel level | level 日志级别，日志级别包括LOG_DEBUG、LOG_INFO、LOG_WARN、LOG_ERROR、LOG_FATAL。 |
+| unsigned int domain | domain 日志业务领域，16进制整数，范围为0x0~0xFFFF。 |
+| const char *tag | tag 日志TAG，字符串，标识调用所在的类或者业务。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。 |
+| const char *fmt | fmt 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中%符号后类型前增加{public}、{private}标识。 |
+| va_list ap | ap va_list类型，与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int | 大于等于0表示成功；小于0表示失败。 |
 
 ### OH_LOG_SetCallback()
 

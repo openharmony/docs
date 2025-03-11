@@ -5,7 +5,7 @@ The **distributedDeviceManager** module provides APIs for distributed device man
 Applications can call the APIs to:
 
 - Subscribe to or unsubscribe from device state changes.
-- Discover untrusted devices nearby.
+- Discover devices nearby.
 - Authenticate or deauthenticate a device.
 - Query the trusted device list.
 - Query local device information, including the device name, type, and ID.
@@ -39,7 +39,7 @@ Replies to the user's UI operation. This API can be used only by the PIN HAP of 
 
   | Name      | Type           | Mandatory | Description               |
   | ------------- | --------------- | ---- | ------------------- |
-  | action        | number          | Yes   | User operation.      |
+  | action        | number          | Yes   | User operation.<br>- 0: Grant authorization.<br>- 1. Cancel authorization.<br>- 2: Wait until the authorization dialog times out.<br>- 3: Cancel the display of the PIN box.<br>- 4: Cancel the display of the PIN input box.<br>- 5: Confirm the input in the PIN input box.    |
   | actionResult        | string          | Yes   | Operation result.|
 
 **Error codes**

@@ -54,11 +54,9 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 enableWifi(): void
 
-Enable Wi-Fi.
+Enables the WLAN.
 
-**Required permissions** ohos.permission.SET_WIFI_INFO and (ohos.permission.MANAGE_WIFI_CONNECTION or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION)
-
-**Atomic service API**: This API can be used in atomic services since API version 15.
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications) or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION (available only to enterprise applications)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -357,7 +355,7 @@ Represents WLAN hotspot information.
 | capabilities | string | Yes| No| Hotspot capabilities.|
 | securityType | [WifiSecurityType](#wifisecuritytype9) | Yes| No| WLAN security type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | rssi | number | Yes| No| Received signal strength indicator (RSSI) of the hotspot, in dBm.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| band | number | Yes| No| Frequency band of the WLAN access point (AP). The value **1** indicates 2.4 GHz, and **2** indicates 5 GHz.|
+| band | number | Yes| No| Frequency band of the WLAN access point (AP). The value **1** indicates 2.4 GHz, and the value **2** indicates 5 GHz.|
 | frequency | number | Yes| No| Frequency of the WLAN AP.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | channelWidth | number | Yes| No| Channel width of the WLAN AP. For details, see [WifiChannelWidth](#wifichannelwidth9).|
 | centerFrequency0 | number | Yes| No| Center frequency of the hotspot.|
@@ -365,7 +363,7 @@ Represents WLAN hotspot information.
 | infoElems | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | Yes| No| Information elements.|
 | timestamp | number | Yes| No| Timestamp.|
 | supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | Yes| No| Highest Wi-Fi category supported by the hotspot.|
-| isHiLinkNetwork<sup>12+</sup> | boolean | Yes| No| Whether the hotspot supports HiLink. The value **true** indicates that the hotspot supports HiLink. The value **false** means the opposite.|
+| isHiLinkNetwork<sup>12+</sup> | boolean | Yes| No| Whether the hotspot supports HiLink. The value **true** indicates that the hotspot supports HiLink, and the value **false** indicates the opposite.|
 
 ## DeviceAddressType<sup>10+</sup>
 
@@ -574,6 +572,8 @@ Represents the highest Wi-Fi type supported by a hotspot.
 | DEFAULT | 1 | Default, that is, Wi-Fi types lower than Wi-Fi 6.|
 | WIFI6 | 2 | Wi-Fi 6|
 | WIFI6_PLUS | 3 | Wi-Fi 6+|
+| WIFI7<sup>15+</sup> | 4 | Wi-Fi 7|
+| WIFI7_PLUS<sup>15+</sup> | 5 | Wi-Fi 7+|
 
 ## wifiManager.addCandidateConfig<sup>9+</sup>
 
@@ -647,7 +647,7 @@ Adds the configuration of a candidate network. This API uses an asynchronous cal
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If **err** is **0**, the operation is successful. **data** indicates the ID of the network configuration to add. If **data** is **-1**, the network configuration fails to be added.<br> If the value of **err** is not **0**, an error has occurred during the operation.|
 
 **Error codes**
 
@@ -731,49 +731,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	}
 ```
 
-## wifiManager.removeDevice<sup>15+</sup>
-
-removeDevice(id: number): void
-
-Remove a Wi-Fi DeviceConfig with networkId.
-
-**Required permissions**: ohos.permission.SET_WIFI_INFO and (ohos.permission.MANAGE_WIFI_CONNECTION or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION)
-
-**Atomic service API**: This API can be used in atomic services since API version 15.
-
-**System capability**: SystemCapability.Communication.WiFi.STA
-
-**Parameters**
-
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | id | number | Yes| ID of the network configuration to remove.|
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | ---------------------------- |
-| 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed.|
-| 801 | Capability not supported.          |
-| 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled. |
-
-**Example**
-
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-  
-    try {
-      let id = 0;
-      wifiManager.removeDevice(id);
-    }catch(error){
-      console.error("failed:" + JSON.stringify(error));
-    }
-```
-
 ## wifiManager.removeCandidateConfig<sup>9+</sup>
 
 removeCandidateConfig(networkId: number, callback: AsyncCallback&lt;void&gt;): void
@@ -817,6 +774,46 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
+```
+
+## wifiManager.removeDevice<sup>15+</sup>
+
+removeDevice(id: number): void
+
+Removes the network configuration.
+
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications) or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION (available only to enterprise applications)
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Parameters**
+
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | id | number | Yes| ID of the network configuration to remove.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
+
+**Example**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+  
+    try {
+      let id = 0;
+      wifiManager.removeDevice(id);	
+    }catch(error){
+      console.error("failed:" + JSON.stringify(error));
+    }
 ```
 
 ## wifiManager.getCandidateConfigs<sup>9+</sup>
@@ -906,22 +903,21 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
-		let networkId = 0; // Candidate network ID, which is generated when a candidate network is added. The value is obtained from WifiDeviceConfig.netId.
+		let networkId = 0; // Candidate network ID, which is generated when a candidate network is added.
 		wifiManager.connectToCandidateConfig(networkId);
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
 	
 ```
-## wifiManager.addDeviceConfig<sup>9+</sup>
+
+## wifiManager.addDeviceConfig<sup>15+</sup>
 
 addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
-Add Wi-Fi connection configuration to the device. The configuration will be updated when the configuration is added.
+Adds network configuration. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG
-
-**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -929,7 +925,7 @@ Add Wi-Fi connection configuration to the device. The configuration will be upda
 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
+| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The value of **bssidType** is random device address by default.|
 
 **Return value**
 
@@ -964,7 +960,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 		}).catch((err:number) => {
 			console.error("failed:" + JSON.stringify(err));
 		});
-	}catch(error){
+	}catch(error){  
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
@@ -973,19 +969,17 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;): void
 
-Add Wi-Fi connection configuration to the device. The configuration will be updated when the configuration is added.
+Adds network configuration. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
-**Atomic service API**: This API can be used in atomic services since API version 15.
-
 **Parameters**
 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
+| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The value of **bssidType** is random device address by default.|
 | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
 
 **Error codes**
@@ -1016,17 +1010,16 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
     }catch(error){
       console.error("failed:" + JSON.stringify(error));
     }
+
 ```
 
 ## wifiManager.getDeviceConfigs<sup>15+</sup>
 
 getDeviceConfigs(): &nbsp;Array&lt;WifiDeviceConfig&gt;
 
-Obtain the list of all existed Wi-Fi configurations
+Obtains network configuration.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
-
-**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -1034,7 +1027,7 @@ Obtain the list of all existed Wi-Fi configurations
 
   | **Type**| **Description**|
   | -------- | -------- |
-  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt; | network configuration obtained.|
+  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt; | Network configuration array.|
 
 **Error codes**
 
@@ -1057,18 +1050,16 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
     }catch(error){
       console.error("failed:" + JSON.stringify(error));
     }
-
+	
 ```
 
 ## wifiManager.connectToNetwork<sup>15+</sup>
 
 connectToNetwork(networkId: number): void
 
-Connect to Wi-Fi hotspot by networkId.
+Connects to a hotspot.
 
-**Required permissions**: ohos.permission.MANAGE_WIFI_CONNECTION or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
-
-**Atomic service API**: This API can be used in atomic services since API version 15.
+**Required permissions**: ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications) or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION (available only to enterprise applications)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -1118,7 +1109,7 @@ Obtains the WLAN signal level.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | rssi | number | Yes| RSSI of the hotspot, in dBm.|
-  | band | number | Yes| Frequency band of the WLAN AP. The value **1** indicates 2.4 GHz, and **2** indicates 5 GHz.|
+  | band | number | Yes| Frequency band of the WLAN AP. The value **1** indicates 2.4 GHz, and the value **2** indicates 5 GHz.|
 
 **Return value**
 
@@ -1285,22 +1276,22 @@ Represents the WLAN connection information.
 | ssid | string | Yes| No| SSID of the hotspot, in UTF-8 format.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | bssid | string | Yes| No| BSSID of the hotspot.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | rssi | number | Yes| No| Received signal strength indicator (RSSI) of the hotspot, in dBm.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| band | number | Yes| No| Frequency band of the WLAN AP. The value **1** indicates 2.4 GHz, and **2** indicates 5 GHz.|
+| band | number | Yes| No| Frequency band of the WLAN AP. The value **1** indicates 2.4 GHz, and the value **2** indicates 5 GHz.|
 | linkSpeed | number | Yes| No| Uplink speed of the WLAN AP, in Mbps/s.|
 | rxLinkSpeed<sup>10+</sup> | number | Yes| No| Downlink speed of the WLAN AP, in Mbps/s.|
 | maxSupportedTxLinkSpeed<sup>10+</sup> | number | Yes| No| Maximum uplink speed supported, in Mbps/s.|
 | maxSupportedRxLinkSpeed<sup>10+</sup> | number | Yes| No| Maximum downlink speed supported, in Mbps/s.|
 | frequency | number | Yes| No| Frequency of the WLAN AP.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| isHidden | boolean | Yes| No| Whether to hide the WLAN AP.|
-| isRestricted | boolean | Yes| No| Whether to restrict data volume at the WLAN AP.|
-| macType | number | Yes| No| MAC address type. <br>The value **0** indicates random MAC address, and **1** indicates device MAC address.|
+| isHidden | boolean | Yes| No| Whether the WLAN AP is a hidden network. The value **true** indicates that the WLAN AP is a hidden network, and the value **false** indicates the opposite.|
+| isRestricted | boolean | Yes| No| Whether data volume is restricted at the WLAN AP. The value **true** indicates that data volume is restricted, and the value **false** indicates the opposite.|
+| macType | number | Yes| No| MAC address type. <br>The value **0** indicates a random MAC address, and the value **1** indicates device MAC address.|
 | macAddress | string | Yes| No| MAC address of the device.|
 | ipAddress | number | Yes| No| IP address of the device that sets up the WLAN connection (the Wi-Fi connection information and the status information of the local device can be viewed.)|
 | connState | [ConnState](#connstate9) | Yes| No| WLAN connection state.|
 | channelWidth<sup>10+</sup> | [WifiChannelWidth](#wifichannelwidth9) | Yes| No| Channel bandwidth of the connected hotspot.|
 | wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | Yes| No| Wi-Fi standard used by the connected hotspot.|
 | supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | Yes| No| Highest Wi-Fi category supported by the hotspot.|
-| isHiLinkNetwork<sup>12+</sup> | boolean | Yes| No| Whether the hotspot supports HiLink. The value **true** indicates that the hotspot supports HiLink. The value **false** means the opposite.|
+| isHiLinkNetwork<sup>12+</sup> | boolean | Yes| No| Whether the hotspot supports HiLink. The value **true** indicates that the hotspot supports HiLink, and the value **false** indicates the opposite.|
 
 ## ConnState<sup>9+</sup>
 
@@ -1366,12 +1357,10 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 disconnect(): void
 
-Disconnect the WLAN.
+Disconnects from a WLAN.
 
-**Required permissions**: ohos.permission.SET_WIFI_INFO and (ohos.permission.MANAGE_WIFI_CONNECTION or
-   ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION)
-
-**Atomic service API**: This API can be used in atomic services since API version 15.
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications) or
+   ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION (available only to enterprise applications)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -1701,6 +1690,44 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 ```
 
 
+## wifiManager.isHotspotActive<sup>15+</sup>
+
+isHotspotActive(): boolean
+
+Checks whether this hotspot is active.
+
+**Required permissions**: ohos.permission.GET_WIFI_INFO
+
+**System capability**: SystemCapability.Communication.WiFi.AP.Core
+
+**Return value**
+
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if WLAN is enabled; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
+
+**Example**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+
+	try {
+		let ret = wifiManager.isHotspotActive();
+		console.info("result:" + ret);		
+	} catch(error) {
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
 
 ## wifiManager.getP2pLinkedInfo<sup>9+</sup>
 
@@ -1787,7 +1814,7 @@ Represents the P2P link information.
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate9) | Yes| No| P2P connection state.|
-| isGroupOwner | boolean | Yes| No| Whether it is the group owner (GO).|
+| isGroupOwner | boolean | Yes| No| Whether the device is the group owner. The value **true** indicates that the device is the group owner, and the value **false** indicates the opposite.|
 | groupOwnerAddr | string | Yes| No| IP address of the group.| 
 
 
@@ -1936,7 +1963,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 ```ts
 	import { wifiManager } from '@kit.ConnectivityKit';
 	// The peer device list can be obtained only after the P2P discovery is complete.
-	wifiManager.getP2pPeerDevices((err, data:wifiManager.WifiP2pDevice) => {
+	wifiManager.getP2pPeerDevices((err, data:wifiManager.WifiP2pDevice[]) => {
     if (err) {
         console.error("get P2P peer devices error");
         return;
@@ -2109,7 +2136,7 @@ Represents P2P group configuration.
 | -------- | -------- | -------- | -------- | -------- |
 | deviceAddress | string | Yes| No| Device address.|
 | deviceAddressType<sup>10+</sup>| [DeviceAddressType](#deviceaddresstype10) | Yes| No| Device address type.|
-| netId | number | Yes| No| Network ID. The value **-1** indicates a temporary group, and **-2** indicates a persistent group.|
+| netId | number | Yes| No| Network ID. The value **-1** indicates a temporary group, and the value **-2** indicates a persistent group.|
 | passphrase | string | Yes| No| Passphrase of the group.|
 | groupName | string | Yes| No| Name of the group.|
 | goBand | [GroupOwnerBand](#groupownerband9) | Yes| No| Frequency band of the group.|
@@ -2213,7 +2240,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
   
   let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
       console.info("p2p peer device change receive event: " + JSON.stringify(result));
-      wifiManager.getP2pPeerDevices((err, data:wifiManager.WifiP2pDevice) => {
+      wifiManager.getP2pPeerDevices((err, data:wifiManager.WifiP2pDevice[]) => {
           if (err) {
               console.error('failed to get peer devices: ' + JSON.stringify(err));
               return;

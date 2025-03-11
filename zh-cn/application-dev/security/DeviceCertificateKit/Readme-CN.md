@@ -12,5 +12,6 @@
   - [证书链对象的创建和校验](create-verify-certchain-object.md)
 - 证书管理<!--certmanager-->
   - [证书管理概述](certManager-overview.md)
-  - [证书管理开发指导](certManager-guidelines.md)
+  - [应用证书凭据开发指导](certManager-private-credential-guidelines.md)
+  - [CA证书开发指导](certManager-ca-certs-guidelines.md)
   - [证书管理对话框开发指导](certManagerDialog-guidelines.md)

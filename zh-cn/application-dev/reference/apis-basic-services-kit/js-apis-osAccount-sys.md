@@ -2589,6 +2589,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
+| 12300013 | Network exception. |
 | 12300101 | The credential is incorrect. |
 | 12300102 | Credential not enrolled. |
 | 12300105 | The trust level is not supported. |
@@ -2597,7 +2598,10 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300110 | The authentication is locked. |
 | 12300111 | The authentication time out. |
 | 12300112 | The authentication service is busy. |
+| 12300113 | The authentication service does not exist. |
+| 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -2655,6 +2659,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType, authTrustLevel or options. |
 | 12300003 | Account not found. |
+| 12300013 | Network exception. |
 | 12300101 | The credential is incorrect. |
 | 12300102 | Credential not enrolled. |
 | 12300105 | The trust level is not supported. |
@@ -2663,7 +2668,10 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300110 | The authentication is locked. |
 | 12300111 | The authentication time out. |
 | 12300112 | The authentication service is busy. |
+| 12300113 | The authentication service does not exist. |
+| 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -2723,16 +2731,20 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
+| 12300003 | Account not found. |
+| 12300013 | Network exception. |
 | 12300101 | The credential is incorrect. |
 | 12300102 | Credential not enrolled. |
-| 12300003 | Account not found. |
 | 12300105 | The trust level is not supported. |
 | 12300106 | The authentication type is not supported. |
 | 12300109 | The authentication, enrollment, or update operation is canceled. |
 | 12300110 | The authentication is locked. |
 | 12300111 | The authentication time out. |
 | 12300112 | The authentication service is busy. |
+| 12300113 | The authentication service does not exist. |
+| 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -3593,6 +3605,7 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 | 12300112 | The authentication service is busy. |
 | 12300113 | The account authentication service does not exist. |
 | 12300114 | The account authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -3651,6 +3664,7 @@ authWithPopup(callback: IUserAuthCallback): void
 | 12300112 | The authentication service is busy. |
 | 12300113 | The account authentication service does not exist. |
 | 12300114 | The account authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -3706,6 +3720,7 @@ authWithPopup(localId: number, callback: IUserAuthCallback): void
 | 12300112 | The authentication service is busy. |
 | 12300113 | The account authentication service does not exist. |
 | 12300114 | The account authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -3751,7 +3766,10 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
+| 12300014 | Not authenticated. |
 | 12300111 | The authentication time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -3808,7 +3826,10 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
+| 12300014 | Not authenticated. |
 | 12300111 | The authentication time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -3967,7 +3988,10 @@ getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;
 | 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
+| 12300014 | Not authenticated. |
 | 12300111 | The authentication time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -4025,7 +4049,10 @@ getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountIn
 | 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
+| 12300014 | Not authenticated. |
 | 12300111 | The authentication time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -4076,6 +4103,8 @@ getAccessToken(businessParams: Record<string, Object>, callback: AsyncCallback&l
 | 12300013 | Network exception. |
 | 12300014 | The domain account is not authenticated. |
 | 12300111 | The authentication time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -4133,6 +4162,8 @@ getAccessToken(businessParams: Record<string, Object>): Promise&lt;Uint8Array&gt
 | 12300013 | Network exception. |
 | 12300014 | The domain account is not authenticated. |
 | 12300111 | The authentication time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
@@ -4202,178 +4233,6 @@ isAuthenticationExpired(domainAccountInfo: DomainAccountInfo): Promise&lt;boolea
   } catch (e) {
     console.log('isAuthenticationExpired exception: ' + e);
   }
-  ```
-
-## DomainServerConfig<sup>12+</sup>
-
-域服务器配置。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Account.OsAccount
-
-| 名称      | 类型   | 必填 | 说明       |
-| ----------- | ------ | ---- | ---------- |
-| parameters | Record<string, Object> | 是   | 服务器配置参数。 |
-| id | string | 是   | 服务器配置标识。|
-| domain | string | 是 | 服务器所属的域。 |
-
-## DomainServerConfigManager<sup>12+</sup>
-
-域服务器配置管理类。
-
-### addServerConfig<sup>12+</sup>
-
-static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;DomainServerConfig&gt;
-
-添加域服务器配置。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Account.OsAccount
-
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
-
-**参数：**
-
-| 参数名    | 类型                     | 必填 | 说明                      |
-| ----------| ----------------------- | --- | -------------------------- |
-| parameters   | Record<string, Object>  | 是  | 指示域服务器配置参数。 |
-
-**返回值：**
-
-| 类型                      | 说明                     |
-| :------------------------ | ----------------------- |
-| Promise&lt;[DomainServerConfig](#domainserverconfig12)&gt; | Promise对象，返回新添加的域服务器配置。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息                     |
-| -------- | --------------------------- |
-| 201 | Permission denied.|
-| 202 | Not system application.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801 | Capability not supported.|
-| 12300001 | The system service works abnormally. |
-| 12300002 | - Invalid server config parameters. |
-| 12300211 | - Server unreachable. |
-
-**示例：**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  let configParams: Record<string, Object> = {
-    'uri': 'test.example.com',
-    'port': 100
-  };
-  osAccount.DomainServerConfigManager.addServerConfig(configParams).then((
-    serverConfig: osAccount.DomainServerConfig) => {
-    console.log('add server configuration successfully, the return config: ' + JSON.stringify(serverConfig));
-  }).catch((err: BusinessError) => {
-    console.log('add server configuration failed, error: ' + JSON.stringify(err));
-  });
-  ```
-
-### removeServerConfig<sup>12+</sup>
-
-static removeServerConfig(configId: string): Promise&lt;void&gt;
-
-删除域服务器配置。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Account.OsAccount
-
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
-
-**参数：**
-
-| 参数名    | 类型                     | 必填 | 说明                      |
-| ----------| ----------------------- | --- | -------------------------- |
-| configId   | string  | 是  | 指示服务器配置标识。 |
-
-**返回值：**
-
-| 类型                      | 说明                     |
-| :------------------------ | ----------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息                     |
-| -------- | --------------------------- |
-| 201 | Permission denied.|
-| 202 | Not system application.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801 | Capability not supported.|
-| 12300001 | The system service works abnormally. |
-| 12300212 | - Server config not found. |
-
-**示例：**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  let configParams: Record<string, Object> = {
-    'uri': 'test.example.com',
-    'port': 100
-  };
-  osAccount.DomainServerConfigManager.addServerConfig(configParams).then((
-    serverConfig: osAccount.DomainServerConfig) => {
-    console.log('add domain server configuration successfully, the added config: ' + JSON.stringify(serverConfig));
-    osAccount.DomainServerConfigManager.removeServerConfig(serverConfig.id);
-    console.log('remove domain server configuration successfully');
-  }).catch((err: BusinessError) => {
-    console.log('add server configuration failed, error: ' + JSON.stringify(err));
-  });
-  ```
-
-### getAccountServerConfig<sup>12+</sup>
-
-static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;DomainServerConfig&gt;
-
-获取目标域账号的服务器配置。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Account.OsAccount
-
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
-
-**参数：**
-
-| 参数名    | 类型                     | 必填 | 说明                      |
-| ----------| ----------------------- | --- | -------------------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是  | 指示目标域账号信息。 |
-
-**返回值：**
-
-| 类型                      | 说明                     |
-| :------------------------ | ----------------------- |
-| Promise&lt;[DomainServerConfig](#domainserverconfig12)&gt; | Promise对象，返回目标账号的域服务器配置。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息                     |
-| -------- | --------------------------- |
-| 201 | Permission denied.|
-| 202 | Not system application.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801 | Capability not supported.|
-| 12300001 | The system service works abnormally. |
-| 12300003 | Domain account not found. |
-
-**示例：**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  let accountInfo: osAccount.DomainAccountInfo = {
-    'accountName': 'demoName',
-    'accountId': 'demoId',
-    'domain': 'demoDomain'
-  };
-  osAccount.DomainServerConfigManager.getAccountServerConfig(accountInfo).then((
-    serverConfig: osAccount.DomainServerConfig) => {
-    console.log('get account server configuration successfully, the return config: ' + JSON.stringify(serverConfig));
-  }).catch((err: BusinessError) => {
-    console.log('add server configuration failed, error: ' + JSON.stringify(err));
-  });
   ```
 
 ## UserIdentityManager<sup>8+</sup>
@@ -4834,7 +4693,6 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
-| 12300102 | Credential not enrolled. |
 
 **示例：**
   ```ts
@@ -4878,7 +4736,6 @@ getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCred
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType. |
-| 12300102 | Credential not enrolled. |
 
 **示例：**
   ```ts
@@ -4928,7 +4785,6 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 | 401 | Parameter error. Possible causes: Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType. |
-| 12300102 | Credential not enrolled. |
 
 **示例：**
   ```ts
@@ -5571,7 +5427,6 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | ----------- | ------ | ---- | ---------- |
 | accountId<sup>10+</sup> | string | 否   | 域账号标识。<br>**系统接口：** 此接口为系统接口，默认为undefined。 |
 | isAuthenticated<sup>11+</sup>| boolean | 否 | 指示域账号是否已认证。<br>**系统接口：** 此接口为系统接口，默认为false。|
-| serverConfigId<sup>12+</sup>| boolean | 否 | 域账号所属服务器标识。<br>**系统接口：** 此接口为系统接口，默认为undefined。|
 
 ## ConstraintSourceTypeInfo<sup>9+</sup>
 

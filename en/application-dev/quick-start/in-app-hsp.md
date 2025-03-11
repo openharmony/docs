@@ -20,6 +20,12 @@ A Harmony Shared Package (HSP) is a dynamic shared package that can contain code
 - HSP supports the declaration of the [ExtensionAbility](../application-models/extensionability-overview.md) and [UIAbility](../application-models/uiability-overview.md) components in the configuration file, however, ExtensionAbility or UIAbility with entry capabilities (that is, entity.system.home and ohos.want.action.home are configured for the **skill** tag) is not supported.
 - An HSP can depend on other HARs or HSPs, but does not support cyclic dependency or dependency transfer.
 
+> **NOTE**
+> 
+> Cyclic dependency: For example, there are three HSPs. HSP-A depends on HSP-B, HSP-B depends on HSP-C, and HSP-C depends on HSP-A.
+>
+> Dependency transfer: For example, there are three HSPs. HSP-A depends on HSP-B, and HSP-B depends on HSP-C. Dependency transfer is not supported indicating that HSP-A can use the methods and components of HSP-B, but cannot directly use that of HSP-C.
+
 
 ## Creating an HSP
 Create an HSP module in DevEco Studio. For details, see [Creating an HSP Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-hsp-V13#section7717162312546). The following describes how to create an HSP module named **library**. The basic project directory structure is as follows:

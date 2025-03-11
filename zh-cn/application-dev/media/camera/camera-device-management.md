@@ -36,10 +36,10 @@
      let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
      if (cameraArray != undefined && cameraArray.length > 0) {
        for (let index = 0; index < cameraArray.length; index++) {
-         console.info('cameraId : ' + cameraArray[index].cameraId);  // 获取相机ID
-         console.info('cameraPosition : ' + cameraArray[index].cameraPosition);  // 获取相机位置
-         console.info('cameraType : ' + cameraArray[index].cameraType);  // 获取相机类型
-         console.info('connectionType : ' + cameraArray[index].connectionType);  // 获取相机连接类型
+         console.info('cameraId : ' + cameraArray[index].cameraId);  // 获取相机ID。
+         console.info('cameraPosition : ' + cameraArray[index].cameraPosition);  // 获取相机位置。
+         console.info('cameraType : ' + cameraArray[index].cameraType);  // 获取相机类型。
+         console.info('connectionType : ' + cameraArray[index].connectionType);  // 获取相机连接类型。
        }
        return cameraArray;
      } else {
@@ -63,19 +63,19 @@ function onCameraStatusChange(cameraManager: camera.CameraManager): void {
       console.error(`Callback Error, errorCode: ${err.code}`);
       return;
     }
-    // 如果当通过USB连接相机设备时，回调函数会返回新的相机出现状态
+    // 如果当通过USB连接相机设备时，回调函数会返回新的相机出现状态。
     if (cameraStatusInfo.status == camera.CameraStatus.CAMERA_STATUS_APPEAR) {
       console.info(`New Camera device appear.`);
     }
-    // 如果当断开相机设备USB连接时，回调函数会返回相机被移除状态
+    // 如果当断开相机设备USB连接时，回调函数会返回相机被移除状态。
     if (cameraStatusInfo.status == camera.CameraStatus.CAMERA_STATUS_DISAPPEAR) {
       console.info(`Camera device has been removed.`);
     }
-    // 相机被关闭时，回调函数会返回相机可用状态
+    // 相机被关闭时，回调函数会返回相机可用状态。
     if (cameraStatusInfo.status == camera.CameraStatus.CAMERA_STATUS_AVAILABLE) {
       console.info(`Current Camera is available.`);
     }
-    // 相机被打开/占用时，回调函数会返回相机不可用状态
+    // 相机被打开/占用时，回调函数会返回相机不可用状态。
     if (cameraStatusInfo.status == camera.CameraStatus.CAMERA_STATUS_UNAVAILABLE) {
       console.info(`Current Camera has been occupied.`);
     }

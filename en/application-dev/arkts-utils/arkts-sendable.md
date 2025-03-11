@@ -60,7 +60,7 @@ A Sendable interface must meet the following requirements:
 
 2. It must meet the Sendable constraints. For details, see [Usage Rules and Constraints for Sendable](sendable-constraints.md).
 
-### Supported Data Types for Sendable
+### Sendable Data Types
 
 - All ArkTS basic data types: boolean, number, string, bigint, null, and undefined.
 
@@ -94,7 +94,7 @@ A Sendable interface must meet the following requirements:
 
 ## Implementation Principle of Sendable
 
-To implement pass-by-reference of [Sendable data](#supported-data-types-for-sendable) between different concurrent instances, Sendable objects are allocated in a shared heap to achieve memory sharing across concurrent instances.
+To implement pass-by-reference of [Sendable data](#sendable-data-types) between different concurrent instances, Sendable objects are allocated in a shared heap to achieve memory sharing across concurrent instances.
 
 
 The shared heap is a process-level heap space. Unlike the local heap of a virtual machine, which can only be accessed by a single concurrent instance, the shared heap can be accessed by all threads. The cross-thread behavior of a Sendable object is pass-by-reference. Therefore, a Sendable object may be referenced by multiple concurrent instances, and its liveness depends on whether any concurrent instance holds a reference to it.

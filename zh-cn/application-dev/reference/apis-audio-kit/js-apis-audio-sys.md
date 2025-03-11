@@ -198,7 +198,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 | DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup>  | 8   | 分布式输入设备。<br/>此接口为系统接口。    |
 | ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | 分布式输入和输出设备。<br/>此接口为系统接口。 |
 
-## EffectFlag<sup>15+</sup>
+## EffectFlag<sup>18+</sup>
 
 枚举，音效分类。
 
@@ -211,7 +211,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 | RENDER_EFFECT_FLAG  | 0      | 下行音效类型。   |
 | CAPTURE_EFFECT_FLAG | 1      | 上行音效类型。   |
 
-## AudioEffectProperty<sup>15+</sup>
+## AudioEffectProperty<sup>18+</sup>
 
 音效属性。
 
@@ -223,7 +223,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 | ------------------ | ---- | ---- | --------- |
 | name         | string | 是 | 音效名称。 |
 | category     | string | 是 | 音效分类。 |
-| flag        | [EffectFlag](#effectflag15) | 是 | 音效分类。 |
+| flag        | [EffectFlag](#effectflag18) | 是 | 音效分类。 |
 
 ## StreamUsage
 
@@ -404,7 +404,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 | :------------------------------------------- | :----- | :--------------------- |
 | SOURCE_TYPE_WAKEUP <sup>10+</sup>            | 3 | 语音唤醒音频流录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core <br/>**需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE <br/> 此接口为系统接口|
 | SOURCE_TYPE_VOICE_CALL<sup>11+</sup>            | 4 | 通话录音的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core<br/>**需要权限：** ohos.permission.RECORD_VOICE_CALL <br/> 此接口为系统接口|
-| SOURCE_TYPE_VOICE_TRANSCRIPTION<sup>15+</sup>   | 12     | 语音转写音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core<br/> 此接口为系统接口|
+| SOURCE_TYPE_VOICE_TRANSCRIPTION<sup>18+</sup>   | 12     | 语音转写音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core<br/> 此接口为系统接口|
 
 ## VolumeAdjustType<sup>10+</sup>
 
@@ -587,7 +587,7 @@ audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
 });
 ```
 
-### getEffectManager<sup>15+</sup>
+### getEffectManager<sup>18+</sup>
 
 getEffectManager(): AudioEffectManager
 
@@ -601,7 +601,7 @@ getEffectManager(): AudioEffectManager
 
 | 类型                                           | 说明                          |
 |----------------------------------------------| ----------------------------- |
-| [AudioEffectManager](#audioeffectmanager15) | AudioEffectManager实例 |
+| [AudioEffectManager](#audioeffectmanager18) | AudioEffectManager实例 |
 
 **错误码：**
 
@@ -1355,12 +1355,12 @@ audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, au
   console.error('Fail to adjust the system volume by step.');
 });
 ```
-## AudioEffectManager<sup>15+</sup>
+## AudioEffectManager<sup>18+</sup>
 
-音频效果管理。在使用AudioEffectManager的接口前，需要使用[getEffectManager](geteffectmanager15)获取AudioEffectManager实例。
+音频效果管理。在使用AudioEffectManager的接口前，需要使用[getEffectManager](#geteffectmanager18)获取AudioEffectManager实例。
 
 
-### getSupportedAudioEffectProperty<sup>15+</sup>
+### getSupportedAudioEffectProperty<sup>18+</sup>
 
 getSupportedAudioEffectProperty(): Array\<AudioEffectProperty>
 
@@ -1376,7 +1376,7 @@ getSupportedAudioEffectProperty(): Array\<AudioEffectProperty>
 
 | 类型                                                                      | 说明                                    |
 | --------------------------------------------------------------------------| --------------------------------------- |
-| Array\<[AudioEffectProperty](#audioeffectproperty15)>     | 返回当前设备支持的音效模式。              |
+| Array\<[AudioEffectProperty](#audioeffectproperty18)>     | 返回当前设备支持的音效模式。              |
 
 **错误码：**
 
@@ -1403,7 +1403,7 @@ try {
 ```
 
 
-### getAudioEffectProperty<sup>15+</sup>
+### getAudioEffectProperty<sup>18+</sup>
 
 getAudioEffectProperty(): Array\<AudioEffectProperty>
 
@@ -1419,7 +1419,7 @@ getAudioEffectProperty(): Array\<AudioEffectProperty>
 
 | 类型                                                                      | 说明                                    |
 | --------------------------------------------------------------------------| --------------------------------------- |
-| Array\<[AudioEffectProperty](#audioeffectproperty15)>     | 返回当前音效模式。                        |
+| Array\<[AudioEffectProperty](#audioeffectproperty18)>     | 返回当前音效模式。                        |
 
 **错误码：**
 
@@ -1445,7 +1445,7 @@ try {
 }
 ```
 
-### setAudioEffectProperty<sup>15+</sup>
+### setAudioEffectProperty<sup>18+</sup>
 
 setAudioEffectProperty(propertyArray: Array\<AudioEffectProperty>): void
 
@@ -1460,7 +1460,7 @@ setAudioEffectProperty(propertyArray: Array\<AudioEffectProperty>): void
 **参数：**
 | 参数名        | 类型                                                  | 必填     | 说明                         |
 | ------------- | ----------------------------------------------------- | -------- | ---------------------------- |
-| propertyArray | Array\<[AudioEffectProperty](#audioeffectproperty15)> | 是       |  需要设置的音效模式。        |
+| propertyArray | Array\<[AudioEffectProperty](#audioeffectproperty18)> | 是       |  需要设置的音效模式。        |
 
 **错误码：**
 

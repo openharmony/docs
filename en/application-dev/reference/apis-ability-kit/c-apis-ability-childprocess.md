@@ -47,7 +47,9 @@ The created child process does not support the UI or the calling of context-rela
 
 > **NOTE**
 >
-> Currently, only 2-in-1 devices are supported, and only one native child process can be started for a process.
+> This function is valid only for 2-in-1 devices.
+>
+> Since API version 15, a single process supports a maximum of 50 native child processes. In API version 14 and earlier versions, a single process supports only one native child process.
 
 ## Type Description
 ### OH_Ability_OnNativeChildProcessStarted
@@ -183,7 +185,7 @@ Enumerates the error codes used by the native child process module.
 | NCP_ERR_INVALID_PARAM               | Invalid parameter.                                          |
 | NCP_ERR_NOT_SUPPORTED               | Creating a native child process is not supported.                                |
 | NCP_ERR_INTERNAL                    | Internal error.                                          |
-| NCP_ERR_BUSY                        | A new child process cannot be created during the startup of another native child process. You can try again after the child process is started.|
+| NCP_ERR_BUSY                        | A new child process cannot be created during the startup of another native child process. You can try again after the child process is started. This function is deprecated since API version 15.|
 | NCP_ERR_TIMEOUT                     | Starting the native child process times out.                                 |
 | NCP_ERR_SERVICE_ERROR               | Server error.                                         |
 | NCP_ERR_MULTI_PROCESS_DISABLED      | The multi-process mode is disabled. A child process cannot be started.                             |
@@ -246,7 +248,9 @@ The processing logic sequence is shown in the following pseudocode:
 
 > **NOTE**
 >
-> Currently, only 2-in-1 devices are supported, and only one native child process can be started for a process.
+> This function is valid only for 2-in-1 devices.
+>
+> Since API version 15, a single process supports a maximum of 50 native child processes. In API version 14 and earlier versions, a single process supports only one native child process.
 
 **Since**: 12
 

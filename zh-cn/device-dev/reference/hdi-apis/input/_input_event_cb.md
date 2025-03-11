@@ -38,6 +38,6 @@ void(* InputEventCb::EventPkgCallback) (const InputEventPackage **pkgs, uint32_t
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| eventData | 输入参数，驱动上报的Input事件数据。  | 
+| pkgs | 输入参数，驱动上报的Input事件数据。  | 
 | count | 输入参数，Input事件数据包的个数。  | 
 | devIndex | 输入参数，Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 

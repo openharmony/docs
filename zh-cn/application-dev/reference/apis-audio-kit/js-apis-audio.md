@@ -351,6 +351,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | USB_HEADSET          | 22     | USB耳机，带麦克风。                                       |
 | DISPLAY_PORT<sup>12+</sup>        | 23     | DisplayPort（显示接口，简称DP），用于外接扩展设备。           |
 | REMOTE_CAST<sup>12+</sup>        | 24     | 音频被系统应用投送到其他远程的设备。           |
+| USB_DEVICE<sup>18+</sup>        | 25 | USB设备（不包含USB耳机）。           |
 | DEFAULT<sup>9+</sup> | 1000   | 默认设备类型。                                            |
 
 ## CommunicationDeviceType<sup>9+</sup>
@@ -5723,7 +5724,7 @@ getStreamInfo(): Promise<AudioStreamInfo\>
 
 | 类型                                           | 说明                   |
 | :--------------------------------------------- | :--------------------- |
-| Promise<[AudioStreamInfo](#audiostreaminfo8)\> | Promise对象，返回音频流信息. |
+| Promise<[AudioStreamInfo](#audiostreaminfo8)\> | Promise对象，返回音频流信息。 |
 
 **示例：**
 
@@ -5753,7 +5754,7 @@ getStreamInfoSync(): AudioStreamInfo
 
 | 类型                                           | 说明                   |
 | :--------------------------------------------- | :--------------------- |
-| [AudioStreamInfo](#audiostreaminfo8) | 返回音频流信息. |
+| [AudioStreamInfo](#audiostreaminfo8) | 返回音频流信息。 |
 
 **示例：**
 

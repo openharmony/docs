@@ -118,7 +118,7 @@
 | Release | 鼠标按键松开。 |
 | Move    | 鼠标移动。   |
 | Hover   | 鼠标悬浮。<br/>**说明：** 该枚举值无效。   |
-| Cancel<sup>16+</sup>  | 鼠标按键被取消。 |
+| Cancel<sup>18+</sup>  | 鼠标按键被取消。 |
 
 ## ModifierKey<sup>10+</sup>
 
@@ -253,7 +253,7 @@
 | -------- | ---------- |
 | Unknown  | 输入设备类型未知。  |
 | Keyboard | 输入设备类型为键盘。 |
-| JOYSTICK<sup>15+</sup> | 输入设备类型为游戏手柄。 |
+| JOYSTICK<sup>15+</sup> | 输入设备类型为游戏手柄。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 
 ## Edge
 
@@ -865,7 +865,7 @@ Nullable\<T> {
 | NORMAL  | CJK(中文、日文、韩文)文本可以在任意2个字符间断行，而Non-CJK文本（如英文等）只能在空白符处断行。 |
 | BREAK_ALL | 对于Non-CJK的文本，可在任意2个字符间断行。对于CJK与NORMAL效果一致。|
 | BREAK_WORD | 与BREAK_ALL相同，对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行，保障单词优先完整显示。若整一行文本均无断行破发点时，则在任意2个字符间断行。对于CJK与NORMAL效果一致。|
-| HYPHENATION<sup>16+</sup> | 对于Non-CJK的文本，可以按照音节断行。对于CJK的文本，换行效果与NORMAL效果保持一致。|
+| HYPHENATION<sup>18+</sup> | 对于Non-CJK的文本，可以按照音节断行。对于CJK的文本，换行效果与NORMAL效果保持一致。|
 
 ## LineBreakStrategy<sup>12+</sup>
 
@@ -1091,6 +1091,25 @@ Nullable\<T> {
 | HEIGHT_MD | 1   | 窗口高宽比大于等于0.8，且小于1.2。 |
 | HEIGHT_LG | 2   | 窗口高宽比大于等于1.2。 |
 
+## AxisModel<sup>15+</sup>
+
+定义焦点轴事件的轴类型。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 值   | 描述                               |
+| ------- | ---- | ---------------------------------- |
+| ABS_X  | 0    | 游戏手柄X轴。 |
+| ABS_Y  | 1    | 游戏手柄Y轴。 |
+| ABS_Z  | 2    | 游戏手柄Z轴。 |
+| ABS_RZ | 3    | 游戏手柄RZ轴。 |
+| ABS_GAS | 4    | 游戏手柄GAS轴。 |
+| ABS_BRAKE | 5    | 游戏手柄BRAKE轴。 |
+| ABS_HAT0X | 6    | 游戏手柄HAT0X轴。 |
+| ABS_HAT0Y | 7    | 游戏手柄HAT0Y轴。 |
+
 ## PageFlipMode<sup>15+</sup>
 
 表示鼠标滚轮翻页模式。
@@ -1165,11 +1184,11 @@ Nullable\<T> {
 | MEDIUM         | 1   | 中灵敏度。                                 |
 | HIGH 	         | 2   | 高灵敏度。                                 |
 
-## AxisAction<sup>16+</sup>
+## AxisAction<sup>18+</sup>
 
 定义轴事件的轴动作类型。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1180,3 +1199,17 @@ Nullable\<T> {
 | UPDATE | 2    | 轴事件触发中。 |
 | END    | 3    | 轴事件结束。 |
 | CANCEL | 4    | 轴事件取消。 |
+
+## InteractionHand<sup>15+</sup>
+
+定义事件是由左手点击触发还是右手点击触发。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 值   | 说明                   |
+| -------- | ---- | ---------------------- |
+| NONE     | 0   | 未知。 |
+| LEFT     | 1   | 左手。 |
+| RIGHT    | 2   | 右手。 |

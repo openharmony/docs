@@ -16,8 +16,8 @@ The **CommonEventPublishData** module provides APIs for defining common event co
 | --------------------- | -------------------- | ---- | ---- | ---------------------------- |
 | bundleName            | string               | No | Yes | Bundle name of the subscriber that can receive the common event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | code                  | number               | No | Yes | Result code of the common event. The default value is **0**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
-| data                  | string               | No | Yes | Custom result data of the common event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| data                  | string               | No | Yes | Custom result data of the common event. The data size cannot exceed 64 KB.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | subscriberPermissions | Array\<string>       | No | Yes | Permissions required for subscribers to receive the common event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.            |
 | isOrdered             | boolean              | No | Yes | Whether the common event is an ordered one.          |
-| isSticky              | boolean              | No | Yes | Whether the common event is a sticky one. Only system applications and system services are allowed to send sticky events.|
+| isSticky              | boolean              | No | Yes | Whether the common event is a sticky one. Only system applications and system services are allowed to send sticky events.<br>**Required Permissions**: [ohos.permission.COMMONEVENT_STICKY](../../security/AccessToken/permissions-for-all.md#ohospermissioncommonevent_sticky)|
 | parameters            | {[key: string]: any} | No | Yes | Additional information about the common event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |

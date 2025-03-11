@@ -271,6 +271,8 @@ onPrepareTerminationAsync(): Promise\<AbilityConstant.PrepareTermination>
 >
 > - 若异步回调内发生crash，按超时处理，执行等待超过10秒未响应，应用将被强制关闭。
 
+**需要权限**：ohos.permission.PREPARE_APP_TERMINATE
+
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core

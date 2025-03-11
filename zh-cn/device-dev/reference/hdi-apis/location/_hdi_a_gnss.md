@@ -65,8 +65,8 @@ enum AGnssRefInfoType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ANSS_REF_INFO_TYPE_CELLID | 小区ID | 
-| ANSS_REF_INFO_TYPE_MAC | MAC地址 | 
+| ANSS_REF_INFO_TYPE_CELLID | 小区ID。 | 
+| ANSS_REF_INFO_TYPE_MAC | MAC地址。 | 
 
 
 ### AGnssUserPlaneProtocol
@@ -84,10 +84,10 @@ enum AGnssUserPlaneProtocol
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| AGNSS_TYPE_SUPL | SUPL类型 | 
-| AGNSS_TYPE_C2K | C2K类型 | 
-| AGNSS_TYPE_SUPL_IMS | IMS类型 | 
-| AGNSS_TYPE_SUPL_EIMS | EIMS类型 | 
+| AGNSS_TYPE_SUPL | SUPL类型。 | 
+| AGNSS_TYPE_C2K | C2K类型。 | 
+| AGNSS_TYPE_SUPL_IMS | IMS类型。 | 
+| AGNSS_TYPE_SUPL_EIMS | EIMS类型。 | 
 
 
 ### CellIdType
@@ -105,10 +105,10 @@ enum CellIdType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| CELLID_TYPE_GSM | GSM小区 | 
-| CELLID_TYPE_UMTS | UMTS小区 | 
-| CELLID_TYPE_LTE | LTE小区 | 
-| CELLID_TYPE_NR | NR小区 | 
+| CELLID_TYPE_GSM | GSM小区。 | 
+| CELLID_TYPE_UMTS | UMTS小区。 | 
+| CELLID_TYPE_LTE | LTE小区。 | 
+| CELLID_TYPE_NR | NR小区。 | 
 
 
 ### DataLinkSetUpType
@@ -145,6 +145,6 @@ enum SubscriberSetIdType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| SETID_TYPE_NONE | 未知类型 | 
-| SETID_TYPE_IMSI | IMSI类型 | 
-| SETID_TYPE_MSISDM | MSISDM类型 | 
+| SETID_TYPE_NONE | 未知类型。 | 
+| SETID_TYPE_IMSI | IMSI类型。 | 
+| SETID_TYPE_MSISDM | MSISDM类型。 | 

@@ -6,44 +6,20 @@ With support for hybrid development, the **ContentSlot** component is recommende
 
 ## APIs
 
-### ContentSlot API
+### ArkTS APIs
 
-```ts
-ContentSlot(content: Content); // You need to use NodeContent provided by ArkUI as the manager.
-```
-
-| Name | Type| Mandatory| Description                                                    |
-| ------- | -------- | ---- | ------------------------------------------------------------ |
-| content | Content  | Yes  | Manager of the **ContentSlot** component. Through the APIs provided by the native side, it can register and trigger the attach and detach event callbacks for **ContentSlot**, as well as manage the child components of **ContentSlot**.|
+| Name | Description|
+| ------- | -------- |
+| ContentSlot(content: Content) | Manager of the **ContentSlot** component. Through the APIs provided by the native side, it can register and trigger the attach and detach event callbacks for **ContentSlot**, as well as manage the child components of **ContentSlot**.|
 
 ```ts
 abstract class Content {
 }
 ```
 
-### ContentSlotInterface
+### Native APIs
 
-(content: Content): ContentSlotAttribute;
-
-Called when content is added to this **ContentSlot** component.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name | Type| Mandatory| Description                                                    |
-| ------- | -------- | ---- | ------------------------------------------------------------ |
-| content | Content  | Yes  | Manager of the **ContentSlot** component. Through the APIs provided by the native side, it can register and trigger the attach and detach event callbacks for **ContentSlot**, as well as manage the child components of **ContentSlot**.|
-
-### ContentSlotAttribute
-
-Defines the **ContentSlot** attributes to prevent incorrect recursive use of **ContentSlot**.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-### Native API
-
-| API| Description|
+| Name| Description|
 | -------- | -------- |
 |OH_ArkUI_NodeContent_RegisterCallback(ArkUI_NodeContentHandle content, ArkUI_NodeContentCallback callback)|Registers an event with the **Content** manager.|
 |OH_ArkUI_NodeContentEvent_GetEventType(ArkUI_NodeContentEvent* event)|Obtains the type of the event triggered on the **Content**.|
@@ -61,9 +37,10 @@ Defines the **ContentSlot** attributes to prevent incorrect recursive use of **C
 ### Code Implementation in ArkTS
 
 ```ts
-import { nativeNode } from'libNativeNode.so' // so. file implemented by you.
+import { nativeNode } from'libNativeNode.so' // The so. file implemented by you.
 import { NodeContent } from '@kit.ArkUI'
 
+@Entry
 @Component
 struct Parent {
     private nodeContent: Content = new NodeContent();

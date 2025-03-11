@@ -338,8 +338,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -397,8 +397,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -573,8 +573,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -632,8 +632,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -699,8 +699,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -763,8 +763,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -827,7 +827,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ID| Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
-| 3100201 | Tag running state is abnormal in service. |
+| 3100201 | The tag running state is abnormal in the service. |
 
 **Example**
 
@@ -865,8 +865,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -924,8 +924,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -1048,8 +1048,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -1112,8 +1112,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 ```js
@@ -1180,8 +1180,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -1241,8 +1241,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -1310,8 +1310,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -1374,8 +1374,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -1446,8 +1446,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -1509,8 +1509,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -1579,8 +1579,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -1642,8 +1642,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -1712,8 +1712,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -1773,8 +1773,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -1842,8 +1842,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -1903,8 +1903,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -2231,8 +2231,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -2293,8 +2293,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -2362,8 +2362,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -2425,8 +2425,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -2529,8 +2529,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -2599,8 +2599,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -2670,8 +2670,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -2740,8 +2740,8 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ------- | -------|
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -2782,7 +2782,7 @@ function nfcTechDemo() {
 
 ## BarcodeTag<sup>16+</sup>
 
-Provides APIs to access barcode tag properties and perform I/O operations on a tag. This class inherits from **TagSession**.
+Provides the capability of reading barcode label attributes and accessing I/O operations. It is inherited from **TagSession**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
 
@@ -2814,6 +2814,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ID| Error Message|
 | ------- | -------|
 | 201  | Permission denied. |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 | 3100205 | The tag leaves the field. |
