@@ -152,10 +152,12 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
       ```
    After the decoding is complete and the PixelMap is obtained, you can perform subsequent [image processing](image-transformation.md).
 
-5. Release the **PixelMap** instance.
+5. Release the **PixelMap** and **ImageSource** instances.
 
+   Ensure that the asynchronous operations of the **PixelMap** and **ImageSource** instances have finished executing. After these variables are no longer needed, you can manually call the APIs below to release them.
    ```ts
    pixelMap.release();
+   imageSource.release();
    ```
 
 ## Sample Code - Decoding an Image in Resource Files
