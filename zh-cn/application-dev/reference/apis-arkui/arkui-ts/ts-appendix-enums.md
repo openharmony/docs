@@ -1170,11 +1170,11 @@ Nullable\<T> {
 | UPDATE	        | 1  | 表冠转动中。                            |
 | END	            | 2  | 表冠停止转动。                          |
 
-## CrownSensitivity<sup>16+</sup>
+## CrownSensitivity<sup>18+</sup>
 
 旋转表冠灵敏度。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
