@@ -1,4 +1,4 @@
-# 分布式设备管理ChangeLog
+# 分布式设备管理Changelog
 
 ## cl.distributedDeviceManager.1 分布式设备管理API接口错误码变更
 
@@ -9,12 +9,15 @@
 **变更原因**
 
 - 错误码401可能原因包括：1. 必选参数未指定；2. 参数类型不正确；3. 参数校验失败。
+
   接口getAvailableDeviceListSync与stopDiscovering没有可传参数，所以需要删除错误码401。
 
 - 错误码11600104可能原因为：上一次发现业务未结束。
+
   接口stopDiscovering流程不会触发该错误，所以需要删除错误码11600104。
 
 - 错误码201可能原因为：权限校验失败。
+
   接口releaseDeviceManager和createDeviceManager配对使用，两者权限校验逻辑保持一致，createDeviceManager不存在权限校验，所以需要删除错误码201。
 
 **变更影响**
