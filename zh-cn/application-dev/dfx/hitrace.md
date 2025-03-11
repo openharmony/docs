@@ -29,7 +29,7 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。通过使�
 
 > **说明**
 >
-> 快照模式定义为固定trace标签的trace采集服务，默认情况不落盘，开发者可通过 `--dump_bgsrv` 命令触发当前时刻的trace转储，trace为二进制格式，文件默认生成在 `/data/log/hitrace` 目录下，文件命名格式为`trace-YYMMDDHHmmSS@[BOOT_TIME].sys`。可通过[smpartperf在线工具](https://www.smartperf.host)进行查看。
+> 快照模式定义为固定trace标签的trace采集服务，默认情况不落盘，开发者可通过 `--dump_bgsrv` 命令触发当前时刻的trace转储，trace为二进制格式，文件默认生成在 `/data/log/hitrace` 目录下，文件命名格式为`trace-YYMMDDHHmmSS@[BOOT_TIME].sys`。可通过[smartperf在线工具](https://www.smartperf.host)进行查看。
 
 ## 常用命令
 

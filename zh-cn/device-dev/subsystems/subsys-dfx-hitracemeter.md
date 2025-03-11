@@ -1,10 +1,12 @@
-# HiTraceMeter概述
+# HiTraceMeter开发指导
 
-## 简介
+## HiTraceMeter概述
+
+### 简介
 
 HiTraceMeter在OpenHarmony中，为开发者提供业务流程调用链跟踪的维测接口。通过使用该接口所提供的功能，可以帮助开发者迅速获取指定业务流程调用链的运行日志、定位跨设备/跨进程/跨线程的故障问题。HiTraceMeter用来支持用户态的打点，采集用户态和内核态的trace数据,从而进行性能跟踪与分析的系统。
 
-## 基本概念
+### 基本概念
 
 HiTraceMeter系统主要分为三部分：
 
@@ -71,7 +73,7 @@ constexpr uint64_t HITRACE_TAG_NOT_READY = (1ULL << 63); // Reserved for initial
 constexpr uint64_t HITRACE_TAG_VALID_MASK = ((HITRACE_TAG_LAST - 1) | HITRACE_TAG_LAST);
 ```
 
-## 实现原理
+### 实现原理
 
 HiTraceMeter主要提供抓取用户态和内核态Trace数据的命令行工具，提供用户态打点的innerkits接口（c++）和kits接口（js），HiTraceMeter基于内核ftrace提供的用户态打点的扩展，利用ftrace的trace_marker节点，将用户空间通过打点接口写入的数据写进内核循环buffer缓冲区。其基本架构图如下：
 
@@ -81,7 +83,7 @@ HiTraceMeter主要提供抓取用户态和内核态Trace数据的命令行工具
 
 
 
-## 约束与限制
+### 约束与限制
 
 - HiTraceMeter所有功能与接口的实现都依赖于内核提供的ftrace功能，ftrace 是内核提供的一个 framework，采用 plugin 的方式支持开发人员添加更多种类的 trace 功能，因此使用HiTraceMeter之前要使能 ftrace，否则HiTraceMeter的功能无法使用（目前大部分Linux内核默认使能了ftrace，关于ftrace的详细介绍可查看内核ftrace相关资料 
   [ftrace相关资料](https://blog.csdn.net/Luckiers/article/details/124646205) ）。
@@ -89,17 +91,17 @@ HiTraceMeter主要提供抓取用户态和内核态Trace数据的命令行工具
   
   
 
-# HiTraceMeter开发指导
+## HiTraceMeter开发指导
 
 HiTraceMeter分为JS/C++应用打点API与数据采集命令行工具hitrace，下面分别介绍接口和命令行工具。
 
 
 
-## 场景介绍
+### 场景介绍
 
 在实际开发过程中，开发者可能会遇到app卡顿或者在代码调试过程中需要查看代码调用流程，HiTraceMeter接口提供了相应的接口来跟踪程序延时和代码调用流程，分析性能问题。
 
-## 接口说明
+### 接口说明
 
 C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开发者可以略过本节。标准系统上接口描述如下（hitrace_meter.h  [hitrace_meter.h](https://gitee.com/openharmony/hiviewdfx_hitrace/blob/master/interfaces/native/innerkits/include/hitrace_meter/hitrace_meter.h) ）：
 
@@ -129,7 +131,7 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 | ------------------------------------------------------------------ | ------- | -------------------------------------------------------------- |
 | void CountTrace(uint64_t label, const std::string& name, int64_t); | 计数trace | label: Trace category。<br />name: Trace的名称，IDE中会以此字段展示这段Trace。 |
 
-## 开发步骤
+### 开发步骤
 
 1. 编译依赖添加，需要修改的编译配置文件base\hiviewdfx\hitrace\cmd\BUILD.gn 。
    
@@ -178,11 +180,11 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
    
    抓取之后的数据可以在smartperf中"Open trace file"或者直接拖入图形区打开，关于smartperf的详细介绍可查看 [smartperf](https://toscode.gitee.com/openharmony-sig/smartperf) 。
 
-## 调测验证
+### 调测验证
 
 以下为一个demo调试过程，该demo使用了同步接口中的StartTrace和FinishTrace。
 
-1. 编写测试代码hitrace_example.cpp（ [hitrace_example.cpp](https://gitee.com/openharmony/hiviewdfx_hitrace/blob/master/cmd/example/hitrace_example.cpp)  ），将使用到的接口加入代码：
+1. 编写测试代码hitrace_example.cpp（ [hitrace_example.cpp](https://gitee.com/openharmony/hiviewdfx_hitrace/blob/master/example/hitrace_example.cpp)  ），将使用到的接口加入代码：
    
    ```cpp
    int main()
@@ -264,7 +266,7 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
    
    
 
-# HiTraceMeter命令行工具使用指导
+## HiTraceMeter命令行工具使用指导
 
 HiTraceMeter提供了可执行的二进制程序hitrace，设备刷openharmony后直接在shell中运行以下命令，抓取内核运行的数据，当前支持的操作如下：
 
@@ -281,7 +283,7 @@ HiTraceMeter提供了可执行的二进制程序hitrace，设备刷openharmony�
 | --trace_finish                | 停止抓trace，并将数据输出到指定位置（默认控制台）                              |
 | --trace_finish_nodump         | 停止抓trace，不输出trace信息                                 |
 | -l，--list_categories          | 输出手机能支持的trace模块                                          |
-| --overwrite                   | 当缓冲区满的时候，将丢弃最新的信息。（默认丢弃最老的日志）                            |
+| --overwrite                   | 当缓冲区满的时候，将丢弃最新的信息（默认丢弃最老的日志）                            |
 | -o filename，--output filename | 指定输出的目标文件名称                                              |
 | -z                            | 抓取trace后进行压缩                                             |
 
@@ -329,24 +331,24 @@ HiTraceMeter提供了可执行的二进制程序hitrace，设备刷openharmony�
   
   
 
-# 常见问题
+## 常见问题
 
-### hitrace抓数据不全或者没抓到数据
+#### hitrace抓数据不全或者没抓到数据
 
-#### 现象描述
+##### 现象描述
 
 执行hitrace命令抓数据不全或者没抓到数据。
 
-#### 根因分析
+##### 根因分析
 
 参数-t 时间设置过小或者-b缓冲区buffer设置过小导致数据丢失。
 
-#### 解决方法
+##### 解决方法
 
 可设置-t 60，-b 204800扩大抓trace时间和缓冲区buffer解决。
 
 
 
-# 参考
+## 参考
 
 更多关于HiTraceMeter的详细内容请参考：[轻量级的分布式调用链跟踪](https://gitee.com/openharmony/hiviewdfx_hitrace) 。
