@@ -866,7 +866,7 @@ try {
 
 getAppVolumePercentageForUid(uid: number\): Promise<number\>
 
-根据应用ID获取指定应用的音量(范围为0到100)，使用Promise方式异步返回结果。
+根据应用ID获取指定应用的音量（范围为0到100），使用Promise方式异步返回结果。
 
 **系统接口：** 该接口为系统接口。
 
@@ -882,7 +882,7 @@ getAppVolumePercentageForUid(uid: number\): Promise<number\>
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回应用的音量(范围为0到100)。 |
+| Promise&lt;number&gt; | Promise对象，返回应用的音量（范围为0到100）。 |
 
 **错误码：**
 
@@ -909,7 +909,7 @@ audioVolumeManager.getAppVolumePercentageForUid(20010041).then((value: number) =
 
 setAppVolumePercentageForUid(uid: number, volume: number\): Promise<void\>
 
-根据应用ID设置指定应用的音量(范围为0到100)，使用Promise方式异步返回结果。
+根据应用ID设置指定应用的音量（范围为0到100），使用Promise方式异步返回结果。
 
 **系统接口：** 该接口为系统接口。
 
@@ -957,9 +957,9 @@ isAppVolumeMutedForUid(uid: number, owned: boolean\): Promise<boolean\>
 
 根据应用ID查询应用音量是否已静音，使用Promise方式异步返回结果。
 
-> **说明**
+> **说明：**
 >
-> 如果有多个调用者设置了静音状态，只有当所有调用者都取消静音状态时，此应用的音量才会真正取消静音。
+> 如果有多个调用者设置了静音状态，那么只有当所有调用者都取消静音状态后，此应用才会真正取消静音。
 
 **系统接口：** 该接口为系统接口。
 
