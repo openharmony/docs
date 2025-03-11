@@ -11438,13 +11438,13 @@ export default class EntryAbility extends UIAbility {
 
 ### setWindowRectAutoSave<sup>18+</sup>
 
-setWindowRectAutoSave(enabled: boolean, isEnableSpecified: boolean): Promise&lt;void&gt;
+setWindowRectAutoSave(enabled: boolean, isSaveBySpecifiedFlag: boolean): Promise&lt;void&gt;
 
 设置主窗的尺寸记忆是否启用，使用Promise异步回调，仅对2in1设备生效。
 
-主窗口调用该接口时，通过设置enable，主窗口的尺寸记忆是否启用，同时通过设置isEnabeleSpecified，使能/去使能在specified模式下通过flag特异性记忆主窗口。
+主窗口调用该接口时，通过设置enable，主窗口的尺寸记忆是否启用，同时通过设置isSaveBySpecifiedFlag，使能/去使能在specified模式下通过flag特异性记忆主窗口。
 
-若isEnableSpecified设置为false，规格同[setWindowRectAutoSave(enabled: boolean)](#setWindowRectAutoSave14)。
+若isSaveBySpecifiedFlag设置为false，规格同[setWindowRectAutoSave(enabled: boolean)](#setWindowRectAutoSave14)。
 
 启用主窗口尺寸和specified记忆功能后，记忆关闭的窗口的尺寸和模式；
 
@@ -11470,7 +11470,7 @@ setWindowRectAutoSave(enabled: boolean, isEnableSpecified: boolean): Promise&lt;
 | 参数名    | 类型    | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
 | enabled | boolean | 是   | 设置主窗口的尺寸记忆是否启用，true为启用，false为不启用。 |
-| isEnabledSpcified | boolean | 是   | 设置specifiedFlag是否启用，true为启用，false为不启用。 |
+| isSaveBySpecifiedFlag | boolean | 是   | 设置specifiedFlag是否启用，true为启用，false为不启用。 |
 
 
 **返回值：**
