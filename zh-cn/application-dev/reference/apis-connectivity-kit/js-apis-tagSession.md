@@ -215,7 +215,7 @@ console.info("isTagConnected: " + isTagConnected);
 
 isConnected(): boolean
 
-检查是否已与标签建立连接。
+检查是否已与标签建立连接。如果返回未连接，则需要先调用[tagSession.connect](#connect9)建立连接。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
