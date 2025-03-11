@@ -25,7 +25,7 @@ Plugin组件模板参数。
 | source  | string | 是   | 组件模板名。                |
 | ability | string | 是   | 提供方Ability的bundleName。 |
 
-## PluginComponentManager
+## pluginComponentManager
 
 插件组件管理器。
 
@@ -182,7 +182,7 @@ function onRequestListener(source: Want, name: string, data: pluginComponentMana
 }
 ```
 
-### push
+### pluginComponentManager.push
 
 push(param: PushParameters , callback: AsyncCallback&lt;void&gt;): void
 
@@ -226,7 +226,7 @@ pluginComponentManager.push(
 )
 ```
 
-### request
+### pluginComponentManager.request
 
 request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackParameters&gt;): void
 
@@ -272,7 +272,7 @@ pluginComponentManager.request(
 )
 ```
 
-### on
+### pluginComponentManager.on
 
 on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback ): void
 
