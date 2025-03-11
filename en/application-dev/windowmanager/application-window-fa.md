@@ -4,7 +4,7 @@
 
 Immersive window: a window display mode where the system windows (generally the status bar and navigation bar) are hidden to allow users to fully engage with the content.
 
-The immersive window feature is applicable only to the main window of an application in full-screen mode. It does not apply to a main window in any other mode or a subwindow (for example, a dialog box or a floating window).
+The immersive window feature is applicable only to the main window of an application in full-screen mode. It does not apply to a main window in any other mode or a child window (for example, a dialog box or a floating window).
 
 > **NOTE**
 >
@@ -14,7 +14,7 @@ The immersive window feature is applicable only to the main window of an applica
 
 In the FA model, you can perform the following operations during application window development:
 
-- Setting the properties and content of the subwindow of an application
+- Setting the properties and content of the child window of an application
 
 - Experiencing the immersive window feature
 
@@ -24,7 +24,7 @@ The table below lists the common APIs used for application window development. F
 
 | Instance        | API                                                      | Description                                                        |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow.<br>**config**: parameters used for creating the window.              |
+| Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a child window.<br>**config**: parameters used for creating the window.              |
 | Window static method| findWindow(name: string): Window                             | Finds a window based on the name.                                    |
 | Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the content of a page, with its path in the current project specified, to this window.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **config.json** file of the project in the FA model.                                |
 | Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.                                              |
@@ -38,30 +38,30 @@ The table below lists the common APIs used for application window development. F
 | Window         | destroyWindow(callback: AsyncCallback&lt;void&gt;): void     | Destroys this window.                                              |
 
 
-## Setting the Subwindow of an Application
+## Setting the Child Window of an Application
 
-You can create a subwindow, such as a dialog box, and set its properties.
+You can create a child window, such as a dialog box, and set its properties.
 
 > **NOTE**
 >
-> Due to the following limitations, using subwindows is not recommended in mobile device scenarios. Instead, you are advised to use the [overlay](../reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md) capability of components. 
-> - Subwindows on mobile devices are constrained within the main window's boundaries, mirroring the limitations of components. 
-> - In split-screen or freeform window mode, components, when compared with subwindows, offer better real-time adaptability to changes in the main window's position and size. 
-> - On certain platforms, system configurations may restrict subwindows to default system animations and rounded shadows, offering no customization options for applications and thereby limiting their versatility.
+> Due to the following limitations, using child windows is not recommended in mobile device scenarios. Instead, you are advised to use the [overlay](../reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md) capability of components. 
+> - Child windows on mobile devices are constrained within the main window's boundaries, mirroring the limitations of components. 
+> - In split-screen or freeform window mode, components, when compared with child windows, offer better real-time adaptability to changes in the main window's position and size. 
+> - On certain platforms, system configurations may restrict child windows to default system animations and rounded shadows, offering no customization options for applications and thereby limiting their versatility.
 
 ### How to Develop
 
-1. Create or obtain a subwindow.
+1. Create or obtain a child window.
 
-   - Call **window.createWindow** to create a subwindow.
-   - Call **window.findWindow** to find an available subwindow.
+   - Call **window.createWindow** to create a child window.
+   - Call **window.findWindow** to find an available child window.
 
    ```ts
    import { window } from '@kit.ArkUI';
    import { BusinessError } from '@kit.BasicServicesKit';
    
    let windowClass: window.Window | null = null;
-   // Method 1: Create a subwindow.
+   // Method 1: Create a child window.
    let config: window.Configuration = { name: "subWindow", windowType: window.WindowType.TYPE_APP };
    window.createWindow(config, (err: BusinessError, data) => {
      let errCode: number = err.code;
@@ -72,7 +72,7 @@ You can create a subwindow, such as a dialog box, and set its properties.
      console.info('Succeeded in creating subWindow. Data: ' + JSON.stringify(data));
      windowClass = data;
    });
-   // Method 2: Find a subwindow.
+   // Method 2: Find a child window.
    try {
      windowClass = window.findWindow('subWindow');
    } catch (exception) {
@@ -80,12 +80,12 @@ You can create a subwindow, such as a dialog box, and set its properties.
    }
    ```
 
-2. Set the properties of the subwindow.
+2. Set the properties of the child window.
 
-   After the subwindow is created, you can set its properties, such as the size, position, background color, and brightness.
+   After the child window is created, you can set its properties, such as the size, position, background color, and brightness.
 
    ```ts
-   // Move the subwindow.
+   // Move the child window.
    let windowClass: window.Window = window.findWindow("test");
    windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
      let errCode: number = err.code;
@@ -95,7 +95,7 @@ You can create a subwindow, such as a dialog box, and set its properties.
      }
      console.info('Succeeded in moving the window.');
    });
-   // Change the size of the subwindow.
+   // Change the size of the child window.
    windowClass.resize(500, 500, (err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {
@@ -106,12 +106,12 @@ You can create a subwindow, such as a dialog box, and set its properties.
    });
    ```
 
-3. Load content to and show the subwindow.
+3. Load content to and show the child window.
 
-   Call **setUIContent** to load content to the subwindow and **showWindow** to show the subwindow.
+   Call **setUIContent** to load content to the child window and **showWindow** to show the child window.
 
    ```ts
-   // Load content to the subwindow.
+   // Load content to the child window.
    let windowClass: window.Window = window.findWindow("test");
    windowClass.setUIContent("pages/page2", (err: BusinessError) => {
      let errCode: number = err.code;
@@ -120,7 +120,7 @@ You can create a subwindow, such as a dialog box, and set its properties.
        return;
      }
      console.info('Succeeded in loading the content.');
-     // Show the subwindow.
+     // Show the child window.
      windowClass.showWindow((err: BusinessError) => {
        let errCode: number = err.code;
        if (errCode) {
@@ -132,12 +132,12 @@ You can create a subwindow, such as a dialog box, and set its properties.
    });
    ```
 
-4. Destroy the subwindow.
+4. Destroy the child window.
 
-   When the subwindow is no longer needed, you can call **destroyWindow** to destroy it.
+   When the child window is no longer needed, you can call **destroyWindow** to destroy it.
 
    ```ts
-   // Call destroy() to destroy the subwindow when it is no longer needed.
+   // Call destroy() to destroy the child window when it is no longer needed.
    let windowClass: window.Window = window.findWindow("test");
    windowClass.destroyWindow((err: BusinessError) => {
      let errCode: number = err.code;

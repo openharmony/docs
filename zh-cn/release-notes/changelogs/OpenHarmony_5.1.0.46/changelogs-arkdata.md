@@ -1,6 +1,6 @@
-# ArkData方舟数据管理子系统变更说明
+# ArkData子系统Changelog
 
-## cl.kv_store.1 getKVStore接口错误码返回变更
+## cl.ArkData.1 kv_store模块中getKVStore接口错误码返回变更
 
 **访问级别**
 
@@ -12,7 +12,7 @@
 
 **变更影响**
 
-该变更为不兼容变更。
+此变更不涉及应用适配。
 
 变更前：在el2/el3/el4目录下，设备未解锁前不支持访问，会返回数据库损坏错误码15100003。
 
@@ -24,7 +24,7 @@
 
 **变更发生的版本**
 
-从OpenHarmony SDK 5.0.0.51开始。
+从OpenHarmony SDK 5.1.0.46开始。
 
 **变更的接口/组件**
 
@@ -34,7 +34,7 @@ getKVStore/分布式键值型数据库（distributedKVStore）
 
 在el2/el3/el4目录下，设备未解锁前不支持访问，会返回数据库当前受限无法打开错误码15100006，该错误码对应用无影响，业务可以选择是否捕获错误码，如果捕获，业务需要在合适的时机，例如设备解锁后，再正常访问数据库文件。
 
-## cl.kv_store.2 backup & restore接口错误码返回变更
+## cl.ArkData.2 kv_store模块中backup & restore接口错误码返回变更
 
 **访问级别**
 
@@ -48,7 +48,7 @@ getKVStore/分布式键值型数据库（distributedKVStore）
 
 **变更影响**
 
-该变更为不兼容变更。
+此变更不涉及应用适配。
 
 变更前：在数据库文件损坏场景下，调用backup备份操作，会返回备份成功；在备份文件损坏场景下，调用restore恢复操作，会返回恢复成功。
 
@@ -60,7 +60,7 @@ getKVStore/分布式键值型数据库（distributedKVStore）
 
 **变更发生的版本**
 
-从OpenHarmony SDK 5.0.0.51开始。
+从OpenHarmony SDK 5.1.0.46开始。
 
 **变更的接口/组件**
 

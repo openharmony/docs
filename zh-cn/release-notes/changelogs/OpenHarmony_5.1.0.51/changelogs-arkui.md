@@ -83,11 +83,11 @@ struct PickerHapticFeedbackExample {
 
 **起始API Level**
 
-12, 在api 15进行版本隔离。
+12
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.1.0.51开始。
+从OpenHarmony SDK 5.1.0.51开始，API version 15及以上生效。
 
 **适配指导**
 
@@ -188,7 +188,7 @@ struct SlideExample {
 |ON_APPEAR|支持|支持| 支持 |
 |ON_WILL_SHOW|支持|支持|
 |ON_SHOWN|支持|支持|
-|ON_ACTIVE|不支持|不支持|
+|ON_ACTIVE|不支持|支持|
 |ON_WILL_HIDE|支持|支持|
 |ON_INACTIVE|不支持|支持|
 |ON_HIDDEN|支持|支持|

@@ -1,4 +1,4 @@
-# @ohos.application.DistributedExtensionAbility (协同Extension)
+# @ohos.application.DistributedExtensionAbility (协同Extension)(系统接口)
 
 DistributedExtensionAbility模块提供分布式相关扩展能力，提供分布式创建、销毁、连接的生命周期回调。
 
