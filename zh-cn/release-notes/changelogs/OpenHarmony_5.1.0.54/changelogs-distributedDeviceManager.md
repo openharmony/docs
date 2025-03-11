@@ -19,7 +19,11 @@
 
 **变更影响**
 
-该变更为兼容性变更。
+该变更不涉及应用适配。
+
+- 变更前：@ohos.distributedDeviceManager模块存在releaseDeviceManager函数声明201错误码。
+
+  变更后：@ohos.distributedDeviceManager模块删除releaseDeviceManager函数声明201错误码。
 
 - 变更前：@ohos.distributedDeviceManager模块存在getAvailableDeviceListSync函数声明401错误码。
 
@@ -28,10 +32,6 @@
 - 变更前：@ohos.distributedDeviceManager模块存在stopDiscovering函数声明401、11600104错误码。
 
   变更后：@ohos.distributedDeviceManager模块删除stopDiscovering函数声明401、11600104错误码。
-
-- 变更前：@ohos.distributedDeviceManager模块存在releaseDeviceManager函数声明201错误码。
-
-  变更后：@ohos.distributedDeviceManager模块删除releaseDeviceManager函数声明201错误码。
 
 **起始 API Level**
 
