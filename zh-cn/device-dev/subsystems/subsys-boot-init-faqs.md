@@ -52,7 +52,7 @@
     解决方法：
 
       1. 排查cfg文件json格式， init cfg文件遵循json格式，按要求修改cfg文件。
-      2. 日志中有 permission denied，init 进程报权限问题。1. 判断是否是selinux 导致的，关闭selinux 重新验证，如果正常，无权限报错。则是selinux 策略配置不正确导致的。 请配置正确的selinux 策略。selinux 策略配置，请参考base/security/selinux_adapter 仓中的说明。
+      2. 日志中有 permission denied，init 进程报权限问题。判断是否是selinux 导致的，关闭selinux 重新验证，如果正常，无权限报错。则是selinux 策略配置不正确导致的。 请配置正确的selinux 策略。selinux 策略配置，请参考base/security/selinux_adapter 仓中的说明。
 
   3. 原因分析：required mount 分区没有正常挂载。
 

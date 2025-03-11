@@ -169,7 +169,7 @@ void(* ArkWeb_ControllerAPI::registerJavaScriptProxy) (const char *webTag, const
 ```
 **Description**
 
-Pointer to the function used to register a JavaScript proxy with the window. APIs of this object can then be invoked in the window.
+Pointer to the function used to register a JavaScript object with the window. APIs of this object can then be invoked in the window.
 
 
 ### registerJavaScriptProxyEx
@@ -179,7 +179,7 @@ void(* ArkWeb_ControllerAPI::registerJavaScriptProxyEx) (const char *webTag, con
 ```
 **Description**
 
-Pointer to the function used to register a JavaScript proxy with the window. APIs of this object can then be invoked in the window. The synchronization method of this object can contain return values.
+Pointer to the function used to register a JavaScript object with the window. APIs of this object can then be invoked in the window. The synchronization method of this object can contain return values.
 
 **Since**: 14
 

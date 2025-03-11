@@ -84,11 +84,11 @@ DatePicker、TextPicker和TimePicker的enabled参数由"false"变为"true"或者
 
 **起始API Level**
 
-接口起始版本为API version 12。此变更从API version 16开始，做版本隔离。
+接口起始版本为API version 12。
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.1.0.49开始。
+从OpenHarmony SDK 5.1.0.49开始，API version 18及以上生效。
 
 **变更的接口/组件**
 
@@ -184,3 +184,71 @@ PanGestureInterface、PinchGestureInterface、PanGestureHandler、PinchGestureHa
 **适配指导**
 
 默认行为变更，无需适配。
+
+## cl.arkui.3 CanvasRenderer的measureText方法传undefined参数时返回值变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+measureText方法传undefined参数时，返回的textMetrics为undefined，和W3C标准行为不一致。
+
+**变更影响**
+
+变更前：
+measureText方法传undefined参数时，返回的textMetrics为undefined。
+
+变更后：
+measureText方法传undefined参数时，返回值为按照字符串"undefined"测量的textMetrics。
+
+
+**起始API Level**
+
+API 8
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.49开始。
+
+**变更的接口/组件**
+
+CanvasRenderingContext2D和OffscreenCanvasRenderingContext2D的measureText方法
+
+**适配指导**
+
+如果应用无需获取undefined参数的textMetrics，可在调用measureText方法前对参数做判断。
+
+**示例**
+
+```ts
+@Entry
+@Component
+struct Demo {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  measureText(text: string)
+  {
+    if (text != undefined) {
+      let metrics = this.context.measureText(text);
+      console.info('width = ' + metrics.width);
+    }
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .onReady(() => {
+          this.measureText(undefined)
+          this.measureText('Hello World')
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```

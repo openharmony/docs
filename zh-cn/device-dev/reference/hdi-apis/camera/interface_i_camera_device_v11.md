@@ -1,6 +1,5 @@
 # ICameraDevice
 
-
 ## 概述
 
 定义Camera设备基本的操作。
@@ -11,9 +10,7 @@
 
 **相关模块：**[Camera](_camera_v11.md)
 
-
 ## 汇总
-
 
 ### Public 成员函数
 
@@ -22,9 +19,7 @@
 | [GetStreamOperator_V1_1](#getstreamoperator_v1_1) ([in] IStreamOperatorCallback callbackObj, [out] [IStreamOperator](interface_i_stream_operator_v11.md) streamOperator) | 获取流操作句柄。 | 
 | [GetDefaultSettings](#getdefaultsettings) ([out] unsigned char[] settings) | 获取默认的相机设备控制参数。 | 
 
-
 ## 成员函数说明
-
 
 ### GetDefaultSettings()
 
@@ -50,7 +45,6 @@ NO_ERROR 表示执行成功。
 
 其他值表示执行失败，具体错误码查看[CamRetCode](_camera_v10.md#camretcode)。
 
-
 ### GetStreamOperator_V1_1()
 
 ```
@@ -67,7 +61,7 @@ ICameraDevice::GetStreamOperator_V1_1 ([in] IStreamOperatorCallback callbackObj,
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| callbackObj | 设置流回调接口，详细可查看[IStreamOperatorCallback](interface_i_stream_operator_callback_v10.md)， 用于上报捕获开始[OnCaptureStarted](interface_i_stream_operator_callback_v10.md#oncapturestarted)，捕获结束[OnCaptureEnded](interface_i_stream_operator_callback_v10.md#oncaptureended)， 捕获错误等信息[OnCaptureError](interface_i_stream_operator_callback_v10.md#oncaptureerror)。 | 
+| callbackObj | 设置流回调接口，详细可查看[IStreamOperatorCallback](interface_i_stream_operator_callback_v10.md)，用于上报捕获开始[OnCaptureStarted](interface_i_stream_operator_callback_v10.md#oncapturestarted)，捕获结束[OnCaptureEnded](interface_i_stream_operator_callback_v10.md#oncaptureended)，捕获错误等信息[OnCaptureError](interface_i_stream_operator_callback_v10.md#oncaptureerror)。 | 
 | streamOperator | 返回流操作句柄。 | 
 
 **返回：**

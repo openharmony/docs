@@ -1,19 +1,15 @@
 # 不依赖UI组件的全局气泡提示 (openPopup)
 
-[气泡提示（Popup）](arkts-popup-and-menu-components-popup.md)在使用时依赖绑定UI组件，否则无法使用。本文介绍通过使用全局接口[openPopup](../reference/apis-arkui/js-apis-arkui-UIContext.md#openpopup18)的方式，在无UI组件的场景下直接或封装使用，例如在事件回调中使用或封装后对外提供能力。
+[气泡提示（Popup）](arkts-popup-and-menu-components-popup.md)在使用时依赖绑定UI组件，否则无法使用。从API version 18开始，可以通过使用全局接口[openPopup](../reference/apis-arkui/js-apis-arkui-UIContext.md#openpopup18)的方式，在无UI组件的场景下直接或封装使用，例如在事件回调中使用或封装后对外提供能力。
 
-下面介绍在[HAR](../quick-start/har-package.md)包中如何封装popup并对外提供能力。
-
-## 开发HAR
-
-通过HAR包，封装popup并对外提供气泡弹出、更新和关闭能力。实现请参考[完整示例](#完整示例)。
-
-### 弹出气泡
+## 弹出气泡
 
 通过[openPopup](../reference/apis-arkui/js-apis-arkui-UIContext.md#openpopup18)可以弹出气泡。
    
    ```ts
-   this.promptAction.openPopup(this.contentNode, this.target, this.options)
+   promptAction.openPopup(contentNode, { id: targetId }, {
+     enableArrow: true
+   })
      .then(() => {
        console.info('openPopup success');
      })
@@ -22,12 +18,90 @@
      })
    ```
 
-### 更新气泡样式
-
-通过[updatePopup](../reference/apis-arkui/js-apis-arkui-UIContext.md#updatepopup18)可以更新气泡的样式。支持全量更新和增量更新其气泡样式，不支持更新showInSubWindow、focusable、onStateChange、onWillDismiss、和transition。
+### 创建ComponentContent
+   
+   通过调用openPopup接口弹出其气泡，需要提供用于定义自定义弹出框的内容[ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md)。其中，wrapBuilder(buildText)封装自定义组件，new Params(this.message)是自定义组件的入参，可以缺省，也可以传入基础数据类型。
    
    ```ts
-   this.promptAction.updatePopup(this.contentNode, options, this.isPartialUpdate)
+   private contentNode: ComponentContent<Object> = new ComponentContent(uiContext, wrapBuilder(buildText), this.message);
+   ```
+   
+   如果在wrapBuilder中包含其他组件（例如：[Popup](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Popup.md#popup)、[Chip](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md#chip)组件），则[ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md#componentcontent-1)应采用带有四个参数的构造函数constructor，其中options参数应传递{ nestingBuilderSupported: true }。
+   
+   ```ts
+   @Builder
+   export function buildText(params: Params) {
+     Popup({
+       // 类型设置图标内容
+       icon: {
+         image: $r('app.media.app_icon'),
+         width: 32,
+         height: 32,
+         fillColor: Color.White,
+         borderRadius: 10
+       } as PopupIconOptions,
+       // 设置文字内容
+       title: {
+         text: `This is a Popup title 1`,
+         fontSize: 20,
+         fontColor: Color.Black,
+         fontWeight: FontWeight.Normal
+       } as PopupTextOptions,
+       // 设置文字内容
+       message: {
+         text: `This is a Popup message 1`,
+         fontSize: 15,
+         fontColor: Color.Black
+       } as PopupTextOptions,
+       // 设置按钮内容
+       buttons: [{
+         text: 'confirm',
+         action: () => {
+           console.info('confirm button click')
+         },
+         fontSize: 15,
+         fontColor: Color.Black,
+       },
+         {
+           text: 'cancel',
+           action: () => {
+             console.info('cancel button click')
+           },
+           fontSize: 15,
+           fontColor: Color.Black
+         },] as [PopupButtonOptions?, PopupButtonOptions?]
+     })
+   }
+   
+   let contentNode: ComponentContent<Object> = new ComponentContent(uiContext, wrapBuilder(buildText), this.message, { nestingBuilderSupported: true });
+   ```
+
+
+### 绑定组件信息
+   
+   通过调用openPopup接口弹出气泡，需要提供绑定组件的信息[TargetInfo](../reference/apis-arkui/js-apis-arkui-UIContext.md#targetinfo18)。若未传入有效的target，则无法弹出气泡。
+   
+   ```ts
+   let frameNode: FrameNode | null = this.ctx.getFrameNodeByUniqueId(this.getUniqueId());
+   let targetId = frameNode?.getChild(0)?.getUniqueId();
+   ```
+
+### 设置弹出气泡样式
+   
+   通过调用openPopup接口弹出气泡，可以设置[PopupCommonOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions18类型说明)属性调整气泡样式。
+   
+   ```ts
+   private options: PopupCommonOptions = { enableArrow: true };
+   ```
+
+## 更新气泡样式
+
+通过[updatePopup](../reference/apis-arkui/js-apis-arkui-UIContext.md#updatepopup18)可以更新气泡的样式。支持全量更新和增量更新其气泡样式，不支持更新showInSubWindow、focusable、onStateChange、onWillDismiss和transition。
+   
+   ```ts
+   promptAction.updatePopup(contentNode, {
+     enableArrow: false
+   }, true)
      .then(() => {
        console.info('updatePopup success');
      })
@@ -36,27 +110,32 @@
      })
    ```
 
-### 关闭气泡
+## 关闭气泡
 
 通过[closePopup](../reference/apis-arkui/js-apis-arkui-UIContext.md#closepopup18)可以关闭气泡。
    
    ```ts
-   this.promptAction.closePopup(this.contentNode)
+   promptAction.closePopup(contentNode)
      .then(() => {
-       console.info('openPopup success');
+       console.info('closePopup success');
      })
-    .catch((err: BusinessError) => {
-      console.info('openPopup error: ' + err.code + ' ' + err.message);
-    })
+     .catch((err: BusinessError) => {
+       console.info('closePopup error: ' + err.code + ' ' + err.message);
+     })
    ```
 
 > **说明：**
 >
 > 由于[updatePopup](../reference/apis-arkui/js-apis-arkui-UIContext.md#updatepopup18)和[closePopup](../reference/apis-arkui/js-apis-arkui-UIContext.md#closepopup18)依赖content来更新或者关闭指定的气泡，开发者需自行维护传入的content。
 
-### 完整示例
+
+## 在HAR包中使用全局气泡提示
+
+以下示例通过[HAR](../quick-start/har-package.md)包封装一个Popup，从而对外提供气泡的弹出、更新和关闭能力。
 
 ```ts
+// library/src/main/ets/components/MainPage.ets
+
 import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent, TargetInfo, PromptAction } from '@kit.ArkUI';
 
@@ -125,113 +204,9 @@ export class PromptActionClass {
 }
 ```
 
-## 调用HAR
-
-调用HAR包的接口来实现气泡弹出、更新和关闭。详细实现请参考[完整示例](#完整示例-1)。
-
-### 创建ComponentContent
-   
-   通过调用HAR包的openPopup接口弹出菜单，需要提供用于定义自定义弹出框的内容[ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md)。其中，wrapBuilder(buildText)封装自定义组件，new Params(this.message)是自定义组件的入参，可以缺省，也可以传入基础数据类型。
-   
-   ```ts
-   private contentNode: ComponentContent<Object> = new ComponentContent(this.uiContext, wrapBuilder(buildText), new Params(this.message, this.promptActionClass));
-   
-   this.promptActionClass.setContentNode(this.contentNode);
-   ```
-   
-   如果在wrapBuilder中包含其他组件（例如：[Popup](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Popup.md#popup)、[Chip](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md#chip)组件），则[ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md#componentcontent-1)应采用带有四个参数的构造函数constructor，其中options参数应传递{ nestingBuilderSupported: true }。
-   
-   ```ts
-   @Builder
-   export function buildText(params: Params) {
-     Popup({
-       // 类型设置图标内容
-       icon: {
-         image: $r('app.media.app_icon'),
-         width: 32,
-         height: 32,
-         fillColor: Color.White,
-         borderRadius: 10
-       } as PopupIconOptions,
-       // 设置文字内容
-       title: {
-         text: `This is a Popup title 1`,
-         fontSize: 20,
-         fontColor: Color.Black,
-         fontWeight: FontWeight.Normal
-       } as PopupTextOptions,
-       // 设置文字内容
-       message: {
-         text: `This is a Popup message 1`,
-         fontSize: 15,
-         fontColor: Color.Black
-       } as PopupTextOptions,
-       // 设置按钮内容
-       buttons: [{
-         text: 'confirm',
-         action: () => {
-           console.info('confirm button click')
-         },
-         fontSize: 15,
-         fontColor: Color.Black,
-       },
-         {
-           text: 'cancel',
-           action: () => {
-             console.info('cancel button click')
-           },
-           fontSize: 15,
-           fontColor: Color.Black
-         },] as [PopupButtonOptions?, PopupButtonOptions?]
-     })
-   }
-   
-   let contentNode: ComponentContent<Object> = new ComponentContent(uiContext, wrapBuilder(buildText), this.message, { nestingBuilderSupported: true });
-   ```
-
-
-### 绑定组件信息
-   
-   通过调用HAR包的openPopup接口弹出气泡，需要提供绑定组件的信息[TargetInfo](../reference/apis-arkui/js-apis-arkui-UIContext.md#targetinfo18)。若未传入有效的target，则无法弹出气泡。
-   
-   ```ts
-   let frameNode: FrameNode | null = this.ctx.getFrameNodeByUniqueId(this.getUniqueId());
-   let targetId = frameNode?.getChild(0)?.getUniqueId();
-   
-   this.promptActionClass.setTarget({ id: this.targetId });
-   ```
-
-### 设置弹出气泡样式
-   
-   通过调用HAR包的openPopup接口弹出气泡，可以设置[PopupCommonOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions18类型说明)属性调整气泡样式。
-   
-   ```ts
-   private options: PopupCommonOptions = { enableArrow: true };
-   
-   this.promptActionClass.setOptions(this.options);
-   ```
-
-### 更新气泡样式
-   
-   通过调用HAR包的updatePopup接口实现更新气泡样式。
-   
-   ```ts
-   params.promptActionClass.updatePopup({
-     enableArrow: false,
-   });
-   ```
-
-### 关闭气泡
-   
-   通过调用HAR包的closePopup接口实现关闭气泡。
-
-   ```ts
-   params.promptActionClass.closePopup();
-   ```
-
-### 完整示例
-
 ```ts
+// entry/src/main/ets/pages/Index.ets
+
 import { PromptActionClass } from "library";
 import { ComponentContent, PromptAction } from '@kit.ArkUI';
 

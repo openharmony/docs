@@ -51,7 +51,7 @@ The number of token registration times has reached the upper limit.
 
 **错误描述**
 
-当调用continuationManager.registerContinuation接口时次数过多超出限制，会报此错误码。
+当调用continuationManager.registerContinuation接口时次数过多超出限制（最大值为600），会报此错误码。
 
 **可能原因**
 
