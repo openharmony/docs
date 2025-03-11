@@ -59,7 +59,7 @@ IStreamOperator::UpdateStreams ([in] struct StreamInfo_V1_1[] streamInfos)
 
 更新流。
 
-该函数必须在 Loop CancelCaptures **CancelCaptures** 之后调用。
+该函数必须在 Loop CancelCaptures [CancelCaptures](interface_i_offline_stream_operator_v10.md#cancelcapture)之后调用。
 
 **起始版本：** 4.1
 
