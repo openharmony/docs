@@ -4,7 +4,7 @@ A drag event is triggered when a component is dragged.
 
 >  **NOTE**
 >
->  This feature is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >
 > The resource files preset in the application (that is, the resource files that are contained in the HAP file before the application is installed) can be dragged and dropped only within the application.
 
@@ -42,7 +42,7 @@ No custom drag preview is supported for dragging selected text in the following 
 
 | Name     | Type                           | Mandatory| Description              |
 | ----------- | ------------------------------- | ---- | ------------------ |
-| event    | (event: [DragEvent](#dragevent), extraParams?: string) => [CustomBuilder](ts-types.md#custombuilder8)  \|  [DragItemInfo](#dragiteminfo)  | Yes  | Callback function.<br> **NOTE**<br> **event**: information about the drag event.<br> **extraParams**: extra information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
+| event    | (event: [DragEvent](#dragevent7), extraParams?: string) => [CustomBuilder](ts-types.md#custombuilder8)  \|  [DragItemInfo](#dragiteminfo)  | Yes  | Callback function.<br> **NOTE**<br> **event**: information about the drag event.<br> **extraParams**: extra information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
 
 **Return value**
 
@@ -64,7 +64,7 @@ Triggered when a dragged item enters a valid drop target. This event takes effec
 
 | Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event    | (event: [DragEvent](#dragevent), extraParams?: string) => void   | Yes  | Callback function.<br>**NOTE**<br> **event**: information about the drag event, including the coordinates of the item that is being dragged.<br> **extraParams**: additional information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
+| event    | (event: [DragEvent](#dragevent7), extraParams?: string) => void   | Yes  | Callback function.<br>**NOTE**<br> **event**: information about the drag event, including the coordinates of the item that is being dragged.<br> **extraParams**: additional information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
 
 ## onDragMove
 
@@ -80,7 +80,7 @@ Triggered when a dragged item moves in a valid drop target. This event takes eff
 
 | Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event    | (event: [DragEvent](#dragevent), extraParams?: string) => void   | Yes  | Callback function.<br>**NOTE**<br> **event**: information about the drag event, including the coordinates of the item that is being dragged.<br> **extraParams**: additional information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
+| event    | (event: [DragEvent](#dragevent7), extraParams?: string) => void   | Yes  | Callback function.<br>**NOTE**<br> **event**: information about the drag event, including the coordinates of the item that is being dragged.<br> **extraParams**: additional information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
 
 ## onDragLeave
 
@@ -96,11 +96,27 @@ Triggered when a dragged item leaves a valid drop target. This event takes effec
 
 | Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event    | (event: [DragEvent](#dragevent), extraParams?: string) => void   | Yes  | Callback function.<br>**NOTE**<br> **event**: information about the drag event, including the coordinates of the item that is being dragged.<br> **extraParams**: additional information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
+| event    | (event: [DragEvent](#dragevent7), extraParams?: string) => void   | Yes  | Callback function.<br>**NOTE**<br> **event**: information about the drag event, including the coordinates of the item that is being dragged.<br> **extraParams**: additional information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
 
 ## onDrop
 
 onDrop(event: (event: DragEvent, extraParams?: string) => void)
+
+Triggered when a dragged item is dropped on a valid drop target. If **event.setResult()** is not explicitly called in the **onDrop** callback to set the drag-and-drop result, then: For supported components, the result is determined based on the actual data processed; for other components, the system considers the data as successfully received.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type                           | Mandatory| Description                          |
+| ----------- | ------------------------------- | ---- | ------------------------------ |
+| event    | (event: [DragEvent](#dragevent7), extraParams?: string) => void   | Yes  | Callback function.<br>**NOTE**<br> **event**: information about the drag event, including the coordinates of the item that is being dragged.<br> **extraParams**: additional information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
+
+## onDrop<sup>16+</sup>
+
+onDrop(eventCallback: OnDragEventCallback, dropOptions?: DropOptions)
 
 Triggered when a dragged item is dropped on a valid drop target. If you do not explicitly call **event.setResult()** in **onDrop** to set the result of the drag reception, the system handles it as follows:<br>- If the component being dragged is one that supports drop actions by default, the system's actual data processing result is used.<br>- For other components, the system assumes that the data is received successfully.
 
@@ -112,9 +128,10 @@ Triggered when a dragged item is dropped on a valid drop target. If you do not e
 
 | Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event    | (event: [DragEvent](#dragevent), extraParams?: string) => void   | Yes  | Callback function.<br>**NOTE**<br> **event**: information about the drag event, including the coordinates of the item that is being dragged.<br> **extraParams**: additional information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
+| eventCallback  | (event: DragEvent, extraParams?: string) => void   | Yes  | Callback function.<br>**NOTE**<br> **event**: information about the drag event, including the coordinates of the item that is being dragged.<br> **extraParams**: additional information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
+| dropOptions  | bool   | No  | Whether to fetch data early during the drag operation.<br>**NOTE**<br> Set this parameter to **true** when using **startDataLoading** to prevent early data fetching.|
 
-## onDragEnd
+## onDragEnd<sup>10+</sup>
 
 onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
 
@@ -128,7 +145,7 @@ Triggered when the dragging of the component bound to the event ends.
 
 | Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event    | (event: [DragEvent](#dragevent), extraParams?: string) => void   | Yes  | Callback function.<br>**NOTE**<br> **event**: information about the drag event, excluding the coordinates of the item that is being dragged.<br> **extraParams**: additional information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
+| event    | (event: [DragEvent](#dragevent7), extraParams?: string) => void   | Yes  | Callback function.<br>**NOTE**<br> **event**: information about the drag event, excluding the coordinates of the item that is being dragged.<br> **extraParams**: additional information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
 
 ## onPreDrag<sup>12+</sup>
 
@@ -158,6 +175,18 @@ Invoked when the component enters a state prior to a drop and drop operation.
 | builder   | [CustomBuilder](ts-types.md#custombuilder8) | No   | Custom component to display during dragging. If **pixelMap** is set, this parameter is ignored.<br> **NOTE**<br>Global builder definition is not supported. If the [Image](ts-basic-components-image.md) component is used in the builder, enable synchronous loading whenever possible, that is, set the [syncLoad](ts-basic-components-image.md#syncload8) attribute of the component to **true**. The builder is used only to generate the image displayed during the current dragging. Changes to the builder, if any, apply to the next dragging, but not to the current dragging.|
 | extraInfo | string                                   | No   | Extra information of the dragged item.                          |
 
+## PreviewConfiguration<sup>15+</sup>
+
+Defines the preview image style during a drag operation.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name      | Type| Read-Only| Optional| Description                                                        |
+| ---------- | ---- | ---- | ---- | ------------------------------------------------------------ |
+| onlyForLifting | boolean | No   | Yes   | Whether the custom preview image is used only for lifting.<br> **NOTE**<br>The default value is **false**. When the value is set to **true**, the preview image is used only during the lifting phase of a long press. For the preview image used during the dragging phase: The [dragPreview](ts-universal-attributes-drag-drop.md#dragpreview11) attribute is ignored, and the system prioritizes the image returned in [onDragStart](ts-universal-events-drag-drop.md#ondragstart); if no image is returned in **onDragStart**, the component's snapshot is used.|
+| delayCreating  | boolean | No   | Yes   | Whether the preview builder is loaded at the time of setting.<br>The default value is **false**.|
 
 ## extraParams
 
@@ -170,7 +199,7 @@ Invoked when the component enters a state prior to a drop and drop operation.
 | selectedIndex | number | Index of the dragged item in the parent container. The value of **selectedindex** starts from **0**.<br>This parameter takes effect only in the drag event of the **ListItem** component.|
 | insertIndex   | number | Index of the element into which the dragged item is dropped in the **List** component. The value of **insertIndex** starts from **0**.<br>This parameter takes effect only in the drag event of the **List** component.|
 
-## DragEvent
+## DragEvent<sup>7+</sup>
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -204,9 +233,10 @@ Invoked when the component enters a state prior to a drop and drop operation.
 | getWindowY()<sup>10+</sup> | number | Y coordinate of the drag position relative to the upper left corner of the window, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | getDisplayX()<sup>10+</sup> | number | X coordinate of the drag position relative to the upper left corner of the screen, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | getDisplayY()<sup>10+</sup> | number | Y coordinate of the drag position relative to the upper left corner of the screen, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | Obtains the pressed status of modifier keys. For details about the error message, see the following error codes. The following modifier keys are supported: 'Ctrl'\|'Alt'\|'Shift'\|'Fn'. This API does not work for the Fn key on an externally connected keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| startDataLoading(options: [DataSyncOptions](#datasyncoptions15))<sup>15+</sup> | string | Asynchronously obtains drag data and notifies you of the current data synchronization progress. This API is only supported during the **onDrop** phase. Data transfer can be canceled using the [cancelDataLoading](../js-apis-arkui-UIContext.md#canceldataloading15) API.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 | getX()<sup>(deprecated)</sup> | number | X coordinate of the drag position relative to the upper left corner of the window, in vp.<br>This API is deprecated since API version 10. You are advised to use **getWindowX()** instead.|
 | getY()<sup>(deprecated)</sup> | number | Y coordinate of the drag position relative to the upper left corner of the window, in vp.<br>This API is deprecated since API version 10. You are advised to use **getWindowY()** instead.|
-| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | Obtains the pressed status of modifier keys. For details about the error message, see the following error codes. The following modifier keys are supported: 'Ctrl'\|'Alt'\|'Shift'\|'Fn'. This API does not work for the Fn key on an externally connected keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 
 
 **Error codes**
@@ -218,6 +248,7 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 | 401       | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 | 190001    | Data not found.|
 | 190002    | Data error. |
+| 190003    | Operation on allowed for current pharse. |
 
 ## DragResult<sup>10+</sup>
 
@@ -262,7 +293,23 @@ Describes the drag behavior. When [DragResult](#dragresult10) is set to **DROP_E
 | PREVIEW_LANDING_FINISHED | 5 | A drop animation is finished. (Triggered when the drop animation ends.)|
 | ACTION_CANCELED_BEFORE_DRAG | 6 | A drop animation is terminated. (Triggered when the finger is lifted off the screen after the component enters the **READY_TO_TRIGGER_DRAG_ACTION** state.)|
 
+## DataSyncOptions<sup>15+</sup>
+
+type DataSyncOptions = GetDataParams
+
+Defines an input parameter for the **startDataLoading** API.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type| Description|
+| ----- | ----------------- |
+| [GetDataParams](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#getdataparams15) | Parameters for obtaining data from UDMF, including target path, file conflict options, progress indicator type, and other relevant settings.|
+
 ## Example
+
+### Example 1: Setting Draggable and Droppable Areas
 
 This example demonstrates the setup for draggable and droppable areas for certain components, such as **Image** and **Text**.
 
@@ -280,7 +327,6 @@ struct Index {
   @State imageWidth: number = 100;
   @State imageHeight: number = 100;
   @State imgState: Visibility = Visibility.Visible;
-  @State videoSrc: string = 'resource://RAWFILE/02.mp4';
   @State abstractContent: string = "abstract";
   @State textContent: string = "";
   @State backGroundColor: Color = Color.Transparent;
@@ -370,18 +416,6 @@ struct Index {
           .width('100%')
           .height(80)
           .textFont({ size: 20 })
-        Column() {
-          Text('change video source')
-        }.draggable(true)
-        .onDragStart((event) => {
-          let video: unifiedDataChannel.Video = new unifiedDataChannel.Video();
-          video.videoUri = '/resources/rawfile/01.mp4';
-          let data: unifiedDataChannel.UnifiedData = new unifiedDataChannel.UnifiedData(video);
-          (event as DragEvent).setData(data);
-          return { builder: () => {
-            this.pixelMapBuilder()
-          }, extraInfo: 'extra info' };
-        })
 
         Column() {
           Text('this is abstract')
@@ -446,12 +480,6 @@ struct Index {
             })
           })
 
-        Video({ src: this.videoSrc, previewUri: $r('app.media.icon') })
-          .width('100%')
-          .height(200)
-          .controls(true)
-          .allowDrop([uniformTypeDescriptor.UniformDataType.VIDEO])
-
         Column() {
           Text(this.abstractContent).fontSize(20).width('100%')
           Text(this.textContent).fontSize(15).width('100%')
@@ -478,3 +506,119 @@ struct Index {
 }
 ```
 ![events-drag-drop](figures/events-drag-drop.png) 
+
+### Example 2: Obtaining Data Asynchronously Through Drag-and-Drop
+
+This example demonstrates how to asynchronously obtain data using **startDataLoading** during a drag-and-drop operation.
+
+```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+import { fileUri, fileIo as fs } from '@kit.CoreFileKit'
+import { common } from '@kit.AbilityKit'
+
+@Entry
+@Component
+struct ImageExample {
+  @State uri: string = "";
+  @State blockArr: string[] = [];
+  udKey: string = '';
+
+  build() {
+    Column() {
+      Text('Image drag and drop')
+        .fontSize('30dp')
+      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+        Image($r('app.media.startIcon'))
+          .width(100)
+          .height(100)
+          .border({ width: 1 })
+          .draggable(true)
+          .onDragStart((event:DragEvent) => {
+            const context: Context = getContext(this);
+            let data = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id, 120);
+            const arrayBuffer: ArrayBuffer = data.buffer.slice(data.byteOffset, data.byteLength + data.byteOffset);
+            let filePath = context.filesDir + '/test.png';
+            let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+            fs.writeSync(file.fd, arrayBuffer);
+            // Obtain the image URI.
+            let uri = fileUri.getUriFromPath(filePath);
+            let image: unifiedDataChannel.Image = new unifiedDataChannel.Image();
+            image.imageUri = uri;
+            let dragData: unifiedDataChannel.UnifiedData = new unifiedDataChannel.UnifiedData(image);
+            (event as DragEvent).setData(dragData);
+          })
+      }
+      .margin({ bottom: 20 })
+      Row() {
+        Column(){
+          Text('Valid drop target')
+            .fontSize('15dp')
+            .height('10%')
+          List(){
+            ForEach(this.blockArr, (item:string, index) => {
+              ListItem() {
+                Image(item)
+                  .width(100)
+                  .height(100)
+                  .border({width: 1})
+              }
+              .margin({ left: 30 , top : 30})
+            }, (item:string) => item)
+          }
+          .border({width: 1})
+          .height('90%')
+          .width('100%')
+          .onDrop((event?: DragEvent, extraParams?: string) => {
+            console.log("enter onDrop")
+            let context = getContext(this) as common.UIAbilityContext;
+            let pathDir: string = context.distributedFilesDir;
+            let destUri = fileUri.getUriFromPath(pathDir);
+            let progressListener: unifiedDataChannel.DataProgressListener = (progress: unifiedDataChannel.ProgressInfo, dragData: UnifiedData|null) => {
+              if(dragData != null) {
+                let arr:Array<unifiedDataChannel.UnifiedRecord> = dragData.getRecords();
+                if(arr.length > 0) {
+                  if (arr[0].getType() === uniformTypeDescriptor.UniformDataType.IMAGE) {
+                    let image = arr[0] as unifiedDataChannel.Image;
+                    this.uri = image.imageUri;
+                    this.blockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
+                  }
+                } else {
+                  console.log('dragData arr is null');
+                }
+              } else {
+                console.log('dragData is undefined');
+              }
+              console.log(`percentage: ${progress.progress}`);
+            };
+            let options: DataSyncOptions = {
+              destUri: destUri,
+              fileConflictOptions: unifiedDataChannel.FileConflictOptions.OVERWRITE,
+              progressIndicator: unifiedDataChannel.ProgressIndicator.DEFAULT,
+              dataProgressListener: progressListener,
+            }
+            try {
+              this.udKey = (event as DragEvent).startDataLoading(options);
+              console.log('udKey: ', this.udKey);
+            } catch(e) {
+              console.log(`startDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+            }
+          }, {disableDataPrefetch: true})
+        }
+        .height("50%")
+        .width("90%")
+        .border({ width: 1 })
+      }
+      Button('Cancel data transfer')
+        .onClick(() => {
+          try {
+            this.getUIContext().getDragController().cancelDataLoading(this.udKey);
+          } catch (e) {
+            console.log(`cancelDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+          }
+        })
+        .margin({top: 10})
+    }.width('100%')
+  }
+}
+```
+<!--no_check-->

@@ -64,7 +64,7 @@ The exception detection and handling with the selected date comes after that wit
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### lunar
 
@@ -137,11 +137,11 @@ Sets the text style for the selected item.
 | Name  | Type                                    | Mandatory  | Description                     |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | No   | Font color.                    |
-| font  | [Font](ts-types.md#font)                 | No   | Text style. Only the font size and font weight are supported. |
+| font  | [Font](ts-types.md#font)                 | No   | Text style.|
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onChange<sup>(deprecated)</sup>
 

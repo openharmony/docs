@@ -77,7 +77,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | axisHorizontal<sup>12+</sup> | number | Horizontal axis value.<br>**NOTE**<br>The value can only be obtained in the pan gesture initiated by mouse wheel scrolling or two-finger swipes on a touchpad.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | axisVertical<sup>12+</sup> | number | Vertical axis value.<br>**NOTE**<br>The value can only be obtained in the pan gesture initiated by mouse wheel scrolling or two-finger swipes on a touchpad.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | Obtains the pressed status of modifier keys. For details about the error message, see the following error codes. The following modifier keys are supported: 'Ctrl'\|'Alt'\|'Shift'\|'Fn'. This API does not work for the Fn key on an externally connected keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| deviceId<sup>12+</sup> | number | ID of the input device that triggers the event.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| deviceId<sup>12+</sup> | number | ID of the input device that triggers the event.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 **Error codes**
 

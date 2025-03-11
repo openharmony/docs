@@ -252,6 +252,7 @@ Enumerates the interpolation curves.
 | -------- | ---------- |
 | Unknown  | Unknown input device. |
 | Keyboard | The input device is a keyboard.|
+| JOYSTICK<sup>15+</sup> | The input device is a joystick.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## Edge
 
@@ -1088,6 +1089,25 @@ Enumerates the height breakpoint values corresponding to different window aspect
 | HEIGHT_MD | 1   | The window aspect ratio is greater than or equal to 0.8 and less than 1.2.|
 | HEIGHT_LG | 2   | The window aspect ratio is greater than or equal to 1.2.|
 
+## AxisModel<sup>15+</sup>
+
+Enumerates the axis types for focus axis events.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Value  | Description                              |
+| ------- | ---- | ---------------------------------- |
+| ABS_X  | 0    | Game controller x-axis.|
+| ABS_Y  | 1    | Game controller y-axis.|
+| ABS_Z  | 2    | Game controller z-axis.|
+| ABS_RZ | 3    | Game controller rz-axis.|
+| ABS_GAS | 4    | Game controller GAS-axis.|
+| ABS_BRAKE | 5    | Game controller BRAKE-axis.|
+| ABS_HAT0X | 6    | Game controller HAT0X-axis.|
+| ABS_HAT0Y | 7    | Game controller HAT0Y-axis.|
+
 ## RenderFit<sup>10+</sup>
 
 Enumerates the modes in which the final state of the component's content is rendered during its width and height animation process.
@@ -1119,3 +1139,32 @@ Enumerates the modes in which the final state of the component's content is rend
 >
 > - In the illustrative diagrams, the blue area indicates the content, and the orange area indicates the component content box.
 > - Different render fit modes create different effects during the width and height animation process. Choose the one that best fits your need.
+
+## PageFlipMode<sup>15+</sup>
+
+Enumerates the modes for flipping pages using the mouse wheel.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Value  | Description                  |
+| -------- | ---- | ---------------------- |
+| CONTINUOUS | 0   | Continuous page flipping mode where multiple pages are turned continuously when the user scrolls the mouse wheel without interruption.|
+| SINGLE | 1   | Single-page flipping mode where the mouse wheel event is ignored until the current page flipping animation is complete.|
+
+## InteractionHand<sup>15+</sup>
+
+Defines whether an event is triggered by a left-hand or right-hand tap.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Value  | Description                  |
+| -------- | ---- | ---------------------- |
+| NONE     | 0   | Unknown.|
+| LEFT     | 1   | Left hand.|
+| RIGHT    | 2   | Right hand.|

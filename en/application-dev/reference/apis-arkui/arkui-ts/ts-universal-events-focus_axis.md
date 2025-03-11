@@ -38,23 +38,8 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
 
 | Name                                   | Type                                      | Description                |
 | ------------------------------------- | ---------------------------------------- | --------------------------- |
-| axisMap                               | Map<[AxisModel](#axismodel), number>     | Axis value table of the focus axis event.         |
+| axisMap                               | Map<[AxisModel](ts-appendix-enums.md#axismodel15), number>     | Axis value table of the focus axis event.         |
 | stopPropagation                       | Callback\<void>                           | Stops a key event from bubbling upwards or downwards.           |
-
-## AxisModel
-
-Enumerates the axis types for focus axis events.
-
-| Name   | Value  | Description                              |
-| ------- | ---- | ---------------------------------- |
-| ABS_X  | 0    | Game controller x-axis.|
-| ABS_Y  | 1    | Game controller y-axis.|
-| ABS_Z  | 2    | Game controller z-axis.|
-| ABS_RZ | 3    | Game controller rz-axis.|
-| ABS_GAS | 4    | Game controller GAS-axis.|
-| ABS_BRAKE | 5    | Game controller BRAKE-axis.|
-| ABS_HAT0X | 6    | Game controller HAT0X-axis.|
-| ABS_HAT0Y | 7    | Game controller HAT0Y-axis.|
 
 ## Example
 
