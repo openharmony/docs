@@ -390,6 +390,18 @@ import { window } from '@kit.ArkUI';
 | ------ | ------ | ---- | ------------------------------------------ |
 | windowRect<sup>15+</sup> | [Rect](#rect7)  | 是 | 窗口尺寸，窗口在屏幕上的实际位置和大小。 |
 
+## KeyboardInfo<sup>18+</sup>
+
+软键盘窗口信息。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称   | 类型   | 必填 | 说明                                       |
+| ------ | ------ | ---- | ------------------------------------------ |
+| rect | [Rect](#rect7)  | 是 | 软键盘窗口的位置和大小。 |
+
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
@@ -428,27 +440,33 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 **示例：**
 
 ```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let windowClass: window.Window | undefined = undefined;
-let config: window.Configuration = {
-  name: "test",
-  windowType: window.WindowType.TYPE_DIALOG,
-  ctx: this.context
-};
-try {
-  window.createWindow(config, (err: BusinessError, data) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
-      return;
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    let windowClass: window.Window | undefined = undefined;
+    let config: window.Configuration = {
+      name: "test",
+      windowType: window.WindowType.TYPE_DIALOG,
+      ctx: this.context // context对象也可在组件中通过getContext()方法获取
+    };
+    try {
+      window.createWindow(config, (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        windowClass = data;
+        console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
+        windowClass.resize(500, 1000);
+      });
+    } catch (exception) {
+      console.error(`Failed to create the window. Cause code: ${exception.code}, message: ${exception.message}`);
     }
-    windowClass = data;
-    console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
-    windowClass.resize(500, 1000);
-  });
-} catch (exception) {
-  console.error(`Failed to create the window. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
 }
 ```
 
@@ -495,24 +513,28 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 **示例：**
 
 ```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let windowClass: window.Window | undefined = undefined;
-let config: window.Configuration = {
-  name: "test",
-  windowType: window.WindowType.TYPE_DIALOG,
-  ctx: this.context
-};
-try {
-  let promise = window.createWindow(config);
-  promise.then((data) => {
-    windowClass = data;
-    console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to create the Window. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to create the window. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    let config: window.Configuration = {
+      name: "test",
+      windowType: window.WindowType.TYPE_DIALOG,
+      ctx: this.context // context对象也可以在组件中通过getContext()方法获取
+    };
+    try {
+      window.createWindow(config).then((value:window.Window) => {
+        console.info('Succeeded in creating the window. Data: ' + JSON.stringify(value));
+        value.resize(500, 1000);
+      }).catch((err:BusinessError)=> {
+        console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to create the window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
@@ -3889,6 +3911,182 @@ try {
   windowClass.off('keyboardHeightChange');
 } catch (exception) {
   console.error(`Failed to disable the listener for keyboard height changes. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### on('keyboardDidShow')<sup>18+</sup>
+
+on(type: 'keyboardDidShow', callback: Callback&lt;KeyboardInfo&gt;): void
+
+开启固定态软键盘显示动画完成的监听。此监听在固定态软键盘显示动画完成或软键盘由悬浮态切换至固定态时触发。
+
+改变软键盘为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                | 必填 | 说明                                        |
+| -------- | ------------------- | ---- |-------------------------------------------|
+| type     | string              | 是   | 监听事件，固定为'keyboardDidShow'，即固定态软键盘显示动画完成事件。 |
+| callback | Callback&lt;[KeyboardInfo](#keyboardinfo18)&gt; | 是   | 回调函数。返回软键盘窗口信息。                    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Function keyboardDidShow can not work correctly due to limited device capabilities. |
+| 1300002 | This window state is abnormal.               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  windowClass.on('keyboardDidShow', (keyboardInfo) => {
+    console.info('keyboard show animation completion. keyboardInfo: ' + JSON.stringify(keyboardInfo));
+  });
+} catch (exception) {
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### off('keyboardDidShow')<sup>18+</sup>
+
+off(type: 'keyboardDidShow', callback?: Callback&lt;KeyboardInfo&gt;): void
+
+关闭固定态软键盘显示动画完成的监听。改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                 | 是   | 监听事件，固定为'keyboardDidShow'，即固定态软键盘显示动画完成事件。 |
+| callback | Callback&lt;[KeyboardInfo](#keyboardinfo18)&gt; | 否   |  回调函数。返回软键盘窗口信息。若传入参数，则关闭该监听。如果未传入参数，则关闭所有固定态软键盘显示动画完成的监听。                               |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801     | Capability not supported. Function keyboardDidShow can not work correctly due to limited device capabilities. |
+| 1300002 | This window state is abnormal.               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const callback = (keyboardInfo: window.KeyboardInfo) => {
+  // ...
+}
+try {
+  windowClass.on('keyboardDidShow', callback);
+  windowClass.off('keyboardDidShow', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('keyboardDidShow');
+} catch (exception) {
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### on('keyboardDidHide')<sup>18+</sup>
+
+on(type: 'keyboardDidHide', callback: Callback&lt;KeyboardInfo&gt;): void
+
+开启固定态软键盘隐藏动画完成的监听。此监听在固定态软键盘隐藏动画完成或软键盘由固定态切换至悬浮态时触发。
+
+改变软键盘为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                | 必填 | 说明                                        |
+| -------- | ------------------- | ---- |-------------------------------------------|
+| type     | string              | 是   | 监听事件，固定为'keyboardDidHide'，即固定态软键盘隐藏动画完成事件。 |
+| callback | Callback&lt;[KeyboardInfo](#keyboardinfo18)&gt; | 是   | 回调函数。返回软键盘窗口信息。                    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Function keyboardDidHide can not work correctly due to limited device capabilities. |
+| 1300002 | This window state is abnormal.               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  windowClass.on('keyboardDidHide', (keyboardInfo) => {
+    console.info('keyboard hide animation completion. keyboardInfo: ' + JSON.stringify(keyboardInfo));
+  });
+} catch (exception) {
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### off('keyboardDidHide')<sup>18+</sup>
+
+off(type: 'keyboardDidHide', callback?: Callback&lt;KeyboardInfo&gt;): void
+
+关闭固定态软键盘隐藏动画完成的监听。改变输入法窗口为固定态切换至悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                 | 是   | 监听事件，固定为'keyboardDidHide'，即固定态软键盘隐藏动画完成事件。 |
+| callback | Callback&lt;[KeyboardInfo](#keyboardinfo18)&gt; | 否   |  回调函数。返回软键盘窗口信息。若传入参数，则关闭该监听。如果未传入参数，则关闭所有固定态软键盘隐藏动画完成的监听。                               |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801     | Capability not supported. Function keyboardDidHide can not work correctly due to limited device capabilities. |
+| 1300002 | This window state is abnormal.               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const callback = (keyboardInfo: window.KeyboardInfo) => {
+  // ...
+}
+try {
+  windowClass.on('keyboardDidHide', callback);
+  windowClass.off('keyboardDidHide', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('keyboardDidHide');
+} catch (exception) {
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 

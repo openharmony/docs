@@ -128,6 +128,7 @@
     - 添加交互事件<!--arkts-add-event-->
       - [监听组件事件](ndk-listen-to-component-events.md)
       - [绑定手势事件](ndk-bind-gesture-events.md)
+      - [拖拽事件](ndk-drag-event.md)
     - [使用动画](ndk-use-animation.md)
     - [使用懒加载开发长列表界面](ndk-loading-long-list.md)
     - [构建弹窗](ndk-build-pop-up-window.md)
