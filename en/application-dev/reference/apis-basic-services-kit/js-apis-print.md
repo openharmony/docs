@@ -1208,10 +1208,10 @@ Enumerates the print directions.
 
 | **Name**| **Value**| **Description**|
 | -------- | -------- | -------- |
-| ORIENTATION_MODE_PORTRAIT | 0 | Landscape mode.|
-| ORIENTATION_MODE_LANDSCAPE | 1 | Portrait mode.|
-| ORIENTATION_MODE_REVERSE_LANDSCAPE | 2 | Reverse portrait mode.|
-| ORIENTATION_MODE_REVERSE_PORTRAIT | 3 | Reverse landscape mode.|
+| ORIENTATION_MODE_PORTRAIT | 0 | Portrait mode. |
+| ORIENTATION_MODE_LANDSCAPE | 1 | Landscape mode. |
+| ORIENTATION_MODE_REVERSE_LANDSCAPE | 2 | Reverse landscape mode. |
+| ORIENTATION_MODE_REVERSE_PORTRAIT | 3 | Reverse portrait mode. |
 | ORIENTATION_MODE_NONE | 4 | Adaptive mode.|
 
 ## PrinterStatus<sup>14+</sup>

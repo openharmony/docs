@@ -845,8 +845,8 @@ try {
 | UPDATE_TIME<sup>12+</sup> | TagType.BYTES &#124; 0x45 | 数据的更新时间（时间戳形式）。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | OPERATION_TYPE<sup>12+</sup> | TagType.NUMBER &#124; 0x46 | 附加的操作类型。 |
 | REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | TagType.BOOL &#124; 0x47 | 是否加密业务自定义附属信息。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| GROUP_ID<sup>16+</sup> | TagType.BYTES &#124; 0x48 | 关键资产所属群组。<br> |
-| WRAP_TYPE<sup>16+</sup> | TagType.NUMBER &#124; 0x49 | 关键资产支持的加密导入导出类型。<br> |
+| GROUP_ID<sup>18+</sup> | TagType.BYTES &#124; 0x48 | 关键资产所属群组。<br> |
+| WRAP_TYPE<sup>18+</sup> | TagType.NUMBER &#124; 0x49 | 关键资产支持的加密导入导出类型。<br> |
 
 ## Value
 
@@ -961,7 +961,7 @@ type AssetMap = Map\<Tag, Value>
 | NEED_SYNC   | 0    | 需要进行同步操作。 |
 | NEED_LOGOUT | 1    | 需要进行登出操作。 |
 
-## WrapType<sup>16+</sup>
+## WrapType<sup>18+</sup>
 
 枚举，关键资产支持的加密导入导出类型。
 

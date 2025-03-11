@@ -1,29 +1,29 @@
-# MD Operations (ArkTS)
+# Generating an MD Using SHA-256 (ArkTS)
 
 For details about the algorithm specifications, see [Supported Algorithms and Specifications](crypto-generate-message-digest-overview.md#supported-algorithms-and-specifications).
 
 > **NOTE**
 > 
-> From API version 12, wearable devices support MD operations.
+> Since API version 12, wearable devices support MD operations.
 
 ## How to Develop
 
-During the MD operation, you can use **update()** to pass in all the data at a time or pass in data by segment. For the same piece of data, the result will be the same no matter how the data is passed. Use the appropriate method based on the data size.
+During the MD operation, you can [pass in all the data at a time](#generating-an-md-by-passing-in-full-data) or [pass in data by segment](#generating-an-md-by-passing-in-data-by-segment). For the same piece of data, the result will be the same no matter how the data is passed. Use the appropriate method based on the data size.
 
 The following provides examples of MD operations with different data passing methods.
 
 
-### MD (Passing In Full Data)
+### Generating an MD by Passing In Full Data
 
-1. Use [cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd) with the MD algorithm **SHA256** to create a message digest (**Md**) instance.
+1. Call [cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd) with the MD algorithm **SHA256** to create a message digest (**Md**) instance.
 
-2. Use [Md.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-6) to pass in the full data. The amount of data to be passed in by a single **update()** operation is not limited.
+2. Call [Md.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-6) to pass in the full data. The data to be passed in by a single **update()** operation is not size bound.
 
-3. Use [Md.digest](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#digest) to generate an MD.
+3. Call [Md.digest](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#digest) to generate an MD.
 
-4. Use [Md.getMdLength](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getmdlength) to obtain the MD length, in bytes.
+4. Call [Md.getMdLength](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getmdlength) to obtain the MD length, in bytes.
 
-- Example: Pass in the full data to calculate an MD using **await**.
+- Example: Pass in the full data to generate an MD using **await**.
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -31,7 +31,7 @@ The following provides examples of MD operations with different data passing met
 
   async function doMd() {
     let mdAlgName = "SHA256"; // Algorithm to use.
-    let message = "mdTestMessgae"; // Message to be digested.
+    let message = 'mdTestMessage'; // Message to be digested.
     let md = cryptoFramework.createMd(mdAlgName);
     // If the data to be processed is short, use update() to pass in the full data at a time. The amount of data to be passed in by a single **update()** operation is not limited.
     await md.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
@@ -42,7 +42,7 @@ The following provides examples of MD operations with different data passing met
   }
   ```
 
-- Example: Pass in the full data to calculate an MD using a synchronous API.
+- Example: Pass in the full data to generate an MD using a synchronous API.
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -50,7 +50,7 @@ The following provides examples of MD operations with different data passing met
 
   function doMdBySync() {
     let mdAlgName = "SHA256"; // Algorithm to use.
-    let message = "mdTestMessgae"; // Message to be digested.
+    let message = 'mdTestMessage'; // Message to be digested.
     let md = cryptoFramework.createMd(mdAlgName);
     // If the data to be processed is short, use update() to pass in the full data at a time. The amount of data to be passed in by a single **update()** operation is not limited.
     md.updateSync({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
@@ -61,17 +61,17 @@ The following provides examples of MD operations with different data passing met
   }
   ```
 
-### MD (Passing In Data by Segment)
+### Generating an MD by Passing In Data by Segment
 
-1. Use [cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd) with the MD algorithm **SHA256** to create a message digest (**Md**) instance.
+1. Call [cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd) with the MD algorithm **SHA256** to create a message digest (**Md**) instance.
 
 2. Call [Md.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-7) multiple times to pass in 20 bytes each time.
 
-3. Use [Md.digest](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#digest-1) to generate an MD.
+3. Call [Md.digest](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#digest-1) to generate an MD.
 
-4. Use [Md.getMdLength](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getmdlength) to obtain the MD length, in bytes.
+4. Call [Md.getMdLength](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getmdlength) to obtain the MD length, in bytes.
 
-- Example: Pass in data by segment to calculate an MD using **await**.
+- Example: Pass in data by segment to generate an MD using **await**.
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -96,7 +96,7 @@ The following provides examples of MD operations with different data passing met
   }
   ```
 
-- Example: Pass in data by segment to calculate an MD using a synchronous API.
+- Example: Pass in data by segment to generate an MD using a synchronous API.
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';

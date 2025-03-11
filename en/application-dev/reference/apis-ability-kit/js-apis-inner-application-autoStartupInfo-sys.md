@@ -1,4 +1,4 @@
- # AutoStartupInfo (System API)
+# AutoStartupInfo (System API)
 
 The **AutoStartupInfo** module defines information about the application component that automatically starts upon system boot.
 
@@ -17,10 +17,10 @@ The **AutoStartupInfo** module defines information about the application compone
 
 | Name                     | Type  | Mandatory | Description      |
 | ------------------------- | ------ | ---- | --------- |
-| bundleName   | string | Yes | Bundle name. |
-| moduleName | string | No  | Module name. |
-| abilityName | string | Yes | Ability name. |
-| abilityTypeName | string | No | Ability type. |
+| bundleName   | string | Yes | Bundle name.|
+| moduleName | string | No  | Module name.|
+| abilityName | string | Yes | Ability name.|
+| abilityTypeName | string | No| Ability type.|
 | appCloneIndex | number   | No  | Index of an application clone. |
 
 **Example**

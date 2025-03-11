@@ -1,5 +1,5 @@
 # 通用事件
-
+<!--Del-->
 - [点击事件](ts-universal-events-click.md)
 - [触摸事件](ts-universal-events-touch.md)
 - [挂载卸载事件](ts-universal-events-show-hide.md)
@@ -18,3 +18,4 @@
 - [自定义事件拦截](ts-universal-attributes-on-touch-intercept.md)
 - [焦点轴事件](ts-universal-events-focus_axis.md)
 - [轴事件](ts-universal-events-axis.md)
+<!--DelEnd-->

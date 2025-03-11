@@ -1374,3 +1374,533 @@ struct attributeDemo {
       }
     }
     ```
+
+## cl.arkui.9 使用RichEditorStyledStringController构造方式的富文本组件支持预上屏功能
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+使用RichEditorStyledStringController构造方式的富文本（属性字符串富文本）组件需要支持预上屏功能。
+
+**变更影响**
+
+此变更涉及应用适配。
+
+变更前：组件的enablePreviewText接口无法对使用RichEditorStyledStringController构造方式的富文本（属性字符串富文本）生效，属性字符串富文本不支持预上屏。在输入法插入拼音时，组件内不显示拼音内容，onWillChange回调中previewText字段为空。
+
+变更后：组件的enablePreviewText接口可以对使用RichEditorStyledStringController构造方式的富文本（属性字符串富文本）生效，属性字符串富文本支持预上屏。在输入法插入拼音时，组件内显示拼音内容，onWillChange回调中previewText字段为实际显示在组件中的拼音内容。
+
+| 变更前 | 变更后 |
+| -------------------- | -------------------- |
+| ![](figures/unSupportPreviewText.gif)| ![](figures/supportPreviewText.gif)  |
+
+**起始API Level**x
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.54开始。
+
+**变更的接口/组件**
+
+富文本组件RichEditor
+
+**适配指导**
+
+开发者需要根据onWillChange回调中previewText字段是否为空判断此次输入是预上屏输入或正式内容输入，原先在onWillChange回调中做的逻辑变更后需要在判断后再执行。
+```ts
+@Entry
+@Component
+struct Index {
+  controller: RichEditorStyledStringController = new RichEditorStyledStringController()
+  build() {
+    Column() {
+      RichEditor({ controller: this.controller })
+        .onReady(() => {
+          this.controller.onContentChanged({
+            onWillChange: (value: StyledStringChangeValue) => {
+              if (typeof value.previewText != 'undefined' && value.previewText.getString() != "") {
+                // todo 逻辑A
+              } else {
+                // todo 逻辑B
+              }
+              return true
+            }
+          });
+        })
+    }
+  }
+}
+```
+
+## cl.arkui.10 RichEditor（富文本）组件鼠标右击文本触发onSelectionChange回调变更
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+富文本组件右击文本时会触发一次短暂的选中然后清除选中区，过程中触发两次onSelectionChange，与实际效果不符。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：富文本组件右击文本时会触发一次短暂的选中然后清除选中区，触发选中时回调onSelectionChange范围时选中的内容范围，清除选中时回调onSelectionChange为光标索引。
+
+变更后：富文本组件右击文本时不会触发短暂的选中，onSelectionChange只回调一次右击位置的光标索引。
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.54开始。
+
+**变更的接口/组件**
+
+富文本组件RichEditor
+
+**适配指导**
+
+不涉及应用适配。
+
+## cl.arkui.11 RichEditor（富文本）预上屏候选词替换已上屏内容行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+通过输入法点击候选词来替换富文本中已显示的单词，这种替换被视为正式内容的一部分，且能够被富文本的输入相关回调aboutToIMEInput所拦截。
+
+**变更影响**
+
+此变更涉及应用适配。
+
+变更前：
+当aboutToIMEInput回调返回false时，点击输入法候选词替换已上屏内容，候选词能够正常上屏，不会被拦截。
+
+
+变更后：
+当aboutToIMEInput回调返回false时，点击输入法候选词替换已上屏内容，候选词不可以上屏，会被拦截。
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.54开始。
+
+**变更的接口/组件**
+
+RichEditor
+
+**适配指导**
+
+应用可以根据aboutToIMEInput回调入参中RichEditorInsertValue#previewText是否有值，判断此次插入是否是预上屏内容插入，进而执行对应逻辑。
+```ts
+@Entry
+@Component
+struct Index {
+  controller: RichEditorStyledStringController = new RichEditorStyledStringController()
+  build() {
+    Column() {
+      TextArea()
+        .height("50%")
+      RichEditor({ controller: this.controller })
+        .aboutToIMEInput((value: RichEditorInsertValue) => {
+          if (value.previewText == "") {
+            // todo 逻辑A
+            return true
+          } else {
+            // todo 逻辑B
+            return false
+          }
+        })
+    }
+  }
+}
+```
+
+## cl.arkui.12 RichEditor（富文本）设置提示文本时鼠标拖动光标回调变更。
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+当组件设置了提示文本且无内容时，按住鼠标左键拖动会触发onSelect和onSelectionChange异常回调。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：
+当组件设置了提示文本且无内容时，若按住鼠标左键进行拖动操作，将触发onSelect和onSelectionChange异常回调，回调的范围界定为鼠标拖动时所覆盖的提示文本区域。
+
+变更后：
+当组件设置了提示文本且无内容时，若按住鼠标左键进行拖动操作，不触发onSelect和onSelectionChange回调。
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.54开始。
+
+**变更的接口/组件**
+
+RichEditor
+
+**适配指导**
+
+默认行为变更，无需适配。
+
+## cl.arkui.13 RichEditor（富文本）onDeleteComplete回调变更。
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+在组件填充内容时，从内容的起始位置向前删除将触发onDeleteComplete回调，而从内容的末尾向后删除则不会触发onDeleteComplete回调，两者的表现不一致。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：
+在组件填充内容时，从内容的末尾向后删除不触发onDeleteComplete回调。
+
+变更后：
+在组件填充内容时，从内容的末尾向后删除触发onDeleteComplete回调。
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.54开始。
+
+**变更的接口/组件**
+
+RichEditor
+
+**适配指导**
+
+默认行为变更，无需适配。
+
+## cl.arkui.14 RichEditor（富文本）RichEditorTextSpanResult接口返回值变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+在应用添加文本或更新文本样式时，若未指定fontFamily，通过getSpans接口获取的文本信息中，fontFamily将显示默认值"HarmonyOS Sans"。然而，此默认值可能与系统实际应用的字体不一致，从而可能导致应用判断出现偏差。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：
+在应用中添加文本或更新文本样式时，若未指定fontFamily，通过getSpans接口获取的文本信息中，fontFamily将采用默认值"HarmonyOS Sans"。 
+
+变更后：
+在应用中添加文本或更新文本样式时，若未指定fontFamily，通过getSpans接口获取的文本信息中，fontFamily为""。
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.54开始。
+
+**变更的接口/组件**
+
+RichEditor
+
+**适配指导**
+
+默认行为变更，无需适配。
+
+## cl.arkui.15  半模态底部样式最大高度默认避让状态栏安全区
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规格变更。
+
+半模态底部样式最大高度默认避让状态栏安全区。
+
+**变更影响**
+
+此变更不涉及应用适配。
+ 
+场景1：竖屏下，状态栏隐藏时，半模态底部样式最大高度也需要避让状态栏安全区。
+
+- 变更前：状态栏隐藏时，半模态底部样式最大高度距离屏幕上边界8vp，未避让状态栏安全区。
+- 变更后：API version 18及以后，状态栏隐藏时，半模态底部样式最大高度距离状态栏下边界8vp，避让状态栏安全区。该样式的最大高度为屏幕高度 - (窗口状态栏安全区高度 + 安全间距8vp)。
+
+| 变更前 | 变更后 |
+|------ |--------|
+|![verticalSheet1](figures/verticalSheet1.png)|![verticalSheet2](figures/verticalSheet2.png)|
+ 
+场景2：横屏下，状态栏不隐藏时，半模态底部样式最大高度也需要避让状态栏安全区。
+
+- 变更前：状态栏不隐藏时，半模态底部样式最大高度距离屏幕上边界8vp，未避让状态栏安全区，且与状态栏区域重合。
+- 变更后：API version 18及以后，状态栏不隐藏时，半模态底部样式最大高度距离状态栏下边界8vp，避让状态栏安全区。该样式的最大高度为屏幕高度 - (窗口状态栏安全区高度 + 安全间距8vp)。
+
+| 变更前 | 变更后 |
+|------ |--------|
+|![horizontalSheet1](figures/horizontalSheet1.jpg)|![horizontalSheet2](figures/horizontalSheet2.jpg)|
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.54 版本开始。
+
+**变更的接口/组件**
+
+bindSheet的LARGE属性
+
+**适配指导**
+
+若开发者自定义的builder面板内容是固定高度，建议使用100%布局，变更后自定义的内容也可以自动撑满半模态面板。
+
+若按变更前的最大高度规格限制的builder内容，需要变更为新规格计算。
+
+## cl.arkui.16 sharedTransition在id入参为undefined或空字符串时的行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+sharedTransition的id从非空字符串变为空字符串或undefined时，无法实现清空共享元素转场id的效果。
+
+**变更影响**
+
+此变更涉及应用适配，API18之前不变，API18及以后，发生变更。
+
+变更前：sharedTransition的id从非空字符串变为空字符串或undefined时，会维持之前的有效id值。
+
+变更后：sharedTransition的id从非空字符串变为空字符串或undefined时，会将共享元素转场id置为空字符串，达到取消sharedTransition匹配的效果。
+
+**起始API Level**
+
+API 7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.54版本开始。
+
+**变更的接口/组件**
+
+common.d.ts文件的sharedTransition接口
+
+**适配指导**
+
+开发者如果希望同一组件的sharedTransition的id维持有效值不变，且开发者已经主动设置id为空字符串或undefined时，需要适配。适配方式为不更改sharedTransition的id，维持之前的有效值不变。其余情况无需适配。
+
+## cl.arkui.17 半模态弹簧曲线时长设置默认值
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+开发者拉起用SheetSize.FIT_CONTENT声明的半模态的同时，立刻变更了半模态面板高度，造成半模态连续做了两个弹簧曲线动效。
+
+半模态高度动效是没有设置时长的弹簧曲线，如果对高度值连续做两次动效，那么后一个动效会停止前面所有动效，只执行第二个动效，效果上为跳变现象，体验不佳。
+
+**变更影响**
+
+此变更不涉及应用适配，API18之前不变，API18及以后，发生变更。
+
+变更前：在拉起半模态的过程中同时更改半模态高度，半模态会做两次弹簧曲线动效，第一次动效直接到达终点，第二次动效从起点执行到终点，半模态onAppear和高度回调立即执行。
+
+变更后：在拉起半模态的过程中同时更改半模态高度，半模态会做两次弹簧曲线动效，第一次动效和第二次动效都从起点执行到终点，半模态onAppear和高度回调在第一次动效结束后执行。
+
+**起始API Level**
+
+API 11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.54版本开始。
+
+**变更的接口/组件**
+
+bindSheet的SheetSize.FIT_CONTENT属性。
+
+**适配指导**
+
+UX效果调优，应用无需适配。
+
+## cl.arkui.18 bindSheet在2in1设备中默认避让窗口安全区
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规格变更。
+
+半模态内容需默认避让窗口安全区，否则会有重叠区域。
+
+**变更影响**
+
+此变更涉及应用适配，API18之前不变，API18及以后，发生变更。
+
+当自由窗口标题栏类型为悬浮标题栏时，需要半模态面板默认避让标题安全区。
+
+场景1：半模态居中弹窗样式
+
+- 变更前：半模态居中弹窗样式的面板最大高度为窗口高度的90%。
+- 变更后：API version 18及以后，该样式的最大高度为窗口高度 - (窗口安全区高度 + 安全间距8vp) * 2。
+
+| 变更前 | 变更后 |
+|------ |--------|
+|![sheetCenter1](figures/sheetCenter1.png)|![sheetCenter2](figures/sheetCenter2.png)|
+
+场景2：半模态底部弹窗样式
+
+- 变更前：半模态底部弹窗样式的面板最大高度为窗口高度 - 8vp。
+- 变更后：API version 18及以后，该样式的最大高度为窗口高度 - (窗口安全区高度 + 安全间距8vp)。
+
+| 变更前 | 变更后 |
+|------ |--------|
+|![sheetBottom1](figures/sheetBottom1.png)|![sheetBottom2](figures/sheetBottom2.png)|
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.54版本开始。
+
+**变更的接口/组件**
+
+bindSheet的preferType属性
+
+**适配指导**
+
+若开发者自定义的builder面板内容是固定高度，建议使用100%布局，变更后自定义的内容也可以自动撑满半模态面板。
+
+若按变更前的最大高度规格限制的builder内容，需要变更为新规格计算。
+
+## cl.arkui.19 XComponent设置为Texture模式使用blendMode接口的行为由不生效变更为正常生效
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+用户使用XComponent组件并设置为Texture模式时，使用blendMode接口没有效果，不符合接口正常规格，需要变更为blendMode接口正常生效。
+
+**变更影响**
+
+此变更涉及应用适配。
+
+变更前：XComponent组件设置为Texture模式，使用blendMode接口不生效。
+
+变更后：XComponent组件设置为Texture模式，使用blendMode接口正常生效。
+
+**起始API Level**
+
+API 11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.54开始。
+
+**变更的接口/组件**
+
+common.d.ts文件的blendMode接口。
+
+**适配指导**
+
+需适配场景：
+当应用使用XComponent组件并设置为Texture模式（`type`设置为`XComponentType.TEXTURE`）时，使用blendMode接口，可能会出现显示效果变更前后不一致的情况，以下是使用场景示意：
+
+```ts
+@Entry
+@Component
+struct Index {
+  private contextOne: Record<string, () => void> = {};
+  private contextTwo: Record<string, () => void> = {};
+
+  build() {
+    Column() {
+      Stack() {
+        XComponent({
+          id: 'circle',
+          type: XComponentType.TEXTURE,
+          libraryname: 'nativerender'
+        }).height(50)
+          .backgroundColor(Color.Transparent)
+          .onLoad((contextOne?: object | Record<string, () => void>) => {
+            if (contextOne) {
+              this.contextOne = contextOne as Record<string, () => void>;
+            }
+          })
+
+        XComponent({
+          id: 'rect',
+          type: XComponentType.TEXTURE,
+          libraryname: 'nativerender'
+        }).height(50)
+          .backgroundColor(Color.Transparent)
+          .onLoad((contextTwo?: object | Record<string, () => void>) => {
+            if (contextTwo) {
+              this.contextTwo = contextTwo as Record<string, () => void>;
+            }
+          })
+          .blendMode(BlendMode.XOR) // 变更后生效，若需保持变更前行为，可使用BlendMode.None入参
+      }
+      .height(50)
+      .onClick(() => {
+        if (this.contextOne) {
+          this.contextOne.drawCircle();
+        }
+        if (this.contextTwo) {
+          this.contextTwo.drawRectangle();
+        }
+      })
+    }
+    .blendMode(BlendMode.SRC_OVER, BlendApplyType.OFFSCREEN)
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+| 混合类型 | 变更前 | 变更后 |
+| ------- | - | ---- |
+| BlendMode.XOR | ![demoBlendModeXor](figures/demoBlendModeNone.png) | ![demoBlendModeXor](figures/demoBlendModeXor.png) |
+| BlendMode.NONE  | ![demoBlendModeNone](figures/demoBlendModeNone.png) | ![demoBlendModeNone](figures/demoBlendModeNone.png) |
+
+应用若需保持变更前行为，XComponent组件上的blendMode接口使用BlendMode.None入参即可。

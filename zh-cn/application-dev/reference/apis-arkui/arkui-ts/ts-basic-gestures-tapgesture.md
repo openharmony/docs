@@ -11,6 +11,8 @@
 
 TapGesture(value?: TapGestureParameters)
 
+触发点击手势事件的设备类型为键盘或手柄时，事件的SourceTool值为Unknown。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

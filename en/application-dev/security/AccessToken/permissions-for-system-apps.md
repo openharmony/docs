@@ -153,7 +153,7 @@ Allows a system application to call the Message application authorization interf
 
 **Authorization mode**: system_grant
 
-**Valid since**: 15
+**Valid since**: 18
 
 ### ohos.permission.MANAGE_SETTINGS
 

@@ -265,12 +265,11 @@ struct barHeightTest {
 
 **变更原因**
 
-小窗模式下，获取组件相对于屏幕位置的接口在获取组件相对于屏幕的位置时，不会自动按照窗口的缩放比例进行缩放，返回值错误。变更后，接口返回值正确。
-
+小窗模式下，获取组件相对于屏幕位置的接口在获取组件相对于屏幕的位置时，不会自动按照窗口的缩放比例进行缩放，返回值错误。
 
 **变更影响**
 
-该变更为不兼容变更。
+该变更不涉及应用适配。
 
 变更前：在小窗模式下，获取组件相对于屏幕的位置时，不会自动按照窗口的缩放比例进行缩放，计算的位置仍然是将窗口作为全屏展示时的位置。
 
@@ -286,8 +285,9 @@ API 12
 
 **变更的接口/组件**
 
-ArkTS: getPositionToScreen和getPositionToScreenWithTransform
-C: OH_ArkUI_NodeUtils_GetLayoutPositionInScreen和OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen
+ArkTS API: getPositionToScreen, getPositionToScreenWithTransform
+
+C API: OH_ArkUI_NodeUtils_GetLayoutPositionInScreen, OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen
 
 **适配指导**
 

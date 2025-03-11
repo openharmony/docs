@@ -384,9 +384,9 @@ function fight(): void {
 
 ```
 if (flag) {
-  //...
+  // ...
 }else {  // else 与其前面的大括号 } 之间没有加空格
-  //...
+  // ...
 }
 ```
 
@@ -394,9 +394,9 @@ if (flag) {
 
 ```
 if (flag) {
-  //...
+  // ...
 } else {  // else 与其前面的大括号 } 之间增加空格
-  //...
+  // ...
 }
 ```
 
@@ -404,7 +404,7 @@ if (flag) {
 
 ```
 function foo() {  // 函数声明时，左大括号 { 之前加个空格
-  //...
+  // ...
 }
 
 bar('attr', {  // 左大括号前加个空格
@@ -552,7 +552,7 @@ try {
 ```
 function foo()
 {
-  //...
+  // ...
 }
 ```
 
@@ -560,7 +560,7 @@ function foo()
 
 ```
 function foo() {
-  //...
+  // ...
 }
 ```
  
@@ -697,7 +697,7 @@ const increasedByOne: number[] = numbers.map(num => num + 1);
 ```
 // 在控制性判断中赋值不易理解
 if (isFoo = false) {
-  ...
+  // ...
 }
 ```
 
@@ -706,7 +706,7 @@ if (isFoo = false) {
 ```
 const isFoo = someBoolean; // 在上面赋值，if条件判断中直接使用
 if (isFoo) {
-  ...
+  // ...
 }
 ```
 
@@ -723,10 +723,10 @@ if (isFoo) {
 ```
 function foo() {
   try {
-    ...
+    // ...
     return 1;
   } catch (err) {
-    ...
+    // ...
     return 2;
   } finally {
     return 3;
@@ -739,10 +739,10 @@ function foo() {
 ```
 function foo() {
   try {
-    ...
+    // ...
     return 1;
   } catch (err) {
-    ...
+    // ...
     return 2;
   } finally {
     console.log('XXX!');

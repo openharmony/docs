@@ -247,13 +247,13 @@ tabStop(isTabStop: boolean) :T
 
 当前焦点如果停留在button2时，按下tab键将会走焦到Column3上，再按下tab键会循环走焦到button1上。
 
-## nextFocus<sup>16+</sup>
+## nextFocus<sup>18+</sup>
 
 nextFocus(nextStep: Optional\<FocusMovement>): T
 
 设置组件的自定义焦点走焦的逻辑。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -261,13 +261,13 @@ nextFocus(nextStep: Optional\<FocusMovement>): T
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| nextStep  | [FocusMovement](#focusmovement16对象说明) | 否 | 设置当前容器组件的自定义走焦规则。<br/>**说明：** <br/>默认值为重置nextStep为空。<br/>没设置自定义走焦或者设置自定义组件容器不存在，仍进行默认走焦规则。|
+| nextStep  | [FocusMovement](#focusmovement18对象说明) | 否 | 设置当前容器组件的自定义走焦规则。<br/>**说明：** <br/>默认值为重置nextStep为空。<br/>没设置自定义走焦或者设置自定义组件容器不存在，仍进行默认走焦规则。|
 
-## FocusMovement<sup>16+</sup>对象说明
+## FocusMovement<sup>18+</sup>对象说明
 
 设置对应的按键对应的走焦目的组件，缺省则遵循默认走焦规则。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

@@ -327,7 +327,42 @@ OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_TRANSFORM, NATIVEBUFFER_
 // ......
 ```
 
-## cl.arkui.8 按钮默认值变更为新增圆角矩形类型
+## cl.arkui.8 Toast和Popup/Menu同时存在时，点击Toast子窗不再关闭Popup/Menu
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+子窗口中显示Popup/Menu，弹出与其有相同父窗口的Toast时，Toast窗口上的点击事件会关闭Popup/Menu。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：点击Toast窗口时，会主动关闭与其有相同父窗口的Popup/Menu。
+
+变更后：点击Toast窗口时，不再主动关闭与其有相同父窗口的Popup/Menu。
+
+
+**起始API Level**
+
+API 9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.53开始。
+
+**变更的接口/组件**
+
+不涉及。
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+## cl.arkui.9 按钮默认值变更为新增圆角矩形类型
 
 **访问级别**
 
@@ -339,12 +374,13 @@ OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, SET_TRANSFORM, NATIVEBUFFER_
 
 **变更影响**
 
+此变更不涉及应用适配。
 
 变更前：ButtonOptions中type的默认值为ButtonType.Capsule。
 
 变更后：ButtonOptions中type的默认值为ButtonType.ROUNDED_RECTANGLE
 
-![roundedRectButton](figures/roundedRectButton.png)
+![roundedRectButton](figures/roundedRectButton.PNG)
 
 **起始API Level**
 
@@ -393,7 +429,7 @@ struct ButtonExample {
 
 ```
 
-## cl.arkui.9 enabled属性UX样式变更
+## cl.arkui.10 enabled属性UX样式变更
 
 **访问级别**
 
@@ -404,6 +440,8 @@ struct ButtonExample {
 Rating组件与Slider组件enabled属性UX样式不符合规范
 
 **变更影响**
+
+此变更不涉及应用适配。
 
 Rating组件变更场景：
 
@@ -433,7 +471,7 @@ Slider组件变更场景：
 
 默认行为变更，无需适配。
 
-## cl.arkui.10 修复Popup高级组件宽度限制计算错误的问题
+## cl.arkui.11 修复Popup高级组件宽度限制计算错误的问题
 
 **访问级别**
 
@@ -444,6 +482,8 @@ Slider组件变更场景：
 目前宽度最大限制不符合ux规范，在手机屏幕场景下，会出现Popup高级组件无法撑满屏幕的情况，影响体验。
 
 **变更影响**
+
+此变更不涉及应用适配。
 
 变更前：屏幕宽度小于400vp时，Popup高级组件最大宽度为当前屏幕宽度-80vp。
 

@@ -513,6 +513,24 @@ Authentication error.
 
 排查传入的校验身份的字段是否与服务器匹配。
 
+## 2300997 明文HTTP被拦截
+
+**错误信息**
+
+Cleartext traffic not permitted.
+
+**错误描述**
+
+明文HTTP被拦截，不允许访问。
+
+**可能原因**
+
+应用配置network_config.json文件中设置为明文不允许。
+
+**处理步骤**
+
+排查network_config.json中cleartextTrafficPermitted字段配置。
+
 ## 2300998 不允许访问域名
 
 **错误信息**

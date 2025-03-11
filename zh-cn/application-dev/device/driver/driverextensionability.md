@@ -97,6 +97,9 @@
         "requestPermissions": [
           {
             "name": "ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER" // 此处为扩展外设相关权限，必须配置
+          },
+          {
+            "name": "ohos.permission.ACCESS_DDK_DRIVERS" // 此处为允许该扩展外设应用访问扩展外设驱动的权限，必须配置
           }
         ],
         "deliveryWithInstall": true,
@@ -152,6 +155,14 @@
               {
                 "name": "pid", // 支持的 USB product id 列表，填写16进制，此处为4258的16进制
                 "value": "0x10A2"
+              },
+              {
+                "name": "launchOnBind", // 选填项，延迟拉起驱动。此处“true”表示延迟拉起，“false”表示即时拉起，配置错误或不配置，默认为“false”
+                "value": "true"
+              },
+              {
+                "name": "ohos.permission.ACCESS_DDK_ALLOWED", // 选填项，允许应用访问。此处“true”表示允许访问，“false”表示不允许访问，配置错误或不配置，默认为“false”
+                "value": "true"
               }
             ]
           }

@@ -143,24 +143,28 @@
    | -------- | -------- | -------- |
    | name | Ability名称，对应Ability派生的ExtensionAbility类名。 | 是 |
    | type | Ability类型，DataShare对应的Ability类型为“dataShare”，表示基于datashare模板开发的。 | 是 |
-   | uri | 通信使用的URI，是客户端链接服务端的唯一标识。<br/> 支持添加后缀参数来设置具体的访问对象，URI添加后缀参数需在URI结尾以"?"符号开始参数。<br/> - 当前仅支持设置“user”参数。<br/> - "user"仅支持设置为整型，表示数据提供方的用户ID。不填写时，默认为数据访问方所在的用户ID。user的定义及获取参照[user](../reference/apis-basic-services-kit/js-apis-osAccount.md#getactivatedosaccountlocalids9)。<br/> - 目前跨用户访问需要数据访问方配有跨用户访问权限ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS才可成功访问。 | 是 |
+   | uri | 通信使用的URI，是客户端链接服务端的唯一标识。<br/> 支持添加后缀参数来设置具体的访问对象，URI添加后缀参数需在URI结尾以"?"符号开始参数。<br/> - 当前仅支持设置"user"参数。<br/> - "user"仅支持设置为整型，表示数据提供方的用户ID。不填写时，默认为数据访问方所在的用户ID。user的定义及获取参照[user](../reference/apis-basic-services-kit/js-apis-osAccount.md#getactivatedosaccountlocalids9)。<br/> - 目前跨用户访问需要数据访问方配有跨用户访问权限ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS才可成功访问。 | 是 |
    | exported | 对其他应用是否可见，设置为true时，才能与其他应用进行通信传输数据。 | 是 |
-   | readPermission | 访问数据时需要的权限，不配置默认不进行读权限校验。 | 否 |
-   | writePermission | 修改数据时需要的权限，不配置默认不进行写权限校验。 | 否 |
+   | readPermission | 访问数据时需要的权限，不配置默认不进行读权限校验。<br>注意：当前DataShareExtensionAbility的权限约束方式与静默访问的权限约束方式不同，请注意区分，切勿混淆，具体可参考[静默访问章节](share-data-by-silent-access.md)。 | 否 |
+   | writePermission | 修改数据时需要的权限，不配置默认不进行写权限校验。<br>注意：当前DataShareExtensionAbility的权限约束方式与静默访问的权限约束方式不同，请注意区分，切勿混淆，具体可参考[静默访问章节](share-data-by-silent-access.md)。 | 否 |
    | metadata   | 增加静默访问所需的额外配置项，包含name和resource字段。<br /> name类型固定为"ohos.extension.dataShare"，是配置的唯一标识。 <br /> resource类型固定为"$profile:data_share_config"，表示配置文件的名称为data_share_config.json。 | 若Ability启动模式为"singleton"，则metadata必填，Ability启动模式可见[abilities对象的内部结构-launchType](../quick-start/module-structure.md#abilities对象的内部结构)；其他情况下无需填写。 |
 
    **module.json5配置样例：**
    
    ```json
+   // 以下配置以settingsdata为例，应用需根据实际情况配置各个字段
    "extensionAbilities": [
      {
-       "srcEntry": "./ets/DataShareExtAbility/DataShareExtAbility.ets",
-       "name": "DataShareExtAbility",
+       "srcEntry": "./ets/DataAbility/DataExtAbility.ets",
+       "name": "DataExtAbility",
        "icon": "$media:icon",
        "description": "$string:description_datashareextability",
        "type": "dataShare",
-       "uri": "datashare://com.samples.datasharetest.DataShare",
+       "uri": "datashare://com.ohos.settingsdata.DataAbility",
        "exported": true,
+       // 实际请按照应用具体场景需要的安全权限配置，如配置应用自定义权限、系统权限或用户授权权限，当前权限仅为示例
+       "readPermission": "ohos.permission.MANAGE_SECURE_SETTINGS",
+       "writePermission": "ohos.permission.MANAGE_SECURE_SETTINGS",
        "metadata": [{"name": "ohos.extension.dataShare", "resource": "$profile:data_share_config"}]
      }
    ]
@@ -184,7 +188,7 @@
                "crossUserMode":1
            },
            {
-               "uri":"datashare:///com.acts.datasharetest/entry/DB00",
+               "uri":"datashare:///com.ohos.settingsdata/entry/DB00",
                "crossUserMode":1
            },
            {
@@ -218,7 +222,7 @@
    
    ```ts
    // 作为参数传递的URI，与module.json5中定义的URI的区别是多了一个"/"，是因为作为参数传递的URI中，在第二个与第三个"/"中间，存在一个DeviceID的参数
-   let dseUri = ('datashare:///com.samples.datasharetest.DataShare');
+   let dseUri = ('datashare:///com.ohos.settingsdata.DataAbility');
    ```
 
 3. 创建工具接口类对象。

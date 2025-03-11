@@ -273,7 +273,7 @@ class MyAbility extends UIAbility {
 
 ## CollaborateResult<sup>16+</sup>
 
-Enumerates the collaboration request results. This enum is used in multi-device collaboration scenarios to specify whether the target application accepts the collaboration request from the caller application. It is used in [onCollaborate(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncollaborate) of the UIAbility.
+Enumerates the collaboration request results. This enum is used in multi-device collaboration scenarios to specify whether the target application accepts the collaboration request from the caller application. It is used in [onCollaborate(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncollaborate16) of the UIAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -290,6 +290,32 @@ import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 class MyAbility extends UIAbility {
   onCollaborate(wantParam: Record<string, Object>) {
     return AbilityConstant.CollaborateResult.ACCEPT;
+  }
+}
+```
+
+## PrepareTermination<sup>15+</sup>
+
+Enumerates the actions triggered when an application is closed by the user. It must be used together with [onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15) or [onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15) of [AbilityStage](js-apis-app-ability-abilityStage.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name| Value| Description|
+| ------------- | --------- | ----------- |
+| TERMINATE_IMMEDIATELY | 0 | Executes the termination action immediately. This is the default behavior.|
+| CANCEL | 1 | Cancels the termination action.|
+
+**Example**
+
+```ts
+import { AbilityConstant, AbilityStage } from '@kit.AbilityKit';
+
+class MyAbilityStage extends AbilityStage {
+  onPrepareTermination(): AbilityConstant.PrepareTermination {
+    console.info('MyAbilityStage.onPrepareTermination is called');
+    return AbilityConstant.PrepareTermination.CANCEL;
   }
 }
 ```

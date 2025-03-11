@@ -5,7 +5,7 @@
 
 通过调用OH_ScsiPeripheral_CreateDeviceMemMap创建的设备内存映射。 使用该设备内存映射的缓冲区可以提供更好的性能。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **相关模块：**[SCSI Peripheral DDK](_s_c_s_i.md)
 

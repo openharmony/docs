@@ -29,7 +29,7 @@ import { errorManager } from '@kit.AbilityKit';
 ```ts
 import { errorManager } from '@kit.AbilityKit';
 
-function errorFunc(observer: errorManager.GlobalObserver) {
+function errorFunc(observer: errorManager.GlobalError) {
     console.log("result name :" + observer.name);
     console.log("result message :" + observer.message);
     console.log("result stack :" + observer.stack);

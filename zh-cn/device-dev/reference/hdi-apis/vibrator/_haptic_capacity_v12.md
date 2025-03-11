@@ -22,8 +22,8 @@
 | boolean [isSupportHdHaptic](#issupporthdhaptic) | 是否支持高清振动。  | 
 | boolean [isSupportPresetMapping](#issupportpresetmapping) | 是否支持预定义振动。  | 
 | boolean [isSupportTimeDelay](#issupporttimedelay) | 是否支持延时振动。  | 
-| boolean [reserved0](#reserved0) | 预留参数.  | 
-| int [reserved1](#reserved1) | 预留参数.  | 
+| boolean [reserved0](#reserved0) | 预留参数。  | 
+| int [reserved1](#reserved1) | 预留参数。 | 
 
 
 ## 类成员变量说明
@@ -66,7 +66,7 @@ boolean HapticCapacity::reserved0
 ```
 **描述**
 
-预留参数.
+预留参数。
 
 
 ### reserved1
@@ -76,4 +76,4 @@ int HapticCapacity::reserved1
 ```
 **描述**
 
-预留参数.
+预留参数。

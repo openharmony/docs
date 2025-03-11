@@ -21,6 +21,6 @@ The shortcutInfo module defines shortcut information configured in the configura
 | labelId<sup>8+</sup>    | number                                     | Yes  | No  | Name ID of the shortcut.            |
 | disableMessage          | string                                     | Yes  | No  | Message displayed when the shortcut is disabled.          |
 | wants                   | Array&lt;<!--Del-->[<!--DelEnd-->ShortcutWant<!--Del-->](js-apis-bundle-ShortcutInfo-sys.md#shortcutwantdeprecated)<!--DelEnd-->&gt; | Yes  | No  | Want list for the shortcut.        |
-| isStatic                | boolean                                    | Yes  | Yes  | Whether the shortcut is static.          |
-| isHomeShortcut          | boolean                                    | Yes  | Yes  | Whether the shortcut is a home shortcut.|
-| isEnabled               | boolean                                    | Yes  | Yes  | Whether the shortcut is enabled.            |
+| isStatic                | boolean                                    | Yes  | No  | Whether the shortcut is static. The value **true** means that the shortcut is static, and **false** means the opposite.         |
+| isHomeShortcut          | boolean                                    | Yes  | No  | Whether the shortcut is a home shortcut. The value **true** means that the shortcut is a home shortcut, and **false** means the opposite.|
+| isEnabled               | boolean                                    | Yes  | No  | Whether the shortcut is enabled. The value **true** means that the shortcut is enabled., and **false** means the opposite.            |

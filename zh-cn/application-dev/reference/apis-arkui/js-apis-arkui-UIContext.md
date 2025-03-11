@@ -367,65 +367,42 @@ getSharedLocalStorage(): LocalStorage | undefined
 **示例：**
 
 ```ts
-// index.ets
-import { router } from '@kit.ArkUI';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  storage: LocalStorage = new LocalStorage();
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    windowStage.loadContent('pages/Index', this.storage);
+  }
+}
+```
+
+```ts
+// Index.ets
 
 @Entry
 @Component
 struct SharedLocalStorage {
-  localStorage = this.getUIContext().getSharedLocalStorage()
+  localStorage = this.getUIContext().getSharedLocalStorage();
 
   build() {
     Row() {
       Column() {
         Button("Change Local Storage to 47")
           .onClick(() => {
-            this.localStorage?.setOrCreate("propA",47)
+            this.localStorage?.setOrCreate("propA", 47);
           })
         Button("Get Local Storage")
           .onClick(() => {
-            console.info(`localStorage: ${this.localStorage?.get("propA")}`)
-          })
-        Button("To Page")
-          .onClick(() => {
-            router.pushUrl({
-              url: 'pages/GetSharedLocalStorage'
-            })
+            console.info(`localStorage: ${this.localStorage?.get("propA")}`);
           })
       }
       .width('100%')
     }
     .height('100%')
-  }
-}
-
-// GetSharedLocalStorage.ets
-import {router} from '@kit.ArkUI';
-
-@Entry
-@Component
-struct GetSharedLocalStorage {
-  localStorage = this.getUIContext().getSharedLocalStorage()
-
-  build() {
-    Row() {
-      Column() {
-        Button("Change Local Storage to 100")
-          .onClick(() => {
-            this.localStorage?.setOrCreate("propA",100)
-          })
-        Button("Get Local Storage")
-          .onClick(() => {
-            console.info(`localStorage: ${this.localStorage?.get("propA")}`)
-          })
-
-        Button("Back Index")
-          .onClick(() => {
-            router.back()
-          })
-      }
-      .width('100%')
-    }
   }
 }
 ```
@@ -1016,13 +993,13 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 }
 ```
 
-### createAnimator<sup>16+</sup>
+### createAnimator<sup>18+</sup>
 
 createAnimator(options: AnimatorOptions | SimpleAnimatorOptions): AnimatorResult
 
-创建animator动画结果对象（AnimatorResult）。与[createAnimator](#createanimator)相比，新增对[SimpleAnimatorOptions](js-apis-animator.md#simpleanimatoroptions16)类型入参的支持。
+创建animator动画结果对象（AnimatorResult）。与[createAnimator](#createanimator)相比，新增对[SimpleAnimatorOptions](js-apis-animator.md#simpleanimatoroptions18)类型入参的支持。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1030,7 +1007,7 @@ createAnimator(options: AnimatorOptions | SimpleAnimatorOptions): AnimatorResult
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| options | [AnimatorOptions](js-apis-animator.md#animatoroptions) \| [SimpleAnimatorOptions](js-apis-animator.md#simpleanimatoroptions16) | 是    | 定义动画选项。 |
+| options | [AnimatorOptions](js-apis-animator.md#animatoroptions) \| [SimpleAnimatorOptions](js-apis-animator.md#simpleanimatoroptions18) | 是    | 定义动画选项。 |
 
 **返回值：**
 
@@ -2512,13 +2489,13 @@ unbindTabsFromNestedScrollable(tabsController: TabsController, parentScroller: S
 
 参考[bindTabsToScrollable](#bindtabstoscrollable13)接口示例。
 
-### enableSwipeBack<sup>16+</sup>
+### enableSwipeBack<sup>18+</sup>
 
 enableSwipeBack(enabled: Optional\<boolean\>): void
 
 设置是否支持应用内横向滑动返回上一级。
 
-**原子化服务API:** 从API Version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API:** 从API Version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -2569,13 +2546,13 @@ getTextMenuController(): TextMenuController
 
 参考[TextMenuController](#textmenucontroller16)接口示例。
 
-### notifyDragStartRequest<sup>16+</sup>
+### notifyDragStartRequest<sup>18+</sup>
 
 notifyDragStartRequest(requestStatus: draController.DragStartRequestStatus): void
 
 控制应用是否可以发起拖拽。
 
-**原子化服务API**: 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API**: 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -2583,7 +2560,7 @@ notifyDragStartRequest(requestStatus: draController.DragStartRequestStatus): voi
 
 | 参数名 | 类型   | 必填| 说明                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| requestStatus  | [draController.DragStartRequestStatus](js-apis-arkui-dragController.md#dragstartrequeststatus16)    | 是  |定义应用是否可以发起拖拽。|
+| requestStatus  | [draController.DragStartRequestStatus](js-apis-arkui-dragController.md#dragstartrequeststatus18)    | 是  |定义应用是否可以发起拖拽。|
 
 **示例：**
 
@@ -5735,11 +5712,11 @@ type CustomBuilderWithId = (id: number)&nbsp;=&gt;&nbsp;void
 | -------- | -------- | -------- | -------- |
 | id | number | 是 | 组件ID |
 
-## TargetInfo<sup>16+</sup>
+## TargetInfo<sup>18+</sup>
 
 指定组件绑定的目标节点。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -6967,7 +6944,7 @@ struct Index {
 }
 ```
 
-### openPopup<sup>16+</sup>
+### openPopup<sup>18+</sup>
 
 openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: PopupCommonOptions): Promise&lt;void&gt;
 
@@ -6977,11 +6954,11 @@ openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, 
 >
 > 1. 使用该接口时，若未传入有效的target，则无法弹出popup弹窗。
 >
-> 2. 由于[updatePopup](#updatepopup16)和[closePopup](#closepopup16)依赖content去更新或者关闭指定的popup弹窗，开发者需自行维护传入的content。
+> 2. 由于[updatePopup](#updatepopup18)和[closePopup](#closepopup18)依赖content去更新或者关闭指定的popup弹窗，开发者需自行维护传入的content。
 >
-> 3. 如果在wrapBuilder中包含其他组件（例如：[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)、[Chip](arkui-ts/ohos-arkui-advanced-Chip.md#chip)组件），则ComponentContent应采用带有四个参数的构造函数[constructor](./js-apis-arkui-ComponentContent.md#constructor-2)，其中options参数应传递{ nestingBuilderSupported: true }。
+> 3. 如果在wrapBuilder中包含其他组件（例如：[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)、[Chip](arkui-ts/ohos-arkui-advanced-Chip.md#chip)组件），则[ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent-1)应采用带有四个参数的构造函数constructor，其中options参数应传递{ nestingBuilderSupported: true }。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -6990,8 +6967,8 @@ openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
 | content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | popup弹窗中显示的组件内容。 |
-| target | [TargetInfo](#targetinfo16) | 是 | 需要绑定组件的信息。 |
-| options | [PopupCommonOptions](arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions16类型说明) | 否 | popup弹窗样式。 |
+| target | [TargetInfo](#targetinfo18) | 是 | 需要绑定组件的信息。 |
+| options | [PopupCommonOptions](arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions18类型说明) | 否 | popup弹窗样式。 |
 
 **返回值：**
 
@@ -7094,7 +7071,7 @@ struct Index {
 }
 ```
 
-### updatePopup<sup>16+</sup>
+### updatePopup<sup>18+</sup>
 
 updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupCommonOptions, partialUpdate?: boolean ): Promise&lt;void&gt;
 
@@ -7105,7 +7082,7 @@ updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupComm
 > 不支持更新showInSubWindow、focusable、onStateChange、onWillDismiss、transition。
 >
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -7114,7 +7091,7 @@ updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupComm
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
 | content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | popup弹窗中显示的组件内容。 |
-| options | [PopupCommonOptions](arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions16类型说明) | 是 | popup弹窗样式。<br/>**说明：** <br/>不支持更新showInSubWindow、focusable、onStateChange、onWillDismiss、transition。 |
+| options | [PopupCommonOptions](arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions18类型说明) | 是 | popup弹窗样式。<br/>**说明：** <br/>不支持更新showInSubWindow、focusable、onStateChange、onWillDismiss、transition。 |
 | partialUpdate | boolean | 否 | popup弹窗更新方式, 默认值为false。<br/>**说明：** <br/>1. true为增量更新，保留当前值，更新options中的指定属性。 <br/>2. false为全量更新，除options中的指定属性，其他属性恢复默认值。 |
 
 **返回值：**
@@ -7135,15 +7112,15 @@ updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupComm
 
 **示例：**
 
-请参考[openPopup](#openpopup16)示例。
+请参考[openPopup](#openpopup18)示例。
 
-### closePopup<sup>16+</sup>
+### closePopup<sup>18+</sup>
 
 closePopup\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
 
 关闭content对应的popup弹窗，使用Promise异步回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -7171,9 +7148,9 @@ closePopup\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt
 
 **示例：**
 
-请参考[openPopup](#openpopup16)示例。
+请参考[openPopup](#openpopup18)示例。
 
-### openMenu<sup>16+</sup>
+### openMenu<sup>18+</sup>
 
 openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: MenuOptions): Promise&lt;void&gt;
 
@@ -7183,11 +7160,11 @@ openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, o
 >
 > 1. 使用该接口时，若未传入有效的target，则无法弹出menu弹窗。
 >
-> 2. 由于[updateMenu](#updatemenu16)和[closeMenu](#closemenu16)依赖content去更新或者关闭指定的menu弹窗，开发者需自行维护传入的content。
+> 2. 由于[updateMenu](#updatemenu18)和[closeMenu](#closemenu18)依赖content去更新或者关闭指定的menu弹窗，开发者需自行维护传入的content。
 >
-> 3. 如果在wrapBuilder中包含其他组件（例如：[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)、[Chip](arkui-ts/ohos-arkui-advanced-Chip.md#chip)组件），则ComponentContent应采用带有四个参数的构造函数[constructor](./js-apis-arkui-ComponentContent.md#constructor-2)，其中options参数应传递{ nestingBuilderSupported: true }。
+> 3. 如果在wrapBuilder中包含其他组件（例如：[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)、[Chip](arkui-ts/ohos-arkui-advanced-Chip.md#chip)组件），则[ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent-1)应采用带有四个参数的构造函数constructor，其中options参数应传递{ nestingBuilderSupported: true }。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -7196,7 +7173,7 @@ openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, o
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
 | content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | menu弹窗中显示的组件内容。 |
-| target | [TargetInfo](#targetinfo16) | 是 | 需要绑定组件的信息。 |
+| target | [TargetInfo](#targetinfo18) | 是 | 需要绑定组件的信息。 |
 | options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 否 | menu弹窗样式。<br/>**说明：**<br/>title属性不生效。<br/>preview参数仅支持设置MenuPreviewMode类型。 |
 
 **返回值：**
@@ -7271,7 +7248,7 @@ struct Index {
 }
 ```
 
-### updateMenu<sup>16+</sup>
+### updateMenu<sup>18+</sup>
 
 updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOptions, partialUpdate?: boolean ): Promise&lt;void&gt;
 
@@ -7282,7 +7259,7 @@ updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOption
 > 不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。
 >
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -7370,13 +7347,13 @@ struct Index {
 }
 ```
 
-### closeMenu<sup>16+</sup>
+### closeMenu<sup>18+</sup>
 
 closeMenu\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
 
 关闭content对应的menu弹窗。使用Promise异步回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -9693,13 +9670,13 @@ struct SnapshotExample {
 }
 ```
 
-### createFromComponent<sup>16+</sup>
+### createFromComponent<sup>18+</sup>
 
 createFromComponent\<T extends Object>(content: ComponentContent\<T>, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
 将传入的content对象进行截图，并通过Promise返回结果。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -10109,7 +10086,7 @@ MarqueeDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应
 **示例：**
 
 ```ts
-import { MarqueeDynamicSyncSceneType, MarqueeDynamicSyncScene } from '@kit.ArkUI'
+import { MarqueeDynamicSyncSceneType, MarqueeDynamicSyncScene } from '@ohos.arkui.UIContext';
 
 @Entry
 @Component
