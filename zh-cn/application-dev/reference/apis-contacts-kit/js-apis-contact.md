@@ -4070,7 +4070,7 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 | portrait          | [Portrait](#portrait)                   | 是   | 是   | 联系人的头像。                         |
 | postalAddresses   | [PostalAddress](#postaladdress)[]       | 是   | 是   | 联系人的邮政地址列表。                 |
 | relations         | [Relation](#relation)[]                 | 是   | 是   | 联系人的关系列表。                     |
-| sipAddresses      | [SipAddress](#sipaddress)[]             | 是   | 是   | 联系人的会话发起协议（SIP）地址列表。  |
+| sipAddresses      | [SipAddress](#sipaddress)[]             | 是   | 是   | 联系人的会话发起协议(SIP)地址列表。  |
 | websites          | [Website](#website)[]                   | 是   | 是   | 联系人的网站列表。                     |
 | name              | [Name](#name)                           | 是   | 是   | 联系人的姓名。                         |
 | nickName          | [NickName](#nickname)                   | 是   | 是   | 联系人的昵称。                         |
