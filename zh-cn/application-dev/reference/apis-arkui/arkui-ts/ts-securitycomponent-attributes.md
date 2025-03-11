@@ -196,7 +196,7 @@ fontFamily(value: string | Resource): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | string \| [Resource](ts-types.md#resource) |是 |安全控件上文字的字体。<br/>默认字体：'HarmonyOS Sans'|
+| value | string \| [Resource](ts-types.md#resource) |是 |安全控件上文字的字体。<br/>默认字体：'HarmonyOS Sans'。|
 
 **返回值：**
 
@@ -284,7 +284,7 @@ borderStyle(value: BorderStyle): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [BorderStyle](ts-appendix-enums.md#borderstyle) |是 |安全控件的边框的样式。<br/>默认不设置边框样式|
+| value | [BorderStyle](ts-appendix-enums.md#borderstyle) |是 |安全控件的边框的样式。<br/>默认不设置边框样式。|
 
 **返回值：**
 
@@ -306,7 +306,7 @@ borderWidth(value: Dimension): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [Dimension](ts-types.md#dimension10) |是 |安全控件的边框的宽度。<br/>默认不设置边框宽度|
+| value | [Dimension](ts-types.md#dimension10) |是 |安全控件的边框的宽度。<br/>默认不设置边框宽度。|
 
 **返回值：**
 
@@ -328,7 +328,7 @@ borderColor(value: ResourceColor): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [ResourceColor](ts-types.md#resourcecolor) |是 |安全控件的边框的颜色。<br/>默认不设置边框颜色|
+| value | [ResourceColor](ts-types.md#resourcecolor) |是 |安全控件的边框的颜色。<br/>默认不设置边框颜色。|
 
 **返回值：**
 
@@ -592,7 +592,7 @@ id(description: string): T
 
 | 名称   | 类型      | 必填 | 说明                       |
 | ------ | -------- | -----|---------------------- |
-| description | string   |  是  | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''<br/> 。|
+| description | string   |  是  | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''。<br/> |
 
 **返回值：**
 
@@ -637,7 +637,7 @@ minFontScale(scale: number | Resource): T
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最小的字体缩放倍数。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理，即缩小不受限制；设置的值大于1，按值为1处理，即缩小不生效；取值范围外为异常值，默认不生效。 |
+| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最小的字体缩放倍数。<br/>取值范围：[0, 1]。<br/>**说明：** <br/>设置的值小于0时，按值为0处理，即缩小不受限制；设置的值大于1，按值为1处理，即缩小不生效；取值范围外为异常值，默认不生效。 |
 
 **返回值：**
 
@@ -659,7 +659,7 @@ maxFontScale(scale: number | Resource): T
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理，异常值默认不生效。 |
+| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最大的字体缩放倍数。<br/>取值范围：[1, +∞)。<br/>**说明：** <br/>设置的值小于1时，按值为1处理，异常值默认不生效。 |
 
 **返回值：**
 
@@ -843,10 +843,10 @@ enabled(respond: boolean): T
 ```ts
 @Entry
 @Component
-struct Index {
-  build() {
-    Row() {
-      Column({ space: 5 }) {
+struct Index{
+  build(){
+    Row(){
+      Column({space:5}){
         // 生成一个保存按钮，并设置它的SecurityComponent属性。
         SaveButton()
           .fontSize(35)
@@ -859,16 +859,16 @@ struct Index {
           .borderRadius(20)
           .fontWeight(100)
           .iconColor(Color.White)
-          .padding({left:50, top:50, bottom:50, right:50})
+          .padding({left:50,top:50,bottom:50,right:50})
           .textIconSpace(20)
           .backgroundColor(0x3282f6)
-        SaveButton().size({width:200, height:100})
+        SaveButton().size({width:200,height:100})
         SaveButton()
-          .size({width:200, height:100})
+          .size({width:200,height:100})
           .align(Alignment.Start)
-        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
-          .size({ width:150, height:80 })
-          .borderRadius({ topLeft:20, topRight:25, bottomRight:30, bottomLeft:35 })
+        SaveButton({icon:SaveIconStyle.FULL_FILLED,text:SaveDescription.DOWNLOAD,buttonType:ButtonType.Normal})
+          .size({width:150,height:80})
+          .borderRadius({topLeft:20,topRight:25,bottomRight:30,bottomLeft:35})
         SaveButton().constraintSize({maxWidth:60})
       }.width('100%')
     }.height('100%')
@@ -885,61 +885,61 @@ struct Index {
 ```ts
 @Entry
 @Component
-struct Index {
-  build() {
-    Row() {
-      RelativeContainer() {
-        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
+struct Index{
+  build(){
+    Row(){
+      RelativeContainer(){
+        SaveButton({icon:SaveIconStyle.FULL_FILLED,text:SaveDescription.DOWNLOAD,buttonType:ButtonType.Normal})
           .width(100).height(100)
           .backgroundColor("#A3CF62")
           .alignRules({
-            top: {anchor: "__container__", align: VerticalAlign.Top},
-            left: {anchor: "__container__", align: HorizontalAlign.Start}
+            top:{anchor: "__container__", align:VerticalAlign.Top},
+            left:{anchor: "__container__", align:HorizontalAlign.Start}
           })
           .id("row1")
 
-        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
+        SaveButton({icon:SaveIconStyle.FULL_FILLED,text:SaveDescription.DOWNLOAD,buttonType:ButtonType.Normal})
           .width(100).height(100)
           .backgroundColor("#00AE9D")
           .alignRules({
-            top: {anchor: "__container__", align: VerticalAlign.Top},
-            right: {anchor: "__container__", align: HorizontalAlign.End}
+            top: {anchor:"__container__",align:VerticalAlign.Top},
+            right: {anchor:"__container__",align:HorizontalAlign.End}
           })
           .id("row2")
 
-        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
+        SaveButton({icon:SaveIconStyle.FULL_FILLED,text:SaveDescription.DOWNLOAD,buttonType:ButtonType.Normal})
           .height(100)
           .backgroundColor("#0A59F7")
           .alignRules({
-            top: {anchor: "row1", align: VerticalAlign.Bottom},
-            left: {anchor: "row1", align: HorizontalAlign.End},
-            right: {anchor: "row2", align: HorizontalAlign.Start}
+            top:{anchor:"row1",align:VerticalAlign.Bottom},
+            left:{anchor:"row1",align:HorizontalAlign.End},
+            right:{anchor:"row2",align:HorizontalAlign.Start}
           })
           .id("row3")
 
-        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
+        SaveButton({icon:SaveIconStyle.FULL_FILLED,text:SaveDescription.DOWNLOAD,buttonType:ButtonType.Normal})
           .backgroundColor("#2CA9E0")
           .alignRules({
-            top: {anchor: "row3", align: VerticalAlign.Bottom},
-            bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
-            left: {anchor: "__container__", align: HorizontalAlign.Start},
-            right: {anchor: "row1", align: HorizontalAlign.End}
+            top:{anchor:"row3",align:VerticalAlign.Bottom},
+            bottom:{anchor:"__container__",align:VerticalAlign.Bottom},
+            left:{anchor:"__container__",align:HorizontalAlign.Start},
+            right:{anchor:"row1",align:HorizontalAlign.End}
           })
           .id("row4")
 
-        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
+        SaveButton({icon:SaveIconStyle.FULL_FILLED,text:SaveDescription.DOWNLOAD,buttonType:ButtonType.Normal})
           .backgroundColor("#30C9F7")
           .alignRules({
-            top: {anchor: "row3", align: VerticalAlign.Bottom},
-            bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
-            left: {anchor: "row2", align: HorizontalAlign.Start},
-            right: {anchor: "__container__", align: HorizontalAlign.End}
+            top:{anchor:"row3",align:VerticalAlign.Bottom},
+            bottom:{anchor:"__container__",align:VerticalAlign.Bottom},
+            left:{anchor:"row2",align:HorizontalAlign.Start},
+            right:{anchor:"__container__",align:HorizontalAlign.End}
           })
           .id("row5")
       }
       .width(300).height(300)
-      .margin({ left: 50 })
-      .border({ width:2, color: "#6699FF" })
+      .margin({left:50})
+      .border({width:2,color:"#6699FF"})
     }
     .height('100%')
   }
