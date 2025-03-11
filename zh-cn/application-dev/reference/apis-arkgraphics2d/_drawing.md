@@ -2290,7 +2290,7 @@ enum OH_Drawing_SystemFontType
 | GENERIC | 系统字体类型。 |
 | STYLISH | 风格字体类型。 |
 | INSTALLED | 用户已安装字体类型。 |
-| CUSTOMIZED<sup>16+</sup> | 自定义字体类型。 |
+| CUSTOMIZED<sup>18+</sup> | 自定义字体类型。 |
 
 ### OH_Drawing_ErrorCode
 
@@ -3170,7 +3170,7 @@ enum OH_Drawing_WordBreakType
 | WORD_BREAK_TYPE_NORMAL | 常规方式。 | 
 | WORD_BREAK_TYPE_BREAK_ALL | 全部中断方式。 | 
 | WORD_BREAK_TYPE_BREAK_WORD | 单词中断方式。 | 
-| WORD_BREAK_TYPE_BREAK_HYPHEN<sup>16+</sup>  | 每行末尾单词尝试通过连字符“-”进行断行，若无法添加连字符“-”，则跟WORD_BREAK_TYPE_BREAK_WORD保持一致。| 
+| WORD_BREAK_TYPE_BREAK_HYPHEN<sup>18+</sup>  | 每行末尾单词尝试通过连字符“-”进行断行，若无法添加连字符“-”，则跟WORD_BREAK_TYPE_BREAK_WORD保持一致。| 
 
 
 
