@@ -166,7 +166,7 @@ renderWidth(value: Dimension)
 
 | 参数名 | 类型                                 | 必填 | 说明                 |
 | ------ | ------------------------------------ | ---- | -------------------- |
-| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的宽度，取值范围是[0, 100%]。 |
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的宽度，当前仅支持设置Dimension.Percetage，取值范围是[0, 100%]。 |
 
 ### renderHeight
 
@@ -186,7 +186,7 @@ renderHeight(value: Dimension)
 
 | 参数名 | 类型                                 | 必填 | 说明                 |
 | ------ | ------------------------------------ | ---- | -------------------- |
-| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的长度，取值范围是[0, 100%]。 |
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的长度，当前仅支持设置Dimension.Percetage，取值范围是[0, 100%]。 |
 
 ## 事件
 
