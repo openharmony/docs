@@ -236,3 +236,5 @@ Temperature simulation debugging is supported since OpenHarmony 5.0.0 Release. T
 During development, you can refer to the [default thermal control configuration](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/thermal_service_config.xml).
 
 Packing path: `/vendor/etc/thermal_config/hdf`
+
+<!--no_check-->
