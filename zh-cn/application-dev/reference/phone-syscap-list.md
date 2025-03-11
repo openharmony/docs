@@ -6,7 +6,8 @@ SysCap，全称SystemCapability，即系统能力，指操作系统中每一个�
 
 > **说明：**
 >
-> Default代表了一个功能比较全面的OpenHarmony设备，具有大部分的通用能力。在尚未明确设备具体能力集的情况下，可使用Default类型进行开发。
+> 该列表枚举当前版本Phone设备类型支持的最小系统能力集，开发者可以在sdk中通过default.json文件查询。
+> 开发者使用该列表中的系统能力集对应的API开发当前版本Phone应用时，可直接调用，无需在使用前进行canIUse()隔离判断。
 
 - SystemCapability.ArkUI.ArkUI.Full
 - SystemCapability.ArkUI.ArkUI.Napi
