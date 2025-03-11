@@ -1782,6 +1782,7 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
 | attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。           |
 
 **返回值：**
+
 | 类型                               | 说明                                  |
 | ---------------------------------- | ------------------------------------- |
 | Promise&lt;[Contact](#contact)&gt; | Promise对象。返回查询到的联系人对象。 |
@@ -1838,6 +1839,7 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
 | attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。                    |
 
 **返回值：**
+
 | 类型                               | 说明                                  |
 | ---------------------------------- | ------------------------------------- |
 | Promise&lt;[Contact](#contact)&gt; | Promise对象。返回查询到的联系人对象。 |
@@ -2207,6 +2209,7 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
 | attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。               |
 
 **返回值：**
+
 | 类型                                            | 说明                                      |
 | ----------------------------------------------- | ----------------------------------------- |
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise对象。返回查询到的联系人数组对象。 |
