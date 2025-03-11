@@ -110,14 +110,14 @@ ISensorInterface::ReadData ([in] int sensorId, [out] struct HdfSensorEvents[] ev
 
 获取小系统中的传感器事件数据。
 
-**起始版本： **4.0
+**起始版本：** 4.0
 
 **参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | sensorId | 表示传感器ID。有关详细信息。 | 
-| event | 表示系统中传感器事件数据的矢量。 传感器事件数据包括传感器ID、传感器算法版本、数据生成时间等，数据选项（如测量范围和精度）、数据报 告模式、数据地址和数据长度。有关详细信息，请参阅[HdfSensorEvents](_hdf_sensor_events_v11.md)。 | 
+| event | 表示系统中传感器事件数据的矢量。 传感器事件数据包括传感器ID、传感器算法版本、数据生成时间等，数据选项（如测量范围和精度）、数据报告模式、数据地址和数据长度。有关详细信息，请参阅[HdfSensorEvents](_hdf_sensor_events_v11.md)。 | 
 
 **返回：**
 
@@ -141,7 +141,7 @@ ISensorInterface::Register ([in] int groupId, [in] ISensorCallback callbackObj )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| groupId | 传感器组ID。 groupId枚举值范围为128-160，表示已订阅医疗传感器服务，只需成功订阅一次，无需重复订阅。 groupId枚举值范围不在128-160之间，这意味着传统传感器已订阅，只需成功订阅一次，无需重复订阅。 | 
+| groupId | 传感器组ID。groupId枚举值范围为128-160，表示已订阅医疗传感器服务，只需成功订阅一次，无需重复订阅。groupId枚举值范围不在128-160之间，这意味着传统传感器已订阅，只需成功订阅一次，无需重复订阅。 | 
 | callbackObj | 要注册的回调函数，详见[ISensorCallback](interface_i_sensor_callback_v11.md)。 | 
 
 **返回：**
@@ -242,7 +242,7 @@ ISensorInterface::Unregister ([in] int groupId, [in] ISensorCallback callbackObj
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| groupId | 传感器组ID。 groupId枚举值范围为128-160，表示已订阅医疗传感器服务。只需成功取消订阅一次，无需重复取消订阅。 groupId枚举值范围不在128-160之间，这意味着传统传感器已订阅。并且成功取消订阅。 | 
+| groupId | 传感器组ID。groupId枚举值范围为128-160，表示已订阅医疗传感器服务。只需成功取消订阅一次，无需重复取消订阅。groupId枚举值范围不在128-160之间，这意味着传统传感器已订阅。并且成功取消订阅。 | 
 | callbackObj | 要取消注册的回调函数，详见[ISensorCallback](interface_i_sensor_callback_v11.md)。 | 
 
 **返回：**
