@@ -18,7 +18,7 @@ import { constant } from '@kit.ConnectivityKit';
 
 蓝牙profile枚举。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                               | 值    | 说明              |
 | -------------------------------- | ------ | --------------- |
@@ -34,7 +34,7 @@ import { constant } from '@kit.ConnectivityKit';
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                  | 值  | 说明             |
 | ------------------- | ---- | -------------- |
@@ -48,7 +48,7 @@ import { constant } from '@kit.ConnectivityKit';
 
 枚举，蓝牙设备主要类别。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                  | 值    | 说明         |
 | ------------------- | ------ | ---------- |
@@ -69,7 +69,7 @@ import { constant } from '@kit.ConnectivityKit';
 
 枚举，主要次要蓝牙设备类别。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                                       | 值    | 说明              |
 | ---------------------------------------- | ------ | --------------- |
@@ -165,7 +165,7 @@ import { constant } from '@kit.ConnectivityKit';
 
 枚举，表示Profile的UUID。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                                   | 值    | 说明              |
 | ------------------------------------| ------ | --------------- |

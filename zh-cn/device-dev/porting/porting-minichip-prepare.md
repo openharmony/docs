@@ -140,11 +140,11 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
      
    ```
    vendor
-   ├── hisilicon                                            # hisilicon 产品相关目录，可供参考
-   └── MyVendorCompany                                      # MyVendorCompany 产品模组厂商
-          └── MyProduct                                     # 具体产品
+   ├── hisilicon                                            # hisilicon 产品相关目录，可供参考。
+   └── MyVendorCompany                                      # MyVendorCompany 产品模组厂商。
+          └── MyProduct                                     # 具体产品。
                  ├── BUILD.gn
-                 └── config.json                            # 产品子系统列表
+                 └── config.json                            # 产品子系统列表。
    ```
 
    编译脚本：将“vendor/MyVendorCompany/MyProduct/BUILD.gn”下的文件添加到OpenHarmony编译框架中。

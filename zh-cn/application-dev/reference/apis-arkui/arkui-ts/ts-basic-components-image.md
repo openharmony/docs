@@ -1493,9 +1493,9 @@ struct Index {
 
 ![fillColorExample](figures/fillColorExample.png)
 
-### 示例16（通过imageMatrix为图片设置旋转、平移等）
+### 示例16（为图片添加变换效果）
 
-该示例通过[imageMatrix](#imagematrix15)接口和[objectFit](#objectfit)实现了给图片设置变换效果。
+该示例通过[imageMatrix](#imagematrix15)和[objectFit](#objectfit)属性，为图片添加旋转和平移的效果。
 
 ```ts
 import { matrix4 } from '@kit.ArkUI'
