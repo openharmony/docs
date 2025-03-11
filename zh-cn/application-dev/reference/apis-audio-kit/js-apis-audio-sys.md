@@ -2020,6 +2020,202 @@ async function getPreferredInputDeviceByFilter(){
 }
 ```
 
+### excludeOutputDevices<sup>16+</sup>
+
+excludeOutputDevices(usage: DeviceUsage, devices: AudioDeviceDescriptors): Promise&lt;void&gt;
+
+排除输出设备。成功调用此函数后，音频将不会在指定的设备上播放。
+
+> **说明：**
+>
+> 该功能仅能排除外部输出设备，不支持本地输出设备。
+
+**需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | 是   | 设备种类。只支持排除输出设备。               |
+| devices          | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | 是   | 排除输出设备列表。               |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise对象。无返回结果。 |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let usage: audio.DeviceUsage.MEDIA_OUTPUT_DEVICES;
+let excludedDevices: audio.AudioDeviceDescriptors = [{
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType : audio.DeviceType.BLUETOOTH_A2DP,
+  id : 3,
+  name : "",
+  address : "",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : "",
+}];
+
+async function excludeOutputDevices(){
+  audioRoutingManager.excludeOutputDevices(usage, excludedDevices, (err: BusinessError) => {
+    if (err) {
+      console.error(`Result ERROR: ${err}`);
+    } else {
+      console.info('Exclude Output Devices result callback: SUCCESS'); }
+  });
+}
+```
+
+### unexcludeOutputDevices<sup>16+</sup>
+
+unexcludeOutputDevices(usage: DeviceUsage, devices: AudioDeviceDescriptors): Promise&lt;void&gt;
+
+解除排除输出设备。成功调用此函数后，音频将会重新选择输出设备。
+
+**需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | 是   | 设备种类。只支持排除输出设备。               |
+| devices          | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | 是   | 解除排除输出设备列表。               |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise对象。无返回结果。 |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let usage: audio.DeviceUsage.MEDIA_OUTPUT_DEVICES;
+let unexcludedDevices: audio.AudioDeviceDescriptors = [{
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType : audio.DeviceType.BLUETOOTH_A2DP,
+  id : 3,
+  name : "",
+  address : "",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : "",
+}];
+
+async function unexcludeOutputDevices(){
+  audioRoutingManager.unexcludeOutputDevices(usage, unexcludedDevices, (err: BusinessError) => {
+    if (err) {
+      console.error(`Result ERROR: ${err}`);
+    } else {
+      console.info('Unexclude Output Devices result callback: SUCCESS'); }
+  });
+}
+```
+
+### unexcludeOutputDevices<sup>16+</sup>
+
+unexcludeOutputDevices(usage: DeviceUsage): Promise&lt;void&gt;
+
+解除属于特定用途的所有输出设备的排除。成功调用此函数后，音频将会重新选择输出设备。
+
+**需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | 是   | 设备种类。只支持排除输出设备。               |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise对象。无返回结果。 |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let usage: audio.DeviceUsage.MEDIA_OUTPUT_DEVICES;
+
+async function unexcludeOutputDevices(){
+  audioRoutingManager.unexcludeOutputDevices(usage).then(() => {
+    console.info('Unexclude Output Devices result promise: SUCCESS');
+  }).catch((err: BusinessError) => {
+    console.error(`Result ERROR: ${err}`);
+  });
+}
+```
+
+### getExcludedDevices<sup>16+</sup>
+
+getExcludedDevices(usage: DeviceUsage): AudioDeviceDescriptors
+
+获取排除输出设备列表。
+
+**需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | 是   | 设备种类。只支持排除输出设备。               |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | 排除设备列表。 |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+let usage: audio.DeviceUsage.MEDIA_OUTPUT_DEVICES;
+
+async function getExcludedDevices(){
+  let desc: audio.AudioDeviceDescriptors = audioRoutingManager.getExcludedDevices(usage);
+  console.info(`device descriptor: ${desc}`);
+}
+```
+
 ## AudioRendererChangeInfo<sup>9+</sup>
 
 描述音频渲染器更改信息。
