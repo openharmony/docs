@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **OHOS::Media::OhosImageRect** struct defines the information about an image rectangle.
+The OHOS::Media::OhosImageRect struct defines the information about an image rectangle.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -19,10 +19,10 @@ The **OHOS::Media::OhosImageRect** struct defines the information about an image
 
 | Name| Description| 
 | -------- | -------- |
-| int32_t [x](#x) | X coordinate of the rectangle. | 
-| int32_t [y](#y) | Y coordinate of the rectangle. | 
-| int32_t [width](#width) | Width of the rectangle, in pixels. | 
-| int32_t [height](#height) | Height of the rectangle, in pixels. | 
+| int32_t [x](#x) | X coordinate of the rectangle. |
+| int32_t [y](#y) | Y coordinate of the rectangle. |
+| int32_t [width](#width) | Width of the rectangle, in pixels. |
+| int32_t [height](#height) | Height of the rectangle, in pixels. |
 
 
 ## Member Variable Description
