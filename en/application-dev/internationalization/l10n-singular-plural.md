@@ -32,16 +32,4 @@ For example, in Arabic, the rules are as follows:
 
 ## How to Develop
 
-For details about how to use the APIs, see [getPluralStringValueSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getpluralstringvaluesync10).
-
-```ts
-import { BusinessError } from '@ohos.base'; 
-
-try {  
-  this.context.resourceManager.getPluralStringByNameSync("test", 1);} 
-catch (error) {  
-  let code = (error as BusinessError).code;  
-  let message = (error as BusinessError).message;  
-  console.error(`getPluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
-}
-```
+For details about how to use the APIs, see [getIntPluralStringValueSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getintpluralstringvaluesync18).

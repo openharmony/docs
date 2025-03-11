@@ -5,7 +5,7 @@ The **distributedDeviceManager** module provides APIs for distributed device man
 Applications can call the APIs to:
 
 - Subscribe to or unsubscribe from device state changes.
-- Discover untrusted devices nearby.
+- Discover devices nearby.
 - Authenticate or deauthenticate a device.
 - Query the trusted device list.
 - Query local device information, including the device name, type, and ID.
