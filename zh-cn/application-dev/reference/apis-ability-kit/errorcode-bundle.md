@@ -835,6 +835,20 @@ The appIndex is invalid.
 2. 检查应用是否有该索引的分身。
 3. 检查是否调用createAppClone，且该索引的应用分身是否已存在。
 
+## 17700062 应用设置了卸载处置规则，不允许直接卸载
+
+**错误信息**<br/>
+Failed to uninstall the app because the app has uninstall rule.
+
+**错误描述**<br/>
+卸载应用时，应用存在卸载处置规则，不允许直接卸载。
+
+**可能原因**<br/>
+应用存在卸载处置规则，不允许直接卸载。<!--Del-->可使用[getUninstallDisposedRule](./js-apis-appControl-sys.md#appcontrolgetuninstalldisposedrule15)检查应用是否设置了卸载处置规则。<!--DelEnd-->
+
+**处理步骤**<br/>
+若为手机设备，则在设备的"设置"->"隐私和安全"->"应用锁"界面，关闭应用锁。若为其他设备，可通过[deleteUninstallDisposedRule](./js-apis-appControl-sys.md#appcontroldeleteuninstalldisposedrule15)接口关闭应用锁。
+
 ## 17700065 ShortcutInfo结构体中指定的want，不支持被拉起
 
 **错误信息**<br/>
@@ -1045,3 +1059,29 @@ bundleName没有动态图标。
 
 **处理步骤**<br/>
 查询动态图标前确保bundleName存在动态图标。
+
+## 17700074 传入的appIdentifier无效
+**错误信息**<br/>
+The specified appIdentifier is invalid.
+
+**错误描述**<br/>
+调用appControl模块中的相关接口时，传入的appIdentifier为无效。
+
+**可能原因**<br/>
+传入的appIdentifier为空字符串。
+
+**处理步骤**<br/>
+检查appIdentifier是否为空字符串。
+
+## 17700075 want指定的bundleName与调用方不符
+**错误信息**<br/>
+The specified bundleName of want is not the same with caller. 
+
+**错误描述**<br/>
+设置卸载处置规则时，want指定的bundleName与调用方不相同。
+
+**可能原因**<br/>
+设置卸载处置规则时，want指定的bundleName与调用方不相同。
+
+**处理步骤**<br/>
+修改want指定的bundleName与调用方相同。
