@@ -146,7 +146,7 @@ shaderInputBuffer(buffer: Array&lt;number&gt;)
 
 | 参数名 | 类型           | 必填 | 说明                       |
 | ------ | -------------- | ---- | -------------------------- |
-| buffer | Array<number\> | 是   | 自定义渲染用到的动效参数，数组大小由使用场景决定。 |
+| buffer | Array<number\> | 是   | 自定义渲染用到的动效参数，数组大小取值范围是[0, 4]MB。 |
 
 ### renderWidth
 
@@ -166,7 +166,7 @@ renderWidth(value: Dimension)
 
 | 参数名 | 类型                                 | 必填 | 说明                 |
 | ------ | ------------------------------------ | ---- | -------------------- |
-| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的宽度，取值范围一般是屏幕宽度。 |
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的宽度，取值范围是[0, 100%]。 |
 
 ### renderHeight
 
@@ -186,7 +186,7 @@ renderHeight(value: Dimension)
 
 | 参数名 | 类型                                 | 必填 | 说明                 |
 | ------ | ------------------------------------ | ---- | -------------------- |
-| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的长度，取值范围一般是屏幕高度。。 |
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的长度，取值范围是[0, 100%]。 |
 
 ## 事件
 
