@@ -866,7 +866,7 @@ try {
 
 getAppVolumePercentageForUid(uid: number\): Promise<number\>
 
-根据应用ID获取指定应用的音量（范围为0到100），使用Promise方式异步返回结果。
+根据应用ID获取指定应用的音量（范围为0到100）。使用Promise方式异步返回结果。
 
 **系统接口：** 该接口为系统接口。
 
@@ -909,7 +909,7 @@ audioVolumeManager.getAppVolumePercentageForUid(20010041).then((value: number) =
 
 setAppVolumePercentageForUid(uid: number, volume: number\): Promise<void\>
 
-根据应用ID设置指定应用的音量（范围为0到100），使用Promise方式异步返回结果。
+根据应用ID设置指定应用的音量（范围为0到100）。使用Promise方式异步返回结果。
 
 **系统接口：** 该接口为系统接口。
 
@@ -955,7 +955,7 @@ audioVolumeManager.setAppVolumePercentageForUid(uid, volume).then(() => {
 
 isAppVolumeMutedForUid(uid: number, owned: boolean\): Promise<boolean\>
 
-根据应用ID查询应用音量是否已静音，使用Promise方式异步返回结果。
+根据应用ID查询应用音量是否已静音。使用Promise方式异步返回结果。
 
 > **说明：**
 >
@@ -1003,7 +1003,7 @@ audioVolumeManager.setAppVolumePercentageForUid(uid, true).then((value: boolean)
 
 setAppVolumeMutedForUid(uid: number, muted: boolean\): Promise<void\>
 
-根据应用ID设置应用静音状态，使用Promise方式异步返回结果。
+根据应用ID设置应用静音状态。使用Promise方式异步返回结果。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1048,7 +1048,7 @@ audioVolumeManager.setAppVolumePercentageForUid(uid, true).then(() => {
 
 on(type: 'appVolumeChangeForUid', uid: number, callback: Callback\<VolumeEvent>): void
 
-监听指定应用应用级音量变化事件（当应用级音量发生变化时触发），使用callback方式返回结果。
+监听指定应用应用级音量变化事件（当应用级音量发生变化时触发）。使用callback方式返回结果。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1089,7 +1089,7 @@ audioVolumeManager.on('appVolumeChangeForUid', uid, (volumeEvent: audio.VolumeEv
 
 off(type: 'appVolumeChangeForUid', callback?: Callback\<VolumeEvent>): void
 
-取消监听根据应用ID设置应用音量时，应用音量变化事件，使用callback方式返回结果。
+取消监听指定应用应用级音量变化事件。使用callback方式返回结果。
 
 **系统接口：** 该接口为系统接口。
 
