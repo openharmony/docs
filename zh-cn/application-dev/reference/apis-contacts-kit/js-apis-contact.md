@@ -3935,12 +3935,12 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 **系统能力**：SystemCapability.Applications.Contacts
 
-|                名称               |                  类型                 | 必填  |        说明      |
-| --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| isMultiSelect<sup>10+</sup>         | boolean | 否   | 是否为多选。默认值为false。     |
-| maxSelectable<sup>15+</sup>         | number | 否   | 联系人选择数量上限。默认值为10000。     | 
-| isDisplayedByName<sup>15+</sup>         | boolean | 否   | 是否按联系人姓名维度展示。默认值为false。     |
-| filter<sup>15+</sup>         | [ContactSelectionFilter](#contactselectionfilter15) | 否   | 联系人查询过滤器。     |
+|                名称               |                  类型                 | 只读  | 可选  |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
+| isMultiSelect<sup>10+</sup>         | boolean | 否   | 是   | 是否为多选。默认值为false。     |
+| maxSelectable<sup>15+</sup>         | number | 否   | 是   | 联系人选择数量上限。默认值为10000。     | 
+| isDisplayedByName<sup>15+</sup>         | boolean | 否   | 是   | 是否按联系人姓名维度展示。默认值为false。     |
+| filter<sup>15+</sup>         | [ContactSelectionFilter](#contactselectionfilter15) | 否   | 是   | 联系人查询过滤器。     |
 
 ## ContactSelectionFilter<sup>15+</sup>
 
@@ -4051,31 +4051,31 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 ### 常量
 
-| 名称               | 值   |只读   | 说明             |
+| 名称               | 类型   | 值   | 说明             |
 | ------------------ | ---- | ---- | ---------------- |
-| INVALID_CONTACT_ID | -1   |是   | 默认联系人的id。 |
+| INVALID_CONTACT_ID | number   | -1   | 默认联系人的id。 |
 
 ### 属性
 
-|       名称        |                   类型                  | 可读 | 可写 | 说明                                   |
+|       名称        |                   类型                  | 只读 | 可选 | 说明                                   |
 | ----------------- | --------------------------------------- | ---- | ---- | -------------------------------------- |
-| id                | number                                  | 是   | 否   | 联系人的id。                           |
-| key               | string                                  | 是   | 否   | 联系人的key。                          |
-| contactAttributes | [ContactAttributes](#contactattributes) | 是   | 是   | 联系人的属性列表。                     |
-| emails            | [Email](#email)[]                       | 是   | 是   | 联系人的邮箱地址列表。                 |
-| events            | [Event](#event)[]                       | 是   | 是   | 联系人的生日、周年纪念等重要日期列表。 |
-| groups            | [Group](#group)[]                       | 是   | 是   | 联系人的群组列表。                     |
-| imAddresses       | [ImAddress](#imaddress)[]               | 是   | 是   | 联系人的即时消息地址列表。             |
-| phoneNumbers      | [PhoneNumber](#phonenumber)[]           | 是   | 是   | 联系人的电话号码列表。                 |
-| portrait          | [Portrait](#portrait)                   | 是   | 是   | 联系人的头像。                         |
-| postalAddresses   | [PostalAddress](#postaladdress)[]       | 是   | 是   | 联系人的邮政地址列表。                 |
-| relations         | [Relation](#relation)[]                 | 是   | 是   | 联系人的关系列表。                     |
-| sipAddresses      | [SipAddress](#sipaddress)[]             | 是   | 是   | 联系人的会话发起协议(SIP)地址列表。  |
-| websites          | [Website](#website)[]                   | 是   | 是   | 联系人的网站列表。                     |
-| name              | [Name](#name)                           | 是   | 是   | 联系人的姓名。                         |
-| nickName          | [NickName](#nickname)                   | 是   | 是   | 联系人的昵称。                         |
-| note              | [Note](#note)                           | 是   | 是   | 联系人的备注。                         |
-| organization      | [Organization](#organization)           | 是   | 是   | 联系人的组织信息。                     |
+| id                | number                                  | 是   | 是   | 联系人的id。                           |
+| key               | string                                  | 是   | 是   | 联系人的key。                          |
+| contactAttributes | [ContactAttributes](#contactattributes) | 否   | 是   | 联系人的属性列表。                     |
+| emails            | [Email](#email)[]                       | 否   | 是   | 联系人的邮箱地址列表。                 |
+| events            | [Event](#event)[]                       | 否   | 是   | 联系人的生日、周年纪念等重要日期列表。 |
+| groups            | [Group](#group)[]                       | 否   | 是   | 联系人的群组列表。                     |
+| imAddresses       | [ImAddress](#imaddress)[]               | 否   | 是   | 联系人的即时消息地址列表。             |
+| phoneNumbers      | [PhoneNumber](#phonenumber)[]           | 否   | 是   | 联系人的电话号码列表。                 |
+| portrait          | [Portrait](#portrait)                   | 否   | 是   | 联系人的头像。                         |
+| postalAddresses   | [PostalAddress](#postaladdress)[]       | 否   | 是   | 联系人的邮政地址列表。                 |
+| relations         | [Relation](#relation)[]                 | 否   | 是   | 联系人的关系列表。                     |
+| sipAddresses      | [SipAddress](#sipaddress)[]             | 否   | 是   | 联系人的会话发起协议(SIP)地址列表。  |
+| websites          | [Website](#website)[]                   | 否   | 是   | 联系人的网站列表。                     |
+| name              | [Name](#name)                           | 否   | 是   | 联系人的姓名。                         |
+| nickName          | [NickName](#nickname)                   | 否   | 是   | 联系人的昵称。                         |
+| note              | [Note](#note)                           | 否   | 是   | 联系人的备注。                         |
+| organization      | [Organization](#organization)           | 否   | 是   | 联系人的组织信息。                     |
 
 **对象创建示例：**
 
@@ -4105,9 +4105,9 @@ let myContact: contact.Contact = {
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
-| 名称       |            类型           | 可读 | 可写 | 说明             |
+| 名称       |            类型           | 只读 | 可选 | 说明             |
 | ---------- | ------------------------- | ---- | ---- | ---------------- |
-| attributes | [Attribute](#attribute)[] | 是   | 是   | 联系人属性列表。 |
+| attributes | [Attribute](#attribute)[] | 否   | 否   | 联系人属性列表。 |
 
 **对象创建示例：**
 
@@ -4167,13 +4167,13 @@ let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, con
 
 ### 常量
 
-| 名称             | 值   | 说明             |
-| ---------------- | ---- | ---------------- |
-| CUSTOM_LABEL     | 0    | 自定义邮箱类型。 |
-| EMAIL_HOME       | 1    | 家庭邮箱类型。   |
-| EMAIL_WORK       | 2    | 工作邮箱类型。   |
-| EMAIL_OTHER      | 3    | 其它邮箱类型。   |
-| INVALID_LABEL_ID | -1   | 无效邮箱类型。   |
+| 名称             | 类型   | 值   | 说明             |
+| ---------------- | ---- | ---- | ---------------- |
+| CUSTOM_LABEL     | number    |  0    |自定义邮箱类型。 |
+| EMAIL_HOME       | number    | 1    | 家庭邮箱类型。   |
+| EMAIL_WORK       | number    | 2    | 工作邮箱类型。   |
+| EMAIL_OTHER      | number    | 3    | 其它邮箱类型。   |
+| INVALID_LABEL_ID | number    | -1   | 无效邮箱类型。   |
 
 ### 属性
 
@@ -4213,7 +4213,7 @@ email.email = "xxx@email.com";
 | ----------- | ------ | ---- | ---- | ------------ |
 | bundleName  | string | 是   | 否   | Bundle名称，值为com.ohos.contacts。 |
 | displayName | string | 是   | 否   | 应用名称。   |
-| holderId    | number | 是   | 是   | 应用ID。     |
+| holderId    | number | 是   | 是   | 应用Id。     |
 
 **对象创建示例：**
 
@@ -4280,7 +4280,7 @@ event.eventDate = "xxxxxx";
 
 | 名称    |   类型   | 可读 | 可写 | 说明               |
 | ------- | -------- | ---- | ---- | ------------------ |
-| groupId | number   | 是   | 是   | 联系人群组的id。   |
+| groupId | number   | 是   | 是   | 联系人群组的Id。   |
 | title   | string   | 是   | 是   | 联系人群组的名称。 |
 
 **对象创建示例：**
