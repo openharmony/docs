@@ -695,7 +695,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | content       | [ContentType](#contenttypedeprecated) | 否   | 音频内容类型。<br>API version 8、9为必填参数，从API version 10开始，变更为可选参数，默认值为CONTENT_TYPE_UNKNOWN。同时，[ContentType](#contenttypedeprecated)废弃，建议直接使用[StreamUsage](#streamusage)声明音频流使用类型即可。 |
 | usage         | [StreamUsage](#streamusage) | 是   | 音频流使用类型。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | rendererFlags | number                      | 是   | 音频渲染器标志。<br>0代表音频渲染器。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| volumeMode | [AudioVolumeMode](#audiovolumemode18) | 否 | 音频的音量模式。默认值为SYSTEM_GLOBAL。|
+| volumeMode<sup>18+</sup> | [AudioVolumeMode](#audiovolumemode18) | 否 | 音频的音量模式。默认值为SYSTEM_GLOBAL。|
 
 ## AudioRendererOptions<sup>8+</sup>
 
@@ -743,7 +743,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                    |
 | volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。  |
 | updateUi   | boolean                             | 是   | 在UI中显示音量变化，true为显示，false为不显示。             |
-| volumeMode | [AudioVolumeMode](#audiovolumemode18) | 否 | 音频的音量模式。默认值为SYSTEM_GLOBAL。|
+| volumeMode<sup>18+</sup> | [AudioVolumeMode](#audiovolumemode18) | 否 | 音频的音量模式。默认值为SYSTEM_GLOBAL。|
 
 ## MicStateChangeEvent<sup>9+</sup>
 
@@ -2466,7 +2466,7 @@ try {
 
 getAppVolumePercentage(): Promise<number\>
 
-获取应用的音量(范围为0到100)。使用Promise方式异步返回结果。
+获取应用的音量（范围为0到100）。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2490,7 +2490,7 @@ audioVolumeManager.getAppVolumePercentage().then((value: number) => {
 
 setAppVolumePercentage(volume: number\): Promise<void\>
 
-设置应用的音量(范围为0到100)。使用Promise方式异步返回结果。
+设置应用的音量（范围为0到100）。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
