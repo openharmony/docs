@@ -31,7 +31,7 @@ This error code is reported when the URL format is incorrect.
 
 **Solution**
 
-Verify the URL format.
+Check whether the URL is correct and contains a maximum of 2048 characters.
 
 
 ## 17100003 Incorrect Resource Path
