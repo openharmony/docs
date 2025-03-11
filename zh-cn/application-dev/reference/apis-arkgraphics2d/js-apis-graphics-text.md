@@ -8,7 +8,7 @@
 - [FontCollection](#fontcollection)：字体管理器，控制各种不同的字体。
 - [ParagraphStyle](#paragraphstyle)：段落样式，控制整个段落的显示样式。
 - [Paragraph](#paragraph)：段落，由ParagraphBuilder类调用[build()](#build)接口构建而成。
-- [LineTypeset](#linetypeset16)：行排版器，由ParagraphBuilder类调用[buildLineTypeset()](#buildlinetypeset18)接口构建而成。
+- [LineTypeset](#linetypeset18)：行排版器，由ParagraphBuilder类调用[buildLineTypeset()](#buildlinetypeset18)接口构建而成。
 - [ParagraphBuilder](#paragraphbuilder)：段落生成器，控制生成不同的段落对象。
 - [TextLine](#textline)：以行为单位的段落文本的载体，由段落类调用[getTextLines()](#gettextlines)接口获取。
 - [Run](#run)：文本排版的渲染单元，由行文本类调用[getGlyphRuns()](#getglyphruns)接口获取。
@@ -1386,7 +1386,7 @@ getLineMetrics(lineNumber: number): LineMetrics | undefined
 let lineMetrics =  paragraph.getLineMetrics(0);
 ```
 
-## LineTypeset<sup>16+</sup>
+## LineTypeset<sup>18+</sup>
 
 保存着文本内容以及样式的载体，可以用于计算单行排版信息。
 
@@ -1870,7 +1870,7 @@ buildLineTypeset(): LineTypeset
 
 | 类型                     | 说明                           |
 | ------------------------ | ------------------------------ |
-| [LineTypeset](#linetypeset16)  | 可用于行排版的LineTypeset对象。|
+| [LineTypeset](#linetypeset18)  | 可用于行排版的LineTypeset对象。|
 
 **示例：**
 
@@ -2001,7 +2001,7 @@ type CaretOffsetsCallback = (offset: number, index: number, leadingEdge: boolean
 
 描述段落基础文本行结构的载体。
 
-下列API示例中都需先使用[Paragraph](#paragraph)类的[getTextLines()](#gettextlines)接口或者[LineTypeset](#linetypeset16)类的[createLine()](#createline18)接口获取到TextLine对象实例，再通过此实例调用对应方法。
+下列API示例中都需先使用[Paragraph](#paragraph)类的[getTextLines()](#gettextlines)接口或者[LineTypeset](#linetypeset18)类的[createLine()](#createline18)接口获取到TextLine对象实例，再通过此实例调用对应方法。
 ### getGlyphCount
 
 getGlyphCount(): number
@@ -2043,7 +2043,7 @@ struct Index {
 
 getTextRange(): Range
 
-获取该文本行中的文本在整个段落文本中的索引区间。使用[LineTypeset](#linetypeset16)类的[creatLine](#createline18)方法创建的[TextLine](#textline)对象属于一个内部的临时对象，通过该对象调用[getTextRange](#gettextrange)方法返回的索引区间是相对于临时的[Paragraph](#paragraph)对象的区间，该临时对象在下一次调用[creatLine](#createline18)方法时会自动销毁。
+获取该文本行中的文本在整个段落文本中的索引区间。使用[LineTypeset](#linetypeset18)类的[creatLine](#createline18)方法创建的[TextLine](#textline)对象属于一个内部的临时对象，通过该对象调用[getTextRange](#gettextrange)方法返回的索引区间是相对于临时的[Paragraph](#paragraph)对象的区间，该临时对象在下一次调用[creatLine](#createline18)方法时会自动销毁。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
