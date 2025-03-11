@@ -16,6 +16,7 @@ HiTraceChain在产品中应用场景如下，包括：
 - IDE对业务流程详细信息、耗时分布进行调试，辅助系统调优
 
     **图1** HiTraceChain应用场景
+
     ![zh-cn_image_0000001216312860](figures/zh-cn_image_0000001216312860.png)
 
 
@@ -28,10 +29,12 @@ HiTraceChain在产品中应用场景如下，包括：
 1. 调试时展示业务流程中的调用关系，进行关键路径分析、功能依赖分析，确定各调用点耗时、调用频率，提前发现性能瓶颈点。
 
      **图3** 业务调用流程序列图
+
      ![zh-cn_image_0000001216792790](figures/zh-cn_image_0000001216792790.png)
 
 
      **图4** 业务调用流程性能耗时分布
+
      ![zh-cn_image_0000001261272659](figures/zh-cn_image_0000001261272659.png)
 
 2. 在日志和事件等信息中自动附加traceid信息，便于开发人员综合分析和快速实现问题定界定位。
@@ -53,13 +56,13 @@ HiTraceChain实现在C层，主要原理是在一次业务调用流程中，利�
 | **类** | **函数** | **函数** |
 | HiTraceChain | HiTraceId Begin(const std::string&amp; name, int flags) | HiTraceIdStruct HiTraceChainBegin(const char* name, int flags) |
 |  | void End(const HiTraceId&amp; id) | void HiTraceChainEnd(const HiTraceIdStruct* pId) |
-|  | HiTraceId GetId(); | HiTraceIdStruct HiTraceChainGetId() |
+|  | HiTraceId GetId() | HiTraceIdStruct HiTraceChainGetId() |
 |  | void SetId(const HiTraceId&amp; id) | void HiTraceChainSetId(const HiTraceIdStruct* pId) |
 |  | void ClearId() | void HiTraceChainClearId() |
 |  | HiTraceId CreateSpan() | HiTraceIdStruct HiTraceChainCreateSpan() |
 |  | void Tracepoint(HiTraceTracepointType type, const HiTraceId&amp; id, const char* fmt, ...) | void HiTraceChainTracepoint(HiTraceTracepointType type, const HiTraceIdStruct* pId, const char* fmt, ...) |
 |  | void Tracepoint(HiTraceCommunicationMode mode, HiTraceTracepointType type, const HiTraceId&amp; id, const char* fmt, ...) | void HiTraceChainTracepointEx(HiTraceCommunicationMode mode, HiTraceTracepointType type, const HiTraceIdStruct* pId, const char* fmt, ...) |
-| HiTraceId | HiTraceId(); | void HiTraceChainInitId(HiTraceIdStruct* pId) |
+| HiTraceId | HiTraceId() | void HiTraceChainInitId(HiTraceIdStruct* pId) |
 |  | HiTraceId(const uint8_t* pIdArray, int len) | HiTraceIdStruct HiTraceChainBytesToId(const uint8_t* pIdArray, int len) |
 |  | bool IsValid() | int HiTraceChainIsValid(const HiTraceIdStruct* pId) |
 |  | bool IsFlagEnabled(HiTraceFlag flag) | int HiTraceChainIsFlagEnabled(const HiTraceIdStruct* pId, HiTraceFlag flag) |
@@ -113,9 +116,9 @@ HiTraceChain实现在C层，主要原理是在一次业务调用流程中，利�
 
 | **类** | **方法** | **描述** |
 | -------- | -------- | -------- |
-| HiTraceChain | HiTraceId Begin(const std::string&amp; name, int flags) | 功能：启动HiTraceChain跟踪、生成HiTraceId对象并设置到当前线程TLS中。<br/>输入参数：<br/>- name：业务流程名称。<br/>- flags：跟踪指示位，可以组合使用，具体说明请参考**表2** 跟踪标志组合类型枚举。<br/>- 输出参数：无<br/>- 返回值：启动跟踪超过返回有效HiTraceId对象，否则返回无效对象。<br/>注意：嵌套启动跟踪时，内层启动调用返回无效对象。 |
+| HiTraceChain | HiTraceId Begin(const std::string&amp; name, int flags) | 功能：启动HiTraceChain跟踪、生成HiTraceId对象并设置到当前线程TLS中。<br/>输入参数：<br/>- name：业务流程名称。<br/>- flags：跟踪指示位，可以组合使用，具体说明请参考**表2** 跟踪标志组合类型枚举。<br/>- 输出参数：无。<br/>- 返回值：启动跟踪超过返回有效HiTraceId对象，否则返回无效对象。<br/>注意：嵌套启动跟踪时，内层启动调用返回无效对象。 |
 |  | void End(const HiTraceId&amp; id) | 功能：根据Begin返回的HiTraceId停止HiTraceChain跟踪；清除当前线程TLS中HiTraceId内容。<br/>输入参数：<br/>- id：HiTraceId对象。<br/>输出参数：无。<br/>返回值：无。 |
-|  | HiTraceId GetId(); | 功能：从当前线程TLS中获取HiTraceId对象。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：当前线程上下文的HiTraceId对象。 |
+|  | HiTraceId GetId() | 功能：从当前线程TLS中获取HiTraceId对象。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：当前线程上下文的HiTraceId对象。 |
 |  | void SetId(const HiTraceId&amp; id) | 功能：设置HiTraceId对象内容到当前线程TLS中。<br/>输入参数：<br/>- id：HiTraceId对象。<br/>输出参数：无。<br/>返回值：无。 |
 |  | void ClearId() | 功能：清除当前线程TLS中的HiTraceId对象。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：无。 |
 |  | HiTraceId CreateSpan() | 接口功能：获取当前HiTraceId对象中的分支ID。<br/>输入参数：无。<br/>输出参数：无。<br/>返回值：当前分支ID。 |
