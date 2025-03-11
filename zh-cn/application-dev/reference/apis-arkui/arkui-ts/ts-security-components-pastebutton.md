@@ -121,7 +121,7 @@ onClick(event: (event: ClickEvent, result: PasteButtonOnClickResult) =&gt; void)
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| event  | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明|
+| event  | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明。|
 | result | [PasteButtonOnClickResult](#pastebuttononclickresult枚举说明)| 是 | 剪贴板权限的授权结果，授权后可以读取当前剪贴板内容。|
 
 ## 示例
