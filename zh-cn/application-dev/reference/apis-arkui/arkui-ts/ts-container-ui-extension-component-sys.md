@@ -70,7 +70,7 @@ onReceive(callback: ReceiveCallback)
 
 | 参数名                       | 类型   | 说明                                                         |
 | ---------------------------- | ------ | ------------------------------------------------------------ |
-| data                        | [ReceiveCallback](#receivecallback16) | 收到来自对端Ability的数据。                 |
+| data                        | [ReceiveCallback](#receivecallback18) | 收到来自对端Ability的数据。                 |
 
 ### onResult<sup>(deprecated)</sup>
 
@@ -138,7 +138,7 @@ onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 > - 若UIExtensionAbility通过调用`terminateSelfWithResult`退出，其携带的信息会传给回调函数的入参。
 > - 若UIExtensionAbility通过调用`terminateSelf`退出，上述回调函数的入参中，"code"取默认值"0"，"want"为"undefined"。
 
-### onDrawReady<sup>16+<sup>
+### onDrawReady<sup>18+<sup>
 
 onDrawReady(callback: Callback\<void>)
 
@@ -159,7 +159,7 @@ onDrawReady(callback: Callback\<void>)
 | code    | number | 被拉起UIExtensionAbility退出时返回的结果码。 |
 | want    | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)   | 被拉起UIExtensionAbility退出时返回的数据。   |
 
-## ReceiveCallback<sup>16+<sup>
+## ReceiveCallback<sup>18+<sup>
 type ReceiveCallback = Callback\<Record\<string, Object\>\>
 
 用于封装被拉起的Ability发送的数据。
@@ -182,7 +182,7 @@ type ReceiveCallback = Callback\<Record\<string, Object\>\>
 | placeholder<sup>12+<sup> | [ComponentContent](../js-apis-arkui-ComponentContent.md)       | 否   | 设置占位符，在UIExtensionComponent与UIExtensionAbility建立连接前显示。 |
 | dpiFollowStrategy<sup>12+<sup> | [DpiFollowStrategy](ts-container-ui-extension-component-sys.md#dpifollowstrategy12)                  | 否   | 提供接口支持设置DPI跟随宿主或跟随UIExtensionAbility。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_DPI。 |
 | areaChangePlaceholder<sup>14+<sup> | Record<string, [ComponentContent](../js-apis-arkui-ComponentContent.md)>       | 否   | 设置尺寸变化占位符，在UIExtensionComponent尺寸发生变化并且UIExtension内部渲染未完成时显示, key值支持"FOLD_TO_EXPAND"(折叠展开尺寸变化)、"UNDEFINED"(默认尺寸变化)。 |
-| windowModeFollowStrategy<sup>16+<sup> | [WindowModeFollowStrategy](ts-container-ui-extension-component-sys.md#windowmodefollowstrategy16)    | 否   | 提供接口以支持设置窗口Mode，使其能够跟随宿主或UIExtensionAbility。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_WINDOW_MODE。 |
+| windowModeFollowStrategy<sup>18+<sup> | [WindowModeFollowStrategy](ts-container-ui-extension-component-sys.md#windowmodefollowstrategy18)    | 否   | 提供接口以支持设置窗口Mode，使其能够跟随宿主或UIExtensionAbility。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_WINDOW_MODE。 |
 
 ## DpiFollowStrategy<sup>12+</sup>
 
@@ -191,7 +191,7 @@ type ReceiveCallback = Callback\<Record\<string, Object\>\>
 | FOLLOW_HOST_DPI                  | 表示DPI跟随宿主。 |
 | FOLLOW_UI_EXTENSION_ABILITY_DPI  | 表示DPI跟随UIExtensionAbility。 |
 
-## WindowModeFollowStrategy<sup>16+</sup>
+## WindowModeFollowStrategy<sup>18+</sup>
 
 窗口Mode跟随策略，用于设置窗口Mode，使其能够跟随宿主或UIExtensionAbility。
 
