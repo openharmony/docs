@@ -310,7 +310,7 @@ lockAsync\<T, U>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode, options: 
 
 | 类型             | 说明                                               |
 | ---------------- | -------------------------------------------------- |
-| Promise\<T \| U> | 回调执行后解决的 Promise，或者在超时情况下被拒绝。 |
+| Promise\<T \| U> | 回调执行后解决的Promise，或者在超时情况下被拒绝。 |
 
 **错误码：**
 
@@ -469,21 +469,21 @@ options.signal = s;
 | aborted | boolean | 是   | 是   | 设置为true以中止操作。                                           |
 | reason  | \<T>    | 是   | 是   | 中止的原因。此值将用于拒绝[lockAsync](#lockasync)返回的Promise。 |
 
-### ConditionVariable<sup>16+</sup>
+### ConditionVariable<sup>18+</sup>
 
 实现异步等待功能的类，允许执行异步等待通知操作。
 
-**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-#### constructor<sup>16+</sup>
+#### constructor<sup>18+</sup>
 
 constructor()
 
 默认构造函数。创建一个异步等待通知操作的对象。
 
-**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -493,13 +493,13 @@ constructor()
 let conditionVariable = new ArkTSUtils.locks.ConditionVariable();
 ```
 
-#### request<sup>16+</sup>
+#### request<sup>18+</sup>
 
 static request(name: string): ConditionVariable
 
 使用指定的名称查找或创建（如果未找到）异步等待通知操作的对象。
 
-**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -513,7 +513,7 @@ static request(name: string): ConditionVariable
 
 | 类型                    | 说明                             |
 | ----------------------- | -------------------------------- |
-| [ConditionVariable](#conditionvariable16) | 返回查找到或创建后的异步等待通知操作的实例。 |
+| [ConditionVariable](#conditionvariable18) | 返回查找到或创建后的异步等待通知操作的实例。 |
 
 **错误码：**
 
@@ -529,13 +529,13 @@ static request(name: string): ConditionVariable
 let conditionVariable = ArkTSUtils.locks.ConditionVariable.request("conditionName");
 ```
 
-#### wait<sup>16+</sup>
+#### wait<sup>18+</sup>
 
 wait(): Promise\<void>
 
 异步调用进入等待中，将在被唤醒后继续执行。使用Promise异步回调。
 
-**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -554,13 +554,13 @@ conditionVariable.wait().then(() => {
 });
 ```
 
-#### waitFor<sup>16+</sup>
+#### waitFor<sup>18+</sup>
 
 waitFor(timeout : number) : Promise\<void>
 
 异步调用进入等待中, 将在被唤醒或者等待时间结束后继续执行。使用Promise异步回调。
 
-**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -593,13 +593,13 @@ conditionVariable.waitFor(3000).then(() => {
 });
 ```
 
-#### notifyAll<sup>16+</sup>
+#### notifyAll<sup>18+</sup>
 
 notifyAll() : void
 
 通知所有等待的线程。
 
-**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -613,13 +613,13 @@ conditionVariable.waitFor(3000).then(() => {
 conditionVariable.notifyAll();
 ```
 
-#### notifyOne<sup>16+</sup>
+#### notifyOne<sup>18+</sup>
 
 notifyOne() : void
 
 通知第一个等待的线程。
 
-**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -811,13 +811,13 @@ console.info(str);
 // 期望输出: '[1,2,3]'
 ```
 
-### stringify<sup>16+</sup>
+### stringify<sup>18+</sup>
 
 stringify(value: Object | null | undefined): string
 
 该方法将ArkTS对象数据转换为JSON字符串，额外支持Map和Set相关类型。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -922,13 +922,13 @@ if (ArkTSUtils.isSendable(sendableFunc)) {
 // 期望输出: 'SendableFunc is Sendable'
 ```
 
-## SendableLruCache<K, V><sup>16+</sup>
+## SendableLruCache<K, V><sup>18+</sup>
 
 SendableLruCache用于在缓存空间不够的时候，将近期最少使用的数据替换为新数据。此设计基于资源访问的考虑：近期访问的数据，可能在不久的将来会再次访问。于是最少访问的数据就是价值最小的数据，是最应该踢出缓存空间的数据。 SendableLruCache支持Sendable特性，保存Sendable对象，可以跨线程安全访问。
 
 ### 属性
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -947,13 +947,13 @@ console.info('result = ' + result);
 // 期望输出：result = 2
 ```
 
-### constructor<sup>16+</sup>
+### constructor<sup>18+</sup>
 
 constructor(capacity?: number)
 
 默认构造函数用于创建一个新的SendableLruCache实例，默认容量为64。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -969,13 +969,13 @@ constructor(capacity?: number)
 let pro = new ArkTSUtils.SendableLruCache<number, number>();
 ```
 
-### updateCapacity<sup>16+</sup>
+### updateCapacity<sup>18+</sup>
 
 updateCapacity(newCapacity: number): void
 
 将缓冲区容量更新为指定容量。当缓冲区中值的总数大于指定容量时，会执行删除操作，删除最少使用的键值对。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1000,13 +1000,13 @@ let pro = new ArkTSUtils.SendableLruCache<number, number>();
 pro.updateCapacity(100);
 ```
 
-### toString<sup>16+</sup>
+### toString<sup>18+</sup>
 
 toString(): string
 
 返回对象的字符串表示形式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1028,13 +1028,13 @@ console.info(pro.toString());
 // maxSize: 缓存区最大值 hits: 查询值匹配成功的次数 misses: 查询值匹配失败的次数 hitRate: 查询值匹配率
 ```
 
-### getCapacity<sup>16+</sup>
+### getCapacity<sup>18+</sup>
 
 getCapacity(): number
 
 获取当前缓冲区的容量。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1053,13 +1053,13 @@ console.info('result = ' + result);
 // 预期输出：result = 64
 ```
 
-### clear<sup>16+</sup>
+### clear<sup>18+</sup>
 
 clear(): void
 
 从当前缓冲区清除所有键值对。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1077,13 +1077,13 @@ console.info('res = ' + res);
 // 预期输出：res = 0
 ```
 
-### getCreateCount<sup>16+</sup>
+### getCreateCount<sup>18+</sup>
 
 getCreateCount(): number
 
 获取调用createDefault接口创建对象的次数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1117,13 +1117,13 @@ console.info('res = ' + res);
 // 如果不等于，则需要把key和返回值作为键值对添加到cache中，并且创建次数加1
 ```
 
-### getMissCount<sup>16+</sup>
+### getMissCount<sup>18+</sup>
 
 getMissCount(): number
 
 获取查询值不匹配的次数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1144,13 +1144,13 @@ console.info('result = ' + result);
 // 预期输出：result = 0
 ```
 
-### getRemoveCount<sup>16+</sup>
+### getRemoveCount<sup>18+</sup>
 
 getRemoveCount(): number
 
 获取缓冲区键值对回收的次数，当缓冲区数超过容量限制后，最少使用的键值对会被回收。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1172,13 +1172,13 @@ console.info('result = ' + result);
 // 预期输出：result = 0
 ```
 
-### getMatchCount<sup>16+</sup>
+### getMatchCount<sup>18+</sup>
 
 getMatchCount(): number
 
 获取查询值匹配成功的次数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1199,13 +1199,13 @@ console.info('result = ' + result);
 // 预期输出：result = 1
 ```
 
-### getPutCount<sup>16+</sup>
+### getPutCount<sup>18+</sup>
 
 getPutCount(): number
 
 获取将值添加到缓冲区的次数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1225,13 +1225,13 @@ console.info('result = ' + result);
 // 预期输出：result = 1
 ```
 
-### isEmpty<sup>16+</sup>
+### isEmpty<sup>18+</sup>
 
 isEmpty(): boolean
 
 检查当前缓冲区是否为空。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1251,13 +1251,13 @@ console.info('result = ' + result);
 // 预期输出：result = false
 ```
 
-### get<sup>16+</sup>
+### get<sup>18+</sup>
 
 get(key: K): V | undefined
 
 返回键对应的值。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1291,13 +1291,13 @@ console.info('result = ' + result);
 // 预期输出：result = 10
 ```
 
-### put<sup>16+</sup>
+### put<sup>18+</sup>
 
 put(key: K,value: V): V
 
 将键值对添加到缓冲区中，返回与添加的键关联的值。当缓冲区中值的总数大于容量时，会执行删除操作。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1331,13 +1331,13 @@ console.info('result = ' + result);
 // 预期输出：result = 10
 ```
 
-### values<sup>16+</sup>
+### values<sup>18+</sup>
 
 values(): V[]
 
 获取当前缓冲区中所有值从最近访问到最少访问的顺序列表，最近访问表示有最新操作的键值对。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1359,13 +1359,13 @@ console.info('result = ' + result);
 // 预期输出：result = anhu,grfb
 ```
 
-### keys<sup>16+</sup>
+### keys<sup>18+</sup>
 
 keys(): K[]
 
 获取当前缓冲区中所有键从最近访问到最近最少访问的升序列表。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1386,13 +1386,13 @@ console.info('result = ' + result);
 // 预期输出：result = 2,3
 ```
 
-### remove<sup>16+</sup>
+### remove<sup>18+</sup>
 
 remove(key: K): V | undefined
 
 从当前缓冲区中删除指定的键及其关联的值，返回键关联的值。如果键不存在时，则返回undefined。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1426,13 +1426,13 @@ console.info('result = ' + result);
 // 预期输出：result = undefined
 ```
 
-### contains<sup>16+</sup>
+### contains<sup>18+</sup>
 
 contains(key: K): boolean
 
 检查当前缓冲区是否包含指定的键，假如存在，返回true，否则返回false。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1466,13 +1466,13 @@ console.info('result = ' + result);
 // 预期输出：result = true
 ```
 
-### entries<sup>16+</sup>
+### entries<sup>18+</sup>
 
 entries(): IterableIterator&lt;[K,V]&gt;
 
 允许迭代包含在这个对象中的所有键值对。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

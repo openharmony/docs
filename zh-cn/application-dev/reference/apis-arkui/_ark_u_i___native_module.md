@@ -146,11 +146,11 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_DragResult](#arkui_dragresult) { ARKUI_DRAG_RESULT_SUCCESSFUL, ARKUI_DRAG_RESULT_FAILED, ARKUI_DRAG_RESULT_CANCELED } | 拖拽结果定义，由数据接收方设置，并由系统传递给数据拖出方，拖出方可感知接收方对数据的处理结果。  | 
-| [ArkUI_DropProposal](#arkui_dropproposal) { ARKUI_DROP_PROPOSAL_COPY, ARKUI_DROP_PROPOSAL_MOVE } | 定义拖拽释放时的数据处理方式，可影响角标的显示。  | 
+| [ArkUI_DragResult](#arkui_dragresult) { ARKUI_DRAG_RESULT_SUCCESSFUL = 0, ARKUI_DRAG_RESULT_FAILED, ARKUI_DRAG_RESULT_CANCELED } | 拖拽结果定义，由数据接收方设置，并由系统传递给数据拖出方，拖出方可感知接收方对数据的处理结果。  | 
+| [ArkUI_DropOperation](#arkui_dropoperation) { ARKUI_DROP_OPERATION_COPY = 0, ARKUI_DROP_OPERATION_MOVE } | 定义拖拽释放时的数据处理方式，可影响角标的显示。  | 
 | [ArkUI_PreDragStatus](#arkui_predragstatus) {<br/>ARKUI_PRE_DRAG_STATUS_UNKNOWN = -1, ARKUI_PRE_DRAG_STATUS_ACTION_DETECTING, ARKUI_PRE_DRAG_STATUS_READY_TO_TRIGGER_DRAG, ARKUI_PRE_DRAG_STATUS_PREVIEW_LIFT_STARTED,<br/>ARKUI_PRE_DRAG_STATUS_PREVIEW_LIFT_FINISHED, ARKUI_PRE_DRAG_STATUS_PREVIEW_LANDING_STARTED, ARKUI_PRE_DRAG_STATUS_PREVIEW_LANDING_FINISHED, ARKUI_PRE_DRAG_STATUS_CANCELED_BEFORE_DRAG<br/>} | 定义拖拽发起前的长按交互阶段的变化状态。  | 
-| [ArkUI_DragPreviewScaleMode](#arkui_dragpreviewscalemode) { ARKUI_DRAG_PREVIEW_SCALE_AUTO, ARKUI_DRAG_PREVIEW_SCALE_DISABLED } | 拖拽预览缩放模式。  | 
-| [ArkUI_DragStatus](#arkui_dragstatus) { ArkUI_DRAG_STATUS_UNKNOWN, ArkUI_DRAG_STATUS_STARTED, ArkUI_DRAG_STATUS_ENDED } | 拖拽状态。  | 
+| [ArkUI_DragPreviewScaleMode](#arkui_dragpreviewscalemode) { ARKUI_DRAG_PREVIEW_SCALE_AUTO = 0, ARKUI_DRAG_PREVIEW_SCALE_DISABLED } | 拖拽预览缩放模式。  | 
+| [ArkUI_DragStatus](#arkui_dragstatus) { ARKUI_DRAG_STATUS_UNKNOWN = -1, ARKUI_DRAG_STATUS_STARTED, ARKUI_DRAG_STATUS_ENDED } | 拖拽状态。  | 
 | [ArkUI_DismissReason](#arkui_dismissreason) { DIALOG_DISMISS_BACK_PRESS = 0, DIALOG_DISMISS_TOUCH_OUTSIDE, DIALOG_DISMISS_CLOSE_BUTTON, DIALOG_DISMISS_SLIDE_DOWN } | 弹窗关闭的触发方式。  | 
 | [ArkUI_LevelMode](#arkui_levelmode) { ARKUI_LEVEL_MODE_OVERLAY = 0, ARKUI_LEVEL_MODE_EMBEDDED } | 设置弹窗显示层级。  |
 | [ArkUI_ImmersiveMode](#arkui_immersivemode) { ARKUI_IMMERSIVE_MODE_DEFAULT = 0, ARKUI_IMMERSIVE_MODE_EXTEND } | 指定嵌入式弹窗的蒙层覆盖区域。  |
@@ -286,13 +286,14 @@
 | [ArkUI_DragEvent](#arkui_dragevent) \* [OH_ArkUI_NodeEvent_GetDragEvent](#oh_arkui_nodeevent_getdragevent) ([ArkUI_NodeEvent](#arkui_nodeevent-12) \*nodeEvent) | 从 NodeEvent 中获取DragEvent。  | 
 | [ArkUI_PreDragStatus](#arkui_predragstatus) [OH_ArkUI_NodeEvent_GetPreDragStatus](#oh_arkui_nodeevent_getpredragstatus) ([ArkUI_NodeEvent](#arkui_nodeevent-12) \*nodeEvent) | 获取预览拖拽事件状态。  | 
 | int32_t [OH_ArkUI_DragEvent_DisableDefaultDropAnimation](#oh_arkui_dragevent_disabledefaultdropanimation) ([ArkUI_DragEvent](#arkui_dragevent) \*event, bool disable) | 设置是否禁用松手时的系统默认动效，默认不禁用，通常在应用需要自定义落位动效时配置。  | 
-| int32_t [OH_ArkUI_DragEvent_SetSuggestedDropOperation](#oh_arkui_dragevent_setsuggesteddropoperation) ([ArkUI_DragEvent](#arkui_dragevent) \*event, [ArkUI_DropProposal](#arkui_dropproposal) proposal) | 设置数据处理方式  | 
+| int32_t [OH_ArkUI_DragEvent_SetSuggestedDropOperation](#oh_arkui_dragevent_setsuggesteddropoperation) ([ArkUI_DragEvent](#arkui_dragevent) \*event, [ArkUI_DropOperation](#arkui_dropoperation) dropOperation) | 设置数据处理方式  | 
 | int32_t [OH_ArkUI_DragEvent_SetDragResult](#oh_arkui_dragevent_setdragresult) ([ArkUI_DragEvent](#arkui_dragevent) \*event, [ArkUI_DragResult](#arkui_dragresult) result) | 设置拖拽事件的结果。  | 
 | int32_t [OH_ArkUI_DragEvent_SetData](#oh_arkui_dragevent_setdata) ([ArkUI_DragEvent](#arkui_dragevent) \*event, [OH_UdmfData](#oh_udmfdata) \*data) | 向ArkUI_DragEvent中设置拖拽数据。  | 
 | int32_t [OH_ArkUI_DragEvent_GetUdmfData](#oh_arkui_dragevent_getudmfdata) ([ArkUI_DragEvent](#arkui_dragevent) \*event, [OH_UdmfData](#oh_udmfdata) \*data) | 从ArkUI_DragEvent中获取拖拽默认相关数据。  | 
-| int32_t [OH_ArkUI_DragEvent_GetDataTypesCount](#oh_arkui_dragevent_getdatatypescount) ([ArkUI_DragEvent](#arkui_dragevent) \*event, int32_t \*count) | 从ArkUI_DragEvent中获取所拖拽的数据类型种类个数。  | 
+| int32_t [OH_ArkUI_DragEvent_GetDataTypeCount](#oh_arkui_dragevent_getdatatypecount) ([ArkUI_DragEvent](#arkui_dragevent) \*event, int32_t \*count) | 从ArkUI_DragEvent中获取所拖拽的数据类型种类个数。  | 
 | int32_t [OH_ArkUI_DragEvent_GetDataTypes](#oh_arkui_dragevent_getdatatypes) ([ArkUI_DragEvent](#arkui_dragevent) \*event, char \*\*result[], int32_t length) | 从ArkUI_DragEvent中获取拖拽数据的类型列表。  | 
 | int32_t [OH_ArkUI_DragEvent_GetDragResult](#oh_arkui_dragevent_getdragresult) ([ArkUI_DragEvent](#arkui_dragevent) \*event, [ArkUI_DragResult](#arkui_dragresult) \*result) | 从ArkUI_DragEvent中获取拖拽结果。  | 
+| int32_t [OH_ArkUI_DragEvent_GetDropOperation](#oh_arkui_dragevent_getdropoperation) ([ArkUI_DragEvent](#arkui_dragevent) \*event, [ArkUI_DropOperation](#arkui_dropoperation) \*operation) | 从ArkUI_DragEvent中获取数据处理方式。  | 
 | float [OH_ArkUI_DragEvent_GetPreviewTouchPointX](#oh_arkui_dragevent_getpreviewtouchpointx) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 从ArkUI_DragEvent中获取预览图跟手点的x轴坐标。  | 
 | float [OH_ArkUI_DragEvent_GetPreviewTouchPointY](#oh_arkui_dragevent_getpreviewtouchpointy) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 从ArkUI_DragEvent中获取预览图跟手点的y轴坐标。  | 
 | float [OH_ArkUI_DragEvent_GetPreviewRectWidth](#oh_arkui_dragevent_getpreviewrectwidth) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 从ArkUI_DragEvent中获取预览图的宽。  | 
@@ -304,7 +305,7 @@
 | float [OH_ArkUI_DragEvent_GetVelocityX](#oh_arkui_dragevent_getvelocityx) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 获取当前拖拽的x轴方向拖动速度。  | 
 | float [OH_ArkUI_DragEvent_GetVelocityY](#oh_arkui_dragevent_getvelocityy) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 获取当前拖拽的y轴方向拖动速度。  | 
 | float [OH_ArkUI_DragEvent_GetVelocity](#oh_arkui_dragevent_getvelocity) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 获取当前拖拽的主方向拖动速度。  | 
-| int32_t [OH_ArkUI_DragEvent_GetModifierKeyStates](#oh_arkui_dragevent_getmodifierkeystates) ([ArkUI_DragEvent](#arkui_dragevent) \*event, int64_t \*keys) | 获取功能键按压状态。  | 
+| int32_t [OH_ArkUI_DragEvent_GetModifierKeyStates](#oh_arkui_dragevent_getmodifierkeystates) ([ArkUI_DragEvent](#arkui_dragevent) \*event, uint64_t \*keys) | 获取功能键按压状态。  | 
 | int32_t [OH_ArkUI_SetDragEventStrictReportWithNode](#oh_arkui_setdrageventstrictreportwithnode) ([ArkUI_NodeHandle](#arkui_nodehandle) node, bool enabled) | 控制是否使能严格dragEvent上报，建议开启；默认是不开启的； 当不开启时，从父组件拖移进子组件时，父组件并不会收到leave的通知；而开启之后，只要前后两个组件发生变化，上一个组件就会收到 leave，新的组件收到enter通知；该配置与具体的UI实例相关，需要通过传入一个当前UI实例上的一个具体的组件节点来关联。  | 
 | int32_t [OH_ArkUI_SetDragEventStrictReportWithContext](#oh_arkui_setdrageventstrictreportwithcontext) ([ArkUI_ContextHandle](#arkui_contexthandle-12) uiContext, bool enabled) | 控制是否使能严格dragEvent上报，建议开启；默认是不开启的; 当不开启时，从父组件拖移进子组件时，父组件并不会收到leave的通知；而开启之后，只要前后两个组件发生变化，上一个组件就会收到 leave，新的组件收到enter通知；该配置与具体的UI实例相关，可通过传入一个UI实例进行关联。  | 
 | int32_t [OH_ArkUI_SetNodeAllowedDropDataTypes](#oh_arkui_setnodealloweddropdatatypes) ([ArkUI_NodeHandle](#arkui_nodehandle) node, const char \*typesArray[], int32_t count) | 配置组件允许接受落入的数据类型，该接口会重置通过 [OH_ArkUI_DisallowNodeAnyDropDataTypes](#oh_arkui_disallownodeanydropdatatypes) 或 [OH_ArkUI_AllowNodeAllDropDataTypes](#oh_arkui_allownodealldropdatatypes)进行的配置。  | 
@@ -435,12 +436,36 @@
 | void \* [OH_ArkUI_DialogDismissEvent_GetUserData](#oh_arkui_dialogdismissevent_getuserdata) ([ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) \*event) | 获取弹窗关闭事件对象中的用户自定义数据指针。  | 
 | int32_t [OH_ArkUI_DialogDismissEvent_GetDismissReason](#oh_arkui_dialogdismissevent_getdismissreason) ([ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) \*event) | 获取交互式关闭事件指针中的关闭原因。  | 
 | int32_t [OH_ArkUI_CustomDialog_OpenDialog](#oh_arkui_customdialog_opendialog) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, void (\*callback)(int32_t dialogId)) | 弹出自定义弹窗。  |
+| int32_t [OH_ArkUI_CustomDialog_UpdateDialog](#oh_arkui_customdialog_updatedialog) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, void (\*callback)(int32_t dialogId)) | 更新自定义弹窗。  |
 | int32_t [OH_ArkUI_CustomDialog_CloseDialog](#oh_arkui_customdialog_closedialog) (int32_t dialogId) | 关闭自定义弹窗。  |
 | ArkUI_CustomDialogOptions\* [OH_ArkUI_CustomDialog_CreateOptions](#oh_arkui_customdialog_createoptions) ([ArkUI_NodeHandle](#arkui_nodehandle) content) | 创建自定义弹窗options。  |
 | void [OH_ArkUI_CustomDialog_DisposeOptions](#oh_arkui_customdialog_disposeoptions) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options) | 销毁自定义弹窗options。  |
 | int32_t [OH_ArkUI_CustomDialog_SetLevelMode](#oh_arkui_customdialog_setlevelmode) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, [ArkUI_LevelMode](#arkui_levelmode) levelMode) | 设置弹窗的显示层级。  |
 | int32_t [OH_ArkUI_CustomDialog_SetLevelUniqueId](#oh_arkui_customdialog_setleveluniqueid) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, int32_t uniqueId) | 设置弹窗显示层级页面下的节点id。  |
 | int32_t [OH_ArkUI_CustomDialog_SetImmersiveMode](#oh_arkui_customdialog_setimmersivemode) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, [ArkUI_ImmersiveMode](#arkui_immersivemode) immersiveMode) | 设置嵌入式弹窗蒙层的显示区域。  |
+| int32_t [OH_ArkUI_CustomDialog_SetBackgroundColor](#oh_arkui_customdialog_setbackgroundcolor) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, uint32_t backgroundColor) | 设置弹窗的背景颜色。  |
+| int32_t [OH_ArkUI_CustomDialog_SetCornerRadius](#oh_arkui_customdialog_setcornerradius) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, float topLeft, float topRight, float bottomLeft, float bottomRight) | 设置弹窗的圆角半径。  |
+| int32_t [OH_ArkUI_CustomDialog_SetBorderWidth](#oh_arkui_customdialog_setborderwidth) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, float top, float right, float bottom, float left, [ArkUI_LengthMetricUnit](#arkui_lengthmetricunit) unit) | 设置弹窗的边框宽度。  |
+| int32_t [OH_ArkUI_CustomDialog_SetBorderColor](#oh_arkui_customdialog_setbordercolor) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, uint32_t top, uint32_t right, uint32_t bottom, uint32_t left) | 设置弹窗的边框颜色。  |
+| int32_t [OH_ArkUI_CustomDialog_SetBorderStyle](#oh_arkui_customdialog_setborderstyle) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, int32_t top, int32_t right, int32_t bottom, int32_t left) | 设置弹窗的边框样式。  |
+| int32_t [OH_ArkUI_CustomDialog_SetWidth](#oh_arkui_customdialog_setwidth) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, float width, [ArkUI_LengthMetricUnit](#arkui_lengthmetricunit) unit) | 设置弹窗的背板宽度。  |
+| int32_t [OH_ArkUI_CustomDialog_SetHeight](#oh_arkui_customdialog_setheight) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, float height, [ArkUI_LengthMetricUnit](#arkui_lengthmetricunit) unit) | 设置弹窗的背板高度。  |
+| int32_t [OH_ArkUI_CustomDialog_SetShadow](#oh_arkui_customdialog_setshadow) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, [ArkUI_ShadowStyle](#arkui_shadowstyle) shadow) | 设置弹窗的背板阴影。  |
+| int32_t [OH_ArkUI_CustomDialog_SetCustomShadow](#oh_arkui_customdialog_setcustomshadow) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md#arkui_attributeitem) \*customShadow) | 设置弹窗的自定义阴影。  |
+| int32_t [OH_ArkUI_CustomDialog_SetBackgroundBlurStyle](#oh_arkui_customdialog_setbackgroundblurstyle) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, [ArkUI_BlurStyle](#arkui_blurstyle) blurStyle) | 设置弹窗的背板模糊材质。  |
+| int32_t [OH_ArkUI_CustomDialog_SetAlignment](#oh_arkui_customdialog_setalignment) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, int32_t alignment, float offsetX, float offsetY) | 设置弹窗的对齐模式。  |
+| int32_t [OH_ArkUI_CustomDialog_SetModalMode](#oh_arkui_customdialog_setmodalmode) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, bool isModal) | 设置自定义弹窗是否开启模态样式的弹窗。  |
+| int32_t [OH_ArkUI_CustomDialog_SetAutoCancel](#oh_arkui_customdialog_setautocancel) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, bool autoCancel) | 设置自定义弹窗是否允许点击遮罩层退出。  |
+| int32_t [OH_ArkUI_CustomDialog_SetSubwindowMode](#oh_arkui_customdialog_setsubwindowmode) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, bool showInSubwindow) | 设置弹窗是否在子窗口显示此弹窗。  |
+| int32_t [OH_ArkUI_CustomDialog_SetMask](#oh_arkui_customdialog_setmask) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, uint32_t maskColor, const [ArkUI_Rect](_ark_u_i___rect.md#arkui_rect) \*maskRect) | 设置自定义弹窗遮罩属性。  |
+| int32_t [OH_ArkUI_CustomDialog_SetKeyboardAvoidMode](#oh_arkui_customdialog_setkeyboardavoidmode) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, [ArkUI_KeyboardAvoidMode](_ark_u_i___native_module.md#arkui_keyboardavoidmode) keyboardAvoidMode) | 设置弹窗避让键盘的模式。  |
+| int32_t [OH_ArkUI_CustomDialog_SetHoverModeEnabled](#oh_arkui_customdialog_sethovermodeenabled) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, bool enabled) | 设置弹窗是否响应悬停态。  |
+| int32_t [OH_ArkUI_CustomDialog_SetHoverModeArea](#oh_arkui_customdialog_sethovermodearea) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, [ArkUI_HoverModeAreaType](#arkui_hovermodeareatype) hoverModeAreaType) | 设置悬停态下弹窗默认展示区域。  |
+| int32_t [OH_ArkUI_CustomDialog_RegisterOnWillDismissCallback](#oh_arkui_customdialog_registeronwilldismisscallback) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, void\* userData, void (\*callback)([ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) \*event)) | 注册系统关闭自定义弹窗的监听事件。  |
+| int32_t [OH_ArkUI_CustomDialog_RegisterOnWillAppearCallback](#oh_arkui_customdialog_registeronwillappearcallback) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, void\* userData, void (\*callback)(void\* userData)) | 注册自定义弹窗显示动效前的监听事件。  |
+| int32_t [OH_ArkUI_CustomDialog_RegisterOnDidAppearCallback](#oh_arkui_customdialog_registerondidappearcallback) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, void\* userData, void (\*callback)(void\* userData)) | 注册自定义弹窗弹出时的监听事件。  |
+| int32_t [OH_ArkUI_CustomDialog_RegisterOnWillDisappearCallback](#oh_arkui_customdialog_registeronwilldisappearcallback) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, void\* userData, void (\*callback)(void\* userData)) | 注册自定义弹窗退出动效前的监听事件。  |
+| int32_t [OH_ArkUI_CustomDialog_RegisterOnDidDisappearCallback](#oh_arkui_customdialog_registerondiddisappearcallback) ([ArkUI_CustomDialogOptions](#arkui_customdialogoptions) \*options, void\* userData, void (\*callback)(void\* userData)) | 注册自定义弹窗消失时的监听事件。  |
 | bool [OH_ArkUI_GestureInterruptInfo_GetSystemFlag](#oh_arkui_gestureinterruptinfo_getsystemflag) (const ArkUI_GestureInterruptInfo \*event) | 判断是否组件内置手势。  | 
 | ArkUI_GestureRecognizer \* [OH_ArkUI_GestureInterruptInfo_GetRecognizer](#oh_arkui_gestureinterruptinfo_getrecognizer) (const ArkUI_GestureInterruptInfo \*event) | 返回被打断的手势指针。  | 
 | ArkUI_GestureEvent \* [OH_ArkUI_GestureInterruptInfo_GetGestureEvent](#oh_arkui_gestureinterruptinfo_getgestureevent) (const ArkUI_GestureInterruptInfo \*event) | 返回打断的手势事件数据。  | 
@@ -841,6 +866,9 @@
 | int32_t [OH_ArkUI_GetGestureParam_duration](#oh_arkui_getgestureparam_duration) (ArkUI_GestureRecognizer \*recognizer, int\* duration) | 获取手势识别器的触发长按的最短时间。 |
 | int32_t [OH_ArkUI_GetGestureParam_angle](#oh_arkui_getgestureparam_angle) (ArkUI_GestureRecognizer \*recognizer, double\* angle) | 获取手势识别器的旋转手势的最小改变度数。 |
 | int32_t [OH_ArkUI_GetGestureParam_distanceThreshold](#oh_arkui_getgestureparam_distancethreshold) (ArkUI_GestureRecognizer \*recognizer, double\* distanceThreshold) | 获取手势识别器的手势移动阈值。 |
+|int32_t [OH_ArkUI_DragEvent_RequestDragEndPending](#oh_arkui_dragevent_requestdragendpending)([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent)\* event, int32_t* requestIdentify); | 请求延迟执行拖拽结束。|
+|int32_t [OH_ArkUI_NotifyDragResult](#oh_arkui_notifydragresult)(int32_t requestIdentify, [ArkUI_DragResult](#arkui_dragresult) \* result); | 通知拖拽结果。|
+|int32_t [OH_ArkUI_NotifyDragEndPendingDone](#oh_arkui_notifydragendpendingdone)(int32_t requestIdentify);| 通知拖拽延迟执行结束。|
 
 
 ## 宏定义说明
@@ -1647,7 +1675,29 @@ typedef struct ArkUI_VisibleAreaEventOptions ArkUI_VisibleAreaEventOptions
 
 可见区域变化监听的参数。
 
-**起始版本：** 16
+**起始版本：** 18
+
+
+### ArkUI_TextPickerRangeContentArray
+```
+typedef struct ArkUI_TextPickerRangeContentArray ArkUI_TextPickerRangeContentArray
+```
+**描述：**
+
+定义文本选择器的数据选择列表。
+
+**起始版本：** 18
+
+### ArkUI_TextCascadePickerRangeContentArray
+
+```
+typedef struct ArkUI_TextCascadePickerRangeContentArray ArkUI_TextCascadePickerRangeContentArray
+```
+**描述：**
+
+定义多列联动数据选择器的多列联动数据选择列表。
+
+**起始版本：** 18
 
 ## 枚举类型说明
 
@@ -2283,10 +2333,10 @@ enum ArkUI_DragStatus
 | ArkUI_DRAG_STATUS_ENDED  | Ended。  | 
 
 
-### ArkUI_DropProposal
+### ArkUI_DropOperation
 
 ```
-enum ArkUI_DropProposal
+enum ArkUI_DropOperation
 ```
 **描述：**
 
@@ -2296,8 +2346,8 @@ enum ArkUI_DropProposal
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_DROP_PROPOSAL_COPY  | 复制行为。  | 
-| ARKUI_DROP_PROPOSAL_MOVE  | 剪切行为。  | 
+| ARKUI_DROP_OPERATION_COPY  | 复制行为。  | 
+| ARKUI_DROP_OPERATION_MOVE  | 剪切行为。  | 
 
 
 ### ArkUI_EdgeEffect
@@ -3355,8 +3405,8 @@ enum ArkUI_NodeAttributeType
 | NODE_FOCUS_BOX  | 设置当前组件系统焦点框样式。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32： 焦点框相对组件边缘的距离。正数代表外侧，负数代表内侧。不支持百分比。<br/>.value[1].f32： 焦点框宽度。 不支持负数和百分比。<br/>.value[2].u32： 焦点框颜色。 | 
 | NODE_CLICK_DISTANCE  | 组件所绑定的点击手势移动距离限制，支持属性设置。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32 表示识别点击手势时允许手指在该范围内移动，单位为vp | 
 | NODE_TAB_STOP  | 控制焦点是否能停在当前组件，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32：参数类型为1或者0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：参数类型为1或者0。 | 
-| NODE_BACKGROUND_IMAGE_RESIZABLE_WITH_SLICE  | 设置背景图在拉伸时可调整大小的属性，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32: 图片左部拉伸时，图片的像素值保持不变，单位为vp。<br/>.value[1].f32: 图片顶部拉伸时，图片的像素值保持不变，单位为vp。<br/>.value[2].f32: 图片右部拉伸时，图片的像素值保持不变，单位为vp。<br/>.value[3].f32: 图片底部拉伸时，图片的像素值保持不变，单位为vp。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 图片左部拉伸时，图片的像素值保持不变，单位为vp。<br/>.value[1].f32: 图片顶部拉伸时，图片的像素值保持不变，单位为vp。<br/>.value[2].f32: 图片右部拉伸时，图片的像素值保持不变，单位为vp。<br/>.value[3].f32: 图片底部拉伸时，图片的像素值保持不变，单位为vp。 <br/>起始版本：<br/>16 | 
-| NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_RATIO  | 设置可见区域变化监听的参数。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.object：参数类型为{@link ArkUI_VisibleAreaEventOptions}。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>object：参数类型为{@link ArkUI_VisibleAreaEventOptions}。 <br/>起始版本：<br/>16 | 
+| NODE_BACKGROUND_IMAGE_RESIZABLE_WITH_SLICE  | 设置背景图在拉伸时可调整大小的属性，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32: 图片左部拉伸时，图片的像素值保持不变，单位为vp。<br/>.value[1].f32: 图片顶部拉伸时，图片的像素值保持不变，单位为vp。<br/>.value[2].f32: 图片右部拉伸时，图片的像素值保持不变，单位为vp。<br/>.value[3].f32: 图片底部拉伸时，图片的像素值保持不变，单位为vp。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 图片左部拉伸时，图片的像素值保持不变，单位为vp。<br/>.value[1].f32: 图片顶部拉伸时，图片的像素值保持不变，单位为vp。<br/>.value[2].f32: 图片右部拉伸时，图片的像素值保持不变，单位为vp。<br/>.value[3].f32: 图片底部拉伸时，图片的像素值保持不变，单位为vp。 <br/>起始版本：<br/>18 | 
+| NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_RATIO  | 设置可见区域变化监听的参数。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.object：参数类型为{@link ArkUI_VisibleAreaEventOptions}。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>object：参数类型为{@link ArkUI_VisibleAreaEventOptions}。 <br/>起始版本：<br/>18 | 
 | NODE_TEXT_CONTENT  | text组件设置文本内容属性，支持属性设置，属性重置，属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示文本内容<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string 表示文本内容 | 
 | NODE_FONT_COLOR  | 组件字体颜色属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：字体颜色数值，0xargb格式，形如 0xFFFF0000 表示红色；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：字体颜色数值，0xargb格式； | 
 | NODE_FONT_SIZE  | 组件字体大小属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：字体大小数值，单位为fp；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：字体大小数值，单位为fp； | 
@@ -3766,9 +3816,9 @@ enum ArkUI_NodeEventType
 | NODE_ON_DRAG_END  | 拖拽发起方可通过注册该回调感知拖拽结束后的结果。<br/>触发该事件的条件：用户松手，拖拽行为结束时触发。 事件回调发生时，可从事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中获取[ArkUI_DragEvent](#arkui_dragevent)。 | 
 | NODE_ON_KEY_EVENT  | 绑定该方法的组件获焦后，按键动作触发该回调。<br/>触发该事件的条件 ：由外设键盘等设备与获焦窗口交互触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>起始版本：<br/>14 | 
 | NODE_ON_KEY_PRE_IME  | 绑定该方法的组件获焦后，按键动作在响应输入法前优先触发该回调。<br/>该回调的返回值为true时，视作该按键事件已被消费，后续的事件回调（keyboardShortcut、输入法事件、onKeyEvent）会被拦截，不再触发。 触发该事件的条件 ：由外设键盘等设备与获焦窗口交互触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>起始版本：<br/>14 | 
-| NODE_ON_AXIS | 绑定该方法的组件收到轴事件时触发该回调。<br/>当绑定组件接收到轴事件时，会触发该事件回调。<br/>事件发生时， [ArkUI_NodeEvent](#arkui_nodeevent-12) 对象中的联合类型为 [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)。<br/>起始版本：<br/>16|
+| NODE_ON_AXIS | 绑定该方法的组件收到轴事件时触发该回调。<br/>当绑定组件接收到轴事件时，会触发该事件回调。<br/>事件发生时， [ArkUI_NodeEvent](#arkui_nodeevent-12) 对象中的联合类型为 [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)。<br/>起始版本：<br/>18|
 | NODE_DISPATCH_KEY_EVENT  | 组件按键事件重新派发事件。当组件节点接收到按键事件时，将触发此回调函数，而非将事件分发给其子节点。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>起始版本：<br/>15 | 
-| NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_EVENT  | 组件可见区域变化事件。<br/>触发该事件的条件：组件可见面积与自身面积的比值接近设置的阈值时触发回调，注册事件前需先使用 NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_RATIO 配置阈值。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含2个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：组件可见面积与自身面积的比值与上次变化相比的情况，变大为1，变小为0。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32**：触发回调时组件可见面积与自身面积的比值。 <br/>起始版本：<br/>16 | 
+| NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_EVENT  | 组件可见区域变化事件。<br/>触发该事件的条件：组件可见面积与自身面积的比值接近设置的阈值时触发回调，注册事件前需先使用 NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_RATIO 配置阈值。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含2个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：组件可见面积与自身面积的比值与上次变化相比的情况，变大为1，变小为0。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32**：触发回调时组件可见面积与自身面积的比值。 <br/>起始版本：<br/>18 | 
 | NODE_TEXT_ON_DETECT_RESULT_UPDATE  | 文本设置TextDataDetectorConfig且识别成功时，触发onDetectResultUpdate回调。<br/>触发该事件的条件：文本设置TextDataDetectorConfig且识别成功后。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)。<br/>[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)中包含1个参数：<br/>**[ArkUI_StringAsyncEvent.pStr](_ark_u_i___string_async_event.md#pstr)**：表示文本识别的结果，Json格式。 | 
 | NODE_IMAGE_ON_COMPLETE  | 图片加载成功事件。<br/>触发该事件的条件 ：图片数据加载成功和解码成功均触发该回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含9个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：表示加载状态，0表示数据加载成功，1表示解码成功。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32**：表示图片的宽度，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[2].f32**：表示图片的高度，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[3].f32**：表示当前组件的宽度，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[4].f32**：表示当前组件的高度，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[5].f32**：图片绘制区域相对组件X轴位置，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[6].f32**：图片绘制区域相对组件Y轴位置，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[7].f32**：图片绘制区域宽度，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[8].f32**：图片绘制区域高度，单位px。 | 
 | NODE_IMAGE_ON_ERROR  | 图片加载失败事件。<br/>触发该事件的条件：图片加载异常时触发该回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含1个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**错误码信息：<br/>401: 图片路径参数异常，无法获取到图片数据。<br/>103101: 图片格式不支持。 | 
@@ -4135,7 +4185,7 @@ enum ArkUI_FocusMove
 
 定义自定义走焦的按键的枚举值。
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -4912,6 +4962,38 @@ enum ArkUI_KeyboardAppearance
 | ARKUI_KEYBOARD_APPEARANCE_IMMERSIVE   | 沉浸式模式，由系统决定采用的样式。  |
 | ARKUI_KEYBOARD_APPEARANCE_LIGHT_IMMERSIVE   | 浅色沉浸式样式。  |
 | ARKUI_KEYBOARD_APPEARANCE_DARK_IMMERSIVE   | 深色沉浸式样式。  |
+
+### ArkUI_KeyboardAvoidMode
+
+```
+enum ArkUI_KeyboardAvoidMode
+```
+**描述：**
+
+设置弹窗避让键盘模式。
+
+**起始版本：** 18
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| ARKUI_KEYBOARD_AVOID_MODE_DEFAULT   | 默认避让软键盘并在到达极限高度之后进行高度压缩。  |
+| ARKUI_KEYBOARD_AVOID_MODE_NONE   | 不避让软键盘。  |
+
+### ArkUI_HoverModeAreaType
+
+```
+enum ArkUI_HoverModeAreaType
+```
+**描述：**
+
+设置悬停态下弹窗默认展示区域。
+
+**起始版本：** 18
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| ARKUI_HOVER_MODE_AREA_TYPE_TOP   | 上半屏。  |
+| ARKUI_HOVER_MODE_AREA_TYPE_BOTTOM   | 下半屏。  |
 
 ## 函数说明
 
@@ -8225,7 +8307,7 @@ int32_t OH_ArkUI_CustomDialog_OpenDialog(ArkUI_CustomDialogOptions* options, voi
 
 弹出自定义弹窗。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -8233,6 +8315,28 @@ int32_t OH_ArkUI_CustomDialog_OpenDialog(ArkUI_CustomDialogOptions* options, voi
 | -------- | -------- |
 | options | 弹窗参数。 | 
 | callback | 开启弹窗的回调，返回入参是弹窗ID。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_UpdateDialog()
+
+```
+int32_t OH_ArkUI_CustomDialog_UpdateDialog(ArkUI_CustomDialogOptions* options, void (*callback)(int32_t dialogId))
+```
+**描述：**
+
+更新自定义弹窗。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 |
+| callback | 更新弹窗的回调，返回入参是弹窗ID。 |
 
 **返回：**
 
@@ -8247,7 +8351,7 @@ int32_t OH_ArkUI_CustomDialog_CloseDialog(int32_t dialogId)
 
 关闭自定义弹窗。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -8268,7 +8372,7 @@ ArkUI_CustomDialogOptions* OH_ArkUI_CustomDialog_CreateOptions(ArkUI_NodeHandle 
 
 创建自定义弹窗options。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -8289,7 +8393,7 @@ void OH_ArkUI_CustomDialog_DisposeOptions(ArkUI_CustomDialogOptions* options)
 
 销毁自定义弹窗options。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -8307,7 +8411,7 @@ int32_t OH_ArkUI_CustomDialog_SetLevelMode(ArkUI_CustomDialogOptions* options, A
 
 设置弹窗的显示层级。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -8333,7 +8437,7 @@ int32_t OH_ArkUI_CustomDialog_SetLevelUniqueId(ArkUI_CustomDialogOptions* option
 
 设置弹窗显示层级页面下的节点id。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -8359,7 +8463,7 @@ int32_t OH_ArkUI_CustomDialog_SetImmersiveMode(ArkUI_CustomDialogOptions* option
 
 设置嵌入式弹窗蒙层的显示区域。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -8376,6 +8480,548 @@ OH_ArkUI_CustomDialog_SetImmersiveMode方法需要在调用OH_ArkUI_CustomDialog
 
 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
+### OH_ArkUI_CustomDialog_SetBackgroundColor()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetBackgroundColor(ArkUI_CustomDialogOptions* options, uint32_t backgroundColor)
+```
+**描述：**
+
+设置弹窗的背景颜色。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| backgroundColor | 弹窗背景颜色。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetCornerRadius()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetCornerRadius(
+    ArkUI_CustomDialogOptions* options, float topLeft, float topRight, float bottomLeft, float bottomRight)
+```
+**描述：**
+
+设置弹窗的圆角半径。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| topLeft | 弹窗左上角的圆角半径。 |
+| topRight | 弹窗右上角的圆角半径。 | 
+| bottomLeft |弹窗左下角的圆角半径。 |
+| bottomRight | 弹窗右下角的圆角半径。 | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetBorderWidth()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetBorderWidth(
+    ArkUI_CustomDialogOptions* options, float top, float right, float bottom, float left, ArkUI_LengthMetricUnit unit)
+```
+**描述：**
+
+设置弹窗的边框宽度。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| top | 弹窗上边框的宽度。 |
+| right | 弹窗右边框的宽度。 | 
+| bottom |弹窗下边框的宽度。 |
+| left | 弹窗左边框的宽度。 | 
+| unit | 指定宽度的单位，默认为vp。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetBorderColor()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetBorderColor(
+    ArkUI_CustomDialogOptions* options, uint32_t top, uint32_t right, uint32_t bottom, uint32_t left)
+```
+**描述：**
+
+设置弹窗的边框颜色。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| top | 弹窗上边框的颜色。 |
+| right | 弹窗右边框的颜色。 | 
+| bottom |弹窗下边框的颜色。 |
+| left | 弹窗左边框的颜色。 | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetBorderStyle()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetBorderStyle(
+    ArkUI_CustomDialogOptions* options, int32_t top, int32_t right, int32_t bottom, int32_t left)
+```
+**描述：**
+
+设置弹窗的边框样式。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| top | 弹窗上边框的样式。 |
+| right | 弹窗右边框的样式。 | 
+| bottom | 弹窗下边框的样式。 |
+| left | 弹窗左边框的样式。 | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetWidth()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetWidth(ArkUI_CustomDialogOptions* options, float width, ArkUI_LengthMetricUnit unit)
+```
+**描述：**
+
+设置弹窗的背板宽度。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| width | 弹窗的背板宽度。 |
+| unit | 指定宽度的单位，默认为vp。 | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetHeight()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetHeight(ArkUI_CustomDialogOptions* options, float height, ArkUI_LengthMetricUnit unit)
+```
+**描述：**
+
+设置弹窗的背板高度。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| height | 弹窗的背板高度。 |
+| unit | 指定宽度的单位，默认为vp。 | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetShadow()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetShadow(ArkUI_CustomDialogOptions* options, ArkUI_ShadowStyle shadow)
+```
+**描述：**
+
+设置弹窗的背板阴影
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| shadow | 弹窗的背板阴影样式，枚举值。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetCustomShadow()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetCustomShadow(
+    ArkUI_CustomDialogOptions* options, const ArkUI_AttributeItem* customShadow)
+```
+**描述：**
+
+设置弹窗的自定义阴影。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| customShadow | 弹窗的自定义阴影参数，格式与NODE_SHADOW属性一致。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetBackgroundBlurStyle()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetBackgroundBlurStyle(ArkUI_CustomDialogOptions* options, ArkUI_BlurStyle blurStyle)
+```
+**描述：**
+
+设置弹窗的背板模糊材质。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| blurStyle | 弹窗的背板模糊材质，枚举值。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetAlignment()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetAlignment(
+    ArkUI_CustomDialogOptions* options, int32_t alignment, float offsetX, float offsetY)
+```
+**描述：**
+
+设置弹窗的对齐模式。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| alignment | 弹窗的对齐模式，参数类型{@link ArkUI_Alignment}。 |
+| offsetX | 弹窗的水平偏移量，浮点型。 | 
+| offsetY | 弹窗的垂直偏移量，浮点型。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetModalMode()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetModalMode(ArkUI_CustomDialogOptions* options, bool isModal)
+```
+**描述：**
+
+设置自定义弹窗是否开启模态样式的弹窗。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| isModal | 设置是否开启模态窗口。模态窗口有蒙层,非模态窗口无蒙层。设置为true表示开启模态窗口。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetAutoCancel()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetAutoCancel(ArkUI_CustomDialogOptions* options, bool autoCancel)
+```
+**描述：**
+
+设置自定义弹窗是否允许点击遮罩层退出。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| autoCancel | 设置是否允许点击遮罩层退出，true表示关闭弹窗，false表示不关闭弹窗。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetSubwindowMode()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetSubwindowMode(ArkUI_CustomDialogOptions* options, bool isShowInSubwindow)
+```
+**描述：**
+
+设置弹窗是否在子窗口显示此弹窗。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| isShowInSubwindow | 设置弹窗需要显示在主窗口之外时，是否在子窗口显示此弹窗。默认false，弹窗显示在应用内，而非独立子窗口。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetMask()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetMask(
+    ArkUI_CustomDialogOptions* options, uint32_t maskColor, const ArkUI_Rect* maskRect)
+```
+**描述：**
+
+设置自定义弹窗遮罩属性。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| maskColor | 弹窗的遮罩颜色，0xargb格式。 |
+| maskRect | 遮蔽层区域范围的指针，遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。参数类型{@link ArkUI_Rect}。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetKeyboardAvoidMode()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetKeyboardAvoidMode(
+    ArkUI_CustomDialogOptions* options, ArkUI_KeyboardAvoidMode keyboardAvoidMode)
+```
+**描述：**
+
+设置弹窗避让键盘的模式。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| keyboardAvoidMode | 键盘避让模式，枚举值。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetHoverModeEnabled()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetHoverModeEnabled(ArkUI_CustomDialogOptions* options, bool enabled)
+```
+**描述：**
+
+设置弹窗是否响应悬停态。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| enabled | 是否响应悬停态，默认false。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_SetHoverModeArea()
+
+```
+int32_t OH_ArkUI_CustomDialog_SetHoverModeArea(
+    ArkUI_CustomDialogOptions* options, ArkUI_HoverModeAreaType hoverModeAreaType)
+```
+**描述：**
+
+设置悬停态下弹窗默认展示区域。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| hoverModeAreaType | 悬停态区域，枚举值。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_RegisterOnWillDismissCallback()
+
+```
+int32_t OH_ArkUI_CustomDialog_RegisterOnWillDismissCallback(
+    ArkUI_CustomDialogOptions* options, void* userData, void (*callback)(ArkUI_DialogDismissEvent* event))
+```
+**描述：**
+
+注册系统关闭自定义弹窗的监听事件。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| userData | 用户自定义数据指针。 |
+| callback | 监听自定义弹窗关闭的回调事件。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_RegisterOnWillAppearCallback()
+
+```
+int32_t OH_ArkUI_CustomDialog_RegisterOnWillAppearCallback(
+    ArkUI_CustomDialogOptions* options, void* userData, void (*callback)(void* userData))
+```
+**描述：**
+
+注册自定义弹窗显示动效前的监听事件。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| userData | 用户自定义数据指针。 |
+| callback | 弹窗显示动效前的事件回调。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_RegisterOnDidAppearCallback()
+
+```
+int32_t OH_ArkUI_CustomDialog_RegisterOnDidAppearCallback(
+    ArkUI_CustomDialogOptions* options, void* userData, void (*callback)(void* userData))
+```
+**描述：**
+
+注册自定义弹窗弹出时的监听事件。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| userData | 用户自定义数据指针。 |
+| callback | 弹窗弹出时的事件回调。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_RegisterOnWillDisappearCallback()
+
+```
+int32_t OH_ArkUI_CustomDialog_RegisterOnWillDisappearCallback(
+    ArkUI_CustomDialogOptions* options, void* userData, void (*callback)(void* userData))
+```
+**描述：**
+
+注册自定义弹窗退出动效前的监听事件。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| userData | 用户自定义数据指针。 |
+| callback | 弹窗退出动效前的事件回调。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_RegisterOnDidDisappearCallback()
+
+```
+int32_t OH_ArkUI_CustomDialog_RegisterOnDidDisappearCallback(
+    ArkUI_CustomDialogOptions* options, void* userData, void (*callback)(void* userData))
+```
+**描述：**
+
+注册自定义弹窗消失时的监听事件。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 弹窗参数。 | 
+| userData | 用户自定义数据指针。 |
+| callback | 弹窗消失时的事件回调。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 ### OH_ArkUI_DialogDismissEvent_GetUserData()
 
@@ -8699,7 +9345,7 @@ int32_t OH_ArkUI_DragEvent_DisableDefaultDropAnimation (ArkUI_DragEvent * event,
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | ArkUI_DragEvent事件指针。  | 
-| disable | 是否禁用松手时的系统默认动效，true禁用，false使能。  | 
+| disable | 是否禁用松手时的系统默认动效，true禁用，false不禁用。  | 
 
 **返回：**
 
@@ -8709,7 +9355,7 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数�
 ### OH_ArkUI_DragEvent_GetDataTypes()
 
 ```
-int32_t OH_ArkUI_DragEvent_GetDataTypes (ArkUI_DragEvent * event, char ** result[], int32_t length )
+int32_t OH_ArkUI_DragEvent_GetDataTypes (ArkUI_DragEvent * event, char * eventTypeArray[], int32_t length, int32_t maxStrLen)
 ```
 **描述：**
 
@@ -8722,18 +9368,19 @@ int32_t OH_ArkUI_DragEvent_GetDataTypes (ArkUI_DragEvent * event, char ** result
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | ArkUI_DragEvent事件指针。  | 
-| char | \*\*result[] 返回拖拽数据的类型列表，需要先自行创建字符串数组。  | 
-| length | 数组总长度，不应少于使用[OH_ArkUI_DragEvent_GetDataTypesCount](#oh_arkui_dragevent_getdatatypescount)获取到的数量。  | 
+| char | eventTypeArray 返回拖拽数据的类型列表，需要先自行创建字符串数组。  | 
+| length | 数组总长度，不应少于使用[OH_ArkUI_DragEvent_GetDataTypeCount](#oh_arkui_dragevent_getdatatypecount)获取到的数量。  | 
+| maxStrLen | 拖拽数据类型的最大字符串长度。  | 
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR 缓冲区大小不足。
 
 
-### OH_ArkUI_DragEvent_GetDataTypesCount()
+### OH_ArkUI_DragEvent_GetDataTypeCount()
 
 ```
-int32_t OH_ArkUI_DragEvent_GetDataTypesCount (ArkUI_DragEvent * event, int32_t * count )
+int32_t OH_ArkUI_DragEvent_GetDataTypeCount (ArkUI_DragEvent * event, int32_t * count )
 ```
 **描述：**
 
@@ -8776,10 +9423,33 @@ int32_t OH_ArkUI_DragEvent_GetDragResult (ArkUI_DragEvent * event, ArkUI_DragRes
 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
+### OH_ArkUI_DragEvent_GetDropOperation()
+
+```
+int32_t OH_ArkUI_DragEvent_GetDropOperation (ArkUI_DragEvent * event, ArkUI_DropOperation * operation)
+```
+**描述：**
+
+从ArkUI_DragEvent中获取数据处理方式。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_DragEvent事件指针。  | 
+| operation | 出参，返回拖拽事件对应的数据处理方式。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
 ### OH_ArkUI_DragEvent_GetModifierKeyStates()
 
 ```
-int32_t OH_ArkUI_DragEvent_GetModifierKeyStates (ArkUI_DragEvent * event, int64_t * keys )
+int32_t OH_ArkUI_DragEvent_GetModifierKeyStates (ArkUI_DragEvent * event, uint64_t * keys )
 ```
 **描述：**
 
@@ -8880,11 +9550,11 @@ float OH_ArkUI_DragEvent_GetPreviewTouchPointY (ArkUI_DragEvent * event)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| event | ArkUI_DragEvent事件指针，单位为PX，传入参数无效时返回默认值 0。  | 
+| event | ArkUI_DragEvent事件指针。  | 
 
 **返回：**
 
-float 返回拖拽跟手点的y轴坐标。
+float 返回拖拽跟手点的y轴坐标，单位为PX，传入参数无效时返回默认值 0。
 
 
 ### OH_ArkUI_DragEvent_GetTouchPointXToDisplay()
@@ -9113,7 +9783,7 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数�
 ### OH_ArkUI_DragEvent_SetSuggestedDropOperation()
 
 ```
-int32_t OH_ArkUI_DragEvent_SetSuggestedDropOperation (ArkUI_DragEvent * event, ArkUI_DropProposal proposal )
+int32_t OH_ArkUI_DragEvent_SetSuggestedDropOperation (ArkUI_DragEvent * event, ArkUI_DropOperation dropOperation)
 ```
 **描述：**
 
@@ -9204,7 +9874,7 @@ int32_t OH_ArkUI_DragPreviewOption_SetDefaultRadiusEnabled (ArkUI_DragPreviewOpt
 ```
 **描述：**
 
-设置跟手图背板默认的圆角效果，默认使能。
+设置跟手图背板默认的圆角效果，默认不开启。
 
 **起始版本：** 12
 
@@ -9227,7 +9897,7 @@ int32_t OH_ArkUI_DragPreviewOption_SetDefaultShadowEnabled (ArkUI_DragPreviewOpt
 ```
 **描述：**
 
-设置跟手图背板默认的投影效果，默认使能。
+设置跟手图背板默认的投影效果，默认不开启。
 
 **起始版本：** 12
 
@@ -9250,7 +9920,7 @@ int32_t OH_ArkUI_DragPreviewOption_SetNumberBadgeEnabled (ArkUI_DragPreviewOptio
 ```
 **描述：**
 
-设置跟手图背板是否显示角标,默认使能,开启后,系统会根据拖拽数量自动进行角标显示。
+设置跟手图背板是否显示角标,开启后,系统会根据拖拽数量自动进行角标显示。
 
 **起始版本：** 12
 
@@ -14087,7 +14757,7 @@ void* OH_ArkUI_GestureInterrupter_GetUserData(ArkUI_GestureInterruptInfo* event)
 
 获取手势中断事件中的用户自定义数据。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -16916,7 +17586,7 @@ ArkUI_VisibleAreaEventOptions* OH_ArkUI_VisibleAreaEventOptions_Create()
 
 创建可见区域变化监听的参数。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **返回：**
 可见区域变化监听的参数。
@@ -16930,7 +17600,7 @@ void OH_ArkUI_VisibleAreaEventOptions_Dispose(ArkUI_VisibleAreaEventOptions* opt
 
 销毁可见区域变化监听的参数。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -16947,7 +17617,7 @@ int32_t OH_ArkUI_VisibleAreaEventOptions_SetRatios(ArkUI_VisibleAreaEventOptions
 
 设置阈值数组。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -16972,7 +17642,7 @@ int32_t OH_ArkUI_VisibleAreaEventOptions_SetExpectedUpdateInterval(
 
 设置预期更新间隔，单位为ms。定义了开发者期望的更新间隔。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -16995,7 +17665,7 @@ int32_t OH_ArkUI_VisibleAreaEventOptions_GetRatios(ArkUI_VisibleAreaEventOptions
 
  获取阈值数组。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -17020,7 +17690,7 @@ int32_t OH_ArkUI_VisibleAreaEventOptions_GetExpectedUpdateInterval(ArkUI_Visible
 
  获取预期更新间隔。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -17063,7 +17733,7 @@ int32_t OH_ArkUI_GetGestureParam_DirectMask(ArkUI_GestureRecognizer* recognizer,
 
 获取手势识别器的滑动方向。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -17086,7 +17756,7 @@ int32_t OH_ArkUI_GetGestureParam_FingerCount(ArkUI_GestureRecognizer* recognizer
 
 获取手势识别器的手指数。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -17109,7 +17779,7 @@ int32_t OH_ArkUI_GetGestureParam_limitFingerCount(ArkUI_GestureRecognizer* recog
 
 获取手势识别器是否有手指数限制。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -17132,7 +17802,7 @@ int32_t OH_ArkUI_GetGestureParam_repeat(ArkUI_GestureRecognizer* recognizer, boo
 
 获取手势识别器是否连续触发事件回调。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -17155,7 +17825,7 @@ int32_t OH_ArkUI_GetGestureParam_distance(ArkUI_GestureRecognizer* recognizer, d
 
 获取手势识别器的手指允许的移动距离范围。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -17178,7 +17848,7 @@ int32_t OH_ArkUI_GetGestureParam_speed(ArkUI_GestureRecognizer* recognizer, doub
 
 获取手势识别器的识别滑动的最小速度。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -17201,7 +17871,7 @@ int32_t OH_ArkUI_GetGestureParam_duration(ArkUI_GestureRecognizer* recognizer, i
 
 获取手势识别器的触发长按的最短时间。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -17224,7 +17894,7 @@ int32_t OH_ArkUI_GetGestureParam_angle(ArkUI_GestureRecognizer* recognizer, doub
 
 获取手势识别器的旋转手势的最小改变度数。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -17247,7 +17917,7 @@ int32_t OH_ArkUI_GetGestureParam_distanceThreshold(ArkUI_GestureRecognizer* reco
 
 获取手势识别器的手势移动阈值。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -17260,3 +17930,238 @@ int32_t OH_ArkUI_GetGestureParam_distanceThreshold(ArkUI_GestureRecognizer* reco
 
 ARKUI_ERROR_CODE_NO_ERROR 成功。
 ARKUI_ERROR_CODE_RECOGNIZER_TYPE_NOT_SUPPORTED 不支持手势识别器类型。
+
+
+### OH_ArkUI_DragEvent_RequestDragEndPending()
+
+```
+int32_t OH_ArkUI_DragEvent_RequestDragEndPending(ArkUI_DragEvent* event, int32_t* requestIdentify)
+```
+**描述：**
+
+请求延迟执行拖拽结束。在系统通知应用drop时，调用该方法，可以明确告知系统，需要延迟一段时间才能告知拖拽处理结果，系统会推迟结束整个拖拽的结束，等待应用通过 OH_ArkUI_NotifyDragResult 接口返回拖拽处理结果后，再执行后续流程。这通常使用在不想在主线程处理拖拽数据的情况下，以免长时间阻塞主线程，同时又可确保，在整个拖拽流程结束时，拖起方可以拿到准确的拖拽处理结果。但需要注意的时，系统不会无限等待应用，最大超时时间为2s，在超时后，如果仍然无法收到 OH_ArkUI_NotifyDragResult 通知，则会强制结束拖拽流程，并通知拖起方落入失败。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_DragEvent事件指针。  | 
+| requestIdentify | 此次延迟落入行为的唯一标识。 | 
+
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED 执行函数时不在落入的时机。
+
+
+
+### OH_ArkUI_NotifyDragResult()
+
+```
+int32_t OH_ArkUI_NotifyDragResult(int32_t requestIdentify, ArkUI_DragResult result)
+```
+**描述：**
+
+通知拖拽结果。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| requestIdentify | 此次延迟落入行为的唯一标识。 |
+| result | 拖拽事件对应的拖拽结果。 | 
+
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED 执行函数时不允许落入。
+
+
+### OH_ArkUI_NotifyDragEndPendingDone()
+
+```
+int32_t OH_ArkUI_NotifyDragEndPendingDone(int32_t requestIdentify)
+```
+**描述：**
+
+通知拖拽延迟执行结束。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| requestIdentify | 此次延迟落入行为的唯一标识。 |
+
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_DRAG_DROP_OPERATION_NOT_ALLOWED 执行函数时不允许落入。
+
+### OH_ArkUI_TextPickerRangeContentArray_Create()
+
+```
+ArkUI_TextPickerRangeContentArray* OH_ArkUI_TextPickerRangeContentArray_Create(int32_t length)
+```
+**描述：**
+
+创建TextPickerRangeContent数组的对象。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| length | 指定TextPickerRangeContent数组的长度。  |
+
+**返回：**
+
+返回指向TextPickerRangeContent空数组的指针。
+
+### OH_ArkUI_TextPickerRangeArray_SetIconAtIndex()
+
+```
+void OH_ArkUI_TextPickerRangeArray_SetIconAtIndex(ArkUI_TextPickerRangeContentArray* handle,char* icon,int32_t index);
+```
+**描述：**
+
+ 指定TextPickerRangeContent数组指定位置的icon数据。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| handle | 指向TextPickerRangeContent数组的指针。|
+| icon | 图片地址。|
+| index | 数组位置,从0开始。|
+
+
+### OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex()
+
+```
+void OH_ArkUI_TextPickerRangeContentArray_SetTextAtIndex(ArkUI_TextPickerRangeContentArray* handle,char* text,int32_t index);
+```
+**描述：**
+
+ 指定TextPickerRangeContent数组指定位置的text数据。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| handle | 指向TextPickerRangeContent数组的指针。|
+| text | 文本内容。|
+| index | 数组位置,从0开始。|
+
+
+### OH_ArkUI_TextPickerRangeContentArray_Destroy()
+
+```
+void OH_ArkUI_TextPickerRangeContentArray_Destroy(ArkUI_TextPickerRangeContentArray* handle);
+```
+**描述：**
+
+ 删除TextPickerRangeContent数组对象。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| handle | 指向TextPickerRangeContent数组的指针。|
+
+
+### OH_ArkUI_TextCascadePickerRangeContentArray_Create()
+
+```
+ArkUI_TextCascadePickerRangeContentArray* OH_ArkUI_TextCascadePickerRangeContentArray_Create(int32_t length);
+```
+**描述：**
+
+创建TextCascadePickerRangeContent数组对象。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| length | 指向TextPickerRangeContent数组的长度。|
+
+**返回：**
+
+返回指向TextCascadePickerRangeContent空数组的指针。
+
+### OH_ArkUI_TextCascadePickerRangeContentArray_SetTextAtIndex()
+
+```
+void OH_ArkUI_TextCascadePickerRangeContentArray_SetTextAtIndex(ArkUI_TextCascadePickerRangeContentArray* handle,char* text,int32_t index);
+```
+**描述：**
+
+ 指定TextCascadePickerRangeContent数组指定位置的text数据。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| handle | 指向TextCascadePickerRangeContentHandle的指针。|
+| text | 文本内容。|
+| index | 数组位置，从0开始。|
+
+
+### OH_ArkUI_TextCascadePickerRangeContentArray_setChildAtIndex()
+
+```
+void OH_ArkUI_TextCascadePickerRangeContentArray_setChildAtIndex(ArkUI_TextCascadePickerRangeContentArray* handle,ArkUI_TextCascadePickerRangeContentArray* child,int32_t index);
+```
+**描述：**
+
+ 指定TextCascadePickerRangeContent数组指定位置的child数据。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| handle | 指向TextCascadePickerRangeContentHandle的指针。|
+| child | 子节点数组指针。|
+| index | 数组位置，从0开始。|
+
+
+### OH_ArkUI_TextCascadePickerRangeContentArray_Destroy()
+
+```
+void OH_ArkUI_TextCascadePickerRangeContentArray_Destroy(ArkUI_TextCascadePickerRangeContentArray* handle);
+```
+**描述：**
+
+ 删除TextCascadePickerRangeContent数组对象。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| handle | 指向TextCascadePickerRangeContentHandle的指针。|

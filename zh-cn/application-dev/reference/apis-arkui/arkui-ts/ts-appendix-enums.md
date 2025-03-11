@@ -118,7 +118,7 @@
 | Release | 鼠标按键松开。 |
 | Move    | 鼠标移动。   |
 | Hover   | 鼠标悬浮。<br/>**说明：** 该枚举值无效。   |
-| Cancel<sup>16+</sup>  | 鼠标按键被取消。 |
+| Cancel<sup>18+</sup>  | 鼠标按键被取消。 |
 
 ## ModifierKey<sup>10+</sup>
 
@@ -865,7 +865,7 @@ Nullable\<T> {
 | NORMAL  | CJK(中文、日文、韩文)文本可以在任意2个字符间断行，而Non-CJK文本（如英文等）只能在空白符处断行。 |
 | BREAK_ALL | 对于Non-CJK的文本，可在任意2个字符间断行。对于CJK与NORMAL效果一致。|
 | BREAK_WORD | 与BREAK_ALL相同，对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行，保障单词优先完整显示。若整一行文本均无断行破发点时，则在任意2个字符间断行。对于CJK与NORMAL效果一致。|
-| HYPHENATION<sup>16+</sup> | 对于Non-CJK的文本，可以按照音节断行。对于CJK的文本，换行效果与NORMAL效果保持一致。|
+| HYPHENATION<sup>18+</sup> | 对于Non-CJK的文本，可以按照音节断行。对于CJK的文本，换行效果与NORMAL效果保持一致。|
 
 ## LineBreakStrategy<sup>12+</sup>
 
@@ -1184,11 +1184,11 @@ Nullable\<T> {
 | MEDIUM         | 1   | 中灵敏度。                                 |
 | HIGH 	         | 2   | 高灵敏度。                                 |
 
-## AxisAction<sup>16+</sup>
+## AxisAction<sup>18+</sup>
 
 定义轴事件的轴动作类型。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 

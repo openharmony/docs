@@ -76,8 +76,8 @@ Provides C APIs for the multimodal input module.
 | [Input_TouchEventAction](#input_toucheventaction) { TOUCH_ACTION_CANCEL = 0, TOUCH_ACTION_DOWN = 1, TOUCH_ACTION_MOVE = 2, TOUCH_ACTION_UP = 3 } | Touch action. | 
 | [InputEvent_SourceType](#inputevent_sourcetype) { SOURCE_TYPE_MOUSE = 1, SOURCE_TYPE_TOUCHSCREEN = 2, SOURCE_TYPE_TOUCHPAD = 3 } | Event source type. | 
 | [Input_KeyboardType](#input_keyboardtype) {<br>KEYBOARD_TYPE_NONE = 0, KEYBOARD_TYPE_UNKNOWN = 1, KEYBOARD_TYPE_ALPHABETIC = 2, KEYBOARD_TYPE_DIGITAL = 3,<br>KEYBOARD_TYPE_STYLUS = 4, KEYBOARD_TYPE_REMOTE_CONTROL = 5<br>} | Keyboard type of the input device. | 
-| [Input_Result](#input_result) {<br>INPUT_SUCCESS = 0, INPUT_PERMISSION_DENIED = 201, INPUT_NOT_SYSTEM_APPLICATION = 202, INPUT_PARAMETER_ERROR = 401,<br>INPUT_SERVICE_EXCEPTION = 3800001, INPUT_REPEAT_INTERCEPTOR = 4200001, INPUT_OCCUPIED_BY_SYSTEM = 4200002, INPUT_OCCUPIED_BY_OTHER = 4200003<br>} | Error code. | 
-| [Input_KeyCode](#input_keycode) {<br>KEYCODE_UNKNOWN = -1, KEYCODE_FN = 0, KEYCODE_VOLUME_UP = 16, KEYCODE_VOLUME_DOWN = 17,<br>KEYCODE_POWER = 18, KEYCODE_CAMERA = 19, KEYCODE_VOLUME_MUTE = 22, KEYCODE_MUTE = 23,<br>KEYCODE_BRIGHTNESS_UP = 40, KEYCODE_BRIGHTNESS_DOWN = 41, KEYCODE_0 = 2000, KEYCODE_1 = 2001,<br>KEYCODE_2 = 2002, KEYCODE_3 = 2003, KEYCODE_4 = 2004, KEYCODE_5 = 2005,<br>KEYCODE_6 = 2006, KEYCODE_7 = 2007, KEYCODE_8 = 2008, KEYCODE_9 = 2009,<br>KEYCODE_STAR = 2010, KEYCODE_POUND = 2011, KEYCODE_DPAD_UP = 2012, KEYCODE_DPAD_DOWN = 2013,<br>KEYCODE_DPAD_LEFT = 2014, KEYCODE_DPAD_RIGHT = 2015, KEYCODE_DPAD_CENTER = 2016, KEYCODE_A = 2017,<br>KEYCODE_B = 2018, KEYCODE_C = 2019, KEYCODE_D = 2020, KEYCODE_E = 2021,<br>KEYCODE_F = 2022, KEYCODE_G = 2023, KEYCODE_H = 2024, KEYCODE_I = 2025,<br>KEYCODE_J = 2026, KEYCODE_K = 2027, KEYCODE_L = 2028, KEYCODE_M = 2029,<br>KEYCODE_N = 2030, KEYCODE_O = 2031, KEYCODE_P = 2032, KEYCODE_Q = 2033,<br>KEYCODE_R = 2034, KEYCODE_S = 2035, KEYCODE_T = 2036, KEYCODE_U = 2037,<br>KEYCODE_V = 2038, KEYCODE_W = 2039, KEYCODE_X = 2040, KEYCODE_Y = 2041,<br>KEYCODE_Z = 2042, KEYCODE_COMMA = 2043, KEYCODE_PERIOD = 2044, KEYCODE_ALT_LEFT = 2045,<br>KEYCODE_ALT_RIGHT = 2046, KEYCODE_SHIFT_LEFT = 2047, KEYCODE_SHIFT_RIGHT = 2048, KEYCODE_TAB = 2049,<br>KEYCODE_SPACE = 2050, KEYCODE_SYM = 2051, KEYCODE_EXPLORER = 2052, KEYCODE_ENVELOPE = 2053,<br>KEYCODE_ENTER = 2054, KEYCODE_DEL = 2055, KEYCODE_GRAVE = 2056, KEYCODE_MINUS = 2057,<br>KEYCODE_EQUALS = 2058, KEYCODE_LEFT_BRACKET = 2059, KEYCODE_RIGHT_BRACKET = 2060, KEYCODE_BACKSLASH = 2061,<br>KEYCODE_SEMICOLON = 2062, KEYCODE_APOSTROPHE = 2063, KEYCODE_SLASH = 2064, KEYCODE_AT = 2065,<br>KEYCODE_PLUS = 2066, KEYCODE_MENU = 2067, KEYCODE_PAGE_UP = 2068, KEYCODE_PAGE_DOWN = 2069,<br>KEYCODE_ESCAPE = 2070, KEYCODE_FORWARD_DEL = 2071, KEYCODE_CTRL_LEFT = 2072, KEYCODE_CTRL_RIGHT = 2073,<br>KEYCODE_CAPS_LOCK = 2074, KEYCODE_SCROLL_LOCK = 2075, KEYCODE_META_LEFT = 2076, KEYCODE_META_RIGHT = 2077,<br>KEYCODE_FUNCTION = 2078, KEYCODE_SYSRQ = 2079, KEYCODE_BREAK = 2080, KEYCODE_MOVE_HOME = 2081,<br>KEYCODE_MOVE_END = 2082, KEYCODE_INSERT = 2083, KEYCODE_FORWARD = 2084, KEYCODE_MEDIA_PLAY = 2085,<br>KEYCODE_MEDIA_PAUSE = 2086, KEYCODE_MEDIA_CLOSE = 2087, KEYCODE_MEDIA_EJECT = 2088, KEYCODE_MEDIA_RECORD = 2089,<br>KEYCODE_F1 = 2090, KEYCODE_F2 = 2091, KEYCODE_F3 = 2092, KEYCODE_F4 = 2093,<br>KEYCODE_F5 = 2094, KEYCODE_F6 = 2095, KEYCODE_F7 = 2096, KEYCODE_F8 = 2097,<br>KEYCODE_F9 = 2098, KEYCODE_F10 = 2099, KEYCODE_F11 = 2100, KEYCODE_F12 = 2101,<br>KEYCODE_NUM_LOCK = 2102, KEYCODE_NUMPAD_0 = 2103, KEYCODE_NUMPAD_1 = 2104, KEYCODE_NUMPAD_2 = 2105,<br>KEYCODE_NUMPAD_3 = 2106, KEYCODE_NUMPAD_4 = 2107, KEYCODE_NUMPAD_5 = 2108, KEYCODE_NUMPAD_6 = 2109,<br>KEYCODE_NUMPAD_7 = 2110, KEYCODE_NUMPAD_8 = 2111, KEYCODE_NUMPAD_9 = 2112, KEYCODE_NUMPAD_DIVIDE = 2113,<br>KEYCODE_NUMPAD_MULTIPLY = 2114, KEYCODE_NUMPAD_SUBTRACT = 2115, KEYCODE_NUMPAD_ADD = 2116, KEYCODE_NUMPAD_DOT = 2117,<br>KEYCODE_NUMPAD_COMMA = 2118, KEYCODE_NUMPAD_ENTER = 2119, KEYCODE_NUMPAD_EQUALS = 2120, KEYCODE_NUMPAD_LEFT_PAREN = 2121,<br>KEYCODE_NUMPAD_RIGHT_PAREN = 2122<br>} | Key code value. | 
+| [Input_Result](#input_result) {<br>INPUT_SUCCESS = 0, INPUT_PERMISSION_DENIED = 201, INPUT_NOT_SYSTEM_APPLICATION = 202, INPUT_PARAMETER_ERROR = 401, INPUT_DEVICE_NOT_SUPPORTED = 801,<br>INPUT_SERVICE_EXCEPTION = 3800001, INPUT_REPEAT_INTERCEPTOR = 4200001, INPUT_OCCUPIED_BY_SYSTEM = 4200002, <br>INPUT_OCCUPIED_BY_OTHER = 4200003<br>} | Error code. | 
+| [Input_KeyCode](#input_keycode) {<br>KEYCODE_UNKNOWN = -1, KEYCODE_FN = 0, KEYCODE_VOLUME_UP = 16, KEYCODE_VOLUME_DOWN = 17,<br>KEYCODE_POWER = 18, KEYCODE_CAMERA = 19, KEYCODE_VOLUME_MUTE = 22, KEYCODE_MUTE = 23,<br>KEYCODE_BRIGHTNESS_UP = 40, KEYCODE_BRIGHTNESS_DOWN = 41, KEYCODE_0 = 2000, KEYCODE_1 = 2001,<br>KEYCODE_2 = 2002, KEYCODE_3 = 2003, KEYCODE_4 = 2004, KEYCODE_5 = 2005,<br>KEYCODE_6 = 2006, KEYCODE_7 = 2007, KEYCODE_8 = 2008, KEYCODE_9 = 2009,<br>KEYCODE_STAR = 2010, KEYCODE_POUND = 2011, KEYCODE_DPAD_UP = 2012, KEYCODE_DPAD_DOWN = 2013,<br>KEYCODE_DPAD_LEFT = 2014, KEYCODE_DPAD_RIGHT = 2015, KEYCODE_DPAD_CENTER = 2016, KEYCODE_A = 2017,<br>KEYCODE_B = 2018, KEYCODE_C = 2019, KEYCODE_D = 2020, KEYCODE_E = 2021,<br>KEYCODE_F = 2022, KEYCODE_G = 2023, KEYCODE_H = 2024, KEYCODE_I = 2025,<br>KEYCODE_J = 2026, KEYCODE_K = 2027, KEYCODE_L = 2028, KEYCODE_M = 2029,<br>KEYCODE_N = 2030, KEYCODE_O = 2031, KEYCODE_P = 2032, KEYCODE_Q = 2033,<br>KEYCODE_R = 2034, KEYCODE_S = 2035, KEYCODE_T = 2036, KEYCODE_U = 2037,<br>KEYCODE_V = 2038, KEYCODE_W = 2039, KEYCODE_X = 2040, KEYCODE_Y = 2041,<br>KEYCODE_Z = 2042, KEYCODE_COMMA = 2043, KEYCODE_PERIOD = 2044, KEYCODE_ALT_LEFT = 2045,<br>KEYCODE_ALT_RIGHT = 2046, KEYCODE_SHIFT_LEFT = 2047, KEYCODE_SHIFT_RIGHT = 2048, KEYCODE_TAB = 2049,<br>KEYCODE_SPACE = 2050, KEYCODE_SYM = 2051, KEYCODE_EXPLORER = 2052, KEYCODE_ENVELOPE = 2053,<br>KEYCODE_ENTER = 2054, KEYCODE_DEL = 2055, KEYCODE_GRAVE = 2056, KEYCODE_MINUS = 2057,<br>KEYCODE_EQUALS = 2058, KEYCODE_LEFT_BRACKET = 2059, KEYCODE_RIGHT_BRACKET = 2060, KEYCODE_BACKSLASH = 2061,<br>KEYCODE_SEMICOLON = 2062, KEYCODE_APOSTROPHE = 2063, KEYCODE_SLASH = 2064, KEYCODE_AT = 2065,<br>KEYCODE_PLUS = 2066, KEYCODE_MENU = 2067, KEYCODE_PAGE_UP = 2068, KEYCODE_PAGE_DOWN = 2069,<br>KEYCODE_ESCAPE = 2070, KEYCODE_FORWARD_DEL = 2071, KEYCODE_CTRL_LEFT = 2072, KEYCODE_CTRL_RIGHT = 2073,<br>KEYCODE_CAPS_LOCK = 2074, KEYCODE_SCROLL_LOCK = 2075, KEYCODE_META_LEFT = 2076, KEYCODE_META_RIGHT = 2077,<br>KEYCODE_FUNCTION = 2078, KEYCODE_SYSRQ = 2079, KEYCODE_BREAK = 2080, KEYCODE_MOVE_HOME = 2081,<br>KEYCODE_MOVE_END = 2082, KEYCODE_INSERT = 2083, KEYCODE_FORWARD = 2084, KEYCODE_MEDIA_PLAY = 2085,<br>KEYCODE_MEDIA_PAUSE = 2086, KEYCODE_MEDIA_CLOSE = 2087, KEYCODE_MEDIA_EJECT = 2088, KEYCODE_MEDIA_RECORD = 2089,<br>KEYCODE_F1 = 2090, KEYCODE_F2 = 2091, KEYCODE_F3 = 2092, KEYCODE_F4 = 2093,<br>KEYCODE_F5 = 2094, KEYCODE_F6 = 2095, KEYCODE_F7 = 2096, KEYCODE_F8 = 2097,<br>KEYCODE_F9 = 2098, KEYCODE_F10 = 2099, KEYCODE_F11 = 2100, KEYCODE_F12 = 2101,<br>KEYCODE_NUM_LOCK = 2102, KEYCODE_NUMPAD_0 = 2103, KEYCODE_NUMPAD_1 = 2104, KEYCODE_NUMPAD_2 = 2105,<br>KEYCODE_NUMPAD_3 = 2106, KEYCODE_NUMPAD_4 = 2107, KEYCODE_NUMPAD_5 = 2108, KEYCODE_NUMPAD_6 = 2109,<br>KEYCODE_NUMPAD_7 = 2110, KEYCODE_NUMPAD_8 = 2111, KEYCODE_NUMPAD_9 = 2112, KEYCODE_NUMPAD_DIVIDE = 2113,<br>KEYCODE_NUMPAD_MULTIPLY = 2114, KEYCODE_NUMPAD_SUBTRACT = 2115, KEYCODE_NUMPAD_ADD = 2116, KEYCODE_NUMPAD_DOT = 2117,<br>KEYCODE_NUMPAD_COMMA = 2118, KEYCODE_NUMPAD_ENTER = 2119, KEYCODE_NUMPAD_EQUALS = 2120, KEYCODE_NUMPAD_LEFT_PAREN = 2121,<br>KEYCODE_NUMPAD_RIGHT_PAREN = 2122, KEYCODE_DAGGER_CLICK = 3211, KEYCODE_DAGGER_DOUBLE_CLICK = 3212, KEYCODE_DAGGER_LONG_PRESS = 3213<br>} | Key code value. | 
 
 
 ### Functions
@@ -102,6 +102,10 @@ Provides C APIs for the multimodal input module.
 | int32_t [OH_Input_GetKeyEventKeyCode](#oh_input_getkeyeventkeycode) (const struct [Input_KeyEvent](#input_keyevent) \*keyEvent) | Obtains the key code value of a key event. | 
 | void [OH_Input_SetKeyEventActionTime](#oh_input_setkeyeventactiontime) (struct [Input_KeyEvent](#input_keyevent) \*keyEvent, int64_t actionTime) | Sets the time when a key event occurs. | 
 | int64_t [OH_Input_GetKeyEventActionTime](#oh_input_getkeyeventactiontime) (const struct [Input_KeyEvent](#input_keyevent) \*keyEvent) | Obtains the time when a key event occurs. | 
+| void [OH_Input_SetKeyEventWindowId](#oh_input_setkeyeventwindowid) (struct [Input_KeyEvent](#input_keyevent) \*keyEvent, int32_t windowId) | Sets the window ID of a key event. | 
+| int32_t [OH_Input_GetKeyEventWindowId](#oh_input_getkeyeventwindowid) (const struct [Input_KeyEvent](#input_keyevent) \*keyEvent) | Obtains the window ID of a key event. | 
+| void [OH_Input_SetKeyEventDisplayId](#oh_input_setkeyeventdisplayid) (struct [Input_KeyEvent](#input_keyevent) \*keyEvent, int32_t displayId) | Sets the screen ID of a key event. | 
+| int32_t [OH_Input_GetKeyEventDisplayId](#oh_input_getkeyeventdisplayid) (const struct [Input_KeyEvent](#input_keyevent) \*keyEvent) | Obtains the screen ID of a key event. | 
 | int32_t [OH_Input_InjectMouseEvent](#oh_input_injectmouseevent) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | Injects a mouse event. | 
 | struct [Input_MouseEvent](#input_mouseevent) \* [OH_Input_CreateMouseEvent](#oh_input_createmouseevent) () | Creates a mouse event object. | 
 | void [OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent) (struct [Input_MouseEvent](#input_mouseevent) \*\*mouseEvent) | Destroys a mouse event object.| 
@@ -119,6 +123,10 @@ Provides C APIs for the multimodal input module.
 | float [OH_Input_GetMouseEventAxisValue](#oh_input_getmouseeventaxisvalue) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | Obtains the axis value of a mouse axis event. | 
 | void [OH_Input_SetMouseEventActionTime](#oh_input_setmouseeventactiontime) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int64_t actionTime) | Sets the time when a mouse event occurs. | 
 | int64_t [OH_Input_GetMouseEventActionTime](#oh_input_getmouseeventactiontime) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | Obtains the time when a mouse event occurs. | 
+| void [OH_Input_SetMouseEventWindowId](#oh_input_setmouseeventwindowid) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int32_t windowId) | Sets the window ID of a mouse event. | 
+| int32_t [OH_Input_GetMouseEventWindowId](#oh_input_getmouseeventwindowid) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | Obtains the window ID of a mouse event. | 
+| void [OH_Input_SetMouseEventDisplayId](#oh_input_setmouseeventdisplayid) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int32_t displayId) | Sets the screen ID of a mouse event. | 
+| int32_t [OH_Input_GetMouseEventDisplayId](#oh_input_getmouseeventdisplayid) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | Obtains the screen ID of a mouse event. | 
 | int32_t [OH_Input_InjectTouchEvent](#oh_input_injecttouchevent) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | Injects a touch event. | 
 | struct [Input_TouchEvent](#input_touchevent) \* [OH_Input_CreateTouchEvent](#oh_input_createtouchevent) () | Creates a touch event object. | 
 | void [OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent) (struct [Input_TouchEvent](#input_touchevent) \*\*touchEvent) | Destroys a touch event object. | 
@@ -132,6 +140,10 @@ Provides C APIs for the multimodal input module.
 | int32_t [OH_Input_GetTouchEventDisplayY](#oh_input_gettoucheventdisplayy) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | Obtains the Y coordinate of a touch event. | 
 | void [OH_Input_SetTouchEventActionTime](#oh_input_settoucheventactiontime) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int64_t actionTime) | Sets the time when a touch event occurs. | 
 | int64_t [OH_Input_GetTouchEventActionTime](#oh_input_gettoucheventactiontime) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | Obtains the time when a touch event occurs. | 
+| void [OH_Input_SetTouchEventWindowId](#oh_input_settoucheventwindowid) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int32_t windowId) | Sets the window ID of a touchscreen event. | 
+| int32_t [OH_Input_GetTouchEventWindowId](#oh_input_gettoucheventwindowid) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | Obtains the window ID of a touchscreen event. | 
+| void [OH_Input_SetTouchEventDisplayId](#oh_input_settoucheventdisplayid) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int32_t displayId) | Sets the screen ID of a touchscreen event. | 
+| int32_t [OH_Input_GetTouchEventDisplayId](#oh_input_gettoucheventdisplayid) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | Obtains the screen ID of a touchscreen event. | 
 | void [OH_Input_CancelInjection](#oh_input_cancelinjection) () | Stops event injection and revokes authorization. | 
 | [Input_AxisEvent](#input_axisevent) \* [OH_Input_CreateAxisEvent](#oh_input_createaxisevent) (void) | Creates an axis event object. | 
 | [Input_Result](#input_result) [OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent) ([Input_AxisEvent](#input_axisevent) \*\*axisEvent) | Destroys an axis event object. | 
@@ -149,6 +161,10 @@ Provides C APIs for the multimodal input module.
 | [Input_Result](#input_result) [OH_Input_GetAxisEventType](#oh_input_getaxiseventtype) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_AxisEventType](#inputevent_axiseventtype) \*axisEventType) | Obtains the axis event type. | 
 | [Input_Result](#input_result) [OH_Input_SetAxisEventSourceType](#oh_input_setaxiseventsourcetype) ([Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_SourceType](#inputevent_sourcetype) sourceType) | Sets the axis event source type. | 
 | [Input_Result](#input_result) [OH_Input_GetAxisEventSourceType](#oh_input_getaxiseventsourcetype) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_SourceType](#inputevent_sourcetype) \*sourceType) | Obtains the axis event source type. | 
+| [Input_Result](#input_result) [OH_Input_SetAxisEventWindowId](#oh_input_setaxiseventwindowid) ([Input_AxisEvent](#input_axisevent) \*axisEvent, int32_t windowId) | Sets the window ID of an axis event. | 
+| [Input_Result](#input_result) [OH_Input_GetAxisEventWindowId](#oh_input_getaxiseventwindowid) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, int32_t \*windowId) | Obtains the window ID of an axis event. | 
+| [Input_Result](#input_result) [OH_Input_SetAxisEventDisplayId](#oh_input_setaxiseventdisplayid) ([Input_AxisEvent](#input_axisevent) \*axisEvent, int32_t displayId) | Sets the screen ID of an axis event. | 
+| [Input_Result](#input_result) [OH_Input_GetAxisEventDisplayId](#oh_input_getaxiseventdisplayid) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, int32_t \*displayId) | Obtains the screen ID of an axis event. | 
 | [Input_Result](#input_result) [OH_Input_AddKeyEventMonitor](#oh_input_addkeyeventmonitor) ([Input_KeyEventCallback](#input_keyeventcallback) callback) | Adds a listener for key events. | 
 | [Input_Result](#input_result) [OH_Input_AddMouseEventMonitor](#oh_input_addmouseeventmonitor) ([Input_MouseEventCallback](#input_mouseeventcallback) callback) | Adds a listener for mouse events, including mouse click and movement events, but not scroll wheel events. Scroll wheel events are axis events. | 
 | [Input_Result](#input_result) [OH_Input_AddTouchEventMonitor](#oh_input_addtoucheventmonitor) ([Input_TouchEventCallback](#input_toucheventcallback) callback) | Adds a listener for touch events. | 
@@ -175,7 +191,7 @@ Provides C APIs for the multimodal input module.
 | [Input_Result](#input_result) [OH_Input_GetAllSystemHotkeys](#oh_input_getallsystemhotkeys) ([Input_Hotkey](#input_hotkey) \*\*hotkey, int32_t \*count) | Obtains all configured shortcut keys. | 
 | void [OH_Input_SetRepeat](#oh_input_setrepeat) ([Input_Hotkey](#input_hotkey) \*hotkey, bool isRepeat) | Specifies whether to report repeated key events. | 
 | [Input_Result](#input_result) [OH_Input_GetRepeat](#oh_input_getrepeat) (const [Input_Hotkey](#input_hotkey) \*hotkey, bool \*isRepeat) | Checks whether to report repeated key events. | 
-| [Input_Result](#input_result) [OH_Input_AddHotkeyMonitor](#oh_input_addhotkeymonitor) (const [Input_Hotkey](#input_hotkey) \*hotkey, [Input_HotkeyCallback](#input_hotkeycallback) callback) | Subscribes to shortcut key events. | 
+| [Input_Result](#input_result) [OH_Input_AddHotkeyMonitor](#oh_input_addhotkeymonitor) (const [Input_Hotkey](#input_hotkey) \*hotkey, [Input_HotkeyCallback](#input_hotkeycallback) callback) | Subscribes to shortcut key events. This API is not applicable to wearables and lite wearables. | 
 | [Input_Result](#input_result) [OH_Input_RemoveHotkeyMonitor](#oh_input_removehotkeymonitor) (const [Input_Hotkey](#input_hotkey) \*hotkey, [Input_HotkeyCallback](#input_hotkeycallback) callback) | Unsubscribes from shortcut key events. | 
 | [Input_Result](#input_result) [OH_Input_GetDeviceIds](#oh_input_getdeviceids) (int32_t \*deviceIds, int32_t inSize, int32_t \*outSize) | Obtains the IDs of all input devices. | 
 | [Input_Result](#input_result) [OH_Input_GetDevice](#oh_input_getdevice) (int32_t deviceId, [Input_DeviceInfo](#input_deviceinfo) \*\*deviceInfo) | Obtains information about the input device. | 
@@ -569,12 +585,12 @@ Enumerates keyboard types of the input device.
 
 | Value| Description| 
 | -------- | -------- |
-| KEYBOARD_TYPE_NONE  | Keyboard without keys.&nbsp;&nbsp; | 
-| KEYBOARD_TYPE_UNKNOWN  | Keyboard with unknown keys.&nbsp;&nbsp; | 
-| KEYBOARD_TYPE_ALPHABETIC  | Full keyboard.&nbsp;&nbsp; | 
-| KEYBOARD_TYPE_DIGITAL  | Numeric keypad.&nbsp;&nbsp; | 
-| KEYBOARD_TYPE_STYLUS  | Stylus.&nbsp;&nbsp; | 
-| KEYBOARD_TYPE_REMOTE_CONTROL  | Remote control.&nbsp;&nbsp; | 
+| KEYBOARD_TYPE_NONE  | Keyboard without keys.| 
+| KEYBOARD_TYPE_UNKNOWN  | Keyboard with unknown keys.| 
+| KEYBOARD_TYPE_ALPHABETIC  | Full keyboard.| 
+| KEYBOARD_TYPE_DIGITAL  | Numeric keypad.| 
+| KEYBOARD_TYPE_STYLUS  | Stylus.| 
+| KEYBOARD_TYPE_REMOTE_CONTROL  | Remote control.| 
 
 
 ### Input_KeyCode
@@ -596,7 +612,7 @@ Enumerates key code values.
 | KEYCODE_VOLUME_DOWN  | Volume Down key| 
 | KEYCODE_POWER  | Power key| 
 | KEYCODE_CAMERA  | Camera key| 
-| KEYCODE_VOLUME_MUTE  | Volume Mute key| 
+| KEYCODE_VOLUME_MUTE  | Speaker Mute key| 
 | KEYCODE_MUTE  | Mute key| 
 | KEYCODE_BRIGHTNESS_UP  | Brightness Up key| 
 | KEYCODE_BRIGHTNESS_DOWN  | Brightness Down key| 
@@ -610,8 +626,8 @@ Enumerates key code values.
 | KEYCODE_7  | Key 7| 
 | KEYCODE_8  | Key 8| 
 | KEYCODE_9  | Key 9| 
-| KEYCODE_STAR  | Key *| 
-| KEYCODE_POUND  | Key #| 
+| KEYCODE_STAR  | Key \*| 
+| KEYCODE_POUND  | Key \#| 
 | KEYCODE_DPAD_UP  | Up key on D-pad| 
 | KEYCODE_DPAD_DOWN  | Down key on D-pad| 
 | KEYCODE_DPAD_LEFT  | Left key on D-pad| 
@@ -651,11 +667,11 @@ Enumerates key code values.
 | KEYCODE_SHIFT_RIGHT  | Right Shift key| 
 | KEYCODE_TAB  | Tab key| 
 | KEYCODE_SPACE  | Space key| 
-| KEYCODE_SYM  | Symbol modifier key| 
-| KEYCODE_EXPLORER  | Explorer key, used to start the explorer application| 
-| KEYCODE_ENVELOPE  | Email key, used to start the email application| 
+| KEYCODE_SYM  | Symbol key| 
+| KEYCODE_EXPLORER  | Explorer key, which is used to start the explorer application| 
+| KEYCODE_ENVELOPE  | Email key, which is used to start the email application| 
 | KEYCODE_ENTER  | Enter key| 
-| KEYCODE_DEL  | Backspace key| 
+| KEYCODE_DEL  | Delete key| 
 | KEYCODE_GRAVE  | Key `| 
 | KEYCODE_MINUS  | Key -| 
 | KEYCODE_EQUALS  | Key =| 
@@ -665,15 +681,15 @@ Enumerates key code values.
 | KEYCODE_SEMICOLON  | Key ;| 
 | KEYCODE_APOSTROPHE  | Key '| 
 | KEYCODE_SLASH  | Key /| 
-| KEYCODE_AT  | Key @| 
+| KEYCODE_AT  | Key \@| 
 | KEYCODE_PLUS  | Key +| 
 | KEYCODE_MENU  | Menu key| 
 | KEYCODE_PAGE_UP  | Page Up key| 
 | KEYCODE_PAGE_DOWN  | Page Down key| 
 | KEYCODE_ESCAPE  | ESC key| 
-| KEYCODE_FORWARD_DEL  | Delete key| 
+| KEYCODE_FORWARD_DEL  | Forward Delete key| 
 | KEYCODE_CTRL_LEFT  | Left Ctrl key| 
-| KEYCODE_CTRL_RIGHT  | Right Ctrl key| 
+| KEYCODE_CTRL_RIGHT  | Right Ctrl key.| 
 | KEYCODE_CAPS_LOCK  | Caps Lock key| 
 | KEYCODE_SCROLL_LOCK  | Scroll Lock key| 
 | KEYCODE_META_LEFT  | Left Meta key| 
@@ -714,15 +730,18 @@ Enumerates key code values.
 | KEYCODE_NUMPAD_8  | Key 8 on numeric keypad| 
 | KEYCODE_NUMPAD_9  | Key 9 on numeric keypad| 
 | KEYCODE_NUMPAD_DIVIDE  | Key / on numeric keypad| 
-| KEYCODE_NUMPAD_MULTIPLY  | Key \ on numeric keypad| 
+| KEYCODE_NUMPAD_MULTIPLY  | Key \* on numeric keypad| 
 | KEYCODE_NUMPAD_SUBTRACT  | Key - on numeric keypad| 
 | KEYCODE_NUMPAD_ADD  | Key + on numeric keypad| 
 | KEYCODE_NUMPAD_DOT  | Key . on numeric keypad| 
 | KEYCODE_NUMPAD_COMMA  | Key , on numeric keypad| 
-| KEYCODE_NUMPAD_ENTER  | Center key on numeric keypad| 
+| KEYCODE_NUMPAD_ENTER  | Enter key on numeric keypad| 
 | KEYCODE_NUMPAD_EQUALS  | Key = on numeric keypad| 
 | KEYCODE_NUMPAD_LEFT_PAREN  | Key ( on numeric keypad| 
 | KEYCODE_NUMPAD_RIGHT_PAREN  | Key ) on numeric keypad| 
+| KEYCODE_DAGGER_CLICK  | Dagger click key on the smart watch<br>**Since**: 16| 
+| KEYCODE_DAGGER_DOUBLE_CLICK  | Dagger double-click key on the smart watch<br>**Since**: 16| 
+| KEYCODE_DAGGER_LONG_PRESS  | Dagger long-press key on the smart watch<br>**Since**: 16| 
 
 
 ### Input_KeyEventAction
@@ -798,12 +817,12 @@ Provides the enum values of mouse buttons.
 
 | Value| Description| 
 | -------- | -------- |
-| MOUSE_BUTTON_NONE  | Invalid button.| 
-| MOUSE_BUTTON_LEFT  | Left button on the mouse.| 
-| MOUSE_BUTTON_MIDDLE  | Middle button on the mouse.| 
-| MOUSE_BUTTON_RIGHT  | Right button on the mouse.| 
-| MOUSE_BUTTON_FORWARD  | Forward button on the mouse.| 
-| MOUSE_BUTTON_BACK  | Back button on the mouse.| 
+| MOUSE_BUTTON_NONE  | Invalid key| 
+| MOUSE_BUTTON_LEFT  | Left mouse button| 
+| MOUSE_BUTTON_MIDDLE  | Middle mouse button| 
+| MOUSE_BUTTON_RIGHT  | Right mouse button| 
+| MOUSE_BUTTON_FORWARD  | Mouse forward button| 
+| MOUSE_BUTTON_BACK  | Mouse back button| 
 
 
 ### Input_Result
@@ -819,12 +838,13 @@ Provides the enum values of error codes.
 
 | Value| Description| 
 | -------- | -------- |
-| INPUT_SUCCESS  | Operation success.| 
-| INPUT_PERMISSION_DENIED  | Permission verification fails.| 
+| INPUT_SUCCESS  | Operation succeeded.| 
+| INPUT_PERMISSION_DENIED  | Permission verification failed.| 
 | INPUT_NOT_SYSTEM_APPLICATION  | Not a system application.| 
-| INPUT_PARAMETER_ERROR  | Parameter check failed.   | 
-| INPUT_SERVICE_EXCEPTION  | Service exception.| 
-| INPUT_REPEAT_INTERCEPTOR  | Interceptor repeatedly created.  | 
+| INPUT_PARAMETER_ERROR  | Parameter check failed.| 
+| INPUT_DEVICE_NOT_SUPPORTED | Input device not supported.<br>**Since**: API version 14|
+| INPUT_SERVICE_EXCEPTION  | Service error.| 
+| INPUT_REPEAT_INTERCEPTOR  | Interceptor repeatedly created.| 
 | INPUT_OCCUPIED_BY_SYSTEM  | Occupied by a system application.<br>**Since**: API version 14| 
 | INPUT_OCCUPIED_BY_OTHER  | Occupied by other applications.<br>**Since**: API version 14| 
 
@@ -842,10 +862,10 @@ Provides the enum values of touch actions.
 
 | Value| Description| 
 | -------- | -------- |
-| TOUCH_ACTION_CANCEL  | Cancellation of a touch action.| 
-| TOUCH_ACTION_DOWN  | Pressing of a touch point.| 
-| TOUCH_ACTION_MOVE  | Moving of a touch point.| 
-| TOUCH_ACTION_UP  | Lifting of a touch point.| 
+| TOUCH_ACTION_CANCEL  | Cancellation of touch| 
+| TOUCH_ACTION_DOWN  | Pressing of touch| 
+| TOUCH_ACTION_MOVE  | Moving of touch| 
+| TOUCH_ACTION_UP  | Lifting of touch| 
 
 
 ### InputEvent_AxisAction
@@ -917,8 +937,8 @@ Provides the enum values of mouse axis event types.
 
 | Value| Description| 
 | -------- | -------- |
-| MOUSE_AXIS_SCROLL_VERTICAL  | Vertical scroll axis.| 
-| MOUSE_AXIS_SCROLL_HORIZONTAL  | Horizontal scroll axis.| 
+| MOUSE_AXIS_SCROLL_VERTICAL  | Vertical scroll axis| 
+| MOUSE_AXIS_SCROLL_HORIZONTAL  | Horizontal scroll axis| 
 
 
 ### InputEvent_SourceType
@@ -1006,7 +1026,7 @@ Input_Result OH_Input_AddHotkeyMonitor (const Input_Hotkey * hotkey, Input_Hotke
 ```
 **Description**
 
-Subscribes to shortcut key events.
+Subscribes to shortcut key events. This API is not applicable to wearables and lite wearables.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -1031,6 +1051,7 @@ INPUT_OCCUPIED_BY_SYSTEM if the shortcut key has been occupied by the system (yo
 
 INPUT_OCCUPIED_BY_OTHER if the shortcut key has been occupied by another application. 
 
+**INPUT_DEVICE_NOT_SUPPORTED** if the input device is not supported.
 
 ### OH_Input_AddInputEventInterceptor()
 
@@ -1633,6 +1654,31 @@ Obtains the axis value for the specified axis type of the axis event.
 **INTO_SUCCESS** if the operation is successful; **INPUT_PARAMETER_ERROR** if **axisEvent** or **axisValue** is **NULL**.
 
 
+### OH_Input_GetAxisEventDisplayId()
+
+```
+Input_Result OH_Input_GetAxisEventDisplayId (const Input_AxisEvent * axisEvent, int32_t * displayId )
+```
+**Description**
+
+Obtains the screen ID of an axis event.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| axisEvent | Axis event object. | 
+| displayId | Screen ID of the axis event. | 
+
+**Returns**
+
+**INTO_SUCCESS** if the operation is successful; **INPUT_PARAMETER_ERROR** if **axisEvent** or **displayId** is **NULL**.
+
+
 ### OH_Input_GetAxisEventDisplayX()
 
 ```
@@ -1731,6 +1777,31 @@ Obtains the axis event type.
 **Returns**
 
 **INTO_SUCCESS** if the operation is successful; **INPUT_PARAMETER_ERROR** if **axisEvent** or **axisEventType** is **NULL**.
+
+
+### OH_Input_GetAxisEventWindowId()
+
+```
+Input_Result OH_Input_GetAxisEventWindowId (const Input_AxisEvent * axisEvent, int32_t * windowId )
+```
+**Description**
+
+Obtains the window ID of an axis event.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| axisEvent | Axis event object. | 
+| windowId | Window ID of the axis event. | 
+
+**Returns**
+
+**INTO_SUCCESS** if the operation is successful; **INPUT_PARAMETER_ERROR** if **axisEvent** or **windowId** is **NULL**.
 
 
 ### OH_Input_GetCapabilities()
@@ -1988,6 +2059,30 @@ Status code of the **OH_Input_GetfinalKey** function, which is **INPUT_SUCCESS**
 **INPUT_PARAMETER_ERROR** otherwise.
 
 
+### OH_Input_GetFunctionKeyState()
+
+```
+Input_Result OH_Input_GetFunctionKeyState (int32_t keyCode, int32_t * state )
+```
+**Description**
+
+Obtains the function key status.
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| keyCode | Function key. Only the **CapsLock** key is supported. | 
+| state | Function key status. The value **0** indicates that the function key is disabled, and the value **1** indicates that the function key is enabled. | 
+
+**Returns**
+
+**OH_Input_GetFunctionKeyState** status code, specifically:
+**INPUT_SUCCESS** if the operation is successful; **INPUT_PARAMETER_ERROR** if the parameter is incorrect; **INPUT_DEVICE_NOT_EXIST** if the keyboard does not exist.
+
+
 ### OH_Input_GetIntervalSinceLastInput()
 
 ```
@@ -2111,6 +2206,30 @@ Obtains the time when a key event occurs.
 Time when a key event occurs.
 
 
+### OH_Input_GetKeyEventDisplayId()
+
+```
+int32_t OH_Input_GetKeyEventDisplayId (const struct Input_KeyEvent * keyEvent)
+```
+**Description**
+
+Obtains the screen ID of a key event.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| keyEvent | Key event object. | 
+
+**Returns**
+
+Screen ID of the key event.
+
+
 ### OH_Input_GetKeyEventKeyCode()
 
 ```
@@ -2133,6 +2252,30 @@ Obtains the key code value of a key event.
 **Returns**
 
 Key code.
+
+
+### OH_Input_GetKeyEventWindowId()
+
+```
+int32_t OH_Input_GetKeyEventWindowId (const struct Input_KeyEvent * keyEvent)
+```
+**Description**
+
+Obtains the window ID of a key event.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| keyEvent | Key event object. | 
+
+**Returns**
+
+Window ID of the key event.
 
 
 ### OH_Input_GetKeyPressed()
@@ -2329,6 +2472,30 @@ Obtains the button of a mouse event.
 Enumerates mouse buttons.
 
 
+### OH_Input_GetMouseEventDisplayId()
+
+```
+int32_t OH_Input_GetMouseEventDisplayId (const struct Input_MouseEvent * mouseEvent)
+```
+**Description**
+
+Obtains the screen ID of a mouse event.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| mouseEvent | Mouse event object. | 
+
+**Returns**
+
+Screen ID of the mouse event.
+
+
 ### OH_Input_GetMouseEventDisplayX()
 
 ```
@@ -2377,6 +2544,30 @@ Obtains the Y coordinate of a mouse event.
 Y coordinate on the screen.
 
 
+### OH_Input_GetMouseEventWindowId()
+
+```
+int32_t OH_Input_GetMouseEventWindowId (const struct Input_MouseEvent * mouseEvent)
+```
+**Description**
+
+Obtains the window ID of a mouse event.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| mouseEvent | Mouse event object. | 
+
+**Returns**
+
+Window ID of the mouse event.
+
+
 ### OH_Input_GetPreKeys()
 
 ```
@@ -2422,7 +2613,7 @@ Checks whether to report repeated key events.
 | Name| Description| 
 | -------- | -------- |
 | hotkey | Shortcut key object. | 
-| isRepeat | Whether the reported key events is repeated. | 
+| isRepeat | Whether the reported key event is repeated. | 
 
 **Returns**
 
@@ -2476,6 +2667,30 @@ Obtains the time when a touch event occurs.
 **Returns**
 
 Time when the touch event occurs.
+
+
+### OH_Input_GetTouchEventDisplayId()
+
+```
+int32_t OH_Input_GetTouchEventDisplayId (const struct Input_TouchEvent * touchEvent)
+```
+**Description**
+
+Obtains the screen ID of a touchscreen event.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| touchEvent | Touch event object. | 
+
+**Returns**
+
+Screen ID of the touchscreen event.
 
 
 ### OH_Input_GetTouchEventDisplayX()
@@ -2548,6 +2763,30 @@ Obtains the finger ID of a touch event.
 **Returns**
 
 Finger ID of a touch event.
+
+
+### OH_Input_GetTouchEventWindowId()
+
+```
+int32_t OH_Input_GetTouchEventWindowId (const struct Input_TouchEvent * touchEvent)
+```
+**Description**
+
+Obtains the window ID of a touchscreen event.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| touchEvent | Touch event object. | 
+
+**Returns**
+
+Window ID of the touchscreen event.
 
 
 ### OH_Input_InjectKeyEvent()
@@ -2933,6 +3172,31 @@ Sets the axis value of the axis type specified by the axis event.
 **INTO_SUCCESS** if operation is successful; **INPUT_PARAMETER_ERROR** if **axisEvent** is NULL.
 
 
+### OH_Input_SetAxisEventDisplayId()
+
+```
+Input_Result OH_Input_SetAxisEventDisplayId (Input_AxisEvent * axisEvent, int32_t displayId )
+```
+**Description**
+
+Sets the screen ID of an axis event.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| axisEvent | Axis event object. | 
+| displayId | Screen ID of the axis event. | 
+
+**Returns**
+
+**INTO_SUCCESS** if operation is successful; **INPUT_PARAMETER_ERROR** if **axisEvent** is NULL.
+
+
 ### OH_Input_SetAxisEventDisplayX()
 
 ```
@@ -3033,6 +3297,31 @@ Sets the axis event type.
 **INTO_SUCCESS** if operation is successful; **INPUT_PARAMETER_ERROR** if **axisEvent** is NULL.
 
 
+### OH_Input_SetAxisEventWindowId()
+
+```
+Input_Result OH_Input_SetAxisEventWindowId (Input_AxisEvent * axisEvent, int32_t windowId )
+```
+**Description**
+
+Sets the window ID of an axis event.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| axisEvent | Axis event object. | 
+| windowId | Window ID of the axis event. | 
+
+**Returns**
+
+**INTO_SUCCESS** if operation is successful; **INPUT_PARAMETER_ERROR** if **axisEvent** is NULL.
+
+
 ### OH_Input_SetFinalKey()
 
 ```
@@ -3117,6 +3406,27 @@ Sets the time when a key event occurs.
 | actionTime | Time when a key event occurs. | 
 
 
+### OH_Input_SetKeyEventDisplayId()
+
+```
+void OH_Input_SetKeyEventDisplayId (struct Input_KeyEvent * keyEvent, int32_t displayId )
+```
+**Description**
+
+Sets the screen ID of a key event.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| keyEvent | Key event object. | 
+| displayId | Screen ID of the key event. | 
+
+
 ### OH_Input_SetKeyEventKeyCode()
 
 ```
@@ -3136,6 +3446,27 @@ Sets the key code value for a key event.
 | -------- | -------- |
 | keyEvent | Key event object. | 
 | keyCode | Key value. | 
+
+
+### OH_Input_SetKeyEventWindowId()
+
+```
+void OH_Input_SetKeyEventWindowId (struct Input_KeyEvent * keyEvent, int32_t windowId )
+```
+**Description**
+
+Sets the window ID of a key event.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| keyEvent | Key event object. | 
+| windowId | Window ID of the key event. | 
 
 
 ### OH_Input_SetKeyPressed()
@@ -3285,6 +3616,27 @@ Sets the button for a mouse event.
 | button | Mouse button. | 
 
 
+### OH_Input_SetMouseEventDisplayId()
+
+```
+void OH_Input_SetMouseEventDisplayId (struct Input_MouseEvent * mouseEvent, int32_t displayId )
+```
+**Description**
+
+Sets the screen ID of a mouse event.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| mouseEvent | Mouse event object. | 
+| displayId | Screen ID of the mouse event. | 
+
+
 ### OH_Input_SetMouseEventDisplayX()
 
 ```
@@ -3325,6 +3677,27 @@ Sets the Y coordinate for a mouse event.
 | -------- | -------- |
 | mouseEvent | Mouse event object. | 
 | displayY | Y coordinate on the screen. | 
+
+
+### OH_Input_SetMouseEventWindowId()
+
+```
+void OH_Input_SetMouseEventWindowId (struct Input_MouseEvent * mouseEvent, int32_t windowId )
+```
+**Description**
+
+Sets the window ID of a mouse event.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| mouseEvent | Mouse event object. | 
+| windowId | Window ID of the mouse event. | 
 
 
 ### OH_Input_SetPreKeys()
@@ -3412,6 +3785,27 @@ Sets the time when a touch event occurs.
 | actionTime | Time when a touch event occurs. | 
 
 
+### OH_Input_SetTouchEventDisplayId()
+
+```
+void OH_Input_SetTouchEventDisplayId (struct Input_TouchEvent * touchEvent, int32_t displayId )
+```
+**Description**
+
+Sets the screen ID of a touchscreen event.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| touchEvent | Touch event object. | 
+| displayId | Screen ID of the touchscreen event. | 
+
+
 ### OH_Input_SetTouchEventDisplayX()
 
 ```
@@ -3473,6 +3867,28 @@ Sets the finger ID for a touch event.
 | -------- | -------- |
 | touchEvent | Touch event object.| 
 | id | Finger ID of a touch event.| 
+
+
+### OH_Input_SetTouchEventWindowId()
+
+```
+void OH_Input_SetTouchEventWindowId (struct Input_TouchEvent * touchEvent, int32_t windowId )
+```
+**Description**
+
+Sets the window ID of a touchscreen event.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| touchEvent | Touch event object. | 
+| windowId | Window ID of the touchscreen event. | 
+
 
 ### OH_Input_UnregisterDeviceListener()
 

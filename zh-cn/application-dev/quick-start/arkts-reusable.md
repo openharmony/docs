@@ -48,7 +48,7 @@ export struct Crash {
 @Component
 struct Index {
   @State message: string = 'Hello World';
-  private uicontext = this.getUIContext()
+  private uicontext = this.getUIContext();
 
   build() {
     RelativeContainer() {
@@ -76,6 +76,7 @@ struct Index {
 
 ```ts
 import { ComponentContent } from "@kit.ArkUI";
+
 @Builder
 function buildCreativeLoadingDialog(closedClick: () => void) {
   Crash()
@@ -104,7 +105,7 @@ export struct Crash {
 @Component
 struct Index {
   @State message: string = 'Hello World';
-  private uicontext = this.getUIContext()
+  private uicontext = this.getUIContext();
 
   build() {
     RelativeContainer() {
@@ -161,7 +162,7 @@ struct Index {
           .fontSize(14)
         PlayButton02({ isPlaying02: $isPlaying02 })
       }
-      Text(`==================`).fontSize(14);
+      Text(`------------------------`)
 
       // 初始态是隐藏的按钮
       if (this.isPlaying01) {
@@ -169,7 +170,7 @@ struct Index {
           .fontSize(14)
         PlayButton02({ isPlaying02: $isPlaying01 })
       }
-      Text(`==================`).fontSize(14);
+      Text(`------------------------`)
 
       // 父子嵌套
       if (this.isPlaying) {
@@ -177,7 +178,7 @@ struct Index {
           .fontSize(14)
         PlayButton({ buttonPlaying: $isPlaying })
       }
-      Text(`==================`).fontSize(14);
+      Text(`------------------------`)
 
       // 父子嵌套控制
       Text(`Parent=child==is ${this.isPlaying ? '' : 'not'} playing`).fontSize(14)
@@ -187,7 +188,7 @@ struct Index {
           this.isPlaying = !this.isPlaying;
         })
 
-      Text(`==================`).fontSize(14);
+      Text(`------------------------`)
 
       //  默认隐藏按钮控制
       Text(`Hiddenchild==is ${this.isPlaying01 ? '' : 'not'} playing`).fontSize(14)
@@ -196,7 +197,7 @@ struct Index {
         .onClick(() => {
           this.isPlaying01 = !this.isPlaying01;
         })
-      Text(`==================`).fontSize(14);
+      Text(`------------------------`)
 
       // 默认显示按钮控制
       Text(`shownchid==is ${this.isPlaying02 ? '' : 'not'} playing`).fontSize(14)
@@ -283,6 +284,7 @@ export class Message {
 @Component
 struct Index {
   @State switch: boolean = true;
+
   build() {
     Column() {
       Button('Hello')
@@ -292,8 +294,8 @@ struct Index {
           this.switch = !this.switch;
         })
       if (this.switch) {
+        // 如果只有一个复用的组件，可以不用设置reuseId
         Child({ message: new Message('Child') })
-          // 如果只有一个复用的组件，可以不用设置reuseId
           .reuseId('Child')
       }
     }
@@ -326,7 +328,6 @@ struct Child {
 ### 列表滚动配合LazyForEach使用
 
 - 示例代码将CardView自定义组件标记为复用组件，List上下滑动，触发CardView复用;
-- \@Reusable：自定义组件被@Reusable装饰器修饰，即表示其具备组件复用的能力;
 - 变量item的被\@State修饰，才能更新，非\@State修饰变量存在无法更新问题。
 
 ```ts
@@ -366,7 +367,7 @@ struct ReuseDemo {
 
   aboutToAppear() {
     for (let i = 1; i < 1000; i++) {
-      this.data.pushData(i+"");
+      this.data.pushData(i + "");
     }
   }
 
@@ -420,12 +421,12 @@ struct Index {
   aboutToAppear(): void {
     for (let i = 0; i < 20; i++) {
       let title = i + 1 + "test_if";
-      this.dataSource.pushData(new FriendMoment(i.toString(), title, 'app.media.app_icon'))
+      this.dataSource.pushData(new FriendMoment(i.toString(), title, 'app.media.app_icon'));
     }
 
     for (let i = 0; i < 50; i++) {
       let title = i + 1 + "test_if";
-      this.dataSource.pushData(new FriendMoment(i.toString(), title, ''))
+      this.dataSource.pushData(new FriendMoment(i.toString(), title, ''));
     }
   }
 
@@ -435,7 +436,8 @@ struct Index {
       List({ space: 3 }) {
         LazyForEach(this.dataSource, (moment: FriendMoment) => {
           ListItem() {
-            OneMoment({ moment: moment })// 使用reuseId进行组件复用的控制
+            // 使用reuseId进行组件复用的控制
+            OneMoment({ moment: moment })
               .reuseId((moment.image !== '') ? 'withImage' : 'noImage')
           }
         }, (moment: FriendMoment) => moment.id)
@@ -475,10 +477,10 @@ export struct OneMoment {
       // if分支判断
       if (this.moment.image !== '') {
         Flex({ wrap: FlexWrap.Wrap }) {
-          Image($r(this.moment.image)).height(50).width(50);
-          Image($r(this.moment.image)).height(50).width(50);
-          Image($r(this.moment.image)).height(50).width(50);
-          Image($r(this.moment.image)).height(50).width(50);
+          Image($r(this.moment.image)).height(50).width(50)
+          Image($r(this.moment.image)).height(50).width(50)
+          Image($r(this.moment.image)).height(50).width(50)
+          Image($r(this.moment.image)).height(50).width(50)
         }
       }
     }
@@ -513,7 +515,7 @@ class BasicDataSource<T> implements IDataSource {
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
-    })
+    });
   }
 }
 
@@ -600,7 +602,7 @@ struct Index {
             let obj = new ListItemObject();
             obj.id = i;
             obj.uuid = Math.random().toString();
-            obj.isExpand = false
+            obj.isExpand = false;
             this.dataSource.push(obj);
           }
         }).height(40)
@@ -614,7 +616,7 @@ struct Index {
             })
           }
         }, (item: ListItemObject) => {
-          return item.uuid.toString()
+          return item.uuid.toString();
         })
 
       }.cachedCount(0)
@@ -741,7 +743,6 @@ struct MyComponent {
   }
 }
 
-// 自定义组件被@Reusable装饰器修饰，即标志其具备组件复用的能力
 @Reusable
 @Component
 struct ReusableChildComponent {
@@ -794,7 +795,7 @@ class WaterFlowDataSource implements IDataSource {
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
-    })
+    });
   }
 
   // 获取数据总数
@@ -1045,7 +1046,7 @@ class BasicDataSource<T> implements IDataSource {
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
-    })
+    });
   }
 }
 
@@ -1103,7 +1104,7 @@ struct ListItemGroupAndReusable {
           ListItemGroup({ header: this.itemHead(index.toString()) }) {
             LazyForEach(item, (ii: string, index: number) => {
               ListItem() {
-                Inner({ str: ii });
+                Inner({ str: ii })
               }
             })
           }
@@ -1120,7 +1121,7 @@ struct ListItemGroupAndReusable {
 @Reusable
 @Component
 struct Inner {
-  @State str: string = ''
+  @State str: string = '';
 
   aboutToReuse(param: ESObject) {
     this.str = param.str;
@@ -1162,35 +1163,35 @@ class DataSrc1 implements IDataSource {
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
       listener.onDataReloaded();
-    })
+    });
   }
 
   // 通知LazyForEach组件需要在index对应索引处添加子组件
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
-    })
+    });
   }
 
   // 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index);
-    })
+    });
   }
 
   // 通知LazyForEach组件需要在index对应索引处删除该子组件
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
-    })
+    });
   }
 
   // 通知LazyForEach组件将from索引和to索引处的子组件进行交换
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
       listener.onDataMove(from, to);
-    })
+    });
   }
 }
 
@@ -1225,35 +1226,35 @@ class DataSrc2 implements IDataSource {
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
       listener.onDataReloaded();
-    })
+    });
   }
 
   // 通知LazyForEach组件需要在index对应索引处添加子组件
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
-    })
+    });
   }
 
   // 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index);
-    })
+    });
   }
 
   // 通知LazyForEach组件需要在index对应索引处删除该子组件
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
-    })
+    });
   }
 
   // 通知LazyForEach组件将from索引和to索引处的子组件进行交换
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
       listener.onDataMove(from, to);
-    })
+    });
   }
 }
 ```
@@ -1308,7 +1309,7 @@ struct Index {
 
   aboutToAppear() {
     for (let i = 0; i < 1000; i++) {
-      this.data.pushData(i+"");
+      this.data.pushData(i + "");
     }
   }
 
@@ -1352,7 +1353,6 @@ struct ReusableComponent {
     }.margin({ left: 10, right: 10 })
   }
 }
-
 ```
 
 #### 组合型
@@ -1398,11 +1398,11 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i < 1000; i++) {
-      this.data.pushData(i.toString())
+      this.data.pushData(i.toString());
     }
   }
 
-// itemBuilderOne作为复用组件的写法未展示，以下为转为Builder之后的写法
+  // itemBuilderOne作为复用组件的写法未展示，以下为转为Builder之后的写法
   @Builder
   itemBuilderOne(item: string) {
     Column() {
@@ -1412,7 +1412,7 @@ struct MyComponent {
     }
   }
 
-// itemBuilderTwo转为Builder之后的写法
+  // itemBuilderTwo转为Builder之后的写法
   @Builder
   itemBuilderTwo(item: string) {
     Column() {
@@ -1422,7 +1422,7 @@ struct MyComponent {
     }
   }
 
-// itemBuilderThree转为Builder之后的写法
+  // itemBuilderThree转为Builder之后的写法
   @Builder
   itemBuilderThree(item: string) {
     Column() {
@@ -1478,7 +1478,7 @@ struct ChildComponentA {
         .margin({ left: 10 })
         .fontColor(Color.Blue)
       Grid() {
-        ForEach((new Array(20)).fill(''), (item: string,index: number) => {
+        ForEach((new Array(20)).fill(''), (item: string, index: number) => {
           GridItem() {
             // 请开发者自行在src/main/resources/base/media路径下添加app.media.startIcon图片，否则运行时会因资源缺失而报错
             Image($r('app.media.startIcon'))

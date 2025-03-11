@@ -23,7 +23,7 @@ Seccomp（Secure computing mode）是Linux kernel支持的一种安全机制。�
     CONFIG_SECCOMP_FILTER=y
     ```
 
-- 特性限制
+- 特性限制：
     - 非特权进程Seccomp策略遵循基线黑名单机制。
     - 若进程需使用基线黑名单系统调用，则要在特权进程策略文件中声明。
     - 所有应用进程使能同一个Seccomp策略。
@@ -92,7 +92,7 @@ Seccomp（Secure computing mode）是Linux kernel支持的一种安全机制。�
     |  字段  |  说明  |
     |  ---  |  ---  |
     |  Seccomp  |  - 0：未使能；<br>- 1：使能，为严格模式，只允许使用read/write/exit/sigreturn四个系统调用；<br>- 2：使能，filter模式，可通过加载BPF指令集合来使能自定义策略。  |
-    |  Seccomp_filters  |  进程设置Seccomp策略的个数  |
+    |  Seccomp_filters  |  进程设置Seccomp策略的个数。 |
 
 ## 进程使能个性化Seccomp策略
 ### 场景介绍
@@ -148,7 +148,7 @@ Seccomp（Secure computing mode）是Linux kernel支持的一种安全机制。�
             deps += [ "path:xxxx_seccomp_filter" ]
         }
         ```
-4. 构建策略动态库libxxx_filter.z.so
+4. 构建策略动态库libxxx_filter.z.so。
     ```shell
     ./build.sh --product-name 产品名称 --ccache --build-target xxxx_seccomp_filter --target-cpu 指定CPU
     ```
@@ -235,12 +235,12 @@ base/startup/init/services/modules/seccomp
     **表3**  策略文件说明
     |  策略文件  |  说明  |
     |  ---  |  ---  |
-    |  system.seccomp.policy  | 大部分系统服务进程使能的Seccomp策略 |
+    |  system.seccomp.policy  | 大部分系统服务进程使能的Seccomp策略。 |
     |  system.blocklist.seccomp.policy  | 系统进程的系统调用基线黑名单，即非特权进程禁止使用的系统调用名单。 |
-    |  app.seccomp.policy  | 所有应用进程使能的Seccomp策略 |
+    |  app.seccomp.policy  | 所有应用进程使能的Seccomp策略。 |
     |  app.blocklist.seccomp.policy  | 应用进程的系统调用基线黑名单，即应用进程禁止使用的系统调用名单。 |
-    |  spawn.seccomp.policy  | appspawn进程与nwebspawn进程使能的Seccomp策略 |
-    |  renderer.seccomp.policy  | 由nwebspawn孵化的渲染进程使能的Seccomp策略 |
+    |  spawn.seccomp.policy  | appspawn进程与nwebspawn进程使能的Seccomp策略。 |
+    |  renderer.seccomp.policy  | 由nwebspawn孵化的渲染进程使能的Seccomp策略。 |
     |  privileged_process.seccomp.policy  | 特权进程声明名单，即某些进程需使用基线黑名单系统调用时，可在此文件中声明进程标识符与需使用的基线黑名单。 |
 
 ### 普通策略文件编写规则
@@ -259,12 +259,12 @@ base/startup/init/services/modules/seccomp
 |  headFiles  |  头文件，用于声明allowListWithArgs与priorityWithArgs字段中出现的宏。 |  格式上：用""、<>来包含头文件名称，例如 <abc.h>、"cde.h" 默认有的头文件：<linux/filter.h>、<stddef.h>、<linux/seccomp.h>、<audit.h>。  |
 |  priority  |  频繁使用的系统调用白名单  |  在策略中优先判断，用于提高性能。  |
 |  priorityWithArgs  |  频繁使用的带参数限制的系统调用白名单  |  在策略中优先判断，用于提高性能。  |
-|  allowList  |  白名单  |  进程允许的系统调用  |
+|  allowList  |  白名单  |  进程允许的系统调用。  |
 |  allowListWithArgs  |  带参数限制白名单  |  其中系统调用名称与参数限制说明用“:”隔开，判断符号可用<、<=、>、>=、==、!=、&，逻辑符号可用&&、\|\|。<br>系统调用的第几个参数，使用argn表示，n的范围为0~5。判断语句用“if”开头，else语句结尾。语句结束后需声明返回值，判断语句与返回值使用“;”隔开。<br>声明返回值的样式为“return xxx”，xxx的范围与returnValue一致。若有多重判断条件，判断条件之间可使用elif隔开。 |
 |  blockList  |  黑名单  |  在解析策略过程中，生成BPF指令前会检查白名单中的系统调用会不会存在于黑名单中。若存在，则会出现解析错误的信息。 |
 |  selfDefineSyscall  |  自定义系统调用  |  填写的内容为数字。  |
 
-举例说明example.seccomp.policy
+举例说明example.seccomp.policy。
 
 ```
 @returnValue
@@ -330,11 +330,11 @@ swapon;all
 |  统计方法  |  基本方法  |  优点  |  缺点  |
 |  ---  |  ---  |  ---  |  ---  |
 |  <div style="width: 50pt">静态分析  | <div style="width: 300pt">分析ELF反汇编代码得到调用关系，统计调用libc库的接口集合，解析libc库得到libc接口与系统调用号的调用关系，从而得到ELF文件使用的系统调用号。 |  <div style="width: 100pt">可以统计到异常分支的系统调用。  |  <div style="width: 100pt">不支持解析指针函数的调用关系。  |
-|  Strace工具统计  | 设备运行时，使用Strace跟踪业务进程。跟踪过程中会将系统调用的执行记录下来。收集日志后使用脚本解析日志生成Seccomp策略文件。 |  操作简单  |  代码分支全部覆盖才能完整统计使用的系统调用。  |
+|  Strace工具统计  | 设备运行时，使用Strace跟踪业务进程。跟踪过程中会将系统调用的执行记录下来。收集日志后使用脚本解析日志生成Seccomp策略文件。 |  操作简单。  |  代码分支全部覆盖才能完整统计使用的系统调用。  |
 |  Audit统计  | 进程使能Seccomp策略后，Seccomp机制会拦截非法系统调用，在内核日志生成含系统调用号信息的Audit日志。收集日志后使用脚本解析日志生成Seccomp策略文件。 |  可对上面两个方法进行查漏补缺。  |  日志有丢失的风险。<br>代码分支全部覆盖才能完整统计使用的系统调用。  |
 
 #### 静态分析
-1. 环境准备
+1. 环境准备。
     1. 准备linux环境。
     2. 下载交叉编译器arm-linux-musleabi与aarch64-linux-musl。
         ```shell
@@ -361,7 +361,7 @@ swapon;all
     cp out/产品名称/gen/base/startup/init/services/modules/seccomp/gen_system_filter/libsyscall_to_nr_arm* base/startup/init/services/modules/seccomp/scripts/tools/
     ```
 
-3. 复制generate_code_from_policy.py到统计系统调用工具的文件夹内。该脚本存在于//base/startup/init/services/modules/seccomp/scripts/路径下
+3. 复制generate_code_from_policy.py到统计系统调用工具的文件夹内。该脚本存在于//base/startup/init/services/modules/seccomp/scripts/路径下。
     ```shell
     # 进入OpenHarmony代码根目录
     cd /root/to/OpenHarmonyCode;
@@ -400,7 +400,7 @@ swapon;all
         return read_elf_path
     ```
 
-7. 使用脚本解析生成对应的策略文件xxx.seccomp.policy
+7. 使用脚本解析生成对应的策略文件xxx.seccomp.policy。
 
     **表7**  collect_elf_syscall.py的参数说明
     |  参数  |  说明  |
@@ -418,7 +418,7 @@ swapon;all
         python3 collect_elf_syscall.py --src-elf-path ~/ohcode/out/rk3568 --elf-name libmedia_service.z.so --src-syscall-path libsyscall_to_nr_arm64 --target-cpu arm64 --filter-name media_service
         ```
 
-        xxx.seccomp.policy结果示例
+        xxx.seccomp.policy结果示例。
         ```
         @allowList
         getcwd;arm64
@@ -522,7 +522,7 @@ swapon;all
 
 #### Audit统计
 1. 使能初始Seccomp策略，使能方法见[进程使能个性化Seccomp策略](#进程使能个性化seccomp策略)章节的开发步骤。
-2. 获取日志
+2. 获取日志。
     1. 利用Shell命令创建存放日志的文件夹。
         ```shell
         mkdir -p /data/audit
@@ -554,7 +554,7 @@ swapon;all
     ```
 5. 解析Audit日志。
     
-    Audit日志示例
+    Audit日志示例：
     ```shell
     <5>[  198.963101] audit: type=1326 audit(1659528178.748:27): auid=4294967295 uid=0 gid=1000 ses=4294967295 subj=u:r:appspawn:s0 pid=2704 comm="config_dialog_s" exe="/system/bin/appspawn" sig=31 arch=40000028 syscall=208 compat=1 ip=0xf7b79400 code=0x80000000
     ```
@@ -564,7 +564,7 @@ swapon;all
     |  type  |  类型，值为1326说明是seccomop类型日志。  |
     |  sig  |  信号量，31为SIGSYS，表示Seccomp发生拦截时给进程发出的信号。  |
     |  arch  |  架构标识，值为40000028表示arm，值为c00000b7表示arm64。  |
-    |  syscall  |  系统调用号  |
+    |  syscall  |  系统调用号。  |
     |  compat  |  1表示为兼容模式，即arm64的内核使用了arm的系统调用。 |
 
 

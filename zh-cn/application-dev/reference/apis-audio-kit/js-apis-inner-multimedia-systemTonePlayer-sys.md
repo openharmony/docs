@@ -438,7 +438,7 @@ try {
 }
 ```
 
-### on('playFinished')<sup>16+</sup>
+### on('playFinished')<sup>18+</sup>
 
 on(type: 'playFinished', streamId: number, callback: Callback\<number>): void
 
@@ -484,7 +484,7 @@ systemTonePlayer.start().then((value: number) => {
 });
 ```
 
-### off('playFinished')<sup>16+</sup>
+### off('playFinished')<sup>18+</sup>
 
 off(type: 'playFinished', callback?: Callback\<number>): void
 
@@ -525,7 +525,7 @@ systemTonePlayer.on('playFinished', 0, playFinishedCallback);
 systemTonePlayer.off('playFinished', playFinishedCallback);
 ```
 
-### on('error')<sup>16+</sup>
+### on('error')<sup>18+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -560,7 +560,7 @@ systemTonePlayer.on('error', (err: BusinessError) => {
 });
 ```
 
-### off('error')<sup>16+</sup>
+### off('error')<sup>18+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 

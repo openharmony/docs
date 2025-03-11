@@ -17,9 +17,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int [itemNum](#itemnum) | 编号  | 
-| List&lt; struct [AvailableNetworkInfo](_available_network_info_v11.md) &gt; [availableNetworkInfo](#availablenetworkinfo) | 可用网络列表信息，  | 
-| int [flag](#flag) | 网络列表标识位  | 
+| int [itemNum](#itemnum) | 编号。  | 
+| List&lt; struct [AvailableNetworkInfo](_available_network_info_v11.md) &gt; [availableNetworkInfo](#availablenetworkinfo) | 可用网络列表信息。  | 
+| int [flag](#flag) | 网络列表标识位。  | 
 
 
 ## 类成员变量说明
@@ -32,7 +32,7 @@ List<struct AvailableNetworkInfo> AvailableNetworkList::availableNetworkInfo
 ```
 **描述**
 
-可用网络列表信息，
+可用网络列表信息。
 
 
 ### flag
@@ -42,7 +42,7 @@ int AvailableNetworkList::flag
 ```
 **描述**
 
-网络列表标识位
+网络列表标识位。
 
 
 ### itemNum
@@ -52,4 +52,4 @@ int AvailableNetworkList::itemNum
 ```
 **描述**
 
-编号
+编号。

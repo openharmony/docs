@@ -44,9 +44,11 @@ When creating an asymmetric key generator instance, you need to specify the key 
 
 > **NOTE**
 >
-> It takes time to generate an RSA2048, RSA3072, RSA4096, or RSA8192 asymmetric key. Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
+> - It takes time to generate an RSA2048, RSA3072, RSA4096, or RSA8192 asymmetric key.
 >
-> If the created RSA asymmetric key generator is used to randomly generate keys, the specifications of the RSA keys generated are the same as the key specifications set when the key generator is created. If it is used to convert keys, the specifications of the RSA keys generated are the same as the key specifications set in key conversion parameters.
+> - Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
+>
+> - If the created RSA asymmetric key generator is used to randomly generate keys, the specifications of the RSA keys generated are the same as the key specifications set when the key generator is created. If it is used to convert keys, the specifications of the RSA keys generated are the same as the key specifications set in key conversion parameters.
 
 ### Key Parameter
 
@@ -69,8 +71,8 @@ The following table illustrates the composition of the RSA key parameters.
 |  | Common Parameter| Public Key Parameter| Private Key Parameter| Key Pair Parameter|
 | -------- | -------- | -------- | -------- | -------- |
 | n | × | √ | × | √ |
-| pk | - | √ | - | √ |
-| sk | - | - | × | √ |
+| pk | N/A | √ | N/A | √ |
+| sk | N/A | N/A | × | √ |
 
 According to the preceding table:
 
@@ -151,8 +153,8 @@ The following table illustrates the composition of the ECC key parameters.
 | g | √ | √ | √ | √ |
 | n | √ | √ | √ | √ |
 | h | √ | √ | √ | √ |
-| pk | - | √ | - | √ |
-| sk | - | - | √ | √ |
+| pk | N/A | √ | N/A | √ |
+| sk | N/A | N/A | √ | √ |
 
 > **NOTE**
 > - Currently, only the **Fp** field is supported. Therefore, **fieldType** has a fixed value of **Fp**. **fieldType** and **p** constitute **field**, which supports only [ECFieldFp](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecfieldfp10) currently.
@@ -179,7 +181,9 @@ A DSA key can be generated based on a string parameter or key parameters.
 
 ### Constraints
 
-It takes time to generate a DSA2048 or DSA3072 asymmetric key pair or when the plaintext length exceeds 2048 bits. Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
+It takes time to generate a DSA2048 or DSA3072 asymmetric key pair or when the plaintext length exceeds 2048 bits.
+
+Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
 
 ### String Parameter
 
@@ -193,9 +197,11 @@ When creating an asymmetric key generator instance, you need to specify the key 
 
 > **NOTE**
 >
-> It takes time to generate a DSA2048 or DSA3072 asymmetric key pair or when the plaintext length exceeds 2048 bits. Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
+> - It takes time to generate a DSA2048 or DSA3072 asymmetric key pair or when the plaintext length exceeds 2048 bits.
 >
-> If the created DSA asymmetric key generator is used to randomly generate keys, the specifications of the DSA keys generated are the same as the key specifications set when the key generator is created. If it is used to convert keys, the specifications of the DSA keys generated are the same as the key specifications set in key conversion parameters.
+> - Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
+>
+> - If the created DSA asymmetric key generator is used to randomly generate keys, the specifications of the DSA keys generated are the same as the key specifications set when the key generator is created. If it is used to convert keys, the specifications of the DSA keys generated are the same as the key specifications set in key conversion parameters.
 
 ### Key Parameter
 
@@ -224,8 +230,8 @@ The following table illustrates the composition of the DSA key parameters.
 | p | √ | √ | × | √ |
 | q | √ | √ | × | √ |
 | g | √ | √ | × | √ |
-| pk | - | √ | - | √ |
-| sk | - | - | × | √ |
+| pk | N/A | √ | N/A | √ |
+| sk | N/A | N/A | × | √ |
 
 > **NOTE**
 > - The DSA private key cannot be generated based on the private key parameter, which consists of **p**, **q**, **g**, and **sk**.
@@ -282,8 +288,8 @@ The following table illustrates the composition of the SM2 key parameters.
 | g | √ | √ | √ | √ |
 | n | √ | √ | √ | √ |
 | h | √ | √ | √ | √ |
-| pk | - | √ | - | √ |
-| sk | - | - | √ | √ |
+| pk | N/A | √ | N/A | √ |
+| sk | N/A | N/A | √ | √ |
 
 > **NOTE**
 > - Currently, only the **Fp** field is supported. Therefore, **fieldType** has a fixed value of **Fp**. **fieldType** and **p** constitute **field**, which supports only [ECFieldFp](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecfieldfp10) currently.
@@ -334,8 +340,8 @@ The following table illustrates the composition of the Ed25519 key parameters.
 
 |  | Public Key Parameter| Private Key Parameter| Key Pair Parameter|
 | -------- | -------- | -------- | -------- |
-| pk | √ | - | √ |
-| sk | - | √ | √ |
+| pk | √ | N/A | √ |
+| sk | N/A | √ | √ |
 
 > **NOTE**
 >
@@ -374,8 +380,8 @@ The following table illustrates the composition of the X25519 key parameters.
 
 |  | Public Key Parameter| Private Key Parameter| Key Pair Parameter|
 | -------- | -------- | -------- | -------- |
-| pk | √ | - | √ |
-| sk | - | √ | √ |
+| pk | √ | N/A | √ |
+| sk | N/A | √ | √ |
 
 > **NOTE**
 >
@@ -436,8 +442,8 @@ The following table illustrates the composition of the DH key parameters.
 | p | √ | √ | √ | √ |
 | g | √ | √ | √ | √ |
 | l | √ | √ | √ | √ |
-| pk | - | √ | - | √ |
-| sk | - | - | √ | √ |
+| pk | N/A | √ | N/A | √ |
+| sk | N/A | N/A | √ | √ |
 
 
 ### Common Parameter Generated Based on the Prime Length and Private Key Length
@@ -456,8 +462,9 @@ If the prime length is the same as that of the DH group, the DH group is used. T
 
 - The number of bits for **p** must be greater than or equal to 512 and less than or equal to 10000.
 
-- The parameter **l** (private key length) is optional. The default value is **0**. The value of **l** must meet the following requirements:<br>**l** > 2\*(96 + (Length of p – 1)/1024 x 16)
+- The parameter **l** (private key length) is optional. The default value is **0**. The value of **l** must meet the following requirements:<br>**l** > 2 \* (96 + (Length of p – 1)/1024 x 16)
 
 - The generated common parameter can be used to randomly generate public and private keys, or used to construct the public key parameter, private key parameter, or key pair parameter.
 
 - Named DH groups are recommended because generating a key parameter with an unnamed DH group is time-consuming.
+

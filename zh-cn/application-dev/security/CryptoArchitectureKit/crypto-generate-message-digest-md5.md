@@ -63,7 +63,7 @@
 
 ### 分段摘要算法
 
-1. 调用[cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd)，指定摘要算法SHA256，生成摘要实例（Md）。
+1. 调用[cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd)，指定摘要算法MD5，生成摘要实例（Md）。
 
 2. 传入自定义消息，将一次传入数据量设置为20字节，多次调用[Md.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-7)，进行摘要更新计算。
 

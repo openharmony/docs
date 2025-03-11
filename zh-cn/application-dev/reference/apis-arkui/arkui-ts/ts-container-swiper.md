@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > - Swiper组件内包含了[PanGesture](ts-basic-gestures-pangesture.md)拖动手势事件，用于滑动轮播子组件。[disableSwipe](#disableswipe8)属性设为true会取消内部的PanGesture事件监听。
 
@@ -25,6 +25,8 @@
 ## 接口
 
 Swiper(controller?: SwiperController)
+
+创建滑块视图容器。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -106,7 +108,7 @@ autoPlay(autoPlay: boolean, options: AutoPlayOptions)
 | 参数名 | 类型    | 必填 | 说明                                   |
 | ------ | ------- | ---- | -------------------------------------- |
 | autoPlay  | boolean | 是   | 子组件是否自动播放。<br/>默认值：false |
-| options  | [AutoPlayOptions](#autoplayoptions16对象说明)&nbsp; | 否   | 配置手指或者鼠标等按下屏幕时子组件是否停止自动播放。<br/>默认值：{ stopWhenTouched: true } 停止自动播放 |
+| options  | [AutoPlayOptions](#autoplayoptions16对象说明)&nbsp; | 是   | 配置手指或者鼠标等按下屏幕时子组件是否停止自动播放。当stopWhenTouched设置为true时，多指按下场景中任意一个手指抬起后，将自动继续播放。<br/>默认值：{ stopWhenTouched: true }，停止自动播放。 |
 
 ### interval
 
@@ -662,7 +664,7 @@ finishAnimation(callback?: VoidCallback)
 | -------- | ---------- | ---- | -------- |
 | callback | [VoidCallback](./ts-types.md#voidcallback12) | 否    | 动画结束的回调。 |
 
-### preloadItems<sup>16+</sup>
+### preloadItems<sup>18+</sup>
 
 preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 
@@ -672,7 +674,7 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 
 与[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和自定义组件结合使用时，由于[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)只会保留缓存范围内的自定义组件，在缓存范围外的会被删除，因此需要开发者保证通过该接口预加载的节点index在缓存范围内。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -846,7 +848,7 @@ end(value: LengthMetrics): T
 
 | 参数名 | 类型                         | 必填  | 说明                                     |
 | ------ | ---------------------------- | ---- | ---------------------------------------- |
-| value | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是    | 设置在RTL模式下为导航点距离Swiper组件左边的距离，在LTR模式下为导航点距离Swiper组件右边的距离。<br/>默认值：0<br/>单位：vp <br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| value | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是    | 设置在RTL模式下为导航点距离Swiper组件左边的距离，在LTR模式下为导航点距离Swiper组件右边的距离。<br/>默认值：0<br/>单位：vp  |
 
 ### dot
 
@@ -2390,6 +2392,9 @@ struct SwiperExample {
 ```
 
 ### 示例9（演示导航点space与bottom）
+
+该示例通过bottom和space接口，实现了圆点导航点与底部间距为0和导航点之间的间距控制。
+
 ```ts
 import { LengthMetrics } from '@kit.ArkUI'
 

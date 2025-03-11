@@ -1,5 +1,3 @@
-
-
 # Combo解决方案之ASR芯片移植案例
 
 本方案基于OpenHarmony LiteOS-M内核，使用ASR582X芯片的[DEV.WIFI.A开发板](https://gitee.com/openharmony/device_board_lango)进行开发移植。作为典型的IOT Combo（Wi-Fi+BLE）解决方案，本文章介绍ASR582X的适配过程。
@@ -45,35 +43,35 @@ vendor
     "subsystems": []                      --- 子系统
 }
 ```
-这里的device_company和board用于关联出//device/board/<device_company>/<board>目录。
+这里的device_company和board用于关联出//device/board/<device_company>/\<board\>目录。
 
 ### 单板配置
 
-在关联到的<board>目录下，以`device/board/lango/dev_wifi_a`为例，需要在liteos_m目录下放置config.gni文件，这个配置文件用于描述该单板的信息，包括CPU、toolchain、kernel、compile flags等。例如：
+在关联到的\<board\>目录下，以`device/board/lango/dev_wifi_a`为例，需要在liteos_m目录下放置config.gni文件，这个配置文件用于描述该单板的信息，包括CPU、toolchain、kernel、compile flags等。例如：
 
 ```
-# 内核类型
+# 内核类型。
 kernel_type = "liteos_m"
 
-# 内核版本
+# 内核版本。
 kernel_version = "3.0.0"
 
-# 单板CPU类型
+# 单板CPU类型。
 board_cpu = "cortex-m4"
 
-# 工具链，这里使用arm-none-eabi
+# 工具链，这里使用arm-none-eabi。
 board_toolchain = "arm-none-eabi"
 
 # 工具链路径，可以使用系统路径，填""，也可以自定义，如下：
 board_toolchain_path = rebase_path("//device/soc/asrmicro/gcc/gcc-arm-none-eabi/Linux64/bin")
 
-# 单板相关的编译参数
+# 单板相关的编译参数。
 board_cflags = []
 
-# 单板相关的链接参数
+# 单板相关的链接参数。
 board_ld_flags = []
 
-# 单板相关的头文件
+# 单板相关的头文件。
 board_include_dirs = []
 ```
 
@@ -149,7 +147,7 @@ config SOC_ASR5822S                         --- 选择 SOC_ASR5822S
 endchoice
 ```
 
-综上所述，要编译单板BOARD_DEV_WIFI_A，则要分别选中：SOC_COMPANY_ASRMICRO、SOC_SERIES_ASR582X、SOC_ASR5822S，可以在`kernel/liteos_m`中执行`make menuconfig`进行选择配置
+综上所述，要编译单板BOARD_DEV_WIFI_A，则要分别选中：SOC_COMPANY_ASRMICRO、SOC_SERIES_ASR582X、SOC_ASR5822S，可以在`kernel/liteos_m`中执行`make menuconfig`进行选择配置。
 
 ![asr5822s_select.json](figures/asr5822s_select.png)
 
@@ -174,8 +172,8 @@ LOSCFG_SOC_ASR5822S=y
      module_name = get_path_info(rebase_path("."), "name")
      module_group(module_name) {
        modules = [
-         "dev_wifi_a",                     # 单板模块
-         "hcs",                            # hcs文件的对应模块
+         "dev_wifi_a",                     # 单板模块。
+         "hcs",                            # hcs文件的对应模块。
        ]
      }
    }
@@ -203,17 +201,17 @@ LOSCFG_SOC_ASR5822S=y
    import("//kernel/liteos_m/liteos.gni")
 
    config("public") {
-     include_dirs = [ "." ]                 # 公共头文件
+     include_dirs = [ "." ]                 # 公共头文件。
    }
 
-   kernel_module("asr_startup") {           # 编译的模块
-     sources = [                            # 编译的源文件
+   kernel_module("asr_startup") {           # 编译的模块。
+     sources = [                            # 编译的源文件.
          "startup.c",
          "board.c",
          "startup_cm4.S",
      ]
 
-     include_dirs = [                       # 模块内使用到的头文件
+     include_dirs = [                       # 模块内使用到的头文件。
        "...",
      ]
    }
@@ -223,10 +221,10 @@ LOSCFG_SOC_ASR5822S=y
 
    ```
    config("public") {
-     include_dirs = []                       # 公共头文件
-     ldflags = []                            # 链接参数，包括ld文件
-     libs = []                               # 链接库
-     defines = []                            # 定义
+     include_dirs = []                       # 公共头文件。
+     ldflags = []                            # 链接参数，包括ld文件。
+     libs = []                               # 链接库。
+     defines = []                            # 定义。
    ```
 
    ![](../public_sys-resources/icon-note.gif) **说明：** 
@@ -306,8 +304,8 @@ if (ret != LOS_OK) {
 在初始化之后，每个shell命令需要进行注册，例如：`vendor/asrmicro/wifi_demo/tests/wifi/wifi_app.c`：
 
 ```
-osCmdReg(CMD_TYPE_STD, "wifi_open", 0, (CMD_CBK_FUNC)ap_conn_func);    // 连接AP的指令，这里可以带参
-osCmdReg(CMD_TYPE_EX, "wifi_close", 0, (CMD_CBK_FUNC)ap_close_func);   // 断开指令
+osCmdReg(CMD_TYPE_STD, "wifi_open", 0, (CMD_CBK_FUNC)ap_conn_func);    // 连接AP的指令，这里可以带参。
+osCmdReg(CMD_TYPE_EX, "wifi_close", 0, (CMD_CBK_FUNC)ap_close_func);   // 断开指令。
 ```
 
 ### 内核启动适配
@@ -316,21 +314,21 @@ osCmdReg(CMD_TYPE_EX, "wifi_close", 0, (CMD_CBK_FUNC)ap_close_func);   // 断开
 注册中断，可参考`//device/soc/asrmicro/asr582x/liteos_m/sdk/startup/board.c`:
 
 ```
-ArchHwiCreate(UART1_IRQn,configLIBRARY_NORMAL_INTERRUPT_PRIORITY,0,UART1_IRQHandler,0);   // UART中断
-ArchHwiCreate(GPIO_IRQn,configLIBRARY_NORMAL_INTERRUPT_PRIORITY,0,GPIO_IRQHandler,0);     // GPIO中断
+ArchHwiCreate(UART1_IRQn,configLIBRARY_NORMAL_INTERRUPT_PRIORITY,0,UART1_IRQHandler,0);   // UART中断。
+ArchHwiCreate(GPIO_IRQn,configLIBRARY_NORMAL_INTERRUPT_PRIORITY,0,GPIO_IRQHandler,0);     // GPIO中断。
 ```
 
 内核初始化示例如下：
 ```
-osStatus_t ret = osKernelInitialize();                                                    // 内核初始化
+osStatus_t ret = osKernelInitialize();                                                    // 内核初始化。
 
 if(ret == osOK)
 {
-    threadId = osThreadNew((osThreadFunc_t)sys_init,NULL,&g_main_task);                   // 创建init线程
+    threadId = osThreadNew((osThreadFunc_t)sys_init,NULL,&g_main_task);                   // 创建init线程。
 
     if(threadId!=NULL)
     {
-        osKernelStart();                                                                  // 线程调度
+        osKernelStart();                                                                  // 线程调度。
     }
 }
 ```
@@ -339,9 +337,9 @@ if(ret == osOK)
 
 ```
 ...
-DeviceManagerStart();           // HDF初始化
+DeviceManagerStart();           // HDF初始化。
 
-OHOS_SystemInit();              // OpenHarmony系统组件初始化
+OHOS_SystemInit();              // OpenHarmony系统组件初始化。
 ....
 ```
 
@@ -386,8 +384,8 @@ LOSCFG_DRIVERS_HDF_PLATFORM=y
            gpio_config {
                match_attr = "gpio_config";
                pin = [0, 1];
-               // led3: GPIO9
-               // user key: GPIO7
+               // led3: GPIO9.
+               // user key: GPIO7.
                realPin = [9, 7];
                config = [5, 1];
                pinNum = 2;
@@ -498,7 +496,7 @@ lwIP是一个小型开源的TCP/IP协议栈，LiteOS-M已对开源lwIP做了适�
    
    #include_next "lwip/lwipopts.h"
    
-   #undef LWIP_DHCP#define LWIP_DHCP                       0 // 关闭DHCP功能
+   #undef LWIP_DHCP#define LWIP_DHCP                       0 // 关闭DHCP功能。
    
    #endif /* _LWIP_ADAPTER_LWIPOPTS_H_ */
    ```
@@ -514,7 +512,7 @@ lwIP是一个小型开源的TCP/IP协议栈，LiteOS-M已对开源lwIP做了适�
      sources = LWIP_PORTING_FILES + LWIPNOAPPSFILES - [ "$LWIPDIR/api/sockets.c" ]
      include_dirs = [ "//utils/native/lite/include" ]
    }
-   #添加新增加的适配头文件路径include
+   #添加新增加的适配头文件路径include。
    config("public") {
      include_dirs = [ "include" ] + LWIP_PORTING_INCLUDE_DIRS + LWIP_INCLUDE_DIRS
    }
@@ -600,8 +598,8 @@ wifi_lite组件的选项配置如下：
 
 | 指令         | 参数     | 说明     |
 |------------|--------|--------|
-| wifi_open  | sta [SSID] [KEY] | 连接路由指令,例如:wifi_open sta ASR_AP test123456 |
-| wifi_close | 无      | 断开连接指令   |
+| wifi_open  | sta [SSID] [KEY] | 连接路由指令,例如:wifi_open sta ASR_AP test123456。 |
+| wifi_close | 无      | 断开连接指令。   |
 
 ### xts组件
 
@@ -660,7 +658,7 @@ dsoftbus组件的选项配置如下：
 
 ```
 declare_args() {
-  asr_dsoftbus_test = true              # 打开dsoftbus demo编译
+  asr_dsoftbus_test = true              # 打开dsoftbus demo编译。
 }
 ```
 
@@ -672,7 +670,7 @@ declare_args() {
     "enable": "true",
     "test_modules": [
         "wifi_test",
-        "dsoftbus_test"                 # 打开dsoftbus_test模块
+        "dsoftbus_test"                 # 打开dsoftbus_test模块。
     ]
     }
 ]

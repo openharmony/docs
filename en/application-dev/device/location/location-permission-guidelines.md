@@ -1,4 +1,4 @@
-# Applying for Location Permissions
+# Applying for Location Permissions (ArkTS)
 
 ## Scenario
 

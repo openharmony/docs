@@ -1,34 +1,12 @@
-# Peripheral Driver Client Development
+# UI-based Driver Development
 
 ## When to Use
 
-Peripheral devices (or simply peripherals) are auxiliary devices connected to a device through physical ports, such as handwriting tablets, printers, and scanners. Applications can query and bind peripherals via peripheral management, so that the peripherals can use the customized capabilities provided by the peripheral drivers, such as the printer software.
-
-Peripheral management applies to all devices that can be ported to the OpenHarmony.
+UI-based basic drivers are applicable to a wide variety of composite devices. When developing these drivers, you may set the corresponding unique driver capabilities through the UI, or display the information retrieved from the devices on the UI. Examples of such devices include mice with side buttons, handwriting tablets, and ID card readers.
 
 ## Environment Setup
 
-### Development Tool and Configuration
-
-DevEco Studio, as the driver development tool, allows you to develop, debug, and package drivers.
-
-[Download and install](https://developer.huawei.com/consumer/en/download/) DevEco Studio and verify basic operations to ensure that it can function properly. For details, see [Creating and Running a Project](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-create-new-project-V13) in [DevEco Studio User Guide](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-tools-overview-V13).
-
-### SDK Version Configuration
-
-The ArkTs APIs for peripheral management can be used only when the SDK is of API version 10 or later.
-
-### HDC Configuration
-
-HarmonyOS Device Connector (HDC) is a command-line tool for debugging. It can be used to interact with real devices or emulators on Windows, Linux, and Mac. For details, see [HDC Configuration](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/hdc-V5).
-
-**NOTE**<br>Configuration of the environment variable **hdc_server_port** and global environment variables is mandatory.
-
-### Development Device
-
-* Currently, RK3568 is used as the device for development, debugging, and verification. For details about how to compile and burn the RK3568, see [Quick Start](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-pkg-3568-burn.md).
-* During client and driver development, you need to connect an external USB device for debugging. **Currently, only an external USB device is supported.**
-* The product ID and vendor ID of the USB device are required for defining drivers and implementing IPC.
+Before you get started, make necessary preparations by following instructions in [Environment Preparation](environmental-preparation.md).
 
 ## Available APIs
 
@@ -63,7 +41,7 @@ You can use the APIs to query and bind peripheral devices so as to use the custo
 
 The following sample code is a demo that illustrates how to develop both the client and server and implement IPC.
 
-1. Create an OpenHarmony project. For details, see [Creating a Project](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-create-new-project-V13).
+1. Create an OpenHarmony project. For details, see [Creating a Project] (https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-create-new-project-V13).
 
     **NOTE**
 
@@ -143,7 +121,7 @@ The following sample code is a demo that illustrates how to develop both the cli
     }
     ```
 
-6. Define the **sendMessageRequest** API, and use it to perform IPC with the remote driver object.
+6. Defines the **sendMessageRequest** API, and use it to perform IPC with the remote driver object.
 
     ```ts
     private async communicateWithRemote(): Promise<void> {
@@ -195,7 +173,7 @@ The following sample code is a demo that illustrates how to develop both the cli
     }
     ```
 
-8. Develop the driver code. For details, see [Peripheral Driver Development](driverextensionability.md).
+8. Develop peripheral drivers by following instructions in [UI-free Driver Development](driverextensionability.md).
 
 <!--Del-->
 System applications can query detailed information about peripherals and drivers to implement management. The development procedure is as follows:

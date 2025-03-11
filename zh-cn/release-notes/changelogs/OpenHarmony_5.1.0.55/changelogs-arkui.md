@@ -62,7 +62,7 @@ struct RepeatRerender {
       .backgroundColor(0xFAEEE0)
 
       Button('click').onClick(() => {
-        this.dataArr[0].msg = 'new msg'; // 改变第一项数据对象的msg属性的值
+        this.dataArr.splice(0, 1, new RepeatData('key0', 'new msg')); // 改变列表第一项的数据，保持key不变
       })
     }
   }
@@ -132,7 +132,7 @@ struct RepeatRerender {
       .backgroundColor(0xFAEEE0)
 
       Button('click').onClick(() => {
-        this.dataArr[0].msg = 'new msg'; // 改变第一项数据对象的msg属性的值
+        this.dataArr.splice(0, 1, new RepeatData('key0', 'new msg')); // 改变列表第一项的数据，保持key不变
       })
     }
   }
@@ -183,7 +183,7 @@ struct RepeatRerender {
       .backgroundColor(0xFAEEE0)
 
       Button('click').onClick(() => {
-        this.dataArr[0].msg = 'new msg'; // 改变第一项数据对象的msg属性的值
+        this.dataArr.splice(0, 1, new RepeatData('key0', 'new msg')); // 改变列表第一项的数据，保持key不变
       })
     }
   }
@@ -226,3 +226,254 @@ advancedDialog.selectDialog
 **适配指导**
 
 默认行为变更，无需适配。系统弹窗默认规格优化演进，若开发者有其他布局、样式诉求，建议使用CustomDialog自定义实现。
+
+## cl.arkui.3 Navigation工具栏文本样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规范变更。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+- 变更前：Navigation工具栏文本最多显示两行，文本高度12_vp。
+
+- 变更后：Navigation工具栏文本最多显示一行，文本高度10_vp。
+
+|              | 变更前 | 变更后 |
+| ------------ | ------ | ------ |
+| 文本样式     | ![item_old](figures/item_old.jpg) | ![item_new](figures/item_new.jpg) |
+
+**起始API Level**
+
+Navigation组件toolbarConfiguration接口：起始支持版本为 API 10。
+
+NavDestination组件toolbarConfiguration接口：起始支持版本为 API 13。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.55开始。
+
+**变更的接口/组件**
+
+涉及组件： Navigation, NavDestination组件。
+
+涉及接口： 
+
+Navigation组件：
+
+toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+NavDestination组件：
+
+toolbarConfiguration(toolbarParam: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+**适配指导**
+
+默认效果变更，无需适配。
+
+## cl.arkui.4 Navigation工具栏高度变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规范变更。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+- 变更前：Navigation工具栏高度为56_vp。
+
+- 变更后：Navigation工具栏高度为48_vp。
+
+| | 变更前 | 变更后 |
+|---------|---------|---------|
+|工具栏高度| ![bar_old](figures/bar_old.jpg) | ![bar_new](figures/bar_new.jpg) |
+
+**起始API Level**
+
+Navigation组件toolbarConfiguration接口：起始支持版本为 API 10。
+
+NavDestination组件toolbarConfiguration接口：起始支持版本为 API 13。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.55开始。
+
+**变更的接口/组件**
+
+涉及组件： Navigation, NavDestination组件。
+
+涉及接口： 
+
+Navigation组件：
+
+toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+NavDestination组件：
+
+toolbarConfiguration(toolbarParam: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+**适配指导**
+
+默认效果变更，无需适配。
+
+## cl.arkui.5 Navigation工具栏聚焦、Hover态样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规范变更。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+- 变更前：Navigation工具栏聚焦/Hover态高度56.0_vp，长度随item数目自适应，Hover态圆角大小为8.0_vp。
+
+- 变更后：Navigation工具栏聚焦/Hover态高度44.0_vp，长度比原来减少4vp（比原来上下左右各增加2vp的padding），Hover态圆角大小为12.0_vp。
+
+| | 变更前 | 变更后 |
+|---------|---------|---------|
+|聚焦态| ![tab_old](figures/tab_old.jpg) | ![tab_new](figures/tab_new.jpg) |
+|Hover态| ![hovew_old](figures/hover_old.jpg) | ![hover_new](figures/hover_new.jpg) |
+
+**起始API Level**
+
+Navigation组件toolbarConfiguration接口：起始支持版本为 API 10。
+
+NavDestination组件toolbarConfiguration接口：起始支持版本为 API 13。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.55开始。
+
+**变更的接口/组件**
+
+涉及组件： Navigation, NavDestination组件。
+
+涉及接口： 
+
+Navigation组件：
+
+toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+NavDestination组件：
+
+toolbarConfiguration(toolbarParam: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+**适配指导**
+
+默认效果变更，无需适配。
+
+## cl.arkui.6 Navigation工具栏单个item上下边距变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规范变更。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+- 变更前：上边距8vp下边距10vp。
+
+- 变更后：上下边距都是6vp。
+
+| | 变更前 | 变更后 |
+|---------|---------|---------|
+|单个item上下边距| ![margin_old](figures/margin_old.jpg) | ![margin_new](figures/margin_new.jpg) |
+
+**起始API Level**
+
+Navigation组件toolbarConfiguration接口：起始支持版本为 API 10。
+
+NavDestination组件toolbarConfiguration接口：起始支持版本为 API 13。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.55开始。
+
+**变更的接口/组件**
+
+涉及组件： Navigation, NavDestination组件。
+
+涉及接口： 
+
+Navigation组件：
+
+toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+NavDestination组件：
+
+toolbarConfiguration(toolbarParam: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+**适配指导**
+
+默认效果变更，无需适配。
+
+## cl.arkui.7 Navigation工具栏选项取消按压态
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规范变更。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+- 变更前：工具栏选项具有按压态。
+
+- 变更后：工具栏选项取消按压态。
+
+| | 变更前 | 变更后 |
+|---------|---------|---------|
+|选项按压态| ![press_old](figures/press_old.jpg) | ![press_new](figures/press_new.jpg) |
+
+**起始API Level**
+
+Navigation组件toolbarConfiguration接口：起始支持版本为 API 10。
+
+NavDestination组件toolbarConfiguration接口：起始支持版本为 API 13。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.55开始。
+
+**变更的接口/组件**
+
+涉及组件： Navigation, NavDestination组件。
+
+涉及接口： 
+
+Navigation组件：
+
+toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+NavDestination组件：
+
+toolbarConfiguration(toolbarParam: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+**适配指导**
+
+默认效果变更，无需适配。

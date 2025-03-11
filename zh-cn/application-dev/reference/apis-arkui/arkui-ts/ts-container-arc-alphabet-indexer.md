@@ -357,7 +357,7 @@ struct ArcListAndIndexer {
   @State indexerIndex: number = 0;
 
   private watchSize: string = '466px' // 手表默认宽高：233*233
-  private itemSize: number = 16  // 索引项默认大小：24
+  private itemSize: number = 24  // 索引项默认大小：24
 
   build() {
     Column() {

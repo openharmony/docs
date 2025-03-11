@@ -11,7 +11,7 @@
 具体步骤如下，步骤最后有参考示例代码，具体可参照 [OpenHarmony 小型系统图形 Simulator 适配实现](https://gitee.com/openharmony/arkui_ui_lite/tree/master/tools/qt/simulator)。
 
 ### 图形引擎初始化
-主要包括初始化 UI 任务、渲染模块、动画模块、默认样式等
+主要包括初始化 UI 任务、渲染模块、动画模块、默认样式等。
 ```c++
 // graphic_startup.h
 GraphicStartUp::Init();
@@ -208,7 +208,7 @@ static void InitFontEngine(uintptr_t psramAddr, uint32_t psramLen, const char* d
 
 ### 屏幕刷新对接
 
-根据屏幕硬件刷新信号（类似 Vsync 信号），周期性回调 TaskHandler
+根据屏幕硬件刷新信号（类似 Vsync 信号），周期性回调 TaskHandler。
 
 屏幕刷新对接接口代码如下：
 

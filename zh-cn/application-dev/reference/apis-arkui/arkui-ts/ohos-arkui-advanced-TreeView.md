@@ -135,11 +135,11 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 | currentNodeId | number | 否 | 当前子节点。 |
 | isFolder | boolean | 否 | 是否是目录。默认值：false。true：是目录，false：不是目录。 |
 | icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标。 |
-| symbolIconStyle<sup>16+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol图标，优先级大于icon。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| symbolIconStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol图标，优先级大于icon。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 选中图标。 |
-| symbolSelectedIconStyle<sup>16+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol选中图标，优先级大于selectedIcon。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| symbolSelectedIconStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol选中图标，优先级大于selectedIcon。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | editIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 编辑图标。 |
-| symbolEditIconStyle<sup>16+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol编辑图标，优先级大于editIcon。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| symbolEditIconStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol编辑图标，优先级大于editIcon。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 主标题。 |
 | secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题。 |
 | container | ()&nbsp;=&gt;&nbsp;void | 否 | 绑定在节点上的右键子组件，子组件由@Builder修饰。 |
