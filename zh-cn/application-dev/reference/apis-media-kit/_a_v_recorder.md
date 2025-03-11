@@ -12,7 +12,7 @@
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ## 汇总
@@ -112,7 +112,7 @@ typedef struct OH_AVRecorder OH_AVRecorder
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_AudioSourceType
@@ -127,7 +127,7 @@ AVRecorder的音频源类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_CodecMimeType
@@ -142,7 +142,7 @@ typedef enum OH_AVRecorder_CodecMimeType OH_AVRecorder_CodecMimeType
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_Config
@@ -157,7 +157,7 @@ typedef struct OH_AVRecorder_Config OH_AVRecorder_Config
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_ContainerFormatType
@@ -172,7 +172,7 @@ typedef enum OH_AVRecorder_ContainerFormatType OH_AVRecorder_ContainerFormatType
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_EncoderInfo
@@ -187,7 +187,7 @@ typedef struct OH_AVRecorder_EncoderInfo OH_AVRecorder_EncoderInfo
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_FileGenerationMode
@@ -202,7 +202,7 @@ typedef enum OH_AVRecorder_FileGenerationMode OH_AVRecorder_FileGenerationMode
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_Location
@@ -217,7 +217,7 @@ typedef struct OH_AVRecorder_Location OH_AVRecorder_Location
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_Metadata
@@ -232,7 +232,7 @@ typedef struct OH_AVRecorder_Metadata OH_AVRecorder_Metadata
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_MetadataTemplate
@@ -247,7 +247,7 @@ typedef struct OH_AVRecorder_MetadataTemplate OH_AVRecorder_MetadataTemplate
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_OnError
@@ -262,7 +262,7 @@ typedef void (*OH_AVRecorder_OnError)(OH_AVRecorder *recorder, int32_t errorCode
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -286,7 +286,7 @@ typedef void (*OH_AVRecorder_OnStateChange)(OH_AVRecorder *recorder, OH_AVRecord
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -310,7 +310,7 @@ typedef void (*OH_AVRecorder_OnUri)(OH_AVRecorder *recorder, OH_MediaAsset *asse
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -337,7 +337,7 @@ typedef struct OH_AVRecorder_Profile OH_AVRecorder_Profile
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_Range
@@ -352,7 +352,7 @@ typedef struct OH_AVRecorder_Range OH_AVRecorder_Range
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_State
@@ -367,7 +367,7 @@ AVRecorder状态。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_StateChangeReason
@@ -382,7 +382,7 @@ AVRecorder状态变化的原因。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVRecorder_VideoSourceType
@@ -397,7 +397,7 @@ AVRecorder的视频源类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ## 枚举类型说明
@@ -415,7 +415,7 @@ AVRecorder的音频源类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -439,7 +439,7 @@ enum OH_AVRecorder_CodecMimeType
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -465,7 +465,7 @@ enum OH_AVRecorder_ContainerFormatType
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -488,7 +488,7 @@ enum OH_AVRecorder_FileGenerationMode
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -508,7 +508,7 @@ AVRecorder状态。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -533,7 +533,7 @@ AVRecorder状态变化的原因。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -553,7 +553,7 @@ AVRecorder的视频源类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -576,7 +576,7 @@ OH_AVRecorder *OH_AVRecorder_Create(void)
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **返回：**
 
@@ -595,7 +595,7 @@ OH_AVErrCode OH_AVRecorder_GetAvailableEncoder(OH_AVRecorder *recorder, OH_AVRec
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -628,7 +628,7 @@ OH_AVErrCode OH_AVRecorder_GetAVRecorderConfig(OH_AVRecorder *recorder, OH_AVRec
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -660,7 +660,7 @@ OH_AVErrCode OH_AVRecorder_GetInputSurface(OH_AVRecorder *recorder, OHNativeWind
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -690,7 +690,7 @@ OH_AVErrCode OH_AVRecorder_Pause(OH_AVRecorder *recorder)
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -719,7 +719,7 @@ OH_AVErrCode OH_AVRecorder_Prepare(OH_AVRecorder *recorder, OH_AVRecorder_Config
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -749,7 +749,7 @@ OH_AVErrCode OH_AVRecorder_Release(OH_AVRecorder *recorder)
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -778,7 +778,7 @@ OH_AVErrCode OH_AVRecorder_Reset(OH_AVRecorder *recorder)
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -805,7 +805,7 @@ OH_AVErrCode OH_AVRecorder_Resume(OH_AVRecorder *recorder)
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -832,7 +832,7 @@ OH_AVErrCode OH_AVRecorder_SetErrorCallback(OH_AVRecorder *recorder, OH_AVRecord
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -861,7 +861,7 @@ OH_AVErrCode OH_AVRecorder_SetStateCallback( OH_AVRecorder *recorder, OH_AVRecor
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -890,7 +890,7 @@ OH_AVErrCode OH_AVRecorder_SetUriCallback(OH_AVRecorder *recorder, OH_AVRecorder
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -919,7 +919,7 @@ OH_AVErrCode OH_AVRecorder_Start(OH_AVRecorder *recorder)
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -948,7 +948,7 @@ OH_AVErrCode OH_AVRecorder_Stop(OH_AVRecorder *recorder)
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -975,7 +975,7 @@ OH_AVErrCode OH_AVRecorder_UpdateRotation(OH_AVRecorder *recorder, int32_t rotat
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 

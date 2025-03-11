@@ -11,7 +11,7 @@
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**起始版本：** 16
+**起始版本：** 18
 
 **相关模块：**[AVRecorder](_a_v_recorder.md)
 
