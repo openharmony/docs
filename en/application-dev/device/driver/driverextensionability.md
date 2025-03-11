@@ -13,7 +13,7 @@ Basic UI-free drivers are applicable to simple devices that do not require setti
 
 ## Environment Setup
 
-Before you get started, make necessary preparations by following instructions in [Environment Preparation](environment-preparation.md).
+Before you get started, make necessary preparations by following instructions in [Environment Preparation](environmental-preparation.md).
 
 ## How to Develop
 

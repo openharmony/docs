@@ -6,7 +6,7 @@ UI-based basic drivers are applicable to a wide variety of composite devices. Wh
 
 ## Environment Setup
 
-Before you get started, make necessary preparations by following instructions in [Environment Preparation](environment-preparation.md).
+Before you get started, make necessary preparations by following instructions in [Environment Preparation](environmental-preparation.md).
 
 ## Available APIs
 

@@ -9,7 +9,7 @@
 
 -   [Repositories Involved](#section152mcpsimp)
 
-## Introduction
+## Introduction<a name="section104mcpsimp"></a>
 
 The Telephony subsystem provides APIs for obtaining information about the wireless cellular network and SIM card. Applications can call these APIs to obtain information such as the name of the currently registered network, network service status, signal strength, and SIM card information.
 
@@ -28,7 +28,7 @@ The Telephony subsystem consists of the following modules:
 
 ![](figures/en-us_architecture-of-telephony-subsystem.png)
 
-## Directory Structure
+## Directory Structure<a name="section119mcpsimp"></a>
 
 ```
 base/telephony/
@@ -47,7 +47,7 @@ base/telephony/
 1.  The open-source version currently provides the cellular call (CS call only), SMS & MMS, and cellular data services and supports the dual-SIM framework.
 2.  The southbound HDI depends on the chip vendor. For details, see [Telephony Service Southbound Development Guide](../device-dev/subsystems/subsys-tel-overview.md).
 
-## Usage
+## Usage<a name="section128mcpsimp"></a>
 
 To learn more about the usage of each subsystem module, refer to the respective README. The following illustrates API usage by exemplifying how to obtain the current cellular network signal information and observe the cellular network status changes.
 
@@ -125,22 +125,22 @@ To learn more about the usage of each subsystem module, refer to the respective 
     ```
 
 
-## Repositories Involved
+## Repositories Involved<a name="section152mcpsimp"></a>
 
 **Telephony**
 
-[telephony\_core\_service](https://gitee.com/openharmony/telephony_core_service/blob/master/README_zh.md)
+[telephony\_core\_service](https://gitee.com/openharmony/telephony_core_service/blob/master/README.md)
 
-[telephony\_call\_manager](https://gitee.com/openharmony/telephony_call_manager/blob/master/README_zh.md)
+[telephony\_call\_manager](https://gitee.com/openharmony/telephony_call_manager/blob/master/README.md)
 
-[telephony\_cellular\_call](https://gitee.com/openharmony/telephony_cellular_call/blob/master/README_zh.md)
+[telephony\_cellular\_call](https://gitee.com/openharmony/telephony_cellular_call/blob/master/README.md)
 
-[telephony\_cellular\_data](https://gitee.com/openharmony/telephony_cellular_data/blob/master/README_zh.md)
+[telephony\_cellular\_data](https://gitee.com/openharmony/telephony_cellular_data/blob/master/README.md)
 
-[telephony\_sms\_mms](https://gitee.com/openharmony/telephony_sms_mms/blob/master/README_zh.md)
+[telephony\_sms\_mms](https://gitee.com/openharmony/telephony_sms_mms/blob/master/README.md)
 
-[telephony\_state\_registry](https://gitee.com/openharmony/telephony_state_registry/blob/master/README_zh.md)
+[telephony\_state\_registry](https://gitee.com/openharmony/telephony_state_registry/blob/master/README.md)
 
-[telephony\_data\_storage](https://gitee.com/openharmony/telephony_data_storage/blob/master/README_zh.md)
+[telephony\_data\_storage](https://gitee.com/openharmony/telephony_data_storage/blob/master/README.md)
 
-[telephony\_ril\_adapter](https://gitee.com/openharmony/telephony_ril_adapter/blob/master/README_zh.md)
+[telephony\_ril\_adapter](https://gitee.com/openharmony/telephony_ril_adapter/blob/master/README.md)
