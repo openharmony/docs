@@ -1534,11 +1534,15 @@ struct WebComponent {
 }
 ```
 
-### getHitTest
+### getHitTest<sup>(deprecated)</sup>
 
 getHitTest(): WebHitTestType
 
 Obtains the element type of the area being clicked.
+
+> **NOTE**
+>
+> This API is supported since API version 11 and deprecated since API version 16. You are advised to use [getLastHitTest](#getlasthittest16) instead.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3113,11 +3117,15 @@ struct WebComponent {
 }
 ```
 
-### getHitTestValue
+### getHitTestValue<sup>(deprecated)</sup>
 
 getHitTestValue(): HitTestValue
 
 Obtains the element information of the area being clicked.
+
+> **NOTE**
+>
+> This API is supported since API version 11 and deprecated since API version 16. You are advised to use [getLastHitTest](#getlasthittest16) instead.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -9801,7 +9809,7 @@ Sets the value of a single cookie for a specified URL. This API uses a promise t
 
 | Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended.|
+| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended.|
 | value  | string | Yes  | Cookie value to set.     |
 | incognito    | boolean | Yes  | Whether to set the cookies in incognito mode. The value **true** means to set the cookies in incognito mode, and **false** means the opposite.|
 | includeHttpOnly    | boolean | Yes  | Whether to overwrite cookies containing **HttpOnly**. The value **true** means to overwrite cookies containing **HttpOnly**, and **false** means the opposite.|
@@ -9856,13 +9864,17 @@ struct WebComponent {
 }
 ```
 
-### saveCookieSync<sup>16+</sup>
+### saveCookieSync<sup>15+</sup>
 
 static saveCookieSync(): void
 
 Saves the cookies in the memory to the drive. This API uses a synchronous callback to return the result.
 
 **System capability**: SystemCapability.Web.Webview.Core
+
+> **NOTE**
+>
+> **saveCookieSync** is used to forcibly write cookies that need to be persisted to disks. By default, session cookies in 2-in-1 and tablets are not persisted.
 
 **Example**
 
@@ -11751,7 +11763,7 @@ Describes the information about the resource request sent by the **Web** compone
 
 ## WebHitTestType
 
-The [getHitTest](#gethittest) API is used to indicate a cursor node.
+The [getLastHitTest](#getlasthittest16) API is used to indicate a cursor node.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -11776,12 +11788,12 @@ Defines the security level of the web page.
 | ------------- | -- |----------------------------------------- |
 | NONE          | 0 |The web page is neither absolutely secure nor insecure, that is, neutral. A typical example is a web page whose URL scheme is not HTTP or HTTPS.|
 | SECURE        | 1 |The web page is secure, using the HTTPS protocol and a trusted certificate.|
-| WARNING       | 2 |The web page is possibly compromised. A typical example is a web page that uses the HTTP or HTTPS protocol but an outdated TLS version.|
-| DANGEROUS     | 3 |The web page is insecure. This means that the page may have attempted to load HTTPS scripts to no avail, have failed authentication, or contain insecure active content in HTTPS, malware, phishing, or any other sources of major threats.|
+| WARNING       | 2 |The web page is insecure. A typical example is a web page that uses the HTTP or HTTPS protocol but an outdated TLS version.|
+| DANGEROUS     | 3 |The web page is dangerous. This means that the page may have attempted to load HTTPS scripts to no avail, have failed authentication, or contain insecure active content in HTTPS, malware, phishing, or any other sources of major threats.|
 
 ##  HitTestValue
 
-Provides the element information of the area being clicked. For details about the sample code, see [getHitTestValue](#gethittestvalue).
+Provides the element information of the area being clicked. For details about the sample code, see [getLastHitTest](#getlasthittest16).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -14421,7 +14433,7 @@ struct WebComponent {
 }
 ```
 
-## ProxySchemeFilter<sup>16+</sup>
+## ProxySchemeFilter<sup>15+</sup>
 
 Filters the scheme that uses the proxy.
 
@@ -14433,11 +14445,11 @@ Filters the scheme that uses the proxy.
 | MATCH_HTTP        | 1 |HTTP requests use proxies.|
 | MATCH_HTTPS       | 2 |HTTPS requests use proxies.|
 
-## ProxyConfig<sup>16+</sup>
+## ProxyConfig<sup>15+</sup>
 
 Implements a ProxyConfig class. You can use the APIs of this class to configure proxies.
 
-### insertProxyRule<sup>16+</sup>
+### insertProxyRule<sup>15+</sup>
 
 insertProxyRule(proxyRule: string, schemeFilter?: ProxySchemeFilter): void
 
@@ -14450,7 +14462,7 @@ Inserts a rule to specify a proxy for URLs matching **schemeFilter**. If **schem
 | Name         | Type    |  Mandatory | Description          |
 | ---------------| ------- | ---- | ------------- |
 | proxyRule      | string  | Yes  | The specified proxy.|
-| schemeFilter   | [ProxySchemeFilter](#proxyschemefilter16)  | No  | Used to filter URLs to use the proxy. Default value: **MATCH_ALL_SCHEMES**.|
+| schemeFilter   | [ProxySchemeFilter](#proxyschemefilter15)  | No  | Used to filter URLs to use the proxy. Default value: **MATCH_ALL_SCHEMES**.|
 
 **Error codes**
 
@@ -14462,9 +14474,9 @@ For details about the following error codes, see [Universal Error Codes](../erro
 
 **Example**
 
-For details about the complete sample code, see [removeProxyOverride](#removeproxyoverride16).
+For details, see [removeProxyOverride](#removeproxyoverride15).
 
-### insertDirectRule<sup>16+</sup>
+### insertDirectRule<sup>15+</sup>
 
 insertDirectRule(schemeFilter?: ProxySchemeFilter): void
 
@@ -14476,7 +14488,7 @@ Inserts a proxy rule to specify that URLs matching **schemeFilter** are directly
 
 | Name         | Type    |  Mandatory | Description          |
 | ---------------| ------- | ---- | ------------- |
-| schemeFilter   | [ProxySchemeFilter](#proxyschemefilter16)  | No  | Used to filter URLs to be directly connected to the server. Default value: **MATCH_ALL_SCHEMES**.|
+| schemeFilter   | [ProxySchemeFilter](#proxyschemefilter15)  | No  | Used to filter URLs to be directly connected to the server. Default value: **MATCH_ALL_SCHEMES**.|
 
 **Error codes**
 
@@ -14488,9 +14500,9 @@ For details about the following error codes, see [Universal Error Codes](../erro
 
 **Example**
 
-For details about the complete sample code, see [removeProxyOverride](#removeproxyoverride16).
+For details, see [removeProxyOverride](#removeproxyoverride15).
 
-### insertBypassRule<sup>16+</sup>
+### insertBypassRule<sup>15+</sup>
 
 insertBypassRule(bypassRule: string): void
 
@@ -14514,9 +14526,9 @@ For details about the following error codes, see [Universal Error Codes](../erro
 
 **Example**
 
-For details about the complete sample code, see [removeProxyOverride](#removeproxyoverride16).
+For details, see [removeProxyOverride](#removeproxyoverride15).
 
-### bypassHostnamesWithoutPeriod<sup>16+</sup>
+### bypassHostnamesWithoutPeriod<sup>15+</sup>
 
 bypassHostnamesWithoutPeriod(): void
 
@@ -14526,9 +14538,9 @@ Specifies that domain names without a period should bypass the proxy and directl
 
 **Example**
 
-For details about the complete sample code, see [removeProxyOverride](#removeproxyoverride16).
+For details, see [removeProxyOverride](#removeproxyoverride15).
 
-### clearImplicitRules<sup>16+</sup>
+### clearImplicitRules<sup>15+</sup>
 
 clearImplicitRules(): void
 
@@ -14538,9 +14550,9 @@ Overrides the default behavior and forces local host or local IP address to be s
 
 **Example**
 
-For details about the complete sample code, see [removeProxyOverride](#removeproxyoverride16).
+For details, see [removeProxyOverride](#removeproxyoverride15).
 
-### enableReverseBypass<sup>16+</sup>
+### enableReverseBypass<sup>15+</sup>
 
 enableReverseBypass(reverse: boolean): void
 
@@ -14552,7 +14564,7 @@ Reverses the bypass rule.
 
 | Name         | Type    |  Mandatory | Description          |
 | ---------------| ------- | ---- | ------------- |
-| reverse     | boolean  | Yes  | Whether to reverse the bypass rule. The default value is **false**, indicating the bypass rule is not reversed. The value **true** indicates the opposite.|
+| reverse     | boolean  | Yes  | Whether to reverse the bypass rule. The default value is **false**, indicating the bypass rule set in [insertBypassRule](#insertbypassrule15) is not reversed. The value **true** indicates the opposite.|
 
 **Error codes**
 
@@ -14564,9 +14576,9 @@ For details about the following error codes, see [Universal Error Codes](../erro
 
 **Example**
 
-For details about the complete sample code, see [removeProxyOverride](#removeproxyoverride16).
+For details, see [removeProxyOverride](#removeproxyoverride15).
 
-### getBypassRules<sup>16+</sup>
+### getBypassRules<sup>15+</sup>
 
 getBypassRules(): Array\<string\>
 
@@ -14582,9 +14594,9 @@ Obtains the list of URLs that do not use the proxy.
 
 **Example**
 
-For details about the complete sample code, see [removeProxyOverride](#removeproxyoverride16).
+For details, see [removeProxyOverride](#removeproxyoverride15).
 
-### getProxyRules<sup>16+</sup>
+### getProxyRules<sup>15+</sup>
 
 getProxyRules(): Array\<ProxyRule\>
 
@@ -14596,17 +14608,17 @@ Obtains proxy rules.
 
 | Type  | Description                     |
 | ------ | ------------------------- |
-| Array\<[ProxyRule](#proxyrule16)\> | Proxy rule.|
+| Array\<[ProxyRule](#proxyrule15)\> | Proxy rule.|
 
 **Example**
 
-For details about the complete sample code, see [removeProxyOverride](#removeproxyoverride16).
+For details, see [removeProxyOverride](#removeproxyoverride15).
 
-### isReverseBypassEnabled<sup>16+</sup>
+### isReverseBypassEnabled<sup>15+</sup>
 
 isReverseBypassEnabled(): boolean
 
-Obtains the value of [enableReverseBypass](#enablereversebypass16). For details, see [enableReverseBypass](#enablereversebypass16).
+Obtains the value of [enableReverseBypass](#enablereversebypass15). For details, see [enableReverseBypass](#enablereversebypass15).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -14614,22 +14626,22 @@ Obtains the value of [enableReverseBypass](#enablereversebypass16). For details,
 
 | Type  | Description                     |
 | ------ | ------------------------- |
-| boolean | Value of [enableReverseBypass](#enablereversebypass16). The default value is **false**, indicating the bypass rule is not reversed. The value **true** indicates the opposite.|
+| boolean | Value of [enableReverseBypass](#enablereversebypass15). The default value is **false**, indicating the bypass rule set in [insertBypassRule](#insertbypassrule15) is not reversed. The value **true** indicates the opposite.|
 
 **Example**
 
-For details about the complete sample code, see [removeProxyOverride](#removeproxyoverride16).
+For details, see [removeProxyOverride](#removeproxyoverride15).
 
 
-## ProxyRule<sup>16+</sup>
+## ProxyRule<sup>15+</sup>
 
-Indicates the proxy rule used in the [insertProxyRule](#insertproxyrule16).
+Indicates the proxy rule used in the [insertProxyRule](#insertproxyrule15).
 
-### getSchemeFilter<sup>16+</sup>
+### getSchemeFilter<sup>15+</sup>
 
 getSchemeFilter(): ProxySchemeFilter
 
-Obtains the [ProxySchemeFilter](#proxyschemefilter16) information in the proxy rule.
+Obtains the [ProxySchemeFilter](#proxyschemefilter15) information in the proxy rule.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -14637,13 +14649,13 @@ Obtains the [ProxySchemeFilter](#proxyschemefilter16) information in the proxy r
 
 | Type  | Description                     |
 | ------ | ------------------------- |
-| [ProxySchemeFilter](#proxyschemefilter16) | The [ProxySchemeFilter](#proxyschemefilter16) information in the proxy rule.|
+| [ProxySchemeFilter](#proxyschemefilter15) | The [ProxySchemeFilter](#proxyschemefilter15) information in the proxy rule.|
 
 **Example**
 
-For details about the complete sample code, see [removeProxyOverride](#removeproxyoverride16).
+For details, see [removeProxyOverride](#removeproxyoverride15).
 
-### getUrl<sup>16+</sup>
+### getUrl<sup>15+</sup>
 
 getUrl(): string
 
@@ -14659,9 +14671,9 @@ Obtains the URL specified in the proxy rule.
 
 **Example**
 
-For details about the complete sample code, see [removeProxyOverride](#removeproxyoverride16).
+For details, see [removeProxyOverride](#removeproxyoverride15).
 
-## OnProxyConfigChangeCallback<sup>16+</sup>
+## OnProxyConfigChangeCallback<sup>15+</sup>
 
 type OnProxyConfigChangeCallback = () => void
 
@@ -14671,17 +14683,17 @@ Called when the proxy is set successfully.
 
 **Example**
 
-For details about the complete sample code, see [removeProxyOverride](#removeproxyoverride16).
+For details, see [removeProxyOverride](#removeproxyoverride15).
 
-## ProxyController<sup>16+</sup>
+## ProxyController<sup>15+</sup>
 
 Implements a **ProxyController** object to set a proxy for an application.
 
-### applyProxyOverride<sup>16+</sup>
+### applyProxyOverride<sup>15+</sup>
 
 static applyProxyOverride(proxyConfig: ProxyConfig, callback: OnProxyConfigChangeCallback): void
 
-Set the proxy used by all webs in an application. URLs that match the bypass rule inserted through [insertBypassRule](#insertbypassrule16) do not use the proxy. Instead, their requests are directly sent to the source addresses specified by the URLs. The new proxy may not be used immediately after the network is connected. Before loading the page, wait for the listener to be triggered in the UI thread.
+Set the proxy used by all webs in an application. URLs that match the bypass rule inserted through [insertBypassRule](#insertbypassrule15) do not use the proxy. Instead, their requests are directly sent to the source addresses specified by the URLs. The new proxy may not be used immediately after the network is connected. Before loading the page, wait for the listener to be triggered in the UI thread.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -14689,8 +14701,8 @@ Set the proxy used by all webs in an application. URLs that match the bypass rul
 
 | Name         | Type    |  Mandatory | Description          |
 | ---------------| ------- | ---- | ------------- |
-| proxyConfig     | [ProxyConfig](#proxyconfig16)  | Yes  | Configuration of the proxy.|
-| callback     | [OnProxyConfigChangeCallback](#onproxyconfigchangecallback16)   | Yes  | Callback used when the proxy is successfully set.|
+| proxyConfig     | [ProxyConfig](#proxyconfig15)  | Yes  | Configuration of the proxy.|
+| callback     | [OnProxyConfigChangeCallback](#onproxyconfigchangecallback15)   | Yes  | Callback used when the proxy is successfully set.|
 
 **Error codes**
 
@@ -14702,9 +14714,9 @@ For details about the following error codes, see [Universal Error Codes](../erro
 
 **Example**
 
-For details about the complete sample code, see [removeProxyOverride](#removeproxyoverride16).
+For details, see [removeProxyOverride](#removeproxyoverride15).
 
-### removeProxyOverride<sup>16+</sup>
+### removeProxyOverride<sup>15+</sup>
 
 static removeProxyOverride(callback: OnProxyConfigChangeCallback): void
 
@@ -14716,7 +14728,7 @@ Removes the proxy configuration. The new proxy may not be used immediately after
 
 | Name         | Type    |  Mandatory | Description          |
 | ---------------| ------- | ---- | ------------- |
-| callback     | [OnProxyConfigChangeCallback](#onproxyconfigchangecallback16)   | Yes  | Callback used when the proxy is successfully set.|
+| callback     | [OnProxyConfigChangeCallback](#onproxyconfigchangecallback15)   | Yes  | Callback used when the proxy is successfully set.|
 
 **Error codes**
 
@@ -15474,7 +15486,7 @@ For the complete sample code, see [constructor](#constructor12).
 
 getNetErrorCode(): WebNetErrorList
 
-Obtains the network error code of this response.
+Obtains the network error code of the response.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -15492,7 +15504,7 @@ For the complete sample code, see [constructor](#constructor12).
 
 getStatus(): number
 
-Obtains the HTTP status code of this response.
+Obtains the HTTP status code of the response.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -16179,7 +16191,7 @@ Enumerates the suspension types of the player.
 ## NativeMediaPlayerBridge<sup>12+<sup>
 
 Implements a **NativeMediaPlayerBridge** object, which is the return value of the [CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) callback.
-It is an interface class that acts as a bridge between the web media player and the ArkWeb kernel.
+It is an API class that acts as a bridge between the web media player and the ArkWeb kernel.
 The ArkWeb engine uses an object of this interface class to control the player created by the application to take over web page media.
 
 ### updateRect<sup>12+<sup>
@@ -16466,7 +16478,7 @@ This object is used to create a player to take over media playback of the web pa
 
 | Type| Description|
 |------|------|
-| [NativeMediaPlayerBridge](#nativemediaplayerbridge12) | Instance of the interface class between the player that takes over web media and the ArkWeb kernel.<br>The application needs to implement the interface class.<br> Object used by the ArkWeb engine to control the player created by the application to take over web page media.<br>If the application returns **null**, the application does not take over the media playback, and the media will be played by the ArkWeb engine.|
+| [NativeMediaPlayerBridge](#nativemediaplayerbridge12) | Instance of the API class between the player that takes over web media and the ArkWeb kernel.<br>The application needs to implement the interface class.<br> Object used by the ArkWeb engine to control the player created by the application to take over web page media.<br>If the application returns **null**, the application does not take over the media playback, and the media will be played by the ArkWeb engine.|
 
 **Example**
 
@@ -17232,5 +17244,3 @@ struct WebComponent {
   }
 }
 ```
-
-<!--no_check-->
