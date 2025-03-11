@@ -40,7 +40,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -91,7 +91,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -142,7 +142,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -184,7 +184,7 @@ cancelSuspendDelay(requestId: number): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -232,7 +232,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -326,7 +326,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -407,7 +407,7 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -471,7 +471,7 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -535,7 +535,7 @@ startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -665,7 +665,7 @@ updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;Continu
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
