@@ -44,7 +44,7 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 
 **示例：**
 
- ```js
+```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
   let context = getContext(this) as Context;
@@ -64,7 +64,7 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
       }
       console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   });
- ```
+```
 
 ## contact.addContact<sup>(deprecated)7+</sup>
 
@@ -143,7 +143,7 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
 
 **示例：**
 
- ```js
+```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
   let context = getContext(this) as Context;
@@ -162,7 +162,7 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
   }).catch((err: BusinessError) => {
     console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
   });
- ```
+```
 
 ## contact.addContact<sup>(deprecated)7+</sup>
 
@@ -236,7 +236,7 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
 
 **示例：**
 
- ```js
+```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
   let context = getContext(this) as Context; 
@@ -247,7 +247,7 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
       }
       console.info('Succeeded in deleting Contact.');
   });
- ```
+```
 
 ## contact.deleteContact<sup>(deprecated)7+</sup>
 
@@ -584,7 +584,7 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 
 **示例：**
 
- ```js
+```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
   let context = getContext(this) as Context;
@@ -604,7 +604,7 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
   }).catch((err: BusinessError) => {
       console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
   });
- ```
+```
 
 ## contact.updateContact<sup>(deprecated)7+</sup>
 
@@ -765,7 +765,7 @@ isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
 
 **示例：**
 
- ```js
+```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
   let context = getContext(this) as Context;
@@ -775,7 +775,7 @@ isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
   }).catch((err: BusinessError) => {
       console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
   });
- ```
+```
 
 ## contact.isLocalContact<sup>(deprecated)7+</sup>
 
@@ -844,7 +844,7 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
 
 **示例：**
 
- ```js
+```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
   let context = getContext(this) as Context;
@@ -855,7 +855,7 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
       }
       console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   });
- ```
+```
 
 ## contact.isMyCard<sup>(deprecated)7+</sup>
 
@@ -925,7 +925,7 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
 
 **示例：**
 
- ```js
+```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
   let context = getContext(this) as Context;
@@ -935,7 +935,7 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
   }).catch((err: BusinessError) => {
       console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
   });
- ```
+```
 
 ## contact.isMyCard<sup>(deprecated)7+</sup>
 
@@ -1003,7 +1003,7 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
 
 **示例：**
 
- ```js
+```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
   let context = getContext(this) as Context;
@@ -1014,7 +1014,7 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
       }
       console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
- ```
+```
 
 ## contact.queryMyCard<sup>(deprecated)7+</sup>
 
@@ -1078,7 +1078,7 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
 
 **示例：**
 
- ```js
+```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
   let context = getContext(this) as Context;
@@ -1091,7 +1091,7 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
       }
       console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
- ```
+```
 
 ## contact.queryMyCard<sup>(deprecated)7+</sup>
 
@@ -1163,7 +1163,7 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
 
 **示例：**
 
- ```js
+```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
   let context = getContext(this) as Context;
@@ -1175,7 +1175,7 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
   }).catch((err: BusinessError) => {
       console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
   });
- ```
+```
 
 ## contact.queryMyCard<sup>(deprecated)7+</sup>
 
@@ -1701,7 +1701,7 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
 
 **示例：**
 
- ```js
+```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context。
   let context = getContext(this) as Context;
@@ -1718,7 +1718,7 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
       }
       console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
- ```
+```
 
 ## contact.queryContact<sup>(deprecated)7+</sup>
 
@@ -2269,7 +2269,7 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 
 **示例：**
 
- ```js
+```js
   import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.queryContacts({
       holderId: 1,
@@ -2283,7 +2283,7 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
   }).catch((err: BusinessError) => {
       console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
   });
- ```
+```
 
 ## contact.queryContactsByPhoneNumber<sup>10+</sup>
 
