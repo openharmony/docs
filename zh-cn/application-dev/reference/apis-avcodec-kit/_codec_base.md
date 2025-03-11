@@ -1496,7 +1496,7 @@ RAW音频码流的MIME类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVCODEC_MIMETYPE_AUDIO_MPEG
@@ -2807,7 +2807,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT
@@ -2828,4 +2828,4 @@ const char* OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 16
+**起始版本：** 18
