@@ -4525,7 +4525,6 @@
 
 **起始版本**：18
 
-## system_grant，不允许ACL跨级申请
 ## ohos.permission.INSTALL_PLUGIN_BUNDLE
 
 允许应用调用安装插件的接口。
