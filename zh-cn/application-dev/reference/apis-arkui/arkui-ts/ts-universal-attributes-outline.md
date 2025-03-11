@@ -26,15 +26,15 @@ outline(value: OutlineOptions)
 | ------ | ----------------------------------------- | ---- | ------------ |
 | value  | [OutlineOptions](#outlineoptions对象说明) | 是   | 外描边样式。 |
 
-## outline<sup>16+</sup>
+## outline<sup>18+</sup>
 
 outline(options: Optional\<OutlineOptions>)
 
 统一外描边样式设置接口。与[outline](#outline)相比，options参数新增了对undefined类型的支持。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -78,15 +78,15 @@ outlineStyle(value: OutlineStyle | EdgeOutlineStyles)
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | value  | [OutlineStyle](#outlinestyle11枚举说明)&nbsp;\|&nbsp;[EdgeOutlineStyles](#edgeoutlinestyles对象说明) | 是   | 设置元素的外描边样式。<br/>默认值：OutlineStyle.SOLID |
 
-## outlineStyle<sup>16+</sup>
+## outlineStyle<sup>18+</sup>
 
 outlineStyle(style: Optional\<OutlineStyle | EdgeOutlineStyles>)
 
 设置元素的外描边样式。与[outlineStyle](#outlinestyle)相比，style参数新增了对undefined类型的支持。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -114,15 +114,15 @@ outlineWidth(value: Dimension | EdgeOutlineWidths)
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](#edgeoutlinewidths对象说明) | 是   | 设置元素的外描边宽度，不支持百分比。 <br/>默认值：0。 |
 
-## outlineWidth<sup>16+</sup>
+## outlineWidth<sup>18+</sup>
 
 outlineWidth(width: Optional\<Dimension | EdgeOutlineWidths>)
 
 设置元素的外描边宽度。与[outlineWidth](#outlinewidth)相比，width参数新增了对undefined类型的支持。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -150,15 +150,15 @@ outlineColor(value: ResourceColor | EdgeColors)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors对象说明) | 是   | 设置元素的外描边颜色。<br/>默认值：Color.Black。 |
 
-## outlineColor<sup>16+</sup>
+## outlineColor<sup>18+</sup>
 
 outlineColor(color: Optional\<ResourceColor | EdgeColors>)
 
 设置元素的外描边颜色。与[outlineColor](#outlinecolor)相比，color参数新增了对undefined类型的支持。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -186,15 +186,15 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OutlineRadiuses](#outlineradiuses对象说明) | 是   | 设置元素的外描边圆角半径，不支持百分比。<br/>默认值：0。<br/>最大生效值：组件width/2 + outlineWidth或组件height/2 + outlineWidth。 |
 
-## outlineRadius<sup>16+</sup>
+## outlineRadius<sup>18+</sup>
 
 outlineRadius(radius: Optional\<Dimension | OutlineRadiuses>)
 
 设置元素的外描边圆角半径。与[outlineRadius](#outlineradius)相比，radius参数新增了对undefined类型的支持。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
