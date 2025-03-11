@@ -188,8 +188,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 | 名称 | 类型  | 必填 |说明         |
 | ------ | ------ | ------- |------------|
-| value  | number | 是 | 当前进度值。 |
-| total  | number | 是 | 进度总长。   |
+| value  | number | 是 | 当前进度值。当设置的数值小于0时，将其置为0。当设置的数值大于total时，将其置为total。<br/>默认值：0<br/>取值范围：[0, total] |
+| total  | number | 是 | 进度总长。<br/>取值范围：[0, +∞]   |
 
 ## CommonProgressStyleOptions<sup>10+</sup>
 
@@ -224,7 +224,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | 名称          | 类型                      | 必填 | 说明                                                                                        |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth  | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp                                            |
-| scaleCount   | number                       | 否   | 设置环形进度条总刻度数。<br/>默认值：120                                                        |
+| scaleCount   | number                       | 否   | 设置环形进度条总刻度数。<br/>默认值：120 <br/>取值范围：[2, min(width, height)/scaleWidth/2/π]，不在取值范围内则样式会显示为环形无刻度进度条。                     |
 | scaleWidth   | [Length](ts-types.md#length) | 否   | 设置环形进度条刻度粗细（不支持百分比设置），刻度粗细大于进度条宽度时，为系统默认粗细。<br/>默认值：2.0vp |
 
 ## CapsuleStyleOptions<sup>10+</sup>
@@ -282,7 +282,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | 名称          | 类型                      | 必填 | 说明                                                                                        |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth  | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp                                            |
-| scaleCount   | number                       | 否   | 设置环形进度条总刻度数。<br/>默认值：120                                                        |
+| scaleCount   | number                       | 否   | 设置环形进度条总刻度数。<br/>默认值：120 <br/>取值范围：[2, min(width, height)/scaleWidth/2/π]，不在取值范围内则样式会显示为环形无刻度进度条。                                          |
 | scaleWidth   | [Length](ts-types.md#length) | 否   | 设置环形进度条刻度粗细（不支持百分比设置），刻度粗细大于进度条宽度时，为系统默认粗细。<br/>默认值：2.0vp |
 
 ## EclipseStyleOptions<sup>10+</sup>
