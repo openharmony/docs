@@ -46,7 +46,7 @@ import { window } from '@kit.ArkUI';
 | displayId  | number                     | 否 | 当前物理屏幕id。不设置，则默认为-1，该参数应为整数。                                             |
 | parentId   | number                     | 否 | 父窗口id。不设置，则默认为-1，该参数应为整数。                                                           |
 | decorEnabled<sup>12+</sup> | boolean | 否 | 是否显示窗口装饰，仅在windowType为TYPE_DIALOG时生效。true表示显示，false表示不显示。此参数默认值为false。<br>**系统能力：** SystemCapability.Window.SessionManager |
-| title<sup>12+</sup> | string| 否 | `decorEnabled`属性设置为true时，窗口的标题内容。不设置，则默认为空字符串。 <br>**系统能力：** SystemCapability.Window.SessionManager |
+| title<sup>12+</sup> | string| 否 | `decorEnabled`属性设置为true时，窗口的标题内容。标题显示区域最右端不超过系统三键区域最左端，超过部分以省略号表示。不设置，则默认为空字符串。 <br>**系统能力：** SystemCapability.Window.SessionManager |
 
 ## AvoidAreaType<sup>7+</sup>
 
@@ -5919,7 +5919,7 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| name   | string | 是   | 子窗口的名字。 |
+| name   | string | 是   | 子窗口的名字。标题显示区域最右端不超过系统三键区域最左端，超过部分以省略号表示。 |
 | options  | [SubWindowOptions](#subwindowoptions11) | 是   | 子窗口参数。  |
 
 **返回值：**
