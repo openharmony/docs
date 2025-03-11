@@ -15,7 +15,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [ISensorCallback.idl](_i_sensor_callback_8idl_v20.md) | Sensor模块为Sensor服务提供数据上报的回调函数。 | 
-| [ISensorInterface.idl](_i_sensor_interface_8idl_v20.md) | Sensor模块对外通用的接口声明文件，提供获取传感器设备信息、订阅/取消订阅传感器数据、 使能/去使能传感器、设置传感器模式、设置传感器精度，量程等可选配置接口定义。 | 
+| [ISensorInterface.idl](_i_sensor_interface_8idl_v20.md) | Sensor模块对外通用的接口声明文件，提供获取传感器设备信息、订阅/取消订阅传感器数据、使能/去使能传感器、设置传感器模式、设置传感器精度，量程等可选配置接口定义。 | 
 | [SensorTypes.idl](_sensor_types_8idl_v20.md) | 定义传感器模块所使用的传感器类型，传感器信息，传感器数据结构等数据类型。 | 
 
 ### 类
