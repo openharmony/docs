@@ -1162,7 +1162,7 @@ try {
 }
 ```
 
-## inputMonitor.on('keyPressed')<sup>16+</sup>
+## inputMonitor.on('keyPressed')<sup>15+</sup>
 
 on(type: 'keyPressed', keys: Array&lt;KeyCode&gt;, receiver: Callback&lt;KeyEvent&gt;): void
 
@@ -1206,7 +1206,7 @@ try {
 }
 ```
 
-## inputMonitor.off('keyPressed')<sup>16+</sup>
+## inputMonitor.off('keyPressed')<sup>15+</sup>
 
 off(type: 'keyPressed', receiver?: Callback&lt;KeyEvent&gt;): void
 
