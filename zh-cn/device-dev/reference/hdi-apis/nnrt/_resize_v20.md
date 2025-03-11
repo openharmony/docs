@@ -10,7 +10,7 @@
 
 输入：
 
-- x，一个4维tensor，tensor排布必须是[batchSize，height，width，channels](NHWC)。
+- x，一个4维tensor，tensor排布必须是[batchSize，height，width，channels] (NHWC)。
 
 输出：
 
