@@ -20,9 +20,9 @@ OTA（Over the Air）提供对设备远程升级的能力。升级子系统对�
 
 ### 实现原理
 
-OTA 的升级原理是利用升级包制作工具，将编译出的版本打包生成升级包。厂商设备集成 OTA 升级能力后，将升级包上传至服务器，通过升级应用下载升级包，触发并完成升级。
+OTA的升级原理是利用升级包制作工具，将编译出的版本打包生成升级包。厂商设备集成OTA升级能力后，将升级包上传至服务器，通过升级应用下载升级包，触发并完成升级。
 
-<a href="#ab-升级场景">AB 升级</a>：是 OTA 升级的一个场景，原理是设备有一套备份的B系统，在A系统运行时，可以在正常使用的状态下，静默更新B系统，升级成功后，重启切换新系统，实现版本更新的机制。
+<a href="#ab-升级场景">AB升级</a>：是OTA升级的一个场景，原理是设备有一套备份的B系统，在A系统运行时，可以在正常使用的状态下，静默更新B系统，升级成功后，重启切换新系统，实现版本更新的机制。
 
 
 ### 约束与限制
@@ -35,7 +35,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 
 - 目前轻量和小型系统仅支持全量包升级，暂不支持差分包、变分区包升级。
 
-- AB 升级只适用于标准系统支持 AB 分区启动的设备。
+- AB升级只适用于标准系统支持AB分区启动的设备。
 
 
 ## 环境准备
@@ -43,7 +43,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 - 在Windows上，下载安装OpenSSL工具，并配置环境变量。
 - 准备升级包制作工具。
 - 编译出版本镜像文件。
-- 将编译结果中的 out/rk3568/clang_x64/updater/updater/ 下的 diff 文件，out/rk3568/clang_x64/thirdparty/e2fsprogs 路径下的 libext2fs.so、e2fsdriod、libext2_com_err.so、libext2_misc.so 文件放入做包工具此路径下：packaging_tools/lib/。
+- 将编译结果中的'out/rk3568/clang_x64/updater/updater/'下的diff文件，'out/rk3568/clang_x64/thirdparty/e2fsprogs'路径下的libext2fs.so、e2fsdriod、libext2_com_err.so、libext2_misc.so文件放入做包工具此路径下：'packaging_tools/lib/'。
 
 
 ## 开发流程
@@ -62,22 +62,22 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 
 <a href="#厂商应用集成ota能力">5. 厂商应用集成OTA能力</a>
 
-&ensp;&ensp;<a href="#api-应用默认场景">5.1 API 应用默认场景</a>
+&ensp;&ensp;<a href="#api-应用默认场景">5.1 API应用默认场景</a>
 
-&ensp;&ensp;<a href="#api-应用定制场景">5.2 API 应用定制场景</a>
+&ensp;&ensp;<a href="#api-应用定制场景">5.2 API应用定制场景</a>
 
-&ensp;&ensp;<a href="#ab-升级场景">5.2 AB 升级场景</a>
+&ensp;&ensp;<a href="#ab-升级场景">5.2 AB升级场景</a>
 
 
 ## 开发步骤
 
 
 ### 生成公私钥对
-1. 使用OpenSSL工具生成公私钥对，将公钥 signing_cert.crt 放入做包工具此路径下：packaging_tools/sign_cert/。
+1. 使用OpenSSL工具生成公私钥对，将公钥signing_cert.crt放入做包工具此路径下：'packaging_tools/sign_cert/'。
 
-3. 请妥善保管私钥文件，在升级包制作过程中将私钥文件作为制作命令的参数带入，用于升级包签名，公钥用于升级时对升级包进行签名校验，公钥的放置如下： 轻量和小型系统将生成的公钥内容预置在代码中，需要厂商实现 HotaHalGetPubKey 这个接口来获取公钥。标准系统需要将生成的公钥放在device或vendor目录下的 /hisilicon/hi3516dv300/build/updater_config/signing_cert.crt 这个文件中。
+3. 请妥善保管私钥文件，在升级包制作过程中将私钥文件作为制作命令的参数带入，用于升级包签名，公钥用于升级时对升级包进行签名校验，公钥的放置如下：轻量和小型系统将生成的公钥内容预置在代码中，需要厂商实现'HotaHalGetPubKey'这个接口来获取公钥。标准系统需要将生成的公钥放在device或vendor目录下的'/hisilicon/hi3516dv300/build/updater_config/signing_cert.crt'这个文件中。
 
-5. 对使用 Hi3516DV300 套件的小型系统，在上一步的基础上，还需用public_arr.txt里面的全部内容替换uboot模块third_party\u-boot\u-boot-2020.01\product\hiupdate\verify\update_public_key.c 中的g_pub_key中的全部内容。
+5. 对使用Hi3516DV300套件的小型系统，在上一步的基础上，还需用public_arr.txt里面的全部内容替换uboot模块'third_party/u-boot/u-boot-2020.01/product/hiupdate/verify/update_public_key.c'中的'g_pub_key'中的全部内容。
    示例，uboot模块的公钥：
 
    ```c
@@ -95,7 +95,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 
 1. 创建目标版本（target_package）文件夹，文件格式如下：
 
-   轻量级系统和AB升级的小型系统不需要 OTA.tag 和 config。
+   轻量级系统和AB升级的小型系统不需要OTA.tag和config。
      
    ```text
     target_package
@@ -109,7 +109,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
         └── updater_specified_config.xml
    ```
 
-2. 将待升级的组件，包括镜像文件（例如：rootfs.img）等放入目标版本文件夹的根目录下，代替上文结构中的{component_N}部分。
+2. 将待升级的组件，包括镜像文件（例如：rootfs.img）等放入目标版本文件夹的根目录下，代替上文结构中的'{component_N}'部分。
 
 3. 填写“updater_config”文件夹中的“updater_specified_config.xml”组件配置文件。
    组件配置文件“updater_specified_config.xml”，格式如下：
@@ -137,15 +137,15 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    | 头信息（head节点） | info节点 | fileVersion | 必填 | update.bin文件校验方式，该节点内容配置为：02。 |
    | 头信息（head节点） | info节点 | prdID | 必填 | 保留字段，内容不影响升级包生成。 | 
    | 头信息（head节点） | info节点 | softVersion | 必填 | 软件版本号，即升级包版本号，版本必须比基础版本大，且OpenHarmony后没有其他字母，否则无法生产升级。 | 
-   | 头信息（head节点） | info节点 | _date_ | _必填_ | 升级包制作日期，保留字段，不影响升级包生成。 | 
-   | 头信息（head节点） | info节点 | _time_ | _必填_ | 升级包制作时间，保留字段，不影响升级包生成。 |  
+   | 头信息（head节点） | info节点 | date | 必填 | 升级包制作日期，保留字段，不影响升级包生成。 | 
+   | 头信息（head节点） | info节点 | time | 必填 | 升级包制作时间，保留字段，不影响升级包生成。 |  
    | 组件信息（group节点） | component节点 | / | 必填 | 该节点内容配置为：要打入升级包的组件/镜像文件的路径，默认为版本包根路径。 | 
    | 组件信息（group节点） | component节点 | compAddr | 必填 | 该组件所对应的分区名称，例如：system、vendor等。 | 
    | 组件信息（group节点） | component节点 | compId | 必填 | 组件Id，不同组件Id不重复。 | 
    | 组件信息（group节点） | component节点 | resType | 必填 | 保留字段，不影响升级包生成。 | 
    | 组件信息（group节点） | component节点 | compType | 必填 | 处理方式全量/差分，配置镜像处理方式的，0为全量处理、1为差分处理。 | 
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**\n
    > 对轻量系统/小型系统，不支持做差分升级，component标签中，属性compType值，不能配为 1，必须全部配置为 0。
    > 
    > 对轻量系统/小型系统，不支持变分区升级包的制作。
