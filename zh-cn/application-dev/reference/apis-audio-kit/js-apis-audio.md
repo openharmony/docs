@@ -5393,7 +5393,8 @@ audioSessionManager.off('audioSessionDeactivated', audioSessionDeactivatedCallba
 
 ## AudioSpatializationManager<sup>18+</sup>
 
-空间音频管理。在使用AudioSpatializationManager的接口前，需要使用[getSpatializationManager](#getspatializationmanager18)获取AudioSpatializationManager实例。
+空间音频管理。
+在使用AudioSpatializationManager的接口前，需要使用[getSpatializationManager](#getspatializationmanager18)获取AudioSpatializationManager实例。
 
 ### isSpatializationEnabledForCurrentDevice<sup>18+</sup>
 
@@ -5409,10 +5410,6 @@ isSpatializationEnabledForCurrentDevice(): boolean
 | ---------------------- | ------------------------------------------------------------ |
 | boolean | 返回当前设备空间音频渲染是否开启，true为开启，false为未开启。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
-
 **示例：**
 
 ```ts
@@ -5426,7 +5423,7 @@ console.info(`AudioSpatializationManager isSpatializationEnabledForCurrentDevice
 
 on(type: 'spatializationEnabledChangeForCurrentDevice', callback: Callback<boolean\>): void
 
-订阅当前设备空间音频渲染开关状态变化事件。
+订阅当前设备空间音频渲染开关状态变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -5435,11 +5432,11 @@ on(type: 'spatializationEnabledChangeForCurrentDevice', callback: Callback<boole
 | 参数名   | 类型                                                 | 必填 | 说明                                           |
 | :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
 | type     | string                                               | 是   | 订阅的事件的类型。支持事件：'spatializationEnabledChangeForCurrentDevice'。 |
-| callback | Callback<boolean\> | 是   | Callback对象，返回空间音频渲染开关状态，true为打开，false为关闭。   |
+| callback | Callback<boolean\> | 是   | 回调函数。返回true表示打开空间音频渲染状态；返回false表示关闭空间音频渲染状态。   |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -5460,7 +5457,7 @@ audioSpatializationManager.on('spatializationEnabledChangeForCurrentDevice', (is
 
 off(type: 'spatializationEnabledChangeForCurrentDevice', callback?: Callback<boolean\>): void
 
-取消订阅当前设备空间音频渲染开关状态变化事件。
+取消订阅当前设备空间音频渲染开关状态变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
 
@@ -5469,11 +5466,11 @@ off(type: 'spatializationEnabledChangeForCurrentDevice', callback?: Callback<boo
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | 是   | 订阅的事件的类型。支持事件：'spatializationEnabledChangeForCurrentDevice'。 |
-| callback | Callback<boolean\> | 否   | Callback对象，返回空间音频渲染开关状态，true为打开，false为关闭。 |
+| callback | Callback<boolean\> | 否   | 回调函数。返回true表示打开空间音频渲染状态；返回false表示关闭空间音频渲染状态。   |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -5640,7 +5637,7 @@ type AudioDeviceDescriptors = Array&lt;Readonly&lt;AudioDeviceDescriptor&gt;&gt;
 | channelMasks<sup>9+</sup>     | Array&lt;number&gt;        | 是   | 否   | 支持的通道掩码。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
 | displayName<sup>10+</sup>     | string                     | 是   | 否   | 设备显示名。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
 | encodingTypes<sup>11+</sup>    | Array&lt;[AudioEncodingType](#audioencodingtype8)&gt;                     | 是   | 否   | 支持的编码类型。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
-| spatializationSupported<sup>18+</sup>     | boolean                     | 是   | 否   | 空间音频支持能力 <br> **系统能力：** SystemCapability.Multimedia.Audio.Spatialization|
+| spatializationSupported<sup>18+</sup>     | boolean                     | 是   | 否   | 空间音频支持能力。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Spatialization|
 
 **示例：**
 

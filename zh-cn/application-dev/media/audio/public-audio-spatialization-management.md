@@ -1,10 +1,10 @@
 # 空间音频管理
 
-空间音频管理主要包含空间音频支持能力的查询和开关状态的查询与监听。
+空间音频管理主要包含空间音频支持能力的查询，开关状态的查询与监听。
 
-## 获取空间音频管理接口
+## 导入模块
 
-创建AudioSpatializationManager实例。在使用AudioSpatializationManager的API前，需要使用getSpatializationManager()创建一个AudioSpatializationManager实例。
+创建AudioSpatializationManager实例。在使用AudioSpatializationManager的API前，需要使用[getSpatializationManager](../../reference/apis-audio-kit/js-apis-audio.md#getspatializationmanager18)创建一个AudioSpatializationManager实例。
 
   ```ts
   import { audio } from '@kit.AudioKit';
@@ -15,7 +15,7 @@
 
 ## 查询设备是否支持空间音频渲染能力
 
-应用开发者可以使用AudioDeviceDescriptor的spatializationSupported属性获取指定设备是否具有空间音频渲染的能力，需要通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)。
+应用开发者可以使用[AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)的spatializationSupported属性获取指定设备是否具有空间音频渲染的能力，需要通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。
 
   ```ts
   import { audio } from '@kit.AudioKit';
@@ -32,7 +32,9 @@
 
 ## 查询当前发声设备的空间音频渲染效果开关状态
 
-应用开发者可以通过[isSpatializationEnabledForCurrentDevice](../../reference/apis-audio-kit/js-apis-audio.md#isspatializationenabledforcurrentdevice18)接口查询当前设备的空间音频渲染效果开关状态，该接口返回为true表示当前设备空间音频渲染开启，false表示当前设备空间音频渲染关闭。该状态仅为开关状态，实际是否生效还需依赖当前设备是否支持空间音频渲染。
+应用开发者可以通过[isSpatializationEnabledForCurrentDevice](../../reference/apis-audio-kit/js-apis-audio.md#isspatializationenabledforcurrentdevice18)接口查询当前设备的空间音频渲染效果开关状态。
+该接口返回为true表示当前设备空间音频渲染开启，false表示当前设备空间音频渲染关闭。
+该状态仅为开关状态，实际是否生效还需依赖当前设备是否支持空间音频渲染。
 
   ```ts
   import { audio } from '@kit.AudioKit';
@@ -41,9 +43,10 @@
   console.info(`AudioSpatializationManager isSpatializationEnabledForCurrentDevice: ${isSpatializationEnabledForCurrentDevice}`);
   ```
 
-## 订阅当前发声设备空间音频渲染效果的开关状态变化事件
+**订阅当前发声设备空间音频渲染效果的开关状态变化事件
 
-应用开发者可以通过[on('spatializationEnabledChangeForCurrentDevice')](../../reference/apis-audio-kit/js-apis-audio.md#onspatializationenabledchangeforcurrentdevice18)接口订阅当前空间音频渲染效果的开关状态变化事件，回调为true表示空间音频渲染被开启，false表示空间音频渲染被关闭。
+应用开发者可以通过[on('spatializationEnabledChangeForCurrentDevice')](../../reference/apis-audio-kit/js-apis-audio.md#onspatializationenabledchangeforcurrentdevice18)接口订阅当前空间音频渲染效果的开关状态变化事件。
+回调为true表示空间音频渲染被开启，false表示空间音频渲染被关闭。
 
   ```ts
   import { audio } from '@kit.AudioKit';
@@ -53,7 +56,7 @@
   });
   ```
 
-## 取消订阅当前发声设备空间音频渲染效果的开关状态变化事件
+**取消订阅当前发声设备空间音频渲染效果的开关状态变化事件
 
 应用开发者可以通过[off('spatializationEnabledChangeForCurrentDevice')](../../reference/apis-audio-kit/js-apis-audio.md#offspatializationenabledchangeforcurrentdevice18)接口取消订阅空间音频渲染效果的开关状态变化事件。
 
