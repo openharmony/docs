@@ -1799,10 +1799,10 @@ avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC)
 let startTime = 1000
 let deltaTime = 500
 for (let i = 1; i <= 30; i++) {
-  avPlayer.seek(startTime + i * deltaTime, media.SeekMode.SEEK_PRESEEK_CONTINUOUSV_SYNC)
+  avPlayer.seek(startTime + i * deltaTime, media.SeekMode.SEEK_CONTINUOUS)
   // wait 33ms, 可以搭配slider等控件的回调方法组合实现拖拽进度条更新画面的功能
 }
-avPlayer.seek(-1, media.SeekMode.SEEK_PRESEEK_CONTINUOUSV_SYNC)
+avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS)
 ```
 
 ### isSeekContinuousSupported<sup>18+</sup>
