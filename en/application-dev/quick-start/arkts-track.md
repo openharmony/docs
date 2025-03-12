@@ -4,7 +4,7 @@
 \@Track is a decorator used to decorate properties of class objects. Any changes to the properties decorated by \@Track will trigger only updates to the UI associated with those properties.
 
 
-Before reading this topic, you are advised to read [\@State](./arkts-state.md) to have a basic understanding of the observation capabilities of state management.
+Before reading this topic, you are advised to read [\@State](./arkts-state.md) to have an understanding of the basic observation capabilities of state management.
 
 > **NOTE**
 >
@@ -22,6 +22,8 @@ Before reading this topic, you are advised to read [\@State](./arkts-state.md) t
 | ------------------ | -------------------- |
 | Decorator parameters  | None.|
 | Allowed variable types| Non-static properties of class objects.|
+
+
 
 ## Observed Changes and Behavior
 
@@ -183,7 +185,7 @@ Processing steps:
 
 ### Improperly Using Non-\@Track Decorated Properties Causes Errors
 
-If a property that is not decorated by \@Track is used in the UI, an error is reported during runtime.
+If a non-\@Track decorated property is used in the UI, an error is reported during runtime.
 
 ```ts
 class Person {

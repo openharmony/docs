@@ -2,7 +2,7 @@
 
 When you use multiple global @Builder functions in a struct to implement different UI effects, the code maintenance becomes difficult and the page is not neat. In this case, you can use **wrapBuilder** to encapsulate the global @Builder.
 
-Before reading this topic, you are advised to read [\@Builder](./arkts-builder.md).
+  Before reading this topic, you are advised to read [\@Builder](./arkts-builder.md).
 
 > **NOTE**
 >
@@ -25,7 +25,7 @@ function testBuilder() {
 
 In the preceding code, **builderArr** is an array consisting of @Builder methods. When each @Builder method is obtained from **ForEach**, the @Builder method cannot be used in the UI method.
 
-To solve this problem, **wrapBuilder** is introduced as the global @Builder encapsulation function. **wrapBuilder** is a template function that accepts a [global \@Builder decorated function](arkts-builder.md#global-custom-builder-function) as its argument and returns a **WrappedBuilder** object, thereby allowing global \@Builder decorated function to be assigned a value and transferred.
+ To solve this problem, **wrapBuilder** is introduced as the global @Builder encapsulation function. **wrapBuilder** is a template function that accepts a [global \@Builder decorated function](arkts-builder.md#global-custom-builder-function) as its argument and returns a **WrappedBuilder** object, thereby allowing global \@Builder decorated function to be assigned a value and transferred.
 
 ## Available APIs
 
@@ -54,11 +54,15 @@ let builderVar: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder)
 let builderArr: WrappedBuilder<[string, number]>[] = [wrapBuilder(MyBuilder)] // An array is acceptable.
 ```
 
+
+
 ## Constraints
 
 **wrapBuilder** only accepts a [global \@Builder decorated function](arkts-builder.md#global-custom-builder-function) as its argument.
 
 Of the **WrappedBuilder** object it returns, the **builder** attribute method can be used only inside the struct.
+
+
 
 ## Assigning a Value to a Variable Using the @Builder Method
 
@@ -166,11 +170,11 @@ struct Parent{
 }
 ```
 
-## Incorrect Usage
+## FAQs
 
 ### wrapBuilder Redefinition Failure
 
-After **builderObj** is initialized and defined through **wrapBuilder(MyBuilderFirst)**, if you assign a new value to **builderObj**, **wrapBuilder(MyBuilderSecond)** does not take effect. Only the first defined **wrapBuilder(MyBuilderFirst)** takes effect.
+In the same custom component, the same **wrapBuilder** can be initialized only once. In the example, after **builderObj** is initialized through **wrapBuilder(MyBuilderFirst)**, **wrapBuilder(MyBuilderSecond)** does not take effect when a value is assigned to **builderObj** again.
 
 ```ts
 @Builder
@@ -197,6 +201,7 @@ struct Index {
 
   aboutToAppear(): void {
     setTimeout(() => {
+      // wrapBuilder (MyBuilderSecond) does not take effect.
       this.builderObj.globalBuilder = wrapBuilder(MyBuilderSecond);
     },1000)
   }
