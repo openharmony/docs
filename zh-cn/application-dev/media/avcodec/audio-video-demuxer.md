@@ -177,6 +177,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    在获取、解析DRM信息后，需创建对应DRM解决方案的[MediaKeySystem、MediaKeySession](../drm/drm-c-dev-guide.md)，获取DRM许可证等。并根据需要设置音频解密配置(详见[音频解码开发指南开发步骤](audio-decoding.md#开发步骤)第4步)、设置视频解密配置（详见[视频解码开发指南开发步骤Surface模式](video-decoding.md#surface模式)第5步或[Buffer模式](video-decoding.md#buffer模式)第4步），实现DRM内容解密。
 
 5. 获取文件信息
+
    ```c++
    // 获取文件用户自定义属性（可选，若用户无需获取自定义属性，可跳过此步）。
    // 从文件 source 获取用户自定义属性信息。
