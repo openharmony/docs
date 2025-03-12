@@ -27,7 +27,7 @@ getEnabled(index: number): boolean
 **返回值：**
 | 类型 | 说明 |
 | ---- | ---- |
-| boolean | 返回特定下标的图层是否使能，true表示使用图层掩码，false表示不使用。 |
+| boolean | 返回特定下标的图层是否使能。true表示使用图层掩码，false表示不使用。 |
 
 **示例：**
 ```ts
@@ -60,7 +60,7 @@ setEnabled(index: number, enabled: boolean): void
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
 | index | number | 是 | 要使能图层的下标，值域为大于等于0的整数。 |
-| enabled | boolean | 是 | 要设置的使能状态，true表示使用图层掩码，false表示不使用。 |
+| enabled | boolean | 是 | 要设置的使能状态。true表示使用图层掩码，false表示不使用。 |
 
 **示例：**
 ```ts
@@ -286,7 +286,7 @@ function count() : void {
 | position | [Position3](js-apis-inner-scene-types.md#position3) | 否 | 否 | 结点位置。 |
 | rotation | [Quaternion](js-apis-inner-scene-types.md#quaternion) | 否 | 否 | 结点旋转角度。 |
 | scale | [Scale3](js-apis-inner-scene-types.md#scale3) | 否 | 否 | 结点缩放。 |
-| visible | boolean | 否 | 否 | 结点是否可见，true表示该节点可见，false表示不可见。 |
+| visible | boolean | 否 | 否 | 结点是否可见。true表示该节点可见，false表示不可见。 |
 | nodeType | [NodeType](#nodetype) | 是 | 否 | 结点类型。 |
 | layerMask | [LayerMask](#layermask) | 是 | 否 | 结点的图层掩码。 |
 | path | string | 是 | 否 | 结点路径。 |
@@ -360,8 +360,8 @@ function getNode() : void {
 | lightType | [LightType](#lighttype) | 是 | 否 | 光源类型。 |
 | color | [Color](js-apis-inner-scene-types.md#color) | 否 | 否 | 颜色。 |
 | intensity | number | 否 | 否 | 光照密度，取值范围是大于0的实数。 |
-| shadowEnabled | boolean | 否 | 否 | 是否使能阴影，true表示添加阴影，false表示没有阴影效果。 |
-| enabled | boolean | 否 | 否 | 是否使能光源，true表示使用光源，false表示不使用。 |
+| shadowEnabled | boolean | 否 | 否 | 是否使能阴影。true表示添加阴影，false表示没有阴影效果。 |
+| enabled | boolean | 否 | 否 | 是否使能光源。true表示使用光源，false表示不使用。 |
 
 ## SpotLight
 点光源类型，继承自[Light](#light)。
@@ -386,6 +386,6 @@ function getNode() : void {
 | fov | number | 否 | 否 | 视场，取值在0到π弧度之间。 |
 | nearPlane | number | 否 | 否 | 近平面，取值大于0。 |
 | farPlane | number | 否 | 否 | 远平面，取值大于nearPlane。 |
-| enabled | boolean | 否 | 否 | 是否使能相机，true表示使用相机，false表示不使用相机。 |
+| enabled | boolean | 否 | 否 | 是否使能相机。true表示使用相机，false表示不使用相机。 |
 | postProcess | [PostProcessSettings](js-apis-inner-scene-post-process-settings.md#postprocesssettings) \| null | 否 | 否 | 后处理设置。 |
 | clearColor | [Color](js-apis-inner-scene-types.md#color) \| null | 否 | 否 | 将渲染目标（render target）清空后的特定颜色。 |

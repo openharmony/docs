@@ -8411,7 +8411,7 @@ int32_t OH_ArkUI_CustomDialog_SetLevelMode(ArkUI_CustomDialogOptions* options, A
 
 设置弹窗的显示层级。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -8437,7 +8437,7 @@ int32_t OH_ArkUI_CustomDialog_SetLevelUniqueId(ArkUI_CustomDialogOptions* option
 
 设置弹窗显示层级页面下的节点id。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -8463,7 +8463,7 @@ int32_t OH_ArkUI_CustomDialog_SetImmersiveMode(ArkUI_CustomDialogOptions* option
 
 设置嵌入式弹窗蒙层的显示区域。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 

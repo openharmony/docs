@@ -21,6 +21,7 @@ Defines the status of the operating hand.
 
 | Name               | Value  | Description                  |
 | ------------------- | ---- | ---------------------- |
+| UNKNOWN_STATUS  | 0    | Unknown status.|
 | LEFT_HAND_OPERATED  | 1    | Left hand in use.|
 | RIGHT_HAND_OPERATED | 2    | Right hand in use.|
 

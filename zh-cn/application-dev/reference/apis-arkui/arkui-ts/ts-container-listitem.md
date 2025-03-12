@@ -196,7 +196,7 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 | onEnterActionArea | () => void | 否 | 在滑动条目进入删除区域时调用，只触发一次，当再次进入时仍触发。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onExitActionArea | () => void | 否 |当滑动条目退出删除区域时调用，只触发一次，当再次退出时仍触发。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | builder |  [CustomBuilder](ts-types.md#custombuilder8) | 否 |当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）时显示的操作项。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| builderComponent<sup>16+</sup> |  [ComponentContent](../js-apis-arkui-ComponentContent.md) | 否 |当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）时显示的操作项。 <br/>**说明：** <br/>该参数的优先级高于参数builder。即同时设置builder和builderComponent时，以builderComponent设置的值为准。<br/> 同一个builderComponent不推荐同时给不同的start/end使用，否则会导致显示问题。 <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
+| builderComponent<sup>18+</sup> |  [ComponentContent](../js-apis-arkui-ComponentContent.md) | 否 |当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）时显示的操作项。 <br/>**说明：** <br/>该参数的优先级高于参数builder。即同时设置builder和builderComponent时，以builderComponent设置的值为准。<br/> 同一个builderComponent不推荐同时给不同的start/end使用，否则会导致显示问题。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 | onStateChange<sup>11+</sup> | (state:[SwipeActionState](#swipeactionstate11枚举说明)) => void | 否 |当列表项滑动状态变化时候触发。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 ## ListItemOptions<sup>10+</sup>对象说明
 

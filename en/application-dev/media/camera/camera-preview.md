@@ -62,7 +62,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        console.error('cameraInput is undefined');
        return;
      }
-     // Open a camera.
+     // Open the camera.
      await cameraInput.open();
      let session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
      session.beginConfig();

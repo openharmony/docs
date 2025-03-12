@@ -144,9 +144,9 @@ function destroy() : void {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| enabled | boolean | 否 | 否 | 动画是否使能，true表示可以播放动画，false表示不可以播放动画。 |
+| enabled | boolean | 否 | 否 | 动画是否使能。true表示可以播放动画，false表示不可以播放动画。 |
 | duration | number | 是 | 否 | 动画持续时间，取值范围大于等于0。 |
-| running | boolean | 是 | 否 | 动画运行状态, true表示动画正在播放，false表示动画停止播放。 |
+| running | boolean | 是 | 否 | 动画运行状态。true表示动画正在播放，false表示动画停止播放。 |
 | progress | number | 是 | 否 | 动画进度状态，取值区间为[0, 1]。 |
 
 ### onFinished
