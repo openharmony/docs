@@ -51,7 +51,7 @@ PopupOptions定义Popup的具体式样参数。
 | onClose   | () => void                                                   | 否   | 设置popup关闭按钮回调函数。|
 | buttons   | [[PopupButtonOptions](#popupbuttonoptions)?,[PopupButtonOptions](#popupbuttonoptions)?] | 否   | 设置popup操作按钮,按钮最多设置两个。 |
 | direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 否                                | 布局方向。<br/>默认值：Direction.Auto                                |
-| maxWidth<sup>16+</sup> | [Dimension](ts-types.md#dimension10)                                             | 否                                | 设置popup的最大宽度，通过此接口popup可以自定义宽度显示。<br/>默认值：400vp                                |
+| maxWidth<sup>18+</sup> | [Dimension](ts-types.md#dimension10)                                             | 否                                | 设置popup的最大宽度，通过此接口popup可以自定义宽度显示。<br/>默认值：400vp                                |
 
 ## PopupTextOptions
 
