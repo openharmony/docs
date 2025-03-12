@@ -146,7 +146,7 @@ shaderInputBuffer(buffer: Array&lt;number&gt;)
 
 | 参数名 | 类型           | 必填 | 说明                       |
 | ------ | -------------- | ---- | -------------------------- |
-| buffer | Array<number\> | 是   | 自定义渲染用到的动效参数，数组大小取值范围是[0, 4]MB。 |
+| buffer | Array<number\> | 是   | 自定义渲染用到的动效参数。 |
 
 ### renderWidth
 
