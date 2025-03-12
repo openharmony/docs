@@ -2466,7 +2466,7 @@ try {
 
 getAppVolumePercentage(): Promise<number\>
 
-获取应用的音量（范围为0到100）。使用Promise方式异步返回结果。
+获取应用的音量（范围为0到100）。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2490,7 +2490,7 @@ audioVolumeManager.getAppVolumePercentage().then((value: number) => {
 
 setAppVolumePercentage(volume: number\): Promise<void\>
 
-设置应用的音量（范围为0到100）。使用Promise方式异步返回结果。
+设置应用的音量（范围为0到100）。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
