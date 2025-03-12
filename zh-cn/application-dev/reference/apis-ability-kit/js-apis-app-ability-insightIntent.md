@@ -30,14 +30,12 @@ import { insightIntent } from '@kit.AbilityKit';
 
 意图调用的返回结果。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| code | number | 否 | 否 | 意图调用返回的错误码。 |
-| result | Record<string, Object> | 否 | 是 | 意图调用返回的结果。 |
-| uris<sup>16+</sup> | Array&lt;string&gt; | 否 | 是 | 意图调用时，意图执行方给意图调用方授权的URI列表。 |
-| flags<sup>16+</sup> | number | 否 | 是 | 意图调用时，意图执行方给意图调用方授权的uris的[flags](js-apis-app-ability-wantConstant.md#flags)。 <br/>**说明：**<br/>该参数仅支持FLAG_AUTH_READ_URI_PERMISSION、FLAG_AUTH_WRITE_URI_PERMISSION、FLAG_AUTH_READ_URI_PERMISSION\|FLAG_AUTH_WRITE_URI_PERMISSION。|
+| code | number | 否 | 否 | 意图调用返回的错误码。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| result | Record<string, Object> | 否 | 是 | 意图调用返回的结果。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| uris<sup>18+</sup> | Array&lt;string&gt; | 否 | 是 | 意图调用时，意图执行方给意图调用方授权的URI列表。<br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| flags<sup>18+</sup> | number | 否 | 是 | 意图调用时，意图执行方给意图调用方授权的uris的[flags](js-apis-app-ability-wantConstant.md#flags)。<br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 <br/>**说明：**<br/>该参数仅支持FLAG_AUTH_READ_URI_PERMISSION、FLAG_AUTH_WRITE_URI_PERMISSION、FLAG_AUTH_READ_URI_PERMISSION\|FLAG_AUTH_WRITE_URI_PERMISSION。|
 

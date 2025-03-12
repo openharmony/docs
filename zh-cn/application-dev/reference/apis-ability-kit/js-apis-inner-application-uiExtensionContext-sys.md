@@ -80,7 +80,7 @@ export default class UIExtension extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.startServiceExtensionAbility<sup>16+</sup>
+## UIExtensionContext.startServiceExtensionAbility<sup>18+</sup>
 
 startServiceExtensionAbility(want: Want): Promise\<void>
 
@@ -160,7 +160,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.startServiceExtensionAbilityWithAccount<sup>16+</sup>
+## UIExtensionContext.startServiceExtensionAbilityWithAccount<sup>18+</sup>
 
 startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 

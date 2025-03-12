@@ -1598,7 +1598,7 @@ try {
 }
 ```
 
-## appManager.terminateMission<sup>12+</sup>
+## appManager.terminateMission<sup>13+</sup>
 
 terminateMission(missionId: number): Promise\<void>
 
