@@ -36,7 +36,7 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
 
 计算文件的哈希值，使用Promise异步回调。
 
-**原子化服务API：**从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -80,7 +80,7 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 
 计算文件的哈希值，使用callback异步回调。
 
-**原子化服务API：**从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
