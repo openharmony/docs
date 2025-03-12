@@ -1278,7 +1278,7 @@ getSpatializationManager(): AudioSpatializationManager
 
 | 类型                                       | 说明                          |
 |------------------------------------------| ----------------------------- |
-| [AudioSpatializationManager](#audiospatializationmanager18) | AudioSpatializationManager实例 |
+| [AudioSpatializationManager](#audiospatializationmanager18) | AudioSpatializationManager实例。 |
 
 **示例：**
 
@@ -5393,8 +5393,8 @@ audioSessionManager.off('audioSessionDeactivated', audioSessionDeactivatedCallba
 
 ## AudioSpatializationManager<sup>18+</sup>
 
-空间音频管理。
-在使用AudioSpatializationManager的接口前，需要使用[getSpatializationManager](#getspatializationmanager18)获取AudioSpatializationManager实例。
+空间音频管理。<br>
+在使用AudioSpatializationManager接口前，需要先用[getSpatializationManager](#getspatializationmanager18)获取AudioSpatializationManager实例。
 
 ### isSpatializationEnabledForCurrentDevice<sup>18+</sup>
 
