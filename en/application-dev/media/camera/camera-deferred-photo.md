@@ -100,7 +100,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
          return;
        }
        console.info('photoOutPutCallBack deferredPhotoProxyAvailable');
-       // Obtain the pixel map of a thumbnail.
+       // Obtain the PixelMap of a thumbnail.
        proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
          AppStorage.setOrCreate('proxyThumbnail', thumbnail);
        });
@@ -125,7 +125,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);
        let testFileName = 'testFile' + Date.now() + '.jpg';
        let photoAsset = await accessHelper.createAsset(testFileName);
-       // Pass the thumbnail proxy class object to the mediaLibrary.
+       // Pass the thumbnail proxy class object to the media library.
        let mediaRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
        mediaRequest.addResource(photoAccessHelper.ResourceType.PHOTO_PROXY, proxyObj);
        let res = await accessHelper.applyChanges(mediaRequest);

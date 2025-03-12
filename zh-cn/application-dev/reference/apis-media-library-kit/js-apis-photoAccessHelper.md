@@ -956,6 +956,9 @@ showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs:
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+> **说明：**
+> 当传入uri为沙箱路径时，可正常保存图片/视频，但无界面预览。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -1137,13 +1140,13 @@ async function example() {
 }
 ```
 
-### getSupportedPhotoFormats<sup>16+</sup>
+### getSupportedPhotoFormats<sup>18+</sup> 
 
 getSupportedPhotoFormats(photoType: PhotoType): Promise&lt;Array&lt;string&gt;&gt;
 
 接口提供给应用调用，获取媒体库支持的图片或者视频后缀列表。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 

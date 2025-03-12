@@ -34,7 +34,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 | ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY | 19030005 | 无法获取证书的颁发者。        |
 | ERR_KEYUSAGE_NO_CERTSIGN              | 19030006 | 证书的秘钥用途不含证书签名。   |
 | ERR_KEYUSAGE_NO_DIGITAL_SIGNATURE     | 19030007 |  证书的秘钥用途不含数字签名。  |
-| ERR_MAYBE_WRONG_PASSWORD<sup>16+</sup>              | 19030008 | 私钥密码错误。                |
+| ERR_MAYBE_WRONG_PASSWORD<sup>18+</sup>              | 19030008 | 私钥密码错误。                |
 
 ## DataBlob
 buffer数组。
@@ -71,11 +71,11 @@ buffer数组的列表。
 | FORMAT_PEM | 1      | PEM格式。 |
 | FORMAT_PKCS7<sup>11+</sup> | 2 | PKCS7格式。 |
 
-## EncodingBaseFormat<sup>16+</sup>
+## EncodingBaseFormat<sup>18+</sup>
 
  表示生成CSR的编码格式的枚举。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
 
@@ -84,12 +84,12 @@ buffer数组的列表。
 | PEM | 0      | PEM格式。 |
 | DER | 1      | DER格式。 |
 
-## CsrAttribute<sup>16+</sup>
+## CsrAttribute<sup>18+</sup>
  表示生成CSR的编码格式配置参数中的拓展。
 
 openssl中规定了拓展类型，例如challengePassword、keyUsage等。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
 
@@ -98,10 +98,10 @@ openssl中规定了拓展类型，例如challengePassword、keyUsage等。
 | type | 指定的拓展类型 | openssl指定的拓展类型。 |
 | value | 拓展值 | 拓展值。 |
 
-## CsrGenerationConfig<sup>16+</sup>
+## CsrGenerationConfig<sup>18+</sup>
 RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、输出格式等。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -109,8 +109,8 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | subject | [X500DistinguishedName](#x500distinguishedname12) | 是   | 是   | X509定义的Name类型的对象。 |
 | mdName | string | 是   | 是   | 摘要算法名。 |
-| attributes | [CsrAttribute](#csrattribute16) | 是   | 是   | 拓展。 |
-| outFormat | [EncodingBaseFormat](#encodingbaseformat16) | 是   | 是   | 输出类型。 |
+| attributes | [CsrAttribute](#csrattribute18) | 是   | 是   | 拓展。 |
+| outFormat | [EncodingBaseFormat](#encodingbaseformat18) | 是   | 是   | 输出类型。 |
 
 > **说明：**
 >
@@ -425,11 +425,11 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | trustAnchor | [X509TrustAnchor](#x509trustanchor11) | 是   | 否   | 表示信任锚。   |
 | entityCert  | [X509Cert](#x509cert)                 | 是   | 否   | 表示实体证书。 |
 
-## EncodingBaseFormat<sup>16+</sup>
+## EncodingBaseFormat<sup>18+</sup>
 
 编码基础格式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -438,11 +438,11 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | PEM  | 0   | 表示PEM格式。      |
 | DER  | 1   | 表示DER格式。      |
 
-## Pkcs12Data<sup>16+</sup>
+## Pkcs12Data<sup>18+</sup>
 
 表示返回P12文件的解析后的证书、私钥及其他证书合集。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -452,11 +452,11 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | cert         | [X509Cert](#x509cert)                             | 否   | 表示P12文件解析后的证书。                       |
 | otherCerts   | Array\<[X509Cert](#x509cert)>                     | 否   | 表示P12文件解析后的其他证书合集。 |
 
-## Pkcs12ParsingConfig<sup>16+</sup>
+## Pkcs12ParsingConfig<sup>18+</sup>
 
 表示解析P12文件的配置。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -464,15 +464,15 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
 | password     | string                                            | 是   | 表示P12文件的密码。             |
 | needsPrivateKey  | boolean                                       | 否   | 表示是否获取私钥。默认为true。                       |
-| privateKeyFormat |  [EncodingBaseFormat](#encodingbaseformat16)                      | 否   | 表示获取私钥的格式。默认为PEM。 |
+| privateKeyFormat |  [EncodingBaseFormat](#encodingbaseformat18)                      | 否   | 表示获取私钥的格式。默认为PEM。 |
 | needsCert    | boolean                                           | 否   | 表示是否获取证书。默认为true。 |
 | needsOtherCerts  | boolean                                       | 否   | 表示是否获取其他证书合集。默认为false。 |
 
-## CmsContentType<sup>16+</sup>
+## CmsContentType<sup>18+</sup>
 
 表示Cms内容类型的枚举。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -480,11 +480,11 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | --------------------------------------| -------- | -----------------------------|
 | SIGNED_DATA | 0 | 签名数据。 |
 
-## CmsContentDataFormat<sup>16+</sup>
+## CmsContentDataFormat<sup>18+</sup>
 
 表示Cms内容数据格式的枚举。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -493,11 +493,11 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | BINARY | 0   | 表示二进制数据格式。     |
 | TEXT   | 1   | 表示文本数据格式。       |
 
-## CmsFormat<sup>16+</sup>
+## CmsFormat<sup>18+</sup>
 
 表示Cms签名格式的枚举。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -506,11 +506,11 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | PEM  | 0   | 表示PEM格式。      |
 | DER  | 1   | 表示DER格式。      |
 
-## PrivateKeyInfo<sup>16+</sup>
+## PrivateKeyInfo<sup>18+</sup>
 
 表示私钥信息。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -519,11 +519,11 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | key          | string \| Uint8Array                     | 是   | 未加密或加密的私钥，支持PEM或DER格式。 |
 | password     | string                                  | 否   | 私钥的密码，如果私钥是加密的。         |
 
-## CmsSignerConfig<sup>16+</sup>
+## CmsSignerConfig<sup>18+</sup>
 
 表示Cms签名者的配置选项。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -534,18 +534,18 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | addAttr               | boolean            | 否   | 是否添加签名属性。默认为true。           |
 | addSmimeCapAttr       | boolean            | 否   | 是否将SMIME能力添加到Cms对象。默认为true。            |
 
-## CmsGeneratorOptions<sup>16+</sup>
+## CmsGeneratorOptions<sup>18+</sup>
 
 表示生成Cms签名结果的配置选项。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
 | 名称                  | 类型                          | 必填 | 说明                                                   |
 | --------------------- | ----------------------------- | ---- | ------------------------------------------------------ |
-| contentDataFormat     | [CmsContentDataFormat](#cmscontentdataformat16)               | 否   | 内容数据的格式。默认为CmsContentDataFormat.BINARY。   |
-| outFormat             | [CmsFormat](#cmsformat16)                          | 否   | Cms最终数据的输出格式。默认为DER。         |
+| contentDataFormat     | [CmsContentDataFormat](#cmscontentdataformat18)               | 否   | 内容数据的格式。默认为CmsContentDataFormat.BINARY。   |
+| outFormat             | [CmsFormat](#cmsformat18)                          | 否   | Cms最终数据的输出格式。默认为DER。         |
 | isDetached     | boolean                            | 否   | Cms最终数据是否不包含原始数据。默认为false。         |
 
 ## cert.createX509Cert
@@ -9980,13 +9980,13 @@ async function buildX509CertChain() {
 buildX509CertChain();
 ```
 
-## cert.parsePkcs12<sup>16+</sup>
+## cert.parsePkcs12<sup>18+</sup>
 
 parsePkcs12(data: Uint8Array, config: Pkcs12ParsingConfig): Pkcs12Data
 
 表示从P12文件中解析证书、私钥及其他证书合集，并返回结果。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -9995,13 +9995,13 @@ parsePkcs12(data: Uint8Array, config: Pkcs12ParsingConfig): Pkcs12Data
 | 参数名   | 类型                  | 必填 | 说明                       |
 | -------- | -------------------- | ---- | -------------------------- |
 | data | Uint8Array | 是 | P12文件，DER格式。 |
-| config | [Pkcs12ParsingConfig](#pkcs12parsingconfig16) | 是 | P12文件的解析配置。 |
+| config | [Pkcs12ParsingConfig](#pkcs12parsingconfig18) | 是 | P12文件的解析配置。 |
 
 **返回值：**
 
 | 类型                              | 说明                 |
 | --------------------------------- | -------------------- |
-| [Pkcs12Data](#pkcs12data16) | 表示P12文件解析后的证书、私钥及其他证书合集。 |
+| [Pkcs12Data](#pkcs12data18) | 表示P12文件解析后的证书、私钥及其他证书合集。 |
 
 **错误码：**
 
@@ -10912,13 +10912,13 @@ async function certChainHashCode() {
 }
 ```
 
-## cert.generateCsr<sup>16+</sup>
+## cert.generateCsr<sup>18+</sup>
 
 generateCsr(keyInfo: PrivateKeyInfo, config: CsrGenerationConfig): string | Uint8Array
 
 表示使用指定的RSA私钥，传入主体、拓展、摘要算法、输出格式等配置参数去生成CSR。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -10926,8 +10926,8 @@ generateCsr(keyInfo: PrivateKeyInfo, config: CsrGenerationConfig): string | Uint
 
 | 参数名   | 类型                          | 必填 | 说明                 |
 | -------- | ----------------------------- | ---- | -------------------- |
-| keyInfo | [PrivateKeyInfo](#privatekeyinfo16) | 是 | 包含私钥跟口令的配置参数。 |
-| config | [CsrGenerationConfig](#csrgenerationconfig16) | 是 | 包含生成CSR的配置参数。 |
+| keyInfo | [PrivateKeyInfo](#privatekeyinfo18) | 是 | 包含私钥跟口令的配置参数。 |
+| config | [CsrGenerationConfig](#csrgenerationconfig18) | 是 | 包含生成CSR的配置参数。 |
 
 **返回值：**
 
@@ -11309,13 +11309,13 @@ async function getEncoded() {
 }
 ```
 
-## cert.createCmsGenerator<sup>16+</sup>
+## cert.createCmsGenerator<sup>18+</sup>
 
 createCmsGenerator(contentType: CmsContentType): CmsGenerator
 
 表示创建CmsGenerator对象。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -11323,13 +11323,13 @@ createCmsGenerator(contentType: CmsContentType): CmsGenerator
 
 | 参数名   | 类型                          | 必填 | 说明                 |
 | -------- | ----------------------------- | ---- | -------------------- |
-| contentType | [CmsContentType](#cmscontenttype16) | 是 | 指定CMS内容类型。|
+| contentType | [CmsContentType](#cmscontenttype18) | 是 | 指定CMS内容类型。|
 
 **返回值：**
 
 | 类型                            | 说明             |
 | ------------------------------- | ---------------- |
-| [CmsGenerator](#cmsgenerator16) | CmsGenerator对象。 |
+| [CmsGenerator](#cmsgenerator18) | CmsGenerator对象。 |
 
 **错误码：**
 
@@ -11387,7 +11387,7 @@ function testcreateCmsGenerator() {
 }
 ```
 
-## CmsGenerator<sup>16+</sup>
+## CmsGenerator<sup>18+</sup>
 
 CmsGenerator对象用于生成CMS（Cryptographic Message Syntax）格式的消息。
 
@@ -11396,13 +11396,13 @@ CmsGenerator对象用于生成CMS（Cryptographic Message Syntax）格式的消�
 > PKCS#7是用于存储签名或加密数据的标准语法。注意CMS是PKCS#7的扩展，PKCS#7支持的数据类型包括数据、签名数据、信封数据、
 > 签名和信封数据、摘要数据、加密数据。常用于保护数据的完整性和机密性。
 
-### addSigner<sup>16+</sup>
+### addSigner<sup>18+</sup>
 
 addSigner(cert: X509Cert, keyInfo: PrivateKeyInfo, config: CmsSignerConfig): void;
 
 用于添加签名者信息。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -11411,8 +11411,8 @@ addSigner(cert: X509Cert, keyInfo: PrivateKeyInfo, config: CmsSignerConfig): voi
 | 参数名       | 类型   | 必填 | 说明           |
 | ------------ | ------ | ---- | -------------- |
 | cert |  [X509Cert](#x509cert) | 是 | 指定X509证书。|
-| keyInfo | [PrivateKeyInfo](#privatekeyinfo16) | 是 | 指定私钥信息。|
-| config | [CmsSignerConfig](#cmssignerconfig16) | 是 | 指定签名者选项。|
+| keyInfo | [PrivateKeyInfo](#privatekeyinfo18) | 是 | 指定私钥信息。|
+| config | [CmsSignerConfig](#cmssignerconfig18) | 是 | 指定签名者选项。|
 
 **错误码：**
 
@@ -11512,13 +11512,13 @@ function testAddSigner() {
 }
 ```
 
-### addCert<sup>16+</sup>
+### addCert<sup>18+</sup>
 
 addCert(cert: X509Cert): void
 
 用于添加证书，例如签名证书的颁发者证书。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -11596,13 +11596,13 @@ function testAddCert() {
 }
 ```
 
-### doFinal<sup>16+</sup>
+### doFinal<sup>18+</sup>
 
 doFinal(data: Uint8Array, options?: CmsGeneratorOptions): Promise<Uint8Array | string>
 
 用于获取Cms最终数据，例如Cms签名数据。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -11611,7 +11611,7 @@ doFinal(data: Uint8Array, options?: CmsGeneratorOptions): Promise<Uint8Array | s
 | 参数名      | 类型                | 必填 | 说明                                       |
 | ----------- | ------------------- | ---- | ------------------------------------------ |
 | data        | Uint8Array         | 是   | Cms操作的内容。                           |
-| options     | [CmsGeneratorOptions](#cmsgeneratoroptions16)  | 否   | Cms操作的配置选项。                       |
+| options     | [CmsGeneratorOptions](#cmsgeneratoroptions18)  | 否   | Cms操作的配置选项。                       |
 
 **返回值：**
 
@@ -11729,13 +11729,13 @@ async function testDoFinalByPromise() {
 }
 ```
 
-### doFinalSync<sup>16+</sup>
+### doFinalSync<sup>18+</sup>
 
 doFinalSync(data: Uint8Array, options?: CmsGeneratorOptions): Uint8Array | string
 
 用于获取Cms最终数据，例如Cms签名数据（同步方法）。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -11744,7 +11744,7 @@ doFinalSync(data: Uint8Array, options?: CmsGeneratorOptions): Uint8Array | strin
 | 参数名      | 类型                | 必填 | 说明                                       |
 | ----------- | ------------------- | ---- | ------------------------------------------ |
 | data        | Uint8Array         | 是   | Cms操作的内容。                           |
-| options     | [CmsGeneratorOptions](#cmsgeneratoroptions16)  | 否   | Cms操作的配置选项。                       |
+| options     | [CmsGeneratorOptions](#cmsgeneratoroptions18)  | 否   | Cms操作的配置选项。                       |
 
 **返回值：**
 

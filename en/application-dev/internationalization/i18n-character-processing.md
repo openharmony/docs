@@ -188,9 +188,9 @@ let breakText = iterator.getLineBreakText(); // breakText: Apple is my favorite 
 
 ### Performs file path mirroring.
 
-File path mirroring means to localize the input file paths. This function is implemented through the [getUnicodeWrappedFilePath](../reference/apis-localization-kit/js-apis-i18n.md#getunicodewrappedfilepath16) API of the **I18NUtil** class. The development procedure is as follows:
+File path mirroring means to localize the input file paths. This function is implemented through the [getUnicodeWrappedFilePath](../reference/apis-localization-kit/js-apis-i18n.md#getunicodewrappedfilepath18) API of the **I18NUtil** class. The development procedure is as follows:
 
-1. Import the **i18n** and **intl** modules.
+1. Import the **i18n** module.
 ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    import { i18n, intl } from '@kit.LocalizationKit';
@@ -230,4 +230,5 @@ try {
 }
 ```
 <!--RP1--><!--RP1End-->
+
 <!--no_check-->

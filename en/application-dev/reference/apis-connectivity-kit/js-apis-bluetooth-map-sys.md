@@ -4,8 +4,8 @@ The **bluetooth.map** module provides APIs for exchanging messages between devic
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.map (Bluetooth MAP Module)](js-apis-bluetooth-map.md).
+> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.map (Bluetooth MAP Module)](js-apis-bluetooth-map.md).
 
 
 ## Modules to Import
@@ -35,7 +35,7 @@ Disconnects the MAP service for a device.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -87,7 +87,7 @@ Sets the message access authorization for a device. This API uses a promise to r
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -140,7 +140,7 @@ Obtains the message access authorization of a device. This API uses a promise to
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
