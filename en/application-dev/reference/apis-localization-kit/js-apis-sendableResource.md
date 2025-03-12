@@ -6,7 +6,7 @@ Provides sendable resource information, such as the application bundle name, app
 >
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-## Modules to Import
+## Import a module.
 
 ```js
 import { resourceManager } from '@kit.LocalizationKit'
@@ -18,7 +18,7 @@ import { resourceManager } from '@kit.LocalizationKit'
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-| Name        | Type    | Read-only  | Optional |Description         |
+| Name        | Type    | Read-Only  | Optional |Description         |
 | ---------- | ------ | ----- | ----  | ---------------|
 | bundleName | string | No   | No| Bundle name of the application.|
 | moduleName | string | No   | No| Module name of the application.|
