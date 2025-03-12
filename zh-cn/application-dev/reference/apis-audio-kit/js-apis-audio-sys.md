@@ -862,6 +862,275 @@ try {
 }
 ```
 
+### getAppVolumePercentageForUid<sup>18+</sup>
+
+getAppVolumePercentageForUid(uid: number\): Promise<number\>
+
+根据应用ID获取指定应用的音量（范围为0到100）。使用Promise异步回调。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                               |
+| ---------- | ---------------------------------------- | ---- |----------------------------------|
+| uid    | number                                   | 是   | 表示应用ID。 |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回应用的音量（范围为0到100）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed.|
+
+**示例：**
+
+```ts
+let uid: number = 20010041; // 应用ID。
+
+audioVolumeManager.getAppVolumePercentageForUid(20010041).then((value: number) => {
+  console.info(`app volume is ${value}.`);
+});
+```
+
+### setAppVolumePercentageForUid<sup>18+</sup>
+
+setAppVolumePercentageForUid(uid: number, volume: number\): Promise<void\>
+
+根据应用ID设置指定应用的音量（范围为0到100）。使用Promise异步回调。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明       |
+| ---------- | ---------------------------------------- | ---- |----------|
+| uid    | number                                   | 是   | 表示应用ID。   |
+| volume    | number                                   | 是   | 要设置的音量值。 |
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed.|
+| 6800301 | Crash or blocking occurs in system process. |
+
+**示例：**
+
+```ts
+let uid: number = 20010041; // 应用ID。
+let volume: number = 20;    // 要设置的音量值。
+
+audioVolumeManager.setAppVolumePercentageForUid(uid, volume).then(() => {
+  console.info(`set app volume success.`);
+});
+```
+
+### isAppVolumeMutedForUid<sup>18+</sup>
+
+isAppVolumeMutedForUid(uid: number, owned: boolean\): Promise<boolean\>
+
+根据应用ID查询应用音量是否已静音。使用Promise异步回调。
+
+> **说明：**
+>
+> 如果有多个调用者设置了静音状态，那么只有当所有调用者都取消静音状态后，此应用才会真正取消静音。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                                        |
+| ---------- | ---------------------------------------- | ---- |-------------------------------------------|
+| uid    | number                                   | 是   | 表示应用ID。                                    |
+| owned    | boolean                                   | 是   | 要查询的静音状态。true查询当前调用者的静音状态，false查询应用的静音状态。 |
+
+**返回值：**
+
+| 类型                | 说明                  |
+| ------------------- |---------------------|
+| Promise&lt;boolean&gt; | Promise对象，返回应用静音状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 |  Parameter verification failed.|
+
+**示例：**
+
+```ts
+let uid: number = 20010041; // 应用ID。
+
+audioVolumeManager.setAppVolumePercentageForUid(uid, true).then((value: boolean) => {
+  console.info(`app muted state is ${value}.`);
+});
+```
+
+### setAppVolumeMutedForUid<sup>18+</sup>
+
+setAppVolumeMutedForUid(uid: number, muted: boolean\): Promise<void\>
+
+根据应用ID设置应用静音状态。使用Promise异步回调。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                             |
+| ---------- | ---------------------------------------- | ---- |--------------------------------|
+| uid    | number                                   | 是   | 表示应用ID。                         |
+| owned    | boolean                                   | 是   | 设置应用的静音状态。true设置为静音，false解除静音。 |
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed.|
+| 6800301 | Crash or blocking occurs in system process. |
+
+**示例：**
+
+```ts
+let uid: number = 20010041; // 应用ID。
+
+audioVolumeManager.setAppVolumePercentageForUid(uid, true).then(() => {
+  console.info(`set app mute state success.`);
+});
+```
+
+### on('appVolumeChangeForUid')<sup>18+</sup>
+
+on(type: 'appVolumeChangeForUid', uid: number, callback: Callback\<VolumeEvent>): void
+
+监听指定应用应用级音量变化事件（当应用级音量发生变化时触发）。使用callback方式返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                |
+| -------- | -------------------------------------- | ---- |-----------------------------------|
+| type     | string                                 | 是   | 监听事件，固定为：'appVolumeChangeForUid'。 |
+| uid | number |  是   | 表示应用ID。                          |
+| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。                  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+let uid: number = 20010041; // 应用ID。
+
+audioVolumeManager.on('appVolumeChangeForUid', uid, (volumeEvent: audio.VolumeEvent) => {
+  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
+  console.info(`Volume level: ${volumeEvent.volume} `);
+  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+});
+```
+
+### off('appVolumeChangeForUid')<sup>18+</sup>
+
+off(type: 'appVolumeChangeForUid', callback?: Callback\<VolumeEvent>): void
+
+取消监听指定应用应用级音量变化事件。使用callback方式返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 监听事件，固定为：'appVolumeChangeForUid'。 |
+| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | 否   | 回调函数，返回变化后的音量信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+audioVolumeManager.off('appVolumeChangeForUid');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let appVolumeChangeForUidCallback = (volumeEvent: audio.VolumeEvent) => {
+  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
+  console.info(`Volume level: ${volumeEvent.volume} `);
+  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+};
+
+audioVolumeManager.on('appVolumeChangeForUid', appVolumeChangeForUidCallback);
+
+audioVolumeManager.off('appVolumeChangeForUid', appVolumeChangeForUidCallback);
+```
+
 ## AudioVolumeGroupManager<sup>9+</sup>
 
 管理音频组音量。在调用AudioVolumeGroupManager的接口前，需要先通过 [getVolumeGroupManager](js-apis-audio.md#getvolumegroupmanager9) 创建实例。
