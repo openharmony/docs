@@ -94,7 +94,7 @@ let pubKeyData = new Uint8Array([
   0xf3, 0x02, 0x03, 0x01, 0x00, 0x01
 ]);
 
-// CRL示例。
+// CRL示例
 function crlSample(): void {
   let textEncoder = new util.TextEncoder();
   let encodingBlob: cert.EncodingBlob = {

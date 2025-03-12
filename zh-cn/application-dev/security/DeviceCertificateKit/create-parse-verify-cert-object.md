@@ -36,7 +36,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'BetUokslUfjT6+s/X4ByaxycAA==\n' +
   '-----END CERTIFICATE-----\n';
 
-// 证书示例。
+// 证书示例
 function certSample(): void {
   let textEncoder = new util.TextEncoder();
   let encodingBlob: cert.EncodingBlob = {

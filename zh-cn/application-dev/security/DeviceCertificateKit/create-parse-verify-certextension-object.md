@@ -34,7 +34,7 @@ let extData = new Uint8Array([
   0xD9, 0xE4
 ]);
 
-// 证书扩展示例。
+// 证书扩展示例
 function certExtensionSample(): void {
   let textEncoder = new util.TextEncoder();
   let encodingBlob: cert.EncodingBlob = {
