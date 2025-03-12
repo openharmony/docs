@@ -286,6 +286,18 @@
 
 **起始版本**：11
 
+## ohos.permission.QUERY_ACCESSIBILITY_ELEMENT
+
+允许批量查询无障碍节点。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：11
+
 ## ohos.permission.SET_UNREMOVABLE_NOTIFICATION
 
 允许应用发布不可被移除通知。
