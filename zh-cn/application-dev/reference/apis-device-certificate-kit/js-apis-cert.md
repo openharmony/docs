@@ -34,6 +34,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 | ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY | 19030005 | 无法获取证书的颁发者。        |
 | ERR_KEYUSAGE_NO_CERTSIGN              | 19030006 | 证书的秘钥用途不含证书签名。   |
 | ERR_KEYUSAGE_NO_DIGITAL_SIGNATURE     | 19030007 |  证书的秘钥用途不含数字签名。  |
+| ERR_MAYBE_WRONG_PASSWORD<sup>18+</sup>              | 19030008 | 私钥密码错误。                |
 
 ## DataBlob
 buffer数组。
@@ -69,6 +70,57 @@ buffer数组的列表。
 | FORMAT_DER | 0      | DER格式。 |
 | FORMAT_PEM | 1      | PEM格式。 |
 | FORMAT_PKCS7<sup>11+</sup> | 2 | PKCS7格式。 |
+
+## EncodingBaseFormat<sup>18+</sup>
+
+ 表示生成CSR的编码格式的枚举。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称       | 值 |  说明      |
+| ---------- | ------ | --------- |
+| PEM | 0      | PEM格式。 |
+| DER | 1      | DER格式。 |
+
+## CsrAttribute<sup>18+</sup>
+ 表示生成CSR的编码格式配置参数中的拓展。
+
+openssl中规定了拓展类型，例如challengePassword、keyUsage等。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称       | 值 |  说明      |
+| ---------- | ------ | --------- |
+| type | 指定的拓展类型 | openssl指定的拓展类型。 |
+| value | 拓展值 | 拓展值。 |
+
+## CsrGenerationConfig<sup>18+</sup>
+RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、输出格式等。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| subject | [X500DistinguishedName](#x500distinguishedname12) | 是   | 是   | X509定义的Name类型的对象。 |
+| mdName | string | 是   | 是   | 摘要算法名。 |
+| attributes | [CsrAttribute](#csrattribute18) | 是   | 是   | 拓展。 |
+| outFormat | [EncodingBaseFormat](#encodingbaseformat18) | 是   | 是   | 输出类型。 |
+
+> **说明：**
+>
+> - subject是X509定义的Name类型的对象。
+>
+> - mdName是摘要算法名，当前支持SHA1、SHA256、SHA384、SHA512。
+>
+> - attributes是可选参数，可以指定openssl中规定的拓展类型跟拓展值生成CSR。例如challengePassword、keyUsage等。
+>
+> - outFormat指定输出CSR的格式，若不指定默认为PEM格式。
 
 ## CertItemType<sup>10+</sup>
 
@@ -373,6 +425,129 @@ buffer数组的列表。
 | trustAnchor | [X509TrustAnchor](#x509trustanchor11) | 是   | 否   | 表示信任锚。   |
 | entityCert  | [X509Cert](#x509cert)                 | 是   | 否   | 表示实体证书。 |
 
+## EncodingBaseFormat<sup>18+</sup>
+
+编码基础格式。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称 | 值 | 说明               |
+| ---- | --- | ------------------ |
+| PEM  | 0   | 表示PEM格式。      |
+| DER  | 1   | 表示DER格式。      |
+
+## Pkcs12Data<sup>18+</sup>
+
+表示返回P12文件的解析后的证书、私钥及其他证书合集。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称         | 类型                                              | 必填 | 说明                                   |
+| ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
+| privateKey   | string \| Uint8Array                              | 否   | 表示P12文件解析后的私钥。             |
+| cert         | [X509Cert](#x509cert)                             | 否   | 表示P12文件解析后的证书。                       |
+| otherCerts   | Array\<[X509Cert](#x509cert)>                     | 否   | 表示P12文件解析后的其他证书合集。 |
+
+## Pkcs12ParsingConfig<sup>18+</sup>
+
+表示解析P12文件的配置。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称         | 类型                                              | 必填 | 说明                                   |
+| ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
+| password     | string                                            | 是   | 表示P12文件的密码。             |
+| needsPrivateKey  | boolean                                       | 否   | 表示是否获取私钥。默认为true。                       |
+| privateKeyFormat |  [EncodingBaseFormat](#encodingbaseformat18)                      | 否   | 表示获取私钥的格式。默认为PEM。 |
+| needsCert    | boolean                                           | 否   | 表示是否获取证书。默认为true。 |
+| needsOtherCerts  | boolean                                       | 否   | 表示是否获取其他证书合集。默认为false。 |
+
+## CmsContentType<sup>18+</sup>
+
+表示Cms内容类型的枚举。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称                                  | 值   | 说明                          |
+| --------------------------------------| -------- | -----------------------------|
+| SIGNED_DATA | 0 | 签名数据。 |
+
+## CmsContentDataFormat<sup>18+</sup>
+
+表示Cms内容数据格式的枚举。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称   | 值 | 说明                     |
+| ------ | --- | ------------------------ |
+| BINARY | 0   | 表示二进制数据格式。     |
+| TEXT   | 1   | 表示文本数据格式。       |
+
+## CmsFormat<sup>18+</sup>
+
+表示Cms签名格式的枚举。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称 | 值 | 说明               |
+| ---- | --- | ------------------ |
+| PEM  | 0   | 表示PEM格式。      |
+| DER  | 1   | 表示DER格式。      |
+
+## PrivateKeyInfo<sup>18+</sup>
+
+表示私钥信息。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称         | 类型                                              | 必填 | 说明                                   |
+| ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
+| key          | string \| Uint8Array                     | 是   | 未加密或加密的私钥，支持PEM或DER格式。 |
+| password     | string                                  | 否   | 私钥的密码，如果私钥是加密的。         |
+
+## CmsSignerConfig<sup>18+</sup>
+
+表示Cms签名者的配置选项。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称         | 类型                                                  | 必填 | 说明                                   |
+| ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
+| mdName                | string              | 是   | 消息摘要算法的名称，例如 "SHA384", 当前支持"SHA1"、"SHA256"、"SHA384"、"SHA512"。                 |
+| addCert               | boolean            | 否   | 是否添加证书。默认为true。                             |
+| addAttr               | boolean            | 否   | 是否添加签名属性。默认为true。           |
+| addSmimeCapAttr       | boolean            | 否   | 是否将SMIME能力添加到Cms对象。默认为true。            |
+
+## CmsGeneratorOptions<sup>18+</sup>
+
+表示生成Cms签名结果的配置选项。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称                  | 类型                          | 必填 | 说明                                                   |
+| --------------------- | ----------------------------- | ---- | ------------------------------------------------------ |
+| contentDataFormat     | [CmsContentDataFormat](#cmscontentdataformat18)               | 否   | 内容数据的格式。默认为CmsContentDataFormat.BINARY。   |
+| outFormat             | [CmsFormat](#cmsformat18)                          | 否   | Cms最终数据的输出格式。默认为DER。         |
+| isDetached     | boolean                            | 否   | Cms最终数据是否不包含原始数据。默认为false。         |
+
 ## cert.createX509Cert
 
 createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : void
@@ -405,7 +580,7 @@ createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : v
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -414,7 +589,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -427,7 +602,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -478,7 +653,7 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -487,7 +662,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -500,7 +675,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -547,7 +722,7 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -556,7 +731,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -569,7 +744,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -579,11 +754,11 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   } else {
     console.log('createX509Cert success');
 
-    // 业务需通过上级X509Cert证书对象（或当前证书对象为自签名的证书）的getPublicKey获取PubKey。
+    // 业务需通过上级X509Cert证书对象（或当前证书对象为自签名的证书）的getPublicKey获取PubKey
     try {
       let pubKey = x509Cert.getPublicKey();
 
-      // 验证证书签名。
+      // 验证证书签名
       x509Cert.verify(pubKey, (err, data) => {
         if (err) {
           console.error('verify failed, errCode: ' + err.code + ', errMsg: ' + err.message);
@@ -636,7 +811,7 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -645,7 +820,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -658,7 +833,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -666,7 +841,7 @@ cert.createX509Cert(encodingBlob).then(x509Cert => {
   console.log('createX509Cert success');
 
   try {
-    // 业务需通过上级X509Cert证书对象（或当前证书对象为自签名的证书）的getPublicKey获取PubKey。
+    // 业务需通过上级X509Cert证书对象（或当前证书对象为自签名的证书）的getPublicKey获取PubKey
     let pubKey = x509Cert.getPublicKey();
     x509Cert.verify(pubKey).then(result => {
       console.log('verify success');
@@ -713,7 +888,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -722,7 +897,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -735,7 +910,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -788,7 +963,7 @@ getEncoded() : Promise\<EncodingBlob>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -797,7 +972,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBLzCB1QIUO/QDVJwZLIpeJyPjyTvE43xvE5cwCgYIKoZIzj0EAwIwGjEYMBYG\n' +
   'A1UEAwwPRXhhbXBsZSBSb290IENBMB4XDTIzMDkwNDExMjAxOVoXDTI2MDUzMDEx\n' +
@@ -808,10 +983,10 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'BetUokslUfjT6+s/X4ByaxycAA==\n' +
   '-----END CERTIFICATE-----\n';
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 cert.createX509Cert(encodingBlob).then(x509Cert => {
@@ -857,7 +1032,7 @@ getPublicKey() : cryptoFramework.PubKey
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -866,7 +1041,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -879,7 +1054,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -932,7 +1107,7 @@ checkValidityWithDate(date: string) : void
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -941,7 +1116,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -954,7 +1129,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -990,14 +1165,14 @@ getVersion() : number
 
 | 类型   | 说明             |
 | ------ | ---------------- |
-| number | 表示X509证书版本 |
+| number | 表示X509证书版本。 |
 
 **示例：**
 
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1006,7 +1181,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1019,7 +1194,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
@@ -1055,7 +1230,7 @@ getSerialNumber() : number
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1064,7 +1239,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1077,7 +1252,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1121,7 +1296,7 @@ getCertSerialNumber() : bigint
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1130,7 +1305,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1143,7 +1318,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1194,7 +1369,7 @@ getIssuerName() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1203,7 +1378,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1216,7 +1391,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1274,7 +1449,7 @@ getSubjectName(encodingType?: EncodingType) : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1283,7 +1458,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1296,7 +1471,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1353,7 +1528,7 @@ getNotBeforeTime() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1362,7 +1537,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1375,7 +1550,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1427,7 +1602,7 @@ import { cert } from '@kit.DeviceCertificateKit';
 
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1436,7 +1611,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1449,7 +1624,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1501,7 +1676,7 @@ import { cert } from '@kit.DeviceCertificateKit';
 
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1510,7 +1685,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1523,7 +1698,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1575,7 +1750,7 @@ import { cert } from '@kit.DeviceCertificateKit';
 
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1584,7 +1759,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1597,7 +1772,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1648,7 +1823,7 @@ getSignatureAlgOid() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1657,7 +1832,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1670,7 +1845,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1722,7 +1897,7 @@ getSignatureAlgParams() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1731,7 +1906,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1744,7 +1919,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1794,7 +1969,7 @@ getKeyUsage() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1803,7 +1978,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1816,7 +1991,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1867,7 +2042,7 @@ getExtKeyUsage() : DataArray
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1876,7 +2051,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1889,7 +2064,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1929,7 +2104,7 @@ getBasicConstraints() : number
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1938,7 +2113,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1951,7 +2126,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1997,7 +2172,7 @@ getSubjectAltNames() : DataArray
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2006,7 +2181,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -2019,7 +2194,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -2070,7 +2245,7 @@ getIssuerAltNames() : DataArray
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2079,7 +2254,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -2092,7 +2267,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -2121,6 +2296,12 @@ getItem(itemType: CertItemType) : DataBlob
 
 **系统能力：** SystemCapability.Security.Cert
 
+**参数**：
+
+| 参数名    | 类型   | 必填 | 说明                                       |
+| --------- | ------ | ---- | ------------------------------------------ |
+| itemType | [CertItemType](#certitemtype10) | 是   | 表示需要获取的证书字段。 |
+
 **返回值**：
 
 | 类型                  | 说明                                      |
@@ -2144,7 +2325,7 @@ getItem(itemType: CertItemType) : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2153,7 +2334,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -2166,7 +2347,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -2223,7 +2404,7 @@ match(param: X509CertMatchParameters): boolean
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2256,7 +2437,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
 
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -2273,7 +2454,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
 async function matchX509Cert() {
   const x509Cert = await createX509Cert();
   try {
-    // 需业务自行赋值。
+    // 需业务自行赋值
     const param: cert.X509CertMatchParameters = {
       x509Cert,
       validDate: '20241121074700Z',
@@ -2320,7 +2501,7 @@ getCRLDistributionPoint(): DataArray
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2343,10 +2524,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
   "AiAtRlOa6/mTD68faQTdhsAaQP955QfW34B4yFqU2Bq72A==\n" +
   "-----END CERTIFICATE-----\n";
 
-  // 证书二进制数据，需业务自行赋值。
+  // 证书二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -2395,7 +2576,7 @@ getIssuerX500DistinguishedName(): X500DistinguishedName
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2428,10 +2609,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
     "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
     "-----END CERTIFICATE-----\n"
 
-  // 证书二进制数据，需业务自行赋值。
+  // 证书二进制数据，需业务自行赋值
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -2480,7 +2661,7 @@ getSubjectX500DistinguishedName(): X500DistinguishedName
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2513,10 +2694,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
     "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
     "-----END CERTIFICATE-----\n"
 
-  // 证书二进制数据，需业务自行赋值。
+  // 证书二进制数据，需业务自行赋值
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -2565,7 +2746,7 @@ toString(): string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2598,10 +2779,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
     "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
     "-----END CERTIFICATE-----\n"
 
-  // 证书二进制数据，需业务自行赋值。
+  // 证书二进制数据，需业务自行赋值
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -2650,7 +2831,7 @@ hashCode(): Uint8Array
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2683,10 +2864,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
     "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
     "-----END CERTIFICATE-----\n"
 
-  // 证书二进制数据，需业务自行赋值。
+  // 证书二进制数据，需业务自行赋值
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -2735,7 +2916,7 @@ getExtensionsObject(): CertExtension
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2768,10 +2949,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
     "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
     "-----END CERTIFICATE-----\n"
 
-  // 证书二进制数据，需业务自行赋值。
+  // 证书二进制数据，需业务自行赋值
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -2820,7 +3001,7 @@ createCertExtension(inStream : EncodingBlob, callback : AsyncCallback\<CertExten
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// 证书扩展域段二进制数据，需业务自行赋值。
+// 证书扩展域段二进制数据，需业务自行赋值
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -2835,7 +3016,7 @@ let extData = new Uint8Array([
 
 let encodingBlob: cert.EncodingBlob = {
   data: extData,
-  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER。
+  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
@@ -2886,7 +3067,7 @@ createCertExtension(inStream : EncodingBlob) : Promise\<CertExtension>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 证书扩展域段二进制数据，需业务自行赋值。
+// 证书扩展域段二进制数据，需业务自行赋值
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -2901,7 +3082,7 @@ let extData = new Uint8Array([
 
 let encodingBlob: cert.EncodingBlob = {
   data: extData,
-  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER。
+  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
@@ -2948,7 +3129,7 @@ getEncoded() : EncodingBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 证书扩展域段二进制数据，需业务自行赋值。
+// 证书扩展域段二进制数据，需业务自行赋值
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -2963,7 +3144,7 @@ let extData = new Uint8Array([
 
 let encodingBlob: cert.EncodingBlob = {
   data: extData,
-  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER。
+  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
@@ -3021,7 +3202,7 @@ getOidList(valueType : ExtensionOidType) : DataArray
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 证书扩展域段二进制数据，需业务自行赋值。
+// 证书扩展域段二进制数据，需业务自行赋值
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -3036,7 +3217,7 @@ let extData = new Uint8Array([
 
 let encodingBlob: cert.EncodingBlob = {
   data: extData,
-  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER。
+  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
@@ -3095,7 +3276,7 @@ getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 证书扩展域段二进制数据，需业务自行赋值。
+// 证书扩展域段二进制数据，需业务自行赋值
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -3110,7 +3291,7 @@ let extData = new Uint8Array([
 
 let encodingBlob: cert.EncodingBlob = {
   data: extData,
-  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER。
+  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
@@ -3166,7 +3347,7 @@ checkCA() : number
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 证书扩展域段二进制数据，需业务自行赋值。
+// 证书扩展域段二进制数据，需业务自行赋值
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -3181,7 +3362,7 @@ let extData = new Uint8Array([
 
 let encodingBlob: cert.EncodingBlob = {
   data: extData,
-  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER。
+  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 cert.createCertExtension(encodingBlob, (error, certExt) => {
@@ -3272,7 +3453,7 @@ createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : voi
 
 | 参数名   | 类型                                | 必填 | 说明                           |
 | -------- | ----------------------------------- | ---- | ------------------------------ |
-| inStream | [EncodingBlob](#encodingblob)       | 是   | 表示证书吊销列表序列化数据。    |
+| inStream | [EncodingBlob](#encodingblob)       | 是   | 表示证书吊销列表序列化数据。     |
 | callback | AsyncCallback\<[X509Crl](#x509crldeprecated)> | 是   | 回调函数，表示证书吊销列表对象。 |
 
 **错误码：**
@@ -3290,7 +3471,7 @@ createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : voi
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -3308,10 +3489,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3364,7 +3545,7 @@ createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -3382,10 +3563,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3428,7 +3609,7 @@ createX509CRL(inStream : EncodingBlob, callback : AsyncCallback\<X509CRL>) : voi
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -3446,10 +3627,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3500,7 +3681,7 @@ createX509CRL(inStream : EncodingBlob) : Promise\<X509CRL>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -3518,10 +3699,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3578,7 +3759,7 @@ isRevoked(cert : X509Cert) : boolean
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -3606,16 +3787,16 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'BetUokslUfjT6+s/X4ByaxycAA==\n' +
   '-----END CERTIFICATE-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
 let certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3664,7 +3845,7 @@ getType() : string
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -3682,10 +3863,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3733,7 +3914,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -3751,10 +3932,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3809,7 +3990,7 @@ getEncoded() : Promise\<EncodingBlob>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -3827,10 +4008,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3863,7 +4044,7 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | 是   | 表示用于验签的公钥对象。                                       |
-| callback | AsyncCallback\<void> | 是   | 回调函数，使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，error不为null表示失败。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数,使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，error不为null表示失败。 |
 
 **错误码：**
 
@@ -3881,7 +4062,7 @@ import { cert } from '@kit.DeviceCertificateKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -3956,10 +4137,10 @@ let priKeyData = new Uint8Array([
   0xA0, 0xB9, 0x96, 0x2D, 0xC4, 0x70, 0xE9, 0x99, 0x10, 0x67, 0x8D
 ]);
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4040,7 +4221,7 @@ import { cert } from '@kit.DeviceCertificateKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit'
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4115,10 +4296,10 @@ let priKeyData = new Uint8Array([
   0xA0, 0xB9, 0x96, 0x2D, 0xC4, 0x70, 0xE9, 0x99, 0x10, 0x67, 0x8D
 ]);
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4126,7 +4307,7 @@ cert.createX509Crl(encodingBlob).then(x509Crl => {
   console.log('createX509Crl success');
 
   try {
-    // 生成公钥对象。
+    // 生成公钥对象
     let keyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_3');
     console.log('createAsyKeyGenerator success');
     let priEncodingBlob: cryptoFramework.DataBlob = {
@@ -4177,7 +4358,7 @@ getVersion() : number
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4195,10 +4376,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4246,7 +4427,7 @@ getIssuerName() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4264,10 +4445,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4320,7 +4501,7 @@ getLastUpdate() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4338,10 +4519,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4394,7 +4575,7 @@ getNextUpdate() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4412,10 +4593,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4474,7 +4655,7 @@ getRevokedCert(serialNumber : number) : X509CrlEntry
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4492,10 +4673,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4555,7 +4736,7 @@ getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4576,7 +4757,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '+i2osvdPWRia0dJCL1PCA14k\n' +
   '-----END X509 CRL-----\n';
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIDTjCCAjagAwIBAgIBBDANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
   'IENBMB4XDTI0MDMxOTAyMDQwMVoXDTM0MDMxNzAyMDQwMVowEjEQMA4GA1UEAwwH\n' +
@@ -4600,14 +4781,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4616,7 +4797,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
-    // 创建X509证书对象。
+    // 创建X509证书对象.
     cert.createX509Cert(certEncodingBlob).then((x509Cert) => {
       try {
         let entry = x509Crl.getRevokedCertWithCert(x509Cert);
@@ -4666,7 +4847,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4684,10 +4865,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4741,7 +4922,7 @@ getRevokedCerts() : Promise<Array\<X509CrlEntry>>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4759,10 +4940,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4812,7 +4993,7 @@ getTbsInfo() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4830,10 +5011,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4886,7 +5067,7 @@ getSignature() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4904,10 +5085,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4960,7 +5141,7 @@ getSignatureAlgName() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4978,10 +5159,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5034,7 +5215,7 @@ getSignatureAlgOid() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5052,10 +5233,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5109,7 +5290,7 @@ getSignatureAlgParams() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5127,10 +5308,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5188,7 +5369,7 @@ isRevoked(cert : X509Cert) : boolean
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5216,16 +5397,16 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'BetUokslUfjT6+s/X4ByaxycAA==\n' +
   '-----END CERTIFICATE-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
 let certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5272,7 +5453,7 @@ getType() : string
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5290,10 +5471,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5339,7 +5520,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5357,10 +5538,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5412,7 +5593,7 @@ getEncoded() : Promise\<EncodingBlob>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5430,10 +5611,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5482,7 +5663,7 @@ import { cert } from '@kit.DeviceCertificateKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5557,10 +5738,10 @@ let priKeyData = new Uint8Array([
   0xA0, 0xB9, 0x96, 0x2D, 0xC4, 0x70, 0xE9, 0x99, 0x10, 0x67, 0x8D
 ]);
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5639,7 +5820,7 @@ import { cert } from '@kit.DeviceCertificateKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit'
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5714,10 +5895,10 @@ let priKeyData = new Uint8Array([
   0xA0, 0xB9, 0x96, 0x2D, 0xC4, 0x70, 0xE9, 0x99, 0x10, 0x67, 0x8D
 ]);
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5725,7 +5906,7 @@ cert.createX509CRL(encodingBlob).then(x509CRL => {
   console.log('createX509Crl success');
 
   try {
-    // 生成公钥对象。
+    // 生成公钥对象
     let keyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_3');
     console.log('createAsyKeyGenerator success');
     let priEncodingBlob: cryptoFramework.DataBlob = {
@@ -5774,7 +5955,7 @@ getVersion() : number
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5792,10 +5973,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5841,7 +6022,7 @@ getIssuerName() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5859,10 +6040,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5913,7 +6094,7 @@ getLastUpdate() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5931,10 +6112,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5985,7 +6166,7 @@ getNextUpdate() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6003,10 +6184,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6063,7 +6244,7 @@ getRevokedCert(serialNumber : bigint) : X509CRLEntry
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6081,10 +6262,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6142,7 +6323,7 @@ getRevokedCertWithCert(cert : X509Cert) : X509CRLEntry
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6163,7 +6344,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '+i2osvdPWRia0dJCL1PCA14k\n' +
   '-----END X509 CRL-----\n';
 
-// 证书二进制数据，需业务自行赋值。
+// 证书二进制数据，需业务自行赋值
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIDTjCCAjagAwIBAgIBBDANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
   'IENBMB4XDTI0MDMxOTAyMDQwMVoXDTM0MDMxNzAyMDQwMVowEjEQMA4GA1UEAwwH\n' +
@@ -6187,14 +6368,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6203,7 +6384,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
-    // 创建X509证书对象。
+    // 创建X509证书对象.
     cert.createX509Cert(certEncodingBlob).then((x509Cert) => {
       try {
         let entry = x509CRL.getRevokedCertWithCert(x509Cert);
@@ -6251,7 +6432,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CRLEntry>>) : void
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6269,10 +6450,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6324,7 +6505,7 @@ getRevokedCerts() : Promise<Array\<X509CRLEntry>>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6342,10 +6523,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6393,7 +6574,7 @@ getSignature() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6411,10 +6592,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6465,7 +6646,7 @@ getSignatureAlgName() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6483,10 +6664,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6537,7 +6718,7 @@ getSignatureAlgOid() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6555,10 +6736,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6610,7 +6791,7 @@ getSignatureAlgParams() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6628,10 +6809,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6682,7 +6863,7 @@ getTBSInfo() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6700,10 +6881,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6754,7 +6935,7 @@ getExtensions(): DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6775,10 +6956,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '+i2osvdPWRia0dJCL1PCA14k\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6835,7 +7016,7 @@ match(param: X509CRLMatchParameters): boolean
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6853,10 +7034,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let crlEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6944,7 +7125,7 @@ getIssuerX500DistinguishedName(): X500DistinguishedName
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6962,10 +7143,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let crlEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7014,7 +7195,7 @@ toString(): string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7032,10 +7213,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let crlEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7084,7 +7265,7 @@ hashCode(): Uint8Array
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7102,10 +7283,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let crlEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7154,7 +7335,7 @@ getExtensionsObject(): CertExtension
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7177,10 +7358,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
     '+X48g7VE2o2X4cfy\n' +
     '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。
+// 证书吊销列表二进制数据，需业务自行赋值
 let crlEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7276,7 +7457,7 @@ validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| certChain | [CertChainData](#certchaindata) | 是   | 表示X509证书链序列化数据。                                     |
+| certChain | [CertChainData](#certchaindata) | 是   | 表示X509证书链序列化数据。                                    |
 | callback  | AsyncCallback\<void>            | 是   | 回调函数，使用AsyncCallback的第一个error参数判断是否校验成功，error为null表示成功，error不为null表示失败。 |
 
 **错误码：**
@@ -7302,7 +7483,7 @@ validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7311,7 +7492,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书链二进制数据。
+// 证书链二进制数据
 let certPem = '-----BEGIN CERTIFICATE-----\n' +
   'MIIDTjCCAjagAwIBAgIBBDANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
   'IENBMB4XDTI0MDMxOTAyMDQwMVoXDTM0MDMxNzAyMDQwMVowEjEQMA4GA1UEAwwH\n' +
@@ -7367,9 +7548,9 @@ certChainBuff.set(caPemData, certPemDataLenData.length + certPemData.length + ca
 
 let certChainData: cert.CertChainData = {
   data: certChainBuff,
-  // 证书链包含的证书个数，需业务自行赋值。
+  // 证书链包含的证书个数，需业务自行赋值
   count: 2,
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7434,7 +7615,7 @@ validate(certChain : CertChainData) : Promise\<void>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7443,7 +7624,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书链数据。
+// 证书链数据
 let certPem = '-----BEGIN CERTIFICATE-----\n' +
   'MIIDTjCCAjagAwIBAgIBBDANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
   'IENBMB4XDTI0MDMxOTAyMDQwMVoXDTM0MDMxNzAyMDQwMVowEjEQMA4GA1UEAwwH\n' +
@@ -7499,9 +7680,9 @@ certChainBuff.set(caPemData, certPemDataLenData.length + certPemData.length + ca
 
 let certChainData: cert.CertChainData = {
   data: certChainBuff,
-  // 证书链包含的证书个数，需业务自行赋值。
+  // 证书链包含的证书个数，需业务自行赋值
   count: 2,
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7561,7 +7742,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7581,7 +7762,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7644,7 +7825,7 @@ getEncoded() : Promise\<EncodingBlob>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7664,7 +7845,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7714,7 +7895,7 @@ getSerialNumber() : number
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7734,7 +7915,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7790,7 +7971,7 @@ getCertIssuer() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7810,7 +7991,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7866,7 +8047,7 @@ getRevocationDate() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7886,7 +8067,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7945,7 +8126,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7965,7 +8146,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8026,7 +8207,7 @@ getEncoded() : Promise\<EncodingBlob>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8046,7 +8227,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8104,7 +8285,7 @@ getSerialNumber() : bigint
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8124,7 +8305,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8179,7 +8360,7 @@ getCertIssuer() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8199,7 +8380,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8253,7 +8434,7 @@ getRevocationDate() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8273,7 +8454,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8327,7 +8508,7 @@ getExtensions(): DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8350,7 +8531,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8404,7 +8585,7 @@ hasExtensions(): boolean
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8424,7 +8605,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8478,7 +8659,7 @@ getCertIssuerX500DistinguishedName(): X500DistinguishedName
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8498,7 +8679,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8547,7 +8728,7 @@ toString(): string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8567,7 +8748,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8616,7 +8797,7 @@ hashCode(): Uint8Array
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8636,7 +8817,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8685,7 +8866,7 @@ getExtensionsObject(): CertExtension
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8772,7 +8953,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8827,7 +9008,7 @@ createCertCRLCollection(certs: Array\<X509Cert>, crls?: Array\<X509CRL>): CertCR
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8846,10 +9027,10 @@ async function createX509CRL(): Promise<cert.X509CRL> {
     'eavsH0Q3\n' +
     '-----END X509 CRL-----\n';
 
-  // 证书吊销列表二进制数据，需业务自行赋值。
+  // 证书吊销列表二进制数据，需业务自行赋值
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(crlData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   let x509CRL: cert.X509CRL = {} as cert.X509CRL;
@@ -8875,7 +9056,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
 
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -8943,7 +9124,7 @@ selectCerts(param: X509CertMatchParameters): Promise\<Array\<X509Cert>>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8965,7 +9146,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
 
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -9032,7 +9213,7 @@ selectCerts(param: X509CertMatchParameters, callback: AsyncCallback\<Array\<X509
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -9054,7 +9235,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
 
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -9071,7 +9252,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
 async function selectCerts() {
   const x509Cert = await createX509Cert();
   const collection = cert.createCertCRLCollection([x509Cert]);
-  // 需业务自行赋值。
+  // 需业务自行赋值
     const param: cert.X509CertMatchParameters = {
       x509Cert,
       validDate: '20231121074700Z',
@@ -9109,7 +9290,7 @@ selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>>
 
 | 类型           | 说明        |
 | -------------- | ----------- |
-| Promise\<Array\<[X509CRL](#x509crl11)>> | Promise对象。表示匹配到的证书吊销列表对象数组。 |
+| Promise\<Array\<[X509CRL](#x509crl11)>> | Promise对象，表示匹配到的证书吊销列表对象数组。 |
 
 **错误码：**
 
@@ -9127,7 +9308,7 @@ selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -9146,10 +9327,10 @@ async function createX509CRL(): Promise<cert.X509CRL> {
     'eavsH0Q3\n' +
     '-----END X509 CRL-----\n';
 
-  // 证书吊销列表二进制数据，需业务自行赋值。
+  // 证书吊销列表二进制数据，需业务自行赋值
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(crlData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   let x509CRL: cert.X509CRL = {} as cert.X509CRL;
@@ -9247,7 +9428,7 @@ selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CR
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -9266,10 +9447,10 @@ async function createX509CRL(): Promise<cert.X509CRL> {
     'eavsH0Q3\n' +
     '-----END X509 CRL-----\n';
 
-  // 证书吊销列表二进制数据，需业务自行赋值。
+  // 证书吊销列表二进制数据，需业务自行赋值
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(crlData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   let x509CRL: cert.X509CRL = {} as cert.X509CRL;
@@ -9373,7 +9554,7 @@ createX509CertChain(inStream: EncodingBlob): Promise\<X509CertChain>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -9438,10 +9619,10 @@ async function createX509CertChain(): Promise<cert.X509CertChain> {
     "xjoE\n" +
     "-----END CERTIFICATE-----\n";
 
-  // 证书链二进制数据，需业务自行赋值。
+  // 证书链二进制数据，需业务自行赋值
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certChainData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7。
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
@@ -9489,7 +9670,7 @@ createX509CertChain(inStream: EncodingBlob, callback: AsyncCallback\<X509CertCha
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -9553,10 +9734,10 @@ let certChainData = "-----BEGIN CERTIFICATE-----\n" +
   "xjoE\n" +
   "-----END CERTIFICATE-----\n";
 
-// 证书链二进制数据，需业务自行赋值。
+// 证书链二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -9607,7 +9788,7 @@ createX509CertChain(certs: Array\<X509Cert>): X509CertChain
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -9627,10 +9808,10 @@ async function createX509Cert(): Promise<cert.X509Cert> {
     'Qw==\n' +
     '-----END CERTIFICATE-----\n';
 
-  // 证书二进制数据，需业务自行赋值。
+  // 证书二进制数据，需业务自行赋值
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -9704,7 +9885,7 @@ buildX509CertChain(param: [CertChainBuildParameters](#certchainbuildparameters12
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -9713,7 +9894,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书链数据。
+// 证书链数据
 let certPem = '-----BEGIN CERTIFICATE-----\n' +
   'MIIDTjCCAjagAwIBAgIBBDANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
   'IENBMB4XDTI0MDMxOTAyMDQwMVoXDTM0MDMxNzAyMDQwMVowEjEQMA4GA1UEAwwH\n' +
@@ -9756,10 +9937,10 @@ let caPem = '-----BEGIN CERTIFICATE-----\n' +
 '-----END CERTIFICATE-----';
 
 async function createX509Cert(certData: string): Promise<cert.X509Cert> {
-  // 证书二进制数据，需业务自行赋值。
+  // 证书二进制数据，需业务自行赋值
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -9799,6 +9980,218 @@ async function buildX509CertChain() {
 buildX509CertChain();
 ```
 
+## cert.parsePkcs12<sup>18+</sup>
+
+parsePkcs12(data: Uint8Array, config: Pkcs12ParsingConfig): Pkcs12Data
+
+表示从P12文件中解析证书、私钥及其他证书合集，并返回结果。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                       |
+| -------- | -------------------- | ---- | -------------------------- |
+| data | Uint8Array | 是 | P12文件，DER格式。 |
+| config | [Pkcs12ParsingConfig](#pkcs12parsingconfig18) | 是 | P12文件的解析配置。 |
+
+**返回值：**
+
+| 类型                              | 说明                 |
+| --------------------------------- | -------------------- |
+| [Pkcs12Data](#pkcs12data18) | 表示P12文件解析后的证书、私钥及其他证书合集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.                           |
+| 19030008 | maybe wrong password.            |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function doTestParsePkcs12() {
+  try {
+    let p12_cert = new Uint8Array([0x30, 0x82, 0x09, 0x51, 0x02, 0x01, 0x03, 0x30, 0x82, 0x09, 0x17, 0x06, 0x09, 0x2a, 0x86, 0x48,
+      0x86, 0xf7, 0x0d, 0x01, 0x07, 0x01, 0xa0, 0x82, 0x09, 0x08, 0x04, 0x82, 0x09, 0x04, 0x30, 0x82,
+      0x09, 0x00, 0x30, 0x82, 0x03, 0xb7, 0x06, 0x09, 0x2a, 0x86, 0x48, 0x86, 0xf7, 0x0d, 0x01, 0x07,
+      0x06, 0xa0, 0x82, 0x03, 0xa8, 0x30, 0x82, 0x03, 0xa4, 0x02, 0x01, 0x00, 0x30, 0x82, 0x03, 0x9d,
+      0x06, 0x09, 0x2a, 0x86, 0x48, 0x86, 0xf7, 0x0d, 0x01, 0x07, 0x01, 0x30, 0x1c, 0x06, 0x0a, 0x2a,
+      0x86, 0x48, 0x86, 0xf7, 0x0d, 0x01, 0x0c, 0x01, 0x06, 0x30, 0x0e, 0x04, 0x08, 0x7c, 0xd8, 0x60,
+      0x3a, 0x07, 0xfb, 0x87, 0x8b, 0x02, 0x02, 0x08, 0x00, 0x80, 0x82, 0x03, 0x70, 0x4d, 0x64, 0xbe,
+      0x82, 0xc2, 0x59, 0x58, 0x65, 0xf0, 0x37, 0x46, 0x4f, 0x6b, 0xfa, 0x43, 0x2e, 0x9d, 0xd9, 0x4f,
+      0xd3, 0x54, 0x71, 0x69, 0x6e, 0x03, 0xf8, 0xb8, 0xf9, 0x05, 0xa2, 0x70, 0xa8, 0x70, 0xfb, 0xe6,
+      0xda, 0x73, 0xdb, 0x4e, 0xdf, 0x72, 0xcd, 0xb6, 0x88, 0x81, 0xec, 0x3f, 0x8d, 0x7b, 0xdc, 0xa6,
+      0x62, 0xd3, 0xd1, 0xdc, 0xef, 0xb9, 0x76, 0xb5, 0xd3, 0xb3, 0xfb, 0x61, 0x50, 0xeb, 0x22, 0x9b,
+      0x72, 0x20, 0xb4, 0xe9, 0x7c, 0x5e, 0xaf, 0xa9, 0xb6, 0x40, 0x69, 0x70, 0xea, 0x79, 0x02, 0x1d,
+      0x66, 0x71, 0x62, 0x39, 0x31, 0xd3, 0x31, 0xb1, 0x6f, 0x2a, 0x2d, 0x13, 0x59, 0xe9, 0xb7, 0x98,
+      0xbe, 0x67, 0xfa, 0x5d, 0x6f, 0x8f, 0x7a, 0x43, 0x10, 0x5a, 0x3f, 0x13, 0xda, 0xb0, 0x94, 0x08,
+      0x82, 0xf4, 0x39, 0x1d, 0x42, 0x26, 0x4a, 0xbe, 0x13, 0xe9, 0x89, 0x55, 0x52, 0xa4, 0x16, 0x3d,
+      0x50, 0x83, 0x5c, 0xb9, 0x00, 0x5e, 0x03, 0x35, 0x65, 0x13, 0x1f, 0xd8, 0xf8, 0xeb, 0x28, 0xe5,
+      0x00, 0x09, 0x9a, 0x62, 0x65, 0xab, 0x28, 0x21, 0x2e, 0x55, 0x11, 0x77, 0x7e, 0x64, 0xae, 0x12,
+      0xc1, 0x5e, 0x85, 0xf2, 0xe7, 0xf7, 0x2b, 0x51, 0x46, 0xa6, 0xf8, 0x55, 0x2c, 0xc4, 0x0a, 0x80,
+      0x6a, 0xc2, 0xa8, 0xba, 0x94, 0xf8, 0xee, 0x18, 0xf7, 0x32, 0x50, 0x53, 0xcc, 0x1e, 0x53, 0x85,
+      0xeb, 0x0d, 0x1e, 0xec, 0xe2, 0xbb, 0xc2, 0xf3, 0xf7, 0x80, 0xfd, 0x81, 0x63, 0x8f, 0x87, 0x98,
+      0x09, 0x47, 0x72, 0xee, 0x2d, 0x5a, 0x18, 0x89, 0x6b, 0x95, 0xef, 0x52, 0xde, 0x4d, 0xf5, 0x48,
+      0x2a, 0x38, 0x6f, 0x4b, 0x98, 0x3c, 0x6d, 0x41, 0xdd, 0x1b, 0xfd, 0x65, 0x1b, 0x87, 0x8a, 0xcf,
+      0xec, 0x47, 0xe3, 0x7a, 0xa0, 0x56, 0xd9, 0x36, 0x36, 0xcb, 0x17, 0xaa, 0x1b, 0x24, 0x79, 0x96,
+      0xc6, 0x60, 0xd4, 0xe4, 0xa8, 0x59, 0x35, 0x5e, 0x4e, 0x00, 0xbf, 0x9a, 0xf5, 0x5c, 0x2a, 0xd7,
+      0xd7, 0x92, 0x98, 0x79, 0xad, 0x13, 0xda, 0xea, 0xde, 0xcd, 0x65, 0x81, 0x26, 0xbd, 0x55, 0x0f,
+      0xa4, 0x73, 0x54, 0x7b, 0x2f, 0x55, 0x2a, 0x2f, 0xb9, 0x2d, 0x6e, 0x04, 0xc8, 0x37, 0x5e, 0x93,
+      0x09, 0xa7, 0x7f, 0xb1, 0x6b, 0x4a, 0x9f, 0xea, 0x59, 0x19, 0x57, 0xd0, 0xc1, 0xa1, 0x6b, 0xaf,
+      0x27, 0x2b, 0xac, 0x81, 0xec, 0xcd, 0x2e, 0xa2, 0xa6, 0x08, 0x01, 0xfc, 0xa1, 0xbc, 0xc9, 0xdc,
+      0x97, 0xb9, 0x48, 0xa8, 0x65, 0x5d, 0x63, 0xdb, 0x5c, 0x7e, 0x55, 0xe7, 0x47, 0xf2, 0x74, 0x17,
+      0x67, 0xfe, 0x56, 0x20, 0x54, 0x65, 0x11, 0xdf, 0xec, 0x75, 0x70, 0x49, 0x59, 0xd1, 0xea, 0x6b,
+      0x8f, 0x39, 0xec, 0x5d, 0x81, 0x82, 0x9a, 0xec, 0xce, 0x6c, 0x0c, 0x32, 0x14, 0xbd, 0xef, 0xac,
+      0xae, 0x04, 0xd0, 0x75, 0x62, 0xf5, 0x82, 0x16, 0xd1, 0xa8, 0xfb, 0x22, 0x2a, 0xc2, 0xe7, 0x7a,
+      0x75, 0x08, 0x59, 0x99, 0x34, 0x3d, 0xd9, 0xd7, 0x66, 0xb8, 0xcd, 0xaa, 0xf4, 0x48, 0xcc, 0x21,
+      0x25, 0x83, 0xae, 0xad, 0x55, 0x0e, 0xff, 0x44, 0xf3, 0xcc, 0xd1, 0x89, 0x72, 0x0f, 0x9f, 0xe3,
+      0xe5, 0xc7, 0xd4, 0x53, 0x94, 0xd6, 0xfb, 0x35, 0xd5, 0xd8, 0x2f, 0xa7, 0x4b, 0xf9, 0x50, 0x15,
+      0x1e, 0x35, 0xfc, 0x3d, 0xca, 0xad, 0xb6, 0x49, 0x16, 0xee, 0xff, 0xd7, 0x8a, 0xcc, 0xf0, 0x96,
+      0x11, 0x97, 0x22, 0xf3, 0xf7, 0x7c, 0x7a, 0x50, 0x49, 0x12, 0x68, 0x6e, 0x0e, 0x62, 0x32, 0xc7,
+      0xe9, 0xc3, 0xa0, 0x1b, 0xfe, 0x29, 0x8c, 0x46, 0xc2, 0x7e, 0xe1, 0xea, 0xc3, 0xcb, 0x30, 0xaf,
+      0xe4, 0x60, 0xe5, 0xa5, 0xa5, 0xb8, 0xf4, 0x16, 0xfa, 0x19, 0xd0, 0x1c, 0x14, 0xce, 0xf9, 0xa8,
+      0x0b, 0x3f, 0x87, 0x89, 0xd3, 0xed, 0x9e, 0x16, 0x14, 0xbb, 0xd3, 0x64, 0xeb, 0x00, 0xe7, 0x48,
+      0x1f, 0xd4, 0x47, 0xbc, 0xa9, 0x6f, 0x03, 0xe0, 0x0e, 0xaf, 0xb9, 0xad, 0x05, 0xa0, 0x1d, 0xee,
+      0x0a, 0xcd, 0x0f, 0xd0, 0xb8, 0xf1, 0x35, 0x80, 0xa7, 0x72, 0xcd, 0x36, 0x8e, 0xce, 0x72, 0xf9,
+      0x9f, 0xd5, 0x29, 0xae, 0x02, 0xb7, 0xbe, 0x65, 0xff, 0x38, 0x45, 0xf8, 0x8d, 0x87, 0x2f, 0xf8,
+      0xdd, 0xc1, 0x72, 0x17, 0x2b, 0xdd, 0x3e, 0xfe, 0x01, 0xa0, 0x59, 0xb3, 0x19, 0x92, 0xf0, 0x59,
+      0xf5, 0x06, 0x77, 0x8b, 0x1a, 0x41, 0x1d, 0x8b, 0x80, 0x74, 0x95, 0x8b, 0x30, 0x03, 0x18, 0xdd,
+      0x1e, 0x1b, 0x21, 0x36, 0xdf, 0xde, 0xc3, 0xa2, 0x68, 0xe0, 0x3d, 0x94, 0x37, 0x6b, 0x48, 0xb2,
+      0xb9, 0x41, 0x53, 0xd6, 0x65, 0xef, 0x7a, 0x3d, 0xdc, 0x09, 0x17, 0x66, 0xb4, 0x05, 0x58, 0x8a,
+      0x5d, 0x2f, 0x40, 0x4a, 0x91, 0x8a, 0xa5, 0xb7, 0x29, 0xfb, 0x37, 0x81, 0x71, 0x77, 0x50, 0x8d,
+      0x34, 0x80, 0x7e, 0xab, 0xb9, 0xc8, 0xdc, 0xb7, 0x2c, 0x7e, 0xbc, 0xad, 0x7c, 0x14, 0x5c, 0xf6,
+      0x90, 0x88, 0x0e, 0x0d, 0x50, 0x7a, 0x4e, 0xa6, 0x85, 0xe4, 0x2a, 0xe7, 0x67, 0x21, 0x53, 0xbb,
+      0x73, 0xd5, 0x30, 0x78, 0xbd, 0x08, 0x2b, 0x42, 0x44, 0x3e, 0x5d, 0x2b, 0x2f, 0x09, 0x8e, 0x82,
+      0xc3, 0x5b, 0x9e, 0xd8, 0x20, 0xc6, 0xb7, 0x42, 0xe5, 0xb3, 0x60, 0x0b, 0x9b, 0x01, 0x76, 0x26,
+      0xf7, 0xc1, 0xf7, 0xe1, 0xd1, 0x46, 0xf7, 0x9c, 0x21, 0xfd, 0x66, 0xb7, 0x14, 0x1d, 0x89, 0xb5,
+      0xd3, 0xa1, 0x4e, 0x57, 0x97, 0xe7, 0xe4, 0x63, 0x96, 0xe2, 0x6f, 0x10, 0x6a, 0xb7, 0x8e, 0x83,
+      0x64, 0x22, 0x10, 0x02, 0x27, 0x87, 0x6d, 0xb6, 0x11, 0x51, 0xe9, 0xe6, 0x68, 0x1a, 0xc8, 0xd3,
+      0x6b, 0x23, 0x33, 0x68, 0x66, 0xab, 0x4d, 0xf9, 0x92, 0x11, 0x67, 0x9d, 0x24, 0xee, 0x18, 0xa8,
+      0x3c, 0x5a, 0xfe, 0x79, 0x76, 0x99, 0xeb, 0x9f, 0x19, 0x9d, 0x74, 0xee, 0x13, 0xd9, 0xb1, 0x7b,
+      0x4e, 0xcf, 0x30, 0x05, 0xdb, 0x5a, 0x3e, 0x00, 0x7e, 0x0a, 0xed, 0x6f, 0xaf, 0x0d, 0x1b, 0xf3,
+      0x61, 0x24, 0x06, 0xe7, 0xf2, 0x57, 0x72, 0xf8, 0x61, 0x4d, 0x5f, 0x00, 0x78, 0x1f, 0x4d, 0xc7,
+      0x28, 0x5e, 0xc4, 0x9b, 0xed, 0xac, 0x4f, 0x16, 0xaf, 0x81, 0x85, 0x33, 0x16, 0xbd, 0x6a, 0xb9,
+      0xb2, 0x8e, 0x25, 0xbc, 0xaf, 0xfd, 0xea, 0xb7, 0x20, 0x32, 0x15, 0x62, 0x77, 0x52, 0xa1, 0xf2,
+      0xd0, 0x9d, 0x12, 0x4c, 0x85, 0x71, 0x08, 0x03, 0xa7, 0x94, 0x34, 0xb4, 0x96, 0x30, 0x82, 0x05,
+      0x41, 0x06, 0x09, 0x2a, 0x86, 0x48, 0x86, 0xf7, 0x0d, 0x01, 0x07, 0x01, 0xa0, 0x82, 0x05, 0x32,
+      0x04, 0x82, 0x05, 0x2e, 0x30, 0x82, 0x05, 0x2a, 0x30, 0x82, 0x05, 0x26, 0x06, 0x0b, 0x2a, 0x86,
+      0x48, 0x86, 0xf7, 0x0d, 0x01, 0x0c, 0x0a, 0x01, 0x02, 0xa0, 0x82, 0x04, 0xee, 0x30, 0x82, 0x04,
+      0xea, 0x30, 0x1c, 0x06, 0x0a, 0x2a, 0x86, 0x48, 0x86, 0xf7, 0x0d, 0x01, 0x0c, 0x01, 0x03, 0x30,
+      0x0e, 0x04, 0x08, 0x30, 0xee, 0xbd, 0x7c, 0xcb, 0xb5, 0xa5, 0x1b, 0x02, 0x02, 0x08, 0x00, 0x04,
+      0x82, 0x04, 0xc8, 0x1e, 0xd0, 0x7f, 0x7e, 0x86, 0x1c, 0x6f, 0x0e, 0xac, 0x6c, 0xe3, 0x35, 0xcb,
+      0xff, 0xe4, 0x84, 0x88, 0x97, 0x45, 0xf3, 0x48, 0xa9, 0x98, 0xeb, 0x74, 0x91, 0x53, 0x07, 0x7a,
+      0xe4, 0x78, 0x89, 0x13, 0xe7, 0xce, 0xa3, 0xc5, 0xab, 0x2c, 0x16, 0xe5, 0x02, 0x64, 0xc6, 0xb5,
+      0x11, 0x36, 0x69, 0x0b, 0x5f, 0x7e, 0x95, 0x27, 0x59, 0x9a, 0xac, 0x98, 0x12, 0x76, 0x39, 0x31,
+      0xaa, 0x4f, 0x22, 0x55, 0x21, 0x71, 0x20, 0xeb, 0x4e, 0x5e, 0x2d, 0xd8, 0xab, 0xd9, 0x64, 0x38,
+      0x13, 0x9a, 0x14, 0x48, 0x7f, 0x48, 0x05, 0xec, 0x49, 0x55, 0x80, 0x49, 0xaf, 0x4e, 0x29, 0xdf,
+      0x4a, 0xfb, 0xa1, 0x20, 0x2f, 0x98, 0x35, 0xf7, 0x8f, 0xb9, 0x41, 0x8b, 0x00, 0x14, 0x23, 0x9a,
+      0x43, 0xfe, 0x55, 0xfc, 0xe5, 0x57, 0x19, 0xa9, 0x74, 0x44, 0x1f, 0xdd, 0xc3, 0xc8, 0x9f, 0xfa,
+      0x9f, 0x67, 0x93, 0xed, 0x79, 0x11, 0xe1, 0x4e, 0xed, 0xd6, 0x20, 0x82, 0xc8, 0x85, 0xdf, 0x4e,
+      0xa0, 0xcd, 0xd8, 0x36, 0x37, 0x4f, 0x67, 0x9d, 0x84, 0x44, 0x14, 0xce, 0xc0, 0xc9, 0xa6, 0xbd,
+      0x73, 0x06, 0x27, 0xb7, 0x16, 0x97, 0x8c, 0x61, 0xd9, 0x63, 0xb2, 0x56, 0x8d, 0x28, 0x9e, 0x2e,
+      0xcf, 0xa3, 0xfe, 0x8d, 0xaa, 0xef, 0x69, 0x32, 0x7b, 0x32, 0xbe, 0xd5, 0x62, 0x2c, 0x2e, 0x7f,
+      0x72, 0xdb, 0x3c, 0x4b, 0xe4, 0x76, 0xa3, 0xa9, 0xa1, 0x67, 0x84, 0x86, 0xea, 0x14, 0x15, 0x6c,
+      0x74, 0xd2, 0xac, 0x0e, 0xe2, 0x54, 0x54, 0xd4, 0x31, 0xa3, 0x88, 0x66, 0x89, 0x31, 0x7b, 0xf7,
+      0x3c, 0x92, 0xce, 0x3e, 0x86, 0xfb, 0x57, 0xc8, 0x65, 0xae, 0x85, 0x6d, 0x48, 0xf6, 0xe6, 0x37,
+      0xeb, 0x77, 0xcf, 0x06, 0xd6, 0x9e, 0x54, 0xb4, 0xd8, 0x9a, 0x5f, 0xdd, 0xc5, 0xa5, 0x05, 0xa0,
+      0x4b, 0xd1, 0x54, 0xab, 0x4f, 0xd0, 0x3e, 0x6b, 0x8f, 0x03, 0x66, 0xd4, 0xe2, 0x90, 0xea, 0x2d,
+      0x9b, 0x6a, 0x2b, 0xc4, 0x7b, 0x9d, 0xf1, 0xb5, 0x22, 0xdf, 0x86, 0xc2, 0xfd, 0x13, 0x0a, 0x69,
+      0x29, 0x59, 0xe9, 0x45, 0xcd, 0xdf, 0xcd, 0xa5, 0x71, 0x7e, 0x70, 0xc3, 0x60, 0x9e, 0x47, 0x5d,
+      0xd4, 0x6c, 0xcc, 0x15, 0x51, 0x23, 0x5b, 0x4e, 0xee, 0x72, 0x80, 0x49, 0xd6, 0xac, 0x89, 0x16,
+      0x65, 0xf4, 0x95, 0x57, 0x19, 0x13, 0xab, 0x9c, 0x08, 0xe8, 0xdf, 0x0a, 0xe2, 0x39, 0xfc, 0xff,
+      0x42, 0x02, 0xac, 0xaf, 0xf1, 0xb6, 0x56, 0xef, 0x75, 0x60, 0x2f, 0xc2, 0x5d, 0xef, 0xf5, 0x79,
+      0xb5, 0x46, 0xa0, 0xb5, 0x03, 0x67, 0xef, 0x78, 0x3d, 0x49, 0xd0, 0xc5, 0x0e, 0xff, 0x42, 0x72,
+      0x02, 0x86, 0x99, 0x93, 0xaa, 0xa3, 0x9e, 0x2c, 0xc7, 0xec, 0xa2, 0xdf, 0x25, 0x4e, 0x28, 0x81,
+      0x82, 0x3e, 0x29, 0xd3, 0x37, 0xfd, 0x32, 0xf4, 0x85, 0x46, 0x42, 0xb9, 0x94, 0x44, 0x8a, 0xbf,
+      0xd9, 0x14, 0xcb, 0xb6, 0xd3, 0xc5, 0xe7, 0x6b, 0x28, 0x70, 0xc3, 0x9c, 0xc2, 0x93, 0x9d, 0x2f,
+      0xab, 0xd6, 0xb2, 0x19, 0x28, 0x9a, 0xda, 0x0d, 0x90, 0x5b, 0xba, 0x64, 0x6f, 0xcc, 0x11, 0xef,
+      0x6c, 0x88, 0x18, 0x4f, 0x86, 0x6e, 0xed, 0xcf, 0xde, 0x0d, 0xec, 0xe2, 0x12, 0xc3, 0x89, 0x0a,
+      0x3f, 0xbb, 0x3d, 0x8c, 0x8f, 0xa9, 0x40, 0xe6, 0xf8, 0xd1, 0x1a, 0x9a, 0x7e, 0x8a, 0xd7, 0x7b,
+      0x56, 0xf4, 0x5d, 0x80, 0x64, 0xd5, 0x88, 0x86, 0x85, 0x18, 0x30, 0x5d, 0x64, 0x04, 0xb3, 0xc2,
+      0xc7, 0x80, 0xda, 0x3e, 0xc4, 0xd6, 0xf6, 0xc4, 0x95, 0x56, 0xd5, 0xad, 0x82, 0x86, 0xcc, 0x1a,
+      0x05, 0x69, 0x06, 0x08, 0x5b, 0x19, 0xea, 0x10, 0xc5, 0xcd, 0x67, 0x93, 0xab, 0x0f, 0xe3, 0xba,
+      0xb0, 0x0d, 0xac, 0x99, 0x0d, 0x35, 0x6f, 0xe5, 0x41, 0xb2, 0x7c, 0x87, 0x91, 0x6c, 0xe2, 0x75,
+      0x9b, 0x64, 0x62, 0x06, 0x2a, 0x8b, 0xd9, 0x4d, 0x23, 0xcd, 0x2b, 0xef, 0xf5, 0x61, 0x82, 0x8e,
+      0x3f, 0xf6, 0x2b, 0xe1, 0x6f, 0xcf, 0xbd, 0xaa, 0x07, 0x97, 0x49, 0x4e, 0x02, 0x9d, 0xa5, 0x9e,
+      0xc5, 0xd7, 0x8b, 0xd3, 0xe1, 0xd9, 0x35, 0x96, 0x9d, 0x1f, 0xa2, 0xf6, 0x91, 0xee, 0xd1, 0x3b,
+      0xa8, 0xfe, 0x4d, 0xeb, 0xf9, 0xfc, 0xe4, 0xab, 0x60, 0xb7, 0x86, 0x9d, 0x2a, 0x35, 0xb0, 0x00,
+      0xd4, 0x3c, 0x2a, 0x7e, 0x6d, 0x65, 0x5f, 0xf3, 0x7c, 0x23, 0x57, 0x52, 0x2a, 0x8c, 0x5b, 0x36,
+      0x74, 0xb7, 0x61, 0x49, 0xf0, 0xdf, 0xcf, 0x8a, 0x28, 0xc5, 0x8d, 0xbc, 0x20, 0xcc, 0xac, 0x86,
+      0x20, 0xd8, 0x2d, 0x86, 0x99, 0xf5, 0xf0, 0xdb, 0xed, 0x8d, 0xf9, 0xd7, 0x4e, 0xa8, 0xde, 0x84,
+      0x35, 0x50, 0xc1, 0x7c, 0xbd, 0xdf, 0xc2, 0x24, 0x1a, 0x49, 0x24, 0x9a, 0x37, 0x93, 0xca, 0x2d,
+      0x73, 0x47, 0x8f, 0x83, 0xed, 0x4d, 0xca, 0xf8, 0xf0, 0xd3, 0x9b, 0xe0, 0x4b, 0x3b, 0xf1, 0x86,
+      0xeb, 0x78, 0x7b, 0x42, 0xa1, 0xb9, 0x36, 0x15, 0xde, 0x63, 0xab, 0x8b, 0x8b, 0x5d, 0xa2, 0x92,
+      0x10, 0x95, 0xdf, 0xda, 0xd7, 0xba, 0xa0, 0x26, 0xb9, 0xdc, 0x83, 0xeb, 0xdc, 0xd2, 0x1f, 0xf1,
+      0xb1, 0x8d, 0x21, 0x51, 0x71, 0x59, 0x0e, 0xe8, 0x7e, 0xf1, 0x53, 0x08, 0x98, 0x79, 0x05, 0x3b,
+      0x22, 0xf1, 0xda, 0x07, 0x0d, 0xf7, 0x89, 0x5e, 0xc4, 0x62, 0x8c, 0xf9, 0x19, 0xc8, 0xbc, 0xa4,
+      0x0c, 0x6f, 0x41, 0x34, 0x56, 0x22, 0x6b, 0xe6, 0xee, 0x7c, 0x4a, 0xd9, 0x26, 0x8c, 0x56, 0x12,
+      0xf3, 0x03, 0x12, 0x1c, 0x5b, 0x8d, 0x64, 0x5c, 0x1c, 0xb6, 0x0f, 0x93, 0xaf, 0xb1, 0x67, 0x6f,
+      0x13, 0xdd, 0xe3, 0xcf, 0x0e, 0xe6, 0x06, 0xf3, 0xb2, 0xbc, 0x99, 0xf5, 0xb0, 0xd7, 0xe9, 0x7e,
+      0xb0, 0x6a, 0xb9, 0xb5, 0xda, 0xcf, 0x88, 0xf1, 0xc5, 0x58, 0x54, 0x05, 0x5c, 0x9d, 0x79, 0xc2,
+      0xcd, 0xbb, 0xc6, 0xf2, 0x69, 0xa9, 0xe3, 0x4e, 0x05, 0x0d, 0x02, 0xb6, 0x4d, 0x8e, 0x7d, 0x60,
+      0x8e, 0xda, 0x4d, 0x28, 0xd2, 0xec, 0x8a, 0x11, 0xe3, 0xe7, 0x17, 0x20, 0x07, 0x7b, 0xfc, 0x9b,
+      0x4e, 0xf7, 0x79, 0xf5, 0x0a, 0x6e, 0xd1, 0x1e, 0x7b, 0x83, 0x66, 0x5e, 0x1b, 0x9d, 0x36, 0x32,
+      0x89, 0xf6, 0x72, 0xa5, 0x58, 0x54, 0x42, 0xba, 0x90, 0xf3, 0xbb, 0x05, 0x46, 0xa4, 0x91, 0x1c,
+      0xdb, 0xab, 0xf3, 0x68, 0x56, 0x7a, 0xd3, 0xff, 0x3f, 0x9f, 0xc5, 0x4a, 0x47, 0xbd, 0x89, 0x46,
+      0xf6, 0x94, 0x3a, 0x94, 0xd4, 0x30, 0xd3, 0xae, 0x0d, 0x99, 0x95, 0xf7, 0x75, 0xfe, 0x14, 0x10,
+      0x9e, 0xed, 0x21, 0x0f, 0x0d, 0x54, 0x7d, 0x54, 0xc5, 0x80, 0x21, 0x4d, 0xf2, 0xaf, 0x67, 0xaf,
+      0x8a, 0x76, 0x9e, 0x34, 0x32, 0x74, 0x89, 0x2a, 0x32, 0xf9, 0x48, 0x20, 0x90, 0xe6, 0x4a, 0xa3,
+      0x7f, 0xf2, 0x2a, 0x51, 0x22, 0x93, 0xe5, 0xdd, 0x59, 0xb3, 0x83, 0xa8, 0x47, 0xf5, 0x6b, 0x38,
+      0x24, 0xc2, 0xac, 0x2d, 0x03, 0xda, 0xb1, 0x17, 0x19, 0xe0, 0x38, 0x2c, 0xb3, 0xa6, 0x4c, 0x8e,
+      0xae, 0x63, 0xa7, 0xae, 0x96, 0xb1, 0x07, 0x8c, 0x8f, 0x6a, 0x08, 0x32, 0x15, 0x1f, 0x33, 0x97,
+      0x21, 0x3b, 0x51, 0x70, 0xc5, 0x1f, 0xa6, 0xa3, 0x8a, 0xd0, 0x8f, 0x0b, 0xda, 0x64, 0xab, 0xbe,
+      0xee, 0x4b, 0x14, 0xfd, 0x32, 0x87, 0x9e, 0xa7, 0x19, 0x75, 0xc9, 0xaa, 0xd3, 0xed, 0xa7, 0xa0,
+      0x01, 0xe7, 0xa0, 0xe5, 0x28, 0xdd, 0x3b, 0x7c, 0x49, 0xe4, 0x24, 0x7d, 0x92, 0x86, 0x25, 0x03,
+      0xb3, 0x66, 0x04, 0xf3, 0xa1, 0x40, 0x11, 0x35, 0x3a, 0x1d, 0xbf, 0x1c, 0x02, 0x83, 0x3d, 0x37,
+      0x51, 0x88, 0xa3, 0x2b, 0x10, 0x8c, 0x8e, 0x10, 0xdd, 0xdc, 0xef, 0xa4, 0xe9, 0x14, 0x77, 0xb6,
+      0x8e, 0x75, 0xb6, 0x8e, 0xea, 0xaa, 0x57, 0x16, 0x1f, 0xb0, 0x0c, 0xbc, 0x44, 0xed, 0x92, 0x94,
+      0x9a, 0xb4, 0xf3, 0x31, 0x64, 0x02, 0x5c, 0xa1, 0x51, 0x63, 0x39, 0x42, 0x74, 0x7a, 0x1d, 0xf2,
+      0xf5, 0x92, 0x50, 0xf1, 0x5a, 0x8a, 0xde, 0xb3, 0x4e, 0xf1, 0x6e, 0x67, 0xd9, 0x5b, 0x00, 0xa7,
+      0xd1, 0x90, 0x58, 0x36, 0xc4, 0x15, 0x80, 0xbb, 0xa5, 0xbb, 0x98, 0xc0, 0x8a, 0x9b, 0x17, 0x35,
+      0x36, 0x3b, 0x62, 0x0f, 0x29, 0xcd, 0xe9, 0x04, 0x0e, 0x9d, 0xca, 0x43, 0x04, 0xdf, 0x17, 0x49,
+      0xbf, 0xb6, 0x7a, 0x7a, 0x3c, 0xdb, 0x0d, 0x6d, 0xd5, 0x89, 0xb9, 0x69, 0x94, 0xd8, 0xb2, 0xd6,
+      0x38, 0x8a, 0xcc, 0x78, 0x44, 0x40, 0x63, 0x9f, 0x1e, 0x0e, 0x40, 0x33, 0x51, 0xd3, 0x65, 0xf8,
+      0xf1, 0x42, 0x06, 0x75, 0x84, 0xe7, 0xb1, 0xe9, 0xd6, 0xa4, 0x5e, 0x7f, 0xb0, 0x48, 0x6f, 0x80,
+      0x92, 0xf8, 0xfc, 0x2a, 0xdb, 0x18, 0x97, 0xe5, 0xe7, 0xc7, 0x46, 0xb6, 0x59, 0x8c, 0x3a, 0x09,
+      0x91, 0xc1, 0x49, 0x55, 0xf9, 0xf3, 0x87, 0x19, 0xdc, 0x72, 0x56, 0xd3, 0x20, 0x5e, 0xc5, 0x3d,
+      0xfb, 0x19, 0xea, 0x6a, 0xdf, 0x09, 0xb2, 0x8f, 0xb6, 0xdd, 0x26, 0x31, 0x25, 0x30, 0x23, 0x06,
+      0x09, 0x2a, 0x86, 0x48, 0x86, 0xf7, 0x0d, 0x01, 0x09, 0x15, 0x31, 0x16, 0x04, 0x14, 0x3b, 0xd2,
+      0xb3, 0x51, 0x4c, 0x57, 0xd0, 0xca, 0x34, 0xa4, 0xf0, 0x06, 0xdd, 0xe9, 0x76, 0x08, 0xdb, 0x7b,
+      0x3a, 0xb0, 0x30, 0x31, 0x30, 0x21, 0x30, 0x09, 0x06, 0x05, 0x2b, 0x0e, 0x03, 0x02, 0x1a, 0x05,
+      0x00, 0x04, 0x14, 0x8e, 0x7f, 0x87, 0x67, 0x78, 0x64, 0x93, 0x36, 0x35, 0xe5, 0x93, 0x9d, 0xac,
+      0x61, 0x09, 0x4f, 0xdc, 0x95, 0xd7, 0x4f, 0x04, 0x08, 0x23, 0xc2, 0xc0, 0xc6, 0x8d, 0x5f, 0x70,
+      0x7e, 0x02, 0x02, 0x08, 0x00]);
+
+    let conf: cert.Pkcs12ParsingConfig = {
+      password: "123456",
+      needsCert: false,
+      needsPrivateKey: true,
+      privateKeyFormat: cert.EncodingBaseFormat.DER,
+      needsOtherCerts: false,
+    };
+    let p12: cert.Pkcs12Data = cert.parsePkcs12(p12_cert, conf);
+    console.info("parsePKCS12 succeed.");
+    if (p12.privateKey) {
+      console.info("privateKey:" + p12.privateKey.toString())
+    }
+  } catch (error) {
+    console.error('parsePKCS12 failed:' + JSON.stringify(error));
+  }
+}
+```
+
 ## cert.createTrustAnchorsWithKeyStore<sup>12+</sup>
 
 createTrustAnchorsWithKeyStore(keystore: Uint8Array, pwd: string): Promise<Array\<[X509TrustAnchor](#x509trustanchor11)>>
@@ -9813,8 +10206,8 @@ createTrustAnchorsWithKeyStore(keystore: Uint8Array, pwd: string): Promise<Array
 
 | 参数名   | 类型                  | 必填 | 说明                       |
 | -------- | -------------------- | ---- | -------------------------- |
-| keystore | Uint8Array | 是 | p12文件，DER格式。 |
-| pwd | string | 是 | p12文件的密码。 |
+| keystore | Uint8Array | 是 | P12文件，DER格式。 |
+| pwd | string | 是 | P12文件的密码。 |
 
 **返回值：**
 
@@ -9894,7 +10287,7 @@ getCertList(): Array\<X509Cert>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -9958,10 +10351,10 @@ let certChainData = "-----BEGIN CERTIFICATE-----\n" +
   "xjoE\n" +
   "-----END CERTIFICATE-----\n";
 
-// 证书链二进制数据，需业务自行赋值。
+// 证书链二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -10025,7 +10418,7 @@ validate(param: CertChainValidationParameters): Promise\<CertChainValidationResu
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -10090,10 +10483,10 @@ async function createX509CertChain(): Promise<cert.X509CertChain> {
     "xjoE\n" +
     "-----END CERTIFICATE-----\n";
 
-  // 证书链二进制数据，需业务自行赋值。
+  // 证书链二进制数据，需业务自行赋值
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certChainData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7。
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
@@ -10109,7 +10502,7 @@ async function createX509CertChain(): Promise<cert.X509CertChain> {
 
 async function validate() {
   const certChain = await createX509CertChain();
-  // 证书链校验数据，需业务自行赋值。
+  // 证书链校验数据，需业务自行赋值
   const param: cert.CertChainValidationParameters = {
     date: '20231212080000Z',
     trustAnchors: [{
@@ -10168,7 +10561,7 @@ validate(param: CertChainValidationParameters, callback: AsyncCallback\<CertChai
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -10232,14 +10625,14 @@ let certChainData = "-----BEGIN CERTIFICATE-----\n" +
   "xjoE\n" +
   "-----END CERTIFICATE-----\n";
 
-// 证书链二进制数据，需业务自行赋值。
+// 证书链二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-// 证书链校验数据，需业务自行赋值。
+// 证书链校验数据，需业务自行赋值
 let param: cert.CertChainValidationParameters = {
   date: '20231212080000Z',
   trustAnchors: [{
@@ -10296,7 +10689,7 @@ toString(): string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -10372,10 +10765,10 @@ let certChainData = '-----BEGIN CERTIFICATE-----\n' +
   'tPO+\n' +
   '-----END CERTIFICATE-----\n';
 
-// 证书链二进制数据，需业务自行赋值。
+// 证书链二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -10423,7 +10816,7 @@ hashCode(): Uint8Array
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -10499,10 +10892,10 @@ let certChainData = '-----BEGIN CERTIFICATE-----\n' +
   'tPO+\n' +
   '-----END CERTIFICATE-----\n';
 
-// 证书链二进制数据，需业务自行赋值。
+// 证书链二进制数据，需业务自行赋值
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7。
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -10518,6 +10911,111 @@ async function certChainHashCode() {
   }
 }
 ```
+
+## cert.generateCsr<sup>18+</sup>
+
+generateCsr(keyInfo: PrivateKeyInfo, config: CsrGenerationConfig): string | Uint8Array
+
+表示使用指定的RSA私钥，传入主体、拓展、摘要算法、输出格式等配置参数去生成CSR。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明                 |
+| -------- | ----------------------------- | ---- | -------------------- |
+| keyInfo | [PrivateKeyInfo](#privatekeyinfo18) | 是 | 包含私钥跟口令的配置参数。 |
+| config | [CsrGenerationConfig](#csrgenerationconfig18) | 是 | 包含生成CSR的配置参数。 |
+
+**返回值：**
+
+| 类型                            | 说明             |
+| ------------------------------- | ---------------- |
+| string \| Uint8Array | 表示生成的CSR数据。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+| 19030002 | the certificate signature verification failed. |
+| 19030003 | the certificate has not taken effect. |
+| 19030004 | the certificate has expired. |
+| 19030005 | failed to obtain the certificate issuer. |
+| 19030006 | the key cannot be used for signing a certificate. |
+| 19030007 | the key cannot be used for digital signature. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+
+async function createCsrTest() {
+  let nameStr = '/CN=John Doe/OU=IT Department/O=ACME Inc./L=San Francisco/ST=California/C=US/CN=ALN C/CN=XTS';
+  let prikeyEnstr: string =
+    '-----BEGIN RSA PRIVATE KEY-----\n'                                  +
+      'Proc-Type: 4,ENCRYPTED\n'                                           +
+      'DEK-Info: AES-128-CBC,B5FFA3AEEE7176106FDDB0988B532F07\n\n'         +
+      't3zNRGKp5X4BNkcsYATad/Le+94yMIX9CoNAGsBIDzQw+773UMGIoeGEYVlXWc8x\n' +
+      'N1XWDinn4ytWw9x9OfUYgmNnrdkWRSaIuw+SpQfBgJip+MsNERYOHZ5TYWTR8n3k\n' +
+      '7/jHY8eCgTsP3hbNtyaePIrtbTLZGZAHG1YWY5UmLaYoI1O6/Vvobx72lx3b43Tx\n' +
+      '4j5lkknpLl85fcs1s4TYMOd8vEwhdpouR4VY8kfRSm44WQLtGXrce0An3MG3pXyZ\n' +
+      'GhpmJyTcg0epTEYVzglENlBJrBVDL+bJ8uvHGH4tmeQb77e6ILXoxZntM7zQMMFo\n' +
+      'A7dilqO6FBxu20n2TidVGCa0Yn+DZLpry2OdwVUC2nXyCHCehr3jAZz6k20FWg5B\n' +
+      'EsU16yOIB+bp9BUKdTpJVtc/pmZJtnlA9pSCUVmWdltOsjjxkE94wfAUOYhO3Mvz\n' +
+      'gF9KR1/bdAbLw4t7bGeuyV4N2iYr83FodLLXpupM6Qfb51+HVgHvm2aaHv2Q4sf3\n' +
+      'poCVTNlegoVV9x3+7HqXY6MjlG8aU6LcWqH34ySqRBQrKL1PuDzQSY5/RmP7PUhG\n' +
+      'ym4l6KbEaRC2H/XS2qKa4VCMgBCgA0hoiw4s48Xd4h2GUTuxLM9wGyW89OEaHky7\n' +
+      'VE7t3O9a2zhkRTYDDYQ8QCycKhNrsKySyItRUWn/w2lXvuKM7PpAzYH7Ey3W1eZG\n' +
+      'PyyeGG9exjpdIvD3tx5Hl/OWwBkW1DAzO40gT6sdD5FXzRv4fCHuCrIow5QMLF4T\n' +
+      'd5Y4a6q13V4O5b73T5INmKl8rEbPGIw7WLR7BNj05QuzNcn5kA1aBFIJqsxQv46l\n' +
+      '-----END RSA PRIVATE KEY-----\n';
+  let priKeyInfo: cert.PrivateKeyInfo = {
+    key: prikeyEnstr,
+    password : "123abc"
+  }
+  let keyUsage: cert.CsrAttribute = {
+    type: "keyUsage",
+    value: "digitalSignature, keyEncipherment"
+  };
+
+  let challengePassword: cert.CsrAttribute = {
+    type:"challengePassword",
+    value: "123456"
+  };
+  let attribute: cert.CsrAttribute[] = [
+    keyUsage,challengePassword
+  ];
+  try {
+    let data = await cert.createX500DistinguishedName(nameStr);
+    console.info('createX500DistinguishedName success' + data.getName("CN").toString());
+    let conf: cert.CsrGenerationConfig = {
+      subject: data,
+      mdName: "SHA256",
+      outFormat: cert.EncodingBaseFormat.PEM,
+      attributes: attribute
+    }
+    try {
+      let csrStr = cert.generateCsr(priKeyInfo, conf)
+      console.log('generateCsr success return str is' + csrStr.toString())
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('generateCsr failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX500DistinguishedName catch, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
 ## cert.createX500DistinguishedName<sup>12+</sup>
 
 createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
@@ -10563,7 +11061,7 @@ createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array。
+// string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -10808,5 +11306,555 @@ async function getEncoded() {
     let e: BusinessError = error as BusinessError;
     console.error('createX500DistinguishedName catch, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
+}
+```
+
+## cert.createCmsGenerator<sup>18+</sup>
+
+createCmsGenerator(contentType: CmsContentType): CmsGenerator
+
+表示创建CmsGenerator对象。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明                 |
+| -------- | ----------------------------- | ---- | -------------------- |
+| contentType | [CmsContentType](#cmscontenttype18) | 是 | 指定CMS内容类型。|
+
+**返回值：**
+
+| 类型                            | 说明             |
+| ------------------------------- | ---------------- |
+| [CmsGenerator](#cmsgenerator18) | CmsGenerator对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIICXjCCAcegAwIBAgIGAXKnJjrAMA0GCSqGSIb3DQEBCwUAMEgxCzAJBgNVBAYT\n' +
+  'AkNOMQwwCgYDVQQIDANzaGExDTALBgNVBAcMBHhpYW4xDTALBgNVBAoMBHRlc3Qx\n' +
+  'DTALBgNVBAMMBHRlc3QwHhcNMjQxMTIyMDkwNTIyWhcNMzQxMTIwMDkwNTIyWjBI\n' +
+  'MQswCQYDVQQGEwJDTjEMMAoGA1UECAwDc2hhMQ0wCwYDVQQHDAR4aWFuMQ0wCwYD\n' +
+  'VQQKDAR0ZXN0MQ0wCwYDVQQDDAR0ZXN0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB\n' +
+  'iQKBgQC6nCZTM16Rk2c4P/hwfVm++jqe6GCA/PXXGe4YL218q1dTKMHBGEw8kXi0\n' +
+  'XLDcyyC2yUn8ywN2QSyly6ke9EE6PGfZywStLp4g2PTTWB04sS3aXT2y+fToiTXQ\n' +
+  '3AxfFYRpB+EgSdSCkJs6jKXVwbzu54kEtQTfs8UdBQ9nVKaJLwIDAQABo1MwUTAd\n' +
+  'BgNVHQ4EFgQU6QXnt1smb2HRSO/2zuRQnz/SDxowHwYDVR0jBBgwFoAU6QXnt1sm\n' +
+  'b2HRSO/2zuRQnz/SDxowDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOB\n' +
+  'gQBPR/+5xzFG1XlTdgwWVvqVxvhGUkbMTGW0IviJ+jbKsi57vnVsOtFzEA6y+bYx\n' +
+  'xG/kEOcwLtzeVHOQA+ZU5SVcc+qc0dfFiWjL2PSAG4bpqSTjujpuUk+g8ugixbG1\n' +
+  'a26pkDJhNeB/E3eBIbeydSY0A/dIGb6vbGo6BSq2KvnWAA==\n' +
+  '-----END CERTIFICATE-----\n';
+
+function testcreateCmsGenerator() {
+  let certEncodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+  cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
+    if (error) {
+      console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+    } else {
+        try {
+          let cmsContentType = cert.CmsContentType.SIGNED_DATA;
+          let cmsGenerator = cert.createCmsGenerator(cmsContentType);
+          console.info('testcreateCmsGenerator createCmsGenerator success.');
+        } catch (err) {
+          let e: BusinessError = err as BusinessError;
+          console.error('createCmsGenerator failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+        }
+    }
+  });
+}
+```
+
+## CmsGenerator<sup>18+</sup>
+
+CmsGenerator对象用于生成CMS（Cryptographic Message Syntax）格式的消息。
+
+> **说明：**
+>
+> PKCS#7是用于存储签名或加密数据的标准语法。注意CMS是PKCS#7的扩展，PKCS#7支持的数据类型包括数据、签名数据、信封数据、
+> 签名和信封数据、摘要数据、加密数据。常用于保护数据的完整性和机密性。
+
+### addSigner<sup>18+</sup>
+
+addSigner(cert: X509Cert, keyInfo: PrivateKeyInfo, config: CmsSignerConfig): void;
+
+用于添加签名者信息。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名       | 类型   | 必填 | 说明           |
+| ------------ | ------ | ---- | -------------- |
+| cert |  [X509Cert](#x509cert) | 是 | 指定X509证书。|
+| keyInfo | [PrivateKeyInfo](#privatekeyinfo18) | 是 | 指定私钥信息。|
+| config | [CmsSignerConfig](#cmssignerconfig18) | 是 | 指定签名者选项。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+| 19030008 | maybe wrong password. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIICXjCCAcegAwIBAgIGAXKnJjrAMA0GCSqGSIb3DQEBCwUAMEgxCzAJBgNVBAYT\n' +
+  'AkNOMQwwCgYDVQQIDANzaGExDTALBgNVBAcMBHhpYW4xDTALBgNVBAoMBHRlc3Qx\n' +
+  'DTALBgNVBAMMBHRlc3QwHhcNMjQxMTIyMDkwNTIyWhcNMzQxMTIwMDkwNTIyWjBI\n' +
+  'MQswCQYDVQQGEwJDTjEMMAoGA1UECAwDc2hhMQ0wCwYDVQQHDAR4aWFuMQ0wCwYD\n' +
+  'VQQKDAR0ZXN0MQ0wCwYDVQQDDAR0ZXN0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB\n' +
+  'iQKBgQC6nCZTM16Rk2c4P/hwfVm++jqe6GCA/PXXGe4YL218q1dTKMHBGEw8kXi0\n' +
+  'XLDcyyC2yUn8ywN2QSyly6ke9EE6PGfZywStLp4g2PTTWB04sS3aXT2y+fToiTXQ\n' +
+  '3AxfFYRpB+EgSdSCkJs6jKXVwbzu54kEtQTfs8UdBQ9nVKaJLwIDAQABo1MwUTAd\n' +
+  'BgNVHQ4EFgQU6QXnt1smb2HRSO/2zuRQnz/SDxowHwYDVR0jBBgwFoAU6QXnt1sm\n' +
+  'b2HRSO/2zuRQnz/SDxowDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOB\n' +
+  'gQBPR/+5xzFG1XlTdgwWVvqVxvhGUkbMTGW0IviJ+jbKsi57vnVsOtFzEA6y+bYx\n' +
+  'xG/kEOcwLtzeVHOQA+ZU5SVcc+qc0dfFiWjL2PSAG4bpqSTjujpuUk+g8ugixbG1\n' +
+  'a26pkDJhNeB/E3eBIbeydSY0A/dIGb6vbGo6BSq2KvnWAA==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let rsaStr1024: string  =
+  '-----BEGIN RSA PRIVATE KEY-----\n' +
+    'Proc-Type: 4,ENCRYPTED\n' +
+    'DEK-Info: DES-EDE3-CBC,DB0AC6E3BEE16420\n\n' +
+    '1N5xykdckthZnswMV7blxXm2RCqe/OByBfMwFI7JoXR8STtMiStd4xA3W405k1Ma\n' +
+    'ExpsHgWwZaS23x+sQ1sL1dsqIPMrw1Vr+KrL20vQcCVjXPpGKauafVbtcWQ1r2PZ\n' +
+    'QJ4KWP6FhUp+sGt2ItODW3dK+1GdqL22ZtANrgFzS42Wh8FSn0UMCf6RG62DK62J\n' +
+    'z2jtf4XaorrGSjdTeY+fyyGfSyKidIMMBe+IXwlhCgAe7aHSaqXtMsv+BibB7PJ3\n' +
+    'XmEp1D/0ptL3r46txyYcuy8jSNCkW8er93KKnlRN6KbuYZPvPNncWkzZBzV17t5d\n' +
+    'QgtvVh32AKgqk5jm8YVnspOFiPrbrK9UN3IW15juFkfnhriM3IrKap4/kW+tfawZ\n' +
+    'DmHkSyl8xqFK413Rv0UvYBTjOcGbs2BSJYEvp8CIjtA17SvLmNw70K2nXWuQYutY\n' +
+    '+HyucPtHfEqUPQRzWTAMMntTru77u7dxo2WMMMxOtMJO5h7MAnZH9bAFiuO3ewcY\n' +
+    'eEePg10d8Owcfh9G6kc0HIGT9MMLMi0mTXhpoQTuWPYuSx6uUZL1fsp1x2fuM0qn\n' +
+    'bdf3+UnATYUu4tgvBHrMV7405Y6Y3PnqOFxVMeAHeOTo6UThtJ10mfeCPXGcUaHo\n' +
+    'P5enw7h4145cha3+S4hNrUwj3skrtavld7tY74p4DvgZSlCMF3JAm3DhpnEMVcYP\n' +
+    'Y6TkSevvxOpBvEHE41Y4VBCBwd9clcixI6cSBJKPUU4A/sc/kkNdGFcbzLQCg/zR\n' +
+    '1m7YmBROb2qy4w3lv/uwVnPGLg/YV465irRaN3hgz7/1lm8STKQhmQ==\n' +
+    '-----END RSA PRIVATE KEY-----\n';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+function testAddSigner() {
+  let certEncodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+  cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
+    if (error) {
+      console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+    } else {
+        try {
+          let cmsContentType = cert.CmsContentType.SIGNED_DATA;
+          let cmsGenerator = cert.createCmsGenerator(cmsContentType);
+          console.info('testAddSigner createCmsGenerator success.');
+          let privateKeyInfo: cert.PrivateKeyInfo = {
+            key: rsaStr1024,
+            password: '123456'
+          };
+          // addCert设置为true时，第二次addSigner增加相同的证书，会报错
+          let config: cert.CmsSignerConfig = {
+            mdName:'SHA256',
+            addCert:false,
+            addAttr:false,
+            addSmimeCapAttr:false
+          }
+          cmsGenerator.addSigner(x509Cert, privateKeyInfo, config);
+          console.info('testAddSigner addSigner success.');
+        } catch (err) {
+          let e: BusinessError = err as BusinessError;
+          console.error('testAddSigner failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+        }
+    }
+  });
+}
+```
+
+### addCert<sup>18+</sup>
+
+addCert(cert: X509Cert): void
+
+用于添加证书，例如签名证书的颁发者证书。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名 | 类型      | 必填 | 说明                     |
+| ------ | --------- | ---- | ------------------------ |
+| cert   | [X509Cert](#x509cert)  | 是   | 要添加的X509证书。      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIICXjCCAcegAwIBAgIGAXKnJjrAMA0GCSqGSIb3DQEBCwUAMEgxCzAJBgNVBAYT\n' +
+  'AkNOMQwwCgYDVQQIDANzaGExDTALBgNVBAcMBHhpYW4xDTALBgNVBAoMBHRlc3Qx\n' +
+  'DTALBgNVBAMMBHRlc3QwHhcNMjQxMTIyMDkwNTIyWhcNMzQxMTIwMDkwNTIyWjBI\n' +
+  'MQswCQYDVQQGEwJDTjEMMAoGA1UECAwDc2hhMQ0wCwYDVQQHDAR4aWFuMQ0wCwYD\n' +
+  'VQQKDAR0ZXN0MQ0wCwYDVQQDDAR0ZXN0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB\n' +
+  'iQKBgQC6nCZTM16Rk2c4P/hwfVm++jqe6GCA/PXXGe4YL218q1dTKMHBGEw8kXi0\n' +
+  'XLDcyyC2yUn8ywN2QSyly6ke9EE6PGfZywStLp4g2PTTWB04sS3aXT2y+fToiTXQ\n' +
+  '3AxfFYRpB+EgSdSCkJs6jKXVwbzu54kEtQTfs8UdBQ9nVKaJLwIDAQABo1MwUTAd\n' +
+  'BgNVHQ4EFgQU6QXnt1smb2HRSO/2zuRQnz/SDxowHwYDVR0jBBgwFoAU6QXnt1sm\n' +
+  'b2HRSO/2zuRQnz/SDxowDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOB\n' +
+  'gQBPR/+5xzFG1XlTdgwWVvqVxvhGUkbMTGW0IviJ+jbKsi57vnVsOtFzEA6y+bYx\n' +
+  'xG/kEOcwLtzeVHOQA+ZU5SVcc+qc0dfFiWjL2PSAG4bpqSTjujpuUk+g8ugixbG1\n' +
+  'a26pkDJhNeB/E3eBIbeydSY0A/dIGb6vbGo6BSq2KvnWAA==\n' +
+  '-----END CERTIFICATE-----\n';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+function testAddCert() {
+  let certEncodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+  cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
+    if (error) {
+      console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+    } else {
+        try {
+          let cmsContentType = cert.CmsContentType.SIGNED_DATA;
+          let cmsGenerator = cert.createCmsGenerator(cmsContentType);
+          console.info('testAddCert createCmsGenerator success.');
+          // 第二次addCert增加相同的证书，会报错
+          cmsGenerator.addCert(x509Cert);
+          console.info('testAddCert addCert success.');
+        } catch (err) {
+          let e: BusinessError = err as BusinessError;
+          console.error('testAddCert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+        }
+    }
+  });
+}
+```
+
+### doFinal<sup>18+</sup>
+
+doFinal(data: Uint8Array, options?: CmsGeneratorOptions): Promise<Uint8Array | string>
+
+用于获取Cms最终数据，例如Cms签名数据。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名      | 类型                | 必填 | 说明                                       |
+| ----------- | ------------------- | ---- | ------------------------------------------ |
+| data        | Uint8Array         | 是   | Cms操作的内容。                           |
+| options     | [CmsGeneratorOptions](#cmsgeneratoroptions18)  | 否   | Cms操作的配置选项。                       |
+
+**返回值：**
+
+| 类型                            | 说明             |
+| ------------------------------- | ---------------- |
+| Promise<Uint8Array \| string> | 返回Cms最终数据的Promise。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIICXjCCAcegAwIBAgIGAXKnJjrAMA0GCSqGSIb3DQEBCwUAMEgxCzAJBgNVBAYT\n' +
+  'AkNOMQwwCgYDVQQIDANzaGExDTALBgNVBAcMBHhpYW4xDTALBgNVBAoMBHRlc3Qx\n' +
+  'DTALBgNVBAMMBHRlc3QwHhcNMjQxMTIyMDkwNTIyWhcNMzQxMTIwMDkwNTIyWjBI\n' +
+  'MQswCQYDVQQGEwJDTjEMMAoGA1UECAwDc2hhMQ0wCwYDVQQHDAR4aWFuMQ0wCwYD\n' +
+  'VQQKDAR0ZXN0MQ0wCwYDVQQDDAR0ZXN0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB\n' +
+  'iQKBgQC6nCZTM16Rk2c4P/hwfVm++jqe6GCA/PXXGe4YL218q1dTKMHBGEw8kXi0\n' +
+  'XLDcyyC2yUn8ywN2QSyly6ke9EE6PGfZywStLp4g2PTTWB04sS3aXT2y+fToiTXQ\n' +
+  '3AxfFYRpB+EgSdSCkJs6jKXVwbzu54kEtQTfs8UdBQ9nVKaJLwIDAQABo1MwUTAd\n' +
+  'BgNVHQ4EFgQU6QXnt1smb2HRSO/2zuRQnz/SDxowHwYDVR0jBBgwFoAU6QXnt1sm\n' +
+  'b2HRSO/2zuRQnz/SDxowDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOB\n' +
+  'gQBPR/+5xzFG1XlTdgwWVvqVxvhGUkbMTGW0IviJ+jbKsi57vnVsOtFzEA6y+bYx\n' +
+  'xG/kEOcwLtzeVHOQA+ZU5SVcc+qc0dfFiWjL2PSAG4bpqSTjujpuUk+g8ugixbG1\n' +
+  'a26pkDJhNeB/E3eBIbeydSY0A/dIGb6vbGo6BSq2KvnWAA==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let rsaStr1024: string  =
+  '-----BEGIN RSA PRIVATE KEY-----\n' +
+    'Proc-Type: 4,ENCRYPTED\n' +
+    'DEK-Info: DES-EDE3-CBC,DB0AC6E3BEE16420\n\n' +
+    '1N5xykdckthZnswMV7blxXm2RCqe/OByBfMwFI7JoXR8STtMiStd4xA3W405k1Ma\n' +
+    'ExpsHgWwZaS23x+sQ1sL1dsqIPMrw1Vr+KrL20vQcCVjXPpGKauafVbtcWQ1r2PZ\n' +
+    'QJ4KWP6FhUp+sGt2ItODW3dK+1GdqL22ZtANrgFzS42Wh8FSn0UMCf6RG62DK62J\n' +
+    'z2jtf4XaorrGSjdTeY+fyyGfSyKidIMMBe+IXwlhCgAe7aHSaqXtMsv+BibB7PJ3\n' +
+    'XmEp1D/0ptL3r46txyYcuy8jSNCkW8er93KKnlRN6KbuYZPvPNncWkzZBzV17t5d\n' +
+    'QgtvVh32AKgqk5jm8YVnspOFiPrbrK9UN3IW15juFkfnhriM3IrKap4/kW+tfawZ\n' +
+    'DmHkSyl8xqFK413Rv0UvYBTjOcGbs2BSJYEvp8CIjtA17SvLmNw70K2nXWuQYutY\n' +
+    '+HyucPtHfEqUPQRzWTAMMntTru77u7dxo2WMMMxOtMJO5h7MAnZH9bAFiuO3ewcY\n' +
+    'eEePg10d8Owcfh9G6kc0HIGT9MMLMi0mTXhpoQTuWPYuSx6uUZL1fsp1x2fuM0qn\n' +
+    'bdf3+UnATYUu4tgvBHrMV7405Y6Y3PnqOFxVMeAHeOTo6UThtJ10mfeCPXGcUaHo\n' +
+    'P5enw7h4145cha3+S4hNrUwj3skrtavld7tY74p4DvgZSlCMF3JAm3DhpnEMVcYP\n' +
+    'Y6TkSevvxOpBvEHE41Y4VBCBwd9clcixI6cSBJKPUU4A/sc/kkNdGFcbzLQCg/zR\n' +
+    '1m7YmBROb2qy4w3lv/uwVnPGLg/YV465irRaN3hgz7/1lm8STKQhmQ==\n' +
+    '-----END RSA PRIVATE KEY-----\n';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+async function testDoFinalByPromise() {
+  let certEncodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+  cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
+    if (error) {
+      console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+    } else {
+      try {
+        let cmsContentType = cert.CmsContentType.SIGNED_DATA;
+        let cmsGenerator = cert.createCmsGenerator(cmsContentType);
+        console.info('testDoFinalByPromise createCmsGenerator success.');
+        let privateKeyInfo: cert.PrivateKeyInfo = {
+          key: rsaStr1024,
+          password: '123456'
+        };
+        // addCert设置为true时，第二次addSigner或者addCert增加相同的证书，会报错
+        let config: cert.CmsSignerConfig = {
+          mdName:'SHA256',
+          addCert:false,
+          addAttr:true,
+          addSmimeCapAttr:true
+        }
+        cmsGenerator.addSigner(x509Cert, privateKeyInfo, config);
+        console.info('testDoFinalByPromise addSigner success.');
+        cmsGenerator.addCert(x509Cert);
+        console.info('testDoFinalByPromise addCert success.');
+        let content = new Uint8Array([1,2,3,4]);
+        let optionsFinal: cert.CmsGeneratorOptions = {
+          contentDataFormat : cert.CmsContentDataFormat.BINARY,
+          outFormat : cert.CmsFormat.PEM,
+          isDetached : true
+        };
+        cmsGenerator.doFinal(content, optionsFinal).then(result => {
+          console.log('testDoFinalByPromise doFinal success, resullt = %s', result);
+        }).catch((error: BusinessError) => {
+          console.error('testDoFinalByPromise failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+        });
+      } catch (err) {
+        let e: BusinessError = err as BusinessError;
+        console.error('testDoFinalByPromise failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+      }
+    }
+  });
+}
+```
+
+### doFinalSync<sup>18+</sup>
+
+doFinalSync(data: Uint8Array, options?: CmsGeneratorOptions): Uint8Array | string
+
+用于获取Cms最终数据，例如Cms签名数据（同步方法）。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名      | 类型                | 必填 | 说明                                       |
+| ----------- | ------------------- | ---- | ------------------------------------------ |
+| data        | Uint8Array         | 是   | Cms操作的内容。                           |
+| options     | [CmsGeneratorOptions](#cmsgeneratoroptions18)  | 否   | Cms操作的配置选项。                       |
+
+**返回值：**
+
+| 类型                            | 说明             |
+| ------------------------------- | ---------------- |
+| Uint8Array \| string            | 返回Cms最终数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIICXjCCAcegAwIBAgIGAXKnJjrAMA0GCSqGSIb3DQEBCwUAMEgxCzAJBgNVBAYT\n' +
+  'AkNOMQwwCgYDVQQIDANzaGExDTALBgNVBAcMBHhpYW4xDTALBgNVBAoMBHRlc3Qx\n' +
+  'DTALBgNVBAMMBHRlc3QwHhcNMjQxMTIyMDkwNTIyWhcNMzQxMTIwMDkwNTIyWjBI\n' +
+  'MQswCQYDVQQGEwJDTjEMMAoGA1UECAwDc2hhMQ0wCwYDVQQHDAR4aWFuMQ0wCwYD\n' +
+  'VQQKDAR0ZXN0MQ0wCwYDVQQDDAR0ZXN0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB\n' +
+  'iQKBgQC6nCZTM16Rk2c4P/hwfVm++jqe6GCA/PXXGe4YL218q1dTKMHBGEw8kXi0\n' +
+  'XLDcyyC2yUn8ywN2QSyly6ke9EE6PGfZywStLp4g2PTTWB04sS3aXT2y+fToiTXQ\n' +
+  '3AxfFYRpB+EgSdSCkJs6jKXVwbzu54kEtQTfs8UdBQ9nVKaJLwIDAQABo1MwUTAd\n' +
+  'BgNVHQ4EFgQU6QXnt1smb2HRSO/2zuRQnz/SDxowHwYDVR0jBBgwFoAU6QXnt1sm\n' +
+  'b2HRSO/2zuRQnz/SDxowDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOB\n' +
+  'gQBPR/+5xzFG1XlTdgwWVvqVxvhGUkbMTGW0IviJ+jbKsi57vnVsOtFzEA6y+bYx\n' +
+  'xG/kEOcwLtzeVHOQA+ZU5SVcc+qc0dfFiWjL2PSAG4bpqSTjujpuUk+g8ugixbG1\n' +
+  'a26pkDJhNeB/E3eBIbeydSY0A/dIGb6vbGo6BSq2KvnWAA==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let rsaStr1024: string  =
+  '-----BEGIN RSA PRIVATE KEY-----\n' +
+    'Proc-Type: 4,ENCRYPTED\n' +
+    'DEK-Info: DES-EDE3-CBC,DB0AC6E3BEE16420\n\n' +
+    '1N5xykdckthZnswMV7blxXm2RCqe/OByBfMwFI7JoXR8STtMiStd4xA3W405k1Ma\n' +
+    'ExpsHgWwZaS23x+sQ1sL1dsqIPMrw1Vr+KrL20vQcCVjXPpGKauafVbtcWQ1r2PZ\n' +
+    'QJ4KWP6FhUp+sGt2ItODW3dK+1GdqL22ZtANrgFzS42Wh8FSn0UMCf6RG62DK62J\n' +
+    'z2jtf4XaorrGSjdTeY+fyyGfSyKidIMMBe+IXwlhCgAe7aHSaqXtMsv+BibB7PJ3\n' +
+    'XmEp1D/0ptL3r46txyYcuy8jSNCkW8er93KKnlRN6KbuYZPvPNncWkzZBzV17t5d\n' +
+    'QgtvVh32AKgqk5jm8YVnspOFiPrbrK9UN3IW15juFkfnhriM3IrKap4/kW+tfawZ\n' +
+    'DmHkSyl8xqFK413Rv0UvYBTjOcGbs2BSJYEvp8CIjtA17SvLmNw70K2nXWuQYutY\n' +
+    '+HyucPtHfEqUPQRzWTAMMntTru77u7dxo2WMMMxOtMJO5h7MAnZH9bAFiuO3ewcY\n' +
+    'eEePg10d8Owcfh9G6kc0HIGT9MMLMi0mTXhpoQTuWPYuSx6uUZL1fsp1x2fuM0qn\n' +
+    'bdf3+UnATYUu4tgvBHrMV7405Y6Y3PnqOFxVMeAHeOTo6UThtJ10mfeCPXGcUaHo\n' +
+    'P5enw7h4145cha3+S4hNrUwj3skrtavld7tY74p4DvgZSlCMF3JAm3DhpnEMVcYP\n' +
+    'Y6TkSevvxOpBvEHE41Y4VBCBwd9clcixI6cSBJKPUU4A/sc/kkNdGFcbzLQCg/zR\n' +
+    '1m7YmBROb2qy4w3lv/uwVnPGLg/YV465irRaN3hgz7/1lm8STKQhmQ==\n' +
+    '-----END RSA PRIVATE KEY-----\n';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+function testDoFinalSync() {
+  let certEncodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+  cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
+    if (error) {
+      console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+    } else {
+        try {
+          let cmsContentType = cert.CmsContentType.SIGNED_DATA;
+          let cmsGenerator = cert.createCmsGenerator(cmsContentType);
+          console.info('testDoFinalSync createCmsGenerator success.');
+          let privateKeyInfo: cert.PrivateKeyInfo = {
+            key: rsaStr1024,
+            password: '123456'
+          };
+          // addCert设置为true时，第二次addSigner或者addCert增加相同的证书，会报错
+          let config: cert.CmsSignerConfig = {
+            mdName:'SHA256',
+            addCert:false,
+            addAttr:false,
+            addSmimeCapAttr:false
+          }
+          cmsGenerator.addSigner(x509Cert, privateKeyInfo, config);
+          console.info('testDoFinalSync addSigner success.');
+          cmsGenerator.addCert(x509Cert);
+          console.info('testDoFinalSync addCert success.');
+          let content = new Uint8Array([1,2,3,4]);
+          let optionsFinal: cert.CmsGeneratorOptions = {
+            contentDataFormat : cert.CmsContentDataFormat.BINARY,
+            outFormat : cert.CmsFormat.DER,
+            isDetached : false
+          };
+          let output = cmsGenerator.doFinalSync(content, optionsFinal);
+          console.info('testDoFinalSync doFinalSync success, output = %s.',output);
+        } catch (err) {
+          let e: BusinessError = err as BusinessError;
+          console.error('testDoFinalSync failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+        }
+    }
+  });
 }
 ```
