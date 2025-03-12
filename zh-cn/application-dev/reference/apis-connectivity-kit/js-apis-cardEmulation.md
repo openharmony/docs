@@ -388,7 +388,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### off<sup>16+</sup>
+### off<sup>18+</sup>
 
 off(type: 'hceCmd', callback?: AsyncCallback\<number[]>): void
 
@@ -398,7 +398,7 @@ off(type: 'hceCmd', callback?: AsyncCallback\<number[]>): void
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 

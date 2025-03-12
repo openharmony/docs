@@ -137,7 +137,7 @@ function secureElementDemo() {
 }
 ```
 
-## omapi.on<sup>16+</sup>
+## omapi.on<sup>18+</sup>
 
 on(type: 'stateChanged', callback: Callback\<ServiceState>): void;
 
@@ -165,9 +165,9 @@ on(type: 'stateChanged', callback: Callback\<ServiceState>): void;
 
 **示例：**
 
-示例请参见[off](#omapioff16)接口的示例。
+示例请参见[off](#omapioff18)接口的示例。
 
-## omapi.off<sup>16+</sup>
+## omapi.off<sup>18+</sup>
 
 off(type: 'stateChanged', callback?: Callback\<ServiceState>): void;
 
