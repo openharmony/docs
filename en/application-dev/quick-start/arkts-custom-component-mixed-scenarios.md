@@ -4,7 +4,7 @@ For the \@Component decorated custom components (referred to as the custom compo
 
 In terms of design, the code of V1 and V2 are expected to be completely isolated because V2 can do better than V1 in certain scenarios. However, from the actual perspective, the code developed in V1 have a solid foundation and it is not practical to migrate the entire code to V2 at a time. Therefore, it is allowed to use some capabilities of V2 in the code of V1 and capabilities of V1 is not completely prohibited in V2. For example, a custom component of V1 uses a custom component of V2, or V1 uses a decorator of V2. In this way, a problem of mixed use of V1 and V2 occurs.
 
-This document describes the mixed use of V1 and V2, aiming at guiding you to migrate code of V1 to V2.
+This topic describes the mixed use of V1 and V2, aiming at guiding you to migrate code of V1 to V2.
 
 > **NOTE**
 >
@@ -497,7 +497,7 @@ struct Child {
 
       Divider()
         .color(Color.Blue)
-      Text ('undefineVal:${this.undefineVal}') // Display undefineVal.
+      Text(`undefineVal:${this.undefineVal}`) // Display undefineVal.
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -505,7 +505,7 @@ struct Child {
         })
       Divider()
         .color(Color.Blue)
-      Text ('info id:${this.info.myId}') // Display info:myId.
+      Text(`info id:${this.info.myId}`) // Display info:myId.
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -513,7 +513,7 @@ struct Child {
         })
       Divider()
         .color(Color.Blue)
-      ForEach(Array.from(this.set.values()), (item: number) => { // Display set.
+      ForEach(Array.from(this.set.values()), (item: number) => {  // Display set.
         Text(`${item}`)
           .fontSize(30)
       })
@@ -596,7 +596,7 @@ struct Child {
         })
       Divider()
         .color(Color.Blue)
-      Text ('info id:${this.info.myId}') // Display info:myId.
+      Text('info id:${this.info.myId}') // Display info:myId.
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -885,7 +885,7 @@ struct GrandSon {
 
   build() {
     Column() {
-      Text ('ObjectLink info info.myId:${this.info.myId}') // After @ObjectLink disassembles the level twice, the change is observable.
+      Text(`ObjectLink info info.myId:${this.info.myId}`)  // After @ObjectLink disassembles the level twice, the change is observable.
         .fontSize(30)
         .onClick(() => {
           this.info.myId++;
@@ -1015,7 +1015,7 @@ struct Index {
         })
       Divider()
         .color(Color.Blue)
-      Text(`messageInfoNested name:${this.messageInfoNested.messageInfo.info.name}`)   //  Being not decorated by @Trace, it is not observable.
+      Text(`messageInfoNested name:${this.messageInfoNested.messageInfo.info.name}`)   // Being not decorated by @Trace, it is not observable.
         .fontSize(30)
         .onClick(() => {
           this.messageInfoNested.messageInfo.info.name += 'a';
@@ -1041,5 +1041,5 @@ struct Index {
 
 The sample code shows:
 
-* \@observedV2 and \@Trace nest the observation capability to the class properties. Therefore, when a class property is marked by @Trace, the change can be observed regardless of the number of nested levels.
+* \@ObservedV2 and \@Trace nest the observation capability to the class properties. Therefore, when a class property is marked by @Trace, the change can be observed regardless of the number of nested levels.
 * When \@ObservdV2 and \@Observed are used together, the decorator used by the outermost class determines whether the class object can be decorated by the decorator of V1. For example, the class decorated by \@ObservedV2 in the lower level does not affect the outermost class decorated by the decorator of V1.
