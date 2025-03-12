@@ -133,11 +133,11 @@ objectFit(value: ImageFit)
 
 imageMatrix(matrix: ImageMatrix)
 
-设置图片的变换矩阵。通过ImageMatrix对象使用平移、旋转、缩放等函数，实现宫格缩略图的最佳呈现。svg类型图源不支持该属性。
+设置图片的变换矩阵。通过[ImageMatrix](#imagematrix15对象说明)对象使用平移、旋转、缩放等函数，实现宫格缩略图的最佳呈现。svg类型图源不支持该属性。
 
-设置resizable、objectRepeat属性时，该属性设置不生效。
+设置resizable、objectRepeat属性时，该属性设置不生效。该属性只针对图源做处理，不会触发Image组件的回调事件。
 
-该属性只针对图源做处理，不会触发Image组件的回调事件。
+该属性与[objectFit](#objectfit)属性强关联，仅在[objectFit](#objectfit)属性设置为[ImageFit](ts-appendix-enums.md#imagefit).MATRIX时生效。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -147,7 +147,7 @@ imageMatrix(matrix: ImageMatrix)
 
 | 参数名 | 类型                                                 | 必填 | 说明           |
 | ------ | --------------------------------------------------- | ---- | -------------- |
-| matrix  | ImageMatrix | 是   | 图片的变换矩阵。|
+| matrix  | [ImageMatrix](#imagematrix15对象说明) | 是   | 图片的变换矩阵。|
 
 ### objectRepeat
 
@@ -658,7 +658,7 @@ type DrawingLattice = Lattice
 | ------ | ---------- |
 | [Lattice](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#lattice12) | 返回一个矩阵网格对象。 |
 
-## ImageMatrix<sup>15+<sup>
+## ImageMatrix<sup>15+<sup>对象说明
 
 type ImageMatrix = Matrix4Transit
 
@@ -1493,9 +1493,9 @@ struct Index {
 
 ![fillColorExample](figures/fillColorExample.png)
 
-### 示例16（通过imageMatrix为图片设置旋转、平移等）
+### 示例16（为图片添加变换效果）
 
-该示例通过[imageMatrix](#imagematrix15)接口和[objectFit](#objectfit)实现了给图片设置变换效果。
+该示例通过[imageMatrix](#imagematrix15)和[objectFit](#objectfit)属性，为图片添加旋转和平移的效果。
 
 ```ts
 import { matrix4 } from '@kit.ArkUI'

@@ -53,18 +53,18 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
 2. 设置业务需要的监听事件，监听状态变化及错误上报。
    | 事件类型 | 说明 |
    | -------- | -------- |
-   | stateChange | 必要事件，监听播放器的state属性改变 |
-   | error | 必要事件，监听播放器的错误信息 |
+   | stateChange | 必要事件，监听播放器的state属性改变。 |
+   | error | 必要事件，监听播放器的错误信息。 |
 
    ```ts
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
-   // 状态上报回调函数
+   // 状态上报回调函数。
    this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
      console.info('current state is: ' + state);
    })
-   // 错误上报回调函数
+   // 错误上报回调函数。
    this.avRecorder.on('error', (err: BusinessError) => {
      console.error('error happened, error message is ' + err);
    })
@@ -91,24 +91,24 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
    import { fileIo as fs } form '@kit.CoreFileKit';
 
    let avProfile: media.AVRecorderProfile = {
-     fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
-     videoBitrate : 200000, // 视频比特率
-     videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持avc格式
-     videoFrameWidth : 640,  // 视频分辨率的宽
-     videoFrameHeight : 480, // 视频分辨率的高
-     videoFrameRate : 30 // 视频帧率
+     fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4。
+     videoBitrate : 200000, // 视频比特率。
+     videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持avc格式。
+     videoFrameWidth : 640,  // 视频分辨率的宽。
+     videoFrameHeight : 480, // 视频分辨率的高。
+     videoFrameRate : 30 // 视频帧率。
    };
    
-   const context: Context = getContext(this); // 参考应用文件访问与管理
+   const context: Context = getContext(this); // 参考应用文件访问与管理。
    let filePath: string = context.filesDir + '/example.mp4';
    let videoFile: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-   let fileFd = videoFile.fd; // 获取文件fd
+   let fileFd = videoFile.fd; // 获取文件fd。
   
    let avConfig: media.AVRecorderConfig = {
-     videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式
+     videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式。
      profile : avProfile,
-     url: 'fd://' + fileFd.toString(), // 参考应用文件访问与管理开发示例新建并读写一个视频文件
-     rotation : 0 // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270
+     url: 'fd://' + fileFd.toString(), // 参考应用文件访问与管理开发示例新建并读写一个视频文件。
+     rotation : 0 // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270。
    };
    this.avRecorder.prepare(avConfig).then(() => {
      console.info('avRecorder prepare success');
@@ -161,144 +161,147 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 const TAG = 'VideoRecorderDemo:';
 export class VideoRecorderDemo {
-  const context: Context = getContext(this);
+  private context: Context;
+  constructor() {
+    this.context = getContext(this);
+  }
   private avRecorder: media.AVRecorder | undefined = undefined;
   private videoOutSurfaceId: string = "";
   private avProfile: media.AVRecorderProfile = {
-    fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
-    videoBitrate : 100000, // 视频比特率
-    videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持avc格式
-    videoFrameWidth : 640,  // 视频分辨率的宽
-    videoFrameHeight : 480, // 视频分辨率的高
-    videoFrameRate : 30 // 视频帧率
+    fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4。
+    videoBitrate : 100000, // 视频比特率。
+    videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持avc格式。
+    videoFrameWidth : 640,  // 视频分辨率的宽。
+    videoFrameHeight : 480, // 视频分辨率的高。
+    videoFrameRate : 30 // 视频帧率。
   };
   private avConfig: media.AVRecorderConfig = {
-    videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式
+    videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式。
     profile : this.avProfile,
-    url : 'fd://35', //  参考应用文件访问与管理开发示例新建并读写一个文件
-    rotation : 0 // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270
+    url : 'fd://35', //  参考应用文件访问与管理开发示例新建并读写一个文件。
+    rotation : 0 // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270。
   };
 
-  private uriPath: string = ''; // 文件uri，可用于安全控件保存媒体资源
-  private filePath: string = ''; // 文件路径
+  private uriPath: string = ''; // 文件uri，可用于安全控件保存媒体资源。
+  private filePath: string = ''; // 文件路径。
   private fileFd: number = 0;
   
-  // 创建文件以及设置avConfig.url
+  // 创建文件以及设置avConfig.url。
   async createAndSetFd() {
-    const path: string = context.filesDir + '/example.mp4'; // 文件沙箱路径，文件后缀名应与封装格式对应
+    const path: string = this.context.filesDir + '/example.mp4'; // 文件沙箱路径，文件后缀名应与封装格式对应。
     const videoFile: fs.File = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-    this.avConfig.url = 'fd://' + videoFile.fd; // 设置url
-    this.fileFd = videoFile.fd; // 文件fd
+    this.avConfig.url = 'fd://' + videoFile.fd; // 设置url。
+    this.fileFd = videoFile.fd; // 文件fd。
     this.filePath = path;
   }
   
-  // 注册avRecorder回调函数
+  // 注册avRecorder回调函数。
   setAvRecorderCallback() {
     if (this.avRecorder != undefined) {
-      // 状态机变化回调函数
+      // 状态机变化回调函数。
       this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
         console.info(TAG + 'current state is: ' + state);
       })
-      // 错误上报回调函数
+      // 错误上报回调函数。
       this.avRecorder.on('error', (err: BusinessError) => {
         console.error(TAG + 'error ocConstantSourceNode, error message is ' + err);
       })
     }
   }
 
-  // 相机相关准备工作
+  // 相机相关准备工作。
   async prepareCamera() {
-    // 具体实现查看相机资料
+    // 具体实现查看相机资料。
   }
 
-  // 启动相机出流
+  // 启动相机出流。
   async startCameraOutput() {
-    // 调用VideoOutput的start接口开始录像输出
+    // 调用VideoOutput的start接口开始录像输出。
   }
 
-  // 停止相机出流
+  // 停止相机出流。
   async stopCameraOutput() {
-    // 调用VideoOutput的stop接口停止录像输出
+    // 调用VideoOutput的stop接口停止录像输出。
   }
 
-  // 释放相机实例
+  // 释放相机实例。
   async releaseCamera() {
-    // 释放相机准备阶段创建出的实例
+    // 释放相机准备阶段创建出的实例。
   }
 
-  // 开始录制对应的流程
+  // 开始录制对应的流程。
   async startRecordingProcess() {
     if (this.avRecorder === undefined) {
-      // 1.创建录制实例；
+      // 1.创建录制实例。
       this.avRecorder = await media.createAVRecorder();
       this.setAvRecorderCallback();
     }
-    // 2. 获取录制文件fd；获取到的值传递给avConfig里的url，实现略
-    // 3.配置录制参数完成准备工作
+    // 2. 获取录制文件fd；获取到的值传递给avConfig里的url，实现略。
+    // 3.配置录制参数完成准备工作。
     await this.avRecorder.prepare(this.avConfig);
     this.videoOutSurfaceId = await this.avRecorder.getInputSurface();
-    // 4.完成相机相关准备工作
+    // 4.完成相机相关准备工作。
     await this.prepareCamera();
-    // 5.启动相机出流
+    // 5.启动相机出流。
     await this.startCameraOutput();
-    // 6. 启动录制
+    // 6. 启动录制。
     await this.avRecorder.start();
 
   }
 
-  // 暂停录制对应的流程
+  // 暂停录制对应的流程。
   async pauseRecordingProcess() {
-    if (this.avRecorder != undefined && this.avRecorder.state === 'started') { // 仅在started状态下调用pause为合理状态切换
+    if (this.avRecorder != undefined && this.avRecorder.state === 'started') { // 仅在started状态下调用pause为合理状态切换。
       await this.avRecorder.pause();
-      await this.stopCameraOutput(); // 停止相机出流
+      await this.stopCameraOutput(); // 停止相机出流。
     }
   }
 
-  // 恢复录制对应的流程
+  // 恢复录制对应的流程。
   async resumeRecordingProcess() {
-    if (this.avRecorder != undefined && this.avRecorder.state === 'paused') { // 仅在paused状态下调用resume为合理状态切换
-      await this.startCameraOutput();  // 启动相机出流
+    if (this.avRecorder != undefined && this.avRecorder.state === 'paused') { // 仅在paused状态下调用resume为合理状态切换。
+      await this.startCameraOutput();  // 启动相机出流。
       await this.avRecorder.resume();
     }
   }
 
   async stopRecordingProcess() {
     if (this.avRecorder != undefined) {
-      // 1. 停止录制
+      // 1. 停止录制。
       if (this.avRecorder.state === 'started'
-        || this.avRecorder.state === 'paused' ) { // 仅在started或者paused状态下调用stop为合理状态切换
+        || this.avRecorder.state === 'paused' ) { // 仅在started或者paused状态下调用stop为合理状态切换。
         await this.avRecorder.stop();
         await this.stopCameraOutput();
       }
-      // 2.重置
+      // 2.重置。
       await this.avRecorder.reset();
-      // 3.释放录制实例
+      // 3.释放录制实例。
       await this.avRecorder.release();
-      // 4.文件录制完成后，关闭fd,实现略
+      // 4.文件录制完成后，关闭fd,实现略。
       await fs.close(this.fileFd);
-      // 5.释放相机相关实例
+      // 5.释放相机相关实例。
       await this.releaseCamera();
     }
   }
 
-  // 安全控件保存媒体资源至图库
+  // 安全控件保存媒体资源至图库。
   async saveRecorderAsset() {
     let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
-    // 需要确保uriPath对应的资源存在
-    this.uriPath = fileUri.getUriFromPath(this.filePath); // 获取录制文件的uri，用于安全控件保存至图库
+    // 需要确保uriPath对应的资源存在。
+    this.uriPath = fileUri.getUriFromPath(this.filePath); // 获取录制文件的uri，用于安全控件保存至图库。
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = 
       photoAccessHelper.MediaAssetChangeRequest.createVideoAssetRequest(this.context, this.uriPath);
     await phAccessHelper.applyChanges(assetChangeRequest);
   }
   
-  // 一个完整的【开始录制-暂停录制-恢复录制-停止录制】示例
+  // 一个完整的【开始录制-暂停录制-恢复录制-停止录制】示例。
   async videoRecorderDemo() {
-    await this.startRecordingProcess();         // 开始录制
-    // 用户此处可以自行设置录制时长，例如通过设置休眠阻止代码执行
-    await this.pauseRecordingProcess();         //暂停录制
-    await this.resumeRecordingProcess();        // 恢复录制
-    await this.stopRecordingProcess();          // 停止录制
-    // 安全控件保存媒体资源至图库
+    await this.startRecordingProcess();         // 开始录制。
+    // 用户此处可以自行设置录制时长，例如通过设置休眠阻止代码执行。
+    await this.pauseRecordingProcess();         //暂停录制。
+    await this.resumeRecordingProcess();        // 恢复录制。
+    await this.stopRecordingProcess();          // 停止录制。
+    // 安全控件保存媒体资源至图库。
     await this.saveRecorderAsset();
   }
 }

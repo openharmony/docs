@@ -34,7 +34,7 @@ Checks whether there is a visible privacy window on a display. The privacy windo
 
 | Type                            | Description                                                                   |
 | -------------------------------- |-----------------------------------------------------------------------|
-|boolean | Whether there is a visible privacy window on the display.<br>The value **true** means that there is a visible privacy window on the display, and **false** means the opposite.<br>|
+|boolean | Whether there is a visible privacy window on the display. The value **true** means that there is a visible privacy window on the display, and **false** means the opposite.|
 
 **Error codes**
 

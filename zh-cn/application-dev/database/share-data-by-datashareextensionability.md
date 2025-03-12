@@ -153,15 +153,19 @@
    **module.json5配置样例：**
    
    ```json
+   // 以下配置以settingsdata为例，应用需根据实际情况配置各个字段
    "extensionAbilities": [
      {
-       "srcEntry": "./ets/DataShareExtAbility/DataShareExtAbility.ets",
-       "name": "DataShareExtAbility",
+       "srcEntry": "./ets/DataAbility/DataExtAbility.ets",
+       "name": "DataExtAbility",
        "icon": "$media:icon",
        "description": "$string:description_datashareextability",
        "type": "dataShare",
-       "uri": "datashare://com.samples.datasharetest.DataShare",
+       "uri": "datashare://com.ohos.settingsdata.DataAbility",
        "exported": true,
+       // 实际请按照应用具体场景需要的安全权限配置，如配置应用自定义权限、系统权限或用户授权权限，当前权限仅为示例
+       "readPermission": "ohos.permission.MANAGE_SECURE_SETTINGS",
+       "writePermission": "ohos.permission.MANAGE_SECURE_SETTINGS",
        "metadata": [{"name": "ohos.extension.dataShare", "resource": "$profile:data_share_config"}]
      }
    ]
@@ -185,7 +189,7 @@
                "crossUserMode":1
            },
            {
-               "uri":"datashare:///com.acts.datasharetest/entry/DB00",
+               "uri":"datashare:///com.ohos.settingsdata/entry/DB00",
                "crossUserMode":1
            },
            {
@@ -219,7 +223,7 @@
    
    ```ts
    // 作为参数传递的URI，与module.json5中定义的URI的区别是多了一个"/"，是因为作为参数传递的URI中，在第二个与第三个"/"中间，存在一个DeviceID的参数
-   let dseUri = ('datashare:///com.samples.datasharetest.DataShare');
+   let dseUri = ('datashare:///com.ohos.settingsdata.DataAbility');
    ```
 
 3. 创建工具接口类对象。

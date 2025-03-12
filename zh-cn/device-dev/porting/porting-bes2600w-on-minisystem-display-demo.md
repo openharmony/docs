@@ -1,5 +1,3 @@
-
-
 # 轻量带屏解决方案之恒玄芯片移植案例
 
 本文章基于恒玄科技`BES2600W`芯片的欧智通[Multi-modal V200Z-R开发板](https://gitee.com/openharmony/device_board_fnlink)，进行轻量带屏开发板的标准移植，开发了智能开关面板样例，同时实现了`ace_engine_lite`、`arkui_ui_lite`、`aafwk_lite`、`appexecfwk_lite`、`HDF`等部件基于`OpenHarmony LiteOS-M`内核的适配。移植架构上采用`Board`与`SoC`分离的方案，工具链`Newlib C`库与`Musl C`库可选，`LiteOS-M`内核编译采用`gn`结合`Kconfig`图形化配置等需求。
@@ -74,7 +72,7 @@ kernel_version = "3.0.0"                --- 内核版本，跟config.json中kern
    执行`hb set`输入项目根目录，并且回车，`hb`命令会遍历所有`//vendor/<product_company>/<product_name>`目录下的`config.json`，给出可选产品编译选项，`config.json`的`product_name`用于显示产品名，`device_company`和`board`用于关联出`//device/board/<device_company>/<board>`目录，并且匹配`<any_dir_name>/config.gni`文件，如果能够匹配多个文件，表示该单板适配了多个内核，那么可以根据`config.json`的`kernel_type`和`kernel_version`来唯一匹配`config.gni`的`kernel_type`和`kernel_version`，即可确定了需要编译适配了哪个内核的单板。
 ![hb set](figures/bes2600_hb_set.png)
 
-			通过`hb env`可以查看选择出来的预编译环境变量。
+	通过`hb env`可以查看选择出来的预编译环境变量。
 
 ![hb env](figures/bes2600_hb_env.png)
 
@@ -298,18 +296,18 @@ if (ohos_kernel_type == "liteos_m") {                    --- 由于多内核设�
 
 | 阶段名称  | 分区规划                 | 描述                          |
 | --------- | ------------------------ | ----------------------------- |
-| BOOT1     | [0, 0x10000]             | 第一阶段启动，进行固件启动    |
-| BOOT2     | [0x2C010000, 0x2C020000] | 第二阶段启动，进行OTA升级启动 |
-| RTOS_MAIN | [0x2C080000, 0x2C860000] | 第三阶段启动，进行内核启动    |
+| BOOT1     | [0, 0x10000]             | 第一阶段启动，进行固件启动。    |
+| BOOT2     | [0x2C010000, 0x2C020000] | 第二阶段启动，进行OTA升级启动。 |
+| RTOS_MAIN | [0x2C080000, 0x2C860000] | 第三阶段启动，进行内核启动。    |
 
 在第三阶段内核启动中，需要适配的文件路径在 `//device/soc/bestechnic/bes2600/liteos_m/sdk/bsp/rtos/liteos/liteos_m/board.c`
 
 内核启动适配总体思路如下：
 
 1. 中断向量的初始化`os_vector_init` ，初始化中断的处理函数。
-2. 内核初始化`osKernelInitialize` 。
+2. 内核初始化`osKernelInitialize`。
 3. 创建线程`board_main`，进行芯片平台初始化。
-4. 内核启动，开始调度线程`osKernelStart` 。
+4. 内核启动，开始调度线程`osKernelStart`。
 
 其中，本章节详细对第3步进行展开，其他几步为对内核函数调用，不作详细描述。
 
@@ -827,29 +825,29 @@ ethernetif_init(struct netif *netif)
 
 | 配置项                                     | 描述                     |
 | ------------------------------------------ | ------------------------ |
-| dsoftbus_feature_disc_ble         | 是否开启BLE发现功能      |
-| dsoftbus_feature_disc_coap        | 是否开启COAP发现功能     |
-| dsoftbus_feature_conn_tcp         | 是否开启TCP连接功能      |
-| dsoftbus_feature_conn_br          | 是否开启BR连接功能       |
-| dsoftbus_feature_conn_ble         | 是否开启BLE连接功能      |
-| dsoftbus_feature_conn_p2p         | 是否开启P2P连接功能      |
-| dsoftbus_feature_trans_udp        | 是否开启UDP传输功能      |
-| dsoftbus_feature_trans_udp_stream | 是否开启UDP传输流功能    |
-| dsoftbus_feature_trans_udp_file   | 是否开启UDP传输文件功能  |
-| dsoftbus_feature_ip_auth          | 是否开启认证传输通道功能 |
-| dsoftbus_feature_auth_account     | 是否开启基于账号认证功能 |
-| dsoftbus_feature_qos              | 是否开启QoS功能          |
+| dsoftbus_feature_disc_ble         | 是否开启BLE发现功能。      |
+| dsoftbus_feature_disc_coap        | 是否开启COAP发现功能。     |
+| dsoftbus_feature_conn_tcp         | 是否开启TCP连接功能。      |
+| dsoftbus_feature_conn_br          | 是否开启BR连接功能。       |
+| dsoftbus_feature_conn_ble         | 是否开启BLE连接功能。      |
+| dsoftbus_feature_conn_p2p         | 是否开启P2P连接功能。     |
+| dsoftbus_feature_trans_udp        | 是否开启UDP传输功能。      |
+| dsoftbus_feature_trans_udp_stream | 是否开启UDP传输流功能。    |
+| dsoftbus_feature_trans_udp_file   | 是否开启UDP传输文件功能。  |
+| dsoftbus_feature_ip_auth          | 是否开启认证传输通道功能。 |
+| dsoftbus_feature_auth_account     | 是否开启基于账号认证功能。 |
+| dsoftbus_feature_qos              | 是否开启QoS功能。          |
 
 在`softbus_config_adapter.c`文件中规定了以下配置项：
 
 | 配置项                               | 描述                          |
 | ------------------------------------ | ----------------------------- |
-| SOFTBUS_INT_MAX_BYTES_LENGTH         | SendBytes发送最大Bytes长度    |
-| SOFTBUS_INT_MAX_MESSAGE_LENGTH       | SendMessage发送最大消息的长度 |
-| SOFTBUS_INT_CONN_BR_MAX_DATA_LENGTH  | 蓝牙最大接收数据量            |
-| SOFTBUS_INT_CONN_RFCOM_SEND_MAX_LEN  | 蓝牙最大接收数据量            |
-| SOFTBUS_INT_ADAPTER_LOG_LEVEL        | 日志级别设置                  |
-| SOFTBUS_STR_STORAGE_DIRECTORY        | 存储目录设置                  |
+| SOFTBUS_INT_MAX_BYTES_LENGTH         | SendBytes发送最大Bytes长度。    |
+| SOFTBUS_INT_MAX_MESSAGE_LENGTH       | SendMessage发送最大消息的长度。 |
+| SOFTBUS_INT_CONN_BR_MAX_DATA_LENGTH  | 蓝牙最大接收数据量。            |
+| SOFTBUS_INT_CONN_RFCOM_SEND_MAX_LEN  | 蓝牙最大接收数据量。            |
+| SOFTBUS_INT_ADAPTER_LOG_LEVEL        | 日志级别设置。                  |
+| SOFTBUS_STR_STORAGE_DIRECTORY        | 存储目录设置。                  |
 
 因为软总线配置了后，不会默认启动，所以需要在通过启动框架调用`InitSoftBusServer`函数，如下：
 
@@ -1012,15 +1010,15 @@ APP_FEATURE_INIT(WifiDHCPRpcServerCB);
 
 | 接口名                 | 描述                             |
 | ---------------------- | -------------------------------- |
-| SYS_SERVICE_INIT(func) | 标识核心系统服务的初始化启动入口 |
-| SYS_FEATURE_INIT(func) | 标识核心系统功能的初始化启动入口 |
-| APP_SERVICE_INIT(func) | 标识应用层服务的初始化启动入口   |
-| APP_FEATURE_INIT(func) | 标识应用层功能的初始化启动入口   |
+| SYS_SERVICE_INIT(func) | 标识核心系统服务的初始化启动入口。 |
+| SYS_FEATURE_INIT(func) | 标识核心系统功能的初始化启动入口。 |
+| APP_SERVICE_INIT(func) | 标识应用层服务的初始化启动入口。   |
+| APP_FEATURE_INIT(func) | 标识应用层功能的初始化启动入口。   |
 
 ![](../public_sys-resources/icon-note.gif) **说明：** 
 	通过上面加载的组件编译出来的lib文件需要手动加入强制链接。
 
-​	如在 `vendor/bestechnic/display_demo/config.json` 中配置了`bootstrap_lite` 部件
+​	如在 `vendor/bestechnic/display_demo/config.json` 中配置了`bootstrap_lite` 部件。
 
 ```
     {
@@ -1244,10 +1242,10 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 | 配置项                                   | 说明                            |
 | ---------------------------------------- | ------------------------------- |
-| histreamer_enable_plugin_hdi_adapter     | 是否使能histreamer对接到hdi接口 |
-| histreamer_enable_plugin_minimp3_adapter | 是否使能插件适配minimp3         |
-| histreamer_enable_plugin_ffmpeg_adapter  | 是否使能插件适配FFmpeg          |
-| config_ohos_histreamer_stack_size        | histreamer栈大小设置            |
+| histreamer_enable_plugin_hdi_adapter     | 是否使能histreamer对接到hdi接口。 |
+| histreamer_enable_plugin_minimp3_adapter | 是否使能插件适配minimp3。         |
+| histreamer_enable_plugin_ffmpeg_adapter  | 是否使能插件适配FFmpeg。          |
+| config_ohos_histreamer_stack_size        | histreamer栈大小设置。            |
 
 #### 公共基础库子系统适配
 
@@ -1359,7 +1357,7 @@ APP_FEATURE_INIT(AppEntry);
 
 `ace_lite`的应用采用js语言进行开发，详细步骤如下：
 
-1. 用`DevEco Studio`编写js应用，参考[轻量级智能穿戴开发](https://developer.harmonyos.com/cn/docs/documentation/doc-references/lite-wearable-file-0000001176751380)。
+1. 用`DevEco Studio`编写js应用，参考[《DevEco Studio指南》](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-tools-overview)。
 2. 使用预览功能进行预览，并且得到js包：`entry\.preview\intermediates\res\debug\lite\assets\js\default`。
 3. 将js包放到对应的文件系统目录下，文件系统路径为`vendor/bestechnic/display_demo/fs/data/data/js`，如下：
 
@@ -1463,7 +1461,7 @@ APP_FEATURE_INIT(AppEntry);
 
 步骤2：生成测试报告的`SHA`校验码。本案例是将`zip`文件传到在线生成`hash`的[网站]( https://tool.lmeee.com/jiami/filehash)生成`SHA`校验码。
 
-步骤3：进入`OpenHarmony`[兼容性测试网站](https://www.openharmony.cn/old/#/Compatibility_test)上传报告。
+步骤3：进入`OpenHarmony`[兼容性测试网站](https://www.openharmony.cn/certification/document/guid)上传报告。
 
  - 其中`API Level`填写报告中的`"sdkApiLevel"`字段
  - `OS`版本号填写报告中的`"OS Version"`字段。

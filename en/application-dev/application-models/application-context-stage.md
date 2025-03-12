@@ -26,7 +26,7 @@
       }
     }
     ```
-     
+    
      > **NOTE**
      >
      > For details about how to obtain the context of a **UIAbility** instance on the page, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
@@ -81,135 +81,88 @@ This topic describes how to use the context in the following scenarios:
 
 ### Obtaining Application File Paths
 
-The [base class Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) provides the capability of obtaining application file paths. [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md), [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md), [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), and [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md) inherit this capability. The application file paths are a type of application sandbox paths. For details, see [Application Sandbox Directory](../file-management/app-sandbox-directory.md).
+The [base class Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) provides the capability of obtaining application file paths. [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md), [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md), [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), and [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md) inherit this capability. However, the specific paths retrieved can differ based on the type of the context used.
 
-The application file paths obtained by the preceding contexts are different.
+- [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md): This context provides access to the application-level file path, which is used to store global application information. Files in this path are removed when the application is uninstalled.
+- [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md), [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), and [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md): These contexts provide access to [module-level](../quick-start/application-package-overview.md) file paths. Files in these paths are removed when the corresponding [HAP](../quick-start/hap-package.md) or [HSP](../quick-start/in-app-hsp.md) module is uninstalled. Uninstalling an HAP or HSP module does not affect files under the application-level path unless all HAP and HSP modules of the application are uninstalled.
 
-- The application file path obtained through [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) is at the application level. This path is recommended for storing global application information, and the files in the path will be deleted when the application is uninstalled.
+  - UIAbilityContext: This context can be used to obtain the file paths of the module containing the UIAbility.
+  - ExtensionContext: This context can be used to obtain the file paths of the module containing the ExtensionAbility.
+  - AbilityStageContext: Given that AbilityStageContext is initialized earlier than UIAbilityContext and ExtensionContext, it is typically used to obtain file paths within the AbilityStage.
 
-  | Name| Path|
-  | -------- | -------- |
-  | bundleCodeDir | \<Path prefix>/el1/bundle|
-  | cacheDir | \<Path prefix>/\<Encryption level>/base/cache|
-  | filesDir | \<Path prefix>/\<Encryption level>/base/files|
-  | preferencesDir | \<Path prefix>/\<Encryption level>/base/preferences|
-  | tempDir | \<Path prefix>/\<Encryption level>/base/temp|
-  | databaseDir | \<Path prefix>/\<Encryption level>/database|
-  | distributedFilesDir | \<Path prefix>/el2/distributedFiles|
-  | cloudFileDir<sup>12+</sup> | \<Path prefix>/el2/cloud|
+>**NOTE**
+>
+> The application file paths are a type of application sandbox paths. For details, see [Application Sandbox Directory](../file-management/app-sandbox-directory.md).
 
-  The sample code is as follows:
+**Table 1** Description of application file paths obtained by different types of contexts
+| Name| Description| Path Obtained by ApplicationContext| Path Obtained by AbilityStageContext, UIAbilityContext, and ExtensionContext|
+| -------- | -------- | -------- | -------- |
+| bundleCodeDir | Bundle code directory.| \<Path prefix>/el1/bundle| \<Path prefix>/el1/bundle|
+| cacheDir | Cache directory.| \<Path prefix>/\<Encryption level>/base/cache| \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/cache|
+| filesDir | File directory.| \<Path prefix>/\<Encryption level>/base/files| \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/files|
+| preferencesDir | Preferences directory.| \<Path prefix>/\<Encryption level>/base/preferences| \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/preferences|
+| tempDir | Temporary directory.| \<Path prefix>/\<Encryption level>/base/temp| \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/temp|
+| databaseDir | Database directory.| \<Path prefix>/\<Encryption level>/database| \<Path prefix>/\<Encryption level>/database/**\<module-name>**|
+| distributedFilesDir | Distributed file directory.| \<Path prefix>/el2/distributedFiles| \<Path prefix>/el2/distributedFiles/|
+| resourceDir<sup>11+<sup> | Resource directory.<br>**NOTE**<br> You are required to manually create the **resfile** directory in **\<module-name>\resource**.| N/A| \<Path prefix>/el1/bundle/**\<module-name>**/resources/resfile|
+| cloudFileDir<sup>12+</sup> | Cloud file directory.| \<Path prefix>/el2/cloud| \<Path prefix>/el2/cloud/|
+
+This section uses ApplicationContext as an example to describe how to obtain the application file path, create a file in the path, and read and write the file. The sample code is as follows:
 
   ```ts
   import { common } from '@kit.AbilityKit';
+  import { buffer } from '@kit.ArkTS';
+  import { fileIo, ReadOptions } from '@kit.CoreFileKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { promptAction } from '@kit.ArkUI';
 
   const TAG: string = '[Page_Context]';
   const DOMAIN_NUMBER: number = 0xFF00;
 
   @Entry
   @Component
-  struct Page_Context {
+  struct Index {
+    @State message: string = 'Hello World';
     private context = getContext(this) as common.UIAbilityContext;
 
     build() {
-      Column() {
-        //...
-        List({ initialIndex: 0 }) {
-          ListItem() {
-            Row() {
-              //...
-            }
-            .onClick(() => {
-              let applicationContext = this.context.getApplicationContext();
-              let cacheDir = applicationContext.cacheDir;
-              let tempDir = applicationContext.tempDir;
-              let filesDir = applicationContext.filesDir;
-              let databaseDir = applicationContext.databaseDir;
-              let bundleCodeDir = applicationContext.bundleCodeDir;
-              let distributedFilesDir = applicationContext.distributedFilesDir;
-              let preferencesDir = applicationContext.preferencesDir;
-              let cloudFileDir = applicationContext.cloudFileDir;
-              // Obtain the application file path.
-              let filePath = tempDir + 'test.txt';
-              hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
-              if (filePath !== null) {
-                promptAction.showToast({
-                  message: filePath
-                });
-              }
-            })
+      Row() {
+        Column() {
+          Text(this.message)
+          // ...
+          Button() {
+            Text('create file')
+              // ...
+              .onClick(() => {
+                let applicationContext = this.context.getApplicationContext();
+                // Obtain the application file path.
+                let filesDir = applicationContext.filesDir;
+                hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filesDir}`);
+                // Create and open the file if it does not exist. Open the file if it already exists.
+                let file = fileIo.openSync(filesDir + '/test.txt', fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+                // Write data to the file.
+                let writeLen = fileIo.writeSync(file.fd, "Try to write str.");
+                hilog.info(DOMAIN_NUMBER, TAG, `The length of str is: ${writeLen}`);
+                // Create an ArrayBuffer object with a size of 1024 bytes to store the data read from the file.
+                let arrayBuffer = new ArrayBuffer(1024);
+                // Set the offset and length to read.
+                let readOptions: ReadOptions = {
+                  offset: 0,
+                  length: arrayBuffer.byteLength
+                };
+                // Read the file content to the ArrayBuffer object and return the number of bytes that are actually read.
+                let readLen = fileIo.readSync(file.fd, arrayBuffer, readOptions);
+                // Convert the ArrayBuffer object into a Buffer object and output it as a string.
+                let buf = buffer.from(arrayBuffer, 0, readLen);
+                hilog.info(DOMAIN_NUMBER, TAG, `the content of file: ${buf.toString()}`);
+                // Close the file.
+                fileIo.closeSync(file);
+              })
           }
-          //...
+          // ...
         }
-        //...
+        // ...
       }
-      //...
-    }
-  }
-  ```
-
-- The application file path obtained through [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md), [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), and [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md) is at the [HAP](../quick-start/hap-package.md) level. This path is recommended for storing HAP-related information, and the files in this path are deleted when the HAP is uninstalled. However, the deletion does not affect the files in the application-level path unless all HAPs of the application are uninstalled.
-
-  | Name| Path|
-  | -------- | -------- |
-  | bundleCodeDir | \<Path prefix>/el1/bundle|
-  | cacheDir | \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/cache|
-  | filesDir | \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/files|
-  | preferencesDir | \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/preferences|
-  | tempDir | \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/temp|
-  | databaseDir | \<Path prefix>/\<Encryption level>/database/**\<module-name>**|
-  | distributedFilesDir | \<Path prefix>/el2/distributedFiles/**\<module-name>**|
-  | cloudFileDir<sup>12+</sup> | \<Path prefix>/el2/cloud/**\<module-name>**|
-
-  The sample code is as follows:
-
-  ```ts
-  import { common } from '@kit.AbilityKit';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { promptAction } from '@kit.ArkUI';
-
-  const TAG: string = '[Page_Context]';
-  const DOMAIN_NUMBER: number = 0xFF00;
-
-  @Entry
-  @Component
-  struct Page_Context {
-    private context = getContext(this) as common.UIAbilityContext;
-
-    build() {
-      Column() {
-        //...
-        List({ initialIndex: 0 }) {
-          ListItem() {
-            Row() {
-              //...
-            }
-            .onClick(() => {
-              let cacheDir = this.context.cacheDir;
-              let tempDir = this.context.tempDir;
-              let filesDir = this.context.filesDir;
-              let databaseDir = this.context.databaseDir;
-              let bundleCodeDir = this.context.bundleCodeDir;
-              let distributedFilesDir = this.context.distributedFilesDir;
-              let preferencesDir = this.context.preferencesDir;
-              let cloudFileDir = applicationContext.cloudFileDir;
-              // Obtain the application file path.
-              let filePath = tempDir + 'test.txt';
-              hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
-              if (filePath !== null) {
-                promptAction.showToast({
-                  message: filePath
-                });
-              }
-            })
-          }
-          //...
-        }
-        //...
-      }
-      //...
+      // ...
     }
   }
   ```
@@ -316,7 +269,7 @@ struct Page_Context {
 ### Obtaining the Context of Other Modules in the Current Application
 
 Call [createModuleContext(context: Context, moduleName: string)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12) to obtain the context of another module in the current application. After obtaining the context, you can obtain the resource information of that module.
-  
+
   ```ts
   import { common, application } from '@kit.AbilityKit';
   import { promptAction } from '@kit.ArkUI';
@@ -344,12 +297,12 @@ Call [createModuleContext(context: Context, moduleName: string)](../reference/ap
                   console.info(`CreateModuleContext success, data: ${JSON.stringify(data)}`);
                   if (data !== null) {
                     promptAction.showToast({
-                      message: ('Context obtained.')
+                      message: ('Context obtained')
                     });
                   }
                 })
                 .catch((err: BusinessError) => {
-                  console.error(`CeateMudleContext failed, err code:${err.code}, err msg: ${err.message}`);
+                  console.error(`CreateModuleContext failed, err code:${err.code}, err msg: ${err.message}`);
                 });
             })
           }

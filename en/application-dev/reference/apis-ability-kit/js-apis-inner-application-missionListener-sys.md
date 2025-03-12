@@ -15,7 +15,7 @@ import { missionManager } from '@kit.AbilityKit';
 
 ## Attributes
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 

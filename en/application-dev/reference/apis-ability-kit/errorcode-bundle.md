@@ -1090,11 +1090,11 @@ The app does not support the creation of an appClone instance.
 
 **Description**
 
-An **AppClone** instance cannot be created for an application that is not in **appClone** mode.
+An AppClone instance cannot be created for an application that is not in appClone mode.
 
 **Possible Causes**
 
-The multi-app mode is set to another mode other than **appClone**.
+The multi-app mode is set to another mode other than appClone.
 
 **Solution**
 
@@ -1167,6 +1167,8 @@ The installation fails because an application with the same bundle name but diff
 **Solution**
 1. Uninstall the application with the same bundle name.
 2. Install the application that has been uninstalled with data retained, and then uninstall the application without data retained.
+
+
 
 ## 17700201 .abc File Verification Failure
 

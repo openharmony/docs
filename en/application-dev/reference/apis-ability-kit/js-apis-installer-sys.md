@@ -1,6 +1,6 @@
 # @ohos.bundle.installer (installer) (System API)
 
-The **bundle.installer** module provides APIs for you to install, uninstall, and recover bundles on devices.
+The bundle.installer module provides APIs for you to install, uninstall, and recover bundles on devices.
 
 > **NOTE**
 >
@@ -831,7 +831,7 @@ try {
 
 uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void\>) : void
 
-Uninstalls a shared bundle. This API uses an asynchronous callback to return the result.
+Uninstalls a shared package. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -891,7 +891,7 @@ try {
 
 uninstall(uninstallParam: UninstallParam) : Promise\<void>
 
-Uninstalls a shared bundle. This API uses a promise to return the result.
+Uninstalls a shared package. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1314,7 +1314,7 @@ try {
 
 uninstallUpdates(bundleName: string, installParam?: InstallParam): Promise\<void\>;
 
-Uninstalls and updates a pre-installed application and restores it to the initial installation status. This API uses a promise to return the result.
+Uninstalls and updates a preinstalled application and restores it to the initial installation status. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 

@@ -19,7 +19,7 @@ Defines the quick fix information at the HAP file level.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name       | Type                | Read-only| Mandatory| Description                                                        |
 | ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -33,7 +33,7 @@ Defines the quick fix information at the application level.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name       | Type                | Read-only| Mandatory| Description                                                        |
 | ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -54,7 +54,7 @@ Applies a quick fix patch. This API uses an asynchronous callback to return the 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -110,7 +110,7 @@ Applies a quick fix patch. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -167,7 +167,7 @@ Obtains the quick fix information of the application. This API uses an asynchron
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -218,7 +218,7 @@ Obtains the quick fix information of the application. This API uses a promise to
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -272,7 +272,7 @@ Revokes quick fix. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -317,7 +317,7 @@ Revokes quick fix. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 

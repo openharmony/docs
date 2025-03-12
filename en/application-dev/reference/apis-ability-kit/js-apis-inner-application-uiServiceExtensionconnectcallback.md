@@ -5,7 +5,7 @@ UIServiceExtensionConnectCallback provides callbacks for the connection to a UIS
 
 > **NOTE**
 >
->  - The initial APIs of this module are supported since API version 13. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>  - The initial APIs of this module are supported since API version 14. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >  - The APIs of this module can be used only in the stage model.
 >  - The APIs of this module must be used in the main thread, but not in sub-threads such as Worker and TaskPool.
 
@@ -26,20 +26,20 @@ Called to receive data when a connection to the UIServiceExtensionAbility is est
 > For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 >
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
-| Name| Type                  | Read Only| Optional| Description        |
-| ------ | ---------------------- | ---- | ------------ | ------------ |
-| data   | Record&lt;string, Object&gt; | Yes| No | Data about the UIServiceExtensionAbility connection.|
-
+| Name| Type                  | Mandatory| Description        |
+| ------ | ---------------------- | ---- | ------------ |
+| data   | Record&lt;string, Object&gt; | Yes| Data about the UIServiceExtensionAbility connection.|
 
 **Example**
 
 ```ts
-import { common } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = '[Extension] ';
@@ -133,12 +133,9 @@ Called when the connection to the UIServiceExtensionAbility is interrupted.
 > For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 >
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**Parameters**
-
-N/A
 
 **Example**
 ```ts

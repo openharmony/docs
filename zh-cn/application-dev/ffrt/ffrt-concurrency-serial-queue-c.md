@@ -179,7 +179,7 @@ static inline ffrt_function_header_t *ffrt_create_function_wrapper(const ffrt_fu
 
 ## 接口说明
 
-上述样例中涉及到的FFRT的接口包括：
+上述样例中涉及到主要的FFRT的接口包括：
 
 | 名称                                                             | 描述                           |
 | ---------------------------------------------------------------- | ------------------------------ |

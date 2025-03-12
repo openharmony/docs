@@ -2600,6 +2600,8 @@ async function testListAliases() {
 
 表示密钥用途。
 
+一个密钥仅能用于单个用途，不能既用于加解密又用于签名验签。
+
 **系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称                     | 值   | 说明                             |

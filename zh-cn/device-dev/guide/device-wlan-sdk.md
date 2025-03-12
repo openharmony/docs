@@ -242,7 +242,7 @@ lite_component("link") {
 
 下面以demolink举例，介绍如何在applications/sample/wifi-iot/app/路径下编写代码，调起demosdk的入口函数。
 
-1.  目录创建
+1.  目录创建。
 
     开发者编写业务时，务必先在applications/sample/wifi-iot/app/ 路径下新建一个目录（或一套目录结构），用于存放业务源码文件。
 
@@ -276,7 +276,7 @@ lite_component("link") {
     SYS_RUN(DemoSdkMain);
     ```
 
-3.  编写构建脚本
+3.  编写构建脚本。
 
     新增applications/sample/wifi-iot/app/demolink/BUILD.gn文件，指定源码和头文件路径，编译输出静态库文件libexample\_demolink.a。
 

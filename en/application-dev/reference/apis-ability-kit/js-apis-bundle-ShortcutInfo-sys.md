@@ -10,7 +10,7 @@ The shortcutInfo module defines shortcut information configured in the configura
 
 ## ShortcutWant<sup>(deprecated)<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager-ShortcutWant](js-apis-bundleManager-shortcutInfo-sys.md) instead.
+> This API is deprecated since API version 9. You are advised to use [bundleManager-ShortcutWant](js-apis-bundleManager-shortcutInfo-sys.md#shortcutwant) instead.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 
