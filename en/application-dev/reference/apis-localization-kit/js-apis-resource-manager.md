@@ -295,7 +295,7 @@ Defines the device capability.
 | deviceType    | [DeviceType](#devicetype)       | Yes   | No   | Device type.  |
 
 
-## RawFileDescriptor<sup>8+</sup>
+## RawFileDescriptor<sup>9+</sup>
 
 type RawFileDescriptor = _RawFileDescriptor
 
@@ -305,7 +305,7 @@ type RawFileDescriptor = _RawFileDescriptor
 
 | Type   | Description  |
 | ------  | ---- | 
-|[_RawFileDescriptor](rawFileDescriptor.md#rawfiledescriptor-1)|Defines the descriptor of the HAP where the raw file is located.|
+|[_RawFileDescriptor](js-apis-rawFileDescriptor.md#rawfiledescriptor-1)|Descriptor of the HAP where the raw file is located.|
 
 ## Resource<sup>9+</sup>
 
@@ -317,7 +317,7 @@ type Resource = _Resource
 
 | Type   | Description  |
 | ------  | ---- | 
-|[_Resource](resource.md#resource-1)|Resource information of an application.|
+|[_Resource](js-apis-resource.md#resource-1)|Resource information of an application.|
 
 ## ResourceManager
 
@@ -327,7 +327,7 @@ Defines the capability of accessing application resources.
 >
 > - The methods involved in **ResourceManager** are applicable only to the TypeScript-based declarative development paradigm.
 >
-> - Resource files are defined in the **resources** directory of the project. You can obtain the corresponding strings and string arrays based on the specified resource ID, resource name, or resource object. You can use **$r(resource address).id**, for example, **$r('app.string.test').id**, to obtain the resource ID.
+> - Resource files are defined in the **resources** directory of the project. You can obtain the corresponding strings and string arrays based on the specified resource ID, resource name, or resource object. You can use `$r(resource address).id`, for example, `$r('app.string.test').id`, to obtain the resource ID.
 >
 > - Use the resource object for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources. Therefore, it takes a longer time than using the resource ID or resource name.
 >
@@ -396,7 +396,7 @@ Obtains a string based on the specified resource ID and formats the string based
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
 | resId | number | Yes   | Resource ID.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
+| ...args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
@@ -499,7 +499,7 @@ Obtains a string based on the specified resource object and formats the string b
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | Yes   | Resource object.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
+| ...args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
@@ -598,7 +598,7 @@ Obtains a string based on the specified resource name and formats the string bas
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
 | resName | string | Yes   | Resource name.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
+| ...args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
@@ -4702,7 +4702,7 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| [RawFileDescriptor](#rawfiledescriptor8) | Descriptor of the HAP where the raw file is located.|
+| [RawFileDescriptor](#rawfiledescriptor9) | Descriptor of the HAP where the raw file is located.|
 
 **Error codes**
 
@@ -4741,7 +4741,7 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | Yes   | Path of the raw file.                     |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Callback used to return the result, which is the descriptor of the HAP where the raw file is located.|
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Yes   | Callback used to return the result, which is the descriptor of the HAP where the raw file is located.|
 
 **Error codes**
 
@@ -4794,7 +4794,7 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Descriptor of the HAP where the raw file is located.|
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Descriptor of the HAP where the raw file is located.|
 
 **Error codes**
 
@@ -5887,7 +5887,7 @@ This API is deprecated since API version 9. You are advised to use [getPluralStr
 
 | Type                   | Description                       |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource ID.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the singular/plural string corresponding to the specified resource ID.|
 
 **Example**
   ```ts
@@ -5923,7 +5923,7 @@ This API is deprecated since API version 9. You are advised to use [getPluralStr
 | -------- | --------------------------- | ---- | ------------------------------- |
 | resId    | number                      | Yes   | Resource ID.                          |
 | num      | number                      | Yes   | Number.                            |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource ID.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular/plural string corresponding to the specified resource ID.|
 
 **Example**
   ```ts
@@ -6021,7 +6021,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFd](#g
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | Yes   | Path of the raw file.                     |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Callback used to return the result, which is the descriptor of the raw file.|
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Yes   | Callback used to return the result, which is the descriptor of the raw file.|
 
 **Example**
   ```ts
@@ -6060,7 +6060,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFd](#g
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Promise used to return the result, which is the descriptor of the raw file.|
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Promise used to return the result, which is the descriptor of the raw file.|
 
 **Example**
   ```ts
