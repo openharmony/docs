@@ -39,18 +39,18 @@ DatePicker(options?: DatePickerOptions)
 | start    | Date | 否   | 指定选择器的起始日期。<br/>默认值：Date('1970-1-1')          |
 | end      | Date | 否   | 指定选择器的结束日期。<br/>默认值：Date('2100-12-31')        |
 | selected | Date | 否   | 设置选中项的日期。<br/>默认值：当前系统日期<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| mode<sup>16+</sup> | [DatePickerMode](#datepickermode16枚举说明) | 否   | 设置DatePicker显示的日期选项列。<br/>默认值：DatePickerMode.DATE，日期列显示年、月、日三列。 小数值做取整处理。<br/>在DatePickerDialog中，当showTime=true时，此参数不生效，显示默认年月日三列。 |
+| mode<sup>18+</sup> | [DatePickerMode](#datepickermode18枚举说明) | 否   | 设置DatePicker显示的日期选项列。<br/>默认值：DatePickerMode.DATE，日期列显示年、月、日三列。 小数值做取整处理。<br/>在DatePickerDialog中，当showTime=true时，此参数不生效，显示默认年月日三列。 |
 
 >  **说明：**
 >
 >  Date的使用请参考[TimePickerOptions](ts-basic-components-timepicker.md)。
 >
 
-## DatePickerMode<sup>16+</sup>枚举说明
+## DatePickerMode<sup>18+</sup>枚举说明
 
 设置要显示的日期选项列。
 
-**原子化服务API：** 从API version 16开始，该类型支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该类型支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -239,18 +239,18 @@ enableHapticFeedback(enable: Optional\<boolean>)
 >  ]
 >  ```
 
-### digitalCrownSensitivity<sup>16+</sup>
+### digitalCrownSensitivity<sup>18+</sup>
 digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 设置表冠灵敏度。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名   | 参数类型                                     | 必填   | 参数描述                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
-| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity16)> | 是    | 表冠灵敏度。                     |
+| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | 是    | 表冠灵敏度。                     |
 
 >  **说明：**
 >

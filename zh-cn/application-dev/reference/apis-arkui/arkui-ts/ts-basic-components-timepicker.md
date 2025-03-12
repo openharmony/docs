@@ -36,8 +36,8 @@ TimePicker(options?: TimePickerOptions)
 | -------------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | selected             | Date                                            | 否   | 设置选中项的时间。<br/>默认值：当前系统时间<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | format<sup>11+</sup> | [TimePickerFormat](#timepickerformat11枚举说明) | 否   | 指定需要显示的TimePicker的格式。<br/>默认值：TimePickerFormat.HOUR_MINUTE <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| start<sup>16+</sup>  | Date | 否   | 指定时间选择组件的起始时间。<br/>默认值：Date(0, 0, 0, 0, 0, 0)，仅生效设置日期的小时和分钟。<br/>设定了start、end，且为非默认值的场景下，loop不生效。 <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
-| end<sup>16+</sup>    | Date | 否   | 指定时间选择组件的结束时间。<br/>默认值：Date(0, 0, 0, 23, 59, 59)，仅生效设置日期的小时和分钟。<br/>设定了start、end，且为非默认值的场景下，loop不生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| start<sup>18+</sup>  | Date | 否   | 指定时间选择组件的起始时间。<br/>默认值：Date(0, 0, 0, 0, 0, 0)，仅生效设置日期的小时和分钟。<br/>设定了start、end，且为非默认值的场景下，loop不生效。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| end<sup>18+</sup>    | Date | 否   | 指定时间选择组件的结束时间。<br/>默认值：Date(0, 0, 0, 23, 59, 59)，仅生效设置日期的小时和分钟。<br/>设定了start、end，且为非默认值的场景下，loop不生效。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 >  **说明：**
 >
@@ -322,13 +322,13 @@ enableHapticFeedback(enable: Optional\<boolean>)
 >  ]
 >  ```
 
-### enableCascade<sup>16+</sup>
+### enableCascade<sup>18+</sup>
 
 enableCascade(enable: boolean)
 
 在设置12小时制时，上午和下午的标识会根据小时数自动切换。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -336,18 +336,18 @@ enableCascade(enable: boolean)
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
 | enable  | boolean | 是   | 在12小时制时，设置上午和下午的标识是否会根据小时数自动切换。<br/>默认值：false，false表示不开启自动切换，true表示开启自动切换。<br/>设置为true后，仅当loop参数同时为true时生效。<br/> |
 
-### digitalCrownSensitivity<sup>16+</sup>
+### digitalCrownSensitivity<sup>18+</sup>
 digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 设置表冠灵敏度。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名   | 参数类型                                     | 必填   | 参数描述                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
-| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity16)> | 是    | 表冠灵敏度。                     |
+| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | 是    | 表冠灵敏度。                     |
 
 >  **说明：**
 >
@@ -387,9 +387,9 @@ onChange(callback: Optional\<OnTimePickerChangeCallback>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnTimePickerChangeCallback](#ontimepickerchangecallback16)> | 是   | 选择时间时触发该回调。<br/>当callback的值为undefined时，不使用回调函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnTimePickerChangeCallback](#ontimepickerchangecallback18)> | 是   | 选择时间时触发该回调。<br/>当callback的值为undefined时，不使用回调函数。 |
 
-### onEnterSelectedArea<sup>16+</sup>
+### onEnterSelectedArea<sup>18+</sup>
 
 onEnterSelectedArea(callback: Callback\<TimePickerResult>)
 
@@ -397,7 +397,7 @@ onEnterSelectedArea(callback: Callback\<TimePickerResult>)
 
 与onChange事件的差别在于，该事件的触发时机早于onChange事件，当当前滑动列滑动距离超过选中项高度的一半时，选项此时已经进入分割线区域内，会触发该事件。当enableCascade设置为true时，由于上午/下午列与小时列存在联动关系，不建议使用该回调。该回调标识的是滑动过程中选项进入分割线区域内的节点，而联动变化的选项并不涉及滑动，因此，回调的返回值中，仅当前滑动列的值会正常变化，其余未滑动列的值保持不变。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -407,15 +407,15 @@ onEnterSelectedArea(callback: Callback\<TimePickerResult>)
 | -------- | -------------------------- | ---- | ------------------------------------------ |
 | callback | Callback\<[TimePickerResult](#timepickerresult对象说明)> | 是   | 滑动TimePicker过程中，选项进入分割线区域时触发的回调。 |
 
-## OnTimePickerChangeCallback<sup>16+</sup>
+## OnTimePickerChangeCallback<sup>18+</sup>
 
 type OnTimePickerChangeCallback = (value: TimePickerResult) => void
 
 选择时间时触发该事件。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
