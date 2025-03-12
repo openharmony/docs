@@ -1,6 +1,6 @@
 # Workflow for Requesting Permissions
 
-You need to determine whether your application needs related permissions before accessing data or performing an operation. If permissions are required, you must request the permissions in the application installation package.
+You need to determine whether your application needs related permissions before accessing data or performing an operation. If permissions are required, request the permissions in the application installation package.
 
 Different permissions have different Ability Privilege Levels (APLs), authorization modes, and requesting methods. The workflow in the following figure helps you determine whether your application needs to request a permission.
 
@@ -18,7 +18,7 @@ Different permissions have different Ability Privilege Levels (APLs), authorizat
      3. When the application in running needs to access the target object, an API will be called to trigger a dialog box for requesting user authorization. This API first checks whether the user has granted the permission required. If no, a dialog box will be displayed to request authorization from the user.
      4. Check the user authorization result. Allow subsequent operations only after the user has granted the permission to the application successfully.
 
-- ③ You can use the access control list (ACL) to allow a lower-level application to have a higher-level permission. For details, see <!--RP1-->[ACL](app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).<!--RP1End-->
+- ③ You can use the access control list (ACL) to allow an application to have a higher-level permission. For details, see <!--RP1-->[ACL](app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).<!--RP1End-->
 
 The operation for requesting a permission varies, depending on the permission APL and authorization mode.
 
@@ -36,7 +36,7 @@ The operation for requesting a permission varies, depending on the permission AP
 > **NOTE**
 >
 > - A normal application cannot request a system_basic permission whose **Enable via ACL** is **false**.
-> - You can use DevEco Studio to request a permission via the ACL. However, this method applies to the applications in debug phase, but not to the applications to be released to the app market. For a commercial application, apply for a release certificate and profile in the app market.
+> - You can use DevEco Studio to [request a permission via ACL](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V14/ide-signing-V14). However, this method applies to the applications in debug phase, but not to the applications to be released to the app market. For a commercial application, apply for a release certificate and profile in the app market.
 
 ## Requesting Permissions for system_basic Applications
 
@@ -45,7 +45,7 @@ The operation for requesting a permission varies, depending on the permission AP
 | normal or system_basic| system_grant | - | [Declare permission](declare-permissions.md) &gt; Access API|
 | normal or system_basic| user_grant | - | [Declare permission](declare-permissions.md) &gt; [Request user authorization](request-user-authorization.md) &gt; Access API|
 | system_core | system_grant | true | [Request restricted permission](declare-permissions-in-acl.md) &gt; [Declare permission](declare-permissions.md) > Access API |
-| system_core | user_grant | true | [Request restricted permission](declare-permissions-in-acl.md) &gt; [Declare permissions](declare-permissions.md) > [Request user authorization](request-user-authorization.md) > Access API |
+| system_core | user_grant | true | [Request restricted permission](declare-permissions-in-acl.md) &gt; [Declare permission](declare-permissions.md) > [Request user authorization](request-user-authorization.md) > Access API |
 
 To change the application APL to system_basic or system_core, modify the HarmonyAppProvision file (**Toolchains/_{Version}_/lib/UnsgnedReleasedProfileTemplate.json** file in the SDK directory) of the application when developing the application installation package, and sign the application again.
 
