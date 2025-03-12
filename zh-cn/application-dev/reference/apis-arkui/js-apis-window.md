@@ -428,6 +428,60 @@ import { window } from '@kit.ArkUI';
 | -------------------------------- | ------------------------------------ |
 | V | 回调函数需要返回V类型的返回值。 |
 
+## RotationChangeType<sup>18+</sup>
+
+窗口旋转类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 值 | 类型  | 说明                    |
+| ------ | --- | --- | ------------------------ | 
+| WINDOW_WILL_ROTATE| 0 | number | 窗口即将旋转。 |
+| WINDOW_DID_ROTATE | 1 | number | 窗口旋转结束。 |
+
+## RectType<sup>18+</sup>
+
+窗口Rect类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 值 | 类型  | 说明                    |
+| ------ | --- | --- | ------------------------ | 
+| RELATIVE_TO_SCREEN | 0 | number | 窗口[Rect](#rect7)与屏幕相关。 |
+| RELATIVE_TO_PARENT_WINDOW | 1 | number | 窗口[Rect](#rect7)与父窗相关。 |
+
+## RotationChangeInfo<sup>18+</sup>
+
+窗口旋转变化时的窗口信息。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 类型 | 可读  | 可写 | 说明                    |
+| ------ | ---- | ----- | ---- | ----------------------- | 
+| type | [RotationChangeType](#rotationchangetype18) | 是 | 否 | 窗口旋转类型。0表示开始，1表示结束。 |
+| orientation | number | 是 | 否 | 窗口旋转方向。0表示竖屏，1表示横屏，2表示反向竖屏，3表示反向竖屏。 |
+| displayId | number | 是 | 否 | 窗口所在屏幕Id。 |
+| displayRect | [Rect](#rect7) | 是 | 否 | 旋转后全屏主窗口信息。 |
+
+## RotationChangeResult<sup>18+</sup>
+
+窗口旋转变化时应用返回信息。改变当前窗口大小，效果与[resize()](#resize9-1)类似。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 类型 | 可读  | 可写 | 说明                    |
+| ------ | ---- | ----- | ---- | ----------------------- | 
+| rectType | [RectType](#recttype18) | 否 | 是 | 窗口[Rect](#rect7)类型。0表示与屏幕相关，1表示与父窗相关。 |
+| windowRect | [Rect](#rect7) | 否 | 是 | 窗口相对于屏幕或父窗的[Rect](#rect7)信息。 |
+
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
@@ -5415,6 +5469,92 @@ try {
   windowClass.off('windowHighlightChange');
 } catch (exception) {
   console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### on('rotationChange')<sup>18+</sup>
+
+on(type:  'rotationChange', callback: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
+
+开启窗口旋转变化的监听。旋转前回调必须返回[RotationChangeResult](#rotationchangeresult18)，旋转后返回不生效。同一个窗口多次注册回调函数，旋转前回调[Rect](#rect7)只对最新回调函数生效。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'rotationChange'，即窗口旋转变换事件。 |
+| callback | RotationChangeCallback&lt;[RotationChangeInfo](#rotationchangeinfo18), [RotationChangeResult](#rotationchangeresult18) | void&gt; | 是 | 回调函数。返回窗口旋转信息，需要应用返回窗口变化结果。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+const callback = (info: RotationChangeInfo) => RotationChangeResult | void {
+  // ...
+  return;
+}
+try {
+  windowClass.on('rotationChange', callback);
+} catch (exception) {
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### off('rotationChange')<sup>18+</sup>
+
+off(type: 'rotationChange', callback?: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
+
+关闭窗口旋转变化的监听。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                         |
+| -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                         | 是   | 监听事件，固定为'rotationChange'，即窗口旋转变换事件。     |
+| callback | RotationChangeCallback&lt;info: [RotationChangeInfo](#rotationchangeinfo18), [RotationChangeResult](#rotationchangeresult18) | void&gt; | 否   | 回调函数。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有子窗口关闭的监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+const callback = (info: RotationChangeInfo) => RotationChangeResult | void {
+  // ...
+  return;
+}
+try {
+  windowClass.off('rotationChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('rotationChange');
+} catch (exception) {
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
