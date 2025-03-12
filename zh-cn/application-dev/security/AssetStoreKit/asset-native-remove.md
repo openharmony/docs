@@ -39,12 +39,12 @@
 
 在指定群组中删除一条关键资产的示例代码详见[删除群组关键资产](asset-native-group-access-control.md#删除群组关键资产)。
 
-1. 在CMake脚本中链接相关动态库
+1. 在CMake脚本中链接相关动态库。
    ```txt
    target_link_libraries(entry PUBLIC libasset_ndk.z.so)
    ```
 
-2. 参考如下示例代码，进行业务功能开发
+2. 参考如下示例代码，进行业务功能开发。
    ```c
    #include <string.h>
 
