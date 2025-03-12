@@ -1818,7 +1818,7 @@ isSeekContinuousSupported() : boolean
 **示例：**
 
 ```ts
-bool isSupported = avPlayer.isSeekContinuousSupported()
+let isSupported = avPlayer.isSeekContinuousSupported()
 ```
 
 ### on('seekDone')<sup>9+</sup>
