@@ -1784,14 +1784,40 @@ seek(timeMs: number, mode?:SeekMode): void
 
 | 参数名 | 类型                   | 必填 | 说明                                                         |
 | ------ | ---------------------- | ---- | ------------------------------------------------------------ |
-| timeMs | number                 | 是   | 指定的跳转时间节点，单位毫秒（ms），取值范围为[0, [duration](#属性)]。 |
+| timeMs | number                 | 是   | 指定的跳转时间节点，单位毫秒（ms），取值范围为[0, [duration](#属性)]，SEEK_CONTINUOU模式可以额外取值-1，用于表示SEEK_CONTINUOUS模式结束。 |
 | mode   | [SeekMode](#seekmode8) | 否   | 基于视频I帧的跳转模式，默认为SEEK_PREV_SYNC模式，**仅在视频资源播放时设置**。 |
 
 **示例：**
 
 ```ts
+// SeekMode.SEEK_PREV_SYNC
 let seekTime: number = 1000
 avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC)
+
+// SeekMode.SEEK_CONTINUOUS
+let startTime = 1000
+let deltaTime = 500
+for (let i = 1; i <= 30; i++) {
+  avPlayer.seek(startTime + i * deltaTime, media.SeekMode.SEEK_PRESEEK_CONTINUOUSV_SYNC)
+  // wait 33ms, 可以搭配slider等控件的回调方法组合实现拖拽进度条更新画面的功能
+}
+avPlayer.seek(-1, media.SeekMode.SEEK_PRESEEK_CONTINUOUSV_SYNC)
+```
+
+### isSeekContinuousSupported<sup>18+</sup>
+
+isSeekContinuousSupported() : boolean
+
+查询媒体源是否支持以SEEK_CONTINUOUS模式[SeekMode](#seekmode8)进行[seek](#seek9)，在prepared/playing/paused/completed状态调用返回实际值，其余状态调用返回false。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**示例：**
+
+```ts
+bool isSupported = avPlayer.isSeekContinuousSupported()
 ```
 
 ### on('seekDone')<sup>9+</sup>
@@ -1808,7 +1834,7 @@ on(type: 'seekDone', callback: Callback\<number>): void
 
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | 是   | seek生效的事件回调类型，支持的事件：'seekDone'，每次调用seek后都会回调此事件。 |
+| type     | string   | 是   | seek生效的事件回调类型，支持的事件：'seekDone'，除SEEK_CONTINUOUS外的[SeekMode](#seekmode8)每次调用seek后都会回调此事件。 |
 | callback | Callback\<number> | 是   | 回调函数。seek生效的事件回调方法，只会上报用户请求的time位置。<br/>**视频播放：**[SeekMode](#seekmode8)会造成实际跳转位置与用户设置产生偏差，精准位置需要通过currentTime获取，事件回调的time仅代表完成用户某一次请求。 |
 
 **示例：**
@@ -3057,6 +3083,7 @@ SEI信息内容，描述SEI信息的负载类型和数据。
 | SEEK_NEXT_SYNC | 0    | 表示跳转到指定时间点的下一个关键帧，建议向后快进的时候用这个枚举值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | SEEK_PREV_SYNC | 1    | 表示跳转到指定时间点的上一个关键帧，建议向前快进的时候用这个枚举值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | SEEK_CLOSEST<sup>12+</sup> | 2    | 表示跳转到距离指定时间点最近的帧，建议精准跳转进度的时候用这个枚举值。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SEEK_CONTINUOUS<sup>18+</sup> | 3    | 该模式提供了一种更为平滑的Seek体验，应用可以结合进度条控件持续调用Seek方法，AVPlayer根据Seek调用持续进行流畅地画面更新。<br>应用可以调用[isSeekContinuousSupported](#isseekcontinuoussupported18)方法根据返回结果感知视频源是否支持该模式Seek。<br>对于不支持该模式Seek的视频源调用该模式Seek时，会上报AV_ERR错误，同时画面以低流畅性更新。<br>该Seek模式不会触发[seekDone事件](#onseekdone9)。<br>当应用需要退出该模式下Seek时，需要调用`seek(-1, SeekMode.SEEK_CONTINUOUS)`来结束该模式下Seek。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## SwitchMode<sup>12+</sup>
 
