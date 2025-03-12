@@ -591,8 +591,10 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 Manually performs device-cloud sync based on specified conditions. This API uses an asynchronous callback to return the result. The cloud sync function must be implemented. Otherwise, this API cannot be used.
 
 > **NOTE**
-> 
-> Since API version 16, you can specify the asset download capability as a condition for device-cloud sync. If the sync mode is set to [SYNC_MODE_CLOUD_FIRST](js-apis-data-relationalStore.md#syncmode), the primary key (mandatory) and asset (optional) can be used as sync conditions in the predicates. If asset is used as the sync condition, only [equalTo](js-apis-data-relationalStore.md#equalto) is supported. If a large number of assets (max. 50) are specified, you are advised to use only the primary key in the predicates.
+>
+> Since API version 18, you can specify assets in predicates when performing manual device-cloud sync. In this case, the sync mode must be **relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST**.
+>
+> When specifying the predicates, you can use the primary key (mandatory) and asset (optional) as sync conditions. If assets are specified, the predicate supports only [equalTo](js-apis-data-relationalStore.md#equalto), with a limit 50 assets. If more assets are involved, you are advised to use only the primary key as the sync condition.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -671,9 +673,11 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 
 Manually performs device-cloud sync based on specified conditions. This API uses a promise to return the result. The cloud sync function must be implemented. Otherwise, this API cannot be used.
 
->**NOTE**
-> 
->Since API version 16, you can specify the asset download capability as a condition for device-cloud sync. If the sync mode is set to [SYNC_MODE_CLOUD_FIRST](js-apis-data-relationalStore.md#syncmode), the primary key (mandatory) and asset (optional) can be used as sync conditions in the predicates. If asset is used as the sync condition, only [equalTo](js-apis-data-relationalStore.md#equalto) is supported. If a large number of assets (max. 50) are specified, you are advised to use only the primary key in the predicates.
+> **NOTE**
+>
+> Since API version 18, you can specify assets in predicates when performing manual device-cloud sync. In this case, the sync mode must be **relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST**.
+>
+> When specifying the predicates, you can use the primary key (mandatory) and asset (optional) as sync conditions. If assets are specified, the predicate supports only [equalTo](js-apis-data-relationalStore.md#equalto), with a limit 50 assets. If more assets are involved, you are advised to use only the primary key as the sync condition.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
