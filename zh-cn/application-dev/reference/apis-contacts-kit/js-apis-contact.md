@@ -3863,7 +3863,7 @@ addContactViaUI(context: Context, contact: Contact): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Contacts错误码](../application-dev/reference/apis-contacts-kit/errorcode-contacts.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Contacts错误码](../apis-contacts-kit/errorcode-contacts.md)。
 
 | 类型                  | 说明                                       |
 | --------------------- | ------------------------------------------ |
@@ -3907,7 +3907,7 @@ saveToExistingContactViaUI(context: Context, contact: Contact): Promise&lt;numbe
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Contacts错误码](../application-dev/reference/apis-contacts-kit/errorcode-contacts.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Contacts错误码](../apis-contacts-kit/errorcode-contacts.md)。
 
 | 类型                  | 说明                                       |
 | --------------------- | ------------------------------------------ |
