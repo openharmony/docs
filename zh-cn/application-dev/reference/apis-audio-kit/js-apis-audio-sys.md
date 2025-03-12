@@ -866,7 +866,7 @@ try {
 
 getAppVolumePercentageForUid(uid: number\): Promise<number\>
 
-根据应用ID获取指定应用的音量（范围为0到100）。使用Promise方式异步返回结果。
+根据应用ID获取指定应用的音量（范围为0到100）。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -898,7 +898,7 @@ getAppVolumePercentageForUid(uid: number\): Promise<number\>
 **示例：**
 
 ```ts
-let uid: number = 20010041; // 应用ID
+let uid: number = 20010041; // 应用ID。
 
 audioVolumeManager.getAppVolumePercentageForUid(20010041).then((value: number) => {
   console.info(`app volume is ${value}.`);
@@ -909,7 +909,7 @@ audioVolumeManager.getAppVolumePercentageForUid(20010041).then((value: number) =
 
 setAppVolumePercentageForUid(uid: number, volume: number\): Promise<void\>
 
-根据应用ID设置指定应用的音量（范围为0到100）。使用Promise方式异步返回结果。
+根据应用ID设置指定应用的音量（范围为0到100）。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -943,8 +943,8 @@ setAppVolumePercentageForUid(uid: number, volume: number\): Promise<void\>
 **示例：**
 
 ```ts
-let uid: number = 20010041; // 应用ID
-let volume: number = 20;    // 要设置的音量值
+let uid: number = 20010041; // 应用ID。
+let volume: number = 20;    // 要设置的音量值。
 
 audioVolumeManager.setAppVolumePercentageForUid(uid, volume).then(() => {
   console.info(`set app volume success.`);
@@ -955,7 +955,7 @@ audioVolumeManager.setAppVolumePercentageForUid(uid, volume).then(() => {
 
 isAppVolumeMutedForUid(uid: number, owned: boolean\): Promise<boolean\>
 
-根据应用ID查询应用音量是否已静音。使用Promise方式异步返回结果。
+根据应用ID查询应用音量是否已静音。使用Promise异步回调。
 
 > **说明：**
 >
@@ -992,7 +992,7 @@ isAppVolumeMutedForUid(uid: number, owned: boolean\): Promise<boolean\>
 **示例：**
 
 ```ts
-let uid: number = 20010041; // 应用ID
+let uid: number = 20010041; // 应用ID。
 
 audioVolumeManager.setAppVolumePercentageForUid(uid, true).then((value: boolean) => {
   console.info(`app muted state is ${value}.`);
@@ -1003,7 +1003,7 @@ audioVolumeManager.setAppVolumePercentageForUid(uid, true).then((value: boolean)
 
 setAppVolumeMutedForUid(uid: number, muted: boolean\): Promise<void\>
 
-根据应用ID设置应用静音状态。使用Promise方式异步返回结果。
+根据应用ID设置应用静音状态。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口。
 
@@ -1037,7 +1037,7 @@ setAppVolumeMutedForUid(uid: number, muted: boolean\): Promise<void\>
 **示例：**
 
 ```ts
-let uid: number = 20010041; // 应用ID
+let uid: number = 20010041; // 应用ID。
 
 audioVolumeManager.setAppVolumePercentageForUid(uid, true).then(() => {
   console.info(`set app mute state success.`);
@@ -1076,7 +1076,7 @@ on(type: 'appVolumeChangeForUid', uid: number, callback: Callback\<VolumeEvent>)
 **示例：**
 
 ```ts
-let uid: number = 20010041; // 应用ID
+let uid: number = 20010041; // 应用ID。
 
 audioVolumeManager.on('appVolumeChangeForUid', uid, (volumeEvent: audio.VolumeEvent) => {
   console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
