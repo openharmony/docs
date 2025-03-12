@@ -33,7 +33,7 @@ The UI development mode of ArkUI is the MVVM mode, in which the state variables 
 
 **ViewModel**
 
-* Page data: organized by page. When a user opens a page, some pages may not be switched to. Therefore, it is recommended that the page data be designed in lazy loading mode.
+* Page data: Data that is organized by page. When a user browses a page, some pages may not be displayed. Therefore, it is recommended that the page data be designed using lazy import.
 
 > The differences between the ViewModel data and the Model data are as follows:
 >
@@ -43,15 +43,7 @@ The UI development mode of ArkUI is the MVVM mode, in which the state variables 
 
 **Model**
 
-Model provides the original data of applications. From the perspective of the UI, there are two ways to implement this layer:
-
-* Local implementation: through native C++.
-
-* Remote implementation: through the I/O port (RESTful).
-
-> **NOTE**
->
-> When the local implementation is used, the non-UI thread model must exist when the system processes data. At this time, the processed data change needs to be notified to the ViewModel in real time, causing data changes and UI re-renders. In this case, automatic thread switching becomes very important. Generally, the ViewModel and View can work properly only when they are executed in the UI thread. Therefore, a mechanism is required to automatically complete thread switching when the UI needs to be notified of a re-render.
+The Model layer is the original data provider of applications.
 
 ### Core Principles of the Architecture
 
@@ -68,7 +60,7 @@ The lower layer can only notify the upper layer to update the data. In the servi
 
 This is the core principle of View design. A component should comply with the following logic:
 
-* Do not directly access the parent component (using the event or subscription capability).
+* Do not directly access the parent component. Event or subscription capability must be used.
 * Do not directly access sibling components. This is because components can access only the child nodes (through parameter passing) and parent nodes (through events or notifications) that they can see. In this way, components are decoupled.
 
 Reasons:
@@ -589,62 +581,180 @@ The file structure is reconstructed based on the MVVM mode as follows:
 
 * src
   * ets
+    * Model
+      * ThingsModel
+      * TodoListModel
     * pages
-      * index
+      * Index
     * View
-      * TodoComponent
-      * AllchooseComponent
+      * AllChooseComponent
       * ThingsComponent
+      * TodoComponent
+      * TodoListComponent
     * ViewModel
       * ThingsViewModel
+      * TodoListViewModel
+  * resources
+    * rawfile
+      * defaultTasks.json
 
 The code is as follows:
 
 * Index.ets
 
   ```typescript
-  // import view
-  import { TodoComponent } from './../View/TodoComponent'
-  import { MultiChooseComponent } from './../View/AllchooseComponent'
-  import { ThingsComponent } from './../View/ThingsComponent'
-  
-  // import viewModel
-  import { TodoListData } from '../ViewModel/ThingsViewModel'
-  
+  import { common } from '@kit.AbilityKit';
+  // import ViewModel
+  import TodoListViewModel from '../ViewModel/TodoListViewModel';
+
+  // import View
+  import { TodoComponent } from '../View/TodoComponent';
+  import { AllChooseComponent } from '../View/AllChooseComponent';
+  import { TodoListComponent } from '../View/TodoListComponent';
+
   @Entry
   @Component
-  struct Index {
-    @State isFinished: boolean = false;
-    @State data: TodoListData = new TodoListData();
-  
+  struct TodoList {
+    @State thingsTodo: TodoListViewModel = new TodoListViewModel();
+    private context = getContext(this) as common.UIAbilityContext;
+
+    async aboutToAppear() {
+      await this.thingsTodo.loadTasks(this.context);
+    }
+
     build() {
       Column() {
-        Row({space: 40}) {
+        Row({ space: 40 }) {
           // All To-Do items.
           TodoComponent()
-  
           // Select all.
-          MultiChooseComponent({isFinished: this.isFinished})
+          AllChooseComponent({ thingsViewModel: this.thingsTodo })
         }
-  
-        List() {
-          ForEach(this.data.planList, (item: string) => {
-            // Task 1
-            ThingsComponent({isFinished: this.isFinished, things: item})
-              .margin(5)
-          })
+
+        Column() {
+          TodoListComponent({ thingsViewModelArray: this.thingsTodo.things })
         }
-  
       }
       .height('100%')
       .width('100%')
-      .margin({top: 5, bottom: 5})
+      .margin({ top: 5, bottom: 5 })
       .backgroundColor('#90f1f3f5')
     }
   }
   ```
 
-  * TodoComponent
+  * ThingsModel.ets
+
+  ```typescript
+  export default class ThingsModel {
+    thingsName: string = 'Todo';
+    isFinish: boolean = false;
+  }
+  ```
+
+  * TodoListModel.ets
+
+  ```typescript
+  import { common } from '@kit.AbilityKit';
+  import util from '@ohos.util';
+  import ThingsModel from './ThingsModel';
+
+  export default class TodoListModel {
+    things: Array<ThingsModel> = [];
+
+    constructor(things: Array<ThingsModel>) {
+      this.things = things;
+    }
+
+    async loadTasks(context: common.UIAbilityContext) {
+      let getJson = await context.resourceManager.getRawFileContent('defaultTasks.json');
+      let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM: true };
+      let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
+      let result = textDecoder.decodeToString(getJson, { stream: false });
+      this.things = JSON.parse(result);
+    }
+  }
+  ```
+
+  * AllChooseComponent.ets
+
+  ```typescript
+  import TodoListViewModel from "../ViewModel/TodoListViewModel";
+
+  @Component
+  export struct AllChooseComponent {
+    @State titleName: string = 'Select All';
+    @Link thingsViewModel: TodoListViewModel;
+
+    build() {
+      Row() {
+        Button(`${this.titleName}`, { type: ButtonType.Capsule })
+          .onClick(() => {
+            this.thingsViewModel.chooseAll();
+            this.titleName = this.thingsViewModel.isChoosen ? 'Select All' : 'Deselect All'
+          })
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .backgroundColor('#f7f6cc74')
+      }
+      .padding({ left: this.thingsViewModel.isChoosen ? 15 : 0 })
+      .width('100%')
+      .margin({ top: 10, bottom: 10 })
+    }
+  }
+  ```
+
+  * ThingsComponent.ets
+
+  ```typescript
+  import ThingsViewModel from "../ViewModel/ThingsViewModel";
+
+  @Component
+  export struct ThingsComponent {
+    @Prop things: ThingsViewModel;
+
+    @Builder
+    displayIcon(icon: Resource) {
+      Image(icon)
+        .width(28)
+        .height(28)
+        .onClick(() => {
+          this.things.updateIsFinish();
+        })
+    }
+
+    build() {
+      // To-Do list
+      Row({ space: 15 }) {
+        if(this.things.isFinish) {
+          // 'app.media.finished' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+          this.displayIcon($r('app.media.finished'));
+        } else {
+          // 'app.media.unfinished' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+          this.displayIcon($r('app.media.unfinished'));
+        }
+
+        Text(`${this.things.thingsName}`)
+          .fontSize(24)
+          .fontWeight(450)
+          .decoration({ type: this.things.isFinish ? TextDecorationType.LineThrough: TextDecorationType.None })
+          .onClick(() => {
+            this.things.addSuffixes();
+          })
+      }
+      .height('8%')
+      .width('90%')
+      .padding({ left: 15 })
+      .opacity(this.things.isFinish ? 0.3 : 1)
+      .border({ width: 1 })
+      .borderColor(Color.White)
+      .borderRadius(25)
+      .backgroundColor(Color.White)
+    }
+  }
+  ```
+
+  * TodoComponent.ets
 
   ```typescript
   @Component
@@ -655,104 +765,117 @@ The code is as follows:
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
       }
-      .padding({left: 15})
+      .padding({ left: 15 })
       .width('50%')
-      .margin({top: 10, bottom: 10})
+      .margin({ top: 10, bottom: 10 })
     }
   }
   ```
 
-  * AllchooseComponent.ets
+  * TodoListComponent.ets
 
   ```typescript
-@Component
-  export struct MultiChooseComponent {
-    @Link isFinished: boolean;
-  
+  import ThingsViewModel from "../ViewModel/ThingsViewModel";
+  import { ThingsViewModelArray } from "../ViewModel/TodoListViewModel"
+  import { ThingsComponent } from "./ThingsComponent";
+
+  @Component
+  export struct TodoListComponent {
+    @ObjectLink thingsViewModelArray: ThingsViewModelArray;
+
     build() {
-      Row() {
-        Button('Multiselect', {type: ButtonType.Capsule})
-          .onClick(() => {
-            this.isFinished = !this.isFinished;
+      Column() {
+        List() {
+          ForEach(this.thingsViewModelArray, (item: ThingsViewModel) => {
+            // To-Do list
+            ListItem() {
+              ThingsComponent({ things: item })
+                .margin(5)
+            }
+          }, (item: ThingsViewModel) => {
+            return item.thingsName;
           })
-          .fontSize(30)
-          .fontWeight(FontWeight.Bold)
-          .backgroundColor('#f7f6cc74')
+        }
       }
-      .padding({left: 15})
-      .width('100%')
-      .margin({top: 10, bottom: 10})
     }
   }
   ```
-  
-  * ThingsComponent
+
+  * ThingsViewModel.ets
 
   ```typescript
-@Component
-  export struct ThingsComponent {
-    @Prop isFinished: boolean;
-    @Prop things: string;
-  
-    @Builder displayIcon(icon: Resource) {
-      Image(icon)
-        .width(28)
-        .height(28)
-        .onClick(() => {
-          this.isFinished = !this.isFinished;
-        })
+  import ThingsModel from "../Model/ThingsModel";
+
+  @Observed
+  export default class ThingsViewModel {
+    @Track thingsName: string = 'Todo';
+    @Track isFinish: boolean = false;
+
+    updateTask(things: ThingsModel) {
+      this.thingsName = things.thingsName;
+      this.isFinish = things.isFinish;
     }
-  
-    build() {
-      // Task 1
-      Row({space: 15}) {
-        if (this.isFinished) {
-          // 'app.media.finished' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-          this.displayIcon($r('app.media.finished'));
-        }
-        else {
-          // 'app.media.unfinished' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-          this.displayIcon($r('app.media.unfinished'));
-        }
-        Text(`${this.things}`)
-          .fontSize(24)
-          .fontWeight(450)
-          .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
-          .onClick(() => {
-            this.things += '!'
-          })
-      }
-      .height('8%')
-      .width('90%')
-      .padding({left: 15})
-      .opacity(this.isFinished ? 0.3: 1)
-      .border({width:1})
-      .borderColor(Color.White)
-      .borderRadius(25)
-      .backgroundColor(Color.White)
+
+    updateIsFinish(): void {
+      this.isFinish = !this.isFinish;
+    }
+
+    addSuffixes(): void {
+      this.thingsName += '!';
     }
   }
-  
   ```
-  
-* ThingsViewModel.ets
+
+  * TodoListViewModel.ets
 
   ```typescript
-@Observed
-  export class TodoListData {
-    planList: string[] = [
-      '7:30 Get up'
-      '8:30 Breakfast'
-      '11:30 Lunch'
-      '17:30 Dinner'
-      '21:30 Snack'
-      '22:30 Shower'
-      '1:30 Go to bed'
-    ];
+  import ThingsViewModel from "./ThingsViewModel";
+  import { common } from "@kit.AbilityKit";
+  import TodoListModel from "../Model/TodoListModel";
+
+  @Observed
+  export class ThingsViewModelArray extends Array<ThingsViewModel> {
+  }
+
+  @Observed
+  export default class TodoListViewModel {
+    @Track isChoosen: boolean = true;
+    @Track things: ThingsViewModelArray = new ThingsViewModelArray();
+
+    async loadTasks(context: common.UIAbilityContext) {
+      let todoList = new TodoListModel([]);
+      await todoList.loadTasks(context);
+      for(let things of todoList.things) {
+        let thingsViewModel = new ThingsViewModel();
+        thingsViewModel.updateTask(things);
+        this.things.push(thingsViewModel);
+      }
+    }
+
+    chooseAll(): void {
+      for(let things of this.things) {
+        things.isFinish = this.isChoosen;
+      }
+      this.isChoosen = !this.isChoosen;
+    }
   }
   ```
-  
-  After the code is split in MVVM mode, the project structure and responsibilities of each module are clearer. If a new page needs to use the event component, you only need to import the corresponding component because the local data is fixed and the logic at the Model layer is not written. You can reconstruct your project structures based on the example.
+
+  * defaultTasks.json
+
+  ```typescript
+  [
+    {"thingsName": "7:30 Get up," "isFinish": false},
+    {"thingsName": "8:30 Breakfast," "isFinish": false},
+    {"thingsName": "11:30 Lunch," "isFinish": false},
+    {"thingsName": "17:30 Dinner," "isFinish": false},
+    {"thingsName": "21:30 Snack," "isFinish": false},
+    {"thingsName": "22:30 Shower," "isFinish": false},
+    {"thingsName": "1:30 Go to bed," "isFinish": false}
+  ]
+  ```
+
+  After the code is split in MVVM mode, the project structure and the responsibilities of each module are clearer. If a new page needs to use an event component, for example, **TodoListComponent**, you only need to import the component.
 
   The following figure shows the effect.
 
