@@ -2950,7 +2950,7 @@ updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccou
 | ----------- | ------ | ---- | ---------- |
 | domain      | string | 是   | 域名。     |
 | accountName | string | 是   | 域账号名。 |
-| serverConfigId | string | 是   | 域账号配置ID。 |
+| serverConfigId<sup>18+</sup> | string | 是   | 域账号配置ID。 |
 
 ## DomainServerConfig<sup>18+</sup>
 
