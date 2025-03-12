@@ -149,6 +149,8 @@
 | [ArkUI_DragPreviewScaleMode](#arkui_dragpreviewscalemode) { ARKUI_DRAG_PREVIEW_SCALE_AUTO, ARKUI_DRAG_PREVIEW_SCALE_DISABLED } | 拖拽预览缩放模式。  | 
 | [ArkUI_DragStatus](#arkui_dragstatus) { ArkUI_DRAG_STATUS_UNKNOWN, ArkUI_DRAG_STATUS_STARTED, ArkUI_DRAG_STATUS_ENDED } | 拖拽状态。  | 
 | [ArkUI_DismissReason](#arkui_dismissreason) { DIALOG_DISMISS_BACK_PRESS = 0, DIALOG_DISMISS_TOUCH_OUTSIDE, DIALOG_DISMISS_CLOSE_BUTTON, DIALOG_DISMISS_SLIDE_DOWN } | 弹窗关闭的触发方式。  | 
+| [ArkUI_LevelMode](#arkui_levelmode) { ARKUI_LEVEL_MODE_OVERLAY = 0, ARKUI_LEVEL_MODE_EMBEDDED } | 设置弹窗显示层级。  |
+| [ArkUI_ImmersiveMode](#arkui_immersivemode) { ARKUI_IMMERSIVE_MODE_DEFAULT = 0, ARKUI_IMMERSIVE_MODE_EXTEND } | 指定嵌入式弹窗的蒙层覆盖区域。  |
 | [ArkUI_GestureEventActionType](#arkui_gestureeventactiontype) { GESTURE_EVENT_ACTION_ACCEPT = 0x01, GESTURE_EVENT_ACTION_UPDATE = 0x02, GESTURE_EVENT_ACTION_END = 0x04, GESTURE_EVENT_ACTION_CANCEL = 0x08 } | 定义手势事件类型。  | 
 | [ArkUI_GesturePriority](#arkui_gesturepriority) { NORMAL = 0, PRIORITY = 1, PARALLEL = 2 } | 定义手势事件模式。  | 
 | [ArkUI_GroupGestureMode](#arkui_groupgesturemode) { SEQUENTIAL_GROUP = 0, PARALLEL_GROUP = 1, EXCLUSIVE_GROUP = 2 } | 定义手势组事件模式。  | 
@@ -2079,6 +2081,39 @@ enum ArkUI_DismissReason
 | DIALOG_DISMISS_TOUCH_OUTSIDE  | 点击遮障层触发。  | 
 | DIALOG_DISMISS_CLOSE_BUTTON  | 点击关闭按钮。  | 
 | DIALOG_DISMISS_SLIDE_DOWN  | 下拉关闭。  | 
+
+
+### ArkUI_LevelMode
+
+```
+enum ArkUI_LevelMode
+```
+**描述：**
+
+设置弹窗显示层级。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_LEVEL_MODE_OVERLAY  | 显示在应用最上层。  | 
+| ARKUI_LEVEL_MODE_EMBEDDED  | 嵌入式显示在应用的页面内。  | 
+
+### ArkUI_ImmersiveMode
+
+```
+enum ArkUI_ImmersiveMode
+```
+**描述：**
+
+指定嵌入式弹窗的蒙层覆盖区域。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_IMMERSIVE_MODE_DEFAULT  | 弹窗蒙层按照显示页面给定的布局约束显示。  | 
+| ARKUI_IMMERSIVE_MODE_EXTEND  | 弹窗蒙层可扩展至覆盖状态栏和导航条。  | 
 
 ### ArkUI_DragPreviewScaleMode
 
