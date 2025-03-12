@@ -306,31 +306,33 @@ AVImageGenerator 主要用于获取视频缩略图。通过使用 AVImageGenerat
 
 AVTranscoder主要用于将已压缩编码的视频文件按照指定参数转换为另一种格式的视频。
 
-### 支持的转码格式
+### 支持的格式
 
 当前版本AVTranscoder提供以下转码服务：
 
 支持修改源视频文件的编码参数（格式、码率）和封装格式。源视频的音视频编码和封装格式为系统AVCodec支持的解码和解封装格式，目标视频的音视频编码和封装格式为系统AVCodec支持的编码和封装格式。
 
-- 支持将HDR VIVID视频转换为SDR视频，以及SDR视频的转码。
-- 支持转码时降低视频分辨率。
-原视频分辨率不高于4K，且目标视频分辨率不低于240p。
-目标视频宽、高不能大于源视频宽、高，且不能设置为奇数，详情请参考[设置正确的视频宽高](../avcodec/obtain-supported-codecs.md)。
+<!--RP1--><!--RP1End-->
 - 支持的源视频格式：
-  - [解封装格式](../avcodec/audio-video-demuxer.md)
-  - [音频解码格式](../avcodec/audio-decoding.md)
-  - [视频解码格式](../avcodec/video-decoding.md)
+  - [解封装格式](../avcodec/avcodec-support-formats.md#媒体数据解析)
+  - [音频解码格式](../avcodec/avcodec-support-formats.md#音频解码)
+  - [视频解码格式](../avcodec/avcodec-support-formats.md#视频解码)
     <!--Del-->
     > **说明：**
     > 当前不支持H.265。
 
     <!--DelEnd-->
 - 支持的目标视频格式：
-  - [封装格式](../avcodec/audio-video-muxer.md)
-  - [音频编码格式](../avcodec/audio-encoding.md)
-  - [视频编码格式](../avcodec/video-encoding.md)
+  - [封装格式](../avcodec/avcodec-support-formats.md#媒体数据封装)
+  - [音频编码格式](../avcodec/avcodec-support-formats.md#音频编码)
+  - [视频编码格式](../avcodec/avcodec-support-formats.md#视频编码)
     <!--Del-->
     > **说明：**
     > 当前不支持H.265。
    
     <!--DelEnd-->
+
+> **说明：**
+>
+> - 解码输出视频只支持mp4封装格式。
+> - 解码需要同时满足源视频和目标视频的格式。
