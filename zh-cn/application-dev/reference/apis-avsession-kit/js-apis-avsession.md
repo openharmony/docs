@@ -3347,7 +3347,7 @@ getSupportedDecoders(): Promise\<Array\<DecoderType>>
 
 | 类型                                                        | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| Promise\<Array\<DecoderType\>\> | Promise对象。返回远端设备所支持的编码能力列表。 |
+| Promise\<Array\<DecoderType\>(#DecoderType18)\> | Promise对象。返回远端设备所支持的编码能力列表。 |
 
 **错误码：**
 
@@ -3386,7 +3386,7 @@ getRecommendedResolutionLevel(decoderType: DecoderType): Promise\<ResolutionLeve
 
 | 类型                                                        | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| Promise\<ResolutionLevel\> | Promise对象。返回远端设备推荐的分辨率。 |
+| Promise\<ResolutionLevel\>(#ResolutionLevel18) | Promise对象。返回远端设备推荐的分辨率。 |
 
 **错误码：**
 
@@ -3424,7 +3424,7 @@ getSupportedHdrCapabilities(): Promise\<Array\<hdrCapability.HDRFormat>>
 
 | 类型                                                        | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| Promise\<Array\<hdrCapability.HDRFormat\>\> | Promise对象。返回远端设备所支持的HDR能力。 |
+| Promise\<Array\<hdrCapability.HDRFormat\>(../apis-arkgraphics2d/js-apis-hdrCapability.md#hdrCapability.HDRFormat)\> | Promise对象。返回远端设备所支持的HDR能力。 |
 
 **错误码：**
 
@@ -5419,11 +5419,11 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 
 | 名称                        | 值   | 说明           |
 | --------------------------  | ---- | ------------ |
-| RESOLUTION_480P             | 0    | 640*480 dpi    |
-| RESOLUTION_720P             | 1    | 1280*720 dpi   |
-| RESOLUTION_1080P            | 2    | 1920*1080 dpi  |
-| RESOLUTION_2K               | 3    | 2560*1440 dpi  |
-| RESOLUTION_4K               | 4    | 4096*3840 dpi  |
+| RESOLUTION_480P             | 0    | 分辨率为480P(640*480 dpi)。     |
+| RESOLUTION_720P             | 1    | 分辨率为480P(1280*720 dpi)。    |
+| RESOLUTION_1080P            | 2    | 分辨率为480P(1920*1080 dpi)。   |
+| RESOLUTION_2K               | 3    | 分辨率为480P(2560*1440 dpi)。   |
+| RESOLUTION_4K               | 4    | 分辨率为480P(4096*3840 dpi)。   |
 
 ## AVCastCategory<sup>10+</sup>
 
