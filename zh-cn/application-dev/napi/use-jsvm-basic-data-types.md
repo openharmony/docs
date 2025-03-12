@@ -159,7 +159,7 @@ static JSVM_Value GetValueInt64(JSVM_Env env, JSVM_CallbackInfo info)
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetValueInt64 fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM GetValueInt64 success: %{public}d", result64);
+        OH_LOG_INFO(LOG_APP, "JSVM GetValueInt64 success: %{public}ld", result64);
     }
     return args[0];
 }
@@ -234,7 +234,7 @@ JSVM GetDouble success: -110.045600
 
 ### OH_JSVM_CreateInt32
 
-用于创建一个JavaScript number（int32类型）的值。
+根据int32_t数据创建一个JavaScript number对象。
 
 cpp部分代码
 
@@ -283,7 +283,7 @@ JSVM CreateInt32 success: -20
 
 ### OH_JSVM_CreateUint32
 
-用于创建一个JavaScript number（uint32类型）的值。
+根据uint32_t数据创建一个JavaScript number对象。
 
 cpp部分代码
 
@@ -336,7 +336,7 @@ JSVM CreateUInt32 success: 26
 
 ### OH_JSVM_CreateInt64
 
-用于创建一个JavaScript number（int64类型）的值。
+根据int64_t数据创建一个JavaScript number对象。注意，如果需要表示JS超大数，建议使用BigInt相关接口。
 
 cpp部分代码
 
@@ -349,8 +349,6 @@ cpp部分代码
 // OH_JSVM_CreateInt64的样例方法
 static JSVM_Value CreateInt64(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // int64是有符号的64位整数类型，可以表示范围从-2^63到2^63 - 1的整数，即 -9223372036854775808到9223372036854775807
-    // 要表示的整数值
     int64_t value = 2147483648;
     // 创建JavaScript中的int64数字
     JSVM_Value result = nullptr;
@@ -387,7 +385,7 @@ JSVM CreateInt64 success: 2147483648
 
 ### OH_JSVM_CreateDouble
 
-用于创建一个JavaScript number（double类型）的值。
+根据double数据创建一个JavaScript number对象。
 
 cpp部分代码
 
