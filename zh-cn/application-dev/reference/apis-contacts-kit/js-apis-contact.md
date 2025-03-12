@@ -3743,6 +3743,91 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
   });
   ```
 
+## contact.addContactViaUI<sup>15+</sup>
+
+addContactViaUI(context: Context, contact: Contact): Promise&lt;number&gt;
+
+调用新建联系人接口，打开新建联系人UI界面，新建完成。使用Promise异步回调。
+
+**原子化服务API**: 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+**参数：**
+
+| 参数名 | 类型              | 必填 | 说明                   |
+| ------ | ----------------- | ---- | ---------------------- |
+| context | Context          | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。   |
+| contact | [Contact](#contact) | 是   | 联系人信息。 |
+
+**返回值：**
+
+| 类型                  | 说明                                       |
+| --------------------- | ------------------------------------------ |
+| Promise&lt;number&gt; | Promise对象。返回添加的联系人id。 |
+
+**错误码**:
+
+| 类型                  | 说明                                       |
+| --------------------- | ------------------------------------------ |
+| 401       | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
+| 801       | The specified SystemCapability name was not found. |
+| 16700001       | General error. |
+| 16700102       | Failed to set value to contacts data. |
+| 16700103       | User cancel. |
+
+**示例：**
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+// 获取context。
+let context = getContext(this) as Context;
+let promise = contact.addContactViaUI(context, contactInfo);
+```
+
+## contact.saveToExistingContactViaUI<sup>15+</sup>
+
+saveToExistingContactViaUI(context: Context, contact: Contact): Promise&lt;number&gt;
+
+调用保存至已有联系人接口，选择联系人UI界面并完成编辑。使用Promise异步回调。
+
+**原子化服务API**: 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+**参数：**
+
+| 参数名 | 类型              | 必填 | 说明                   |
+| ------ | ----------------- | ---- | ---------------------- |
+| context | Context          | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。   |
+| contact | [Contact](#contact) | 是   | 联系人信息。 |
+
+**返回值：**
+
+| 类型                  | 说明                                       |
+| --------------------- | ------------------------------------------ |
+| Promise&lt;number&gt; | Promise对象。返回添加的联系人id。 |
+
+**错误码**:
+
+| 类型                  | 说明                                       |
+| --------------------- | ------------------------------------------ |
+| 401       | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
+| 801       | The specified SystemCapability name was not found. |
+| 16700001       | General error. |
+| 16700101       | Failed to get value to contacts data. |
+| 16700102       | Failed to set value to contacts data. |
+| 16700103       | User cancel. |
+
+**示例：**
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+// 获取context。
+let context = getContext(this) as Context;
+let promise = contact.saveToExistingContactViaUI(context, contactInfo);
+``` 
+
 ## ContactSelectionOptions<sup>10+</sup>
 
 选择联系人条件。
@@ -3751,9 +3836,111 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 **系统能力**：SystemCapability.Applications.Contacts
 
+|                名称               |                  类型                 | 只读  | 可选  |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
+| isMultiSelect<sup>10+</sup>         | boolean | 否   | 是   | 是否为多选。默认值为false。     |
+| maxSelectable<sup>15+</sup>         | number | 否   | 是   | 联系人选择数量上限。默认值为10000。     | 
+| isDisplayedByName<sup>15+</sup>         | boolean | 否   | 是   | 是否按联系人姓名维度展示。默认值为false。     |
+| filter<sup>15+</sup>         | [ContactSelectionFilter](#contactselectionfilter15) | 否   | 是   | 联系人查询过滤器。     |
+
+## ContactSelectionFilter<sup>15+</sup>
+
+联系人查询过滤器。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
 |                名称               |                  类型                 | 必填  |        说明      |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| isMultiSelect <sup>10+</sup>         | boolean | 否   | 是否为多选     |
+| filterClause        | [FilterClause](#filterclause15) | 是   | 过滤条件。     |
+| filterType        | [FilterType](#filtertype15) | 是   | 过滤类型。     |
+
+## FilterType<sup>15+</sup>
+
+枚举，联系人过滤类型。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+| 名称                  | 值 | 说明                               |
+| --------------------- | ---- | ---------------------------------- |
+| SHOW_FILTER    | 0 | 仅展示符合过滤条件的联系人。 |
+| DEFAULT_SELECT            | 1 | 默认勾选符合过滤条件的联系人。                 |
+| SHOW_FILTER_AND_DEFAULT_SELECT | 2 | 默认勾选仅展示符合过滤条件联系人。                     |
+
+## FilterClause<sup>15+</sup>
+
+联系人过滤条件。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+|                名称               |                  类型                 | 必填  |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| id         | [FilterOptions](#filteroptions15)[] | 否   | 联系人id。     |
+| name         | [FilterOptions](#filteroptions15)[]  | 否   | 联系人姓名。     |
+| dataItem         | [DataFilter](#datafilter15) | 否   | 联系人数据过滤项。     |
+| focusModeList        | [FilterOptions](#filteroptions15)[]  | 否   | 专注模式。     |
+
+## FilterOptions<sup>15+</sup>
+
+联系人过滤参数。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+|                名称               |                  类型                 | 必填  |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| filterCondition         | [FilterCondition](#filtercondition15) | 是   | 过滤条件。     |
+| value        | string 或 ValueType[] | 否   | 过滤值，默认为undefined。     |
+
+## FilterCondition<sup>15+</sup>
+
+枚举，过滤条件。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+| 名称                  | 值 | 说明                               |
+| --------------------- | ---- | ---------------------------------- |
+| IS_NOT_NULL    | 0 |对应字段不为空。 |
+| EQUAL_TO            | 1 | 对应字段等于某值。                 |
+| NOT_EQUAL_TO | 2 | 对应字段不等于某值。                     |
+| IN | 3 | 对应字段值在某数组中。                     |
+| NOT_IN | 4 | 对应字段值不在某数组中。                     |
+| CONTAINS | 5 | 对应字段值包含某值。                     |
+
+## DataFilter<sup>15+</sup>
+
+联系人数据过滤项。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+|                名称               |                  类型                 | 必填  |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| field         | [DataField](#datafield15) | 是   | 联系人数据字段。     |
+| options         | [FilterOptions](#filteroptions15)[] | 是   | 过滤参数。     |
+
+## DataField<sup>15+</sup>
+
+枚举，联系人数据字段。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.ContactsData
+
+| 名称                  | 值 | 说明                               |
+| --------------------- | --- | ---------------------------------- |
+| EMAIL    | 0 |联系人邮箱。 |
+| PHONE            | 1 | 联系人电话。                 |
+| ORGANIZATION | 2 | 联系人单位。                     |
 
 
 
@@ -3767,32 +3954,32 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 ### 常量
 
-| 名称               | 值   |只读   | 说明             |
+| 名称               | 类型   | 值   | 说明             |
 | ------------------ | ---- | ---- | ---------------- |
-| INVALID_CONTACT_ID | -1   |是   | 默认联系人的id。 |
+| INVALID_CONTACT_ID | number   | -1   | 默认联系人的id。 |
 
 
 ### 属性
 
-|       名称        |                   类型                  | 可读 | 可写 | 说明                                   |
+|       名称        |                   类型                  | 只读 | 可选 | 说明                                   |
 | ----------------- | --------------------------------------- | ---- | ---- | -------------------------------------- |
-| id                | number                                  | 是   | 否   | 联系人的id。                           |
-| key               | string                                  | 是   | 否   | 联系人的key。                          |
-| contactAttributes | [ContactAttributes](#contactattributes) | 是   | 是   | 联系人的属性列表。                     |
-| emails            | [Email](#email)[]                       | 是   | 是   | 联系人的邮箱地址列表。                 |
-| events            | [Event](#event)[]                       | 是   | 是   | 联系人的生日、周年纪念等重要日期列表。 |
-| groups            | [Group](#group)[]                       | 是   | 是   | 联系人的群组列表。                     |
-| imAddresses       | [ImAddress](#imaddress)[]               | 是   | 是   | 联系人的即时消息地址列表。             |
-| phoneNumbers      | [PhoneNumber](#phonenumber)[]           | 是   | 是   | 联系人的电话号码列表。                 |
-| portrait          | [Portrait](#portrait)                   | 是   | 是   | 联系人的头像。                         |
-| postalAddresses   | [PostalAddress](#postaladdress)[]       | 是   | 是   | 联系人的邮政地址列表。                 |
-| relations         | [Relation](#relation)[]                 | 是   | 是   | 联系人的关系列表。                     |
-| sipAddresses      | [SipAddress](#sipaddress)[]             | 是   | 是   | 联系人的会话发起协议（SIP）地址列表。  |
-| websites          | [Website](#website)[]                   | 是   | 是   | 联系人的网站列表。                     |
-| name              | [Name](#name)                           | 是   | 是   | 联系人的姓名。                         |
-| nickName          | [NickName](#nickname)                   | 是   | 是   | 联系人的昵称。                         |
-| note              | [Note](#note)                           | 是   | 是   | 联系人的备注。                         |
-| organization      | [Organization](#organization)           | 是   | 是   | 联系人的组织信息。                     |
+| id                | number                                  | 是   | 是   | 联系人的id。                           |
+| key               | string                                  | 是   | 是   | 联系人的key。                          |
+| contactAttributes | [ContactAttributes](#contactattributes) | 否   | 是   | 联系人的属性列表。                     |
+| emails            | [Email](#email)[]                       | 否   | 是   | 联系人的邮箱地址列表。                 |
+| events            | [Event](#event)[]                       | 否   | 是   | 联系人的生日、周年纪念等重要日期列表。 |
+| groups            | [Group](#group)[]                       | 否   | 是   | 联系人的群组列表。                     |
+| imAddresses       | [ImAddress](#imaddress)[]               | 否   | 是   | 联系人的即时消息地址列表。             |
+| phoneNumbers      | [PhoneNumber](#phonenumber)[]           | 否   | 是   | 联系人的电话号码列表。                 |
+| portrait          | [Portrait](#portrait)                   | 否   | 是   | 联系人的头像。                         |
+| postalAddresses   | [PostalAddress](#postaladdress)[]       | 否   | 是   | 联系人的邮政地址列表。                 |
+| relations         | [Relation](#relation)[]                 | 否   | 是   | 联系人的关系列表。                     |
+| sipAddresses      | [SipAddress](#sipaddress)[]             | 否   | 是   | 联系人的会话发起协议（SIP）地址列表。  |
+| websites          | [Website](#website)[]                   | 否   | 是   | 联系人的网站列表。                     |
+| name              | [Name](#name)                           | 否   | 是   | 联系人的姓名。                         |
+| nickName          | [NickName](#nickname)                   | 否   | 是   | 联系人的昵称。                         |
+| note              | [Note](#note)                           | 否   | 是   | 联系人的备注。                         |
+| organization      | [Organization](#organization)           | 否   | 是   | 联系人的组织信息。                     |
 
 
 **对象创建示例：**
@@ -3826,9 +4013,9 @@ let myContact: contact.Contact = {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
-| 名称       |            类型           | 可读 | 可写 | 说明             |
+| 名称       |            类型           | 只读 | 可选 | 说明             |
 | ---------- | ------------------------- | ---- | ---- | ---------------- |
-| attributes | [Attribute](#attribute)[] | 是   | 是   | 联系人属性列表。 |
+| attributes | [Attribute](#attribute)[] | 否   | 否   | 联系人属性列表。 |
 
 
 **对象创建示例：**
@@ -3892,13 +4079,13 @@ let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, con
 
 ### 常量
 
-| 名称             | 值   | 说明             |
-| ---------------- | ---- | ---------------- |
-| CUSTOM_LABEL     | 0    | 自定义邮箱类型。 |
-| EMAIL_HOME       | 1    | 家庭邮箱类型。   |
-| EMAIL_WORK       | 2    | 工作邮箱类型。   |
-| EMAIL_OTHER      | 3    | 其它邮箱类型。   |
-| INVALID_LABEL_ID | -1   | 无效邮箱类型。   |
+| 名称             | 类型   | 值   | 说明             |
+| ---------------- | ---- | ---- | ---------------- |
+| CUSTOM_LABEL     | number    |  0    |自定义邮箱类型。 |
+| EMAIL_HOME       | number    | 1    | 家庭邮箱类型。   |
+| EMAIL_WORK       | number    | 2    | 工作邮箱类型。   |
+| EMAIL_OTHER      | number    | 3    | 其它邮箱类型。   |
+| INVALID_LABEL_ID | number    | -1   | 无效邮箱类型。   |
 
 
 ### 属性

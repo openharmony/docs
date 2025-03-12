@@ -5008,6 +5008,19 @@ off(type: 'castControlDrmError', callback?: ErrorCallback): void
 aVCastController.off('castControlDrmError');
 ```
 
+## ExtraInfo<sup>18+</sup>
+type ExtraInfo = { [key: string]: Object; }
+
+媒体提供方设置的自定义媒体数据包对象。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+| 类型                                | 说明                          |
+| ----------------------------------- | ----------------------------- |
+| [key: string]: Object   | key为远端分布式事件类型。当前支持的事件类型包括：<br>'AUDIO_GET_VOLUME'：获取远端设备音量。<br>'AUDIO_GET_AVAILABLE_DEVICES'：获取远端所有可连接设备。<br>'AUDIO_GET_PREFERRED_OUTPUT_DEVICE_FOR_RENDERER_INFO'：获取远端实际发声设备。<br>媒体提供方根据不同的远端分布式事件类型，返回对应的媒体数据包Object对象。 |
+
 ## KeyRequestCallback<sup>12+</sup>
 type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
 
@@ -6446,8 +6459,8 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 
 | 参数名    | 类型                                  | 必填 | 说明                           |
 | ------- | ------------------------------------- | ---- | ------------------------------ |
-| command | string | 是   | 需要设置的自定义控制命令的名称 |
-| args | {[key: string]: Object} | 是   | 需要传递的控制命令键值对 |
+| command | string | 是   | 需要设置的自定义控制命令的名称。 |
+| args | {[key: string]: Object} | 是   | 需要传递的控制命令键值对。 |
 | callback | AsyncCallback\<void>                  | 是   | 回调函数。当命令发送成功，err为undefined，否则返回错误对象。                     |
 
 > **说明：**
@@ -6624,6 +6637,100 @@ if (avSessionController !== undefined) {
       console.info(`getExtras : SUCCESS : ${extras}`);
     }
   });
+}
+```
+
+### getExtrasWithEvent<sup>18+</sup>
+
+getExtrasWithEvent(extraEvent: string): Promise\<ExtraInfo>
+
+根据远端分布式事件类型，获取远端分布式媒体提供方设置的自定义媒体数据包。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名   | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | -------------------------- |
+| extraEvent | string | 是 | 远端分布式事件类型。<br>当前支持的事件类型包括：<br>'AUDIO_GET_VOLUME'：获取远端设备音量，<br>'AUDIO_GET_AVAILABLE_DEVICES'：获取远端所有可连接设备，<br>'AUDIO_GET_PREFERRED_OUTPUT_DEVICE_FOR_RENDERER_INFO'：获取远端实际发声设备。 |
+
+**返回值：**
+
+| 类型                                | 说明                          |
+| ----------------------------------- | ----------------------------- |
+| Promise<[ExtraInfo](#extrainfo18)\>   | Promise对象，返回远端分布式媒体提供方设置的自定义媒体数据包。<br>参数ExtraInfo支持的数据类型有：字符串、数字、布尔、对象、数组和文件描述符等，详细介绍请参见[@ohos.app.ability.Want(Want)](../apis-ability-kit/js-apis-app-ability-want.md)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+| 6600105  | Invalid session command. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(40)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            getExtrasWithEventTest();
+          })
+      }
+    }
+  }
+}
+
+async function getExtrasWithEventTest() {
+  let controllerList: Array<avSession.AVSessionController>;
+  let controller: avSession.AVSessionController | ESObject;
+  
+  try {
+    controllerList = await avSession.getDistributedSessionController(avSession.DistributedSessionType.TYPE_SESSION_REMOTE);
+    controller = controllerList[0];
+  } catch (err) {
+    console.info(`getDistributedSessionController fail with err: ${err}`);
+  }
+
+  const COMMON_COMMAND_STRING_1 = 'AUDIO_GET_VOLUME';
+  const COMMON_COMMAND_STRING_2 = 'AUDIO_GET_AVAILABLE_DEVICES';
+  const COMMON_COMMAND_STRING_3 = 'AUDIO_GET_PREFERRED_OUTPUT_DEVICE_FOR_RENDERER_INFO';
+  if (controller !== undefined) {
+    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_1).then((extras: avSession.ExtraInfo) => {
+      console.info(`${extras[COMMON_COMMAND_STRING_1]}`);
+    }).catch((err: BusinessError) => {
+      console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+    })
+
+    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_2).then((extras: avSession.ExtraInfo) => {
+      console.info(`${extras[COMMON_COMMAND_STRING_2]}`);
+    }).catch((err: BusinessError) => {
+      console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+    })
+
+    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_3).then((extras: avSession.ExtraInfo) => {
+      console.info(`${extras[COMMON_COMMAND_STRING_3]}`);
+    }).catch((err: BusinessError) => {
+      console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+    })
+  }
 }
 ```
 
@@ -8013,15 +8120,6 @@ constructor(context: Context)
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context | 是   | 应用上下文（仅支持[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)）。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception. |
-
 **示例：**
 
 ```ts
@@ -8078,7 +8176,7 @@ select(options?: AVCastPickerOptions): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -8121,8 +8219,7 @@ on(type: 'pickerStateChange', callback: Callback<AVCastPickerState\>) : void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -8161,8 +8258,7 @@ off(type: 'pickerStateChange', callback?: Callback<AVCastPickerState\>) : void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 

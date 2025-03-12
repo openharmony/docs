@@ -23,8 +23,8 @@
    let playerHandle: media.AVPlayer = await media.createAVPlayer()
    playerHandle.on('mediaKeySystemInfoUpdate', async (mediaKeySystemInfo: drm.MediaKeySystemInfo[]) => {
      console.info('player has received drmInfo signal: ' + JSON.stringify(mediaKeySystemInfo))
-     // 处理DRM信息
-     // 设置解密session
+     // 处理DRM信息。
+     // 设置解密session。
    })
    ```
 
@@ -49,7 +49,7 @@
          mediaKeySystem = drm.createMediaKeySystem(solutionName);
          mediaKeySession = mediaKeySystem.createMediaKeySession();
      }
-     // 媒体密钥请求与处理
+     // 媒体密钥请求与处理。
    }
    ```
 
@@ -75,14 +75,14 @@
    });
    ```
 
-6. 在处理媒体密钥响应成功后设置解密session
+6. 在处理媒体密钥响应成功后设置解密session。
 
    ```ts
    let svp: boolean = mediaKeySession.requireSecureDecoderModule('video/avc');
    playerHandle.setDecryptionConfig(mediaKeySession, svp)
    ```
 
-7. 销毁AVPlayer实例并根据released事件监听销毁MediaKeySession和MediaKeySystem实例
+7. 销毁AVPlayer实例并根据released事件监听销毁MediaKeySession和MediaKeySystem实例。
 
    ```ts
    playerHandle.on('stateChange', async (state: string, reason: media.StateChangeReason) => {

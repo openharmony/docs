@@ -37,7 +37,7 @@ Enables applications to use CAPI to access scanners.
 | OH_Scan_OpenScanner | Connects to a scanner.|
 | OH_Scan_CloseScanner | Disconnects from the scanner.|
 | OH_Scan_GetScannerParameter | Obtains scanner settings.|
-| OH_Scan_SetScannerParameter | Sets the option parameters of the scanner. |
+| OH_Scan_SetScannerParameter | Sets the option parameters of the scanner.|
 | OH_Scan_StartScan | Starts the scanner.|
 | OH_Scan_CancelScan | Cancels scanning.|
 | OH_Scan_GetPictureScanProgress | Queries the image scanning progress.|
@@ -104,8 +104,6 @@ Callback function for scanner discovery.
 | ----------- | ---------- |
 | devices     | Scanner.|
 | deviceCount | Number of scanners.  |
-
-
 
 ## Enum Description
 
@@ -353,7 +351,6 @@ Starts a scanner.
 **Returns**
 
 **Scan_ERROR_NONE**: Operation is succeeded.
-
 **SCAN_ERROR_NO_PERMISSION**: Permission is denied.
 
 **SCAN_ERROR_RPC_FAILURE**: An RPC communication error occurs.

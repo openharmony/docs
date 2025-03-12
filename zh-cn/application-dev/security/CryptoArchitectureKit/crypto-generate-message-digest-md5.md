@@ -31,7 +31,7 @@
 
   async function doMd() {
     let mdAlgName = 'MD5'; // 摘要算法名
-    let message = 'mdTestMessgae'; // 待摘要的数据
+    let message = 'mdTestMessage'; // 待摘要的数据
     let md = cryptoFramework.createMd(mdAlgName);
     // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
     await md.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
@@ -50,7 +50,7 @@
 
   function doMdBySync() {
     let mdAlgName = 'MD5'; // 摘要算法名
-    let message = 'mdTestMessgae'; // 待摘要的数据
+    let message = 'mdTestMessage'; // 待摘要的数据
     let md = cryptoFramework.createMd(mdAlgName);
     // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
     md.updateSync({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
@@ -63,7 +63,7 @@
 
 ### 分段摘要算法
 
-1. 调用[cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd)，指定摘要算法SHA256，生成摘要实例（Md）。
+1. 调用[cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd)，指定摘要算法MD5，生成摘要实例（Md）。
 
 2. 传入自定义消息，将一次传入数据量设置为20字节，多次调用[Md.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-7)，进行摘要更新计算。
 

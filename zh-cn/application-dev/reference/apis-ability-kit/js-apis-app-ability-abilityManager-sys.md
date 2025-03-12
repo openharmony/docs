@@ -1014,7 +1014,7 @@ queryAtomicServiceStartupRule(context: Context, appId: string): Promise\<AtomicS
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<[AtomicServiceStartupRule](#atomicservicestartuprule16)> | Promise对象。返回嵌入式拉起原子化服务的规则。 |
+| Promise\<[AtomicServiceStartupRule](#atomicservicestartuprule18)> | Promise对象。返回嵌入式拉起原子化服务的规则。 |
 
 **错误码**：
 

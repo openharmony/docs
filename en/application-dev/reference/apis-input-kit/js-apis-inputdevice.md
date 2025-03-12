@@ -800,14 +800,14 @@ Defines the axis type of an input device.
 
 | Type     |Description     |
 | --------- | ------- |
-| 'touchmajor'  | **touchmajor** axis.|
-| 'touchminor'  | **touchminor** axis.|
-| 'toolminor'   | **toolminor** axis.|
-| 'toolmajor'   | **toolmajor** axis.|
-| 'orientation' | **orientation** axis.|
-|'pressure'    | **pressure** axis. |
-| 'x'          | X axis.        |
-| 'y'           | Y axis.        |
+| 'touchmajor'  | Major axis of the elliptical touching area.|
+| 'touchminor'  | Minor axis of the elliptical touching area.|
+| 'toolminor'   | Minor axis of the tool area.|
+| 'toolmajor'   | Major axis of the tool area.|
+| 'orientation' | Orientation axis.|
+|'pressure'    | Pressure axis. |
+| 'x'          | Horizontal axis.        |
+| 'y'           | Vertical axis.        |
 |'null'        |  None.            |
 
 ## AxisRange

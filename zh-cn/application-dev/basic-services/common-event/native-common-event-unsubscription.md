@@ -19,13 +19,8 @@
 
    ```c++
    #include <cstdint>
-   #include <cstdio>
-   #include <cwchar>
-   #include <vector>
-   #include <string.h>
    #include "hilog/log.h"
    #include "BasicServicesKit/oh_commonevent.h"
-   #include "BasicServicesKit/oh_commonevent_support.h"
    ```
 
 2. 在CMake脚本中添加动态链接库。
@@ -47,6 +42,6 @@
    void Unsubscribe(CommonEvent_Subscriber* subscriber) {
        // 通过传入订阅者来退订事件
        int32_t ret = OH_CommonEvent_UnSubscribe(subscriber);
-       OH_LOG_INFO(LOG_APP, "OH_CommonEvent_UnSubscribe ret <%{public}d>.", ret);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_UnSubscribe ret <%{public}d>.", ret);
    }
    ```

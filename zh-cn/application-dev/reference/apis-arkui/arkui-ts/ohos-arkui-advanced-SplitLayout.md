@@ -6,13 +6,13 @@
 
 > **说明：**
 >
-> 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 导入模块
 
 ```
-import { SplitLayout } from '@kit.ArkUI'
+import { SplitLayout } from '@kit.ArkUI';
 ```
 
 
@@ -21,7 +21,7 @@ import { SplitLayout } from '@kit.ArkUI'
 无
 
 ## 属性
-不支持[通用属性](ts-component-general-attributes.md)
+不支持[通用属性](ts-component-general-attributes.md)。
 
 
 ## SplitLayout
@@ -43,12 +43,12 @@ SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, t
 | container | ()&nbsp;=&gt;&nbsp;void | 是 | @BuilderParam | 容器内组件。 |
 
 ## 事件
-不支持[通用事件](ts-component-general-events.md)
+不支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 该示例通过SplitLayout实现了页面布局，并具备自适应能力。
 ```ts
-import { SplitLayout } from '@kit.ArkUI'
+import { SplitLayout } from '@kit.ArkUI';
 
 @Entry
 @Component

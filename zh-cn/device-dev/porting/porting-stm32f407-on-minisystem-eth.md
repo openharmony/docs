@@ -1,5 +1,3 @@
-
-
 # 轻量系统STM32F407芯片移植案例
 
 介绍基于`STM32F407IGT6`芯片在拓维信息[Niobe407](https://gitee.com/openharmony-sig/device_board_talkweb)开发板上移植OpenHarmony LiteOS-M轻量系统，提供交通、工业领域开发板解决方案。移植架构采用`Board`与`SoC`分离方案，使用`arm gcc`工具链`Newlib C`库，实现了`lwip`、`littlefs`、`hdf`等子系统及组件的适配，开发了配套应用示例代码，支持通过Kconfig图形化配置编译选项。
@@ -133,7 +131,7 @@ kernel_version = "3.0.0"                --- 内核版本，跟config.json中kern
 
  ![hb env](figures/niobe407_hb_env.png)
 
-5. hb介绍
+5. hb介绍。
 
    `hb`是OpenHarmony为了方便开发者进行代码构建编译，提供的python脚本工具，其源码就在`//build/lite`仓库目录下。在执行`hb set`命令时，脚本会遍历`//vendor/<product_company>/<product_name>`目录下的`config.json`，给出可选产品编译选项。在config.json文件中，`product_name`表示产品名，`device_company`和`board`用于关联出`//device/board/<device_company>/<board>`目录，匹配该目录下的`<any_dir_name>/config.gni`文件，其中`<any_dir_name>`目录名可以是任意名称，但建议将其命名为适配内核名称（如：liteos_m、liteos_a、linux）。hb命令如果匹配到了多个`config.gni`，会将其中的`kernel_type`和`kernel_version`字段与`vendor/<device_company>`下`config.json`文件中的字段进行匹配，从而确定参与编译的`config.gni`文件。
 
@@ -312,8 +310,8 @@ orsource "../../device/soc/*/Kconfig.liteos_m.soc"
 1. 在 `kernel/liteos_m/BUILD.gn` 中，可以看到，通过`deps`指定了`Board`和`SoC`的编译入口：
 
    ```
-   deps += [ "//device/board/$device_company" ]            --- 对应//device/board/talkweb目录
-   deps += [ "//device/soc/$LOSCFG_SOC_COMPANY" ]          --- 对应//device/soc/st目录
+   deps += [ "//device/board/$device_company" ]            --- 对应//device/board/talkweb目录。
+   deps += [ "//device/soc/$LOSCFG_SOC_COMPANY" ]          --- 对应//device/soc/st目录。
    ```
 
 2. 在`//device/board/talkweb/BUILD.gn`中，新增内容如下：
@@ -529,7 +527,7 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
 #define _TARGET_CONFIG_H
 
 #define LOSCFG_BASE_CORE_TICK_RESPONSE_MAX                  0xFFFFFFUL
-#include "stm32f4xx.h"			//包含了stm32f4平台大量的宏定义
+#include "stm32f4xx.h"			//包含了stm32f4平台大量的宏定义。
 
 #endif
 ```
@@ -540,7 +538,7 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
 
 至此，已经可以成功将kernel子系统编译通过，并且在out目录下生成OHOS_Image.bin文件。将生成的OHOS_Image.bin文件烧录至开发板，验证板子能否正常启动运行，如果能成功打印出main函数中串口输出的正确的打印信息，则可以开始进行内核启动适配。
 
-1. 为liteos_m分配内存，适配内存分配函数
+1. 为liteos_m分配内存，适配内存分配函数。
 
    在文件`//kernel/liteos_m/kernel/src/mm/los_memory.c`中，`OsMemSystemInit`函数通过LOS_MemInit进行了内存初始化。可以看到几个比较关键的宏需要我们指定，我们将其添加到`target_config.h`中：
 
@@ -578,7 +576,7 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
    board_ld_flags += board_opt_flags
    ```
 
-2. 适配printf打印
+2. 适配printf打印。
 
    为了方便后续调试，第一步需要先适配printf函数。而printf的函数适配可大可小，在此只做简单适配，具体实现可以参考其它各开发板源码。
 
@@ -655,10 +653,10 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
    #include "los_task.h"
    
    UINT32 ret;
-   ret = LOS_KernelInit();  //初始化内核
+   ret = LOS_KernelInit();  //初始化内核。
    if (ret == LOS_OK) {
-       TaskSample();  //示例任务函数，在此函数中创建线程任务
-       LOS_Start();   //开始任务调度，程序执行将阻塞在此，由内核接管调度
+       TaskSample();  //示例任务函数，在此函数中创建线程任务。
+       LOS_Start();   //开始任务调度，程序执行将阻塞在此，由内核接管调度。
    }
    ```
 
@@ -991,10 +989,10 @@ __zinitcall_exit_end = .;
 
 | 接口名                 | 描述                             |
 | ---------------------- | -------------------------------- |
-| SYS_SERVICE_INIT(func) | 标识核心系统服务的初始化启动入口 |
-| SYS_FEATURE_INIT(func) | 标识核心系统功能的初始化启动入口 |
-| APP_SERVICE_INIT(func) | 标识应用层服务的初始化启动入口   |
-| APP_FEATURE_INIT(func) | 标识应用层功能的初始化启动入口   |
+| SYS_SERVICE_INIT(func) | 标识核心系统服务的初始化启动入口。 |
+| SYS_FEATURE_INIT(func) | 标识核心系统功能的初始化启动入口。 |
+| APP_SERVICE_INIT(func) | 标识应用层服务的初始化启动入口。   |
+| APP_FEATURE_INIT(func) | 标识应用层功能的初始化启动入口。   |
 
 
 
@@ -1222,7 +1220,7 @@ config("public") {
         "-lbroadcast",
         "-lhctest",
 
-        #公共基础库
+        #公共基础库。
         # "-lmodule_ActsUtilsFileTest",
         # "-lmodule_ActsKvStoreTest",
 
@@ -1230,11 +1228,11 @@ config("public") {
         "-lmodule_ActsDfxFuncTest",
         "-lmodule_ActsHieventLiteTest",
 
-        #启动恢复
+        #启动恢复。
         # "-lmodule_ActsBootstrapTest",
         # "-lmodule_ActsParameterTest",
 
-        #分布式任务调度
+        #分布式任务调度。
         # "-lmodule_ActsSamgrTest",
 
         "-Wl,--no-whole-archive",  --- 关掉whole-archive这个特性

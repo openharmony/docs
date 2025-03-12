@@ -192,7 +192,7 @@ Provides C APIs for the multimodal input module.
 | [Input_Result](#input_result) [OH_Input_RegisterDeviceListener](#oh_input_registerdevicelistener) ([Input_DeviceListener](_input___device_listener.md) \*listener) | Registers a listener for device hot swap events. | 
 | [Input_Result](#input_result) [OH_Input_UnregisterDeviceListener](#oh_input_unregisterdevicelistener) ([Input_DeviceListener](_input___device_listener.md) \*listener) | Unregisters the listener for device hot swap events. | 
 | [Input_Result](#input_result) [OH_Input_UnregisterDeviceListeners](#oh_input_unregisterdevicelisteners) () | Unregisters the listener for all device hot swap events. | 
-| [Input_Result](#input_result) [OH_Input_GetFunctionKeyState](#oh_input_getfunctionkeystate) (int32_t keyCode, int32_t \*state) | Obtains the function key status.  |
+| [Input_Result](#input_result) [OH_Input_GetFunctionKeyState](#oh_input_getfunctionkeystate) (int32_t keyCode, int32_t \*state) | Obtains the function key status. | 
 
 
 ## Type Description
@@ -3540,16 +3540,15 @@ Obtains the function key status.
 
 | Name| Description| 
 | -------- | -------- |
-| keyCode | Function key value. The supported function keys include CapsLock key.  |
-| state | function key state. The value 1 indicates that the function key is enabled, and the value 0 indicates the
- opposite.  | 
+| keyCode | Function key. Only the **CapsLock** key is supported. |
+| state | Function key status. The value **0** indicates that the function key is disabled, and the value **1** indicates that the function key is enabled. | 
 
 **Returns**
 
-Execution result of  **OH_Input_GetFunctionKeyState** ,specifically:
+**OH_Input_GetFunctionKeyState** status code, specifically:
 
- **INPUT_SUCCESS** The operation is successful.
+ **INPUT_SUCCESS** if the operation is successful;
 
- **INPUT_PARAMETER_ERROR** Invalid keycode.
+ **INPUT_PARAMETER_ERROR** if the parameter is incorrect;
 
- **INPUT_DEVICE_NOT_EXIST** No keyboard device connected.
+ **INPUT_DEVICE_NOT_EXIST** if the keyboard does not exist.

@@ -13,9 +13,9 @@ Codec回调接口定义。
 
 - 输出端口填充完buffer回调，详见[FillBufferDone](#fillbufferdone)。 通过以下两种方式注册回调:
 
-- 创建组件时，通过**CreateComponent**方法。
+- 创建组件时，通过[CreateComponent](interface_i_codec_component_manager_v10.md#createcomponent)方法。
 
-- 当组件处于OMX_StateLoaded状态时，通过**SetCallbacks**方法注册回调。
+- 当组件处于OMX_StateLoaded状态时，通过[SetCallbacks](interface_i_codec_component_v10.md#setcallbacks)方法注册回调。
 
 **起始版本：** 3.2
 

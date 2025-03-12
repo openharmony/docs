@@ -28,7 +28,7 @@
 ### OnCaptureStartedV1_2()
 
 ```
-IStreamOperatorCallback::OnCaptureStartedV1_2 ([in] int captureId, [in] struct CaptureStartedInfo[] infos )
+IStreamOperatorCallback::OnCaptureStartedV1_2 ([in] int captureId, [in] struct CaptureStartedInfo[] infos)
 ```
 **描述**
 

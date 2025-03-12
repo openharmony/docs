@@ -5,8 +5,6 @@
 > **说明：**
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
-> **建议使用[Remote Communication Kit](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/remote-communication-kit-guide-V5)进行HTTP请求，Remote Communication Kit将持续演进。**
 ## 导入模块
 
 ```ts
@@ -73,6 +71,7 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
         remoteFileName: 'fileName.txt' // 可选，自API 11开始支持该属性。
       }
     ]
+    addressFamily: http.AddressFamily.DEFAULT // 可选，系统默认选择目标域名的IPv4地址或IPv6地址，自API 15开始支持该属性。
   },
   (err: BusinessError, data: http.HttpResponse) => {
     if (!err) {
@@ -190,6 +189,7 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300997 | Cleartext traffic not permitted.                               |
 | 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
@@ -275,6 +275,7 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300997 | Cleartext traffic not permitted.                               |
 | 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
@@ -388,6 +389,7 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300997 | Cleartext traffic not permitted.                               |
 | 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
@@ -498,6 +500,7 @@ requestInStream(url: string, callback: AsyncCallback\<number\>): void
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300997 | Cleartext traffic not permitted.                               |
 | 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
@@ -573,6 +576,7 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300997 | Cleartext traffic not permitted.                               |
 | 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
@@ -675,6 +679,7 @@ requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300997 | Cleartext traffic not permitted.                               |
 | 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
@@ -1033,6 +1038,8 @@ on(type: 'dataSendProgress', callback: Callback\<DataSendProgressInfo\>): void
 
 订阅HTTP网络请求数据发送进度事件。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -1062,6 +1069,8 @@ off(type: 'dataSendProgress', callback?: Callback\<DataSendProgressInfo\>): void
 
 > **说明：**
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -1111,6 +1120,7 @@ httpRequest.off("dataSendProgress");
 | maxLimit<sup>11+</sup>   | number   | 否 | 响应消息的最大字节限制。默认值为5\*1024\*1024，以字节为单位。最大值为100\*1024\*1024，以字节为单位。  |
 | multiFormDataList<sup>11+</sup> | Array<[MultiFormData](#multiformdata11)> | 否 | 当'content-Type'为'multipart/form-data'时，则上传该字段定义的数据字段表单列表。 |
 | certificatePinning<sup>12+</sup> | [CertificatePinning](#certificatepinning12) \| CertificatePinning[] | 否 | 支持动态设置证书锁定配置，可以传入单个或多个证书PIN码。 |
+| addressFamily<sup>15+</sup> | [AddressFamily](#addressfamily15) | 否 | 支持解析目标域名时限定地址类型。 |
 
 ## RequestMethod
 
@@ -1237,6 +1247,8 @@ request方法回调函数的返回值类型。
 ## DataSendProgressInfo<sup>11+</sup>
 
 数据发送信息
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -1549,3 +1561,15 @@ type HttpProxy = connection.HttpProxy
 |       类型       |            说明             |
 | ---------------- | --------------------------- |
 | connection.HttpProxy | 网络代理配置信息。     |
+
+## AddressFamily<sup>15+</sup>
+
+解析目标域名时限定地址类型的枚举。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       名称       |            说明             |
+| ---------------- | --------------------------- |
+| DEFAULT | 设置此选项后，系统将自行选择目标域名的IPv4地址或IPv6地址。     |
+| ONLY_V4 | 设置此选项后，系统将仅解析目标域名的IPv4地址，忽略IPv6地址。     |
+| ONLY_V6 | 设置此选项后，系统将仅解析目标域名的IPv6地址，忽略IPv4地址。     |

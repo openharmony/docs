@@ -298,15 +298,15 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
     // 2. 使用napi_get_named_property获取info函数
     napi_value infoFn;
     napi_get_named_property(env, result, "info", &infoFn);
-    
+
     napi_value tag;
     std::string formatStr = "test";
     napi_create_string_utf8(env, formatStr.c_str(), formatStr.size(), &tag);
-    
+
     napi_value outputString;
     std::string str = "Hello OpenHarmony";
     napi_create_string_utf8(env, str.c_str(), str.size(), &outputString);
-    
+
     napi_value flag;
     napi_create_int32(env, 0, &flag);
 
@@ -355,6 +355,9 @@ export const add: (a: number, b: number) => number;
 3. 用napi_load_module_with_info加载libentry.so，调用函数add。
 
     ```cpp
+    static constexpr int INT_NUM_2 = 2; // int类型数值2
+    static constexpr int INT_NUM_3 = 3; // int类型数值3
+
     static napi_value loadModule(napi_env env, napi_callback_info info) {
         napi_value result;
         // 1. 使用napi_load_module_with_info加载libentry.so
@@ -366,15 +369,15 @@ export const add: (a: number, b: number) => number;
         napi_value addFn;
         // 2. 使用napi_get_named_property获取add函数
         napi_get_named_property(env, result, "add", &addFn);
-        
+
         napi_value a;
         napi_value b;
-        napi_create_int32(env, 2, &a);
-        napi_create_int32(env, 3, &b);
+        napi_create_int32(env, INT_NUM_2, &a);
+        napi_create_int32(env, INT_NUM_3, &b);
         napi_value args[2] = {a, b};
         // 3. 使用napi_call_function调用函数add
         napi_value returnValue;
-        napi_call_function(env, result, addFn, 2, args, &returnValue);
+        napi_call_function(env, result, addFn, INT_NUM_2, args, &returnValue);
         return result;
     }
     ```

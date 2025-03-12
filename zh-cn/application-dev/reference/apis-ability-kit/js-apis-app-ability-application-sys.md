@@ -19,7 +19,7 @@ createModuleContext(context: Context, bundleName: string, moduleName: string): P
 
 > **说明：**
 >
-> 从API version 16开始，Context支持获取当前应用的进程名[processName](js-apis-inner-application-context.md#属性)。createModuleContext创建的Context中的processName属性与入参Context中的processName属性一致，其他属性根据入参Context、bundleName和moduleName获得相应的属性值。
+> 从API version 18开始，Context支持获取当前应用的进程名[processName](js-apis-inner-application-context.md#属性)。createModuleContext创建的Context中的processName属性与入参Context中的processName属性一致，其他属性根据入参Context、bundleName和moduleName获得相应的属性值。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -82,7 +82,7 @@ createBundleContext(context: Context, bundleName: string): Promise\<Context>
 
 > **说明：**
 >
-> 从API version 16开始，Context支持获取当前应用的进程名[processName](js-apis-inner-application-context.md#属性)。createBundleContext创建的Context中的processName属性与入参Context中的processName属性一致，其他属性根据入参Context、bundleName和moduleName获得相应的属性值。
+> 从API version 18开始，Context支持获取当前应用的进程名[processName](js-apis-inner-application-context.md#属性)。createBundleContext创建的Context中的processName属性与入参Context中的processName属性一致，其他属性根据入参Context、bundleName和moduleName获得相应的属性值。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 

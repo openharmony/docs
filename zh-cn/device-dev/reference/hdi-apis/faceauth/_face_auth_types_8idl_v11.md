@@ -20,8 +20,8 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | struct&nbsp;&nbsp;[Property](_property_faceauth_v11.md) | 执行器相关属性。 | 
-| struct&nbsp;&nbsp;[SaCommandParamNone](_sa_command_param_none_faceauth_v11.md) | sa命令参数为空。 | 
-| union&nbsp;&nbsp;[SaCommandParam](union_sa_command_param_faceauth_v11.md) | sa命令参数。 | 
+| struct&nbsp;&nbsp;[SaCommandParamNone](_sa_command_param_none_faceauth_v11.md) | SA命令参数为空。 | 
+| union&nbsp;&nbsp;[SaCommandParam](union_sa_command_param_faceauth_v11.md) | SA命令参数。 | 
 | struct&nbsp;&nbsp;[SaCommand](_sa_command_faceauth_v11.md) | SA命令相关。 | 
 
 

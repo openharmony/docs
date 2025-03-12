@@ -12,11 +12,11 @@
 
 <!--RP1-->
 
-1. 创建EnterpriseAdminExtensionAbility；
+1. 创建EnterpriseAdminExtensionAbility。
 
-2. 声明接口所需权限；
+2. 声明接口所需权限。
 
-3. MDM功能开发与调试；
+3. MDM功能开发与调试。
 
 <!--RP1End-->
 
@@ -83,8 +83,10 @@ hdc shell edm disable-admin -n 包名
 ```
 
 > **说明**
-> 
-> 正式使用时，在同一设备上只能能激活一个超级设备管理应用。
+>
+> 正式使用时，在同一设备上只能激活一个超级设备管理应用。
+>
+> BYOD（bring your own device），自带设备办公。指一些企业允许员工携带自己的笔记本电脑、平板电脑、智能手机等移动终端设备到办公场所，并可以用这些设备获取公司内部信息、使用企业特许应用的一种政策。
 >
 > <!--RP5--><!--RP5End-->
 

@@ -76,13 +76,13 @@ enum PowerHdfCmd
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| CMD_REGISTER_CALLBCK | 订阅状态的命令参数 | 
-| CMD_START_SUSPEND | 休眠的命令参数 | 
-| CMD_STOP_SUSPEND | 唤醒的命令参数 | 
-| CMD_FORCE_SUSPEND | 强制休眠的命令参数 | 
-| CMD_SUSPEND_BLOCK | 打开运行锁的命令参数 | 
-| CMD_SUSPEND_UNBLOCK | 关闭运行锁的命令参数 | 
-| CMD_DUMP | Dump的命令参数 | 
+| CMD_REGISTER_CALLBCK | 订阅状态的命令参数。 | 
+| CMD_START_SUSPEND | 休眠的命令参数。 | 
+| CMD_STOP_SUSPEND | 唤醒的命令参数。 | 
+| CMD_FORCE_SUSPEND | 强制休眠的命令参数。 | 
+| CMD_SUSPEND_BLOCK | 打开运行锁的命令参数。 | 
+| CMD_SUSPEND_UNBLOCK | 关闭运行锁的命令参数。 | 
+| CMD_DUMP | Dump的命令参数。 | 
 
 
 ### PowerHdfState

@@ -239,7 +239,7 @@ createAreaModeContext(areaMode: contextConstant.AreaMode): Context
 
 当应用需要将不同类型的信息存放在不同目录下时，可以根据指定的数据加密级别创建应用上下文，以获取相应的路径。
 
-**原子化服务API**：从API version 16\8开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
