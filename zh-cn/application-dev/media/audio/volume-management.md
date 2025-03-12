@@ -55,17 +55,17 @@ import { audio } from '@kit.AudioKit';
 let audioManager = audio.getAudioManager();
 let audioVolumeManager = audioManager.getVolumeManager();
 
-// 设置应用的音量(范围为0到100)
+// 设置应用的音量（范围为0到100）。
 audioVolumeManager.setAppVolumePercentage(20).then(() => {
   console.info(`set app volume success.`);
 });
 
-// 查询应用音量
+// 查询应用音量。
 audioVolumeManager.getAppVolumePercentage().then((value: number) => {
   console.info(`app volume is ${value}.`);
 });
 
-// 监听应用音量变化，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+// 监听应用音量变化，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let appVolumeChangeCallback = (volumeEvent: audio.VolumeEvent) => {
   console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
   console.info(`Volume level: ${volumeEvent.volume} `);
@@ -74,7 +74,7 @@ let appVolumeChangeCallback = (volumeEvent: audio.VolumeEvent) => {
 audioVolumeManager.on('appVolumeChange', appVolumeChangeCallback);
 audioVolumeManager.off('appVolumeChange', appVolumeChangeCallback);
 
-// 取消该事件的所有监听
+// 取消该事件的所有监听。
 audioVolumeManager.off('appVolumeChange');
 ```
 
@@ -84,27 +84,27 @@ audioVolumeManager.off('appVolumeChange');
 ```ts
 import { audio } from '@kit.AudioKit';
 
-let uid: number = 20010041; // 应用ID 
+let uid: number = 20010041; // 应用ID。 
 let audioManager = audio.getAudioManager();
 let audioVolumeManager = audioManager.getVolumeManager();
 
-// 设置指定应用的音量(范围为0到100)
-let volume: number = 20;    // 要设置的音量值
+// 设置指定应用的音量（范围为0到100）。
+let volume: number = 20;    // 要设置的音量值。
 audioVolumeManager.setAppVolumePercentageForUid(uid, volume).then(() => {
   console.info(`set app volume success.`);
 });
 
-// 获取指定应用的音量(范围为0到100)
+// 获取指定应用的音量（范围为0到100）。
 audioVolumeManager.getAppVolumePercentageForUid(uid).then((value: number) => {
   console.info(`app volume is ${value}.`);
 });
 
-// 查询应用音量是否已静音
+// 查询应用音量是否已静音。
 audioVolumeManager.setAppVolumePercentageForUid(uid, true).then((value: boolean) => {
   console.info(`app muted state is ${value}.`);
 });
 
-// 设置应用静音状态
+// 设置应用静音状态。
 audioVolumeManager.setAppVolumePercentageForUid(uid, true).then(() => {
   console.info(`set app mute state success.`);
 });
