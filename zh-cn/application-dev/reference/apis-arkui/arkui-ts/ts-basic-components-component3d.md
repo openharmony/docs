@@ -146,7 +146,7 @@ shaderInputBuffer(buffer: Array&lt;number&gt;)
 
 | 参数名 | 类型           | 必填 | 说明                       |
 | ------ | -------------- | ---- | -------------------------- |
-| buffer | Array<number\> | 是   | 自定义渲染用到的动效参数，在C++层最大分配0x400000字节数组。 |
+| buffer | Array<number\> | 是   | 自定义渲染用到的动效参数，在C++层shaderInputBuffer最大分配0x400000字节内存。 |
 
 ### renderWidth
 
