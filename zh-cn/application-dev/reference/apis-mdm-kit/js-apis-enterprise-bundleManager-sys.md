@@ -911,7 +911,7 @@ getDisallowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;s
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回当前用户下的包安装白名单。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回当前用户下的包安装黑名单。 |
 
 **错误码**：
 
@@ -1373,7 +1373,7 @@ getDisallowedUninstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回当前用户下的包卸载白名单。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回当前用户下的包卸载黑名单。 |
 
 **错误码**：
 

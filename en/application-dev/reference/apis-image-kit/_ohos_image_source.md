@@ -21,8 +21,8 @@ The **OhosImageSource** struct defines the input resource of an image source. On
 
 | Name| Description| 
 | -------- | -------- |
-| char \* [uri](image.md#uri) = nullptr | Defines a pointer to the image source URI. Only a file URI or Base64 URI is accepted.| 
-| size_t [uriSize](image.md#urisize) = 0 | Defines the length of the image source URI.| 
-| int32_t [fd](image.md#fd) = -1 | Defines the descriptor of the image source.| 
-| uint8_t \* [buffer](image.md#buffer-12) = nullptr | Defines a pointer to the image source buffer. Only a formatted packet buffer or Base64 buffer is accepted.| 
-| size_t [bufferSize](image.md#buffersize-12) = 0 | Defines the size of the image source buffer.| 
+| char \* [uri](image.md#uri) = nullptr | Pointer to the image source URI. Only a file URI or Base64 URI is accepted.|
+| size_t [uriSize](image.md#urisize) = 0 | Length of the image source URI.|
+| int32_t [fd](image.md#fd) = -1 | Descriptor of the image source.|
+| uint8_t \* [buffer](image.md#buffer-12) = nullptr | Pointer to the image source buffer. Only a formatted packet buffer or Base64 buffer is accepted.|
+| size_t [bufferSize](image.md#buffersize-12) = 0 | Size of the image source buffer.|

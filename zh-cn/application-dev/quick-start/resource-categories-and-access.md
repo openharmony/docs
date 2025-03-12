@@ -133,14 +133,14 @@ float.json文件的内容如下：
 
 ```json
 {
-    "float":[
+    "float": [
         {
-            "name":"font_hello",
-            "value":"28.0fp"
+            "name": "font_hello",
+            "value": "28.0fp"
         },
-	      {
-            "name":"font_world",
-            "value":"20.0fp"
+	    {
+            "name": "font_world",
+            "value": "20.0fp"
         }
     ]
 }
@@ -150,22 +150,22 @@ string.json文件的内容如下：
 
 ```json
 {
-    "string":[
+    "string": [
         {
-            "name":"string_hello",
-            "value":"Hello"
+            "name": "string_hello",
+            "value": "Hello"
         },
-	      {
-            "name":"string_world",
-            "value":"World"
+	    {
+            "name": "string_world",
+            "value": "World"
         },
-	      {
-            "name":"message_arrive",
-            "value":"We will arrive at %1$s."
+	    {
+            "name": "message_arrive",
+            "value": "We will arrive at %1$s."
         },
         {
-            "name":"message_notification",
-            "value":"Hello, %1$s!,You have %2$d new messages."
+            "name": "message_notification",
+            "value": "Hello, %1$s!,You have %2$d new messages."
         }
     ]
 }
@@ -175,17 +175,17 @@ plural.json文件的内容如下：
 
 ```json
 {
-    "plural":[
+    "plural": [
         {
-            "name":"eat_apple",
-            "value":[
+            "name": "eat_apple",
+            "value": [
                 {
-                    "quantity":"one",
-                    "value":"%d apple"
+                    "quantity": "one",
+                    "value": "%d apple"
                 },
                 {
-                    "quantity":"other",
-                    "value":"%d apples"
+                    "quantity": "other",
+                    "value": "%d apples"
                 }
             ]
         }
