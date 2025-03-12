@@ -497,7 +497,7 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_queue_async_work_with_qos | 将异步工作对象加到队列，由底层根据传入的qos优先级去调度执行。 |
 | napi_run_script_path | 运行指定abc文件。 |
 | napi_load_module | 将abc文件作为模块加载，返回模块的命名空间。 |
-| napi_load_module_with_info | 将abc文件作为模块加载，返回模块的命名空间, 可在新创建的ArkTS基础运行时环境中使用。 |
+| napi_load_module_with_info | 将abc文件作为模块加载，返回模块的命名空间，可在新创建的ArkTS基础运行时环境中使用。 |
 | napi_create_object_with_properties | 使用给定的napi_property_descriptor创建js Object。descriptor的键名必须为 string，且不可转为number。 |
 | napi_create_object_with_named_properties | 使用给定的napi_value和键名创建js Object。键名必须为 string，且不可转为number。 |
 | napi_coerce_to_native_binding_object | 强制将js Object和Native对象绑定。 |
@@ -732,8 +732,8 @@ napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void**
 
 | 接口 | 功能说明 |
 | -------- | -------- |
-| napi_create_ark_runtime | 创建基础运行时环境 |
-| napi_destroy_ark_runtime | 销毁基础运行时环境 |
+| napi_create_ark_runtime | 创建基础运行时环境。|
+| napi_destroy_ark_runtime | 销毁基础运行时环境。|
 
 ### 其他实用工具
 
