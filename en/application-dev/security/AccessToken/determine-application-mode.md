@@ -1,6 +1,6 @@
 # Workflow for Requesting Permissions
 
-You need to determine whether your application needs related permissions before accessing data or performing an operation. If permissions are required, you must request the permissions in the application installation package.
+You need to determine whether your application needs related permissions before accessing data or performing an operation. If permissions are required, request the permissions in the application installation package.
 
 Different permissions have different Ability Privilege Levels (APLs), authorization modes, and requesting methods. The workflow in the following figure helps you determine whether your application needs to request a permission.
 
@@ -26,8 +26,8 @@ The operation for requesting a permission varies, depending on the permission AP
 
 | Permission Type| Authorization Mode| Operation Path|
 | -------- | -------- | -------- |
-| [Open system_grant permissions](permissions-for-all.md)| system_grant | [Declare permission](declare-permissions.md) &gt; Access API| 
-| [Open user_grant permissions](permissions-for-all-user.md)| user_grant  | [Declare permission](declare-permissions.md) &gt; [Request user authorization](request-user-authorization.md) &gt; Access API| 
+| [Open system_grant permission](permissions-for-all.md)| system_grant | [Declare permission](declare-permissions.md) &gt; Access API| 
+| [Open user_grant permission](permissions-for-all-user.md)| user_grant  | [Declare permission](declare-permissions.md) &gt; [Request user authorization](request-user-authorization.md) &gt; Access API| 
 | <!--DelRow-->[system_grant permissions available for normal applications via ACL](permissions-for-system-apps.md#system_grant-permissions-requestable-via-acl)| system_grant | [Request restricted permission](declare-permissions-in-acl.md) &gt; [Declare permission](declare-permissions.md) > Access API| 
 | <!--DelRow-->[user_grant permissions available for normal applications via ACL](permissions-for-system-apps.md#user_grant-permissions-requestable-via-acl)| user_grant | [Request restricted permission](declare-permissions-in-acl.md) &gt; [Declare permission](declare-permissions.md) > [Request user authorization](request-user-authorization.md) > Access API|
 <!--RP2--><!--RP2End-->
@@ -36,7 +36,7 @@ The operation for requesting a permission varies, depending on the permission AP
 > **NOTE**
 >
 > - A normal application cannot request a system_basic permission whose **Enable via ACL** is **false**.
-> - You can use DevEco Studio to request a permission via the ACL. However, this method applies to the applications in debug phase, but not to the applications to be released to the app market. For a commercial application, apply for a release certificate and profile in the app market.
+> - You can use DevEco Studio to [request a permission via ACL](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V14/ide-signing-V14). However, this method applies to the applications in debug phase, but not to the applications to be released to the app market. For a commercial application, apply for a release certificate and profile in the app market.
 
 ## Requesting Permissions for system_basic Applications
 
@@ -62,7 +62,6 @@ Modify the **"bundle-info"** &gt; **"apl"** field in the file.
 ```
 
 > **NOTE**
->
 > Modifying the HarmonyAppProvision configuration file applies to the applications in the debug phase, but not to the applications released to the app market. For a commercial application, apply for a release certificate and profile in the app market.
 
 <!--DelEnd-->
