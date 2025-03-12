@@ -31,6 +31,8 @@ import {
 
 ArcSwiper(controller?: ArcSwiperController)
 
+创建弧形滑块视图容器。
+
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle

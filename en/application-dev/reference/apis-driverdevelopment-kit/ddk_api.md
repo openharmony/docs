@@ -11,7 +11,7 @@ Declares the BASE DDK APIs used by the host to access the device.
 
 **Related module**
 
-[BASE DDK](_base_ddk.md)
+[Base DDK](_base_ddk.md)
 
 
 ## Summary

@@ -1,15 +1,12 @@
 # NNRt (V1_0)
 
-
 ## 概述
 
 Neural Network Runtime（NNRt, 神经网络运行时）是面向AI领域的跨芯片推理计算运行时，作为中间桥梁连通上层AI推理框架和底层加速芯片，实现AI模型的跨芯片推理计算。提供统一AI芯片驱动接口，实现AI芯片驱动接入OpenHarmony。
 
 **起始版本：** 3.2
 
-
 ## 汇总
-
 
 ### 文件
 
@@ -20,7 +17,6 @@ Neural Network Runtime（NNRt, 神经网络运行时）是面向AI领域的跨�
 | [ModelTypes.idl](_model_types_8idlv.md) | 该文件定义AI模型相关的结构体。 | 
 | [NnrtTypes.idl](_nnrt_types_8idl_v10.md) | 该文件定义了HDI接口中用到的类型。 | 
 | [NodeAttrTypes.idl](_node_attr_types_8idl_v10.md) | 该文件定义AI模型算子的参数和功能。 | 
-
 
 ### 类
 
@@ -36,7 +32,7 @@ Neural Network Runtime（NNRt, 神经网络运行时）是面向AI领域的跨�
 | struct&nbsp;&nbsp;[ModelConfig](_model_config_v10.md) | 定义编译模型需要的参数配置。 | 
 | struct&nbsp;&nbsp;[QuantParam](_quant_param_v10.md) | 量化参数结构体。 | 
 | struct&nbsp;&nbsp;[IOTensor](_i_o_tensor_v10.md) | AI模型的输入输出张量。 | 
-| struct&nbsp;&nbsp;[Activation](_activation_v10.md) | 激活类型的算子，所有的激活函数都属于该算子，具体的激活函数类型一句参数来确定。 | 
+| struct&nbsp;&nbsp;[Activation](_activation_v10.md) | 激活类型的算子，所有的激活函数都属于该算子，具体的激活函数类型依据参数来确定。 | 
 | struct&nbsp;&nbsp;[AddFusion](_add_fusion_v10.md) | 输入Tensor逐元素相加， 输出x和y的和，数据形状与输入broadcast之后一样，数据类型与较高精度的输入精度一致。 | 
 | struct&nbsp;&nbsp;[ArgMaxFusion](_arg_max_fusion_v10.md) | 返回跨轴的tensor前K个索引或者是数值。 | 
 | struct&nbsp;&nbsp;[AvgPoolFusion](_avg_pool_fusion_v10.md) | 在输入tensor上应用 2D 平均池化。支持int8量化输入。 | 
@@ -85,7 +81,6 @@ Neural Network Runtime（NNRt, 神经网络运行时）是面向AI领域的跨�
 | struct&nbsp;&nbsp;[Transpose](_transpose_v10.md) | 根据perm对x进行数据重排。 | 
 | struct&nbsp;&nbsp;[Unsqueeze](_unsqueeze_v10.md) | 根据输入axis的值。增加一个维度。 | 
 
-
 ### 枚举
 
 | 名称 | 描述 | 
@@ -108,9 +103,7 @@ Neural Network Runtime（NNRt, 神经网络运行时）是面向AI领域的跨�
 | [RoundMode](#roundmode) : byte { ROUND_MODE_FLOOR = 0 , ROUND_MODE_CEIL = 1 } | 小数取整算法，需要配合[AvgPoolFusion](_avg_pool_fusion_v10.md)算子使用。 | 
 | [PaddingMode](#paddingmode) : byte { PADDING_MODE_CONSTANT = 0 , PADDING_MODE_REFLECT = 1 , PADDING_MODE_SYMMETRIC = 2 , PADDING_MODE_RESERVED = 3 } | 填充类型，需要配合[PadFusion](_pad_fusion_v10.md)算子使用。 | 
 
-
 ## 枚举类型说明
-
 
 ### ActivationType
 
@@ -119,7 +112,6 @@ enum ActivationType : byte
 ```
 
 **描述**
-
 
 激活函数类型。
 
@@ -151,7 +143,6 @@ enum ActivationType : byte
 | ACTIVATION_TYPE_GELU | GELU（Gaussian error linear unit activation function）高斯误差线性单元激活函数。<br/>GELU函数定义如下：<br/>$ GELU(x_i) = x_i\*P(X &lt; x_i) $<br/>其中，$ x_i $是输入元素，$ P $是标准高斯分布的累积分布函数。需要通过[Activation](_activation_v10.md)的approximate参数指定是否使用近似。 | 
 | ACTIVATION_TYPE_UNKNOWN | 未知 | 
 
-
 ### CoordinateTransformMode
 
 ```
@@ -159,7 +150,6 @@ enum CoordinateTransformMode : byte
 ```
 
 **描述**
-
 
 坐标变换模式，仅[Resize](_resize_v10.md)算子使用这些枚举。
 
@@ -178,10 +168,9 @@ enum CoordinateTransformMode : byte
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| COORDINATE_TRANSFORM_MODE_ASYMMETRIC | 不进行对齐，直接按照比例缩放 | 
-| COORDINATE_TRANSFORM_MODE_ALIGN_CORNERS | 对齐图像的4个角 | 
-| COORDINATE_TRANSFORM_MODE_HALF_PIXEL | 对齐像素点中心 | 
-
+| COORDINATE_TRANSFORM_MODE_ASYMMETRIC | 不进行对齐，直接按照比例缩放。 | 
+| COORDINATE_TRANSFORM_MODE_ALIGN_CORNERS | 对齐图像的4个角。 | 
+| COORDINATE_TRANSFORM_MODE_HALF_PIXEL | 对齐像素点中心。 | 
 
 ### DataType
 
@@ -191,27 +180,25 @@ enum DataType : byte
 
 **描述**
 
-
 张量的数据类型。需要配合[Tensor](_tensor_v10.md)使用。
 
 **起始版本：** 3.2
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| DATA_TYPE_UNKNOWN | 数据类型未知 | 
-| DATA_TYPE_BOOL | 数据类型是BOOL | 
-| DATA_TYPE_INT8 | 数据类型是INT8 | 
-| DATA_TYPE_INT16 | 数据类型是INT16 | 
-| DATA_TYPE_INT32 | 数据类型是INT32 | 
-| DATA_TYPE_INT64 | 数据类型是INT64 | 
-| DATA_TYPE_UINT8 | 数据类型是UINT8 | 
-| DATA_TYPE_UINT16 | 数据类型是UINT16 | 
-| DATA_TYPE_UINT32 | 数据类型是UINT32 | 
-| DATA_TYPE_UINT64 | 数据类型是UINT64 | 
-| DATA_TYPE_FLOAT16 | 数据类型是FLOAT16 | 
-| DATA_TYPE_FLOAT32 | 数据类型是FLOAT32 | 
-| DATA_TYPE_FLOAT64 | 数据类型是FLOAT64 | 
-
+| DATA_TYPE_UNKNOWN | 数据类型未知。 | 
+| DATA_TYPE_BOOL | 数据类型是BOOL。 | 
+| DATA_TYPE_INT8 | 数据类型是INT8。 | 
+| DATA_TYPE_INT16 | 数据类型是INT16。 | 
+| DATA_TYPE_INT32 | 数据类型是INT32。 | 
+| DATA_TYPE_INT64 | 数据类型是INT64。 | 
+| DATA_TYPE_UINT8 | 数据类型是UINT8。 | 
+| DATA_TYPE_UINT16 | 数据类型是UINT16。 | 
+| DATA_TYPE_UINT32 | 数据类型是UINT32。 | 
+| DATA_TYPE_UINT64 | 数据类型是UINT64。 | 
+| DATA_TYPE_FLOAT16 | 数据类型是FLOAT16。 | 
+| DATA_TYPE_FLOAT32 | 数据类型是FLOAT32。 | 
+| DATA_TYPE_FLOAT64 | 数据类型是FLOAT64。 | 
 
 ### DeviceStatus
 
@@ -221,18 +208,16 @@ enum DeviceStatus : int
 
 **描述**
 
-
 用于AI计算芯片的状态。
 
 **起始版本：** 3.2
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| AVAILABLE | 芯片当前处于可用状态 | 
-| BUSY | 芯片当前处于忙碌状态，可能无法及时响应计算任务 | 
-| OFFLINE | 芯片当前处于下线状态，无法响应计算任务 | 
-| UNKNOWN | 芯片当前处于未知状态 | 
-
+| AVAILABLE | 芯片当前处于可用状态。 | 
+| BUSY | 芯片当前处于忙碌状态，可能无法及时响应计算任务。 | 
+| OFFLINE | 芯片当前处于下线状态，无法响应计算任务。 | 
+| UNKNOWN | 芯片当前处于未知状态。 | 
 
 ### DeviceType
 
@@ -242,18 +227,16 @@ enum DeviceType : int
 
 **描述**
 
-
 AI计算芯片的类型。
 
 **起始版本：** 3.2
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OTHER | 不属于以下类型的芯片 | 
-| CPU | CPU芯片 | 
-| GPU | GPU芯片 | 
-| ACCELERATOR | AI专用加速芯片，比如NPU、DSP | 
-
+| OTHER | 不属于以下类型的芯片。 | 
+| CPU | CPU芯片。 | 
+| GPU | GPU芯片。 | 
+| ACCELERATOR | AI专用加速芯片，比如NPU、DSP。 | 
 
 ### EltwiseMode
 
@@ -262,7 +245,6 @@ enum EltwiseMode : byte
 ```
 
 **描述**
-
 
 元素级别运算支持的计算类型，需要配合[Eltwise](_eltwise_v10.md)算子使用。
 
@@ -275,7 +257,6 @@ enum EltwiseMode : byte
 | ELTWISE_MODE_MAXIMUM | 两个tensor对应元素的最大值。 | 
 | ELTWISE_MODE_UNKNOWN | 未知。 | 
 
-
 ### Format
 
 ```
@@ -283,7 +264,6 @@ enum Format : byte
 ```
 
 **描述**
-
 
 算子数据排布。需要配合[Tensor](_tensor_v10.md)使用。
 
@@ -295,7 +275,6 @@ enum Format : byte
 | FORMAT_NCHW | 数据排列为NCHW。 | 
 | FORMAT_NHWC | 数据排列为NHWC。 | 
 
-
 ### NearestMode
 
 ```
@@ -304,19 +283,17 @@ enum NearestMode : byte
 
 **描述**
 
-
 临近算法类型。需要配合[Resize](_resize_v10.md)算子使用。
 
 **起始版本：** 3.2
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| NEAREST_MODE_NORMAL | 四舍五入取整 | 
-| NEAREST_MODE_ROUND_HALF_DOWN | 向负无穷取整，例如23.5取整为23，−23.5取整为−24 | 
-| NEAREST_MODE_ROUND_HALF_UP | 向正无穷取整，例如23.5取整为24，−23.5取整为−23 | 
-| NEAREST_MODE_FLOOR | 向下取临近的整数，例如23.5取整为23，−23.5取整为−24 | 
-| NEAREST_MODE_CEIL | 向上取临近的整数整，例如23.5取整为24，−23.5取整为−23 | 
-
+| NEAREST_MODE_NORMAL | 四舍五入取整。 | 
+| NEAREST_MODE_ROUND_HALF_DOWN | 向负无穷取整，例如23.5取整为23，−23.5取整为−24。 | 
+| NEAREST_MODE_ROUND_HALF_UP | 向正无穷取整，例如23.5取整为24，−23.5取整为−23。 | 
+| NEAREST_MODE_FLOOR | 向下取临近的整数，例如23.5取整为23，−23.5取整为−24。 | 
+| NEAREST_MODE_CEIL | 向上取临近的整数整，例如23.5取整为24，−23.5取整为−23。 | 
 
 ### NodeType
 
@@ -326,63 +303,61 @@ enum NodeType : unsigned int
 
 **描述**
 
-
 算子类型。
 
 **起始版本：** 3.2
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| NODE_TYPE_NONE | 算子类型为NONE | 
-| NODE_TYPE_ACTIVATION | 激活函数类型 | 
-| NODE_TYPE_ADD_FUSION | ADD算子 | 
-| NODE_TYPE_ARGMAX_FUSION | ArgMax算子 | 
-| NODE_TYPE_AVGPOOL_FUSION | AVGPOOL算子 | 
-| NODE_TYPE_BATCH_TO_SPACE_ND | BatchToSpaceND算子 | 
-| NODE_TYPE_BIAS_ADD | BiasAdd算子 | 
-| NODE_TYPE_CAST | Cast算子 | 
-| NODE_TYPE_CONCAT | Concat算子 | 
-| NODE_TYPE_CONV2D_FUSION | Conv2D算子，包含了普通卷积、可分离卷积和分组卷积 | 
-| NODE_TYPE_CONV2D_TRANSPOSE_FUSION | 二维反卷积算子 | 
-| NODE_TYPE_DIV_FUSION | Div算子 | 
-| NODE_TYPE_ELTWISE | 元素级别算子 | 
-| NODE_TYPE_EXPAND_DIMS | ExpandDims张算子 | 
-| NODE_TYPE_FILL | Fill算子 | 
-| NODE_TYPE_FULL_CONNECTION | FullConnection算子 | 
-| NODE_TYPE_FUSED_BATCH_NORM | BatchNorm算子 | 
-| NODE_TYPE_GATHER | Gather算子 | 
-| NODE_TYPE_LAYER_NORM_FUSION | LayerNorm算子 | 
-| NODE_TYPE_LESS_EQUAL | LessEqual算子 | 
-| NODE_TYPE_MATMUL_FUSION | MatMul算子 | 
-| NODE_TYPE_MAXIMUM | Maximum算子 | 
-| NODE_TYPE_MAX_POOL_FUSION | MaxPool算子 | 
-| NODE_TYPE_MUL_FUSION | Mul算子 | 
-| NODE_TYPE_ONE_HOT | OneHot算子 | 
-| NODE_TYPE_PAD_FUSION | Pad算子 | 
-| NODE_TYPE_POW_FUSION | Pow算子 | 
-| NODE_TYPE_PRELU_FUSION | PReLU算子 | 
-| NODE_TYPE_QUANT_DTYPE_CAST | QuantDTypeCast算子 | 
-| NODE_TYPE_REDUCE_FUSION | Reduce算子 | 
-| NODE_TYPE_RESHAPE | Reshape算子 | 
-| NODE_TYPE_RESIZE | Resize算子 | 
-| NODE_TYPE_RSQRT | Rsqrt算子 | 
-| NODE_TYPE_SCALE_FUSION | Scale算子 | 
-| NODE_TYPE_SHAPE | Shape算子 | 
-| NODE_TYPE_SLICE_FUSION | Slice算子 | 
-| NODE_TYPE_SOFTMAX | Softmax算子 | 
-| NODE_TYPE_SPACE_TO_BATCH_ND | SpaceToBatchND算子 | 
-| NODE_TYPE_SPLIT | Split算子 | 
-| NODE_TYPE_SQRT | Sqrt算子 | 
-| NODE_TYPE_SQUEEZE | SquaredDifference算子 | 
-| NODE_TYPE_SQUARED_DIFFERENCE | Squeeze算子 | 
-| NODE_TYPE_STACK | Stack算子 | 
-| NODE_TYPE_STRIDED_SLICE | StridedSlice算子 | 
-| NODE_TYPE_SUB_FUSION | Sub算子 | 
-| NODE_TYPE_TILE_FUSION | Tile算子 | 
-| NODE_TYPE_TOPK_FUSION | TopK算子 | 
-| NODE_TYPE_TRANSPOSE | Transpose算子 | 
-| NODE_TYPE_UNSQUEEZE | Unsqueeze算子 | 
-
+| NODE_TYPE_NONE | 算子类型为NONE。 | 
+| NODE_TYPE_ACTIVATION | 激活函数类型。 | 
+| NODE_TYPE_ADD_FUSION | ADD算子。 | 
+| NODE_TYPE_ARGMAX_FUSION | ArgMax算子。 | 
+| NODE_TYPE_AVGPOOL_FUSION | AVGPOOL算子。 | 
+| NODE_TYPE_BATCH_TO_SPACE_ND | BatchToSpaceND算子。 | 
+| NODE_TYPE_BIAS_ADD | BiasAdd算子。 | 
+| NODE_TYPE_CAST | Cast算子。 | 
+| NODE_TYPE_CONCAT | Concat算子。 | 
+| NODE_TYPE_CONV2D_FUSION | Conv2D算子，包含了普通卷积、可分离卷积和分组卷积。 | 
+| NODE_TYPE_CONV2D_TRANSPOSE_FUSION | 二维反卷积算子。 | 
+| NODE_TYPE_DIV_FUSION | Div算子。 | 
+| NODE_TYPE_ELTWISE | 元素级别算子。 | 
+| NODE_TYPE_EXPAND_DIMS | ExpandDims张算子。 | 
+| NODE_TYPE_FILL | Fill算子。 | 
+| NODE_TYPE_FULL_CONNECTION | FullConnection算子。 | 
+| NODE_TYPE_FUSED_BATCH_NORM | BatchNorm算子。 | 
+| NODE_TYPE_GATHER | Gather算子。 | 
+| NODE_TYPE_LAYER_NORM_FUSION | LayerNorm算子。 | 
+| NODE_TYPE_LESS_EQUAL | LessEqual算子。 | 
+| NODE_TYPE_MATMUL_FUSION | MatMul算子。 | 
+| NODE_TYPE_MAXIMUM | Maximum算子。 | 
+| NODE_TYPE_MAX_POOL_FUSION | MaxPool算子。 | 
+| NODE_TYPE_MUL_FUSION | Mul算子。 | 
+| NODE_TYPE_ONE_HOT | OneHot算子。 | 
+| NODE_TYPE_PAD_FUSION | Pad算子。 | 
+| NODE_TYPE_POW_FUSION | Pow算子。 | 
+| NODE_TYPE_PRELU_FUSION | PReLU算子。 | 
+| NODE_TYPE_QUANT_DTYPE_CAST | QuantDTypeCast算子。 | 
+| NODE_TYPE_REDUCE_FUSION | Reduce算子。 | 
+| NODE_TYPE_RESHAPE | Reshape算子。 | 
+| NODE_TYPE_RESIZE | Resize算子。 | 
+| NODE_TYPE_RSQRT | Rsqrt算子。 | 
+| NODE_TYPE_SCALE_FUSION | Scale算子。 | 
+| NODE_TYPE_SHAPE | Shape算子。 | 
+| NODE_TYPE_SLICE_FUSION | Slice算子。 | 
+| NODE_TYPE_SOFTMAX | Softmax算子。 | 
+| NODE_TYPE_SPACE_TO_BATCH_ND | SpaceToBatchND算子。 | 
+| NODE_TYPE_SPLIT | Split算子。 | 
+| NODE_TYPE_SQRT | Sqrt算子。 | 
+| NODE_TYPE_SQUEEZE | SquaredDifference算子。 | 
+| NODE_TYPE_SQUARED_DIFFERENCE | Squeeze算子。 | 
+| NODE_TYPE_STACK | Stack算子。 | 
+| NODE_TYPE_STRIDED_SLICE | StridedSlice算子。 | 
+| NODE_TYPE_SUB_FUSION | Sub算子。 | 
+| NODE_TYPE_TILE_FUSION | Tile算子。 | 
+| NODE_TYPE_TOPK_FUSION | TopK算子。 | 
+| NODE_TYPE_TRANSPOSE | Transpose算子。 | 
+| NODE_TYPE_UNSQUEEZE | Unsqueeze算子。 | 
 
 ### PaddingMode
 
@@ -391,7 +366,6 @@ enum PaddingMode : byte
 ```
 
 **描述**
-
 
 填充类型，需要配合[PadFusion](_pad_fusion_v10.md)算子使用。
 
@@ -415,7 +389,6 @@ enum PaddingMode : byte
 | PADDING_MODE_SYMMETRIC | 此填充方法类似于 PADDING_MODE_REFLECT，它以待填充区和数据区的交界为轴，使待填充区和数据区的数据以该轴保持对称。 | 
 | PADDING_MODE_RESERVED | 预留，暂未使用。 | 
 
-
 ### PadMode
 
 ```
@@ -423,7 +396,6 @@ enum PadMode : byte
 ```
 
 **描述**
-
 
 填充类型，需要配合[AvgPoolFusion](_avg_pool_fusion_v10.md)，[AvgPoolFusion](_avg_pool_fusion_v10.md)，[Conv2DFusion](_conv2_d_fusion_v10.md)，[MaxPoolFusion](_max_pool_fusion_v10.md)使用。
 
@@ -435,7 +407,6 @@ enum PadMode : byte
 | PAD_MODE_SAME | 输出的高度和宽度分别与输入整除 stride 后的值相同。 若设置该模式，算子的padding参数必须为0。 | 
 | PAD_MODE_VALID | 在不填充的前提下返回有效计算所得的输出。不满足计算的多余像素会被丢弃。 若设置此模式，则算子的padding参数必须为0。 | 
 
-
 ### PerformanceMode
 
 ```
@@ -444,19 +415,17 @@ enum PerformanceMode : int
 
 **描述**
 
-
 芯片执行AI计算的性能模式。
 
 **起始版本：** 3.2
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| PERFORMANCE_NONE | 不指定任何性能模式，具体运行模式由芯片定义 | 
-| PERFORMANCE_LOW | 低性能模式，执行AI计算速度慢，功耗低 | 
-| PERFORMANCE_MEDIUM | 中性能模式，执行AI计算速度较慢，功耗较低 | 
-| PERFORMANCE_HIGH | 高性能模式，执行AI计算速度较快，功耗较高 | 
-| PERFORMANCE_EXTREME | 最高性能模式，执行AI计算速度快，功耗高 | 
-
+| PERFORMANCE_NONE | 不指定任何性能模式，具体运行模式由芯片定义。 | 
+| PERFORMANCE_LOW | 低性能模式，执行AI计算速度慢，功耗低。 | 
+| PERFORMANCE_MEDIUM | 中性能模式，执行AI计算速度较慢，功耗较低。 | 
+| PERFORMANCE_HIGH | 高性能模式，执行AI计算速度较快，功耗较高。 | 
+| PERFORMANCE_EXTREME | 最高性能模式，执行AI计算速度快，功耗高。 | 
 
 ### Priority
 
@@ -466,18 +435,16 @@ enum Priority : int
 
 **描述**
 
-
 AI计算任务的优先级。
 
 **起始版本：** 3.2
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| PRIORITY_NONE | 不指定任何任务优先级，具体执行策略由芯片定义 | 
-| PRIORITY_LOW | 低优先级，若有更高优先级的任务，芯片会执行更高优先级的任务 | 
-| PRIORITY_MEDIUM | 中等优先级，若有更高优先级的任务，芯片会执行更高优先级的任务 | 
-| PRIORITY_HIGH | 高优先级，高优先级任务最先执行 | 
-
+| PRIORITY_NONE | 不指定任何任务优先级，具体执行策略由芯片定义。 | 
+| PRIORITY_LOW | 低优先级，若有更高优先级的任务，芯片会执行更高优先级的任务。 | 
+| PRIORITY_MEDIUM | 中等优先级，若有更高优先级的任务，芯片会执行更高优先级的任务。 | 
+| PRIORITY_HIGH | 高优先级，高优先级任务最先执行。 | 
 
 ### QuantType
 
@@ -487,16 +454,14 @@ enum QuantType : byte
 
 **描述**
 
-
 量化类型。需要配合[Node](_node_v10.md)使用。
 
 **起始版本：** 3.2
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| QUANT_TYPE_NONE | 不使用量化 | 
-| QUANT_TYPE_ALL | int8全量化 | 
-
+| QUANT_TYPE_NONE | 不使用量化。 | 
+| QUANT_TYPE_ALL | int8全量化。 | 
 
 ### ReduceMode
 
@@ -505,7 +470,6 @@ enum ReduceMode : byte
 ```
 
 **描述**
-
 
 用于维度移除的方法，需要配合[ReduceFusion](_reduce_fusion_v10.md)算子使用。
 
@@ -522,7 +486,6 @@ enum ReduceMode : byte
 | REDUCE_MODE_ASUM | 使用指定维度所有元素的绝对值和代替该维度的其他元素，以移除该维度。 | 
 | REDUCE_MODE_ALL | 使用指定维度所有元素的逻辑与代替该维度的其他元素，以移除该维度。 | 
 
-
 ### ResizeMethod
 
 ```
@@ -530,7 +493,6 @@ enum ResizeMethod : byte
 ```
 
 **描述**
-
 
 调整尺寸的方法。需要配合[Resize](_resize_v10.md)算子使用。
 
@@ -543,7 +505,6 @@ enum ResizeMethod : byte
 | RESIZE_METHOD_NEAREST | 最近临近插值。<br/>假设需要计算未知函数f在点$ (x,y) $的值其中$ x_1 &lt; x &lt;x_2, y_1 &lt; y &lt; y_2 $，并且已知四个坐标点的值$ Q_{11} = (x_1, y_1), Q_{12} = (x1, y2), Q_{21} = (x_2, y_1)，Q_{22} = (x_2, y_2) $，则从4个点中选择距离点$ (x,y) $最近的点的数值作为$ f(x,y) $的值。 | 
 | RESIZE_METHOD_CUBIC | 双三次插值。<br/>双三次插值是取采样点周围16个点的值的加权平均来计算采样点的数值。该参数需要配合[Resize](_resize_v10.md)的cubicCoeff和coordinateTransformMode参数使用。 当coordinateTransformMode==COORDINATE_TRANSFORM_MODE_HALF_PIXEL时,cubicCoeff=-0.5，其他情况cubicCoeff=-0.75。插值函数的权重函数如下：<br/>$ W(x) = \begin{cases} (cubicCoeff+2)\|x\|^3 - (cubicCoeff+3)\|x\|^2 +1 , &amp;\text{if } \|x\| \leq 1; \cr cubicCoeff\|x\|^3 - 5cubicCoeff\|x\|^2 + 8cubicCoeff\|x\| - 4a, &amp;\text{if } 1 \lt \|x\| \leq 2; \cr 0, &amp;\text{otherwise.} \end{cases} $ | 
 
-
 ### RoundMode
 
 ```
@@ -552,12 +513,11 @@ enum RoundMode : byte
 
 **描述**
 
-
 小数取整算法，需要配合[AvgPoolFusion](_avg_pool_fusion_v10.md)算子使用。
 
 **起始版本：** 3.2
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ROUND_MODE_FLOOR | 向下取临近的整数，例如23.5取整为23，−23.5取整为−24 | 
-| ROUND_MODE_CEIL | 向上取临近的整数整，例如23.5取整为24，−23.5取整为−23 | 
+| ROUND_MODE_FLOOR | 向下取临近的整数，例如23.5取整为23，−23.5取整为−24。 | 
+| ROUND_MODE_CEIL | 向上取临近的整数整，例如23.5取整为24，−23.5取整为−23。 | 

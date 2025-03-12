@@ -162,6 +162,7 @@ struct example {
         this.surfaceId = this.xComponentCtl.getXComponentSurfaceId(); // 获取组件surfaceId。
         // 使用surfaceId创建预览流，开启相机，组件实时渲染每帧预览流数据。
       })
+      // surface的宽、高设置与XComponent组件的宽、高设置相反，或使用.renderFit(RenderFit.RESIZE_CONTAIN)自动填充显示无需设置宽、高。
       .width(px2vp(this.imageHeight))
       .height(px2vp(this.imageWidth))
   }

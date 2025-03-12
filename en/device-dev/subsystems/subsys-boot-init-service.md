@@ -39,6 +39,7 @@ Service management is implemented by using the init process to parse the service
    | socket | Optional| Standard system| Socket attribute configuration.| This field is required for services that uses a socket connection.|
    | env | Optional| Standard system| Environment variable configuration.| Type: key-value pair array.<br>Multiple environment variables can be configured. For example:<br>"env" : [{<br> "name" : "SERVICE_NALE", <br>"value" : "ueventd"},{<br> "name" : "TEST",<br> "value" : "test_value" <br>}]|
    | period | Optional| Standard system| Scheduled startup upon service exit.| Type: int, for example, 60. This field specifies the interval for starting a scheduled task, in seconds.<br>If this function is enabled, a timer is started to periodically start the service upon service exit. For example, **"period": 60** indicates that the service is started 60 seconds upon service exit.|
+   | cgroup | Optional| Standard system| Whether to enable on-demand **cgroup** configuration.   | Type: bool, for example, **"cgroup": true**.<br>If this function is enabled, the service process and its subprocesses are destroyed synchronously when the service exits.|
 
    **Table 2** Description of socket fields
    | Field| Description|

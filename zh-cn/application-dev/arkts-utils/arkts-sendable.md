@@ -44,7 +44,9 @@ Sendable class需同时满足以下两个规则：
 >
 > - 从API version 12开始，支持使用\@Sendable装饰器校验Sendable function。
 >
-> - 开发者如需在API12上使用Sendable function，需在工程中配置"compatibleSdkVersionStage": "beta3"，否则其Sendable特性将不生效。参考[build-profile.json5配置文件说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5)。
+> - 针对API version 12的工程，开发者使用\@Sendable装饰器校验Sendable function时，需在工程中配置"compatibleSdkVersionStage": "beta3"，否则其Sendable特性将不生效。参考[build-profile.json5配置文件说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5)。
+>
+> - 针对API version大于12的工程，开发者可直接使用\@Sendable装饰器校验Sendable function，无需再进行其他配置。
 
 Sendable function需同时满足以下两个规则：
 

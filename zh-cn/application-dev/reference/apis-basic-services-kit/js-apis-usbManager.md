@@ -586,7 +586,7 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备，需要调用connectDevice获取。|
 | controlparam | [USBControlParams](#usbcontrolparamsdeprecated) | 是 | 控制传输参数，按需设置参数，参数传参类型请参考USB协议。|
-| timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择 。 |
+| timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择。 |
 
 **错误码：**
 
@@ -753,7 +753,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 > 以下示例代码只是调用bulkTransfer接口的必要流程，实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
 
 ```ts
-//usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
+//usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限。
 //把获取到的设备对象作为参数传入usbManager.connectDevice;当usbManager.connectDevice接口成功返回之后；
 //才可以调用第三个接口usbManager.claimInterface.当usbManager.claimInterface 调用成功以后,再调用该接口。
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
@@ -780,7 +780,7 @@ for (let i = 0; i < device.configs[0].interfaces.length; i++) {
 
 ## usbManager.usbSubmitTransfer<sup>18+</sup>
 
-usbSubmitTransfer(transfer: USBDataTransferParams): void;
+usbSubmitTransfer(transfer: USBDataTransferParams): void
 
 提交异步传输请求。
 
@@ -821,7 +821,7 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void;
 > 以下示例代码需要放入具体的方法中执行，只是调用usbSubmitTransfer接口的必要流程，实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
 
 ```ts
-//usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
+//usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限。
 //把获取到的设备对象作为参数传入usbManager.connectDevice;当usbManager.connectDevice接口成功返回之后；
 //才可以调用第三个接口usbManager.claimInterface.当usbManager.claimInterface 调用成功以后,再调用该接口。
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
@@ -832,11 +832,11 @@ if (devicesList.length == 0) {
 let device: usbManager.USBDevice = devicesList[0];
 usbManager.requestRight(device.name);
 let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
-//获取endpoint端点地址
+//获取endpoint端点地址。
 let endpoint = device.configs[0].interfaces[0]?.endpoints.find((value) => {
   return value.direction === 0 && value.type === 2
 })
-//获取设备的第一个id
+//获取设备的第一个id。
 let ret: number = usbManager.claimInterface(devicepipe, device.configs[0].interfaces[0], true);
 
 let transferParams: usbManager.UsbDataTransferParams = {
@@ -863,10 +863,9 @@ try {
 }
 ```
 
-
 ## usbManager.usbCancelTransfer<sup>18+</sup>
 
-usbCancelTransfer(transfer: USBDataTransferParams): void;
+usbCancelTransfer(transfer: USBDataTransferParams): void
 
 取消异步传输请求。
 
@@ -901,7 +900,7 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| &lt;void&gt; | 无 |
+| &lt;void&gt; | 无。 |
 
 **示例：**
 
@@ -910,7 +909,7 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;
 > 以下示例代码需要放入具体的方法中执行，只是调用usbCancelTransfer接口的必要流程，实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
 
 ```ts
-//usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
+//usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限。
 //把获取到的设备对象作为参数传入usbManager.connectDevice;当usbManager.connectDevice接口成功返回之后；
 //才可以调用第三个接口usbManager.claimInterface.当usbManager.claimInterface 调用成功以后,再调用该接口。
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
@@ -921,11 +920,11 @@ if (devicesList.length == 0) {
 let device: usbManager.USBDevice = devicesList[0];
 usbManager.requestRight(device.name);
 let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
-//获取endpoint端点地址
+//获取endpoint端点地址。
 let endpoint = device.configs[0].interfaces[0]?.endpoints.find((value) => {
   return value.direction === 0 && value.type === 2
 })
-//获取设备的第一个id
+//获取设备的第一个id。
 let ret: number = usbManager.claimInterface(devicepipe, device.configs[0].interfaces[0], true);
 let transferParams: usbManager.UsbDataTransferParams = {
   devPipe: devicepipe,
@@ -1095,7 +1094,7 @@ try {
 
 ## usbManager.cancelAccessoryRight<sup>14+</sup>
 
-cancelAccessoryRight(accessory: USBAccessory): void;
+cancelAccessoryRight(accessory: USBAccessory): void
 
 取消当前应用程序访问USB配件的权限。
 
@@ -1172,7 +1171,7 @@ try {
 
 ## usbManager.openAccessory<sup>14+</sup>
 
-openAccessory(accessory: USBAccessory): USBAccessoryHandle;
+openAccessory(accessory: USBAccessory): USBAccessoryHandle
 
 获取配件句柄并打开配件文件描述符。
 
@@ -1222,7 +1221,7 @@ try {
 
 ## usbManager.closeAccessory<sup>14+</sup>
 
-closeAccessory(accessoryHandle: USBAccessoryHandle): void;
+closeAccessory(accessoryHandle: USBAccessoryHandle): void
 
 关闭配件文件描述符。
 
@@ -1508,7 +1507,6 @@ libusb实际处理完成后通过回调返回的状态码。
 | TRANSFER_STALL  | 4    | 检测到暂停（批量/中断端点）。|
 | TRANSFER_NO_DEVICE     | 5    | 设备已断开。|
 | TRANSFER_OVERFLOW     | 6    | 设备发送的数据比请求的多。|
-
 
 ## UsbIsoPacketDescriptor<sup>18+</sup>
 

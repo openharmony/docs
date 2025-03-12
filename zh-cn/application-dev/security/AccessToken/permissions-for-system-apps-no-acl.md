@@ -248,7 +248,7 @@
 
 **ACL使能**：false
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.SET_LAUNCH_REASON_MESSAGE
 
@@ -260,7 +260,7 @@
 
 **ACL使能**：false
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_USER_ACCOUNT_INFO
 
@@ -272,4 +272,4 @@
 
 **ACL使能**：false
 
-**起始版本**：16
+**起始版本**：18

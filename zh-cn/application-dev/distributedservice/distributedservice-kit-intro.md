@@ -4,7 +4,7 @@ Distributed Service Kit（分布式管理服务）实现了分布式设备管理
 
 应用开发者可以通过分布式设备管理进行周边设备的发现、认证、信息查询、状态监听等，该能力是分布式业务的入口功能，即只有完成认证后的设备之间才可以进行分布式业务。
 
-应用开发者可以通过[应用跨设备连接管理模块](abilityconnectmanager-guidelines.md)实现应用间协同。设备间登录同账号并组网成功后，应用可以跨设备拉起同应用的一个[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)，进行信息、字节流、图片、流的交互。
+应用开发者可以通过[应用跨设备连接管理模块](abilityconnectmanager-guidelines.md)实现应用间协同。设备间登录同账号并组网成功后，应用可以跨设备拉起同应用的一个[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)，进行信息、字节流、图片、传输流的交互。
 
 ## 运作机制
 

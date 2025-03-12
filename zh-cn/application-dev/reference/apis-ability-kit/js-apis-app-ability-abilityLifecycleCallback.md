@@ -18,7 +18,7 @@ import { AbilityLifecycleCallback } from '@kit.AbilityKit';
 
 onAbilityCreate(ability: UIAbility): void
 
-注册监听应用上下文的生命周期后，在ability创建时触发回调。
+注册监听应用上下文的生命周期后，在Ability创建时触发回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -38,7 +38,7 @@ onAbilityCreate(ability: UIAbility): void
 
 onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void
 
-注册监听应用上下文的生命周期后，在windowStage创建时触发回调。
+注册监听应用上下文的生命周期后，在WindowStage创建时触发回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -59,7 +59,7 @@ onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void
 
 onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void
 
-注册监听应用上下文的生命周期后，在windowStage获焦时触发回调。
+注册监听应用上下文的生命周期后，在WindowStage获焦时触发回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -80,7 +80,7 @@ onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void
 
 onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
 
-注册监听应用上下文的生命周期后，在windowStage失焦时触发回调。
+注册监听应用上下文的生命周期后，在WindowStage失焦时触发回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -101,7 +101,7 @@ onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
 
 onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void
 
-注册监听应用上下文的生命周期后，在windowStage销毁时触发回调。
+注册监听应用上下文的生命周期后，在WindowStage销毁时触发回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -122,7 +122,7 @@ onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void
 
 onAbilityDestroy(ability: UIAbility): void
 
-注册监听应用上下文的生命周期后，在ability销毁时触发回调。
+注册监听应用上下文的生命周期后，在Ability销毁时触发回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -142,7 +142,7 @@ onAbilityDestroy(ability: UIAbility): void
 
 onAbilityForeground(ability: UIAbility): void
 
-注册监听应用上下文的生命周期后，在ability的状态从后台转到前台时触发回调。
+注册监听应用上下文的生命周期后，在Ability的状态从后台转到前台时触发回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -162,7 +162,7 @@ onAbilityForeground(ability: UIAbility): void
 
 onAbilityBackground(ability: UIAbility): void
 
-注册监听应用上下文的生命周期后，在ability的状态从前台转到后台时触发回调。
+注册监听应用上下文的生命周期后，在Ability的状态从前台转到后台时触发回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -182,7 +182,7 @@ onAbilityBackground(ability: UIAbility): void
 
 onAbilityContinue(ability: UIAbility): void
 
-注册监听应用上下文的生命周期后，在ability迁移时触发回调。
+注册监听应用上下文的生命周期后，在Ability迁移时触发回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 

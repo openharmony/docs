@@ -1,6 +1,6 @@
 # @ohos.file.PhotoPickerComponent (PhotoPickerComponent)
 
-The **PhotoPickerComponent** embedded in the UI of an application allows the application to access images or videos in the user directory without any permission. This component grants the application only the read permission.
+The PhotoPickerComponent embedded in the UI of an application allows the application to access images or videos in the user directory without any permission. This component grants the application only the read permission.
 The user can directly tap this component to select images or videos.
 
 > **NOTE**
@@ -15,13 +15,13 @@ import {
   DataType, BaseItemInfo, ItemInfo, PhotoBrowserInfo, AnimatorParams,
   MaxSelected, ItemType, ClickType, PickerOrientation,
   SelectMode, PickerColorMode, ReminderMode, MaxCountType, PhotoBrowserRange, PhotoBrowserUIElement,
-  ItemsDeletedCallback, ExceedMaxSeletedCallback, CurrentAlbumDeletedCallback
+  ItemsDeletedCallback, ExceedMaxSelectedCallback, CurrentAlbumDeletedCallback
 } from '@ohos.file.PhotoPickerComponent';
 ```
 
 ## Properties
 
-The [universal properties](../apis-arkui/arkui-ts/ts-universal-attributes-size.md) are supported.
+The [universal properties](../apis-arkui/arkui-ts/ts-component-general-attributes.md) are supported.
 
 ## PhotoPickerComponent
 
@@ -35,7 +35,7 @@ PhotoPickerComponent({
   onPickerControllerReady?: () => void,
   onPhotoBrowserChanged?: (browserItemInfo: BaseItemInfo) => boolean,
   onSelectedItemsDeleted?: ItemsDeletedCallback,
-  onExceedMaxSelected?: ExceedMaxSeletedCallback,
+  onExceedMaxSelected?: ExceedMaxSelectedCallback,
   onCurrentAlbumDeleted?: CurrentAlbumDeletedCallback,
   pickerController: PickerController
 })
@@ -65,10 +65,10 @@ Allows the application to access images or videos in the user directory without 
 | onPickerControllerReady | () => void                                                                       | No  | - | Callback to be invoked when **pickerController** is available.<br>The **PickerController** APIs can be called only after this callback is invoked.                                                                                                                                                                                                                                                                                              |
 | onPhotoBrowserChanged   | (browserItemInfo: [BaseItemInfo](#baseiteminfo)) => boolean                      | No  | - | Callback to be invoked when the photo browser page is swiped left or right. The callback returns photo browser information to the application.                                                                                                                                                                                                                                                                                                                                    |
 | onSelectedItemsDeleted<sup>13+</sup>  | [ItemsDeletedCallback](#itemsdeletedcallback13)                                  | No  | - | Callback to be invoked when the selected items are deleted. This callback returns information about the deleted items to the application.                                                                                                                                                                                                                                                                                                                             |
-| onExceedMaxSelected<sup>13+</sup>     | [ExceedMaxSeletedCallback](#exceedmaxseletedcallback13)                          | No  | - | Callback to be invoked when the number of selected media assets exceeds the limit (maximum number of selected images, selected videos, or selected items).<br>- If the number of selected images reaches the maximum but does not reach the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).PHOTO_MAX_COUNT.<br>- If the number of selected videos reaches the maximum but does not reach the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).VIDEO_MAX_COUNT.<br>- If the number of selected media assets reaches the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).TOTAL_MAX_COUNT.|
+| onExceedMaxSelected<sup>13+</sup>     | [ExceedMaxSelectedCallback](#exceedmaxselectedcallback13)                          | No  | - | Callback to be invoked when the number of selected media assets exceeds the limit (maximum number of selected images, selected videos, or selected items).<br>- If the number of selected images reaches the maximum but does not reach the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).PHOTO_MAX_COUNT.<br>- If the number of selected videos reaches the maximum but does not reach the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).VIDEO_MAX_COUNT.<br>- If the number of selected media assets reaches the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).TOTAL_MAX_COUNT.|
 | onCurrentAlbumDeleted<sup>13+</sup>   | [CurrentAlbumDeletedCallback](#currentalbumdeletedcallback13)                    | No  | - | Callback to be invoked when the current album is deleted.<br>The album is specified by **currentAlbumUri** in pickerContorller.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, currentAlbumUri).<br>To refresh the grid page to display the default album after the current album is deleted, you can set the title bar name to the default album name, for example, **Photos and videos**, **Photos**, or **Videos**, and call pickerContorller.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, '') with an empty string.                                 |
 | onVideoPlayStateChanged<sup>14+</sup>   | [videoPlayStateChangedCallback](#videoplaystatechangedcallback14)                    | No  | - | Callback to be invoked when the video playback state on a photo browser page changes.                                 |
-| pickerController        | [PickerController](#pickercontroller)                                            | No  | @ObjectLink | Instance used to send data to **PhotoPickerComponent**.                                                                                                                                                                                                                                                                                                                            |
+| pickerController        | [PickerController](#pickercontroller)                                            | No  | @ObjectLink | Instance used to send data to the **PhotoPickerComponent**.                                                                                                                                                                                                                                                                                                                            |
 
 ## PickerOptions
 
@@ -113,9 +113,9 @@ Called when the selected items are deleted.
 | -------- |--------------------------------------------| -------- |----------|
 | baseItemInfos | Array&lt;[BaseItemInfo](#baseiteminfo)&gt; | Yes| Basic information about the selected items.|
 
-## ExceedMaxSeletedCallback<sup>13+</sup>
+## ExceedMaxSelectedCallback<sup>13+</sup>
 
-type ExceedMaxSeletedCallback = (exceedMaxCountType: MaxCountType) => void
+type ExceedMaxSelectedCallback = (exceedMaxCountType: MaxCountType) => void
 
 Called when items are selected after the maximum count has been reached.
 
@@ -543,7 +543,7 @@ struct PickerDemo {
   @State isBrowserShow: boolean = false;
   private selectedItemsDeletedCallback: ItemsDeletedCallback =
     (baseItemInfos: Array<BaseItemInfo>) => this.onSelectedItemsDeleted(baseItemInfos);
-  private exceedMaxSeletedCallback: ExceedMaxSelectedCallback =
+  private exceedMaxSelectedCallback: ExceedMaxSelectedCallback =
     (exceedMaxCountType: MaxCountType) => this.onExceedMaxSelected(exceedMaxCountType);
   private currentAlbumDeletedCallback: CurrentAlbumDeletedCallback = () => this.onCurrentAlbumDeleted();
   private videoPlayStateChangedCallback: videoPlayStateChangedCallback = () => this.videoPlayStateChanged();
@@ -668,7 +668,7 @@ struct PickerDemo {
           onPickerControllerReady: (): void => this.onPickerControllerReady(),
           onPhotoBrowserChanged: (browserItemInfo: BaseItemInfo): boolean => this.onPhotoBrowserChanged(browserItemInfo),
           onSelectedItemsDeleted: this.selectedItemsDeletedCallback,
-          onExceedMaxSelected: this.exceedMaxSeletedCallback,
+          onExceedMaxSelected: this.exceedMaxSelectedCallback,
           onCurrentAlbumDeleted: this.currentAlbumDeletedCallback,
           onVideoPlayStateChanged: this.videoPlayStateChangedCallback,
           pickerController: this.pickerController,
@@ -706,3 +706,5 @@ struct PickerDemo {
   }
 }
 ```
+
+ <!--no_check--> 

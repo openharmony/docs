@@ -442,7 +442,7 @@ slideRange(value: SlideRange)
 | ------ | ----------------------------------- | ---- | ---------------- |
 | value  | [SlideRange](#sliderange12对象说明) | 是   | 设置有效滑动区间 |
 
-### enableHapticFeedback<sup>16+</sup>
+### enableHapticFeedback<sup>18+</sup>
 
 enableHapticFeedback(enabled: boolean)
 
@@ -458,7 +458,7 @@ enableHapticFeedback(enabled: boolean)
  ]
 ```
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

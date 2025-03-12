@@ -24,15 +24,15 @@ opacity(value: number | Resource)
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 元素的不透明度，取值范围为0到1，1表示不透明，0表示完全透明, 达到隐藏组件效果，但是在布局中占位。 <br> 默认值：1 <br/>**说明：** <br/> 子组件会继承父组件的透明度，并与自身的透明度属性叠加。如：父组件透明度为0.1，子组件设置透明度为0.8，则子组件实际透明度为0.1*0.8=0.08。 |
 
-## opacity<sup>16+</sup>
+## opacity<sup>18+</sup>
 
 opacity(opacity: Optional\<number | Resource>)
 
 设置组件的不透明度。与[opacity](#opacity)相比，opacity参数新增了对undefined类型的支持。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

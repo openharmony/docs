@@ -31,7 +31,7 @@ import { ToneMappingType, ToneMappingSettings, PostProcessSettings } from '@kit.
 | type | [ToneMappingType](#tonemappingtype) | 否 | 是 | 色调映射类型，默认值为undefined。 |
 | exposure | number | 否 | 是 | 曝光度，取值大于0，默认值为undefined。 |
 
-## BloomSettings<sup>16+</sup>
+## BloomSettings<sup>18+</sup>
 泛光设置接口。
 ### 属性
 
@@ -52,4 +52,4 @@ import { ToneMappingType, ToneMappingSettings, PostProcessSettings } from '@kit.
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | toneMapping | [ToneMappingSettings](#tonemappingsettings) | 否 | 是 | 色调映射，默认值为undefined。 |
-| bloom<sup>16+</sup> | [BloomSettings](#bloomsettings16) | 否 | 是 | 泛光，默认值为undefined。 |
+| bloom<sup>18+</sup> | [BloomSettings](#bloomsettings18) | 否 | 是 | 泛光，默认值为undefined。 |

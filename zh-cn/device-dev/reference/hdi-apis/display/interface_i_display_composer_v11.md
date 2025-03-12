@@ -1,6 +1,5 @@
 # IDisplayComposer
 
-
 ## 概述
 
 显示合成接口声明。
@@ -11,9 +10,7 @@
 
 **相关模块：**[Display](_display_v11.md)
 
-
 ## 汇总
-
 
 ### Public 成员函数
 
@@ -30,9 +27,7 @@
 | [GetDisplaySupportedColorGamuts](#getdisplaysupportedcolorgamuts) ([in] unsigned int devId, [out] struct ColorGamut[] gamuts) | 获取显示设备的色域。 | 
 | [GetHDRCapabilityInfos](#gethdrcapabilityinfos) ([in] unsigned int devId, [out] struct HDRCapability info) | 获取显示设备的功能。 | 
 
-
 ## 成员函数说明
-
 
 ### GetDisplaySupportedColorGamuts()
 
@@ -41,7 +36,6 @@ IDisplayComposer::GetDisplaySupportedColorGamuts ([in] unsigned int devId, [out]
 ```
 
 **描述**
-
 
 获取显示设备的色域。
 
@@ -60,7 +54,6 @@ IDisplayComposer::GetDisplaySupportedColorGamuts ([in] unsigned int devId, [out]
 
 其他值表示执行失败，具体错误码查看[DispErrCode](_display_v10.md#disperrcode)。
 
-
 ### GetDisplaySupportedModesExt()
 
 ```
@@ -68,7 +61,6 @@ IDisplayComposer::GetDisplaySupportedModesExt ([in] unsigned int devId, [out] st
 ```
 
 **描述**
-
 
 获取显示设备支持的显示模式。
 
@@ -87,7 +79,6 @@ IDisplayComposer::GetDisplaySupportedModesExt ([in] unsigned int devId, [out] st
 
 其他值表示执行失败，具体错误码查看[DispErrCode](_display_v10.md#disperrcode)。
 
-
 ### GetDisplayVBlankPeriod()
 
 ```
@@ -95,7 +86,6 @@ IDisplayComposer::GetDisplayVBlankPeriod ([in] unsigned int devId, [out] unsigne
 ```
 
 **描述**
-
 
 获取当前 vblank 周期。
 
@@ -114,7 +104,6 @@ IDisplayComposer::GetDisplayVBlankPeriod ([in] unsigned int devId, [out] unsigne
 
 其他值表示执行失败，具体错误码查看[DispErrCode](_display_v10.md#disperrcode)。
 
-
 ### GetHDRCapabilityInfos()
 
 ```
@@ -122,7 +111,6 @@ IDisplayComposer::GetHDRCapabilityInfos ([in] unsigned int devId, [out] struct H
 ```
 
 **描述**
-
 
 获取显示设备的功能。
 
@@ -141,7 +129,6 @@ IDisplayComposer::GetHDRCapabilityInfos ([in] unsigned int devId, [out] struct H
 
 其他值表示执行失败，具体错误码查看[DispErrCode](_display_v10.md#disperrcode)。
 
-
 ### GetSupportedLayerPerFrameParameterKey()
 
 ```
@@ -149,7 +136,6 @@ IDisplayComposer::GetSupportedLayerPerFrameParameterKey ([out] String[] keys)
 ```
 
 **描述**
-
 
 返回支持的参数键的列表。
 
@@ -167,7 +153,6 @@ IDisplayComposer::GetSupportedLayerPerFrameParameterKey ([out] String[] keys)
 
 其他值表示执行失败，具体错误码查看[DispErrCode](_display_v10.md#disperrcode)。
 
-
 ### RegRefreshCallback()
 
 ```
@@ -175,7 +160,6 @@ IDisplayComposer::RegRefreshCallback ([in] IRefreshCallback cb)
 ```
 
 **描述**
-
 
 注册要在发生刷新事件时调用的回调。
 
@@ -193,7 +177,6 @@ IDisplayComposer::RegRefreshCallback ([in] IRefreshCallback cb)
 
 其他值表示执行失败，具体错误码查看[DispErrCode](_display_v10.md#disperrcode)。
 
-
 ### RegSeamlessChangeCallback()
 
 ```
@@ -201,7 +184,6 @@ IDisplayComposer::RegSeamlessChangeCallback ([in] ISeamlessChangeCallback cb)
 ```
 
 **描述**
-
 
 注册要在准备好更改帧速率时调用的回调。
 
@@ -219,7 +201,6 @@ IDisplayComposer::RegSeamlessChangeCallback ([in] ISeamlessChangeCallback cb)
 
 其他值表示执行失败，具体错误码查看[DispErrCode](_display_v10.md#disperrcode)。
 
-
 ### SetDisplayModeAsync()
 
 ```
@@ -227,7 +208,6 @@ IDisplayComposer::SetDisplayModeAsync ([in] unsigned int devId, [in] unsigned in
 ```
 
 **描述**
-
 
 设置显示设备的显示模式。
 
@@ -247,7 +227,6 @@ IDisplayComposer::SetDisplayModeAsync ([in] unsigned int devId, [in] unsigned in
 
 其他值表示执行失败，具体错误码查看[DispErrCode](_display_v10.md#disperrcode)。
 
-
 ### SetDisplayOverlayResolution()
 
 ```
@@ -255,7 +234,6 @@ IDisplayComposer::SetDisplayOverlayResolution ([in] unsigned int devId, [in] uns
 ```
 
 **描述**
-
 
 设置给定图层的参数，参数更改必须在此调用后完全生效。
 
@@ -275,7 +253,6 @@ IDisplayComposer::SetDisplayOverlayResolution ([in] unsigned int devId, [in] uns
 
 其他值表示执行失败，具体错误码查看[DispErrCode](_display_v10.md#disperrcode)。
 
-
 ### SetLayerPerFrameParameter()
 
 ```
@@ -283,7 +260,6 @@ IDisplayComposer::SetLayerPerFrameParameter ([in] unsigned int devId, [in] unsig
 ```
 
 **描述**
-
 
 设置给定图层的参数，参数更改必须在此调用后完全生效。
 
