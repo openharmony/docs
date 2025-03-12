@@ -11362,7 +11362,7 @@ setWindowRectAutoSave(enabled: boolean): Promise&lt;void&gt;
 
 设置主窗的尺寸记忆是否启用，使用Promise异步回调，仅对2in1设备生效。
 
-调用此接口默认specified启动模式下不会通过specifiedFlag对特定窗口进行记忆。
+调用此接口默认[specified启动模式](../../../application-dev/application-models/uiability-launch-type.md#specified启动模式)下不会单独对窗口进行单独记忆。
 
 主窗口调用该接口时，设置主窗口的尺寸记忆是否启用。启用主窗口尺寸记忆功能后，在同一个UIAbility下，记忆最后关闭的窗口的尺寸和模式。
 
@@ -11442,13 +11442,11 @@ setWindowRectAutoSave(enabled: boolean, isSaveBySpecifiedFlag: boolean): Promise
 
 设置主窗的尺寸记忆是否启用，使用Promise异步回调，仅对2in1设备生效。
 
-主窗口调用该接口时，通过设置enable，主窗口的尺寸记忆是否启用，同时通过设置isSaveBySpecifiedFlag，使能/去使能在specified模式下通过flag特异性记忆主窗口。
+主窗口调用该接口时，通过设置enabled，主窗口的尺寸记忆是否启用，同时通过设置isSaveBySpecifiedFlag，使能/去使能在specified模式下对窗口进行单独记忆。
 
-若isSaveBySpecifiedFlag设置为false，规格同[setWindowRectAutoSave(enabled: boolean)](#setWindowRectAutoSave14)。
+启用主窗口尺寸和specified记忆功能后，记忆窗口关闭时的尺寸和模式；
 
-启用主窗口尺寸和specified记忆功能后，记忆关闭的窗口的尺寸和模式；
-
-窗口再次以相同的specifiedFlag启动时，以记忆的尺寸和模式按照规则进行打开。
+窗口再次启动时，以记忆的尺寸和模式按照规则进行打开。
 
 记忆规则：
 |上一次窗口状态|记忆规则|
