@@ -506,9 +506,9 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 | 801  | Capability not supported. |
 | 3100201  | The tag running state is abnormal in the service. |
 
-## tag.getBarcodeTag<sup>16+</sup>
+## tag.getBarcodeTag<sup>18+</sup>
 
-getBarcodeTag(taginfo: [TagInfo](#taginfo)): [BartcodeTag](js-apis-nfctech.md#barcodetag16)
+getBarcodeTag(taginfo: [TagInfo](#taginfo)): [BartcodeTag](js-apis-nfctech.md#barcodetag18)
 
 获取BarcodeTag类型Tag对象，通过该对象可访问BarcodeTag技术类型的Tag。
 
@@ -516,7 +516,7 @@ getBarcodeTag(taginfo: [TagInfo](#taginfo)): [BartcodeTag](js-apis-nfctech.md#ba
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 | 参数名  | 类型                | 必填 | 说明                                                          |
@@ -527,7 +527,7 @@ getBarcodeTag(taginfo: [TagInfo](#taginfo)): [BartcodeTag](js-apis-nfctech.md#ba
 
 | 类型                        | 说明                 |
 | ------------------------- | ------------------ |
-| [BartcodeTag](js-apis-nfctech.md#barcodetag16) | BarcodeTag类型Tag对象。 |
+| [BartcodeTag](js-apis-nfctech.md#barcodetag18) | BarcodeTag类型Tag对象。 |
 
 **错误码：**
 
@@ -928,7 +928,7 @@ try {
 }
 ```
 
-## tag.ndef.makeApplicationRecord<sup>16+</sup>
+## tag.ndef.makeApplicationRecord<sup>18+</sup>
 
 makeApplicationRecord(bundleName: string): NdefRecord
 
@@ -936,7 +936,7 @@ makeApplicationRecord(bundleName: string): NdefRecord
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1464,18 +1464,18 @@ type NdefFormatableTag = _NdefFormatableTag
 | ------ | ------------------------------------------------------------ |
 | [_NdefFormatableTag](./js-apis-nfctech.md#ndefformatabletag9) | NdefFormatableTag为NDEF Formattable的标签提供格式化操作。 |
 
-## BarcodeTag<sup>16+</sup>
+## BarcodeTag<sup>18+</sup>
 
 type BarcodeTag = _BarcodeTag
 
 获取BarcodeTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [_BarcodeTag](./js-apis-nfctech.md#barcodetag16) | 提供对条形码标签的属性和I/O操作的访问。 |
+| [_BarcodeTag](./js-apis-nfctech.md#barcodetag18) | 提供对条形码标签的属性和I/O操作的访问。 |
 
 ## NdefMessage<sup>9+</sup>
 
