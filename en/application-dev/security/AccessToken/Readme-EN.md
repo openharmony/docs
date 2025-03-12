@@ -12,7 +12,7 @@
     <!--Del-->
     - [Requesting Restricted Permissions](declare-permissions-in-acl.md)
     <!--DelEnd-->
-  - Application Permissions
+  - Application Permissions<!--app-permissions-->
     - [Permissions for All Applications](permissions-for-all.md)
     <!--Del-->
     - [Permissions for System Applications](permissions-for-system-apps.md)
