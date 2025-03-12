@@ -571,7 +571,7 @@ avSession.startAVPlayback("com.example.myapplication", "121278").then(() => {
   console.error(`startAVPlayback BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
-## avSession.getDistributedSessionController<sup>16+</sup>
+## avSession.getDistributedSessionController<sup>18+</sup>
 
 getDistributedSessionController(distributedSessionType: DistributedSessionType): Promise<Array\<AVSessionController>>
 
@@ -928,7 +928,7 @@ avSession.off('sessionServiceDie');
 ```
 
 
-## avSession.on('distributedSessionChange')
+## avSession.on('distributedSessionChange')<sup>18+</sup>
 
 on(type: 'distributedSessionChange', distributedSessionType: DistributedSessionType, callback: Callback<Array\<AVSessionController>>): void
 
@@ -967,7 +967,7 @@ avSession.on('distributedSessionChange', avSession.DistributedSessionType.TYPE_S
 ```
 
 
-## avSession.off('distributedSessionChange')
+## avSession.off('distributedSessionChange')<sup>18+</sup>
 
 off(type: 'distributedSessionChange', distributedSessionType: DistributedSessionType, callback?: Callback<Array\<AVSessionController>>): void
 
@@ -2201,7 +2201,7 @@ aVCastController.setDisplaySurface(surfaceID, (err: BusinessError) => {
 });
 ```
 
-### on('videoSizeChange')<sup>10+</sup>
+### on('videoSizeChange')<sup>12+</sup>
 
 on(type: 'videoSizeChange', callback: (width:number, height:number) => void): void
 
@@ -2236,7 +2236,7 @@ aVCastController.on('videoSizeChange', (width: number, height: number) => {
 });
 ```
 
-### off('videoSizeChange')<sup>10+</sup>
+### off('videoSizeChange')<sup>12+</sup>
 
 off(type: 'videoSizeChange'): void
 
@@ -2275,7 +2275,7 @@ aVCastController.off('videoSizeChange');
 
 | 名称            | 类型                      | 必填 | 说明                                                                  |
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
-| avQueueName<sup>11+</sup>     | string                  | 否   | 歌单（歌曲列表）名称。<br/>此接口为系统接口。 |
+| avQueueName<sup>12+</sup>     | string                  | 否   | 歌单（歌曲列表）名称。<br/>此接口为系统接口。 |
 
 ## AVQueueInfo<sup>11+</sup>
 
