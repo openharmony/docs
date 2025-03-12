@@ -102,11 +102,9 @@ In the following example, when a user clicks the **Open Page in New Window** but
 
 ![web-open-in-new-window](figures/web-open-in-new-window.png)
 
-
+  
 ## Samples
 
 The following samples are provided to help you better understand how to create a window:
 
 - [Browser (ArkTS) (Full SDK) (API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Web/Browser)
-
-<!--no_check-->
