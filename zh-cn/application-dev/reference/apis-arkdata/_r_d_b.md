@@ -6082,10 +6082,6 @@ int(*getSize) (OH_Cursor *cursor, int32_t columnIndex, size_t *size)
 
 函数指针，当结果集中列的数据类型是BLOB或者TEXT时，获取其值所需的内存。
 
-当 OH_Cursor 由 OH_Rdb_Query 获得时：调用 getSize 方法将返回指定列的值的大小（不包括终止符）。
-
-当 OH_Cursor 由 OH_Rdb_ExecuteQuery 获得时：调用 getSize 方法将返回指定列的值的大小（包括终止符）。
-
 **起始版本：** 10
 
 **参数:**
