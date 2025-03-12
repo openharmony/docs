@@ -672,7 +672,7 @@ PixelMap does not allow modification.
 
 停止对PixelMap的修改。
 
-## 62980248 创建surface失败
+## 62980252 创建surface失败
 
 **错误信息**
 
