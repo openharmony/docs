@@ -24,6 +24,33 @@ Sets the accessibility group.
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | Yes  | Accessibility group. If this attribute is set to **true**, the component and all its child components form an entire selectable component, and the accessibility service will no longer be available for the content of its child components.<br>Default value: **false**|
 
+## accessibilityGroup<sup>14+</sup>
+
+accessibilityGroup(isGroup: boolean, accessibilityOptions: AccessibilityOptions)
+
+Groups components for accessibility purposes, allowing the accessibility service to read out concatenated text.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name              | Type                                                   | Mandatory| Description                                                        |
+| -------------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| isGroup              | boolean                                                 | Yes  | Whether to group the current component and its children. If this parameter is set to **true**, the component and all its children are treated as a single selectable unit. The accessibility service will not focus on individual child components.<br>Default value: **false**|
+| accessibilityOptions | [AccessibilityOptions](#accessibilityoptions14) | No  | Options to customize accessibility behavior, such as prioritizing concatenated text for reading.            |
+
+## AccessibilityOptions<sup>14+</sup>
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name                  | Type   | Mandatory| Description                                                        |
+| ---------------------- | ------- | ---- | ------------------------------------------------------------ |
+| accessibilityPreferred | boolean | No  | Whether to prioritize the accessibility text of child components during a deep traversal. The value **true** means to prioritize the accessibility text of child components.<br>If a child component's accessibility text is empty, the accessibility service uses the component's own text content. The concatenated text is then assigned to the parent node if both its accessibility text and text content are empty.|
+
 ## accessibilityText
 
 accessibilityText(value: string)
@@ -40,7 +67,7 @@ Sets the accessibility text.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | string | Yes  | Accessibility text. If a component does not contain text information, it will not be read when the component is selected by the screen reader. In this case, the screen reader user cannot know which component is selected. To solve this problem, you can set this attribute for components without text information. When the component is selected by the screen reader, the specified accessibility text will be read, informing the user which component is selected.<br>Default value: **""**<br>**NOTE**<br>If a component with this attribute set contains text information, only the accessibility text will be read.<br>If a component with its **accessibilityGroup** attribute set to **true** does not have **accessibilityText** set and does not contain text information, text concatenation will be performed on its child components (depth first).|
+| value  | string | Yes  | Accessibility text. If a component does not contain text information, it will not be announced by the screen reader when selected. In this case, the screen reader user cannot know which component is selected. To solve this problem, you can set accessibility text for components without text information. When such a component is selected, the screen reader announces the specified accessibility text, informing the user which component is selected.<br>Default value: **""**<br>**NOTE**<br>If a component has both text content and accessibility text, only the accessibility text is announced.<br>If a component is grouped for accessibility purposes but lacks both text content and accessibility text, the screen reader will concatenate text from its child components (depth-first traversal).<br>To prioritize accessibility text concatenation, set **accessibilityPreferred** in **accessibilityGroup**.|
 
 ## accessibilityText<sup>12+</sup>
 
@@ -58,7 +85,7 @@ Sets the accessibility text, which supports referencing resource files through *
 
 | Name| Type  | Mandatory| Description                                                                                                                                                                                                                                                                  |
 | ------ | ------ | ---- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| text  | [Resource](ts-types.md#resource) | Yes  | Reference resource of accessibility text. If a component does not contain text information, it will not be read when the component is selected by the screen reader. In this case, the screen reader user cannot know which component is selected. To solve this problem, you can set this attribute for components without text information. When the component is selected by the screen reader, the specified accessibility text will be read, informing the user which component is selected.<br>**NOTE**<br>If a component with this attribute set contains text information, only the accessibility text will be read.<br>If a component with its **accessibilityGroup** attribute set to **true** does not have **accessibilityText** set and does not contain text information, text concatenation will be performed on its child components (depth first).|
+| text  | [Resource](ts-types.md#resource) | Yes  | Reference resource of accessibility text. If a component does not contain text information, it will not be announced by the screen reader when selected. In this case, the screen reader user cannot know which component is selected. To solve this problem, you can set accessibility text for components without text information. When such a component is selected, the screen reader announces the specified accessibility text, informing the user which component is selected.<br>**NOTE**<br>If a component has both text content and accessibility text, only the accessibility text is announced.<br>If a component is grouped for accessibility purposes but lacks both text content and accessibility text, the screen reader will concatenate text from its child components (depth-first traversal).<br>To prioritize accessibility text concatenation, set **accessibilityPreferred** in **accessibilityGroup**.|
 
 
 ## accessibilityDescription
@@ -133,9 +160,48 @@ Sets the accessibility virtual node.
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | builder  | [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Accessibility virtual node, which enables you to pass in a custom builder to the self-drawing component. The components in the custom builder are only laid out but not displayed at the backend. When the accessibility application obtains the accessibility node information, the node information in the custom builder is returned.|
 
-## Example
+## accessibilityChecked<sup>13+</sup>
 
-```ts
+accessibilityChecked(isCheck: boolean)
+
+Sets the checked (selected) state of the accessibility node. It can be used to support multi-select scenarios.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 13.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                                                        |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| isCheck | boolean | Yes  | Whether the current component is selected.<br>The options are as follows:<br>**true**: The component is selected.<br>**false**: The component is not selected.<br>**undefined**: The component determines its own selected state.<br>Default value: **undefined**<br>**NOTE**<br>1. Setting this parameter to **true** or **false** will automatically set the component's **checkable** attribute to **true**.<br>2. When this parameter is set to **true** or **false**, to use it with **accessibilitySelected**, set the **accessibilitySelected** parameter to **undefined**.|
+
+## accessibilitySelected<sup>13+</sup>
+
+accessibilitySelected(isSelect: boolean)
+
+Sets the selected state of the accessibility node. It can be used to support single-select scenarios.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 13.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type   | Mandatory| Description                                                        |
+| -------- | ------- | ---- | ------------------------------------------------------------ |
+| isSelect | boolean | Yes  | Whether the current component is selected.<br>The options are as follows:<br>**true**: The component is selected.<br>**false**: The component is not selected.<br>**undefined**: The component determines its own selected state.<br>Default value: **undefined**<br>**NOTE**<br>1. When this parameter is set to **true** or **false**, to use it with **accessibilityChecked**, set the **accessibilityChecked** parameter to **undefined**.|
+
+
+## Example 1: Setting Accessibility Text and Description
+
+This example demonstrates how to use **accessibilityText** and **accessibilityDescription** to customize the content announced by screen readers.
+
+```
 // xxx.ets
 @Entry
 @Component
@@ -152,21 +218,55 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text ("Text 1")
+        Text("Text 1")
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        Text ("Text 2")
+        Text("Text 2")
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
       }
       .width('100%')
       .accessibilityGroup(true)
       .accessibilityLevel("yes")
-      .accessibilityText ("Group")
+      .accessibilityText("Group") // If a component has both text content and accessibility text, only the accessibility text is announced.
       .accessibilityDescription("The <Column> component is selectable , and the text to be read out is "Group".)
       .accessibilityVirtualNode(this.customAccessibilityNode)
+      .accessibilityChecked(true)
+      .accessibilitySelected(undefined)
     }
     .height('100%')
   }
 }
 ```
+
+## Example 2: Setting the Accessibility Group
+
+This example shows how to use **accessibilityGroup** to prioritize reading the accessibility text of child components.
+
+```
+// xxx.ets
+@Entry
+@Component
+struct Focus {
+  build() {
+    Column({ space: 10 }) {
+      Text('123456')
+        .focusable(true)
+        .borderRadius(5)
+        .accessibilityText("Accessibility text is announced if both accessibility text and text content are present")
+        .accessibilityLevel("yes")
+      Button().accessibilityLevel("yes").accessibilityText("Accessibility text is announced if no text is present")
+      Button("Text content is announced if no accessibility text is present").accessibilityLevel("yes")
+      Button()
+      Button('btnl23').accessibilityText("Button with both accessibility text and text").accessibilityLevel("yes")
+      Button('btn123').accessibilityLevel("yes")
+    }
+    .accessibilityGroup(true, { accessibilityPreferred: true })
+    //.accessibilityGroup(true)
+    .borderWidth(5)
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+

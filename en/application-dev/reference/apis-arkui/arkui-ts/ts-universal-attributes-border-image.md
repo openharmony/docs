@@ -88,7 +88,7 @@ struct Index {
 
 ### Example 2: Dynamically Adjusting Property Values
 
-This example demonstrates how to dynamically adjust the properties of the **borderImage** API using the **slider** component.
+This example demonstrates how to dynamically adjust the properties of the **borderImage** API using the [slider](../../apis-arkui/arkui-js/js-components-basic-slider.md) component.
 
 ```ts
 // xxx.ets

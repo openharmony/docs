@@ -1,6 +1,6 @@
 # Image
 
-The **Image** component is usually used to display images in applications. It supports images in PNG, JPG, JPEG, BMP, SVG, WEBP, GIF, or HEIF format from the following data sources: [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7), [ResourceStr](ts-types.md#resourcestr), or [DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor).
+The **Image** component is usually used to display images in applications. It supports images in PNG, JPG, JPEG, BMP, SVG, WEBP, GIF, or HEIF format from the following data sources: [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7), [ResourceStr](ts-types.md#resourcestr), or [DrawableDescriptor](#drawabledescriptor10).
 
 > **NOTE**
 >
@@ -10,7 +10,7 @@ The **Image** component is usually used to display images in applications. It su
 >
 > The **Image** component supports SVG image sources. For details about SVG tags, see [SVG Tags](./ts-basic-svg.md).
 >
-> For animated images, the animation stops when the **Image** component is invisible. The component's visibility is determined by the value of **ratios** in the [onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange) event callback: If the value is greater than 0, the component is visible.
+> For animated images, animation playback is disabled by default and depends on the visibility of the **Image** component. When the component is visible, the animation is started through the callback. When the component is invisible, the animation is stopped. The visibility status of the **Image** component can be identified through the [onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange) event. If the value of **ratios** is greater than 0, the component is visible.
 
 ## Required Permissions
 
@@ -85,7 +85,7 @@ Obtains an image. The [imageAIOptions](ts-image-common.md#imageaioptions) parame
 
 ## Attributes
 
-For details about how to use the attributes, see [Setting Attributes](../../../ui/arkts-graphics-display.md#setting-attributes). In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+For details about how to use the attributes, see [Setting Attributes](../../../ui/arkts-graphics-display.md#setting-attributes). In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 > **NOTE**
 >
@@ -128,6 +128,26 @@ Sets how the image is resized to fit its container.
 | Name| Type                                     | Mandatory| Description                                       |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------- |
 | value  | [ImageFit](ts-appendix-enums.md#imagefit) | Yes  | How the image is resized to fit its container.<br>Default value: **ImageFit.Cover**|
+
+### imageMatrix<sup>15+</sup>
+
+imageMatrix(matrix: ImageMatrix)
+
+Sets the transformation matrix for the image, which covers parameters for translation, rotation, and scaling to achieve the optimal display of grid thumbnails. This attribute is not applicable to SVG images.
+
+This attribute does not take effect when the **resizable** or **objectRepeat** attributes are set.
+
+This attribute only processes the image source and does not trigger any callback events of the **Image** component.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                | Mandatory| Description          |
+| ------ | --------------------------------------------------- | ---- | -------------- |
+| matrix  | ImageMatrix | Yes  | Transformation matrix of the image.|
 
 ### objectRepeat
 
@@ -193,7 +213,7 @@ This attribute does not take effect when the parameter type of the component is 
 
 ### sourceSize
 
-sourceSize(value: ImageSourceSize)
+sourceSize(value: { width: number; height: number })
 
 Sets the decoding size of the image. This attribute works only when the target size is smaller than the source size. This attribute is not applicable to SVG images or **PixelMap** objects.
 
@@ -209,7 +229,8 @@ This attribute does not take effect when the parameter type of the component is 
 
 | Name| Type                                                   | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ImageSourceSize](#imagesourcesize14) | Yes  | Decoding size of the image. This parameter can be used to reduce the image resolution when the image display size needs to be smaller than the component size. When used together with **ImageFit.None**, it can display a small image in the component.|
+| value  | {<br/>width: number,<br/>height: number<br/>} | Yes  | Decoding size of the image. This parameter can be used to reduce the image resolution when the image display size needs to be smaller than the component size. When used together with **ImageFit.None**, it can display a small image in the component.<br>Unit: vp|
+
 
 ### matchTextDirection
 
@@ -269,7 +290,25 @@ This attribute does not take effect when the parameter type of the component is 
 
 | Name| Type                                      | Mandatory| Description          |
 | ------ | ------------------------------------------ | ---- | -------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Fill color to be superimposed on the image.|
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Fill color to be superimposed on the image.<br>**NOTE**<br> By default, no fill color is applied. If an invalid value is passed, the system uses the default theme color: black in light mode and white in dark mode.|
+
+### fillColor<sup>15+</sup>
+
+fillColor(color: ResourceColor|ColorContent)
+
+Sets the fill color to be superimposed on the image. This attribute applies only to SVG images. Once set, the fill color will replace the fill colors of all drawable elements within the SVG image. To set the fill color for a PNG image, use [colorFilter](#colorfilter9). To reset the fill color, pass a value of the [ColorContent](#colorcontent15) type.
+
+This attribute does not take effect when the parameter type of the component is [AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12).
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description          |
+| ------ | ------------------------------------------ | ---- | -------------- |
+| color  | [ResourceColor](ts-types.md#resourcecolor)\|[ColorContent](#colorcontent15) | Yes  | Fill color to be superimposed on the image.<br>**NOTE**<br> By default, no fill color is applied. If an invalid value is passed, the system uses the default theme color: black in light mode and white in dark mode.|
 
 ### autoResize
 
@@ -283,7 +322,7 @@ When the image is scaled down: .autoResize(false) + .interpolation(.Medium)
 
 When the image is scaled up: .interpolation(.High)
 
-This attribute does not take effect when the parameter type of the component is [AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12).
+This attribute does not take effect when the parameter type of the component is [AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12) or SVG.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -355,7 +394,7 @@ When this attribute is set, [renderMode](#rendermode) is not effective.
 
 | Name| Type                                   | Mandatory| Description                                                        |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter)<sup>12+</sup> | Yes  | 1. Color filter of the image. The input parameter is a 4 x 5 RGBA transformation matrix.<br>The first row of the matrix represents a vector value of R (red), the second row represents a vector value of G (green), the third row represents a vector value of B (blue), and the fourth row represents a vector value of A (alpha). The four rows represent different RGBA vector values.<br>If the matrix contains entries of 1 on the diagonal and entries of 0 in other places, the original color of the image is retained.<br> **Calculation rule:**<br>If the input filter matrix is as follows:<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>Wherein the color is [R, G, B, A].<br>Then the color after filtering is [R', G', B', A'].<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>2. The ColorFilter type of **@ohos.graphics.drawing** can be used as the input parameter since API Version 12.<br>**NOTE**<br>This parameter is not available for SVG images in API version 11 and earlier versions.<br>The DrawingColorfilter type can be used in atomic services since API version 12. The SVG image to set as the source must have the **stroke** attribute.|
+| value  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](#drawingcolorfilter12) | Yes  | 1. Color filter of the image. The input parameter is a 4 x 5 RGBA transformation matrix.<br>The first row of the matrix represents a vector value of R (red), the second row represents a vector value of G (green), the third row represents a vector value of B (blue), and the fourth row represents a vector value of A (alpha). The four rows represent different RGBA vector values.<br>If the matrix contains entries of 1 on the diagonal and entries of 0 in other places, the original color of the image is retained.<br> **Calculation rule:**<br>If the input filter matrix is as follows:<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>Wherein the color is [R, G, B, A].<br>Then the color after filtering is [R', G', B', A'].<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>2. The ColorFilter type of **@ohos.graphics.drawing** can be used as the input parameter since API Version 12.<br>**NOTE**<br>This parameter is not available for SVG images in API version 11 and earlier versions.<br>The DrawingColorfilter type can be used in atomic services since API version 12. The SVG image to set as the source must have the **stroke** attribute.|
 
 ### draggable<sup>9+</sup>
 
@@ -413,7 +452,7 @@ When [ResizableOptions](#resizableoptions11) is set to a valid value, the **obje
 
 When the sum of the values of **top** and **bottom** is greater than the source image height, or the sum of the values of **left** and **right** is greater than the source image width, the [ResizableOptions](#resizableoptions11) attribute does not take effect.
 
-This attribute does not take effect when the parameter type of the component is [AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12).
+This attribute does not take effect when the parameter type of the component is [AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12) or SVG.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -447,7 +486,7 @@ Sets whether to secure sensitive information on widgets.
 
 dynamicRangeMode(value: DynamicRangeMode)
 
-Sets the dynamic range of the image to be displayed.
+Sets the dynamic range of the image to be displayed. This attribute is not applicable to SVG images.
 
 <!--RP1--><!--RP1End-->
 
@@ -459,7 +498,23 @@ Sets the dynamic range of the image to be displayed.
 
 | Name| Type                                   | Mandatory| Description                            |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| value  | [DynamicRangeMode](#dynamicrangemode12-1) | Yes  | Dynamic range of the image.<br>Default value: **dynamicRangeMode.Standard**|
+| value  | [DynamicRangeMode](#dynamicrangemode12) | Yes  | Dynamic range of the image.<br>Default value: **dynamicRangeMode.Standard**|
+
+### orientation<sup>14+</sup>
+
+orientation(orientation: ImageRotateOrientation)
+
+Sets the display orientation of the image content.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                   | Mandatory| Description                            |
+| ------ | --------------------------------------- | ---- | -------------------------------- |
+| orientation  | [ImageRotateOrientation](#imagerotateorientation14) | Yes  | Display orientation of the image content.<br>Default value: **ImageRotateOrientation.UP**|
 
 ## ImageContent<sup>12+</sup>
 
@@ -513,8 +568,8 @@ Defines the resizable image options.
 
 | Name| Type| Mandatory| Description|
 | --------- |-----------|-----------|-----------|
-| slice | [EdgeWidths](#edgewidths) |  No | Edge widths in different directions of a component.<br>**NOTE**<br>This parameter takes effect only when values of **bottom** and **right** are both greater than 0.|
-| lattice<sup>12+</sup> | [DrawingLattice](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#lattice12) |  No | Lattice object, which is used to divide the image by lattice.<br>**NOTE**<br> A lattice object can be created through the **createImageLattice** API of the **@ohos.graphics.drawing** module. The lattices on both even columns and even rows are fixed.<br>This parameter does not take effect for the [backgroundImageResizable](ts-universal-attributes-background.md#backgroundimageresizable12) API.|
+| slice | [EdgeWidths](#edgewidths) |  No | Edge widths in different directions of a component.<br>**NOTE**<br>This parameter takes effect only when values of **bottom** and **right** are both greater than 0.<br> When a number is passed, the default unit is vp.|
+| lattice<sup>12+</sup> | [DrawingLattice](#drawinglattice12) |  No | Lattice object, which is used to divide the image by lattice.<br>**NOTE**<br> A lattice object can be created through the **createImageLattice** API of the **@ohos.graphics.drawing** module. The lattices on both even columns and even rows are fixed.<br>This parameter does not take effect for the [backgroundImageResizable](ts-universal-attributes-background.md#backgroundimageresizable12) API.<br> When a number is passed, the default unit is px.|
 
 ## EdgeWidths
 
@@ -545,22 +600,93 @@ Describes the dynamic range of the image to be displayed.
 | CONSTRAINT | 1 | Restricted dynamic range, which brightens an image within certain constraints.         |
 | STANDARD | 2 | Standard dynamic range, which does not brighten an image.        |
 
-## ImageSourceSize<sup>14+</sup>
+## ImageRotateOrientation<sup>14+</sup>
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+Describes the desired display orientation for image content.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type      | Mandatory| Description          |
-| ------ | --------- | ---- | ------------- |
-| width  | number | Yes  | Decoded width of the image.<br>Unit: vp|
-| height  | number | Yes  | Decoded height of the image.<br>Unit: vp|
+| Name    | Value   | Description                   |
+| ------ | -------------------------- | -------------------------- |
+| AUTO   | 0  | Use the EXIF metadata of the image to determine the display orientation.             |
+| UP | 1 | Display the image in its original orientation without any EXIF processing. Default value.         |
+| RIGHT | 2 | Rotate the image 90 degrees clockwise before displaying it.        |
+| DOWN | 3| Rotate the image 180 degrees before displaying it.        |
+| LEFT | 4 | Rotate the image 90 degrees counterclockwise before displaying it.        |
+
+## DrawableDescriptor<sup>10+<sup>
+
+type DrawableDescriptor = DrawableDescriptor
+
+Represents a parameter object for the **Image** component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type    | Description      |
+| ------ | ---------- |
+| [DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor)  | **DrawableDescriptor** object.|
+
+## DrawingColorFilter<sup>12+<sup>
+
+type DrawingColorFilter = ColorFilter
+
+Represents a color filter object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type    | Description      |
+| ------ | ---------- |
+| [ColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter)  | Color filter created.|
+
+## DrawingLattice<sup>12+<sup>
+
+type DrawingLattice = Lattice
+
+Represents a matrix grid object that divides an image into a rectangular grid.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type    | Description      |
+| ------ | ---------- |
+| [Lattice](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#lattice12) | Matrix grid object used to divide the image into a rectangular grid.|
+
+## ImageMatrix<sup>15+<sup>
+
+type ImageMatrix = Matrix4Transit
+
+Represents the current matrix object.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type    | Description      |
+| ------ | ---------- |
+| [Matrix4Transit](../js-apis-matrix4.md#matrix4transit) | Current matrix object.|
+
+## ColorContent<sup>15+</sup>
+
+Defines the content for color filling.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type      | Read-Only| Mandatory| Description          |
+| ------ | --------- | ---- | --- | ------------- |
+| ORIGIN  | ColorContent | Yes| No| Resets the [fillColor](#fillcolor) API, effectively the same as not setting [fillColor](#fillcolor).|
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onComplete
 
@@ -860,21 +986,21 @@ This example shows how to resize an image in different directions.
 @Entry
 @Component
 struct Index {
-  @State top: number = 40
-  @State bottom: number = 5
-  @State left: number = 40
+  @State top: number = 10
+  @State bottom: number = 10
+  @State left: number = 10
   @State right: number = 10
 
   build() {
     Column({ space: 5 }) {
       // Original image effect
-      Image($r("app.media.sky"))
+      Image($r("app.media.landscape"))
         .width(200).height(200)
         .border({ width: 2, color: Color.Pink })
         .objectFit(ImageFit.Contain)
 
       // Set the resizable attribute to resize the image in different directions.
-      Image($r("app.media.sky"))
+      Image($r("app.media.landscape"))
         .resizable({
           slice: {
             left: this.left,
@@ -891,22 +1017,22 @@ struct Index {
       Row() {
         Button("add top to " + this.top).fontSize(10)
           .onClick(() => {
-            this.top += 2
+            this.top += 10
           })
         Button("add bottom to " + this.bottom).fontSize(10)
           .onClick(() => {
-            this.bottom += 2
+            this.bottom += 10
           })
       }
 
       Row() {
         Button("add left to " + this.left).fontSize(10)
           .onClick(() => {
-            this.left += 2
+            this.left += 10
           })
         Button("add right to " + this.right).fontSize(10)
           .onClick(() => {
-            this.right += 2
+            this.right += 10
           })
       }
 
@@ -1236,3 +1362,197 @@ struct ImageExample11 {
 ```
 
 ![imageContent](figures/imageScanEffect.gif)
+
+### Example 12: Setting the Image Decoding Size Using sourceSize
+
+This example uses the [sourceSize](ts-basic-components-image.md#sourcesize) API to customize the decoding size of the image.
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State borderRadiusValue: number = 10;
+  build() {
+    Column() {
+      Image($r("app.media.sky"))
+        .sourceSize({width:1393, height:1080})
+        .height(300)
+        .width(300)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+      Image($r("app.media.sky"))
+        .sourceSize({width:13, height:10})
+        .height(300)
+        .width(300)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![sourceSizeExample](figures/sourceSizeExample.png)
+
+### Example 13: Setting the Image Rendering Mode Using renderMode
+
+This example uses the [renderMode](ts-basic-components-image.md#rendermode) API to set the image rendering mode to grayscale.
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State borderRadiusValue: number = 10;
+  build() {
+    Column() {
+      Image($r("app.media.sky"))
+        .renderMode(ImageRenderMode.Template)
+        .height(300)
+        .width(300)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![renderModeExample](figures/renderModeExample.png)
+
+### Example 14: Setting the Image Repeat Pattern Using objectRepeat
+
+This example uses the [objectRepeat](ts-basic-components-image.md#objectrepeat) API to repeat the image along the vertical axis.
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State borderRadiusValue: number = 10;
+  build() {
+    Column() {
+      Image($r("app.media.sky"))
+        .objectRepeat(ImageRepeat.Y)
+        .height(300)
+        .width(300)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![objectRepeatExample](figures/objectRepeatExample.png)
+
+### Example 15: Setting the Fill Color for SVG Images
+
+This example shows how to use [fillColor](#fillcolor15) to set different fill colors for SVG images.
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Text("FillColor not set")
+      Image($r("app.media.svgExample"))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+      Text("fillColor set to ColorContent.ORIGIN")
+      Image($r("app.media.svgExample"))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+        .fillColor(ColorContent.ORIGIN)
+      Text("fillColor set to Color.Blue")
+      Image($r("app.media.svgExample"))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+        .fillColor(Color.Blue)
+      Text("fillColor set to undefined")
+      Image($r("app.media.svgExample"))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+        .fillColor(undefined)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![fillColorExample](figures/fillColorExample.png)
+
+### Example 16: Adding Transform Effects to Images
+
+This example demonstrates how to apply rotation and translation effects to images using [imageMatrix](#imagematrix15) and [objectFit](#objectfit).
+
+```ts
+import { matrix4 } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Test {
+  private matrix1 = matrix4.identity()
+    .translate({ x: -400, y: -750 })
+    .scale({ x: 0.5, y: 0.5 })
+    .rotate({
+      x: 2,
+      y: 0.5,
+      z: 3,
+      centerX: 10,
+      centerY: 10,
+      angle: -10
+    })
+
+  build() {
+    Row() {
+      Column({ space: 50 }) {
+        Column({ space: 5 }) {
+          Image($r("app.media.example"))
+            .border({ width:2, color: Color.Black })
+            .objectFit(ImageFit.Contain)
+            .width(150)
+            .height(150)
+          Text("No transformation")
+            .fontSize('25px')
+        }
+        Column({ space: 5 }) {
+          Image($r("app.media.example"))
+            .border({ width:2, color: Color.Black })
+            .objectFit(ImageFit.None)
+            .translate({ x: 10, y: 10 })
+            .scale({ x: 0.5, y: 0.5 })
+            .width(100)
+            .height(100)
+          Text("Direct transformation on the image, with the upper left corner of the image source displayed by default")
+            .fontSize('25px')
+        }
+        Column({ space: 5 }) {
+          Image($r("app.media.example"))
+            .objectFit(ImageFit.MATRIX)
+            .imageMatrix(this.matrix1)
+            .border({ width:2, color: Color.Black })
+            .width(150)
+            .height(150)
+          Text("Transformation using imageMatrix to adjust the source position for optimal display")
+            .fontSize('25px')
+        }
+      }
+      .width('100%')
+    }
+  }
+}
+```
+
+![imageMatrix](figures/imageMatrix.jpeg)
