@@ -556,8 +556,8 @@ Codec MIME类型枚举。
 | AUDIO_FLAC   | 'audio/flac'          | 表示音频/flac类型。      |
 | AUDIO_MP3<sup>12+</sup>   | 'audio/mpeg'          | 表示音频/mpeg类型。      |
 | AUDIO_G711MU<sup>12+</sup>   | 'audio/g711mu'     | 表示音频/G711-mulaw类型。 |
-| AUDIO_AMR_NB<sup>16+</sup>   | 'audio/3gpp'     | 表示音频/amr-nb类型。 |
-| AUDIO_AMR_WB<sup>16+</sup>   | 'audio/amr-wb'     | 表示音频/amr-wb类型。 |
+| AUDIO_AMR_NB<sup>18+</sup>   | 'audio/3gpp'     | 表示音频/amr-nb类型。 |
+| AUDIO_AMR_WB<sup>18+</sup>   | 'audio/amr-wb'     | 表示音频/amr-wb类型。 |
 
 ## MediaDescriptionKey<sup>8+</sup>
 
@@ -4639,7 +4639,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | rotation<sup>(deprecated)</sup>        | number                                   | 否   | 录制的视频旋转角度，mp4格式支持0，90，180，270，默认值为0。<br>从API version 6开始支持，从API version 12开始废弃。建议使用[AVMetadata](#avmetadata11).videoOrientation替代。如果同时设置两个值，将会采用[AVMetadata](#avmetadata11).videoOrientation。     |
 | location<sup>(deprecated)</sup>        | [Location](#location)                    | 否   | 录制的地理位置，默认不记录地理位置信息。<br>从API version 6开始支持，从API version 12开始废弃。建议使用 [AVMetadata](#avmetadata11).location。如果同时设置两个值，将会采用[AVMetadata](#avmetadata11).location。 |
 | metadata<sup>12+</sup>        | [AVMetadata](#avmetadata11)              | 否   | 设置元数据信息。详情见 [AVMetadata](#avmetadata11)。                  |
-| maxDuration<sup>16+</sup>        | number             | 否   | 设置录制的最大时长，单位为秒，有效值取值范围[1 , 2^31-1]，无效输入会重置为最大值。录制到达设定时长后，录制会自动停止，并通过stateChange回调录制状态，[AVRecorderState](#avrecorderstate9) = 'stopped'，[StateChangeReason](#statechangereason9) = BACKGROUND。|
+| maxDuration<sup>18+</sup>        | number             | 否   | 设置录制的最大时长，单位为秒，有效值取值范围[1 , 2^31-1]，无效输入会重置为最大值。录制到达设定时长后，录制会自动停止，并通过stateChange回调录制状态，[AVRecorderState](#avrecorderstate9) = 'stopped'，[StateChangeReason](#statechangereason9) = BACKGROUND。|
 
 ## AVRecorderProfile<sup>9+</sup>
 
@@ -4653,8 +4653,8 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 > |AUDIO_AAC|MP4,M4A|[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]|[32000-500000]|[1-8]|
 > |AUDIO_MP3|MP3|[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]|<br>- 采样率使用16000以下时，对应比特率范围为[8000 - 64000]。<br>- 采样率使用16000~32000时对应的比特率范围为[8000 - 160000]。<br>- 采样率使用32000以上时对应的比特率范围为[32000 - 320000]。|[1-2]|
 > |AUDIO_G711MU|WAV|[8000]|[64000]|[1]|
-> |AUDIO_AMR_NB<sup>16+</sup> |AMR|[8000]|[4750, 5150, 5900, 6700, 7400, 7950, 10200, 12200]|[1]|
-> |AUDIO_AMR_WB<sup>16+</sup> |AMR|[16000]|[6600, 8850, 12650, 14250, 15850, 18250, 19850, 23050, 23850]|[1]|
+> |AUDIO_AMR_NB<sup>18+</sup> |AMR|[8000]|[4750, 5150, 5900, 6700, 7400, 7950, 10200, 12200]|[1]|
+> |AUDIO_AMR_WB<sup>18+</sup> |AMR|[16000]|[6600, 8850, 12650, 14250, 15850, 18250, 19850, 23050, 23850]|[1]|
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -4711,7 +4711,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | CFT_MPEG_4A | 'm4a' | 音频的容器格式，M4A。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
 | CFT_MP3<sup>12+</sup>  | 'mp3' | 音频的容器格式，MP3。 |
 | CFT_WAV<sup>12+</sup>  | 'wav' | 音频的容器格式，WAV。 |
-| CFT_AMR<sup>16+</sup>  | 'amr' | 音频的容器格式，AMR。 |
+| CFT_AMR<sup>18+</sup>  | 'amr' | 音频的容器格式，AMR。 |
 
 ## Location
 
