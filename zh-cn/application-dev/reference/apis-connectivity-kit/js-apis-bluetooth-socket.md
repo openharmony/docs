@@ -378,11 +378,11 @@ try {
 
 ## socket.sppWriteAsync<sup>16+</sup>
 
-sppWriteAsync(clientSocket: number, data: ArrayBuffer): Promise<void>;
+sppWriteAsync(clientSocket: number, data: ArrayBuffer): Promise&lt;void&gt;
 
 通过socket向远端发送数据的异步接口，该接口支持断开连接时SPP操作异常错误返回。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -393,7 +393,7 @@ sppWriteAsync(clientSocket: number, data: ArrayBuffer): Promise<void>;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -420,15 +420,17 @@ try {
 
 ## socket.sppReadAsync<sup>16+</sup>
 
-sppReadAsync(clientSocket: number): Promise<void>;
+sppReadAsync(clientSocket: number): Promise&lt;void&gt;
 
 通过socket读取对端所发送数据的异步接口，该接口支持断开连接时SPP操作异常错误返回。
 
-**注意事项**：
-1.该接口不可以与socket.on('sppRead')接口混用，同一路socket只能使用socket.on('sppRead')或者socket.sppReadAsync其中一个接口。
-2.该接口与socket.on('sppRead')使用方式不同，需要业务循环使用读取数据。
+> **注意**：
+>
+> - 该接口不可与[socket.on('sppRead')](#socketonsppread)接口混用，同一路socket只能使用[socket.on('sppRead')](#socketonsppread)或者socket.sppReadAsync其中一个接口。
+>
+> - 该接口与[socket.on('sppRead')](#socketonsppread)使用方式不同，需要业务循环使用读取数据。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -438,7 +440,7 @@ sppReadAsync(clientSocket: number): Promise<void>;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
