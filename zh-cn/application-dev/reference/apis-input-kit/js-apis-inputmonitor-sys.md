@@ -948,7 +948,7 @@ try {
 }
 ```
 
-## inputMonitor.on('touchscreenSwipe')<sup>14+</sup>
+## inputMonitor.on('touchscreenSwipe')<sup>18+</sup>
 
 on(type: 'touchscreenSwipe', fingers: number, receiver: Callback&lt;TouchGestureEvent&gt;): void
 
@@ -992,7 +992,7 @@ try {
 }
 ```
 
-## inputMonitor.off('touchscreenSwipe')<sup>14+</sup>
+## inputMonitor.off('touchscreenSwipe')<sup>18+</sup>
 
 off(type: 'touchscreenSwipe', fingers: number, receiver?: Callback&lt;TouchGestureEvent&gt;): void
 
@@ -1055,7 +1055,7 @@ try {
 }
 ```
 
-## inputMonitor.on('touchscreenPinch')<sup>14+</sup>
+## inputMonitor.on('touchscreenPinch')<sup>18+</sup>
 
 on(type: 'touchscreenPinch', fingers: number, receiver: Callback&lt;TouchGestureEvent&gt;): void
 
@@ -1099,7 +1099,7 @@ try {
 }
 ```
 
-## inputMonitor.off('touchscreenPinch')<sup>14+</sup>
+## inputMonitor.off('touchscreenPinch')<sup>18+</sup>
 
 off(type: 'touchscreenPinch', fingers: number, receiver?: Callback&lt;TouchGestureEvent&gt;): void
 
