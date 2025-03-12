@@ -22,7 +22,7 @@ import { deviceSettings } from '@kit.MDMKit';
 
 setScreenOffTime(admin: Want, time: number): void
 
-以同步方法指定设备管理应用设置设备息屏时间。成功返回null，失败抛出对应异常。
+设置设备息屏时间。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME
 
@@ -32,7 +32,7 @@ setScreenOffTime(admin: Want, time: number): void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。     |
 | time | number            | 是    | 设备息屏时间（单位：毫秒，建议参数与设备可选息屏时间保持一致）。       |
 
 **错误码**：
@@ -67,7 +67,7 @@ try {
 
 getScreenOffTime(admin: Want, callback: AsyncCallback&lt;number&gt;): void
 
-指定设备管理应用获取设备息屏时间，使用callback异步回调。
+获取设备息屏时间，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_SETTINGS
 
@@ -77,7 +77,7 @@ getScreenOffTime(admin: Want, callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。            |
 | callback | AsyncCallback&lt;number&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为设备息屏时间（单位：毫秒），否则err为错误对象。       |
 
 **错误码**：
@@ -114,7 +114,7 @@ deviceSettings.getScreenOffTime(wantTemp, (err, result) => {
 
 getScreenOffTime(admin: Want): Promise&lt;number&gt;
 
-指定设备管理应用获取设备息屏时间，使用Promise异步回调。
+获取设备息屏时间，使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_SETTINGS
 
@@ -122,9 +122,9 @@ getScreenOffTime(admin: Want): Promise&lt;number&gt;
 
 **参数：**
 
-| 参数名   | 类型                                  | 必填   | 说明      |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| 参数名 | 类型                                                    | 必填 | 说明                   |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -165,7 +165,7 @@ deviceSettings.getScreenOffTime(wantTemp).then((result) => {
 
 installUserCertificate(admin: Want, certificate: CertBlob, callback: AsyncCallback&lt;string&gt;): void
 
-指定设备管理应用安装用户证书，使用callback异步回调。
+安装用户证书，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -175,8 +175,8 @@ installUserCertificate(admin: Want, certificate: CertBlob, callback: AsyncCallba
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
-| certificate    | [CertBlob](#certblob)     | 是    | 证书信息。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。            |
+| certificate    | [CertBlob](#certblob)     | 是    | 证书信息。证书文件应放在应用沙箱路径等应用有权限访问的路径下。 |
 | callback | AsyncCallback&lt;string&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。      |
 
 **错误码**：
@@ -223,7 +223,7 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
 
 installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt;
 
-指定设备管理应用安装用户证书，使用Promise异步回调。
+安装用户证书，使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -233,8 +233,8 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| certificate    | [CertBlob](#certblob)     | 是    | 证书信息。                  |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
+| certificate    | [CertBlob](#certblob)     | 是    | 证书信息。证书文件应放在应用沙箱路径等应用有权限访问的路径下。 |
 
 **返回值：**
 
@@ -296,7 +296,7 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
 
 uninstallUserCertificate(admin: Want, certUri: string, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用卸载用户证书，使用callback异步回调。
+卸载用户证书，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -306,8 +306,8 @@ uninstallUserCertificate(admin: Want, certUri: string, callback: AsyncCallback&l
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
-| certUri    | string    | 是    | 证书uri，由安装用户证书接口返回。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。            |
+| certUri    | string    | 是    | 证书uri，由安装用户证书接口[installUserCertificate](#devicesettingsinstallusercertificate)设置返回。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。      |
 
 **错误码**：
@@ -345,7 +345,7 @@ deviceSettings.uninstallUserCertificate(wantTemp, aliasStr, (err) => {
 
 uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 
-指定设备管理应用卸载用户证书，使用Promise异步回调。
+卸载用户证书，使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -355,14 +355,14 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| certUri    | string     | 是    | 证书uri，由安装用户证书接口返回。                  |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
+| certUri    | string     | 是    | 证书uri，由安装用户证书接口[installUserCertificate](#devicesettingsinstallusercertificate-1)设置返回。 |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当指定设备管理应用卸载用户证书失败时会抛出错误对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当卸载用户证书失败时会抛出错误对象。 |
 
 **错误码**：
 
@@ -398,7 +398,7 @@ deviceSettings.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
 
 setPowerPolicy(admin: Want, powerScene: PowerScene, powerPolicy: PowerPolicy): void
 
-以同步方法指定设备管理应用设置电源策略。成功返回null，失败抛出对应异常。
+设置电源策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SETTINGS
 
@@ -408,7 +408,7 @@ setPowerPolicy(admin: Want, powerScene: PowerScene, powerPolicy: PowerPolicy): v
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。            |
 | powerScene | [PowerScene](#powerscene11) | 是    | 电源策略场景，当前只支持超时场景。       |
 | powerPolicy | [PowerPolicy](#powerpolicy11) | 是    | 电源策略。       |
 
@@ -448,7 +448,7 @@ try {
 
 getPowerPolicy(admin: Want, powerScene: PowerScene): PowerPolicy
 
-以同步方法指定设备管理应用获取电源策略。成功返回电源策略，失败抛出对应异常。
+获取电源策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SETTINGS
 
@@ -458,7 +458,7 @@ getPowerPolicy(admin: Want, powerScene: PowerScene): PowerPolicy
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。            |
 | powerScene | [PowerScene](#powerscene11) | 是    | 电源策略场景，当前只支持超时场景。       |
 
 **返回值：**
