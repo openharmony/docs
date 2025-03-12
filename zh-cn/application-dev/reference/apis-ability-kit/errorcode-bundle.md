@@ -956,6 +956,31 @@ Failed to install the HAP because an application with the same bundle name but d
 1. 卸载设备上相同包名的应用。
 2. 若设备上存在相同包名但签名信息不一致的应用被保留数据地卸载，导致安装失败，则先安装已卸载的应用之后不保留数据地卸载掉。
 
+## 17700101 包管理服务异常
+**错误信息**<br/>
+Bundle manager service is excepted.
+
+**错误描述**<br/>
+包管理服务异常。
+
+**可能原因**<br/>
+系统出现未知的异常，导致包管理服务已停止或者异常退出。
+
+**处理步骤**<br/>
+1. 重启手机后再次尝试请求接口。
+
+2. 重复上述步骤3到5次后依旧请求失败，请查询设备的/data/log/faultlog/faultlogger/目录下是否存在包含foundation字样的crash文件。
+```
+hdc shell
+cd /data/log/faultlog/faultlogger/
+ls -ls
+```
+3. 导出crash文件和日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+```
+hdc file recv /data/log/faultlog/faultlogger/
+hdc file recv /data/log/hilog/
+```
+
 ## 17700201 abc文件校验失败
 **错误信息**<br/>
 Failed to verify the abc file.
