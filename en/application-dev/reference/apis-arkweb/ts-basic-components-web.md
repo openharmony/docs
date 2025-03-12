@@ -261,7 +261,7 @@ Provides methods for the web controller.
 
 ## Attributes
 
-Common attributes support only [aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio), [backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur), [backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor), [bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover), [bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8), [bindMenu ](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu), [bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet), [borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor), [borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius), [borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle), [borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth), [clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip), [constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize), [defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9), [focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable), [tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9), [groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9), [focusOnTouch](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9), [displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority), [enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled), [flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis), [flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink), [layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight), [id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md), [gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height), [touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md), [margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin), [markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor), [offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset), [width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width), [zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex), [visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility), [scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale), [translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate), [responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion), [size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size), [opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity), [shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow), [sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md) and [transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md).
+Supported common attributes: [aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio), [backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur), [backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor), [bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover), [bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8), [bindMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu), [bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet), [borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor), [borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius), [borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle), [borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth), [clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip), [constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize), [defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9), [focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable), [tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9), [groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9), [displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority), [enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled), [flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis), [flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink), [layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight), [id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md), [gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height), [touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md), [margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin), [markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor), [offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset), [width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width), [zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex), [visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility), [scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale), [translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate), [responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion), [size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size), [opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity), [shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow), [sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md), and [transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md).
 
 ### domStorageAccess
 
@@ -1815,6 +1815,8 @@ Injects a JavaScript script into the **Web** component. When the specified page 
 > **NOTE**
 >
 > - The script runs before any JavaScript code of the page, when the DOM tree may not have been loaded or rendered.
+> - The script is executed in the lexicographic order, not the array order.
+> - You are not advised to use this API together with [runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1889,6 +1891,8 @@ Injects a JavaScript script into the **Web** component. When the specified page 
 > **NOTE**
 >
 > - The script runs before any JavaScript code of the page, when the DOM tree has been loaded and rendered.
+> - The script is executed in the lexicographic order, not the array order.
+> - You are not advised to use this API together with [runJavaScriptOnDocumentEnd](#runjavascriptondocumentend15).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1921,6 +1925,206 @@ struct Index {
         .domStorageAccess(true)
         .backgroundColor(Color.Grey)
         .javaScriptOnDocumentEnd(this.scripts)
+        .width('100%')
+        .height('100%')
+    }
+  }
+}
+  ```
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body style="font-size: 30px;">
+Hello world!
+<div id="result">test msg</div>
+</body>
+</html>
+```
+
+### runJavaScriptOnDocumentStart<sup>15+</sup>
+
+runJavaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
+
+Injects a JavaScript script into the **Web** component. When the specified page or document starts to be loaded, the script is executed on any page whose source matches **scriptRules**.
+
+> **NOTE**
+>
+> - The script runs before any JavaScript code of the page, when the DOM tree may not have been loaded or rendered.
+> - This script is executed in the array order.
+> - You are advised not to use this API together with [javaScriptOnDocumentStart](#javascriptondocumentstart11).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name    | Type                               | Mandatory  | Description              |
+| ------- | ----------------------------------- | ---- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | Yes   | Script item array to be injected.|
+
+**Example in the .ets file**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct Index {
+      controller: webview.WebviewController = new webview.WebviewController();
+      private localStorage: string =
+          "if (typeof(Storage) !== 'undefined') {" +
+          "   localStorage.setItem('color', 'Red');" +
+          "}";
+      @State scripts: Array<ScriptItem> = [
+          { script: this.localStorage, scriptRules: ["*"] }
+      ];
+
+      build() {
+          Column({ space: 20 }) {
+              Web({ src: $rawfile('index.html'), controller: this.controller })
+                  .javaScriptAccess(true)
+                  .domStorageAccess(true)
+                  .backgroundColor(Color.Grey)
+                  .runJavaScriptOnDocumentStart(this.scripts)
+                  .width('100%')
+                  .height('100%')
+          }
+      }
+  }
+  ```
+**Example in the HTML file**
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body style="font-size: 30px;" onload='bodyOnLoadLocalStorage()'>
+      Hello world!
+      <div id="result"></div>
+  </body>
+  <script type="text/javascript">
+    function bodyOnLoadLocalStorage() {
+      if (typeof(Storage) !== 'undefined') {
+        document.getElementById('result').innerHTML = localStorage.getItem('color');
+      } else {
+        document.getElementById('result').innerHTML = 'Your browser does not support localStorage.';
+      }
+    }
+  </script>
+</html>
+```
+
+### runJavaScriptOnDocumentEnd<sup>15+</sup>
+
+runJavaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
+
+Injects a JavaScript script into the **Web** component. When the specified page or document has been loaded, the script is executed on any page whose source matches **scriptRules**.
+
+> **NOTE**
+>
+> - The script runs before any JavaScript code of the page, when the DOM tree has been loaded and rendered.
+> - This script is executed in the array order.
+> - You are advised not to use this API together with [javaScriptOnDocumentEnd](#javascriptondocumentend11).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name    | Type                               | Mandatory  | Description              |
+| ------- | ----------------------------------- | ---- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | Yes   | Script item array to be injected.|
+
+**Example**
+
+  ```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+  private jsStr: string =
+    "window.document.getElementById(\"result\").innerHTML = 'this is msg from runJavaScriptOnDocumentEnd'";
+  @State scripts: Array<ScriptItem> = [
+    { script: this.jsStr, scriptRules: ["*"] }
+  ];
+
+  build() {
+    Column({ space: 20 }) {
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+        .domStorageAccess(true)
+        .backgroundColor(Color.Grey)
+        .runJavaScriptOnDocumentEnd(this.scripts)
+        .width('100%')
+        .height('100%')
+    }
+  }
+}
+  ```
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body style="font-size: 30px;">
+Hello world!
+<div id="result">test msg</div>
+</body>
+</html>
+```
+
+### runJavaScriptOnHeadEnd<sup>15+</sup>
+
+runJavaScriptOnHeadEnd(scripts: Array\<ScriptItem>)
+
+Injects a JavaScript script into the **Web** component. When the **head** tag of the DOM tree is parsed, the script is executed on any page whose source matches **scriptRules**.
+
+> **NOTE**
+>
+> - This script is executed in the array order.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name    | Type                               | Mandatory  | Description              |
+| ------- | ----------------------------------- | ---- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | Yes   | Script item array to be injected.|
+
+**Example**
+
+  ```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+  private jsStr: string =
+    "window.document.getElementById(\"result\").innerHTML = 'this is msg from runJavaScriptOnHeadEnd'";
+  @State scripts: Array<ScriptItem> = [
+    { script: this.jsStr, scriptRules: ["*"] }
+  ];
+
+  build() {
+    Column({ space: 20 }) {
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+        .domStorageAccess(true)
+        .backgroundColor(Color.Grey)
+        .runJavaScriptOnHeadEnd(this.scripts)
         .width('100%')
         .height('100%')
     }
@@ -2033,7 +2237,7 @@ Sets nested scrolling options.
 
 | Name  | Type                                    | Mandatory  | Description            |
 | ----- | ---------------------------------------- | ---- | ---------------- |
-| value | [NestedScrollOptions](../apis-arkui/arkui-ts/ts-container-scrollable-common.md#nestedscrolloptions10)\| [NestedScrollOptionsExt](#nestedscrolloptionsext14) <sup>14+</sup> | Yes   | Nested scrolling options.|
+| value | [NestedScrollOptions](../apis-arkui/arkui-ts/ts-container-scrollable-common.md#nestedscrolloptions10)\| [NestedScrollOptionsExt](#nestedscrolloptionsext14) <sup>14+</sup>| Yes   | Nested scrolling options.|
 
 **Example**
 
@@ -2895,6 +3099,46 @@ Sets the blur mode of the **Web** component when the soft keyboard is hidden. Th
   </body>
 </html>
 ```
+
+### optimizeParserBudget<sup>15+</sup>
+
+optimizeParserBudget(optimizeParserBudget: boolean)
+
+Sets whether to enable segment-based HTML parsing optimization. By default, this function is disabled.
+
+To avoid occupying too many main thread resources and enable progressive loading of web pages, the ArkWeb kernel uses the segment-based parsing policy when parsing the HTML document structure. By default, the ArkWeb kernel uses the parsing time as the segment point. When the parsing time exceeds the threshold, the parsing is interrupted and then the layout and rendering operations are performed.
+
+After this function is enabled, the ArkWeb kernel checks whether the parsing time exceeds the limit and whether the number of parsed tokens (minimum parsing unit of HTML documents, such as **\<div>** and **attr="xxx"**) exceeds the threshold specified by the kernel, and decreases the threshold. When the First Contentful Paint (FCP) of the page is triggered, the default interrupt judgment logic is restored. In this way, the web page is parsed more frequently before the FCP is triggered, thereby the first-frame content may be parsed in advance and enter a rendering phase, effectively reducing the workload of first-frame rendering, and finally advancing the FCP.
+
+When the FCP of a page is triggered, the default segment parsing logic is restored. Therefore, the segment-based HTML parsing optimization takes effect only for the first page loaded by each **Web** component.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name       | Type   | Mandatory  | Default Value | Description                  |
+| ---------- | ------- | ---- | ---- | ---------------------- |
+| optimizeParserBudget | boolean | Yes   | false | If this parameter is set to **true**, the number of parsed records instead of the parsing time is used as the segment point for HTML segment parsing, and the upper limit of the number of parsed records in each segment is reduced. If it is set to **false**, the parsing time is used as the segment point for HTML segment parsing. The default value is **false**.|
+
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .optimizeParserBudget(true)
+      }
+    }
+  }
+  ```
 
 ## Events
 
@@ -4153,7 +4397,49 @@ To include errors with requests for subframes, use the [OnSslErrorEvent](#onssle
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { cert } from '@kit.DeviceCertificateKit';
   
+  function LogCertInfo(certChainData : Array<Uint8Array> | undefined) {
+    if (!(certChainData instanceof Array)) {
+      console.log('failed, cert chain data type is not array');
+      return;
+    }
+
+    for (let i = 0; i < certChainData.length; i++) {
+      let encodeBlobData: cert.EncodingBlob = {
+        data: certChainData[i],
+        encodingFormat: cert.EncodingFormat.FORMAT_DER
+      }
+      cert.createX509Cert(encodeBlobData, (error, x509Cert) => {
+        if (error) {
+          console.error('Index : ' + i + ',createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+        } else {
+          console.log('createX509Cert success');
+          console.log(ParseX509CertInfo(x509Cert));
+        }
+      });
+    }
+    return;
+  }
+  
+  function Uint8ArrayToString(dataArray: Uint8Array) {
+    let dataString = '';
+    for (let i = 0; i < dataArray.length; i++) {
+      dataString += String.fromCharCode(dataArray[i]);
+    }
+    return dataString;
+  }
+
+  function ParseX509CertInfo(x509Cert: cert.X509Cert) {
+    let res: string = 'getCertificate success, '
+      + 'issuer name = '
+      + Uint8ArrayToString(x509Cert.getIssuerName().data) + ', subject name = '
+      + Uint8ArrayToString(x509Cert.getSubjectName().data) + ', valid start = '
+      + x509Cert.getNotBeforeTime()
+      + ', valid end = ' + x509Cert.getNotAfterTime();
+    return res;
+  }
+
   @Entry
   @Component
   struct WebComponent {
@@ -4163,6 +4449,7 @@ To include errors with requests for subframes, use the [OnSslErrorEvent](#onssle
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onSslErrorEventReceive((event) => {
+            LogCertInfo(event.certChainData);
             AlertDialog.show({
               title: 'onSslErrorEventReceive',
               message: 'text',
@@ -4996,7 +5283,7 @@ Note that there is no reliable method to determine which page requests a new win
 
 | Name   | Type  | Mandatory  | Description                 |
 | ------ | ------ | ---- | --------------------- |
-| callback       | Callback\<[OnWindowNewEvent](#onwindownewevent12)\>           | Yes| Callback invoked when the web page requests the user to create a new window.   |
+| callback       | Callback\<[OnWindowNewEvent](#onwindownewevent12)\>           | Yes| Callback invoked when the web page requests the user to create a window.   |
 
 **Example**
 
@@ -6771,6 +7058,18 @@ Closes this custom keyboard.
 
 Implements the **ConsoleMessage** object. For the sample code, see [onConsole](#onconsole).
 
+### constructor
+
+constructor(message: string, sourceId: string, lineNumber: number, messageLevel: MessageLevel)
+
+Constructs the **ConsoleMessage** object.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [constructor](#constructor9) instead.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### constructor<sup>9+</sup>
 
 constructor()
@@ -6929,7 +7228,7 @@ Sets a **WebviewController** object. If opening a new window is not needed, set 
 
 Implements the **WebResourceError** object. For the sample code, see [onErrorReceive](#onerrorreceive).
 
-### constructor<sup>9+</sup>
+### constructor
 
 constructor()
 
@@ -7602,7 +7901,7 @@ Grants the permission for resources requested by the web page.
 
 Implements the **ScreenCaptureHandler** object for accepting or rejecting a screen capture request. For the sample code, see [onScreenCaptureRequest Event](#onscreencapturerequest10).
 
-### constructor<sup>9+</sup>
+### constructor<sup>10+</sup>
 
 constructor()
 
@@ -7680,7 +7979,7 @@ setGestureEventResult(result: boolean): void
 
 See [onNativeEmbedGestureEvent](#onnativeembedgestureevent11).
 
-### setGestureEventResult<sup>12+</sup>
+### setGestureEventResult<sup>14+</sup>
 
 Sets the gesture event consumption result.
 
@@ -7995,6 +8294,10 @@ paste(): void
 
 Performs the paste operation related to this context menu.
 
+> **NOTE**
+>
+> The **ohos.permission.READ_PASTEBOARD** permission must be declared.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 ### cut<sup>9+</sup>
@@ -8086,7 +8389,7 @@ Enumerates the reasons why the rendering process exits.
 | Default<sup>9+</sup> | 0 | The cache that has not expired is preferentially used to load resources. If the cache is invalid or no cache is available, resources are obtained from the network.|
 | None    | 1 | The cache (including expired caches) is preferentially used to load resources. If no cache is available, resources are obtained from the network.    |
 | Online  | 2 | The latest resources are forcibly obtained from the network without using any cache.              |
-| Only    | 3 | The local cache alone is used to load the resources.                       |
+| Only    | 3 | Only the local cache is used to load resources.                       |
 
 ## FileSelectorMode<sup>9+</sup>
 
@@ -8302,6 +8605,18 @@ This API is deprecated since API version 9. You are advised to use [WebviewContr
 ```ts
 let webController: WebController = new WebController()
 ```
+
+### constructor
+
+constructor()
+
+Constructs a **WebController** object.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. No API is provided for substitute.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ### getCookieManager<sup>(deprecated)</sup>
 
@@ -9059,7 +9374,7 @@ This API is deprecated since API version 9. You are advised to use [clearHistory
 
 Manages behavior of cookies in **Web** components. All **Web** components in an application share a **WebCookie**. You can use the **getCookieManager** API in **controller** to obtain the **WebCookie** for subsequent cookie management.
 
-### constructor<sup>9+</sup>
+### constructor
 
 constructor()
 
@@ -9785,6 +10100,7 @@ Represents the callback invoked when the web page receives an SSL error.
 | -------------- | ---- | ---- | ---------------------------------------- |
 | handler | [SslErrorHandler](#sslerrorhandler9) | Yes| User operation.|
 | error   | [SslError](#sslerror9)          | Yes| Error code.          |
+| certChainData<sup>14+</sup>   | Array<Uint8Array\>           | No| Certificate chain data.          |
 
 ## OnClientAuthenticationEvent<sup>12+</sup>
 
@@ -9802,7 +10118,7 @@ Represents the callback invoked when an SSL client certificate is required from 
 
 ## OnWindowNewEvent<sup>12+</sup>
 
-Represents the callback invoked when the web page requests the user to create a new window.
+Represents the callback invoked when the web page requests the user to create a window.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
