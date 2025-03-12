@@ -23,7 +23,7 @@ import  { picker } from '@kit.CoreFileKit';
 
 constructor(context: Context)
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -61,7 +61,7 @@ struct Index {
 
 constructor()
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -81,7 +81,7 @@ select(option?: DocumentSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -127,7 +127,7 @@ select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -170,7 +170,7 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -211,7 +211,7 @@ save(option?: DocumentSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -258,7 +258,7 @@ save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -302,7 +302,7 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -345,7 +345,7 @@ async function example12(context: common.Context) { // 需确保 context 由 UIA
 
 constructor(context: Context)
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -382,7 +382,7 @@ struct Index {
 
 constructor()
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -402,7 +402,7 @@ select(option?: AudioSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[媒体类uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri介绍)。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -528,7 +528,7 @@ save(option?: AudioSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -654,7 +654,7 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 
 仅支持2in1设备。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService.FolderSelection
 
@@ -668,7 +668,7 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 
 文档选择选项。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -684,7 +684,7 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 
 枚举，picker选择的文档类型。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -697,7 +697,7 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 
 文档保存选项。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -712,7 +712,7 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 
 音频选择选项。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 | 名称                    | 类型                                          | 必填 | 说明                                       |
@@ -723,7 +723,7 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 
 音频的保存选项。
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -781,7 +781,7 @@ struct Index {
 
 constructor()
 
-**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -805,7 +805,7 @@ select(option?: PhotoSelectOptions): Promise&lt;PhotoSelectResult&gt;
 
 **注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
-**原子化服务API：**从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -857,7 +857,7 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 
 **注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
-**原子化服务API：**从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -906,7 +906,7 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 
 **注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
-**原子化服务API：**从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -1085,7 +1085,7 @@ async function example06(context: common.Context) { // 需确保 context 由 UIA
 >
 > 从API version 9开始支持，从API version 12开始废弃。建议使用[photoAccessHelper.PhotoViewMIMETypes](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewmimetypes)替代。
 
-**原子化服务API：**从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -1103,7 +1103,7 @@ async function example06(context: common.Context) { // 需确保 context 由 UIA
 >
 > 从API version 9开始支持，从API version 12开始废弃。建议使用[photoAccessHelper.PhotoSelectOptions](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoselectoptions)替代。
 
-**原子化服务API：**从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -1120,7 +1120,7 @@ async function example06(context: common.Context) { // 需确保 context 由 UIA
 >
 > 从API version 9开始支持，从API version 12开始废弃。建议使用[photoAccessHelper.PhotoSelectResult](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoselectresult)替代。
 
-**原子化服务API：**从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
