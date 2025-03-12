@@ -1,4 +1,4 @@
-# Cross-Device Connection Management
+# UIAbility Connection Development
 
 
 ## Introduction
@@ -14,24 +14,33 @@ Cross-device connection management allows for mutual capability assistance betwe
 
 ### Typical Use Cases
 
-The transport stream feature allows users to start the peer camera from the local camera to access capabilities such as <!--Del-->camera preview, <!--DelEnd-->text-based interaction<!--Del-->, photo reception, and remote camera shutter<!--DelEnd-->.
+The transport stream feature allows users to start the peer camera from the local camera to access capabilities such as text-based interaction<!--Del-->, camera preview, photo reception, and remote camera shutter<!--DelEnd-->.
 
 
 ### Basic Concepts
 
 Before you get started, familiarize yourself with the following concepts:
 
-- **DMS**
+- **Distributed Management Service (DMS)**
   
-  Distributed Management Service (DMS) is a framework that provides distributed component management capabilities.
+  A framework that provides distributed component management capabilities.
+
+- **UIAbility**
+
+  A component that implements tasks specific to application UIs, such as lifecycle management, user interaction, and UI rendering.
+
+- **Extension**
+
+  A component that extends application functions or implements cross-device collaboration. It allows applications to run some tasks in the background or migrates some functions to other devices for execution, implementing distributed capabilities.
+
 <!--Del-->
 - **Byte stream**
   
-  Byte streams are data of the [ArrayBuffer](../arkts-utils/arraybuffer-object.md) type. They can be used to store binary data, for example, image or audio data.
+  Data of the [ArrayBuffer](../arkts-utils/arraybuffer-object.md) type, which can be used to store binary data, for example, image or audio data.
 
 - **Transport stream**
 
-  Transport streams are media streams that can be used to transmit images and video streams.
+  Media streams that can be used to transmit images and video streams.
 <!--DelEnd-->
 ### Implementation Principles
 

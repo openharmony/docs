@@ -295,7 +295,7 @@ Defines the device capability.
 | deviceType    | [DeviceType](#devicetype)       | Yes   | No   | Device type.  |
 
 
-## RawFileDescriptor<sup>8+</sup>
+## RawFileDescriptor<sup>9+</sup>
 
 type RawFileDescriptor = _RawFileDescriptor
 
@@ -305,7 +305,7 @@ type RawFileDescriptor = _RawFileDescriptor
 
 | Type   | Description  |
 | ------  | ---- | 
-|[_RawFileDescriptor](rawFileDescriptor.md#rawfiledescriptor-1)|Descriptor of the HAP where the raw file is located.|
+|[_RawFileDescriptor](js-apis-rawFileDescriptor.md#rawfiledescriptor-1)|Descriptor of the HAP where the raw file is located.|
 
 ## Resource<sup>9+</sup>
 
@@ -317,7 +317,7 @@ type Resource = _Resource
 
 | Type   | Description  |
 | ------  | ---- | 
-|[_Resource](resource.md#resource-1)|Resource information of an application.|
+|[_Resource](js-apis-resource.md#resource-1)|Resource information of an application.|
 
 ## ResourceManager
 
@@ -535,7 +535,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     let message = (error as BusinessError).message;
     console.error(`getStringSync failed, error code: ${code}, message: ${message}.`);
   }
- ```
+  ```
 
 ### getStringByNameSync<sup>9+</sup>
 
@@ -629,7 +629,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     let message = (error as BusinessError).message;
     console.error(`getStringByNameSync failed, error code: ${code}, message: ${message}.`);
   }
- ```
+  ```
 
 ### getStringValue<sup>9+</sup>
 
@@ -1386,68 +1386,72 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   }
   ```
 
-### getPluralStringValueSync<sup>10+</sup>
+### getIntPluralStringValueSync<sup>18+</sup>
 
-getPluralStringValueSync(resId: number, num: number): string
+getIntPluralStringValueSync(resId: number, num: number, ...args: Array<string | number>): string;
 
-Obtains a singular-plural string by the specified number based on the specified resource ID. This API returns the result synchronously.
+Obtains singular/plural strings based on the specified resource ID.
 
->**NOTE**
+> **NOTE**
 >
-> Singular and plural forms are available for English, but not Chinese.
+> Singular/plural forms are available for English, but not Chinese.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
 
-| Name  | Type    | Mandatory  | Description   |
-| ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
-| num   | number | Yes   | Number.  |
+| Name | Type                   | Mandatory| Description                                                        |
+| ------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| resId   | number                  | Yes  | Resource ID.                                                  |
+| num     | number                  | Yes  | Integer number used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| ...args | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
-| Type                   | Description         |
-| -------- | ----------- |
-| string   | Singular-plural string corresponding to the specified resource ID.|
+| Type  | Description                  |
+| ------ | ---------------------- |
+| string | Singular or plural string corresponding to the specified resource ID.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | Invalid resource ID.                       |
-| 9001002  | No matching resource is found based on the resource ID.         |
-| 9001006  | The resource is referenced cyclically.            |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getPluralStringValueSync($r('app.plural.test').id, 1);
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`getPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
-  }
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    // If the value of num is 1, the value of quantity is one according to the language plural rules. Therefore, the string whose quantity is one is obtained from the $r ('app.plural.format_test') resource.
+	this.context.resourceManager.getIntPluralStringValueSync($r('app.plural.format_test').id, 1, 1, "aaa", 1.1);
+} catch (error) {
+	let code = (error as BusinessError).code;
+	let message = (error as BusinessError).message;
+	console.error(`getIntPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+}
   ```
 
-### getPluralStringValueSync<sup>10+</sup>
+### getIntPluralStringValueSync<sup>18+</sup>
 
-getPluralStringValueSync(resource: Resource, num: number): string
+getIntPluralStringValueSync(resource: Resource, num: number, ...args: Array<string | number>): string;
 
-Obtains a singular-plural string by the specified number based on the specified resource object. This API returns the result synchronously.
+Obtains singular/plural strings based on the specified resource object.
 
->**NOTE**
+> **NOTE**
 >
-> Singular and plural forms are available for English, but not Chinese.
+> Singular/plural forms are available for English, but not Chinese.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1455,216 +1459,172 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Parameters**
 
-| Name  | Type    | Mandatory  | Description   |
-| ----- | ------ | ---- | ----- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
-| num      | number                 | Yes   | Number.  |
+| Name  | Type                   | Mandatory| Description                                                        |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| resource | [Resource](#resource9)  | Yes  | Resource object.                                                  |
+| num      | number                  | Yes  | Quantity value (an integer), which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| ...args  | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
-| Type                   | Description         |
-| --------------------- | ----------- |
-| string | Singular-plural string corresponding to the specified resource object.|
-
-**Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | Invalid resource ID.                       |
-| 9001002  | No matching resource is found based on the resource ID.         |
-| 9001006  | The resource is referenced cyclically.            |
-
-**Example**
-  ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  let resource: resourceManager.Resource = {
-    bundleName: "com.example.myapplication",
-    moduleName: "entry",
-    id: $r('app.plural.test').id
-  };
-  try {
-    this.context.resourceManager.getPluralStringValueSync(resource, 1);
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`getPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
-  }
-  ```
-
-### getPluralStringByNameSync<sup>10+</sup>
-
-getPluralStringByNameSync(resName: string, num: number): string
-
-Obtains a singular-plural string by the specified number based on the specified resource name. This API returns the result synchronously.
-
->**NOTE**
->
-> Singular and plural forms are available for English, but not Chinese.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.Global.ResourceManager
-
-**Parameters**
-
-| Name  | Type    | Mandatory  | Description   |
-| ----- | ------ | ---- | ----- |
-| resName | string | Yes   | Resource name.|
-| num      | number                 | Yes   | Number.  |
-
-**Return value**
-
-| Type                   | Description         |
-| --------------------- | ----------- |
-| string | Singular-plural string corresponding to the specified resource name.|
-
-**Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | Invalid resource name.                       |
-| 9001004  | No matching resource is found based on the resource name.         |
-| 9001006  | The resource is referenced cyclically.            |
-
-**Example**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    this.context.resourceManager.getPluralStringByNameSync("test", 1);
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`getPluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
-  }
-  ```
-
-### getPluralStringValue<sup>9+</sup>
-
-getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
-
-Obtains a singular-plural string by the specified number based on the specified resource ID. This API uses an asynchronous callback to return the result.
-
->**NOTE**
->
-> Singular and plural forms are available for English, but not Chinese.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.Global.ResourceManager
-
-**Parameters**
-
-| Name     | Type                         | Mandatory  | Description                             |
-| -------- | --------------------------- | ---- | ------------------------------- |
-| resId    | number                      | Yes   | Resource ID.                          |
-| num      | number                      | Yes   | Number.                            |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource ID.|
+| Type  | Description                                |
+| ------ | ------------------------------------ |
+| string | Singular/plural string represented by the resource object.|
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | Invalid resource ID.                       |
-| 9001002  | No matching resource is found based on the resource ID.         |
-| 9001006  | The resource is referenced cyclically.            |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getPluralStringValue failed, error code: ${code}, message: ${message}.`);
-  }
+  ```ts
+import { resourceManager } from '@kit.LocalizationKit'
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let resource: resourceManager.Resource = {
+	bundleName: "com.example.myapplication",
+	moduleName: "entry",
+	id: $r('app.plural.format_test').id
+};
+try {
+    // If the value of num is 1, the value of quantity is one according to the language plural rules. Therefore, the string whose quantity is one is obtained from the $r ('app.plural.format_test') resource.
+	this.context.resourceManager.getIntPluralStringValueSync(resource, 1, 1, "aaa", 1.1);
+} catch (error) {
+	let code = (error as BusinessError).code;
+	let message = (error as BusinessError).message;
+	console.error(`getIntPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+}
   ```
 
-### getPluralStringValue<sup>9+</sup>
+### getIntPluralStringByNameSync<sup>18+</sup>
 
-getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
+getIntPluralStringByNameSync(resName: string, num: number, ...args: Array<string | number>): string;
 
-Obtains a singular-plural string by the specified number based on the specified resource ID. This API uses a promise to return the result.
+Obtains singular/plural strings based on the specified resource name.
 
->**NOTE**
+> **NOTE**
 >
-> Singular and plural forms are available for English, but not Chinese.
+> Singular/plural forms are available for English, but not Chinese.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
 
-| Name  | Type    | Mandatory  | Description   |
-| ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
-| num   | number | Yes   | Number. |
+| Name | Type                   | Mandatory| Description                                                        |
+| ------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| resName | string                  | Yes  | Resource name.                                                  |
+| num     | number                  | Yes  | Quantity value (an integer), which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| ...args | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
-| Type                   | Description                       |
-| --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource ID.|
+| Type  | Description                                |
+| ------ | ------------------------------------ |
+| string | Singular/plural string represented by the resource name.|
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | Invalid resource ID.                       |
-| 9001002  | No matching resource is found based on the resource ID.         |
-| 9001006  | The resource is referenced cyclically.            |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001003  | Invalid resource name.                                       |
+| 9001004  | No matching resource is found based on the resource name.    |
+| 9001006  | The resource is referenced cyclically.                       |
+| 9001008  | Failed to format the resource obtained based on the resource name. |
 
 **Example**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1).then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getPluralStringValue promise error is " + error);
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    // If the value of num is 1, the value of quantity is one according to the language plural rules. Therefore, the string whose quantity is one is obtained from the $r ('app.plural.format_test') resource.
+	this.context.resourceManager.getIntPluralStringByNameSync("format_test", 1, 1, "aaa", 1.1);
+} catch (error) {
+	let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.error(`promise getPluralStringValue failed, error code: ${code}, message: ${message}.`);
-  }
+	console.error(`getIntPluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
+}
   ```
 
-### getPluralStringValue<sup>9+</sup>
+### getDoublePluralStringValueSync<sup>18+</sup>
 
-getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt;string&gt;): void
+getDoublePluralStringValueSync(resId: number, num: number, ...args: Array<string | number>): string;
 
-Obtains a singular-plural string by the specified number based on the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains singular/plural strings based on the specified resource ID.
 
->**NOTE**
+> **NOTE**
 >
-> Singular and plural forms are available for English, but not Chinese.
+> Singular/plural forms are available for English, but not Chinese.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name | Type                   | Mandatory| Description                                                        |
+| ------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| resId   | number                  | Yes  | Resource ID.                                                  |
+| num     | number                  | Yes  | Quantity value (a floating point number), which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| ...args | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
+
+**Return value**
+
+| Type  | Description                            |
+| ------ | -------------------------------- |
+| string | Singular/plural string represented by the resource ID.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
+
+**Example**
+
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    // If the value of num is 2.1, the value of quantity is other according to the language plural rules. Therefore, the string whose quantity is other is obtained from the $r('app.plural.format_test') resource.
+	this.context.resourceManager.getDoublePluralStringValueSync($r('app.plural.format_test').id, 2.1, 2, "aaa", 1.1);
+} catch (error) {
+	let code = (error as BusinessError).code;
+	let message = (error as BusinessError).message;
+	console.error(`getDoublePluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+}
+  ```
+
+### getDoublePluralStringValueSync<sup>18+</sup>
+
+getDoublePluralStringValueSync(resource: Resource, num: number, ...args: Array<string | number>): string;
+
+Obtains singular/plural strings based on the specified resource object.
+
+> **NOTE**
+>
+> Singular/plural forms are available for English, but not Chinese.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1672,216 +1632,104 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Parameters**
 
-| Name     | Type                         | Mandatory  | Description                                  |
-| -------- | --------------------------- | ---- | ------------------------------------ |
-| resource | [Resource](#resource9)      | Yes   | Resource object.                                |
-| num      | number                      | Yes   | Number.                                 |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource object.|
-
-**Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | Invalid resource ID.                       |
-| 9001002  | No matching resource is found based on the resource ID.         |
-| 9001006  | The resource is referenced cyclically.            |
-
-**Example**
-  ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  let resource: resourceManager.Resource = {
-    bundleName: "com.example.myapplication",
-    moduleName: "entry",
-    id: $r('app.plural.test').id
-  };
-  try {
-    this.context.resourceManager.getPluralStringValue(resource, 1, (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getPluralStringValue failed, error code: ${code}, message: ${message}.`);
-  }
-  ```
-
-### getPluralStringValue<sup>9+</sup>
-
-getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
-
-Obtains a singular-plural string by the specified number based on the specified resource object. This API uses a promise to return the result.
-
->**NOTE**
->
-> Singular and plural forms are available for English, but not Chinese.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.Global.ResourceManager
-
-**Model restriction**: This API can be used only in the stage model.
-
-**Parameters**
-
-| Name     | Type                    | Mandatory  | Description  |
-| -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
-| num      | number                 | Yes   | Number. |
+| Name  | Type                   | Mandatory| Description                                                        |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| resource | [Resource](#resource9)  | Yes  | Resource object.                                                  |
+| num      | number                  | Yes  | Quantity value (a floating point number), which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| ...args  | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
-| Type                   | Description                            |
-| --------------------- | ------------------------------ |
-| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource object.|
+| Type  | Description                                    |
+| ------ | ---------------------------------------- |
+| string | Singular/plural string represented by the resource object.|
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.                |
-| 9001001  | Invalid resource ID.                       |
-| 9001002  | No matching resource is found based on the resource ID.         |
-| 9001006  | The resource is referenced cyclically.            |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
-  ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
-  import { BusinessError } from '@kit.BasicServicesKit';
 
-  let resource: resourceManager.Resource = {
-    bundleName: "com.example.myapplication",
-    moduleName: "entry",
-    id: $r('app.plural.test').id
-  };
-  try {
-    this.context.resourceManager.getPluralStringValue(resource, 1).then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getPluralStringValue promise error is " + error);
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getPluralStringValue failed, error code: ${code}, message: ${message}.`);
-  }
+  ```ts
+import { resourceManager } from '@kit.LocalizationKit'
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let resource: resourceManager.Resource = {
+	bundleName: "com.example.myapplication",
+	moduleName: "entry",
+	id: $r('app.plural.format_test').id
+};
+try {
+    // If the value of num is 2.1, the value of quantity is other according to the language plural rules. Therefore, the string whose quantity is other is obtained from the $r('app.plural.format_test') resource.
+	this.context.resourceManager.getDoublePluralStringValueSync(resource, 2.1, 2, "aaa", 1.1);
+} catch (error) {
+	let code = (error as BusinessError).code;
+	let message = (error as BusinessError).message;
+	console.error(`getDoublePluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+}
   ```
 
-### getPluralStringByName<sup>9+</sup>
+### getDoublePluralStringByNameSync<sup>18+</sup>
 
-getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;string&gt;): void
+getDoublePluralStringByNameSync(resName: string, num: number, ...args: Array<string | number>): string;
 
-Obtains a singular-plural string by the specified number based on the specified resource name. This API uses an asynchronous callback to return the result.
+Obtains singular/plural strings based on the specified resource name.
 
->**NOTE**
+> **NOTE**
 >
-> Singular and plural forms are available for English, but not Chinese.
+> Singular/plural forms are available for English, but not Chinese.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
 
-| Name     | Type                         | Mandatory  | Description                           |
-| -------- | --------------------------- | ---- | ----------------------------- |
-| resName  | string                      | Yes   | Resource name.                         |
-| num      | number                      | Yes   | Number.                          |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource name.|
-
-**Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | Invalid resource name.                     |
-| 9001004  | No matching resource is found based on the resource name.       |
-| 9001006  | The resource is referenced cyclically.            |
-
-**Example**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    this.context.resourceManager.getPluralStringByName("test", 1, (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getPluralStringByName failed, error code: ${code}, message: ${message}.`);
-  }
-  ```
-
-### getPluralStringByName<sup>9+</sup>
-
-getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
-
-Obtains a singular-plural string by the specified number based on the specified resource name. This API uses a promise to return the result.
-
->**NOTE**
->
-> Singular and plural forms are available for English, but not Chinese.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.Global.ResourceManager
-
-**Parameters**
-
-| Name    | Type    | Mandatory  | Description  |
-| ------- | ------ | ---- | ---- |
-| resName | string | Yes   | Resource name.|
-| num     | number | Yes   | Number. |
+| Name | Type                   | Mandatory| Description                                                        |
+| ------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| resName | string                  | Yes  | Resource name.                                                  |
+| num     | number                  | Yes  | Quantity value (a floating point number), which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| ...args | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
-| Type                   | Description                    |
-| --------------------- | ---------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource name.|
+| Type  | Description                            |
+| ------ | -------------------------------- |
+| string | Singular/plural string represented by the resource name.|
 
 **Error codes**
 
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | Invalid resource name.                     |
-| 9001004  | No matching resource is found based on the resource name.       |
-| 9001006  | The resource is referenced cyclically.            |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001003  | Invalid resource name.                                       |
+| 9001004  | No matching resource is found based on the resource name.    |
+| 9001006  | The resource is referenced cyclically.                       |
+| 9001008  | Failed to format the resource obtained based on the resource name. |
 
 **Example**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getPluralStringByName("test", 1).then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getPluralStringByName promise error is " + error);
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getPluralStringByName failed, error code: ${code}, message: ${message}.`);
-  }
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    // If the value of num is 2.1, the value of quantity is other according to the language plural rules. Therefore, the string whose quantity is other is obtained from the $r('app.plural.format_test') resource.
+	this.context.resourceManager.getDoublePluralStringByNameSync("format_test", 2.1, 2, "aaa", 1.1);
+} catch (error) {
+	let code = (error as BusinessError).code;
+	let message = (error as BusinessError).message;
+	console.error(`getDoublePluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
+}
   ```
 
 ### getMediaContentSync<sup>10+</sup>
@@ -4702,7 +4550,7 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| [RawFileDescriptor](#rawfiledescriptor8) | Descriptor of the HAP where the raw file is located.|
+| [RawFileDescriptor](#rawfiledescriptor9) | Descriptor of the HAP where the raw file is located.|
 
 **Error codes**
 
@@ -4741,7 +4589,7 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | Yes   | Path of the raw file.                     |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Callback used to return the result, which is the descriptor of the HAP where the raw file is located.|
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Yes   | Callback used to return the result, which is the descriptor of the HAP where the raw file is located.|
 
 **Error codes**
 
@@ -4794,7 +4642,7 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Descriptor of the HAP where the raw file is located.|
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Descriptor of the HAP where the raw file is located.|
 
 **Error codes**
 
@@ -5861,18 +5709,542 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
   });
   ```
 
+### getPluralStringValueSync<sup>(deprecated)</sup>
+
+getPluralStringValueSync(resId: number, num: number): string
+
+Obtains singular/plural strings based on the specified resource ID and quantity. This API returns the result synchronously.
+
+> **NOTE**
+>
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| resId  | number | Yes  | Resource ID.                                                  |
+| num    | number | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+
+**Return value**
+
+| Type  | Description                                            |
+| ------ | ------------------------------------------------ |
+| string | Singular/plural string corresponding to the specified quantity and resource ID.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    this.context.resourceManager.getPluralStringValueSync($r('app.plural.test').id, 1);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringValueSync<sup>(deprecated)</sup>
+
+getPluralStringValueSync(resource: Resource, num: number): string
+
+Obtains singular/plural strings based on the specified quantity and resource object. This API returns the result synchronously.
+
+> **NOTE**
+>
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18-1).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| resource | [Resource](#resource9) | Yes  | Resource object.                                                  |
+| num      | number                 | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+
+**Return value**
+
+| Type  | Description                                                |
+| ------ | ---------------------------------------------------- |
+| string | Singular/plural string corresponding to the specified quantity and resource object.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**Example**
+
+  ```ts
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let resource: resourceManager.Resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.plural.test').id
+  };
+  try {
+    this.context.resourceManager.getPluralStringValueSync(resource, 1);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringByNameSync<sup>(deprecated)</sup>
+
+getPluralStringByNameSync(resName: string, num: number): string
+
+Obtains singular/plural strings based on the specified quantity and resource name. This API returns the result synchronously.
+
+> **NOTE**
+>
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [getIntPluralStringByNameSync](#getintpluralstringbynamesync18).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description                                                        |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| resName | string | Yes  | Resource name.                                                  |
+| num     | number | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+
+**Return value**
+
+| Type  | Description                                            |
+| ------ | ------------------------------------------------ |
+| string | Singular/plural string corresponding to the specified quantity and resource name.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001003  | Invalid resource name.                                       |
+| 9001004  | No matching resource is found based on the resource name.    |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    this.context.resourceManager.getPluralStringByNameSync("test", 1);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getPluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringValue<sup>(deprecated)</sup>
+
+getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
+
+Obtains singular/plural strings based on the specified quantity and resource ID. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| resId    | number                      | Yes  | Resource ID.                                                  |
+| num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result, which is the singular/plural string corresponding to the specified resource ID.          |
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, (error: BusinessError, value: string) => {
+      if (error != null) {
+        console.error("error is " + error);
+      } else {
+        let str = value;
+      }
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getPluralStringValue failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringValue<sup>(deprecated)</sup>
+
+getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
+
+Obtains singular/plural strings based on the specified quantity and resource ID. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| resId  | number | Yes  | Resource ID.                                                  |
+| num    | number | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+
+**Return value**
+
+| Type                 | Description                                                |
+| --------------------- | ---------------------------------------------------- |
+| Promise&lt;string&gt; | Promise used to return the result, which is the singular/plural string corresponding to the specified resource ID.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1).then((value: string) => {
+      let str = value;
+    }).catch((error: BusinessError) => {
+      console.error("getPluralStringValue promise error is " + error);
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getPluralStringValue failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringValue<sup>(deprecated)</sup>
+
+getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt;string&gt;): void
+
+Obtains singular/plural strings based on the specified quantity and resource object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18-1).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| resource | [Resource](#resource9)      | Yes  | Resource object.                                                  |
+| num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result, which is the singular/plural string corresponding to the specified resource object.      |
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**Example**
+
+  ```ts
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let resource: resourceManager.Resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.plural.test').id
+  };
+  try {
+    this.context.resourceManager.getPluralStringValue(resource, 1, (error: BusinessError, value: string) => {
+      if (error != null) {
+        console.error("error is " + error);
+      } else {
+        let str = value;
+      }
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getPluralStringValue failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringValue<sup>(deprecated)</sup>
+
+getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
+
+Obtains singular/plural strings based on the specified quantity and resource object. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18-1).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| resource | [Resource](#resource9) | Yes  | Resource object.                                                  |
+| num      | number                 | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+
+**Return value**
+
+| Type                 | Description                                                    |
+| --------------------- | -------------------------------------------------------- |
+| Promise&lt;string&gt; | Promise used to return the result, which is the singular/plural string corresponding to the specified resource object.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**Example**
+
+  ```ts
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let resource: resourceManager.Resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.plural.test').id
+  };
+  try {
+    this.context.resourceManager.getPluralStringValue(resource, 1).then((value: string) => {
+      let str = value;
+    }).catch((error: BusinessError) => {
+      console.error("getPluralStringValue promise error is " + error);
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getPluralStringValue failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringByName<sup>(deprecated)</sup>
+
+getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;string&gt;): void
+
+Obtains singular/plural strings based on the specified quantity and resource name. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [getIntPluralStringByNameSync](#getintpluralstringbynamesync18).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| resName  | string                      | Yes  | Resource name.                                                  |
+| num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result, which is the singular/plural string corresponding to the specified resource name.            |
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001003  | Invalid resource name.                                       |
+| 9001004  | No matching resource is found based on the resource name.    |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    this.context.resourceManager.getPluralStringByName("test", 1, (error: BusinessError, value: string) => {
+      if (error != null) {
+        console.error("error is " + error);
+      } else {
+        let str = value;
+      }
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getPluralStringByName failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringByName<sup>(deprecated)</sup>
+
+getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
+
+Obtains singular/plural strings based on the specified quantity and resource name. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [getIntPluralStringByNameSync](#getintpluralstringbynamesync18).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description                                                        |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| resName | string | Yes  | Resource name.                                                  |
+| num     | number | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+
+**Return value**
+
+| Type                 | Description                                            |
+| --------------------- | ------------------------------------------------ |
+| Promise&lt;string&gt; | Promise used to return the result, which is the singular/plural string corresponding to the specified resource name.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001003  | Invalid resource name.                                       |
+| 9001004  | No matching resource is found based on the resource name.    |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    this.context.resourceManager.getPluralStringByName("test", 1).then((value: string) => {
+      let str = value;
+    }).catch((error: BusinessError) => {
+      console.error("getPluralStringByName promise error is " + error);
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getPluralStringByName failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
 
 ### getPluralString<sup>(deprecated)</sup>
 
 getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
-Obtains a singular-plural string by the specified number based on the specified resource ID. This API uses a promise to return the result.
+Obtains singular/plural strings based on the specified quantity and resource ID. This API uses a promise to return the result.
 
->**NOTE**
+> **NOTE**
 >
-> Singular and plural forms are available for English, but not Chinese.
-
-This API is deprecated since API version 9. You are advised to use [getPluralStringValue](#getpluralstringvalue9).
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5881,15 +6253,16 @@ This API is deprecated since API version 9. You are advised to use [getPluralStr
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
 | resId | number | Yes   | Resource ID.|
-| num   | number | Yes   | Number.  |
+| num   | number | Yes   | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
 
 **Return value**
 
 | Type                   | Description                       |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource ID.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the singular/plural string corresponding to the specified resource ID.|
 
 **Example**
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -5907,13 +6280,13 @@ This API is deprecated since API version 9. You are advised to use [getPluralStr
 
 getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains a singular-plural string by the specified number based on the specified resource ID. This API uses an asynchronous callback to return the result.
+Obtains singular/plural strings based on the specified quantity and resource ID. This API uses an asynchronous callback to return the result.
 
->**NOTE**
+> **NOTE**
 >
-> Singular and plural forms are available for English, but not Chinese.
-
-This API is deprecated since API version 9. You are advised to use [getPluralStringValue](#getpluralstringvalue9-1).
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5922,10 +6295,11 @@ This API is deprecated since API version 9. You are advised to use [getPluralStr
 | Name     | Type                         | Mandatory  | Description                             |
 | -------- | --------------------------- | ---- | ------------------------------- |
 | resId    | number                      | Yes   | Resource ID.                          |
-| num      | number                      | Yes   | Number.                            |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource ID.|
+| num      | number                      | Yes   | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular/plural string corresponding to the specified resource ID.|
 
 **Example**
+
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getPluralString($r("app.plural.test").id, 1, (error: Error, value: string) => {
@@ -6021,7 +6395,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFd](#g
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | Yes   | Path of the raw file.                     |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Callback used to return the result, which is the descriptor of the raw file.|
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Yes   | Callback used to return the result, which is the descriptor of the raw file.|
 
 **Example**
   ```ts
@@ -6060,7 +6434,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFd](#g
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Promise used to return the result, which is the descriptor of the raw file.|
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Promise used to return the result, which is the descriptor of the raw file.|
 
 **Example**
   ```ts
@@ -6177,7 +6551,7 @@ This API is deprecated since API version 9. You are advised to use [closeRawFd](
         }
     ]
     }
-    ```  
+    ```
 
 - Content of the **app.plural.test** file:
     ```json
@@ -6198,19 +6572,41 @@ This API is deprecated since API version 9. You are advised to use [closeRawFd](
         }
     ]
     }
-    ``` 
+    ```
+
+- Content of the **app.plural.format_test** file:
+
+    ```
+    {
+      "plural": [
+        {
+        "name": "format_test",
+        "value": [
+            {
+            "quantity": "one",
+            "value": "%d apple, %s, %f"
+            },
+            {
+            "quantity": "other",
+            "value": "%d apples, %s, %f"
+            }
+        ]
+        }
+    ]
+    }
+    ```
 
 - Content of the **app.boolean.boolean_test** file:
     ```json
     {
-    "boolean": [
-        {
-        "name": "boolean_test",
-        "value": true
-        }
-    
+        "boolean": [
+            {
+                "name": "boolean_test",
+                "value": true
+            }
+        ]
     }
-    ``` 
+    ```
 
 - Content of the **integer_test** and **float_test** files:
     ```json
@@ -6222,7 +6618,7 @@ This API is deprecated since API version 9. You are advised to use [closeRawFd](
         }
       ]
     }
-    ``` 
+    ```
 
     ```json
     {
@@ -6233,7 +6629,7 @@ This API is deprecated since API version 9. You are advised to use [closeRawFd](
         }
       ]
     }
-    ``` 
+    ```
 - Content of the **app.color.test** file:
     ```json
     {
@@ -6244,4 +6640,4 @@ This API is deprecated since API version 9. You are advised to use [closeRawFd](
        }
       ]
     }
-    ``` 
+    ```

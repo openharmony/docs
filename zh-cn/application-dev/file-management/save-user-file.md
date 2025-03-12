@@ -181,7 +181,7 @@
      console.info('documentViewPicker.save succeed and uri is:' + uri);
      const testFilePath = new fileUri.FileUri(uri + '/test.txt').path;
      const file = fs.openSync(testFilePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-     fs.writeSync(file.fd, 'Hello HarmonyOS');
+     fs.writeSync(file.fd, 'Hello World!');
      fs.closeSync(file.fd);
    }).catch((err: BusinessError) => {
      console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);

@@ -72,7 +72,7 @@ kernel_version = "3.0.0"                --- 内核版本，跟config.json中kern
    执行`hb set`输入项目根目录，并且回车，`hb`命令会遍历所有`//vendor/<product_company>/<product_name>`目录下的`config.json`，给出可选产品编译选项，`config.json`的`product_name`用于显示产品名，`device_company`和`board`用于关联出`//device/board/<device_company>/<board>`目录，并且匹配`<any_dir_name>/config.gni`文件，如果能够匹配多个文件，表示该单板适配了多个内核，那么可以根据`config.json`的`kernel_type`和`kernel_version`来唯一匹配`config.gni`的`kernel_type`和`kernel_version`，即可确定了需要编译适配了哪个内核的单板。
 ![hb set](figures/bes2600_hb_set.png)
 
-			通过`hb env`可以查看选择出来的预编译环境变量。
+	通过`hb env`可以查看选择出来的预编译环境变量。
 
 ![hb env](figures/bes2600_hb_env.png)
 
@@ -305,9 +305,9 @@ if (ohos_kernel_type == "liteos_m") {                    --- 由于多内核设�
 内核启动适配总体思路如下：
 
 1. 中断向量的初始化`os_vector_init` ，初始化中断的处理函数。
-2. 内核初始化`osKernelInitialize` 。
+2. 内核初始化`osKernelInitialize`。
 3. 创建线程`board_main`，进行芯片平台初始化。
-4. 内核启动，开始调度线程`osKernelStart` 。
+4. 内核启动，开始调度线程`osKernelStart`。
 
 其中，本章节详细对第3步进行展开，其他几步为对内核函数调用，不作详细描述。
 
@@ -1018,7 +1018,7 @@ APP_FEATURE_INIT(WifiDHCPRpcServerCB);
 ![](../public_sys-resources/icon-note.gif) **说明：** 
 	通过上面加载的组件编译出来的lib文件需要手动加入强制链接。
 
-​	如在 `vendor/bestechnic/display_demo/config.json` 中配置了`bootstrap_lite` 部件
+​	如在 `vendor/bestechnic/display_demo/config.json` 中配置了`bootstrap_lite` 部件。
 
 ```
     {
@@ -1357,7 +1357,7 @@ APP_FEATURE_INIT(AppEntry);
 
 `ace_lite`的应用采用js语言进行开发，详细步骤如下：
 
-1. 用`DevEco Studio`编写js应用，参考[轻量级智能穿戴开发](https://developer.harmonyos.com/cn/docs/documentation/doc-references/lite-wearable-file-0000001176751380)。
+1. 用`DevEco Studio`编写js应用，参考[《DevEco Studio指南》](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-tools-overview)。
 2. 使用预览功能进行预览，并且得到js包：`entry\.preview\intermediates\res\debug\lite\assets\js\default`。
 3. 将js包放到对应的文件系统目录下，文件系统路径为`vendor/bestechnic/display_demo/fs/data/data/js`，如下：
 
@@ -1461,7 +1461,7 @@ APP_FEATURE_INIT(AppEntry);
 
 步骤2：生成测试报告的`SHA`校验码。本案例是将`zip`文件传到在线生成`hash`的[网站]( https://tool.lmeee.com/jiami/filehash)生成`SHA`校验码。
 
-步骤3：进入`OpenHarmony`[兼容性测试网站](https://www.openharmony.cn/old/#/Compatibility_test)上传报告。
+步骤3：进入`OpenHarmony`[兼容性测试网站](https://www.openharmony.cn/certification/document/guid)上传报告。
 
  - 其中`API Level`填写报告中的`"sdkApiLevel"`字段
  - `OS`版本号填写报告中的`"OS Version"`字段。

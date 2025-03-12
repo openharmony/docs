@@ -90,7 +90,7 @@ In addition, ArkWeb capabilities on the native side are also provided, such as r
 | typedef char \*(\* [NativeArkWeb_OnJavaScriptProxyCallback](#nativearkweb_onjavascriptproxycallback)) (const char \*\*argv, int32_t argc) | Defines a callback of the injected object. |
 | typedef void(\* [NativeArkWeb_OnValidCallback](#nativearkweb_onvalidcallback)) (const char \*) | Defines a callback used when the **Web** component is valid. |
 | typedef void(\* [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback)) (const char \*) | Defines a callback used when the **Web** component is destroyed. |
-
+| typedef void(\* [ArkWeb_OnScrollCallback](#arkweb_onscrollcallback)) (const char \*webTag, void \*userData, double x, double y) | Defines a callback used when the **Web** component is scrolled. |
 
 ### Enums
 
@@ -179,6 +179,7 @@ In addition, ArkWeb capabilities on the native side are also provided, such as r
 | void [OH_NativeArkWeb_SetDestroyCallback](#oh_nativearkweb_setdestroycallback) (const char \*webTag, [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) callback) | Sets a callback used when a component is destroyed. |
 | [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) [OH_NativeArkWeb_GetDestroyCallback](#oh_nativearkweb_getdestroycallback) (const char \*webTag) | Obtains the callback used when a registered component is destroyed. |
 | [ArkWeb_ErrorCode](#arkweb_errorcode) [OH_NativeArkWeb_LoadData](#oh_nativearkweb_loaddata) (const char* webTag,const char* data,const char* mimeType,const char* encoding,const char* baseUrl,const char* historyUrl) | Loads data or URLs. This function must be called in the main thread. |
+| bool [OH_ArkWeb_RegisterScrollCallback](#oh_arkweb_registerscrollcallback) (const char\* webTag, [ArkWeb_OnScrollCallback](#arkweb_onscrollcallback) callback, void\* userData) | Sets a callback used when a component is scrolled.|
 
 
 ## Macro Description
@@ -634,6 +635,25 @@ Defines a callback used when the **Web** component is valid.
 
 **Since**: 11
 
+### ArkWeb_OnScrollCallback
+
+```
+typedef void(*ArkWeb_OnScrollCallback) (const char* webTag, void* userData, double x, double y)
+```
+**Description**
+
+Defines a callback used when the **Web** component is scrolled.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| webTag | Name of a **Web** component. |
+| userData | User-defined data.|
+| x | Scrolling offset of the X axis.|
+| y | Scrolling offset of the Y axis.|
 
 ## Enum Description
 
@@ -723,7 +743,7 @@ Enumerates the native API types.
 | ARKWEB_NATIVE_WEB_MESSAGE_PORT  | APIs related to **webMessagePort**.  |
 | ARKWEB_NATIVE_WEB_MESSAGE  | APIs related to **webMessage**.  |
 | ARKWEB_NATIVE_COOKIE_MANAGER  | APIs related to **cookieManager**.  |
-| ARKWEB_NATIVE_JAVASCRIPT_VALUE  | APIs related to **JavaScriptValue** since API version 14. |
+| ARKWEB_NATIVE_JAVASCRIPT_VALUE  | APIs related to **JavaScriptValue** since API version 14.<br> <br> |
 
 
 ### ArkWeb_NetError
@@ -2547,7 +2567,7 @@ Loads data or URLs. This function must be called in the main thread.
 
 | Name| Description|
 | -------- | -------- |
-| webTag | The name of a \<Web> component. |
+| webTag | The name of a **Web** component. |
 | data   | String being base64 or URL encoded, which cannot be empty. |
 | mimeType  | Media type, such as **text/html**, which cannot be empty. |
 | encoding  | Encoding type, such as **UTF-8**, which cannot be empty. |
@@ -2692,5 +2712,30 @@ Deletes a registered object and its callback.
 | -------- | -------- |
 | webTag | The name of a **Web** component. |
 | objName | The name of the injected object.|
+
+### OH_ArkWeb_RegisterScrollCallback()
+
+```
+bool OH_ArkWeb_RegisterScrollCallback(const char* webTag, ArkWeb_OnScrollCallback callback, void* userData)
+```
+**Description**
+
+Sets a callback used when a component is scrolled.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| webTag | The name of a **Web** component. |
+| callback | Callback used when a page is scrolled. |
+| userData | The user data to be set.|
+
+**Returns**
+
+Returns **true** if the operation is successful; returns **false** otherwise.
 
 <!--no_check-->

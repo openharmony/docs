@@ -79,7 +79,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    Example: output data to the buffer (memory)
 
    ```cpp
-   // Encoding parameters
+   // Encoding parameters.
    struct ImagePacker_Opts_ opts;
    // (Mandatory) Configure the encoding format.
    opts.format = "image/jpeg";
@@ -96,7 +96,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    Example: output data to a file
 
    ```cpp
-   // Encoding parameters
+   // Encoding parameters.
    struct ImagePacker_Opts_ opts;
    // (Mandatory) Configure the encoding format.
    opts.format = "image/jpeg";
@@ -107,7 +107,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    if (fd >= 0) {
       // Start to encode the input source. If IMAGE_RESULT_SUCCESS is returned, the encoding is successful.
       int32_t result = OH_ImagePacker_PackToFile(nativePacker, source, &opts, fd);  
-      // Close the file. 
+      // Close the file.
       close(fd);
    }
    ```
@@ -122,7 +122,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    // Call OH_ImagePacker_Release to destroy the encoder.
    int32_t ret = OH_ImagePacker_Release(nativePacker);
    if (result != IMAGE_RESULT_SUCCESS) {
-       // Exception handling.
+       // Handle exceptions.
    } else {
        nativePacker = NULL; // The encoder cannot be destroyed repeatedly.
    }

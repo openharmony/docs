@@ -6,22 +6,21 @@ For example, in a messaging application, when a user receives a delivery trackin
 
 ## Parameters on the Express Delivery Application Panel
 
-If the **type** field in **startAbilityByType** is set to **express**, the intent scenario of  express delivery query is supported. The corresponding **wantParam** parameter contains the following properties.
+If the **type** field in **startAbilityByType** is set to **express**, the intent scenario of express delivery query is supported. The corresponding **wantParam** parameter contains the following properties.
 
 
 | Name   | Type  | Mandatory| Description                                  |
 | --------- | ------ | ---- | -------------------------------------- |
-| sceneType | number | No  | Intent. The default value is **1**. In express delivery query scenarios, set it to **1** or leave it empty.|
+| sceneType | number | No  | Intent scene, which indicates the purpose of the current request. The default value is **1**. In express delivery query scenarios, set it to **1** or leave it empty.|
 | expressNo | string | Yes  | Express delivery tracking number.                              |
 
 
 ## Developing a Caller Application
 
-1. Import the **ohos.app.ability.common** module.
+1. Import the module.
     ```ts
     import { common } from '@kit.AbilityKit';
     ```
-    
 2. Construct parameters and call the **startAbilityByType** API.
    
     ```ts
@@ -86,7 +85,7 @@ If the **type** field in **startAbilityByType** is set to **express**, the inten
 2. Parse parameters and perform corresponding processing.
 
     ```ts
-    UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
+    UIAbility.onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
     ```
 
     The **want.uri** parameter carries the URI corresponding to **linkFeature** configured by the target application.

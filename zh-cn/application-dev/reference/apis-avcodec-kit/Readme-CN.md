@@ -13,6 +13,7 @@
     - [VideoEncoder](_video_encoder.md)
     - [Multimedia_Drm](_multimedia___drm.md)
   - 头文件<!--avcodec-headerfile-->
+    - [media_types.h](media__types_8h.md)
     - [native_audio_channel_layout.h](native__audio__channel__layout_8h.md)
     - [native_avbuffer.h](native__avbuffer_8h.md)
     - [native_avbuffer_info.h](native__avbuffer__info_8h.md)

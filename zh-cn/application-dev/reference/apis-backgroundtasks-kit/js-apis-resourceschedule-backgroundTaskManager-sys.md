@@ -113,7 +113,6 @@ try {
 | 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
 | WIFI_INTERACTION        | 7    | WLAN相关。<br>**系统API**: 此接口为系统接口。 |
-| VOIP                    | 8    | 音视频通话。<br>**系统API**: 此接口为系统接口。 |
 
 ## EfficiencyResourcesRequest
 

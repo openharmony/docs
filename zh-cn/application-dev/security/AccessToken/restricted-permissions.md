@@ -37,7 +37,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **授权方式**：系统授权（system_grant）
 
-**起始版本**：16
+**起始版本**：18
 
 ### ohos.permission.ACCESS_DISK_PHY_INFO
 
@@ -474,3 +474,17 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 请参考[文件权限组废弃替代方案](app-permission-group-list.md#文件deprecated)。
 
 <!--DelEnd-->
+
+### ohos.permission.kernel.SUPPORT_PLUGIN
+
+允许主体应用安装插件。
+
+申请权限的应用应当有对应的插件机制，确保可以使用对应的插件，并符合插件市场的管理规定。
+
+<!--RP35--><!--RP35End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：18

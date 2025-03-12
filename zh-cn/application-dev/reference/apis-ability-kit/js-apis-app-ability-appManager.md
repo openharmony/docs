@@ -262,11 +262,12 @@ appManager.getAppMemorySize((err, data) => {
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
-获取当前运行进程的有关信息。使用Promise异步回调。
+获取当前应用运行进程的相关信息。使用Promise异步回调。
 
 > **说明：**
 >
-> API version 11之前的版本，该接口需要申请权限ohos.permission.GET_RUNNING_INFO（该权限仅系统应用可申请）。从API version 11开始，该接口不再需要申请权限。
+> - 对于API version 11之前的版本，该接口需要申请权限ohos.permission.GET_RUNNING_INFO（该权限仅系统应用可申请）。
+> - 从API version 11开始，该接口仅用于获取调用方自身的进程信息，不再需要申请权限。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -303,11 +304,12 @@ appManager.getRunningProcessInformation().then((data) => {
 
 getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void
 
-获取当前运行进程的有关信息。使用callback异步回调。
+获取当前应用运行进程的相关信息。使用callback异步回调。
 
 > **说明：**
 >
-> API version 11之前的版本，该接口需要申请权限ohos.permission.GET_RUNNING_INFO（该权限仅系统应用可申请）。从API version 11开始，该接口不再需要申请权限。
+> - 对于API version 11之前的版本，该接口需要申请权限ohos.permission.GET_RUNNING_INFO（该权限仅系统应用可申请）。
+> - 从API version 11开始，该接口仅用于获取调用方自身的进程信息，不再需要申请权限。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 

@@ -184,7 +184,7 @@ function createNodePromise() : Promise<Node> {
 ### createMaterial
 createMaterial(params: SceneResourceParameters, materialType: MaterialType): Promise\<Material>
 
-根据场景资源参数和材质类型创建材质, 使用Promise异步回调。
+根据场景资源参数和材质类型创建材质，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 

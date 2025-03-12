@@ -124,7 +124,7 @@ struct Index {
   private mCameraInput: camera.CameraInput | undefined = undefined;
   private mPreviewOutput: camera.PreviewOutput | undefined = undefined;
   private mPhotoSession: camera.PhotoSession | undefined = undefined;
-  // One of the recommended preview resolutions
+  // One of the recommended preview resolutions.
   private previewProfileObj: camera.Profile = {
     format: 1003,
     size: {
@@ -314,7 +314,7 @@ struct Index {
       return;
     }
 
-    // Open a camera.
+    // Open the camera.
     try {
       await this.mCameraInput.open();
     } catch (error) {
@@ -322,7 +322,7 @@ struct Index {
       console.error(TAG + 'Failed to open device, errorCode = ' + err.code);
     }
 
-    // Obtain the supported scene modes.
+    // Obtain the supported modes.
     let sceneModes: Array<camera.SceneMode> = this.mCameraManager.getSupportedSceneModes(this.curCameraDevice);
     let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
     if (!isSupportPhotoMode) {
@@ -330,7 +330,7 @@ struct Index {
       return;
     }
 
-    // Obtain the output streams supported by the camera device.
+    // Obtain the output stream capability supported by the camera.
     let cameraOutputCapability: camera.CameraOutputCapability =
       this.mCameraManager.getSupportedOutputCapability(this.curCameraDevice, camera.SceneMode.NORMAL_PHOTO);
     if (!cameraOutputCapability) {

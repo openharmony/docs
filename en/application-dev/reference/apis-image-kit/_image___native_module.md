@@ -67,7 +67,7 @@ You can refer to the corresponding development guide and samples based on your d
 | typedef void(\* [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver) | Defines the callbacks for the image receiver at the native layer. | 
 | typedef struct [OH_ImageSourceNative](#oh_imagesourcenative) [OH_ImageSourceNative](#oh_imagesourcenative) | Defines a struct for the image source, which is used to perform operations related to an image source. | 
 | typedef struct [OH_ImageSource_Info](#oh_imagesource_info) [OH_ImageSource_Info](#oh_imagesource_info) | Defines a struct for the image source information, which is created by calling [OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create).| 
-| typedef struct [OH_DecodingOptions](#oh_decodingoptions) [OH_DecodingOptions](#oh_decodingoptions) | Defines a struct for decoding parameters, which are used in [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap). | 
+| typedef struct [OH_DecodingOptions](#oh_decodingoptions) [OH_DecodingOptions](#oh_decodingoptions) | Defines a struct for decoding options, which are used in [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap). | 
 | typedef struct [OH_PictureNative](#oh_picturenative) [OH_PictureNative](#oh_picturenative) | Defines a struct for the picture, which is used to perform operations related to the picture. | 
 | typedef struct [OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) [OH_AuxiliaryPictureNative](#oh_auxiliarypicturenative) | Defines a struct for the auxiliary picture, which is used to perform operations related to the auxiliary picture. | 
 | typedef struct [OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) [OH_AuxiliaryPictureInfo](#oh_auxiliarypictureinfo) | Defines a struct for the auxiliary picture information, which is used to perform operations related to the auxiliary picture information. | 
@@ -86,13 +86,14 @@ You can refer to the corresponding development guide and samples based on your d
 
 | Name| Description| 
 | -------- | -------- |
-| [Image_ErrorCode](#image_errorcode) {<br>IMAGE_SUCCESS = 0, IMAGE_BAD_PARAMETER = 401, IMAGE_UNSUPPORTED_MIME_TYPE = 7600101, IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br>IMAGE_TOO_LARGE = 7600103, IMAGE_DMA_NOT_EXIST = 7600173, IMAGE_DMA_OPERATION_FAILED = 7600174, IMAGE_UNSUPPORTED_OPERATION = 7600201,<br>IMAGE_UNSUPPORTED_METADATA = 7600202, IMAGE_UNSUPPORTED_CONVERSION = 7600203, IMAGE_INVALID_REGION = 7600204, IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205,<br>IMAGE_ALLOC_FAILED = 7600301, IMAGE_COPY_FAILED = 7600302, IMAGE_LOCK_UNLOCK_FAILED = 7600303, IMAGE_UNKNOWN_ERROR = 7600901,<br>IMAGE_BAD_SOURCE = 7700101, IMAGE_DECODE_FAILED = 7700301, IMAGE_ENCODE_FAILED = 7800301<br>} | Enumerates the error codes.| 
-| [Image_MetadataType](#image_metadatatype-1) { EXIF_METADATA = 1, FRAGMENT_METADATA = 2 } | Enumerates the metadata types. | 
+| [Image_ErrorCode](#image_errorcode) {<br>IMAGE_SUCCESS = 0, IMAGE_BAD_PARAMETER = 401, IMAGE_UNSUPPORTED_MIME_TYPE = 7600101, IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br>IMAGE_TOO_LARGE = 7600103, IMAGE_DMA_NOT_EXIST = 7600173, IMAGE_DMA_OPERATION_FAILED = 7600174, IMAGE_UNSUPPORTED_OPERATION = 7600201,<br>IMAGE_UNSUPPORTED_METADATA = 7600202, IMAGE_UNSUPPORTED_CONVERSION = 7600203, IMAGE_INVALID_REGION = 7600204, IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205,<br>IMAGE_ALLOC_FAILED = 7600301, IMAGE_COPY_FAILED = 7600302, IMAGE_LOCK_UNLOCK_FAILED = 7600303, IMAGE_UNKNOWN_ERROR = 7600901,<br>IMAGE_BAD_SOURCE = 7700101,<br>IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE = 7700102,<br>IMAGE_SOURCE_TOO_LARGE = 7700103,<br>IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE = 7700201,<br>IMAGE_SOURCE_UNSUPPORTED_OPTIONS = 7700203, <br>IMAGE_DECODE_FAILED = 7700301,<br>IMAGE_SOURCE_ALLOC_FAILED = 7700302,<br>IMAGE_ENCODE_FAILED = 7800301<br>} | Enumerates the error codes.| 
+| [Image_MetadataType](#image_metadatatype) { EXIF_METADATA = 1, FRAGMENT_METADATA = 2 } | Enumerates the metadata types. | 
 | [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range) {<br>IMAGE_PACKER_DYNAMIC_RANGE_AUTO = 0,<br>IMAGE_PACKER_DYNAMIC_RANGE_SDR = 1 } | Enumerates the desired dynamic range for encoding.| 
 | [IMAGE_DYNAMIC_RANGE](#image_dynamic_range) {<br>IMAGE_DYNAMIC_RANGE_AUTO = 0,<br>IMAGE_DYNAMIC_RANGE_SDR = 1,<br>IMAGE_DYNAMIC_RANGE_HDR = 2 } | Enumerates the desired dynamic range for decoding.| 
+| [IMAGE_ALLOCATOR_TYPE](#image_allocator_type) {<br>IMAGE_ALLOCATOR_TYPE_AUTO = 0,<br>IMAGE_ALLOCATOR_TYPE_DMA = 1,<br>IMAGE_ALLOCATOR_TYPE_SHARE_MEMORY = 2 } | Enumerates the types of allocators used to allocate PixelMap memory.| 
 | [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) {<br>AUXILIARY_PICTURE_TYPE_GAINMAP = 1, AUXILIARY_PICTURE_TYPE_DEPTH_MAP = 2, AUXILIARY_PICTURE_TYPE_UNREFOCUS_MAP = 3, AUXILIARY_PICTURE_TYPE_LINEAR_MAP = 4,<br>AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP = 5<br>} | Enumerates the auxiliary picture types. | 
-| [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type) {<br>PIXELMAP_ALPHA_TYPE_UNKNOWN = 0,<br>PIXELMAP_ALPHA_TYPE_OPAQUE = 1,<br>PIXELMAP_ALPHA_TYPE_PREMULTIPLIED = 2 } | Enumerates the alpha types of a PixelMap.| 
-| [PIXEL_FORMAT](#pixel_format) {<br>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_RGB_565 = 2,<br>PIXEL_FORMAT_RGBA_8888 = 3, PIXEL_FORMAT_BGRA_8888 = 4,<br>PIXEL_FORMAT_RGB_888 = 5, PIXEL_FORMAT_ALPHA_8 = 6,<br>PIXEL_FORMAT_RGBA_F16 = 7, PIXEL_FORMAT_NV21 = 8,<br>PIXEL_FORMAT_NV12 = 9<br>} | Enumerates the image pixel formats.| 
+| [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type) {<br>PIXELMAP_ALPHA_TYPE_UNKNOWN = 0,<br>PIXELMAP_ALPHA_TYPE_OPAQUE = 1,<br>PIXELMAP_ALPHA_TYPE_PREMULTIPLIED = 2, <br>PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED = 3 } | Enumerates the alpha types of a PixelMap.| 
+| [PIXEL_FORMAT](#pixel_format) {<br>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_RGB_565 = 2,<br>PIXEL_FORMAT_RGBA_8888 = 3, PIXEL_FORMAT_BGRA_8888 = 4,<br>PIXEL_FORMAT_RGB_888 = 5, PIXEL_FORMAT_ALPHA_8 = 6,<br>PIXEL_FORMAT_RGBA_F16 = 7, PIXEL_FORMAT_NV21 = 8,<br>PIXEL_FORMAT_NV12 = 9, <br>PIXEL_FORMAT_RGBA_1010102 = 10, <br>PIXEL_FORMAT_YCBCR_P010 = 11, <br>PIXEL_FORMAT_YCRCB_P010 = 12<br>} | Enumerates the image pixel formats.| 
 | [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) { <br>OH_PixelmapNative_AntiAliasing_NONE = 0, <br>OH_PixelmapNative_AntiAliasing_LOW = 1, <br>OH_PixelmapNative_AntiAliasing_MEDIUM = 2, <br>OH_PixelmapNative_AntiAliasing_HIGH = 3 <br>} | Enumerates the anti-aliasing levels used for scaling PixelMaps. | 
 | [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) { <br>HDR_METADATA_TYPE = 0, <br>HDR_STATIC_METADATA = 1, <br>HDR_DYNAMIC_METADATA = 2, <br>HDR_GAINMAP_METADATA = 3 } | Enumerates the keys of the HDR related metadata information used by the PixelMap. It is used in [OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata) and [OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata). | 
 | [OH_Pixelmap_HdrMetadataType](#oh_pixelmap_hdrmetadatatype) { <br>HDR_METADATA_TYPE_NONE = 0, <br>HDR_METADATA_TYPE_BASE = 1, <br>HDR_METADATA_TYPE_GAINMAP = 2, <br>HDR_METADATA_TYPE_ALTERNATE = 3 } | Enumerates the HDR metadata types, which are the values of **HDR_METADATA_TYPE**. | 
@@ -181,9 +182,10 @@ You can refer to the corresponding development guide and samples based on your d
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromFd](#oh_imagesourcenative_createfromfd) (int32_t fd, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | Creates the pointer to an **OH_ImageSourceNative** object based on a file descriptor. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromData](#oh_imagesourcenative_createfromdata) (uint8_t \*data, size_t dataSize, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | Creates the pointer to an **OH_ImageSourceNative** object based on buffer data. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromRawFile](#oh_imagesourcenative_createfromrawfile) (RawFileDescriptor \*rawFile, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | Creates the pointer to an **OH_ImageSourceNative** object by using the raw file descriptor of an image resource file. | 
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | Creates the pointer to an **OH_PixelmapNative** object based on image decoding parameters. | 
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmapList](#oh_imagesourcenative_createpixelmaplist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, OH_PixelmapNative \*resVecPixMap[], size_t size) | Creates an array of **OH_PixelmapNative** objects based on image decoding parameters. | 
-| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePicture](#oh_imagesourcenative_createpicture) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, OH_DecodingOptionsForPicture \*options, [OH_PictureNative](#oh_picturenative) \*\*picture) | Creates the pointer to an **OH_PictureNative** object based on image decoding parameters. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | Creates the pointer to an **OH_PixelmapNative** object based on decoding options. | 
+| [Image_ErrorCode](#image_errorcode)[OH_ImageSourceNative_CreatePixelmapUsingAllocator](#oh_imagesourcenative_createpixelmapusingallocator) (OH_ImageSourceNative \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [IMAGE_ALLOCATOR_TYPE](#image_allocator_type) allocator, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | Creates an **OH_PixelmapNative** object based on decoding options and memory type, where **allocatorType** specifies the memory type of the PixelMap.<br>By default, the system selects an appropriate memory type based on the image type, image size, and platform capability. When processing the returned PixelMap object, consider the impact of stride.| 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmapList](#oh_imagesourcenative_createpixelmaplist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, OH_PixelmapNative \*resVecPixMap[], size_t size) | Creates an array of **OH_PixelmapNative** objects based on decoding options. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePicture](#oh_imagesourcenative_createpicture) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, OH_DecodingOptionsForPicture \*options, [OH_PictureNative](#oh_picturenative) \*\*picture) | Creates the pointer to an **OH_PictureNative** object based on decoding options. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetDelayTimeList](#oh_imagesourcenative_getdelaytimelist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, int32_t \*delayTimeList, size_t size) | Obtains the image delay time list. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetImageInfo](#oh_imagesourcenative_getimageinfo) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, int32_t index, [OH_ImageSource_Info](#oh_imagesource_info) \*info) | Obtains the information about an image with a given index. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetImageProperty](#oh_imagesourcenative_getimageproperty) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | Obtains the value of an image property. | 
@@ -191,8 +193,8 @@ You can refer to the corresponding development guide and samples based on your d
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetFrameCount](#oh_imagesourcenative_getframecount) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, uint32_t \*frameCount) | Obtains the number of image frames. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_Release](#oh_imagesourcenative_release) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source) | Releases the pointer to an **OH_ImageSourceNative** object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptionsForPicture_Create](#oh_decodingoptionsforpicture_create) (OH_DecodingOptionsForPicture \*\*options) | Creates the pointer to an **OH_DecodingOptionsForPicture** struct. | 
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptionsForPicture_GetDesiredAuxiliaryPictures](#oh_decodingoptionsforpicture_getdesiredauxiliarypictures) (OH_DecodingOptionsForPicture \*options, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) \*\*desiredAuxiliaryPictures, size_t \*length) | Obtains desired auxiliary pictures in the decoding parameters (auxiliary pictures contained in **picture** expected to be decoded.) | 
-| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptionsForPicture_SetDesiredAuxiliaryPictures](#oh_decodingoptionsforpicture_setdesiredauxiliarypictures) (OH_DecodingOptionsForPicture \*options, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) \*desiredAuxiliaryPictures, size_t length) | Sets desired auxiliary pictures in the decoding parameters. | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptionsForPicture_GetDesiredAuxiliaryPictures](#oh_decodingoptionsforpicture_getdesiredauxiliarypictures) (OH_DecodingOptionsForPicture \*options, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) \*\*desiredAuxiliaryPictures, size_t \*length) | Obtains desired auxiliary pictures in the decoding options (auxiliary pictures contained in **picture** expected to be decoded.) | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptionsForPicture_SetDesiredAuxiliaryPictures](#oh_decodingoptionsforpicture_setdesiredauxiliarypictures) (OH_DecodingOptionsForPicture \*options, [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) \*desiredAuxiliaryPictures, size_t length) | Sets desired auxiliary pictures in the decoding options. | 
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptionsForPicture_Release](#oh_decodingoptionsforpicture_release) (OH_DecodingOptionsForPicture \*options) | Releases the pointer to an **OH_DecodingOptionsForPicture** struct. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PictureNative_CreatePicture](#oh_picturenative_createpicture) (OH_PixelmapNative \*mainPixelmap, [OH_PictureNative](#oh_picturenative) \*\*picture) | Creates the pointer to an **OH_PictureNative** object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PictureNative_GetMainPixelmap](#oh_picturenative_getmainpixelmap) ([OH_PictureNative](#oh_picturenative) \*picture, OH_PixelmapNative \*\*mainPixelmap) | Obtains the pointer to an **OH_PixelmapNative** object of a main picture. | 
@@ -282,7 +284,7 @@ You can refer to the corresponding development guide and samples based on your d
 | -------- | -------- |
 | static const char \*[MIME_TYPE_BMP](#mime_type_bmp) = "image/bmp" | BMP image format.| 
 | static const char \*[MIME_TYPE_JPEG](#mime_type_jpeg) = "image/jpeg" | JPEG image format.| 
-| static const char \*[MIME_TYPE_HEIC](#mime_type_heic) = "image/heic" | HEIF image format.| 
+| static const char \*[MIME_TYPE_HEIC](#mime_type_heic) = "image/heic" | HEIC image format.| 
 | static const char \*[MIME_TYPE_PNG](#mime_type_png) = "image/png" | PNG image format.| 
 | static const char \*[MIME_TYPE_WEBP](#mime_type_webp) = "image/webp" | WebP image format.| 
 | static const char \*[MIME_TYPE_GIF](#mime_type_gif) = "image/gif" | GIF image format.| 
@@ -400,7 +402,7 @@ You can refer to the corresponding development guide and samples based on your d
 | static const char \*[OHOS_IMAGE_PROPERTY_LENS_SERIAL_NUMBER](#ohos_image_property_lens_serial_number) = "LensSerialNumber" | Serial number of the lens.| 
 | static const char \*[OHOS_IMAGE_PROPERTY_LENS_SPECIFICATION](#ohos_image_property_lens_specification) = "LensSpecification" | Specifications of the lens.| 
 | static const char \*[OHOS_IMAGE_PROPERTY_NEW_SUBFILE_TYPE](#ohos_image_property_new_subfile_type) = "NewSubfileType" | Data type of a subfile, such as a full-resolution image, a thumbnail, or a part of a multi-frame image. The value is a bit mask. The value 0 indicates a full-resolution image, **1** indicates a thumbnail, and **2** indicates a part of a multi-frame image.| 
-| static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME](#ohos_image_property_offset_time) = "OffsetTime" | Time with an offset from UTC when the image was captured, in the format of HH:MM.| 
+| static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME](#ohos_image_property_offset_time) = "OffsetTime" | Time with an offset from UTC when the image was captured, in the format of ±HH:MM.| 
 | static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME_DIGITIZED](#ohos_image_property_offset_time_digitized) = "OffsetTimeDigitized" | Time with an offset from UTC when the image was digitized. It helps to accurately adjust the timestamp.| 
 | static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME_ORIGINAL](#ohos_image_property_offset_time_original) = "OffsetTimeOriginal" | Time with an offset from UTC when the original image was created. It is critical for time-sensitive applications.| 
 | static const char \*[OHOS_IMAGE_PROPERTY_SOURCE_EXPOSURE_TIMES_OF_COMPOSITE_IMAGE](#ohos_image_property_source_exposure_times_of_composite_image) = "SourceExposureTimesOfCompositeImage" | Exposure time of source images of the composite image.| 
@@ -516,7 +518,7 @@ typedef struct OH_DecodingOptions OH_DecodingOptions
 
 **Description**
 
-Defines a struct for decoding parameters, which are used in [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap).
+Defines a struct for decoding options, which are used in [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap).
 
 The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_DecodingOptions Struct](../../media/image/image-structure-c.md#oh_decodingoptions-struct).
 
@@ -809,6 +811,25 @@ Defines a struct for the native buffer, which is used to perform operations rela
 ## Enum Description
 
 
+### IMAGE_ALLOCATOR_TYPE
+
+```
+enum IMAGE_ALLOCATOR_TYPE
+```
+
+**Description**
+
+Enumerates the types of allocators used to allocate PixelMap memory.
+
+**Since**: 15
+
+| Value| Description| 
+| -------- | -------- |
+| IMAGE_ALLOCATOR_TYPE_AUTO | The system determines whether to use DMA memory or shared memory to create a PixelMap.| 
+| IMAGE_ALLOCATOR_TYPE_DMA | DMA memory is used to create a PixelMap.| 
+| IMAGE_ALLOCATOR_TYPE_SHARE_MEMORY | Shared memory is used to create a PixelMap.| 
+
+
 ### Image_AuxiliaryPictureType
 
 ```
@@ -877,11 +898,16 @@ Enumerates the error codes.
 | IMAGE_UNSUPPORTED_MEMORY_FORMAT  | The memory format is not supported.<br>**Since**: 13| 
 | IMAGE_ALLOC_FAILED  | Failed to allocate the memory.| 
 | IMAGE_COPY_FAILED  | Failed to copy the memory.| 
-| IMAGE_LOCK_UNLOCK_FAILED | Failed to lock or unlock the memory.<br>**Since**: 16| 
+| IMAGE_LOCK_UNLOCK_FAILED | Failed to lock or unlock the memory.<br>**Since**: 15| 
 | IMAGE_UNKNOWN_ERROR  | Unknown error.| 
-| IMAGE_BAD_SOURCE  | Abnormal data source.| 
-| IMAGE_DECODE_FAILED  | Decoding failed.| 
-| IMAGE_ENCODE_FAILED  | Encoding failed.| 
+| IMAGE_BAD_SOURCE | Abnormal data source.| 
+| IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE | Unsupported MIME type.<br>**Since**: 15| 
+| IMAGE_SOURCE_TOO_LARGE | The image is too large.<br>**Since**: 15| 
+| IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE | The allocator type is not supported. For example, decoding HDR images using shared memory is unsupported because only DMA supports HDR metadata.<br>**Since**: 15| 
+| IMAGE_SOURCE_UNSUPPORTED_OPTIONS | Unsupported options. For example, an image cannot be converted into the required pixel format.<br>**Since**: 15| 
+| IMAGE_DECODE_FAILED | Decoding failed.| 
+| IMAGE_SOURCE_ALLOC_FAILED | Memory allocation failed.<br>**Since**: 15| 
+| IMAGE_ENCODE_FAILED | Encoding failed.| 
 
 
 ### Image_MetadataType
@@ -943,6 +969,9 @@ Enumerates the image pixel formats.
 | PIXEL_FORMAT_RGBA_F16 | RGBA_F16 format.| 
 | PIXEL_FORMAT_NV21 | NV21 format.| 
 | PIXEL_FORMAT_NV12 | NV12 format.|
+| PIXEL_FORMAT_RGBA_1010102 | RGBA_1010102 format.| 
+| PIXEL_FORMAT_YCBCR_P010 | YCBCR_P010 format.| 
+| PIXEL_FORMAT_YCRCB_P010 | YCRCB_P010 format.| 
 
 
 ### OH_Pixelmap_HdrMetadataKey
@@ -1022,6 +1051,7 @@ Enumerates the alpha types of a PixelMap.
 | PIXELMAP_ALPHA_TYPE_UNKNOWN | Unknown format.| 
 | PIXELMAP_ALPHA_TYPE_OPAQUE | Opaque format.| 
 | PIXELMAP_ALPHA_TYPE_PREMULTIPLIED | Premultiplied format.| 
+| PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED | Non-premultiplied format.|
 
 
 ## Function Description
@@ -1853,7 +1883,7 @@ Image_ErrorCode OH_DecodingOptionsForPicture_GetDesiredAuxiliaryPictures(OH_Deco
 
 **Description**
 
-Obtains desired auxiliary pictures in the decoding parameters (auxiliary pictures contained in **picture** expected to be decoded.)
+Obtains desired auxiliary pictures in the decoding options (auxiliary pictures contained in **picture** expected to be decoded.)
 
 **Since**: 13
 
@@ -1901,7 +1931,7 @@ Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredAuxiliaryPictures(OH_Deco
 
 **Description**
 
-Sets desired auxiliary pictures in the decoding parameters.
+Sets desired auxiliary pictures in the decoding options.
 
 **Since**: 13
 
@@ -3010,7 +3040,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePicture(OH_ImageSourceNative *source,
 
 **Description**
 
-Creates the pointer to an **OH_PictureNative** object based on image decoding parameters.
+Creates the pointer to an **OH_PictureNative** object based on decoding options.
 
 **Since**: 13
 
@@ -3019,7 +3049,7 @@ Creates the pointer to an **OH_PictureNative** object based on image decoding pa
 | Name| Description| 
 | -------- | -------- |
 | source | Pointer to an **OH_ImageSourceNative** object. | 
-| options | Pointer to the image decoding parameters. | 
+| options | Pointer to the decoding options. | 
 | picture | Double pointer to the **OH_PictureNative** object created at the C++ local layer. | 
 
 **Returns**
@@ -3035,7 +3065,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source
 
 **Description**
 
-Creates the pointer to an **OH_PixelmapNative** object based on image decoding parameters.
+Creates the pointer to an **OH_PixelmapNative** object based on decoding options.
 
 **Since**: 12
 
@@ -3044,7 +3074,7 @@ Creates the pointer to an **OH_PixelmapNative** object based on image decoding p
 | Name| Description| 
 | -------- | -------- |
 | source | Pointer to an **OH_ImageSourceNative** object. | 
-| options | Pointer to the image decoding parameters. | 
+| options | Pointer to the decoding options. | 
 | resPixMap | Double pointer to the **OH_PixelmapNative** object created at the C++ local layer. | 
 
 **Returns**
@@ -3060,7 +3090,11 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmapList(OH_ImageSourceNative *so
 
 **Description**
 
-Creates an array of **OH_PixelmapNative** objects based on image decoding parameters.
+Creates an array of **OH_PixelmapNative** objects based on decoding options.
+
+> **NOTE**
+>
+> This function decodes all frames at once. If the number of frames is high or the size of individual frames is large, it can lead to significant memory usage. In these cases, you are advised to use the** Image** component for displaying animations. The **Image** component decodes frames one by one, which uses less memory than this function.
 
 **Since**: 12
 
@@ -3069,13 +3103,61 @@ Creates an array of **OH_PixelmapNative** objects based on image decoding parame
 | Name| Description| 
 | -------- | -------- |
 | source | Pointer to an **OH_ImageSourceNative** object. | 
-| options | Pointer to the image decoding parameters. | 
+| options | Pointer to the decoding options. | 
 | resVecPixMap | Pointer to an array of **OH_PixelmapNative** objects created at the C++ local layer. | 
 | size | Size of the array. You can use [OH_ImageSourceNative_GetFrameCount](#oh_imagesourcenative_getframecount) to obtain the size. | 
 
 **Returns**
 
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_UNSUPPORTED_OPERATION** if the operation is not supported. For details, see [Image_ErrorCode](#image_errorcode).
+
+
+### OH_ImageSourceNative_CreatePixelmapUsingAllocator()
+
+```
+Image_ErrorCode OH_ImageSourceNative_CreatePixelmapUsingAllocator (OH_ImageSourceNative *source, OH_DecodingOptions *options, IMAGE_ALLOCATOR_TYPE allocator, OH_PixelmapNative **pixelmap )
+```
+
+**Description**
+
+Creates an **OH_PixelmapNative** object based on decoding options and memory type, where **allocatorType** specifies the memory type of the PixelMap.
+
+By default, the system selects an appropriate memory type based on the image type, image size, and platform capability. When processing the returned PixelMap object, consider the impact of stride.
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| source | Pointer to an **OH_ImageSourceNative** object.| 
+| options | Pointer to the decoding options. For details, see **OH_DecodingOptions**.| 
+| allocator | Memory type used by the returned PixelMap.| 
+| pixelmap | Double pointer to the **OH_PixelmapNative** object created at the C++ local layer.| 
+
+**Returns**
+
+Enumerates the error codes.
+
+Returns **IMAGE_SUCCESS** if the operation is successful.
+
+Returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect.
+
+Returns **IMAGE_BAD_SOURCE** if the data source is abnormal.
+
+Returns **IMAGE_SOURCE_UNSUPPORTED_MIMETYPE** if the MIME type is not supported.
+
+Returns **IMAGE_SOURCE_TOO_LARGE** if the image is too large.
+
+Returns **IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE** if the allocator type is not supported. For example, decoding HDR images using shared memory is not supported because only DMA supports HDR metadata.
+
+Returns **IMAGE_SOURCE_UNSUPPORTED_OPTIONS** if decoding options are not supported. For example, an image cannot be converted into the required pixel format.
+
+Returns **IMAGE_DECODE_FAILED** if decoding fails.
+
+Returns **IMAGE_SOURCE_ALLOC_FAILED** if memory allocation fails.
+
+For details, see [Image_ErrorCode](#image_errorcode).
 
 
 ### OH_ImageSourceNative_GetDelayTimeList()
@@ -4537,7 +4619,7 @@ Obtains the memory address where the pixels of a PixelMap are stored and locks t
 
 When the memory is locked, any attempts to alter or free the pixel data of the PixelMap will fail or be ineffective.
 
-**Since**: 16
+**Since**: 15
 
 **Parameters**
 
@@ -5229,7 +5311,7 @@ Unlocks the memory allocated to store the pixels of a PixelMap.
 
 This function must be used together with [OH_PixelmapNative_AccessPixels](#oh_pixelmapnative_accesspixels).
 
-**Since**: 16
+**Since**: 15
 
 **Parameters**
 
@@ -5304,7 +5386,7 @@ static const char* MIME_TYPE_HEIC = "image/heic"
 
 **Description**
 
-HEIF image format.
+HEIC image format.
 
 **Since**: 12
 
@@ -6578,7 +6660,7 @@ static const char* OHOS_IMAGE_PROPERTY_OFFSET_TIME = "OffsetTime"
 
 **Description**
 
-Time with an offset from UTC when the image was captured, in the format of HH:MM.
+Time with an offset from UTC when the image was captured, in the format of ±HH:MM.
 
 **Since**: 12
 

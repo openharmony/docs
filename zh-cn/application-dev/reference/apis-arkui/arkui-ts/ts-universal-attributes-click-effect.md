@@ -22,13 +22,13 @@ clickEffect(value: ClickEffect | null)
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [ClickEffect](#clickeffect对象说明)&nbsp;\|&nbsp;null | 是   | 设置当前组件点击回弹效果。<br/>**说明：**<br/>可通过undefined或者null取消点击回弹效果。<br/>不建议在组件大小动态变化的场景中使用该功能。<br/>当组件无法触发通用事件时，不支持该属性。 |
 
-## clickEffect<sup>16+</sup>
+## clickEffect<sup>18+</sup>
 
 clickEffect(effect: Optional\<ClickEffect | null>)
 
 设置当前组件点击回弹效果。与[clickEffect](#clickeffect)相比，effect参数新增了对undefined类型的支持。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
