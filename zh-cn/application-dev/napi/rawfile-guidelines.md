@@ -77,7 +77,7 @@
     EXTERN_C_END
     ```
 
-2. 把src/main/cpp/hello.cpp文件中，增加对应的三个方法，如下所示
+2. 把src/main/cpp/hello.cpp文件中，增加对应的三个方法，如下所示：
 
     ```c++
     static napi_value GetFileList(napi_env env, napi_callback_info info)
@@ -314,13 +314,13 @@
 
 **4. Js侧调用**
 
-1. 打开src\main\ets\pages\index.ets, 导入"libentry.so";
+1. 打开src\main\ets\pages\index.ets, 导入"libentry.so"。
 
 2. 资源获取包括获取本应用包资源、应用内跨包资源、跨应用包资源。<br>获取本应用包resourceManager对象，通过.context().resourceManager方法。<br>获取应用内跨包resourceManager对象，通过.context().createModuleContext().resourceManager 方法。<br>获取跨应用包resourceManager对象，通过.context.createModuleContext(bundleName:'bundleName name',moduleName:'module name').resourceManager方法，该方法仅支持系统应用使用。<br>Context的更多使用信息请参考[应用上下文Context](../application-models/application-context-stage.md)。
     
 3. 调用Native接口getFileList即为src/main/cpp/types/libentry/index.d.ts中声明的接口，传入js的资源对象，以及rawfile文件夹的相对路径。
 
-   获取本应用包资源resourceManager对象的示例如下:
+   获取本应用包资源resourceManager对象的示例如下：
 
     ```js
     import hilog from '@ohos.hilog';
