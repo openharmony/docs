@@ -9,9 +9,9 @@
   - [@ohos.i18n (Internationalization) (System API)](js-apis-i18n-sys.md)
   <!--DelEnd-->
   - Globalization<!--localization-global-arkts-->
-    - [RawFileDescriptor](rawFileDescriptor.md) 
-    - [Resource](resource.md)
-    - [SendableResource](sendableResource.md)
+    - [RawFileDescriptor](js-apis-rawFileDescriptor.md) 
+    - [Resource](js-apis-resource.md)
+    - [SendableResource](js-apis-sendableResource.md)
 - C APIs<!--localization-c-->
   - Modules<!--localization-module-->
     - [Rawfile](rawfile.md)
