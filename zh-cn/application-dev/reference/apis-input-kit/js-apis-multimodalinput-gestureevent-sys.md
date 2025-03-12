@@ -33,10 +33,10 @@ import { Touch } from '@kit.InputKit';
 
 | 名称            | 值  | 说明             |
 | --------------- | --- | --------------- |
-| SWIPE_DOWN<sup>18+</sup> | 0   | 多指向下滑动。   |
-| SWIPE_UP<sup>18+</sup> | 1   | 多指向上滑动。   |
-| SWIPE_LEFT<sup>18+</sup> | 2   | 多指向左滑动。   |
-| SWIPE_RIGHT<sup>18+</sup> | 3   | 多指向右滑动。   |
-| PINCH_CLOSED<sup>18+</sup> | 4   | 多指捏合。       |
-| PINCH_OPENED<sup>18+</sup> | 5   | 多指张开。       |
-| GESTURE_END<sup>18+</sup> | 6   | 手势结束。       |
+| SWIPE_DOWN | 0   | 多指向下滑动。   |
+| SWIPE_UP | 1   | 多指向上滑动。   |
+| SWIPE_LEFT | 2   | 多指向左滑动。   |
+| SWIPE_RIGHT | 3   | 多指向右滑动。   |
+| PINCH_CLOSED | 4   | 多指捏合。       |
+| PINCH_OPENED | 5   | 多指张开。       |
+| GESTURE_END | 6   | 手势结束。       |
