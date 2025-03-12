@@ -8,10 +8,7 @@ The **Video** component is used to play a video and control its playback. It is 
 
 You can create a **Video** component by calling the following API:
 
-Video(value: VideoOptions)
-
-A **VideoOptions** object contains the **src**, **currentProgressRate**, **previewUri**, and **controller** parameters. In this API, **src** indicates the path of the video source, **currentProgressRate** indicates the video playback speed, **previewUri** indicates the path of the preview image, and **controller** indicates the video controller . For details about how to load a video, see [Loading Video](#loading-video). For details about **VideoOptions**, see [VideoOptions](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#videooptions).
-
+`Video(value: VideoOptions)`
 
 ## Loading Video
 
@@ -29,12 +26,14 @@ The **Video** component supports both local and online videos.
   Use **$rawfile()** to reference the video resource.
 
   ```ts
+  // xxx.ets
   @Component
-  export struct VideoPlayer{
-    private controller:VideoController | undefined;
-    private previewUris: Resource = $r ('app.media.preview');
-    private innerResource: Resource = $rawfile('videoTest.mp4');
-    build(){
+  export struct VideoPlayer {
+    private controller: VideoController = new VideoController()
+    private previewUris: Resource = $r('app.media.preview')
+    private innerResource: Resource = $rawfile('videoTest.mp4')
+
+    build() {
       Column() {
         Video({
           src: this.innerResource,
@@ -50,31 +49,34 @@ The **Video** component supports both local and online videos.
 - Video provided by a [DataAbility](../application-models/dataability-overview.md), whose path contains the **dataability://** prefix<br>Ensure that the corresponding video resource exists.
 
   ```ts
+  // xxx.ets
   @Component
-  export struct VideoPlayer{
-     private controller:VideoController | undefined;
-     private previewUris: Resource = $r ('app.media.preview');
-     private videoSrc: string = 'dataability://device_id/com.domainname.dataability.videodata/video/10'
-     build(){
-       Column() {
-         Video({
-           src: this.videoSrc,
-           previewUri: this.previewUris,
-           controller: this.controller
-         })
-     }
-   }
+  export struct VideoPlayer {
+    private controller: VideoController = new VideoController()
+    private previewUris: Resource = $r('app.media.preview')
+    private videoSrc: string = 'dataability://device_id/com.domainname.dataability.videodata/video/10'
+
+    build() {
+      Column() {
+        Video({
+          src: this.videoSrc,
+          previewUri: this.previewUris,
+          controller: this.controller
+        })
+      }
+    }
   }
   ```
 
 ### Loading a Video in the Application Sandbox
 
-To load a video in the application sandbox, use a string with the **file:///data/storage** prefix. Ensure that there are files in the specified path and the application has the read permission to the files.
+To load a video in the application sandbox, use a string with the **file://** prefix. Ensure that there are files in the specified path and the application has the read permission to the files.
 
 ```ts
+// xxx.ets
 @Component
 export struct VideoPlayer {
-  private controller: VideoController | undefined;
+  private controller: VideoController = new VideoController()
   private videoSrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4'
 
   build() {
@@ -95,17 +97,19 @@ To load online videos, you must apply for the **ohos.permission.INTERNET** permi
 
 
 ```ts
+// xxx.ets
 @Component
-export struct VideoPlayer{
-  private controller:VideoController | undefined;
-  private previewUris: Resource = $r ('app.media.preview');
-  private videoSrc: string= 'https://www.example.com/example.mp4' // Replace the URL with that of the actual video to load.
-  build(){
+export struct VideoPlayer {
+  private controller: VideoController = new VideoController()
+  private previewUris: Resource = $r('app.media.preview')
+  private videoSrc: string = 'https://www.example.com/example.mp4' // Replace the URL with that of the actual video to load.
+
+  build() {
     Column() {
       Video({
         src: this.videoSrc,
         previewUri: this.previewUris,
-       controller: this.controller
+        controller: this.controller
       })
     }
   }
@@ -119,9 +123,10 @@ Use the [attributes](../reference/apis-arkui/arkui-ts/ts-media-components-video.
 
 
 ```ts
+// xxx.ets
 @Component
 export struct VideoPlayer {
-  private controller: VideoController | undefined;
+  private controller: VideoController = new VideoController()
 
   build() {
     Column() {
@@ -144,30 +149,32 @@ export struct VideoPlayer {
   The **Video** component supports various callback events in addition to the universal events. For details, see [Events](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#events).
 
 ```ts
+// xxx.ets
 @Entry
 @Component
-struct VideoPlayer{
-  private controller:VideoController | undefined;
-  private previewUris: Resource = $r ('app.media.preview');
-  private innerResource: Resource = $rawfile('videoTest.mp4');
-  build(){
+struct VideoPlayer {
+  private controller: VideoController = new VideoController()
+  private previewUris: Resource = $r('app.media.preview')
+  private innerResource: Resource = $rawfile('videoTest.mp4')
+
+  build() {
     Column() {
       Video({
         src: this.innerResource,
         previewUri: this.previewUris,
         controller: this.controller
       })
-        .onUpdate((event) => {   // Triggered when the playback progress changes.
+        .onUpdate((event) => { // Triggered when the playback progress changes.
           console.info("Video update.");
         })
-        .onPrepared((event) => {  // Triggered when video preparation is complete.
+        .onPrepared((event) => { // Triggered when video preparation is complete.
           console.info("Video prepared.");
         })
-        .onError(() => {          // Triggered when the video playback fails.
+        .onError(() => { // Triggered when the video playback fails.
           console.info("Video error.");
         })
-        .onStop(() => {          // Stop event callback.
-          console.info("Video stoped.");
+        .onStop(() => { // Triggered when the video playback stops.
+          console.info("Video stopped.");
         })
     }
   }
@@ -184,12 +191,14 @@ The video controller is used to control video playback. For details, see [VideoC
   The default controller supports four basic features: start playback, pause playback, set the video playback position, and play the video in full screen.
 
   ```ts
+  // xxx.ets
   @Entry
   @Component
   struct VideoGuide {
     @State videoSrc: Resource = $rawfile('videoTest.mp4')
     @State previewUri: string = 'common/videoIcon.png'
     @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
+
     build() {
       Row() {
         Column() {
@@ -211,18 +220,19 @@ The video controller is used to control video playback. For details, see [VideoC
   To use a custom controller, disable the default controller, and then use components such as **Button** and **Slider** to customize the control and display. This type of controller is applicable to scenarios where customization requirements are involved.
 
   ```ts
+  // xxx.ets
   @Entry
   @Component
-  struct VideoGuide1 {
+  struct VideoGuide {
     @State videoSrc: Resource = $rawfile('videoTest.mp4')
     @State previewUri: string = 'common/videoIcon.png'
     @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
     @State isAutoPlay: boolean = false
     @State showControls: boolean = true
-    @State sliderStartTime: string = '';
-    @State currentTime: number = 0;
-    @State durationTime: number = 0;
-    @State durationStringTime: string ='';
+    @State sliderStartTime: string = ''
+    @State currentTime: number = 0
+    @State durationTime: number = 0
+    @State durationStringTime: string = ''
     controller: VideoController = new VideoController()
 
     build() {
@@ -233,17 +243,19 @@ The video controller is used to control video playback. For details, see [VideoC
             previewUri: this.previewUri,
             currentProgressRate: this.curRate,
             controller: this.controller
-          }).controls(false).autoPlay(true)
-          .onPrepared((event)=>{
-            if(event){
-              this.durationTime = event.duration
-            }
           })
-          .onUpdate((event)=>{
-            if(event){
-              this.currentTime =event.time
-            }
-          })
+            .controls(false)
+            .autoPlay(true)
+            .onPrepared((event) => {
+              if (event) {
+                this.durationTime = event.duration
+              }
+            })
+            .onUpdate((event) => {
+              if (event) {
+                this.currentTime = event.time
+              }
+            })
           Row() {
             Text(JSON.stringify(this.currentTime) + 's')
             Slider({
@@ -251,9 +263,10 @@ The video controller is used to control video playback. For details, see [VideoC
               min: 0,
               max: this.durationTime
             })
-            .onChange((value: number, mode: SliderChangeMode) => {
+              .onChange((value: number, mode: SliderChangeMode) => {
                 this.controller.setCurrentTime(value);
-              }).width("90%")
+              })
+              .width("90%")
             Text(JSON.stringify(this.durationTime) + 's')
           }
           .opacity(0.8)
