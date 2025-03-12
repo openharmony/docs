@@ -284,7 +284,7 @@ getDisallowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;strin
 
 | 类型                | 说明                           |
 | ------------------- | ------------------------------ |
-| Array&lt;string&gt; | 返回当前用户下的包安装白名单。 |
+| Array&lt;string&gt; | 返回当前用户下的包安装黑名单。 |
 
 **错误码**：
 
@@ -432,7 +432,7 @@ getDisallowedUninstallBundlesSync(admin: Want, accountId?: number): Array&lt;str
 
 | 类型                | 说明                           |
 | ------------------- | ------------------------------ |
-| Array&lt;string&gt; | 返回当前用户下的包卸载白名单。 |
+| Array&lt;string&gt; | 返回当前用户下的包卸载黑名单。 |
 
 **错误码**：
 

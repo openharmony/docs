@@ -25,10 +25,12 @@ The message "compileSdkVersion and releaseType of the app do not match the apiVe
 ### Version Mapping
 <!--RP3-->
 | API Type| Minimum API Version| OpenHarmony Version|
-| ------------ | ------------ | ------------ |
+| --------- | --------- | --------- |
 | Application development APIs (ArkTS APIs)| API10 | 4.0 Release or later|
 | USB DDK APIs| API10 | 4.0 Release or later|
 | HID DDK APIs| API11 | 4.0 Release or later|
+| USB Serial DDK API| API16 | 5.1 Release or later|
+| SCSI Peripheral DDK API| API16 | 5.1 Release or later|
 <!--RP3End-->
 
 ## Failed to Parse the Local .so File During HAP Installation
@@ -39,4 +41,4 @@ The message "code:9568347 error: install parse native so failed" is displayed du
 
 ### Solution
 
-Configure the value of `abiFilters` in `buildOption/externalNativeOptions` in the `build-profile.json5` file. For details, see [Application Debugging](https://developer.huawei.com/consumer/en/doc/harmonyos-faqs-V5/faqs-app-debugging-14-V5).
+Configure the value of `abiFilters` in `buildOption/externalNativeOptions` in the `build-profile.json5` file. For details, see [Application Debugging] (https://developer.huawei.com/consumer/en/doc/harmonyos-faqs-V5/faqs-app-debugging-14-V5).

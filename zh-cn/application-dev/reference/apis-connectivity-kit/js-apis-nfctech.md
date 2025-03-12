@@ -2780,7 +2780,7 @@ function nfcTechDemo() {
 }
 ```
 
-## BarcodeTag<sup>16+</sup>
+## BarcodeTag<sup>18+</sup>
 
 BarcodeTag提供读取条形码标签的属性和访问I/O操作的能力，继承自TagSession。
 
@@ -2788,7 +2788,7 @@ TagSession是所有NFC Tag 技术类型的基类， 提供建立连接和发送�
 
 以下是BarcodeTag的独有接口。
 
-### BarcodeTag.getBarcode<sup>16+</sup>
+### BarcodeTag.getBarcode<sup>18+</sup>
 
 getBarcode(): Promise\<ArrayBuffer>
 
@@ -2798,7 +2798,7 @@ getBarcode(): Promise\<ArrayBuffer>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 
 **返回值：**
