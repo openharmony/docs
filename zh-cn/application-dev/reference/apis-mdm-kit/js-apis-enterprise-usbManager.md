@@ -22,7 +22,12 @@ import { usbManager } from '@kit.MDMKit';
 
 addAllowedUsbDevices(admin: Want, usbDeviceIds: Array\<UsbDeviceId>): void
 
-指定设备管理应用添加USB设备可用白名单。
+添加USB设备可用白名单。
+
+以下情况下，调用本接口会报策略冲突：
+
+1. 已经通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了设备USB能力。
+2. 已经通过[setUsbStorageDeviceAccessPolicy](#usbmanagersetusbstoragedeviceaccesspolicy)接口设置了USB存储设备访问策略为禁用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -32,10 +37,10 @@ addAllowedUsbDevices(admin: Want, usbDeviceIds: Array\<UsbDeviceId>): void
 
 **参数：**
 
-| 参数名       | 类型                                                    | 必填 | 说明                                        |
-| ------------ | ------------------------------------------------------- | ---- | ------------------------------------------- |
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                              |
-| usbDeviceIds | Array<[UsbDeviceId](#usbdeviceid)>                      | 是   | USB设备ID数组。添加后的数组长度上限为1000。 |
+| 参数名       | 类型                                                    | 必填 | 说明                                                         |
+| ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
+| usbDeviceIds | Array<[UsbDeviceId](#usbdeviceid)>                      | 是   | USB设备ID数组，UsbDeviceId信息可以通过[getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices)接口获取。添加后的数组长度上限为1000。 |
 
 **错误码**：
 
@@ -73,7 +78,7 @@ try {
 
 removeAllowedUsbDevices(admin: Want, usbDeviceIds: Array\<UsbDeviceId>): void
 
-指定设备管理应用移除USB设备可用白名单。
+移除USB设备可用白名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -83,10 +88,10 @@ removeAllowedUsbDevices(admin: Want, usbDeviceIds: Array\<UsbDeviceId>): void
 
 **参数：**
 
-| 参数名       | 类型                                                    | 必填 | 说明            |
-| ------------ | ------------------------------------------------------- | ---- | --------------- |
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。  |
-| usbDeviceIds | Array<[UsbDeviceId](#usbdeviceid)>                      | 是   | USB设备ID数组。 |
+| 参数名       | 类型                                                    | 必填 | 说明                                                         |
+| ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
+| usbDeviceIds | Array<[UsbDeviceId](#usbdeviceid)>                      | 是   | USB设备ID数组，UsbDeviceId信息可以通过[getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices)接口获取。 |
 
 **错误码**：
 
@@ -123,7 +128,7 @@ try {
 
 getAllowedUsbDevices(admin: Want): Array\<UsbDeviceId>
 
-指定设备管理应用获取USB设备可用白名单。
+获取USB设备可用白名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -133,9 +138,9 @@ getAllowedUsbDevices(admin: Want): Array\<UsbDeviceId>
 
 **参数：**
 
-| 参数名 | 类型                                                    | 必填 | 说明           |
-| ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| 参数名 | 类型                                                    | 必填 | 说明                   |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -174,7 +179,16 @@ try {
 
 setUsbStorageDeviceAccessPolicy(admin: Want, usbPolicy: UsbPolicy): void
 
-指定设备管理应用设置USB存储设备访问策略。
+设置USB存储设备访问策略。
+
+以下情况下，通过本接口设置USB存储设备访问策略为可读可写/只读，会报策略冲突：
+
+1. 已经通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了设备USB能力。
+
+以下情况下，通过本接口设置USB存储设备访问策略为禁用，会报策略冲突：
+
+1. 已经通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了设备USB能力。
+2. 已经通过[addAllowedUsbDevices](#usbmanageraddallowedusbdevices)接口添加了USB设备可用白名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -184,10 +198,10 @@ setUsbStorageDeviceAccessPolicy(admin: Want, usbPolicy: UsbPolicy): void
 
 **参数：**
 
-| 参数名    | 类型                                                    | 必填 | 说明                  |
-| --------- | ------------------------------------------------------- | ---- | --------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。        |
-| usbPolicy | [UsbPolicy](#usbpolicy)                                 | 是   | USB存储设备访问策略。 |
+| 参数名    | 类型                                                    | 必填 | 说明                   |
+| --------- | ------------------------------------------------------- | ---- | ---------------------- |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| usbPolicy | [UsbPolicy](#usbpolicy)                                 | 是   | USB存储设备访问策略。  |
 
 **错误码**：
 
@@ -222,7 +236,7 @@ try {
 
 getUsbStorageDeviceAccessPolicy(admin: Want): UsbPolicy
 
-指定设备管理应用获取USB存储设备访问策略。
+获取USB存储设备访问策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -232,9 +246,9 @@ getUsbStorageDeviceAccessPolicy(admin: Want): UsbPolicy
 
 **参数：**
 
-| 参数名 | 类型                                                    | 必填 | 说明           |
-| ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| 参数名 | 类型                                                    | 必填 | 说明                   |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
