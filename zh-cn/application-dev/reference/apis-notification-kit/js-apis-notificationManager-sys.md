@@ -4574,7 +4574,7 @@ notificationManager.getDoNotDisturbProfile(1).then((data: notificationManager.Do
 });
 ```
 
-## notificationManager.disableNotificationFeature<sup>16+</sup>
+## notificationManager.disableNotificationFeature<sup>18+</sup>
 
 disableNotificationFeature(disabled: boolean, bundleList: Array\<string\>): Promise\<void\>
 

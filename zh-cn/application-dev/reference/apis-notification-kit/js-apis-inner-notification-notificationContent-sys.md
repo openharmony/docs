@@ -45,8 +45,8 @@
 | 名称                  |  类型                         | 只读 | 可选 | 说明                              |
 | --------------------- | ---------------------------- | ---- | ---- | -------------------------------- |
 | content<sup>12+</sup> | string                       |  否  |  是  | 胶囊的拓展文本。                   |
-| time<sup>16+</sup> | number                       |  否  |  是  | 即时任务类实况胶囊展示时长（单位：秒）。   |
-| capsuleButtons<sup>16+</sup> | Array\<[NotificationIconButton](#notificationiconbutton16)\>    |  否  |  是  | 即时任务类实况胶囊的按钮（最多支持2个）。      |
+| time<sup>18+</sup> | number                       |  否  |  是  | 即时任务类实况胶囊展示时长（单位：秒）。   |
+| capsuleButtons<sup>18+</sup> | Array\<[NotificationIconButton](#notificationiconbutton16)\>    |  否  |  是  | 即时任务类实况胶囊的按钮（最多支持2个）。      |
 
 ## LiveViewStatus<sup>11+</sup>
 
@@ -63,7 +63,7 @@
 | LIVE_VIEW_END                | 2  | 结束     |
 | LIVE_VIEW_FULL_UPDATE        | 3  | 全量更新 |
 
-## NotificationIconButton<sup>16+</sup>
+## NotificationIconButton<sup>18+</sup>
 
 描述系统通知按钮。
 
@@ -78,7 +78,7 @@
 | text | string | 否  |  是 | 按钮展示的信息。   |
 | hidePanel | bool | 否  |  是 | 点击按钮时，是否隐藏通知中心。   |
 
-## LiveViewTypes<sup>16+</sup>
+## LiveViewTypes<sup>18+</sup>
 
 描述实况通知的类型。
 
