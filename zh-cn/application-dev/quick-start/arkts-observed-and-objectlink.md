@@ -63,7 +63,7 @@ this.objLink= ...
 | 可以初始化子组件          | 允许，可用于初始化常规变量、\@State、\@Link、\@Prop、\@Provide |
 
 
-  **图1** 初始化规则图示  
+  **图1** 初始化规则图示  
 
 
 ![zh-cn_image_0000001502255262](figures/zh-cn_image_0000001502255262.png)
