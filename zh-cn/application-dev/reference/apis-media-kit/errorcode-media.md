@@ -342,3 +342,21 @@ Unsupportted request.
 
 1. 确认客户端请求参数是否正常。
 2. 销毁当前实例，并重新创建，如果重新创建失败，则停止相关操作。
+
+## 5410002 SEEK_CONTINUOUS模式的seek不受支持
+
+**错误信息**
+
+seek continuous is unsupported for this source.
+
+**错误描述**
+
+该媒体源不支持以SEEK_CONTINUOUS模式进行seek，该错误码为提示性错误，不会改变当前实例状态，上报该错误后，后续的SEEK_CONTINUOUS模式的seek，画面以较慢的速度进行更新。
+
+**可能原因**
+
+该媒体源不在SEEK_CONTINUOUS模式的seek支持范围内。
+
+**处理步骤**
+
+1. 提示性错误码，用于客户端感知不支持SEEK_CONTINUOUS模式进行seek的视频源seek时的表现，客户端无需处理。
