@@ -956,6 +956,9 @@ showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs:
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+> **说明：**
+> 当传入uri为沙箱路径时，可正常保存图片/视频，但无界面预览。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
