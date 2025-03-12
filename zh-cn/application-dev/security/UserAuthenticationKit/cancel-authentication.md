@@ -1,8 +1,6 @@
 # 认证过程中取消认证
 
-
 统一用户认证框架提供了cancel接口，当应用在认证过程中，需要取消认证时可调用该接口。
-
 
 ## 接口说明
 
@@ -13,7 +11,6 @@
 | 接口名称 | 功能描述 | 
 | -------- | -------- |
 | cancel(): void | 取消本次认证操作。 | 
-
 
 ## 开发步骤
 
@@ -35,23 +32,23 @@ try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16;
   const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
-  // 设置认证参数
+  // 设置认证参数。
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE],
     authTrustLevel: userAuth.AuthTrustLevel.ATL3,
   };
-  // 配置认证界面
+  // 配置认证界面。
   const widgetParam: userAuth.WidgetParam = {
     title: '请进行身份认证',
   };
-  // 获取认证对象
+  // 获取认证对象。
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.info('get userAuth instance success');
-  // 开始认证
+  // 开始认证。
   userAuthInstance.start();
   console.info('auth start success');
-  // 取消认证
+  // 取消认证。
   userAuthInstance.cancel();
   console.info('auth cancel success');
 } catch (error) {
