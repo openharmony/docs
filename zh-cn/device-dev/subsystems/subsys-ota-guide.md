@@ -22,7 +22,7 @@ OTA（Over the Air）提供对设备远程升级的能力。升级子系统对�
 
 OTA的升级原理是利用升级包制作工具，将编译出的版本打包生成升级包。厂商设备集成OTA升级能力后，将升级包上传至服务器，通过升级应用下载升级包，触发并完成升级。
 
-<a href="#ab-升级场景">AB升级</a>：是OTA升级的一个场景，原理是设备有一套备份的B系统，在A系统运行时，可以在正常使用的状态下，静默更新B系统，升级成功后，重启切换新系统，实现版本更新的机制。
+<a href="#ab升级场景">AB升级</a>：是OTA升级的一个场景，原理是设备有一套备份的B系统，在A系统运行时，可以在正常使用的状态下，静默更新B系统，升级成功后，重启切换新系统，实现版本更新的机制。
 
 
 ### 约束与限制
@@ -62,11 +62,11 @@ OTA的升级原理是利用升级包制作工具，将编译出的版本打包�
 
 <a href="#厂商应用集成ota能力">5. 厂商应用集成OTA能力</a>
 
-&ensp;&ensp;<a href="#api-应用默认场景">5.1 API应用默认场景</a>
+&ensp;&ensp;<a href="#api应用默认场景">5.1 API应用默认场景</a>
 
-&ensp;&ensp;<a href="#api-应用定制场景">5.2 API应用定制场景</a>
+&ensp;&ensp;<a href="#api应用定制场景">5.2 API应用定制场景</a>
 
-&ensp;&ensp;<a href="#ab-升级场景">5.2 AB升级场景</a>
+&ensp;&ensp;<a href="#ab升级场景">5.2 AB升级场景</a>
 
 
 ## 开发步骤
@@ -145,8 +145,8 @@ OTA的升级原理是利用升级包制作工具，将编译出的版本打包�
    | 组件信息（group节点） | component节点 | resType | 必填 | 保留字段，不影响升级包生成。 | 
    | 组件信息（group节点） | component节点 | compType | 必填 | 处理方式全量/差分，配置镜像处理方式的，0为全量处理、1为差分处理。 | 
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**＜br＞
-   > 对轻量系统/小型系统，不支持做差分升级，component标签中，属性compType值，不能配为 1，必须全部配置为 0。＜br＞
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
+   > 对轻量系统/小型系统，不支持做差分升级，component标签中，属性compType值，不能配为1，必须全部配置为0。<br>
    > 对轻量系统/小型系统，不支持变分区升级包的制作。
 
 4. 创建“OTA.tag文件”，内容为OTA升级包的魔数，固定如下：
@@ -309,7 +309,7 @@ OTA的升级原理是利用升级包制作工具，将编译出的版本打包�
 
 1. 厂商应用从OTA服务器下载升级包。
 
-2. 对Hi3516DV300开源套件，需要插入SD卡(容量&gt;100MBytes)。
+2. 对Hi3516DV300开源套件，需要插入SD卡（容量&gt;100MBytes）。
 
 
 ### 厂商应用集成OTA能力
@@ -518,60 +518,60 @@ const char *get_local_version(void)
 - JS API通过update_service模块处理AB升级相关流程。
 
    1. 升级包安装进度显示接口：
-   ```cpp
-   on(eventType: "upgradeProgress", callback: UpdateProgressCallback): void;
-   ```
+      ```cpp
+      on(eventType: "upgradeProgress", callback: UpdateProgressCallback): void;
+      ```
    
    2. 设置激活策略（立即重启，夜间重启，随下次重启激活）接口：
-   ```cpp
-   upgrade(apply)
-   ```
+      ```cpp
+      upgrade(apply)
+      ```
 
 
 - update_service通过SAMGR将系统安装服务拉起。
    
    1. 拉起系统安装服务，并建立IPC连接：
-   ```cpp
-   int SysInstallerInit(void* callback)
-   ```
+      ```cpp
+      int SysInstallerInit(void* callback)
+      ```
    
    2. 安装指定路径的AB升级包：
-   ```cpp
-   int StartUpdatePackageZip(string path)
-   ```
+      ```cpp
+      int StartUpdatePackageZip(string path)
+      ```
    
    3. 设置进度回调：
-   ```cpp
-   int SetUpdateProgressCallback(void* callback)
-   ```
+      ```cpp
+      int SetUpdateProgressCallback(void* callback)
+      ```
    
    4. 获取升级包安装状态（返回值：0表示未开始，1表示安装中，2表示安装结束）:
-   ```cpp
-   int GetUpdateStatus()
-   ```
+      ```cpp
+      int GetUpdateStatus()
+      ```
 
 
 - 使用HDI接口南向激活新版本。
 
    1. 获取当前启动的slot，来决策待升级的分区：
-   ```cpp
-   int GetCurrentSlot()
-   ```
+      ```cpp
+      int GetCurrentSlot()
+      ```
    
    2. 在升级结束后，将已升级好的slot进行切换，重启完成新版本更新：
-   ```cpp
-   int SetActiveBootSlot(int slot)
-   ```
+      ```cpp
+      int SetActiveBootSlot(int slot)
+      ```
    
    3. 在升级开始时，将待升级的分区slot设置成unbootable状态：
-   ```cpp
-   int setSlotUnbootable(int slot)
-   ```
+      ```cpp
+      int setSlotUnbootable(int slot)
+      ```
    
    4. 获取slot个数，1为非AB，2为AB分区，用例兼容AB和非AB的流程判断：
-   ```cpp
-   int32 GetSlotNum(void)
-   ```
+      ```cpp
+      int32 GetSlotNum(void)
+      ```
 
 
 ##### 常见问题
@@ -580,7 +580,7 @@ const char *get_local_version(void)
 <br>系统保持当前版本继续运行，在下一个搜包周期重新完成版本升级过程。
 
 2. 升级包完成非启动分区的包安装，在激活过程中出现异常。
-<br>需要进行异常回滚，并将无法启动的分区设置为 unbootable，下次则不从该分区启动。
+<br>需要进行异常回滚，并将无法启动的分区设置为unbootable，下次则不从该分区启动。
 
 
 ##### 调测验证
