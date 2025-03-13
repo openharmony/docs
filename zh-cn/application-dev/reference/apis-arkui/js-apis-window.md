@@ -5487,7 +5487,7 @@ on(type:  'rotationChange', callback: RotationChangeCallback&lt;info: RotationCh
 | 参数名   | 类型                           | 必填 | 说明                                                     |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
 | type     | string                         | 是   | 监听事件，固定为'rotationChange'，即窗口旋转变换事件。 |
-| callback | RotationChangeCallback&lt;[RotationChangeInfo](#rotationchangeinfo18), [RotationChangeResult](#rotationchangeresult18) | void&gt; | 是 | 回调函数。返回窗口旋转信息，需要应用返回窗口变化结果。   |
+| callback | RotationChangeCallback&lt;[RotationChangeInfo](#rotationchangeinfo18), [RotationChangeResult](#rotationchangeresult18) \| void&gt; | 是 | 回调函数。返回窗口旋转信息，需要应用返回窗口变化结果。   |
 
 **错误码：**
 
@@ -5495,7 +5495,7 @@ on(type:  'rotationChange', callback: RotationChangeCallback&lt;info: RotationCh
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
@@ -5529,7 +5529,7 @@ off(type: 'rotationChange', callback?: RotationChangeCallback&lt;info: RotationC
 | 参数名   | 类型                           | 必填 | 说明                                                         |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                         | 是   | 监听事件，固定为'rotationChange'，即窗口旋转变换事件。     |
-| callback | RotationChangeCallback&lt;info: [RotationChangeInfo](#rotationchangeinfo18), [RotationChangeResult](#rotationchangeresult18) | void&gt; | 否   | 回调函数。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有子窗口关闭的监听。 |
+| callback | RotationChangeCallback&lt;info: [RotationChangeInfo](#rotationchangeinfo18), [RotationChangeResult](#rotationchangeresult18) \| void&gt; | 否   | 回调函数。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有子窗口关闭的监听。 |
 
 **错误码：**
 
@@ -5537,7 +5537,7 @@ off(type: 'rotationChange', callback?: RotationChangeCallback&lt;info: RotationC
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
