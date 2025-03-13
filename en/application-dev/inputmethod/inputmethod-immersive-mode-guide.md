@@ -38,3 +38,5 @@ To implement consistent immersive experience, a communication mechanism between 
    ```ts
    panel.setImmersiveMode(inputMethodEngine.ImmersiveMode.LIGHT_IMMERSIVE);
    ```
+
+ <!--no_check--> 
