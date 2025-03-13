@@ -75,7 +75,7 @@ static OH_Crypto_ErrCode doTestRsaSignatureRecover()
       .len = sizeof(signText)
    };
    
-   // keypair.
+   // keypair
    OH_Crypto_ErrCode ret = CRYPTO_SUCCESS;
    ret = OH_CryptoAsymKeyGenerator_Create((const char *)"RSA2048", &keyCtx);
    if (ret != CRYPTO_SUCCESS) {
@@ -87,7 +87,7 @@ static OH_Crypto_ErrCode doTestRsaSignatureRecover()
       return ret;
    }
    OH_CryptoPubKey *pubKey = OH_CryptoKeyPair_GetPubKey(keyPair);
-   // verify.
+   // verify
    ret = OH_CryptoVerify_Create((const char *)"RSA1024|PKCS1|SHA256|Recover", &verify);
    if (ret != CRYPTO_SUCCESS) {
       OH_CryptoVerify_Destroy(verify);

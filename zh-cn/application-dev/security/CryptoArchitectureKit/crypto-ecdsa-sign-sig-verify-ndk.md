@@ -74,7 +74,7 @@ static bool doTestEcdsaSignature()
       return false;
    }
    OH_CryptoPubKey *pubKey = OH_CryptoKeyPair_GetPubKey(keyPair); // 获取公钥对象。
-   // verify.
+   // verify
    ret = OH_CryptoVerify_Create((const char *)"ECC256|SHA256", &verify); // 创建Verify实例。
    if (ret != CRYPTO_SUCCESS) {
       OH_CryptoVerify_Destroy(verify);
