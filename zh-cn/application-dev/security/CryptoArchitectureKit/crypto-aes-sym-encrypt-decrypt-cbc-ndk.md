@@ -1,8 +1,6 @@
 # 使用AES对称密钥（CBC模式）加解密(C/C++)
 
-
 对应的算法规格请查看[对称密钥加解密算法规格：AES](crypto-sym-encrypt-decrypt-spec.md#aes)。
-
 
 ## 在CMake脚本中链接相关动态库
 ```txt
@@ -55,9 +53,9 @@ static OH_Crypto_ErrCode doTestAesCbc()
     Crypto_DataBlob decData = {.data = nullptr, .len = 0};
     char *plainText = const_cast<char *>("this is test!");
     Crypto_DataBlob msgBlob = {.data = (uint8_t *)(plainText), .len = strlen(plainText)};
-    uint8_t iv[16] = {1, 2, 4, 12, 3, 4, 2, 3, 3, 2, 0, 4, 3, 1, 0, 10}; // 示例代码iv值，开发者可使用安全随机数生成
+    uint8_t iv[16] = {1, 2, 4, 12, 3, 4, 2, 3, 3, 2, 0, 4, 3, 1, 0, 10}; // 示例代码iv值，开发者可使用安全随机数生成。
     Crypto_DataBlob ivBlob = {.data = iv, .len = sizeof(iv)};
-    // 生成对称密钥
+    // 生成对称密钥。
     OH_Crypto_ErrCode ret;
     ret = OH_CryptoSymKeyGenerator_Create("AES128", &genCtx);
     if (ret != CRYPTO_SUCCESS) {
@@ -68,18 +66,18 @@ static OH_Crypto_ErrCode doTestAesCbc()
         goto end;
     }
     
-    // 创建参数对象
+    // 创建参数对象。
     ret = OH_CryptoSymCipherParams_Create(&params);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }
-    // 设置参数
-    ret = OH_CryptoSymCipherParams_SetParam(params, CRYPTO_IV_DATABLOB, &ivBlob); // CBC模式只需要设置iv
+    // 设置参数。
+    ret = OH_CryptoSymCipherParams_SetParam(params, CRYPTO_IV_DATABLOB, &ivBlob); // CBC模式只需要设置iv。
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }
     
-    // 加密
+    // 加密。
     ret = OH_CryptoSymCipher_Create("AES128|CBC|PKCS7", &encCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -93,12 +91,12 @@ static OH_Crypto_ErrCode doTestAesCbc()
         goto end;
     }
     
-    // 解密
+    // 解密。
     ret = OH_CryptoSymCipher_Create("AES128|CBC|PKCS7", &decCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }
-    ret = OH_CryptoSymCipher_Init(decCtx, CRYPTO_DECRYPT_MODE, keyCtx, params); // 解密使用的params与加密时相同
+    ret = OH_CryptoSymCipher_Init(decCtx, CRYPTO_DECRYPT_MODE, keyCtx, params); // 解密使用的params与加密时相同。
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }
