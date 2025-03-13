@@ -53,10 +53,10 @@ let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fileIo.openSync(uri);
 
 try {
-  let res = dlpPermission.isDLPFile(file.fd); // 是否加密DLP文件
+  let res = dlpPermission.isDLPFile(file.fd); // 是否加密DLP文件。
   console.info('res', res);
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 fileIo.closeSync(file);
 ```
@@ -142,14 +142,14 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  dlpPermission.isInSandbox().then((inSandbox) => { // 是否在沙箱内
+  dlpPermission.isInSandbox().then((inSandbox) => { // 是否在沙箱内。
     if (inSandbox) {
-      let res: Promise<dlpPermission.DLPPermissionInfo> = dlpPermission.getDLPPermissionInfo(); // 获取当前权限信息
+      let res: Promise<dlpPermission.DLPPermissionInfo> = dlpPermission.getDLPPermissionInfo(); // 获取当前权限信息。
       console.info('res', JSON.stringify(res));
     }
   });
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -186,7 +186,7 @@ import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  dlpPermission.isInSandbox().then((inSandbox) => { // 是否在沙箱内
+  dlpPermission.isInSandbox().then((inSandbox) => { // 是否在沙箱内。
     if (inSandbox) {
       dlpPermission.getDLPPermissionInfo((err, res) => {
         if (err != undefined) {
@@ -194,7 +194,7 @@ try {
         } else {
           console.info('res', JSON.stringify(res));
         }
-      }); // 获取当前权限信息
+      }); // 获取当前权限信息。
     }
   });
 } catch (err) {
@@ -238,10 +238,10 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let res = dlpPermission.getOriginalFileName('test.txt.dlp'); // 获取原始文件名
+  let res = dlpPermission.getOriginalFileName('test.txt.dlp'); // 获取原始文件名。
   console.info('res', res);
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -274,10 +274,10 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let res = dlpPermission.getDLPSuffix(); // 获取DLP拓展名
+  let res = dlpPermission.getDLPSuffix(); // 获取DLP拓展名。
   console.info('res', res);
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -316,9 +316,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   dlpPermission.on('openDLPFile', (info: dlpPermission.AccessedDLPFileInfo) => {
     console.info('openDlpFile event', info.uri, info.lastOpenTime)
-  }); // 订阅
+  }); // 订阅。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -356,9 +356,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   dlpPermission.off('openDLPFile', (info: dlpPermission.AccessedDLPFileInfo) => {
     console.info('openDlpFile event', info.uri, info.lastOpenTime)
-  }); // 取消订阅
+  }); // 取消订阅。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -392,10 +392,10 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let inSandbox = dlpPermission.isInSandbox(); // 是否在沙箱内
+  let inSandbox = dlpPermission.isInSandbox(); // 是否在沙箱内。
   console.info('res', inSandbox);
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -436,7 +436,7 @@ try {
     } else {
       console.info('isInSandbox, data', JSON.stringify(data));
     }
-  }); // 是否在沙箱内
+  }); // 是否在沙箱内。
 } catch (err) {
   console.error('isInSandbox error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -472,10 +472,10 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let res = dlpPermission.getDLPSupportedFileTypes(); // 获取支持DLP的文件类型
+  let res = dlpPermission.getDLPSupportedFileTypes(); // 获取支持DLP的文件类型。
   console.info('res', JSON.stringify(res));
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -516,7 +516,7 @@ try {
     } else {
       console.info('res', JSON.stringify(res));
     }
-  }); // 获取支持DLP的文件类型
+  }); // 获取支持DLP的文件类型。
 } catch (err) {
   console.error('getDLPSupportedFileTypes error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -561,13 +561,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
-  dlpPermission.isInSandbox().then((inSandbox) => { // 是否在沙箱内
+  dlpPermission.isInSandbox().then((inSandbox) => { // 是否在沙箱内。
     if (inSandbox) {
-      dlpPermission.setRetentionState([uri]); // 设置沙箱保留
+      dlpPermission.setRetentionState([uri]); // 设置沙箱保留。
     }
   });
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -612,7 +612,7 @@ try {
       console.info('setRetentionState success');
       console.info('res', JSON.stringify(res));
     }
-  }); // 设置沙箱保留
+  }); // 设置沙箱保留。
 } catch (err) {
   console.error('setRetentionState error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -656,9 +656,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
-  dlpPermission.cancelRetentionState([uri]); // 取消沙箱保留
+  dlpPermission.cancelRetentionState([uri]); // 取消沙箱保留。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -701,7 +701,7 @@ try {
     } else {
       console.info('cancelRetentionState success');
     }
-  }); // 取消沙箱保留
+  }); // 取消沙箱保留。
 } catch (err) {
   console.error('cancelRetentionState error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -745,10 +745,10 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let res: Promise<Array<dlpPermission.RetentionSandboxInfo>> = dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
+  let res: Promise<Array<dlpPermission.RetentionSandboxInfo>> = dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表。
   console.info('res', JSON.stringify(res))
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -791,7 +791,7 @@ try {
     } else {
       console.info('res', JSON.stringify(res));
     }
-  }); // 获取沙箱保留列表
+  }); // 获取沙箱保留列表。
 } catch (err) {
   console.error('getRetentionSandboxList error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -835,7 +835,7 @@ try {
     } else {
       console.info('res', JSON.stringify(res));
     }
-  }); // 获取沙箱保留列表
+  }); // 获取沙箱保留列表。
 } catch (err) {
   console.error('getRetentionSandboxList error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -872,10 +872,10 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let res: Promise<Array<dlpPermission.AccessedDLPFileInfo>> = dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表
+  let res: Promise<Array<dlpPermission.AccessedDLPFileInfo>> = dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表。
   console.info('res', JSON.stringify(res))
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -917,7 +917,7 @@ try {
     } else {
       console.info('res', JSON.stringify(res));
     }
-  }); // 获取DLP访问列表
+  }); // 获取DLP访问列表。
 } catch (err) {
   console.error('getDLPFileAccessRecords error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -966,19 +966,19 @@ import { common, UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
+  let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext。
   let want: Want = {
     "uri": "file://docs/storage/Users/currentUser/Desktop/1.txt",
     "parameters": {
       "displayName": "1.txt"
     }
-  }; // 请求参数
+  }; // 请求参数。
   dlpPermission.startDLPManagerForResult(context, want).then((res) => {
     console.info('res.resultCode', res.resultCode);
     console.info('res.want', JSON.stringify(res.want));
-  }); // 打开DLP权限管理应用
+  }); // 打开DLP权限管理应用。
 } catch (err) {
-  console.error('error', err.code, err.message); // 失败报错
+  console.error('error', err.code, err.message); // 失败报错。
 }
 ```
 
@@ -1020,9 +1020,9 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  dlpPermission.setSandboxAppConfig('configInfo'); // 设置沙箱应用配置信息
+  dlpPermission.setSandboxAppConfig('configInfo'); // 设置沙箱应用配置信息。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -1057,9 +1057,9 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  dlpPermission.cleanSandboxAppConfig(); // 清理沙箱应用配置信息
+  dlpPermission.cleanSandboxAppConfig(); // 清理沙箱应用配置信息。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -1094,9 +1094,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   dlpPermission.getSandboxAppConfig().then((res) => {
     console.info('res', JSON.stringify(res));
-  }); // 获取沙箱应用配置信息
+  }); // 获取沙箱应用配置信息。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -1129,7 +1129,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 dlpPermission.isDLPFeatureProvided().then((res) => {
   console.info('res', JSON.stringify(res));
 }).catch((err: BusinessError) => {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 });
 ```
 
