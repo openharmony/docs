@@ -1,8 +1,6 @@
 # 使用RSA密钥对分段验签（PKCS1模式）(C/C++)
 
-
 对应的算法规格请查看[验签算法规格：RSA](crypto-sign-sig-verify-overview.md#rsa)。
-
 
 ## 在CMake脚本中链接相关动态库
 ```txt
@@ -10,7 +8,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 ## 开发步骤
-
 
 1. 调用[OH_CryptoVerify_Create](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_create)，指定字符串参数'RSA1024|PKCS1|SHA256'，与签名的Sign实例保持一致。创建Verify实例，用于完成验签操作。
 
@@ -20,7 +17,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
    当前单次update长度没有限制，开发者可以根据数据量判断如何调用update，如果数据量较小，可以直接调用OH_CryptoVerify_Final接口一次性传入。
 
 4. 调用[OH_CryptoVerify_Final](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_final)，对数据进行验签。
-
 
 - 示例：
 
@@ -86,7 +82,7 @@ static bool doTestRsaSignatureSeg()
       .len = sizeof(signText)
    };
    
-   // keypair
+   // keypair.
    OH_Crypto_ErrCode ret = CRYPTO_SUCCESS;
    ret = OH_CryptoAsymKeyGenerator_Create((const char *)"RSA2048", &keyCtx);
    if (ret != CRYPTO_SUCCESS) {
@@ -98,7 +94,7 @@ static bool doTestRsaSignatureSeg()
       return false;
    }
    OH_CryptoPubKey *pubKey = OH_CryptoKeyPair_GetPubKey(keyPair);
-   // verify
+   // verify.
    ret = OH_CryptoVerify_Create((const char *)"RSA1024|PKCS1|SHA256", &verify);
    if (ret != CRYPTO_SUCCESS) {
       OH_CryptoVerify_Destroy(verify);
