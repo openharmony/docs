@@ -11,12 +11,12 @@ A **DisplaySoloist** instance can exclusively occupy a thread or share a thread 
 | OH_DisplaySoloist* OH_DisplaySoloist_Create (bool useExclusiveThread) | Creates an **OH_DisplaySoloist** instance.                      |
 | OH_DisplaySoloist_Destroy (OH_DisplaySoloist * displaySoloist) | Destroys an **OH_DisplaySoloist** instance.                      |
 | OH_DisplaySoloist_Start (OH_DisplaySoloist * displaySoloist, OH_DisplaySoloist_FrameCallback callback, void * data ) | Sets a callback function for each frame. The callback function is triggered each time a VSync signal arrives.  |
-| OH_DisplaySoloist_Stop (OH_DisplaySoloist * displaySoloist)  | Stops requesting the next VSync signal and triggering the callback function. |
+| OH_DisplaySoloist_Stop (OH_DisplaySoloist * displaySoloist)  | Stops requesting the next VSync signal and triggering the callback function.|
 | OH_DisplaySoloist_SetExpectedFrameRateRange (OH_DisplaySoloist* displaySoloist, DisplaySoloist_ExpectedRateRange* range) | Sets the expected frame rate range.                                   |
 
 ## How to Develop
 
-In this example, a graphic is drawn using the native Drawing module. Specifically, an expected frame rate is set through the asynchronous thread, and the graphic is drawn based on the frame rate and displayed on the native window. For details about graphics drawing, see [Using Drawing to Draw and Display Graphics (C/C++)](drawing-guidelines.md).
+In this example, a graphic is drawn using the native Drawing module. Specifically, an expected frame rate is set through the asynchronous thread, and the graphic is drawn based on the frame rate and displayed on the native window. For details about graphics drawing, see [Using Drawing to Draw and Display Graphics (C/C++)](graphic-drawing-overview.md).
 
 ### Adding Dependencies
 
@@ -33,6 +33,7 @@ libnative_display_soloist.so
 ```
 
 **Including Header Files**
+
 ```c++
 #include <ace/xcomponent/native_interface_xcomponent.h>
 #include "napi/native_api.h"
@@ -49,6 +50,8 @@ libnative_display_soloist.so
 #include <stdint.h>
 #include <sys/mman.h>
 ```
+
+### How to Develop
 
 1. Define an ArkTS API file and name it **XComponentContext.ts**, which is used to connect to the native layer.
    ```ts
