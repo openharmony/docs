@@ -60,7 +60,7 @@ The **Preferences** module provides APIs for key-value (KV) data processing, inc
 | int [OH_Preferences_Delete](#oh_preferences_delete) ([OH_Preferences](#oh_preferences) \*preference, const char \*key) | Deletes the KV data corresponding to the specified key from a **Preferences** instance.| 
 | int [OH_Preferences_RegisterDataObserver](#oh_preferences_registerdataobserver) ([OH_Preferences](#oh_preferences) \*preference, void \*context, [OH_PreferencesDataObserver](#oh_preferencesdataobserver) observer, const char \*keys[], uint32_t keyCount) | Subscribes to data changes of the specified keys. If the value of the specified key changes, a callback will be invoked after **OH_Preferences_Close ()** is called.| 
 | int [OH_Preferences_UnregisterDataObserver](#oh_preferences_unregisterdataobserver) ([OH_Preferences](#oh_preferences) \*preference, void \*context, [OH_PreferencesDataObserver](#oh_preferencesdataobserver) observer, const char \*keys[], uint32_t keyCount) | Unsubscribes from data changes of the specified keys.| 
-| [OH_PreferencesOption](#oh_preferencesoption) \* [OH_PreferencesOption_Create](#oh_preferencesoption_create) (void) | Creates an [OH_PreferencesOption](#oh_preferencesoption) instance and a pointer to it. If this pointer is no longer required, use [OH_PreferencesOption_Destroy](#oh_preferencesoption_destroy) to destroy it. Otherwise, memory leaks may occur.| 
+| [OH_PreferencesOption](#oh_preferencesoption) \* [OH_PreferencesOption_Create](#oh_preferencesoption_create) (void) | Creates an [OH_PreferencesOption](#oh_preferencesoption) instance and a pointer to it.<br>If this pointer is no longer required, use [OH_PreferencesOption_Destroy](#oh_preferencesoption_destroy) to destroy it. Otherwise, memory leaks may occur.| 
 | int [OH_PreferencesOption_SetFileName](#oh_preferencesoption_setfilename) ([OH_PreferencesOption](#oh_preferencesoption) \*option, const char \*fileName) | Sets the file name for an [OH_PreferencesOption](#oh_preferencesoption) instance.| 
 | int [OH_PreferencesOption_SetBundleName](#oh_preferencesoption_setbundlename) ([OH_PreferencesOption](#oh_preferencesoption) \*option, const char \*bundleName) | Sets the bundle name for an [OH_PreferencesOption](#oh_preferencesoption) instance.| 
 | int [OH_PreferencesOption_SetDataGroupId](#oh_preferencesoption_setdatagroupid) ([OH_PreferencesOption](#oh_preferencesoption) \*option, const char \*dataGroupId) | Sets the application group ID for an [OH_PreferencesOption](#oh_preferencesoption) instance.| 
@@ -698,7 +698,7 @@ OH_PreferencesOption* OH_PreferencesOption_Create (void )
 
 **Description**
 
-Creates an [OH_PreferencesOption](#oh_preferencesoption) instance and a pointer to it. If this pointer is no longer required, use [OH_PreferencesOption_Destroy](#oh_preferencesoption_destroy) to destroy it. Otherwise, memory leaks may occur.
+Creates an [OH_PreferencesOption](#oh_preferencesoption) instance and a pointer to it.<br>If this pointer is no longer required, use [OH_PreferencesOption_Destroy](#oh_preferencesoption_destroy) to destroy it. Otherwise, memory leaks may occur.
 
 **Since**: 13
 
