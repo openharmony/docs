@@ -285,7 +285,7 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
-| 401      | Parameter verification tiled.    |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **示例：**
