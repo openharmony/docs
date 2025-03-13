@@ -41,7 +41,7 @@ toybox [--long | --help | --version | [command] [arguments...]]
 Format: help [-ah] [command]
 | Parameter| Description|
 | :- | :- |
-| command | Displays the command help. [command] can be any command supported by toybox.|
+| command | Displays the command help. **[command]** can be any command supported by toybox.|
 
 | Option| Description|
 | :- | :- |
@@ -116,7 +116,7 @@ Format: help [-ah] [command]
 | Command| Description|
 | :- | :- |
 | cal     | Prints a calendar.<br>usage: cal [[month] year] |
-| date    | Sets or obtains the current date and time.<br>usage: date [-u] [-r FILE] [-d DATE] [+DISPLAY\_FORMAT] [-D SET\_FORMAT] [SET] |
+| date    | Sets or obtains the current date and time.<br>usage: date [-u] [-r FILE] [-d DATE] [+DISPLAY\_FORMAT] [SET] |
 | hwclock | Obtains or sets the hardware clock.<br>usage: hwclock [-rswtluf] |
 | sleep   | Waits before exiting. The value can be a decimal. The optional suffix can be "m" (minute), "h" (hour), "d" (day), or "s" (second, default value).<br>usage: sleep DURATION |
 | time    | Runs the command line and reports the real time, user time, and system time (in seconds). The real time is the wall clock time, the user time is the actual CPU time spend in user-mode, and the system time is the actual CPU time sped in the kernel.<br>usage: time [-pv] COMMAND [ARGS...] |
@@ -155,7 +155,7 @@ Format: help [-ah] [command]
 | setsid  | Runs a command in a new session.<br>usage: setsid [-t] command [args...] |
 | taskset | Starts a task that runs only on a specified processor, or modifies the processor affinity of an existing process.<br>usage: taskset [-ap] [mask] [PID \| cmd [args...]] |
 | timeout | Runs a command in a child process and if the command execution is not finished within a time limit, sends a signal. The value of **DURATION** can be a decimal. The optional suffix can be "m" (minute), "h" (hour), "d" (day), or "s" (second, default value).<br>usage: timeout [-k DURATION] [-s SIGNAL] DURATION COMMAND... |
-| top     | Displays process information in real time.<br>usage: top [-Hbq] [-k FIELD,] [-o FIELD,] [-s SORT] [-n NUMBER] [-m LINES] [-d SECONDS] [-p PID,] [-u USER,] |
+| top     | Displays process information in real time.<br>usage: top [-Hhbq] [-k FIELD,] [-o FIELD,] [-s SORT] [-n NUMBER] [-m LINES] [-d SECONDS] [-p PID,] [-u USER,] |
 | nice    | Runs a command with a specified priority.<br>usage: nice [-n PRIORITY] COMMAND [ARG...] |
 | nsenter | Runs a command in a specific namespace.<br>usage: nsenter [-t pid] [-F] [-i] [-m] [-n] [-p] [-u] [-U] COMMAND... |
 | ulimit/prlimit | Displays or sets the resource limit of a process.<br>usage: ulimit/prlimit [-P PID] [-SHRacdefilmnpqrstuv] [LIMIT] |
@@ -206,7 +206,7 @@ Format: help [-ah] [command]
 | sntp    | Runs an SNTP client.<br>usage: sntp [-saSdDqm] [-r SHIFT] [-m ADDRESS] [-p PORT] [SERVER] |
 | telnet  | Connects to a Telnet server.<br>usage: telnet HOST [PORT] |
 | traceroute/traceroute6 | Traces the path that a message takes from your PC to a host. The **traceroute6** command contains the **-6** option.<br>usage: traceroute [-46FUIldnvr] [-f 1ST_TTL] [-m MAXTTL] [-p PORT] [-q PROBES] [-s SRC_IP] [-t TOS] [-w WAIT_SEC] [-g GATEWAY] [-i IFACE] [-z PAUSE_MSEC] HOST [BYTES]<br>usage: traceroute6 [-dnrv] [-m MAXTTL] [-p PORT] [-q PROBES][-s SRC_IP] [-t TOS] [-w WAIT_SEC] [-i IFACE] HOST [BYTES] |
-| wget    | Downloads resources from the network.<br>usage: wget -O filename URL |
+| wget    | Downloads resources from the network.<br>usage: wget [OPTIONS]... [URL]<br>[OPTIONS] = --max-redirect x -d -O filename -p data|
 
 ### File Operations
 
@@ -226,7 +226,7 @@ Format: help [-ah] [command]
 | cmp       | Compares the contents of two files. (If only one file is specified, the command compares the file contents with the contents of the standard input device). You can specify whether to skip a certain number of bytes at the beginning.<br>usage: cmp [-l] [-s] FILE1 [FILE2 [SKIP1 [SKIP2]]] |
 | comm      | Reads the contents from **FILE1** and **FILE2** in sequence and outputs three text columns: lines only in FILE1, lines only in FILE2, and lines in both files. "-" indicates a standard input device.<br>usage: comm [-123] FILE1 FILE2  |
 | count     | Copies the standard input device to the standard output device and displays a simple progress indicator to the standard error output **stderr**.<br>usage: count |
-| cp        | Copies the contents from **SOURCE** to **DEST**. If there are multiple sources, **DEST** must be a directory.<br>usage: cp [--preserve=motcxa] [-adlnrsvfipRHLP] SOURCE... DEST |
+| cp        | Copies the contents from **SOURCE** to **DEST**. If there are multiple sources, **DEST** must be a directory.<br>usage: cp [-adfHiLlnPpRrsTv] [--preserve=motcxa] [-t TARGET] SOURCE... [DEST] |
 | cpio      | Reads and writes files from the **cpio** archive in the **newc** format.<br>usage: cpio -{o\|t\|i\|p DEST} [-v] [--verbose] [-F FILE] [--no-preserve-owner]<br>&emsp;[ignored: -mdu -H newc] |
 | crc32     | Outputs the CRC32 checksum of each file.<br>usage: crc32 [file...] |
 | cut       | Prints selected parts of lines from each file to the standard output device. Each selection list is separated by a comma(,), which can be a number (counting from 1) or a dash-separated range (where X- indicates from X byte to the end byte of a line, and -X indicates from the 1st byte to X byte of a line).<br>usage: cut [-Ds] [-bcfF LIST] [-dO DELIM] [FILE...] |
@@ -248,7 +248,7 @@ Format: help [-ah] [command]
 | hexedit   | Edits a hexadecimal file. All modifications are written to disk immediately.<br>usage: hexedit FILENAME |
 | iconv     | Converts the encoding format of a file.<br>usage: iconv [-f FROM] [-t TO] [FILE...] |
 | inotifyd  | Runs a specified program when a file system event occurs.<br>usage: inotifyd PROG FILE[:MASK] ... |
-| install   | Copies a file and sets its attributes.<br>usage: install [-dDpsv] [-o USER] [-g GROUP] [-m MODE] [SOURCE...] DEST |
+| install   | Copies a file and sets its attributes.<br>usage: install [-dDpsv] [-o USER] [-g GROUP] [-m MODE] [-t TARGET] [SOURCE...] [DEST] |
 | link      | Creates a hard link for a file.<br>usage: link FILE NEWLINK |
 | ln        | Creates a soft or hard link between **FROM** and **TO**.<br>usage: ln [-sfnv] [-t DIR] [FROM...] TO |
 | ls        | Lists the files or folders in the current directory.<br>usage: ls [-ACFHLRSZacdfhiklmnpqrstux1] [--color[=auto]] [directory...] |
@@ -261,7 +261,7 @@ Format: help [-ah] [command]
 | mktemp    | Safely creates a file **DIR/TEMPLATE** and prints its name.<br>usage: mktemp [-dqu] [-p DIR] [TEMPLATE] |
 | mknod     | Creates a special file (**b** is a block device, **c** or **u** is a character device, and **p** is a named pipe).<br>usage: mknod [-m MODE] NAME TYPE [MAJOR MINOR] |
 | more      | Views a file one page at a time.<br>usage: more [FILE...] |
-| mv        | Moves or renames a file.<br>usage: mv [-fivn] SOURCE... DEST |
+| mv        | Moves or renames a file.<br>usage: mv [-finTv] [-t TARGET] SOURCE... [DEST] |
 | nl        | Adds a line number to an input file.<br>usage: nl [-E] [-l #] [-b MODE] [-n STYLE] [-s SEPARATOR] [-v #] [-w WIDTH] [FILE...] |
 | od        | Dumps data in octal/hexadecimal format.<br>usage: od [-bcdosxv] [-j #] [-N #] [-w #] [-A doxn] [-t acdfoux[#]] |
 | paste     | Merges corresponding lines from each input file.<br>usage: paste [-s] [-d DELIMITERS] [FILE...] |
