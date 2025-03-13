@@ -274,7 +274,7 @@ avMetadataExtractor.getFrameIndexByTime(0).then((index: number) => {
 >
 > 使用相机进行视频录制时，需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/js-apis-camera.md)。
 
-### isWatermarkSupported<sup>12+</sup>
+### isWatermarkSupported<sup>13+</sup>
 
 isWatermarkSupported(): Promise\<boolean>
 
@@ -304,7 +304,7 @@ avRecorder.isWatermarkSupported().then((isWatermarkSupported: boolean) => {
 });
 ```
 
-### setWatermark<sup>12+</sup>
+### setWatermark<sup>13+</sup>
 
 setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
 
@@ -1186,7 +1186,7 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 | videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
 | videoFrameRate   | number                                       | 是   | 录制视频帧率。   |
 
-## WatermarkConfig<sup>12+</sup>
+## WatermarkConfig<sup>13+</sup>
 
 设置给AVRecorder的水印相关配置，该位置以画面的左上角为开始点。
 
