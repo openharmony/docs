@@ -1,17 +1,12 @@
 # 消息认证码计算CMAC
 
-
 CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确保消息在传输过程中未被篡改‌。
-
-
-
 
 ## 开发步骤
 
 在调用update接口传入数据时，可以[一次性传入所有数据](#cmac一次性传入)，也可以把数据人工分段，然后[分段update](#分段cmac)。对于同一段数据而言，是否分段，计算结果没有差异。对于数据量较大的数据，开发者可以根据实际需求选择是否分段传入。
 
 下面分别提供两种方式的示例代码。
-
 
 ### CMAC（一次性传入）
 
@@ -42,17 +37,17 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
     return symKey;
   }
   async function doCmac() {
-    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
+    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节。
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = await genSymKeyByData(keyData);
     let spec: cryptoFramework.CmacSpec = {
         algName: "CMAC",
         cipherName: "AES128",
     };
-    let message = 'cmacTestMessage'; // 待进行CMAC的数据
+    let message = 'cmacTestMessage'; // 待进行CMAC的数据。
     let mac = cryptoFramework.createMac(spec);
     await mac.init(key);
-    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
+    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制。
     await mac.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let macResult = await mac.doFinal();
     console.info('CMAC result:' + macResult.data);
@@ -75,17 +70,17 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
     return symKey;
   }
   function doCmacBySync() {
-    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
+    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节。
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = genSymKeyByData(keyData);
     let spec: cryptoFramework.CmacSpec = {
         algName: "CMAC",
         cipherName: "AES128",
     };
-    let message = 'cmacTestMessage'; // 待进行CMAC的数据
+    let message = 'cmacTestMessage'; // 待进行CMAC的数据。
     let mac = cryptoFramework.createMac(spec);
     mac.initSync(key);
-    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
+    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制。
     mac.updateSync({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let macResult = mac.doFinalSync();
     console.info('[Sync]CMAC result:' + macResult.data);
@@ -123,7 +118,7 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
     return symKey;
   }
   async function doLoopCmac() {
-    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
+    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节。
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = await genSymKeyByData(keyData);
     let spec: cryptoFramework.CmacSpec = {
@@ -131,10 +126,10 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
         cipherName: "AES128",
     };
     let mac = cryptoFramework.createMac(spec);
-    // 假设信息总共43字节，根据utf-8解码后，也是43字节
+    // 假设信息总共43字节，根据utf-8解码后，也是43字节。
     let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
     let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
-    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求
+    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求。
     await mac.init(key);
     for (let i = 0; i < messageData.length; i += updateLength) {
       let updateMessage = messageData.subarray(i, i + updateLength);
@@ -162,7 +157,7 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
     return symKey;
   }
   function doLoopCmacBySync() {
-    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
+    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节。
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = genSymKeyByData(keyData);
     let spec: cryptoFramework.CmacSpec = {
@@ -170,10 +165,10 @@ CMAC通过使用分组密码（如AES）和一个密钥来生成认证码，确�
         cipherName: "AES128",
     };
     let mac = cryptoFramework.createMac(spec);
-    // 假设信息总共43字节，根据utf-8解码后，也是43字节
+    // 假设信息总共43字节，根据utf-8解码后，也是43字节。
     let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
     let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
-    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求
+    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求。
     mac.initSync(key);
     for (let i = 0; i < messageData.length; i += updateLength) {
       let updateMessage = messageData.subarray(i, i + updateLength);
