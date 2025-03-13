@@ -510,7 +510,7 @@ Disables listening for a keyboard visibility event. This API uses an asynchronou
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | Yes  | Event type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
-| callback | () => void   | No  | Callback to unregister.|
+| callback | () => void   | No  | Callback used to return the result.|
 
 **Example**
 
@@ -587,7 +587,7 @@ try {
 
 on(type: 'securityModeChange', callback: Callback< SecurityMode>): void
 
-Enables listening for security mode changes of the input method. This API uses an asynchronous callback to return the result.
+Enables listening for the security mode changes of the input method. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -614,7 +614,7 @@ try {
 
 off(type: 'securityModeChange', callback?: Callback< SecurityMode>): void
 
-Disables listening for security mode changes of the input method. This API uses an asynchronous callback to return the result.
+Disables listening for the security mode changes of the input method. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1148,7 +1148,7 @@ Disables listening for cursor context changes. This API uses an asynchronous cal
 | Name   | Type | Mandatory | Description  |
 | -------- | ---- | ---- | ------ |
 | type     | string  | Yes  | Event type, which is **'cursorContextChange'**.|
-| callback | (x: number, y:number, height:number) => void | No   | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
+| callback | (x: number, y:number, height:number) => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 
   **Example**
@@ -1172,10 +1172,10 @@ Enables listening for the text selection change event. This API uses an asynchro
 
 **Parameters**
 
-| Name    |  Type  | Mandatory | Description   |
+| Name   | Type  | Mandatory| Description  |
 | -------- | ----- | ---- | ---- |
-| type     | string  | Yes   | Event type, which is **'selectionChange'**.|
-| callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | Yes   | Callback used to return the text selection information.<br>- **oldBegin**: start of the selected text before the change.<br>- **oldEnd**: end of the selected text before the change.<br>- **newBegin**: start of the selected text after the change.<br>- **newEnd**: end of the selected text after the change.|
+| type     | string  | Yes  | Event type, which is **'selectionChange'**.|
+| callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | Yes  | Callback used to return the text selection information.<br>- **oldBegin**: start of the selected text before the change.<br>- **oldEnd**: end of the selected text before the change.<br>- **newBegin**: start of the selected text after the change.<br>- **newEnd**: end of the selected text after the change.|
 
 **Example**
 
@@ -1203,9 +1203,9 @@ Disables listening for the text selection change event. This API uses an asynchr
 
 **Parameters**
 
-| Name   | Type  | Mandatory | Description     |
+| Name  | Type | Mandatory| Description    |
 | -------- | ------- | ---- | ------- |
-| type     | string  | Yes   | Event type, which is **'selectionChange'**. |
+| type     | string  | Yes  | Event type, which is **'selectionChange'**.|
 | callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
@@ -1232,9 +1232,9 @@ Enables listening for the text change event. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name   |  Type  | Mandatory | Description                                                         |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes   | Event type, which is **'textChange'**. |
+| type     | string | Yes  | Event type, which is **'textChange'**.|
 | callback | (text: string) => void | Yes  | Callback used to return the text content.|
 
 **Example**
@@ -1259,9 +1259,9 @@ Disables listening for the text change event. This API uses an asynchronous call
 
 **Parameters**
 
-| Name   |  Type  | Mandatory | Description                                                         |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes   | Event type, which is **'textChange'**. |
+| type     | string | Yes  | Event type, which is **'textChange'**.|
 | callback | (text: string) => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
@@ -1286,9 +1286,9 @@ Enables listening for the edit box attribute change event. This API uses an asyn
 
 **Parameters**
 
-| Name   |  Type  | Mandatory | Description                                                         |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes   | Event type, which is **'editorAttributeChanged'**. |
+| type     | string | Yes  | Event type, which is **'editorAttributeChanged'**.|
 | callback | (attr: EditorAttribute) => void | Yes  | Callback used to return the changed edit box attribute.|
 
 **Example**
@@ -1313,10 +1313,10 @@ Disables listening for the edit box attribute change event. This API uses an asy
 
 **Parameters**
 
-| Name   |  Type  | Mandatory | Description                                                         |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes   | Event type, which is **'editorAttributeChanged'**. |
-| callback | (attr: EditorAttribute) => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
+| type     | string | Yes  | Event type, which is **'editorAttributeChanged'**.|
+| callback | (attr: EditorAttribute) => void | No  | Callback used for unsubscription. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
 
@@ -1338,9 +1338,9 @@ Loads content from a page to this input method panel. This API uses an asynchron
 
 **Parameters**
 
-| Name   | Type                   | Mandatory | Description     |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | Yes   | Path of the page from which the content will be loaded. |
+| path | string | Yes  | Path of the page from which the content will be loaded.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1379,13 +1379,13 @@ Loads content from a page to this input method panel. This API uses a promise to
 
 **Parameters**
 
-| Name   | Type                   | Mandatory | Description     |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | Yes   |  Path of the page from which the content will be loaded. |
+| path | string | Yes  |  Path of the page from which the content will be loaded.|
 
 **Return value**
 
-| Type   | Description                             |
+| Type  | Description                            |
 | ------- | ------------------------------ |
 | Promise\<void> | Promise that returns no value. |
 
@@ -1423,9 +1423,9 @@ Loads content from a page linked to LocalStorage to this input method panel. Thi
 
 **Parameters**
 
-| Name   | Type                   | Mandatory | Description     |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | Yes   | Path of the page linked to LocalStorage. |
+| path | string | Yes  | Path of the page linked to LocalStorage.|
 | storage | [LocalStorage](../apis-arkui/arkui-ts/ts-state-management.md#localstorage9) | Yes  | Storage unit that provides storage for mutable and immutable state variables in the application.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
@@ -1467,14 +1467,14 @@ Loads content from a page linked to LocalStorage to this panel. This API uses a 
 
 **Parameters**
 
-| Name   | Type                   | Mandatory | Description     |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | Yes   | Path of the page from which the content will be loaded. |
+| path | string | Yes  | Path of the page from which the content will be loaded.|
 | storage | [LocalStorage](../apis-arkui/arkui-ts/ts-state-management.md#localstorage9) | Yes  | Storage unit that provides storage for mutable and immutable state variables in the application.|
 
 **Return value**
 
-| Type   | Description                             |
+| Type  | Description                            |
 | ------- | ------------------------------ |
 | Promise\<void> | Promise that returns no value. |
 
@@ -1518,9 +1518,9 @@ Resizes this input method panel. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name   | Type                   | Mandatory | Description     |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| width | number | Yes   | Target width of the panel, in px.|
+| width | number | Yes  | Target width of the panel, in px.|
 | height | number | Yes  | Target height of the panel, in px.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
@@ -1686,6 +1686,75 @@ try {
 }
 ```
 
+### startMoving<sup>15+</sup>
+
+startMoving(): void
+
+Sends a command to start moving the window. The window can be moved only when the mouse is clicked.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------- |
+| 12800002 | input method engine error. |
+| 12800013 | window manager service error. |
+| 12800017 | invalid panel type or panel flag. |
+
+**Example**
+
+```ts
+
+try {
+  panel.startMoving();
+  console.log('Succeeded in moving the panel.');
+} catch (err) {
+  console.error(`Failed to move panel: ${JSON.stringify(err)}`);
+}
+```
+
+### getDisplayId<sup>15+</sup>
+
+getDisplayId(): Promise\<number>
+
+Obtains the window ID. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type  | Description                            |
+| ------- | ------------------------------ |
+|Promise\<number>| Promise used to return the result. Returns the **displayId** of the window. |
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------- |
+| 12800002 | input method engine error. |
+| 12800013 | window manager service error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  panel.getDisplayId().then((result: number) => {
+    console.log('get displayId:' + result);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get displayId: ${JSON.stringify(err)}`);
+  });
+} catch (err) {
+  console.error(`Failed to get displayId: ${JSON.stringify(err)}`);
+}
+```
+
 ### show<sup>10+</sup>
 
 show(callback: AsyncCallback\<void>): void
@@ -1839,7 +1908,7 @@ try {
 
 adjustPanelRect(flag: PanelFlag, rect: EnhancedPanelRect): void
 
-Adjusts the panel rectangle, and customizes the avoid area and hot zone.
+Adjusts the panel rectangle, and customizes the avoid area and touch area.
 
 > **NOTE**
 >
@@ -1853,8 +1922,8 @@ Adjusts the panel rectangle, and customizes the avoid area and hot zone.
 
 | Name| Type                                     | Mandatory| Description                                                      |
 | ------ | ----------------------------------------- | ---- | ---------------------------------------------------------- |
-| flag   | [PanelFlag](#panelflag10)                 | Yes  | Type of the state of the target panel. It can be **FLG_FIXED** or **FLG_FLOATING**.           |
-| rect   | [EnhancedPanelRect](#enhancedpanelrect15) | Yes  | Size of the landscape rectangle and portrait rectangle of the target panel, avoid area, and hot zone.|
+| flag   | [PanelFlag](#panelflag10)                 | Yes  | Type of the state of the target panel. It can be **FLG_FIXED** or **FLG_FLOATING**.         |
+| rect   | [EnhancedPanelRect](#enhancedpanelrect15) | Yes  | The target panel rectangle, avoid area, and touch area.|
 
 **Error codes**
 
@@ -1904,7 +1973,7 @@ Updates the hot zone on the input method panel in the current state.
 
 | Name     | Type                                                        | Mandatory| Description                                                        |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| inputRegion | Array&lt;[window.Rect](../apis-arkui/js-apis-window.md#rect7)&gt; | Yes  | Region for receiving input events. The array size is limited to [1, 4].<br>- The input hot zone is relative to the left vertex of the input method panel window.|
+| inputRegion | Array&lt;[window.Rect](../apis-arkui/js-apis-window.md#rect7)&gt; | Yes  | Region for receiving input events.<br>- The array size is limited to [1, 4].<br>- The input hot zone is relative to the left vertex of the input method panel window.|
 
 **Error codes**
 
@@ -1990,18 +2059,21 @@ on(type: 'sizeChange', callback: SizeChangeCallback): void
 
 Enables listening for the panel size change. This API uses an asynchronous callback to return the result.
 
->**NOTE**
+> **NOTE**
 >
-> This API applies only to the panels of the **SOFT_KEYBOARD** type in the **FLG_FIXED** or **FLG_FLOATING** state. When **adjustPanelRect** is called to adjust the panel size, the system needs to calculate the final value based on certain rules (for example, whether the panel size exceeds the screen). This callback can be used for the input method application to refresh the panel layout.
+> This API applies only to the panels of the **SOFT_KEYBOARD** type in the **FLG_FIXED** or **FLG_FLOATING** state. When you call **adjustPanelRect** to adjust the panel size, the system calculates the final value based on certain rules (for example, whether the panel size exceeds the screen). This callback can be used to obtain the actual panel size to refresh the panel layout.
+>
+>-  This API is supported from API version 12 to 14. The callback function of this API contains only mandatory parameters of the [window.Size](../apis-arkui/js-apis-window.md#size7) type.
+>-  Since API version 15, after the [adjustPanelRect](#adjustpanelrect15) API is called, an optional parameter of the [KeyboardArea](#keyboardarea15) type is added to the callback function of this API.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description    |
-| -------- | ---------------------- | ---- | -------- |
-| type | string | Yes| Event type, which is **'sizeChange'**.|
-| callback | Callback\<[window.Size](../apis-arkui/js-apis-window.md#size7)> |  Yes | Callback used to return the size of the soft keyboard panel, including the width and height.|
+| Name  | Type                                       | Mandatory| Description                                                  |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------ |
+| type     | string                                      | Yes  | Event type, which is **'sizeChange'**.|
+| callback | [SizeChangeCallback](#sizechangecallback15) | Yes  | Callback used to return the size of the soft keyboard panel, including the width and height.|
 
 **Example**
 
@@ -2095,14 +2167,21 @@ off(type: 'sizeChange', callback?: SizeChangeCallback): void
 
 Disables listening for the panel size change. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API applies only to the panels of the **SOFT_KEYBOARD** type in the **FLG_FIXED** or **FLG_FLOATING** state. When you call **adjustPanelRect** to adjust the panel size, the system calculates the final value based on certain rules (for example, whether the panel size exceeds the screen). This callback can be used to obtain the actual panel size to refresh the panel layout.
+>
+>-  This API is supported from API version 12 to 14. The callback function of this API contains only mandatory parameters of the [window.Size](../apis-arkui/js-apis-window.md#size7) type.
+>-  Since API version 15, after the [adjustPanelRect](#adjustpanelrect15) API is called, an optional parameter of the [KeyboardArea](#keyboardarea15) type is added to the callback function of this API.
+
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description    |
-| -------- | ---------------------- | ---- | -------- |
-| type | string | Yes| Event type, which is **'sizeChange'**.|
-| callback | Callback\<[window.Size](../apis-arkui/js-apis-window.md#size7)> | No   | Callback used to return the size of the soft keyboard panel, including the width and height.|
+| Name  | Type                                       | Mandatory| Description                                                    |
+| -------- | ------------------------------------------- | ---- | -------------------------------------------------------- |
+| type     | string                                      | Yes  | Event type, which is **'sizeChange'**.|
+| callback | [SizeChangeCallback](#sizechangecallback15) | No  | Callback used to return the size of the soft keyboard panel, including the width and height.  |
 
 **Example**
 
@@ -2110,10 +2189,10 @@ Disables listening for the panel size change. This API uses an asynchronous call
 import { window } from '@kit.ArkUI';
 try {
   panel.off('sizeChange', (windowSize: window.Size) => {
-    console.info(`panel is size changes, width: ${windowSize.width}, height: ${windowSize.height}`);
+    console.info(`panel size changed, width: ${windowSize.width}, height: ${windowSize.height}`);
   });
 } catch(err) {
-    console.error(`Failed to sizeChange: ${JSON.stringify(err)}`);
+    console.error(`Failed to subscribe sizeChange: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2185,6 +2264,65 @@ try {
     console.error(`Failed to set privacy mode: ${JSON.stringify(err)}`);
 }
 ```
+
+### setImmersiveMode<sup>15+</sup>
+
+setImmersiveMode(mode: ImmersiveMode): void
+
+Sets the immersive mode of the input method application. You can only set the immersion mode to **NONE_IMMERSIVE**, **LIGHT_IMMERSIVE**, or **DARK_IMMERSIVE**. **IMMERSIVE** cannot be set.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description    |
+| -------- | ---------------------- | ---- | -------- |
+| mode | [ImmersiveMode](#immersivemode15) | Yes  | Immersive mode.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.           |
+| 12800002  | input method engine error.                                |
+| 12800013  | window manager service error.                          |
+
+**Example**
+
+```ts
+try {
+  panel.setImmersiveMode(inputMethodEngine.ImmersiveMode.LIGHT_IMMERSIVE);
+} catch (err) {
+  console.error(`Failed to setImmersiveMode: ${JSON.stringify(err)}`);
+}
+```
+
+### getImmersiveMode<sup>15+</sup>
+
+getImmersiveMode(): ImmersiveMode
+
+Obtains the immersive mode of the input method application.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type                           | Description      |
+| ------------------------------- | ---------- |
+| [ImmersiveMode](#immersivemode15) | Immersive mode.|
+
+**Example**
+
+```ts
+try {
+  let mode = panel.getImmersiveMode();
+} catch (err) {
+  console.error(`Failed to getImmersiveMode: ${JSON.stringify(err)}`);
+}
+```
+
 
 ## KeyboardController
 
@@ -2463,6 +2601,7 @@ Represents a custom communication object.
 > This object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#onmessage15) callback of the penultimate registered object is triggered.
 >
 > If this object is unregistered, its [onTerminated](#onterminated15) callback will be triggered.
+
 ### onMessage<sup>15+</sup>
 
 onMessage(msgId: string, msgParam?: ArrayBuffer): void
@@ -2479,10 +2618,10 @@ Receives the custom data callback sent by the edit box application attached to t
 
 **Parameters**
 
-| Name  | Type       | Optional| Description                            |
+| Name  | Type       | Mandatory | Description                            |
 | -------- | ----------- | ---- | -------------------------------- |
-| msgId    | string      | No  | Identifier of the received custom communication data.|
-| msgParam | ArrayBuffer | Yes  | Message body of the received custom communication data.|
+| msgId    | string      | Yes | Identifier of the received custom communication data.|
+| msgParam | ArrayBuffer | No | Message body of the received custom communication data.|
 
 **Example**
 
@@ -2490,17 +2629,26 @@ Receives the custom data callback sent by the edit box application attached to t
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    let messageHandler: inputmethod.MessageHandler = {
-        onTerminated(): void {
+  inputMethodEngine.getInputMethodAbility()
+    .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
+      let keyboardController = kbController;
+      let inputClient = client;
+      try {
+        let messageHandler: inputMethodEngine.MessageHandler = {
+          onTerminated(): void {
             console.log('OnTerminated.');
-        },
-        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+          },
+          onMessage(msgId: string, msgParam?:ArrayBuffer): void {
             console.log('recv message.');
+          }
         }
-    }
-    inputMethodController.recvMessage(messageHandler);
+        inputClient.recvMessage(messageHandler);
+      } catch(err) {
+        console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+      }
+  });
 } catch(err) {
-  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+    console.error(`Failed to InputMethodAbility: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2524,17 +2672,26 @@ Listens for MessageHandler termination.
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    let messageHandler: inputmethod.MessageHandler = {
-        onTerminated(): void {
+  inputMethodEngine.getInputMethodAbility()
+    .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
+      let keyboardController = kbController;
+      let inputClient = client;
+      try {
+        let messageHandler: inputMethodEngine.MessageHandler = {
+          onTerminated(): void {
             console.log('OnTerminated.');
-        },
-        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+          },
+          onMessage(msgId: string, msgParam?:ArrayBuffer): void {
             console.log('recv message.');
+          }
         }
-    }
-    inputMethodController.recvMessage(messageHandler);
+        inputClient.recvMessage(messageHandler);
+      } catch(err) {
+        console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+      }
+  });
 } catch(err) {
-  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+    console.error(`Failed to InputMethodAbility: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -4264,10 +4421,10 @@ Sends the custom communication to the edit box application attached to the input
 
 **Parameters**
 
-| Name  | Type       | Optional| Description                                                        |
+| Name  | Type       | Mandatory| Description                                                        |
 | -------- | ----------- | ---- | ------------------------------------------------------------ |
-| msgId    | string      | No  | Identifier of the custom data to be sent to the edit box application attached to the input method application.|
-| msgParam | ArrayBuffer | Yes  | Message body of the custom data to be sent to the edit box application attached to the input method application.|
+| msgId    | string      | Yes  | Identifier of the custom data to be sent to the edit box application attached to the input method application.|
+| msgParam | ArrayBuffer | No  | Message body of the custom data to be sent to the edit box application attached to the input method application.|
 
 **Return value**
 
@@ -4340,16 +4497,30 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-let messageHandler: inputmethod.MessageHandler = {
-    onTerminated(): void {
-        console.log('OnTerminated.');
-    },
-    onMessage(msgId: string, msgParam?:ArrayBuffer): void {
-        console.log('recv message.');
-    }
+
+try {
+  inputMethodEngine.getInputMethodAbility()
+    .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
+      let keyboardController = kbController;
+      let inputClient = client;
+      try {
+        let messageHandler: inputMethodEngine.MessageHandler = {
+          onTerminated(): void {
+            console.log('OnTerminated.');
+          },
+          onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+          }
+        }
+        inputClient.recvMessage(messageHandler);
+        inputClient.recvMessage();
+      } catch(err) {
+        console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+      }
+  });
+} catch(err) {
+    console.error(`Failed to InputMethodAbility: ${JSON.stringify(err)}`);
 }
-inputMethodController.recvMessage(messageHandler);
-inputMethodController.recvMessage();
 ```
 
 ### EditorAttribute
@@ -4364,6 +4535,7 @@ Represents the attributes of the edit box.
 | inputPattern | number   | Yes  | No  | Text of the edit box.|
 | isTextPreviewSupported<sup>12+</sup> | boolean | No| No| Whether text preview is supported.|
 | bundleName<sup>14+</sup> | string | Yes| Yes| Name of the application package to which the edit box belongs. The value may be **""** When this attribute is used, the scenario where the value is **""** must be considered.|
+| immersiveMode<sup>15+</sup> | [ImmersiveMode](#immersivemode15) | Yes  | Yes  | Immersive mode of the input method.|
 
 ## KeyEvent
 
@@ -4386,6 +4558,7 @@ Enumerates the state types of the input method panel.
 | ------------ | -- | ------------------ |
 | FLG_FIXED  | 0 | Fixed state type.|
 | FLG_FLOATING | 1 | Floating state type.|
+| FLAG_CANDIDATE<sup>15+</sup> | 2 | Candidate state type.|
 
 ## PanelType<sup>10+</sup>
 
@@ -4422,7 +4595,7 @@ Represents the size of the input method panel.
 
 ## EnhancedPanelRect<sup>15+</sup>
 
-Indicates the size of the enhanced input method panel, including the custom avoid area and hot zone.
+Indicates the size of the enhanced input method panel, including the custom avoid area and touch area.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -4459,6 +4632,19 @@ Represents window information.
 | ------ | ------------------------------------------------------------ | ---- | ---- | -------------- |
 | rect   | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | No  | No  | Rectangular area of the window.|
 | status | [window.WindowStatusType](../apis-arkui/js-apis-window.md#windowstatustype11) | No  | No  | Window status type.|
+
+## ImmersiveMode<sup>15+</sup>
+
+Enumerates the immersive modes of the input method.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name        | Value| Description              |
+| ------------ | -- | ------------------ |
+| NONE_IMMERSIVE | 0 | The immersive mode is not used.|
+| IMMERSIVE      | 1 | The immersive mode is used. Its style is determined by the input method application.|
+| LIGHT_IMMERSIVE  | 2 | Immersive style in light mode.|
+| DARK_IMMERSIVE   | 3 | Immersive style in dark mode.|
 
 ## TextInputClient<sup>(deprecated)</sup>
 
@@ -4986,4 +5172,4 @@ textInputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.Ed
   console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
 });
 ```
-
+<!--no_check-->
