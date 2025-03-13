@@ -464,8 +464,8 @@ import { window } from '@kit.ArkUI';
 
 | 名称   | 类型 | 可读  | 可写 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- | 
-| type | [RotationChangeType](#rotationchangetype18) | 是 | 否 | 窗口旋转类型。0表示开始，1表示结束。 |
-| orientation | number | 是 | 否 | 窗口旋转方向。0表示竖屏，1表示横屏，2表示反向竖屏，3表示反向竖屏。 |
+| type | [RotationChangeType](#rotationchangetype18) | 是 | 否 | 窗口旋转类型。<br>- 0表示开始。<br>- 1表示结束。 |
+| orientation | number | 是 | 否 | 窗口旋转方向。<br>- 0表示竖屏。<br>- 1表示横屏。<br>- 2表示反向竖屏。<br>- 3表示反向竖屏。 |
 | displayId | number | 是 | 否 | 窗口所在屏幕Id。 |
 | displayRect | [Rect](#rect7) | 是 | 否 | 旋转后全屏主窗口信息。 |
 
@@ -5474,7 +5474,7 @@ try {
 
 ### on('rotationChange')<sup>18+</sup>
 
-on(type:  'rotationChange', callback: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
+on(type: 'rotationChange', callback: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
 
 开启窗口旋转变化的监听。旋转前回调必须返回[RotationChangeResult](#rotationchangeresult18)，旋转后返回不生效。同一个窗口多次注册回调函数，旋转前回调[Rect](#rect7)只对最新回调函数生效。
 
@@ -5551,7 +5551,7 @@ const callback = (info: RotationChangeInfo) => RotationChangeResult | void {
 }
 try {
   windowClass.off('rotationChange', callback);
-  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听。
   windowClass.off('rotationChange');
 } catch (exception) {
   console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
