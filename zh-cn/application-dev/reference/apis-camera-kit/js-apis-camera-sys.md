@@ -4215,7 +4215,7 @@ function registerLcdFlashStatus(portraitPhotoSession: camera.PortraitPhotoSessio
 }
 ```
 
-### off('lcdFlashStatus')<sup>12+</sup>
+### off('lcdFlashStatus')<sup>13+</sup>
 
 off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
 
@@ -4473,7 +4473,7 @@ function registerLcdFlashStatus(nightPhotoSession: camera.NightPhotoSession): vo
 }
 ```
 
-### off('lcdFlashStatus')<sup>13+</sup>
+### off('lcdFlashStatus')<sup>12+</sup>
 
 off(type: 'lcdFlashStatus', callback?: AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\>): void
 
