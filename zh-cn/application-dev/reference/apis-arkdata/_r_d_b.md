@@ -18,7 +18,7 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | [oh_cursor.h](oh__cursor_8h.md) | 提供通过查询数据库生成的数据库结果集的访问方法。<br/>**引用文件：** <database/rdb/oh_cursor.h><br/>**库:** libnative_rdb_ndk.z.so<br/> |
-| [oh_data_value.h](oh__data__value_8h.md) | 提供与单条数据值相关的函数和枚举。<br/>**引用文件：** <database/rdb/oh_data_value.h><br/>**库:** libnative_rdb_ndk.z.so<br/> |
+| [oh_data_value.h](oh__data__value_8h.md) | 提供与单条数据值相关的函数和枚举。<br/>从API version 18开始，OH_ColumnType从oh_cursor.h移动至此头文件呈现，对于此类型，API version 18之前即支持使用，各版本均可正常使用。<br/>**引用文件：** <database/rdb/oh_data_value.h><br/>**库:** libnative_rdb_ndk.z.so<br/> |
 | [oh_data_values.h](oh__data__values_8h.md) | 提供与多条数据值相关的函数和枚举。<br/>**引用文件：** <database/rdb/oh_data_values.h><br/>**库:** libnative_rdb_ndk.z.so<br/> |
 | [oh_data_values_buckets.h](oh__data__values__buckets_8h.md) | 提供与存储数据值相关的结构定义、函数和枚举。<br/>**引用文件：** <database/rdb/oh_data_values_buckets.h><br/>**库:** libnative_rdb_ndk.z.so<br/> |
 | [oh_predicates.h](oh__predicates_8h.md) | 表示关系型数据库（RDB）的谓词。<br/>**引用文件：** <database/rdb/oh_predicates.h><br/>**库:** libnative_rdb_ndk.z.so<br/> |
@@ -427,7 +427,7 @@ typedef enum OH_ColumnType OH_ColumnType
 
 表示列的类型。
 
-**起始版本：** 18
+**起始版本：** 10
 
 ### OH_Data_Value
 
@@ -1050,7 +1050,7 @@ enum OH_ColumnType
 
 表示列的类型。
 
-**起始版本：** 18
+**起始版本：** 10
 
 | 枚举值 | 描述 |
 | -------- | -------- |
@@ -1059,10 +1059,10 @@ enum OH_ColumnType
 | TYPE_REAL | 表示REAL数据类型。 |
 | TYPE_TEXT | 表示TEXT数据类型。 |
 | TYPE_BLOB | 表示BLOB数据类型。 |
-| TYPE_ASSET | 表示ASSET（资产附件）数据类型。 |
-| TYPE_ASSETS | 表示ASSETS（多个资产附件）数据类型。 |
-| TYPE_FLOAT_VECTOR | 表示FLOAT VECTOR数据类型。 |
-| TYPE_UNLIMITED_INT | 表示列类型为长度大于64位的数字。 |
+| TYPE_ASSET<sup>11+</sup> | 表示ASSET（资产附件）数据类型。 |
+| TYPE_ASSETS<sup>11+</sup> | 表示ASSETS（多个资产附件）数据类型。 |
+| TYPE_FLOAT_VECTOR<sup>18+</sup> | 表示FLOAT VECTOR数据类型。 |
+| TYPE_UNLIMITED_INT<sup>18+</sup> | 表示列类型为长度大于64位的数字。 |
 
 ### OH_RDB_TransType
 
