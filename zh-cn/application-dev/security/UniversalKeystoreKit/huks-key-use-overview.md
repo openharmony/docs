@@ -26,3 +26,6 @@ HUKS基于密钥会话来操作数据，使用密钥时基于以下流程：
    操作最后一段数据并结束密钥会话。
 
 以上任一阶段中发生错误或不需要此次密钥操作数据，均需要取消会话[huks.abortSession()](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksabortsession9)，终止密钥的使用。
+
+> **注意：**
+> 对于内存较小设备，建议业务根据设备存储能力，进行数据切分，循环调用[huks.initSession()](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9)和[huks.finishSession()](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksfinishsession9)处理。
