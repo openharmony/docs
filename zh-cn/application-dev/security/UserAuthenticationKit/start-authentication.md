@@ -1,8 +1,6 @@
 # 发起认证
 
-
 应用发起身份认证请求，获取身份认证结果，从而访问受保护的系统/服务/应用的功能和数据（包括用户个人数据）。
-
 
 ## 接口说明
 
@@ -14,7 +12,6 @@
 | on(type: 'result', callback: IAuthCallback): void | 订阅用户身份认证结果。 | 
 | off(type: 'result', callback?: IAuthCallback): void | 取消订阅用户身份认证结果。 | 
 | start(): void | 执行用户认证。 | 
-
 
 ## 用户身份认证控件介绍
 
@@ -64,7 +61,6 @@
 
 - 人脸+指纹+自定义导航按键<sup>18+</sup>
 
-
 ## 开发步骤
 
 1. [申请权限](prerequisites.md#申请权限)：ohos.permission.ACCESS_BIOMETRIC。
@@ -90,24 +86,24 @@ try {
   const rand = cryptoFramework.createRandom();
   const len: number = 16; // Generate a 16-byte random number.
   const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
-  // 设置认证参数
+  // 设置认证参数。
   const authParam: userAuth.AuthParam = {
     challenge: randData,
     authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE],
     authTrustLevel: userAuth.AuthTrustLevel.ATL3,
   };
-  // 配置认证界面
+  // 配置认证界面。
   const widgetParam: userAuth.WidgetParam = {
     title: '请进行身份认证',
   };
-  // 获取认证对象
+  // 获取认证对象。
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.info('get userAuth instance success');
-  // 订阅认证结果
+  // 订阅认证结果。
   userAuthInstance.on('result', {
     onResult(result) {
       console.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
-      // 可在认证结束或其他业务需要场景，取消订阅认证结果
+      // 可在认证结束或其他业务需要场景，取消订阅认证结果。
       userAuthInstance.off('result');
     }
   });
@@ -129,7 +125,7 @@ import { BusinessError } from  '@kit.BasicServicesKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { userAuth } from '@kit.UserAuthenticationKit';
 
-// 设置认证参数
+// 设置认证参数。
 let reuseUnlockResult: userAuth.ReuseUnlockResult = {
   reuseMode: userAuth.ReuseMode.AUTH_TYPE_RELEVANT,
   reuseDuration: userAuth.MAX_ALLOWABLE_REUSE_DURATION,
@@ -144,18 +140,18 @@ try {
     authTrustLevel: userAuth.AuthTrustLevel.ATL3,
     reuseUnlockResult: reuseUnlockResult,
   };
-  // 配置认证界面
+  // 配置认证界面。
   const widgetParam: userAuth.WidgetParam = {
     title: '请进行身份认证',
   };
-  // 获取认证对象
+  // 获取认证对象。
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.info('get userAuth instance success');
-  // 订阅认证结果
+  // 订阅认证结果。
   userAuthInstance.on('result', {
     onResult(result) {
       console.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
-      // 可在认证结束或其他业务需要场景，取消订阅认证结果
+      // 可在认证结束或其他业务需要场景，取消订阅认证结果。
       userAuthInstance.off('result');
     }
   });
@@ -177,7 +173,7 @@ import { BusinessError } from  '@kit.BasicServicesKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { userAuth } from '@kit.UserAuthenticationKit';
 
-// 设置认证参数
+// 设置认证参数。
 let reuseUnlockResult: userAuth.ReuseUnlockResult = {
   reuseMode: userAuth.ReuseMode.CALLER_IRRELEVANT_AUTH_TYPE_RELEVANT,
   reuseDuration: userAuth.MAX_ALLOWABLE_REUSE_DURATION,
@@ -192,18 +188,18 @@ try {
     authTrustLevel: userAuth.AuthTrustLevel.ATL3,
     reuseUnlockResult: reuseUnlockResult,
   };
-  // 配置认证界面
+  // 配置认证界面。
   const widgetParam: userAuth.WidgetParam = {
     title: '请进行身份认证',
   };
-  // 获取认证对象
+  // 获取认证对象。
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.info('get userAuth instance success');
-  // 订阅认证结果
+  // 订阅认证结果。
   userAuthInstance.on('result', {
     onResult(result) {
       console.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
-      // 可在认证结束或其他业务需要场景，取消订阅认证结果
+      // 可在认证结束或其他业务需要场景，取消订阅认证结果。
       userAuthInstance.off('result');
     }
   });
