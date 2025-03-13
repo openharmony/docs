@@ -6,24 +6,23 @@ If an application accesses a file by using Picker, the permission for accessing 
 
 ## Persisting a Temporary Permission Granted by Picker
 
-### Persisting a Temporary Permission
 You can use Picker to select a file or folder, and persist the temporary permission granted by Picker by using the API provided by [ohos.fileshare](../reference/apis-core-file-kit/js-apis-fileShare.md).
 
-When an application needs to temporarily access data in a user directory, for example, a communication application needs to send a user file or image, it calls [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3) of Picker to select the file or image to be sent. In this case, the application obtains the temporary permission for accessing the file or image. To access the file or image after the application or device is restarted, the application still needs to call a Picker API.
+1. When an application needs to temporarily access data in a user directory, for example, a communication application needs to send a user file or image, it calls [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3) of Picker to select the file or image to be sent. In this case, the application obtains the temporary permission for accessing the file or image. After the application or device is restarted, the application still needs to call a Picker API to access the file or image.
 
-Sometimes, an application needs to access a file or folder multiple times. For example, after editing a user file, a file editor application needs to select and open the file directly from the history records. To address this need, you can use Picker to select the file, and use [ohos.fileshare.persistPermission](../reference/apis-core-file-kit/js-apis-fileShare.md#filesharepersistpermission11) to persist the temporary permission granted by Picker.
+2. Sometimes, an application needs to access a file or folder multiple times. For example, after editing a user file, a file editor application needs to select and open the file directly from the history records. In this case, you can use Picker to select the file, and use [ohos.fileshare.persistPermission](../reference/apis-core-file-kit/js-apis-fileShare.md#filesharepersistpermission11) to persist the temporary permission granted by Picker.
 
-Before persisting a temporary permission, ensure that: 
-- The device must have the SystemCapability.FileManagement.File.Environment.FolderObtain system capability. You can use **canIUse()** to check whether the device has the required system capability.
+Before persisting a temporary permission, ensure that:<br>The device must have the system capability SystemCapability.FileManagement.AppFileService.FolderAuthorization. You can use **canIUse()** to check whether the device has the required system capability.
 
 ```ts
-if (!canIUse('SystemCapability.FileManagement.File.Environment.FolderObtain')) {
+if (!canIUse('SystemCapability.FileManagement.AppFileService.FolderAuthorization')) {
     console.error('this api is not supported on this device');
     return;
 }
 ```
-- The application must have the ohos.permission.FILE_ACCESS_PERSIST permission. For details about how to request the permission, see [Workflow for Requesting Permissions](../security/AccessToken/determine-application-mode.md).
 
+**Required Permissions**<br>
+ohos.permission.FILE_ACCESS_PERSIST. For details about how to request the permission, see [Workflow for Requesting Permissions](../security/AccessToken/determine-application-mode.md).
 
 **Example**
 
@@ -60,15 +59,16 @@ async function persistPermissionExample() {
     }
 }
 ```
+
 **NOTE**
 > - You are advised to save the URI of the file with persistent permission for the related application locally to facilitate the subsequent activation.
 > - The permission persistence data is also stored in the system database. After the application or device is restarted, the persistent permission can be used only after being activated. For details, see [Activating a Persistent Permission](#activating-a-persistent-permission-for-accessing-a-file-or-folder).
 > - The APIs used for persisting permissions are available only for 2-in-1 devices. You can use **canIUse()** to check whether the device has the required system capability. The caller must also have the required permissions.
 > - When an application is uninstalled, all the permission authorization data will be deleted. After the application is reinstalled, re-authorization is required.
 
+**NOTE**
 For details about how to persist a temporary permission using C/C++ APIs, see [OH_FileShare_PersistPermission](native-fileshare-guidelines.md).
 
-### Revoking a Temporary Permission
 You can use [ohos.fileshare.revokePermission](../reference/apis-core-file-kit/js-apis-fileShare.md#filesharerevokepermission11) to revoke the persistent permission from a file, and update the data stored in the application to delete the file URI from the recently accessed data.
 
 **Required Permissions**
@@ -108,13 +108,13 @@ async function revokePermissionExample() {
     }
 }
 ```
+
 **NOTE**
 > - The URI in the example comes from the permission persistence data stored for the application.
 > - You are advised to activate the persistent permissions based on service requirements. Do not activate all persistent permissions.
 > - The APIs used for persisting permissions are available only for 2-in-1 devices. You can use **canIUse()** to check whether the device has the required system capability. The caller must also have the required permissions.
 
-
-
+**NOTE**
 For details about how to revoke temporary permission using C/C++ APIs, see [OH_FileShare_RevokePermission](native-fileshare-guidelines.md).
 
 ## Activating a Persistent Permission for Accessing a File or Folder
