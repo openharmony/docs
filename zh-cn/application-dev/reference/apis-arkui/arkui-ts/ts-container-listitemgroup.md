@@ -48,7 +48,7 @@ ListItemGroup(options?: ListItemGroupOptions)
 
 ### divider
 
-divider(value: [ListDividerOptions](ts-container-list.md#listdivideroptions16对象说明) | null)
+divider(value: [ListDividerOptions](ts-container-list.md#listdivideroptions18对象说明) | null)
 
 设置ListItem分割线样式，默认无分割线。
 
@@ -64,7 +64,7 @@ ListItem设置[多态样式](ts-universal-attributes-polymorphic-style.md)时，
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ListDividerOptions](ts-container-list.md#listdivideroptions16对象说明)&nbsp;\|&nbsp;null | 是   | ListItem分割线样式。<br/> 默认值：null |
+| value  | [ListDividerOptions](ts-container-list.md#listdivideroptions18对象说明)&nbsp;\|&nbsp;null | 是   | ListItem分割线样式。<br/> 默认值：null |
 
 ### childrenMainSize<sup>12+</sup>
 
