@@ -223,7 +223,7 @@ setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
 <!--code_no_check-->
 ```ts
-uiContext.setOverlayManagerOptions({ renderRootOverlay: true });
+uiContext.setOverlayManagerOptions({ renderRootOverlay: true, enableBackPressedEvent: true });
 ```
 
 ### getOverlayManagerOptions<sup>15+</sup>
@@ -8216,6 +8216,7 @@ hideAllComponentContents(): void
 | 名称             | 类型                | 必填     | 说明                     |
 | --------------- | ---------------------- | ------------ | --------------------- |
 | renderRootOverlay   | boolean | 否 | 是否渲染overlay根节点，默认值为true。 |
+| enableBackPressedEvent<sup>18+</sup>   | boolean | 否 | 是否支持通过侧滑手势关闭OverlayManager下的ComponentContent，默认值为false。 |
 
 ## AtomicServiceBar<sup>11+</sup>
 
