@@ -13,7 +13,7 @@
 import { cloudSync } from '@kit.CoreFileKit';
 ```
 
-## SyncState
+## SyncState<sup>12+</sup>
 
 端云同步状态，为枚举类型。
 
@@ -27,14 +27,14 @@ import { cloudSync } from '@kit.CoreFileKit';
 
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
-| UPLOADING |  0 | 上行同步中。 |
-| UPLOAD_FAILED |  1 | 上行同步失败。 |
-| DOWNLOADING |  2 | 下行同步中。 |
-| DOWNLOAD_FAILED |  3 | 下行同步失败。 |
-| COMPLETED |  4 | 同步成功。 |
-| STOPPED |  5 | 同步已停止。 |
+| UPLOADING<sup>12+</sup> |  0 | 上行同步中。 |
+| UPLOAD_FAILED<sup>12+</sup> |  1 | 上行同步失败。 |
+| DOWNLOADING<sup>12+</sup> |  2 | 下行同步中。 |
+| DOWNLOAD_FAILED<sup>12+</sup> |  3 | 下行同步失败。 |
+| COMPLETED<sup>12+</sup> |  4 | 同步成功。 |
+| STOPPED<sup>12+</sup> |  5 | 同步已停止。 |
 
-## ErrorType
+## ErrorType<sup>12+</sup>
 
 端云同步失败类型，为枚举类型。
 
@@ -49,16 +49,16 @@ import { cloudSync } from '@kit.CoreFileKit';
 
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
-| NO_ERROR |  0 | 没有错误。 |
-| NETWORK_UNAVAILABLE |  1 | 所有网络不可用。 |
-| WIFI_UNAVAILABLE |  2 | WIFI不可用。 |
-| BATTERY_LEVEL_LOW |  3 | 低电量（低于10%）。 |
-| BATTERY_LEVEL_WARNING |  4 | 告警电量（低于15%）。 |
-| CLOUD_STORAGE_FULL |  5 | 云端空间不足。 |
-| LOCAL_STORAGE_FULL |  6 | 本地空间不足。 |
+| NO_ERROR<sup>12+</sup> |  0 | 没有错误。 |
+| NETWORK_UNAVAILABLE<sup>12+</sup> |  1 | 所有网络不可用。 |
+| WIFI_UNAVAILABLE<sup>12+</sup> |  2 | WIFI不可用。 |
+| BATTERY_LEVEL_LOW<sup>12+</sup> |  3 | 低电量（低于10%）。 |
+| BATTERY_LEVEL_WARNING<sup>12+</sup> |  4 | 告警电量（低于15%）。 |
+| CLOUD_STORAGE_FULL<sup>12+</sup> |  5 | 云端空间不足。 |
+| LOCAL_STORAGE_FULL<sup>12+</sup> |  6 | 本地空间不足。 |
 | DEVICE_TEMPERATURE_TOO_HIGH<sup>12+</sup> |  7 | 设备温度过高。 |
 
-## SyncProgress
+## SyncProgress<sup>12+</sup>
 
 端云同步过程。
 
@@ -68,8 +68,8 @@ import { cloudSync } from '@kit.CoreFileKit';
 
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| state | [SyncState](#syncstate) | 是   | 枚举值，端云同步状态。|
-| error | [ErrorType](#errortype) | 是   | 枚举值，同步失败错误类型。|
+| state<sup>12+</sup> | [SyncState](#syncstate) | 是   | 枚举值，端云同步状态。|
+| error<sup>12+</sup> | [ErrorType](#errortype) | 是   | 枚举值，同步失败错误类型。|
 
 ## GallerySync
 
@@ -749,11 +749,11 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-## FileSync<sup>11+</sup>
+## FileSync<sup>12+</sup>
 
 云盘同步对象，用于支撑文件管理器应用完成云盘文件的端云同步流程。在使用前，需要先创建FileSync实例。
 
-### constructor<sup>11+</sup>
+### constructor<sup>12+</sup>
 
 constructor()
 
@@ -809,7 +809,7 @@ constructor(bundleName: string)
   let fileSync = new cloudSync.FileSync("com.ohos.demo")
   ```
 
-### on<sup>11+</sup>
+### on<sup>12+</sup>
 
 on(event: 'progress', callback: Callback\<SyncProgress>): void
 
@@ -850,7 +850,7 @@ on(event: 'progress', callback: Callback\<SyncProgress>): void
   fileSync.on('progress', callback);
   ```
 
-### off<sup>11+</sup>
+### off<sup>12+</sup>
 
 off(event: 'progress', callback?: Callback\<SyncProgress>): void
 
@@ -894,7 +894,7 @@ off(event: 'progress', callback?: Callback\<SyncProgress>): void
   fileSync.off('progress', callback);
   ```
 
-### start<sup>11+</sup>
+### start<sup>12+</sup>
 
 start(): Promise&lt;void&gt;
 
@@ -945,7 +945,7 @@ start(): Promise&lt;void&gt;
   });
   ```
 
-### start<sup>11+</sup>
+### start<sup>12+</sup>
 
 start(callback: AsyncCallback&lt;void&gt;): void
 
@@ -992,7 +992,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-### stop<sup>11+</sup>
+### stop<sup>12+</sup>
 
 stop(): Promise&lt;void&gt;
 
@@ -1036,7 +1036,7 @@ stop(): Promise&lt;void&gt;
   });
   ```
 
-### stop<sup>11+</sup>
+### stop<sup>12+</sup>
 
 stop(callback: AsyncCallback&lt;void&gt;): void
 
@@ -1082,7 +1082,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-### getLastSyncTime<sup>11+</sup>
+### getLastSyncTime<sup>12+</sup>
 
 getLastSyncTime(): Promise&lt;number&gt;
 
@@ -1126,7 +1126,7 @@ getLastSyncTime(): Promise&lt;number&gt;
 
   ```
 
-### getLastSyncTime<sup>11+</sup>
+### getLastSyncTime<sup>12+</sup>
 
 getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void
 
