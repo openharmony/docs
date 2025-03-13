@@ -1210,7 +1210,7 @@ getHotspotConfig(): HotspotConfig
 	}
 ```
 
-## wifiManager.getStations<sup>10+</sup>
+## wifiManager.getStations<sup>9+</sup>
 
 getStations(): &nbsp;Array&lt;StationInfo&gt;
 
@@ -1452,7 +1452,7 @@ deletePersistentGroup(netId: number): void
 	}
 ```
 
-## wifiManager.getP2pGroups<sup>10+</sup>
+## wifiManager.getP2pGroups<sup>9+</sup>
 
 getP2pGroups(): Promise&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;
 
@@ -1504,7 +1504,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 ```
 
 
-## wifiManager.getP2pGroups<sup>10+</sup>
+## wifiManager.getP2pGroups<sup>9+</sup>
 
 getP2pGroups(callback: AsyncCallback&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;): void
 
