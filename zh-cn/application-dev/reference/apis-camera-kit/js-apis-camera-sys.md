@@ -545,7 +545,7 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 
 | 名称                           | 类型                                                | 只读 | 可选 | 说明                |
 | ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
-| depthProfiles                 | Array\<[DepthProfile](#depthprofile12)\>              |  是  | 否 | 支持的深度流配置信息集合。        |
+| depthProfiles                 | Array\<[DepthProfile](#depthprofile13)\>              |  是  | 否 | 支持的深度流配置信息集合。        |
 
 ## CameraFormat
 
@@ -688,7 +688,7 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 | qualityLevel | [DepthDataQualityLevel](#depthdataqualitylevel13)   | 是 |  否  | 深度图的质量。 |
 | accuracy | [DepthDataAccuracy](#depthdataaccuracy13) | 是 |  否  | 深度图的精度。 |
 
-### release<sup>12+</sup>
+### release<sup>13+</sup>
 
 release(): void
 
@@ -710,7 +710,7 @@ function releaseDepthData(depthData: camera.DepthData): void {
 
 深度信息输出类。继承[CameraOutput](js-apis-camera.md#cameraoutput)。
 
-### start<sup>12+</sup>
+### start<sup>13+</sup>
 
 start(): Promise\<void\>
 
@@ -749,7 +749,7 @@ function startDepthDataOutput(depthDataOutput: camera.DepthDataOutput): void {
 }
 ```
 
-### stop<sup>12+</sup>
+### stop<sup>13+</sup>
 
 stop(): Promise\<void\>
 
@@ -851,7 +851,7 @@ function unRegisterDepthDataAvailable(depthDataOutput: camera.DepthDataOutput): 
 }
 ```
 
-### on('error')<sup>12+</sup>
+### on('error')<sup>13+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -886,7 +886,7 @@ function registerDepthDataOutputError(depthDataOutput: camera.DepthDataOutput): 
 }
 ```
 
-### off('error')<sup>12+</sup>
+### off('error')<sup>13+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 
@@ -1556,7 +1556,7 @@ function deferImageDelivery(photoOutput: camera.PhotoOutput, type: camera.Deferr
 }
 ```
 
-### isAutoHighQualityPhotoSupported<sup>12+</sup>
+### isAutoHighQualityPhotoSupported<sup>13+</sup>
 
 isAutoHighQualityPhotoSupported(): boolean
 
@@ -1592,7 +1592,7 @@ function isAutoHighQualityPhotoSupported(photoOutput: camera.PhotoOutput): boole
 }
 ```
 
-### enableAutoHighQualityPhoto<sup>12+</sup>
+### enableAutoHighQualityPhoto<sup>13+</sup>
 
 enableAutoHighQualityPhoto(enabled: boolean): void
 
@@ -2134,7 +2134,7 @@ function removeMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types:
 
 提供了获取和设置美颜效果的方法。
 
-### getSupportedBeautyTypes<sup>12+</sup>
+### getSupportedBeautyTypes<sup>11+</sup>
 
 getSupportedBeautyTypes(): Array\<BeautyType\>
 
@@ -2168,7 +2168,7 @@ function getSupportedBeautyTypes(portraitPhotoSession: camera.PortraitPhotoSessi
 }
 ```
 
-### getSupportedBeautyRange<sup>12+</sup>
+### getSupportedBeautyRange<sup>11+</sup>
 
 getSupportedBeautyRange(type: BeautyType): Array\<number\>
 
@@ -2238,7 +2238,7 @@ function getSupportedBeautyRange(portraitPhotoSession: camera.PortraitPhotoSessi
 
 此接口提供了查询设备对手动曝光范围支持的功能。
 
-### getSupportedExposureRange<sup>12+</sup>
+### getSupportedExposureRange<sup>11+</sup>
 
 getSupportedExposureRange(): Array\<number\>
 
@@ -2355,7 +2355,7 @@ function setExposure(nightPhotoSession: camera.NightPhotoSession): void {
 
 提供用于查询设备是否支持相机微距拍摄的方法。
 
-### isMacroSupported<sup>12+</sup>
+### isMacroSupported<sup>11+</sup>
 
 isMacroSupported(): boolean
 
@@ -2830,7 +2830,7 @@ function getBeauty(portraitPhotoSession: camera.PortraitPhotoSession): number {
 
 提供了一个查询设备支持的颜色效果类型的方法。
 
-### getSupportedColorEffects<sup>12+</sup>
+### getSupportedColorEffects<sup>11+</sup>
 
 getSupportedColorEffects(): Array\<ColorEffectType\>
 
@@ -3692,7 +3692,7 @@ function registerLcdFlashStatus(photoSession: camera.PhotoSession): void {
 }
 ```
 
-### off('lcdFlashStatus')<sup>12+</sup>
+### off('lcdFlashStatus')<sup>13+</sup>
 
 off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
 
@@ -3882,7 +3882,7 @@ function registerLcdFlashStatus(videoSession: camera.VideoSession): void {
 }
 ```
 
-### off('lcdFlashStatus')<sup>12+</sup>
+### off('lcdFlashStatus')<sup>13+</sup>
 
 off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
 
@@ -4473,7 +4473,7 @@ function registerLcdFlashStatus(nightPhotoSession: camera.NightPhotoSession): vo
 }
 ```
 
-### off('lcdFlashStatus')<sup>12+</sup>
+### off('lcdFlashStatus')<sup>13+</sup>
 
 off(type: 'lcdFlashStatus', callback?: AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\>): void
 
@@ -5108,7 +5108,7 @@ function registerSessionError(panoramaPhotoSession: camera.PanoramaPhotoSession)
 }
 ```
 
-### off('error')<sup>11+</sup>
+### off('error')<sup>12+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 
@@ -5133,7 +5133,7 @@ function unregisterSessionError(panoramaPhotoSession: camera.PanoramaPhotoSessio
 }
 ```
 
-### on('focusStateChange')<sup>11+</sup>
+### on('focusStateChange')<sup>12+</sup>
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
@@ -5168,7 +5168,7 @@ function registerFocusStateChange(panoramaPhotoSession: camera.PanoramaPhotoSess
 }
 ```
 
-### off('focusStateChange')<sup>11+</sup>
+### off('focusStateChange')<sup>12+</sup>
 
 off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
