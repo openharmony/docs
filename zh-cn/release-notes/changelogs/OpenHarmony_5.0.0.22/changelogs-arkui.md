@@ -329,79 +329,7 @@ ArkUI_NativeNodeAPI_1* nodeAPI = nullptr;
 OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeAPI);
 ```
 
-## cl.arkui.8 C-API 事件注册接口变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-兼容性增强
-
-**变更影响**
-
-该变更为非兼容性变更。
-
-变更前：
-
-* 用户可通过 nodeAPI->registerNodeEvent(nodePtr, eventType, eventId) 方式为指定组件绑定指定事件，入参为三个，依次为待绑定事件的组件节点指针、待绑定的事件类型、待绑定事件的ID；
-
-* 事件响应后，用户可在回调中获取到指向事件回调数据，类型为ArkUI_NodeEvent 的指针，并可以直接访问指针中的结构体和数据，如下所示：
-
-代码示例：
-
-```
-nodeAPI->registerNodeEvent(button, NODE_ON_CLICK, 1); // 1 为注册的事件ID
-auto onclick = [](ArkUI_NodeEvent *event) {
-  if (event->eventId == 1) {
-    auto offsetX = event->componentEvent.data[0].f32; // 获取点击位置相对于被点击组件左上角的X坐标
-  }
-};
-nodeAPI->registerNodeEventReceiver(onclick); // 监听事件回调，当触发button组件的点击事件时会执行用户定义的onclick方法
-```
-
-变更后：
-
-* 用户注册事件的接口新增了一位自定义参数的指针，形如 nodeAPI->registerNodeEvent(nodePtr, eventType, eventId，userData)。
-
-* 事件响应后，用户可在回调中获取到指向事件回调数据，类型为ArkUI_NodeEvent 的指针，但不再暴露指针的具体结构体，用户需通过指定的函数方法获取指定的参数，如下所示：
-
-代码示例：
-
-```
-nodeAPI->registerNodeEvent(button, NODE_ON_CLICK, 1, nullptr); // 暂无需要传入的自定义数据，可用nullptr代替
-auto onclick = [](ArkUI_NodeEvent *event) {
-  if (OH_ArkUI_NodeEvent_GetTargetId(event) == 1) { // 使用 OH_ArkUI_NodeEvent_GetTargetId 方法获取事件ID
-    auto offsetX = OH_ArkUI_NodeEvent_GetNodeComponentEvent(event)->data[0].f32; // 获取点击位置相对于被点击组件左上角的X坐标
-  }
-};
-nodeAPI->registerNodeEventReceiver(onclick);
-```
-
-**起始API level**
-
-该特性版本和变更版本均为API 12。
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.22开始。
-
-**适配指导**
-
-* 用户全局搜索 registerNodeEvent 函数，将所有使用此函数的入参改为4位入参，第四位可用 nullptr 空指针替代。
-
-* 用户全局搜索 ArkUI_NodeEvent类型，将回调中的 event->eventId 修改为 OH_ArkUI_NodeEvent_GetTargetId(event)。
-
-* 用户全局搜索 ArkUI_NodeEvent类型，将回调中的 event->kind 修改为 OH_ArkUI_NodeEvent_GetEventType(event)。
-
-* 用户全局搜索 ArkUI_NodeEvent类型，将回调中的 event->componentEvent.data 修改为 OH_ArkUI_NodeEvent_GetNodeComponentEvent(event)->data。
-
-* 用户全局搜索 ArkUI_NodeEvent类型，将回调中的 event->stringEvent.pStr 修改为 OH_ArkUI_NodeEvent_GetStringAsyncEvent(event)->pStr。
-
-* 用户全局搜索 ArkUI_NodeEvent类型，将回调中的 event->touchEvent 修改为先使用 OH_ArkUI_NodeEvent_GetInputEvent(event) 方法获取到指向 ArkUI_UIInputEvent 类型的指针，再通过开放的各种获取 ArkUI_UIInputEvent 数据的函数方法获取详细的接口数据。
-
-## cl.arkui.9 visibility异常参数处理规格变更
+## cl.arkui.8 visibility异常参数处理规格变更
 
 **访问级别**
 
@@ -429,7 +357,7 @@ nodeAPI->registerNodeEventReceiver(onclick);
 
 异常值处理逻辑变更，不涉及适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果控制变量以达到预期。
 
-## cl.arkui.10 矩阵变换接口transform行为变更
+## cl.arkui.9 矩阵变换接口transform行为变更
 
 **访问级别**
 
