@@ -1875,8 +1875,10 @@
 
 - API参考<!--api-reference-->
   - API参考概述<!--ref-overview-api-->
+    <!--Del-->
     - [系统能力SystemCapability使用指南](reference/syscap.md)
     - [系统能力SystemCapability列表](reference/syscap-list.md)
+    <!--DelEnd-->
     - [通用错误码](reference/errorcode-universal.md)
   - 应用框架<!--app-framework-api-->
     - Ability Kit（程序框架服务）<!--ability-api-->

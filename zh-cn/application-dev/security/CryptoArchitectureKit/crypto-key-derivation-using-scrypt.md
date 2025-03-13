@@ -4,7 +4,7 @@
 
 ## 开发步骤
 
-1. 构造[ScryptSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#scryptspec16)对象，作为密钥派生参数进行密钥派生。
+1. 构造[ScryptSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#scryptspec18)对象，作为密钥派生参数进行密钥派生。
    
    SCRYPTSpec是[KdfSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#kdfspec11)的子类，需要指定：
 
