@@ -2,38 +2,35 @@
 
 The Advanced Notification Manager enables you to print notifications and set notification parameters. It provides the notification debugging and testing capabilities, for example, printing published notification details, setting the number of notification caches, and enabling the notification functionality.
 
-> **NOTE**
->
-> Before using this tool, you must obtain the <!--Del-->[<!--DelEnd-->hdc tool<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd--> and run the hdc shell command.
-> 
-> This tool can be used only in the **eng** edition. If it is used in the **user** edition, the message **error: user version cannot use setting** is reported.
+## Environment Requirements
 
+Before using this tool, you must obtain the <!--Del-->[<!--DelEnd-->hdc tool<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd--> and run the hdc shell command.
+
+This tool can be used only in the **eng** edition. If it is used in the **user** edition, the message **error: user version cannot use setting** is reported.
+
+## anm Commands
+
+| Command| Description|
+| ---- | --- |
+| help | Displays the anm help information.|
+| dump | Dumps notification information.|
+| setting | Sets notification parameters.|
 
 ## help
 
-* **Function**
-
-  Prints help information.
-
-* **Method**
-
   ```bash
+  # Display the anm help information.
   anm help
   ```
 
 ## dump
 
-* **Function**
-
-  Prints information about notifications.
-
-* **Method**
-
   ```bash
+  # Dumps notification information.
   anm dump [<options>]
   ```
 
-  The table below describes the available options.
+  **Parameters**
 
   | Name            | Description                          |
   | ---------------- | ---------------------------------- |
@@ -44,25 +41,21 @@ The Advanced Notification Manager enables you to print notifications and set not
   | -u/--user-id     | User ID. Optional.    |
   | -h/--help        | Help information.                          |
 
-* **Example**: Print information about active notifications.
+  **Example**
 
   ```bash
+  # Display information about all active notifications.
   anm dump -A
   ```
-  ![anm-dump-A](figures/anm-dump-A.png)
-
-## Setting
-
-* **Function**
-
-  Sets notification parameters.
-* **Method**
+  
+## setting
 
   ```bash
+  # Sets notification parameters.
   anm setting [<options>]
   ```
 
-  The table below describes the available options.
+  **Parameters**
 
   | Name                    | Description                            |
   | ------------------------ | ------------------------------------ |
@@ -70,8 +63,9 @@ The Advanced Notification Manager enables you to print notifications and set not
   | -e/--enable-notification | Whether to enable the notification capability.                    |
   | -h/--help                | Help information.                            |
 
-* **Example**: Set the maximum number of recent notifications stored in the memory to 100.
+  **Example**
 
   ```bash
+  # Set the maximum number of recent notifications stored in the memory to 100.
   anm setting -c 100
   ```
