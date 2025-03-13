@@ -50,7 +50,7 @@ Button(label: ResourceStr, options?: ButtonOptions)
 
 | 参数名  | 类型                                    | 必填 | 说明                 |
 | ------- | --------------------------------------- | ---- | -------------------- |
-| label   | [ResourceStr](ts-types.md#resourcestr)  | 是   | 按钮文本内容。<br/>**说明**：文本长度大于列宽时，文本被截断。 |
+| label   | [ResourceStr](ts-types.md#resourcestr)  | 是   | 按钮文本内容。<br/>**说明**：当文本字符的长度超过按钮本身的宽度时，文本将会被截断。 |
 | options | [ButtonOptions](#buttonoptions对象说明) | 否   | 配置按钮的显示样式。 |
 
 ### Button
@@ -115,7 +115,7 @@ fontSize(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                                                         |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 文本显示字号。<br/>**说明**：不支持百分比<br/>默认值：当controlSize为ControlSize.NORMAL时，默认值为`$r('sys.float.Body_L')`<br/>当controlSize为ControlSize.SMALL时，默认值为`$r('sys.float.Body_S')`。 |
+| value  | [Length](ts-types.md#length) | 是   | 文本显示字号。<br/>默认值：当controlSize为ControlSize.NORMAL时，默认值为`$r('sys.float.Body_L')`<br/>当controlSize为ControlSize.SMALL时，默认值为`$r('sys.float.Body_S')`。<br/>**说明**：设置string类型时，不支持百分比。 |
 
 ### fontColor
 
@@ -431,8 +431,8 @@ type ButtonTriggerClickCallback = (xPos: number, yPos: number) => void
 
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |
-| xPos | number | 是 | 点击位置x的坐标，单位为vp。 |
-| yPos | number | 是 | 点击位置y的坐标，单位为vp。 |
+| xPos | number | 是 | 点击位置x的坐标。<br/>单位：vp。 |
+| yPos | number | 是 | 点击位置y的坐标。<br/>单位：vp。 |
 
 ## 事件
 

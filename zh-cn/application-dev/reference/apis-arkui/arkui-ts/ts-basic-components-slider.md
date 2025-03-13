@@ -140,7 +140,7 @@ showSteps(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | boolean | 是   | 当前是否显示步长刻度值。<br/>默认值：false |
+| value  | boolean | 是   | 当前是否显示步长刻度值。值为true时表示显示，值为false时表示不显示。<br/>默认值：false |
 
 ### showTips
 

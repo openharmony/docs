@@ -491,7 +491,7 @@ space(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                                             |
 | ------ | ---------------------------- | ---- | ------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 下拉菜单项的文本与箭头之间的间距。<br/>默认值：8<br/>**说明**：不支持百分比 |
+| value  | [Length](ts-types.md#length) | 是   | 下拉菜单项的文本与箭头之间的间距。<br/>默认值：8<br/>**说明**：设置string类型时，不支持百分比。 |
 
 ### space<sup>18+</sup>
 
@@ -591,7 +591,7 @@ optionWidth(value: Dimension | OptionWidthMode )
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OptionWidthMode](ts-appendix-enums.md#optionwidthmode11) | 是   | 下拉菜单项的宽度，不支持百分比。<br/>默认值：2.0px |
+| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OptionWidthMode](ts-appendix-enums.md#optionwidthmode11) | 是   | 下拉菜单项的宽度。 |
 
 ### optionWidth<sup>18+</sup>
 
@@ -629,7 +629,7 @@ optionHeight(value: Dimension)
 
 | 参数名 | 类型                                 | 必填 | 说明                     |
 | ------ | ------------------------------------ | ---- | ------------------------ |
-| value  | [Dimension](ts-types.md#dimension10) | 是   | 下拉菜单显示的最大高度，不支持百分比。<br/>默认值：屏幕可用高度的80% |
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 下拉菜单显示的最大高度。 |
 
 ### optionHeight<sup>18+</sup>
 

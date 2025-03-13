@@ -36,8 +36,8 @@ Checkbox(options?: CheckboxOptions)
 
 | 名称  | 类型 | 必填  | 说明 |
 | --------| --------| ------ | -------- |
-| name    | string | 否 | 用于指定多选框名称。 <br/>**说明**：文本长度大于列宽时，文本被截断。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| group   | string | 否 | 用于指定多选框所属群组的名称（即所属CheckboxGroup的名称）。<br/>**说明**：文本长度大于列宽时，文本被截断。未配合使用[CheckboxGroup](ts-basic-components-checkboxgroup.md)组件时，此值无用。 <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| name    | string | 否 | 用于指定多选框名称。 <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| group   | string | 否 | 用于指定多选框所属群组的名称（即所属CheckboxGroup的名称）。未配合使用[CheckboxGroup](ts-basic-components-checkboxgroup.md)组件时，此值无用。 <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 配置多选框的选中样式为自定义组件。自定义组件与Checkbox组件为中心点对齐显示。indicatorBuilder设置为undefined/null时，默认为indicatorBuilder未设置状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## 属性
@@ -320,7 +320,7 @@ type OnCheckboxChangeCallback  = (value: boolean) => void
 
 | 名称 | 类型    |    只读    |    可选      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
-| name | string | 否 | 否 |当前多选框名称。<br/>**说明**：文本长度大于列宽时，文本被截断。 |
+| name | string | 否 | 否 |当前多选框名称。 |
 | selected | boolean| 否 | 否 | 指示多选框是否被选中。</br>如果select属性没有设置默认值是false。</br>如果设置select属性，此值与设置select属性的值相同。 |
 | triggerChange |Callback\<boolean>| 否 | 否 |触发多选框选中状态变化。<br/>为true时，表示从未选中变为选中。为false时，表示从选中变为未选中。 |
 
