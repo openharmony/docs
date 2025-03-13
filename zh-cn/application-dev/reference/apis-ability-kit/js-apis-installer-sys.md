@@ -215,6 +215,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700066 | Failed to install the HAP because installing the native package failed. |
 | 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 | 17700076 | Failed to install the HAP or HSP because the app distribution type is not allowed. |
+| 17700077 | Failed to install the HAP and restore to preinstalled bundle. |
 
 **示例：**
 
@@ -306,6 +307,7 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 | 17700066 | Failed to install the HAP because installing the native package failed. |
 | 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 | 17700076 | Failed to install the HAP or HSP because the app distribution type is not allowed. |
+| 17700077 | Failed to install the HAP and restore to preinstalled bundle. |
 
 **示例：**
 
@@ -401,6 +403,7 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 | 17700066 | Failed to install the HAP because installing the native package failed. |
 | 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 | 17700076 | Failed to install the HAP or HSP because the app distribution type is not allowed. |
+| 17700077 | Failed to install the HAP and restore to preinstalled bundle. |
 
 **示例：**
 
