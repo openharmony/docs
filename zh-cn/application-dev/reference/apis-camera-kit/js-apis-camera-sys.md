@@ -112,7 +112,7 @@ lcd闪光灯信息项。
 
 相机管理器类，使用前需要通过[getCameraManager](js-apis-camera.md#cameragetcameramanager)获取相机管理实例。
 
-### createDepthDataOutput<sup>12+</sup>
+### createDepthDataOutput<sup>13+</sup>
 
 createDepthDataOutput(profile: Profile): DepthDataOutput
 
@@ -132,7 +132,7 @@ createDepthDataOutput(profile: Profile): DepthDataOutput
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [DepthDataOutput](#depthdataoutput12)    | DepthDataOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| [DepthDataOutput](#depthdataoutput13)    | DepthDataOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -557,8 +557,8 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 
 | 名称                     | 值        | 说明         |
 | ----------------------- | --------- | ------------ |
-| CAMERA_FORMAT_DEPTH_16<sup>12+</sup> |   3000   | DEPTH_16格式的深度图。      |
-| CAMERA_FORMAT_DEPTH_32<sup>12+</sup> |   3001   | DEPTH_32格式的深度图。      |
+| CAMERA_FORMAT_DEPTH_16<sup>13+</sup> |   3000   | DEPTH_16格式的深度图。      |
+| CAMERA_FORMAT_DEPTH_32<sup>13+</sup> |   3001   | DEPTH_32格式的深度图。      |
 
 ## CameraInput
 
@@ -632,7 +632,7 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 }
 ```
 
-## DepthDataAccuracy<sup>12+</sup>
+## DepthDataAccuracy<sup>13+</sup>
 
 深度数据的精度。
 
@@ -645,7 +645,7 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 | DEPTH_DATA_ACCURACY_RELATIVE      | number                        |  是  | 否 | 相对精度，基于视差计算得到的深度图。      |
 | DEPTH_DATA_ACCURACY_ABSOLUTE      | number                        |  是  | 否 | 绝对精度，基于测距计算得到的深度图。      |
 
-## DepthProfile<sup>12+</sup>
+## DepthProfile<sup>13+</sup>
 
 深度数据配置信息项，继承[Profile](js-apis-camera.md#profile)。
 
@@ -655,9 +655,9 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 
 | 名称                       | 类型                                      | 只读 | 可选 | 说明        |
 | ------------------------- | ----------------------------------------- | --- | ---- |----------- |
-| depthDataAccuracy            | [DepthDataAccuracy](#depthdataaccuracy12)         | 是  |  否  | 深度数据的精度，分为相对精度和绝对精度。 |
+| depthDataAccuracy            | [DepthDataAccuracy](#depthdataaccuracy13)         | 是  |  否  | 深度数据的精度，分为相对精度和绝对精度。 |
 
-## DepthDataQualityLevel<sup>12+</sup>
+## DepthDataQualityLevel<sup>13+</sup>
 
 深度数据的质量。
 
@@ -671,7 +671,7 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 | DEPTH_DATA_QUALITY_FAIR      | number          |  是  | 否 | 深度图的质量一般，无法生成高质量的虚化等。      |
 | DEPTH_DATA_QUALITY_GOOD      | number          |  是  | 否 | 深度图的质量较高，可以生成高质量的虚化等。      |
 
-## DepthData<sup>12+</sup>
+## DepthData<sup>13+</sup>
 
 深度数据对象。
 
@@ -685,8 +685,8 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 | -------- | ----------------------------- |----- |---| -------------- |
 | format | [CameraFormat](#cameraformat)   | 是 |  否  | 深度图的格式。 |
 | depthMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)    | 是 |  否  | 深度图。 |
-| qualityLevel | [DepthDataQualityLevel](#depthdataqualitylevel12)   | 是 |  否  | 深度图的质量。 |
-| accuracy | [DepthDataAccuracy](#depthdataaccuracy12) | 是 |  否  | 深度图的精度。 |
+| qualityLevel | [DepthDataQualityLevel](#depthdataqualitylevel13)   | 是 |  否  | 深度图的质量。 |
+| accuracy | [DepthDataAccuracy](#depthdataaccuracy13) | 是 |  否  | 深度图的精度。 |
 
 ### release<sup>12+</sup>
 
@@ -706,7 +706,7 @@ function releaseDepthData(depthData: camera.DepthData): void {
 }
 ```
 
-## DepthDataOutput<sup>12+</sup>
+## DepthDataOutput<sup>13+</sup>
 
 深度信息输出类。继承[CameraOutput](js-apis-camera.md#cameraoutput)。
 
@@ -779,7 +779,7 @@ function stopDepthDataOutput(depthDataOutput: camera.DepthDataOutput): void {
 }
 ```
 
-### on('depthDataAvailable')<sup>12+</sup>
+### on('depthDataAvailable')<sup>13+</sup>
 
 on(type: 'depthDataAvailable', callback: AsyncCallback\<DepthData\>): void
 
@@ -798,7 +798,7 @@ on(type: 'depthDataAvailable', callback: AsyncCallback\<DepthData\>): void
 | 参数名     | 类型      | 必填 | 说明                                  |
 | -------- | ---------- | --- | ------------------------------------ |
 | type     | string     | 是   | 监听事件，固定为'depthDataAvailable'，depthDataOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[DepthData](#depthdata12)\> | 是   | 回调函数，用于监听深度信息上报。 |
+| callback | AsyncCallback\<[DepthData](#depthdata13)\> | 是   | 回调函数，用于监听深度信息上报。 |
 
 **示例：**
 
@@ -817,7 +817,7 @@ function registerDepthDataAvailable(depthDataOutput: camera.DepthDataOutput): vo
 }
 ```
 
-### off('depthDataAvailable')<sup>12+</sup>
+### off('depthDataAvailable')<sup>13+</sup>
 
 off(type: 'depthDataAvailable', callback?: AsyncCallback\<DepthData\>): void
 
@@ -832,7 +832,7 @@ off(type: 'depthDataAvailable', callback?: AsyncCallback\<DepthData\>): void
 | 参数名      | 类型                    | 必填 | 说明                                       |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'depthDataAvailable'，depthDataOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[DepthData](#depthdata12)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+| callback | AsyncCallback\<[DepthData](#depthdata13)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
