@@ -40,7 +40,7 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| group | string | 否 | 群组名称。<br/>**说明：** <br/>文本长度大于列宽时，文本被截断。多个相同群组名称的CheckboxGroup，仅第一个CheckboxGroup生效。 |
+| group | string | 否 | 群组名称。<br/>**说明：** <br/>多个相同群组名称的CheckboxGroup，仅第一个CheckboxGroup生效。 |
 
 ## 属性
 
@@ -291,7 +291,7 @@ type OnCheckboxGroupChangeCallback  = (value: CheckboxGroupResult) => void
 | 名称    | 类型   | 只读 | 可选 | 说明      |
 | ------ | ------ | ------- | ------- | ------- |
 | name   | Array&lt;string&gt; | 否 | 否 | 群组内所有被选中的多选框名称。 |
-| status | [SelectStatus](#selectstatus枚举说明) | 否 | 否 | 选中状态。<br/>默认值：None |
+| status | [SelectStatus](#selectstatus枚举说明) | 否 | 否 | 选中状态。 |
 
 ## SelectStatus枚举说明
 
