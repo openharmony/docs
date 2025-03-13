@@ -65,7 +65,7 @@ static bool doTestSm2Signature()
       .len = sizeof(signText)
    };
    
-   // keypair.
+   // keypair
    OH_Crypto_ErrCode ret = CRYPTO_SUCCESS;
    ret = OH_CryptoAsymKeyGenerator_Create((const char *)"SM2_256", &keyCtx); // 创建非对称密钥生成器。
    if (ret != CRYPTO_SUCCESS) {
@@ -77,7 +77,7 @@ static bool doTestSm2Signature()
       return false;
    }
    OH_CryptoPubKey *pubKey = OH_CryptoKeyPair_GetPubKey(keyPair);
-   // verify.
+   // verify
    ret = OH_CryptoVerify_Create((const char *)"SM2_256|SM3", &verify); // 创建Verify实例。
    if (ret != CRYPTO_SUCCESS) {
       OH_CryptoVerify_Destroy(verify);
