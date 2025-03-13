@@ -429,7 +429,7 @@ getSupportedFeatures(): number
 ```
 
 
-## wifiManager.getDeviceMacAddress<sup>9+</sup>
+## wifiManager.getDeviceMacAddress<sup>15+</sup>
 
 getDeviceMacAddress(): string[]
 
@@ -1061,7 +1061,7 @@ isHotspotDualBandSupported(): boolean
 	}
 ```
 
-## wifiManager.isOpenSoftApAllowed<sup>16+</sup>
+## wifiManager.isOpenSoftApAllowed<sup>18+</sup>
 
 isOpenSoftApAllowed(): boolean
 
