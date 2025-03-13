@@ -40,7 +40,7 @@ Requests a transient task.
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -91,7 +91,7 @@ Obtains the remaining time of a transient task. This API uses an asynchronous ca
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -142,7 +142,7 @@ Obtains the remaining time of a transient task. This API uses a promise to retur
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -184,7 +184,7 @@ Cancels a transient task.
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -232,7 +232,7 @@ Requests a continuous task of a specific type. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -326,7 +326,7 @@ Requests a continuous task of a specific type. This API uses a promise to return
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -407,7 +407,7 @@ Cancels a continuous task. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -471,7 +471,7 @@ Cancels a continuous task. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -535,7 +535,7 @@ Requests continuous tasks of multiple types. This API uses a promise to return t
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -665,7 +665,7 @@ Updates continuous tasks of multiple types. This API uses a promise to return th
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -707,6 +707,103 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
+## backgroundTaskManager.on('continuousTaskCancel')<sup>15+</sup>
+
+on(type: 'continuousTaskCancel', callback: Callback&lt;ContinuousTaskCancelInfo&gt;): void
+
+Subscribes to continuous task cancellation events. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
+
+**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+**Parameters**
+
+| Name      | Type                                | Mandatory  | Description                                      |
+| --------- | ---------------------------------- | ---- | ---------------------------------------- |
+| type   | string                            | Yes   | Cancels a continuous task. The value is fixed at **'continuousTaskCancel'**.|
+| callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelreason15)>       | Yes   | Callback used to return the reason why a continuous task is canceled.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Callback parameter error; 2. Register a exist callback type; 3. Parameter verification failed. |
+
+**Example**
+
+```js
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+
+function callback(info: backgroundTaskManager.ContinuousTaskCancelInfo) {
+  console.info('continuousTaskCancel callback id ' + info.id);
+  console.info('continuousTaskCancel callback reason ' + info.reason);
+}
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        try {
+            backgroundTaskManager.on("continuousTaskCancel", callback);
+        } catch (error) {
+            console.error(`Operation onContinuousTaskCancel failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+    }
+};
+```
+## backgroundTaskManager.off('continuousTaskCancel')<sup>15+</sup>
+
+off(type: 'continuousTaskCancel', callback?: Callback&lt;ContinuousTaskCancelInfo&gt;): void
+
+Unsubscribes from continuous task cancellation events. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
+
+**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+**Parameters**
+
+| Name      | Type                                | Mandatory  | Description                                      |
+| --------- | ---------------------------------- | ---- | ---------------------------------------- |
+| type   | string                            | Yes   | Cancels a continuous task. The value is fixed at **'continuousTaskCancel'**.|
+| callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelreason15)>       | No   | Callback for which listening is cancelled. If this parameter is left unspecified, all registered callbacks are cancelled.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Callback parameter error; 2. Unregister type has not register; 3. Parameter verification failed. |
+
+**Example**
+
+```js
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+
+function callback(info: backgroundTaskManager.ContinuousTaskCancelInfo) {
+  console.info('continuousTaskCancel callback id ' + info.id);
+  console.info('continuousTaskCancel callback reason ' + info.reason);
+}
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        try {
+            backgroundTaskManager.off("continuousTaskCancel", callback);
+        } catch (error) {
+            console.error(`Operation onContinuousTaskCancel failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+    }
+};
+```
+
 ## DelaySuspendInfo
 
 Defines the information about the transient task.
@@ -716,11 +813,11 @@ Defines the information about the transient task.
 | Name            | Type    | Mandatory  | Description                                      |
 | --------------- | ------ | ---- | ---------------------------------------- |
 | requestId       | number | Yes   | Request ID of the transient task.                              |
-| actualDelayTime | number | Yes   | Actual duration of the transient task that the application requests, in milliseconds.<br>**Note**: The maximum duration is 3 minutes in normal cases. In the case of a [low battery](../apis-basic-services-kit/js-apis-battery-info.md), the maximum duration is decreased to 1 minute.|
+| actualDelayTime | number | Yes   | Actual duration of the transient task that the application requests, in milliseconds.<br> **Note**: The maximum duration is 3 minutes in normal cases. In the case of a [low battery](../apis-basic-services-kit/js-apis-battery-info.md), the maximum duration is decreased to 1 minute.|
 
 ## BackgroundMode
 
-Enumerates the continuous task modes.
+The continuous task mode.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -739,12 +836,42 @@ Enumerates the continuous task modes.
 
 Describes the information about a continuous-task notification.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
+**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+| Name            | Type    | Read-Only    | Optional  | Description                                      |
+| --------------- | ------ | ---- | ---- | ---------------------------------------- |
+| slotType       | [notificationManager.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | No   | No   | Slot type of a continuous-task notification.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| contentType | [notificationManager.ContentType](../apis-notification-kit/js-apis-notificationManager.md#contenttype) | No   | No   | Content type of a continuous-task notification.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| notificationId | number | No   | No   | ID of the continuous-task notification.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| continuousTaskId<sup>15+</sup> | number | No   | Yes   | ID of a continuous task|
+
+## ContinuousTaskCancelInfo<sup>15+</sup>
+
+Describes the information about the cancellation of a continuous task.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 | Name            | Type    | Mandatory  | Description                                      |
 | --------------- | ------ | ---- | ---------------------------------------- |
-| slotType       | [notificationManager.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | Yes   | Slot type of a continuous-task notification.|
-| contentType | [notificationManager.ContentType](../apis-notification-kit/js-apis-notificationManager.md#contenttype) | Yes   | Content type of a continuous-task notification.|
-| notificationId | number | Yes   | ID of the continuous-task notification.|
+| reason | [ContinuousTaskCancelReason](#continuoustaskcancelreason15) | Yes   | Reason for canceling the continuous task.|
+| id | number | Yes   | ID of the continuous task canceled.|
+
+## ContinuousTaskCancelReason<sup>15+</sup>
+
+Enumerates the reasons for canceling a continuous task.
+
+**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+| Name                    | Value | Description                   |
+| ----------------------- | ---- | --------------------- |
+| USER_CANCEL             | 1    | The task is canceled by the user.                 |
+| SYSTEM_CANCEL           | 2    | The task is canceled by the system.                 |
+| USER_CANCEL_REMOVE_NOTIFICATION         | 3    | User removal notification. This value is reserved.                   |
+| SYSTEM_CANCEL_DATA_TRANSFER_LOW_SPEED                | 4    | A continuous task of the DATA_TRANSFER type is requested, but the data transmission rate is low. This value is reserved.                 |
+| SYSTEM_CANCEL_AUDIO_PLAYBACK_NOT_USE_AVSESSION   | 5    | A continuous task of the AUDIO_PLAYBACK type is requested, but the [AVSession](../../media/avsession/avsession-overview.md) is not accessed. This value is reserved.                 |
+| SYSTEM_CANCEL_AUDIO_PLAYBACK_NOT_RUNNING | 6    | A continuous task of the AUDIO_PLAYBACK type is requested, but the audio and video are not played. This value is reserved.                |
+| SYSTEM_CANCEL_AUDIO_RECORDING_NOT_RUNNING | 7    | A continuous task of the AUDIO_RECORDING type is requested, but audio recording is not in progress. This value is reserved.                |
+| SYSTEM_CANCEL_NOT_USE_LOCATION            | 8    | A continuous task of the LOCATION type is requested, but location and navigation are not used. This value is reserved.       |
+| SYSTEM_CANCEL_NOT_USE_BLUETOOTH            | 9    | A continuous task of the BLUETOOTH_INTERACTION type is requested, but Bluetooth-related services are not used. This value is reserved.       |
+| SYSTEM_CANCEL_NOT_USE_MULTI_DEVICE            | 10    | A continuous task of the MULTI_DEVICE_CONNECTION type is requested, but multi-device connection is not used. This value is reserved.       |
+| SYSTEM_CANCEL_USE_ILLEGALLY            | 11    | A continuous task of an invalid type is used. For example, a continuous task of the AUDIO_PLAYBACK type is requested, but the audio and video playback and location and navigation services are used. This value is reserved.       |

@@ -61,9 +61,9 @@ Description of **AUDIO_PLAYBACK**:
 
 ## Available APIs
 
-The table below uses promise as an example to describe the APIs used for developing continuous tasks. For details about more APIs and their usage, see [Background Task Management](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md).
-
 **Table 2** Main APIs for continuous tasks
+
+The table below uses promise as an example to describe the APIs used for developing continuous tasks. For details about more APIs and their usage, see [Background Task Management](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md).
 
 | API| Description|
 | -------- | -------- |
@@ -83,7 +83,6 @@ The following walks you through how to request a continuous task for recording t
 1. Declare the **ohos.permission.KEEP_BACKGROUND_RUNNING** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
 2. Declare the continuous task type.
-
    Declare the type of the continuous task for the target UIAbility in the **module.json5** file. Set the corresponding [configuration item](continuous-task.md#use-cases) in the configuration file.
    
    ```json
@@ -115,7 +114,7 @@ The following walks you through how to request a continuous task for recording t
 
 4. Request and cancel a continuous task.
 
-   The code snippet below shows how an application requests a continuous task for itself.
+   The code snippet below shows how an application requests a continuous task for itself.  
       
    ```ts
     function callback(info: backgroundTaskManager.ContinuousTaskCancelInfo) {
