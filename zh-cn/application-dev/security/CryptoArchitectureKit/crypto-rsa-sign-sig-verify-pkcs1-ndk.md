@@ -85,7 +85,7 @@ static bool doTestRsaSignature()
       .len = sizeof(signText)
    };
    
-   // keypair.
+   // keypair
    OH_Crypto_ErrCode ret = CRYPTO_SUCCESS;
    ret = OH_CryptoAsymKeyGenerator_Create((const char *)"RSA2048", &keyCtx); // 创建非对称密钥生成器。
    if (ret != CRYPTO_SUCCESS) {
@@ -97,7 +97,7 @@ static bool doTestRsaSignature()
       return false;
    }
    OH_CryptoPubKey *pubKey = OH_CryptoKeyPair_GetPubKey(keyPair); // 获取公钥。
-   // verify.
+   // verify
    ret = OH_CryptoVerify_Create((const char *)"RSA1024|PKCS1|SHA256", &verify); // 创建Verify实例。
    if (ret != CRYPTO_SUCCESS) {
       OH_CryptoVerify_Destroy(verify);
