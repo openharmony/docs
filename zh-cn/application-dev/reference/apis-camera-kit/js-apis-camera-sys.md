@@ -535,7 +535,7 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 | ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
 | isCameraOccluded                 | boolean              |  是  | 否 |遮挡状态。        |
 
-## CameraOutputCapability<sup>12+</sup>
+## CameraOutputCapability<sup>13+</sup>
 
 相机输出能力项。
 
