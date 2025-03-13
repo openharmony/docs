@@ -215,7 +215,7 @@
     }
     ```
 <!--DelEnd-->
-
+<!--RP1-->
 ## 应用签名
 
 **注意：** 先配置权限，再自动签名。
@@ -241,3 +241,4 @@
       ```
 
 自动签名方法： 请参考[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)。
+<!--RP1End-->
