@@ -38,7 +38,7 @@ Slider(options?: SliderOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 否 | 当前进度值。<br/>默认值：与参数min的取值一致。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| value | number | 否 | 当前进度值。<br/>默认值：与参数min的取值一致。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>取值范围： [min, max]<br/>小于min时取min，大于max时取max。 |
 | min | number | 否 | 设置最小值。<br/>默认值：0 |
 | max | number | 否 | 设置最大值。<br/>默认值：100<br/>**说明：** <br/>min >= max异常情况，min取默认值0，max取默认值100。<br/>value不在[min, max]范围之内，取min或者max，靠近min取min，靠近max取max。 |
 | step | number | 否 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max - min]<br/>**说明：** <br/>若设置的step值小于0或大于max值时，则按默认值显示。 |
@@ -333,7 +333,7 @@ stepSize(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                                  |
 | ------ | ---------------------------- | ---- | ------------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 刻度大小（直径）。 <br/>默认值：'4vp'<br/>取值范围：[0, trackThickness) |
+| value  | [Length](ts-types.md#length) | 是   | 刻度大小（直径）。 <br/>默认值：'4vp'<br/>取值范围：[0, [trackThickness](#trackthickness8)) |
 
 ### minLabel<sup>(deprecated)</sup>
 
@@ -403,7 +403,7 @@ minResponsiveDistance(value: number)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | number | 是   | 设置滑动响应的最小距离，滑动超过此距离后才响应使滑块滑动。<br/>**说明：** <br/>单位与参数min和max一致。<br/>当value小于0、大于MAX-MIN或非法值时，取默认值。<br/>默认值：0。 |
+| value  | number | 是   | 设置滑动响应的最小距离，滑动超过此距离后才响应使滑块滑动。<br/>**说明：** <br/>单位与参数[min](#minlabeldeprecated)和[max](#maxlabeldeprecated)一致。<br/>当value小于0、大于MAX-MIN或非法值时，取默认值。<br/>默认值：0。 |
 
 ### contentModifier<sup>12+</sup>
 

@@ -54,7 +54,7 @@ selected(value: number | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
-| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<sup>11+</sup> | 是   | 下拉菜单初始选项的索引。 |
+| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<sup>11+</sup> | 是   | 下拉菜单初始选项的索引，索引值从0开始。 |
 
 ### selected<sup>18+</sup>
 
@@ -90,7 +90,7 @@ value(value: ResourceStr)
 
 | 参数名 | 类型                                                 | 必填 | 说明                     |
 | ------ | ---------------------------------------------------- | ---- | ------------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr)<sup>11+</sup> | 是   | 下拉按钮本身的文本内容。 |
+| value  | [ResourceStr](ts-types.md#resourcestr)<sup>11+</sup> | 是   | 下拉按钮本身的文本内容。<br/>**说明**：文本长度大于列宽时，文本被截断。 |
 
 ### value<sup>18+</sup>
 
@@ -491,7 +491,7 @@ space(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                                             |
 | ------ | ---------------------------- | ---- | ------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 下拉菜单项的文本与箭头之间的间距。<br/>默认值：8 |
+| value  | [Length](ts-types.md#length) | 是   | 下拉菜单项的文本与箭头之间的间距。<br/>默认值：8<br/>**说明**：不支持百分比 |
 
 ### space<sup>18+</sup>
 
@@ -591,7 +591,7 @@ optionWidth(value: Dimension | OptionWidthMode )
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OptionWidthMode](ts-appendix-enums.md#optionwidthmode11) | 是   | 下拉菜单项的宽度。 |
+| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OptionWidthMode](ts-appendix-enums.md#optionwidthmode11) | 是   | 下拉菜单项的宽度，不支持百分比。<br/>默认值：2.0px |
 
 ### optionWidth<sup>18+</sup>
 
@@ -629,7 +629,7 @@ optionHeight(value: Dimension)
 
 | 参数名 | 类型                                 | 必填 | 说明                     |
 | ------ | ------------------------------------ | ---- | ------------------------ |
-| value  | [Dimension](ts-types.md#dimension10) | 是   | 下拉菜单显示的最大高度。 |
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 下拉菜单显示的最大高度，不支持百分比。<br/>默认值：屏幕可用高度的80% |
 
 ### optionHeight<sup>18+</sup>
 
@@ -783,7 +783,7 @@ avoidance(mode: AvoidanceMode)
 | icon  | [ResourceStr](ts-types.md#resourcestr) | 否   | 下拉菜单项的图片内容。 |
 | symbolIcon<sup>12+</sup>  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 下拉选项Symbol图片内容。|
 | selected  | boolean | 是   | 下拉菜单项是否被选中。<br/>默认值：false |
-| index  | number | 是   | 下拉菜单项的索引。 |
+| index  | number | 是   | 下拉菜单项的索引，索引值从0开始。 |
 | triggerSelect  | (index: number, value: string) :void | 是   | 下拉菜单选中某一项的回调函数。<br/>index: 选中菜单项的索引。<br/>value: 选中菜单项的文本。<br/>说明: index会赋值给事件[onSelect](#onselect)回调中的索引参数； value会返回给Select组件显示，同时会赋值给事件[onSelect](#onselect)回调中的文本参数。 |
 
 ## 事件
@@ -836,7 +836,7 @@ type OnSelectCallback = (index: number, value: string) => void
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| index  | number | 是   | 选中项的索引。 |
+| index  | number | 是   | 选中项的索引，索引值从0开始。 |
 | value  | string | 是   | 选中项的值。   |
 
 ##  示例1（设置下拉菜单）
