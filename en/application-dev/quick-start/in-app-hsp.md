@@ -5,7 +5,7 @@ A Harmony Shared Package (HSP) is a dynamic shared package that can contain code
 > 
 > In-app HSP: a type of HSP that is closely coupled with an application bundle name (**bundleName**) during compilation and can be used only by the specified application.
 > 
-> [Integrated HSP](integrated-hsp.md): a type of HSP that is not coupled with any specific application bundle name during the build and release processes and whose bundle name can be automatically replaced by the toolchain with the host application bundle name.
+> [Integrated HSP](integrated-hsp.md): a type of HSP that is not coupled with specific application bundle names during building and publishing. The toolchain can automatically replace the bundle name of the integrated HSP with that of the host application and generate a new HSP as the installation package of the host application. The new HSP package also belongs to the in-app HSP.
 
 ## Use Scenarios
 - By storing code and resource files shared by multiple HAPs/HSPs in one place, the HSP significantly improves the reusability and maintainability of the code and resource files. Better yet, because only one copy of the HSP code and resource files is retained during building and packaging, the size of the application package is effectively controlled.
@@ -36,13 +36,13 @@ MyApplication
 │   │   └── main
 │   │       ├── ets
 │   │       │   └── pages
-│   │       │       └── index.ets
-│   │       ├── resources
-│   │       └── module.json5
-│   ├── oh-package.json5
-│   ├── index.ets
-│   └── build-profile.json5 // Module-level configuration file
-└── build-profile.json5     // Project-level configuration file
+│   │       │       └── index.ets     // Page file of the library module
+│   │       ├── resources             // Resources of the library module
+│   │       └── module.json5          // Configuration file of the library module
+│   ├── oh-package.json5              // Module-level configuration file
+│   ├── index.ets                     // Entry file
+│   └── build-profile.json5           // Module-level configuration file
+└── build-profile.json5               // Project-level configuration file
 ```
 
 ## Developing an HSP
@@ -162,8 +162,6 @@ In the entry point file **index.ets**, declare the APIs to be exposed.
 // library/index.ets
 export { ResManager } from './src/main/ets/ResManager';
 ```
-
-
 
 ## Using an HSP
 

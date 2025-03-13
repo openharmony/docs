@@ -243,7 +243,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | font | [Font](ts-types.md#font) | 否 | 文本样式。<br/>默认值：<br/>- 文本大小（不支持百分比设置）：12fp <br/>其他文本参数跟随text组件的主题值。|
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 文本颜色。<br/>默认值：'\#ff182431' |
 | showDefaultPercentage | boolean | 否 | 显示百分比文本的开关，开启后会在进度条上显示当前进度的百分比。设置了content属性时该属性不生效。<br/>默认值：false |
-| borderRadius<sup>16+</sup> |  [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | Capsule进度条圆角半径（不支持百分比设置）。<br/>取值范围：[0, height/2]。默认值：height / 2。<br/>设置非法数值时，按照默认值处理。 |
+| borderRadius<sup>18+</sup> |  [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | Capsule进度条圆角半径（不支持百分比设置）。<br/>取值范围：[0, height/2]。默认值：height / 2。<br/>设置非法数值时，按照默认值处理。 |
 
 ## RingStyleOptions<sup>10+</sup>
 

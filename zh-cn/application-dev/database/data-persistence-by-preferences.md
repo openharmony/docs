@@ -17,13 +17,13 @@
 ![preferences](figures/preferences.jpg)
 
 ## 存储模式说明
-用户首选项默认使用XML格式进行存储，从API version 16开始，可选择CLKV存储模式。
+用户首选项默认使用XML格式进行存储，从API version 18开始，可选择GSKV存储模式。
 
 ### XML存储
 XML存储指的是数据会以XML的形式存储到文件中，该模式的优点是通用性强，支持跨平台。当选择该模式时，首选项对数据的操作主要发生在内存中，开发者可以在需要的时候再调用flush接口进行数据持久化。针对单进程、小数据量场景，推荐使用该存储模式。
 
-### CLKV存储
-CLKV是从API version 16起提供的一种存储模式，该模式的优点是支持多进程并发读写。当选择该模式时，首选项对数据的操作会实时落盘。针对多进程并发场景，推荐使用该存储模式。
+### GSKV存储
+GSKV是从API version 18起提供的一种存储模式，该模式的优点是支持多进程并发读写。当选择该模式时，首选项对数据的操作会实时落盘。针对多进程并发场景，推荐使用该存储模式。
 
 ## 约束限制
 
@@ -45,10 +45,10 @@ CLKV是从API version 16起提供的一种存储模式，该模式的优点是�
 
 - 内存会随着存储数据量的增大而增大，所以存储的数据量应该是轻量级的，建议存储的数据不超过50MB，当存储的数据较大时，在使用同步接口创建Preferences对象和持久化数据时会变成耗时操作，不建议在主线程中使用，否则可能出现appfreeze问题。
 
-### CLKV模式约束限制
+### GSKV模式约束限制
 
-- CLKV模式不支持跨平台，使用该模式前需调用isStorageTypeSupported接口判断当前平台是否支持该模式。
-- 在OpenHarmony中，用户组（Group）是具有相同特征用户的逻辑集合，这些用户共享一定的权限。用户组的概念主要是为了方便系统管理和控制用户的访问权限。 多进程使用CLKV模式首选项时，若涉及group权限，需确保不同进程属于同一group权限。
+- GSKV模式不支持跨平台，使用该模式前需调用isStorageTypeSupported接口判断当前平台是否支持该模式。
+- 在OpenHarmony中，用户组（Group）是具有相同特征用户的逻辑集合，这些用户共享一定的权限。用户组的概念主要是为了方便系统管理和控制用户的访问权限。 多进程使用GSKV模式首选项时，若涉及group权限，需确保不同进程属于同一group权限。
 
 
 
@@ -80,15 +80,15 @@ CLKV是从API version 16起提供的一种存储模式，该模式的优点是�
 
 2. （可选）选择存储模式。
 
-   该步骤为可选步骤。首选项默认使用XML模式存储数据，从API version 16开始，新增提供并支持使用CLKV存储模式。
+   该步骤为可选步骤。首选项默认使用XML模式存储数据，从API version 18开始，新增提供并支持使用GSKV存储模式。
 
-   在选择CLKV存储模式之前，需要使用isStorageTypeSupported()接口判断当前平台是否支持CLKV模式。
+   在选择GSKV存储模式之前，需要使用isStorageTypeSupported()接口判断当前平台是否支持GSKV模式。
 
-   若接口返回false，则说明当前平台不支持CLKV模式，请使用XML模式进行数据存储。
+   若接口返回false，则说明当前平台不支持GSKV模式，请使用XML模式进行数据存储。
 
    ```ts
-    let isClkvSupported = preferences.isStorageTypeSupported(preferences.StorageType.CLKV);
-    console.info("Is clkv supported on this platform: " + isClkvSupported);    
+    let isGskvSupported = preferences.isStorageTypeSupported(preferences.StorageType.GSKV);
+    console.info("Is gskv supported on this platform: " + isGskvSupported);    
    ```
 
 3. 获取Preferences实例。
@@ -125,9 +125,9 @@ CLKV是从API version 16起提供的一种存储模式，该模式的优点是�
    ```
    <!--DelEnd-->
 
-   使用CLKV存储模式获取Preferences实例。
+   使用GSKV存储模式获取Preferences实例。
 
-    若希望使用CLKV存储模式且当前平台支持该模式，可以通过以下方式获取CLKV存储模式的Preferences实例。需要注意的是，当选择某一存储模式后，不允许再对存储模式进行切换。
+    若希望使用GSKV存储模式且当前平台支持该模式，可以通过以下方式获取GSKV存储模式的Preferences实例。需要注意的是，当选择某一存储模式后，不允许再对存储模式进行切换。
    <!--Del-->Stage模型示例：<!--DelEnd-->
 
    ```ts
@@ -139,7 +139,7 @@ CLKV是从API version 16起提供的一种存储模式，该模式的优点是�
 
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
-       let options: preferences.Options = { name: 'myStore' , storageType: preferences.StorageType.CLKV};
+       let options: preferences.Options = { name: 'myStore' , storageType: preferences.StorageType.GSKV};
        dataPreferences = preferences.getPreferencesSync(this.context, options);
      }
    }
@@ -153,7 +153,7 @@ CLKV是从API version 16起提供的一种存储模式，该模式的优点是�
    import { BusinessError } from '@kit.BasicServicesKit';
    
    let context = featureAbility.getContext();
-   let options: preferences.Options =  { name: 'myStore' , storageType: preferences.StorageType.CLKV};
+   let options: preferences.Options =  { name: 'myStore' , storageType: preferences.StorageType.GSKV};
    let dataPreferences: preferences.Preferences = preferences.getPreferencesSync(context, options);
    ```
    <!--DelEnd-->
@@ -165,7 +165,7 @@ CLKV是从API version 16起提供的一种存储模式，该模式的优点是�
    
    针对默认存储模式（XML存储模式），在写入数据后，如有需要，可使用flush()方法将Preferences实例的数据存储到持久化文件。
    
-   针对CLKV存储模式，在写入数据后，数据会实时持久化到文件中。
+   针对GSKV存储模式，在写入数据后，数据会实时持久化到文件中。
 
    > **说明：**
    >
@@ -257,7 +257,7 @@ CLKV是从API version 16起提供的一种存储模式，该模式的优点是�
    })
    ```
 
-   针对CLKV存储模式，订阅的Key值发生变更后（无需调用flush），observer被触发回调。
+   针对GSKV存储模式，订阅的Key值发生变更后（无需调用flush），observer被触发回调。
 
    示例代码如下所示：
     ```ts
@@ -284,7 +284,7 @@ CLKV是从API version 16起提供的一种存储模式，该模式的优点是�
    >
    > - 成功删除后，数据及文件将不可恢复。
    >
-   > - 在CLKV模式中，该接口不支持与其他接口并发调用（包括多进程），否则会出现不可预期行为。
+   > - 在GSKV模式中，该接口不支持与其他接口并发调用（包括多进程），否则会出现不可预期行为。
 
    示例代码如下所示：
 

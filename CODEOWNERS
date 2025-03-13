@@ -377,7 +377,7 @@ zh-cn/application-dev/device/externaldevice-guidelines.md @li-yan339
 
 
 [开发-Form Kit]
-zh-cn/application-dev/form/  @ylsnow  @cmz001  @Brilliantry_Rui 
+zh-cn/application-dev/form/  @ylsnow  @cmz001  @Brilliantry_Rui  @Eiln
 
 
 [开发-DFX]
@@ -561,6 +561,7 @@ zh-cn/application-dev/reference/apis-ability-kit/errorcode-DistributedSchedule.m
 
 [API参考-Ability Kit-包管理]
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-bundle*.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-installer-sys.md  @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-appControl.md @Brilliantry_Rui  @changzheng6  @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-defaultAppManager.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-distributedBundleManager.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
@@ -769,9 +770,9 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-counter.md	@ile
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flex.md	 @laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flowitem.md	@cc520bf	@zcdqs	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-folderstack.md @laigerendaqiu	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@arondave  @hehe9876		@Brilliantry_Rui @ylsnow  @cmz001
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md	@arondave  @hehe9876			@Brilliantry_Rui @ylsnow @cmz001
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md @Brilliantry_Rui @ylsnow @cmz001
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@Brilliantry_Rui @ylsnow  @cmz001 @Eiln
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md			@Brilliantry_Rui @ylsnow @cmz001 @Eiln
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md @Brilliantry_Rui @ylsnow @cmz001 @Eiln
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridcol.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridrow.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-grid.md	@cc520bf	@zcdqs	@lihaoyn	@HelloCrease
@@ -1092,7 +1093,7 @@ zh-cn/application-dev/reference/apis-driverdevelopment-kit/  @li-yan339
 
 
 [API参考-Form Kit]
-zh-cn/application-dev/reference/apis-form-kit/  @ylsnow  @cmz001  @Brilliantry_Rui 
+zh-cn/application-dev/reference/apis-form-kit/  @ylsnow  @cmz001  @Brilliantry_Rui  @Eiln
 
 
 

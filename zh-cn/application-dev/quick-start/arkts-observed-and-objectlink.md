@@ -233,7 +233,7 @@ API version 18及以后，\@ObjectLink也可以被[makeV1Observed](../reference/
   @ObjectLink count: Info;
   ```
 
-4. \@ObjectLink装饰的变量不能本地初始化，仅能通过构造参数从父组件传入初始值，否则编译期会报错。
+5. \@ObjectLink装饰的变量不能本地初始化，仅能通过构造参数从父组件传入初始值，否则编译期会报错。
 
   ```ts
   @Observed
@@ -252,7 +252,7 @@ API version 18及以后，\@ObjectLink也可以被[makeV1Observed](../reference/
   @ObjectLink count: Info;
   ```
 
-5. \@ObjectLink装饰的变量是只读的，不能被赋值，否则会有运行时报错提示Cannot set property when setter is undefined。如果需要对\@ObjectLink装饰的变量进行整体替换，可以在父组件对其进行整体替换。
+6. \@ObjectLink装饰的变量是只读的，不能被赋值，否则会有运行时报错提示Cannot set property when setter is undefined。如果需要对\@ObjectLink装饰的变量进行整体替换，可以在父组件对其进行整体替换。
 
   【反例】
 
@@ -501,7 +501,7 @@ struct Index {
 
 ![Observed_ObjectLink_nested_object](figures/Observed_ObjectLink_nested_object.gif)
 
-上述示例中，Index组件中的Text组件不刷新，因为该变化属于第二层的变化，\@State无法观察到第二层的变化。但是Bag被\@Observed装饰，Bag的属性name可以被\@ObjectLink观察到，所以无论点击哪个Button，BookCard组件中的Text组件都会刷新。
+上述示例中，Index组件中的Text组件不刷新，因为该变化属于第二层的变化，\@State无法观察到第二层的变化。但是Book被\@Observed装饰，Book的属性name可以被\@ObjectLink观察到，所以无论点击哪个Button，BookCard组件中的Text组件都会刷新。
 
 ### 对象数组
 
@@ -621,9 +621,6 @@ struct Parent {
 ```ts
 @Observed
 class ObservedArray<T> extends Array<T> {
-  constructor(args: T[]) {
-    super(...args);
-  }
 }
 ```
 
@@ -634,9 +631,6 @@ class ObservedArray<T> extends Array<T> {
 ```ts
 @Observed
 class ObservedArray<T> extends Array<T> {
-  constructor(args: T[]) {
-    super(...args);
-  }
 }
 
 @Component
@@ -657,7 +651,7 @@ struct Item {
 @Entry
 @Component
 struct IndexPage {
-  @State arr: Array<ObservedArray<string>> = [new ObservedArray<string>(['apple']), new ObservedArray<string>(['banana']), new ObservedArray<string>(['orange'])];
+  @State arr: Array<ObservedArray<string>> = [new ObservedArray<string>('apple'), new ObservedArray<string>('banana'), new ObservedArray<string>('orange')];
 
   build() {
     Column() {
@@ -676,7 +670,7 @@ struct IndexPage {
       Button('push array item')
         .margin(10)
         .onClick(() => {
-          this.arr.push(new ObservedArray<string>(['pear']));
+          this.arr.push(new ObservedArray<string>('pear'));
         })
 
       Button('change two-dimensional array first item')
@@ -688,7 +682,7 @@ struct IndexPage {
       Button('change array first item')
         .margin(10)
         .onClick(() => {
-          this.arr[0] = new ObservedArray<string>(['watermelon']);
+          this.arr[0] = new ObservedArray<string>('watermelon');
         })
     }
   }

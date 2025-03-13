@@ -19,5 +19,5 @@ The OhosImageSourceSupportedFormatList struct defines the format string list sup
 
 | Name| Description| 
 | -------- | -------- |
-| struct [OhosImageSourceSupportedFormat](_ohos_image_source_supported_format.md) \*\* [supportedFormatList](image.md#supportedformatlist) = nullptr | Defines a double pointer to the head of the format string list.| 
-| size_t [size](image.md#size-67) = 0 | Defines the size of the format string list.| 
+| struct [OhosImageSourceSupportedFormat](_ohos_image_source_supported_format.md) \*\* [supportedFormatList](image.md#supportedformatlist) = nullptr | Double pointer to the starting address of the format string list.|
+| size_t [size](image.md#size-67) = 0 | Size of the format string list.|

@@ -457,6 +457,7 @@
             - [不依赖UI组件的全局自定义弹出框 (openCustomDialog) (推荐)](ui/arkts-uicontext-custom-dialog.md)
             - [基础自定义弹出框 (CustomDialog) (不推荐)](ui/arkts-common-components-custom-dialog.md)
             - [固定样式弹出框](ui/arkts-fixes-style-dialog.md)
+            - [页面级弹出框](ui/arkts-embedded-dialog.md)
           - [菜单控制 (Menu)](ui/arkts-popup-and-menu-components-menu.md)
           - [不依赖UI组件的全局菜单控制 (openMenu)](ui/arkts-popup-and-menu-components-uicontext-menu.md)
           - [气泡提示 (Popup)](ui/arkts-popup-and-menu-components-popup.md)
@@ -777,9 +778,9 @@
               <!--DelEnd-->
               - [刷新本地图片和网络图片](form/arkts-ui-widget-image-update.md)
               - [根据卡片状态刷新不同内容](form/arkts-ui-widget-update-by-status.md)
-          - ArkTS卡片页面编辑
-            - [ArkTS卡片页面编辑交互概述](form/arkts-ui-widget-event-formExidextensionability-overview.md)
-            - [编辑刷新卡片页面内容](form/arkts-ui-widget-event-formExidextensionability.md)
+          - ArkTS卡片页面编辑<!--arkts-ui-widget-edit-->
+            - [ArkTS卡片页面编辑交互概述](form/arkts-ui-widget-event-formeditextensionability-overview.md)
+            - [编辑刷新卡片页面内容](form/arkts-ui-widget-event-formeditextensionability.md)
           <!--Del-->
           - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
           <!--DelEnd-->
@@ -1110,7 +1111,9 @@
         - [分布式设备管理](distributedservice/devicemanager-guidelines.md)
         - 应用跨设备连接管理<!--abilityconnect-distributed-->
           - [UIAbility与UIAbility连接开发指南](distributedservice/abilityconnectmanager-guidelines.md)
+          <!--Del-->
           - [UIAbility与Extension连接开发指南](distributedservice/distributedextension-duidelines.md)
+          <!--DelEnd-->
         - 硬件跨设备连接管理<!--devconnect-distributed-->
           - [分布式相机开发指南](distributedservice/camera-distributed.md)
       - Network Kit（网络服务）<!--network-kit-->
@@ -1867,12 +1870,15 @@
       - [跨线程序列化耗时点分析](performance/cross-thread-serialization-time-consumption-analysis.md)
     - 功耗
       - [高效利用HWC的低功耗设计](performance/utilize_hwc_effiently.md)
+      - [主动关闭CPU访问窗口缓冲区数据降低功耗](performance/close_CPU_access_window_buffer_data.md)
   <!--DelEnd-->
 
 - API参考<!--api-reference-->
   - API参考概述<!--ref-overview-api-->
+    <!--Del-->
     - [系统能力SystemCapability使用指南](reference/syscap.md)
     - [系统能力SystemCapability列表](reference/syscap-list.md)
+    <!--DelEnd-->
     - [通用错误码](reference/errorcode-universal.md)
   - 应用框架<!--app-framework-api-->
     - Ability Kit（程序框架服务）<!--ability-api-->

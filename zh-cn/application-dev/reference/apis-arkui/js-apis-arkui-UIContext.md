@@ -993,13 +993,13 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 }
 ```
 
-### createAnimator<sup>16+</sup>
+### createAnimator<sup>18+</sup>
 
 createAnimator(options: AnimatorOptions | SimpleAnimatorOptions): AnimatorResult
 
-创建animator动画结果对象（AnimatorResult）。与[createAnimator](#createanimator)相比，新增对[SimpleAnimatorOptions](js-apis-animator.md#simpleanimatoroptions16)类型入参的支持。
+创建animator动画结果对象（AnimatorResult）。与[createAnimator](#createanimator)相比，新增对[SimpleAnimatorOptions](js-apis-animator.md#simpleanimatoroptions18)类型入参的支持。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1007,7 +1007,7 @@ createAnimator(options: AnimatorOptions | SimpleAnimatorOptions): AnimatorResult
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| options | [AnimatorOptions](js-apis-animator.md#animatoroptions) \| [SimpleAnimatorOptions](js-apis-animator.md#simpleanimatoroptions16) | 是    | 定义动画选项。 |
+| options | [AnimatorOptions](js-apis-animator.md#animatoroptions) \| [SimpleAnimatorOptions](js-apis-animator.md#simpleanimatoroptions18) | 是    | 定义动画选项。 |
 
 **返回值：**
 
@@ -5696,13 +5696,13 @@ let router: Router = uiContext.getRouter();
 router.getParams();
 ```
 
-## CustomBuilderWithId<sup>16+</sup>
+## CustomBuilderWithId<sup>18+</sup>
 
 type CustomBuilderWithId = (id: number)&nbsp;=&gt;&nbsp;void
 
 组件属性方法参数可使用CustomBuilderWithId类型来自定义UI描述，并且可以指定组件ID生成用户自定义组件。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5776,11 +5776,11 @@ try {
 };
 ```
 
-### openToast<sup>16+</sup>
+### openToast<sup>18+</sup>
 
 openToast(options: ShowToastOptions): Promise&lt;number&gt;
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5849,11 +5849,11 @@ struct toastExample {
 }
 ```
 
-### closeToast<sup>16+</sup>
+### closeToast<sup>18+</sup>
 
 closeToast(toastId: number): void
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5874,7 +5874,7 @@ closeToast(toastId: number): void
 
 **示例：**
 
-示例请看[openToaset16](#opentoast16)的示例。
+示例请看[openToaset18](#opentoast18)的示例。
 
 ### showDialog
 
@@ -6261,7 +6261,7 @@ struct Index {
 }
 ```
 
-### openCustomDialogWithController<sup>16+</sup>
+### openCustomDialogWithController<sup>18+</sup>
 
 openCustomDialogWithController\<T extends Object>(dialogContent: ComponentContent\<T>, controller: promptAction.DialogController, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
@@ -6271,7 +6271,7 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 
 暂不支持isModal = true与showInSubWindow = true同时使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -6280,7 +6280,7 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
 | dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
-| controller | [promptAction.DialogController](js-apis-promptAction.md#dialogcontroller16) | 是 | 自定义弹窗的控制器。 |
+| controller | [promptAction.DialogController](js-apis-promptAction.md#dialogcontroller18) | 是 | 自定义弹窗的控制器。 |
 | options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | 否    | 自定义弹窗的样式。 |
 
 **返回值：**
@@ -6586,7 +6586,7 @@ openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal error.                                              |
 
-### presentCustomDialog<sup>16+</sup>
+### presentCustomDialog<sup>18+</sup>
 
 presentCustomDialog(builder: CustomBuilder \| CustomBuilderWithId, controller?: promptAction.DialogController, options?: promptAction.DialogOptions): Promise\<number>
 
@@ -6596,7 +6596,7 @@ presentCustomDialog(builder: CustomBuilder \| CustomBuilderWithId, controller?: 
 
 暂不支持isModal = true与showInSubWindow = true同时使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -6604,9 +6604,9 @@ presentCustomDialog(builder: CustomBuilder \| CustomBuilderWithId, controller?: 
 
 | 参数名  | 类型                                                         | 必填 | 说明               |
 | ------- | ------------------------------------------------------------ | ---- | ------------------ |
-| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [CustomBuilderWithId](#custombuilderwithid16) | 是   | 自定义弹窗的内容。 |
-| controller | [promptAction.DialogController](js-apis-promptAction.md#dialogcontroller16) | 否 | 自定义弹窗的控制器。 |
-| options | [promptAction.DialogOptions](js-apis-promptAction.md#dialogoptions16) | 否 | 自定义弹窗的样式。 |
+| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [CustomBuilderWithId](#custombuilderwithid18) | 是   | 自定义弹窗的内容。 |
+| controller | [promptAction.DialogController](js-apis-promptAction.md#dialogcontroller18) | 否 | 自定义弹窗的控制器。 |
+| options | [promptAction.DialogOptions](js-apis-promptAction.md#dialogoptions18) | 否 | 自定义弹窗的样式。 |
 
 **返回值：**
 
@@ -6784,7 +6784,7 @@ struct Index {
 }
 ```
 
-### getTopOrder<sup>16+</sup>
+### getTopOrder<sup>18+</sup>
 
 getTopOrder(): LevelOrder
 
@@ -6792,7 +6792,7 @@ getTopOrder(): LevelOrder
 
 获取最顶层显示的弹窗的顺序，可以在下一个弹窗时指定期望的顺序。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -6800,7 +6800,7 @@ getTopOrder(): LevelOrder
 
 | 类型                | 说明                                    |
 | ------------------- | --------------------------------------- |
-| [LevelOrder](js-apis-promptAction.md#levelorder16) | 返回弹窗层级信息。 |
+| [LevelOrder](js-apis-promptAction.md#levelorder18) | 返回弹窗层级信息。 |
 
 **示例：**
 
@@ -6864,7 +6864,7 @@ struct Index {
 }
 ```
 
-### getBottomOrder<sup>16+</sup>
+### getBottomOrder<sup>18+</sup>
 
 getBottomOrder(): LevelOrder
 
@@ -6872,7 +6872,7 @@ getBottomOrder(): LevelOrder
 
 获取最底层显示的弹窗的顺序，可以在下一个弹窗时指定期望的顺序。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -6880,7 +6880,7 @@ getBottomOrder(): LevelOrder
 
 | 类型                | 说明                                    |
 | ------------------- | --------------------------------------- |
-| [LevelOrder](js-apis-promptAction.md#levelorder16) | 返回弹窗层级信息。 |
+| [LevelOrder](js-apis-promptAction.md#levelorder18) | 返回弹窗层级信息。 |
 
 **示例：**
 
@@ -8017,7 +8017,7 @@ struct OverlayExample {
 }
 ```
 
-### addComponentContentWithOrder<sup>16+</sup>
+### addComponentContentWithOrder<sup>18+</sup>
 
 addComponentContentWithOrder(content: ComponentContent, levelOrder?: LevelOrder): void
 
@@ -8025,7 +8025,7 @@ addComponentContentWithOrder(content: ComponentContent, levelOrder?: LevelOrder)
 
 支持在浮层节点创建时指定显示的顺序。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -8034,7 +8034,7 @@ addComponentContentWithOrder(content: ComponentContent, levelOrder?: LevelOrder)
 | 参数名     | 类型                                       | 必填   | 说明          |
 | ------- | ---------------------------------------- | ---- | ----------- |
 | content | [ComponentContent](js-apis-arkui-ComponentContent.md) | 是    | 在OverlayManager上新增指定节点上添加此content。 <br>**说明：** <br/> 新增的节点默认处于页面居中位置，按层级堆叠。|
-| levelOrder | [LevelOrder](js-apis-promptAction.md#levelorder16) | 否    | 新增浮层节点的显示顺序。<br />**说明：**<br />- 默认值：LevelOrder.clamp(0)。|
+| levelOrder | [LevelOrder](js-apis-promptAction.md#levelorder18) | 否    | 新增浮层节点的显示顺序。<br />**说明：**<br />- 默认值：LevelOrder.clamp(0)。|
 
 **示例：**
 

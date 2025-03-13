@@ -44,7 +44,6 @@
 ## 参考示例
 
   ```ts
-  import router from '@ohos.router';
   import { audio } from '@kit.AudioKit';
   import { BusinessError } from '@kit.BasicServicesKit';
   

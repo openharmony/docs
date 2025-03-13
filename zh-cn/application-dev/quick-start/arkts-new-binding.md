@@ -86,7 +86,7 @@ struct Star {
   | [bindPopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup) | show | 13   |
   | [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#textinputoptions对象说明) | text | 16   |
   | [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md#textareaoptions对象说明) | text | 16   |
-  | [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md#searchoptions16对象说明) | value | 16   |
+  | [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md#searchoptions18对象说明) | value | 16   |
   | [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 16   |
   | [BindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 16   |
 

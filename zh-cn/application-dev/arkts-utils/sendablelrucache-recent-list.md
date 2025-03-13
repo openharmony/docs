@@ -1,6 +1,6 @@
 # 获取最近访问列表
 
-为了快速访问最近使用的[Sendable](./arkts-sendable.md)对象，从API version 18开始，ArkTS引入了[SendableLruCache](../reference/apis-arkts/js-apis-arkts-utils.md#sendablelrucachek-v18)，用户可以通过向SendableLruCache实例对象中添加、删除、获取Sendable对象，来实现快速访问最近使用的Sendable对象。此处提供使用SendableLruCache实现获取最近使用列表的开发指导，以书架为例，用户每次打开一本图书后，需要将图书的信息更新到图书的最近访问列表中，并在下次访问书架页面时显示最近访问的图书列表。
+为了快速访问最近使用的[Sendable](arkts-sendable.md)对象，从API version 18开始，ArkTS引入了[SendableLruCache](../reference/apis-arkts/js-apis-arkts-utils.md#sendablelrucachek-v18)，用户可以通过向SendableLruCache实例对象中添加、删除、获取Sendable对象，来实现快速访问最近使用的Sendable对象。此处提供使用SendableLruCache实现获取最近使用列表的开发指导，以书架为例，用户每次打开一本图书后，需要将图书的信息更新到图书的最近访问列表中，并在下次访问书架页面时显示最近访问的图书列表。
 
 > **说明：**
 >

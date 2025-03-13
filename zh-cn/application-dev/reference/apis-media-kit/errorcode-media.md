@@ -342,3 +342,21 @@ Unsupportted request.
 
 1. 确认客户端请求参数是否正常。
 2. 销毁当前实例，并重新创建，如果重新创建失败，则停止相关操作。
+
+## 5410002 不支持SEEK_CONTINUOUS模式的Seek
+
+**错误信息**
+
+seek continuous is unsupported.
+
+**错误描述**
+
+该媒体源或者当前设备不支持以SEEK_CONTINUOUS模式进行seek。
+
+**可能原因**
+
+该媒体源或者当前设备不支持以SEEK_CONTINUOUS模式进行seek。
+
+**处理步骤**
+
+1. 提示性错误码，用于客户端感知不支持SEEK_CONTINUOUS模式进行seek时的表现，客户端无需处理。

@@ -4391,7 +4391,7 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPix
 
 根据输入的宽高的缩放比例，创建一个新的缩放后的图片。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -4417,7 +4417,7 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing(OH_Pixelm
 
 根据指定的缩放算法和输入的宽高的缩放比例，创建一个新的缩放后的图片。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -4489,7 +4489,7 @@ Image_ErrorCode OH_PixelmapNative_GetAllocationByteCount(OH_PixelmapNative *pixe
 
 获取Pixelmap用于储存像素数据的内存字节数。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 
@@ -4536,7 +4536,7 @@ Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint
 
 获取Pixelmap中所有像素所占用的总字节数，不包含内存填充。
 
-**起始版本：** 16
+**起始版本：** 18
 
 **参数:**
 

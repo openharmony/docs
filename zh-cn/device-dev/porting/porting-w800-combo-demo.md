@@ -211,7 +211,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
      endif #BOARD_NEPTUNE100
      ```
 
-     用于添加 BOARD_NEPTUNE100默认配置
+     用于添加 BOARD_NEPTUNE100默认配置。
 
 5. 在`device/soc/winnermicro`下创建相应的的`Kconfig`文件：
 
@@ -760,7 +760,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
 
 通过上面加载的组件编译出来的lib文件需要手动加入强制链接。
 
-如在 `vendor/hihope/neptune_iotlink_demo/config.json` 中配置了`bootstrap_lite` 部件
+如在 `vendor/hihope/neptune_iotlink_demo/config.json` 中配置了`bootstrap_lite` 部件。
 
    ```
    {

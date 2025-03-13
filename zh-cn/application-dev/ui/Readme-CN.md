@@ -46,6 +46,7 @@
        - [不依赖UI组件的全局自定义弹出框 (openCustomDialog) (推荐)](arkts-uicontext-custom-dialog.md)
        - [基础自定义弹出框 (CustomDialog) (不推荐)](arkts-common-components-custom-dialog.md)
        - [固定样式弹出框](arkts-fixes-style-dialog.md)
+       - [页面级弹出框](arkts-embedded-dialog.md)
      - [菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)
      - [不依赖UI组件的全局菜单控制 (openMenu)](arkts-popup-and-menu-components-uicontext-menu.md)
      - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
@@ -128,6 +129,7 @@
     - 添加交互事件<!--arkts-add-event-->
       - [监听组件事件](ndk-listen-to-component-events.md)
       - [绑定手势事件](ndk-bind-gesture-events.md)
+      - [拖拽事件](ndk-drag-event.md)
     - [使用动画](ndk-use-animation.md)
     - [使用懒加载开发长列表界面](ndk-loading-long-list.md)
     - [构建弹窗](ndk-build-pop-up-window.md)

@@ -401,7 +401,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbility(AbilityBase_Want *
 
 **返回：**
 
-ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - 查询成功。
+ABILITY_RUNTIME_ERROR_CODE_NO_ERROR - 接口调用成功。
 
 ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED - 权限校验失败。
 

@@ -31,7 +31,6 @@
 | certificateManager        | getUserTrustedCertificate(certUri: string): Promise\<CMResult> | 获取用户根CA证书的详细信息。 |
 | certificateManager | getCertificateStorePath(property: CertStoreProperty): string<sup>18+</sup> | 获取证书的存储路径。 |
 
-
 ## 开发步骤
 
 1. 权限申请和声明。

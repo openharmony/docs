@@ -10,7 +10,7 @@ Before reading this topic, you are advised to read [\@Observed](./arkts-observed
 
 ## Overview
 
-The state management framework adds proxies to original objects of the Class, Date, Map, Set, and Array types to observe attribute changes and API invoking. Proxies will change the variable types. In scenarios such as type determination and Node-API invoking, unexpected results may be generated because the variable type is not the type of the original object.
+The state management framework adds proxies to original objects of the class, Date, Map, Set, and Array types to observe attribute changes and API invoking. Proxies will change the variable types. In scenarios such as type determination and Node-API invoking, unexpected results may be generated because the variable type is not the type of the original object.
 
 - Import the UIUtils to use the **getTarget** API.
 
@@ -18,7 +18,7 @@ The state management framework adds proxies to original objects of the Class, Da
   import { UIUtils } from '@kit.ArkUI';
   ```
 
-- In state management V1, a proxy is added to the class objects decorated by @Observed and the Class, Date, Map, Set, and Array decorated by @State or other state variable decorators to observe the changes of top-level attributes or changes invoked by APIs.
+- In state management V1, a proxy is added to the class objects decorated by @Observed and the class, Date, Map, Set, and Array decorated by @State or other state variable decorators to observe the changes of top-level attributes or changes invoked by APIs.
 - In state management V2, a proxy is added to Date, Map, Set, and Array decorated by \@Trace, \@Local or other state variable decorators to observe changes invoked by APIs.
 
 Use **getTarget** to obtain the original objects of these proxy objects.
@@ -70,7 +70,7 @@ Use **getTarget** to obtain the original objects of these proxy objects.
 
 ## Use Scenarios
 
-### Obtains the original object before adding a proxy in the state management V1.
+### Obtaining the Original Object Before Adding a Proxy in the State Management V1
 
 State management V1 adds proxies to objects in the following scenarios:
 
@@ -165,7 +165,7 @@ struct Index {
 }
 ```
 
-### Obtains the original object before adding a proxy in the state management V2.
+### Obtaining the Original Object Before Adding a Proxy in the State Management V2
 
 A proxy is added to the Map, Set, Date, and Array decorated by \@Trace, \@Local, or other state variable decorators in state management V2. Different from state management V1, the class object instances are not proxied in state management V2.
 
