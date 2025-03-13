@@ -1,11 +1,11 @@
 # Accessing Files Across Devices
 
-The distributed file system provides applications the capability for accessing files across devices. If the same application has been installed on two devices, you can use the [ohos.file.fs APIs](app-file-access.md) to read and write the application files in the [distributed file directory](app-sandbox-directory.md#mappings-between-application-sandbox-paths-and-physical-paths) (**/data/storage/el2/distributedfiles/**) on the other device. For example, an application is installed on both device A and device B. After device A and device B are connected to form a Super Device, the application on device A can access the files in the distributed directory of the same application on device B.
+The distributed file system provides applications the capability for accessing files across devices. If the same application has been installed on two devices, you can use the [ohos.file.fs APIs](app-file-access.md) to read and write the application files in the [distributed file directory](app-sandbox-directory.md#mapping-between-application-sandbox-paths-and-physical-paths) (**/data/storage/el2/distributedfiles/**) on the other device. For example, an application is installed on both device A and device B. After device A and device B are connected to form a Super Device, the application on device A can access the files in the distributed directory of the same application on device B.
 
 ## How to Develop
 
 1. Connect the devices to form a Super Device.<br>
-   Perform unified account authentication for the devices. The devices are not necessarily in the same LAN.
+   Log in to the same account on two devices and ensure that Bluetooth and Wi-Fi are enabled. Bluetooth does not require a physical connection, and Wi-Fi does not need to be connected to the same LAN.
 
 2. Implement cross-device access to the files of your application.<br>
    Place the files in the **distributedfiles/** directory of the application sandbox directory to implement access from difference devices.

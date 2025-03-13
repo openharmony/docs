@@ -1,6 +1,6 @@
 # @ohos.file.volumeManager (Volume Management) (System API)
 
-The **volumeManager** module provides APIs for volume and disk management, including obtaining volume information, mounting or unmounting a volume, partitioning a disk, and formatting a volume.
+The **volumeManager** module provides APIs for querying and managing volumes and disks, including querying volume information, mounting or unmounting a volume, partitioning a disk, and formatting a volume.
 
 > **NOTE**
 >
@@ -27,7 +27,7 @@ Obtains information about all volumes of this external storage device. This API 
 
   | Type                              | Description                      |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)[]&gt; | Promise used to return information about all available volumes.|
+  | Promise&lt;[Volume](#volume)[]&gt; | Promise used to return the information about all available volume devices.|
 
 **Error codes**
 
@@ -46,7 +46,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   ```ts
   import { BusinessError } from '@ohos.base';
   volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
-    // Do something with the volume array.
+    // do something with volumes, which is an array
   }).catch((error: BusinessError) => {
     console.error("getAllVolumes failed");
   });
@@ -93,7 +93,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 mount(volumeId: string): Promise&lt;void&gt;
 
-Mounts a volume. This API uses a promise to return the result. Currently, only the File Allocation Table (FAT), Extensible FAT (exFAT), and New Technology File System (NTFS) file systems are supported.
+Mounts a volume. This API uses a promise to return the result. Currently, only the FAT, exFAT, and NTFS file systems are supported.
 
 **Required permissions**: ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -154,7 +154,7 @@ Mounts a volume. This API uses an asynchronous callback to return the result. Cu
   | Name  | Type                                 | Mandatory| Description                |
   | -------- | ------------------------------------- | ---- | -------------------- |
   | volumeId | string                                | Yes  | Volume ID.                |
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the specified volume is mounted.|
 
 **Error codes**
 
@@ -247,7 +247,7 @@ Unmounts a volume. This API uses an asynchronous callback to return the result.
   | Name  | Type                                 | Mandatory| Description                |
   | -------- | ------------------------------------- | ---- | -------------------- |
   | volumeId | string                                | Yes  | Volume ID.                |
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the specified volume is unmounted.|
 
 **Error codes**
 
@@ -295,7 +295,7 @@ Obtains information about a volume based on the universally unique identifier (U
 
   | Type                              | Description                      |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)&gt; | Promise used to return the volume information obtained.|
+  | Promise&lt;[Volume](#volume)&gt; | Promise used to return the information about all available volume devices.|
 
 **Error codes**
 
@@ -464,7 +464,7 @@ Sets volume description. This API uses a promise to return the result.
   | Name    | Type  | Mandatory| Description|
   | --------- | ------ | ---- | ---- |
   | uuid      | string | Yes  | UUID of the volume.|
-  | description | string | Yes  | Volume description to set.|
+  | description | string | Yes  | Description of the volume.|
 
 **Return value**
 
@@ -515,8 +515,8 @@ Sets volume description. This API uses an asynchronous callback to return the re
   | Name     | Type                                    | Mandatory| Description             |
   | ---------- | --------------------------------------- | ---- | ---------------- |
   | uuid       | string                                  | Yes  | UUID of the volume.           |
-  | description | string                                 | Yes  | Volume description to set.           |
-  | callback   | AsyncCallback&lt;void&gt;   | Yes  | Callback that returns no value.|
+  | description | string                                 | Yes  | Description of the volume.           |
+  | callback   | AsyncCallback&lt;void&gt;   | Yes  | Callback invoked after the volume description is set.|
 
 **Error codes**
 
@@ -703,7 +703,7 @@ Partitions a disk. This API uses a callback to return the result. The system sup
   | Name     | Type                                  | Mandatory| Description             |
   | -------- | --------------------------------------- | ---- | ---------------- |
   | diskId   | string                                  | Yes  | ID of the disk to partition.     |
-  | type     | number                                  | Yes  | Partition type.          |
+  | type     | number                                  | Yes  | Partition type.         |
   | callback | AsyncCallback&lt;void&gt;   | Yes  | Callback that returns no value.     |
 
 **Error codes**

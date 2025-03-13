@@ -35,7 +35,7 @@ Obtains the total space of a volume in an external storage device, in bytes. Thi
 
   | Type                 | Description            |
   | --------------------- | ---------------- |
-  | Promise&lt;number&gt; | Promise used to return the total volume space obtained.|
+  | Promise&lt;number&gt; | Promise used to return the total volume space (in bytes) obtained.|
 
 **Error codes**
 
@@ -141,7 +141,7 @@ Obtains the available space of a volume in an external storage device, in bytes.
 
   | Type                 | Description              |
   | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | Promise used to return the available volume space obtained.|
+  | Promise&lt;number&gt; | Promise used to return the available volume space (in bytes) obtained.|
 
 **Error codes**
 
@@ -241,14 +241,14 @@ Obtains the storage space of an application, in bytes. This API uses a promise t
 
   | Name     | Type  | Mandatory| Description    |
   | ----------- | ------ | ---- | -------- |
-  | packageName | string | Yes  | Bundle name.|
+  | packageName | string | Yes  | Package name of the application.|
   | index<sup>12+</sup> | number | No  | Index of an application clone. The default value is **0**, which indicates the application itself. When an application clone is created, an index is assigned from 1 sequentially to **appIndex** of [BundleResourceInfo](../apis-ability-kit/js-apis-bundleManager-BundleResourceInfo-sys.md#bundleresourceinfo). The index can be obtained by [getBundleResourceInfo](../apis-ability-kit/js-apis-bundleResourceManager-sys.md#bundleresourcemanagergetbundleresourceinfo12).|
 
 **Return value**
 
   | Type                                      | Description                      |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](js-apis-file-storage-statistics.md#bundlestats9)&gt; | Promise used to return the application storage space obtained.|
+  | Promise&lt;[Bundlestats](js-apis-file-storage-statistics.md#bundlestats9)&gt; | Promise used to return the application storage space (in bytes) obtained.|
 
 **Error codes**
 
@@ -354,262 +354,6 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   }
   ```
 
-## storageStatistics.getTotalSize<sup>9+</sup>
-
-getTotalSize(): Promise&lt;number&gt;
-
-Obtains the total space of the built-in storage, in bytes. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.STORAGE_MANAGER
-
-**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
-
-**System API**: This is a system API.
-
-**Return value**
-
-  | Type                  | Description              |
-  | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | Promise used to return the total built-in storage space obtained.  |
-
-**Error codes**
-
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
-
-| ID| Error Message|
-| -------- | -------- |
-| 201 | Permission verification failed. |
-| 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
-| 13600001 | IPC error. |
-| 13900042 | Unknown error. |
-
-**Example**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  storageStatistics.getTotalSize().then((number: number) => {
-    console.info("getTotalSize successfully:" + JSON.stringify(number));
-  }).catch((err: BusinessError) => {
-    console.error("getTotalSize failed with error:"+ JSON.stringify(err));
-  });
-  ```
-
-## storageStatistics.getTotalSize<sup>9+</sup>
-
-getTotalSize(callback: AsyncCallback&lt;number&gt;): void
-
-Obtains the total space of the built-in storage, in bytes. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.STORAGE_MANAGER
-
-**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
-
-**System API**: This is a system API.
-
-**Parameters**
-
-  | Name   | Type                                 | Mandatory | Description                    |
-  | -------- | ------------------------------------ | ---- | ------------------------ |
-  | callback | AsyncCallback&lt;number&gt;          | Yes  | Callback used to return the built-in storage space obtained.|
-
-**Error codes**
-
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
-
-| ID| Error Message|
-| -------- | -------- |
-| 201 | Permission verification failed. |
-| 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
-| 13600001 | IPC error. |
-| 13900042 | Unknown error. |
-
-**Example**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  storageStatistics.getTotalSize((error: BusinessError, number: number) => {
-    if (error) {
-      console.error("getTotalSize failed with error:" + JSON.stringify(error));
-    } else {
-      // Do something.
-      console.info("getTotalSize successfully:" + number);
-    }
-  });
-  ```
-
-## storageStatistics.getTotalSizeSync<sup>10+</sup>
-
-getTotalSizeSync(): number
-
-Obtains the total space of the built-in storage, in bytes. This API returns the result synchronously.
-
-**Required permissions**: ohos.permission.STORAGE_MANAGER
-
-**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
-
-**System API**: This is a system API.
-
-**Return value**
-
-  | Type                  | Description              |
-  | --------------------- | ------------------ |
-  | number | Built-in storage space obtained.  |
-
-**Error codes**
-
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
-
-| ID| Error Message|
-| -------- | -------- |
-| 201 | Permission verification failed. |
-| 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
-| 13600001 | IPC error. |
-| 13900042 | Unknown error. |
-
-**Example**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  try {
-    let number = storageStatistics.getTotalSizeSync();
-    console.info("getTotalSizeSync successfully:" + JSON.stringify(number));
-  } catch (err) {
-    let error: BusinessError = err as BusinessError;
-    console.error("getTotalSizeSync failed with error:" + JSON.stringify(error));
-  }
-  ```
-
-## storageStatistics.getFreeSize<sup>9+</sup>
-
-getFreeSize(): Promise&lt;number&gt;
-
-Obtains the available space of the built-in storage, in bytes. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.STORAGE_MANAGER
-
-**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
-
-**System API**: This is a system API.
-
-**Return value**
-
-  | Type                  | Description              |
-  | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | Promise used to return the available space of the built-in storage obtained.|
-
-**Error codes**
-
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
-
-| ID| Error Message|
-| -------- | -------- |
-| 201 | Permission verification failed. |
-| 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
-| 13600001 | IPC error. |
-| 13900042 | Unknown error. |
-
-**Example**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  storageStatistics.getFreeSize().then((number: number) => {
-    console.info("getFreeSize successfully:" + JSON.stringify(number));
-  }).catch((err: BusinessError) => {
-    console.error("getFreeSize failed with error:" + JSON.stringify(err));
-  });
-  ```
-
-## storageStatistics.getFreeSize<sup>9+</sup>
-
-getFreeSize(callback: AsyncCallback&lt;number&gt;): void
-
-Obtains the available space of the built-in storage, in bytes. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.STORAGE_MANAGER
-
-**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
-
-**System API**: This is a system API.
-
-**Parameters**
-
-  | Name   | Type                                 | Mandatory| Description                      |
-  | -------- | ------------------------------------ | ---- | ------------------------- |
-  | callback | AsyncCallback&lt;number&gt;          | Yes  | Callback used to return the available space of the built-in storage obtained.|
-
-**Error codes**
-
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
-
-| ID| Error Message|
-| -------- | -------- |
-| 201 | Permission verification failed. |
-| 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
-| 13600001 | IPC error. |
-| 13900042 | Unknown error. |
-
-**Example**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  storageStatistics.getFreeSize((error: BusinessError, number: number) => {
-    if (error) {
-      console.error("getFreeSize failed with error:" + JSON.stringify(error));
-    } else {
-      // Do something.
-      console.info("getFreeSize successfully:" + number);
-    }
-  });
-  ```
-
-## storageStatistics.getFreeSizeSync<sup>10+</sup>
-
-getFreeSizeSync(): number
-
-Obtains the available space of the built-in storage, in bytes. This API returns the result synchronously.
-
-**Required permissions**: ohos.permission.STORAGE_MANAGER
-
-**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
-
-**System API**: This is a system API.
-
-**Return value**
-
-  | Type                  | Description              |
-  | --------------------- | ------------------ |
-  | number | Available space of the built-in storage obtained.|
-
-**Error codes**
-
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
-
-| ID| Error Message|
-| -------- | -------- |
-| 201 | Permission verification failed. |
-| 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
-| 13600001 | IPC error. |
-| 13900042 | Unknown error. |
-
-**Example**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  try {
-    let number = storageStatistics.getFreeSizeSync();
-    console.info("getFreeSizeSync successfully:" + JSON.stringify(number));
-  } catch (err) {
-    let error: BusinessError = err as BusinessError;
-    console.error("getFreeSizeSync failed with error:" + JSON.stringify(error));
-  }
-  ```
-
 ## storageStatistics.getSystemSize<sup>9+</sup>
 
 getSystemSize(): Promise&lt;number&gt;
@@ -626,7 +370,7 @@ Obtains the system data size, in bytes. This API uses a promise to return the re
 
   | Type                 | Description            |
   | --------------------- | ---------------- |
-  | Promise&lt;number&gt; | Promise used to return the system data size obtained.|
+  | Promise&lt;number&gt; | Promise used to return the system data size (in bytes) obtained.|
 
 **Error codes**
 
@@ -711,7 +455,7 @@ Obtains the storage statistics of this user, in bytes. This API uses a promise t
 
   | Type                 | Description            |
   | --------------------- | ---------------- |
-| Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the storage statistics obtained. |
+  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the storage statistics (in bytes) obtained.|
 
 **Error codes**
 
@@ -796,13 +540,13 @@ Obtains the storage statistics of the specified user, in bytes. This API uses a 
 
   | Name    | Type  | Mandatory| Description|
   | ---------- | ------ | ---- | ---- |
-  | userId | number | Yes  | User ID|
+  | userId | number | Yes  | User ID.|
 
 **Return value**
 
   | Type                 | Description            |
   | --------------------- | ---------------- |
-  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the storage statistics obtained.|
+  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the storage statistics (in bytes) obtained.|
 
 **Error codes**
 
@@ -845,7 +589,7 @@ Obtains the storage statistics of the specified user, in bytes. This API uses an
 
   | Name    | Type                                | Mandatory| Description                      |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | userId | number                               | Yes  | User ID|
+  | userId | number                               | Yes  | User ID.|
   | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | Yes  | Callback used to return the storage statistics obtained.|
 
 **Error codes**
