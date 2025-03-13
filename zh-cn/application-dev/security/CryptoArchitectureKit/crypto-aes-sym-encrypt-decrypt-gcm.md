@@ -1,11 +1,8 @@
 # 使用AES对称密钥（GCM模式）加解密(ArkTS)
 
-
 对应的算法规格请查看[对称密钥加解密算法规格：AES](crypto-sym-encrypt-decrypt-spec.md#aes)。
 
-
 **加密**
-
 
 1. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)、[SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1)，生成密钥算法为AES、密钥长度为128位的对称密钥（SymKey）。
    
@@ -29,7 +26,6 @@
 6. 读取[GcmParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#gcmparamsspec).authTag作为解密的认证信息。
    在GCM模式下，算法库当前只支持16字节的authTag，作为解密时初始化的认证信息。示例中authTag恰好为16字节。
 
-
 **解密**
 
 1. 调用[cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，指定字符串参数'AES128|GCM|PKCS7'，创建对称密钥类型为AES128、分组模式为GCM、填充模式为PKCS7的Cipher实例，用于完成解密操作。
@@ -39,7 +35,6 @@
 3. 调用[Cipher.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-1)，更新数据（密文）。
 
 4. 调用[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)，获取解密后的数据。
-
 
 - 异步方法示例：
 
@@ -56,14 +51,14 @@
   function genGcmParamsSpec() {
     let ivBlob = generateRandom(12);
     let arr = [1, 2, 3, 4, 5, 6, 7, 8]; // 8 bytes
-    let dataAad = new Uint8Array(arr); //将arr数组转换为Uint8Array类型
-    let aadBlob: cryptoFramework.DataBlob = { data: dataAad }; //创建DataBlob对象
+    let dataAad = new Uint8Array(arr); //将arr数组转换为Uint8Array类型。
+    let aadBlob: cryptoFramework.DataBlob = { data: dataAad }; //创建DataBlob对象。
     arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
-    let dataTag = new Uint8Array(arr); //将arr数组转换为Uint8Array类型
+    let dataTag = new Uint8Array(arr); //将arr数组转换为Uint8Array类型。
     let tagBlob: cryptoFramework.DataBlob = {
       data: dataTag
     };
-    // GCM的authTag在加密时从doFinal结果中获取，在解密时填入init函数的params参数中
+    // GCM的authTag在加密时从doFinal结果中获取，在解密时填入init函数的params参数中。
     let gcmParamsSpec: cryptoFramework.GcmParamsSpec = {
       iv: ivBlob,
       aad: aadBlob,
@@ -75,7 +70,7 @@
 
   let gcmParams = genGcmParamsSpec();
 
-  // 加密消息
+  // 加密消息。
   async function encryptMessagePromise(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
     let cipher = cryptoFramework.createCipher('AES128|GCM|PKCS7');
     await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams);
@@ -84,7 +79,7 @@
     gcmParams.authTag = await cipher.doFinal(null);
     return encryptUpdate;
   }
-  // 解密消息
+  // 解密消息。
   async function decryptMessagePromise(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
     let decoder = cryptoFramework.createCipher('AES128|GCM|PKCS7');
     await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, gcmParams);
@@ -104,10 +99,10 @@
     return symKey;
   }
   async function main() {
-    let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]); //创建Uint8Array对象
+    let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]); //创建Uint8Array对象。
     let symKey = await genSymKeyByData(keyData);
     let message = "This is a test";
-    let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) }; //创建DataBlob对象
+    let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) }; //创建DataBlob对象。
     let encryptText = await encryptMessagePromise(symKey, plainText);
     let decryptText = await decryptMessagePromise(symKey, encryptText);
     if (plainText.data.toString() === decryptText.data.toString()) {
@@ -134,14 +129,14 @@
   function genGcmParamsSpec() {
     let ivBlob = generateRandom(12);
     let arr = [1, 2, 3, 4, 5, 6, 7, 8]; // 8 bytes
-    let dataAad = new Uint8Array(arr); //将arr数组转换为Uint8Array类型
-    let aadBlob: cryptoFramework.DataBlob = { data: dataAad }; //创建DataBlob对象
+    let dataAad = new Uint8Array(arr); //将arr数组转换为Uint8Array类型。
+    let aadBlob: cryptoFramework.DataBlob = { data: dataAad }; //创建DataBlob对象。
     arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
-    let dataTag = new Uint8Array(arr); //将arr数组转换为Uint8Array类型
+    let dataTag = new Uint8Array(arr); //将arr数组转换为Uint8Array类型。
     let tagBlob: cryptoFramework.DataBlob = {
       data: dataTag
     };
-    // GCM的authTag在加密时从doFinal结果中获取，在解密时填入init函数的params参数中
+    // GCM的authTag在加密时从doFinal结果中获取，在解密时填入init函数的params参数中。
     let gcmParamsSpec: cryptoFramework.GcmParamsSpec = {
       iv: ivBlob,
       aad: aadBlob,
@@ -153,7 +148,7 @@
 
   let gcmParams = genGcmParamsSpec();
 
-  // 加密消息
+  // 加密消息。
   function encryptMessage(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
     let cipher = cryptoFramework.createCipher('AES128|GCM|PKCS7');
     cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams);
@@ -162,7 +157,7 @@
     gcmParams.authTag = cipher.doFinalSync(null);
     return encryptUpdate;
   }
-  // 解密消息
+  // 解密消息。
   function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
     let decoder = cryptoFramework.createCipher('AES128|GCM|PKCS7');
     decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, gcmParams);
@@ -182,10 +177,10 @@
     return symKey;
   }
   function main() {
-    let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]); //创建Uint8Array对象
+    let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]); //创建Uint8Array对象。
     let symKey = genSymKeyByData(keyData);
     let message = "This is a test";
-    let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) }; //创建DataBlob对象
+    let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) }; //创建DataBlob对象。
     let encryptText = encryptMessage(symKey, plainText);
     let decryptText = decryptMessage(symKey, encryptText);
     if (plainText.data.toString() === decryptText.data.toString()) {

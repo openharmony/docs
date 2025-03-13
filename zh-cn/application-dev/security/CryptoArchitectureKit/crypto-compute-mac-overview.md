@@ -21,7 +21,6 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
 | HASH | SM3 | 10+ | 
 | HASH | MD5 | 12+ | 
 
-
 ## CMAC
 
 ‌CMAC（Cipher-based Message Authentication Code）是一种基于密码的消息认证码算法，主要用于确保消息的完整性和真实性。
