@@ -31,8 +31,8 @@
 | extraInfo      | Record<string, Object\>                                               | 否  | 是  | 实况通知附加内容。           |
 | pictureInfo    | Record<string, Array<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)\>\> | 否  | 是  | 实况通知附加内容中的图片信息。|
 | isLocalUpdateOnly<sup>12+</sup> | boolean                                           | 否  | 是  | 实况窗是否只在本地更新。     |
-| liveViewType<sup>16+</sup>  | [LiveViewTypes](#liveviewtypes16)  | 否 | 是  | 实况窗类型。  |
-| cardButtons<sup>16+</sup> | Array\<[NotificationIconButton](#notificationiconbutton16)\>    |  否  |  是  | 实况窗按钮（最多支持3个）。      |
+| liveViewType<sup>16+</sup>  | [LiveViewTypes](#liveviewtypes18)  | 否 | 是  | 实况窗类型。  |
+| cardButtons<sup>16+</sup> | Array\<[NotificationIconButton](#notificationiconbutton18)\>    |  否  |  是  | 实况窗按钮（最多支持3个）。      |
 
 ## NotificationCapsule<sup>11+</sup>
 
@@ -46,7 +46,7 @@
 | --------------------- | ---------------------------- | ---- | ---- | -------------------------------- |
 | content<sup>12+</sup> | string                       |  否  |  是  | 胶囊的拓展文本。                   |
 | time<sup>18+</sup> | number                       |  否  |  是  | 即时任务类实况胶囊展示时长（单位：秒）。   |
-| capsuleButtons<sup>18+</sup> | Array\<[NotificationIconButton](#notificationiconbutton16)\>    |  否  |  是  | 即时任务类实况胶囊的按钮（最多支持2个）。      |
+| capsuleButtons<sup>18+</sup> | Array\<[NotificationIconButton](#notificationiconbutton18)\>    |  否  |  是  | 即时任务类实况胶囊的按钮（最多支持2个）。      |
 
 ## LiveViewStatus<sup>11+</sup>
 
