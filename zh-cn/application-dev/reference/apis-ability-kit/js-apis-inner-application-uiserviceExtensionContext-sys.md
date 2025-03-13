@@ -6,7 +6,7 @@ UIServiceExtensionContext模块提供访问[UIServiceExtension](js-apis-app-abil
 
 > **说明：**
 >
->  - 本模块首批接口从API version 13开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>  - 本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >  - 本模块接口仅可在Stage模型下使用。
 >  - 本模块接口需要在主线程中使用，不要在Worker、TaskPool等子线程中使用。
 >  - 本模块接口为系统接口。
@@ -34,7 +34,7 @@ class UIServiceExtAbility extends UIServiceExtensionAbility {
 ```
 
 
-## UIServiceExtensionContext.startAbility<sup>13+<sup>
+## UIServiceExtensionContext.startAbility
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
@@ -121,7 +121,7 @@ class UIEntryAbility extends UIServiceExtensionAbility {
 ```
 
 
-## UIServiceExtensionContext.terminateSelf<sup>13+<sup>
+## UIServiceExtensionContext.terminateSelf
 
 terminateSelf(): Promise&lt;void&gt;
 
@@ -160,7 +160,7 @@ class UIEntryAbility extends UIServiceExtensionAbility {
 }
 ```
 
-## UIServiceExtensionContext.startAbilityByType<sup>13+<sup>
+## UIServiceExtensionContext.startAbilityByType
 
 startAbilityByType(type: string, wantParam: Record&lt;string, Object&gt;,
     abilityStartCallback: AbilityStartCallback): Promise&lt;void&gt;
@@ -253,7 +253,7 @@ struct SubIndex {
 }
 ```
 
-## UIServiceExtensionContext.connectServiceExtensionAbility<sup>13+<sup>
+## UIServiceExtensionContext.connectServiceExtensionAbility
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
@@ -376,11 +376,11 @@ struct Page_UIServiceExtensionAbility {
 }
 ```
 
-## UIServiceExtensionContext.disconnectServiceExtensionAbility<sup>13+<sup>
+## UIServiceExtensionContext.disconnectServiceExtensionAbility
 
 disconnectServiceExtensionAbility(connectionId: number): Promise&lt;void&gt;
 
-断开与[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)的连接, 与[connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability13)功能相反。
+断开与[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)的连接, 与[connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability)功能相反。
 
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -391,7 +391,7 @@ disconnectServiceExtensionAbility(connectionId: number): Promise&lt;void&gt;
 
 | 参数名                | 类型                     | 只读 | 可选 | 说明              |
 | -------------------- | ------------------------ | ---- | ----------------- | ----------------- |
-| connectionId         | number                   | 是  | 否 | 从[connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability13)接口返回的连接Id。 |
+| connectionId         | number                   | 是  | 否 | 从[connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability)接口返回的连接Id。 |
 
 
 **返回值：**

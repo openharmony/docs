@@ -5,7 +5,7 @@ UIServiceHostProxy提供代理能力，可以将数据从[UIServiceExtension](js
 
 > **说明：**
 >
->  - 本模块首批接口从API version 13开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>  - 本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >  - 本模块接口仅可在Stage模型下使用。
 >  - 本模块接口需要在主线程中使用，不要在Worker、TaskPool等子线程中使用。
 >  - 本模块接口为系统接口。
@@ -22,7 +22,6 @@ import { common } from '@kit.AbilityKit';
 sendData(data: Record\<string, Object>): void
 
 从[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)服务端给客户端发送数据。
-
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
