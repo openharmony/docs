@@ -112,7 +112,7 @@ lcd闪光灯信息项。
 
 相机管理器类，使用前需要通过[getCameraManager](js-apis-camera.md#cameragetcameramanager)获取相机管理实例。
 
-### createDepthDataOutput<sup>12+</sup>
+### createDepthDataOutput<sup>13+</sup>
 
 createDepthDataOutput(profile: Profile): DepthDataOutput
 
@@ -132,7 +132,7 @@ createDepthDataOutput(profile: Profile): DepthDataOutput
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [DepthDataOutput](#depthdataoutput12)    | DepthDataOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| [DepthDataOutput](#depthdataoutput13)    | DepthDataOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -535,7 +535,7 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 | ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
 | isCameraOccluded                 | boolean              |  是  | 否 |遮挡状态。        |
 
-## CameraOutputCapability<sup>12+</sup>
+## CameraOutputCapability<sup>13+</sup>
 
 相机输出能力项。
 
@@ -545,7 +545,7 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 
 | 名称                           | 类型                                                | 只读 | 可选 | 说明                |
 | ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
-| depthProfiles                 | Array\<[DepthProfile](#depthprofile12)\>              |  是  | 否 | 支持的深度流配置信息集合。        |
+| depthProfiles                 | Array\<[DepthProfile](#depthprofile13)\>              |  是  | 否 | 支持的深度流配置信息集合。        |
 
 ## CameraFormat
 
@@ -557,8 +557,8 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 
 | 名称                     | 值        | 说明         |
 | ----------------------- | --------- | ------------ |
-| CAMERA_FORMAT_DEPTH_16<sup>12+</sup> |   3000   | DEPTH_16格式的深度图。      |
-| CAMERA_FORMAT_DEPTH_32<sup>12+</sup> |   3001   | DEPTH_32格式的深度图。      |
+| CAMERA_FORMAT_DEPTH_16<sup>13+</sup> |   3000   | DEPTH_16格式的深度图。      |
+| CAMERA_FORMAT_DEPTH_32<sup>13+</sup> |   3001   | DEPTH_32格式的深度图。      |
 
 ## CameraInput
 
@@ -632,7 +632,7 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 }
 ```
 
-## DepthDataAccuracy<sup>12+</sup>
+## DepthDataAccuracy<sup>13+</sup>
 
 深度数据的精度。
 
@@ -645,7 +645,7 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 | DEPTH_DATA_ACCURACY_RELATIVE      | number                        |  是  | 否 | 相对精度，基于视差计算得到的深度图。      |
 | DEPTH_DATA_ACCURACY_ABSOLUTE      | number                        |  是  | 否 | 绝对精度，基于测距计算得到的深度图。      |
 
-## DepthProfile<sup>12+</sup>
+## DepthProfile<sup>13+</sup>
 
 深度数据配置信息项，继承[Profile](js-apis-camera.md#profile)。
 
@@ -655,9 +655,9 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 
 | 名称                       | 类型                                      | 只读 | 可选 | 说明        |
 | ------------------------- | ----------------------------------------- | --- | ---- |----------- |
-| depthDataAccuracy            | [DepthDataAccuracy](#depthdataaccuracy12)         | 是  |  否  | 深度数据的精度，分为相对精度和绝对精度。 |
+| depthDataAccuracy            | [DepthDataAccuracy](#depthdataaccuracy13)         | 是  |  否  | 深度数据的精度，分为相对精度和绝对精度。 |
 
-## DepthDataQualityLevel<sup>12+</sup>
+## DepthDataQualityLevel<sup>13+</sup>
 
 深度数据的质量。
 
@@ -671,7 +671,7 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 | DEPTH_DATA_QUALITY_FAIR      | number          |  是  | 否 | 深度图的质量一般，无法生成高质量的虚化等。      |
 | DEPTH_DATA_QUALITY_GOOD      | number          |  是  | 否 | 深度图的质量较高，可以生成高质量的虚化等。      |
 
-## DepthData<sup>12+</sup>
+## DepthData<sup>13+</sup>
 
 深度数据对象。
 
@@ -685,10 +685,10 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 | -------- | ----------------------------- |----- |---| -------------- |
 | format | [CameraFormat](#cameraformat)   | 是 |  否  | 深度图的格式。 |
 | depthMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)    | 是 |  否  | 深度图。 |
-| qualityLevel | [DepthDataQualityLevel](#depthdataqualitylevel12)   | 是 |  否  | 深度图的质量。 |
-| accuracy | [DepthDataAccuracy](#depthdataaccuracy12) | 是 |  否  | 深度图的精度。 |
+| qualityLevel | [DepthDataQualityLevel](#depthdataqualitylevel13)   | 是 |  否  | 深度图的质量。 |
+| accuracy | [DepthDataAccuracy](#depthdataaccuracy13) | 是 |  否  | 深度图的精度。 |
 
-### release<sup>12+</sup>
+### release<sup>13+</sup>
 
 release(): void
 
@@ -706,11 +706,11 @@ function releaseDepthData(depthData: camera.DepthData): void {
 }
 ```
 
-## DepthDataOutput<sup>12+</sup>
+## DepthDataOutput<sup>13+</sup>
 
 深度信息输出类。继承[CameraOutput](js-apis-camera.md#cameraoutput)。
 
-### start<sup>12+</sup>
+### start<sup>13+</sup>
 
 start(): Promise\<void\>
 
@@ -749,7 +749,7 @@ function startDepthDataOutput(depthDataOutput: camera.DepthDataOutput): void {
 }
 ```
 
-### stop<sup>12+</sup>
+### stop<sup>13+</sup>
 
 stop(): Promise\<void\>
 
@@ -779,7 +779,7 @@ function stopDepthDataOutput(depthDataOutput: camera.DepthDataOutput): void {
 }
 ```
 
-### on('depthDataAvailable')<sup>12+</sup>
+### on('depthDataAvailable')<sup>13+</sup>
 
 on(type: 'depthDataAvailable', callback: AsyncCallback\<DepthData\>): void
 
@@ -798,7 +798,7 @@ on(type: 'depthDataAvailable', callback: AsyncCallback\<DepthData\>): void
 | 参数名     | 类型      | 必填 | 说明                                  |
 | -------- | ---------- | --- | ------------------------------------ |
 | type     | string     | 是   | 监听事件，固定为'depthDataAvailable'，depthDataOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[DepthData](#depthdata12)\> | 是   | 回调函数，用于监听深度信息上报。 |
+| callback | AsyncCallback\<[DepthData](#depthdata13)\> | 是   | 回调函数，用于监听深度信息上报。 |
 
 **示例：**
 
@@ -817,7 +817,7 @@ function registerDepthDataAvailable(depthDataOutput: camera.DepthDataOutput): vo
 }
 ```
 
-### off('depthDataAvailable')<sup>12+</sup>
+### off('depthDataAvailable')<sup>13+</sup>
 
 off(type: 'depthDataAvailable', callback?: AsyncCallback\<DepthData\>): void
 
@@ -832,7 +832,7 @@ off(type: 'depthDataAvailable', callback?: AsyncCallback\<DepthData\>): void
 | 参数名      | 类型                    | 必填 | 说明                                       |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'depthDataAvailable'，depthDataOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[DepthData](#depthdata12)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+| callback | AsyncCallback\<[DepthData](#depthdata13)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -851,7 +851,7 @@ function unRegisterDepthDataAvailable(depthDataOutput: camera.DepthDataOutput): 
 }
 ```
 
-### on('error')<sup>12+</sup>
+### on('error')<sup>13+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -886,7 +886,7 @@ function registerDepthDataOutputError(depthDataOutput: camera.DepthDataOutput): 
 }
 ```
 
-### off('error')<sup>12+</sup>
+### off('error')<sup>13+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 
@@ -952,9 +952,9 @@ function unregisterDepthDataOutputError(depthDataOutput: camera.DepthDataOutput)
 
 | 名称             | 类型   |   只读    | 可选  | 说明                                                                                                |
 | --------------- | ------ | --------- |-----|---------------------------------------------------------------------------------------------------|
-| skinSmoothLevel | number |  否       | 否   | 美颜类型光滑信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12)获取支持的光滑范围，例如1表示1级光滑。        |
-| faceSlender     | number |  否       | 否   | 美颜类型瘦脸信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12)获取支持的瘦脸范围，例如1表示1级瘦脸。        |
-| skinTone        | number |  否       | 否   | 美颜类型肤色信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12)获取支持的肤色范围，例如0xBF986C表示一个颜色。 |
+| skinSmoothLevel | number |  否       | 否   | 美颜类型光滑信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11)获取支持的光滑范围，例如1表示1级光滑。        |
+| faceSlender     | number |  否       | 否   | 美颜类型瘦脸信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11)获取支持的瘦脸范围，例如1表示1级瘦脸。        |
+| skinTone        | number |  否       | 否   | 美颜类型肤色信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11)获取支持的肤色范围，例如0xBF986C表示一个颜色。 |
 
 ## PreviewOutput
 
@@ -1556,7 +1556,7 @@ function deferImageDelivery(photoOutput: camera.PhotoOutput, type: camera.Deferr
 }
 ```
 
-### isAutoHighQualityPhotoSupported<sup>12+</sup>
+### isAutoHighQualityPhotoSupported<sup>13+</sup>
 
 isAutoHighQualityPhotoSupported(): boolean
 
@@ -1592,11 +1592,11 @@ function isAutoHighQualityPhotoSupported(photoOutput: camera.PhotoOutput): boole
 }
 ```
 
-### enableAutoHighQualityPhoto<sup>12+</sup>
+### enableAutoHighQualityPhoto<sup>13+</sup>
 
 enableAutoHighQualityPhoto(enabled: boolean): void
 
-使能拍照自动高画质。设置拍照自动高画质之前，需要调用[isAutoHighQualityPhotoSupported](#isautohighqualityphotosupported12)判断当前是否支持。
+使能拍照自动高画质。设置拍照自动高画质之前，需要调用[isAutoHighQualityPhotoSupported](#isautohighqualityphotosupported13)判断当前是否支持。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2134,7 +2134,7 @@ function removeMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types:
 
 提供了获取和设置美颜效果的方法。
 
-### getSupportedBeautyTypes<sup>12+</sup>
+### getSupportedBeautyTypes<sup>11+</sup>
 
 getSupportedBeautyTypes(): Array\<BeautyType\>
 
@@ -2168,7 +2168,7 @@ function getSupportedBeautyTypes(portraitPhotoSession: camera.PortraitPhotoSessi
 }
 ```
 
-### getSupportedBeautyRange<sup>12+</sup>
+### getSupportedBeautyRange<sup>11+</sup>
 
 getSupportedBeautyRange(type: BeautyType): Array\<number\>
 
@@ -2238,7 +2238,7 @@ function getSupportedBeautyRange(portraitPhotoSession: camera.PortraitPhotoSessi
 
 此接口提供了查询设备对手动曝光范围支持的功能。
 
-### getSupportedExposureRange<sup>12+</sup>
+### getSupportedExposureRange<sup>11+</sup>
 
 getSupportedExposureRange(): Array\<number\>
 
@@ -2321,7 +2321,7 @@ function getExposure(nightPhotoSession: camera.NightPhotoSession): number | unde
 
 setExposure(exposure: number): void
 
-设置手动曝光时长。[getSupportedExposureRange](#getsupportedexposurerange12)获取得到支持的手动曝光时长列表选取用户所需的时长下发，单位ms。
+设置手动曝光时长。[getSupportedExposureRange](#getsupportedexposurerange11)获取得到支持的手动曝光时长列表选取用户所需的时长下发，单位ms。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2331,7 +2331,7 @@ setExposure(exposure: number): void
 
 | 参数名      | 类型                    | 必填 | 说明                                                                      |
 | -------- | --------------------------| ---- |-------------------------------------------------------------------------|
-| value    | number                    | 是   | 手动曝光时长，通过[getSupportedExposureRange](#getsupportedexposurerange12)接口获取。 |
+| value    | number                    | 是   | 手动曝光时长，通过[getSupportedExposureRange](#getsupportedexposurerange11)接口获取。 |
 
  **错误码：**
 
@@ -2355,7 +2355,7 @@ function setExposure(nightPhotoSession: camera.NightPhotoSession): void {
 
 提供用于查询设备是否支持相机微距拍摄的方法。
 
-### isMacroSupported<sup>12+</sup>
+### isMacroSupported<sup>11+</sup>
 
 isMacroSupported(): boolean
 
@@ -2739,7 +2739,7 @@ Beauty extends [BeautyQuery](#beautyquery12)
 
 setBeauty(type: BeautyType, value: number): void
 
-设置美颜类型以及对应的美颜强度。将通过[getSupportedBeautyTypes](#getsupportedbeautytypes12)获取得到的[BeautyType](#beautytype)都关闭，表明当前美颜关闭；若有一种美颜类型未关闭，表明当前美颜打开。
+设置美颜类型以及对应的美颜强度。将通过[getSupportedBeautyTypes](#getsupportedbeautytypes11)获取得到的[BeautyType](#beautytype)都关闭，表明当前美颜关闭；若有一种美颜类型未关闭，表明当前美颜打开。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2750,7 +2750,7 @@ setBeauty(type: BeautyType, value: number): void
 | 参数名      | 类型                    | 必填 | 说明                                                                |
 | -------- | --------------------------| ---- |-------------------------------------------------------------------|
 | type     | [BeautyType](#beautytype) | 是   | 美颜类型。                                                             |
-| value    | number                    | 是   | 美颜强度，通过[getSupportedBeautyRange](#getsupportedbeautyrange12)接口获取。 |
+| value    | number                    | 是   | 美颜强度，通过[getSupportedBeautyRange](#getsupportedbeautyrange11)接口获取。 |
 
 **错误码：**
 
@@ -2830,7 +2830,7 @@ function getBeauty(portraitPhotoSession: camera.PortraitPhotoSession): number {
 
 提供了一个查询设备支持的颜色效果类型的方法。
 
-### getSupportedColorEffects<sup>12+</sup>
+### getSupportedColorEffects<sup>11+</sup>
 
 getSupportedColorEffects(): Array\<ColorEffectType\>
 
@@ -2874,7 +2874,7 @@ ColorEffect extends [ColorEffectQuery](#coloreffectquery12)
 
 setColorEffect(type: ColorEffectType): void
 
-设置色彩效果类型。可以先通过[getSupportedColorEffects](#getsupportedcoloreffects12)获取当前设备所支持的ColorEffects。
+设置色彩效果类型。可以先通过[getSupportedColorEffects](#getsupportedcoloreffects11)获取当前设备所支持的ColorEffects。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2884,7 +2884,7 @@ setColorEffect(type: ColorEffectType): void
 
 | 参数名         | 类型                                                            | 必填 | 说明                      |
 | ------------ |--------------------------------------------------------------- | -- | -------------------------- |
-| type | [ColorEffectType](#coloreffecttype11)                              | 是 | 色彩效果类型，通过[getSupportedColorEffects](#getsupportedcoloreffects12)接口获取。   |
+| type | [ColorEffectType](#coloreffecttype11)                              | 是 | 色彩效果类型，通过[getSupportedColorEffects](#getsupportedcoloreffects11)接口获取。   |
 
 **错误码：**
 
@@ -3300,7 +3300,7 @@ getSupportedBeautyTypes(): Array\<BeautyType>
 获取当前支持的美颜效果列表。
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[Beauty.getSupportedBeautyTypes](#getsupportedbeautytypes12)替代。
+>从 API version 10开始支持，从API version 11开始废弃。建议使用[Beauty.getSupportedBeautyTypes](#getsupportedbeautytypes11)替代。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3343,7 +3343,7 @@ getSupportedBeautyRange(type: BeautyType): Array\<number\>
 | SKIN_TONE      | [-1, 16242611]      | 美颜类型为美肤时支持的美颜强度，-1表明关闭美肤，其余非负值为使用RGB表示的美肤美颜强度，<br> 16242611转化为16进制为0xF7D7B3，F7为R通道值，D7为G通道值，B3位B通道值。    |
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12)替代。
+>从 API version 10开始支持，从API version 11开始废弃。建议使用[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11)替代。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3692,7 +3692,7 @@ function registerLcdFlashStatus(photoSession: camera.PhotoSession): void {
 }
 ```
 
-### off('lcdFlashStatus')<sup>12+</sup>
+### off('lcdFlashStatus')<sup>13+</sup>
 
 off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
 
@@ -3882,7 +3882,7 @@ function registerLcdFlashStatus(videoSession: camera.VideoSession): void {
 }
 ```
 
-### off('lcdFlashStatus')<sup>12+</sup>
+### off('lcdFlashStatus')<sup>13+</sup>
 
 off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
 
@@ -4215,7 +4215,7 @@ function registerLcdFlashStatus(portraitPhotoSession: camera.PortraitPhotoSessio
 }
 ```
 
-### off('lcdFlashStatus')<sup>12+</sup>
+### off('lcdFlashStatus')<sup>13+</sup>
 
 off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
 
@@ -5108,7 +5108,7 @@ function registerSessionError(panoramaPhotoSession: camera.PanoramaPhotoSession)
 }
 ```
 
-### off('error')<sup>11+</sup>
+### off('error')<sup>12+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 
@@ -5133,7 +5133,7 @@ function unregisterSessionError(panoramaPhotoSession: camera.PanoramaPhotoSessio
 }
 ```
 
-### on('focusStateChange')<sup>11+</sup>
+### on('focusStateChange')<sup>12+</sup>
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
@@ -5168,7 +5168,7 @@ function registerFocusStateChange(panoramaPhotoSession: camera.PanoramaPhotoSess
 }
 ```
 
-### off('focusStateChange')<sup>11+</sup>
+### off('focusStateChange')<sup>12+</sup>
 
 off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
