@@ -20,13 +20,11 @@ animateTo(value: AnimateParam, event: () => void): void
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 > **说明：**
-> - 在duration为0的动画闭包函数中改变属性，以实现停止该属性动画的效果。
-> - 如果需要在组件出现时创建动画，可以参考[示例1](#示例1设置动画在onappear中执行)，在onAppear中实现动画的创建。
 > - 不推荐在aboutToAppear、aboutToDisappear中调用动画。
 > - 如果在[aboutToAppear](./ts-custom-component-lifecycle.md#abouttoappear)中调用动画，自定义组件内的build还未执行，内部组件还未创建，动画时机过早，动画属性没有初值无法对组件产生动画。
 > - 执行[aboutToDisappear](./ts-custom-component-lifecycle.md#abouttodisappear)时，组件即将销毁，不能在aboutToDisappear里面做动画。
-> - 也可以使用[组件内转场](./ts-transition-animation-component.md)，在组件出现和消失时做动画。
-> - 组件内转场不支持的属性，可以参考[示例2](#示例2动画执行结束后组件消失)，使用animateTo实现组件消失动画效果。
+> - 在组件出现和消失时，可以通过[组件内转场](./ts-transition-animation-component.md)添加动画效果。
+> - 组件内转场不支持的属性，可以参考[示例2](#示例2动画执行结束后组件消失)，使用animateTo实现动画执行结束后组件消失的效果。
 > - 某些场景下，在[状态管理V2](../../../quick-start/arkts-state-management-overview.md#状态管理v2)中使用animateTo动画，会产生异常效果，具体可参考：[在状态管理V2中使用animateTo动画效果异常](../../../quick-start/arkts-new-local.md#在状态管理v2中使用animateto动画效果异常)。
 
 **参数：**
@@ -39,7 +37,7 @@ animateTo(value: AnimateParam, event: () => void): void
 
 | 名称         | 类型          | 是否必填                 | 描述                                       |
 | ---------- | ---------------|------------------------ | ---------------------------------------- |
-| duration   | number         |  否  | 动画持续时间，单位为毫秒。<br/>默认值：1000<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**说明：**<br/>- 在ArkTS卡片上最大动画持续时间为1000毫秒，若超出则固定为1000毫秒。<br/>-&nbsp;设置小于0的值时按0处理。<br/>-&nbsp;设置浮点型类型的值时，向下取整。例如，设置值为1.2，按照1处理。 |
+| duration   | number         |  否  | 动画持续时间，单位为毫秒。<br/>默认值：1000<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**说明：**<br/>- 在ArkTS卡片上最大动画持续时间为1000毫秒，若超出则固定为1000毫秒。<br/>-&nbsp;可以通过在持续时间为0的动画闭包函数中改变属性，以实现停止该属性动画的效果。<br/>-&nbsp;设置小于0的值时按0处理。<br/>-&nbsp;设置浮点型类型的值时，向下取整。例如，设置值为1.2，按照1处理。 |
 | tempo      | number         | 否 | 动画播放速度，值越大动画播放越快，值越小播放越慢，为0时无动画效果。<br/>默认值：1.0<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**说明：** <br/>当设置小于0的值时按值为1处理。 |
 | curve      | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve<sup>9+</sup>](../js-apis-curve.md#icurve)&nbsp;\|&nbsp;string | 否 | 动画曲线。<br/>默认值：Curve.EaseInOut<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | delay      | number         | 否 | 动画延迟播放时间，单位为ms(毫秒)，默认不延时播放。<br/>默认值：0<br/>取值范围：(-∞, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**说明：** <br/>-&nbsp;delay>=0为延迟播放，delay<0表示提前播放。对于delay<0的情况：当delay的绝对值小于实际动画时长，动画将在开始后第一帧直接运动到delay绝对值的时刻的状态；当delay的绝对值大于等于实际动画时长，动画将在开始后第一帧直接运动到终点状态。其中实际动画时长等于单次动画时长乘以动画播放次数。<br/>-&nbsp;设置浮点型类型的值时，向下取整。例如，设置值为1.2，按照1处理。 |
@@ -80,13 +78,13 @@ animateTo(value: AnimateParam, event: () => void): void
 
 ## 示例
 
-### 示例1（设置动画在onAppear中执行）
+### 示例1（在组件出现时创建动画）
 
 > **说明：**
 > 
 > 直接使用animateTo可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[animateTo](../js-apis-arkui-UIContext.md#animateto)调用绑定实例的animateTo。
 
-该示例主要演示如何在组件的onAppear中执行动画。
+该示例通过在onAppear方法中创建组件出现时的动画效果。
 
 ```ts
 // xxx.ets
