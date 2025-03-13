@@ -666,7 +666,8 @@ struct Index {
   @State popoverOptions: PopoverOptions = {
     builder: () => {
       this.dialogBuilder();
-    }
+    },
+    width: 320,
   }
   
   // 跟手弹窗内容
