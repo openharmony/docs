@@ -12,7 +12,6 @@
 
 下面分别提供两种方式的示例代码。
 
-
 ### 摘要算法（一次性传入）
 
 1. 调用[cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd)，指定摘要算法MD5，生成摘要实例（Md）。
@@ -30,10 +29,10 @@
   import { buffer } from '@kit.ArkTS';
 
   async function doMd() {
-    let mdAlgName = 'MD5'; // 摘要算法名
-    let message = 'mdTestMessage'; // 待摘要的数据
+    let mdAlgName = 'MD5'; // 摘要算法名。
+    let message = 'mdTestMessage'; // 待摘要的数据。
     let md = cryptoFramework.createMd(mdAlgName);
-    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
+    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制。
     await md.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let mdResult = await md.digest();
     console.info('Md result:' + mdResult.data);
@@ -49,10 +48,10 @@
   import { buffer } from '@kit.ArkTS';
 
   function doMdBySync() {
-    let mdAlgName = 'MD5'; // 摘要算法名
-    let message = 'mdTestMessage'; // 待摘要的数据
+    let mdAlgName = 'MD5'; // 摘要算法名。
+    let message = 'mdTestMessage'; // 待摘要的数据。
     let md = cryptoFramework.createMd(mdAlgName);
-    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
+    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制。
     md.updateSync({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let mdResult = md.digestSync();
     console.info('[Sync]:Md result:' + mdResult.data);
@@ -78,12 +77,12 @@
   import { buffer } from '@kit.ArkTS';
 
   async function doLoopMd() {
-    let mdAlgName = "MD5"; // 摘要算法名
+    let mdAlgName = "MD5"; // 摘要算法名。
     let md = cryptoFramework.createMd(mdAlgName);
-    // 假设信息总共43字节，根据utf-8解码后，也是43字节
+    // 假设信息总共43字节，根据utf-8解码后，也是43字节。
     let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
     let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
-    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求
+    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求。
     for (let i = 0; i < messageData.length; i += updateLength) {
       let updateMessage = messageData.subarray(i, i + updateLength);
       let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };
@@ -103,12 +102,12 @@
   import { buffer } from '@kit.ArkTS';
 
   function doLoopMdBySync() {
-    let mdAlgName = "MD5"; // 摘要算法名
+    let mdAlgName = "MD5"; // 摘要算法名。
     let md = cryptoFramework.createMd(mdAlgName);
-    // 假设信息总共43字节，根据utf-8解码后，也是43字节
+    // 假设信息总共43字节，根据utf-8解码后，也是43字节。
     let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
     let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
-    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求
+    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求。
     for (let i = 0; i < messageData.length; i += updateLength) {
       let updateMessage = messageData.subarray(i, i + updateLength);
       let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };
