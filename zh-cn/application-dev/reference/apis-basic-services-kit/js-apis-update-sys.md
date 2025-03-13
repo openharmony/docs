@@ -170,7 +170,7 @@ checkNewVersion(): Promise\<CheckResult>
 | 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
-**示例:**
+**示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -285,7 +285,7 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 | 错误码ID       | 错误信息                                                  |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
-| 401      | Parameter verification failed.    |
+| 401      | Parameter verification tiled.    |
 | 11500104 | IPC error.               |
 
 **示例：**
@@ -1464,7 +1464,7 @@ factoryReset(): Promise\<void>
 | 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
-**示例:**
+**示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1552,7 +1552,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
-**示例:**
+**示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1633,7 +1633,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
-**示例:**
+**示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
