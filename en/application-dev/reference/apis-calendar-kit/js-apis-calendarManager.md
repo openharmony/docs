@@ -1284,8 +1284,6 @@ getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event
 
 Obtains all events in a calendar that match the filter criteria. This API uses a promise to return the result.
 
-If there is only one input parameter, the filter criteria, corresponding to the type **EventFilter**, must be set as the parameter.
-
 **System capability**: SystemCapability.Applications.CalendarData
 
 **Parameters**
