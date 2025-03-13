@@ -11,7 +11,7 @@ Before using this tool, you must obtain [hdc](../dfx/hdc.md) and run the **hdc s
 | ------------------- | -----------|
 | help                | Displays the commands supported by the atm tool.|
 | <!--DelRow-->perm   | Grants or revokes a permission for an application process.|
-| <!--DelRow-->toggle | Sets or obtains the toggle state of a permission.|
+| <!--DelRow-->toggle | Sets or obtains the toggle status of the permission dialog box or permission usage records. This command is available only for the root version.|
 | dump                | Obtains access control data.|
 
 ## help
@@ -53,15 +53,15 @@ atm perm -c -i ********* -p ohos.permission.CAMERA
 ## toggle
 
 ```bash
-atm toggle [-h] [-s -u <user-id> -p <permission-name> -k <status>] [-o -u <user-id> -p <permission-name>]
+atm toggle [-h] [-r -s -i <user-id> -p <permission-name> -k <status>] [-r -o -i <user-id> -p <permission-name>]
 ```
 **Parameters of the toggle command**
 
 | Parameter                                                          | Description                               | 
 | ----------------------------------------------------------------- | ----------------------------------- | 
 | -h                                                     | Displays help information.             | 
-| -s&nbsp;-u \<user-id\>&nbsp;-p \<permission-name\>&nbsp;-k \<status\> | Sets the toggle state (specified by status) of a specified permission of a specified user. The **-c**, **-i**, **-p** and **-k** parameters are mandatory. The return value indicates whether the operation is successful.| 
-| -o&nbsp;-u \<user-id\>&nbsp;-p \<permission-name\> | Obtains the toggle state of a specified permission for a specified user. The **-o**, **-u**, and **-p** parameters are mandatory.| 
+| -r&nbsp;-s&nbsp;-i \<user-id\>&nbsp;-p \<permission-name\>&nbsp;-k \<status\> | Sets the toggle status (specified by status) of a specified permission of a specified user. The **-r**, **-s**, **-i**, **-p** and **-k** parameters are mandatory. The return value indicates whether the operation is successful.| 
+| -r&nbsp;-o&nbsp;-i \<user-id\>&nbsp;-p \<permission-name\> | Obtains the toggle status of a specified permission for a specified user. The **-r**, **-o**, **-i**, and **-p** parameters are mandatory.| 
 
 Example:
 
@@ -70,10 +70,36 @@ Example:
 atm toggle -h
 
 # Enable the camera permission for user 0.
-atm toggle -s -u 0 -p ohos.permission.CAMERA -k 1
+atm toggle -r -s -i 0 -p ohos.permission.CAMERA -k 1
 
 # Obtain the toggle state of the camera permission for user 0.
-atm toggle -o -u 0 -p ohos.permission.CAMERA
+atm toggle -r -o -i 0 -p ohos.permission.CAMERA
+```
+
+## toggle
+
+```bash
+atm toggle [-h] [-u -s -i <user-id> -k <status>] [-u -o -i <user-id>]
+```
+**Parameters of the toggle command**
+
+| Parameter                                                          | Description                               | 
+| ----------------------------------------------------------------- | ----------------------------------- | 
+| -h                                                     | Displays help information.             | 
+| -u&nbsp;-s&nbsp;-i \<user-id\>&nbsp;-p \<permission-name\>&nbsp;-k \<status\> | Sets the toggle status (specified by **status**) of the permission usage records. The **-u**, **-s**, **-i** and **-k** parameters are mandatory. The return value indicates whether the operation is successful.| 
+| -u&nbsp;-o&nbsp;-i \<user-id\>&nbsp;-p \<permission-name\> | Obtains the toggle status of the permission usage records for a specified user. The **-**, **-o**, and **-i** parameters are mandatory.| 
+
+Example:
+
+```bash
+# Display the help information about the atm toggle command.
+atm toggle -h
+
+# Enable the toggle status of the permission usage records for user 0.
+atm toggle -u -s -i 0 -k 1
+
+# Obtain the toggle status of the permission usage records of user 0.
+atm toggle -u -o -i 0
 ```
 
 <!--DelEnd-->
