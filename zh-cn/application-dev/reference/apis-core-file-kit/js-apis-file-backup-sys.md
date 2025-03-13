@@ -103,7 +103,7 @@ import backup from '@ohos.file.backup';
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
-## File <sup>12+</sup>
+## File<sup>12+</sup>
 
 一个文件对象。
 继承[FileMeta](#filemeta)和[FileData](#filedata)和[FileManifestData](#filemanifestdata12)。
@@ -326,7 +326,7 @@ onBackupServiceDied : Callback&lt;undefined&gt;
   }
   ```
 
-### onResultReport
+### onResultReport<sup>12+</sup>
 
 onResultReport (bundleName: string, result: string)
 
@@ -352,7 +352,7 @@ onResultReport (bundleName: string, result: string)
   }
   ```
 
-### onProcess
+### onProcess<sup>12+</sup>
 
 onProcess (bundleName: string, process: string)
 
@@ -571,7 +571,7 @@ getLocalCapabilities(dataList:Array&lt;IncrementalBackupTime&gt;): Promise&lt;Fi
   }
   ```
 
-## backup.getBackupInfo
+## backup.getBackupInfo<sup>12+</sup>
 
 getBackupInfo(bundleToBackup: string): string;
 
@@ -626,7 +626,7 @@ getBackupInfo(bundleToBackup: string): string;
   }
   ```
 
-## backup.updateTimer
+## backup.updateTimer<sup>12+</sup>
 
 updateTimer(bundleName: string, timeout: number): void;
 
@@ -680,7 +680,7 @@ updateTimer(bundleName: string, timeout: number): void;
   }
   ```
 
-## backup.updateSendRate
+## backup.updateSendRate<sup>12+</sup>
 
 updateSendRate(bundleName: string, sendRate: number): boolean;
 
@@ -2153,7 +2153,7 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;): Promise&lt;v
 
 ### appendBundles<sup>12+</sup>
 
-appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt, infos: string[]): Promise&lt;void&gt;
+appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;, infos: string[]): Promise&lt;void&gt;
 
 添加需要增量备份的应用。当前整个流程中，触发Release接口之前都可以进行appendBundles的调用。使用Promise异步回调。
 
