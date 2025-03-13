@@ -1,6 +1,6 @@
 # @ohos.effectKit (Image Effects)
 
-The **EffectKit** module provides basic image processing capabilities, including brightness adjustment, blurring, grayscale adjustment, and color picker.
+The EffectKit module provides basic image processing capabilities, including brightness adjustment, blurring, grayscale adjustment, and color picker.
 
 This module provides the following classes:
 
@@ -482,7 +482,7 @@ Obtains a given number of colors with the top proportions in the image. This API
 
 | Type                                    | Description                                           |
 | :--------------------------------------- | :---------------------------------------------- |
-| Array<[Color](#color) \| null> | Array of colors, sorted by proportion.<br>- If the number of colors obtained is less than the value of **colorCount**, the array size is the actual number obtained.<br>- If the color fails to be obtained, an empty array is returned.<br>- If the value of **colorCount** is less than 1, **[null]** is returned.<br>- If the value of **colorCount** is greater than 10, an array holding the first 10 colors with the top proportions is returned.|
+| Array<[Color](#color) \| null> | Array of colors, sorted by proportion.<br>- If the number of colors obtained is less than the value of **colorCount**, the array size is the actual number obtained.<br>- If the colors fail to be obtained or the number of colors obtained is less than 1, **[null]** is returned.<br>- If the value of **colorCount** is greater than 10, an array holding the first 10 colors with the top proportions is returned.|
 
 **Example**
 

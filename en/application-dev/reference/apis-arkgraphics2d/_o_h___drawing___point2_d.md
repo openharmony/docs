@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **OH_Drawing_Point2D** struct describes a two-dimensional coordinate point.
+The OH_Drawing_Point2D struct describes a two-dimensional coordinate point.
 
 **Since**: 12
 
