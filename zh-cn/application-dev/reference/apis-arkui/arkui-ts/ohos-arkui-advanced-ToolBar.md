@@ -35,11 +35,11 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 装饰器类型       | 说明                  |
-| -------- | -------- | -------- |-------------|---------------------|
-| toolBarList | [ToolBarOptions](#toolbaroptions) | 是 | @ObjectLink | 工具栏列表。              |
-| activateIndex | number | 否 | @Prop       | 激活态的子项。<br/>默认值：-1。 |
-| controller | [TabsController](ts-container-tabs.md#tabscontroller) | 是 | -           | 工具栏控制器，不支持控制工具栏子项。  |
+| 名称 | 参数类型 | 必填 | 装饰器类型       | 说明                                                               |
+| -------- | -------- | -------- |-------------|------------------------------------------------------------------|
+| toolBarList | [ToolBarOptions](#toolbaroptions) | 是 | @ObjectLink | 工具栏列表。                                                           |
+| activateIndex | number | 否 | @Prop       | 激活态的子项。<br/>取值范围：大于等于-1。<br/>默认值：-1，没有激活态的子项。若设置数值小于-1，按没有激活项处理。 |
+| controller | [TabsController](ts-container-tabs.md#tabscontroller) | 是 | -           | 工具栏控制器，不支持控制工具栏子项。                                               |
 
 ## ToolBarOptions
 
