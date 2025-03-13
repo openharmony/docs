@@ -116,7 +116,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| EXTERN_C_START JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_Init](#oh_jsvm_init) (const [JSVM_InitOptions](_j_s_v_m___init_options.md) \*options) | 初始化一个JavaScript虚拟机。 | 
+| EXTERN_C_START JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_Init](#oh_jsvm_init) ([JSVM_InitOptions](_j_s_v_m___init_options.md) \*options) | 初始化一个JavaScript虚拟机。 | 
 | JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_CreateVM](#oh_jsvm_createvm) (const [JSVM_CreateVMOptions](_j_s_v_m___create_v_m_options.md) \*options, [JSVM_VM](#jsvm_vm) \*result) | 创建一个虚拟机实例。 | 
 | JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_SetMicrotaskPolicy](#oh_jsvm_setmicrotaskpolicy) (const [JSVM_VM ](#jsvm_vm) vm, [JSVM_MicrotaskPolicy ](#jsvm_microtaskpolicy) policy) | 用于设置虚拟机实例的微任务执行策略。<br/>如果该方法未被调用，虚拟机实例的默认策略为 JSVM_MicrotaskPolicy::JSVM_MICROTASK_AUTO。 |
 | JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_DestroyVM](#oh_jsvm_destroyvm) ([JSVM_VM](#jsvm_vm) vm) | 销毁一个虚拟机实例。 | 
@@ -2895,7 +2895,11 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateProxy(JSVM_Env env, JSVM_Value target, JSV
 
 **返回：**
 
-返回执行状态码。
+返回执行状态码。<br/>
+JSVM_OK 表示接口调用成功。<br/>
+JSVM_INVALID_ARG 如果任意参数为空。<br/>
+JSVM_OBJECT_EXPECTED 如果 target 或 handler 非 JS 对象。<br/>
+JSVM_PENDING_EXCEPTION 如果存在待处理的 JS 异常。
 
 
 ### OH_JSVM_IsProxy()
@@ -4648,7 +4652,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_PromiseRegisterHandler (JSVM_Env env, JSVM_Value
 | 名称 | 描述 | 
 | -------- | -------- |
 | env | 调用JSVM-API的环境。 | 
-| promise | 需要注册回调的 promis。 | 
+| promise | 需要注册回调的 promise。 | 
 | onFulfilled | 该函数在 promise 兑现后调用。 | 
 | onRejected | 该函数在 promise 拒绝后调用。 |
 | result | 输出参数，返回 promise 调用 then/catch 接口后生成的新的 promise。 |
