@@ -33,7 +33,7 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -84,7 +84,7 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -133,7 +133,7 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -170,7 +170,7 @@ Queries the priority group of this application. This API uses a promise to retur
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -216,7 +216,7 @@ Queries the priority group of this application. This API uses an asynchronous ca
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -264,7 +264,7 @@ Queries the priority group of this application. This API returns the result sync
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -310,7 +310,7 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -359,7 +359,7 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -414,7 +414,7 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -461,7 +461,7 @@ Sets a new group for the application specified by **bundleName**. This API uses 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -511,7 +511,7 @@ Sets a new group for the application specified by **bundleName**. This API uses 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -563,7 +563,7 @@ Queries the application usage duration statistics based on the specified start t
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -618,7 +618,7 @@ Queries the application usage duration statistics based on the specified start t
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -646,6 +646,111 @@ usageStatistics.queryBundleStatsInfos(0, 20000000000000).then((res:usageStatisti
 });
 ```
 
+## usageStatistics.queryAppStatsInfos<sup>15+</sup>
+
+queryAppStatsInfos(begin: number, end: number): Promise&lt;AppStatsMap&gt;
+
+Queries the application usage duration statistics based on the specified start time and end time, with the minimum granularity of a day. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
+
+**Return value**
+
+| Type                                      | Description                                    |
+| ---------------------------------------- | -------------------------------------- |
+| Promise&lt;[AppStatsMap](#appstatsmap15)&gt; | Promise used to return the application usage details in a specified period.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+usageStatistics.queryAppStatsInfos(0, 20000000000000).then((res:usageStatistics.AppStatsMap) => {
+  console.log('queryAppStatsInfos promise success.');
+  console.log('queryAppStatsInfos promise result ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('queryAppStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
+
+## usageStatistics.queryLastUseTime<sup>15+</sup>
+
+queryLastUseTime(appInfo: Record&lt;string, Array&lt;number&gt;&gt;): Promise&lt;AppStatsMap&gt;
+
+Queries application usage details based on the specified bundle name and application index. The minimum granularity is day. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| appInfo | Record&lt;string, Array&lt;number&gt;&gt; | Yes   | The parameter is in the map structure. The key is the bundle name, and the value is the index of the queried application. Multiple indexes can be transferred through the array.|
+
+**Return value**
+
+| Type                                      | Description                                    |
+| ---------------------------------------- | -------------------------------------- |
+| Promise&lt;[AppStatsMap](#appstatsmap15)&gt; | Promise used to return the detailed information about the application with the specified bundle name and index.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+usageStatistics.queryLastUseTime({"com.huawei.hmos.ailife": [0]}).then((res:usageStatistics.AppStatsMap) => {
+  console.log('queryLastUseTime promise success.');
+  console.log('queryLastUseTime promise result ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('queryLastUseTime promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
+
 ## usageStatistics.queryBundleStatsInfoByInterval
 
 queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleStatsInfo&gt;&gt;): void
@@ -667,7 +772,7 @@ Queries the application usage duration statistics in the specified time frame at
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -726,7 +831,7 @@ Queries the application usage duration statistics in the specified time frame at
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -777,7 +882,7 @@ Queries events of all applications based on the specified start time and end tim
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -831,11 +936,11 @@ Queries events of all applications based on the specified start time and end tim
 
 | Type                                      | Description                                    |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Promise used to return the events.|
+| Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Promise used to return the events obtained.|
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -884,7 +989,7 @@ Queries events of this application based on the specified start time and end tim
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -935,11 +1040,11 @@ Queries events of this application based on the specified start time and end tim
 
 | Type                                      | Description                                    |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Promise used to return the events.|
+| Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Promise used to return the events obtained.|
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -994,7 +1099,7 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and lock
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -1042,7 +1147,7 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and lock
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -1097,7 +1202,7 @@ Queries the number of notifications from all applications based on the specified
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -1145,7 +1250,7 @@ Queries the number of notifications from all applications based on the specified
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -1195,7 +1300,7 @@ Queries FA usage records. This API uses a promise to return a maximum of 1000 FA
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -1298,7 +1403,7 @@ Queries a given number of usage records of unused HAP files for each application
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -1348,7 +1453,7 @@ Queries a given number of usage records of unused HAP files for each application
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -1405,7 +1510,7 @@ Registers a callback for application group changes. When an application group of
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -1459,7 +1564,7 @@ Registers a callback for application group changes. When an application group of
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -1514,7 +1619,7 @@ Unregisters the callback for application group changes. This API uses a promise 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -1558,7 +1663,7 @@ Unregisters the callback for application group changes. This API uses an asynchr
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -1654,6 +1759,7 @@ Provides the usage duration information of an application.
 | fgAbilityPrevAccessTime  | number | No   | Last time when the application accessed the foreground.|
 | infosBeginTime           | number | No   | Time logged in the first application usage record in the **BundleActiveInfo** object.|
 | infosEndTime             | number | No   | Time logged in the last application usage record in the **BundleActiveInfo** object.|
+| appIndex<sup>15+</sup>                 | number | No   | Application index.|
 
 ## BundleEvents
 
@@ -1679,6 +1785,16 @@ Provides the usage duration information of an application.
 |Name                          | Description                                      |
 | ------------------------------ | ---------------------------------------- |
 | Record<string, [BundleStatsInfo](#bundlestatsinfo)> | Usage duration information by application.|
+
+## AppStatsMap<sup>15+</sup>
+
+Provides the detailed usage information of an application (including application clones).
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+|Name                          | Description                                      |
+| ------------------------------ | ---------------------------------------- |
+| Record<string, Array<[BundleStatsInfo](#bundlestatsinfo)>> | Usage information by application (including application clones).|
 
 ## DeviceEventStats
 
