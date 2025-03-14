@@ -12,8 +12,6 @@
 
 本模块能力仅支持WGS-84坐标系。
 
-**表2** 获取设备的位置信息接口介绍
-
 | 接口名 | 功能描述 | 
 | -------- | -------- |
 | [on(type: 'locationChange', request: LocationRequest &#124; ContinuousLocationRequest, callback: Callback&lt;Location&gt;): void](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanageronlocationchange) | 开启位置变化订阅，并发起定位请求。 | 

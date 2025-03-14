@@ -12,8 +12,6 @@
 
 地理围栏所使用的接口如下，详细说明参见：[Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md)。
 
-**表4** 地理围栏接口介绍
-
 | 接口名 | 功能描述 | 
 | -------- | -------- |
 | [addGnssGeofence(fenceRequest: GnssGeofenceRequest): Promise&lt;number&gt;](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanageraddgnssgeofence12) | 添加一个GNSS地理围栏，并订阅地理围栏事件。使用Promise异步回调。 | 
