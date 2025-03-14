@@ -17,10 +17,10 @@ Internal error.
 **Possible Causes**
 
 View the error log to determine the cause of the error. Possible causes include the following:
-1. The SQL statement fails to be executed.
-2. The internal state is abnormal.
-3. There is API that is incorrectly used.
-4. A system error, such as null pointer, insufficient memory, unexpected restart of data service, I/O error, IPC exception, and JS engine exception, occurs.
+1. Exception in SQL statement execution
+2. Abnormal internal state
+3. Incorrect use of APIs
+4. System errors, such as null pointers, insufficient memory, unexpected restart of data service, I/O error, IPC exception, and JS engine exceptions
 
 **Solution**
 
@@ -55,11 +55,11 @@ Database corrupted.
 
 **Description**
 
-The RDB store is corrupted when an API for adding, deleting, querying, or synchronizing data is invoked.
+The database is abnormal.
 
 **Possible Causes**
 
-The RDB store file has been corrupted.
+The database file is damaged and incomplete, the database FD is incorrectly operated, or the database memory is illegally accessed.
 
 **Solution**
 
@@ -95,10 +95,10 @@ The column value is null, or the column data type is incompatible with the API c
 
 **Possible Causes**
 
-- The result set is empty.
-- The current row number in the result set is out of range [0, m - 1]. **m** is **resultsetV9.rowCount**.
-- The column number is out of the range [0, n - 1]. **n** is **resultsetV9.columnCount**.
-- The API called does not support the type of the column data.
+1. The result set is empty.
+2. The current row number in the result set is out of range [0, m - 1]. **m** is **resultsetV9.rowCount**.
+3. The column number is out of the range [0, n - 1]. **n** is **resultsetV9.columnCount**.
+4. The API called does not support the type of the column data.
 
 **Solution**
 
@@ -147,7 +147,7 @@ A read, write, attach, or detach operation is being performed, and cannot be com
 
 **Error Message**
 
-The database is already attached.
+The database alias already exists.
 
 **Description**
 
@@ -173,7 +173,7 @@ The key configuration of the RDB store has been modified.
 
 **Possible Causes**
 
-Key configuration, such as **area**, **isEncrypt**, and **securityLevel**, of the RDB store is changed.
+Key configuration, such as **area** and **securityLevel**, of the RDB store is changed.
 
 **Solution**
 
@@ -516,7 +516,7 @@ The WAL file size exceeds the default limit.
 
 **Description**
 
-The WAL file exceeds 200 MB, which is the default limit.
+The WAL file exceeds 512 MB, which is the default limit.
 
 **Possible Causes**
 
@@ -532,7 +532,7 @@ Data is added, deleted, and modified continuously without closing the read trans
 
 **Error Message**
 
-Failed to obtain subscription service.
+Failed to obtain the subscription service.
 
 **Description**
 
@@ -550,7 +550,7 @@ Deploy the subscription service on the platform.
 
 **Error Message**
 
- Only supported in stage mode.
+The operation is supported in the stage model only.
 
 **Description**
 
@@ -568,7 +568,7 @@ Perform the operation on the stage model.
 
 **Error Message**
 
-The data group id is not valid.
+Invalid data group ID.
 
 **Description**
 
