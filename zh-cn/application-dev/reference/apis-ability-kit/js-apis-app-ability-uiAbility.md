@@ -259,6 +259,95 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
+## UIAbility.onWillForeground<sup>18+</sup>
+
+onWillForeground(): void
+
+UIAbility生命周期回调，当应用从后台转到前台时触发。同步接口，不支持异步回调。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+
+class MyUIAbility extends UIAbility {
+  onWillForeground() {
+    console.log('onWillForeground');
+  }
+}
+```
+
+
+## UIAbility.onWillBackground<sup>18+</sup>
+
+onWillBackground(): void
+
+UIAbility生命周期回调，当应用从前台转到后台时触发。同步接口，不支持异步回调。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+
+class MyUIAbility extends UIAbility {
+  onWillBackground() {
+    console.log('onWillBackground');
+  }
+}
+```
+
+## UIAbility.onDidForeground<sup>18+</sup>
+
+onDidForeground(): void
+
+UIAbility生命周期回调，当应用从后台转到前台时触发。同步接口，不支持异步回调。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+
+class MyUIAbility extends UIAbility {
+  onDidForeground() {
+    console.log('onDidForeground');
+  }
+}
+```
+
+
+## UIAbility.onDidBackground<sup>18+</sup>
+
+onDidBackground(): void
+
+UIAbility生命周期回调，当应用从前台转到后台时触发。同步接口，不支持异步回调。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+
+class MyUIAbility extends UIAbility {
+  onDidBackground() {
+    console.log('onDidBackground');
+  }
+}
+```
 
 ## UIAbility.onContinue
 
@@ -1260,7 +1349,7 @@ export default class MainUIAbility extends UIAbility {
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | ----- | --- | -------- |
 | msg | string | 是 | 用于传递释放消息。 | 
- 
+
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
 ### (msg: string)
@@ -1276,7 +1365,7 @@ export default class MainUIAbility extends UIAbility {
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | ----- | --- | -------- |
 | msg | string | 是 | 用于传递释放消息。 | 
- 
+
 ## CalleeCallback
 
 ### (indata: rpc.MessageSequence)
