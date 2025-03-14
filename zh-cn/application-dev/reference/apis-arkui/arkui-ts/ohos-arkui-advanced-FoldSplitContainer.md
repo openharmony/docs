@@ -31,6 +31,8 @@ FoldSplitContainer({
   onHoverStatusChange?: OnHoverStatusChangeHandler
 })
 
+实现折叠屏二分栏、三分栏在展开态、悬停态以及折叠态的区域控制的分栏布局。
+
 **装饰器类型：**\@Component
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -112,7 +114,7 @@ onHoverStatusChange事件处理。
 
 ## HoverModeStatus
 
-折叠态布局信息。
+设备或应用的折叠、旋转、窗口状态信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
