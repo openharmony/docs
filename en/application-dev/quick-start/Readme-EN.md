@@ -102,12 +102,13 @@
         - [PersistenceV2: Persisting Application State](arkts-new-persistencev2.md)
         - [!! Syntax: Two-Way Binding](arkts-new-binding.md)
         - [Freezing a Custom Component](arkts-custom-components-freezeV2.md)
-        - [Repeat: Reusing Child Components](arkts-new-rendering-control-repeat.md)
+        - [Repeat: Reusable Repeated Rendering](arkts-new-rendering-control-repeat.md)
         - [getTarget API: Obtaining Original Objects](arkts-new-getTarget.md)
         - [makeObserved API: Changing Unobservable Data to Observable Data](arkts-new-makeObserved.md)
       - [MVVM (V2)](arkts-mvvm-V2.md)
     - Mixed Use and Migration Guide for V1 and V2<!--v1v2-migration-->
       - [Mixing Use of Custom Components](arkts-custom-component-mixed-scenarios.md)
+      - [Mixing Use of State Management V1 and V2](arkts-v1-v2-mixusage.md)
       - [Migrating Applications from V1 to V2](arkts-v1-v2-migration.md)
   - Rendering Control<!--arkts-rendering-control-->
       - [Rendering Control Overview](arkts-rendering-control-overview.md)
@@ -115,3 +116,4 @@
       - [ForEach: Rendering Repeated Content](arkts-rendering-control-foreach.md)
       - [LazyForEach: Lazy Data Loading](arkts-rendering-control-lazyforeach.md)
       - [ContentSlot: Representing a Placeholder in Hybrid Development](arkts-rendering-control-contentslot.md)
+

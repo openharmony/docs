@@ -4,11 +4,12 @@ For the \@Component decorated custom components (referred to as the custom compo
 
 In terms of design, the code of V1 and V2 are expected to be completely isolated because V2 can do better than V1 in certain scenarios. However, from the actual perspective, the code developed in V1 have a solid foundation and it is not practical to migrate the entire code to V2 at a time. Therefore, it is allowed to use some capabilities of V2 in the code of V1 and capabilities of V1 is not completely prohibited in V2. For example, a custom component of V1 uses a custom component of V2, or V1 uses a decorator of V2. In this way, a problem of mixed use of V1 and V2 occurs.
 
-This document describes the mixed use of V1 and V2, aiming at guiding you to migrate code of V1 to V2.
+This topic describes the mixed use of V1 and V2, aiming at guiding you to migrate code of V1 to V2.
 
 > **NOTE**
 >
 > State management V2 is supported since API version 12.
+> The rules for mixed use described in this topic apply only to API version 17 and earlier. Since API version 18, state management provides new APIs [enableV2Compatibility](../reference/apis-arkui/js-apis-StateManagement.md#enablev2compatibility18) and [makeV1Observed](../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18) to help you solve the problem of mixed use during the migration from V1 to V2. For details, see [Mixing Use of State Management V1 and V2](./arkts-v1-v2-mixusage.md).
 
 ## Overview
 
@@ -497,7 +498,7 @@ struct Child {
 
       Divider()
         .color(Color.Blue)
-      Text ('undefineVal:${this.undefineVal}') // Display undefineVal.
+      Text(`undefineVal:${this.undefineVal}`) // Display undefineVal.
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -505,7 +506,7 @@ struct Child {
         })
       Divider()
         .color(Color.Blue)
-      Text ('info id:${this.info.myId}') // Display info:myId.
+      Text(`info id:${this.info.myId}`) // Display info:myId.
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -596,7 +597,7 @@ struct Child {
         })
       Divider()
         .color(Color.Blue)
-      Text ('info id:${this.info.myId}') // Display info:myId.
+      Text('info id:${this.info.myId}') // Display info:myId.
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -885,7 +886,7 @@ struct GrandSon {
 
   build() {
     Column() {
-      Text ('ObjectLink info info.myId:${this.info.myId}') // After @ObjectLink disassembles the level twice, the change is observable.
+      Text(`ObjectLink info info.myId:${this.info.myId}`)  // After @ObjectLink disassembles the level twice, the change is observable.
         .fontSize(30)
         .onClick(() => {
           this.info.myId++;
@@ -1043,3 +1044,5 @@ The sample code shows:
 
 * \@ObservedV2 and \@Trace nest the observation capability to the class properties. Therefore, when a class property is marked by @Trace, the change can be observed regardless of the number of nested levels.
 * When \@ObservdV2 and \@Observed are used together, the decorator used by the outermost class determines whether the class object can be decorated by the decorator of V1. For example, the class decorated by \@ObservedV2 in the lower level does not affect the outermost class decorated by the decorator of V1.
+
+<!--no_check-->

@@ -16,7 +16,7 @@ Note that the active or inactive state of a component is not equivalent to its v
 3. LazyForEach: Only the custom component in the currently displayed LazyForEach is in the active state, and the component of the cache node is in the inactive state.
 4. Navigation: Only the custom component in the currently displayed NavDestination is in the active state.
 5. Component reuse: The component that enters the reuse pool is in the inactive state, and the node attached from the reuse pool is in the active state.
-6. Mixed use: For example, if **LazyForEach** is used under **TabContent**, all nodes in **LazyForEach** of API version 15 or earlier are set to the active state since when switching tabs. Since API version 16, only the on-screen nodes of **LazyForEach** are set to the active state, and other nodes are set to the inactive state.
+6. Mixed use: For example, if **LazyForEach** is used under **TabContent**, all nodes in **LazyForEach** of API version 17 or earlier are set to the active state since when switching tabs. Since API version 18, only the on-screen nodes of **LazyForEach** are set to the active state, and other nodes are set to the inactive state.
 
 Before reading this topic, you are advised to read [Creating a Custom Component](./arkts-create-custom-components.md) to learn about the basic syntax.
 
@@ -24,7 +24,7 @@ Before reading this topic, you are advised to read [Creating a Custom Component]
 >
 > Custom component freezing is supported since API version 11.
 >
-> Mixed use of custom component freezing is supported since API version 16.
+> Mixed use of custom component freezing is supported since API version 18.
 
 ## Use Scenarios
 
@@ -788,7 +788,7 @@ struct Page {
 ```
 #### Mixed Use of LazyForEach, if, Component Reuse, and Component Freezing
 
-Under the same parent custom component, reusable nodes may enter the reuse pool in different ways. For example:
+ Under the same parent custom component, reusable nodes may enter the reuse pool in different ways. For example:
 - Detaching from the cache area of LazyForEach by swiping.
 - Notifying the subnodes to detach by switching the if condition.
 
@@ -975,7 +975,7 @@ struct Page {
 
 ### Mixing the Use of Components
 
-In the scenario where mixed use of component freezing is supported, the freezing behavior varies according to the API version. Set the component freezing flag for the parent component. In API version 15 or earlier, when the parent component is unfrozen, all nodes of its child components are unfrozen. Since API version 16, when the parent component is unfrozen, only the on-screen nodes of the child component are unfrozen. 
+In the scenario where mixed use of component freezing is supported, the freezing behavior varies according to the API version. Set the component freezing flag for the parent component. In API version 17 or earlier, when the parent component is unfrozen, all nodes of its child components are unfrozen. Since API version 18, when the parent component is unfrozen, only the on-screen nodes of the child component are unfrozen. 
 
 #### Mixed Use of Navigation and TabContent
 
@@ -1165,13 +1165,13 @@ Switch to the **DelayUpdate** tab and click the **Incr state** button to query *
 
 ![freeze](figures/freeze_tabcontent_delayupdate.png)
 
-For API version 15 or earlier:
+For API version 17 or earlier:
 
 Click **Next page** to enter the next page and then return. The tab is **DelayUpdate** by default. Click **Incr state** to query **Appmonitor** in the log and four records are displayed. When the page route is returned, all tabs of **Tabcontent** are unfrozen.
 
 ![freeze](figures/freeze_tabcontent_back_api15.png)
 
-For API version 16 or later:
+For API version 18 or later:
 
 Click **Next page** to enter the next page and then return. The tab is **DelayUpdate** by default. Click **Incr state** to query **Appmonitor** in the log and two records are displayed. When the page route is returned, only the nodes with the corresponding tabs are unfrozen.
 
@@ -1347,13 +1347,13 @@ Swipe down **LazyForEach** to add nodes to **cachedCount**. Click the **add sum*
 
 ![freeze](figures/freeze_lazyforeach_add.png)
 
-For API version 15 or earlier:
+For API version 17 or earlier:
 
 Turn off and on the screen to trigger **OnPageShow** and then click **add sum**. The number of printed records is equal to the number of on-screen nodes and the **cachedCount** nodes.
 
 ![freeze](figures/freeze_lazyforeach_api15.png)
 
-For API version 16 or later:
+For API version 18 or later:
 
 Turn off and on the screen to trigger **OnPageShow** and then click **add sum**. Only the number of on-screen nodes is displayed, and the **cachedCount** nodes are not unfrozen.
 

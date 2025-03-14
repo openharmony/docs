@@ -18,7 +18,7 @@
 | notificationSlotType<sup>11+</sup> | [notificationManager.SlotType](js-apis-notificationManager.md#slottype) |   否  | 是  | 通知渠道类型，默认为OTHER_TYPES。                        |
 | isOngoing                     | boolean                                                  |   否  | 是  | 预留能力，暂未支持。  |
 | isUnremovable                 | boolean                                                  |   否  | 是  | 预留能力，暂未支持。  |
-| updateOnly<sup>16+</sup>        | boolean                                       | 否  | 是  | 是否仅更新通知，默认值为false。<br/> - true：若相同ID通知存在，则更新通知；若相同ID通知不存在，则更新失败，不创建新的通知。<br/> - false：若相同ID通知存在，则更新通知；若相同ID通知不存在，则创建通知。         |
+| updateOnly<sup>18+</sup>        | boolean                                       | 否  | 是  | 是否仅更新通知，默认值为false。<br/> - true：若相同ID通知存在，则更新通知；若相同ID通知不存在，则更新失败，不创建新的通知。<br/> - false：若相同ID通知存在，则更新通知；若相同ID通知不存在，则创建通知。         |
 | deliveryTime                  | number                                                   |   否  | 是  | 通知发送时间。系统自动生成，无需开发者配置。<br>数据格式：时间戳。<br>单位：ms。                                                               |
 | tapDismissed                  | boolean                                                  |   否  | 是  | 通知是否自动清除。当通知携带wantAgent或actionButtons时该字段生效。默认值为true。<br> - true：点击通知或按钮后，自动删除当前通知。<br> - false：点击通知或按钮后，保留当前通知。 |
 | autoDeletedTime               | number                                                   |   否  | 是  | 自动清除的时间。<br>数据格式：时间戳。<br>单位：ms。<br>例如，希望某通知存留3秒（3000ms）后对其进行清除，则对应的清除时间为：new Date().getTime() + 3000。                                                              |

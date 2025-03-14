@@ -78,7 +78,8 @@
 
    > **说明：**
    >
-   > 写入配置参数时需要注意，prepare()接口的入参avConfig中仅设置转码相关的配置参数。
+   > 写入配置参数时需要注意，prepare()接口的入参avConfig中仅设置转码相关的配置参数。<br>
+   > 受限于解析/封装/编解码能力，只能使用[支持的转码格式](media-kit-intro.md#avtranscoder)。
 
    ```ts
    import { media } from '@kit.MediaKit';

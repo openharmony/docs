@@ -13,10 +13,10 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
 ```json
 {
   "module": {
-    // other declared attributes.
+    // 其他已声明的属性
     "abilities": [
       {
-        // other declared attributes.
+        // 其他已声明的属性
         "skills": [
           {
             "actions": [
@@ -39,7 +39,7 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
     "requestPermissions": [
       {
         "name": "ohos.permission.NFC_CARD_EMULATION",
-        // should add variable card_emulation_reason in string.json
+        // 必须要添加reason: card_mulation_reason
         "reason": "$string:card_emulation_reason",
       }
     ]
@@ -198,12 +198,7 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 import { cardEmulation } from '@kit.ConnectivityKit';
 import { bundleManager, Want } from '@kit.AbilityKit';
 
-// init elementName here, bundleName and abilityName are required.
-let want: Want = {
-  bundleName: "com.example.myapplication",
-  moduleName: "entry",
-  abilityName: "EntryAbility"
-};
+// 需要初始化 elementName、bundleName、abilityName，根据实际应用信息更改为正确的值
 let elementName: bundleManager.ElementName = {
   bundleName: "com.example.myapplication",
   moduleName: "entry",
@@ -211,9 +206,7 @@ let elementName: bundleManager.ElementName = {
 };
 
 let isDefaultService: boolean = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
-// do something according to the isDefaultService value
 ```
-
 
 ## HceService<sup>8+</sup>
 
@@ -375,7 +368,7 @@ export default class EntryAbility extends UIAbility {
       moduleName: want.moduleName
     }
     const apduCallback: AsyncCallback<number[]> = (err, data) => {
-      //handle the data and err
+      //处理数据和异常
       console.log("got apdu data");
     };
     hceService.on('hceCmd', apduCallback);
@@ -384,7 +377,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onDestroy');
     hceService.stop(element);
   }
-  // other life cycle method...
+  // 生命周期内的其它功能
 }
 ```
 
@@ -428,7 +421,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 let element: ElementName;
 const apduCallback: AsyncCallback<number[]> = (err, data) => {
-  //handle the data and err
+  // 处理数据和异常
   console.log("AsyncCallback got apdu data");
 };
 
@@ -441,7 +434,7 @@ export default class EntryAbility extends UIAbility {
       moduleName: want.moduleName
     }
     const apduCallback: AsyncCallback<number[]> = (err, data) => {
-      //handle the data and err
+      // 处理数据和异常
       console.log("got apdu data");
     };
     hceService.on('hceCmd', apduCallback);
@@ -451,7 +444,7 @@ export default class EntryAbility extends UIAbility {
     hceService.off('hceCmd', apduCallback);
     hceService.stop(element);
   }
-  // other life cycle method...
+  // 生命周期内的其它功能
 }
 ```
 
@@ -516,10 +509,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 
-// the data app wanna send, just a example data
+// 应用程序实际想要发送的数据， 此处仅做为示例
 const responseData = [0x1, 0x2];
 hceService.transmit(responseData).then(() => {
-  // handle the transmit promise
+  // 处理 promise 的回调
   console.log("transmit Promise success.");
 }).catch((err: BusinessError) => {
   console.log("transmit Promise error:", err);
@@ -563,7 +556,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 
-// the data app wanna send, just a example data
+// 应用程序实际想要发送的数据， 此处仅做为示例
 try {
   const responseData = [0x1, 0x2];
 

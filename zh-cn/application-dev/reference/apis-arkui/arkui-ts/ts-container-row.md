@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -29,7 +29,7 @@ Row(options?: RowOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [RowOptions](#rowoptions14对象说明) | 否 | 横向布局元素间距。 |
+| options | [RowOptions<sup>14+</sup>](#rowoptions14对象说明) | 否 | 横向布局元素间距。 |
 
 ### Row<sup>16+</sup>
 Row(options?: RowOptions | RowOptionsV2)
