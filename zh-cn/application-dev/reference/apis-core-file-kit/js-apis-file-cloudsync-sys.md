@@ -749,11 +749,11 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-## FileSync<sup>11+</sup>
+## FileSync<sup>12+</sup>
 
 云盘同步对象，用于支撑文件管理器应用完成云盘文件的端云同步流程。在使用前，需要先创建FileSync实例。
 
-### constructor<sup>11+</sup>
+### constructor<sup>12+</sup>
 
 constructor()
 
@@ -809,7 +809,7 @@ constructor(bundleName: string)
   let fileSync = new cloudSync.FileSync("com.ohos.demo")
   ```
 
-### on<sup>11+</sup>
+### on<sup>12+</sup>
 
 on(event: 'progress', callback: Callback\<SyncProgress>): void
 
@@ -850,7 +850,7 @@ on(event: 'progress', callback: Callback\<SyncProgress>): void
   fileSync.on('progress', callback);
   ```
 
-### off<sup>11+</sup>
+### off<sup>12+</sup>
 
 off(event: 'progress', callback?: Callback\<SyncProgress>): void
 
@@ -894,7 +894,7 @@ off(event: 'progress', callback?: Callback\<SyncProgress>): void
   fileSync.off('progress', callback);
   ```
 
-### start<sup>11+</sup>
+### start<sup>12+</sup>
 
 start(): Promise&lt;void&gt;
 
@@ -945,7 +945,7 @@ start(): Promise&lt;void&gt;
   });
   ```
 
-### start<sup>11+</sup>
+### start<sup>12+</sup>
 
 start(callback: AsyncCallback&lt;void&gt;): void
 
@@ -992,7 +992,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-### stop<sup>11+</sup>
+### stop<sup>12+</sup>
 
 stop(): Promise&lt;void&gt;
 
@@ -1036,7 +1036,7 @@ stop(): Promise&lt;void&gt;
   });
   ```
 
-### stop<sup>11+</sup>
+### stop<sup>12+</sup>
 
 stop(callback: AsyncCallback&lt;void&gt;): void
 
@@ -1082,7 +1082,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-### getLastSyncTime<sup>11+</sup>
+### getLastSyncTime<sup>12+</sup>
 
 getLastSyncTime(): Promise&lt;number&gt;
 
@@ -1126,7 +1126,7 @@ getLastSyncTime(): Promise&lt;number&gt;
 
   ```
 
-### getLastSyncTime<sup>11+</sup>
+### getLastSyncTime<sup>12+</sup>
 
 getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void;
 
