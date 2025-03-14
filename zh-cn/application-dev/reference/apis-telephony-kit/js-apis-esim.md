@@ -13,7 +13,7 @@ eSIM卡管理模块提供了eSIM卡管理的基础能力，包括获取指定卡
 import { eSIM } from '@kit.TelephonyKit';
 ```
 
-## eSIM.isSupported<sup>14+</sup>
+## eSIM.isSupported<sup>16</sup>
 
 isSupported\(slotId: number\): boolean
 
@@ -52,7 +52,7 @@ let isSupported: boolean = eSIM.isSupported(0);
 console.log(`the esim is Supported:` + isSupported);
 ```
 
-## eSIM.addProfile<sup>14+</sup>
+## eSIM.addProfile<sup>16</sup>
 
 addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 
