@@ -2239,6 +2239,7 @@
           - [oh_data_values_buckets.h](reference/apis-arkdata/oh__data__values__buckets_8h.md)
           - [oh_predicates.h](reference/apis-arkdata/oh__predicates_8h.md)
           - [oh_rdb_transaction.h](reference/apis-arkdata/oh__rdb__transaction_8h.md)
+          - [oh_rdb_types.h](reference/apis-arkdata/oh__rdb__types_8h.md)
           - [oh_value_object.h](reference/apis-arkdata/oh__value__object_8h.md)
           - [oh_values_bucket.h](reference/apis-arkdata/oh__values__bucket_8h.md)
           - [relational_store_error_code.h](reference/apis-arkdata/relational__store__error__code_8h.md)
