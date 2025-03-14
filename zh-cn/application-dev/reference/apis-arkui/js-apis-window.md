@@ -6246,7 +6246,7 @@ promise.then((pixelMap: image.PixelMap) => {
 
 snapshotIgnorePrivacy(): Promise&lt;image.PixelMap&gt;
 
-获取窗口截图，无视安全图层，使用Promise异步回调。
+获取窗口截图，无视安全图层。使用Promise异步回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -6260,7 +6260,7 @@ snapshotIgnorePrivacy(): Promise&lt;image.PixelMap&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
