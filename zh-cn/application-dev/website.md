@@ -4569,6 +4569,8 @@
         - [JSVM_ScriptOrigin](reference/common/_j_s_v_m___script_origin.md)
         - [JSVM_TypeTag](reference/common/_j_s_v_m___type_tag.md)
         - [JSVM_VMInfo](reference/common/_j_s_v_m___v_m_info.md)
+        - [JSVM_PropertyHandler](reference/common/_j_s_v_m___property_handler.md)
+        - [JSVM_DefineClassOptions](reference/common/_j_s_v_m___define_class_options.md)
   - 标准库<!--standard-library-->
     - [libc标准库](reference/native-lib/musl.md)
     - [c++标准库](reference/native-lib/cpp.md)
