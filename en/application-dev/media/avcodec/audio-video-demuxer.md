@@ -41,7 +41,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 > **NOTE**
 >
-> The word 'sample' in the preceding code snippet is only an example. Use the actual project directory name.
+> The word **sample** in the preceding code snippet is only an example. Use the actual project directory name.
 >
 
 ### How to Develop
@@ -58,12 +58,12 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    #include <sys/stat.h>
    ```
 
-2. Create a resource object.
+2. Create a resource instance.
 
    When using **open** to obtain the FD, convert the value of **filepath** to a [sandbox path](../../file-management/app-sandbox-directory.md#mappings-between-application-sandbox-paths-and-physical-paths) to obtain sandbox resources.
 
    ```c++
-   // Create the FD. You must have the read permission on the file handle when opening the file. (filePath indicates the path of the file to be demuxed. The file must exist.)
+   // Create the FD. You must have the read permission on the file instance to open the file. (filePath indicates the path of the file to be demuxed. The file must exist.)
    std::string filePath = "test.mp4";
    int fd = open(filePath.c_str(), O_RDONLY);
    struct stat fileStatus {};
@@ -74,23 +74,23 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       printf("get stat failed");
       return;
    }
-   // Create a source resource object for the FD resource file. If offset is not the start position of the file or size is not the actual file size, the data obtained may be incomplete. Consequently, the source resource object may fail to create or subsequent demuxing may fail.
+   // Create a source resource instance for the FD resource file. If offset is not the start position of the file or size is not the actual file size, the data obtained may be incomplete. Consequently, the source resource object may fail to create or subsequent demuxing may fail.
    OH_AVSource *source = OH_AVSource_CreateWithFD(fd, 0, fileSize);
    if (source == nullptr) {
       printf("create source failed");
       return;
    }
-   // (Optional) Create a source resource object for the URI resource file.
+   // (Optional) Create a source resource instance for the URI resource file.
    // OH_AVSource *source = OH_AVSource_CreateWithURI(uri);
 
-   // (Optional) Create a source resource object for the custom data source. Before the operation, you must implement AVSourceReadAt.
+   // (Optional) Create a source resource instance for the custom data source. Before the operation, you must implement AVSourceReadAt.
    // Add g_filePath when OH_AVSource_CreateWithDataSource is used.
    // g_filePath = filePath ;
    // OH_AVDataSource dataSource = {fileSize, AVSourceReadAt};
    // OH_AVSource *source = OH_AVSource_CreateWithDataSource(&dataSource);
    ```
 
-   Implement the **AVSourceReadAt** API before creating the resource object.
+   Implement the **AVSourceReadAt** API before creating the resource instance.
 
    ```c++
    // Add the header file.
@@ -147,7 +147,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```
 3. Create a demuxer instance.
    ```c++
-   // Create a demuxer for the resource object.
+   // Create a demuxer for the resource instance.
    OH_AVDemuxer *demuxer = OH_AVDemuxer_CreateWithSource(source);
    if (demuxer == nullptr) {
       printf("create demuxer failed");
@@ -174,11 +174,33 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    DRM_MediaKeySystemInfo mediaKeySystemInfo;
    OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
    ```
-   After obtaining and parsing DRM information, create [MediaKeySystem](../drm/native-drm-mediakeysystem-management.md) and [MediaKeySession](../drm/native-drm-mediakeysession-management.md) instances of the corresponding DRM scheme to obtain a media key. If required, set the audio decryption configuration by following step 4 in [Audio Decoding](./audio-decoding.md#how-to-develop), and set the video decryption configuration by following step 5 [Surface Output in Video Decoding](./video-decoding.md#surface-mode) or step 4 in [Buffer Output in Video Decoding](./video-decoding.md#buffer mode).
+   After obtaining and parsing DRM information, create [MediaKeySystem and MediaKeySession](../drm/drm-c-dev-guide.md) instances of the corresponding DRM scheme to obtain a media key. If required, set the audio decryption configuration by following step 4 in [Audio Decoding](audio-decoding.md#how-to-develop), and set the video decryption configuration by following step 5 [Surface Output in Video Decoding](video-decoding.md#surface-mode) or step 4 in [Buffer Output in Video Decoding](video-decoding.md#buffer mode).
 
-5. (Optional) Obtain the number of tracks. If you know the track information, skip this step.
+5. Obtain file information.
 
    ```c++
+   // (Optional) Obtain custom file attributes. If custom file attributes are not required, skip this step.
+   // Obtain custom attributes from the source file.
+   OH_AVFormat *customMetadataFormat = OH_AVSource_GetCustomMetadataFormat(source);
+   if (customMetadataFormat == nullptr) {
+      printf("get custom metadata format failed");
+      return;
+   }
+   // Precautions:
+   // 1. customKey must exactly match the key used during muxing (including the complete naming hierarchy).
+   //    The example key is for demonstration only. Replace it with the actual custom string.
+   //    For example, if the key used during muxing is com.openharmony.custom.meta.abc.efg,
+   //       you must use the full key. Using a truncated key like com.openharmony.custom.meta.abc will fail.
+   // 2. The type of value must match the data type used during muxing. (The example uses a string type. For int or float, use the corresponding interface.)
+   const char *customKey = "com.openharmony.custom.meta.string"; // Replace it with the actual key used during muxing.
+   const char *customValue;
+   if (!OH_AVFormat_GetStringValue(customMetadataFormat, customKey, &customValue)) {
+      printf("get custom metadata from custom metadata format failed");
+      return;
+   }
+   OH_AVFormat_Destroy(customMetadataFormat);
+
+   // (Optional) Obtain the number of tracks. If you know the track information, skip this step.
    // Obtain the number of tracks from the file source information. You can call the API to obtain file-level attributes. For details, see Table 1 in Appendix 1.
    OH_AVFormat *sourceFormat = OH_AVSource_GetSourceFormat(source);
    if (sourceFormat == nullptr) {
@@ -248,8 +270,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```c++
    // Demuxing is performed from this time.
    // Note:
-   // 1. If OH_AVDemuxer_SeekToTime is called for an MPEG TS file, the target position may be a non-key frame. You can then call OH_AVDemuxer_ReadSampleBuffer to check whether the current frame is a key frame based on the obtained OH_AVCodecBufferAttr. If it is a non-key frame, which causes display issues on the application side, cyclically read the frames until you reach the first key frame, where you can perform processing such as decoding.
+   // 1. If OH_AVDemuxer_SeekToTime is called for an MPEG TS or MPG file, the target position may be a non-key frame. You can then call OH_AVDemuxer_ReadSampleBuffer to check whether the current frame is a key frame based on the obtained OH_AVCodecBufferAttr. If it is a non-key frame, which causes display issues on the application side, cyclically read the frames until you reach the first key frame, where you can perform processing such as decoding.
    // 2. If OH_AVDemuxer_SeekToTime is called for an OGG file, the file seeks to the start of the time interval (second) where the input parameter millisecond is located, which may cause a certain number of frame errors.
+   // 3. The seek operation of the demuxer is performed only on streams with consistent decoding behavior. If a stream requires the decoder to reconfigure or re-input parameter data after seeking to decode correctly, it may result in artifacts or decoder freezing.
    OH_AVDemuxer_SeekToTime(demuxer, 0, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
    ```
 
@@ -284,6 +307,8 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    int32_t ret;
    while (!audioIsEnd || !videoIsEnd) {
       // Before calling OH_AVDemuxer_ReadSampleBuffer, call OH_AVDemuxer_SelectTrackByID to select the track from which the demuxer reads data.
+      // Note:
+      // For AVI format, since the container standard does not support encapsulating timestamp information, the demuxed frames do not contain PTS information. The caller needs to calculate display timestamps based on the frame rate and the display order of the decoded frames.
       // Obtain the audio sample.
       if(!audioIsEnd) {
          ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, audioTrackIndex, buffer);
@@ -313,16 +338,16 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 10. Destroy the demuxer instance.
       ```c++
-      // Manually set the instance to NULL after OH_AVSource_Destroy is called. Do not call this API repeatedly for the same instance; otherwise, a program error occurs.
+      // Manually set the instance to a null pointer after OH_AVSource_Destroy is called. Do not call this API repeatedly for the same instance; otherwise, a program error occurs.
       if (OH_AVSource_Destroy(source) != AV_ERR_OK) {
          printf("destroy source pointer error");
       }
-      source = NULL;
-      // Manually set the instance to NULL after OH_AVDemuxer_Destroy is called. Do not call this API repeatedly for the same instance; otherwise, a program error occurs.
+      source = nullptr;
+      // Manually set the instance to a null pointer after OH_AVDemuxer_Destroy is called. Do not call this API repeatedly for the same instance; otherwise, a program error occurs.
       if (OH_AVDemuxer_Destroy(demuxer) != AV_ERR_OK) {
          printf("destroy demuxer pointer error");
       }
-      demuxer = NULL;
+      demuxer = nullptr;
       close(fd);
       ```
 
@@ -332,6 +357,8 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 > **NOTE**
 >
 > Attribute data can be obtained only when the file is parsed normally. If the file information is incorrect or missing, the parsing is abnormal and the corresponding data cannot be obtained.
+> 
+> Currently, data in the GBK character set is converted to UTF-8. If other character sets need to be converted to UTF-8, you must handle the conversion. For details, see [icu4c](../../reference/native-lib/icu4c.md).
 > 
 > For details about the data type and value range, see [Media Data Key-Value Pairs](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
 
@@ -358,7 +385,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 > **NOTE**
 >
 > Attribute data can be obtained only when the file is parsed normally. If the file information is incorrect or missing, the parsing is abnormal and the corresponding data cannot be obtained.
-> 
+>
 > For details about the data type and value range, see [Media Data Key-Value Pairs](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
 
 **Table 2** Supported track-level attributes
@@ -387,3 +414,5 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 |OH_MD_KEY_AUDIO_SAMPLE_FORMAT|Audio stream sample format.|Not supported|Supported|Not supported|
 |OH_MD_KEY_AAC_IS_ADTS|AAC format. This key is valid only for AAC streams.|Not supported|Supported|Not supported|
 |OH_MD_KEY_BITS_PER_CODED_SAMPLE|Number of bits per coded sample in the audio stream.|Not supported|Supported|Not supported|
+
+ <!--no_check--> 

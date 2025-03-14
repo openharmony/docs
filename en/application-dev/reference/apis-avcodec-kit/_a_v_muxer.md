@@ -26,7 +26,7 @@ For details about the development guide and sample, see [Media Data Muxing](../.
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [OH_AVMuxer](#oh_avmuxer) [OH_AVMuxer](#oh_avmuxer) | Defines a struct that describes a native object for the muxer interface. | 
+| typedef struct [OH_AVMuxer](#oh_avmuxer) [OH_AVMuxer](#oh_avmuxer) | Defines a struct for the native object for the muxer interface. | 
 
 
 ### Functions
@@ -54,7 +54,7 @@ typedef struct OH_AVMuxer OH_AVMuxer
 ```
 **Description**
 
-Defines a struct that describes a native object for the muxer interface.
+Defines a struct for the native object for the muxer interface.
 
 **Since**: 10
 
@@ -92,7 +92,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
 - Returns **AV_ERR_INVALID_VAL** if the muxer pointer is null, or the track index or track format is invalid.
 
-- Returns **AV_ERR_OPERATE_NOT_PERMIT** if the function is called in an invalid state.
+- Returns **AV_ERR_OPERATE_NOT_PERMIT** if the function is called out of sequence. 
 
 - Returns **AV_ERR_UNSUPPORT** if the MIME type is not supported. Returns **AV_ERR_NO_MEMORY** if memory allocation fails.
 
@@ -118,11 +118,11 @@ Creates an **OH_AVMuxer** instance by using the file descriptor and container fo
 | Name| Description| 
 | -------- | -------- |
 | fd | File descriptor (FD). You must open the file in read/write mode (O_RDWR) and close the file after using it. | 
-| format | Format of the encapsulated output file. For details, see [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat). | 
+| format | Format of the muxed output file. For details, see [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat-1). | 
 
 **Returns**
 
-Returns the pointer to the **OH_AVMuxer** instance created. You must call **OH_AVMuxer_Destroy** to destroy the instance when it is no longer needed.
+Returns the pointer to the **OH_AVMuxer** instance created. After the muxing process is complete, call **OH_AVMuxer_Destroy** to destroy the instance.
 
 
 ### OH_AVMuxer_Destroy()
@@ -134,6 +134,8 @@ OH_AVErrCode OH_AVMuxer_Destroy (OH_AVMuxer *muxer)
 **Description**
 
 Clears internal resources and destroys an **OH_AVMuxer** instance.
+
+Do not repeatedly destroy the instance. Otherwise, the program may crash.
 
 **System capability**: SystemCapability.Multimedia.Media.Muxer
 
@@ -181,7 +183,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
 - Returns **AV_ERR_INVALID_VAL** if the muxer pointer is null or the value of **rotation** is invalid. 
 
-- Returns **AV_ERR_OPERATE_NOT_PERMIT** if the function is called in an invalid state.
+- Returns **AV_ERR_OPERATE_NOT_PERMIT** if the function is called out of sequence.
 
 
 ### OH_AVMuxer_SetFormat()
@@ -210,11 +212,11 @@ If the setting fails, check whether the value of **OH_MD_KEY_CREATION_TIME** com
 
 **Returns**
 
-Returns **AV_ERR_OK** if the **format** parameter is correctly set.
+- Returns **AV_ERR_OK** if the **format** parameter is correctly set.
 
-Returns **AV_ERR_INVALID_VAL** if the muxer pointer is null or the value of **format** is invalid.
+- Returns **AV_ERR_INVALID_VAL** if the muxer pointer is null or the value of **format** is invalid.
 
-Returns **AV_ERR_OPERATE_NOT_PERMIT** if the function is called in an invalid state.
+- Returns **AV_ERR_OPERATE_NOT_PERMIT** if the function is called out of sequence.
 
 
 ### OH_AVMuxer_Start()
@@ -245,7 +247,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
 - Returns **AV_ERR_INVALID_VAL** if the muxer pointer is null.
 
-- Returns **AV_ERR_OPERATE_NOT_PERMIT** if the function is called in an invalid state.
+- Returns **AV_ERR_OPERATE_NOT_PERMIT** if the function is called out of sequence. 
 
 - Returns **AV_ERR_UNKNOWN** in the case of an unknown error.
 
@@ -278,7 +280,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
 - Returns **AV_ERR_INVALID_VAL** if the muxer pointer is null.
 
-- Returns **AV_ERR_OPERATE_NOT_PERMIT** if the function is called in an invalid state.
+- Returns **AV_ERR_OPERATE_NOT_PERMIT** if the function is called out of sequence.
 
 
 ### OH_AVMuxer_WriteSample()
@@ -308,7 +310,7 @@ This function must be called after **OH_AVMuxer_Start** and before **OH_AVMuxer_
 | muxer | Pointer to an **OH_AVMuxer** instance. | 
 | trackIndex | Index of the audio or video track corresponding to the data. | 
 | sample | Pointer to the data obtained after encoding or demuxing. | 
-| info | Sample description. For details, see **OH_AVCodecBufferAttr**. | 
+| info | Sample description. For details, see [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md). | 
 
 **Returns**
 
@@ -316,7 +318,7 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
 - Returns **AV_ERR_INVALID_VAL** if the muxer pointer is null, or the track index, sample, or info is invalid.
 
-- Returns **AV_ERR_OPERATE_NOT_PERMIT** if the function is called in an invalid state.
+- Returns **AV_ERR_OPERATE_NOT_PERMIT** if the function is called out of sequence. 
 
 - Returns **AV_ERR_NO_MEMORY** if memory allocation fails. Returns **AV_ERR_UNKNOWN** in the case of an unknown error.
 
@@ -343,7 +345,7 @@ This function must be called after **OH_AVMuxer_Start** and before **OH_AVMuxer_
 | -------- | -------- |
 | muxer | Pointer to an **OH_AVMuxer** instance. | 
 | trackIndex | Index of the audio or video track corresponding to the data. | 
-| sample | Pointer to the data obtained after encoding or demuxing. Data and data attributes are included. | 
+| sample | Pointer to the data and properties obtained after encoding or demuxing. | 
 
 **Returns**
 
@@ -351,6 +353,6 @@ Returns **AV_ERR_OK** if the operation is successful; returns an error code defi
 
 - Returns **AV_ERR_INVALID_VAL** if the muxer pointer is null, or the track index or sample is invalid.
 
-- Returns **AV_ERR_OPERATE_NOT_PERMIT** if the function is called in an invalid state.
+- Returns **AV_ERR_OPERATE_NOT_PERMIT** if the function is called out of sequence. 
 
 - Returns **AV_ERR_NO_MEMORY** if memory allocation fails. Returns **AV_ERR_UNKNOWN** in the case of an unknown error.
