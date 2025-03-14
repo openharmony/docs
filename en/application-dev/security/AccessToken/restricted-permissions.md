@@ -28,6 +28,18 @@ Modify the **"bundle-info"** &gt; **"apl"** field in the file.
 
 ## Restricted Permissions
 
+### ohos.permission.kernel.DISABLE_GOTPLT_RO_PROTECTION
+
+Allows an application to disable the read-only protection on the .got.plt.
+
+<!--RP22--><!--RP22End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 17
+
 ### ohos.permission.SYSTEM_FLOAT_WINDOW
 
 Allows an application to be displayed in a floating window on top of other applications.
